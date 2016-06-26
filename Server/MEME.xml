@@ -1,0 +1,140 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+MEME
+</name>
+</assembly>
+<members>
+<member name="T:MEME.My.Resources.Resources">
+<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member>
+<member name="P:MEME.My.Resources.Resources.ResourceManager">
+<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member>
+<member name="P:MEME.My.Resources.Resources.Culture">
+<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member>
+<member name="T:MEME.HttpInternal.HttpFileSystem">
+ <summary>
+ 不兼容IE和Edge浏览器???为什么会这样子？
+ </summary>
+</member>
+<member name="M:MEME.HttpInternal.HttpFileSystem.#ctor(System.Int32,System.String,System.Boolean)">
+ <summary>
+ 
+ </summary>
+ <param name="port"></param>
+ <param name="root"></param>
+ <param name="nullExists"></param>
+</member>
+<member name="M:MEME.HttpInternal.HttpFileSystem.handleGETRequest(MEME.HttpInternal.HttpProcessor)">
+ <summary>
+ 为什么不需要添加<see cref="M:MEME.HttpInternal.HttpProcessor.writeSuccess(System.String)"/>方法？？？
+ </summary>
+ <param name="p"></param>
+</member>
+<member name="M:MEME.HttpInternal.HttpFileSystem.__handleREST(MEME.HttpInternal.HttpProcessor)">
+ <summary>
+ handle the GET/POST request at here
+ </summary>
+ <param name="p"></param>
+</member>
+<member name="M:MEME.HttpInternal.HttpFileSystem.__transferData(MEME.HttpInternal.HttpProcessor,System.String,System.Byte[])">
+ <summary>
+ 为什么不需要添加content-type说明？？
+ </summary>
+ <param name="p"></param>
+ <param name="ext"></param>
+ <param name="buf"></param>
+</member>
+<member name="M:MEME.HttpInternal.HttpServer.Run">
+ <summary>
+ 线程会被阻塞在这里
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:MEME.HttpInternal.HttpServer.__httpProcessor(System.Net.Sockets.TcpClient)">
+ <summary>
+ New HttpProcessor(Client, Me) with {._404Page = "...."}
+ </summary>
+ <param name="client"></param>
+ <returns></returns>
+</member>
+<member name="M:MEME.HttpInternal.HttpServer.handleGETRequest(MEME.HttpInternal.HttpProcessor)">
+ <summary>
+ 
+ </summary>
+ <param name="p"></param>
+ <example>
+ 
+ If p.http_url.Equals("/Test.png") Then
+     Dim fs As Stream = File.Open("../../Test.png", FileMode.Open)
+
+     p.writeSuccess("image/png")
+     fs.CopyTo(p.outputStream.BaseStream)
+     p.outputStream.BaseStream.Flush()
+ End If
+
+  Console.WriteLine("request: {0}", p.http_url)
+ 
+  p.writeSuccess()
+  p.outputStream.WriteLine("&lt;html>&lt;body>&lt;h1>Shoal SystemsBiology Shell Language&lt;/h1>")
+  p.outputStream.WriteLine("Current Time: " &amp; DateTime.Now.ToString())
+  p.outputStream.WriteLine("url : {0}", p.http_url)
+
+  p.outputStream.WriteLine("&lt;form method=post action=/local_wiki>")
+  p.outputStream.WriteLine("&lt;input type=text name=SearchValue value=Keyword>")
+  p.outputStream.WriteLine("&lt;input type=submit name=Invoker value=""Search"">")
+  p.outputStream.WriteLine("&lt;/form>")
+ 
+ </example>
+</member>
+<member name="P:MEME.HttpInternal.HttpProcessor.http_url">
+ <summary>
+ File location or GET/POST request arguments
+ </summary>
+ <returns></returns>
+</member>
+<member name="F:MEME.HttpInternal.HttpProcessor.MAX_POST_SIZE">
+ <summary>
+ 10MB
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="P:MEME.HttpInternal.HttpProcessor.IsWWWRoot">
+ <summary>
+ ????url???HTTP???
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:MEME.HttpInternal.HttpProcessor.HandlePOSTRequest">
+ <summary>
+ This post data processing just reads everything into a memory stream.
+ this is fine for smallish things, but for large stuff we should really
+ hand an input stream to the request processor. However, the input stream 
+ we hand him needs to let him see the "end of the stream" at this content 
+ length, because otherwise he won't know when he's seen it all! 
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="P:MEME.HttpInternal.HttpProcessor._404Page">
+ <summary>
+ You can customize your 404 error page at here.
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:MEME.HttpInternal.HttpProcessor.writeFailure(System.String)">
+ <summary>
+ 404
+ </summary>
+</member>
+</members>
+</doc>

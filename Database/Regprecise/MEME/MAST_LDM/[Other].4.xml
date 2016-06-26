@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-16"?>
+<AnnotationModel xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Evalue="1.2E-56" Width="29" Uid="[Other].4">
+  <Sites>
+    <regulon_site Name="BVU_1005:-265" Site="CGTCCACCCTATAAAACCGTTTGTCCACC" Pvalue="4.42E-15" Start="1" Right="0" regulators="3717631" />
+    <regulon_site Name="BACDOR_01719:-291" Site="CGTCCACCCTATAAAACCGTTTGTCCACC" Pvalue="4.42E-15" Start="1" Right="0" regulators="6280744" />
+    <regulon_site Name="BACCELL_05304:-268" Site="TGTCCACCTCAAATGTTCATTTGTCCACC" Pvalue="1.34E-14" Start="1" Right="0" regulators="6382291" />
+    <regulon_site Name="BACPLE_00643:-224" Site="TATCCACCTATAAAATTCGTTTGTCCACC" Pvalue="2.45E-14" Start="1" Right="0" regulators="6110439" />
+    <regulon_site Name="BACEGG_01540:-328" Site="TATCCACCTCTAAAACCCATTTGTCCACC" Pvalue="3.1299999999999997E-14" Start="1" Right="0" regulators="6256664" />
+    <regulon_site Name="BT0365:-136" Site="TATCCACCTCGAAAATTCATTTGTCCACC" Pvalue="1.03E-13" Start="1" Right="0" regulators="349894" />
+    <regulon_site Name="BVU_1002:-169" Site="TGTCCACCCTTTAAGCGATATTGTCCACC" Pvalue="2.0200000000000002E-13" Start="1" Right="0" regulators="3717631" />
+    <regulon_site Name="BACDOR_01716:-159" Site="TGTCCACCCTTTAAGCGATATTGTCCACC" Pvalue="2.0200000000000002E-13" Start="1" Right="0" regulators="6280744" />
+    <regulon_site Name="BACEGG_01542:-285" Site="TGTCCACCTTAAAAGGTCATATATCCACC" Pvalue="6.7000000000000007E-13" Start="1" Right="0" regulators="6256664" />
+    <regulon_site Name="BACPLE_00641:-153" Site="TGTCCACCCAATAGAAAAATTTGTCCACC" Pvalue="1.51E-12" Start="1" Right="0" regulators="6110439" />
+    <regulon_site Name="BT0367:-69" Site="TGTCCACCAATCGTGTTCGTATGTCCACC" Pvalue="3.96E-12" Start="1" Right="0" regulators="349894" />
+    <regulon_site Name="BACEGG_01540:-349" Site="TCTCTACACTTAAAATTCGTTTATCCACC" Pvalue="1.4E-11" Start="1" Right="0" regulators="6256664" />
+  </Sites>
+  <PWM>
+    <ResidueSite Site="0" PWM="0 0.833333 0 0.166667" Bits="1.1" />
+    <ResidueSite Site="0" PWM="0.25 0 0.666667 0.083333" Bits="1.4" />
+    <ResidueSite Site="0" PWM="0 1 0 0" Bits="1.7" />
+    <ResidueSite Site="0" PWM="0 0 0 1" Bits="2.5" />
+    <ResidueSite Site="0" PWM="0 0.083333 0 0.916667" Bits="1.9" />
+    <ResidueSite Site="0" PWM="1 0 0 0" Bits="1.7" />
+    <ResidueSite Site="0" PWM="0 0 0 1" Bits="2.5" />
+    <ResidueSite Site="0" PWM="0.083333 0 0 0.916667" Bits="1.9" />
+    <ResidueSite Site="0" PWM="0.083333 0.416667 0 0.5" Bits="0.6" />
+    <ResidueSite Site="0" PWM="0.25 0.5 0 0.25" Bits="0.3" />
+    <ResidueSite Site="0" PWM="0.416667 0.5 0.083333 0" Bits="0.3" />
+    <ResidueSite Site="0" PWM="0.5 0.416667 0 0.083333" Bits="0.3" />
+    <ResidueSite Site="0" PWM="0.916667 0 0.083333 0" Bits="1.4" />
+    <ResidueSite Site="0" PWM="0.75 0.166667 0.083333 0" Bits="0.6" />
+    <ResidueSite Site="0" PWM="0.583333 0 0.416667 0" Bits="1.1" />
+    <ResidueSite Site="0" PWM="0.25 0.416667 0.083333 0.25" Bits="0" />
+    <ResidueSite Site="0" PWM="0.083333 0.5 0.166667 0.25" Bits="0.3" />
+    <ResidueSite Site="0" PWM="0.25 0 0 0.75" Bits="1.4" />
+    <ResidueSite Site="0" PWM="0.416667 0.166667 0.416667 0" Bits="0.6" />
+    <ResidueSite Site="0" PWM="0.166667 0.833333 0 0" Bits="0.8" />
+    <ResidueSite Site="0" PWM="0.166667 0.833333 0 0" Bits="0.8" />
+    <ResidueSite Site="0" PWM="0 1 0 0" Bits="1.7" />
+    <ResidueSite Site="0" PWM="0.166667 0 0.833333 0" Bits="1.9" />
+    <ResidueSite Site="0" PWM="0 1 0 0" Bits="1.7" />
+    <ResidueSite Site="0" PWM="0 0 0 1" Bits="2.5" />
+    <ResidueSite Site="0" PWM="0 0 0 1" Bits="2.5" />
+    <ResidueSite Site="0" PWM="1 0 0 0" Bits="1.7" />
+    <ResidueSite Site="0" PWM="0 0 0 1" Bits="2.5" />
+    <ResidueSite Site="0" PWM="0 0 0 1" Bits="2.5" />
+  </PWM>
+</AnnotationModel>

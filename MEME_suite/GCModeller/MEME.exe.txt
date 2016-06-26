@@ -1,0 +1,389 @@
+﻿MEME [version 1.0.0.0]
+Module AssemblyName: file:///E:/GCModeller/branches/OnlineREST/MEME_suite/GCModeller/MEME.exe
+Root namespace: MEME
+
+
+All of the command that available in this program has been list below:
+
+ /BBH.Select.Regulators:           Select bbh result for the regulators in RegPrecise database from the regulon bbh data.
+ /Export.Regprecise.Motifs:        
+ /MAST_LDM.Build:                  
+ /MEME.Batch:                      
+ /Merge.Regprecise_Downloads:      
+ /Motif.Similarity:                
+ /Parser.Modules:                  
+ /Parser.Pathway:                  
+ /Parser.Regulon:                  
+ /Regulon.Reconstruct:             
+ /Regulon.Reconstructs:            Doing the regulon reconstruction job in batch mode.
+ /RfamSites:                       
+ /SWTOM.LDM:                       
+ /SWTOM.Query:                     
+ /Tom.Query:                       
+ /Tom.Query.Batch:                 
+ /TomTOM:                          
+ /TomTom.LDM:                      
+ --build.Regulations:              
+ --build.Regulations.From.Motifs:  
+ --CExpr.WGCNA:                    
+ Download.Regprecise:              Download Regprecise database from Web API
+ --Dump.KEGG.Family:               
+ --family.statics:                 
+ Fasta.Downloads:                  
+ --Get.Intergenic:                 
+ --GetFasta:                       
+ --hits.diff:                      
+ --Intersect.Max:                  
+ --logo:                           
+ --mapped-Back:                    
+ mast.compile:                     
+ mast.compile.bulk:                
+ --modules.regulates:              Exports the venn diagram model for the module regulations.
+ Motif.Locates:                    
+ MotifScan:                        
+ --pathway.regulates:              Associates of the pathway regulation information for the predicted virtual footprint information.
+ Regprecise.Compile:               The repository parameter is a directory path which is the regprecise database root directory in the GCModeller directory, if you didn't know how to set this value, please leave it blank.
+ regulators.bbh:                   Compiles for the regulators in the bacterial genome mapped on the regprecise database using bbh method.
+ regulators.compile:               Regprecise regulators data source compiler.
+ --site.Match:                     
+ --site.Matches:                   
+ --site.Matches.text:              Using this function for processing the meme text output from the tmod toolbox.
+ --site.stat:                      
+ --TCS.Module.Regulations:         
+ --TCS.Regulations:                
+ VirtualFootprint.DIP:             Associate the dip information with the Sigma 70 virtual footprints.
+ wGet.Regprecise:                  Download Regprecise database from REST API
+
+Commands
+--------------------------------------------------------------------------------
+1.  Help for command '/BBH.Select.Regulators':
+
+  Information:  Select bbh result for the regulators in RegPrecise database from the regulon bbh data.
+  Usage:        E:\GCModeller\branches\OnlineREST\MEME_suite\GCModeller\MEME.exe /BBH.Select.Regulators /in <bbh.csv> /db <regprecise_downloads.DIR> [/out <out.csv>]
+  Example:      MEME /BBH.Select.Regulators 
+
+2.  Help for command '/Export.Regprecise.Motifs':
+
+  Information:  
+  Usage:        E:\GCModeller\branches\OnlineREST\MEME_suite\GCModeller\MEME.exe 
+  Example:      MEME /Export.Regprecise.Motifs 
+
+3.  Help for command '/MAST_LDM.Build':
+
+  Information:  
+  Usage:        E:\GCModeller\branches\OnlineREST\MEME_suite\GCModeller\MEME.exe /MAST_LDM.Build /source <sourceDIR> [/out <exportDIR:=./> /evalue <1e-3>]
+  Example:      MEME /MAST_LDM.Build 
+
+4.  Help for command '/MEME.Batch':
+
+  Information:  
+  Usage:        E:\GCModeller\branches\OnlineREST\MEME_suite\GCModeller\MEME.exe /MEME.Batch /in <inDIR> [/out <outDIR> /evalue <1> /nmotifs <30> /mod <zoops>]
+  Example:      MEME /MEME.Batch 
+
+5.  Help for command '/Merge.Regprecise_Downloads':
+
+  Information:  
+  Usage:        E:\GCModeller\branches\OnlineREST\MEME_suite\GCModeller\MEME.exe /Merge.Regprecise_Downloads /in <inDIR> [/out outDIR]
+  Example:      MEME /Merge.Regprecise_Downloads 
+
+6.  Help for command '/Motif.Similarity':
+
+  Information:  
+  Usage:        E:\GCModeller\branches\OnlineREST\MEME_suite\GCModeller\MEME.exe /Motif.Similarity /in <tomtom.DIR> /motifs <MEME_OUT.DIR> [/out <out.csv> /bp.var]
+  Example:      MEME /Motif.Similarity 
+
+7.  Help for command '/Parser.Modules':
+
+  Information:  
+  Usage:        E:\GCModeller\branches\OnlineREST\MEME_suite\GCModeller\MEME.exe /Parser.Modules /KEGG.Modules <KEGG.modules.DIR> /PTT <genomePTT.DIR> /door <genome.opr> /out <fasta.outDIR>
+  Example:      MEME /Parser.Modules 
+
+8.  Help for command '/Parser.Pathway':
+
+  Information:  
+  Usage:        E:\GCModeller\branches\OnlineREST\MEME_suite\GCModeller\MEME.exe /Parser.Pathway /KEGG.Pathways <KEGG.pathways.DIR> /PTT <genomePTT.DIR> /door <genome.opr> /out <fasta.outDIR>
+  Example:      MEME /Parser.Pathway 
+
+9.  Help for command '/Parser.Regulon':
+
+  Information:  
+  Usage:        E:\GCModeller\branches\OnlineREST\MEME_suite\GCModeller\MEME.exe /Parser.Regulon /inDIR <regulons.inDIR> /out <fasta.outDIR> /PTT <genomePTT.DIR> /door <genome.opr>
+  Example:      MEME /Parser.Regulon 
+
+10.  Help for command '/Regulon.Reconstruct':
+
+  Information:  
+  Usage:        E:\GCModeller\branches\OnlineREST\MEME_suite\GCModeller\MEME.exe /Regulon.Reconstruct /bbh <bbh.csv> /genome <RegPrecise.genome.xml> /door <operon.door> [/out <outfile.csv>]
+  Example:      MEME /Regulon.Reconstruct 
+
+11.  Help for command '/Regulon.Reconstructs':
+
+  Information:  Doing the regulon reconstruction job in batch mode.
+  Usage:        E:\GCModeller\branches\OnlineREST\MEME_suite\GCModeller\MEME.exe /Regulon.Reconstructs /bbh <bbh_EXPORT_csv.DIR> /genome <RegPrecise.genome.DIR> /door <operon.door> [/out <outDIR>]
+  Example:      MEME /Regulon.Reconstructs 
+
+
+
+  Parameters information:
+   ---------------------------------------
+    /bbh
+    Description:  A directory which contains the bbh export csv data from the localblast tool.
+
+    Example:      /bbh ""
+
+/genome
+    Description:  The directory which contains the RegPrecise bacterial genome downloads data from the RegPrecise web server.
+
+    Example:      /genome ""
+
+/door
+    Description:  Door file which is the prediction data of the bacterial operon.
+
+    Example:      /door ""
+
+
+
+12.  Help for command '/RfamSites':
+
+  Information:  
+  Usage:        E:\GCModeller\branches\OnlineREST\MEME_suite\GCModeller\MEME.exe /RfamSites /source <sourceDIR> [/out <out.fastaDIR>]
+  Example:      MEME /RfamSites 
+
+13.  Help for command '/SWTOM.LDM':
+
+  Information:  
+  Usage:        E:\GCModeller\branches\OnlineREST\MEME_suite\GCModeller\MEME.exe /SWTOM.LDM /query <ldm.xml> /subject <ldm.xml> [/out <outDIR> /method <pcc/ed/sw; default:=pcc>]
+  Example:      MEME /SWTOM.LDM 
+
+14.  Help for command '/SWTOM.Query':
+
+  Information:  
+  Usage:        E:\GCModeller\branches\OnlineREST\MEME_suite\GCModeller\MEME.exe /SWTOM.Query /query <meme.txt> [/out <outDIR> /method <pcc> /bits.level 1.5 /minW 6]
+  Example:      MEME /SWTOM.Query 
+
+15.  Help for command '/Tom.Query':
+
+  Information:  
+  Usage:        E:\GCModeller\branches\OnlineREST\MEME_suite\GCModeller\MEME.exe /Tom.Query /query <ldm.xml/meme.txt> [/out <outDIR> /method <pcc/ed; default:=pcc> /cost <0.7> /threshold <0.65> /meme]
+  Example:      MEME /Tom.Query 
+
+16.  Help for command '/Tom.Query.Batch':
+
+  Information:  
+  Usage:        E:\GCModeller\branches\OnlineREST\MEME_suite\GCModeller\MEME.exe /Tom.Query.Batch /query <inDIR> [/out <outDIR> /method <pcc/ed; default:=pcc> /cost 0.7 /threshold <0.65>]
+  Example:      MEME /Tom.Query.Batch 
+
+17.  Help for command '/TomTOM':
+
+  Information:  
+  Usage:        E:\GCModeller\branches\OnlineREST\MEME_suite\GCModeller\MEME.exe /TomTOM /query <meme.txt> /subject <LDM.xml> [/out <outDIR> /method <pcc/ed; default:=pcc> /cost <0.7> /threshold <0.3>]
+  Example:      MEME /TomTOM 
+
+18.  Help for command '/TomTom.LDM':
+
+  Information:  
+  Usage:        E:\GCModeller\branches\OnlineREST\MEME_suite\GCModeller\MEME.exe /TomTom.LDM /query <ldm.xml> /subject <ldm.xml> [/out <outDIR> /method <pcc/ed/sw; default:=sw> /cost <0.7> /threshold <0.65>]
+  Example:      MEME /TomTom.LDM 
+
+19.  Help for command '--build.Regulations':
+
+  Information:  
+  Usage:        E:\GCModeller\branches\OnlineREST\MEME_suite\GCModeller\MEME.exe --build.Regulations /bbh <regprecise.bbhMapped.csv> /mast <mastSites.csv> [/cutoff <0.6> /out <out.csv> /sp <spName>]
+  Example:      MEME --build.Regulations 
+
+20.  Help for command '--build.Regulations.From.Motifs':
+
+  Information:  
+  Usage:        E:\GCModeller\branches\OnlineREST\MEME_suite\GCModeller\MEME.exe --build.Regulations.From.Motifs /bbh <regprecise.bbhMapped.csv> /motifs <motifSites.csv> [/cutoff <0.6> /sp <spName> /out <out.csv>]
+  Example:      MEME --build.Regulations.From.Motifs 
+
+21.  Help for command '--CExpr.WGCNA':
+
+  Information:  
+  Usage:        E:\GCModeller\branches\OnlineREST\MEME_suite\GCModeller\MEME.exe --CExpr.WGCNA /mods <CytoscapeNodes.txt> /genome <genome.DIR|*.PTT;*.fna> /out <DIR.out>
+  Example:      MEME --CExpr.WGCNA 
+
+22.  Help for command 'Download.Regprecise':
+
+  Information:  Download Regprecise database from Web API
+  Usage:        E:\GCModeller\branches\OnlineREST\MEME_suite\GCModeller\MEME.exe Download.Regprecise [/work ./ /save <saveXml>]
+  Example:      MEME Download.Regprecise 
+
+23.  Help for command '--Dump.KEGG.Family':
+
+  Information:  
+  Usage:        E:\GCModeller\branches\OnlineREST\MEME_suite\GCModeller\MEME.exe --Dump.KEGG.Family /in <in.fasta> [/out <out.csv>]
+  Example:      MEME --Dump.KEGG.Family 
+
+24.  Help for command '--family.statics':
+
+  Information:  
+  Usage:        E:\GCModeller\branches\OnlineREST\MEME_suite\GCModeller\MEME.exe --family.statics /sites <matches.csv> /mods <directory.kegg_modules>
+  Example:      MEME --family.statics 
+
+25.  Help for command 'Fasta.Downloads':
+
+  Information:  
+  Usage:        E:\GCModeller\branches\OnlineREST\MEME_suite\GCModeller\MEME.exe Fasta.Downloads /source <sourceDIR> [/out <outDIR> /keggTools <kegg.exe>]
+  Example:      MEME Fasta.Downloads 
+
+26.  Help for command '--Get.Intergenic':
+
+  Information:  
+  Usage:        E:\GCModeller\branches\OnlineREST\MEME_suite\GCModeller\MEME.exe --Get.Intergenic /PTT <genome.ptt> /nt <genome.fasta> [/o <out.fasta> /len 100 /strict]
+  Example:      MEME --Get.Intergenic 
+
+27.  Help for command '--GetFasta':
+
+  Information:  
+  Usage:        E:\GCModeller\branches\OnlineREST\MEME_suite\GCModeller\MEME.exe --GetFasta /bbh <bbhh.csv> /id <subject_id> /regprecise <regprecise.fasta>
+  Example:      MEME --GetFasta 
+
+28.  Help for command '--hits.diff':
+
+  Information:  
+  Usage:        E:\GCModeller\branches\OnlineREST\MEME_suite\GCModeller\MEME.exe --hits.diff /query <bbhh.csv> /subject <bbhh.csv> [/reverse]
+  Example:      MEME --hits.diff 
+
+29.  Help for command '--Intersect.Max':
+
+  Information:  
+  Usage:        E:\GCModeller\branches\OnlineREST\MEME_suite\GCModeller\MEME.exe --Intersect.Max /query <bbhh.csv> /subject <bbhh.csv>
+  Example:      MEME --Intersect.Max 
+
+30.  Help for command '--logo':
+
+  Information:  
+  Usage:        E:\GCModeller\branches\OnlineREST\MEME_suite\GCModeller\MEME.exe --logo -in <inDIR>
+  Example:      MEME --logo 
+
+31.  Help for command '--mapped-Back':
+
+  Information:  
+  Usage:        E:\GCModeller\branches\OnlineREST\MEME_suite\GCModeller\MEME.exe --mapped-Back /meme <meme.text> /mast <mast.xml> /ptt <genome.ptt> [/out <out.csv> /offset <10>]
+  Example:      MEME --mapped-Back 
+
+32.  Help for command 'mast.compile':
+
+  Information:  
+  Usage:        E:\GCModeller\branches\OnlineREST\MEME_suite\GCModeller\MEME.exe mast.compile /mast <mast.xml> /ptt <genome.ptt> [/no-meme /no-regInfo /p-value 1e-3 /mast-ldm <DIR default:=GCModeller/Regprecise/MEME/MAST_LDM>]
+  Example:      MEME mast.compile 
+
+33.  Help for command 'mast.compile.bulk':
+
+  Information:  
+  Usage:        E:\GCModeller\branches\OnlineREST\MEME_suite\GCModeller\MEME.exe mast.compile.bulk /source <source_dir> [/ptt <genome.ptt> /atg-dist <500> /no-meme /no-regInfo /p-value 1e-3 /mast-ldm <DIR default:=GCModeller/Regprecise/MEME/MAST_LDM> /related.all]
+  Example:      MEME mast.compile.bulk 
+
+
+
+  Parameters information:
+   ---------------------------------------
+       [/no-meme]
+    Description:  Specific that the mast site construction will without and meme pwm MAST_LDM model.
+
+    Example:      /no-meme ""
+
+
+
+34.  Help for command '--modules.regulates':
+
+  Information:  Exports the venn diagram model for the module regulations.
+  Usage:        E:\GCModeller\branches\OnlineREST\MEME_suite\GCModeller\MEME.exe --modules.regulates /in <virtualfootprints.csv> [/out <out.DIR>]
+  Example:      MEME --modules.regulates 
+
+35.  Help for command 'Motif.Locates':
+
+  Information:  
+  Usage:        E:\GCModeller\branches\OnlineREST\MEME_suite\GCModeller\MEME.exe Motif.Locates -ptt <bacterial_genome.ptt> -meme <meme.txt> [/out <out.csv>]
+  Example:      MEME Motif.Locates 
+
+36.  Help for command 'MotifScan':
+
+  Information:  
+  Usage:        E:\GCModeller\branches\OnlineREST\MEME_suite\GCModeller\MEME.exe MotifScan -nt <nt.fasta> /motif <motifLDM.xml/LDM_Name/FamilyName> [/delta <default:80> /delta2 <default:70> /offSet <default:5> /out <saved.csv>]
+  Example:      MEME MotifScan 
+
+37.  Help for command '--pathway.regulates':
+
+  Information:  Associates of the pathway regulation information for the predicted virtual footprint information.
+  Usage:        E:\GCModeller\branches\OnlineREST\MEME_suite\GCModeller\MEME.exe --pathway.regulates -footprints <virtualfootprint.csv> /pathway <DIR.KEGG.Pathways> [/out <./PathwayRegulations/>]
+  Example:      MEME --pathway.regulates 
+
+38.  Help for command 'Regprecise.Compile':
+
+  Information:  The repository parameter is a directory path which is the regprecise database root directory in the GCModeller directory, if you didn't know how to set this value, please leave it blank.
+  Usage:        E:\GCModeller\branches\OnlineREST\MEME_suite\GCModeller\MEME.exe Regprecise.Compile [<repository>]
+  Example:      MEME Regprecise.Compile 
+
+39.  Help for command 'regulators.bbh':
+
+  Information:  Compiles for the regulators in the bacterial genome mapped on the regprecise database using bbh method.
+  Usage:        E:\GCModeller\branches\OnlineREST\MEME_suite\GCModeller\MEME.exe regulators.bbh /bbh <bbh_dir> /save <save.csv> /direct
+  Example:      MEME regulators.bbh 
+
+40.  Help for command 'regulators.compile':
+
+  Information:  Regprecise regulators data source compiler.
+  Usage:        E:\GCModeller\branches\OnlineREST\MEME_suite\GCModeller\MEME.exe 
+  Example:      MEME regulators.compile 
+
+41.  Help for command '--site.Match':
+
+  Information:  
+  Usage:        E:\GCModeller\branches\OnlineREST\MEME_suite\GCModeller\MEME.exe --site.Match /meme <meme.text> /mast <mast.xml> /out <out.csv> [/ptt <genome.ptt> /len <150,200,250,300,350,400,450,500>]
+  Example:      MEME --site.Match 
+
+
+
+  Parameters information:
+   ---------------------------------------
+       [/len]
+    Description:  If not specific this parameter, then the function will trying to parsing the length value from the meme text automatically.
+
+    Example:      /len ""
+
+
+
+42.  Help for command '--site.Matches':
+
+  Information:  
+  Usage:        E:\GCModeller\branches\OnlineREST\MEME_suite\GCModeller\MEME.exe --site.Matches /meme <DIR.meme.text> /mast <DIR.mast.xml> /out <out.csv> [/ptt <genome.ptt>]
+  Example:      MEME --site.Matches 
+
+43.  Help for command '--site.Matches.text':
+
+  Information:  Using this function for processing the meme text output from the tmod toolbox.
+  Usage:        E:\GCModeller\branches\OnlineREST\MEME_suite\GCModeller\MEME.exe --site.Matches.text /meme <DIR.meme.text> /mast <DIR.mast.xml> /out <out.csv> [/ptt <genome.ptt> /fasta <original.fasta.DIR>]
+  Example:      MEME --site.Matches.text 
+
+44.  Help for command '--site.stat':
+
+  Information:  
+  Usage:        E:\GCModeller\branches\OnlineREST\MEME_suite\GCModeller\MEME.exe --site.stat /in <input.csv> [/out <out.csv>]
+  Example:      MEME --site.stat 
+
+45.  Help for command '--TCS.Module.Regulations':
+
+  Information:  
+  Usage:        E:\GCModeller\branches\OnlineREST\MEME_suite\GCModeller\MEME.exe --TCS.Module.Regulations /MiST2 <MiST2.xml> /footprint <footprints.csv> /Pathways <KEGG_Pathways.DIR>
+  Example:      MEME --TCS.Module.Regulations 
+
+46.  Help for command '--TCS.Regulations':
+
+  Information:  
+  Usage:        E:\GCModeller\branches\OnlineREST\MEME_suite\GCModeller\MEME.exe --TCS.Regulations /TCS <DIR.TCS.csv> /modules <DIR.mod.xml> /regulations <virtualfootprint.csv>
+  Example:      MEME --TCS.Regulations 
+
+47.  Help for command 'VirtualFootprint.DIP':
+
+  Information:  Associate the dip information with the Sigma 70 virtual footprints.
+  Usage:        E:\GCModeller\branches\OnlineREST\MEME_suite\GCModeller\MEME.exe VirtualFootprint.DIP vf.csv <csv> dip.csv <csv>
+  Example:      MEME VirtualFootprint.DIP 
+
+48.  Help for command 'wGet.Regprecise':
+
+  Information:  Download Regprecise database from REST API
+  Usage:        E:\GCModeller\branches\OnlineREST\MEME_suite\GCModeller\MEME.exe wGet.Regprecise [/repository-export <dir.export, default: ./> /updates]
+  Example:      MEME wGet.Regprecise 
+

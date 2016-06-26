@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-16"?>
+<AnnotationModel xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Evalue="6.6E-53" Width="21" Uid="GntR.3">
+  <Sites>
+    <regulon_site Name="BC1356:-43" Site="GTGTATTATTTAACTAGTACA" Pvalue="7.3E-11" Start="1" Right="0" regulators="358675" />
+    <regulon_site Name="SUB1003:-54" Site="CTGTACCATTTAAATAGTACA" Pvalue="1.7E-10" Start="1" Right="0" regulators="5936246" />
+    <regulon_site Name="SPy1285:-51" Site="CTGTACCATTTAATTAGTACA" Pvalue="1.1099999999999999E-09" Start="1" Right="0" regulators="101556" />
+    <regulon_site Name="SAG0938:-51" Site="TTGTACTATTTTTATAGTACA" Pvalue="2.42E-09" Start="1" Right="0" regulators="275571" />
+    <regulon_site Name="ABC1458:-49" Site="GTGTACTATTTAAATAGAACA" Pvalue="2.9E-09" Start="1" Right="0" regulators="822941" />
+    <regulon_site Name="BH0384:-51" Site="GTGTACTATTTCATTAGCACA" Pvalue="5.59E-09" Start="1" Right="0" regulators="62964" />
+    <regulon_site Name="Sez_0879:-58" Site="TTGTATCATTTAATTAGTACA" Pvalue="6.62E-09" Start="1" Right="0" regulators="5804406" />
+    <regulon_site Name="smi_0839:-153" Site="GTGTATTATATATCTAGTACA" Pvalue="8.71E-09" Start="1" Right="0" regulators="10162275" />
+    <regulon_site Name="SDEG_1097:-51" Site="CTGTACCATTTATTTAGTACA" Pvalue="8.71E-09" Start="1" Right="0" regulators="7472681" />
+    <regulon_site Name="SP_0785:-129" Site="GTGTATTATATATCTAGTACA" Pvalue="8.71E-09" Start="1" Right="0" regulators="117151" />
+    <regulon_site Name="THA_1439:-38" Site="CTGTAATATTATAATATTACA" Pvalue="1.0100000000000001E-08" Start="1" Right="0" regulators="5694242" />
+    <regulon_site Name="Tnap_0564:-35" Site="GTGTAATAGTATAATATTACA" Pvalue="1.0100000000000001E-08" Start="1" Right="0" regulators="10362658" />
+    <regulon_site Name="Tpet_0162:-35" Site="GTGTAATAGTATAATATTACA" Pvalue="1.0100000000000001E-08" Start="1" Right="0" regulators="3584094" />
+    <regulon_site Name="TRQ2_0160:-35" Site="GTGTAATAGTATAATATTACA" Pvalue="1.0100000000000001E-08" Start="1" Right="0" regulators="7270752" />
+    <regulon_site Name="TM0766:-36" Site="GTGTAATAGTATAATATTACA" Pvalue="1.0100000000000001E-08" Start="1" Right="0" regulators="0" />
+    <regulon_site Name="CTN_1811:66" Site="GTGTAATAGTACAATATTACA" Pvalue="1.17E-08" Start="1" Right="0" regulators="5476134" />
+    <regulon_site Name="GALLO_0987:-57" Site="CTGTACCATTTATGTAGTACA" Pvalue="1.93E-08" Start="1" Right="0" regulators="10395687" />
+    <regulon_site Name="Tmel_1133:-54" Site="CTGTAATAGTATAATATTACA" Pvalue="1.93E-08" Start="1" Right="0" regulators="7084055" />
+    <regulon_site Name="Fnod_0429:-68" Site="CTGTAATAGTACAATATTACA" Pvalue="2.1700000000000002E-08" Start="1" Right="0" regulators="3562413" />
+    <regulon_site Name="smi_0581:-46" Site="TTGTATTATTTAATTAAGACA" Pvalue="4.17E-08" Start="1" Right="0" regulators="10162275" />
+    <regulon_site Name="SDEG_0798:-37" Site="TTGTCTTATAAAAATAGTACA" Pvalue="4.17E-08" Start="1" Right="0" regulators="7472681" />
+    <regulon_site Name="SP_1714:-46" Site="TTGTATTATTTAATTAAGACA" Pvalue="4.17E-08" Start="1" Right="0" regulators="117151" />
+    <regulon_site Name="str1435:-59" Site="TTGTATCATTACTTTAGTACA" Pvalue="6.73E-08" Start="1" Right="0" regulators="927577" />
+    <regulon_site Name="RBAM_009320:-46" Site="GTGTACTATGTTACTCATACA" Pvalue="1.0300000000000001E-07" Start="1" Right="0" regulators="3455310" />
+    <regulon_site Name="BSU09050:-49" Site="GTGTACTATGTTACTCATACA" Pvalue="1.0300000000000001E-07" Start="1" Right="0" regulators="37439" />
+    <regulon_site Name="SUB0736:-37" Site="TTGTCTTATATTAATAATACA" Pvalue="1.1200000000000001E-07" Start="1" Right="0" regulators="5936246" />
+    <regulon_site Name="Pjdr2_3932:-44" Site="GTGTACTATTCAACTATAACA" Pvalue="1.5100000000000002E-07" Start="1" Right="0" regulators="6925691" />
+    <regulon_site Name="SSU05_0541:-48" Site="TTGTATTATTAAGATAAGACA" Pvalue="2.14E-07" Start="1" Right="0" regulators="3591554" />
+    <regulon_site Name="SMU.1193:-52" Site="TTGTATTATATATATAACACA" Pvalue="2.44E-07" Start="1" Right="0" regulators="295924" />
+    <regulon_site Name="SAG1361:-35" Site="TTGTTCTATATTAATAATACA" Pvalue="2.7600000000000004E-07" Start="1" Right="0" regulators="275571" />
+    <regulon_site Name="Sez_1122:-37" Site="TTGTCTTAAAAAAATAGTACA" Pvalue="4.33E-07" Start="1" Right="0" regulators="5804406" />
+    <regulon_site Name="Tlet_1559:-37" Site="CTGTAATGTTGTAGTATTACA" Pvalue="6.09E-07" Start="1" Right="0" regulators="3677800" />
+    <regulon_site Name="SMU.862:-112" Site="TTGTATTATAGCCTTAAGACA" Pvalue="1.06E-06" Start="1" Right="0" regulators="295924" />
+  </Sites>
+  <PWM>
+    <ResidueSite Site="0" PWM="0 0.363636 0.393939 0.242424" Bits="0.8" />
+    <ResidueSite Site="0" PWM="0 1 0 0" Bits="1.6" />
+    <ResidueSite Site="0" PWM="0 0 1 0" Bits="2.7" />
+    <ResidueSite Site="0" PWM="0 1 0 0" Bits="1.6" />
+    <ResidueSite Site="0" PWM="0.878788 0.030303 0 0.090909" Bits="1.1" />
+    <ResidueSite Site="0" PWM="0.272727 0.393939 0 0.333333" Bits="0.3" />
+    <ResidueSite Site="0" PWM="0 0.818182 0 0.181818" Bits="1.1" />
+    <ResidueSite Site="0" PWM="0.969697 0 0.030303 0" Bits="1.3" />
+    <ResidueSite Site="0" PWM="0.030303 0.757576 0.212121 0" Bits="0.8" />
+    <ResidueSite Site="0" PWM="0.242424 0.69697 0.060606 0" Bits="0.5" />
+    <ResidueSite Site="0" PWM="0.363636 0.545455 0.060606 0.030303" Bits="0.3" />
+    <ResidueSite Site="0" PWM="0.484848 0.363636 0 0.151515" Bits="0.3" />
+    <ResidueSite Site="0" PWM="0.727273 0.212121 0.030303 0.030303" Bits="0.5" />
+    <ResidueSite Site="0" PWM="0.515152 0.242424 0.060606 0.181818" Bits="0.3" />
+    <ResidueSite Site="0" PWM="0 1 0 0" Bits="1.6" />
+    <ResidueSite Site="0" PWM="0.939394 0 0 0.060606" Bits="1.3" />
+    <ResidueSite Site="0" PWM="0.272727 0.30303 0.424242 0" Bits="0.5" />
+    <ResidueSite Site="0" PWM="0.060606 0.757576 0.121212 0.060606" Bits="0.5" />
+    <ResidueSite Site="0" PWM="1 0 0 0" Bits="1.6" />
+    <ResidueSite Site="0" PWM="0 0 0 1" Bits="2.7" />
+    <ResidueSite Site="0" PWM="1 0 0 0" Bits="1.6" />
+  </PWM>
+</AnnotationModel>

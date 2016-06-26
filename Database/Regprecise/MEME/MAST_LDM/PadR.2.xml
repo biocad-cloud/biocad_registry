@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-16"?>
+<AnnotationModel xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Evalue="1.5E-22" Width="15" Uid="PadR.2">
+  <Sites>
+    <regulon_site Name="GALLO_2226:-35" Site="TATATAAAATTTTTA" Pvalue="9.4800000000000007E-07" Start="1" Right="0" regulators="10396931" />
+    <regulon_site Name="SPy2172:-34" Site="TATATAAAATTTTTA" Pvalue="9.4800000000000007E-07" Start="1" Right="0" regulators="102227" />
+    <regulon_site Name="SGO_0052:-110" Site="TATATAAAATTTTTA" Pvalue="9.4800000000000007E-07" Start="1" Right="0" regulators="3788367" />
+    <regulon_site Name="Sez_1913:-107" Site="TATATAAAATTTTTA" Pvalue="9.4800000000000007E-07" Start="1" Right="0" regulators="5805441" />
+    <regulon_site Name="smi_1985:-110" Site="TATATAAAAATTTTA" Pvalue="1.84E-06" Start="1" Right="0" regulators="10163688" />
+    <regulon_site Name="SDEG_2112:-34" Site="TATATAAAAATTTTA" Pvalue="1.84E-06" Start="1" Right="0" regulators="7473691" />
+    <regulon_site Name="SSU05_1131:-94" Site="TATATAAAAATTTTA" Pvalue="1.84E-06" Start="1" Right="0" regulators="3592147 3591259" />
+    <regulon_site Name="SSA_2336:-102" Site="TATATAAAAATTTTA" Pvalue="1.84E-06" Start="1" Right="0" regulators="2061854" />
+    <regulon_site Name="str1989:-115" Site="TATATAAAAATTTTA" Pvalue="1.84E-06" Start="1" Right="0" regulators="928115" />
+    <regulon_site Name="SP_0100:-110" Site="TATATAAAAATTTTA" Pvalue="1.84E-06" Start="1" Right="0" regulators="115646" />
+    <regulon_site Name="SMU.1704:-33" Site="TATATAAAATATTTA" Pvalue="4.7E-06" Start="1" Right="0" regulators="296381" />
+    <regulon_site Name="SUB1811:-35" Site="TATATAAAATTTATA" Pvalue="4.7E-06" Start="1" Right="0" regulators="5937053" />
+    <regulon_site Name="SDEG_2112:-107" Site="TATATAAATTTTTTA" Pvalue="8.48E-06" Start="1" Right="0" regulators="7473691" />
+    <regulon_site Name="SUB1811:-108" Site="TATATAATATTTTTA" Pvalue="8.48E-06" Start="1" Right="0" regulators="5937053" />
+    <regulon_site Name="SSU05_0264:-11" Site="TATAGAAAAATTTGA" Pvalue="1.0399999999999999E-05" Start="1" Right="0" regulators="3592147 3591259" />
+  </Sites>
+  <PWM>
+    <ResidueSite Site="0" PWM="0 1 0 0" Bits="1.4" />
+    <ResidueSite Site="0" PWM="1 0 0 0" Bits="1.4" />
+    <ResidueSite Site="0" PWM="0 1 0 0" Bits="1.4" />
+    <ResidueSite Site="0" PWM="1 0 0 0" Bits="1.4" />
+    <ResidueSite Site="0" PWM="0 0.933333 0.066667 0" Bits="1" />
+    <ResidueSite Site="0" PWM="1 0 0 0" Bits="1.4" />
+    <ResidueSite Site="0" PWM="1 0 0 0" Bits="1.4" />
+    <ResidueSite Site="0" PWM="0.933333 0.066667 0 0" Bits="1" />
+    <ResidueSite Site="0" PWM="0.933333 0.066667 0 0" Bits="1" />
+    <ResidueSite Site="0" PWM="0.466667 0.533333 0 0" Bits="0.3" />
+    <ResidueSite Site="0" PWM="0.066667 0.933333 0 0" Bits="1" />
+    <ResidueSite Site="0" PWM="0 1 0 0" Bits="1.4" />
+    <ResidueSite Site="0" PWM="0.066667 0.933333 0 0" Bits="1" />
+    <ResidueSite Site="0" PWM="0 0.933333 0.066667 0" Bits="1" />
+    <ResidueSite Site="0" PWM="1 0 0 0" Bits="1.4" />
+  </PWM>
+</AnnotationModel>

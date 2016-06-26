@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-16"?>
+<Settings.File xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://code.google.com/p/genome-in-code/gcmodeller/settings.file/">
+  <BlastBin>G:\blast\bin</BlastBin>
+  <RepositoryRoot>../../Database</RepositoryRoot>
+  <MySQL>https://127.0.0.1:3306/client?user=oWZwI0JCsf4Z6SDzIKjVXg==%password=f5DGNogWz0se2ScJ2rsu5Q==%database=PX9nLOBmuJkV700zowzCeQ==</MySQL>
+  <C2 />
+  <Dev2>
+    <StartPage>
+      <CloseAfterProjectLoad>false</CloseAfterProjectLoad>
+      <ShowOnStartUp>false</ShowOnStartUp>
+    </StartPage>
+    <IDE>
+      <Language>System</Language>
+    </IDE>
+    <Session LoadLastSessionAfterStartUp="false" />
+  </Dev2>
+  <Gcc />
+  <SMART />
+  <STAMP />
+  <GCHOST />
+  <MPAlignment ParserTimeOut="300" ParserThreads="12" Evalue="1E-05" Coverage="0.85" Identities="0.3" Offset="0.1" FamilyAccept="10" />
+</Settings.File>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-16"?>
+<AnnotationModel xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Evalue="6.7E-31" Width="11" Uid="Fis.6">
+  <Sites>
+    <regulon_site Name="Ddes_1028:-186" Site="GCAAATTTTTC" Pvalue="9.01E-07" Start="2" Right="1" regulators="8504950" />
+    <regulon_site Name="LI0348:-88" Site="GCAAAAATTTC" Pvalue="2.7E-06" Start="2" Right="1" regulators="1997496" />
+    <regulon_site Name="Ddes_0530:-243" Site="GCAAAAATTTC" Pvalue="2.7E-06" Start="2" Right="1" regulators="8504950" />
+    <regulon_site Name="DVU1441:-193" Site="GCAAAAATTTC" Pvalue="2.7E-06" Start="2" Right="1" />
+    <regulon_site Name="DMR_13730:1" Site="GCAAATTCTTC" Pvalue="4.27E-06" Start="2" Right="1" regulators="7648302" />
+    <regulon_site Name="DvMF_0244:-194" Site="GCAAAAAATTC" Pvalue="6.73E-06" Start="2" Right="1" regulators="8502312" />
+    <regulon_site Name="OB1869:-170" Site="GCAAAATATTG" Pvalue="6.73E-06" Start="2" Right="2" regulators="278650" />
+    <regulon_site Name="RBAM_022380:-61" Site="GCAAATTATTG" Pvalue="8.07E-06" Start="2" Right="2" regulators="3456615" />
+    <regulon_site Name="BSU24100:-61" Site="GCAAATTATTG" Pvalue="8.07E-06" Start="2" Right="2" regulators="38947" />
+    <regulon_site Name="DVU0863:-29" Site="GCAAAAACTTC" Pvalue="9.18E-06" Start="2" Right="1" />
+    <regulon_site Name="Desal_1155:-49" Site="GAAAAATTTTC" Pvalue="1.1599999999999999E-05" Start="2" Right="1" regulators="8508425" />
+    <regulon_site Name="Ddes_0763:-125" Site="GAAAAATTTTC" Pvalue="1.1599999999999999E-05" Start="2" Right="1" regulators="8504950" />
+    <regulon_site Name="LI0568:1" Site="GCAGATTTTTC" Pvalue="1.4799999999999999E-05" Start="2" Right="1" regulators="1997496" />
+    <regulon_site Name="Aflv_0957:-23" Site="GCAAAAAATTG" Pvalue="1.74E-05" Start="2" Right="2" regulators="5699813" />
+    <regulon_site Name="BPUM_2149:-61" Site="GCAATTTTTTG" Pvalue="1.74E-05" Start="2" Right="2" regulators="3427063" />
+    <regulon_site Name="Dde_0298:-199" Site="GCAACTTTTTC" Pvalue="2.07E-05" Start="2" Right="1" regulators="395344" />
+    <regulon_site Name="DMR_39260:-118" Site="GCAAAAAATGC" Pvalue="2.5699999999999998E-05" Start="2" Right="1" regulators="7648302" />
+    <regulon_site Name="DMR_45020:-118" Site="GCAAAAAATGC" Pvalue="2.5699999999999998E-05" Start="2" Right="1" regulators="7648302" />
+    <regulon_site Name="Ddes_0530:-101" Site="GCAAAAAATGC" Pvalue="2.5699999999999998E-05" Start="2" Right="1" regulators="8504950" />
+    <regulon_site Name="Ddes_1259:1" Site="GCAGATTATTC" Pvalue="2.5699999999999998E-05" Start="2" Right="1" regulators="8504950" />
+    <regulon_site Name="BH2765:-226" Site="GCAATAATTTG" Pvalue="3.14E-05" Start="2" Right="2" regulators="65347" />
+    <regulon_site Name="BC4163:-184" Site="GCAATTTATTG" Pvalue="3.14E-05" Start="2" Right="2" regulators="361418" />
+    <regulon_site Name="GK2383:-38" Site="GCAAAAATTGG" Pvalue="3.14E-05" Start="2" Right="2" regulators="854254" />
+    <regulon_site Name="GK2382:-148" Site="GCAATAATTTG" Pvalue="3.14E-05" Start="2" Right="2" regulators="854254" />
+    <regulon_site Name="BSU24090:-132" Site="GCAATAATTTG" Pvalue="3.14E-05" Start="2" Right="2" regulators="38947" />
+    <regulon_site Name="Dde_1713:1" Site="GCAAGTTTTTC" Pvalue="3.59E-05" Start="2" Right="1" regulators="395344" />
+    <regulon_site Name="DvMF_0248:1" Site="GCATATTTTTC" Pvalue="3.59E-05" Start="2" Right="1" regulators="8502312" />
+    <regulon_site Name="DVU1445:1" Site="GAAAATTCTTC" Pvalue="3.59E-05" Start="2" Right="1" />
+    <regulon_site Name="Desal_0181:-123" Site="GCAGTTTTTTC" Pvalue="4.6099999999999996E-05" Start="2" Right="1" regulators="8508425" />
+    <regulon_site Name="Desal_1249:-24" Site="GAAAAAAATTC" Pvalue="4.6099999999999996E-05" Start="2" Right="1" regulators="8508425" />
+    <regulon_site Name="Ddes_1028:-119" Site="GAAAAAAATTC" Pvalue="4.6099999999999996E-05" Start="2" Right="1" regulators="8504950" />
+    <regulon_site Name="Dde_1709:-193" Site="GAAAAAAATTC" Pvalue="4.6099999999999996E-05" Start="2" Right="1" regulators="395344" />
+    <regulon_site Name="DVU1032:-118" Site="GCAGTTTTTTC" Pvalue="4.6099999999999996E-05" Start="2" Right="1" />
+    <regulon_site Name="DMR_10270:-62" Site="GAAAATAATTC" Pvalue="5.1899999999999994E-05" Start="2" Right="1" regulators="7648302" />
+    <regulon_site Name="BC4165:-41" Site="GAAAAAATTTG" Pvalue="5.1899999999999994E-05" Start="2" Right="2" regulators="361418" />
+    <regulon_site Name="BC4163:-203" Site="GCAATAAATTG" Pvalue="5.1899999999999994E-05" Start="2" Right="2" regulators="361418" />
+    <regulon_site Name="BLi02586:-134" Site="GCAATAAATTG" Pvalue="5.1899999999999994E-05" Start="2" Right="2" regulators="728586" />
+    <regulon_site Name="RBAM_022370:-130" Site="GCAATAAATTG" Pvalue="5.1899999999999994E-05" Start="2" Right="2" regulators="3456615" />
+    <regulon_site Name="Desal_3007:1" Site="GAAAATACTTC" Pvalue="6.8E-05" Start="2" Right="1" regulators="8508425" />
+    <regulon_site Name="DvMF_0244:-140" Site="GGAAAATTTTG" Pvalue="6.8E-05" Start="1" Right="0" regulators="8502312" />
+    <regulon_site Name="BLi02587:-61" Site="GCAAATTGTTG" Pvalue="7.8299999999999992E-05" Start="2" Right="2" regulators="728586" />
+    <regulon_site Name="Dbac_1614:-50" Site="GAAAATTCTGC" Pvalue="9.6699999999999992E-05" Start="2" Right="1" regulators="7533790" />
+    <regulon_site Name="Desal_1156:-275" Site="GCATTTTTTTC" Pvalue="9.6699999999999992E-05" Start="2" Right="1" regulators="8508425" />
+    <regulon_site Name="Ddes_2002:-50" Site="GCAGATTCTGC" Pvalue="9.6699999999999992E-05" Start="2" Right="1" regulators="8504950" />
+    <regulon_site Name="Ddes_2002:-172" Site="GCAGATTCTGC" Pvalue="9.6699999999999992E-05" Start="2" Right="1" regulators="8504950" />
+    <regulon_site Name="Dde_0298:-55" Site="GCATATTTTGC" Pvalue="9.6699999999999992E-05" Start="2" Right="1" regulators="395344" />
+    <regulon_site Name="Dde_1684:-141" Site="GCAAGATATTG" Pvalue="9.6699999999999992E-05" Start="4" Right="4" regulators="395088" />
+    <regulon_site Name="DvMF_2912:-29" Site="GAAATTTCTTC" Pvalue="9.6699999999999992E-05" Start="2" Right="1" regulators="8502312" />
+    <regulon_site Name="DVU1444:-49" Site="GCAGATTCTGC" Pvalue="9.6699999999999992E-05" Start="2" Right="1" />
+    <regulon_site Name="BLi02587:-31" Site="GCAAAATTTTT" Pvalue="9.6699999999999992E-05" Start="2" Right="2" regulators="728586" />
+    <regulon_site Name="DMR_45640:-276" Site="GGAATTTTTTC" Pvalue="0.000106" Start="4" Right="8" regulators="7651551" />
+    <regulon_site Name="Desal_3007:-109" Site="GAAGAATATTC" Pvalue="0.000106" Start="2" Right="1" regulators="8508425" />
+    <regulon_site Name="DvMF_0905:-126" Site="GCAGCTTTTTC" Pvalue="0.000106" Start="2" Right="1" regulators="8502312" />
+    <regulon_site Name="BPUM_2149:-31" Site="GCAAATTTTTT" Pvalue="0.000106" Start="2" Right="2" regulators="3427063" />
+    <regulon_site Name="RBAM_022380:-31" Site="GCAAATTTTTT" Pvalue="0.000106" Start="2" Right="2" regulators="3456615" />
+    <regulon_site Name="BSU24100:-31" Site="GCAAATTTTTT" Pvalue="0.000106" Start="2" Right="2" regulators="38947" />
+    <regulon_site Name="Desal_3006:-82" Site="GCACAAATTTC" Pvalue="0.00011899999999999999" Start="2" Right="1" regulators="8508425" />
+    <regulon_site Name="Dde_1120:-26" Site="GAAAAAAATGC" Pvalue="0.00011899999999999999" Start="2" Right="1" regulators="395344" />
+    <regulon_site Name="Aflv_0958:-117" Site="GCAAAAAGTTG" Pvalue="0.00011899999999999999" Start="2" Right="2" regulators="5699813" />
+    <regulon_site Name="BPUM_2148:-113" Site="GCAAAAAGTTG" Pvalue="0.00011899999999999999" Start="2" Right="2" regulators="3427063" />
+    <regulon_site Name="Ddes_1260:-65" Site="GCAAGATATGC" Pvalue="0.00013199999999999998" Start="2" Right="1" regulators="8504950" />
+    <regulon_site Name="DvMF_1808:-96" Site="GAAGAATCTTC" Pvalue="0.00013199999999999998" Start="2" Right="1" regulators="8502312" />
+    <regulon_site Name="Dbac_2404:-193" Site="GGAAATTCTTG" Pvalue="0.000146" Start="1" Right="0" regulators="7533790" />
+    <regulon_site Name="Dbac_2711:-190" Site="GCAGCATTTTG" Pvalue="0.000163" Start="4" Right="4" regulators="7533189" />
+    <regulon_site Name="LI0887:-121" Site="GGAATTTTTTG" Pvalue="0.000179" Start="1" Right="0" regulators="1997496" />
+    <regulon_site Name="DMR_03980:-27" Site="GGAATTTTTTG" Pvalue="0.000179" Start="1" Right="0" regulators="7648302" />
+    <regulon_site Name="Desal_3004:-155" Site="GGAAAAAATTG" Pvalue="0.000179" Start="1" Right="0" regulators="8508425" />
+    <regulon_site Name="Desal_1156:-26" Site="GGAATTTTTTG" Pvalue="0.000179" Start="1" Right="0" regulators="8508425" />
+    <regulon_site Name="Dde_1713:-109" Site="GAAACTTCTTC" Pvalue="0.000193" Start="2" Right="1" regulators="395344" />
+    <regulon_site Name="DvMF_2284:-262" Site="GCAAATCCTGC" Pvalue="0.000254" Start="2" Right="1" regulators="8502312" />
+    <regulon_site Name="Desal_3004:-281" Site="GCAGTTAATGC" Pvalue="0.00027499999999999996" Start="2" Right="1" regulators="8508425" />
+    <regulon_site Name="Desal_3007:-129" Site="GAATTATTTTC" Pvalue="0.00027499999999999996" Start="2" Right="1" regulators="8508425" />
+    <regulon_site Name="Ddes_1259:-107" Site="GCAATACTTGC" Pvalue="0.00027499999999999996" Start="2" Right="1" regulators="8504950" />
+    <regulon_site Name="DvMF_2283:-410" Site="GCAGGATTTGC" Pvalue="0.00027499999999999996" Start="2" Right="1" regulators="8502312" />
+    <regulon_site Name="OB1870:-27" Site="GCAAAATAATG" Pvalue="0.00027499999999999996" Start="2" Right="2" regulators="278650" />
+    <regulon_site Name="ABC2453:-150" Site="GCAAAAATATG" Pvalue="0.000299" Start="2" Right="2" regulators="823942" />
+    <regulon_site Name="Desal_0681:-150" Site="GCAATTCATTG" Pvalue="0.00032199999999999997" Start="4" Right="4" regulators="8505636" />
+    <regulon_site Name="BLi02586:-112" Site="GCAAAATCATG" Pvalue="0.00032199999999999997" Start="2" Right="2" regulators="728586" />
+    <regulon_site Name="LI0746:-8" Site="GCACAAAATGC" Pvalue="0.000347" Start="2" Right="1" regulators="1997496" />
+    <regulon_site Name="DMR_20560:-191" Site="GAACATTTTTG" Pvalue="0.000375" Start="1" Right="0" regulators="7649610" />
+    <regulon_site Name="DvMF_1693:-235" Site="GCAACATGTGC" Pvalue="0.000375" Start="10" Right="0" regulators="8500955" />
+    <regulon_site Name="Dbac_2433:-28" Site="GGATATTTTTG" Pvalue="0.000404" Start="1" Right="0" regulators="7533790" />
+    <regulon_site Name="DVU1418:-208" Site="GCATCTTATTG" Pvalue="0.000404" Start="4" Right="4" regulators="206862" />
+    <regulon_site Name="Ddes_2091:-154" Site="GAATATTCTGC" Pvalue="0.000464" Start="2" Right="1" regulators="8504950" />
+    <regulon_site Name="Dde_0356:-269" Site="GAACTTTTTTC" Pvalue="0.000464" Start="2" Right="1" regulators="395344" />
+    <regulon_site Name="DvMF_1808:-206" Site="GCAGGTTCTGC" Pvalue="0.000464" Start="2" Right="1" regulators="8502312" />
+    <regulon_site Name="DvMF_1693:-204" Site="GCATCATATGC" Pvalue="0.000464" Start="10" Right="0" regulators="8500955" />
+    <regulon_site Name="DVU1445:-108" Site="GCAACACTTGC" Pvalue="0.000464" Start="2" Right="1" />
+    <regulon_site Name="DVU0307:-27" Site="GAATATTCTGC" Pvalue="0.000464" Start="2" Right="1" />
+    <regulon_site Name="Dbac_2433:-52" Site="GAAAAAGTTTC" Pvalue="0.00049699999999999994" Start="2" Right="1" regulators="7533790" />
+    <regulon_site Name="Ddes_2091:-43" Site="GAATGTTTTTC" Pvalue="0.00060399999999999994" Start="2" Right="1" regulators="8504950" />
+    <regulon_site Name="BPUM_2148:-134" Site="GCAATAAAATG" Pvalue="0.00068399999999999993" Start="2" Right="2" regulators="3427063" />
+  </Sites>
+  <PWM>
+    <ResidueSite Site="0" PWM="0 0 1 0" Bits="2.2" />
+    <ResidueSite Site="0" PWM="0.23913 0 0.086957 0.673913" Bits="0.9" />
+    <ResidueSite Site="0" PWM="1 0 0 0" Bits="1.8" />
+    <ResidueSite Site="0" PWM="0.695652 0.108696 0.152174 0.043478" Bits="0.4" />
+    <ResidueSite Site="0" PWM="0.608696 0.23913 0.065217 0.086957" Bits="0.4" />
+    <ResidueSite Site="0" PWM="0.51087 0.48913 0 0" Bits="0.9" />
+    <ResidueSite Site="0" PWM="0.336957 0.608696 0.01087 0.043478" Bits="0.7" />
+    <ResidueSite Site="0" PWM="0.315217 0.456522 0.043478 0.184783" Bits="0.2" />
+    <ResidueSite Site="0" PWM="0.043478 0.956522 0 0" Bits="1.6" />
+    <ResidueSite Site="0" PWM="0 0.76087 0.23913 0" Bits="1.1" />
+    <ResidueSite Site="0" PWM="0 0.043478 0.358696 0.597826" Bits="1.1" />
+  </PWM>
+</AnnotationModel>

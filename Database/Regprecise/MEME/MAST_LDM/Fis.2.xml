@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="utf-16"?>
+<AnnotationModel xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Evalue="0" Width="15" Uid="Fis.2">
+  <Sites>
+    <regulon_site Name="VF_1783:-83" Site="AGTGTCATTATGACA" Pvalue="9.639999999999999E-09" Start="2" Right="3" regulators="944703" />
+    <regulon_site Name="VF_1782:-123" Site="ATTGTCATAATGACA" Pvalue="9.639999999999999E-09" Start="2" Right="3" regulators="944703" />
+    <regulon_site Name="Sputw3181_0873:-144" Site="ATTGTCATTATGACA" Pvalue="1.35E-08" Start="2" Right="3" regulators="6978748" />
+    <regulon_site Name="Sputcn32_3072:-144" Site="ATTGTCATTATGACA" Pvalue="1.35E-08" Start="2" Right="3" regulators="3439804" />
+    <regulon_site Name="Shew_0657:-132" Site="ATTGTCATTATGACA" Pvalue="1.35E-08" Start="2" Right="3" regulators="5208144" />
+    <regulon_site Name="CKO_04064:-157" Site="AGTGTCATATTGACA" Pvalue="1.93E-08" Start="2" Right="3" regulators="3405733" />
+    <regulon_site Name="STM2840:-156" Site="AGTGTCATATTGACA" Pvalue="1.93E-08" Start="2" Right="3" regulators="150141" />
+    <regulon_site Name="VSAK1_23829:-32" Site="ATTGTCATATTGACA" Pvalue="3.57E-08" Start="2" Right="3" regulators="4606900 4605011" />
+    <regulon_site Name="KPN_03044:-27" Site="ATTGTCAAAATGACA" Pvalue="3.57E-08" Start="2" Right="3" regulators="3383484" />
+    <regulon_site Name="KPN_03044:-72" Site="GTTGTCAAAATGACA" Pvalue="3.57E-08" Start="2" Right="3" regulators="3383484" />
+    <regulon_site Name="CKO_04063:-27" Site="ATTGTCAAAATGACA" Pvalue="3.57E-08" Start="2" Right="3" regulators="3405733" />
+    <regulon_site Name="VV21342:-32" Site="ATTGTCATATTGACA" Pvalue="3.57E-08" Start="2" Right="3" regulators="312476" />
+    <regulon_site Name="STM2839:-27" Site="GTTGTCAAAATGACA" Pvalue="3.57E-08" Start="2" Right="3" regulators="150141" />
+    <regulon_site Name="Ent638_3182:-157" Site="GTTGTCATATTGACA" Pvalue="3.57E-08" Start="2" Right="3" regulators="3626335" />
+    <regulon_site Name="Ent638_3181:51" Site="ATTGTCAAAATGACA" Pvalue="3.57E-08" Start="2" Right="3" regulators="3626335" />
+    <regulon_site Name="Swoo_0760:-62" Site="ATTGTCAAAATGACA" Pvalue="3.57E-08" Start="2" Right="3" regulators="7098920 7098992" />
+    <regulon_site Name="KPN_03045:-134" Site="ATTGTCATTTTGACA" Pvalue="4.64E-08" Start="2" Right="3" regulators="3383484" />
+    <regulon_site Name="KPN_03045:-179" Site="ATTGTCATTTTGACA" Pvalue="4.64E-08" Start="2" Right="3" regulators="3383484" />
+    <regulon_site Name="CKO_04063:-48" Site="ATTGTCAATATGACA" Pvalue="4.64E-08" Start="2" Right="3" regulators="3405733" />
+    <regulon_site Name="CKO_04064:-178" Site="ATTGTCATTTTGACA" Pvalue="4.64E-08" Start="2" Right="3" regulators="3405733" />
+    <regulon_site Name="STM2840:-177" Site="ATTGTCATTTTGACA" Pvalue="4.64E-08" Start="2" Right="3" regulators="150141" />
+    <regulon_site Name="VSAL_I2199:-122" Site="AGTGTCAAATTGACA" Pvalue="4.9300000000000005E-08" Start="2" Right="3" regulators="5494083" />
+    <regulon_site Name="ECA0903:-65" Site="ATTGTCAAATTGACA" Pvalue="6.69E-08" Start="2" Right="3" regulators="605276" />
+    <regulon_site Name="PE36_04748:-144" Site="ATAGTCATAATGACA" Pvalue="1.0000000000000001E-07" Start="2" Right="3" regulators="4633425" />
+    <regulon_site Name="STM2839:-48" Site="GCTGTCAATATGACA" Pvalue="1.0000000000000001E-07" Start="2" Right="3" regulators="150141" />
+    <regulon_site Name="Ent638_3182:-178" Site="GCTGTCATTTTGACA" Pvalue="1.0000000000000001E-07" Start="2" Right="3" regulators="3626335" />
+    <regulon_site Name="Ent638_3181:30" Site="ACTGTCAATATGACA" Pvalue="1.0000000000000001E-07" Start="2" Right="3" regulators="3626335" />
+    <regulon_site Name="Swoo_0761:-130" Site="ATAGTCATAATGACA" Pvalue="1.0000000000000001E-07" Start="2" Right="3" regulators="7098920 7098992" />
+    <regulon_site Name="PE36_04748:-119" Site="GTAGTCATTATGACA" Pvalue="1.31E-07" Start="2" Right="3" regulators="4633425" />
+    <regulon_site Name="VC2330:-56" Site="GGTGTCATTATGACT" Pvalue="1.31E-07" Start="2" Right="3" regulators="55538" />
+    <regulon_site Name="PE36_04753:-56" Site="ATTGTCATTATGACT" Pvalue="1.6200000000000002E-07" Start="2" Right="3" regulators="4633425" />
+    <regulon_site Name="swp_1079:-182" Site="GGTGTCTTAATGACA" Pvalue="1.6200000000000002E-07" Start="2" Right="3" regulators="5436844 5433479" />
+    <regulon_site Name="CtesDRAFT_3302:-147" Site="GGTGTCAAAAAGACA" Pvalue="2.26E-07" Start="2" Right="3" regulators="3034467" />
+    <regulon_site Name="Spro_3033:-119" Site="GATGTCAAAATGACA" Pvalue="2.26E-07" Start="2" Right="3" regulators="3621034" />
+    <regulon_site Name="ECA0903:-40" Site="ATTGTCTTAATGACA" Pvalue="2.26E-07" Start="2" Right="3" regulators="605276" />
+    <regulon_site Name="PSHAa2883:-15" Site="AGAGTCATTTTGACA" Pvalue="2.26E-07" Start="2" Right="3" regulators="1131631" />
+    <regulon_site Name="Shewmr7_0883:-174" Site="GCTGTCATAAAGACA" Pvalue="3.04E-07" Start="2" Right="3" regulators="6868200" />
+    <regulon_site Name="PE36_04753:-81" Site="ACTGTCATAATGACT" Pvalue="3.04E-07" Start="2" Right="3" regulators="4633425" />
+    <regulon_site Name="Shewana3_0846:-174" Site="GCTGTCATAAAGACA" Pvalue="3.04E-07" Start="2" Right="3" regulators="7023616" />
+    <regulon_site Name="VV21343:-146" Site="AGTGTCATTTAGACA" Pvalue="3.04E-07" Start="2" Right="3" regulators="312476" />
+    <regulon_site Name="VV21343:-190" Site="AATGTCAATATGACA" Pvalue="3.04E-07" Start="2" Right="3" regulators="312476" />
+    <regulon_site Name="Spro_3032:-54" Site="GATGTCATTTTGACA" Pvalue="3.04E-07" Start="2" Right="3" regulators="3621034" />
+    <regulon_site Name="Ssed_3823:-136" Site="AATGTCAATATGACA" Pvalue="3.04E-07" Start="2" Right="3" regulators="3702962" />
+    <regulon_site Name="swp_0833:-131" Site="ATTGTCTTTATGACA" Pvalue="3.04E-07" Start="2" Right="3" regulators="5436844 5433479" />
+    <regulon_site Name="swp_0833:-173" Site="ATTGTCAAAAAGACA" Pvalue="3.04E-07" Start="2" Right="3" regulators="5436844 5433479" />
+    <regulon_site Name="PE36_10688:-193" Site="GTTGTCATTTAGACA" Pvalue="3.56E-07" Start="2" Right="3" regulators="4633425" />
+    <regulon_site Name="VV21343:-170" Site="AGTGTCTAAATGACA" Pvalue="3.56E-07" Start="2" Right="3" regulators="312476" />
+    <regulon_site Name="VV21342:-76" Site="AGTGTCTAAATGACA" Pvalue="3.56E-07" Start="2" Right="3" regulators="312476" />
+    <regulon_site Name="ASA_4273:-67" Site="ATTGTCATTTAGACA" Pvalue="3.56E-07" Start="2" Right="3" regulators="3568097" />
+    <regulon_site Name="AHA_0118:-67" Site="ATTGTCATTTAGACA" Pvalue="3.56E-07" Start="2" Right="3" regulators="2031920" />
+    <regulon_site Name="Spea_3652:-188" Site="GGTGTCTTATTGACA" Pvalue="3.56E-07" Start="2" Right="3" regulators="7161588" />
+    <regulon_site Name="CtesDRAFT_3302:-168" Site="GTTGTCATAACGACA" Pvalue="4.18E-07" Start="2" Right="3" regulators="3034467" />
+    <regulon_site Name="VSAK1_23834:-182" Site="TTTGTCAATATGACA" Pvalue="4.18E-07" Start="2" Right="3" regulators="4606900 4605011" />
+    <regulon_site Name="VSAL_I2198:-39" Site="ATAGTCAAATTGACA" Pvalue="4.18E-07" Start="2" Right="3" regulators="5494083" />
+    <regulon_site Name="ASA_4272:-123" Site="GTTGTCTAAATGACA" Pvalue="4.18E-07" Start="2" Right="3" regulators="3568097" />
+    <regulon_site Name="AHA_0119:-122" Site="GTTGTCTAAATGACA" Pvalue="4.18E-07" Start="2" Right="3" regulators="2031920" />
+    <regulon_site Name="b2709:-27" Site="ATAGTCAAATTGACA" Pvalue="4.18E-07" Start="2" Right="3" regulators="16793" />
+    <regulon_site Name="Shal_3554:-142" Site="ACAGTCAAAATGACA" Pvalue="4.18E-07" Start="2" Right="3" regulators="3787525" />
+    <regulon_site Name="Shal_3740:-188" Site="ACTGTCTTAATGACA" Pvalue="4.18E-07" Start="2" Right="3" regulators="3787525" />
+    <regulon_site Name="Sfri_1583:-195" Site="AAAGTCATAATGACA" Pvalue="5.12E-07" Start="2" Right="3" regulators="6915614" />
+    <regulon_site Name="VSAL_I2198:-84" Site="AATGTCAATTTGACA" Pvalue="5.12E-07" Start="2" Right="3" regulators="5494083" />
+    <regulon_site Name="Sfri_3254:-43" Site="CTTGTCATAATGACA" Pvalue="6.19E-07" Start="2" Right="3" regulators="6915614" />
+    <regulon_site Name="Sfri_1583:-176" Site="ATAGTCATAAAGACA" Pvalue="6.19E-07" Start="2" Right="3" regulators="6915614" />
+    <regulon_site Name="ECA0902:-121" Site="TGTGTCAATTTGACA" Pvalue="6.19E-07" Start="2" Right="3" regulators="605276" />
+    <regulon_site Name="PSEEN3000:-115" Site="AAGGTCATTATGACA" Pvalue="6.19E-07" Start="2" Right="3" regulators="2047134" />
+    <regulon_site Name="PFL_5041:-10" Site="GGAGTCATTATGACT" Pvalue="6.19E-07" Start="2" Right="3" regulators="875677" />
+    <regulon_site Name="PFL_5041:-55" Site="ATAGTCATAAAGACA" Pvalue="6.19E-07" Start="2" Right="3" regulators="875677" />
+    <regulon_site Name="CPS_0850:-162" Site="AGAGTCATTATGACC" Pvalue="6.19E-07" Start="2" Right="3" regulators="838658" />
+    <regulon_site Name="CPS_0851:-92" Site="GTGGTCATAATGACT" Pvalue="6.19E-07" Start="2" Right="3" regulators="838658" />
+    <regulon_site Name="Swoo_0761:-172" Site="GCTGTCATTTAGACA" Pvalue="6.19E-07" Start="2" Right="3" regulators="7098920 7098992" />
+    <regulon_site Name="swp_4282:-118" Site="GTAGTCATAATGACT" Pvalue="6.19E-07" Start="2" Right="3" regulators="5436844 5433479" />
+    <regulon_site Name="TERTU_0471:-207" Site="TGTGTCATAAAGACA" Pvalue="7.19E-07" Start="2" Right="3" regulators="7053312" />
+    <regulon_site Name="PFL_5041:-29" Site="ATAGTCATTAAGACA" Pvalue="7.19E-07" Start="2" Right="3" regulators="875677" />
+    <regulon_site Name="CPS_0851:-117" Site="GTAGTCATTATGACC" Pvalue="7.19E-07" Start="2" Right="3" regulators="838658" />
+    <regulon_site Name="swp_4283:-131" Site="GTAGTCATTATGACT" Pvalue="7.19E-07" Start="2" Right="3" regulators="5436844 5433479" />
+    <regulon_site Name="swp_4282:-93" Site="GTAGTCATTATGACT" Pvalue="7.19E-07" Start="2" Right="3" regulators="5436844 5433479" />
+    <regulon_site Name="CtesDRAFT_3303:-31" Site="GCTGTCTTTTTGACA" Pvalue="8.4400000000000009E-07" Start="2" Right="3" regulators="3034467" />
+    <regulon_site Name="VSAL_I2199:-147" Site="ACTGTCTTTTTGACA" Pvalue="8.4400000000000009E-07" Start="2" Right="3" regulators="5494083" />
+    <regulon_site Name="ECA0902:-146" Site="TGTGTCATTAAGACA" Pvalue="8.4400000000000009E-07" Start="2" Right="3" regulators="605276" />
+    <regulon_site Name="PFL_5040:-146" Site="GGTGTCTTAATGACT" Pvalue="8.4400000000000009E-07" Start="2" Right="3" regulators="875677" />
+    <regulon_site Name="Patl_3475:-118" Site="AGAGTCATATTGACT" Pvalue="8.4400000000000009E-07" Start="2" Right="3" regulators="3503337" />
+    <regulon_site Name="Shew_0657:-175" Site="ACTGTCTTTTTGACA" Pvalue="8.4400000000000009E-07" Start="2" Right="3" regulators="5208144" />
+    <regulon_site Name="TERTU_0470:-65" Site="GATGTCTTTATGACA" Pvalue="1.04E-06" Start="2" Right="3" regulators="7053312" />
+    <regulon_site Name="Pmen_3579:-55" Site="GTTGTCTTAATGACT" Pvalue="1.04E-06" Start="2" Right="3" regulators="3616827" />
+    <regulon_site Name="VCA0183:-157" Site="AGTGTCAAATCGACA" Pvalue="1.04E-06" Start="2" Right="3" regulators="55538" />
+    <regulon_site Name="VF_1782:-148" Site="AGTGTCGTTTTGACA" Pvalue="1.04E-06" Start="2" Right="3" regulators="944703" />
+    <regulon_site Name="b2709:-72" Site="GTAGTCAAAATGACT" Pvalue="1.04E-06" Start="2" Right="3" regulators="16793" />
+    <regulon_site Name="b2710:-178" Site="ACTGTCAATTTGACT" Pvalue="1.04E-06" Start="2" Right="3" regulators="16793" />
+    <regulon_site Name="PSEEN3000:-140" Site="GAAGTCAATATGACA" Pvalue="1.04E-06" Start="2" Right="3" regulators="2047134" />
+    <regulon_site Name="PSEEN0951:-55" Site="GGTGTCATAAGGACA" Pvalue="1.04E-06" Start="2" Right="3" regulators="2047134" />
+    <regulon_site Name="PFL_5040:-120" Site="AGTGTCTTTATGACT" Pvalue="1.04E-06" Start="2" Right="3" regulators="875677" />
+    <regulon_site Name="PFL_5040:-165" Site="GCAGTCATAATGACT" Pvalue="1.04E-06" Start="2" Right="3" regulators="875677" />
+    <regulon_site Name="Patl_3474:-150" Site="AGAGTCAATATGACT" Pvalue="1.04E-06" Start="2" Right="3" regulators="3503337" />
+    <regulon_site Name="Swoo_0688:-92" Site="GTAGTCATATTGACT" Pvalue="1.04E-06" Start="2" Right="3" regulators="7098920 7098992" />
+    <regulon_site Name="Swoo_0686:-499" Site="GTAGTCATATTGACT" Pvalue="1.04E-06" Start="2" Right="3" regulators="7098920 7098992" />
+    <regulon_site Name="Swoo_0686:-525" Site="AGAGTCAATATGACT" Pvalue="1.04E-06" Start="2" Right="3" regulators="7098920 7098992" />
+    <regulon_site Name="swp_0832:-72" Site="AATGTCAAAAAGACA" Pvalue="1.04E-06" Start="2" Right="3" regulators="5436844 5433479" />
+    <regulon_site Name="Sama_0728:-149" Site="AATGTCTTTATGACA" Pvalue="1.04E-06" Start="2" Right="3" regulators="6936539" />
+    <regulon_site Name="Shewmr7_0883:-156" Site="GCTGTCATATCGACA" Pvalue="1.24E-06" Start="2" Right="3" regulators="6868200" />
+    <regulon_site Name="CtesDRAFT_3303:-10" Site="GCTGTCGTTATGACA" Pvalue="1.24E-06" Start="2" Right="3" regulators="3034467" />
+    <regulon_site Name="VS_II0152:-127" Site="GATGTCATTTAGACA" Pvalue="1.24E-06" Start="2" Right="3" />
+    <regulon_site Name="VSAK1_23829:-52" Site="GATGTCATTTAGACA" Pvalue="1.24E-06" Start="2" Right="3" regulators="4606900 4605011" />
+    <regulon_site Name="Shewmr4_3089:-156" Site="ACTGTCATATCGACA" Pvalue="1.24E-06" Start="2" Right="3" regulators="6866412" />
+    <regulon_site Name="Spro_3032:-29" Site="ATTGTCTTTATGACT" Pvalue="1.24E-06" Start="2" Right="3" regulators="3621034" />
+    <regulon_site Name="b2710:-133" Site="ATAGTCATTTTGACT" Pvalue="1.24E-06" Start="2" Right="3" regulators="16793" />
+    <regulon_site Name="PA2664:-118" Site="GCAGTCATTATGACC" Pvalue="1.24E-06" Start="2" Right="3" regulators="59115" />
+    <regulon_site Name="Sfri_3253:-162" Site="ATAGTCTTATTGACA" Pvalue="1.43E-06" Start="2" Right="3" regulators="6915614" />
+    <regulon_site Name="Sfri_3253:-181" Site="GCTGTCATTTCGACA" Pvalue="1.43E-06" Start="2" Right="3" regulators="6915614" />
+    <regulon_site Name="VSAK1_23834:-162" Site="AATGTCTAAATGACA" Pvalue="1.43E-06" Start="2" Right="3" regulators="4606900 4605011" />
+    <regulon_site Name="Avin_51080:-29" Site="GTTGTCAATAAGACT" Pvalue="1.43E-06" Start="2" Right="3" regulators="6921540" />
+    <regulon_site Name="Ssed_3822:-129" Site="GGTGTCCTAATGACA" Pvalue="1.43E-06" Start="2" Right="3" regulators="3702962" />
+    <regulon_site Name="Mmwyl1_0067:9" Site="TGAGTCAAATTGACA" Pvalue="1.68E-06" Start="2" Right="3" regulators="7173599" />
+    <regulon_site Name="VV21342:-52" Site="TTTGTCATTTAGACA" Pvalue="1.68E-06" Start="2" Right="3" regulators="312476" />
+    <regulon_site Name="PFL_3310:-157" Site="GCAGTCATATTGACT" Pvalue="1.68E-06" Start="2" Right="3" regulators="875677" />
+    <regulon_site Name="swp_1079:-138" Site="GTTGTCATTATTACA" Pvalue="1.68E-06" Start="2" Right="3" regulators="5436844 5433479" />
+    <regulon_site Name="swp_0833:-155" Site="AGTGTCATATGGACA" Pvalue="1.68E-06" Start="2" Right="3" regulators="5436844 5433479" />
+    <regulon_site Name="Sfri_1583:-152" Site="ATTGTTATAATGACA" Pvalue="1.96E-06" Start="2" Right="3" regulators="6915614" />
+    <regulon_site Name="VS_II0564:-193" Site="GTTGTCTATATGACT" Pvalue="1.96E-06" Start="2" Right="3" />
+    <regulon_site Name="VSAL_I2199:-167" Site="AATGTCAATTTGACT" Pvalue="1.96E-06" Start="2" Right="3" regulators="5494083" />
+    <regulon_site Name="VC2330:-80" Site="AAAGTCATAATGACT" Pvalue="1.96E-06" Start="2" Right="3" regulators="55538" />
+    <regulon_site Name="CPS_0850:-137" Site="AAGGTCATAATGACT" Pvalue="1.96E-06" Start="2" Right="3" regulators="838658" />
+    <regulon_site Name="Ssed_3822:-171" Site="AGTGTAAAAATGACA" Pvalue="1.96E-06" Start="2" Right="3" regulators="3702962" />
+    <regulon_site Name="Shal_3740:-168" Site="ACGGTCATTTTGACT" Pvalue="1.96E-06" Start="2" Right="3" regulators="3787525" />
+    <regulon_site Name="Shew_0656:-120" Site="AGTGTAAAAATGACA" Pvalue="1.96E-06" Start="2" Right="3" regulators="5208144" />
+    <regulon_site Name="Daci_1079:-129" Site="GTGGTCATAAAGACT" Pvalue="2.26E-06" Start="2" Right="3" regulators="3601512" />
+    <regulon_site Name="VS_II1439:-168" Site="TGAGTCATAAAGACA" Pvalue="2.26E-06" Start="2" Right="3" />
+    <regulon_site Name="VS_II0564:-52" Site="TTAGTCAATTTGACA" Pvalue="2.26E-06" Start="2" Right="3" />
+    <regulon_site Name="VSAL_I2198:-59" Site="TCTGTCAAAAAGACA" Pvalue="2.26E-06" Start="2" Right="3" regulators="5494083" />
+    <regulon_site Name="Avin_51090:-159" Site="GCAGTCTTATTGACA" Pvalue="2.26E-06" Start="2" Right="3" regulators="6921540" />
+    <regulon_site Name="swp_4283:-156" Site="TGAGTCATAATGACT" Pvalue="2.26E-06" Start="2" Right="3" regulators="5436844 5433479" />
+    <regulon_site Name="Shew_0657:-157" Site="GGTGTCATTTTTACA" Pvalue="2.26E-06" Start="2" Right="3" regulators="5208144" />
+    <regulon_site Name="PTD2_10353:-102" Site="AGAGTCTTAATGACT" Pvalue="2.57E-06" Start="2" Right="3" regulators="2786694" />
+    <regulon_site Name="KPN_03045:-158" Site="ATTGTCATATCGACT" Pvalue="2.57E-06" Start="2" Right="3" regulators="3383484" />
+    <regulon_site Name="ASA_4272:-168" Site="ATTGTCCAAATGACA" Pvalue="2.57E-06" Start="2" Right="3" regulators="3568097" />
+    <regulon_site Name="AHA_0119:-167" Site="ATTGTCCAAATGACA" Pvalue="2.57E-06" Start="2" Right="3" regulators="2031920" />
+    <regulon_site Name="b2710:-157" Site="ATTGTCATATCGACC" Pvalue="2.57E-06" Start="2" Right="3" regulators="16793" />
+    <regulon_site Name="Bphy_4026:-176" Site="GCAGTCAATTTGACT" Pvalue="2.9400000000000002E-06" Start="2" Right="3" regulators="7088960" />
+    <regulon_site Name="VF_1783:-58" Site="TTTGTCAAAACGACA" Pvalue="2.9400000000000002E-06" Start="2" Right="3" regulators="944703" />
+    <regulon_site Name="Patl_3474:-175" Site="AGAGTCTTTATGACT" Pvalue="2.9400000000000002E-06" Start="2" Right="3" regulators="3503337" />
+    <regulon_site Name="swp_1079:-207" Site="TTTGTCATAAAGACT" Pvalue="2.9400000000000002E-06" Start="2" Right="3" regulators="5436844 5433479" />
+    <regulon_site Name="Spea_3444:-154" Site="AGTGTAAAATTGACA" Pvalue="2.9400000000000002E-06" Start="2" Right="3" regulators="7161588" />
+    <regulon_site Name="Sama_0727:-76" Site="CATGTCAAAATGACA" Pvalue="2.9400000000000002E-06" Start="2" Right="3" regulators="6936539" />
+    <regulon_site Name="Dbac_3325:-248" Site="TGAGTCAAAATGACT" Pvalue="3.3800000000000002E-06" Start="1" Right="0" regulators="7533811" />
+    <regulon_site Name="Mmwyl1_0067:-35" Site="AGAGTCAATAAGACT" Pvalue="3.3800000000000002E-06" Start="2" Right="3" regulators="7173599" />
+    <regulon_site Name="PTD2_10348:-167" Site="TGAGTCAAAAAGACA" Pvalue="3.3800000000000002E-06" Start="2" Right="3" regulators="2786694" />
+    <regulon_site Name="VSAK1_23834:-138" Site="AGTGTCGTTTAGACA" Pvalue="3.3800000000000002E-06" Start="2" Right="3" regulators="4606900 4605011" />
+    <regulon_site Name="KPN_03044:-48" Site="ATAGTCGATATGACA" Pvalue="3.3800000000000002E-06" Start="2" Right="3" regulators="3383484" />
+    <regulon_site Name="HCH_01373:-34" Site="TGAGTCAAAAAGACA" Pvalue="3.3800000000000002E-06" Start="2" Right="3" regulators="1092785 1093410" />
+    <regulon_site Name="ASA_4273:-22" Site="ACTGTCATTTGGACA" Pvalue="3.3800000000000002E-06" Start="2" Right="3" regulators="3568097" />
+    <regulon_site Name="AHA_0118:-22" Site="ACTGTCATTTGGACA" Pvalue="3.3800000000000002E-06" Start="2" Right="3" regulators="2031920" />
+    <regulon_site Name="b2709:-48" Site="ATGGTCGATATGACA" Pvalue="3.3800000000000002E-06" Start="2" Right="3" regulators="16793" />
+    <regulon_site Name="Dbac_3326:-264" Site="TGAGTCATTTTGACT" Pvalue="3.85E-06" Start="1" Right="0" regulators="7533811" />
+    <regulon_site Name="Swoo_0688:-118" Site="TGAGTCAATATGACT" Pvalue="3.85E-06" Start="2" Right="3" regulators="7098920 7098992" />
+    <regulon_site Name="Swoo_0761:-154" Site="ACTGTCATTTTTACA" Pvalue="3.85E-06" Start="2" Right="3" regulators="7098920 7098992" />
+    <regulon_site Name="Shal_3554:-186" Site="GATGTCAATTCGACA" Pvalue="3.85E-06" Start="2" Right="3" regulators="3787525" />
+    <regulon_site Name="Sfri_3253:-138" Site="TGTGTCAATAAGACT" Pvalue="4.41E-06" Start="2" Right="3" regulators="6915614" />
+    <regulon_site Name="Bphy_4025:26" Site="GAAGTCAAATTGACT" Pvalue="4.41E-06" Start="2" Right="3" regulators="7088960" />
+    <regulon_site Name="VAS14_14734:-51" Site="GTTGTAATAAAGACA" Pvalue="4.41E-06" Start="2" Right="3" regulators="2791726" />
+    <regulon_site Name="Ajs_1895:-114" Site="AGAGTCTTTTTGACT" Pvalue="4.41E-06" Start="2" Right="3" regulators="2216314 2214487" />
+    <regulon_site Name="VF_1782:-168" Site="AGTGTTAATTTGACA" Pvalue="4.41E-06" Start="2" Right="3" regulators="944703" />
+    <regulon_site Name="Daci_1078:-10" Site="GCAGTCTTTATGACC" Pvalue="5.06E-06" Start="2" Right="3" regulators="3601512" />
+    <regulon_site Name="Mmwyl1_0066:-178" Site="CGTGTCAATTTGACT" Pvalue="5.06E-06" Start="2" Right="3" regulators="7173599" />
+    <regulon_site Name="PE36_04748:-163" Site="ACTGTCTTATCGACA" Pvalue="5.06E-06" Start="2" Right="3" regulators="4633425" />
+    <regulon_site Name="VSAK1_23829:-76" Site="ACTGTCTAAACGACA" Pvalue="5.06E-06" Start="2" Right="3" regulators="4606900 4605011" />
+    <regulon_site Name="PFL_3310:-136" Site="GCGGTCTTTATGACT" Pvalue="5.06E-06" Start="2" Right="3" regulators="875677" />
+    <regulon_site Name="PE36_04753:-37" Site="ACTGTCGATAAGACA" Pvalue="5.8E-06" Start="2" Right="3" regulators="4633425" />
+    <regulon_site Name="VS_II0563:-175" Site="TCAGTCATATAGACA" Pvalue="5.8E-06" Start="2" Right="3" />
+    <regulon_site Name="VSAK1_17902:-186" Site="GAGGTCGTTATGACA" Pvalue="5.8E-06" Start="2" Right="3" regulators="4606900 4605011" />
+    <regulon_site Name="Pmen_3580:-156" Site="CGAGTCATTAAGACA" Pvalue="5.8E-06" Start="2" Right="3" regulators="3616827" />
+    <regulon_site Name="VP1189:-136" Site="GTTGTCTTAATTACA" Pvalue="5.8E-06" Start="2" Right="3" regulators="339702" />
+    <regulon_site Name="PSEEN0952:-119" Site="TGTGTCCTTATGACA" Pvalue="5.8E-06" Start="2" Right="3" regulators="2047134" />
+    <regulon_site Name="Dde_3523:-200" Site="GGGGTCAAATGGACA" Pvalue="6.62E-06" Start="1" Right="0" regulators="393571" />
+    <regulon_site Name="VS_II0152:-103" Site="AAAGTCTATTTGACA" Pvalue="6.62E-06" Start="2" Right="3" />
+    <regulon_site Name="Pmen_3579:-29" Site="TGAGTCATAAAGACT" Pvalue="6.62E-06" Start="2" Right="3" regulators="3616827" />
+    <regulon_site Name="PP0807:-29" Site="ATAGTCATATCGACC" Pvalue="6.62E-06" Start="2" Right="3" regulators="216504" />
+    <regulon_site Name="PA2665:-55" Site="TAGGTCATAATGACT" Pvalue="6.62E-06" Start="2" Right="3" regulators="59115" />
+    <regulon_site Name="PSHAa2882:-120" Site="TAGGTCATAAAGACA" Pvalue="6.62E-06" Start="2" Right="3" regulators="1131631" />
+    <regulon_site Name="Patl_3475:-93" Site="TGAGTCATAAAGACT" Pvalue="6.62E-06" Start="2" Right="3" regulators="3503337" />
+    <regulon_site Name="Shew_0656:-96" Site="ACTGTTAAATTGACA" Pvalue="6.62E-06" Start="2" Right="3" regulators="5208144" />
+    <regulon_site Name="Sama_0728:-169" Site="AGTGTCATTTATACA" Pvalue="6.62E-06" Start="2" Right="3" regulators="6936539" />
+    <regulon_site Name="PTD2_10348:-123" Site="TGAGTCATTAAGACT" Pvalue="7.49E-06" Start="2" Right="3" regulators="2786694" />
+    <regulon_site Name="VS_II0563:-53" Site="TATGTCATAAAGACT" Pvalue="7.49E-06" Start="2" Right="3" />
+    <regulon_site Name="VF_1783:-38" Site="ATTGTCAAATTAACA" Pvalue="7.49E-06" Start="2" Right="3" regulators="944703" />
+    <regulon_site Name="PA2664:-163" Site="GTGGTCATTTCGACC" Pvalue="7.49E-06" Start="2" Right="3" regulators="59115" />
+    <regulon_site Name="Pmen_3579:-10" Site="GTAGTCGAAATGACC" Pvalue="8.49E-06" Start="2" Right="3" regulators="3616827" />
+    <regulon_site Name="Pmen_3580:-182" Site="AAAGTCTTTATGACT" Pvalue="8.49E-06" Start="2" Right="3" regulators="3616827" />
+    <regulon_site Name="Sputw3181_0872:-50" Site="TGTGTCAATATCACA" Pvalue="8.49E-06" Start="2" Right="3" regulators="6978748" />
+    <regulon_site Name="Sputw3181_0873:-162" Site="AGTGTCATAAAAACA" Pvalue="8.49E-06" Start="2" Right="3" regulators="6978748" />
+    <regulon_site Name="Sputcn32_3073:-50" Site="TGTGTCAATATCACA" Pvalue="8.49E-06" Start="2" Right="3" regulators="3439804" />
+    <regulon_site Name="Sputcn32_3072:-162" Site="AGTGTCATAAAAACA" Pvalue="8.49E-06" Start="2" Right="3" regulators="3439804" />
+    <regulon_site Name="PSHAa2882:-163" Site="CATGTCAAAATGACT" Pvalue="8.49E-06" Start="2" Right="3" regulators="1131631" />
+    <regulon_site Name="Patl_3475:-74" Site="AAAGTCTTTATGACT" Pvalue="8.49E-06" Start="2" Right="3" regulators="3503337" />
+    <regulon_site Name="Ssed_4053:-133" Site="CATGTCTTTATGACA" Pvalue="8.49E-06" Start="2" Right="3" regulators="3702962" />
+    <regulon_site Name="PA2665:-30" Site="AGAGTCATTAGGACT" Pvalue="9.53E-06" Start="2" Right="3" regulators="59115" />
+    <regulon_site Name="Csal_0451:-63" Site="GATGTCAGAATGACA" Pvalue="9.53E-06" Start="2" Right="3" regulators="1811396" />
+    <regulon_site Name="Ssed_3822:-153" Site="GCTGTTATTAAGACA" Pvalue="9.53E-06" Start="2" Right="3" regulators="3702962" />
+    <regulon_site Name="Shal_3555:-86" Site="ACTGTAAAAAAGACA" Pvalue="9.53E-06" Start="2" Right="3" regulators="3787525" />
+    <regulon_site Name="Vapar_6324:-147" Site="GTGGTCATAAATACA" Pvalue="1.06E-05" Start="2" Right="3" regulators="7561444" />
+    <regulon_site Name="PE36_10688:-174" Site="GTTGTTTTATTGACA" Pvalue="1.06E-05" Start="2" Right="3" regulators="4633425" />
+    <regulon_site Name="VS_II0563:-75" Site="TTAGTCAAAAAGACC" Pvalue="1.06E-05" Start="2" Right="3" />
+    <regulon_site Name="VSAK1_23189:-59" Site="TAGGTCAATATGACT" Pvalue="1.06E-05" Start="2" Right="3" regulators="4606900 4605011" />
+    <regulon_site Name="Pmen_3580:-201" Site="GCGGTCATTTCGACT" Pvalue="1.06E-05" Start="2" Right="3" regulators="3616827" />
+    <regulon_site Name="PSHAa2883:-58" Site="TATGTCTTTATGACC" Pvalue="1.06E-05" Start="2" Right="3" regulators="1131631" />
+    <regulon_site Name="Mmwyl1_0066:-134" Site="TGAGTCTTATTGACT" Pvalue="1.2E-05" Start="2" Right="3" regulators="7173599" />
+    <regulon_site Name="PTD2_10353:-58" Site="CGTGTCTTTTTGACT" Pvalue="1.2E-05" Start="2" Right="3" regulators="2786694" />
+    <regulon_site Name="VP1189:-159" Site="GATGTAATTAAGACA" Pvalue="1.2E-05" Start="2" Right="3" regulators="339702" />
+    <regulon_site Name="VCA0182:-52" Site="CGTGTCGATTTGACA" Pvalue="1.2E-05" Start="2" Right="3" regulators="55538" />
+    <regulon_site Name="VF_A0863:-201" Site="GTAGTCATTAATACA" Pvalue="1.2E-05" Start="2" Right="3" regulators="946433" />
+    <regulon_site Name="Spea_3444:-119" Site="ACTGTTAAAAAGACA" Pvalue="1.2E-05" Start="2" Right="3" regulators="7161588" />
+    <regulon_site Name="PP0808:-164" Site="GTAGTCATATGGACT" Pvalue="1.35E-05" Start="2" Right="3" regulators="216504" />
+    <regulon_site Name="Shewmr7_0882:-58" Site="TGTGTCAATATAACA" Pvalue="1.52E-05" Start="2" Right="3" regulators="6868200" />
+    <regulon_site Name="CtesDRAFT_3302:-122" Site="AATGTCATATTGACG" Pvalue="1.52E-05" Start="2" Right="3" regulators="3034467" />
+    <regulon_site Name="Shewmr4_3090:-58" Site="TGTGTCAATATAACA" Pvalue="1.52E-05" Start="2" Right="3" regulators="6866412" />
+    <regulon_site Name="Shewana3_0845:-58" Site="TGTGTCAATATAACA" Pvalue="1.52E-05" Start="2" Right="3" regulators="7023616" />
+    <regulon_site Name="VV1_2864:-187" Site="GATGTAAAAAAGACA" Pvalue="1.52E-05" Start="2" Right="3" regulators="310908" />
+    <regulon_site Name="PFL_3310:-111" Site="CTGGTCATAAAGACT" Pvalue="1.52E-05" Start="2" Right="3" regulators="875677" />
+    <regulon_site Name="Csal_0452:-207" Site="GATGTCATTCTGACA" Pvalue="1.52E-05" Start="2" Right="3" regulators="1811396" />
+    <regulon_site Name="Vapar_6323:-10" Site="GTTGTATTTATGACC" Pvalue="1.7E-05" Start="2" Right="3" regulators="7561444" />
+    <regulon_site Name="VS_II1439:-10" Site="ATTATCATTATGACT" Pvalue="1.7E-05" Start="2" Right="3" />
+    <regulon_site Name="ASA_4273:-42" Site="ATAGTCAAAAACACA" Pvalue="1.7E-05" Start="2" Right="3" regulators="3568097" />
+    <regulon_site Name="AHA_0118:-42" Site="ATAGTCAAAAACACA" Pvalue="1.7E-05" Start="2" Right="3" regulators="2031920" />
+    <regulon_site Name="PSEEN0951:-10" Site="GGAGTCCATATGACT" Pvalue="1.7E-05" Start="2" Right="3" regulators="2047134" />
+    <regulon_site Name="PP0807:-10" Site="GGAGTCCATATGACT" Pvalue="1.7E-05" Start="2" Right="3" regulators="216504" />
+    <regulon_site Name="PA2664:-143" Site="GCAGTCCTAATGACT" Pvalue="1.7E-05" Start="2" Right="3" regulators="59115" />
+    <regulon_site Name="Shewmr7_0883:-131" Site="AGTATCAAAAAGACA" Pvalue="1.91E-05" Start="2" Right="3" regulators="6868200" />
+    <regulon_site Name="CtesDRAFT_3303:-56" Site="TGCGTCAATATGACA" Pvalue="1.91E-05" Start="2" Right="3" regulators="3034467" />
+    <regulon_site Name="PE36_10688:-149" Site="GTTGTCATAAGCACA" Pvalue="1.91E-05" Start="2" Right="3" regulators="4633425" />
+    <regulon_site Name="Shewmr4_3089:-131" Site="AGTATCAAAAAGACA" Pvalue="1.91E-05" Start="2" Right="3" regulators="6866412" />
+    <regulon_site Name="Shewana3_0846:-131" Site="AGTATCAAAAAGACA" Pvalue="1.91E-05" Start="2" Right="3" regulators="7023616" />
+    <regulon_site Name="Sputw3181_0873:-190" Site="ATTGTTTTAAAGACA" Pvalue="1.91E-05" Start="2" Right="3" regulators="6978748" />
+    <regulon_site Name="PSEEN0952:-164" Site="GCAGTCATATGGACT" Pvalue="1.91E-05" Start="2" Right="3" regulators="2047134" />
+    <regulon_site Name="PA2665:-10" Site="GAGGTCGAAATGACC" Pvalue="1.91E-05" Start="2" Right="3" regulators="59115" />
+    <regulon_site Name="Sputcn32_3072:-190" Site="ATTGTTTTAAAGACA" Pvalue="1.91E-05" Start="2" Right="3" regulators="3439804" />
+    <regulon_site Name="Ssed_3823:-160" Site="TTTGTATTTATGACA" Pvalue="1.91E-05" Start="2" Right="3" regulators="3702962" />
+    <regulon_site Name="Ssed_4053:-157" Site="AATGTCTTTTGGACA" Pvalue="1.91E-05" Start="2" Right="3" regulators="3702962" />
+    <regulon_site Name="Ssed_4053:-176" Site="AGTGTTGATATGACA" Pvalue="1.91E-05" Start="2" Right="3" regulators="3702962" />
+    <regulon_site Name="Shewmr4_3089:-174" Site="GCTGTCACAAAGACA" Pvalue="2.13E-05" Start="2" Right="3" regulators="6866412" />
+    <regulon_site Name="PHG246:-61" Site="ACGGTCATATTTACC" Pvalue="2.13E-05" Start="2" Right="3" regulators="2036174 2042308" />
+    <regulon_site Name="PP0808:-145" Site="TGGGTCGATATGACT" Pvalue="2.3599999999999998E-05" Start="2" Right="3" regulators="216504" />
+    <regulon_site Name="Reut_B5056:-151" Site="AGGGTCATAAATACC" Pvalue="2.3599999999999998E-05" Start="2" Right="3" regulators="895585" />
+    <regulon_site Name="VIBHAR_02687:-159" Site="GTTGTCATTTGTACA" Pvalue="2.6099999999999997E-05" Start="2" Right="3" regulators="3483395" />
+    <regulon_site Name="HCH_01372:-158" Site="CATGTCTTTTTGACT" Pvalue="2.8899999999999998E-05" Start="2" Right="3" regulators="1092785 1093410" />
+    <regulon_site Name="Shal_3554:-165" Site="GTTATCAAATAGACA" Pvalue="2.8899999999999998E-05" Start="2" Right="3" regulators="3787525" />
+    <regulon_site Name="Shal_3740:-144" Site="GCTATCAAAAAGACA" Pvalue="2.8899999999999998E-05" Start="2" Right="3" regulators="3787525" />
+    <regulon_site Name="Spea_3652:-145" Site="GCTATCAAAAAGACA" Pvalue="2.8899999999999998E-05" Start="2" Right="3" regulators="7161588" />
+    <regulon_site Name="Daci_1079:-83" Site="AAGGTCATATTGACG" Pvalue="3.1899999999999996E-05" Start="2" Right="3" regulators="3601512" />
+    <regulon_site Name="Shewana3_0846:-156" Site="ACTGTCATATCAACA" Pvalue="3.1899999999999996E-05" Start="2" Right="3" regulators="7023616" />
+    <regulon_site Name="Patl_3474:-194" Site="CAAGTCATAAAGACT" Pvalue="3.1899999999999996E-05" Start="2" Right="3" regulators="3503337" />
+    <regulon_site Name="Sfri_3254:-58" Site="GTTGTTATATTCACA" Pvalue="3.52E-05" Start="2" Right="3" regulators="6915614" />
+    <regulon_site Name="VS_2426:-187" Site="TGTGTTTAATTGACA" Pvalue="3.52E-05" Start="2" Right="3" />
+    <regulon_site Name="Avin_51090:-134" Site="GTAGTCGAAACGACT" Pvalue="3.52E-05" Start="2" Right="3" regulators="6921540" />
+    <regulon_site Name="PHG245:-108" Site="AAGGTAAATATGACC" Pvalue="3.52E-05" Start="2" Right="3" regulators="2036174 2042308" />
+    <regulon_site Name="Rmet_3167:-144" Site="ATAGTCAAAAACACC" Pvalue="3.88E-05" Start="2" Right="3" regulators="1775556" />
+    <regulon_site Name="swp_0832:-105" Site="ACAGTATATTTGACA" Pvalue="3.88E-05" Start="2" Right="3" regulators="5436844 5433479" />
+    <regulon_site Name="Shewmr7_0883:-203" Site="ATTGTGTTATCGACA" Pvalue="4.29E-05" Start="2" Right="3" regulators="6868200" />
+    <regulon_site Name="Daci_1078:-56" Site="TGCGTCAATATGACC" Pvalue="4.29E-05" Start="2" Right="3" regulators="3601512" />
+    <regulon_site Name="Shewmr4_3089:-203" Site="ATTGTGTTATCGACA" Pvalue="4.29E-05" Start="2" Right="3" regulators="6866412" />
+    <regulon_site Name="Ajs_0092:-155" Site="ATGGTCATAACTACC" Pvalue="4.29E-05" Start="2" Right="3" regulators="2216314 2214487" />
+    <regulon_site Name="Shewana3_0846:-203" Site="ATTGTGTTATCGACA" Pvalue="4.29E-05" Start="2" Right="3" regulators="7023616" />
+    <regulon_site Name="VV1_2864:-165" Site="CGTGTCTTTTTTACA" Pvalue="4.29E-05" Start="2" Right="3" regulators="310908" />
+    <regulon_site Name="Bxe_B2333:-167" Site="GCAGTCAGATTGACT" Pvalue="4.29E-05" Start="2" Right="3" regulators="3363735" />
+    <regulon_site Name="Shew_0657:-204" Site="AGTATCAAATCGACA" Pvalue="4.29E-05" Start="2" Right="3" regulators="5208144" />
+    <regulon_site Name="PBPRB1896:-169" Site="GATGTAATTATCACA" Pvalue="4.7199999999999995E-05" Start="2" Right="3" regulators="777227" />
+    <regulon_site Name="Ent638_3182:-133" Site="ATAGTCACTTTGACT" Pvalue="4.7199999999999995E-05" Start="2" Right="3" regulators="3626335" />
+    <regulon_site Name="Ssed_4053:-213" Site="CCTGTTATTAAGACA" Pvalue="4.7199999999999995E-05" Start="2" Right="3" regulators="3702962" />
+    <regulon_site Name="Avin_51080:-54" Site="GCAGTCGTTTCGACT" Pvalue="5.18E-05" Start="2" Right="3" regulators="6921540" />
+    <regulon_site Name="Rmet_3166:-35" Site="AGGGTGTTTTTGACT" Pvalue="5.18E-05" Start="2" Right="3" regulators="1775556" />
+    <regulon_site Name="Spea_3652:-169" Site="TATGTCACTTTGACA" Pvalue="5.18E-05" Start="2" Right="3" regulators="7161588" />
+    <regulon_site Name="Dde_2986:-120" Site="GGTGTAAAAAACACA" Pvalue="5.68E-05" Start="1" Right="0" regulators="393999" />
+    <regulon_site Name="Vapar_6323:11" Site="AGTGTCAGTTCGACC" Pvalue="5.68E-05" Start="2" Right="3" regulators="7561444" />
+    <regulon_site Name="VIBHAR_02687:-136" Site="GTTGTCACAATCACA" Pvalue="5.68E-05" Start="2" Right="3" regulators="3483395" />
+    <regulon_site Name="Ajs_0093:-1" Site="ATGGTAGTTATGACC" Pvalue="5.68E-05" Start="2" Right="3" regulators="2216314 2214487" />
+    <regulon_site Name="PBPRB1897:-41" Site="GATGTAAAAATCACA" Pvalue="5.68E-05" Start="2" Right="3" regulators="777227" />
+    <regulon_site Name="Bphy_4025:5" Site="AGGGTTAAAACGACT" Pvalue="6.22E-05" Start="2" Right="3" regulators="7088960" />
+    <regulon_site Name="PHG246:-35" Site="ATGGTATATTTGACC" Pvalue="6.22E-05" Start="2" Right="3" regulators="2036174 2042308" />
+    <regulon_site Name="swp_1079:-162" Site="AGTGTCTTTATGATA" Pvalue="6.22E-05" Start="2" Right="3" regulators="5436844 5433479" />
+    <regulon_site Name="VIBHAR_02686:-61" Site="GATGTTCAAATGACA" Pvalue="6.8E-05" Start="2" Right="3" regulators="3483395" />
+    <regulon_site Name="VAS14_14739:-172" Site="GATGTAATAATAACA" Pvalue="6.8E-05" Start="2" Right="3" regulators="2791726" />
+    <regulon_site Name="VP1190:-61" Site="GATGTTCAAATGACA" Pvalue="6.8E-05" Start="2" Right="3" regulators="339702" />
+    <regulon_site Name="VV1_2863:-60" Site="GATGTTCAAATGACA" Pvalue="6.8E-05" Start="2" Right="3" regulators="310908" />
+    <regulon_site Name="ASA_4272:-148" Site="TTTGTGTTTTTGACT" Pvalue="6.8E-05" Start="2" Right="3" regulators="3568097" />
+    <regulon_site Name="AHA_0119:-147" Site="TTTGTGTTTTTGACT" Pvalue="6.8E-05" Start="2" Right="3" regulators="2031920" />
+    <regulon_site Name="PBPRB1896:-146" Site="GTTGTAATAACCACA" Pvalue="7.41E-05" Start="2" Right="3" regulators="777227" />
+    <regulon_site Name="Ent638_3181:6" Site="GTAGTCAAAGTGACT" Pvalue="7.41E-05" Start="2" Right="3" regulators="3626335" />
+    <regulon_site Name="VF_A0862:-39" Site="GATGTAAATTTTACA" Pvalue="7.41E-05" Start="2" Right="3" regulators="946433" />
+    <regulon_site Name="Vapar_6324:-168" Site="GTGGTCGAACTGACA" Pvalue="8.06E-05" Start="2" Right="3" regulators="7561444" />
+    <regulon_site Name="Rpic_4655:-167" Site="ATGGTTGAAATGACC" Pvalue="8.06E-05" Start="2" Right="3" regulators="7179031" />
+    <regulon_site Name="Sputw3181_0873:-120" Site="CGTATCAAAAAGACA" Pvalue="8.06E-05" Start="2" Right="3" regulators="6978748" />
+    <regulon_site Name="Sputcn32_3072:-120" Site="CGTATCAAAAAGACA" Pvalue="8.06E-05" Start="2" Right="3" regulators="3439804" />
+    <regulon_site Name="Rmet_3167:-163" Site="ATGGTCAAAACAACC" Pvalue="9.54E-05" Start="2" Right="3" regulators="1775556" />
+    <regulon_site Name="PSEEN0951:-29" Site="ATAGTCATTCCGACC" Pvalue="0.000113" Start="2" Right="3" regulators="2047134" />
+    <regulon_site Name="Bphy_4026:-155" Site="GTAGTCGTTTTAACC" Pvalue="0.000122" Start="2" Right="3" regulators="7088960" />
+    <regulon_site Name="VAS14_14739:-148" Site="GATGTTTTTATTACA" Pvalue="0.000122" Start="2" Right="3" regulators="2791726" />
+    <regulon_site Name="RS02289:-122" Site="GCGGTCGATTTTACC" Pvalue="0.000122" Start="2" Right="3" regulators="172676" />
+    <regulon_site Name="Rmet_3166:-60" Site="GCGGTAATATTCACC" Pvalue="0.000144" Start="2" Right="3" regulators="1775556" />
+    <regulon_site Name="RS02290:-62" Site="TGGGTAAAATCGACC" Pvalue="0.000144" Start="2" Right="3" regulators="172676" />
+    <regulon_site Name="Shewmr7_0882:-166" Site="GGTGTCGTTTAGGCA" Pvalue="0.000155" Start="2" Right="3" regulators="6868200" />
+    <regulon_site Name="Shewmr4_3090:-167" Site="GGTGTCGTTTAGGCA" Pvalue="0.000155" Start="2" Right="3" regulators="6866412" />
+    <regulon_site Name="PHG245:-134" Site="CGGGTCAAATATACC" Pvalue="0.000155" Start="2" Right="3" regulators="2036174 2042308" />
+    <regulon_site Name="Shewana3_0845:-166" Site="GGTGTCGTTTAGGCA" Pvalue="0.000155" Start="2" Right="3" regulators="7023616" />
+    <regulon_site Name="H16_B2324:-110" Site="AGGGTATTAATTACC" Pvalue="0.000167" Start="2" Right="3" regulators="2036174 2042308" />
+    <regulon_site Name="VF_A0863:-225" Site="GATGTATTTATAACA" Pvalue="0.000167" Start="2" Right="3" regulators="946433" />
+    <regulon_site Name="Rmet_3167:-119" Site="ACGGTGAATATTACC" Pvalue="0.000167" Start="2" Right="3" regulators="1775556" />
+    <regulon_site Name="Swoo_0761:-199" Site="TCAGTCATATTGATA" Pvalue="0.000167" Start="2" Right="3" regulators="7098920 7098992" />
+    <regulon_site Name="PHG245:-153" Site="ATGGTGATAAATACC" Pvalue="0.00017999999999999998" Start="2" Right="3" regulators="2036174 2042308" />
+    <regulon_site Name="Ajs_0093:-21" Site="AAGGTAAAAATTACC" Pvalue="0.00017999999999999998" Start="2" Right="3" regulators="2216314 2214487" />
+    <regulon_site Name="Dret_2081:-114" Site="TGTGTCAAAGGGACA" Pvalue="0.000194" Start="1" Right="0" regulators="7453323" />
+    <regulon_site Name="Ajs_0092:-135" Site="AAGGTAATTTTTACC" Pvalue="0.000194" Start="2" Right="3" regulators="2216314 2214487" />
+    <regulon_site Name="PSEEN0952:-145" Site="TTGGTCGGAATGACT" Pvalue="0.000194" Start="2" Right="3" regulators="2047134" />
+    <regulon_site Name="H16_B2325:-60" Site="ACGGTAATTAATACC" Pvalue="0.00020899999999999998" Start="2" Right="3" regulators="2036174 2042308" />
+    <regulon_site Name="H16_B2324:-154" Site="ATGGTTAAAAATACC" Pvalue="0.000225" Start="2" Right="3" regulators="2036174 2042308" />
+    <regulon_site Name="Desal_0284:-264" Site="TGGTTCATATTGACA" Pvalue="0.000242" Start="1" Right="0" regulators="8505245" />
+    <regulon_site Name="HCH_00715:-36" Site="AGGGTTATAAAAACC" Pvalue="0.00026" Start="2" Right="3" regulators="1092785 1093410" />
+    <regulon_site Name="PP2840:-140" Site="CCAGTCTGAATGACC" Pvalue="0.00026" Start="2" Right="3" regulators="216504" />
+    <regulon_site Name="DvMF_1799:-171" Site="TTGGTGATTTTCACC" Pvalue="0.000279" Start="2" Right="3" regulators="8501062" />
+    <regulon_site Name="HCH_00714:-138" Site="AGGGTTTTTATAACC" Pvalue="0.00031999999999999997" Start="2" Right="3" regulators="1092785 1093410" />
+    <regulon_site Name="RALTA_B2088:-136" Site="AGGGTAATTAGTACC" Pvalue="0.00034199999999999996" Start="2" Right="3" regulators="5906798" />
+    <regulon_site Name="RALTA_B2088:-155" Site="ATGGTGAAAAAAACC" Pvalue="0.00034199999999999996" Start="2" Right="3" regulators="5906798" />
+    <regulon_site Name="Shewmr4_3089:-33" Site="CGTATCAAAATGACG" Pvalue="0.000366" Start="2" Right="3" regulators="6866412" />
+    <regulon_site Name="H16_B2324:-136" Site="AGGGTGATAAGTACC" Pvalue="0.000366" Start="2" Right="3" regulators="2036174 2042308" />
+    <regulon_site Name="Reut_B5057:-55" Site="ACGGTATAATTCACC" Pvalue="0.000366" Start="2" Right="3" regulators="895585" />
+    <regulon_site Name="Rpic_4656:-62" Site="GGGGTAGAATTCACC" Pvalue="0.00039099999999999996" Start="2" Right="3" regulators="7179031" />
+    <regulon_site Name="Pnap_1304:23" Site="ATCGTCAAATCCACC" Pvalue="0.00039099999999999996" Start="2" Right="3" regulators="1999811" />
+    <regulon_site Name="Bpro_3408:23" Site="ATCGTCAAATCCACC" Pvalue="0.00039099999999999996" Start="2" Right="3" regulators="1823077" />
+    <regulon_site Name="Reut_B5057:-29" Site="GCGGTGTAATTTACC" Pvalue="0.00039099999999999996" Start="2" Right="3" regulators="895585" />
+    <regulon_site Name="RALTA_B2089:-61" Site="AGGGTATTAACTACC" Pvalue="0.00041799999999999997" Start="2" Right="3" regulators="5906798" />
+    <regulon_site Name="DvMF_1446:-162" Site="TGTGTGTTTTCCACA" Pvalue="0.000446" Start="1" Right="0" regulators="8500718" />
+    <regulon_site Name="RALTA_B2088:-110" Site="AGGGTAGTTAATACC" Pvalue="0.000446" Start="2" Right="3" regulators="5906798" />
+    <regulon_site Name="RALTA_B2089:-35" Site="GCGGTACTAATTACC" Pvalue="0.000475" Start="2" Right="3" regulators="5906798" />
+    <regulon_site Name="Dde_0111:-169" Site="TATGTTTTTTATACA" Pvalue="0.000507" Start="3" Right="0" regulators="393290" />
+    <regulon_site Name="DVU2405:-312" Site="TGTGGCATTTCGACC" Pvalue="0.000507" Start="1" Right="0" regulators="207885" />
+    <regulon_site Name="Rpic_4655:-121" Site="ACGGTGAATTCTACC" Pvalue="0.000507" Start="2" Right="3" regulators="7179031" />
+    <regulon_site Name="Reut_B5056:-106" Site="TGGGTGAATTATACC" Pvalue="0.000507" Start="2" Right="3" regulators="895585" />
+    <regulon_site Name="H16_B2325:-34" Site="GCGGTACTTATCACC" Pvalue="0.00054" Start="2" Right="3" regulators="2036174 2042308" />
+    <regulon_site Name="Pnap_1305:-232" Site="ACGGTGGATTTGACG" Pvalue="0.000574" Start="2" Right="3" regulators="1999811" />
+    <regulon_site Name="Bpro_3407:-226" Site="ACGGTGGATTTGACG" Pvalue="0.000574" Start="2" Right="3" regulators="1823077" />
+    <regulon_site Name="Swoo_0760:-37" Site="ATGGTCATATTCAAA" Pvalue="0.000574" Start="2" Right="3" regulators="7098920 7098992" />
+    <regulon_site Name="Vapar_6324:-121" Site="GTTGCGAATTTGACC" Pvalue="0.000649" Start="2" Right="3" regulators="7561444" />
+    <regulon_site Name="VV1_2863:-94" Site="GACGTCAATAGAACA" Pvalue="0.000649" Start="2" Right="3" regulators="310908" />
+    <regulon_site Name="RS02289:-148" Site="AGGGTGAAAAGAACC" Pvalue="0.000649" Start="2" Right="3" regulators="172676" />
+    <regulon_site Name="Reut_B5056:-132" Site="CGGGTAAATTACACC" Pvalue="0.00068899999999999994" Start="2" Right="3" regulators="895585" />
+    <regulon_site Name="Avin_51080:-10" Site="GTTATCCGAATGACT" Pvalue="0.000731" Start="2" Right="3" regulators="6921540" />
+    <regulon_site Name="HCH_01373:-15" Site="AGAGTTTATTTGATA" Pvalue="0.000776" Start="2" Right="3" regulators="1092785 1093410" />
+    <regulon_site Name="DVU2988:-147" Site="TTGGTGGATTTTACC" Pvalue="0.000823" Start="2" Right="3" regulators="208502" />
+    <regulon_site Name="Ajs_0092:-110" Site="ACGGTTCATTTTACC" Pvalue="0.000823" Start="2" Right="3" regulators="2216314 2214487" />
+    <regulon_site Name="Dde_3237:-388" Site="CCTGTTTTTCAGACA" Pvalue="0.00087199999999999995" Start="4" Right="0" regulators="393796" />
+  </Sites>
+  <PWM>
+    <ResidueSite Site="0" PWM="0.459538 0.156069 0.32659 0.057803" Bits="0.2" />
+    <ResidueSite Site="0" PWM="0.16185 0.343931 0.309249 0.184971" Bits="0" />
+    <ResidueSite Site="0" PWM="0.236994 0.560694 0.187861 0.014451" Bits="0.4" />
+    <ResidueSite Site="0" PWM="0.034682 0.00289 0.962428 0" Bits="2" />
+    <ResidueSite Site="0" PWM="0 0.99422 0.00289 0.00289" Bits="1.8" />
+    <ResidueSite Site="0" PWM="0.098266 0.072254 0.057803 0.771676" Bits="1.1" />
+    <ResidueSite Site="0" PWM="0.684971 0.193642 0.080925 0.040462" Bits="0.4" />
+    <ResidueSite Site="0" PWM="0.401734 0.569364 0.017341 0.011561" Bits="0.7" />
+    <ResidueSite Site="0" PWM="0.526012 0.473988 0 0" Bits="0.9" />
+    <ResidueSite Site="0" PWM="0.592486 0.390173 0.00578 0.011561" Bits="0.7" />
+    <ResidueSite Site="0" PWM="0.234104 0.621387 0.046243 0.098266" Bits="0.4" />
+    <ResidueSite Site="0" PWM="0.046243 0.098266 0.791908 0.063584" Bits="1.1" />
+    <ResidueSite Site="0" PWM="0.991329 0 0.008671 0" Bits="1.8" />
+    <ResidueSite Site="0" PWM="0.00289 0.008671 0 0.988439" Bits="2" />
+    <ResidueSite Site="0" PWM="0.586705 0.225434 0.014451 0.17341" Bits="0.4" />
+  </PWM>
+</AnnotationModel>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-16"?>
+<AnnotationModel xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Evalue="3.2E-08" Width="15" Uid="GntR.15">
+  <Sites>
+    <regulon_site Name="Smlt2931:-76" Site="TTGTCCTATGCCAAA" Pvalue="2.3399999999999998E-09" Start="2" Right="0" regulators="5778128" />
+    <regulon_site Name="Rmet_4113:-79" Site="TTGTCCTATGACAAT" Pvalue="1.69E-08" Start="2" Right="0" regulators="1776502" />
+    <regulon_site Name="Smlt2930:-16" Site="TTGGCATAGGACAAA" Pvalue="2.3500000000000002E-08" Start="2" Right="0" regulators="5778128" />
+    <regulon_site Name="KPN_02766:-81" Site="TTGACCTATGACAAA" Pvalue="4.17E-08" Start="2" Right="0" regulators="3383207" />
+    <regulon_site Name="CKO_00372:-81" Site="TTGACCTATGACAAA" Pvalue="4.17E-08" Start="2" Right="0" regulators="3402040" />
+    <regulon_site Name="STM2435:-81" Site="TTGACCTATGACAAA" Pvalue="4.17E-08" Start="2" Right="0" regulators="149752" />
+    <regulon_site Name="Rmet_4117:-139" Site="TTGCCCTATGCCAAT" Pvalue="7.07E-08" Start="2" Right="0" regulators="1776502" />
+    <regulon_site Name="Ent638_4213:-36" Site="TTGTCCTAGGCTAAA" Pvalue="8.98E-08" Start="2" Right="0" regulators="3622967" />
+    <regulon_site Name="Ent638_4212:-49" Site="TTAGCCTAGGACAAT" Pvalue="1.5700000000000002E-07" Start="2" Right="0" regulators="3622967" />
+    <regulon_site Name="KPN_02767:-17" Site="TTGTCATAGGTCAAT" Pvalue="1.8000000000000002E-07" Start="2" Right="0" regulators="3383207" />
+    <regulon_site Name="CKO_00371:-17" Site="TTGTCATAGGTCAAT" Pvalue="1.8000000000000002E-07" Start="2" Right="0" regulators="3402040" />
+    <regulon_site Name="STM2436:-17" Site="TTGTCATAGGTCAAT" Pvalue="1.8000000000000002E-07" Start="2" Right="0" regulators="149752" />
+    <regulon_site Name="STM2436:-39" Site="TTGTCATATGCTAAA" Pvalue="2.82E-07" Start="2" Right="0" regulators="149752" />
+    <regulon_site Name="STM2435:-59" Site="TTAGCATATGACAAT" Pvalue="4.2900000000000004E-07" Start="2" Right="0" regulators="149752" />
+    <regulon_site Name="KPN_02767:-39" Site="TCGTCCTATGCTAAA" Pvalue="4.6700000000000004E-07" Start="2" Right="0" regulators="3383207" />
+    <regulon_site Name="KPN_02766:-59" Site="TTAGCATAGGACGAA" Pvalue="8.5800000000000009E-07" Start="2" Right="0" regulators="3383207" />
+    <regulon_site Name="CKO_00371:-39" Site="TCGTCATATGCTAAA" Pvalue="8.5800000000000009E-07" Start="2" Right="0" regulators="3402040" />
+    <regulon_site Name="CKO_00372:-59" Site="TTAGCATATGACGAT" Pvalue="1.22E-06" Start="2" Right="0" regulators="3402040" />
+    <regulon_site Name="Bfae_00360:-114" Site="TTGATCTGTGCCAAA" Pvalue="2.93E-06" Start="2" Right="0" regulators="7341187" />
+  </Sites>
+  <PWM>
+    <ResidueSite Site="0" PWM="0 1 0 0" Bits="1.6" />
+    <ResidueSite Site="0" PWM="0 0.894737 0 0.105263" Bits="1.1" />
+    <ResidueSite Site="0" PWM="0.210526 0 0.789474 0" Bits="1.6" />
+    <ResidueSite Site="0" PWM="0.210526 0.473684 0.263158 0.052632" Bits="0.3" />
+    <ResidueSite Site="0" PWM="0 0.052632 0 0.947368" Bits="2.4" />
+    <ResidueSite Site="0" PWM="0.473684 0 0 0.526316" Bits="1.1" />
+    <ResidueSite Site="0" PWM="0 1 0 0" Bits="1.6" />
+    <ResidueSite Site="0" PWM="0.947368 0 0.052632 0" Bits="1.3" />
+    <ResidueSite Site="0" PWM="0 0.631579 0.368421 0" Bits="1.1" />
+    <ResidueSite Site="0" PWM="0 0 1 0" Bits="2.7" />
+    <ResidueSite Site="0" PWM="0.473684 0.157895 0 0.368421" Bits="0.5" />
+    <ResidueSite Site="0" PWM="0 0.210526 0 0.789474" Bits="1.6" />
+    <ResidueSite Site="0" PWM="0.894737 0 0.105263 0" Bits="1.1" />
+    <ResidueSite Site="0" PWM="1 0 0 0" Bits="1.6" />
+    <ResidueSite Site="0" PWM="0.578947 0.421053 0 0" Bits="0.5" />
+  </PWM>
+</AnnotationModel>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-16"?>
+<AnnotationModel xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Evalue="2.5E-16" Width="15" Uid="ROK.3">
+  <Sites>
+    <regulon_site Name="BACOVA_01792:-100" Site="TAATAAAATATTTTA" Pvalue="1.31E-06" Start="2" Right="7" regulators="4204305" />
+    <regulon_site Name="BACOVA_01792:-103" Site="TAATAAAATATTTTA" Pvalue="1.31E-06" Start="5" Right="4" regulators="4204305" />
+    <regulon_site Name="BF1712:-150" Site="TAATAAAATATTTTA" Pvalue="1.31E-06" Start="5" Right="4" regulators="827293" />
+    <regulon_site Name="BT0434:-95" Site="TAATAAAATATTTTA" Pvalue="1.31E-06" Start="2" Right="7" regulators="349961" />
+    <regulon_site Name="BT0434:-98" Site="TAATAAAATATTTTA" Pvalue="1.31E-06" Start="5" Right="4" regulators="349961" />
+    <regulon_site Name="BACEGG_02292:-94" Site="TAATAAAATAATTTA" Pvalue="2.62E-06" Start="2" Right="7" regulators="6257414" />
+    <regulon_site Name="BACEGG_02293:-85" Site="TAATAAAATAATTTA" Pvalue="2.62E-06" Start="2" Right="7" regulators="6257414" />
+    <regulon_site Name="BACSTE_01903:-92" Site="TAATAAAATAATTTA" Pvalue="2.62E-06" Start="2" Right="7" regulators="4879886" />
+    <regulon_site Name="BVU_2433:-92" Site="TAATAAATTATTTTA" Pvalue="3.94E-06" Start="5" Right="4" regulators="3720738" />
+    <regulon_site Name="BACEGG_02291:-58" Site="TAATAAATTATTTTA" Pvalue="3.94E-06" Start="5" Right="4" regulators="6257414" />
+    <regulon_site Name="BACSTE_01902:-242" Site="TAATAAATTATTTTA" Pvalue="3.94E-06" Start="5" Right="4" regulators="4879886" />
+    <regulon_site Name="BF1806:-88" Site="TAATAAAATATTTAA" Pvalue="6.56E-06" Start="2" Right="7" regulators="827293" />
+    <regulon_site Name="BF1806:-91" Site="TAATAAAATATTTAA" Pvalue="6.56E-06" Start="5" Right="4" regulators="827293" />
+    <regulon_site Name="BVU_4117:-108" Site="TAATAAATAAATTTA" Pvalue="1.75E-05" Start="2" Right="7" regulators="3720738" />
+    <regulon_site Name="BVU_4117:-111" Site="TAATAAATAAATTTA" Pvalue="1.75E-05" Start="5" Right="4" regulators="3720738" />
+    <regulon_site Name="BACDOR_00694:-111" Site="TAATAAATAAATTTA" Pvalue="1.75E-05" Start="5" Right="4" regulators="6279722" />
+    <regulon_site Name="BACOVA_01791:-50" Site="TAATAAAAAAATTAA" Pvalue="2.16E-05" Start="2" Right="7" regulators="4204305" />
+    <regulon_site Name="BT0433:-51" Site="TAATAAAAAAATTAA" Pvalue="2.16E-05" Start="2" Right="7" regulators="349961" />
+    <regulon_site Name="BACUNI_01658:-44" Site="TAATAAATAAATTAA" Pvalue="2.97E-05" Start="2" Right="7" regulators="4261270" />
+    <regulon_site Name="BACPLE_00590:-156" Site="TCATAAAATATTTTA" Pvalue="3.32E-05" Start="2" Right="7" regulators="6110394" />
+    <regulon_site Name="BACCELL_01010:-44" Site="TAATAAACAAATTAA" Pvalue="3.62E-05" Start="2" Right="7" regulators="6381936" />
+    <regulon_site Name="BF1711:-52" Site="TAATAAACAAATTAA" Pvalue="3.62E-05" Start="2" Right="7" regulators="827293" />
+    <regulon_site Name="BACOVA_00648:-39" Site="TAATCAATTAATTAA" Pvalue="4.3299999999999995E-05" Start="5" Right="4" regulators="4204305" />
+    <regulon_site Name="BT2055:-39" Site="TAATCAATTAATTAA" Pvalue="4.3299999999999995E-05" Start="5" Right="4" regulators="349961" />
+    <regulon_site Name="BVU_4143:-47" Site="CAATAAAAACTTTTA" Pvalue="4.52E-05" Start="5" Right="4" regulators="3720738" />
+    <regulon_site Name="BACDOR_00663:-47" Site="CAATAAAAACTTTTA" Pvalue="4.52E-05" Start="5" Right="4" regulators="6279722" />
+    <regulon_site Name="BACDOR_01206:-160" Site="TAATAAAATATTTTT" Pvalue="4.9399999999999995E-05" Start="2" Right="7" regulators="6279722" />
+    <regulon_site Name="BACDOR_01206:-163" Site="TAATAAAATATTTTT" Pvalue="4.9399999999999995E-05" Start="5" Right="4" regulators="6279722" />
+    <regulon_site Name="BACUNI_01205:-26" Site="TAACAAAATCTTTTA" Pvalue="5.2799999999999996E-05" Start="5" Right="4" regulators="4261270" />
+    <regulon_site Name="BACEGG_00309:-44" Site="TAATAAGTAATTTAA" Pvalue="5.2799999999999996E-05" Start="2" Right="7" regulators="6257414" />
+    <regulon_site Name="BACSTE_03148:-44" Site="TAATAAGTAATTTAA" Pvalue="5.2799999999999996E-05" Start="2" Right="7" regulators="4879886" />
+    <regulon_site Name="BACUNI_01404:-18" Site="TAATAATAAATTTTA" Pvalue="6.6599999999999993E-05" Start="5" Right="4" regulators="4261270" />
+    <regulon_site Name="BACSTE_01904:-94" Site="TAATAAAATAAATTA" Pvalue="9.24E-05" Start="5" Right="4" regulators="4879886" />
+    <regulon_site Name="BACPLE_00596:-234" Site="TAATAAATTATTATA" Pvalue="0.000104" Start="5" Right="4" regulators="6110394" />
+    <regulon_site Name="BF3530:-43" Site="TAATAATTTAATTAA" Pvalue="0.00011899999999999999" Start="5" Right="4" regulators="827293" />
+  </Sites>
+  <PWM>
+    <ResidueSite Site="0" PWM="0 0.942857 0 0.057143" Bits="1" />
+    <ResidueSite Site="0" PWM="0.971429 0 0 0.028571" Bits="1" />
+    <ResidueSite Site="0" PWM="1 0 0 0" Bits="1.4" />
+    <ResidueSite Site="0" PWM="0 0.971429 0 0.028571" Bits="1" />
+    <ResidueSite Site="0" PWM="0.942857 0 0 0.057143" Bits="1" />
+    <ResidueSite Site="0" PWM="1 0 0 0" Bits="1.4" />
+    <ResidueSite Site="0" PWM="0.885714 0.057143 0.057143 0" Bits="0.7" />
+    <ResidueSite Site="0" PWM="0.571429 0.371429 0 0.057143" Bits="0.3" />
+    <ResidueSite Site="0" PWM="0.371429 0.628571 0 0" Bits="0.3" />
+    <ResidueSite Site="0" PWM="0.914286 0 0 0.085714" Bits="1" />
+    <ResidueSite Site="0" PWM="0.428571 0.571429 0 0" Bits="0.3" />
+    <ResidueSite Site="0" PWM="0.028571 0.971429 0 0" Bits="1" />
+    <ResidueSite Site="0" PWM="0.028571 0.971429 0 0" Bits="1" />
+    <ResidueSite Site="0" PWM="0.342857 0.657143 0 0" Bits="0.3" />
+    <ResidueSite Site="0" PWM="0.942857 0.057143 0 0" Bits="1" />
+  </PWM>
+</AnnotationModel>

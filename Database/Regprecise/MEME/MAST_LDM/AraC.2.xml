@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-16"?>
+<AnnotationModel xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Evalue="2.7E-86" Width="29" Uid="AraC.2">
+  <Sites>
+    <regulon_site Name="KPN_00063:-277" Site="TTCGCTA-----TATGGATTATTTTGCTG" Pvalue="1.12E-11" Start="11" Right="0" regulators="3380503" />
+    <regulon_site Name="Ent638_0611:-276" Site="TCCGCTA-----TATGGATTAAATTGCTG" Pvalue="2.05E-11" Start="11" Right="0" regulators="3623708" />
+    <regulon_site Name="Spro_2245:-224" Site="TTCGCTA-----TATGCACATATCTGCTG" Pvalue="2.98E-11" Start="11" Right="0" regulators="3620248" />
+    <regulon_site Name="CKO_01050:-284" Site="CTGGCTG-----TATGGACTAATCTGCTA" Pvalue="4.2400000000000004E-11" Start="11" Right="0" regulators="3404988" />
+    <regulon_site Name="STM0104:-279" Site="TCCGCTA-----TATGGACAAAAATGCTA" Pvalue="5.04E-11" Start="11" Right="0" regulators="147490" />
+    <regulon_site Name="b0064:-277" Site="TCCGCTA-----TATGGATAAAAATGCTA" Pvalue="1.5E-10" Start="11" Right="0" regulators="14210" />
+    <regulon_site Name="EAM_1698:-224" Site="TTTGCTG-----TATGGATAAATCAGCTG" Pvalue="1.9899999999999998E-10" Start="11" Right="0" regulators="10477713" />
+    <regulon_site Name="CKO_03318:-278" Site="TCCGCTA-----TATGGATTAAAATGCTA" Pvalue="2.2899999999999998E-10" Start="11" Right="0" regulators="3404988" />
+    <regulon_site Name="Ent638_2476:-283" Site="TTAGCTG-----TATGGATAATCTTGCTT" Pvalue="1.09E-09" Start="11" Right="0" regulators="3623708" />
+    <regulon_site Name="KPN_02396:-282" Site="CCTGCTG-----TATAGATGATCCTGCTA" Pvalue="1.21E-09" Start="11" Right="0" regulators="3380503" />
+    <regulon_site Name="b1901:-284" Site="CAGGCTA-----TATGGATTAATCTGCTG" Pvalue="1.21E-09" Start="11" Right="0" regulators="14210" />
+    <regulon_site Name="KPN_00063:-203" Site="TCTGCCG-----TATAGACACTTTTGTTA" Pvalue="1.34E-09" Start="11" Right="0" regulators="3380503" />
+    <regulon_site Name="CKO_01050:-210" Site="TCCGCTG-----TATGTACGCAATTACTG" Pvalue="1.34E-09" Start="11" Right="0" regulators="3404988" />
+    <regulon_site Name="Spro_2245:-299" Site="TTAGCTG-----TATGCACTTTTCTGCTT" Pvalue="1.34E-09" Start="11" Right="0" regulators="3620248" />
+    <regulon_site Name="Ent638_0611:-202" Site="TCTGCCG-----TATAGACACTTTTGTTA" Pvalue="1.34E-09" Start="11" Right="0" regulators="3623708" />
+    <regulon_site Name="b0064:-203" Site="TCTGCCG-----TATAGACACTTTTGTTA" Pvalue="1.34E-09" Start="11" Right="0" regulators="14210" />
+    <regulon_site Name="Ent638_2476:-208" Site="CTCGCTG-----TATGCACGCAATTACTG" Pvalue="1.4799999999999999E-09" Start="11" Right="0" regulators="3623708" />
+    <regulon_site Name="KPN_02396:-207" Site="TTTGCTA-----TATGTACGCAATTACTG" Pvalue="3.4399999999999997E-09" Start="11" Right="0" regulators="3380503" />
+    <regulon_site Name="ECA2273:-235" Site="TTTGCTA-----TATGCACAAACCTGTCA" Pvalue="4.08E-09" Start="11" Right="0" regulators="606660" />
+    <regulon_site Name="STM0104:-205" Site="CCAGCCA-----TATAGACACTTCTGTTA" Pvalue="4.43E-09" Start="11" Right="0" regulators="147490" />
+    <regulon_site Name="y2096:-256" Site="TTTGCTG-----TATGGATAAATAAACTG" Pvalue="5.6499999999999993E-09" Start="11" Right="0" regulators="272633" />
+    <regulon_site Name="ECA2273:-310" Site="TTAGCTA-----TATGTATTTTTCTGTCG" Pvalue="1.52E-08" Start="11" Right="0" regulators="606660" />
+    <regulon_site Name="y2096:-331" Site="ATAGCTG-----TATGCACTTTTCTGCTT" Pvalue="1.52E-08" Start="11" Right="0" regulators="272633" />
+    <regulon_site Name="CKO_03318:-204" Site="TCTGTCG-----TATAGACACTTTTGTTA" Pvalue="2.4600000000000002E-08" Start="11" Right="0" regulators="3404988" />
+    <regulon_site Name="b1901:-209" Site="CCCGCTA-----TATGCACGTTCTCACTG" Pvalue="3.06E-08" Start="11" Right="0" regulators="14210" />
+    <regulon_site Name="EAM_1698:-299" Site="CAGGCTA-----TATGTATTTTTCTGTCG" Pvalue="6.25E-08" Start="11" Right="0" regulators="10477713" />
+  </Sites>
+  <PWM>
+    <ResidueSite Site="0" PWM="0.038462 0.692308 0 0.269231" Bits="0.9" />
+    <ResidueSite Site="0" PWM="0.076923 0.461538 0 0.461538" Bits="0.7" />
+    <ResidueSite Site="0" PWM="0.192308 0.346154 0.115385 0.346154" Bits="0" />
+    <ResidueSite Site="0" PWM="0 0 1 0" Bits="2.3" />
+    <ResidueSite Site="0" PWM="0 0.038462 0 0.961538" Bits="2.1" />
+    <ResidueSite Site="0" PWM="0 0.807692 0 0.192308" Bits="1.2" />
+    <ResidueSite Site="0" PWM="0.5 0 0.5 0" Bits="1.2" />
+    <ResidueSite Site="0" PWM="0.283658 0.30279 0.202702 0.21085" Bits="0" />
+    <ResidueSite Site="0" PWM="0.283658 0.30279 0.202702 0.21085" Bits="0" />
+    <ResidueSite Site="0" PWM="0.283658 0.30279 0.202702 0.21085" Bits="0" />
+    <ResidueSite Site="0" PWM="0.283658 0.30279 0.202702 0.21085" Bits="0" />
+    <ResidueSite Site="0" PWM="0.283658 0.30279 0.202702 0.21085" Bits="0" />
+    <ResidueSite Site="0" PWM="0 1 0 0" Bits="1.6" />
+    <ResidueSite Site="0" PWM="1 0 0 0" Bits="1.8" />
+    <ResidueSite Site="0" PWM="0 1 0 0" Bits="1.6" />
+    <ResidueSite Site="0" PWM="0.230769 0 0.769231 0" Bits="1.4" />
+    <ResidueSite Site="0" PWM="0 0.153846 0.615385 0.230769" Bits="0.9" />
+    <ResidueSite Site="0" PWM="1 0 0 0" Bits="1.8" />
+    <ResidueSite Site="0" PWM="0 0.423077 0 0.576923" Bits="1.2" />
+    <ResidueSite Site="0" PWM="0.461538 0.346154 0.192308 0" Bits="0.5" />
+    <ResidueSite Site="0" PWM="0.461538 0.230769 0 0.307692" Bits="0.5" />
+    <ResidueSite Site="0" PWM="0.5 0.5 0 0" Bits="0.7" />
+    <ResidueSite Site="0" PWM="0.269231 0.576923 0 0.153846" Bits="0.5" />
+    <ResidueSite Site="0" PWM="0.153846 0.423077 0 0.423077" Bits="0.5" />
+    <ResidueSite Site="0" PWM="0.076923 0.884615 0 0.038462" Bits="1.2" />
+    <ResidueSite Site="0" PWM="0.192308 0 0.807692 0" Bits="1.6" />
+    <ResidueSite Site="0" PWM="0 0.307692 0 0.692308" Bits="1.2" />
+    <ResidueSite Site="0" PWM="0 0.884615 0 0.115385" Bits="1.4" />
+    <ResidueSite Site="0" PWM="0.423077 0.115385 0.461538 0" Bits="0.7" />
+  </PWM>
+</AnnotationModel>

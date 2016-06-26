@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-16"?>
+<AnnotationModel xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Evalue="9.8E-34" Width="29" Uid="[Other].6">
+  <Sites>
+    <regulon_site Name="BACUNI_01159:-105" Site="GTAACATTT-------------GAAACAA" Pvalue="1.84E-08" Start="1" Right="0" regulators="4260358" />
+    <regulon_site Name="BACOVA_04507:-118" Site="GTATCAAAT-------------GAAACAA" Pvalue="1.84E-08" Start="1" Right="0" regulators="4207010" />
+    <regulon_site Name="BACOVA_04501:-121" Site="GTAACATTT-------------GAAACAA" Pvalue="1.84E-08" Start="1" Right="0" regulators="4207010" />
+    <regulon_site Name="BVU_1663:-19" Site="GTAACATTT-------------GAAACAA" Pvalue="1.84E-08" Start="1" Right="0" regulators="3716781" />
+    <regulon_site Name="BACCELL_05508:-120" Site="GTATCATAT-------------GAAACAT" Pvalue="2.73E-08" Start="1" Right="0" regulators="6382483" />
+    <regulon_site Name="BT1765:-116" Site="GTATCAAAA-------------GAAACAA" Pvalue="3.65E-08" Start="1" Right="0" regulators="351282" />
+    <regulon_site Name="BACOVA_04505:-115" Site="GCAACAAAT-------------GAAACAT" Pvalue="6.19E-08" Start="1" Right="0" regulators="4207010" />
+    <regulon_site Name="BF3178:-44" Site="GAAACAAAA-------------GAAACAA" Pvalue="6.19E-08" Start="1" Right="0" regulators="828800" />
+    <regulon_site Name="BT1763:-115" Site="GCAACATAT-------------GAAACAT" Pvalue="7.12E-08" Start="1" Right="0" regulators="351282" />
+    <regulon_site Name="BACPLE_03866:-125" Site="GCAACATAA-------------GAAACAT" Pvalue="1.08E-07" Start="1" Right="0" regulators="6113671" />
+    <regulon_site Name="BACUNI_01153:-81" Site="GTATCAAAA-------------GTAACAT" Pvalue="1.35E-07" Start="1" Right="0" regulators="4260358" />
+    <regulon_site Name="BACCELL_05504:-152" Site="GTATCATAA-------------GTAACAA" Pvalue="1.35E-07" Start="1" Right="0" regulators="6382483" />
+    <regulon_site Name="BVU_1662:-97" Site="GAAACAAAA-------------GTAACAA" Pvalue="1.6800000000000002E-07" Start="1" Right="0" regulators="3716781" />
+    <regulon_site Name="BACCELL_05510:-156" Site="GTTACAAAT-------------GAAACAT" Pvalue="1.6800000000000002E-07" Start="1" Right="0" regulators="6382483" />
+    <regulon_site Name="BACDOR_00290:-28" Site="GAAACAAAA-------------GTAACAA" Pvalue="1.6800000000000002E-07" Start="1" Right="0" regulators="6279321" />
+    <regulon_site Name="BACSTE_03470:-133" Site="GTATCAATT-------------GTAACAT" Pvalue="1.6800000000000002E-07" Start="1" Right="0" regulators="4881451" />
+    <regulon_site Name="BT1759:-111" Site="GTAACATCT-------------GAAACAA" Pvalue="1.9900000000000002E-07" Start="1" Right="0" regulators="351282" />
+    <regulon_site Name="BF3177:-114" Site="GTATCAATC-------------GAAACAA" Pvalue="2.41E-07" Start="1" Right="0" regulators="828800" />
+    <regulon_site Name="BACCELL_05508:-160" Site="GTTTCATAA-------------GTAACAA" Pvalue="6.25E-07" Start="1" Right="0" regulators="6382483" />
+    <regulon_site Name="BACPLE_03869:-115" Site="GAAACAATA-------------GCAACAT" Pvalue="7.47E-07" Start="1" Right="0" regulators="6113671" />
+    <regulon_site Name="BACSTE_03472:-156" Site="GAAACAAAT-------------GTATCAT" Pvalue="8.3800000000000007E-07" Start="1" Right="0" regulators="4881451" />
+    <regulon_site Name="BACCOPRO_02545:-94" Site="GATACATTC-------------GAAACAT" Pvalue="1.1E-06" Start="1" Right="0" regulators="6358222" />
+    <regulon_site Name="BT3082:-98" Site="GTAACGTTT-------------GAATCAT" Pvalue="1.37E-06" Start="1" Right="0" regulators="351282" />
+  </Sites>
+  <PWM>
+    <ResidueSite Site="0" PWM="0 0 1 0" Bits="2.8" />
+    <ResidueSite Site="0" PWM="0.26087 0.608696 0 0.130435" Bits="0.3" />
+    <ResidueSite Site="0" PWM="0.869565 0.130435 0 0" Bits="1.1" />
+    <ResidueSite Site="0" PWM="0.652174 0.347826 0 0" Bits="0.6" />
+    <ResidueSite Site="0" PWM="0 0 0 1" Bits="2.5" />
+    <ResidueSite Site="0" PWM="0.956522 0 0.043478 0" Bits="1.4" />
+    <ResidueSite Site="0" PWM="0.521739 0.478261 0 0" Bits="0.6" />
+    <ResidueSite Site="0" PWM="0.608696 0.347826 0 0.043478" Bits="0.6" />
+    <ResidueSite Site="0" PWM="0.391304 0.521739 0 0.086957" Bits="0.3" />
+    <ResidueSite Site="0" PWM="0.337335 0.326494 0.147163 0.189007" Bits="0" />
+    <ResidueSite Site="0" PWM="0.337335 0.326494 0.147163 0.189007" Bits="0" />
+    <ResidueSite Site="0" PWM="0.337335 0.326494 0.147163 0.189007" Bits="0" />
+    <ResidueSite Site="0" PWM="0.337335 0.326494 0.147163 0.189007" Bits="0" />
+    <ResidueSite Site="0" PWM="0.337335 0.326494 0.147163 0.189007" Bits="0" />
+    <ResidueSite Site="0" PWM="0.337335 0.326494 0.147163 0.189007" Bits="0" />
+    <ResidueSite Site="0" PWM="0.337335 0.326494 0.147163 0.189007" Bits="0" />
+    <ResidueSite Site="0" PWM="0.337335 0.326494 0.147163 0.189007" Bits="0" />
+    <ResidueSite Site="0" PWM="0.337335 0.326494 0.147163 0.189007" Bits="0" />
+    <ResidueSite Site="0" PWM="0.337335 0.326494 0.147163 0.189007" Bits="0" />
+    <ResidueSite Site="0" PWM="0.337335 0.326494 0.147163 0.189007" Bits="0" />
+    <ResidueSite Site="0" PWM="0.337335 0.326494 0.147163 0.189007" Bits="0" />
+    <ResidueSite Site="0" PWM="0.337335 0.326494 0.147163 0.189007" Bits="0" />
+    <ResidueSite Site="0" PWM="0 0 1 0" Bits="2.8" />
+    <ResidueSite Site="0" PWM="0.652174 0.304348 0 0.043478" Bits="0.6" />
+    <ResidueSite Site="0" PWM="1 0 0 0" Bits="1.7" />
+    <ResidueSite Site="0" PWM="0.913043 0.086957 0 0" Bits="1.1" />
+    <ResidueSite Site="0" PWM="0 0 0 1" Bits="2.5" />
+    <ResidueSite Site="0" PWM="1 0 0 0" Bits="1.7" />
+    <ResidueSite Site="0" PWM="0.521739 0.478261 0 0" Bits="0.6" />
+  </PWM>
+</AnnotationModel>

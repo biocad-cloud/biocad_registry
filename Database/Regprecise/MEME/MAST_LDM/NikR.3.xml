@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-16"?>
+<AnnotationModel xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Evalue="1.3E-10" Width="6" Uid="NikR.3">
+  <Sites>
+    <regulon_site Name="STM2783:-79" Site="GTGTGA" Pvalue="0.000215" Start="1" Right="0" regulators="150866" />
+    <regulon_site Name="Shal_3728:-49" Site="GTGTGA" Pvalue="0.000215" Start="1" Right="0" regulators="3787703" />
+    <regulon_site Name="Spea_3644:-49" Site="GTGTGA" Pvalue="0.000215" Start="1" Right="0" regulators="7161794" />
+    <regulon_site Name="Dbac_1970:-216" Site="GTGTTA" Pvalue="0.000859" Start="1" Right="0" regulators="7533719" />
+    <regulon_site Name="Dde_1189:-105" Site="GTGTTA" Pvalue="0.000859" Start="1" Right="0" regulators="394042" />
+    <regulon_site Name="DVU1058:-121" Site="GTGTTA" Pvalue="0.000859" Start="1" Right="0" regulators="208400" />
+    <regulon_site Name="GM21_2002:-66" Site="GTGTTA" Pvalue="0.000859" Start="1" Right="0" regulators="7320262" />
+    <regulon_site Name="Gura_0780:-48" Site="GTGTTA" Pvalue="0.000859" Start="22" Right="1" regulators="3526228" />
+    <regulon_site Name="Gura_2762:-67" Site="GTGTTA" Pvalue="0.000859" Start="1" Right="0" regulators="3526228" />
+    <regulon_site Name="Daci_3112:-42" Site="GTATGA" Pvalue="0.000859" Start="1" Right="0" regulators="3603574" />
+    <regulon_site Name="KPN_03850:-52" Site="GTATGA" Pvalue="0.000859" Start="1" Right="0" regulators="3384332" />
+    <regulon_site Name="ETAE_2654:-120" Site="GTATGA" Pvalue="0.000859" Start="1" Right="0" regulators="10254114" />
+    <regulon_site Name="CKO_04926:-207" Site="GTATGA" Pvalue="0.000859" Start="1" Right="0" regulators="3406601" />
+    <regulon_site Name="STM1255:-101" Site="GTATGA" Pvalue="0.000859" Start="1" Right="0" regulators="150866" />
+    <regulon_site Name="Ent638_1834:-64" Site="GTATGA" Pvalue="0.000859" Start="1" Right="0" regulators="3624964" />
+    <regulon_site Name="b3476:-65" Site="GTATGA" Pvalue="0.000859" Start="1" Right="0" regulators="17542" />
+    <regulon_site Name="GSU1279:-56" Site="GTGTTA" Pvalue="0.000859" Start="1" Right="0" regulators="383296" />
+    <regulon_site Name="Gmet_2441:-62" Site="GTGTTA" Pvalue="0.000859" Start="1" Right="0" regulators="1088970" />
+    <regulon_site Name="Mpe_A2804:-76" Site="GTATGA" Pvalue="0.000859" Start="1" Right="0" regulators="2131539" />
+    <regulon_site Name="Mpe_A2798:-108" Site="GTATGA" Pvalue="0.000859" Start="1" Right="0" regulators="2131539" />
+    <regulon_site Name="Daro_3945:-35" Site="GTATGA" Pvalue="0.000859" Start="1" Right="0" regulators="581396" />
+    <regulon_site Name="LI0864:-98" Site="GTATTA" Pvalue="0.00134" Start="22" Right="1" regulators="1997471" />
+    <regulon_site Name="Dde_2281:-82" Site="GTATTA" Pvalue="0.00134" Start="1" Right="0" regulators="394042" />
+    <regulon_site Name="Nmul_A1233:-88" Site="GTATTA" Pvalue="0.00134" Start="1" Right="0" regulators="1124943" />
+    <regulon_site Name="Ssed_1675:-56" Site="GTATTA" Pvalue="0.00134" Start="1" Right="0" regulators="3700726" />
+    <regulon_site Name="DESPIG_00816:-134" Site="GTGTAA" Pvalue="0.0016600000000000002" Start="1" Right="0" regulators="6298698" />
+    <regulon_site Name="Ddes_1470:-93" Site="GTGTAA" Pvalue="0.0016600000000000002" Start="22" Right="1" regulators="8504327" />
+    <regulon_site Name="DvMF_2859:-89" Site="GTGTAA" Pvalue="0.0016600000000000002" Start="22" Right="1" regulators="8500572" />
+    <regulon_site Name="DVU2769:-83" Site="GTGTAA" Pvalue="0.0016600000000000002" Start="22" Right="1" regulators="208400" />
+    <regulon_site Name="Ddes_1032:-85" Site="GTGTCA" Pvalue="0.00236" Start="1" Right="0" regulators="8504327" />
+  </Sites>
+  <PWM>
+    <ResidueSite Site="0" PWM="0 0 1 0" Bits="2.3" />
+    <ResidueSite Site="0" PWM="0 1 0 0" Bits="1.9" />
+    <ResidueSite Site="0" PWM="0.466667 0 0.533333 0" Bits="1.2" />
+    <ResidueSite Site="0" PWM="0 1 0 0" Bits="1.9" />
+    <ResidueSite Site="0" PWM="0.133333 0.4 0.433333 0.033333" Bits="0.5" />
+    <ResidueSite Site="0" PWM="1 0 0 0" Bits="1.6" />
+  </PWM>
+</AnnotationModel>

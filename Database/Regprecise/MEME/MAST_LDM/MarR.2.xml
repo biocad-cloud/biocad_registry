@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-16"?>
+<AnnotationModel xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Evalue="4.8E-26" Width="15" Uid="MarR.2">
+  <Sites>
+    <regulon_site Name="SSU05_1952:-83" Site="CACTACTTAGTAATA" Pvalue="1.09E-08" Start="4" Right="0" regulators="3591621" />
+    <regulon_site Name="GALLO_0211:-82" Site="CACTATTTAGTGATA" Pvalue="4.37E-08" Start="4" Right="0" regulators="10394869" />
+    <regulon_site Name="SPy1959:-95" Site="TACTACATAGTGATA" Pvalue="5.2E-08" Start="4" Right="0" regulators="102076" />
+    <regulon_site Name="SAG1909:-96" Site="TACTACATAGTAATA" Pvalue="2.1200000000000002E-07" Start="4" Right="0" regulators="276520" />
+    <regulon_site Name="SMU.260:-59" Site="CACTAATTAGTAGTA" Pvalue="2.1200000000000002E-07" Start="4" Right="0" regulators="294946" />
+    <regulon_site Name="SMU.124:-33" Site="CACTAATTAGTAGTA" Pvalue="2.1200000000000002E-07" Start="4" Right="0" regulators="294946" />
+    <regulon_site Name="SSU05_0518:-66" Site="CACTAATTAGCGATA" Pvalue="3.34E-07" Start="4" Right="0" regulators="3591621" />
+    <regulon_site Name="SAG0731:-50" Site="TACTATATAGTGATA" Pvalue="4.0300000000000005E-07" Start="4" Right="0" regulators="276520" />
+    <regulon_site Name="SUB0259:-101" Site="TACTAATTAGTAATA" Pvalue="4.8300000000000008E-07" Start="4" Right="0" regulators="5935498" />
+    <regulon_site Name="SAG1910:-48" Site="AACTAATTAGTGATA" Pvalue="5.26E-07" Start="4" Right="0" regulators="276520" />
+    <regulon_site Name="str0066:-52" Site="TACTACGTAGTAGTA" Pvalue="5.26E-07" Start="4" Right="0" regulators="926252" />
+    <regulon_site Name="SDEG_0249:-50" Site="AACTACATAGTAATA" Pvalue="6.64E-07" Start="4" Right="0" regulators="7471834" />
+    <regulon_site Name="SSA_2106:-54" Site="CACTAATTAGTTATA" Pvalue="6.64E-07" Start="4" Right="0" regulators="2060915" />
+    <regulon_site Name="SUB0258:-46" Site="CACTAACTAGTTATA" Pvalue="1.91E-06" Start="4" Right="0" regulators="5935498" />
+    <regulon_site Name="SDEG_0248:-41" Site="TACTAATCAGTGACA" Pvalue="2.06E-06" Start="4" Right="0" regulators="7471834" />
+    <regulon_site Name="SSU05_1952:-38" Site="TACTATGTAGTAACA" Pvalue="2.06E-06" Start="4" Right="0" regulators="3591621" />
+    <regulon_site Name="SUB0259:-58" Site="CACTATATAGTGACT" Pvalue="3.18E-06" Start="4" Right="0" regulators="5935498" />
+    <regulon_site Name="SUB0259:-79" Site="AACTACATAGTATTA" Pvalue="3.6000000000000003E-06" Start="4" Right="0" regulators="5935498" />
+    <regulon_site Name="Sez_1761:-58" Site="CACTACATAGTATAA" Pvalue="4.84E-06" Start="4" Right="0" regulators="5805294" />
+    <regulon_site Name="SGO_1299:-22" Site="TACTATTTATTGATA" Pvalue="7.8E-06" Start="4" Right="0" regulators="3789612" />
+  </Sites>
+  <PWM>
+    <ResidueSite Site="0" PWM="0.15 0.4 0 0.45" Bits="0.6" />
+    <ResidueSite Site="0" PWM="1 0 0 0" Bits="1.5" />
+    <ResidueSite Site="0" PWM="0 0 0 1" Bits="3" />
+    <ResidueSite Site="0" PWM="0 1 0 0" Bits="1.5" />
+    <ResidueSite Site="0" PWM="1 0 0 0" Bits="1.5" />
+    <ResidueSite Site="0" PWM="0.4 0.25 0 0.35" Bits="0.3" />
+    <ResidueSite Site="0" PWM="0.35 0.5 0.1 0.05" Bits="0" />
+    <ResidueSite Site="0" PWM="0 0.95 0 0.05" Bits="1.2" />
+    <ResidueSite Site="0" PWM="1 0 0 0" Bits="1.5" />
+    <ResidueSite Site="0" PWM="0 0.05 0.95 0" Bits="2.7" />
+    <ResidueSite Site="0" PWM="0 0.95 0 0.05" Bits="1.2" />
+    <ResidueSite Site="0" PWM="0.5 0.1 0.4 0" Bits="0.6" />
+    <ResidueSite Site="0" PWM="0.75 0.1 0.15 0" Bits="0.6" />
+    <ResidueSite Site="0" PWM="0.05 0.8 0 0.15" Bits="0.9" />
+    <ResidueSite Site="0" PWM="0.95 0.05 0 0" Bits="1.2" />
+  </PWM>
+</AnnotationModel>

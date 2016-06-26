@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-16"?>
+<AnnotationModel xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Evalue="5.8E-67" Width="15" Uid="CtsR.3">
+  <Sites>
+    <regulon_site Name="SA0723:-64" Site="TTGACCAAATTTGAC" Pvalue="3.65E-08" Start="2" Right="1" regulators="102758" />
+    <regulon_site Name="SH2121:-65" Site="TTGACCATTTTTGAC" Pvalue="6.62E-08" Start="2" Right="1" regulators="919421" />
+    <regulon_site Name="Sca_0419:-65" Site="TTGACCATTTTTGAC" Pvalue="6.62E-08" Start="2" Right="1" regulators="5566341" />
+    <regulon_site Name="SE0551:-63" Site="TTGACCATTTTTGAC" Pvalue="6.62E-08" Start="2" Right="1" regulators="313076" />
+    <regulon_site Name="STACA0001_0262:-64" Site="TTGACCATTTTTGAC" Pvalue="6.62E-08" Start="2" Right="1" regulators="6431452" />
+    <regulon_site Name="MCCL_0519:-73" Site="TTGACTATCTTTGAC" Pvalue="1.02E-07" Start="2" Right="1" regulators="5667462" />
+    <regulon_site Name="SSP1175:-73" Site="TTGACTTACTTTGAC" Pvalue="1.02E-07" Start="2" Right="1" regulators="921925" />
+    <regulon_site Name="SH1334:-73" Site="TTGACTTACTTTGAC" Pvalue="1.02E-07" Start="2" Right="1" regulators="919421" />
+    <regulon_site Name="Sca_1204:-73" Site="TTGACTTACTTTGAC" Pvalue="1.02E-07" Start="2" Right="1" regulators="5566341" />
+    <regulon_site Name="SE1269:-73" Site="TTGACTTACTTTGAC" Pvalue="1.02E-07" Start="2" Right="1" regulators="313076" />
+    <regulon_site Name="STACA0001_1890:-73" Site="TTGACTTACTTTGAC" Pvalue="1.02E-07" Start="2" Right="1" regulators="6431452" />
+    <regulon_site Name="SA1411:-73" Site="TTGACTTACTTTGAC" Pvalue="1.02E-07" Start="2" Right="1" regulators="102758" />
+    <regulon_site Name="SSP1923:-64" Site="TTGACCATGTTTGAC" Pvalue="1.37E-07" Start="2" Right="1" regulators="921925" />
+    <regulon_site Name="MCCL_1711:-93" Site="TTGACCTTCTTTGAT" Pvalue="9.6000000000000013E-07" Start="2" Right="1" regulators="5667462" />
+    <regulon_site Name="Sca_1541:-131" Site="TTGACCAATTTTGAT" Pvalue="9.6000000000000013E-07" Start="2" Right="1" regulators="5566341" />
+    <regulon_site Name="SE1630:-87" Site="TTGACCAATTTTGAT" Pvalue="9.6000000000000013E-07" Start="2" Right="1" regulators="313076" />
+    <regulon_site Name="SH1001:-86" Site="TTGACCAAATTTGAT" Pvalue="1.09E-06" Start="2" Right="1" regulators="919421" />
+    <regulon_site Name="STACA0001_1993:-86" Site="TTGACCAAATTTGAT" Pvalue="1.09E-06" Start="2" Right="1" regulators="6431452" />
+    <regulon_site Name="SA1837:-86" Site="TTGACCAAATTTGAT" Pvalue="1.09E-06" Start="2" Right="1" regulators="102758" />
+    <regulon_site Name="BH3564:-93" Site="TGACC----TTTGAC" Pvalue="2.15E-06" Start="3" Right="1" regulators="62681" />
+    <regulon_site Name="BLi03710:-70" Site="TGACC----ATTGAC" Pvalue="4.18E-06" Start="3" Right="1" regulators="726154" />
+    <regulon_site Name="BPUM_3102:-69" Site="TGACC----ATTGAC" Pvalue="4.18E-06" Start="3" Right="1" regulators="3424931" />
+    <regulon_site Name="RBAM_031850:-69" Site="TGACC----ATTGAC" Pvalue="4.18E-06" Start="3" Right="1" regulators="3454486" />
+    <regulon_site Name="BSU34540:-69" Site="TGACC----ATTGAC" Pvalue="4.18E-06" Start="3" Right="1" regulators="36616" />
+    <regulon_site Name="OB2456:-89" Site="TGACC----ATTGAC" Pvalue="4.18E-06" Start="3" Right="1" regulators="276872" />
+    <regulon_site Name="ABC3026:-87" Site="TGACC----ATTGAC" Pvalue="4.18E-06" Start="3" Right="1" regulators="821558" />
+    <regulon_site Name="BC5152:-65" Site="TGACC----ATTGAC" Pvalue="4.18E-06" Start="3" Right="1" regulators="357518" />
+    <regulon_site Name="BC4452:-179" Site="TGACC----ATTGAC" Pvalue="4.18E-06" Start="3" Right="1" regulators="357518" />
+    <regulon_site Name="GK3062:-77" Site="TGACC----ATTGAC" Pvalue="4.18E-06" Start="3" Right="1" regulators="851874" />
+    <regulon_site Name="Aflv_2522:-70" Site="TGACC----ATTGAC" Pvalue="4.18E-06" Start="3" Right="1" regulators="5698872" />
+    <regulon_site Name="Pjdr2_0175:-85" Site="TGACT----TTTGAC" Pvalue="2.58E-05" Start="3" Right="1" regulators="6927504" />
+    <regulon_site Name="BH3113:-165" Site="TTCCA----TTTGAC" Pvalue="5.7499999999999995E-05" Start="3" Right="1" regulators="62681" />
+  </Sites>
+  <PWM>
+    <ResidueSite Site="0" PWM="0 1 0 0" Bits="1.6" />
+    <ResidueSite Site="0" PWM="0 0.625 0.375 0" Bits="1.1" />
+    <ResidueSite Site="0" PWM="0.375 0 0.59375 0.03125" Bits="1.1" />
+    <ResidueSite Site="0" PWM="0.59375 0 0 0.40625" Bits="1.1" />
+    <ResidueSite Site="0" PWM="0.03125 0.03125 0 0.9375" Bits="2.2" />
+    <ResidueSite Site="0" PWM="0.135384 0.361591 0.061688 0.441336" Bits="0.3" />
+    <ResidueSite Site="0" PWM="0.510384 0.361591 0.061688 0.066336" Bits="0.3" />
+    <ResidueSite Site="0" PWM="0.510384 0.361591 0.061688 0.066336" Bits="0.3" />
+    <ResidueSite Site="0" PWM="0.260384 0.330341 0.092938 0.316336" Bits="0" />
+    <ResidueSite Site="0" PWM="0.3125 0.6875 0 0" Bits="0.5" />
+    <ResidueSite Site="0" PWM="0 1 0 0" Bits="1.6" />
+    <ResidueSite Site="0" PWM="0 1 0 0" Bits="1.6" />
+    <ResidueSite Site="0" PWM="0 0 1 0" Bits="2.7" />
+    <ResidueSite Site="0" PWM="1 0 0 0" Bits="1.6" />
+    <ResidueSite Site="0" PWM="0 0.1875 0 0.8125" Bits="1.6" />
+  </PWM>
+</AnnotationModel>

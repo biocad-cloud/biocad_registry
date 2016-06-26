@@ -1,0 +1,2 @@
+httpd /start
+pause

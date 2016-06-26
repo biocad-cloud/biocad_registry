@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-16"?>
+<AnnotationModel xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Evalue="3.7E-15" Width="21" Uid="ROK.4">
+  <Sites>
+    <regulon_site Name="Rcas_0477:-132" Site="TTGTCAGTTCAATGGACTAAC" Pvalue="1.68E-11" Start="1" Right="0" regulators="3571207" />
+    <regulon_site Name="RoseRS_4247:-126" Site="TTGTCAGTTCACTGAACTAAT" Pvalue="9.25E-09" Start="1" Right="0" regulators="6991776" />
+    <regulon_site Name="BPUM_1830:-191" Site="TTGTAAGTTGATTCAACAAAC" Pvalue="2.06E-08" Start="4" Right="1" regulators="3426742" />
+    <regulon_site Name="Chy400_1208:-39" Site="TTGTTAGTTCATTGGACTATC" Pvalue="2.33E-08" Start="1" Right="0" regulators="5682788" />
+    <regulon_site Name="PEPE_0184:-182" Site="TTGTTAGTTCTATTTACAAAC" Pvalue="8.48E-08" Start="3" Right="0" regulators="1793937" />
+    <regulon_site Name="CD3071:-127" Site="AAGTTAGTTTAATGTACAAAT" Pvalue="1.6200000000000002E-07" Start="3" Right="0" regulators="3375556" />
+    <regulon_site Name="THA_1058:-42" Site="TAGTTGATTGAAACAACCAAC" Pvalue="2.98E-07" Start="1" Right="0" regulators="5693863" />
+    <regulon_site Name="CD3065:-113" Site="AAGTTAGTTTAATATACTAAC" Pvalue="3.27E-07" Start="3" Right="0" regulators="3375556" />
+    <regulon_site Name="PEPE_0185:-66" Site="TTGTAAATAGAACTAACAAAC" Pvalue="4.3600000000000004E-07" Start="3" Right="0" regulators="1793937" />
+    <regulon_site Name="CTN_1345:-38" Site="AAATAAGTACAGATTACTAAT" Pvalue="5.24E-07" Start="1" Right="0" regulators="5475666" />
+    <regulon_site Name="Tnap_1565:-38" Site="AAATAAGTAAAGTTTACTAAT" Pvalue="6.85E-07" Start="1" Right="0" regulators="10363694" />
+    <regulon_site Name="Tpet_1542:-38" Site="AAATAAGTAAAGTTTACTAAT" Pvalue="6.85E-07" Start="1" Right="0" regulators="3585521" />
+    <regulon_site Name="TRQ2_1591:-38" Site="AAATAAGTAAAGTTTACTAAT" Pvalue="6.85E-07" Start="1" Right="0" regulators="7272233" />
+    <regulon_site Name="TM1227:-38" Site="AAATAAGTAAAGTTTACTAAT" Pvalue="6.85E-07" Start="1" Right="0" regulators="2108" />
+    <regulon_site Name="Haur_1182:-23" Site="TAGTAAATTCATTGGAATAAG" Pvalue="2.78E-06" Start="1" Right="0" regulators="3429884" />
+    <regulon_site Name="BPUM_1829:-47" Site="TTGTTGAATCAACTTACAAAG" Pvalue="4.05E-06" Start="4" Right="1" regulators="3426742" />
+    <regulon_site Name="Tmel_0688:-38" Site="TAGTTGATTGAAGCAATCAAC" Pvalue="5.4E-06" Start="1" Right="0" regulators="7083603" />
+  </Sites>
+  <PWM>
+    <ResidueSite Site="0" PWM="0.411765 0.588235 0 0" Bits="0.3" />
+    <ResidueSite Site="0" PWM="0.588235 0.411765 0 0" Bits="0.3" />
+    <ResidueSite Site="0" PWM="0.294118 0 0.705882 0" Bits="1.7" />
+    <ResidueSite Site="0" PWM="0 1 0 0" Bits="1.4" />
+    <ResidueSite Site="0" PWM="0.470588 0.411765 0 0.117647" Bits="0" />
+    <ResidueSite Site="0" PWM="0.823529 0 0.176471 0" Bits="1" />
+    <ResidueSite Site="0" PWM="0.294118 0 0.705882 0" Bits="1.7" />
+    <ResidueSite Site="0" PWM="0.058824 0.941176 0 0" Bits="1" />
+    <ResidueSite Site="0" PWM="0.352941 0.647059 0 0" Bits="0.3" />
+    <ResidueSite Site="0" PWM="0.235294 0.117647 0.235294 0.411765" Bits="0.7" />
+    <ResidueSite Site="0" PWM="0.941176 0.058824 0 0" Bits="1" />
+    <ResidueSite Site="0" PWM="0.470588 0.176471 0.294118 0.058824" Bits="0.3" />
+    <ResidueSite Site="0" PWM="0.117647 0.705882 0.058824 0.117647" Bits="0.3" />
+    <ResidueSite Site="0" PWM="0.058824 0.470588 0.294118 0.176471" Bits="0.7" />
+    <ResidueSite Site="0" PWM="0.294118 0.529412 0.176471 0" Bits="0.3" />
+    <ResidueSite Site="0" PWM="1 0 0 0" Bits="1.4" />
+    <ResidueSite Site="0" PWM="0.058824 0.058824 0 0.882353" Bits="2.4" />
+    <ResidueSite Site="0" PWM="0.294118 0.588235 0 0.117647" Bits="0.3" />
+    <ResidueSite Site="0" PWM="1 0 0 0" Bits="1.4" />
+    <ResidueSite Site="0" PWM="0.941176 0.058824 0 0" Bits="1" />
+    <ResidueSite Site="0" PWM="0 0.411765 0.117647 0.470588" Bits="1" />
+  </PWM>
+</AnnotationModel>

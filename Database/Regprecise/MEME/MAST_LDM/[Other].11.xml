@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-16"?>
+<AnnotationModel xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Evalue="1.6E-05" Width="11" Uid="[Other].11">
+  <Sites>
+    <regulon_site Name="BVU_1382:-100" Site="ATTTATATTTT" Pvalue="4.96E-06" Start="2" Right="2" regulators="3718010" />
+    <regulon_site Name="BACCOPRO_01924:-88" Site="ATTTATATTTT" Pvalue="4.96E-06" Start="2" Right="2" regulators="6357604" />
+    <regulon_site Name="BACDOR_02286:-100" Site="ATTTATATTTT" Pvalue="4.96E-06" Start="2" Right="2" regulators="6281314" />
+    <regulon_site Name="BACDOR_02280:-116" Site="ATTTATATTTT" Pvalue="4.96E-06" Start="2" Right="2" regulators="6281314" />
+    <regulon_site Name="BACDOR_02280:-193" Site="ATTTATATTTT" Pvalue="4.96E-06" Start="2" Right="2" regulators="6281314" />
+    <regulon_site Name="BACPLE_02372:-82" Site="ATTTATATTTT" Pvalue="4.96E-06" Start="2" Right="2" regulators="6112170" />
+    <regulon_site Name="BACPLE_02372:-148" Site="ATTTATATTTT" Pvalue="4.96E-06" Start="2" Right="2" regulators="6112170" />
+    <regulon_site Name="BACPLE_02371:-109" Site="ATTTATATTTT" Pvalue="4.96E-06" Start="2" Right="2" regulators="6112170" />
+    <regulon_site Name="BT3704:-96" Site="ATTTATATTTT" Pvalue="4.96E-06" Start="2" Right="2" regulators="353231" />
+    <regulon_site Name="BACOVA_03519:-117" Site="ACTTGTATTTT" Pvalue="1.12E-05" Start="2" Right="2" regulators="4206035" />
+    <regulon_site Name="BACOVA_03520:-163" Site="ACTTGTATTTT" Pvalue="1.12E-05" Start="2" Right="2" regulators="4206035" />
+    <regulon_site Name="BT3704:-163" Site="ACTTGTATTTT" Pvalue="1.12E-05" Start="2" Right="2" regulators="353231" />
+    <regulon_site Name="BT3703:-117" Site="ACTTGTATTTT" Pvalue="1.12E-05" Start="2" Right="2" regulators="353231" />
+    <regulon_site Name="BVU_1382:-167" Site="GTTTATATTTT" Pvalue="1.3399999999999999E-05" Start="2" Right="2" regulators="3718010" />
+    <regulon_site Name="BACDOR_02286:-167" Site="GTTTATATTTT" Pvalue="1.3399999999999999E-05" Start="2" Right="2" regulators="6281314" />
+    <regulon_site Name="BACOVA_03519:-184" Site="ACTTATATTTA" Pvalue="2.42E-05" Start="2" Right="2" regulators="4206035" />
+    <regulon_site Name="BT3703:-184" Site="ACTTATATTTA" Pvalue="2.42E-05" Start="2" Right="2" regulators="353231" />
+  </Sites>
+  <PWM>
+    <ResidueSite Site="0" PWM="0.882353 0 0.117647 0" Bits="1.1" />
+    <ResidueSite Site="0" PWM="0 0.647059 0 0.352941" Bits="0.8" />
+    <ResidueSite Site="0" PWM="0 1 0 0" Bits="1.7" />
+    <ResidueSite Site="0" PWM="0 1 0 0" Bits="1.7" />
+    <ResidueSite Site="0" PWM="0.764706 0 0.235294 0" Bits="1.1" />
+    <ResidueSite Site="0" PWM="0 1 0 0" Bits="1.7" />
+    <ResidueSite Site="0" PWM="1 0 0 0" Bits="1.7" />
+    <ResidueSite Site="0" PWM="0 1 0 0" Bits="1.7" />
+    <ResidueSite Site="0" PWM="0 1 0 0" Bits="1.7" />
+    <ResidueSite Site="0" PWM="0 1 0 0" Bits="1.7" />
+    <ResidueSite Site="0" PWM="0.117647 0.882353 0 0" Bits="1.1" />
+  </PWM>
+</AnnotationModel>

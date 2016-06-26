@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-16"?>
+<AnnotationModel xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Evalue="6.7999999999999993E-48" Width="15" Uid="IclR.3">
+  <Sites>
+    <regulon_site Name="CTN_0632:-91" Site="GAAAGCCTTTTTCAC" Pvalue="1.96E-08" Start="4" Right="1" regulators="5474929" />
+    <regulon_site Name="Tnap_0691:-138" Site="GAAAGTTCCTTTCAC" Pvalue="6.64E-08" Start="4" Right="1" regulators="10362789" />
+    <regulon_site Name="Tpet_0863:-139" Site="GAAAGTTCCTTTCAC" Pvalue="6.64E-08" Start="4" Right="1" regulators="3584817" />
+    <regulon_site Name="TRQ2_0885:-138" Site="GAAAGTTCCTTTCAC" Pvalue="6.64E-08" Start="4" Right="1" regulators="7271502" />
+    <regulon_site Name="TM0061:-138" Site="GAAAGTTCCTTTCAC" Pvalue="6.64E-08" Start="4" Right="1" regulators="960" />
+    <regulon_site Name="CTN_0633:-191" Site="GAAAAAGGCTTTCAA" Pvalue="3.63E-07" Start="4" Right="1" regulators="5474929" />
+    <regulon_site Name="Tnap_0690:-198" Site="GAAAGGAACTTTCAA" Pvalue="4.86E-07" Start="4" Right="1" regulators="10362789" />
+    <regulon_site Name="Tpet_0864:-199" Site="GAAAGGAACTTTCAA" Pvalue="4.86E-07" Start="4" Right="1" regulators="3584817" />
+    <regulon_site Name="TRQ2_0886:-199" Site="GAAAGGAACTTTCAA" Pvalue="4.86E-07" Start="4" Right="1" regulators="7271502" />
+    <regulon_site Name="TM0060:-199" Site="GAAAGGAACTTTCAA" Pvalue="4.86E-07" Start="4" Right="1" regulators="960" />
+    <regulon_site Name="CTN_0630:-33" Site="GAAAATCATTTTCAC" Pvalue="1.03E-06" Start="4" Right="1" regulators="5474929" />
+    <regulon_site Name="Tnap_0694:-32" Site="GAAAACCATTTTCAA" Pvalue="1.6E-06" Start="4" Right="1" regulators="10362789" />
+    <regulon_site Name="Tpet_0860:-32" Site="GAAAACCATTTTCAA" Pvalue="1.6E-06" Start="4" Right="1" regulators="3584817" />
+    <regulon_site Name="TRQ2_0883:-32" Site="GAAAACCATTTTCAA" Pvalue="1.6E-06" Start="4" Right="1" regulators="7271502" />
+    <regulon_site Name="TM0064:-32" Site="GAAAACCATTTTCAA" Pvalue="1.6E-06" Start="4" Right="1" regulators="960" />
+    <regulon_site Name="Tnap_0695:-88" Site="GAAAATGGTTTTCTC" Pvalue="5E-06" Start="4" Right="1" regulators="10362789" />
+    <regulon_site Name="Tpet_0859:-88" Site="GAAAATGGTTTTCTC" Pvalue="5E-06" Start="4" Right="1" regulators="3584817" />
+    <regulon_site Name="TRQ2_0882:-88" Site="GAAAATGGTTTTCTC" Pvalue="5E-06" Start="4" Right="1" regulators="7271502" />
+    <regulon_site Name="TM0065:-88" Site="GAAAATGGTTTTCTC" Pvalue="5E-06" Start="4" Right="1" regulators="960" />
+    <regulon_site Name="STM0517:-37" Site="GGAAACTTTTTCCAA" Pvalue="5.51E-06" Start="3" Right="0" regulators="147892" />
+    <regulon_site Name="CTN_0629:-48" Site="GAAAATGATTTTCTC" Pvalue="7.1E-06" Start="4" Right="1" regulators="5474929" />
+    <regulon_site Name="b0507:-37" Site="GGAAAAATTTTCCAA" Pvalue="7.59E-06" Start="3" Right="0" regulators="14643" />
+    <regulon_site Name="STM0515:-121" Site="GGAAAAATATTCCAA" Pvalue="1.53E-05" Start="3" Right="0" regulators="147892" />
+    <regulon_site Name="b0505:-122" Site="GGAAAAATATTCCAA" Pvalue="1.53E-05" Start="3" Right="0" regulators="14643" />
+    <regulon_site Name="STM0514:-122" Site="GGAATATTTTTCCAA" Pvalue="1.6499999999999998E-05" Start="3" Right="0" regulators="147892" />
+    <regulon_site Name="b0504:-124" Site="GGAATATTTTTCCAA" Pvalue="1.6499999999999998E-05" Start="3" Right="0" regulators="14643" />
+    <regulon_site Name="Tnap_0701:-135" Site="GAAATAATCTTTTAC" Pvalue="2.7099999999999998E-05" Start="4" Right="1" regulators="10362789" />
+    <regulon_site Name="Tpet_0853:-136" Site="GAAATAATCTTTTAC" Pvalue="2.7099999999999998E-05" Start="4" Right="1" regulators="3584817" />
+    <regulon_site Name="TM0071:-135" Site="GAAATAATCTTTTAC" Pvalue="2.7099999999999998E-05" Start="4" Right="1" regulators="960" />
+    <regulon_site Name="Tnap_0700:-103" Site="AAAAGATTATTTCAA" Pvalue="4.4699999999999996E-05" Start="4" Right="1" regulators="10362789" />
+    <regulon_site Name="Tpet_0854:-103" Site="AAAAGATTATTTCAA" Pvalue="4.4699999999999996E-05" Start="4" Right="1" regulators="3584817" />
+    <regulon_site Name="TM0070:-103" Site="AAAAGATTATTTCAA" Pvalue="4.4699999999999996E-05" Start="4" Right="1" regulators="960" />
+  </Sites>
+  <PWM>
+    <ResidueSite Site="0" PWM="0.09375 0 0.90625 0" Bits="2.4" />
+    <ResidueSite Site="0" PWM="0.8125 0 0.1875 0" Bits="0.9" />
+    <ResidueSite Site="0" PWM="1 0 0 0" Bits="1.5" />
+    <ResidueSite Site="0" PWM="1 0 0 0" Bits="1.5" />
+    <ResidueSite Site="0" PWM="0.46875 0.15625 0.375 0" Bits="0.6" />
+    <ResidueSite Site="0" PWM="0.375 0.3125 0.125 0.1875" Bits="0" />
+    <ResidueSite Site="0" PWM="0.3125 0.3125 0.1875 0.1875" Bits="0" />
+    <ResidueSite Site="0" PWM="0.3125 0.40625 0.15625 0.125" Bits="0" />
+    <ResidueSite Site="0" PWM="0.15625 0.46875 0 0.375" Bits="0.6" />
+    <ResidueSite Site="0" PWM="0 1 0 0" Bits="1.5" />
+    <ResidueSite Site="0" PWM="0 1 0 0" Bits="1.5" />
+    <ResidueSite Site="0" PWM="0 0.8125 0 0.1875" Bits="0.9" />
+    <ResidueSite Site="0" PWM="0 0.09375 0 0.90625" Bits="2.4" />
+    <ResidueSite Site="0" PWM="0.84375 0.15625 0 0" Bits="0.9" />
+    <ResidueSite Site="0" PWM="0.5625 0 0 0.4375" Bits="1.2" />
+  </PWM>
+</AnnotationModel>

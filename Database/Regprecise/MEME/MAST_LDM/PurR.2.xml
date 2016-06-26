@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-16"?>
+<AnnotationModel xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Evalue="8.7000000000000009E-183" Width="14" Uid="PurR.2">
+  <Sites>
+    <regulon_site Name="OB2789:-97" Site="TAATGTTCGGTTTT" Pvalue="4.9599999999999994E-09" Start="32" Right="0" regulators="276837" />
+    <regulon_site Name="Aflv_2841:-81" Site="AAATGTTCGGTTTT" Pvalue="1.1400000000000001E-08" Start="33" Right="0" regulators="5698833" />
+    <regulon_site Name="BPUM_1179:-205" Site="TATTGTTCGTTTTT" Pvalue="5.9500000000000003E-08" Start="33" Right="0" regulators="3424889" />
+    <regulon_site Name="BPUM_3693:-128" Site="TAATGTTCGGCTTT" Pvalue="5.9500000000000003E-08" Start="32" Right="0" regulators="3424889" />
+    <regulon_site Name="Pjdr2_6258:-187" Site="AATTGTTCGTTTTT" Pvalue="7.23E-08" Start="32" Right="0" regulators="6921704" />
+    <regulon_site Name="GK2397:-63" Site="GAATGTTCGTTTTT" Pvalue="8.5200000000000009E-08" Start="33" Right="0" regulators="851825" />
+    <regulon_site Name="GK3475:-113" Site="TAATGTTCGTGTTT" Pvalue="8.5200000000000009E-08" Start="33" Right="0" regulators="851825" />
+    <regulon_site Name="RBAM_034060:-159" Site="TAATGTTCGTGTTT" Pvalue="8.5200000000000009E-08" Start="33" Right="0" regulators="3454434" />
+    <regulon_site Name="BH0608:-294" Site="TAATGTTCGTCTTT" Pvalue="1.07E-07" Start="32" Right="0" regulators="62643" />
+    <regulon_site Name="BLi04341:-130" Site="TAATGTTCGGATTT" Pvalue="1.07E-07" Start="33" Right="0" regulators="726114" />
+    <regulon_site Name="BSU40420:-128" Site="TAATGTTCGGATTT" Pvalue="1.07E-07" Start="33" Right="0" regulators="36580" />
+    <regulon_site Name="BH4028:-134" Site="AAATGTTCGGATTT" Pvalue="1.23E-07" Start="33" Right="0" regulators="62643" />
+    <regulon_site Name="GK0255:-292" Site="AAATGTTCGTCTTT" Pvalue="1.23E-07" Start="33" Right="0" regulators="851825" />
+    <regulon_site Name="RBAM_037450:-132" Site="AAATGTTCGGATTT" Pvalue="1.23E-07" Start="33" Right="0" regulators="3454434" />
+    <regulon_site Name="Pjdr2_0860:-411" Site="TAATGTTCGTATTT" Pvalue="2.02E-07" Start="33" Right="0" regulators="6921704" />
+    <regulon_site Name="BC0297:-325" Site="AAACGTTCGTTTTT" Pvalue="2.02E-07" Start="32" Right="0" regulators="357486" />
+    <regulon_site Name="GK0257:-302" Site="AAATGTTCGATTTT" Pvalue="2.02E-07" Start="32" Right="0" regulators="851825" />
+    <regulon_site Name="Aflv_0228:-294" Site="AAATGTTCGATTTT" Pvalue="2.02E-07" Start="32" Right="0" regulators="5698833" />
+    <regulon_site Name="Aflv_0228:-295" Site="AAATGTTCGATTTT" Pvalue="2.02E-07" Start="33" Right="0" regulators="5698833" />
+    <regulon_site Name="BLi03935:-158" Site="TAATATTCGGTTTT" Pvalue="2.02E-07" Start="33" Right="0" regulators="726114" />
+    <regulon_site Name="RBAM_012710:-202" Site="TAATGTTCGCTTTT" Pvalue="2.02E-07" Start="32" Right="0" regulators="3454434" />
+    <regulon_site Name="OB3453:-240" Site="AAATGTTCGTATTT" Pvalue="2.5000000000000004E-07" Start="32" Right="0" regulators="276837" />
+    <regulon_site Name="BH0062:-57" Site="AAATATTCGGTTTT" Pvalue="2.5000000000000004E-07" Start="32" Right="0" regulators="62643" />
+    <regulon_site Name="BC5468:-122" Site="AAATGTTCGCTTTT" Pvalue="2.5000000000000004E-07" Start="32" Right="0" regulators="357486" />
+    <regulon_site Name="BPUM_0592:-329" Site="AAATGTTCGCTTTT" Pvalue="2.5000000000000004E-07" Start="32" Right="0" regulators="3424889" />
+    <regulon_site Name="RBAM_006790:-316" Site="GATTGTTCGTTTTT" Pvalue="2.82E-07" Start="32" Right="0" regulators="3454434" />
+    <regulon_site Name="BSU36900:-159" Site="TAATATTCGTTTTT" Pvalue="3.4500000000000003E-07" Start="33" Right="0" regulators="36580" />
+    <regulon_site Name="BLi01200:-59" Site="AAATATTCGTTTTT" Pvalue="4.23E-07" Start="32" Right="0" regulators="726114" />
+    <regulon_site Name="BSU32130:-57" Site="AAATATTCGTTTTT" Pvalue="4.23E-07" Start="32" Right="0" regulators="36580" />
+    <regulon_site Name="BLi03152:-55" Site="TAATGTTCGTTATT" Pvalue="5.61E-07" Start="33" Right="0" regulators="726114" />
+    <regulon_site Name="BSU06370:-320" Site="TATTGTTCGCTTTT" Pvalue="5.61E-07" Start="32" Right="0" regulators="36580" />
+    <regulon_site Name="Aflv_0226:-175" Site="AAATGTTCGTTATT" Pvalue="6.5500000000000008E-07" Start="32" Right="0" regulators="5698833" />
+    <regulon_site Name="ABC0959:-258" Site="CATTGTTCGTTTTT" Pvalue="7.25E-07" Start="32" Right="0" regulators="821499" />
+    <regulon_site Name="MCCL_0019:-299" Site="-ATTGTACGGTTTT" Pvalue="1.21E-06" Start="33" Right="1" regulators="5667490 5667491" />
+    <regulon_site Name="SSP0017:-272" Site="-ATTGTACGGTTTT" Pvalue="1.21E-06" Start="33" Right="1" regulators="921967" />
+    <regulon_site Name="Sca_2459:-272" Site="-ATTGTACGGTTTT" Pvalue="1.21E-06" Start="33" Right="1" regulators="5566297" />
+    <regulon_site Name="BH0623:-353" Site="TATTGTTCGAGTTT" Pvalue="1.3800000000000001E-06" Start="32" Right="0" regulators="62643" />
+    <regulon_site Name="BLi00060:-58" Site="AAATATTCGGATTT" Pvalue="1.3800000000000001E-06" Start="33" Right="0" regulators="726114" />
+    <regulon_site Name="BSU00470:-57" Site="AAATATTCGGATTT" Pvalue="1.3800000000000001E-06" Start="32" Right="0" regulators="36580" />
+    <regulon_site Name="ABC3216:-55" Site="TAACATTCGTTTTT" Pvalue="1.57E-06" Start="33" Right="0" regulators="821499" />
+    <regulon_site Name="BC5452:-55" Site="AAATATTCGTATTT" Pvalue="2.1000000000000002E-06" Start="32" Right="0" regulators="357486" />
+    <regulon_site Name="RBAM_027090:-55" Site="AAATGTTCGTCATT" Pvalue="2.1000000000000002E-06" Start="33" Right="0" regulators="3454434" />
+    <regulon_site Name="Pjdr2_0032:-61" Site="TATTATTCGGATTT" Pvalue="2.75E-06" Start="33" Right="0" regulators="6921704" />
+    <regulon_site Name="ABC0075:-59" Site="AAATATTCGGTTAT" Pvalue="3.11E-06" Start="32" Right="0" regulators="821499" />
+    <regulon_site Name="SSP1726:-136" Site="-AAAGTTCGATTTT" Pvalue="3.11E-06" Start="33" Right="1" regulators="921967" />
+    <regulon_site Name="SH1893:-136" Site="-AAAGTTCGATTTT" Pvalue="3.11E-06" Start="33" Right="1" regulators="919462" />
+    <regulon_site Name="Sca_0686:-143" Site="-AAAGTTCGATTTT" Pvalue="3.11E-06" Start="33" Right="1" regulators="5566297" />
+    <regulon_site Name="SE0762:-137" Site="-AAAGTTCGATTTT" Pvalue="3.11E-06" Start="33" Right="1" regulators="315079" />
+    <regulon_site Name="STACA0001_2300:-136" Site="-AAAGTTCGATTTT" Pvalue="3.11E-06" Start="33" Right="1" regulators="6432894" />
+    <regulon_site Name="SA0916:-136" Site="-AAAGTTCGATTTT" Pvalue="3.11E-06" Start="33" Right="1" regulators="102732" />
+    <regulon_site Name="BLi01387:-200" Site="TAAAGTTCGGTTAT" Pvalue="3.11E-06" Start="33" Right="0" regulators="726114" />
+    <regulon_site Name="RBAM_000560:-57" Site="AATTATTCGGATTT" Pvalue="3.11E-06" Start="32" Right="0" regulators="3454434" />
+    <regulon_site Name="OB0723:-274" Site="TTTTGTTCGTGTTT" Pvalue="3.43E-06" Start="32" Right="0" regulators="276837" />
+    <regulon_site Name="OB0056:-58" Site="AAACATTCGGGTTT" Pvalue="3.43E-06" Start="33" Right="0" regulators="276837" />
+    <regulon_site Name="GK1569:-39" Site="GAAAGTTCGTGTTT" Pvalue="3.43E-06" Start="33" Right="0" regulators="851825" />
+    <regulon_site Name="RBAM_029180:-57" Site="TATTATTCGCTTTT" Pvalue="3.85E-06" Start="32" Right="0" regulators="3454434" />
+    <regulon_site Name="SH0016:-272" Site="-AATGTGCGGTTTT" Pvalue="5.34E-06" Start="33" Right="1" regulators="919462" />
+    <regulon_site Name="BLi02603:-152" Site="TATTATTCGGTTAT" Pvalue="5.34E-06" Start="32" Right="0" regulators="726114" />
+    <regulon_site Name="SA1724:-82" Site="-AATGTTCTGTTTT" Pvalue="6.4900000000000005E-06" Start="33" Right="1" regulators="102732" />
+    <regulon_site Name="ABC1024:-305" Site="AAATGTTCGACTAT" Pvalue="7.17E-06" Start="32" Right="0" regulators="821499" />
+    <regulon_site Name="RBAM_022650:-149" Site="AAATATTCGGCATT" Pvalue="7.91E-06" Start="32" Right="0" regulators="3454434" />
+    <regulon_site Name="BH2785:-129" Site="AATTGTTCTGTTTT" Pvalue="8.79E-06" Start="33" Right="0" regulators="62643" />
+    <regulon_site Name="BSU29990:-55" Site="AAACGTTCGTAATT" Pvalue="9.78E-06" Start="33" Right="0" regulators="36580" />
+    <regulon_site Name="GK0040:-57" Site="TAATATTCGGTTTC" Pvalue="1.08E-05" Start="33" Right="0" regulators="851825" />
+    <regulon_site Name="ABC4100:-111" Site="AAATGTTCGTGTCT" Pvalue="1.35E-05" Start="32" Right="0" regulators="821499" />
+    <regulon_site Name="MCCL_1646:-97" Site="-AATGTACGGAATT" Pvalue="1.7899999999999998E-05" Start="33" Right="1" regulators="5667490 5667491" />
+    <regulon_site Name="BPUM_2646:-55" Site="TAATGTTCGTAAAT" Pvalue="1.7899999999999998E-05" Start="33" Right="0" regulators="3424889" />
+    <regulon_site Name="BC5452:-187" Site="TTAAATTCGTTTTT" Pvalue="1.95E-05" Start="32" Right="0" regulators="357486" />
+    <regulon_site Name="BPUM_2164:-145" Site="AATGATTCGTTTTT" Pvalue="1.95E-05" Start="32" Right="0" regulators="3424889" />
+    <regulon_site Name="BPUM_1944:-301" Site="TTAAGTTCGGTATT" Pvalue="1.95E-05" Start="32" Right="0" regulators="3424889" />
+    <regulon_site Name="BSU24320:-149" Site="AAATATTCGGTAAT" Pvalue="1.95E-05" Start="32" Right="0" regulators="36580" />
+    <regulon_site Name="BC1569:-305" Site="ATTTGTACGTGTTT" Pvalue="2.12E-05" Start="32" Right="0" regulators="357486" />
+    <regulon_site Name="BH1514:-301" Site="ATTCATTCGTTTTT" Pvalue="2.31E-05" Start="32" Right="0" regulators="62643" />
+    <regulon_site Name="MCCL_0686:-101" Site="-TTCGTTCGTATTT" Pvalue="2.31E-05" Start="33" Right="1" regulators="5667490 5667491" />
+    <regulon_site Name="SH1043:-81" Site="-AATGTACAGTTTT" Pvalue="2.31E-05" Start="33" Right="1" regulators="919462" />
+    <regulon_site Name="SE1593:-84" Site="-AATGTACAGTTTT" Pvalue="2.31E-05" Start="33" Right="1" regulators="315079" />
+    <regulon_site Name="STACA0001_1961:-85" Site="-AATGTACAGTTTT" Pvalue="2.31E-05" Start="33" Right="1" regulators="6432894" />
+    <regulon_site Name="OB0739:-342" Site="GATTTTTCGTATTT" Pvalue="2.7499999999999998E-05" Start="33" Right="0" regulators="276837" />
+    <regulon_site Name="GK2425:-436" Site="GAAAGTTCGATTAT" Pvalue="2.7499999999999998E-05" Start="33" Right="0" regulators="851825" />
+    <regulon_site Name="Aflv_0915:-404" Site="AAATTTACGTGTTT" Pvalue="2.7499999999999998E-05" Start="32" Right="0" regulators="5698833" />
+    <regulon_site Name="BC0323:-295" Site="AAACATTCGATTAT" Pvalue="3.51E-05" Start="32" Right="0" regulators="357486" />
+    <regulon_site Name="SH1894:-121" Site="-AATTTACGTCTTT" Pvalue="3.82E-05" Start="33" Right="1" regulators="919462" />
+    <regulon_site Name="SE0761:-113" Site="-AATTTACGTCTTT" Pvalue="3.82E-05" Start="33" Right="1" regulators="315079" />
+    <regulon_site Name="STACA0001_2301:-113" Site="-AATTTACGTCTTT" Pvalue="3.82E-05" Start="33" Right="1" regulators="6432894" />
+    <regulon_site Name="SA0915:-110" Site="-AATTTACGTCTTT" Pvalue="3.82E-05" Start="33" Right="1" regulators="102732" />
+    <regulon_site Name="BSU12860:-206" Site="TTTTATTCGTTTAT" Pvalue="3.82E-05" Start="33" Right="0" regulators="36580" />
+    <regulon_site Name="BSU22070:-279" Site="TAAAGTTCGGGAAT" Pvalue="3.82E-05" Start="32" Right="0" regulators="36580" />
+    <regulon_site Name="BPUM_0031:-57" Site="AATTATTCGGGTTC" Pvalue="4.15E-05" Start="32" Right="0" regulators="3424889" />
+    <regulon_site Name="SSP0882:-89" Site="-AATGTACATGTTT" Pvalue="5.79E-05" Start="33" Right="1" regulators="921967" />
+    <regulon_site Name="RBAM_020260:-287" Site="AAAAGTTCGGAAAT" Pvalue="5.79E-05" Start="32" Right="0" regulators="3454434" />
+    <regulon_site Name="BLi00693:-319" Site="TATCGTTCGATAAT" Pvalue="6.81E-05" Start="32" Right="0" regulators="726114" />
+    <regulon_site Name="RBAM_006840:-314" Site="TATCGTTCGATAAT" Pvalue="6.81E-05" Start="32" Right="0" regulators="3454434" />
+    <regulon_site Name="BSU06420:-323" Site="TATCGTTCGATAAT" Pvalue="6.81E-05" Start="32" Right="0" regulators="36580" />
+    <regulon_site Name="OB0739:-360" Site="AATCATACGAGTTT" Pvalue="9.71E-05" Start="32" Right="0" regulators="276837" />
+    <regulon_site Name="SSP1727:-114" Site="-AATCTACGTCTTT" Pvalue="9.71E-05" Start="33" Right="1" regulators="921967" />
+    <regulon_site Name="OB1310:-58" Site="AATTATCCGTATTT" Pvalue="0.000104" Start="33" Right="0" regulators="276837" />
+    <regulon_site Name="Aflv_2713:-97" Site="ATTTGTTCACTTTT" Pvalue="0.000104" Start="33" Right="0" regulators="5698833" />
+    <regulon_site Name="Aflv_1375:-105" Site="AAAAGATCGCTTTT" Pvalue="0.000128" Start="32" Right="0" regulators="5698833" />
+    <regulon_site Name="OB1904:-367" Site="TAAAATTTGGTTTT" Pvalue="0.000148" Start="33" Right="0" regulators="276837" />
+    <regulon_site Name="BLi02348:-302" Site="GCAGGTTCGTCTTT" Pvalue="0.00018099999999999998" Start="32" Right="0" regulators="726114" />
+    <regulon_site Name="ABC3216:-73" Site="TTTTGTTCTTTTAT" Pvalue="0.000194" Start="33" Right="0" regulators="821499" />
+    <regulon_site Name="MCCL_0687:-193" Site="-AAAATACGTAATT" Pvalue="0.000236" Start="33" Right="1" regulators="5667490 5667491" />
+    <regulon_site Name="GK3369:-120" Site="TTTCATTCATTTTT" Pvalue="0.00025" Start="33" Right="0" regulators="851825" />
+  </Sites>
+  <PWM>
+    <ResidueSite Site="0" PWM="0.472218 0.384711 0.09445 0.048621" Bits="0.3" />
+    <ResidueSite Site="0" PWM="0.893204 0.097087 0 0.009709" Bits="1.1" />
+    <ResidueSite Site="0" PWM="0.708738 0.291262 0 0" Bits="0.5" />
+    <ResidueSite Site="0" PWM="0.15534 0.708738 0.019417 0.116505" Bits="0.5" />
+    <ResidueSite Site="0" PWM="0.281553 0.058252 0.650485 0.009709" Bits="1.1" />
+    <ResidueSite Site="0" PWM="0.009709 0.990291 0 0" Bits="1.8" />
+    <ResidueSite Site="0" PWM="0.165049 0.815534 0.009709 0.009709" Bits="1.1" />
+    <ResidueSite Site="0" PWM="0 0.009709 0 0.990291" Bits="2.4" />
+    <ResidueSite Site="0" PWM="0.058252 0.029126 0.912621 0" Bits="2.1" />
+    <ResidueSite Site="0" PWM="0.165049 0.427184 0.339806 0.067961" Bits="0.3" />
+    <ResidueSite Site="0" PWM="0.184466 0.572816 0.126214 0.116505" Bits="0.3" />
+    <ResidueSite Site="0" PWM="0.145631 0.854369 0 0" Bits="1.1" />
+    <ResidueSite Site="0" PWM="0.145631 0.84466 0 0.009709" Bits="1.1" />
+    <ResidueSite Site="0" PWM="0 0.980583 0 0.019417" Bits="1.6" />
+  </PWM>
+</AnnotationModel>

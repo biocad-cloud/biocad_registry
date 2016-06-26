@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-16"?>
+<AnnotationModel xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Evalue="1.6999999999999998E-43" Width="24" Uid="ROK.2">
+  <Sites>
+    <regulon_site Name="CAC2612:-50" Site="ACTTATTAAAGGATATTTAAAAAG" Pvalue="4.27E-11" Start="1" Right="0" regulators="121253" />
+    <regulon_site Name="CBY_2380:-87" Site="ACTTATTAAAATACATTTAAAAAG" Pvalue="5.7400000000000003E-11" Start="1" Right="0" regulators="5975493" />
+    <regulon_site Name="CBY_2342:-92" Site="ACTTATTAAAATACATTTAAAAAG" Pvalue="5.7400000000000003E-11" Start="1" Right="0" regulators="5975493" />
+    <regulon_site Name="Cbei_2384:-98" Site="ACTTATTAAAATACATTTAAAAAG" Pvalue="5.7400000000000003E-11" Start="1" Right="0" regulators="6844205" />
+    <regulon_site Name="CAC3451:-96" Site="ACTTTTTAAAGTGCTTTTTAAAAG" Pvalue="3.49E-10" Start="1" Right="0" regulators="121253" />
+    <regulon_site Name="Cbei_4681:-259" Site="ACTTATCAAACAACATTTAAAAAG" Pvalue="2.28E-09" Start="1" Right="0" regulators="6844205" />
+    <regulon_site Name="Cbei_2377:-78" Site="CATTATTAAAGGACATTTTAAAAG" Pvalue="3.4E-09" Start="1" Right="0" regulators="6844205" />
+    <regulon_site Name="Cbei_2383:-281" Site="ACTTATAAAATAACATTTAAAAAG" Pvalue="1.08E-08" Start="1" Right="0" regulators="6844205" />
+    <regulon_site Name="Cbei_0109:-381" Site="ACTTTTTAAAGTTTATTGAAAAAG" Pvalue="1.08E-08" Start="1" Right="0" regulators="6844205" />
+    <regulon_site Name="CAC3451:-84" Site="GCTTTTTAAAAGTTATTGAAAAAG" Pvalue="4.27E-08" Start="1" Right="0" regulators="121253" />
+    <regulon_site Name="CAC2611:-109" Site="ACTTATTAAACAAACTTTAAAAAC" Pvalue="1.08E-07" Start="1" Right="0" regulators="121253" />
+    <regulon_site Name="CAC3673:-97" Site="ACTTTATAAAACAACTTTATAAAG" Pvalue="1.4400000000000002E-07" Start="1" Right="0" regulators="121253" />
+    <regulon_site Name="CBY_2344:-70" Site="ACTTATTAAATATATTTTTAAAAG" Pvalue="1.58E-07" Start="1" Right="0" regulators="5975493" />
+    <regulon_site Name="Cbei_0109:-393" Site="ACTTTTTAAATTACTTTTTAAAGT" Pvalue="3.0000000000000004E-07" Start="1" Right="0" regulators="6844205" />
+    <regulon_site Name="Cbei_2388:-132" Site="AATTATTAAAAGATATGTATAAAG" Pvalue="3.28E-07" Start="1" Right="0" regulators="6844205" />
+    <regulon_site Name="Cbei_2386:-302" Site="AATTTTTAAAATATATTTTTAAAG" Pvalue="4.61E-07" Start="1" Right="0" regulators="6844205" />
+    <regulon_site Name="Cbei_2386:-314" Site="ACTTATTAAATAAATTTTTAAAAT" Pvalue="5.01E-07" Start="1" Right="0" regulators="6844205" />
+    <regulon_site Name="CBY_2342:-80" Site="ACATTTAAAAAGAATTTTAATAAT" Pvalue="4.13E-06" Start="1" Right="0" regulators="5975493" />
+    <regulon_site Name="Cbei_4126:-95" Site="AGTTTATAAAGGAAAGTTAAGAAT" Pvalue="4.13E-06" Start="1" Right="0" regulators="6844205" />
+    <regulon_site Name="Cbei_2377:-66" Site="ACATTTTAAAAGTGGTTTTATAAT" Pvalue="6.33E-06" Start="1" Right="0" regulators="6844205" />
+    <regulon_site Name="Ccel_3431:-50" Site="ACTTTATAATATAATATTATAAAG" Pvalue="9.42E-06" Start="1" Right="0" />
+    <regulon_site Name="Cbei_2377:-65" Site="CATTTTAAAAGTGGTTTTATAATG" Pvalue="9.95E-06" Start="1" Right="0" regulators="6844205" />
+  </Sites>
+  <PWM>
+    <ResidueSite Site="0" PWM="0.863636 0 0.045455 0.090909" Bits="1" />
+    <ResidueSite Site="0" PWM="0.181818 0 0.045455 0.772727" Bits="2.1" />
+    <ResidueSite Site="0" PWM="0.090909 0.909091 0 0" Bits="0.7" />
+    <ResidueSite Site="0" PWM="0 1 0 0" Bits="1.4" />
+    <ResidueSite Site="0" PWM="0.5 0.5 0 0" Bits="0.3" />
+    <ResidueSite Site="0" PWM="0.136364 0.863636 0 0" Bits="0.7" />
+    <ResidueSite Site="0" PWM="0.136364 0.818182 0 0.045455" Bits="0.7" />
+    <ResidueSite Site="0" PWM="1 0 0 0" Bits="1.4" />
+    <ResidueSite Site="0" PWM="1 0 0 0" Bits="1.4" />
+    <ResidueSite Site="0" PWM="0.954545 0.045455 0 0" Bits="1" />
+    <ResidueSite Site="0" PWM="0.454545 0.181818 0.272727 0.090909" Bits="0.3" />
+    <ResidueSite Site="0" PWM="0.227273 0.409091 0.318182 0.045455" Bits="0.3" />
+    <ResidueSite Site="0" PWM="0.727273 0.181818 0.090909 0" Bits="0.3" />
+    <ResidueSite Site="0" PWM="0.318182 0.227273 0.090909 0.363636" Bits="0.3" />
+    <ResidueSite Site="0" PWM="0.545455 0.318182 0.045455 0.090909" Bits="0" />
+    <ResidueSite Site="0" PWM="0.045455 0.909091 0.045455 0" Bits="1" />
+    <ResidueSite Site="0" PWM="0 0.954545 0.045455 0" Bits="1" />
+    <ResidueSite Site="0" PWM="0 0.909091 0.090909 0" Bits="1" />
+    <ResidueSite Site="0" PWM="0.681818 0.318182 0 0" Bits="0.3" />
+    <ResidueSite Site="0" PWM="0.772727 0.227273 0 0" Bits="0.7" />
+    <ResidueSite Site="0" PWM="0.863636 0.090909 0.045455 0" Bits="0.7" />
+    <ResidueSite Site="0" PWM="1 0 0 0" Bits="1.4" />
+    <ResidueSite Site="0" PWM="0.909091 0.045455 0.045455 0" Bits="1" />
+    <ResidueSite Site="0" PWM="0 0.227273 0.727273 0.045455" Bits="1.7" />
+  </PWM>
+</AnnotationModel>

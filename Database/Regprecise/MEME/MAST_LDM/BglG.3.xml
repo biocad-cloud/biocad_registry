@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-16"?>
+<AnnotationModel xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Evalue="5.5E-18" Width="15" Uid="BglG.3">
+  <Sites>
+    <regulon_site Name="SGO_1580:-96" Site="CCGTTTCGATACGGA" Pvalue="3.6599999999999998E-09" Start="4" Right="2" regulators="3789892" />
+    <regulon_site Name="SP_0303:-86" Site="CCTTAACAATAAGGA" Pvalue="1.5000000000000002E-07" Start="4" Right="2" regulators="115842 115843" />
+    <regulon_site Name="SSU05_2079:-270" Site="CCGTTGTGATACGGA" Pvalue="2.21E-07" Start="4" Right="2" regulators="3593097" />
+    <regulon_site Name="SGO_1582:-89" Site="CCGTTTCGATATGGA" Pvalue="2.87E-07" Start="4" Right="2" regulators="3789892" />
+    <regulon_site Name="SUB0529:-100" Site="CCGCATCATTACGGA" Pvalue="5.9000000000000007E-07" Start="4" Right="2" regulators="5935779" />
+    <regulon_site Name="SDEG_1401:-83" Site="CCGTAGTGCTAAGGA" Pvalue="1.03E-06" Start="4" Right="2" regulators="7472982" />
+    <regulon_site Name="SMU.1600:-92" Site="CGTTTTCAATACGGA" Pvalue="1.14E-06" Start="4" Right="2" regulators="296283" />
+    <regulon_site Name="SPy1328:-102" Site="CCGTGATGATAAGGA" Pvalue="1.41E-06" Start="4" Right="2" regulators="101586" />
+    <regulon_site Name="Sez_1282:-97" Site="CACAATCGATACGGA" Pvalue="2.08E-06" Start="4" Right="2" regulators="5804797" />
+    <regulon_site Name="GALLO_1213:-93" Site="CCTTATCAAAGAGGA" Pvalue="2.27E-06" Start="4" Right="2" regulators="10395912" />
+    <regulon_site Name="SSU05_2076:-100" Site="CATTAATGATGCGGA" Pvalue="2.5E-06" Start="4" Right="2" regulators="3593097" />
+    <regulon_site Name="SPy1325:-100" Site="CACAATCAATGCGGA" Pvalue="4.6400000000000005E-06" Start="4" Right="2" regulators="101586" />
+    <regulon_site Name="SP_0305:-125" Site="CCATATCATTTAGGA" Pvalue="1.33E-05" Start="4" Right="2" regulators="115842 115843" />
+    <regulon_site Name="SUB0529:-141" Site="CTTTTTTAATAGGGA" Pvalue="2.23E-05" Start="4" Right="2" regulators="5935779" />
+    <regulon_site Name="LEUM_0927:-83" Site="CCGCAAGTATGAGGA" Pvalue="2.81E-05" Start="4" Right="2" regulators="2180457" />
+    <regulon_site Name="GALLO_1217:-87" Site="CCTAATAACTTAGGA" Pvalue="4.5299999999999997E-05" Start="4" Right="2" regulators="10395912" />
+  </Sites>
+  <PWM>
+    <ResidueSite Site="0" PWM="0 0 0 1" Bits="2.4" />
+    <ResidueSite Site="0" PWM="0.1875 0.0625 0.0625 0.6875" Bits="1" />
+    <ResidueSite Site="0" PWM="0.0625 0.375 0.4375 0.125" Bits="0.5" />
+    <ResidueSite Site="0" PWM="0.1875 0.6875 0 0.125" Bits="0.5" />
+    <ResidueSite Site="0" PWM="0.625 0.3125 0.0625 0" Bits="0.5" />
+    <ResidueSite Site="0" PWM="0.25 0.625 0.125 0" Bits="0.5" />
+    <ResidueSite Site="0" PWM="0.0625 0.3125 0.0625 0.5625" Bits="0.7" />
+    <ResidueSite Site="0" PWM="0.5 0.0625 0.4375 0" Bits="0.7" />
+    <ResidueSite Site="0" PWM="0.75 0.125 0 0.125" Bits="0.7" />
+    <ResidueSite Site="0" PWM="0.0625 0.9375 0 0" Bits="1.5" />
+    <ResidueSite Site="0" PWM="0.625 0.125 0.25 0" Bits="0.5" />
+    <ResidueSite Site="0" PWM="0.4375 0.0625 0.0625 0.4375" Bits="0.5" />
+    <ResidueSite Site="0" PWM="0 0 1 0" Bits="2.4" />
+    <ResidueSite Site="0" PWM="0 0 1 0" Bits="2.4" />
+    <ResidueSite Site="0" PWM="1 0 0 0" Bits="1.7" />
+  </PWM>
+</AnnotationModel>
