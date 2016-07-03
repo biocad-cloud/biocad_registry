@@ -422,6 +422,23 @@ Microsoft.VisualBasic.Architecture.Framework_v3.0_22.0.76.201__8da45dcd8060cc9a
  <remarks></remarks>
  <param name="markdown">Output in markdown format?</param>
 </member>
+<member name="T:Microsoft.VisualBasic.CommandLine.Reflection.CLIToken">
+ <summary>
+ A very basically type in the <see cref="T:Microsoft.VisualBasic.CommandLine.CommandLine"/>
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.CommandLine.Reflection.CLIToken.Name">
+ <summary>
+ Name of this token object, this can be parameter name or api name.
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.CommandLine.Reflection.CLIToken.#ctor(System.String)">
+ <summary>
+ Init this token by using <see cref="P:Microsoft.VisualBasic.CommandLine.Reflection.CLIToken.Name"/> value.
+ </summary>
+ <param name="name">Token name</param>
+</member>
 <member name="T:Microsoft.VisualBasic.CommandLine.Reflection.ExportAPIAttribute">
  <summary>
  A command object that with a specific name.(一个具有特定名称命令执行对象)
@@ -752,6 +769,18 @@ Microsoft.VisualBasic.Architecture.Framework_v3.0_22.0.76.201__8da45dcd8060cc9a
  <value></value>
  <returns></returns>
  <remarks></remarks>
+</member>
+<member name="P:Microsoft.VisualBasic.CommandLine.Reflection.ParameterInfo.Out">
+ <summary>
+ Is this parameter is using for the output
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.CommandLine.Reflection.ParameterInfo.AcceptTypes">
+ <summary>
+ Accept these types as input or output data in this types if <see cref="P:Microsoft.VisualBasic.CommandLine.Reflection.ParameterInfo.Out"/> is true.
+ </summary>
+ <returns></returns>
 </member>
 <member name="M:Microsoft.VisualBasic.CommandLine.Reflection.ParameterInfo.#ctor(System.String,System.Boolean)">
  <summary>
@@ -1863,6 +1892,86 @@ Microsoft.VisualBasic.Architecture.Framework_v3.0_22.0.76.201__8da45dcd8060cc9a
  The inner exception is from whatever
  </remarks>
 </member>
+<member name="T:Microsoft.VisualBasic.ComponentModel.DataSourceModel.PropertyValue`1">
+ <summary>
+ The <see cref="T:System.Reflection.PropertyInfo"/> like definition of the extension property.
+ </summary>
+ <typeparam name="T"></typeparam>
+</member>
+<member name="P:Microsoft.VisualBasic.ComponentModel.DataSourceModel.PropertyValue`1.Value">
+ <summary>
+ The Extension property value.
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.ComponentModel.DataSourceModel.PropertyValue`1.obj">
+ <summary>
+ The instance object for this extension property
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.ComponentModel.DataSourceModel.PropertyValue`1.#ctor(System.Func{`0},System.Action{`0})">
+ <summary>
+ Custom property value.(value generated based on the extension property host <see cref="P:Microsoft.VisualBasic.ComponentModel.DataSourceModel.PropertyValue`1.obj"/>)
+ </summary>
+ <param name="[get]">请勿使用<see cref="M:Microsoft.VisualBasic.ComponentModel.DataSourceModel.PropertyValue`1.GetValue``1(``0,System.String)"/></param>函数，否则会出现栈空间溢出
+ <param name="[set]">请勿使用<see cref="M:Microsoft.VisualBasic.ComponentModel.DataSourceModel.PropertyValue`1.SetValue(`0)"/></param>方法，否则会出现栈空间溢出
+</member>
+<member name="M:Microsoft.VisualBasic.ComponentModel.DataSourceModel.PropertyValue`1.#ctor">
+ <summary>
+ Tag property value.(默认是将数据写入到基本类型的值之中)
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.ComponentModel.DataSourceModel.PropertyValue`1.SetValue(`0)">
+ <summary>
+ 这个主要是应用于Linq表达式之中，将属性值设置之后返回宿主对象实例
+ </summary>
+ <param name="value"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.ComponentModel.DataSourceModel.PropertyValue`1.op_Explicit(Microsoft.VisualBasic.ComponentModel.DataSourceModel.PropertyValue{`0})~`0">
+ <summary>
+ Property Get Value
+ </summary>
+ <param name="x"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.ComponentModel.DataSourceModel.PropertyValue`1.ToString">
+ <summary>
+ <see cref="P:Microsoft.VisualBasic.ComponentModel.DataSourceModel.PropertyValue`1.Value"/> -> <see cref="M:Microsoft.VisualBasic.Serialization.JSON.JsonContract.GetJson(System.Object,System.Type,System.Boolean)"/>
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.ComponentModel.DataSourceModel.PropertyValue`1.New``1(``0,System.String)">
+ <summary>
+ Creates a new extension property for the target <see cref="T:Microsoft.VisualBasic.Language.ClassObject"/>
+ </summary>
+ <typeparam name="Cls"></typeparam>
+ <param name="x"></param>
+ <param name="name"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.ComponentModel.DataSourceModel.PropertyValue`1.Read``1(``0,System.String)">
+ <summary>
+ Gets the tag property value from the <see cref="T:Microsoft.VisualBasic.Language.ClassObject"/>.(读取<see cref="T:Microsoft.VisualBasic.Language.ClassObject"/>对象之中的一个拓展属性)
+ </summary>
+ <typeparam name="Cls"></typeparam>
+ <param name="x"></param>
+ <param name="name"></param>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.ComponentModel.DataSourceModel.IDynamicMeta`1">
+ <summary>
+ Abstracts for the dynamics property.
+ </summary>
+ <typeparam name="T"></typeparam>
+</member>
+<member name="P:Microsoft.VisualBasic.ComponentModel.DataSourceModel.IDynamicMeta`1.Properties">
+ <summary>
+ Properties
+ </summary>
+ <returns></returns>
+</member>
 <member name="T:Microsoft.VisualBasic.ComponentModel.DataSourceModel.DynamicPropertyBase`1">
  <summary>
  Has a dictionary as a dynamics property.
@@ -1889,6 +1998,19 @@ Microsoft.VisualBasic.Architecture.Framework_v3.0_22.0.76.201__8da45dcd8060cc9a
  </summary>
  <typeparam name="T"></typeparam>
 </member>
+<member name="M:Microsoft.VisualBasic.ComponentModel.DataSourceModel.Property`1.#ctor(System.String,`0)">
+ <summary>
+ New with a init property value
+ </summary>
+ <param name="initKey"></param>
+ <param name="initValue"></param>
+</member>
+<member name="P:Microsoft.VisualBasic.ComponentModel.DataSourceModel.Property`1.source">
+ <summary>
+ 
+ </summary>
+ <returns></returns>
+</member>
 <member name="T:Microsoft.VisualBasic.ComponentModel.DataSourceModel.NamedValue`1">
  <summary>
  The value object have a name string.
@@ -1897,7 +2019,7 @@ Microsoft.VisualBasic.Architecture.Framework_v3.0_22.0.76.201__8da45dcd8060cc9a
 </member>
 <member name="P:Microsoft.VisualBasic.ComponentModel.DataSourceModel.NamedValue`1.Name">
  <summary>
- Identifier
+ Identifier tag data. you can using this property value as a dictionary key.
  </summary>
  <returns></returns>
 </member>
@@ -1907,12 +2029,24 @@ Microsoft.VisualBasic.Architecture.Framework_v3.0_22.0.76.201__8da45dcd8060cc9a
  </summary>
  <returns></returns>
 </member>
+<member name="P:Microsoft.VisualBasic.ComponentModel.DataSourceModel.NamedValue`1.IsEmpty">
+ <summary>
+ Does this object have value?
+ </summary>
+ <returns></returns>
+</member>
 <member name="M:Microsoft.VisualBasic.ComponentModel.DataSourceModel.NamedValue`1.#ctor(System.String,`0)">
  <summary>
  Creates a object bind with a specific <see cref="P:Microsoft.VisualBasic.ComponentModel.DataSourceModel.NamedValue`1.Name"/>.
  </summary>
  <param name="name"></param>
  <param name="value"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.ComponentModel.DataSourceModel.NamedValue`1.ToString">
+ <summary>
+ View object.
+ </summary>
+ <returns></returns>
 </member>
 <member name="T:Microsoft.VisualBasic.ComponentModel.DataSourceModel.Iterator`1">
  <summary>
@@ -1964,17 +2098,47 @@ Microsoft.VisualBasic.Architecture.Framework_v3.0_22.0.76.201__8da45dcd8060cc9a
  true if the enumerator was successfully advanced to the next element; false if the enumerator has passed the end of the collection.
  </returns>
 </member>
+<member name="T:Microsoft.VisualBasic.ComponentModel.DataSourceModel.IObjectModel_Driver">
+ <summary>
+ Driver abstract model
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.ComponentModel.DataSourceModel.IObjectModel_Driver.Run">
+ <summary>
+ Start run this driver object.
+ </summary>
+ <returns></returns>
+</member>
 <member name="T:Microsoft.VisualBasic.ComponentModel.DataSourceModel.DataFramework">
  <summary>
  在目标对象中必须要具有一个属性有自定义属性<see cref="T:Microsoft.VisualBasic.ComponentModel.DataSourceModel.SchemaMaps.DataFrameColumnAttribute"></see>
  </summary>
  <remarks></remarks>
 </member>
-<member name="P:Microsoft.VisualBasic.ComponentModel.DataSourceModel.DataFramework.BasicTypesLoading">
+<member name="P:Microsoft.VisualBasic.ComponentModel.DataSourceModel.DataFramework.Flags">
  <summary>
- 将字符串数据类型转换为其他的数据类型
+ Controls for <see cref="T:Microsoft.VisualBasic.ComponentModel.DataSourceModel.DataFramework.PropertyAccessibilityControls"/> on <see cref="T:System.Reflection.PropertyInfo"/>
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.ComponentModel.DataSourceModel.DataFramework.PrimitiveFromString">
+ <summary>
+ Converts the .NET primitive types from string.(将字符串数据类型转换为其他的数据类型)
  </summary>
  <remarks></remarks>
+</member>
+<member name="P:Microsoft.VisualBasic.ComponentModel.DataSourceModel.DataFramework.ToStrings">
+ <summary>
+ Object <see cref="T:System.Object"/> methods.
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.ComponentModel.DataSourceModel.DataFramework.ValueToString(System.Object)">
+ <summary>
+ Call <see cref="T:System.Object"/> of the value types
+ </summary>
+ <param name="x">Object should be <see cref="T:System.Data.ValueType"/></param>
+ <returns></returns>
 </member>
 <member name="M:Microsoft.VisualBasic.ComponentModel.DataSourceModel.DataFramework.__toStringInternal(System.Object)">
  <summary>
@@ -2454,6 +2618,18 @@ Microsoft.VisualBasic.Architecture.Framework_v3.0_22.0.76.201__8da45dcd8060cc9a
  <param name="extTails">引用类型不建议打开这个参数</param>
  <remarks></remarks>
 </member>
+<member name="M:Microsoft.VisualBasic.ComponentModel.DataStructures.SlideWindow.SlideWindows``1(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Int32,System.Boolean)">
+ <summary>
+ Create a collection of slide Windows data for the target collection object.(创建一个滑窗集合)
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="data"></param>
+ <param name="slideWindowSize">The windows size of the created slide window.(窗口的大小)</param>
+ <param name="offset">在序列之上移动的步长</param>
+ <returns></returns>
+ <param name="extTails">引用类型不建议打开这个参数</param>
+ <remarks></remarks>
+</member>
 <member name="M:Microsoft.VisualBasic.ComponentModel.DataStructures.LoopArray`1.GET">
  <summary>
  Gets the next elements in the array, is move to end, then the index will moves to the array begining position.
@@ -2799,6 +2975,12 @@ Microsoft.VisualBasic.Architecture.Framework_v3.0_22.0.76.201__8da45dcd8060cc9a
  <summary>
  Reset the stream buffer reader to its initial state.
  </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.ComponentModel.BufferedStream.BufferProvider">
+ <summary>
+ 当<see cref="P:Microsoft.VisualBasic.ComponentModel.BufferedStream.EndRead"/>之后，这个函数将不会返回任何值
+ </summary>
+ <returns></returns>
 </member>
 <member name="M:Microsoft.VisualBasic.ComponentModel.Ranges.OrderSelector`1.#ctor(System.Collections.Generic.IEnumerable{`0},System.Boolean)">
  <summary>
@@ -3326,6 +3508,12 @@ Microsoft.VisualBasic.Architecture.Framework_v3.0_22.0.76.201__8da45dcd8060cc9a
  <returns>可以调用的配置项的数目，解析失败则返回0</returns>
  <remarks></remarks>
 </member>
+<member name="T:Microsoft.VisualBasic.ComponentModel.SingletonHolder`1">
+ <summary>
+ An Interface for the SingletonHolder Class.
+ </summary>
+ <typeparam name="T"></typeparam>
+</member>
 <member name="T:Microsoft.VisualBasic.ComponentModel.ISaveHandle">
  <summary>
  This is a file object which have a handle to save its data to the filesystem.(这是一个带有文件数据保存方法的文件模型)
@@ -3371,6 +3559,34 @@ Microsoft.VisualBasic.Architecture.Framework_v3.0_22.0.76.201__8da45dcd8060cc9a
  <param name="WriteMethod"></param>
  <returns></returns>
  <remarks></remarks>
+</member>
+<member name="T:Microsoft.VisualBasic.ComponentModel.Lazy`1">
+ <summary>
+ The layze loader.
+ </summary>
+ <typeparam name="TOut"></typeparam>
+</member>
+<member name="F:Microsoft.VisualBasic.ComponentModel.Lazy`1._dataTask">
+ <summary>
+ the data source handler.
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.ComponentModel.Lazy`1._outCache">
+ <summary>
+ The output result cache data.
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.ComponentModel.Lazy`1.Value">
+ <summary>
+ Get cache data if it exists, or the data will be loaded first.
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.ComponentModel.Lazy`1.#ctor(System.Func{`0})">
+ <summary>
+ Init this lazy loader with the data source handler.
+ </summary>
+ <param name="Source">the data source handler.</param>
 </member>
 <member name="T:Microsoft.VisualBasic.ComponentModel.Value`1">
  <summary>
@@ -3545,7 +3761,15 @@ Microsoft.VisualBasic.Architecture.Framework_v3.0_22.0.76.201__8da45dcd8060cc9a
  </summary>
  <remarks></remarks>
 </member>
-<member name="P:Microsoft.VisualBasic.ComponentModel.IAddressHandle.Address">
+<member name="T:Microsoft.VisualBasic.ComponentModel.IAddress`1">
+ <summary>
+ This object gets a object handle value to indicated that the position this object exists 
+ in the list collection structure. 
+ (这个对象具有一个用于指明该对象在列表对象中的位置的对象句柄值)
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="P:Microsoft.VisualBasic.ComponentModel.IAddress`1.Address">
  <summary>
  The ID that this object in a list instance.
  (本对象在一个列表对象中的位置索引号) 
@@ -3948,6 +4172,11 @@ Microsoft.VisualBasic.Architecture.Framework_v3.0_22.0.76.201__8da45dcd8060cc9a
 <member name="T:Microsoft.VisualBasic.Terminal.InnerQueue">
  <summary>
  Task action Queue for terminal QUEUE SOLVER 🙉
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Terminal.InnerQueue.WaitQueue">
+ <summary>
+ Wait for all thread queue job done.(Needed if you are using multiThreaded queue)
  </summary>
 </member>
 <member name="E:Microsoft.VisualBasic.Terminal.TerminalEvents.Resize">
@@ -5430,6 +5659,14 @@ Microsoft.VisualBasic.Architecture.Framework_v3.0_22.0.76.201__8da45dcd8060cc9a
  %[parameter][flags][width][.precision][length]type
  </summary>
 </member>
+<member name="M:Microsoft.VisualBasic.Terminal.STDIO__.CFormatProvider.sprintf(System.String,System.Object[])">
+ <summary>
+ Format string like C
+ </summary>
+ <param name="Format"></param>
+ <param name="Parameters"></param>
+ <returns></returns>
+</member>
 <member name="T:Microsoft.VisualBasic.Terminal.STDIO">
  <summary>
  A standard input/output compatibility package that makes VisualBasic console
@@ -5582,6 +5819,226 @@ Microsoft.VisualBasic.Architecture.Framework_v3.0_22.0.76.201__8da45dcd8060cc9a
  <param name="relPath"></param>
  <returns></returns>
 </member>
+<member name="T:Microsoft.VisualBasic.FileIO.SymLinker.HardLink">
+ <summary>
+ Provides access to NTFS hard links in .Net.
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.FileIO.SymLinker.JunctionPoint">
+ <summary>
+ Provides access to NTFS junction points in .Net.
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.FileIO.SymLinker.JunctionPoint.ERROR_NOT_A_REPARSE_POINT">
+ <summary>
+ The file or directory is not a reparse point.
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.FileIO.SymLinker.JunctionPoint.ERROR_REPARSE_ATTRIBUTE_CONFLICT">
+ <summary>
+ The reparse point attribute cannot be set because it conflicts with an existing attribute.
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.FileIO.SymLinker.JunctionPoint.ERROR_INVALID_REPARSE_DATA">
+ <summary>
+ The data present in the reparse point buffer is invalid.
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.FileIO.SymLinker.JunctionPoint.ERROR_REPARSE_TAG_INVALID">
+ <summary>
+ The tag present in the reparse point buffer is invalid.
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.FileIO.SymLinker.JunctionPoint.ERROR_REPARSE_TAG_MISMATCH">
+ <summary>
+ There is a mismatch between the tag specified in the request and the tag present in the reparse point.
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.FileIO.SymLinker.JunctionPoint.FSCTL_SET_REPARSE_POINT">
+ <summary>
+ Command to set the reparse point data block.
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.FileIO.SymLinker.JunctionPoint.FSCTL_GET_REPARSE_POINT">
+ <summary>
+ Command to get the reparse point data block.
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.FileIO.SymLinker.JunctionPoint.FSCTL_DELETE_REPARSE_POINT">
+ <summary>
+ Command to delete the reparse point data base.
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.FileIO.SymLinker.JunctionPoint.IO_REPARSE_TAG_MOUNT_POINT">
+ <summary>
+ Reparse point tag used to identify mount points and junction points.
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.FileIO.SymLinker.JunctionPoint.NonInterpretedPathPrefix">
+ <summary>
+ This prefix indicates to NTFS that the path is to be treated as a non-interpreted
+ path in the virtual file system.
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.FileIO.SymLinker.JunctionPoint.REPARSE_DATA_BUFFER.ReparseTag">
+ <summary>
+ Reparse point tag. Must be a Microsoft reparse point tag.
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.FileIO.SymLinker.JunctionPoint.REPARSE_DATA_BUFFER.ReparseDataLength">
+ <summary>
+ Size, in bytes, of the data after the Reserved member. This can be calculated by:
+ (4 * sizeof(ushort)) + SubstituteNameLength + PrintNameLength +
+ (namesAreNullTerminated ? 2 * sizeof(char) : 0);
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.FileIO.SymLinker.JunctionPoint.REPARSE_DATA_BUFFER.Reserved">
+ <summary>
+ Reserved; do not use.
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.FileIO.SymLinker.JunctionPoint.REPARSE_DATA_BUFFER.SubstituteNameOffset">
+ <summary>
+ Offset, in bytes, of the substitute name string in the PathBuffer array.
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.FileIO.SymLinker.JunctionPoint.REPARSE_DATA_BUFFER.SubstituteNameLength">
+ <summary>
+ Length, in bytes, of the substitute name string. If this string is null-terminated,
+ SubstituteNameLength does not include space for the null character.
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.FileIO.SymLinker.JunctionPoint.REPARSE_DATA_BUFFER.PrintNameOffset">
+ <summary>
+ Offset, in bytes, of the print name string in the PathBuffer array.
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.FileIO.SymLinker.JunctionPoint.REPARSE_DATA_BUFFER.PrintNameLength">
+ <summary>
+ Length, in bytes, of the print name string. If this string is null-terminated,
+ PrintNameLength does not include space for the null character.
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.FileIO.SymLinker.JunctionPoint.REPARSE_DATA_BUFFER.PathBuffer">
+ <summary>
+ A buffer containing the unicode-encoded path string. The path string contains
+ the substitute name string and print name string.
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.FileIO.SymLinker.JunctionPoint.Create(System.String,System.String,System.Boolean)">
+ <summary>
+ Creates a junction point from the specified directory to the specified target directory.
+ </summary>
+ <remarks>
+ Only works on NTFS.
+ </remarks>
+ <param name="junctionPoint">The junction point path</param>
+ <param name="targetDir">The target directory</param>
+ <param name="overwrite">If true overwrites an existing reparse point or empty directory</param>
+ <exception cref="T:System.IO.IOException">Thrown when the junction point could not be created or when
+ an existing directory was found and <paramref name="overwrite" /> if false</exception>
+</member>
+<member name="M:Microsoft.VisualBasic.FileIO.SymLinker.JunctionPoint.Delete(System.String)">
+ <summary>
+ Deletes a junction point at the specified source directory along with the directory itself.
+ Does nothing if the junction point does not exist.
+ </summary>
+ <remarks>
+ Only works on NTFS.
+ </remarks>
+ <param name="junctionPoint">The junction point path</param>
+</member>
+<member name="M:Microsoft.VisualBasic.FileIO.SymLinker.JunctionPoint.Exists(System.String)">
+ <summary>
+ Determines whether the specified path exists and refers to a junction point.
+ </summary>
+ <param name="path">The junction point path</param>
+ <returns>True if the specified path represents a junction point</returns>
+ <exception cref="T:System.IO.IOException">Thrown if the specified path is invalid
+ or some other error occurs</exception>
+</member>
+<member name="M:Microsoft.VisualBasic.FileIO.SymLinker.JunctionPoint.GetTarget(System.String)">
+ <summary>
+ Gets the target of the specified junction point.
+ </summary>
+ <remarks>
+ Only works on NTFS.
+ </remarks>
+ <param name="junctionPoint">The junction point path</param>
+ <returns>The target of the junction point</returns>
+ <exception cref="T:System.IO.IOException">Thrown when the specified path does not
+ exist, is invalid, is not a junction point, or some other error occurs</exception>
+</member>
+<member name="T:Microsoft.VisualBasic.FileIO.SymLinker.SymbolicLink">
+ <summary>
+ 
+ </summary>
+ <remarks>https://github.com/amd989/Symlinker</remarks>
+</member>
+<member name="F:Microsoft.VisualBasic.FileIO.SymLinker.SymbolicLink.shareModeAll">
+ <summary>
+ Read, Write, Delete
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.FileIO.SymLinker.SymbolicLink.symLinkTag">
+ <summary>
+ 
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.FileIO.Directory">
+ <summary>
+ A wrapper object for the processing of relative file path. 
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.FileIO.Directory.#ctor(System.String)">
+ <summary>
+ Construct a directory object from the specific Dir path value.
+ </summary>
+ <param name="DIR">Target directory path</param>
+</member>
+<member name="M:Microsoft.VisualBasic.FileIO.Directory.GetFullPath(System.String)">
+ <summary>
+ Gets the full path of the target file based on the path relative to this directory object.
+ </summary>
+ <param name="file">
+ The relative path of the target file, and this parameter is also compatible with absolute file path.
+ (相对路径)</param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.FileIO.Directory.IsAbsolutePath(System.String)">
+ <summary>
+ Determined that the input file path is a absolute path or not?
+ </summary>
+ <param name="file"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.FileIO.Directory.CreateDirectory(System.String)">
+ <summary>
+ Creates a directory.
+ </summary>
+ <param name="junctionPoint">Name and location of the directory.</param>
+ <remarks>
+ Exceptions:
+   T:System.ArgumentException:
+     The directory name is malformed. For example, it contains illegal characters
+     or is only white space.
+
+   T:System.ArgumentNullException:
+     directory is Nothing or an empty string.
+
+   T:System.IO.PathTooLongException:
+     The directory name is too long.
+
+   T:System.NotSupportedException:
+     The directory name is only a colon (:).
+
+   T:System.IO.IOException:
+     The parent directory of the directory to be created is read-only
+
+   T:System.UnauthorizedAccessException:
+     The user does not have permission to create the directory.
+ </remarks>
+</member>
 <member name="M:Microsoft.VisualBasic.FileIO.NetFile.MapNetFile(System.String)">
  <summary>
  将网络文件映射为本地文件，这个可以同时兼容http或者本地文件路径
@@ -5612,6 +6069,7 @@ Microsoft.VisualBasic.Architecture.Framework_v3.0_22.0.76.201__8da45dcd8060cc9a
  <param name="charindex"></param>
  <param name="changechar"></param>
  <returns></returns>
+ 
 </member>
 <member name="M:Microsoft.VisualBasic.Language.C.CString.IsXDigit(System.Char)">
  <summary>
@@ -5619,6 +6077,7 @@ Microsoft.VisualBasic.Architecture.Framework_v3.0_22.0.76.201__8da45dcd8060cc9a
  </summary>
  <param name="character"></param>
  <returns></returns>
+ 
 </member>
 <member name="M:Microsoft.VisualBasic.Language.C.CString.StrChr(System.String,System.Char)">
  <summary>
@@ -5627,6 +6086,7 @@ Microsoft.VisualBasic.Architecture.Framework_v3.0_22.0.76.201__8da45dcd8060cc9a
  <param name="stringtosearch"></param>
  <param name="chartofind"></param>
  <returns></returns>
+ 
 </member>
 <member name="M:Microsoft.VisualBasic.Language.C.CString.StrRChr(System.String,System.Char)">
  <summary>
@@ -5635,6 +6095,7 @@ Microsoft.VisualBasic.Architecture.Framework_v3.0_22.0.76.201__8da45dcd8060cc9a
  <param name="stringtosearch"></param>
  <param name="chartofind"></param>
  <returns></returns>
+ 
 </member>
 <member name="M:Microsoft.VisualBasic.Language.C.CString.StrStr(System.String,System.String)">
  <summary>
@@ -5643,8 +6104,19 @@ Microsoft.VisualBasic.Architecture.Framework_v3.0_22.0.76.201__8da45dcd8060cc9a
  <param name="stringtosearch"></param>
  <param name="stringtofind"></param>
  <returns></returns>
+ 
 </member>
 <member name="M:Microsoft.VisualBasic.Language.C.CString.__tokensHelper.StrTok(System.String,System.String)">
+ <summary>
+ This method simulates the classic C string function 'strtok' (and 'wcstok').
+ Note that the .NET string 'Split' method cannot be used to simulate 'strtok' since
+ it doesn't allow changing the delimiters between each token retrieval.
+ </summary>
+ <param name="stringtotokenize"></param>
+ <param name="delimiters"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Language.C.CString.StrTok(System.String,System.String)">
  <summary>
  This method simulates the classic C string function 'strtok' (and 'wcstok').
  Note that the .NET string 'Split' method cannot be used to simulate 'strtok' since
@@ -6012,6 +6484,17 @@ Microsoft.VisualBasic.Architecture.Framework_v3.0_22.0.76.201__8da45dcd8060cc9a
  <param name="linq"></param>
  <returns></returns>
 </member>
+<member name="T:Microsoft.VisualBasic.Language.IClassObject">
+ <summary>
+ The base class object in VisualBasic
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.Language.IClassObject.Extension">
+ <summary>
+ The extension property.(为了节省内存的需要，这个附加属性尽量不要被自动初始化)
+ </summary>
+ <returns></returns>
+</member>
 <member name="T:Microsoft.VisualBasic.Language.Class`1">
  <summary>
  <see cref="T:System.Type"/>
@@ -6034,6 +6517,14 @@ Microsoft.VisualBasic.Architecture.Framework_v3.0_22.0.76.201__8da45dcd8060cc9a
  <param name="source"></param>
  <returns></returns>
 </member>
+<member name="M:Microsoft.VisualBasic.Language.ClassAPI.Uid``1(``0)">
+ <summary>
+ Example of the extension property in VisualBasic
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="x"></param>
+ <returns></returns>
+</member>
 <member name="T:Microsoft.VisualBasic.Language.ClassObject">
  <summary>
  The base class object in VisualBasic
@@ -6049,10 +6540,20 @@ Microsoft.VisualBasic.Architecture.Framework_v3.0_22.0.76.201__8da45dcd8060cc9a
  
  http://stackoverflow.com/questions/2501466/xmltext-attribute-in-base-class-breakes-serialization
  
- So I think you could make it work by adding a dummy property or field that you never use in the LookupItem class. 
- If you're never assign a value to it, it will remain null and will not be serialized, but it will prevent your 
- class from being treated as simpleContent. I know it's a dirty workaround, but I see no other easy way...
+ So I think you could make it work by adding a dummy property or field that you never 
+ use in the ``LookupItem`` class. 
+ If you're never assign a value to it, it will remain null and will not be serialized, 
+ but it will prevent your class from being treated as simpleContent. I know it's a 
+ dirty workaround, but I see no other easy way...
  </remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.Language.ClassObject.ReadProperty``1(System.String)">
+ <summary>
+ Get dynamics property value.
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="name"></param>
+ <returns></returns>
 </member>
 <member name="M:Microsoft.VisualBasic.Language.ClassObject.ToString">
  <summary>
@@ -6166,6 +6667,26 @@ Microsoft.VisualBasic.Architecture.Framework_v3.0_22.0.76.201__8da45dcd8060cc9a
  <typeparam name="T"></typeparam>
  <param name="a"></param>
  <param name="b"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Language.Numeric.NextInteger(System.Random,System.Int32)">
+ <summary>
+ <see cref="T:System.Random"/> get next integer in the specific range <paramref name="max"/>
+ </summary>
+ <param name="rnd"></param>
+ <param name="max"></param>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.Language.Int">
+ <summary>
+ Alias of <see cref="T:System.Int32"/>
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Language.Int.CompareTo(System.Object)">
+ <summary>
+ Compare <see cref="T:Microsoft.VisualBasic.Language.Int"/> or <see cref="T:System.Int32"/>
+ </summary>
+ <param name="obj"></param>
  <returns></returns>
 </member>
 <member name="M:Microsoft.VisualBasic.Language.Int.op_LessThan(System.Int32,Microsoft.VisualBasic.Language.Int)">
@@ -6717,6 +7238,971 @@ Microsoft.VisualBasic.Architecture.Framework_v3.0_22.0.76.201__8da45dcd8060cc9a
  <param name="numOfThreads">同时执行的句柄的数目</param>
  <returns></returns>
  <remarks></remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.Scripting.Actives.Active(System.Type)">
+ <summary>
+ Display the json of the target type its instance object.
+ </summary>
+ <param name="type"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Scripting.Actives.__active(System.Type)">
+ <summary>
+ Creates the example instance object for the example
+ </summary>
+ <param name="type"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Scripting.Where.BuildAll``1(Microsoft.VisualBasic.Scripting.Logics,System.Func{``0,System.Boolean}[])">
+ <summary>
+ Not support <see cref="F:Microsoft.VisualBasic.Scripting.Logics.Not"/>
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="logic"></param>
+ <param name="tests"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Scripting.Where.__or``1(``0,System.Func{``0,System.Boolean}[])">
+ <summary>
+ <see cref="F:Microsoft.VisualBasic.Scripting.Logics.Or"/>, 所有的表达式都会被计算
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="x"></param>
+ <param name="tests"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Scripting.Where.__and``1(``0,System.Func{``0,System.Boolean}[])">
+ <summary>
+ <see cref="F:Microsoft.VisualBasic.Scripting.Logics.And"/>, 所有的表达式都会被计算
+ </summary>
+ <param name="tests"></param>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Scripting.MetaData.MetaAPI.TypeInfo">
+ <summary>
+ <see cref="T:Microsoft.VisualBasic.Scripting.MetaData.PackageNamespace"/>
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Scripting.MetaData.MetaAPI.GetEntry(System.Type)">
+ <summary>
+ 获取定义在类型定义上面的命名空间的标记信息
+ </summary>
+ <param name="type"></param>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.Scripting.MetaData.TypeInfo">
+ <summary>
+ The type reference information.(类型信息)
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.Scripting.MetaData.TypeInfo.assm">
+ <summary>
+ The assembly file which contains this type definition.(模块文件)
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Scripting.MetaData.TypeInfo.FullIdentity">
+ <summary>
+ <see cref="P:System.Type.FullName"/>.(类型源)
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Scripting.MetaData.TypeInfo.SystemKnownType">
+ <summary>
+ Is this type object is a known system type?(是否是已知的类型？)
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Scripting.MetaData.TypeInfo.#ctor(System.Type)">
+ <summary>
+ Creates type reference from the definition.
+ </summary>
+ <param name="info"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.Scripting.MetaData.TypeInfo.LoadAssembly(System.String)">
+ <summary>
+ Loads the assembly file which contains this type. If the <param name="DIR"></param> is not a valid directory location, 
+ then using the location <see cref="P:Microsoft.VisualBasic.App.HOME"/> as default.
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Scripting.MetaData.TypeInfo.GetType(System.Boolean)">
+ <summary>
+ Get mapping type information.
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Scripting.MetaData.TypeInfo.op_Equality(Microsoft.VisualBasic.Scripting.MetaData.TypeInfo,System.Type)">
+ <summary>
+ 检查a是否是指向b的类型引用的
+ </summary>
+ <param name="a"></param>
+ <param name="b"></param>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.Scripting.MetaData.Cite">
+ <summary>
+ EndNote tags
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.Scripting.MetaData.Cite.Authors">
+ <summary>
+ author(eMail);author(eMail)
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Scripting.MetaData.Cite.ISSN">
+ <summary>
+ ISSN_1; ISSN_2; ISSN_3
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Scripting.MetaData.Cite.Abstract">
+ <summary>
+ 文章的摘要，可以使用&lt;p>或者&lt;br/>来进行分段
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Scripting.MetaData.Cite.#ctor(System.String)">
+ <summary>
+ %x 是文章的摘要，可以使用&lt;p>或者&lt;br/>来进行分段
+ </summary>
+ <param name="EndNoteImports"></param>
+ <remarks>
+ %A Griffiths-Jones, Sam
+ %A Bateman, Alex
+ %A Marshall, Mhairi
+ %A Khanna, Ajay
+ %A Eddy, Sean R.
+ %T Rfam: an RNA family database
+ %0 Journal Article
+ %D 2003 
+ %8 January 1, 2003 
+ %J Nucleic Acids Research 
+ %P 439-441 
+ %R 10.1093/nar/gkg006 
+ %V 31 
+ %N 1 
+ %U http://nar.oxfordjournals.org/content/31/1/439.abstract 
+ %X Rfam Is a collection of multiple sequence alignments And covariance models representing non-coding RNA families. Rfam Is available on the web in the UK at http://www.sanger.ac.uk/Software/Rfam/ And in the US at http://rfam.wustl.edu/. These websites allow the user to search a query sequence against a library of covariance models, And view multiple sequence alignments And family annotation. The database can also be downloaded in flatfile form And searched locally using the INFERNAL package (http://infernal.wustl.edu/). The first release of Rfam (1.0) contains 25 families, which annotate over 50 000 non-coding RNA genes in the taxonomic divisions of the EMBL nucleotide database. 
+ </remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.Scripting.MetaData.Cite.__formatAbstractPreview(System.String)">
+ <summary>
+ 摘要可能会有空值的
+ </summary>
+ <param name="absLen"></param>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.Scripting.MetaData.Parameter">
+ <summary>
+ You Cann assign the parameter value using the parameter's alias name in the scripting using this attribute.
+ (你可以使用本属性将函数的参数名进行重命名，这样子你就可以使用本属性得到一个书写更加漂亮的编程脚本文件了)
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="P:Microsoft.VisualBasic.Scripting.MetaData.Parameter.ParameterInfo">
+ <summary>
+ 请使用这个方法<see cref="M:Microsoft.VisualBasic.Scripting.MetaData.Parameter.GetParameterNameAlias(System.Reflection.ParameterInfo,Microsoft.VisualBasic.Scripting.MetaData.Parameter)"></see>来获取参数信息
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:Microsoft.VisualBasic.Scripting.MetaData.Parameter.Alias">
+ <summary>
+ The alias name of this function parameter in the scripting.(脚本函数的参数的别名)
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:Microsoft.VisualBasic.Scripting.MetaData.Parameter.Description">
+ <summary>
+ The description information in the scripting help system.(在帮助信息里面进行显示的本参数的简要的描述信息)  
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.Scripting.MetaData.Parameter.#ctor(System.String,System.String)">
+ <summary>
+ You can using this attribute to customize your API interface.
+ </summary>
+ <param name="Alias">The alias name of this function parameter in the scripting.(当前脚本函数的这个参数的别名)</param>
+ <param name="MyDescription">The description information in the scripting help system.(这个信息会显示在脚本环境的帮助系统之中)</param>
+ <remarks></remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.Scripting.MetaData.Parameter.GetAliasNameView(System.Reflection.ParameterInfo)">
+ <summary>
+ 当没有定义属性的时候，会返回参数名
+ </summary>
+ <param name="pInfo"></param>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.Scripting.MetaData.PackageNamespace">
+ <summary>
+ This attribute provides a more details information about a namepace package module in your scripting plugins.
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.Scripting.MetaData.PackageNamespace.Url">
+ <summary>
+ This plugins project's home page url.
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Scripting.MetaData.PackageNamespace.Publisher">
+ <summary>
+ Your name or E-Mail
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Scripting.MetaData.PackageNamespace.Cites">
+ <summary>
+ 这个脚本模块包的文献引用列表
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Scripting.MetaData.PackageNamespace.#ctor(Microsoft.VisualBasic.CommandLine.Reflection.Namespace)">
+ <summary>
+ This attribute provides a more details information about a namepace package module in your scripting plugins.
+ </summary>
+ <param name="ns"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.Scripting.MetaData.PackageNamespace.#ctor(Microsoft.VisualBasic.Scripting.MetaData.PackageNamespace)">
+ <summary>
+ 拷贝自身
+ </summary>
+ <param name="base"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.Scripting.MetaData.PackageNamespace.#ctor(System.String)">
+ <summary>
+ This attribute provides a more details information about a namepace package module in your scripting plugins.
+ </summary>
+ <param name="[Namespace]"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.Scripting.MetaData.PackageNamespace.#ctor">
+ <summary>
+ This attribute provides a more details information about a namepace package module in your scripting plugins.
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Scripting.MetaData.APICategories.SoftwareTools">
+ <summary>
+ API for facilities of the software development.
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Scripting.MetaData.APICategories.ResearchTools">
+ <summary>
+ Analysis Tools API that applied on your scientific research or industry production on computer science.
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Scripting.MetaData.APICategories.UtilityTools">
+ <summary>
+ Something small utilities for facility the scripting, makes your programming more easily.
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Scripting.MetaData.APICategories.CLI_MAN">
+ <summary>
+ CLI program help manual.
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.Scripting.MetaData.OverloadsSignatureHandle">
+ <summary>
+ 用于解决函数重载的函数数字签名的属性
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.Scripting.MetaData.OverloadsSignatureHandle.#ctor(System.String,System.Type)">
+ <summary>
+ 
+ </summary>
+ <param name="TypeIdBrief">Brief name for the target signature type <paramref name="FullName"></paramref></param>
+ <param name="FullName">Target signature type for function overloads.</param>
+ <remarks></remarks>
+</member>
+<member name="T:Microsoft.VisualBasic.Scripting.ExternalCall">
+ <summary>
+ Shell object for the external script running.
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Scripting.ExternalCall.__host">
+ <summary>
+ 脚本宿主的可执行文件的路径
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Scripting.ExternalCall.#ctor(System.String,System.String)">
+ <summary>
+ 
+ </summary>
+ <param name="host">The program its file name to run the script</param>
+ <param name="ext">File extension name of this type of script</param>
+</member>
+<member name="M:Microsoft.VisualBasic.Scripting.ExternalCall.Run(System.String,System.Collections.Specialized.NameValueCollection)">
+ <summary>
+ 
+ </summary>
+ <param name="script">The script content</param>
+ <param name="args"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Scripting.ExternalCall.Shell(System.String,System.Collections.Specialized.NameValueCollection)">
+ <summary>
+ 
+ </summary>
+ <param name="path">The script file path</param>
+ <param name="args"></param>
+ <returns></returns>
+ <remarks>Perl脚本测试通过！</remarks>
+</member>
+<member name="T:Microsoft.VisualBasic.Scripting.ShellValue">
+ <summary>
+ Script shell result.
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Scripting.ShellValue.STD_OUT">
+ <summary>
+ Standard output on the console
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Scripting.ShellValue.STD_ERR">
+ <summary>
+ Standard error
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Scripting.ShellValue.state">
+ <summary>
+ Process exit code
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Scripting.ShellValue.GetObject``1(System.Func{System.String,``0})">
+ <summary>
+ Parsing object from the standard output
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="parser">Object parser</param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Scripting.TokenIcer.ParserAPI.TokenParser``1(Microsoft.VisualBasic.Scripting.TokenIcer.TokenParser{``0},System.String,Microsoft.VisualBasic.Scripting.TokenIcer.StackTokens{``0})">
+ <summary>
+ 
+ </summary>
+ <typeparam name="Tokens"></typeparam>
+ <param name="parser"></param>
+ <param name="expr">表达式字符串</param>
+ <param name="stackT"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Scripting.TokenIcer.ParserAPI.TryCast``1(Microsoft.VisualBasic.Scripting.TokenIcer.Token{``0})">
+ <summary>
+ Try cast the token value to a .NET object based on the token type name.
+ </summary>
+ <typeparam name="Tokens"></typeparam>
+ <param name="x"></param>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.Scripting.TokenIcer.StackTokens`1">
+ <summary>
+ 进行栈树解析所必须要的一些基本元素
+ </summary>
+ <typeparam name="Tokens"></typeparam>
+</member>
+<member name="P:Microsoft.VisualBasic.Scripting.TokenIcer.StackTokens`1.Pretend">
+ <summary>
+ Pretend the root tokens as a true node
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Scripting.TokenIcer.StackTokens`1.ParamDeli">
+ <summary>
+ 参数的分隔符，一般是逗号
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Scripting.TokenIcer.StackTokens`1.LPair">
+ <summary>
+ 向下一层堆栈符号，一般是左括号
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Scripting.TokenIcer.StackTokens`1.RPair">
+ <summary>
+ 向上一层出栈符号，一般是右括号
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Scripting.TokenIcer.StackTokens`1.Equals(`0,`0)">
+ <summary>
+ Tokens equals?
+ </summary>
+ <param name="a"></param>
+ <param name="b"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Scripting.TokenIcer.StackTokens`1.#ctor(System.Func{`0,`0,System.Boolean})">
+ <summary>
+ Tokens equals? 
+ </summary>
+ <param name="equals"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.Scripting.TokenIcer.Func`1.ToArray(Microsoft.VisualBasic.Scripting.TokenIcer.StackTokens{`0})">
+ <summary>
+ 将表达式的栈空间展开
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.Scripting.TokenIcer.PeekToken`1">
+ <summary>
+ A PeekToken object class
+ </summary>
+ <remarks>
+ A PeekToken is a special pointer object that can be used to Peek() several
+ tokens ahead in the GetToken() queue.
+ </remarks>
+</member>
+<member name="T:Microsoft.VisualBasic.Scripting.TokenIcer.Token`1">
+ <summary>
+ a Token object class
+ </summary>
+ <typeparam name="Tokens">应该是枚举类型</typeparam>
+ <remarks>
+ A Token object holds the token and token value.
+ </remarks>
+</member>
+<member name="P:Microsoft.VisualBasic.Scripting.TokenIcer.Token`1.TokenName">
+ <summary>
+ Token type
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Scripting.TokenIcer.Token`1.TokenValue">
+ <summary>
+ The text that makes up the token.
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Scripting.TokenIcer.Token`1.UNDEFINED">
+ <summary>
+ 务必要保持0为未定义
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Scripting.TokenIcer.Token`1.IsNumeric">
+ <summary>
+ Returns a Boolean value indicating whether an expression can be evaluated as
+ a number.
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.Scripting.TokenIcer.Prefix">
+ <summary>
+ 预定义的一些脚本的解析程序
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.Scripting.TokenIcer.Prefix.MathTokens">
+ <summary>
+ Tokens is an enumeration of all possible token values.
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Scripting.TokenIcer.Prefix.MathParserHash">
+ <summary>
+ These lines add each grammar rule to the dictionary
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.Scripting.TokenIcer.StackParser">
+ <summary>
+ Stack tree parser
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Scripting.TokenIcer.StackParser.Parsing``1(System.Collections.Generic.IEnumerable{Microsoft.VisualBasic.Scripting.TokenIcer.Token{``0}},Microsoft.VisualBasic.Scripting.TokenIcer.StackTokens{``0})">
+ <summary>
+ 返回顶层的根节点
+ </summary>
+ <param name="source"></param>
+ <param name="stackT">Pretend the root tokens as a true node</param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Scripting.TokenIcer.StackParser.__parsing``1(System.Collections.Generic.Queue{Microsoft.VisualBasic.Scripting.TokenIcer.Token{``0}},Microsoft.VisualBasic.Scripting.TokenIcer.StackTokens{``0})">
+ <summary>
+ 主要是解析当前的栈层之中的使用，逗号分隔的参数列表
+ </summary>
+ <param name="source"></param>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.Scripting.TokenIcer.TokenParser`1">
+ <summary>
+ TokenParser
+ </summary>
+ <remarks>
+ TokenParser is the main parser engine for converting input into lexical tokens.
+ 
+ Auto Generated from
+ http://www.codeproject.com/Articles/220042/Easily-Create-Your-Own-Parser
+ </remarks>
+</member>
+<member name="P:Microsoft.VisualBasic.Scripting.TokenIcer.TokenParser`1.InputString">
+ <summary>
+ InputString Property
+ </summary>
+ <value>
+ The string value that holds the input string.
+ </value>
+</member>
+<member name="M:Microsoft.VisualBasic.Scripting.TokenIcer.TokenParser`1.#ctor(System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{`0,System.String}},`0)">
+ <summary>
+ Default Constructor
+ </summary>
+ <param name="tokens">Values is the regex expression</param>
+ <remarks>
+ The constructor initalizes memory and adds all of the tokens to the token dictionary.
+ </remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.Scripting.TokenIcer.TokenParser`1.#ctor(System.Collections.Generic.Dictionary{`0,System.String},`0)">
+ <summary>
+ Default Constructor
+ </summary>
+ <param name="tokens">Values is the regex expression</param>
+ <remarks>
+ The constructor initalizes memory and adds all of the tokens to the token dictionary.
+ </remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.Scripting.TokenIcer.TokenParser`1.PrepareRegex">
+ <summary>
+ PrepareRegex prepares the regex for parsing by pre-matching the Regex tokens.
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Scripting.TokenIcer.TokenParser`1.ResetParser">
+ <summary>
+ ResetParser resets the parser to its inital state. Reloading InputString is required.
+ </summary>
+ <seealso cref="P:Microsoft.VisualBasic.Scripting.TokenIcer.TokenParser`1.InputString" />
+</member>
+<member name="M:Microsoft.VisualBasic.Scripting.TokenIcer.TokenParser`1.GetToken">
+ <summary>
+ GetToken gets the next token in queue
+ </summary>
+ <remarks>
+ GetToken attempts to the match the next character(s) using the
+ Regex rules defined in the dictionary. If a match can not be
+ located, then an Undefined token will be created with an empty
+ string value. In addition, the token pointer will be incremented
+ by one so that this token doesn't attempt to get identified again by
+ GetToken()
+ </remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.Scripting.TokenIcer.TokenParser`1.Peek">
+ <summary>
+ Returns the next token that GetToken() will return.
+ </summary>
+ <seealso cref="M:Microsoft.VisualBasic.Scripting.TokenIcer.TokenParser`1.Peek(Microsoft.VisualBasic.Scripting.TokenIcer.PeekToken{`0})" />
+</member>
+<member name="M:Microsoft.VisualBasic.Scripting.TokenIcer.TokenParser`1.Peek(Microsoft.VisualBasic.Scripting.TokenIcer.PeekToken{`0})">
+ <summary>
+ Returns the next token after the Token passed here
+ </summary>
+ <param name="peekToken">The PeekToken token returned from a previous Peek() call</param>
+ <seealso cref="M:Microsoft.VisualBasic.Scripting.TokenIcer.TokenParser`1.Peek" />
+</member>
+<member name="M:Microsoft.VisualBasic.Scripting.Casting.As``1(System.Object)">
+ <summary>
+ DirectCast(obj, T)
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="obj"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Scripting.Casting.CastInteger(System.String)">
+ <summary>
+ 出错会返回默认是0
+ </summary>
+ <param name="obj"></param>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.Scripting.InputHandler">
+ <summary>
+ 转换从终端或者脚本文件之中输入的字符串的类型的转换
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.Scripting.InputHandler.LoadObject">
+ <summary>
+ 在脚本编程之中将用户输入的字符串数据转换为目标类型的方法接口
+ </summary>
+ <param name="value"></param>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Scripting.InputHandler.CasterString">
+ <summary>
+ Object为字符串类型，这个字典可以讲字符串转为目标类型
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.Scripting.InputHandler.CTypeDynamic(System.String,System.Type)">
+ <summary>
+ Converts a string expression which was input from the console or script file to the specified type.
+ (请注意，函数只是转换最基本的数据类型，转换错误会返回空值)
+ </summary>
+ <param name="Expression">The string expression to convert.</param>
+ <param name="TargetType">The type to which to convert the object.</param>
+ <returns>An object whose type at run time is the requested target type.</returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Scripting.InputHandler.CTypeDynamic``1(System.String)">
+ <summary>
+ Converts a string expression which was input from the console or script file to the specified type.
+ (请注意，函数只是转换最基本的数据类型，转换错误会返回空值)
+ </summary>
+ <param name="Expression">The string expression to convert.</param>
+ <typeparam name="T">The type to which to convert the object.</typeparam>
+ <returns>An object whose type at run time is the requested target type.</returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Scripting.InputHandler.IsPrimitive(System.Type)">
+ <summary>
+ Does this type can be cast from the <see cref="T:System.String"/> type?(目标类型能否由字符串转换过来??)
+ </summary>
+ <param name="targetType"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Scripting.InputHandler.CapabilityPromise(System.String,System.Type,System.Func{System.String,System.Object})">
+ <summary>
+ Dynamics updates the capability of function <see cref="M:Microsoft.VisualBasic.Scripting.InputHandler.CTypeDynamic(System.String,System.Type)"/>, 
+ <see cref="M:Microsoft.VisualBasic.Scripting.InputHandler.CTypeDynamic``1(System.String)"/> and 
+ <see cref="M:Microsoft.VisualBasic.Scripting.InputHandler.IsPrimitive(System.Type)"/>
+ </summary>
+ <param name="briefName"></param>
+ <param name="stringConvertType"></param>
+ <param name="cast"></param>
+</member>
+<member name="P:Microsoft.VisualBasic.Scripting.InputHandler.Types">
+ <summary>
+ Enumerate all of the types that can be handled in this module. All of the key string is in lower case.(键值都是小写的)
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Scripting.InputHandler.GetType(System.String,System.Boolean)">
+ <summary>
+ 类型获取失败会返回空值，大小写不敏感
+ </summary>
+ <param name="name">类型的名称简写</param>
+ <param name="ObjectGeneric">是否出错的时候返回Object类型，默认返回Nothing</param>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Scripting.InputHandler.String">
+ <summary>
+ <see cref="T:System.Type"/> information for <see cref="T:System.String"/> type from GetType operator
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Scripting.InputHandler.Convertible(System.Type,System.Type)">
+ <summary>
+ Does the <paramref name="inputtype"/> type can be cast to type <paramref name="DefType"/>.(主要为了方便减少脚本编程模块的代码)
+ </summary>
+ <param name="inputType"></param>
+ <param name="DefType"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Scripting.InputHandler.ToString(System.Object)">
+ <summary>
+ <seealso cref="M:Microsoft.VisualBasic.ComponentModel.DataSourceModel.DataFramework.__toStringInternal(System.Object)"/>, 出现错误的时候总是会返回空字符串的
+ </summary>
+ <param name="obj"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Scripting.InputHandler.CastArray``1(System.Object)">
+ <summary>
+ The parameter <paramref name="obj"/> should implements a <see cref="T:System.Collections.IEnumerable"/> interface on the type. and then DirectCast object to target type.
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="obj"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Scripting.InputHandler.DirectCast(System.Object[],System.Type)">
+ <summary>
+ 
+ </summary>
+ <param name="array"></param>
+ <param name="type">数组里面的元素的类型</param>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.Serialization.JSON.Formatter.JsonFormatter">
+ <summary>
+ Provides JSON formatting functionality.
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Serialization.JSON.Formatter.JsonFormatter.Format(System.String)">
+ <summary>
+ Returns a 'pretty printed' version of the specified JSON string, formatted for human
+ consumption.
+ </summary>
+ <param name="json">A valid JSON string.</param>
+ <returns>A 'pretty printed' version of the specified JSON string.</returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Serialization.JSON.Formatter.JsonFormatter.Minify(System.String)">
+ <summary>
+ Returns a 'minified' version of the specified JSON string, stripped of all 
+ non-essential characters.
+ </summary>
+ <param name="json">A valid JSON string.</param>
+ <returns>A 'minified' version of the specified JSON string.</returns>
+</member>
+<member name="T:Microsoft.VisualBasic.Serialization.JSON.JsonContract">
+ <summary>
+ Only works on the Public visible type.
+ (使用.NET系统环境之中自带的框架进行JSON序列化和反序列化)
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Serialization.JSON.JsonContract.GetJson(System.Object,System.Type,System.Boolean)">
+ <summary>
+ 使用<see cref="T:System.Web.Script.Serialization.ScriptIgnoreAttribute"/>来屏蔽掉不想序列化的属性
+ </summary>
+ <param name="obj"></param>
+ <param name="type"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Serialization.JSON.JsonContract.GetJson``1(``0,System.Boolean)">
+ <summary>
+ Gets the json text value of the target object, the attribute <see cref="T:System.Web.Script.Serialization.ScriptIgnoreAttribute"/> 
+ can be used for block the property which is will not serialize to the text.
+ (使用<see cref="T:System.Web.Script.Serialization.ScriptIgnoreAttribute"/>来屏蔽掉不想序列化的属性)
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="obj"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Serialization.JSON.JsonContract.LoadObject(System.String,System.Type)">
+ <summary>
+ 
+ </summary>
+ <param name="json">null -> Nothing</param>
+ <param name="type"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Serialization.JSON.JsonContract.LoadObject``1(System.String)">
+ <summary>
+ JSON反序列化
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Serialization.BinaryDumping.StructFormatter.Serialize``1(``0,System.String)">
+ <summary>
+ Save a structure type object into a binary file.(使用二进制序列化保存一个对象)
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="obj"></param>
+ <param name="path"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.Serialization.BinaryDumping.StructFormatter.Load``1(System.String)">
+ <summary>
+ Load a strucutre object from the file system by using binary serializer deserialize.
+ (使用反二进制序列化从指定的文件之中加载一个对象)
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="path"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="T:Microsoft.VisualBasic.Serialization.BinaryDumping.StructSerializer">
+ <summary>
+ Some times these method is not works well, not sure why?
+ </summary>
+ <remarks>
+ http://blog.csdn.net/zztoll/article/details/8695992
+ 
+ Marshal类的两个方法StructureToPtr和PtrToStructure实现序列化
+ 
+ 我们主要是使用Marshal类里的两个方法：
+ 
+ 第一个是StructureToPtr，将数据从托管对象封送到非托管内存块。
+ 第二个是PtrToStructure，将数据从非托管内存块封送到新分配的指定类型的托管对象。
+ 
+ 只要有了这两个相互转换的方法，我们就可以实现序列化了。
+ 
+ 首先我们先来看下序列化
+ 
+ 序列化：
+ 
+ 有一个前提条件，那就是我们必须要知道需要序列化对象的大小。
+ 
+ 第一步：我们先求出对象的大小，然后在非托管内存中给它分配相应的内存大小。
+ 第二步：接着我们就把这个对象封送到刚分配出来的内存中，之后我们会得到一个分配出来的内存块首地址指针。
+ 第三步：最后我们可以通过这个首地址指针，从指针所指的位置处开始，拷贝数据到指定的byte[]数组中，
+ 拷贝的长度就是我们为这个对象分配出来的内存大小，得到byte[]数据后，下面的事情我就不用多说了，
+ 你可以保存到数据库或者文件中。
+ 
+ 反序列化：
+ 
+ 序列化的时候我们先将一个对象封送到了非托管内存块中，然后再把内存块中的数据读到byte[]数组中，
+ 
+ 现在我们反序列化
+ 
+ 第一步：我们先求出对象的大小，然后在非托管内存中给它分配相应的内存大小。
+ 第二步：然后把这个byte[]数据拷贝到非托管内存块中。
+ 第三步：最后再从内存块中封送指定大小的数据到对象中。
+ 
+ 有一个地方需要注意，那就是因为引用类型的对象我们是无法求的它的实际大小的，所以这里的对象我们只能使用非托管对象，比如struct结构体。
+ 所以，当我们只是用来存储数据，不涉及任何操作的对象，我们可以把它作为一个结构体来处理，这样我们在序列化的时候可以节省空间开销。
+ 因为你如果你要是用平常的序列化方法去序列化一个类对象，他所需要的空间开销是要大于你去序列化一个具有相同结构的struct对象。
+ </remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.Serialization.BinaryDumping.StructSerializer.StructureToByte``1(``0)">
+ <summary>
+ 由结构体转换为byte数组(字符串类型以及Class类型都将会被序列化为内存指针，所以这个函数只适合于值类型的)
+ </summary>
+ 
+</member>
+<member name="M:Microsoft.VisualBasic.Serialization.BinaryDumping.StructSerializer.ByteToStructure``1(System.Byte[])">
+ <summary>
+ 由byte数组转换为结构体(字符串类型以及Class类型都将会被序列化为内存指针，所以这个函数只适合于值类型的)
+ </summary>
+ 
+</member>
+<member name="T:Microsoft.VisualBasic.Serialization.BinaryDumping.BufferAPI">
+ <summary>
+ 适用于对变长的流的操作
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.Serialization.MappingsIgnored">
+ <summary>
+ 这个属性或者方法不会被用于映射
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="T:Microsoft.VisualBasic.Serialization.UseCustomMapping">
+ <summary>
+ 不会使用系统自带的映射方法进行映射
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:Microsoft.VisualBasic.Serialization.NodeMapping.Source">
+ <summary>
+ 映射的文本文件源
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:Microsoft.VisualBasic.Serialization.NodeMapping.Mapping">
+ <summary>
+ 映射操作的目标数据模型
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:Microsoft.VisualBasic.Serialization.NodeMapping.SourceToMappingCasting">
+ <summary>
+ 从源映射到数据模型的类型转换
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:Microsoft.VisualBasic.Serialization.NodeMapping.MappingToSourceCasting">
+ <summary>
+ 从数据模型映射到源的类型转换
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.Serialization.DynamicsConfiguration.LoadDocument``1(System.String)">
+ <summary>
+ 加载完数据之后返回其自身
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="path"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="T:Microsoft.VisualBasic.Serialization.__StringTypeCaster">
+ <summary>
+ 数据类型转换方法的句柄对象
+ </summary>
+ <param name="data">源之中的数据，由于源是一个TEXT格式的数据文件，故而这里的数据类型为字符串，通过本句柄对象可以将字符串数据映射为其他的复杂数据类型</param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="T:Microsoft.VisualBasic.Serialization.ConfigurationMappings">
+ <summary>
+ 最基本的思想是将属性值按照同名属性名称在A和B两个对象类型之间进行映射，即A与B两个对象之间必须要具备相同的属性名称，才可以产生映射，请注意在本对象之中仅能够映射最基本的值类型的数据类型
+ 对于一些自定义的映射操作，请在目标数据模型之中定义自定义的映射函数，要求为函数只有一个参数，参数类型和返回值类型分别为映射的两个节点的数据类型，程序会使用反射自动查找
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.Serialization.ConfigurationMappings.LoadMapping``2(``1)">
+ <summary>
+ 从源江基本的值类型映射到数据模型，以将配置数据读取出来并进行加载
+ </summary>
+ <typeparam name="T_Entity">数据模型</typeparam>
+ <typeparam name="T_Mapping">源</typeparam>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.Serialization.ConfigurationMappings.WriteMapping``2(``0)">
+ <summary>
+ 从数据模型将值类型数据映射回源，以将配置数据写入文件
+ </summary>
+ <typeparam name="T_Entity">数据模型</typeparam>
+ <typeparam name="T_Mapping">源</typeparam>
+ <param name="Model"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.Serialization.ConfigurationMappings.GetNodeMapping``2(System.Object)">
+ <summary>
+ 获取从源映射至数据模型的映射过程
+ </summary>
+ <typeparam name="T_Entity">数据模型</typeparam>
+ <typeparam name="T_Mapping">源</typeparam>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.Serialization.ShadowsCopy.ShadowsCopy``1(``0)">
+ <summary>
+ 将目标对象之中的属性按值复制
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="obj"></param>
+ <returns></returns>
+ <remarks>对外函数接口，为了防止无限递归的出现</remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.Serialization.ShadowsCopy.ShadowsCopy(System.Object)">
+ <summary>
+ 将目标对象之中的属性按值复制
+ </summary>
+ <param name="obj"></param>
+ <returns></returns>
+ <remarks>对外函数接口，为了防止无限递归的出现</remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.Serialization.ShadowsCopy.__shadowsCopy(System.Type,System.Object)">
+ <summary>
+ 递归使用的，基本数据类型直接复制，引用类型则首先创建一个新的对象，在对该对象进行递归复制，假若目标对象没有可用的无参数的构造函数，则直接赋值
+ </summary>
+ <param name="obj"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.Serialization.ShadowsCopy.ShadowCopy``1(``0,``0@)">
+ <summary>
+ 请使用这个函数来对CSV序列化的对象进行浅拷贝。将<paramref name="source"/>之中的第一层的属性值拷贝到<paramref name="target"/>对应的属性值之中，然后返回<paramref name="target"/>
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="source"></param>
+ <param name="Target"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Serialization.ShadowsCopy.ShadowCopy``2(``0)">
+ <summary>
+ 将第一层的属性值从基本类复制给继承类
+ </summary>
+ <typeparam name="Tbase"></typeparam>
+ <typeparam name="TInherits"></typeparam>
+ <param name="source"></param>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.Serialization.ShadowsCopyOpr`1">
+ <summary>
+ 批量拷贝需要使用这个模块来执行
+ </summary>
+ <typeparam name="T"></typeparam>
+</member>
+<member name="T:Microsoft.VisualBasic.Serialization.ShadowsCopyOpr`2">
+ <summary>
+ 批量拷贝需要使用这个模块来执行
+ </summary>
+ <typeparam name="Tbase"></typeparam>
+ <typeparam name="TInherits"></typeparam>
 </member>
 <member name="T:Microsoft.VisualBasic.Text.ParserValue`1">
  <summary>
@@ -7903,937 +9389,6 @@ to take away yo [rest of string was truncated]&quot;;.
  <summary>
  https://github.com/xieguigang/VisualBasic_AppFramework
  </summary>
-</member>
-<member name="P:Microsoft.VisualBasic.Scripting.MetaData.MetaAPI.TypeInfo">
- <summary>
- <see cref="T:Microsoft.VisualBasic.Scripting.MetaData.PackageNamespace"/>
- </summary>
- <returns></returns>
-</member>
-<member name="M:Microsoft.VisualBasic.Scripting.MetaData.MetaAPI.GetEntry(System.Type)">
- <summary>
- 获取定义在类型定义上面的命名空间的标记信息
- </summary>
- <param name="type"></param>
- <returns></returns>
-</member>
-<member name="T:Microsoft.VisualBasic.Scripting.MetaData.TypeInfo">
- <summary>
- The type reference information.(类型信息)
- </summary>
-</member>
-<member name="P:Microsoft.VisualBasic.Scripting.MetaData.TypeInfo.assm">
- <summary>
- The assembly file which contains this type definition.(模块文件)
- </summary>
- <returns></returns>
-</member>
-<member name="P:Microsoft.VisualBasic.Scripting.MetaData.TypeInfo.FullIdentity">
- <summary>
- <see cref="P:System.Type.FullName"/>.(类型源)
- </summary>
- <returns></returns>
-</member>
-<member name="P:Microsoft.VisualBasic.Scripting.MetaData.TypeInfo.SystemKnownType">
- <summary>
- Is this type object is a known system type?(是否是已知的类型？)
- </summary>
- <returns></returns>
-</member>
-<member name="M:Microsoft.VisualBasic.Scripting.MetaData.TypeInfo.#ctor(System.Type)">
- <summary>
- Creates type reference from the definition.
- </summary>
- <param name="info"></param>
-</member>
-<member name="M:Microsoft.VisualBasic.Scripting.MetaData.TypeInfo.LoadAssembly(System.String)">
- <summary>
- Loads the assembly file which contains this type. If the <param name="DIR"></param> is not a valid directory location, 
- then using the location <see cref="P:Microsoft.VisualBasic.App.HOME"/> as default.
- </summary>
- <returns></returns>
-</member>
-<member name="M:Microsoft.VisualBasic.Scripting.MetaData.TypeInfo.GetType(System.Boolean)">
- <summary>
- Get mapping type information.
- </summary>
- <returns></returns>
-</member>
-<member name="M:Microsoft.VisualBasic.Scripting.MetaData.TypeInfo.op_Equality(Microsoft.VisualBasic.Scripting.MetaData.TypeInfo,System.Type)">
- <summary>
- 检查a是否是指向b的类型引用的
- </summary>
- <param name="a"></param>
- <param name="b"></param>
- <returns></returns>
-</member>
-<member name="T:Microsoft.VisualBasic.Scripting.MetaData.Cite">
- <summary>
- EndNote tags
- </summary>
-</member>
-<member name="P:Microsoft.VisualBasic.Scripting.MetaData.Cite.Authors">
- <summary>
- author(eMail);author(eMail)
- </summary>
- <returns></returns>
-</member>
-<member name="P:Microsoft.VisualBasic.Scripting.MetaData.Cite.ISSN">
- <summary>
- ISSN_1; ISSN_2; ISSN_3
- </summary>
- <returns></returns>
-</member>
-<member name="P:Microsoft.VisualBasic.Scripting.MetaData.Cite.Abstract">
- <summary>
- 文章的摘要，可以使用&lt;p>或者&lt;br/>来进行分段
- </summary>
- <returns></returns>
-</member>
-<member name="M:Microsoft.VisualBasic.Scripting.MetaData.Cite.#ctor(System.String)">
- <summary>
- %x 是文章的摘要，可以使用&lt;p>或者&lt;br/>来进行分段
- </summary>
- <param name="EndNoteImports"></param>
- <remarks>
- %A Griffiths-Jones, Sam
- %A Bateman, Alex
- %A Marshall, Mhairi
- %A Khanna, Ajay
- %A Eddy, Sean R.
- %T Rfam: an RNA family database
- %0 Journal Article
- %D 2003 
- %8 January 1, 2003 
- %J Nucleic Acids Research 
- %P 439-441 
- %R 10.1093/nar/gkg006 
- %V 31 
- %N 1 
- %U http://nar.oxfordjournals.org/content/31/1/439.abstract 
- %X Rfam Is a collection of multiple sequence alignments And covariance models representing non-coding RNA families. Rfam Is available on the web in the UK at http://www.sanger.ac.uk/Software/Rfam/ And in the US at http://rfam.wustl.edu/. These websites allow the user to search a query sequence against a library of covariance models, And view multiple sequence alignments And family annotation. The database can also be downloaded in flatfile form And searched locally using the INFERNAL package (http://infernal.wustl.edu/). The first release of Rfam (1.0) contains 25 families, which annotate over 50 000 non-coding RNA genes in the taxonomic divisions of the EMBL nucleotide database. 
- </remarks>
-</member>
-<member name="M:Microsoft.VisualBasic.Scripting.MetaData.Cite.__formatAbstractPreview(System.String)">
- <summary>
- 摘要可能会有空值的
- </summary>
- <param name="absLen"></param>
- <returns></returns>
-</member>
-<member name="T:Microsoft.VisualBasic.Scripting.MetaData.Parameter">
- <summary>
- You Cann assign the parameter value using the parameter's alias name in the scripting using this attribute.
- (你可以使用本属性将函数的参数名进行重命名，这样子你就可以使用本属性得到一个书写更加漂亮的编程脚本文件了)
- </summary>
- <remarks></remarks>
-</member>
-<member name="P:Microsoft.VisualBasic.Scripting.MetaData.Parameter.ParameterInfo">
- <summary>
- 请使用这个方法<see cref="M:Microsoft.VisualBasic.Scripting.MetaData.Parameter.GetParameterNameAlias(System.Reflection.ParameterInfo,Microsoft.VisualBasic.Scripting.MetaData.Parameter)"></see>来获取参数信息
- </summary>
- <value></value>
- <returns></returns>
- <remarks></remarks>
-</member>
-<member name="P:Microsoft.VisualBasic.Scripting.MetaData.Parameter.Alias">
- <summary>
- The alias name of this function parameter in the scripting.(脚本函数的参数的别名)
- </summary>
- <value></value>
- <returns></returns>
- <remarks></remarks>
-</member>
-<member name="P:Microsoft.VisualBasic.Scripting.MetaData.Parameter.Description">
- <summary>
- The description information in the scripting help system.(在帮助信息里面进行显示的本参数的简要的描述信息)  
- </summary>
- <value></value>
- <returns></returns>
- <remarks></remarks>
-</member>
-<member name="M:Microsoft.VisualBasic.Scripting.MetaData.Parameter.#ctor(System.String,System.String)">
- <summary>
- You can using this attribute to customize your API interface.
- </summary>
- <param name="Alias">The alias name of this function parameter in the scripting.(当前脚本函数的这个参数的别名)</param>
- <param name="MyDescription">The description information in the scripting help system.(这个信息会显示在脚本环境的帮助系统之中)</param>
- <remarks></remarks>
-</member>
-<member name="M:Microsoft.VisualBasic.Scripting.MetaData.Parameter.GetAliasNameView(System.Reflection.ParameterInfo)">
- <summary>
- 当没有定义属性的时候，会返回参数名
- </summary>
- <param name="pInfo"></param>
- <returns></returns>
-</member>
-<member name="T:Microsoft.VisualBasic.Scripting.MetaData.PackageNamespace">
- <summary>
- This attribute provides a more details information about a namepace package module in your scripting plugins.
- </summary>
-</member>
-<member name="P:Microsoft.VisualBasic.Scripting.MetaData.PackageNamespace.Url">
- <summary>
- This plugins project's home page url.
- </summary>
- <returns></returns>
-</member>
-<member name="P:Microsoft.VisualBasic.Scripting.MetaData.PackageNamespace.Publisher">
- <summary>
- Your name or E-Mail
- </summary>
- <returns></returns>
-</member>
-<member name="P:Microsoft.VisualBasic.Scripting.MetaData.PackageNamespace.Cites">
- <summary>
- 这个脚本模块包的文献引用列表
- </summary>
- <returns></returns>
-</member>
-<member name="M:Microsoft.VisualBasic.Scripting.MetaData.PackageNamespace.#ctor(Microsoft.VisualBasic.CommandLine.Reflection.Namespace)">
- <summary>
- This attribute provides a more details information about a namepace package module in your scripting plugins.
- </summary>
- <param name="ns"></param>
-</member>
-<member name="M:Microsoft.VisualBasic.Scripting.MetaData.PackageNamespace.#ctor(Microsoft.VisualBasic.Scripting.MetaData.PackageNamespace)">
- <summary>
- 拷贝自身
- </summary>
- <param name="base"></param>
-</member>
-<member name="M:Microsoft.VisualBasic.Scripting.MetaData.PackageNamespace.#ctor(System.String)">
- <summary>
- This attribute provides a more details information about a namepace package module in your scripting plugins.
- </summary>
- <param name="[Namespace]"></param>
-</member>
-<member name="M:Microsoft.VisualBasic.Scripting.MetaData.PackageNamespace.#ctor">
- <summary>
- This attribute provides a more details information about a namepace package module in your scripting plugins.
- </summary>
-</member>
-<member name="F:Microsoft.VisualBasic.Scripting.MetaData.APICategories.SoftwareTools">
- <summary>
- API for facilities of the software development.
- </summary>
-</member>
-<member name="F:Microsoft.VisualBasic.Scripting.MetaData.APICategories.ResearchTools">
- <summary>
- Analysis Tools API that applied on your scientific research or industry production on computer science.
- </summary>
-</member>
-<member name="F:Microsoft.VisualBasic.Scripting.MetaData.APICategories.UtilityTools">
- <summary>
- Something small utilities for facility the scripting, makes your programming more easily.
- </summary>
-</member>
-<member name="F:Microsoft.VisualBasic.Scripting.MetaData.APICategories.CLI_MAN">
- <summary>
- CLI program help manual.
- </summary>
-</member>
-<member name="T:Microsoft.VisualBasic.Scripting.MetaData.OverloadsSignatureHandle">
- <summary>
- 用于解决函数重载的函数数字签名的属性
- </summary>
- <remarks></remarks>
-</member>
-<member name="M:Microsoft.VisualBasic.Scripting.MetaData.OverloadsSignatureHandle.#ctor(System.String,System.Type)">
- <summary>
- 
- </summary>
- <param name="TypeIdBrief">Brief name for the target signature type <paramref name="FullName"></paramref></param>
- <param name="FullName">Target signature type for function overloads.</param>
- <remarks></remarks>
-</member>
-<member name="T:Microsoft.VisualBasic.Scripting.ExternalCall">
- <summary>
- Shell object for the external script running.
- </summary>
-</member>
-<member name="F:Microsoft.VisualBasic.Scripting.ExternalCall.__host">
- <summary>
- 脚本宿主的可执行文件的路径
- </summary>
-</member>
-<member name="M:Microsoft.VisualBasic.Scripting.ExternalCall.#ctor(System.String,System.String)">
- <summary>
- 
- </summary>
- <param name="host">The program its file name to run the script</param>
- <param name="ext">File extension name of this type of script</param>
-</member>
-<member name="M:Microsoft.VisualBasic.Scripting.ExternalCall.Run(System.String,System.Collections.Specialized.NameValueCollection)">
- <summary>
- 
- </summary>
- <param name="script">The script content</param>
- <param name="args"></param>
- <returns></returns>
-</member>
-<member name="M:Microsoft.VisualBasic.Scripting.ExternalCall.Shell(System.String,System.Collections.Specialized.NameValueCollection)">
- <summary>
- 
- </summary>
- <param name="path">The script file path</param>
- <param name="args"></param>
- <returns></returns>
- <remarks>Perl脚本测试通过！</remarks>
-</member>
-<member name="T:Microsoft.VisualBasic.Scripting.ShellValue">
- <summary>
- Script shell result.
- </summary>
-</member>
-<member name="F:Microsoft.VisualBasic.Scripting.ShellValue.STD_OUT">
- <summary>
- Standard output on the console
- </summary>
-</member>
-<member name="F:Microsoft.VisualBasic.Scripting.ShellValue.STD_ERR">
- <summary>
- Standard error
- </summary>
-</member>
-<member name="F:Microsoft.VisualBasic.Scripting.ShellValue.state">
- <summary>
- Process exit code
- </summary>
-</member>
-<member name="M:Microsoft.VisualBasic.Scripting.ShellValue.GetObject``1(System.Func{System.String,``0})">
- <summary>
- Parsing object from the standard output
- </summary>
- <typeparam name="T"></typeparam>
- <param name="parser">Object parser</param>
- <returns></returns>
-</member>
-<member name="M:Microsoft.VisualBasic.Scripting.TokenIcer.ParserAPI.TokenParser``1(Microsoft.VisualBasic.Scripting.TokenIcer.TokenParser{``0},System.String,Microsoft.VisualBasic.Scripting.TokenIcer.StackTokens{``0})">
- <summary>
- 
- </summary>
- <typeparam name="Tokens"></typeparam>
- <param name="parser"></param>
- <param name="expr">表达式字符串</param>
- <param name="stackT"></param>
- <returns></returns>
-</member>
-<member name="M:Microsoft.VisualBasic.Scripting.TokenIcer.ParserAPI.TryCast``1(Microsoft.VisualBasic.Scripting.TokenIcer.Token{``0})">
- <summary>
- Try cast the token value to a .NET object based on the token type name.
- </summary>
- <typeparam name="Tokens"></typeparam>
- <param name="x"></param>
- <returns></returns>
-</member>
-<member name="T:Microsoft.VisualBasic.Scripting.TokenIcer.StackTokens`1">
- <summary>
- 进行栈树解析所必须要的一些基本元素
- </summary>
- <typeparam name="Tokens"></typeparam>
-</member>
-<member name="P:Microsoft.VisualBasic.Scripting.TokenIcer.StackTokens`1.Pretend">
- <summary>
- Pretend the root tokens as a true node
- </summary>
- <returns></returns>
-</member>
-<member name="P:Microsoft.VisualBasic.Scripting.TokenIcer.StackTokens`1.ParamDeli">
- <summary>
- 参数的分隔符，一般是逗号
- </summary>
- <returns></returns>
-</member>
-<member name="P:Microsoft.VisualBasic.Scripting.TokenIcer.StackTokens`1.LPair">
- <summary>
- 向下一层堆栈符号，一般是左括号
- </summary>
- <returns></returns>
-</member>
-<member name="P:Microsoft.VisualBasic.Scripting.TokenIcer.StackTokens`1.RPair">
- <summary>
- 向上一层出栈符号，一般是右括号
- </summary>
- <returns></returns>
-</member>
-<member name="M:Microsoft.VisualBasic.Scripting.TokenIcer.StackTokens`1.Equals(`0,`0)">
- <summary>
- Tokens equals?
- </summary>
- <param name="a"></param>
- <param name="b"></param>
- <returns></returns>
-</member>
-<member name="M:Microsoft.VisualBasic.Scripting.TokenIcer.StackTokens`1.#ctor(System.Func{`0,`0,System.Boolean})">
- <summary>
- Tokens equals? 
- </summary>
- <param name="equals"></param>
-</member>
-<member name="M:Microsoft.VisualBasic.Scripting.TokenIcer.Func`1.ToArray(Microsoft.VisualBasic.Scripting.TokenIcer.StackTokens{`0})">
- <summary>
- 将表达式的栈空间展开
- </summary>
- <returns></returns>
-</member>
-<member name="T:Microsoft.VisualBasic.Scripting.TokenIcer.PeekToken`1">
- <summary>
- A PeekToken object class
- </summary>
- <remarks>
- A PeekToken is a special pointer object that can be used to Peek() several
- tokens ahead in the GetToken() queue.
- </remarks>
-</member>
-<member name="T:Microsoft.VisualBasic.Scripting.TokenIcer.Token`1">
- <summary>
- a Token object class
- </summary>
- <typeparam name="Tokens">应该是枚举类型</typeparam>
- <remarks>
- A Token object holds the token and token value.
- </remarks>
-</member>
-<member name="P:Microsoft.VisualBasic.Scripting.TokenIcer.Token`1.TokenName">
- <summary>
- Token type
- </summary>
- <returns></returns>
-</member>
-<member name="P:Microsoft.VisualBasic.Scripting.TokenIcer.Token`1.TokenValue">
- <summary>
- The text that makes up the token.
- </summary>
- <returns></returns>
-</member>
-<member name="P:Microsoft.VisualBasic.Scripting.TokenIcer.Token`1.UNDEFINED">
- <summary>
- 务必要保持0为未定义
- </summary>
- <returns></returns>
-</member>
-<member name="P:Microsoft.VisualBasic.Scripting.TokenIcer.Token`1.IsNumeric">
- <summary>
- Returns a Boolean value indicating whether an expression can be evaluated as
- a number.
- </summary>
- <returns></returns>
-</member>
-<member name="T:Microsoft.VisualBasic.Scripting.TokenIcer.Prefix">
- <summary>
- 预定义的一些脚本的解析程序
- </summary>
-</member>
-<member name="T:Microsoft.VisualBasic.Scripting.TokenIcer.Prefix.MathTokens">
- <summary>
- Tokens is an enumeration of all possible token values.
- </summary>
-</member>
-<member name="M:Microsoft.VisualBasic.Scripting.TokenIcer.Prefix.MathParserHash">
- <summary>
- These lines add each grammar rule to the dictionary
- </summary>
- <returns></returns>
-</member>
-<member name="T:Microsoft.VisualBasic.Scripting.TokenIcer.StackParser">
- <summary>
- Stack tree parser
- </summary>
-</member>
-<member name="M:Microsoft.VisualBasic.Scripting.TokenIcer.StackParser.Parsing``1(System.Collections.Generic.IEnumerable{Microsoft.VisualBasic.Scripting.TokenIcer.Token{``0}},Microsoft.VisualBasic.Scripting.TokenIcer.StackTokens{``0})">
- <summary>
- 返回顶层的根节点
- </summary>
- <param name="source"></param>
- <param name="stackT">Pretend the root tokens as a true node</param>
- <returns></returns>
-</member>
-<member name="M:Microsoft.VisualBasic.Scripting.TokenIcer.StackParser.__parsing``1(System.Collections.Generic.Queue{Microsoft.VisualBasic.Scripting.TokenIcer.Token{``0}},Microsoft.VisualBasic.Scripting.TokenIcer.StackTokens{``0})">
- <summary>
- 主要是解析当前的栈层之中的使用，逗号分隔的参数列表
- </summary>
- <param name="source"></param>
- <returns></returns>
-</member>
-<member name="T:Microsoft.VisualBasic.Scripting.TokenIcer.TokenParser`1">
- <summary>
- TokenParser
- </summary>
- <remarks>
- TokenParser is the main parser engine for converting input into lexical tokens.
- 
- Auto Generated from
- http://www.codeproject.com/Articles/220042/Easily-Create-Your-Own-Parser
- </remarks>
-</member>
-<member name="P:Microsoft.VisualBasic.Scripting.TokenIcer.TokenParser`1.InputString">
- <summary>
- InputString Property
- </summary>
- <value>
- The string value that holds the input string.
- </value>
-</member>
-<member name="M:Microsoft.VisualBasic.Scripting.TokenIcer.TokenParser`1.#ctor(System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{`0,System.String}},`0)">
- <summary>
- Default Constructor
- </summary>
- <param name="tokens">Values is the regex expression</param>
- <remarks>
- The constructor initalizes memory and adds all of the tokens to the token dictionary.
- </remarks>
-</member>
-<member name="M:Microsoft.VisualBasic.Scripting.TokenIcer.TokenParser`1.#ctor(System.Collections.Generic.Dictionary{`0,System.String},`0)">
- <summary>
- Default Constructor
- </summary>
- <param name="tokens">Values is the regex expression</param>
- <remarks>
- The constructor initalizes memory and adds all of the tokens to the token dictionary.
- </remarks>
-</member>
-<member name="M:Microsoft.VisualBasic.Scripting.TokenIcer.TokenParser`1.PrepareRegex">
- <summary>
- PrepareRegex prepares the regex for parsing by pre-matching the Regex tokens.
- </summary>
-</member>
-<member name="M:Microsoft.VisualBasic.Scripting.TokenIcer.TokenParser`1.ResetParser">
- <summary>
- ResetParser resets the parser to its inital state. Reloading InputString is required.
- </summary>
- <seealso cref="P:Microsoft.VisualBasic.Scripting.TokenIcer.TokenParser`1.InputString" />
-</member>
-<member name="M:Microsoft.VisualBasic.Scripting.TokenIcer.TokenParser`1.GetToken">
- <summary>
- GetToken gets the next token in queue
- </summary>
- <remarks>
- GetToken attempts to the match the next character(s) using the
- Regex rules defined in the dictionary. If a match can not be
- located, then an Undefined token will be created with an empty
- string value. In addition, the token pointer will be incremented
- by one so that this token doesn't attempt to get identified again by
- GetToken()
- </remarks>
-</member>
-<member name="M:Microsoft.VisualBasic.Scripting.TokenIcer.TokenParser`1.Peek">
- <summary>
- Returns the next token that GetToken() will return.
- </summary>
- <seealso cref="M:Microsoft.VisualBasic.Scripting.TokenIcer.TokenParser`1.Peek(Microsoft.VisualBasic.Scripting.TokenIcer.PeekToken{`0})" />
-</member>
-<member name="M:Microsoft.VisualBasic.Scripting.TokenIcer.TokenParser`1.Peek(Microsoft.VisualBasic.Scripting.TokenIcer.PeekToken{`0})">
- <summary>
- Returns the next token after the Token passed here
- </summary>
- <param name="peekToken">The PeekToken token returned from a previous Peek() call</param>
- <seealso cref="M:Microsoft.VisualBasic.Scripting.TokenIcer.TokenParser`1.Peek" />
-</member>
-<member name="M:Microsoft.VisualBasic.Scripting.Casting.As``1(System.Object)">
- <summary>
- DirectCast(obj, T)
- </summary>
- <typeparam name="T"></typeparam>
- <param name="obj"></param>
- <returns></returns>
-</member>
-<member name="M:Microsoft.VisualBasic.Scripting.Casting.CastInteger(System.String)">
- <summary>
- 出错会返回默认是0
- </summary>
- <param name="obj"></param>
- <returns></returns>
-</member>
-<member name="T:Microsoft.VisualBasic.Scripting.InputHandler">
- <summary>
- 转换从终端或者脚本文件之中输入的字符串的类型的转换
- </summary>
-</member>
-<member name="T:Microsoft.VisualBasic.Scripting.InputHandler.LoadObject">
- <summary>
- 在脚本编程之中将用户输入的字符串数据转换为目标类型的方法接口
- </summary>
- <param name="value"></param>
- <returns></returns>
-</member>
-<member name="P:Microsoft.VisualBasic.Scripting.InputHandler.CasterString">
- <summary>
- Object为字符串类型，这个字典可以讲字符串转为目标类型
- </summary>
- <remarks></remarks>
-</member>
-<member name="M:Microsoft.VisualBasic.Scripting.InputHandler.CTypeDynamic(System.String,System.Type)">
- <summary>
- Converts a string expression which was input from the console or script file to the specified type.
- (请注意，函数只是转换最基本的数据类型，转换错误会返回空值)
- </summary>
- <param name="Expression">The string expression to convert.</param>
- <param name="TargetType">The type to which to convert the object.</param>
- <returns>An object whose type at run time is the requested target type.</returns>
-</member>
-<member name="M:Microsoft.VisualBasic.Scripting.InputHandler.CTypeDynamic``1(System.String)">
- <summary>
- Converts a string expression which was input from the console or script file to the specified type.
- (请注意，函数只是转换最基本的数据类型，转换错误会返回空值)
- </summary>
- <param name="Expression">The string expression to convert.</param>
- <typeparam name="T">The type to which to convert the object.</typeparam>
- <returns>An object whose type at run time is the requested target type.</returns>
-</member>
-<member name="M:Microsoft.VisualBasic.Scripting.InputHandler.IsPrimitive(System.Type)">
- <summary>
- Does this type can be cast from the <see cref="T:System.String"/> type?(目标类型能否由字符串转换过来??)
- </summary>
- <param name="targetType"></param>
- <returns></returns>
-</member>
-<member name="M:Microsoft.VisualBasic.Scripting.InputHandler.CapabilityPromise(System.String,System.Type,System.Func{System.String,System.Object})">
- <summary>
- Dynamics updates the capability of function <see cref="M:Microsoft.VisualBasic.Scripting.InputHandler.CTypeDynamic(System.String,System.Type)"/>, 
- <see cref="M:Microsoft.VisualBasic.Scripting.InputHandler.CTypeDynamic``1(System.String)"/> and 
- <see cref="M:Microsoft.VisualBasic.Scripting.InputHandler.IsPrimitive(System.Type)"/>
- </summary>
- <param name="briefName"></param>
- <param name="stringConvertType"></param>
- <param name="cast"></param>
-</member>
-<member name="P:Microsoft.VisualBasic.Scripting.InputHandler.Types">
- <summary>
- Enumerate all of the types that can be handled in this module. All of the key string is in lower case.(键值都是小写的)
- </summary>
-</member>
-<member name="M:Microsoft.VisualBasic.Scripting.InputHandler.GetType(System.String,System.Boolean)">
- <summary>
- 类型获取失败会返回空值，大小写不敏感
- </summary>
- <param name="name">类型的名称简写</param>
- <param name="ObjectGeneric">是否出错的时候返回Object类型，默认返回Nothing</param>
- <returns></returns>
-</member>
-<member name="P:Microsoft.VisualBasic.Scripting.InputHandler.String">
- <summary>
- <see cref="T:System.Type"/> information for <see cref="T:System.String"/> type from GetType operator
- </summary>
- <returns></returns>
-</member>
-<member name="M:Microsoft.VisualBasic.Scripting.InputHandler.Convertible(System.Type,System.Type)">
- <summary>
- Does the <paramref name="inputtype"/> type can be cast to type <paramref name="DefType"/>.(主要为了方便减少脚本编程模块的代码)
- </summary>
- <param name="inputType"></param>
- <param name="DefType"></param>
- <returns></returns>
-</member>
-<member name="M:Microsoft.VisualBasic.Scripting.InputHandler.ToString(System.Object)">
- <summary>
- <seealso cref="M:Microsoft.VisualBasic.ComponentModel.DataSourceModel.DataFramework.__toStringInternal(System.Object)"/>, 出现错误的时候总是会返回空字符串的
- </summary>
- <param name="obj"></param>
- <returns></returns>
-</member>
-<member name="M:Microsoft.VisualBasic.Scripting.InputHandler.CastArray``1(System.Object)">
- <summary>
- The parameter <paramref name="obj"/> should implements a <see cref="T:System.Collections.IEnumerable"/> interface on the type. and then DirectCast object to target type.
- </summary>
- <typeparam name="T"></typeparam>
- <param name="obj"></param>
- <returns></returns>
-</member>
-<member name="M:Microsoft.VisualBasic.Scripting.InputHandler.DirectCast(System.Object[],System.Type)">
- <summary>
- 
- </summary>
- <param name="array"></param>
- <param name="type">数组里面的元素的类型</param>
- <returns></returns>
-</member>
-<member name="M:Microsoft.VisualBasic.Serialization.BinaryDumping.StructFormatter.Serialize``1(``0,System.String)">
- <summary>
- Save a structure type object into a binary file.(使用二进制序列化保存一个对象)
- </summary>
- <typeparam name="T"></typeparam>
- <param name="obj"></param>
- <param name="path"></param>
- <returns></returns>
- <remarks></remarks>
-</member>
-<member name="M:Microsoft.VisualBasic.Serialization.BinaryDumping.StructFormatter.Load``1(System.String)">
- <summary>
- Load a strucutre object from the file system by using binary serializer deserialize.
- (使用反二进制序列化从指定的文件之中加载一个对象)
- </summary>
- <typeparam name="T"></typeparam>
- <param name="path"></param>
- <returns></returns>
- <remarks></remarks>
-</member>
-<member name="T:Microsoft.VisualBasic.Serialization.BinaryDumping.StructSerializer">
- <summary>
- Some times these method is not works well, not sure why?
- </summary>
- <remarks>
- http://blog.csdn.net/zztoll/article/details/8695992
- 
- Marshal类的两个方法StructureToPtr和PtrToStructure实现序列化
- 
- 我们主要是使用Marshal类里的两个方法：
- 
- 第一个是StructureToPtr，将数据从托管对象封送到非托管内存块。
- 第二个是PtrToStructure，将数据从非托管内存块封送到新分配的指定类型的托管对象。
- 
- 只要有了这两个相互转换的方法，我们就可以实现序列化了。
- 
- 首先我们先来看下序列化
- 
- 序列化：
- 
- 有一个前提条件，那就是我们必须要知道需要序列化对象的大小。
- 
- 第一步：我们先求出对象的大小，然后在非托管内存中给它分配相应的内存大小。
- 第二步：接着我们就把这个对象封送到刚分配出来的内存中，之后我们会得到一个分配出来的内存块首地址指针。
- 第三步：最后我们可以通过这个首地址指针，从指针所指的位置处开始，拷贝数据到指定的byte[]数组中，
- 拷贝的长度就是我们为这个对象分配出来的内存大小，得到byte[]数据后，下面的事情我就不用多说了，
- 你可以保存到数据库或者文件中。
- 
- 反序列化：
- 
- 序列化的时候我们先将一个对象封送到了非托管内存块中，然后再把内存块中的数据读到byte[]数组中，
- 
- 现在我们反序列化
- 
- 第一步：我们先求出对象的大小，然后在非托管内存中给它分配相应的内存大小。
- 第二步：然后把这个byte[]数据拷贝到非托管内存块中。
- 第三步：最后再从内存块中封送指定大小的数据到对象中。
- 
- 有一个地方需要注意，那就是因为引用类型的对象我们是无法求的它的实际大小的，所以这里的对象我们只能使用非托管对象，比如struct结构体。
- 所以，当我们只是用来存储数据，不涉及任何操作的对象，我们可以把它作为一个结构体来处理，这样我们在序列化的时候可以节省空间开销。
- 因为你如果你要是用平常的序列化方法去序列化一个类对象，他所需要的空间开销是要大于你去序列化一个具有相同结构的struct对象。
- </remarks>
-</member>
-<member name="M:Microsoft.VisualBasic.Serialization.BinaryDumping.StructSerializer.StructureToByte``1(``0)">
- <summary>
- 由结构体转换为byte数组(字符串类型以及Class类型都将会被序列化为内存指针，所以这个函数只适合于值类型的)
- </summary>
- 
-</member>
-<member name="M:Microsoft.VisualBasic.Serialization.BinaryDumping.StructSerializer.ByteToStructure``1(System.Byte[])">
- <summary>
- 由byte数组转换为结构体(字符串类型以及Class类型都将会被序列化为内存指针，所以这个函数只适合于值类型的)
- </summary>
- 
-</member>
-<member name="T:Microsoft.VisualBasic.Serialization.BinaryDumping.BufferAPI">
- <summary>
- 适用于对变长的流的操作
- </summary>
-</member>
-<member name="T:Microsoft.VisualBasic.Serialization.MappingsIgnored">
- <summary>
- 这个属性或者方法不会被用于映射
- </summary>
- <remarks></remarks>
-</member>
-<member name="T:Microsoft.VisualBasic.Serialization.UseCustomMapping">
- <summary>
- 不会使用系统自带的映射方法进行映射
- </summary>
- <remarks></remarks>
-</member>
-<member name="F:Microsoft.VisualBasic.Serialization.NodeMapping.Source">
- <summary>
- 映射的文本文件源
- </summary>
- <remarks></remarks>
-</member>
-<member name="F:Microsoft.VisualBasic.Serialization.NodeMapping.Mapping">
- <summary>
- 映射操作的目标数据模型
- </summary>
- <remarks></remarks>
-</member>
-<member name="F:Microsoft.VisualBasic.Serialization.NodeMapping.SourceToMappingCasting">
- <summary>
- 从源映射到数据模型的类型转换
- </summary>
- <remarks></remarks>
-</member>
-<member name="F:Microsoft.VisualBasic.Serialization.NodeMapping.MappingToSourceCasting">
- <summary>
- 从数据模型映射到源的类型转换
- </summary>
- <remarks></remarks>
-</member>
-<member name="T:Microsoft.VisualBasic.Serialization.JsonContract">
- <summary>
- 使用.NET系统环境之中自带的框架进行JSON序列化和反序列化
- </summary>
-</member>
-<member name="M:Microsoft.VisualBasic.Serialization.JsonContract.GetJson(System.Object,System.Type)">
- <summary>
- 使用<see cref="T:System.Web.Script.Serialization.ScriptIgnoreAttribute"/>来屏蔽掉不想序列化的属性
- </summary>
- <param name="obj"></param>
- <param name="type"></param>
- <returns></returns>
-</member>
-<member name="M:Microsoft.VisualBasic.Serialization.JsonContract.GetJson``1(``0)">
- <summary>
- Gets the json text value of the target object, the attribute <see cref="T:System.Web.Script.Serialization.ScriptIgnoreAttribute"/> 
- can be used for block the property which is will not serialize to the text.
- (使用<see cref="T:System.Web.Script.Serialization.ScriptIgnoreAttribute"/>来屏蔽掉不想序列化的属性)
- </summary>
- <typeparam name="T"></typeparam>
- <param name="obj"></param>
- <returns></returns>
-</member>
-<member name="M:Microsoft.VisualBasic.Serialization.JsonContract.LoadObject(System.String,System.Type)">
- <summary>
- 
- </summary>
- <param name="json">null -> Nothing</param>
- <param name="type"></param>
- <returns></returns>
-</member>
-<member name="M:Microsoft.VisualBasic.Serialization.JsonContract.LoadObject``1(System.String)">
- <summary>
- JSON反序列化
- </summary>
-</member>
-<member name="M:Microsoft.VisualBasic.Serialization.DynamicsConfiguration.LoadDocument``1(System.String)">
- <summary>
- 加载完数据之后返回其自身
- </summary>
- <typeparam name="T"></typeparam>
- <param name="path"></param>
- <returns></returns>
- <remarks></remarks>
-</member>
-<member name="T:Microsoft.VisualBasic.Serialization.__StringTypeCaster">
- <summary>
- 数据类型转换方法的句柄对象
- </summary>
- <param name="data">源之中的数据，由于源是一个TEXT格式的数据文件，故而这里的数据类型为字符串，通过本句柄对象可以将字符串数据映射为其他的复杂数据类型</param>
- <returns></returns>
- <remarks></remarks>
-</member>
-<member name="T:Microsoft.VisualBasic.Serialization.ConfigurationMappings">
- <summary>
- 最基本的思想是将属性值按照同名属性名称在A和B两个对象类型之间进行映射，即A与B两个对象之间必须要具备相同的属性名称，才可以产生映射，请注意在本对象之中仅能够映射最基本的值类型的数据类型
- 对于一些自定义的映射操作，请在目标数据模型之中定义自定义的映射函数，要求为函数只有一个参数，参数类型和返回值类型分别为映射的两个节点的数据类型，程序会使用反射自动查找
- </summary>
- <remarks></remarks>
-</member>
-<member name="M:Microsoft.VisualBasic.Serialization.ConfigurationMappings.LoadMapping``2(``1)">
- <summary>
- 从源江基本的值类型映射到数据模型，以将配置数据读取出来并进行加载
- </summary>
- <typeparam name="T_Entity">数据模型</typeparam>
- <typeparam name="T_Mapping">源</typeparam>
- <returns></returns>
- <remarks></remarks>
-</member>
-<member name="M:Microsoft.VisualBasic.Serialization.ConfigurationMappings.WriteMapping``2(``0)">
- <summary>
- 从数据模型将值类型数据映射回源，以将配置数据写入文件
- </summary>
- <typeparam name="T_Entity">数据模型</typeparam>
- <typeparam name="T_Mapping">源</typeparam>
- <param name="Model"></param>
- <returns></returns>
- <remarks></remarks>
-</member>
-<member name="M:Microsoft.VisualBasic.Serialization.ConfigurationMappings.GetNodeMapping``2(System.Object)">
- <summary>
- 获取从源映射至数据模型的映射过程
- </summary>
- <typeparam name="T_Entity">数据模型</typeparam>
- <typeparam name="T_Mapping">源</typeparam>
- <returns></returns>
- <remarks></remarks>
-</member>
-<member name="M:Microsoft.VisualBasic.Serialization.ShadowsCopy.ShadowsCopy``1(``0)">
- <summary>
- 将目标对象之中的属性按值复制
- </summary>
- <typeparam name="T"></typeparam>
- <param name="obj"></param>
- <returns></returns>
- <remarks>对外函数接口，为了防止无限递归的出现</remarks>
-</member>
-<member name="M:Microsoft.VisualBasic.Serialization.ShadowsCopy.ShadowsCopy(System.Object)">
- <summary>
- 将目标对象之中的属性按值复制
- </summary>
- <param name="obj"></param>
- <returns></returns>
- <remarks>对外函数接口，为了防止无限递归的出现</remarks>
-</member>
-<member name="M:Microsoft.VisualBasic.Serialization.ShadowsCopy.__shadowsCopy(System.Type,System.Object)">
- <summary>
- 递归使用的，基本数据类型直接复制，引用类型则首先创建一个新的对象，在对该对象进行递归复制，假若目标对象没有可用的无参数的构造函数，则直接赋值
- </summary>
- <param name="obj"></param>
- <returns></returns>
- <remarks></remarks>
-</member>
-<member name="M:Microsoft.VisualBasic.Serialization.ShadowsCopy.ShadowCopy``1(``0,``0@)">
- <summary>
- 请使用这个函数来对CSV序列化的对象进行浅拷贝。将<paramref name="source"/>之中的第一层的属性值拷贝到<paramref name="target"/>对应的属性值之中，然后返回<paramref name="target"/>
- </summary>
- <typeparam name="T"></typeparam>
- <param name="source"></param>
- <param name="Target"></param>
- <returns></returns>
-</member>
-<member name="M:Microsoft.VisualBasic.Serialization.ShadowsCopy.ShadowCopy``2(``0)">
- <summary>
- 将第一层的属性值从基本类复制给继承类
- </summary>
- <typeparam name="Tbase"></typeparam>
- <typeparam name="TInherits"></typeparam>
- <param name="source"></param>
- <returns></returns>
-</member>
-<member name="T:Microsoft.VisualBasic.Serialization.ShadowsCopyOpr`1">
- <summary>
- 批量拷贝需要使用这个模块来执行
- </summary>
- <typeparam name="T"></typeparam>
-</member>
-<member name="T:Microsoft.VisualBasic.Serialization.ShadowsCopyOpr`2">
- <summary>
- 批量拷贝需要使用这个模块来执行
- </summary>
- <typeparam name="Tbase"></typeparam>
- <typeparam name="TInherits"></typeparam>
-</member>
-<member name="T:Microsoft.VisualBasic.Directory">
- <summary>
- A wrapper object for the processing of relative file path. 
- </summary>
-</member>
-<member name="M:Microsoft.VisualBasic.Directory.#ctor(System.String)">
- <summary>
- Construct a directory object from the specific Dir path value.
- </summary>
- <param name="DIR">Target directory path</param>
-</member>
-<member name="M:Microsoft.VisualBasic.Directory.GetFullPath(System.String)">
- <summary>
- Gets the full path of the target file based on the path relative to this directory object.
- </summary>
- <param name="file">
- The relative path of the target file, and this parameter is also compatible with absolute file path.
- (相对路径)</param>
- <returns></returns>
-</member>
-<member name="M:Microsoft.VisualBasic.Directory.IsAbsolutePath(System.String)">
- <summary>
- Determined that the input file path is a absolute path or not?
- </summary>
- <param name="file"></param>
- <returns></returns>
 </member>
 <member name="T:Microsoft.VisualBasic.Net.Http.WebResult">
  <summary>
@@ -11740,6 +12295,38 @@ to take away yo [rest of string was truncated]&quot;;.
  <param name="byteData"></param>
  <remarks></remarks>
 </member>
+<member name="T:Microsoft.VisualBasic.SoftwareToolkits.LicenseMgr">
+ <summary>
+ Source code license manager
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.SoftwareToolkits.LicenseMgr.Template">
+ <summary>
+ The license template example.
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.SoftwareToolkits.LicenseMgr.Ignores">
+ <summary>
+ {".+\.Designer\.vb", "AssemblyInfo\.vb"}
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.SoftwareToolkits.LicenseMgr.Insert(System.String,Microsoft.VisualBasic.SoftwareToolkits.LicenseInfo)">
+ <summary>
+ 
+ </summary>
+ <param name="src">*.vb path</param>
+ <param name="info">License meta data</param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.SoftwareToolkits.LicenseMgr.Inserts(Microsoft.VisualBasic.SoftwareToolkits.LicenseInfo)">
+ <summary>
+ 
+ </summary>
+ <param name="info">The root directory</param>
+ <returns></returns>
+</member>
 <member name="T:Microsoft.VisualBasic.SoftwareToolkits.XmlDoc.Assembly.Project">
  <summary>
  Describes a Project, a collection of related types and namespaces.  In this case, one Project = one DLL.
@@ -12624,6 +13211,61 @@ to take away yo [rest of string was truncated]&quot;;.
  Description (e.g. "URL:Rainbird Custom URL")
  </param>
 </member>
+<member name="M:Microsoft.VisualBasic.Windows.Forms.VistaSecurity.IsAdmin">
+ <summary>
+ Checks if the process is elevated
+ </summary>
+ <returns>If is elevated</returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Windows.Forms.VistaSecurity.AddShieldToButton(System.Windows.Forms.Button)">
+ <summary>
+ Add a shield icon to a button
+ </summary>
+ <param name="b">The button</param>
+</member>
+<member name="M:Microsoft.VisualBasic.Windows.Forms.VistaSecurity.RestartElevated">
+ <summary>
+ Restart the current process with administrator credentials.(以管理员的身份重启本应用程序)
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Windows.Forms.MockForm.#ctor(System.String)">
+ <summary>
+ Construct mock from <see cref="M:Microsoft.VisualBasic.Windows.Forms.MockForm.FindWindow(System.String@,System.String@)"/>
+ </summary>
+ <param name="found"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.Windows.Forms.MockTerminal.__init">
+ <summary>
+ Init by win32 API
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Windows.Forms.MockTerminal.__cmd">
+ <summary>
+ Start a new cmd.exe instance for the terminal mock
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.Windows.Forms.SingleInstanceFormEntry`1">
+ <summary>
+ 只打开一个窗体，当窗体已经打开的时候，就会忽略当前的这一次单击事件，反之没有窗体被打开的时候就会打开新的窗体
+ </summary>
+ <typeparam name="TForm"></typeparam>
+</member>
+<member name="M:Microsoft.VisualBasic.Windows.Forms.SingleInstanceFormEntry`1.#ctor(System.Boolean)">
+ <summary>
+ 不做任何位置的设置操作
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.Windows.Forms.SingleInstanceFormEntry`1.__getDefaultPos(System.Windows.Forms.UserControl,System.Windows.Forms.Form)">
+ <summary>
+ 默认位置是控件的中间
+ </summary>
+ <param name="Control"></param>
+ <param name="Form"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
 <member name="T:Microsoft.VisualBasic.App">
  <summary>
  Provides information about, and means to manipulate, the current environment Application information collection.
@@ -13029,6 +13671,11 @@ to take away yo [rest of string was truncated]&quot;;.
 <member name="M:Microsoft.VisualBasic.App.StopGC">
  <summary>
  Stop the automatic garbage collection threads.
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.App.RunAsAdmin">
+ <summary>
+ Restart the current process with administrator credentials.(以管理员的身份重启本应用程序)
  </summary>
 </member>
 <member name="M:Microsoft.VisualBasic.CodeDOM_VBC.CodeDOMExtension.Icon(System.String)">
@@ -13629,6 +14276,18 @@ to take away yo [rest of string was truncated]&quot;;.
  <param name="test"></param>
  <param name="msg"></param>
 </member>
+<member name="T:Microsoft.VisualBasic.VBDebugger.VisualBasicAppException">
+ <summary>
+ VisualBasic application exception wrapper
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.VBDebugger.VisualBasicAppException.#ctor(System.Exception,System.String)">
+ <summary>
+ <see cref="T:System.Exception"/> inner wrapper
+ </summary>
+ <param name="ex">The exception details</param>
+ <param name="calls">Method name where occurs this exception.</param>
+</member>
 <member name="M:Microsoft.VisualBasic.VBDebugger.__DEBUG_ECHO(System.Text.StringBuilder,System.Int32)">
  <summary>
  Output the full debug information while the project is debugging in debug mode.
@@ -13637,6 +14296,15 @@ to take away yo [rest of string was truncated]&quot;;.
  <param name="MSG">The message fro output to the debugger console, this function will add a time stamp automaticly To the leading position Of the message.</param>
  <param name="Indent"></param>
 
+</member>
+<member name="M:Microsoft.VisualBasic.VBDebugger.this(System.String)">
+ <summary>
+ Returns the current function name.
+ </summary>
+ <param name="caller">
+ The caller function name, do not assign any value to this parameter! Just leave it blank.
+ </param>
+ <returns></returns>
 </member>
 <member name="M:Microsoft.VisualBasic.VBDebugger.Echo(System.String)">
  <summary>
@@ -13649,6 +14317,23 @@ to take away yo [rest of string was truncated]&quot;;.
  Alias for <see cref="M:System.Console.Write(System.Boolean)"/>
  </summary>
  <param name="c"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.IOExtensions.ReadBinary(System.String)">
+ <summary>
+ <see cref="M:System.IO.File.ReadAllBytes(System.String)"/>, if the file is not exists on the filesystem, then a empty array will be return.
+ </summary>
+ <param name="path"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.IOExtensions.FlushAllLines``1(System.Collections.Generic.IEnumerable{``0},System.String,System.Text.Encoding)">
+ <summary>
+ Write all object into a text file by using its <see cref="T:System.Object"/> method.
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="data"></param>
+ <param name="SaveTo"></param>
+ <param name="encoding"></param>
+ <returns></returns>
 </member>
 <member name="M:Microsoft.VisualBasic.IOExtensions.FlushStream(System.Collections.Generic.IEnumerable{System.Byte},System.String)">
  <summary>
@@ -14157,11 +14842,18 @@ to take away yo [rest of string was truncated]&quot;;.
  <param name="input"></param>
  <returns></returns>
 </member>
+<member name="M:Microsoft.VisualBasic.SecurityString.MD5Hash.GetMd5Hash(System.String)">
+ <summary>
+ Calculate md5 hash value for the input string.
+ </summary>
+ <param name="input"></param>
+ <returns></returns>
+</member>
 <member name="M:Microsoft.VisualBasic.SecurityString.MD5Hash.GetHashCode(System.String)">
  <summary>
  Gets the hashcode of the input string. (<paramref name="input"/> => <see cref="M:Microsoft.VisualBasic.SecurityString.MD5Hash.GetMd5Hash(System.Byte[])"/> => <see cref="M:Microsoft.VisualBasic.SecurityString.MD5Hash.ToLong(System.String)"/>)
  </summary>
- <param name="input"></param>
+ <param name="input">任意字符串</param>
  <returns></returns>
 </member>
 <member name="M:Microsoft.VisualBasic.SecurityString.MD5Hash.GetHashCode(System.Collections.Generic.IEnumerable{System.Byte})">
@@ -14618,6 +15310,27 @@ to take away yo [rest of string was truncated]&quot;;.
  <param name="raw"></param>
  <param name="p"></param>
  <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.EmitReflection">
+ <summary>
+ Some common used reflection operation extension at here.
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.EmitReflection.RunApp(System.String,System.String,System.Boolean)">
+ <summary>
+ Run external [.NET] Program from RAM Memory
+ </summary>
+ <param name="app"></param>
+ <param name="CLI"></param>
+ <param name="cs">Going to running a c# program?</param>
+ <remarks>
+ http://www.codeproject.com/Tips/1108105/Run-external-NET-Program-from-RAM-Memory
+ 
+ Run external app directly from RAM. You can load the specific file into a ``Byte[]`` Array 
+ with a ``StreamReader()`` or even download it from WEB via a direct link provided. 
+ If you loaded the file from disk, you can delete it if you want after it has been loaded 
+ by a ``StreamReader()``.
+ </remarks>
 </member>
 <member name="M:Microsoft.VisualBasic.EmitReflection.IsNumericType(System.Object)">
  <summary>
@@ -15586,44 +16299,6 @@ to take away yo [rest of string was truncated]&quot;;.
  给出用于调试的系统的信息摘要
  </summary>
  <returns></returns>
-</member>
-<member name="M:Microsoft.VisualBasic.Windows.Forms.MockForm.#ctor(System.String)">
- <summary>
- Construct mock from <see cref="M:Microsoft.VisualBasic.Windows.Forms.MockForm.FindWindow(System.String@,System.String@)"/>
- </summary>
- <param name="found"></param>
-</member>
-<member name="M:Microsoft.VisualBasic.Windows.Forms.MockTerminal.__init">
- <summary>
- Init by win32 API
- </summary>
-</member>
-<member name="M:Microsoft.VisualBasic.Windows.Forms.MockTerminal.__cmd">
- <summary>
- Start a new cmd.exe instance for the terminal mock
- </summary>
- <returns></returns>
-</member>
-<member name="T:Microsoft.VisualBasic.Windows.Forms.SingleInstanceFormEntry`1">
- <summary>
- 只打开一个窗体，当窗体已经打开的时候，就会忽略当前的这一次单击事件，反之没有窗体被打开的时候就会打开新的窗体
- </summary>
- <typeparam name="TForm"></typeparam>
-</member>
-<member name="M:Microsoft.VisualBasic.Windows.Forms.SingleInstanceFormEntry`1.#ctor(System.Boolean)">
- <summary>
- 不做任何位置的设置操作
- </summary>
- <remarks></remarks>
-</member>
-<member name="M:Microsoft.VisualBasic.Windows.Forms.SingleInstanceFormEntry`1.__getDefaultPos(System.Windows.Forms.UserControl,System.Windows.Forms.Form)">
- <summary>
- 默认位置是控件的中间
- </summary>
- <param name="Control"></param>
- <param name="Form"></param>
- <returns></returns>
- <remarks></remarks>
 </member>
 <member name="T:Microsoft.VisualBasic.StatisticsMathExtensions.CPOLLicense">
  <summary>
