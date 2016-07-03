@@ -1,3 +1,0 @@
-imports sequencelogo
-
-call Invoke.Drawing.Batch dir ./
