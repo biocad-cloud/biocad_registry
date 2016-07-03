@@ -2,6 +2,7 @@
 Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports SMRUCC.HTTPInternal.AppEngine
 Imports SMRUCC.HTTPInternal.AppEngine.APIMethods
+Imports SMRUCC.HTTPInternal.AppEngine.POSTParser
 Imports SMRUCC.HTTPInternal.Platform
 
 <[Namespace]("seqtools")>
@@ -17,7 +18,9 @@ Public Class SequenceTools : Inherits SMRUCC.HTTPInternal.AppEngine.WebApp
 
     <ExportAPI("/seqtools/DNA_sites.html")>
     <[POST](GetType(String))>
-    Public Function SiteParser(args As String, params As StreamReader) As String
-
+    Public Function SiteParser(args As String, params As PostReader) As String
+        Dim hash = args.postRequestParser
+        Dim fna = params.Files("fna")
+        Dim gff = params.Files("gff")
     End Function
 End Class

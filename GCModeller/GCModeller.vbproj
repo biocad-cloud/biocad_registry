@@ -64,6 +64,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configs.vb" />
     <Compile Include="WebApp.vb" />
     <Compile Include="SequenceTools.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
