@@ -1,4 +1,5 @@
-﻿Imports Microsoft.VisualBasic.CommandLine.Reflection
+﻿Imports System.IO
+Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports SMRUCC.HTTPInternal.AppEngine
 Imports SMRUCC.HTTPInternal.AppEngine.APIMethods
 Imports SMRUCC.HTTPInternal.Platform
@@ -15,8 +16,8 @@ Public Class SequenceTools : Inherits SMRUCC.HTTPInternal.AppEngine.WebApp
     End Function
 
     <ExportAPI("/seqtools/DNA_sites.html")>
-    <[GET](GetType(String))>
-    Public Function SiteParser() As String
+    <[POST](GetType(String))>
+    Public Function SiteParser(args As String, params As StreamReader) As String
 
     End Function
 End Class
