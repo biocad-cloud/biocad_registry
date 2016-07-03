@@ -1,0 +1,1 @@
+"C:\Users\xieguigang\Source\GCModeller\webBin\httpd.exe" /run /dll "C:\Users\xieguigang\Source\GCModeller\webBin\GCModeller.dll" /root "C:\Users\xieguigang\Source\GCModeller\wwwroot"
