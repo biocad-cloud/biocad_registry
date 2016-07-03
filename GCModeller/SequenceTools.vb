@@ -26,7 +26,8 @@ Public Class SequenceTools : Inherits SMRUCC.HTTPInternal.AppEngine.WebApp
         Dim gff = params.Files("gff")
         Dim ftmp As String = App.GetAppSysTempFile(".fna")
         Dim gtmp As String = App.GetAppSysTempFile(".gff")
-        Dim out As String = App.LocalDataTemp & $"/{App.GetAppSysTempFile().BaseName}/{fna.FileName.Split("."c).First}-{gff.FileName.Split("."c).First}.fasta"
+        Dim file As String = $"/{App.GetAppSysTempFile().BaseName}/{fna.FileName.Split("."c).First}-{gff.FileName.Split("."c).First}.fasta"
+        Dim out As String = App.LocalDataTemp & file
         Dim CLI As String = $"/Gff.Sites /fna {ftmp.CliPath} /gff {gtmp.CliPath} /out {out.CliPath}"
 
         Call fna.SaveAs(ftmp)
@@ -37,7 +38,7 @@ Public Class SequenceTools : Inherits SMRUCC.HTTPInternal.AppEngine.WebApp
         Dim sb As New StringBuilder(html.html)
         Dim name As String = out.BaseName & ".fasta"
 
-        Call sb.Replace("@", name)
+        Call sb.Replace("@", file)
         Call sb.Replace("{Name}", name)
 
         html.html = sb.ToString
