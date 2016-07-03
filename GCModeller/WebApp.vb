@@ -1,5 +1,6 @@
 ﻿Imports System.Text
 Imports System.Text.RegularExpressions
+Imports Microsoft.VisualBasic.CommandLine
 Imports SMRUCC.HTTPInternal
 Imports SMRUCC.HTTPInternal.Platform
 
@@ -8,15 +9,30 @@ Imports SMRUCC.HTTPInternal.Platform
 ''' </summary>
 Public Module WebApp
 
+    Public ReadOnly Property Config As Configs =
+        Configs.Load
+
     Sub Main(engine As PlatformEngine)
         Call engine.SetGetRequest(
             AddressOf New __mapHelper With {
                 .engine = engine
             }.__requestStream
         )
+        Call engine.AddMappings(App.LocalDataTemp, "/data-store/")
     End Sub
 
-    ReadOnly Template As String = My.Resources.index
+    Public ReadOnly Template As String = My.Resources.index
+
+    ''' <summary>
+    ''' 需要下载的数据文件都保存在<see cref="App.LocalDataTemp"/>之中
+    ''' </summary>
+    ''' <param name="app"></param>
+    ''' <param name="CLI"></param>
+    ''' <returns></returns>
+    Public Function Invoke(app As String, CLI As String) As Integer
+        Dim run As New IORedirectFile(Config.bin & "/" & app & ".exe", CLI)
+        Return run.Run
+    End Function
 
     Private Structure __mapHelper
 
