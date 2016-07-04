@@ -19,6 +19,8 @@ Public Module WebApp
             }.__requestStream
         )
         Call engine.AddMappings(App.LocalDataTemp, "/data-store/")
+
+        engine.BufferSize = 1024 * 128
     End Sub
 
     Public ReadOnly Template As String = My.Resources.index
