@@ -1,1 +1,1 @@
-"C:\Users\xieguigang\Source\GCModeller\webBin\httpd.exe" /run /dll "C:\Users\xieguigang\Source\GCModeller\webBin\GCModeller.dll" /root "C:\Users\xieguigang\Source\GCModeller\wwwroot"
+"./App/httpd.exe" /start /wwwroot "./wwwroot" /port 8087
