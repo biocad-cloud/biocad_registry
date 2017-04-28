@@ -10,7 +10,7 @@
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
-webBin/
+App/
 
 # Build results
 [Dd]ebug/
@@ -239,3 +239,5 @@ _Pvt_Extensions
 
 # FAKE - F# Make
 .fake/
+/App
+/App

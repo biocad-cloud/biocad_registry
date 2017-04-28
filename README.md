@@ -1,24 +1,11 @@
-# services.gcmodeller.org
-GCModeller online annotations system
+## GCModeller biostack
 
+A web platform focused on the biological network data visualization.
 
-#### Template
+![](./wwwroot/DNA.png)
 
-```
-<head>
-{HTML}
-<footer>
-```
+###### Dependence
 
-#### HTML
-
-```
----
-title: page title
----
-
-...
-html
-
-```
-
++ sciBASIC
++ SMRUCC WebCloud platform
++ GCModeller
