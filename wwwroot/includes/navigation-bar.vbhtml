@@ -1,4 +1,4 @@
-	<div id="header-nav" class="contain-to-grid">	
+<div id="header-nav" class="contain-to-grid">	
 	<nav class="top-bar" data-topbar="">
 		
 		<ul class="title-area">
@@ -31,9 +31,20 @@
 							</div>
 						</div>
 						
+						<script type="text/javascript">
+							
+							void function searchURL() {							
+								var query = document.getElementById("bing").value;
+								
+								query = query + "+site%3Agcmodeller.org";
+								query = "http://cn.bing.com/search?q=" + query;								
+								window.location = query;
+							}
+							
+						</script>
 					</form>
 				</li>
 			</ul>
         </section>
 	</nav>
-	</div>
+</div>

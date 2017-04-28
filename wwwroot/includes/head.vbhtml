@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     
-    <title>GCModeller: genomics CAD(Computer Assistant Design) Modeller System</title>    
+    <title>$title</title>    
     <meta name="author" content="xie.guigang@gcmodeller.org">
     <meta name="copyright" content="GCModeller.org Copyright (c) 2016">
     <meta name="keywords" content="GCModeller; Xanthomonas" />
@@ -27,9 +27,4 @@
     <link rel="stylesheet" href="./assets/main.css">
 		
 	<script src="./assets/modernizr.js"></script>
-    <script type="text/javascript">
-    function searchURL() {
-        window.location = "http://cn.bing.com/search?q=" + document.getElementById("bing").value + "+site%3Agcmodeller.org";
-}
-    </script>
 </head>
