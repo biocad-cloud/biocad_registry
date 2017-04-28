@@ -1,24 +1,3 @@
-# services.gcmodeller.org
-GCModeller online annotations system
+## GCModeller biostack
 
-
-#### Template
-
-```
-<head>
-{HTML}
-<footer>
-```
-
-#### HTML
-
-```
----
-title: page title
----
-
-...
-html
-
-```
-
+A web platform focused on the biological network data visualization.
