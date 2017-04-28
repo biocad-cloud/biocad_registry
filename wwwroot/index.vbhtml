@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html>
 	<%= ./includes/head.vbhtml %>
-	<body>
+<?vb
+	$title = "Test page";	
+?>
+<body>
 	<div id="main-wrapper">
 		<%= ./includes/navigation-bar.vbhtml %>
 
-
-
 		<%= ./includes/footer.vbhtml %>
 	</div>
-	</body>
+</body>
 </html>

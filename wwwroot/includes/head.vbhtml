@@ -18,13 +18,13 @@
     <meta class="foundation-mq-topbar">
 
     <link rel="shortcut icon" href="./DNA.png">
-    <link rel="stylesheet" href="./assets/normalize.css">
-    <link rel="stylesheet" href="./assets/foundation.css">
-    <link rel="stylesheet" href="./assets/font-awesome.css">
-    <link rel="stylesheet" href="./assets/github.css">
-    <link rel="stylesheet" href="./assets/magnific-popup.css">
-    <link rel="stylesheet" href="./assets/css.css">
-    <link rel="stylesheet" href="./assets/main.css">
+    <link rel="stylesheet" href="./styles/normalize.css">
+    <link rel="stylesheet" href="./styles/foundation.css">
+    <link rel="stylesheet" href="./styles/github.css">
+    <link rel="stylesheet" href="./styles/magnific-popup.css">
+    <link rel="stylesheet" href="./styles/css.css">
+    <link rel="stylesheet" href="./styles/main.css">
 		
-	<script src="./assets/modernizr.js"></script>
+	<script src="./lib/modernizr.js"></script>
+	<script src="https://use.fontawesome.com/f931c644d8.js"></script>
 </head>
