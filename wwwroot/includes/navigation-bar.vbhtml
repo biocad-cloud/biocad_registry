@@ -18,7 +18,20 @@
             </ul>
 			<ul class="right">
 				<li class="has-form right">
-					<form id="header-searchform" action="http://bing.com" method="get">
+					
+					<script type="text/javascript">
+						
+						// 需要放在form的前面进行定义，否则会出现找不到函数的错误
+						void function searchURL() {							
+							var query = document.getElementById("bing").value;
+								
+							query = query + "+site%3Agcmodeller.org";
+							query = "/biostack/search.vbs?q=" + query;								
+							window.location = query;
+						}							
+					</script>
+				
+					<form id="header-searchform" onsubmit="javascript:searchURL();" method="get">
 					
 						<div class="row collapse">
 							<div class="small-11 medium-9 large-10 columns">
@@ -26,22 +39,12 @@
 								</input>
 							</div>
 							<div class="small-1 medium-3 large-2 columns">
-								<button type="submit" class="postfix button" href="#"><i class="fa fa-search"></i>
+								<button type="submit" class="postfix button">
+									<i class="fa fa-search"></i>
 								</button>
 							</div>
-						</div>
+						</div>					
 						
-						<script type="text/javascript">
-							
-							void function searchURL() {							
-								var query = document.getElementById("bing").value;
-								
-								query = query + "+site%3Agcmodeller.org";
-								query = "http://cn.bing.com/search?q=" + query;								
-								window.location = query;
-							}
-							
-						</script>
 					</form>
 				</li>
 			</ul>

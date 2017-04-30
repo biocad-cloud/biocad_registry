@@ -1,7 +1,8 @@
-﻿Imports SMRUCC.WebCloud.HTTPInternal.AppEngine
+﻿Imports Microsoft.VisualBasic.CommandLine.Reflection
+Imports SMRUCC.WebCloud.HTTPInternal.AppEngine
 Imports SMRUCC.WebCloud.HTTPInternal.Platform
 
-Public Class KEGG : Inherits WebApp
+<[Namespace]("KEGG")> Public Class KEGG : Inherits WebApp
 
     Public Sub New(main As PlatformEngine)
         MyBase.New(main)
