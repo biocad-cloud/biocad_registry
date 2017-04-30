@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 	<%= ./includes/head.vbhtml %>
+	<%= ./includes/breadcrumb/styles.vbhtml %>
+	
 	<?vb $title = "Welcome to the GCModeller biostack platform" ?>
 	<?vb $active1 = "active" ?>
 <body>
@@ -12,12 +14,7 @@
 		<div class="row">
 			<div class="small-12 columns">
 				<h1>Search Result</h1>
-				<h3>Navigate reference database</h3>
-				<ul>
-					<li><a href="./KEGG.vbhtml"><%= @KEGG %></a></li>
-					<li><a href="./Uniprot.vbhtml"><%= @Uniprot %></a></li>
-					<li><a href="./RegPrecise.vbhtml"><%= @RegPrecise %></a></li>
-				</ul>
+				<%= ./includes/breadcrumb/search.vbhtml %>
 			</div>
 		</div>
     

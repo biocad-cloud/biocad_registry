@@ -69,8 +69,10 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BiostackApp.vb" />
     <Compile Include="KEGG.vb" />
     <Compile Include="Debugger.vb" />
+    <Compile Include="Platform.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
