@@ -11,12 +11,12 @@
     
 		<div class="row">
 			<div class="small-12 columns">
-				<h1>H1 title test</h1>
+				<h1>Biostack platform</h1>
 				<h3>Navigate reference database</h3>
 				<ul>
-					<li>
-						<a href="./KEGG.vbhtml">KEGG reference database</a>
-					</li>
+					<li><a href="./KEGG.vbhtml"><%= @KEGG %></a></li>
+					<li><a href="./Uniprot.vbhtml"><%= @Uniprot %></a></li>
+					<li><a href="./RegPrecise.vbhtml"><%= @RegPrecise %></a></li>
 				</ul>
 			</div>
 		</div>
