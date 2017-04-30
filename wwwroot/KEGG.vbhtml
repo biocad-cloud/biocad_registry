@@ -20,6 +20,7 @@
     
 			<%= ./includes/tab/kegg.vbhtml %>
 			<%= ./includes/breadcrumb/kegg.vbhtml %>
+			
 			</div>
 		</div>
 	
