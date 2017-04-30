@@ -79,12 +79,13 @@ DROP TABLE IF EXISTS `data_compounds`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `data_compounds` (
   `uid` int(11) NOT NULL,
-  `KEGG` varchar(45) DEFAULT NULL,
+  `KEGG` varchar(45) NOT NULL COMMENT 'KEGG代谢物编号',
   `names` varchar(45) DEFAULT NULL,
-  `formula` varchar(45) DEFAULT NULL,
-  `mass` varchar(45) DEFAULT NULL,
-  `mol_weight` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`uid`)
+  `formula` varchar(45) DEFAULT NULL COMMENT '分子式',
+  `mass` varchar(45) DEFAULT NULL COMMENT '物质质量',
+  `mol_weight` varchar(45) DEFAULT NULL COMMENT '分子质量',
+  PRIMARY KEY (`uid`),
+  UNIQUE KEY `uid_UNIQUE` (`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -97,7 +98,7 @@ DROP TABLE IF EXISTS `data_enzyme`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `data_enzyme` (
   `uid` int(11) NOT NULL,
-  `EC` varchar(45) DEFAULT NULL COMMENT 'EC编号',
+  `EC` varchar(45) NOT NULL COMMENT 'EC编号',
   `name` varchar(45) DEFAULT NULL COMMENT '酶名称',
   `sysname` varchar(45) DEFAULT NULL COMMENT '生物酶的系统名称',
   `Reaction(KEGG)_uid` varchar(45) DEFAULT NULL COMMENT '``data_reactions``表之中的数字编号',
@@ -126,6 +127,31 @@ CREATE TABLE `data_modules` (
   `map` varchar(45) DEFAULT NULL COMMENT 'image -> gzip -> base64 string',
   PRIMARY KEY (`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `data_organisms`
+--
+
+DROP TABLE IF EXISTS `data_organisms`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `data_organisms` (
+  `uid` int(11) NOT NULL,
+  `KEGG_sp` varchar(8) NOT NULL,
+  `scientific name` varchar(45) DEFAULT NULL,
+  `domain` varchar(45) DEFAULT NULL,
+  `kingdom` varchar(45) DEFAULT NULL COMMENT '界',
+  `phylum` varchar(45) DEFAULT NULL COMMENT '门',
+  `class` varchar(45) DEFAULT NULL COMMENT '纲',
+  `order` varchar(45) DEFAULT NULL COMMENT '目',
+  `family` varchar(45) DEFAULT NULL COMMENT '科',
+  `genus` varchar(45) DEFAULT NULL COMMENT '属',
+  `species` varchar(45) DEFAULT NULL COMMENT '种',
+  PRIMARY KEY (`KEGG_sp`,`uid`),
+  UNIQUE KEY `uid_UNIQUE` (`uid`),
+  UNIQUE KEY `KEGG_sp_UNIQUE` (`KEGG_sp`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='taxonomy.(物种分类数据)\n生物主要分类等级是门（phylum）、纲（class）、目（order）、科（family）、属（genus）、种（species）。种以下还有亚种（subspecies，缩写成subsp.），植物还有变种（variety，缩写成var.）。有时还有一些辅助等级，实在主要分类等级术语前加前缀超（super-）、亚（sub-）.在亚纲、亚目之下有时还分别设置次纲（infraclass）和次目（infraorder）等。';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -223,10 +249,10 @@ DROP TABLE IF EXISTS `xref_module_reactions`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `xref_module_reactions` (
   `module` int(11) NOT NULL,
-  `reaction` varchar(45) DEFAULT NULL,
-  `KEGG` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`module`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `reaction` int(11) NOT NULL,
+  `KEGG` varchar(45) NOT NULL COMMENT '代谢反应的KEGG编号',
+  PRIMARY KEY (`module`,`reaction`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='代谢反应和生物模块之间的关系';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -238,11 +264,11 @@ DROP TABLE IF EXISTS `xref_pathway_compounds`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `xref_pathway_compounds` (
   `pathway` int(11) NOT NULL,
-  `compound` int(11) NOT NULL,
-  `KEGG` varchar(45) DEFAULT NULL COMMENT 'KEGG compound id',
-  `name` varchar(45) DEFAULT NULL,
+  `compound` int(11) NOT NULL COMMENT '``data_compounds``表之中的唯一数字编号',
+  `KEGG` varchar(45) NOT NULL COMMENT 'KEGG compound id.(KEGG代谢物的编号)',
+  `name` varchar(45) DEFAULT NULL COMMENT '代谢物的名称',
   PRIMARY KEY (`pathway`,`compound`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='代谢途径之中所包含有的代谢物的列表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -310,4 +336,4 @@ CREATE TABLE `xref_pathway_references` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-04-30 12:41:09
+-- Dump completed on 2017-04-30 12:56:55

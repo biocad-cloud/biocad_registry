@@ -85,21 +85,22 @@ CREATE TABLE `class_orthology_genes` (
 |field|type|attributes|description|
 |-----|----|----------|-----------|
 |uid|Int64 (11)|``NN``||
-|KEGG|VarChar (45)|||
+|KEGG|VarChar (45)|``NN``|KEGG代谢物编号|
 |names|VarChar (45)|||
-|formula|VarChar (45)|||
-|mass|VarChar (45)|||
-|mol_weight|VarChar (45)|||
+|formula|VarChar (45)||分子式|
+|mass|VarChar (45)||物质质量|
+|mol_weight|VarChar (45)||分子质量|
 
 ```SQL
 CREATE TABLE `data_compounds` (
   `uid` int(11) NOT NULL,
-  `KEGG` varchar(45) DEFAULT NULL,
+  `KEGG` varchar(45) NOT NULL COMMENT 'KEGG代谢物编号',
   `names` varchar(45) DEFAULT NULL,
-  `formula` varchar(45) DEFAULT NULL,
-  `mass` varchar(45) DEFAULT NULL,
-  `mol_weight` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`uid`)
+  `formula` varchar(45) DEFAULT NULL COMMENT '分子式',
+  `mass` varchar(45) DEFAULT NULL COMMENT '物质质量',
+  `mol_weight` varchar(45) DEFAULT NULL COMMENT '分子质量',
+  PRIMARY KEY (`uid`),
+  UNIQUE KEY `uid_UNIQUE` (`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ```
 
@@ -111,7 +112,7 @@ CREATE TABLE `data_compounds` (
 |field|type|attributes|description|
 |-----|----|----------|-----------|
 |uid|Int64 (11)|``NN``||
-|EC|VarChar (45)||EC编号|
+|EC|VarChar (45)|``NN``|EC编号|
 |name|VarChar (45)||酶名称|
 |sysname|VarChar (45)||生物酶的系统名称|
 |Reaction(KEGG)_uid|VarChar (45)||``data_reactions``表之中的数字编号|
@@ -124,7 +125,7 @@ CREATE TABLE `data_compounds` (
 ```SQL
 CREATE TABLE `data_enzyme` (
   `uid` int(11) NOT NULL,
-  `EC` varchar(45) DEFAULT NULL COMMENT 'EC编号',
+  `EC` varchar(45) NOT NULL COMMENT 'EC编号',
   `name` varchar(45) DEFAULT NULL COMMENT '酶名称',
   `sysname` varchar(45) DEFAULT NULL COMMENT '生物酶的系统名称',
   `Reaction(KEGG)_uid` varchar(45) DEFAULT NULL COMMENT '``data_reactions``表之中的数字编号',
@@ -160,6 +161,44 @@ CREATE TABLE `data_modules` (
   `map` varchar(45) DEFAULT NULL COMMENT 'image -> gzip -> base64 string',
   PRIMARY KEY (`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+```
+
+
+
+## data_organisms
+taxonomy.(物种分类数据)\n生物主要分类等级是门（phylum）、纲（class）、目（order）、科（family）、属（genus）、种（species）。种以下还有亚种（subspecies，缩写成subsp.），植物还有变种（variety，缩写成var.）。有时还有一些辅助等级，实在主要分类等级术语前加前缀超（super-）、亚（sub-）.在亚纲、亚目之下有时还分别设置次纲（infraclass）和次目（infraorder）等。
+
+|field|type|attributes|description|
+|-----|----|----------|-----------|
+|uid|Int64 (11)|``NN``||
+|KEGG_sp|VarChar (8)|``NN``||
+|scientific name|VarChar (45)|||
+|domain|VarChar (45)|||
+|kingdom|VarChar (45)||界|
+|phylum|VarChar (45)||门|
+|class|VarChar (45)||纲|
+|order|VarChar (45)||目|
+|family|VarChar (45)||科|
+|genus|VarChar (45)||属|
+|species|VarChar (45)||种|
+
+```SQL
+CREATE TABLE `data_organisms` (
+  `uid` int(11) NOT NULL,
+  `KEGG_sp` varchar(8) NOT NULL,
+  `scientific name` varchar(45) DEFAULT NULL,
+  `domain` varchar(45) DEFAULT NULL,
+  `kingdom` varchar(45) DEFAULT NULL COMMENT '界',
+  `phylum` varchar(45) DEFAULT NULL COMMENT '门',
+  `class` varchar(45) DEFAULT NULL COMMENT '纲',
+  `order` varchar(45) DEFAULT NULL COMMENT '目',
+  `family` varchar(45) DEFAULT NULL COMMENT '科',
+  `genus` varchar(45) DEFAULT NULL COMMENT '属',
+  `species` varchar(45) DEFAULT NULL COMMENT '种',
+  PRIMARY KEY (`KEGG_sp`,`uid`),
+  UNIQUE KEY `uid_UNIQUE` (`uid`),
+  UNIQUE KEY `KEGG_sp_UNIQUE` (`KEGG_sp`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='taxonomy.(物种分类数据)\n生物主要分类等级是门（phylum）、纲（class）、目（order）、科（family）、属（genus）、种（species）。种以下还有亚种（subspecies，缩写成subsp.），植物还有变种（variety，缩写成var.）。有时还有一些辅助等级，实在主要分类等级术语前加前缀超（super-）、亚（sub-）.在亚纲、亚目之下有时还分别设置次纲（infraclass）和次目（infraorder）等。';
 ```
 
 
@@ -284,43 +323,43 @@ CREATE TABLE `link_enzymes` (
 
 
 ## xref_module_reactions
-
+代谢反应和生物模块之间的关系
 
 |field|type|attributes|description|
 |-----|----|----------|-----------|
 |module|Int64 (11)|``NN``||
-|reaction|VarChar (45)|||
-|KEGG|VarChar (45)|||
+|reaction|Int64 (11)|``NN``||
+|KEGG|VarChar (45)|``NN``|代谢反应的KEGG编号|
 
 ```SQL
 CREATE TABLE `xref_module_reactions` (
   `module` int(11) NOT NULL,
-  `reaction` varchar(45) DEFAULT NULL,
-  `KEGG` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`module`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `reaction` int(11) NOT NULL,
+  `KEGG` varchar(45) NOT NULL COMMENT '代谢反应的KEGG编号',
+  PRIMARY KEY (`module`,`reaction`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='代谢反应和生物模块之间的关系';
 ```
 
 
 
 ## xref_pathway_compounds
-
+代谢途径之中所包含有的代谢物的列表
 
 |field|type|attributes|description|
 |-----|----|----------|-----------|
 |pathway|Int64 (11)|``NN``||
-|compound|Int64 (11)|``NN``||
-|KEGG|VarChar (45)||KEGG compound id|
-|name|VarChar (45)|||
+|compound|Int64 (11)|``NN``|``data_compounds``表之中的唯一数字编号|
+|KEGG|VarChar (45)|``NN``|KEGG compound id.(KEGG代谢物的编号)|
+|name|VarChar (45)||代谢物的名称|
 
 ```SQL
 CREATE TABLE `xref_pathway_compounds` (
   `pathway` int(11) NOT NULL,
-  `compound` int(11) NOT NULL,
-  `KEGG` varchar(45) DEFAULT NULL COMMENT 'KEGG compound id',
-  `name` varchar(45) DEFAULT NULL,
+  `compound` int(11) NOT NULL COMMENT '``data_compounds``表之中的唯一数字编号',
+  `KEGG` varchar(45) NOT NULL COMMENT 'KEGG compound id.(KEGG代谢物的编号)',
+  `name` varchar(45) DEFAULT NULL COMMENT '代谢物的名称',
   PRIMARY KEY (`pathway`,`compound`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='代谢途径之中所包含有的代谢物的列表';
 ```
 
 
