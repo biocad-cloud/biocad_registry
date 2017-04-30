@@ -5,7 +5,7 @@ Basic Style
 -------------------------------- */
 .cd-breadcrumb, .cd-multi-steps {
   width: 100%;
-  padding: 0.5em 1em;
+  padding: 0.5em 0.25em;
   margin: 0.5em auto;
   background-color: #edeff0;
   border-radius: .20em;
@@ -34,7 +34,7 @@ Basic Style
 .cd-breadcrumb li > *, .cd-multi-steps li > * {
   /* single step */
   display: inline-block;
-  font-size: 1.4rem;
+  font-size: 1em;
   color: #2c3f4c;
 }
 .cd-breadcrumb li.current > *, .cd-multi-steps li.current > * {
@@ -43,7 +43,7 @@ Basic Style
 }
 .no-touch .cd-breadcrumb a:hover, .no-touch .cd-multi-steps a:hover {
   /* steps already visited */
-  color: #96c03d;
+  color: skyblue;
 }
 .cd-breadcrumb.custom-separator li::after, .cd-multi-steps.custom-separator li::after {
   /* replace the default arrow separator with a custom icon */
@@ -89,10 +89,10 @@ Basic Style
 }
 @media only screen and (min-width: 768px) {
   .cd-breadcrumb, .cd-multi-steps {
-    padding: 0 1.2em;
+    padding: 0 1em;
   }
   .cd-breadcrumb li, .cd-multi-steps li {
-    margin: 1.2em 0;
+    margin: 1em 0;
   }
   .cd-breadcrumb li::after, .cd-multi-steps li::after {
     margin: 0 1em;

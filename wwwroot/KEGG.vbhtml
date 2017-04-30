@@ -2,6 +2,7 @@
 <html>
 	<%= ./includes/head.vbhtml %>
 	<%= ./includes/breadcrumb/styles.vbhtml %>
+	<%= ./includes/tab/styles.vbhtml %>
 	
 	<?vb $title = "KEGG reference navigation" ?>
 	<?vb $active2 = "active" ?>
@@ -18,6 +19,8 @@
 			
 			<h1><%= @KEGG %></h1>
     
+			<%= ./includes/tab/kegg.vbhtml %>
+		
 			</div>
 		</div>
 	
