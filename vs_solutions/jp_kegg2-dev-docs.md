@@ -1,4 +1,9 @@
-﻿### class_ko00001_orthology
+﻿# MySQL development docs
+Mysql database field attributes notes:
+
+> AI: Auto Increment; B: Binary; NN: Not Null; PK: Primary Key; UQ: Unique; UN: Unsigned; ZF: Zero Fill
+
+## class_ko00001_orthology
 
 
 |field|type|attributes|description|
@@ -26,7 +31,7 @@ CREATE TABLE `class_ko00001_orthology` (
 
 
 
-### class_ko00001_pathway
+## class_ko00001_pathway
 
 
 |field|type|attributes|description|
@@ -50,7 +55,7 @@ CREATE TABLE `class_ko00001_pathway` (
 
 
 
-### class_orthology_genes
+## class_orthology_genes
 
 
 |field|type|attributes|description|
@@ -72,7 +77,7 @@ CREATE TABLE `class_orthology_genes` (
 
 
 
-### data_compounds
+## data_compounds
 
 
 |field|type|attributes|description|
@@ -98,7 +103,7 @@ CREATE TABLE `data_compounds` (
 
 
 
-### data_enzyme
+## data_enzyme
 
 
 |field|type|attributes|description|
@@ -133,7 +138,7 @@ CREATE TABLE `data_enzyme` (
 
 
 
-### data_modules
+## data_modules
 
 
 |field|type|attributes|description|
@@ -157,7 +162,7 @@ CREATE TABLE `data_modules` (
 
 
 
-### data_orthology
+## data_orthology
 
 
 |field|type|attributes|description|
@@ -180,7 +185,7 @@ CREATE TABLE `data_orthology` (
 
 
 
-### data_pathway
+## data_pathway
 参考代谢途径的定义
 
 |field|type|attributes|description|
@@ -206,7 +211,7 @@ CREATE TABLE `data_pathway` (
 
 
 
-### data_reactions
+## data_reactions
 
 
 |field|type|attributes|description|
@@ -230,7 +235,7 @@ CREATE TABLE `data_reactions` (
 
 
 
-### data_references
+## data_references
 
 
 |field|type|attributes|description|
@@ -254,7 +259,7 @@ CREATE TABLE `data_references` (
 
 
 
-### link_enzymes
+## link_enzymes
 
 
 |field|type|attributes|description|
@@ -276,7 +281,7 @@ CREATE TABLE `link_enzymes` (
 
 
 
-### xref_module_reactions
+## xref_module_reactions
 
 
 |field|type|attributes|description|
@@ -296,7 +301,7 @@ CREATE TABLE `xref_module_reactions` (
 
 
 
-### xref_pathway_compounds
+## xref_pathway_compounds
 
 
 |field|type|attributes|description|
@@ -318,7 +323,7 @@ CREATE TABLE `xref_pathway_compounds` (
 
 
 
-### xref_pathway_genes
+## xref_pathway_genes
 
 
 |field|type|attributes|description|
@@ -342,7 +347,7 @@ CREATE TABLE `xref_pathway_genes` (
 
 
 
-### xref_pathway_modules
+## xref_pathway_modules
 
 
 |field|type|attributes|description|
@@ -364,7 +369,7 @@ CREATE TABLE `xref_pathway_modules` (
 
 
 
-### xref_pathway_references
+## xref_pathway_references
 
 
 |field|type|attributes|description|
