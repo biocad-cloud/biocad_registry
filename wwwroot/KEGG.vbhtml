@@ -12,7 +12,7 @@
 		<div class="row">
 			<div class="small-12 columns">
         
-			<h1>H1 title test</h1>
+			<h1>KEGG Reference Database</h1>
     
 			</div>
 		</div>
