@@ -7,7 +7,7 @@ Basic Style
   width: 100%;
   padding: 0.5em 0.25em;
   margin: 0.5em auto;
-  background-color: #edeff0;
+  background-color: white;
   border-radius: .20em;
 }
 .cd-breadcrumb:after, .cd-multi-steps:after {

@@ -14,13 +14,12 @@
     
 		<div class="row">
 			<div class="small-12 columns">
-			
-			<%= ./includes/breadcrumb/kegg.vbhtml %>
+		<br />		
 			
 			<h1><%= @KEGG %></h1>
     
 			<%= ./includes/tab/kegg.vbhtml %>
-		
+			<%= ./includes/breadcrumb/kegg.vbhtml %>
 			</div>
 		</div>
 	
