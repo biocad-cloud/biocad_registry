@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html>
 	<%= ./includes/head.vbhtml %>
-	<%= ./includes/breadcrumb/styles.vbhtml %>
-	
 	<?vb $title = "KEGG reference navigation" ?>
 	<?vb $active2 = "active" ?>
 <body>
@@ -13,9 +11,7 @@
     
 		<div class="row">
 			<div class="small-12 columns">
-			
-			<%= ./includes/breadcrumb/kegg.vbhtml %>
-			
+        
 			<h1>KEGG Reference Database</h1>
     
 			</div>
