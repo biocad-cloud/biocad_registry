@@ -15,7 +15,7 @@
 					<i class="fa fa-rss fa-2x"></i>
 				</a>
 				&nbsp;
-				<a href="https://github.com/SMRUCC" title="GitHub repository">
+				<a href="https://github.com/GCModeller-Cloud/GCModeller-biostack" title="GitHub repository">
 					<i class="fa fa-github fa-2x"></i>
 				</a>
 			</div>
