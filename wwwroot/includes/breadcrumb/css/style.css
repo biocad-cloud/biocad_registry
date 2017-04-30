@@ -6,7 +6,7 @@ Basic Style
 .cd-breadcrumb, .cd-multi-steps {
   width: 100%;
   padding: 0.5em 1em;
-  margin: 1em auto;
+  margin: 0.5em auto;
   background-color: #edeff0;
   border-radius: .20em;
 }
@@ -18,13 +18,13 @@ Basic Style
 .cd-breadcrumb li, .cd-multi-steps li {
   display: inline-block;
   float: left;
-  margin: 0.5em 0;
+  margin: 0.25em 0;
 }
 .cd-breadcrumb li::after, .cd-multi-steps li::after {
   /* this is the separator between items */
   display: inline-block;
-  content: '\00bb';
-  margin: 0 .6em;
+  content: '/';
+  margin: 0 .05em;
   color: #959fa5;
 }
 .cd-breadcrumb li:last-of-type::after, .cd-multi-steps li:last-of-type::after {

@@ -10,10 +10,10 @@
 		<%= ./includes/navigation-bar.vbhtml %>
     
 		<div class="row">
-			<div class="small-12 columns">
-        
-			<h1>KEGG Reference Database</h1>
-    
+			<div class="small-12 columns">        
+			
+			<h1><%= @Uniprot %></h1>
+	
 			</div>
 		</div>
 	

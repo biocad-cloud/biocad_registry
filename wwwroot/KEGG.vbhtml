@@ -16,7 +16,7 @@
 			
 			<%= ./includes/breadcrumb/kegg.vbhtml %>
 			
-			<h1>KEGG Reference Database</h1>
+			<h1><%= @KEGG %></h1>
     
 			</div>
 		</div>
