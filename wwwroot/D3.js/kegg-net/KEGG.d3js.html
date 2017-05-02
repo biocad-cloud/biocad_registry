@@ -2,10 +2,112 @@
 <html>
 <head>
 	<title>D3.js KEGG database visualization</title>
-	<script src="//d3js.org/d3.v3.min.js"></script>
+	<script src="./d3.v3.min.js"></script>
 	<script src="./App.js"></script>
+	<style>
+
+        .node {
+            stroke: #fff;
+            stroke-width: 3.5px;
+        }
+        .link {
+            stroke: #CCC;
+            stroke-opacity: 1;
+        }
+		.node_text {
+    font-weight: 250;
+    font-size: 16px;
+    stroke: none;
+    fill: rgb(0,0,0);
+}
+
+</style>
 </head>
 <body>
-	<div id="canvas"></div>
+	
+	<script>
+
+function d3Network(jsonFile, width, height) {
+	    
+    var force = d3.layout.force()
+        .charge(-300)
+        .linkDistance(15)
+        .size([width, height]);
+
+    var svg = d3.select("body").append("svg")
+		.attr("fill", "#DBF3FF")
+        .attr("width", width)
+        .attr("height", height)
+		.attr("class", "chart");
+    
+	// 从服务器加载网络的json文件
+    d3.json(jsonFile, function (error, graph) {
+        if (error) throw error;
+		
+		console.log(graph);
+		
+        force
+            .nodes(graph.nodes)
+            .links(graph.links)
+            .start();
+
+		var color = d3.scale.category20();
+		// 配置网络之中的边
+        var link = svg.selectAll(".link")
+            .data(graph.links)
+            .enter().append("line")
+            .attr("class", "link")
+            .style("stroke-width", function(l) {
+				return l.value / 2;
+			});
+
+		// 配置网络之中的节点
+        var node = svg.selectAll(".node")
+            .data(graph.nodes)
+            .enter().append("circle")
+            .attr("class", "node")
+            .attr("r", function (d) {
+                return Math.sqrt(d.size*0.8)+5;
+            })
+            .style("fill", function (d) {
+                return color(d.group);
+            })
+            .style("opacity", 0.95)
+            .call(force.drag);
+
+		// 节点的标签
+		node.append("svg:text")
+		    .attr("class", "node_text")
+			.attr("text-anchor", "middle")
+			.attr("dy", ".3em")
+			.attr("pointer-events", "none")
+			.text(function (d) {
+				return d.name;
+			});
+			
+        // node.append("title")
+		//	   .attr("class", "tooltip")
+        //     .style("font-size", 16)
+        //     .html(function (d) {
+        //         return "name:\t" + d.name + "\ntype:\t" + d.type + "\nlinks:\t" + d.size;
+        //     });
+
+		// 实时更新网络的动态
+        force.on("tick", function () {
+            link.attr("x1", function (d) { return d.source.x; })
+                .attr("y1", function (d) { return d.source.y; })
+                .attr("x2", function (d) { return d.target.x; })
+                .attr("y2", function (d) { return d.target.y; });
+
+            node.attr("cx", function (d) { return d.x; })
+                .attr("cy", function (d) { return d.y; });
+        });
+    });
+}
+</script>
+
+	<script>
+		d3Network("./net.json", 960, 800);
+		</script>
 </body>
 </html>
