@@ -29,8 +29,7 @@ function d3Network(jsonFile, width, height,  nodeMin = 6) {
         .gravity(0.25)
         .size([width, height]);
 
-    var svg = d3.select("body").append("svg")
-		.attr("fill", "#DBF3FF")
+    var svg = d3.select("body").append("svg")		
         .attr("width", width)
         .attr("height", height)
 		.attr("class", "chart");
@@ -63,6 +62,14 @@ var nodes = svg.selectAll('g.gnode')
   .enter()
   .append('g')
   .classed('node', true);
+  
+  var getColor = function(d) {
+	 if (d.color != null) {
+		return d.color;
+	 } else {
+		return color(d.group);
+	 }
+  }
 
 // Add one circle in each group
 var node = nodes.append("circle")
@@ -73,9 +80,7 @@ var node = nodes.append("circle")
       }
       return nodeMin;
             })
-            .style("fill", function (d) {
-                return color(d.group);
-            })
+            .style("fill", getColor)
             .style("opacity", 1)
             .call(force.drag);
 			
@@ -84,9 +89,7 @@ var texts = svg.selectAll("text.label")
                 .enter().append("text")
                 .attr("class", "label")
 				.attr("font-family", "Microsoft YaHei")
-                .attr("fill", function(d) {
-					return color(d.group);
-				})
+                .attr("fill", getColor)
 				.attr("font-size", function(d) {
 					var size = d.size / 3;
 					var min = 3;

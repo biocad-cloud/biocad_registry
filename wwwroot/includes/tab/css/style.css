@@ -8,7 +8,7 @@
     position: relative;
 	margin: 40px auto;
 	width: 100%;
-    height: 750px;
+    height: 800px;
 }
 
 .tabs input {
@@ -158,7 +158,7 @@
     background: #fff;
 	position: relative;
     width: 100%;
-	height: 700px;
+	height: 750px;
 	z-index: 5;
 	overflow: hidden;
     box-shadow: 0 -2px 3px -2px rgba(0,0,0,0.2), 0 2px 2px rgba(0,0,0,0.1);

@@ -12,7 +12,7 @@ Module Debugger
     Sub D3NetworkTest
         Call NetGraph _
             .Load("C:\Users\xieguigang\OneDrive\4.7\sqq\drugbank-drug-pathway.knowledge_network") _
-            .FromNetwork _
+            .FromNetwork(true) _
             .SaveTo("./net.json")
     End Sub
 End Module
