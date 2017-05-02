@@ -11,21 +11,22 @@
             stroke-width: 3.5px;
         }
         .link {
-            stroke: #CCC;
-            stroke-opacity: 1;
+            stroke: gray;
+            stroke-opacity: 0.8;
         }
+		
 </style>
 </head>
-<body>
+<body id="chart">
 	
 	<script>
 
-function d3Network(jsonFile, width, height) {
+function d3Network(jsonFile, width, height,  nodeMin = 6) {
 	    
     var force = d3.layout.force()
-         .linkDistance(375)
-        .charge(-200)
-        .gravity(0.75)
+          .charge(-100)
+    .linkDistance(20)
+        .gravity(0.25)
         .size([width, height]);
 
     var svg = d3.select("body").append("svg")
@@ -67,12 +68,15 @@ var nodes = svg.selectAll('g.gnode')
 var node = nodes.append("circle")
   .attr("class", "node")
   .attr("r", function (d) {
-                return Math.sqrt(d.size*0.8)+5;
+                 if(d.size>=0){
+        return nodeMin + Math.pow(d.size, 1/(2.7));
+      }
+      return nodeMin;
             })
             .style("fill", function (d) {
                 return color(d.group);
             })
-            .style("opacity", 0.95)
+            .style("opacity", 1)
             .call(force.drag);
 			
 var texts = svg.selectAll("text.label")
@@ -84,7 +88,13 @@ var texts = svg.selectAll("text.label")
 					return color(d.group);
 				})
 				.attr("font-size", function(d) {
-					return d.size + "px";
+					var size = d.size / 3;
+					var min = 3;
+					
+					if (size < min) {
+						size = min;
+					}
+					return size + "px";
 				})
                 .text(function(d) {  return d.name;  });
 			        
