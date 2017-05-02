@@ -8,7 +8,7 @@
 
         .node {
             stroke: #fff;
-            stroke-width: 3.5px;
+            stroke-width: 2.5px;
         }
         .link {
             stroke: gray;
@@ -21,7 +21,7 @@
 	
 	<script>
 
-function d3Network(jsonFile, width, height,  nodeMin = 6) {
+function d3Network(jsonFile, width, height,  nodeMin = 6, d3color = true) {
 	    
     var force = d3.layout.force()
           .charge(-100)
@@ -64,7 +64,7 @@ var nodes = svg.selectAll('g.gnode')
   .classed('node', true);
   
   var getColor = function(d) {
-	 if (d.color != null) {
+	 if (!d3color && d.color != null) {
 		return d.color;
 	 } else {
 		return color(d.group);
