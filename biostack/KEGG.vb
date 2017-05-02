@@ -12,11 +12,11 @@ Imports SMRUCC.WebCloud.HTTPInternal.Platform
         MyBase.New(main)
 
         If mysql <= New ConnectionUri With {
-            .Database = App.GetVariable("database"),
-            .IPAddress = App.GetVariable("host"),
-            .Password = App.GetVariable("password"),
-            .ServicesPort = App.GetVariable("port"),
-            .User = App.GetVariable("user")
+            .Database     = App.GetVariable("database"),
+            .IPAddress    = App.GetVariable("host"),
+            .Password     = App.GetVariable("password"),
+            .Port         = App.GetVariable("port"),
+            .User         = App.GetVariable("user")
         } = -1.0R Then
 
             Throw New Exception("No MySQL database connection!")
