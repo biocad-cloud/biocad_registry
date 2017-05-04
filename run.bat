@@ -1,1 +1,1 @@
-"./App/httpd.exe" /start /wwwroot "./wwwroot" /port 80 /threads 4
+"./App/httpd.exe" /start /wwwroot "./wwwroot" /port 80 /threads 10

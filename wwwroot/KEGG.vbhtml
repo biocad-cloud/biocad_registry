@@ -16,7 +16,7 @@
 			<div class="small-12 columns">
 		<br />		
 			
-			<h1><%= @KEGG %></h1>
+			<h2><%= @KEGG %></h2>
     
 			<%= ./includes/tab/kegg.vbhtml %>
 			<%= ./includes/breadcrumb/kegg.vbhtml %>

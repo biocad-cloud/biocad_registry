@@ -2,10 +2,24 @@
 <html>
 <head>
 	<title>D3.js KEGG database visualization</title>
-	<script src="//d3js.org/d3.v3.min.js"></script>
+	<script src="./d3.v3.min.js"></script>
 	<script src="./App.js"></script>
+	<style>
+
+        .node {
+            stroke: #fff;
+            stroke-width: 2.5px;
+        }
+        .link {
+            stroke: gray;
+            stroke-opacity: 0.8;
+        }
+		
+</style>
 </head>
-<body>
-	<div id="canvas"></div>
+<body id="chart">
+		<script>
+		d3Network("./net.json", 850, 650);
+		</script>
 </body>
 </html>

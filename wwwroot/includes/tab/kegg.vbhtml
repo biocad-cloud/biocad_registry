@@ -19,7 +19,8 @@
 			
 		        <div class="content">
 			        <div class="content-1">
-						<iframe src="./D3.js/kegg-net/KEGG.d3js.html"></iframe>
+					<iframe width=850 height=840 frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no" allowtransparency="yes" src="./D3.js/kegg-net/KEGG.d3js.html"></iframe>
+					
 				    </div>
 			        <div class="content-2">
 						<h2>Services</h2>
