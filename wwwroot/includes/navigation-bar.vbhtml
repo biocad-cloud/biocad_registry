@@ -13,8 +13,8 @@
             <!-- Right Nav Section -->
             <ul class="left">
 				<li class="$active1"><a href="/"><i class="fa fa-home"></i> Home</a></li>
-				<li class="$active2"><a href="./Download.html"><i class="fa fa-download"></i> Data Analysis</a></li>              
-				<li class="$active3"><a href="./Community.html"><i class="fa fa-github"></i> Community</a></li>
+				<li class="$active2"><a href="/Download.vbhtml"><i class="fa fa-download"></i> Data Analysis</a></li>              
+				<li class="$active3"><a href="/Help.vbhtml"><i class="fa fa-github"></i> Help</a></li>
             </ul>
 			<ul class="right">
 				<li class="has-form right">
