@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html>
+<head>
 	<%= ./includes/head.vbhtml %>
 <%= ./includes/breadcrumb/styles.vbhtml %>
 
 	<?vb $title = "KEGG reference navigation" ?>
 	<?vb $active2 = "active" ?>
+</head>
 <body>
 
 	<div id="main-wrapper">

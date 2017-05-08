@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html>
+<head>
 	<%= ../../includes/head.vbhtml %>
 	<%= ../../includes/breadcrumb/styles.vbhtml %>
 	
 	<?vb $title = "COG myva online annotation" ?>
 	<?vb $active2 = "active" ?>
 	<?vb $appname = "COG myva analysis" ?>
+</head>
 <body>
 
 	<div id="main-wrapper">
