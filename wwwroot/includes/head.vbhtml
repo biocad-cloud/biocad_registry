@@ -1,4 +1,4 @@
-<head>
+
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
@@ -24,7 +24,6 @@
     <link rel="stylesheet" href="/styles/magnific-popup.css">
     <link rel="stylesheet" href="/styles/css.css">
     <link rel="stylesheet" href="/styles/main.css">
-		
-	<script src="/lib/modernizr.js"></script>
-	<script src="https://use.fontawesome.com/f931c644d8.js"></script>
-</head>
+							
+    <script src="/lib/modernizr.js"></script>
+    <script src="https://use.fontawesome.com/f931c644d8.js"></script>
