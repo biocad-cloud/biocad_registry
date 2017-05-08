@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html>
+<head>
 	<%= ./includes/head.vbhtml %>
 		
 	<?vb $title = "The requested page can't be found." ?>
 	<?vb $active1 = "active" ?>
+</head>
 <body>
 
 	<div id="main-wrapper">
