@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html>
-	<%= ./includes/head.vbhtml %>
-<%= ./includes/breadcrumb/styles.vbhtml %>
-
+<head>
+	<%= ../includes/head.vbhtml %>
+	<%= ../includes/breadcrumb/styles.vbhtml %>
+	<%= ../includes/tab/styles.vbhtml %>
+	
 	<?vb $title = "KEGG reference navigation" ?>
 	<?vb $active2 = "active" ?>
+</head>
 <body>
 
 	<div id="main-wrapper">
@@ -12,14 +15,14 @@
 		<%= ./includes/navigation-bar.vbhtml %>
     
 		<div class="row">
-			<div class="small-12 columns">        
+			<div class="small-12 columns">
+		<br />		
 			
-			<br />
+			<h2><%= @KEGG %></h2>
+    
+			<%= ./includes/tab/kegg.vbhtml %>
+			<%= ./includes/breadcrumb/kegg.vbhtml %>
 			
-			<h1><%= @Uniprot %></h1>
-	
-			<%= ./includes/breadcrumb/uniprot.vbhtml %>
-
 			</div>
 		</div>
 	

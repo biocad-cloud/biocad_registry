@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html>
+<head>
 	<%= ./includes/head.vbhtml %>
 	<%= ./includes/breadcrumb/styles.vbhtml %>
 	
 	<?vb $title = "Welcome to the GCModeller biostack platform" ?>
 	<?vb $active1 = "active" ?>
+</head>
 <body>
 
 	<div id="main-wrapper">

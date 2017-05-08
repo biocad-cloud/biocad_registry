@@ -2,8 +2,8 @@
 <html>
 <head>
 	<%= ./includes/head.vbhtml %>
-	<?vb $title = "Welcome to the GCModeller biostack platform" ?>
-	<?vb $active1 = "active" ?>
+	<?vb $title = "Data Analysis Tools" ?>
+	<?vb $active2 = "active" ?>
 </head>
 <body>
 
@@ -16,7 +16,7 @@
 				<h1>Biostack platform</h1>
 				<h3>Navigate reference database</h3>
 				<ul>
-					<li><a href="./KEGG.vbhtml"><%= @KEGG %></a></li>
+					<li><a href="/Application/COG_myva/index.vbhtml"><%= @COG_myva %></a></li>
 					<li><a href="./Uniprot.vbhtml"><%= @Uniprot %></a></li>
 					<li><a href="./RegPrecise.vbhtml"><%= @RegPrecise %></a></li>
 				</ul>
