@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 	<%= ../../includes/head.vbhtml %>
 	<%= ../../includes/breadcrumb/styles.vbhtml %>
@@ -17,7 +17,21 @@
 				<h1>COG myva</h1>
 				
 				<form>
-					Upload your protein fasta: <input type="file"></input>
+		Paste your sequence in FASTA format:
+		<input type="textarea"></input>
+		Or upload your protein fasta: 
+		<input type="file"></input>
+		
+		blast+ parameters:
+		E-value: <input type="text"></input>
+		WordSize: <input type="text"></input>
+		matrix:<input type="file"></input>
+		
+		Export parameters:
+		Identities: <input type="text"></input>
+		Coverage: <input type="text"></input>
+		
+		<input type="submit"></input>
 				</form>
 				
 				<%= ../../includes/breadcrumb/applications.vbhtml %>
