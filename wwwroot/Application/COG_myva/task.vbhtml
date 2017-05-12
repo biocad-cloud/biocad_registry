@@ -4,6 +4,8 @@
     <%= ../../includes/head.vbhtml %>
     <%= ../../includes/breadcrumb/styles.vbhtml %>
 
+    <script type="text/javascript" src="/lib/jquery-2.1.1.min.js"></script>
+
     <?vb $title = "COG myva online annotation" ?>
     <?vb $active2 = "active" ?>
     <?vb $appname = "Check COG task progress" ?>
