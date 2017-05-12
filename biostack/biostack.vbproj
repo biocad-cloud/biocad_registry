@@ -89,6 +89,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Tasks\COGMyva.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -118,6 +119,10 @@
     <ProjectReference Include="..\..\GCModeller\src\GCModeller\data\KEGG\KEGG.vbproj">
       <Project>{68849e9f-359e-4844-a6db-0cae421594ad}</Project>
       <Name>KEGG</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\GCModeller\src\interops\localblast\LocalBLAST\NCBI.Extensions.localblast.vbproj">
+      <Project>{c6b843b8-f990-4faf-98de-a20efc8b69f7}</Project>
+      <Name>NCBI.Extensions.localblast</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\GCModeller\src\runtime\httpd\httpd\httpd.vbproj">
       <Project>{ce825e49-0386-4ab1-b452-b104ed3f7deb}</Project>
@@ -160,5 +165,7 @@
       <Name>LibMySQL</Name>
     </ProjectReference>
   </ItemGroup>
+  <Import Project="..\..\GCModeller\src\Settings\Shared\Settings.FileSystem\Settings.FileSystem.projitems" Label="Shared" />
+  <Import Project="..\..\GCModeller\src\Settings\Shared\Settings.Configuration\Settings.Configuration.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
