@@ -8,6 +8,8 @@
 
 */
 
+// js之中每隔一段时间都会像服务器请求数据，更新DOM的属性，从而能够实时显示任务的进度
+
 function showProgress(div, url) {
 
 var node = document.getElementByID(div);
@@ -36,3 +38,16 @@ $.getJSON( url, function( data ) {
 });
 
 }
+
+
+function get_data()
+{
+$.ajax({
+url: 'getjson.php',
+success: function(data) {
+$('.result').html(data);
+}
+});
+}
+
+setInterval("get_data()", 30 * 1000);
