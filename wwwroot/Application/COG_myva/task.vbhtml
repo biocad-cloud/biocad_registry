@@ -4,7 +4,7 @@
     <%= ../../includes/head.vbhtml %>
     <%= ../../includes/breadcrumb/styles.vbhtml %>
 
-    <script type="text/javascript" src="/lib/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
 
     <?vb $title = "COG myva online annotation" ?>
     <?vb $active2 = "active" ?>
@@ -21,7 +21,7 @@
                 <h1>COG myva annotation progress</h1>
 
                 <%= ../../includes/progress-indicator/indicator.vbhtml %>
-                <?vb $url = "/Application/COG_task.vbs?uid=$uid" ?>
+                <?vb $url = "/Application/getTask_status.vbs?uid=$uid" ?>
 
                 <%= ../../includes/breadcrumb/applications.vbhtml %>
             </div>

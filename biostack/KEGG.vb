@@ -19,7 +19,7 @@ Imports SMRUCC.WebCloud.HTTPInternal.Platform
             .User         = App.GetVariable("user")
         } = -1.0R Then
 
-            Throw New Exception("No MySQL database connection!")
+            ' Throw New Exception("No MySQL database connection!")
         End If
     End Sub
 

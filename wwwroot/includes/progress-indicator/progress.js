@@ -26,10 +26,16 @@ function showProgress(div, url) {
     var node = document.getElementById(div);
     var ul   = document.createElement("ul");
 
-    $.getJSON(url, function(data) {
+    console.log(url + " ==> " + div);
+    console.log(node);
+    console.log(ul);
+
+    jQuery.getJSON(url, function(data) {
 
         var current = data.current;
         var list = [];
+
+        console.log(data);
 
         data.progress.forEach(function (name, i) {
 
@@ -37,10 +43,10 @@ function showProgress(div, url) {
 
             if (i == current) {
                 // 字体加粗表示当前在执行的任务
-                progress.html = "<strong>" + name + "</strong>";
+                progress.innerHTML = "<strong>" + name + "</strong>";
             } else {
                 // 字体使用灰色，表示已经执行完毕或者还没有执行的任务
-                progress.html = name;
+                progress.innerHTML = name;
                 progress.style = "color:grey";
             }
 
@@ -59,13 +65,13 @@ function showProgress(div, url) {
                 success: function (prog) {
 
                     // 恢复状态
-                    list[current].html = prog.progress[current];
+                    list[current].innerHTML = prog.progress[current];
                     list[current].style = "color:grey";
 
                     current = prog.current;
 
                     // 将当前的任务置为加粗
-                    list[current].html = "<strong>" + prog.progress[current] + "</strong>";
+                    list[current].innerHTML = "<strong>" + prog.progress[current] + "</strong>";
                     list[current].style = null;
                 }
             });
