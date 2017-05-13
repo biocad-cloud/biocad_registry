@@ -1,5 +1,6 @@
 ﻿Imports System.Text
 Imports Microsoft.VisualBasic.CommandLine.Reflection
+Imports Microsoft.VisualBasic.Mathematical.HashMaps
 Imports SMRUCC.WebCloud.HTTPInternal.AppEngine
 Imports SMRUCC.WebCloud.HTTPInternal.AppEngine.APIMethods
 Imports SMRUCC.WebCloud.HTTPInternal.AppEngine.APIMethods.Arguments
@@ -49,13 +50,6 @@ Imports SMRUCC.WebCloud.HTTPInternal.Scripting
         Return 0
     End Function
 
-    <ExportAPI("/Application/getTask_status.vbs")>
-    <[GET](GetType(String))>
-    Public Function GetTaskStatus(request As HttpRequest, response As HttpResponse) As Boolean
-
-        Return True
-    End Function
-
 #Region "Task Manager"
 
     <ExportAPI("/Application/TaskManager.vbhtml")>
@@ -67,8 +61,33 @@ Imports SMRUCC.WebCloud.HTTPInternal.Scripting
         End If
 
         With PlatformEngine.TaskPool
+            ' 因为任务池之中只有正在执行或者处于排队的任务对象
+            ' 所以查询执行完成的任务只能够通过数据库查询来获取
+            Dim position% = .GetTaskQueuePosition(uid)
 
+            If position > -1 Then
+                ' 任务还在排队，则重定向到排队查看页面
+                Dim url$ = "/Application/TaskPending.vbhtml?uid=" & uid
+                Return response <= url
+            End If
+
+            ' 任务不在队列之中，说明任务已经执行完成了或者正在执行之中
+            Dim task As Task = .GetRunningTask(uid)
+
+            If task Is Nothing Then
+                ' 任务已经执行完毕，则需要查询数据库来获取结果页面
+                Dim hash& = JenkinsHash.hash(uid) ' 为了更加快速的查询数据库，任务表是以哈数值作为主键的，这里需要计算出哈希值
+                Dim SQL$
+                Dim url$
+                Return response <= url
+            Else
+                ' 任务还在执行状态，则返回状态json
+                Dim status As TaskProgress = task.GetProgress
+                Call response.WriteJSON(status)
+            End If
         End With
+
+        Return True
     End Function
 #End Region
 End Class
