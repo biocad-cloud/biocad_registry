@@ -55,4 +55,20 @@ Imports SMRUCC.WebCloud.HTTPInternal.Scripting
 
         Return True
     End Function
+
+#Region "Task Manager"
+
+    <ExportAPI("/Application/TaskManager.vbhtml")>
+    Public Function TaskManager(request As HttpRequest, response As HttpResponse) As Boolean
+        Dim uid$ = request.URLParameters("uid")
+
+        If uid.StringEmpty Then
+            Throw New EntryPointNotFoundException("No task uid was provided!")
+        End If
+
+        With PlatformEngine.TaskPool
+
+        End With
+    End Function
+#End Region
 End Class
