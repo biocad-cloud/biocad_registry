@@ -73,10 +73,12 @@ function showProgress(div, url) {
                     // 将当前的任务置为加粗
                     list[current].innerHTML = "<strong>" + prog.progress[current] + "</strong>";
                     list[current].style = null;
+
+                    console.log(prog);
                 }
             });
         }
 
-        setInterval("update()", 30 * 1000);
+        setInterval(update, 3 * 1000);
     });
 }
