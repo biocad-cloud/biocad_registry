@@ -18,7 +18,7 @@
             <div class="small-12 columns">
                 <h1>COG myva</h1>
 
-                <form method="POST" action="/Application/tools/COG_myva.vbs">
+                <form method="POST" enctype="multipart/form-data" action="/Application/COG_myva/COG_myva.vbs">
                     <fieldset>
                         <legend>
                             Enter Query Sequence
@@ -35,17 +35,17 @@
                         <legend>
                             blast+ Parameters
                         </legend>
-                        E-value: <input type="text"></input>
-                        WordSize: <input type="text"></input>
-                        matrix:<input type="file"></input>
+                        E-value: <input name="evalue" type="text"></input>
+                        WordSize: <input name="wordsize" type="text"></input>
+                        matrix:<input name="blastp.matrix" type="file"></input>
                     </fieldset>
                     
                     <fieldset>
                         <legend>
                             Export parameters:
                         </legend>
-                        Identities: <input type="text"></input>
-                        Coverage: <input type="text"></input>
+                        Identities: <input name="identities" type="text"></input>
+                        Coverage: <input name="coverage" type="text"></input>
                     </fieldset>
                     
                     <button align="center" name="submit">Run Annotation</button>
