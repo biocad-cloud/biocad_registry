@@ -1,13 +1,15 @@
-﻿Imports Microsoft.VisualBasic.Language
+﻿Imports System.IO.Compression
+Imports Microsoft.VisualBasic.Language
 Imports SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST
 Imports SMRUCC.WebCloud.HTTPInternal.Platform
 
 Public Class COGMyva : Inherits TaskModel
 
-    Dim query$
+    Dim query$, outZIP$
 
     Sub New(fasta$)
         query = fasta
+        outZIP = query.TrimSuffix & "_myva.zip"
     End Sub
 
     ''' <summary>
@@ -33,17 +35,33 @@ Public Class COGMyva : Inherits TaskModel
         Dim qvsTable$ = qvs.TrimSuffix & ".sbh.csv"
         Dim svqTable$ = svq.TrimSuffix & ".sbh.csv"
 
-        Call Apps.localblast.SBH_Export_Large(qvs, qvsTable)
-        Call Apps.localblast.SBH_Export_Large(svq, svqTable)
+        Call Apps.localblast.ExportBBHLarge(qvs, qvsTable)
+        Call Apps.localblast.ExportBBHLarge(svq, svqTable)
 
         ' 使用bbh方法进行COG注释
         current = ++i
 
         Dim bbh$ = qvs.TrimSuffix & "__vs_" & svq.BaseName & ".bbh.csv"
-        Call Apps.localblast.sbh2bbh(qvsTable, svqTable, _out:=bbh)
+        Call Apps.localblast.BBHExport2(qvsTable, svqTable, _out:=bbh)
 
-        Dim MyvaCOG$ =  bbh .TrimSuffix & ".myvaCOG.csv"
+        Dim MyvaCOG$ = bbh.TrimSuffix & ".myvaCOG.csv"
+        Call Apps.localblast.COG_myva(bbh, GCModeller.FileSystem.COGs & "/Myva/Whog.XML", MyvaCOG)
 
+        ' 进行一些简单的统计分析以及绘图可视化
+        current = ++i
+
+        Dim statices = MyvaCOG.TrimSuffix & ".profiling.csv"
+        Dim plot$ = MyvaCOG.TrimSuffix & ".plot.png"
+        Call Apps.localblast.COGStatics(MyvaCOG, _out:=statices)
+        Call Apps.eggHTS.COGCatalogProfilingPlot(MyvaCOG, _out:=plot)
+
+        ' 进行注释报告的结果的打包操作
+        current = ++i
+
+        Dim out$() = {
+            svq, qvs, qvsTable, svqTable, bbh, MyvaCOG, statices, plot
+        }
+        Call GZip.AddToArchive(outZIP, out, ArchiveAction.Replace, Overwrite.Always, CompressionLevel.Fastest)
     End Sub
 
     Protected Overrides Function contents() As String()
@@ -51,7 +69,8 @@ Public Class COGMyva : Inherits TaskModel
             "Blast+ myva database search",
             "Export blastp table",
             "COG annotation",
-            "Data Plot"
+            "Data Plot",
+            "Report packing"
         }
     End Function
 End Class
