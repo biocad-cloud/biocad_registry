@@ -16,7 +16,7 @@ Public Class COGMyva : Inherits Task
         End Get
     End Property
 
-    Sub New(fasta$, callback As Action)
+    Sub New(fasta$, callback As Callback)
         Call MyBase.New(callback)
 
         query = fasta
@@ -74,9 +74,9 @@ Public Class COGMyva : Inherits Task
         }
         Call GZip.AddToArchive(
             outZIP,
-            out, 
-            ArchiveAction.Replace, 
-            Overwrite.Always, 
+            out,
+            ArchiveAction.Replace,
+            Overwrite.Always,
             CompressionLevel.Fastest)
     End Sub
 
