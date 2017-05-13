@@ -3,7 +3,10 @@ Imports Microsoft.VisualBasic.Language
 Imports SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST
 Imports SMRUCC.WebCloud.HTTPInternal.Platform
 
-Public Class COGMyva : Inherits TaskModel
+''' <summary>
+''' COG myva在线注释任务
+''' </summary>
+Public Class COGMyva : Inherits Task
 
     Dim query$, outZIP$
 
@@ -13,7 +16,9 @@ Public Class COGMyva : Inherits TaskModel
         End Get
     End Property
 
-    Sub New(fasta$)
+    Sub New(fasta$, callback As Action)
+        Call MyBase.New(callback)
+
         query = fasta
         outZIP = query.TrimSuffix & "_myva.zip"
     End Sub
@@ -67,7 +72,12 @@ Public Class COGMyva : Inherits TaskModel
         Dim out$() = {
             svq, qvs, qvsTable, svqTable, bbh, MyvaCOG, statices, plot
         }
-        Call GZip.AddToArchive(outZIP, out, ArchiveAction.Replace, Overwrite.Always, CompressionLevel.Fastest)
+        Call GZip.AddToArchive(
+            outZIP,
+            out, 
+            ArchiveAction.Replace, 
+            Overwrite.Always, 
+            CompressionLevel.Fastest)
     End Sub
 
     Protected Overrides Function contents() As String()

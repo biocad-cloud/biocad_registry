@@ -4,6 +4,7 @@ Imports SMRUCC.WebCloud.HTTPInternal.AppEngine
 Imports SMRUCC.WebCloud.HTTPInternal.AppEngine.APIMethods
 Imports SMRUCC.WebCloud.HTTPInternal.AppEngine.APIMethods.Arguments
 Imports SMRUCC.WebCloud.HTTPInternal.Platform
+Imports SMRUCC.WebCloud.HTTPInternal.Scripting
 
 <[Namespace]("Application")> Public Class BiostackApp : Inherits WebApp
 
@@ -17,7 +18,7 @@ Imports SMRUCC.WebCloud.HTTPInternal.Platform
     ''' <param name="request"></param>
     ''' <param name="response"></param>
     ''' <returns></returns>
-    <ExportAPI("/Application/tools/COG_myva.vbs")>
+    <ExportAPI("/Application/COG_myva/COG_myva.vbs")>
     <POST(GetType(String))>
     Public Function COGMyva(request As HttpPOSTRequest, response As HttpResponse) As Boolean
         Dim fastaText$ = request.POSTData.Form("fasta.text")
@@ -31,9 +32,19 @@ Imports SMRUCC.WebCloud.HTTPInternal.Platform
             Call fastaText.SaveTo(fastafile, Encoding.ASCII)
         End If
 
-        Dim task As New COGMyva(fastafile)
+        Dim task As New COGMyva(
+            fastafile, Sub()
+                           ' 发送电子邮件给用户告知结果
+                       End Sub)
+
         ' 将任务添加到服务器内部的任务队列之中
-        Call PlatformEngine .TaskPool .Queue ( task )
+        Call PlatformEngine.TaskPool.Queue(task)
+        ' 返回结果页面
+
+        Dim html$ = wwwroot & "/Application/COG_myva/result.vbhtml"
+        html = vbhtml.ReadHTML(wwwroot, html)
+
+        Call response.WriteHTML(html)
 
         Return 0
     End Function
@@ -41,7 +52,7 @@ Imports SMRUCC.WebCloud.HTTPInternal.Platform
     <ExportAPI("/Application/getTask_status.vbs")>
     <[GET](GetType(String))>
     Public Function GetTaskStatus(request As HttpRequest, response As HttpResponse) As Boolean
-        Call response.WriteJSON(New COGMyva("").GetProgress)
+
         Return True
     End Function
 End Class
