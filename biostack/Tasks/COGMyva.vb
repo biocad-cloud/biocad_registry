@@ -7,6 +7,12 @@ Public Class COGMyva : Inherits TaskModel
 
     Dim query$, outZIP$
 
+    Public ReadOnly Property ZIP As String
+        Get
+            Return outZIP
+        End Get
+    End Property
+
     Sub New(fasta$)
         query = fasta
         outZIP = query.TrimSuffix & "_myva.zip"
