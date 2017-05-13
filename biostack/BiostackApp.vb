@@ -21,14 +21,14 @@ Imports SMRUCC.WebCloud.HTTPInternal.Scripting
     <ExportAPI("/Application/COG_myva/COG_myva.vbs")>
     <POST(GetType(String))>
     Public Function COGMyva(request As HttpPOSTRequest, response As HttpResponse) As Boolean
-        Dim fastaText$ = request.POSTData.Form("fasta.text")
         Dim fastafile$ = App.AppSystemTemp & $"/COG_myva/{App.NextTempName}/query.fasta"
 
-        If fastaText.StringEmpty Then
+        If Not request.POSTData.Form.ContainsKey("fasta.text") Then
             ' 用户是通过文件上传的
             Call request.POSTData.Files("fasta.file").SaveAs(fastafile)
         Else
             ' 用户是通过文本框粘贴序列数据上传的
+            Dim fastaText$ = request.POSTData.Form("fasta.text")
             Call fastaText.SaveTo(fastafile, Encoding.ASCII)
         End If
 

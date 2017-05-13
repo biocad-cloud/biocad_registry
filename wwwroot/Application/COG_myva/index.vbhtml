@@ -18,7 +18,7 @@
             <div class="small-12 columns">
                 <h1>COG myva</h1>
 
-                <form method="POST" action="/Application/tools/COG_myva.vbs">
+                <form method="POST" enctype="multipart/form-data" action="/Application/COG_myva/COG_myva.vbs">
                     <fieldset>
                         <legend>
                             Enter Query Sequence
