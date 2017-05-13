@@ -15,4 +15,11 @@ Imports SMRUCC.WebCloud.HTTPInternal.Platform
     Public Function COGMyva(request As HttpPOSTRequest, response As HttpResponse) As Boolean
 
     End Function
+
+    <ExportAPI("/Application/getTask_status.vbs")>
+    <[GET](GetType(String))>
+    Public Function GetTaskStatus(request As HttpRequest, response As HttpResponse) As Boolean
+        Call response.WriteJSON(New COGMyva("").GetProgress)
+        Return True
+    End Function
 End Class

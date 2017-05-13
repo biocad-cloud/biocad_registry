@@ -29,6 +29,10 @@ Public Class COGMyva : Inherits TaskModel
     End Function
 
     Protected Overrides Function contents() As String()
+        current = {0, 1, 2, 3}.Random
+
+        Call current.ToString.__INFO_ECHO
+
         Return {
             "Blast+ myva database search",
             "Export blastp table",
