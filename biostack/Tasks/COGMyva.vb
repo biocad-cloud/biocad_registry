@@ -16,6 +16,12 @@ Public Class COGMyva : Inherits Task
         End Get
     End Property
 
+    Public Overrides ReadOnly Property Workspace As String
+        Get
+            Return outZIP.ParentPath
+        End Get
+    End Property
+
     Sub New(fasta$, callback As Callback)
         Call MyBase.New(callback)
 

@@ -18,10 +18,11 @@ Imports SMRUCC.WebCloud.HTTPInternal.Scripting
     ''' <returns></returns>
     Public ReadOnly Property TaskPool As New TaskPool
 
-    ReadOnly mysql As MySQL
+    ReadOnly mysql As New MySQL
 
     Public Sub New(main As PlatformEngine)
         MyBase.New(main)
+        Call mysql.__init
     End Sub
 
     ''' <summary>
@@ -53,11 +54,13 @@ Imports SMRUCC.WebCloud.HTTPInternal.Scripting
         End With
 
         Dim task As New COGMyva(
-            fastafile, Sub(success As Boolean)
+            fastafile, Sub(success As Boolean, taskData As TaskValue)
                            ' 发送电子邮件给用户告知结果
                            If Not email.StringEmpty Then
                                ' send notification email
-                           End If                                                   
+                           End If
+
+                           Call mysql.ExecInsert(taskData)
                        End Sub) With
             {
                 .TaskData = New TaskValue With {

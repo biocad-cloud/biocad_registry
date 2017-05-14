@@ -9,18 +9,8 @@ Imports SMRUCC.WebCloud.HTTPInternal.Platform
     ReadOnly mysql As New MySQL
 
     Public Sub New(main As PlatformEngine)
-        MyBase.New(main)
-
-        If mysql <= New ConnectionUri With {
-            .Database     = App.GetVariable("database"),
-            .IPAddress    = App.GetVariable("host"),
-            .Password     = App.GetVariable("password"),
-            .Port         = App.GetVariable("port"),
-            .User         = App.GetVariable("user")
-        } = -1.0R Then
-
-            ' Throw New Exception("No MySQL database connection!")
-        End If
+       Call  MyBase.New(main)
+        Call mysql .__init        
     End Sub
 
     <ExportAPI("/KEGG/D3.js/pathway-network.json")>
