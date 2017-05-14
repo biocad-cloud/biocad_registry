@@ -1,6 +1,7 @@
 ﻿Imports System.Text
 Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.Mathematical.HashMaps
+Imports SMRUCC.WebCloud.DataCenter.Platform
 Imports SMRUCC.WebCloud.HTTPInternal.AppEngine
 Imports SMRUCC.WebCloud.HTTPInternal.AppEngine.APIMethods
 Imports SMRUCC.WebCloud.HTTPInternal.AppEngine.APIMethods.Arguments
@@ -8,6 +9,12 @@ Imports SMRUCC.WebCloud.HTTPInternal.Platform
 Imports SMRUCC.WebCloud.HTTPInternal.Scripting
 
 <[Namespace]("Application")> Public Class BiostackApp : Inherits WebApp
+
+    ''' <summary>
+    ''' 用户任务池，排队队列
+    ''' </summary>
+    ''' <returns></returns>
+    Public ReadOnly Property TaskPool As New TaskPool
 
     Public Sub New(main As PlatformEngine)
         MyBase.New(main)
@@ -50,14 +57,14 @@ Imports SMRUCC.WebCloud.HTTPInternal.Scripting
                        End Sub)
 
         ' 将任务添加到服务器内部的任务队列之中
-        Call PlatformEngine.TaskPool.Queue(task)
+        Call TaskPool.Queue(task)
         ' 返回结果页面
 
         Dim html$ = wwwroot & "/Application/COG_myva/result.vbhtml"
         html = vbhtml.ReadHTML(wwwroot, html)
 
         Call response.WriteHTML(html)
-        
+
         Return 0
     End Function
 
@@ -71,7 +78,7 @@ Imports SMRUCC.WebCloud.HTTPInternal.Scripting
             Throw New EntryPointNotFoundException("No task uid was provided!")
         End If
 
-        With PlatformEngine.TaskPool
+        With TaskPool
             ' 因为任务池之中只有正在执行或者处于排队的任务对象
             ' 所以查询执行完成的任务只能够通过数据库查询来获取
             Dim position% = .GetTaskQueuePosition(uid)
