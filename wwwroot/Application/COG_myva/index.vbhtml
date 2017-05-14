@@ -48,6 +48,15 @@
                         Coverage: <input name="coverage" type="text"></input>
                     </fieldset>
                     
+					<fieldset>
+						<legend>
+							Optional
+						</legend>
+						<input name="task.title" type="text"></input>
+						<input name="task.describ" type="text"></input>
+						<input name="task.email" type="text"></input>
+					</fieldset>
+					
                     <button align="center" name="submit">Run Annotation</button>
                 </form>
 

@@ -33,9 +33,20 @@ Imports SMRUCC.WebCloud.HTTPInternal.Scripting
             Call fastaText.SaveTo(fastafile, Encoding.ASCII)
         End If
 
+        Dim title$, describ$, email$
+
+        With request.POSTData.Form.ToDictionary
+            title = .TryGetValue("task.title")
+            describ = .TryGetValue("task.describ")
+            email = .TryGetValue("task.email")
+        End With
+
         Dim task As New COGMyva(
             fastafile, Sub()
                            ' 发送电子邮件给用户告知结果
+                           If Not email.StringEmpty Then
+                               ' send notification email
+                           End If
                        End Sub)
 
         ' 将任务添加到服务器内部的任务队列之中
@@ -46,7 +57,7 @@ Imports SMRUCC.WebCloud.HTTPInternal.Scripting
         html = vbhtml.ReadHTML(wwwroot, html)
 
         Call response.WriteHTML(html)
-
+        
         Return 0
     End Function
 

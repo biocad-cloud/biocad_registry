@@ -48,7 +48,7 @@ CREATE TABLE `subscription` (
 
 
 ## task_pool
-
+这个数据表之中只存放已经完成的用户任务信息
 
 |field|type|attributes|description|
 |-----|----|----------|-----------|
@@ -78,7 +78,7 @@ CREATE TABLE `task_pool` (
   PRIMARY KEY (`uid`),
   UNIQUE KEY `md5_UNIQUE` (`md5`),
   UNIQUE KEY `uid_UNIQUE` (`uid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='这个数据表之中只存放已经完成的用户任务信息';
 ```
 
 

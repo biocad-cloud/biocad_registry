@@ -71,7 +71,7 @@ CREATE TABLE `task_pool` (
   PRIMARY KEY (`uid`),
   UNIQUE KEY `md5_UNIQUE` (`md5`),
   UNIQUE KEY `uid_UNIQUE` (`uid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='这个数据表之中只存放已经完成的用户任务信息';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -104,6 +104,37 @@ CREATE TABLE `visitor_stat` (
 --
 -- Dumping routines for database 'smrucc_webcloud'
 --
+/*!50003 DROP FUNCTION IF EXISTS `task_expired` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` FUNCTION `task_expired`(time_complete datetime) RETURNS tinyint(1)
+BEGIN
+
+   /* 
+    * 用户的任务执行结果数据只保存24个小时，则在这个函数之中需要进行判断的是
+    * 任务的完成时间和现在的时间差是否大于24个小时？ 
+    *
+    * 如果是，则说明任务已经过期了，则会返回true删除数据
+    * 如果不是，则返回false
+    */
+   DECLARE val integer;
+
+   SET val = TIMESTAMPDIFF(HOUR, time_complete, now()) ;
+   RETURN val >= 24;
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -114,4 +145,4 @@ CREATE TABLE `visitor_stat` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-05-14  1:12:05
+-- Dump completed on 2017-05-14 13:03:38
