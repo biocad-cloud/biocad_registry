@@ -1,8 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `smrucc_webcloud` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `smrucc_webcloud`;
+CREATE DATABASE  IF NOT EXISTS `smrucc-cloud` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `smrucc-cloud`;
 -- MySQL dump 10.13  Distrib 5.7.9, for Win64 (x86_64)
 --
--- Host: localhost    Database: smrucc_webcloud
+-- Host: localhost    Database: smrucc-cloud
 -- ------------------------------------------------------
 -- Server version	5.7.12-log
 
@@ -98,11 +98,11 @@ CREATE TABLE `visitor_stat` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping events for database 'smrucc_webcloud'
+-- Dumping events for database 'smrucc-cloud'
 --
 
 --
--- Dumping routines for database 'smrucc_webcloud'
+-- Dumping routines for database 'smrucc-cloud'
 --
 /*!50003 DROP FUNCTION IF EXISTS `task_expired` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -145,4 +145,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-05-14 13:03:38
+-- Dump completed on 2017-05-14 16:59:34
