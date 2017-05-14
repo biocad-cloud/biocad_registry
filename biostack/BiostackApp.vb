@@ -2,6 +2,7 @@
 Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.Mathematical.HashMaps
 Imports Oracle.LinuxCompatibility.MySQL
+Imports TaskValue = SMRUCC.WebCloud.DataCenter.mysql.task_pool
 Imports SMRUCC.WebCloud.DataCenter.Platform
 Imports SMRUCC.WebCloud.HTTPInternal.AppEngine
 Imports SMRUCC.WebCloud.HTTPInternal.AppEngine.APIMethods
@@ -52,12 +53,21 @@ Imports SMRUCC.WebCloud.HTTPInternal.Scripting
         End With
 
         Dim task As New COGMyva(
-            fastafile, Sub()
+            fastafile, Sub(success As Boolean)
                            ' 发送电子邮件给用户告知结果
                            If Not email.StringEmpty Then
                                ' send notification email
-                           End If
-                       End Sub)
+                           End If                                                   
+                       End Sub) With
+            {
+                .TaskData = New TaskValue With {
+                    .description = describ,
+                    .email = email,
+                    .time_create = Now,
+                    .title = title,
+                    .result_url = ""
+                }
+            }
 
         ' 将任务添加到服务器内部的任务队列之中
         Call TaskPool.Assign(task, request.URL)
