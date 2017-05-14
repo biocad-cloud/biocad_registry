@@ -1,6 +1,7 @@
 ﻿Imports System.Text
 Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.Mathematical.HashMaps
+Imports Oracle.LinuxCompatibility.MySQL
 Imports SMRUCC.WebCloud.DataCenter.Platform
 Imports SMRUCC.WebCloud.HTTPInternal.AppEngine
 Imports SMRUCC.WebCloud.HTTPInternal.AppEngine.APIMethods
@@ -15,6 +16,8 @@ Imports SMRUCC.WebCloud.HTTPInternal.Scripting
     ''' </summary>
     ''' <returns></returns>
     Public ReadOnly Property TaskPool As New TaskPool
+
+    ReadOnly mysql As MySQL
 
     Public Sub New(main As PlatformEngine)
         MyBase.New(main)
@@ -57,6 +60,7 @@ Imports SMRUCC.WebCloud.HTTPInternal.Scripting
                        End Sub)
 
         ' 将任务添加到服务器内部的任务队列之中
+        Call TaskPool.Assign(task, request.URL)
         Call TaskPool.Queue(task)
         ' 返回结果页面
 

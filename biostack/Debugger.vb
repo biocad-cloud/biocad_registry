@@ -1,18 +1,19 @@
 ﻿Imports SMRUCC.WebCloud.d3js.Network
 Imports SMRUCC.WebCloud.HTTPInternal
 Imports NetGraph = Microsoft.VisualBasic.Data.visualize.Network.FileStream.Network
+Imports Microsoft.VisualBasic.Serialization.JSON
 
 Module Debugger
 
     Sub Main()
-        Call D3NetworkTest
+        Call D3NetworkTest()
         Call DebuggerAPI.Start(wwwroot:="../wwwroot", threads:=0)
     End Sub
 
-    Sub D3NetworkTest
+    Sub D3NetworkTest()
         Call NetGraph _
             .Load("C:\Users\xieguigang\OneDrive\4.7\sqq\drugbank-drug-pathway.knowledge_network") _
-            .FromNetwork(true) _
+            .FromNetwork(True) _
             .SaveTo("./net.json")
     End Sub
 End Module
