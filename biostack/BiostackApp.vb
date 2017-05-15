@@ -60,6 +60,7 @@ Imports SMRUCC.WebCloud.HTTPInternal.Scripting
                                ' send notification email
                            End If
 
+                           taskData.result_url = $"/Application/COG_myva/result.vbhtml?uid={taskData.md5}"
                            Call mysql.ExecInsert(taskData)
                        End Sub) With
             {
@@ -67,8 +68,7 @@ Imports SMRUCC.WebCloud.HTTPInternal.Scripting
                     .description = describ,
                     .email = email,
                     .time_create = Now,
-                    .title = title,
-                    .result_url = ""
+                    .title = title
                 }
             }
 

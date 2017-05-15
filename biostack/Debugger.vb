@@ -6,6 +6,12 @@ Imports Microsoft.VisualBasic.Serialization.JSON
 Module Debugger
 
     Sub Main()
+        Call App.JoinVariable("database", "SMRUCC-cloud")
+        Call App.JoinVariable("host", "localhost")
+        Call App.JoinVariable("port", 3306)
+        Call App.JoinVariable("user", "root")
+        Call App.JoinVariable("password", "1234")
+
         Call D3NetworkTest()
         Call DebuggerAPI.Start(wwwroot:="../wwwroot", threads:=0)
     End Sub
