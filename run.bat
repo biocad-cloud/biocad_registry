@@ -1,1 +1,1 @@
-"./App/httpd.exe" /start /wwwroot "./wwwroot" /port 80 /threads 10
+"./App/httpd.exe" /start /wwwroot "./wwwroot" /port 80 /threads 10 /@set database='SMRUCC-cloud';host='localhost';password='1234';port='3306';user='root'

@@ -1,7 +1,7 @@
 ﻿Imports System.IO.Compression
 Imports Microsoft.VisualBasic.Language
 Imports SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST
-Imports SMRUCC.WebCloud.HTTPInternal.Platform
+Imports SMRUCC.WebCloud.DataCenter.Platform
 
 ''' <summary>
 ''' COG myva在线注释任务
@@ -13,6 +13,12 @@ Public Class COGMyva : Inherits Task
     Public ReadOnly Property ZIP As String
         Get
             Return outZIP
+        End Get
+    End Property
+
+    Public Overrides ReadOnly Property Workspace As String
+        Get
+            Return outZIP.ParentPath
         End Get
     End Property
 

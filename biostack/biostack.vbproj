@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{AB0B84DC-2373-4130-94F8-44DCEF1E737F}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <StartupObject>biostack.Debugger</StartupObject>
+    <StartupObject>biostack.Testing.Debugger</StartupObject>
     <RootNamespace>biostack</RootNamespace>
     <AssemblyName>biostack</AssemblyName>
     <FileAlignment>512</FileAlignment>
@@ -73,6 +73,7 @@
     <Compile Include="BiostackApp.vb" />
     <Compile Include="KEGG.vb" />
     <Compile Include="Debugger.vb" />
+    <Compile Include="DataExtensions.vb" />
     <Compile Include="Platform.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -135,6 +136,10 @@
     <ProjectReference Include="..\..\GCModeller\src\runtime\httpd\WebCloud\SMRUCC.WebCloud.d3js\SMRUCC.WebCloud.d3js.vbproj">
       <Project>{d6e1fcbb-69b4-43d3-9289-a987a140a435}</Project>
       <Name>SMRUCC.WebCloud.d3js</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\GCModeller\src\runtime\httpd\WebCloud\SMRUCC.WebCloud.DataCenter\SMRUCC.WebCloud.DataCenter.vbproj">
+      <Project>{b1de5562-91d6-4aee-aa26-72ef2dfc7c75}</Project>
+      <Name>SMRUCC.WebCloud.DataCenter</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\GCModeller\src\runtime\sciBASIC#\Data\DataFrame\+VB_DataFrame.vbproj">
       <Project>{7283c179-f852-4ead-8d8f-b82ef2cbd7db}</Project>
