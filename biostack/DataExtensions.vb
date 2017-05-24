@@ -16,7 +16,9 @@ Module DataExtensions
             .User = App.GetVariable("user")
         } = -1.0R Then
 
-            ' Throw New Exception("No MySQL database connection!")
+#If Not DEBUG Then
+            Throw New Exception("No MySQL database connection!")
+#End If
         End If
     End Sub
 End Module

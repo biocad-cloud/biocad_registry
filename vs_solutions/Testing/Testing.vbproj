@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{AB0B84DC-2373-4130-94F8-44DCEF1E737F}</ProjectGuid>
+    <ProjectGuid>{C48A87F3-13C8-498F-96B5-74F7AD0BD0DA}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <StartupObject>biostack.Testing.Debugger</StartupObject>
-    <RootNamespace>biostack</RootNamespace>
-    <AssemblyName>biostack</AssemblyName>
+    <StartupObject>Testing.Module1</StartupObject>
+    <RootNamespace>Testing</RootNamespace>
+    <AssemblyName>Testing</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>Console</MyType>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
@@ -20,10 +20,9 @@
     <DebugType>full</DebugType>
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
-    <OutputPath>..\App\</OutputPath>
-    <DocumentationFile>biostack.xml</DocumentationFile>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>Testing.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -31,10 +30,9 @@
     <DefineDebug>false</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
-    <OutputPath>..\App\</OutputPath>
-    <DocumentationFile>biostack.xml</DocumentationFile>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>Testing.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
     <OptionExplicit>On</OptionExplicit>
@@ -70,11 +68,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BiostackApp.vb" />
-    <Compile Include="KEGG.vb" />
-    <Compile Include="Debugger.vb" />
-    <Compile Include="DataExtensions.vb" />
-    <Compile Include="Platform.vb" />
+    <Compile Include="Module1.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -90,7 +84,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Tasks\COGMyva.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -113,64 +106,18 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\GCModeller\src\GCModeller\core\Bio.Assembly\Bio.Assembly.vbproj">
-      <Project>{c699d311-9923-4c19-bf70-5048d0e2cf5d}</Project>
-      <Name>Bio.Assembly</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\GCModeller\src\GCModeller\data\KEGG\KEGG.vbproj">
-      <Project>{68849e9f-359e-4844-a6db-0cae421594ad}</Project>
-      <Name>KEGG</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\GCModeller\src\interops\localblast\LocalBLAST\NCBI.Extensions.localblast.vbproj">
-      <Project>{c6b843b8-f990-4faf-98de-a20efc8b69f7}</Project>
-      <Name>NCBI.Extensions.localblast</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\GCModeller\src\runtime\httpd\httpd\httpd.vbproj">
-      <Project>{ce825e49-0386-4ab1-b452-b104ed3f7deb}</Project>
-      <Name>httpd</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\GCModeller\src\runtime\httpd\WebCloud\SMRUCC.HTTPInternal\SMRUCC.WebCloud.HTTPInternal.vbproj">
-      <Project>{fbfc1455-b232-4f16-afc7-4054a8b864ab}</Project>
-      <Name>SMRUCC.WebCloud.HTTPInternal</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\GCModeller\src\runtime\httpd\WebCloud\SMRUCC.WebCloud.d3js\SMRUCC.WebCloud.d3js.vbproj">
-      <Project>{d6e1fcbb-69b4-43d3-9289-a987a140a435}</Project>
-      <Name>SMRUCC.WebCloud.d3js</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\GCModeller\src\runtime\httpd\WebCloud\SMRUCC.WebCloud.DataCenter\SMRUCC.WebCloud.DataCenter.vbproj">
-      <Project>{b1de5562-91d6-4aee-aa26-72ef2dfc7c75}</Project>
+    <ProjectReference Include="..\..\..\GCModeller\src\runtime\httpd\WebCloud\SMRUCC.WebCloud.DataCenter\SMRUCC.WebCloud.DataCenter.vbproj">
+      <Project>{B1DE5562-91D6-4AEE-AA26-72EF2DFC7C75}</Project>
       <Name>SMRUCC.WebCloud.DataCenter</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\GCModeller\src\runtime\sciBASIC#\Data\DataFrame\+VB_DataFrame.vbproj">
-      <Project>{7283c179-f852-4ead-8d8f-b82ef2cbd7db}</Project>
-      <Name>+VB_DataFrame</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\GCModeller\src\runtime\sciBASIC#\Data_science\Mathematical\Math\Microsoft.VisualBasic.Mathematical.vbproj">
-      <Project>{e3367b88-5d0c-495a-8273-331656d4b5aa}</Project>
-      <Name>Microsoft.VisualBasic.Mathematical</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\GCModeller\src\runtime\sciBASIC#\gr\Datavisualization.Network\Datavisualization.Network\Datavisualization.Network.vbproj">
-      <Project>{076315ee-b598-40dc-9280-c71cdf9b6a48}</Project>
-      <Name>Datavisualization.Network</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\GCModeller\src\runtime\sciBASIC#\gr\Microsoft.VisualBasic.Imaging\Microsoft.VisualBasic.Imaging.vbproj">
-      <Project>{85e71b4b-9276-4ec8-aadc-c849205f1ea8}</Project>
-      <Name>Microsoft.VisualBasic.Imaging</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\GCModeller\src\runtime\sciBASIC#\Microsoft.VisualBasic.Architecture.Framework\+Microsoft.VisualBasic.Architecture.Framework.vbproj">
+    <ProjectReference Include="..\..\..\GCModeller\src\runtime\sciBASIC#\Microsoft.VisualBasic.Architecture.Framework\+Microsoft.VisualBasic.Architecture.Framework.vbproj">
       <Project>{fecce1fd-e1d4-49e3-a668-60bb5e7aed99}</Project>
       <Name>+Microsoft.VisualBasic.Architecture.Framework</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\GCModeller\src\runtime\sciBASIC#\mime\text%25html\MIME-htmls.vbproj">
-      <Project>{2dd4be80-ddc3-4767-94a7-10f1c3395716}</Project>
-      <Name>MIME-htmls</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\GCModeller\src\runtime\visualbasic.DBI\LibMySQL\LibMySQL.vbproj">
-      <Project>{2c34a044-1bde-44e8-a86e-e9971c87da21}</Project>
-      <Name>LibMySQL</Name>
+    <ProjectReference Include="..\..\biostack\biostack.vbproj">
+      <Project>{ab0b84dc-2373-4130-94f8-44dcef1e737f}</Project>
+      <Name>biostack</Name>
     </ProjectReference>
   </ItemGroup>
-  <Import Project="..\..\GCModeller\src\Settings\Shared\Settings.FileSystem\Settings.FileSystem.projitems" Label="Shared" />
-  <Import Project="..\..\GCModeller\src\Settings\Shared\Settings.Configuration\Settings.Configuration.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
