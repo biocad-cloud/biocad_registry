@@ -26,10 +26,11 @@ DROP TABLE IF EXISTS `app`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `app` (
   `uid` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(128) DEFAULT NULL,
+  `name` varchar(128) NOT NULL,
+  `description` longtext,
   PRIMARY KEY (`uid`),
   UNIQUE KEY `uid_UNIQUE` (`uid`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -47,7 +48,23 @@ CREATE TABLE `subscription` (
   `active` int(11) NOT NULL DEFAULT '0' COMMENT '1 OR 0',
   PRIMARY KEY (`email`,`app`),
   UNIQUE KEY `uid_UNIQUE` (`uid`)
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `task_errors`
+--
+
+DROP TABLE IF EXISTS `task_errors`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `task_errors` (
+  `uid` int(11) NOT NULL,
+  `app` int(11) NOT NULL COMMENT 'The task app name',
+  `exception` longtext,
+  `solved` int(11) DEFAULT NULL COMMENT '这个bug是否已经解决了？ 默认是0未解决，1为已经解决了',
+  PRIMARY KEY (`uid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Task executing errors log';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -67,7 +84,9 @@ CREATE TABLE `task_pool` (
   `email` varchar(45) DEFAULT NULL COMMENT '任务完成之后通知的目标对象的e-mail,如果不存在，则不发送email',
   `title` varchar(128) DEFAULT NULL COMMENT '任务的标题（可选）',
   `description` mediumtext COMMENT '任务的描述(可选)',
-  `status` int(11) DEFAULT NULL COMMENT '任务的结果状态\n\n-100 任务执行失败\n1 任务成功执行完毕',
+  `status` int(11) DEFAULT NULL COMMENT '任务的结果状态\n\n-100 任务执行失败\n1 任务成功执行完毕\n0 任务未执行或者执行中未完毕',
+  `app` int(11) NOT NULL COMMENT 'The task app id',
+  `parameters` longtext NOT NULL COMMENT '使用json保存着当前的这个任务对象的所有的构造函数所需要的参数信息',
   PRIMARY KEY (`uid`),
   UNIQUE KEY `md5_UNIQUE` (`md5`),
   UNIQUE KEY `uid_UNIQUE` (`uid`)
@@ -127,7 +146,7 @@ BEGIN
    DECLARE val integer;
 
    SET val = TIMESTAMPDIFF(HOUR, time_complete, now()) ;
-   RETURN val >= 24;
+   RETURN NOT val <= 24;
 
 END ;;
 DELIMITER ;
@@ -145,4 +164,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-05-14 16:59:34
+-- Dump completed on 2017-05-27  9:25:56
