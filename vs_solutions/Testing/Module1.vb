@@ -6,6 +6,6 @@
 
     Sub TestCOGMyva()
         Dim task As New biostack.COGMyva("G:\biostack\vs_solutions\test_data\cog_myva\pXOCgx01-protein.fasta", Nothing)
-        Call task .RunTask 
+        Call task.Start()
     End Sub
 End Module

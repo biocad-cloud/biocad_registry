@@ -32,7 +32,7 @@ Public Class COGMyva : Inherits Task
     ''' <summary>
     ''' myva数据库是事先已经格式化好了的
     ''' </summary>
-    Public Overrides Sub RunTask()
+    Protected Overrides Sub runTask()
         Dim localblast As New Programs.BLASTPlus(bin:=GCModeller.FileSystem.GetLocalblast)
         Dim myva$ = GCModeller.FileSystem.COGs & "/Myva/myva"
         Dim qvs$ = query.TrimSuffix & "_vs_myva.txt"
