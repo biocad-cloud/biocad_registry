@@ -2,13 +2,14 @@
 Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.Mathematical.HashMaps
 Imports Oracle.LinuxCompatibility.MySQL
-Imports TaskValue = SMRUCC.WebCloud.DataCenter.mysql.task_pool
+Imports SMRUCC.WebCloud.DataCenter
 Imports SMRUCC.WebCloud.DataCenter.Platform
 Imports SMRUCC.WebCloud.HTTPInternal.AppEngine
 Imports SMRUCC.WebCloud.HTTPInternal.AppEngine.APIMethods
 Imports SMRUCC.WebCloud.HTTPInternal.AppEngine.APIMethods.Arguments
 Imports SMRUCC.WebCloud.HTTPInternal.Platform
 Imports SMRUCC.WebCloud.HTTPInternal.Scripting
+Imports TaskValue = SMRUCC.WebCloud.DataCenter.mysql.task_pool
 
 <[Namespace]("Application")> Public Class BiostackApp : Inherits WebApp
 
@@ -22,7 +23,9 @@ Imports SMRUCC.WebCloud.HTTPInternal.Scripting
 
     Public Sub New(main As PlatformEngine)
         MyBase.New(main)
-        Call mysql.__init
+
+        Call mysql.init_cli
+        Call TaskPool.Connect(mysql.UriMySQL)
     End Sub
 
     ''' <summary>
