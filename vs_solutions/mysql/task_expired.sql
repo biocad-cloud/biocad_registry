@@ -11,6 +11,6 @@ BEGIN
    DECLARE val integer;
 
    SET val = TIMESTAMPDIFF(HOUR, time_complete, now()) ;
-   RETURN val >= 24;
+   RETURN NOT val <= 24;
 
 END
