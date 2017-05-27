@@ -27,7 +27,7 @@ CREATE TABLE `app` (
 
 
 ## subscription
-
+向订阅了网站更新的用户发送产品的更新信息
 
 |field|type|attributes|description|
 |-----|----|----------|-----------|
@@ -35,7 +35,8 @@ CREATE TABLE `app` (
 |email|VarChar (128)|``NN``||
 |hash|VarChar (64)|``NN``||
 |app|Int64 (11)|``NN``||
-|active|Int64 (11)|``NN``|1 OR 0|
+|active|Int64 (11)|``NN``|1(active) OR 0(inactive)|
+|add_time|DateTime|``NN``||
 
 ```SQL
 CREATE TABLE `subscription` (
@@ -43,12 +44,60 @@ CREATE TABLE `subscription` (
   `email` varchar(128) NOT NULL,
   `hash` varchar(64) NOT NULL,
   `app` int(11) NOT NULL,
-  `active` int(11) NOT NULL DEFAULT '0' COMMENT '1 OR 0',
+  `active` int(11) NOT NULL DEFAULT '0' COMMENT '1(active) OR 0(inactive)',
+  `add_time` datetime NOT NULL,
   PRIMARY KEY (`email`),
   UNIQUE KEY `uid_UNIQUE` (`uid`),
   KEY `fk_subscription_app1_idx` (`app`),
   CONSTRAINT `fk_subscription_app1` FOREIGN KEY (`app`) REFERENCES `app` (`uid`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='向订阅了网站更新的用户发送产品的更新信息';
+```
+
+
+
+## sys_config
+系统设置
+
+|field|type|attributes|description|
+|-----|----|----------|-----------|
+|variable|VarChar (128)|``NN``||
+|value|VarChar (128)|||
+|set_time|DateTime|``NN``||
+|set_by|VarChar (128)|||
+
+```SQL
+CREATE TABLE `sys_config` (
+  `variable` varchar(128) NOT NULL,
+  `value` varchar(128) DEFAULT NULL,
+  `set_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `set_by` varchar(128) DEFAULT NULL,
+  PRIMARY KEY (`variable`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='系统设置';
+```
+
+
+
+## sys_updates
+网站更新记录
+
+|field|type|attributes|description|
+|-----|----|----------|-----------|
+|uid|Int64 (11)|``AI``, ``NN``||
+|date|DateTime|``NN``||
+|title|VarChar (45)|``NN``||
+|details|Text|``NN``||
+|app|Int64 (11)|``NN``|如果这个字段不为-1，则表示更新的内容为某一个app的内容更新|
+
+```SQL
+CREATE TABLE `sys_updates` (
+  `uid` int(11) NOT NULL AUTO_INCREMENT,
+  `date` datetime NOT NULL,
+  `title` varchar(45) NOT NULL,
+  `details` mediumtext NOT NULL,
+  `app` int(11) NOT NULL DEFAULT '-1' COMMENT '如果这个字段不为-1，则表示更新的内容为某一个app的内容更新',
+  PRIMARY KEY (`uid`),
+  UNIQUE KEY `uid_UNIQUE` (`uid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='网站更新记录';
 ```
 
 
