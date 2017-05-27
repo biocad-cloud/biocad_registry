@@ -165,7 +165,7 @@
       <Project>{2dd4be80-ddc3-4767-94a7-10f1c3395716}</Project>
       <Name>MIME-htmls</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\GCModeller\src\runtime\visualbasic.DBI\LibMySQL\LibMySQL.vbproj">
+    <ProjectReference Include="..\..\GCModeller\src\runtime\mysqli\LibMySQL\LibMySQL.vbproj">
       <Project>{2c34a044-1bde-44e8-a86e-e9971c87da21}</Project>
       <Name>LibMySQL</Name>
     </ProjectReference>

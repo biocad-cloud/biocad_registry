@@ -17,7 +17,7 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "httpd", "..\..\GCModeller\s
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "biostack", "..\biostack\biostack.vbproj", "{AB0B84DC-2373-4130-94F8-44DCEF1E737F}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "LibMySQL", "..\..\GCModeller\src\runtime\visualbasic.DBI\LibMySQL\LibMySQL.vbproj", "{2C34A044-1BDE-44E8-A86E-E9971C87DA21}"
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "LibMySQL", "..\..\GCModeller\src\runtime\mysqli\LibMySQL\LibMySQL.vbproj", "{2C34A044-1BDE-44E8-A86E-E9971C87DA21}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GCModeller", "GCModeller", "{6447A02B-440E-473E-8930-8D3F13953097}"
 EndProject
