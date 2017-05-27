@@ -28,9 +28,10 @@ CREATE TABLE `app` (
   `uid` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(128) NOT NULL,
   `description` longtext,
+  `catagory` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`uid`),
   UNIQUE KEY `uid_UNIQUE` (`uid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='The analysis application that running the task';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -46,8 +47,10 @@ CREATE TABLE `subscription` (
   `hash` varchar(64) NOT NULL,
   `app` int(11) NOT NULL,
   `active` int(11) NOT NULL DEFAULT '0' COMMENT '1 OR 0',
-  PRIMARY KEY (`email`,`app`),
-  UNIQUE KEY `uid_UNIQUE` (`uid`)
+  PRIMARY KEY (`email`),
+  UNIQUE KEY `uid_UNIQUE` (`uid`),
+  KEY `fk_subscription_app1_idx` (`app`),
+  CONSTRAINT `fk_subscription_app1` FOREIGN KEY (`app`) REFERENCES `app` (`uid`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -61,9 +64,15 @@ DROP TABLE IF EXISTS `task_errors`;
 CREATE TABLE `task_errors` (
   `uid` int(11) NOT NULL,
   `app` int(11) NOT NULL COMMENT 'The task app name',
-  `exception` longtext,
-  `solved` int(11) DEFAULT NULL COMMENT '这个bug是否已经解决了？ 默认是0未解决，1为已经解决了',
-  PRIMARY KEY (`uid`)
+  `task` int(11) NOT NULL COMMENT 'The task uid',
+  `exception` longtext NOT NULL COMMENT 'The exception message',
+  `type` varchar(45) NOT NULL COMMENT 'GetType.ToString',
+  `stack-trace` varchar(45) NOT NULL,
+  `solved` int(11) NOT NULL DEFAULT '0' COMMENT '这个bug是否已经解决了？ 默认是0未解决，1为已经解决了',
+  PRIMARY KEY (`uid`,`app`),
+  KEY `fk_task_errors_app1_idx` (`app`),
+  CONSTRAINT `error_task` FOREIGN KEY (`app`) REFERENCES `task_pool` (`uid`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_task_errors_app1` FOREIGN KEY (`app`) REFERENCES `app` (`uid`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Task executing errors log';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -75,7 +84,7 @@ DROP TABLE IF EXISTS `task_pool`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `task_pool` (
-  `uid` int(11) NOT NULL COMMENT '由md5计算出来的hash值',
+  `uid` int(11) NOT NULL AUTO_INCREMENT,
   `md5` varchar(32) NOT NULL COMMENT '用户查询任务状态结果所使用的唯一标识符字符串',
   `workspace` mediumtext COMMENT '保存数据文件的工作区文件夹',
   `time_create` datetime DEFAULT NULL COMMENT '这个用户任务所创建的时间',
@@ -89,7 +98,9 @@ CREATE TABLE `task_pool` (
   `parameters` longtext NOT NULL COMMENT '使用json保存着当前的这个任务对象的所有的构造函数所需要的参数信息',
   PRIMARY KEY (`uid`),
   UNIQUE KEY `md5_UNIQUE` (`md5`),
-  UNIQUE KEY `uid_UNIQUE` (`uid`)
+  UNIQUE KEY `uid_UNIQUE` (`uid`),
+  KEY `fk_task_pool_app1_idx` (`app`),
+  CONSTRAINT `fk_task_pool_app1` FOREIGN KEY (`app`) REFERENCES `app` (`uid`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='这个数据表之中只存放已经完成的用户任务信息';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -111,8 +122,10 @@ CREATE TABLE `visitor_stat` (
   `ref` mediumtext COMMENT 'reference url, Referer',
   `data` mediumtext COMMENT 'additional data notes',
   `app` int(11) NOT NULL,
-  PRIMARY KEY (`ip`,`time`),
-  UNIQUE KEY `uid_UNIQUE` (`uid`)
+  PRIMARY KEY (`ip`,`time`,`app`),
+  UNIQUE KEY `uid_UNIQUE` (`uid`),
+  KEY `fk_visitor_stat_app1_idx` (`app`),
+  CONSTRAINT `fk_visitor_stat_app1` FOREIGN KEY (`app`) REFERENCES `app` (`uid`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -131,7 +144,7 @@ CREATE TABLE `visitor_stat` (
 /*!50003 SET character_set_results = utf8 */ ;
 /*!50003 SET collation_connection  = utf8_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,STRICT_ALL_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ALLOW_INVALID_DATES,ERROR_FOR_DIVISION_BY_ZERO,TRADITIONAL,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` FUNCTION `task_expired`(time_complete datetime) RETURNS tinyint(1)
 BEGIN
@@ -164,4 +177,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-05-27  9:25:56
+-- Dump completed on 2017-05-27 10:02:19
