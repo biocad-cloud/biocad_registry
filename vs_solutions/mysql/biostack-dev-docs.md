@@ -10,15 +10,15 @@ The analysis application that running the task
 |-----|----|----------|-----------|
 |uid|Int64 (11)|``AI``, ``NN``||
 |name|VarChar (128)|``NN``||
-|description|Text|||
-|catagory|VarChar (45)|||
+|description|Text||功能的详细描述|
+|catagory|VarChar (45)||功能分类|
 
 ```SQL
 CREATE TABLE `app` (
   `uid` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(128) NOT NULL,
-  `description` longtext,
-  `catagory` varchar(45) DEFAULT NULL,
+  `description` longtext COMMENT '功能的详细描述',
+  `catagory` varchar(45) DEFAULT NULL COMMENT '功能分类',
   PRIMARY KEY (`uid`),
   UNIQUE KEY `uid_UNIQUE` (`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='The analysis application that running the task';
@@ -140,9 +140,9 @@ CREATE TABLE `task_errors` (
 |-----|----|----------|-----------|
 |uid|Int64 (11)|``AI``, ``NN``||
 |md5|VarChar (32)|``NN``|用户查询任务状态结果所使用的唯一标识符字符串|
-|workspace|Text||保存数据文件的工作区文件夹|
+|workspace|Text||保存临时上传数据以及结果报告文件的工作区文件夹|
 |time_create|DateTime||这个用户任务所创建的时间|
-|time_complete|DateTime||这个用户任务所完成的时间|
+|time_complete|DateTime||这个用户任务所完成的时间，只有用户的任务完成了之后（无论是否出现错误），这个属性才会被赋值。这个属性值也是计算工作区的临时数据的清除时间锁需要的，一般是24小时之后任务才会过期，工作区的临时数据才会被自动清除|
 |result_url|Text||结果页面的url|
 |email|VarChar (45)||任务完成之后通知的目标对象的e-mail,如果不存在，则不发送email|
 |title|VarChar (128)||任务的标题（可选）|
@@ -155,9 +155,9 @@ CREATE TABLE `task_errors` (
 CREATE TABLE `task_pool` (
   `uid` int(11) NOT NULL AUTO_INCREMENT,
   `md5` varchar(32) NOT NULL COMMENT '用户查询任务状态结果所使用的唯一标识符字符串',
-  `workspace` mediumtext COMMENT '保存数据文件的工作区文件夹',
+  `workspace` mediumtext COMMENT '保存临时上传数据以及结果报告文件的工作区文件夹',
   `time_create` datetime DEFAULT NULL COMMENT '这个用户任务所创建的时间',
-  `time_complete` datetime DEFAULT NULL COMMENT '这个用户任务所完成的时间',
+  `time_complete` datetime DEFAULT NULL COMMENT '这个用户任务所完成的时间，只有用户的任务完成了之后（无论是否出现错误），这个属性才会被赋值。这个属性值也是计算工作区的临时数据的清除时间锁需要的，一般是24小时之后任务才会过期，工作区的临时数据才会被自动清除',
   `result_url` mediumtext COMMENT '结果页面的url',
   `email` varchar(45) DEFAULT NULL COMMENT '任务完成之后通知的目标对象的e-mail,如果不存在，则不发送email',
   `title` varchar(128) DEFAULT NULL COMMENT '任务的标题（可选）',
@@ -189,7 +189,7 @@ CREATE TABLE `task_pool` (
 |ua|VarChar (1024)||User agent|
 |ref|Text||reference url, Referer|
 |data|Text||additional data notes|
-|app|Int64 (11)|``NN``||
+|app|Int64 (11)|``NN``|用户所访问的url所属的app的编号|
 
 ```SQL
 CREATE TABLE `visitor_stat` (
@@ -202,7 +202,7 @@ CREATE TABLE `visitor_stat` (
   `ua` varchar(1024) DEFAULT NULL COMMENT 'User agent',
   `ref` mediumtext COMMENT 'reference url, Referer',
   `data` mediumtext COMMENT 'additional data notes',
-  `app` int(11) NOT NULL,
+  `app` int(11) NOT NULL COMMENT '用户所访问的url所属的app的编号',
   PRIMARY KEY (`ip`,`time`,`app`),
   UNIQUE KEY `uid_UNIQUE` (`uid`),
   KEY `fk_visitor_stat_app1_idx` (`app`),
