@@ -1,5 +1,6 @@
 ﻿Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Oracle.LinuxCompatibility.MySQL
+Imports SMRUCC.WebCloud.DataCenter
 Imports SMRUCC.WebCloud.HTTPInternal.AppEngine
 Imports SMRUCC.WebCloud.HTTPInternal.AppEngine.APIMethods.Arguments
 Imports SMRUCC.WebCloud.HTTPInternal.Platform
@@ -9,8 +10,8 @@ Imports SMRUCC.WebCloud.HTTPInternal.Platform
     ReadOnly mysql As New MySQL
 
     Public Sub New(main As PlatformEngine)
-       Call  MyBase.New(main)
-        Call mysql .__init        
+        Call MyBase.New(main)
+        Call mysql.init_cli
     End Sub
 
     <ExportAPI("/KEGG/D3.js/pathway-network.json")>
