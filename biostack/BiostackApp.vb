@@ -24,7 +24,7 @@ Imports TaskValue = SMRUCC.WebCloud.DataCenter.mysql.task_pool
     Public Sub New(main As PlatformEngine)
         MyBase.New(main)
 
-        Call mysql.init_cli
+        Call mysql.init
         Call TaskPool.Connect(mysql.UriMySQL)
     End Sub
 
