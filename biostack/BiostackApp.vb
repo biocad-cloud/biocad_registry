@@ -1,6 +1,7 @@
 ﻿Imports System.Text
 Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.Mathematical.HashMaps
+Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Oracle.LinuxCompatibility.MySQL
 Imports SMRUCC.WebCloud.DataCenter
 Imports SMRUCC.WebCloud.DataCenter.Platform
@@ -71,7 +72,12 @@ Imports TaskValue = SMRUCC.WebCloud.DataCenter.mysql.task_pool
                     .description = describ,
                     .email = email,
                     .time_create = Now,
-                    .title = title
+                    .title = title,
+                    .app = BiostackApps.COG_myva,
+                    .parameters = New Dictionary(Of String, String) From {
+                        {NameOf(fastafile), fastafile}
+                    }.GetJson,
+                    .workspace = fastafile.ParentPath
                 }
             }
 
