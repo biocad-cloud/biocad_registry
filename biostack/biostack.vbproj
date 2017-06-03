@@ -5,12 +5,13 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{AB0B84DC-2373-4130-94F8-44DCEF1E737F}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <StartupObject>biostack.Testing.Debugger</StartupObject>
+    <OutputType>Library</OutputType>
+    <StartupObject>
+    </StartupObject>
     <RootNamespace>biostack</RootNamespace>
     <AssemblyName>biostack</AssemblyName>
     <FileAlignment>512</FileAlignment>
-    <MyType>Console</MyType>
+    <MyType>Windows</MyType>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
@@ -94,7 +95,7 @@
     <Compile Include="BiostackApp.vb" />
     <Compile Include="KEGG.vb" />
     <Compile Include="Debugger.vb" />
-    <Compile Include="DataExtensions.vb" />
+    <Compile Include="Apps.vb" />
     <Compile Include="Platform.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">

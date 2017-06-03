@@ -11,7 +11,7 @@ Imports SMRUCC.WebCloud.HTTPInternal.Platform
 
     Public Sub New(main As PlatformEngine)
         Call MyBase.New(main)
-        Call mysql.init_cli
+        Call mysql.init
     End Sub
 
     <ExportAPI("/KEGG/D3.js/pathway-network.json")>

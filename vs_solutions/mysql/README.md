@@ -84,25 +84,25 @@ CREATE TABLE `class_ko00001_pathway` (
 
 
 ## class_orthology_genes
-这个数据表描述了uniprot之中的基因蛋白数据之间的基因同源关系
+这个数据表描述了uniprot之中的基因蛋白数据之间的基因同源关系(KO同源关系从uniprot注释数据库之中进行批量导入)
 
 |field|type|attributes|description|
 |-----|----|----------|-----------|
 |uid|Int64 (11)|``NN``||
 |orthology|Int64 (11)|``NN``|直系同源表的数字编号|
-|locus_tag|VarChar (45)|``NN``|基因号|
-|geneName|VarChar (45)||基因名，因为有些基因还是没有名称的，所以在这里可以为空|
-|organism|VarChar (45)|``NN``|KEGG物种简写编号|
+|locus_tag|VarChar (64)|``NN``|基因号|
+|geneName|Text||基因名，因为有些基因还是没有名称的，所以在这里可以为空|
+|organism|VarChar (8)|``NN``|KEGG物种简写编号|
 
 ```SQL
 CREATE TABLE `class_orthology_genes` (
   `uid` int(11) NOT NULL,
   `orthology` int(11) NOT NULL COMMENT '直系同源表的数字编号',
-  `locus_tag` varchar(45) NOT NULL COMMENT '基因号',
-  `geneName` varchar(45) DEFAULT NULL COMMENT '基因名，因为有些基因还是没有名称的，所以在这里可以为空',
-  `organism` varchar(45) NOT NULL COMMENT 'KEGG物种简写编号',
+  `locus_tag` varchar(64) NOT NULL COMMENT '基因号',
+  `geneName` tinytext COMMENT '基因名，因为有些基因还是没有名称的，所以在这里可以为空',
+  `organism` varchar(8) NOT NULL COMMENT 'KEGG物种简写编号',
   PRIMARY KEY (`uid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='这个数据表描述了uniprot之中的基因蛋白数据之间的基因同源关系';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='这个数据表描述了uniprot之中的基因蛋白数据之间的基因同源关系(KO同源关系从uniprot注释数据库之中进行批量导入)';
 ```
 
 
@@ -261,17 +261,17 @@ CREATE TABLE `data_orthology` (
 |-----|----|----------|-----------|
 |uid|Int64 (11)|``AI``, ``NN``||
 |KO|VarChar (45)|``NN``||
-|description|VarChar (45)|||
-|name|VarChar (45)|||
-|map|VarChar (45)||image -> gzip -> base64 string|
+|name|Text|||
+|description|Text|||
+|map|Text||image -> gzip -> base64 string|
 
 ```SQL
 CREATE TABLE `data_pathway` (
   `uid` int(11) NOT NULL AUTO_INCREMENT,
   `KO` varchar(45) NOT NULL,
-  `description` varchar(45) DEFAULT NULL,
-  `name` varchar(45) DEFAULT NULL,
-  `map` varchar(45) DEFAULT NULL COMMENT 'image -> gzip -> base64 string',
+  `name` mediumtext,
+  `description` longtext,
+  `map` longtext COMMENT 'image -> gzip -> base64 string',
   PRIMARY KEY (`uid`),
   UNIQUE KEY `uid_UNIQUE` (`uid`),
   UNIQUE KEY `KO_UNIQUE` (`KO`)
@@ -353,6 +353,30 @@ CREATE TABLE `link_enzymes` (
   `ID` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`enzyme`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Enzyme in other external database';
+```
+
+
+
+## map_pathway
+代谢途径可视化的矢量图信息
+
+|field|type|attributes|description|
+|-----|----|----------|-----------|
+|uid|Int64 (11)|``NN``||
+|KO|VarChar (45)|||
+|name|Text|||
+|description|Text|||
+|map|Text|``NN``|这个不是image数据了，而是包含有坐标信息之类的svg矢量数据，用来进行KEGG富集结果的绘图操作所使用的|
+
+```SQL
+CREATE TABLE `map_pathway` (
+  `uid` int(11) NOT NULL,
+  `KO` varchar(45) DEFAULT NULL,
+  `name` mediumtext,
+  `description` longtext,
+  `map` longtext NOT NULL COMMENT '这个不是image数据了，而是包含有坐标信息之类的svg矢量数据，用来进行KEGG富集结果的绘图操作所使用的',
+  PRIMARY KEY (`uid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='代谢途径可视化的矢量图信息';
 ```
 
 
