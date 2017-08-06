@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS `app`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `app` (
-  `uid` int(11) NOT NULL AUTO_INCREMENT,
+  `uid` int(11) NOT NULL,
   `name` varchar(128) NOT NULL,
   `description` longtext COMMENT '功能的详细描述',
   `catagory` varchar(45) DEFAULT NULL COMMENT '功能分类',
