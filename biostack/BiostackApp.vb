@@ -5,14 +5,13 @@ Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Oracle.LinuxCompatibility.MySQL
 Imports SMRUCC.WebCloud.DataCenter
 Imports SMRUCC.WebCloud.DataCenter.Platform
-Imports SMRUCC.WebCloud.HTTPInternal.AppEngine
 Imports SMRUCC.WebCloud.HTTPInternal.AppEngine.APIMethods
 Imports SMRUCC.WebCloud.HTTPInternal.AppEngine.APIMethods.Arguments
 Imports SMRUCC.WebCloud.HTTPInternal.Platform
 Imports SMRUCC.WebCloud.HTTPInternal.Scripting
 Imports TaskValue = SMRUCC.WebCloud.DataCenter.mysql.task_pool
 
-<[Namespace]("Application")> Public Class BiostackApp : Inherits WebApp
+<[Namespace]("Application")> Public Class BiostackApp : Inherits SMRUCC.WebCloud.HTTPInternal.AppEngine.WebApp
 
     ''' <summary>
     ''' 用户任务池，排队队列

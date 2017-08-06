@@ -96,6 +96,7 @@
     <Compile Include="KEGG.vb" />
     <Compile Include="Debugger.vb" />
     <Compile Include="Apps.vb" />
+    <Compile Include="WebApp.vb" />
     <Compile Include="Platform.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">

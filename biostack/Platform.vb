@@ -1,10 +1,9 @@
 ﻿Imports Microsoft.VisualBasic.CommandLine.Reflection
-Imports SMRUCC.WebCloud.HTTPInternal.AppEngine
 Imports SMRUCC.WebCloud.HTTPInternal.AppEngine.APIMethods
 Imports SMRUCC.WebCloud.HTTPInternal.AppEngine.APIMethods.Arguments
 Imports SMRUCC.WebCloud.HTTPInternal.Platform
 
-<[Namespace]("biostack")> Public Class Platform : Inherits WebApp
+<[Namespace]("biostack")> Public Class Platform : Inherits SMRUCC.WebCloud.HTTPInternal.AppEngine.WebApp
 
     Public Sub New(main As PlatformEngine)
         MyBase.New(main)
