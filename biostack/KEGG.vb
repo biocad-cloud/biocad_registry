@@ -5,7 +5,7 @@ Imports SMRUCC.WebCloud.HTTPInternal.AppEngine
 Imports SMRUCC.WebCloud.HTTPInternal.AppEngine.APIMethods.Arguments
 Imports SMRUCC.WebCloud.HTTPInternal.Platform
 
-<[Namespace]("KEGG")> Public Class KEGG : Inherits WebApp
+<[Namespace]("KEGG")> Public Class KEGG : Inherits SMRUCC.WebCloud.HTTPInternal.AppEngine.WebApp
 
     ReadOnly mysql As New MySQL
 

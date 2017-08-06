@@ -1,7 +1,6 @@
 ﻿Imports SMRUCC.WebCloud.d3js.Network
 Imports SMRUCC.WebCloud.HTTPInternal
-Imports NetGraph = Microsoft.VisualBasic.Data.visualize.Network.FileStream.Network
-Imports Microsoft.VisualBasic.Serialization.JSON
+Imports NetGraph = Microsoft.VisualBasic.Data.visualize.Network.FileStream.NetworkTables
 
 Namespace Testing
 

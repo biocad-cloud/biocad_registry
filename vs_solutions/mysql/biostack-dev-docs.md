@@ -8,14 +8,14 @@ The analysis application that running the task
 
 |field|type|attributes|description|
 |-----|----|----------|-----------|
-|uid|Int64 (11)|``AI``, ``NN``||
+|uid|Int64 (11)|``NN``||
 |name|VarChar (128)|``NN``||
 |description|Text||功能的详细描述|
 |catagory|VarChar (45)||功能分类|
 
 ```SQL
 CREATE TABLE `app` (
-  `uid` int(11) NOT NULL AUTO_INCREMENT,
+  `uid` int(11) NOT NULL,
   `name` varchar(128) NOT NULL,
   `description` longtext COMMENT '功能的详细描述',
   `catagory` varchar(45) DEFAULT NULL COMMENT '功能分类',

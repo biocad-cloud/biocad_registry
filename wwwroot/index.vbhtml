@@ -13,6 +13,12 @@
     
 		<div class="row">
 			<div class="small-12 columns">
+				<iframe width=1024 height=840 frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no" allowtransparency="yes" src="./FeatureTools.vbhtml"></iframe>
+			</div>
+		</div>
+	
+		<div class="row">
+			<div class="small-12 columns">
 				<h1>Biostack platform</h1>
 				<h3>Navigate reference database</h3>
 				<ul>

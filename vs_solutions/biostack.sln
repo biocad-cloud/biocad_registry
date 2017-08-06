@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.6
+VisualStudioVersion = 15.0.26724.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "+Microsoft.VisualBasic.Architecture.Framework", "..\..\GCModeller\src\runtime\sciBASIC#\Microsoft.VisualBasic.Architecture.Framework\+Microsoft.VisualBasic.Architecture.Framework.vbproj", "{FECCE1FD-E1D4-49E3-A668-60BB5E7AED99}"
 EndProject
@@ -25,7 +25,7 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "KEGG", "..\..\GCModeller\sr
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Bio.Assembly", "..\..\GCModeller\src\GCModeller\core\Bio.Assembly\Bio.Assembly.vbproj", "{C699D311-9923-4C19-BF70-5048D0E2CF5D}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Microsoft.VisualBasic.Mathematical", "..\..\GCModeller\src\runtime\sciBASIC#\Data_science\Mathematical\Math\Microsoft.VisualBasic.Mathematical.vbproj", "{E3367B88-5D0C-495A-8273-331656D4B5AA}"
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "math-core", "..\..\GCModeller\src\runtime\sciBASIC#\Data_science\Mathematica\Math\Math\math-core.vbproj", "{E3367B88-5D0C-495A-8273-331656D4B5AA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "D3.js", "D3.js", "{F4A7374A-461F-4D50-BA0C-319BB191976E}"
 EndProject
@@ -35,7 +35,7 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "MIME-htmls", "..\..\GCModel
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Microsoft.VisualBasic.Imaging", "..\..\GCModeller\src\runtime\sciBASIC#\gr\Microsoft.VisualBasic.Imaging\Microsoft.VisualBasic.Imaging.vbproj", "{85E71B4B-9276-4EC8-AADC-C849205F1EA8}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Datavisualization.Network", "..\..\GCModeller\src\runtime\sciBASIC#\gr\Datavisualization.Network\Datavisualization.Network\Datavisualization.Network.vbproj", "{076315EE-B598-40DC-9280-C71CDF9B6A48}"
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Network.GraphTheory", "..\..\GCModeller\src\runtime\sciBASIC#\gr\Datavisualization.Network\Datavisualization.Network\Network.GraphTheory.vbproj", "{076315EE-B598-40DC-9280-C71CDF9B6A48}"
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "NCBI.Extensions.localblast", "..\..\GCModeller\src\interops\localblast\LocalBLAST\NCBI.Extensions.localblast.vbproj", "{C6B843B8-F990-4FAF-98DE-A20EFC8B69F7}"
 EndProject
@@ -44,8 +44,6 @@ EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Settings.FileSystem", "..\..\GCModeller\src\Settings\Shared\Settings.FileSystem\Settings.FileSystem.shproj", "{36EE8DC2-3D23-45B7-8CE4-1942916A02AA}"
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "SMRUCC.WebCloud.DataCenter", "..\..\GCModeller\src\runtime\httpd\WebCloud\SMRUCC.WebCloud.DataCenter\SMRUCC.WebCloud.DataCenter.vbproj", "{B1DE5562-91D6-4AEE-AA26-72EF2DFC7C75}"
-EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Testing", "Testing\Testing.vbproj", "{C48A87F3-13C8-498F-96B5-74F7AD0BD0DA}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
@@ -615,42 +613,6 @@ Global
 		{B1DE5562-91D6-4AEE-AA26-72EF2DFC7C75}.Release2|x64.Build.0 = Release|x64
 		{B1DE5562-91D6-4AEE-AA26-72EF2DFC7C75}.Release2|x86.ActiveCfg = Release|Any CPU
 		{B1DE5562-91D6-4AEE-AA26-72EF2DFC7C75}.Release2|x86.Build.0 = Release|Any CPU
-		{C48A87F3-13C8-498F-96B5-74F7AD0BD0DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C48A87F3-13C8-498F-96B5-74F7AD0BD0DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C48A87F3-13C8-498F-96B5-74F7AD0BD0DA}.Debug|x64.ActiveCfg = Debug|x64
-		{C48A87F3-13C8-498F-96B5-74F7AD0BD0DA}.Debug|x64.Build.0 = Debug|x64
-		{C48A87F3-13C8-498F-96B5-74F7AD0BD0DA}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{C48A87F3-13C8-498F-96B5-74F7AD0BD0DA}.Debug|x86.Build.0 = Debug|Any CPU
-		{C48A87F3-13C8-498F-96B5-74F7AD0BD0DA}.DEMO|Any CPU.ActiveCfg = Debug|Any CPU
-		{C48A87F3-13C8-498F-96B5-74F7AD0BD0DA}.DEMO|Any CPU.Build.0 = Debug|Any CPU
-		{C48A87F3-13C8-498F-96B5-74F7AD0BD0DA}.DEMO|x64.ActiveCfg = Debug|Any CPU
-		{C48A87F3-13C8-498F-96B5-74F7AD0BD0DA}.DEMO|x64.Build.0 = Debug|Any CPU
-		{C48A87F3-13C8-498F-96B5-74F7AD0BD0DA}.DEMO|x86.ActiveCfg = Debug|Any CPU
-		{C48A87F3-13C8-498F-96B5-74F7AD0BD0DA}.DEMO|x86.Build.0 = Debug|Any CPU
-		{C48A87F3-13C8-498F-96B5-74F7AD0BD0DA}.docs|Any CPU.ActiveCfg = Debug|Any CPU
-		{C48A87F3-13C8-498F-96B5-74F7AD0BD0DA}.docs|Any CPU.Build.0 = Debug|Any CPU
-		{C48A87F3-13C8-498F-96B5-74F7AD0BD0DA}.docs|x64.ActiveCfg = Debug|Any CPU
-		{C48A87F3-13C8-498F-96B5-74F7AD0BD0DA}.docs|x64.Build.0 = Debug|Any CPU
-		{C48A87F3-13C8-498F-96B5-74F7AD0BD0DA}.docs|x86.ActiveCfg = Debug|Any CPU
-		{C48A87F3-13C8-498F-96B5-74F7AD0BD0DA}.docs|x86.Build.0 = Debug|Any CPU
-		{C48A87F3-13C8-498F-96B5-74F7AD0BD0DA}.Publish|Any CPU.ActiveCfg = Release|Any CPU
-		{C48A87F3-13C8-498F-96B5-74F7AD0BD0DA}.Publish|Any CPU.Build.0 = Release|Any CPU
-		{C48A87F3-13C8-498F-96B5-74F7AD0BD0DA}.Publish|x64.ActiveCfg = Release|Any CPU
-		{C48A87F3-13C8-498F-96B5-74F7AD0BD0DA}.Publish|x64.Build.0 = Release|Any CPU
-		{C48A87F3-13C8-498F-96B5-74F7AD0BD0DA}.Publish|x86.ActiveCfg = Release|Any CPU
-		{C48A87F3-13C8-498F-96B5-74F7AD0BD0DA}.Publish|x86.Build.0 = Release|Any CPU
-		{C48A87F3-13C8-498F-96B5-74F7AD0BD0DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C48A87F3-13C8-498F-96B5-74F7AD0BD0DA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C48A87F3-13C8-498F-96B5-74F7AD0BD0DA}.Release|x64.ActiveCfg = Release|x64
-		{C48A87F3-13C8-498F-96B5-74F7AD0BD0DA}.Release|x64.Build.0 = Release|x64
-		{C48A87F3-13C8-498F-96B5-74F7AD0BD0DA}.Release|x86.ActiveCfg = Release|Any CPU
-		{C48A87F3-13C8-498F-96B5-74F7AD0BD0DA}.Release|x86.Build.0 = Release|Any CPU
-		{C48A87F3-13C8-498F-96B5-74F7AD0BD0DA}.Release2|Any CPU.ActiveCfg = Release|Any CPU
-		{C48A87F3-13C8-498F-96B5-74F7AD0BD0DA}.Release2|Any CPU.Build.0 = Release|Any CPU
-		{C48A87F3-13C8-498F-96B5-74F7AD0BD0DA}.Release2|x64.ActiveCfg = Release|Any CPU
-		{C48A87F3-13C8-498F-96B5-74F7AD0BD0DA}.Release2|x64.Build.0 = Release|Any CPU
-		{C48A87F3-13C8-498F-96B5-74F7AD0BD0DA}.Release2|x86.ActiveCfg = Release|Any CPU
-		{C48A87F3-13C8-498F-96B5-74F7AD0BD0DA}.Release2|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -674,5 +636,8 @@ Global
 		{E8CABDE9-5471-4EB6-8ABC-54C95D3B1512} = {6447A02B-440E-473E-8930-8D3F13953097}
 		{36EE8DC2-3D23-45B7-8CE4-1942916A02AA} = {6447A02B-440E-473E-8930-8D3F13953097}
 		{B1DE5562-91D6-4AEE-AA26-72EF2DFC7C75} = {67256FFE-FD9E-43F1-B361-92216BE97B8C}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {759C6AC1-044F-446F-8B14-15EB2C1F9109}
 	EndGlobalSection
 EndGlobal
