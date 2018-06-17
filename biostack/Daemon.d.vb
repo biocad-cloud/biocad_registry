@@ -12,8 +12,7 @@ Imports SMRUCC.WebCloud.HTTPInternal.Platform
 ''' 数据分析任务的后台守护进程
 ''' </summary>
 ''' 
-<[Namespace]("biostack.d")>
-Public Class Daemon : Inherits WebApp
+<[Namespace]("biostack.d")> Public Class Daemon : Inherits WebApp
 
     ReadOnly mysqli As New MySqli
     ReadOnly OSS_ROOT$
@@ -49,6 +48,9 @@ Public Class Daemon : Inherits WebApp
             If task Is Nothing Then
                 Exit Do
             Else
+                task.status = 1
+
+                Call mysqli.ExecUpdate(task)
                 Call taskWorker(task)
             End If
 

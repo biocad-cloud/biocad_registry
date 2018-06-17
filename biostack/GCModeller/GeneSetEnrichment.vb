@@ -1,6 +1,4 @@
-﻿Imports biostack
-Imports biostack.GCModeller
-
+﻿<AppEntry(GCModeller.Apps.Enrichment)>
 Public Class GeneSetEnrichment : Implements IBiostackApp
 
     Public ReadOnly Property AppID As GCModeller.Apps Implements IBiostackApp.AppID
@@ -10,6 +8,6 @@ Public Class GeneSetEnrichment : Implements IBiostackApp
     End Property
 
     Public Function RunApp(argumentJSON As String, workspace As String) As Exception Implements IBiostackApp.RunApp
-        Throw New NotImplementedException()
+
     End Function
 End Class
