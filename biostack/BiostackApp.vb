@@ -1,17 +1,13 @@
 ﻿Imports System.Text
 Imports Microsoft.VisualBasic.CommandLine.Reflection
-Imports Microsoft.VisualBasic.Math.HashMaps
 Imports Microsoft.VisualBasic.Serialization.JSON
-Imports Oracle.LinuxCompatibility.MySQL
-Imports SMRUCC.WebCloud.DataCenter
-Imports SMRUCC.WebCloud.DataCenter.Platform
+Imports SMRUCC.WebCloud.HTTPInternal.AppEngine
 Imports SMRUCC.WebCloud.HTTPInternal.AppEngine.APIMethods
 Imports SMRUCC.WebCloud.HTTPInternal.AppEngine.APIMethods.Arguments
 Imports SMRUCC.WebCloud.HTTPInternal.Platform
-Imports SMRUCC.WebCloud.HTTPInternal.Scripting
 Imports TaskValue = SMRUCC.WebCloud.DataCenter.mysql.task_pool
 
-<[Namespace]("Application")> Public Class BiostackApp : Inherits SMRUCC.WebCloud.HTTPInternal.AppEngine.WebApp
+<[Namespace]("Application")> Public Class BiostackApp : Inherits WebApp
 
     ''' <summary>
     ''' 用户任务池，排队队列
@@ -68,11 +64,11 @@ Imports TaskValue = SMRUCC.WebCloud.DataCenter.mysql.task_pool
                        End Sub) With
             {
                 .TaskData = New TaskValue With {
-                    .description = describ,
+                    .Description = describ,
                     .email = email,
                     .time_create = Now,
                     .title = title,
-                    .app = BiostackApps.COG_myva,
+                    .App = BiostackApps.COG_myva,
                     .parameters = New Dictionary(Of String, String) From {
                         {NameOf(fastafile), fastafile}
                     }.GetJson,

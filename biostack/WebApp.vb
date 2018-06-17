@@ -1,11 +1,7 @@
 ﻿Imports Microsoft.VisualBasic.CommandLine.Reflection
-Imports Oracle.LinuxCompatibility.MySQL
-Imports SMRUCC.WebCloud.DataCenter
-Imports Microsoft.VisualBasic.Terminal
-Imports SMRUCC.WebCloud.DataCenter.mysql
 Imports sys = Microsoft.VisualBasic.Terminal.STDIO
 
-<RunDllEntryPoint(NameOf(WebApp))> Module WebApp
+<RunDllEntryPoint("WebApp")> Module WebAppHandler
 
     Sub New()
         Call Settings.Session.Initialize()
@@ -20,7 +16,7 @@ Imports sys = Microsoft.VisualBasic.Terminal.STDIO
             ' 检查WebApp的注册情况
             Dim apps = AppHelper.LoadData(Of BiostackApps)
 
-            For Each app As app In apps
+            For Each app As App In apps
                 Call .ExecReplace(app)
             Next
         End With

@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-<vbhtml>
-	<string name="KEGG">KEGG Reference Database</string>
-	<string name="Uniprot">Uniprot Protein Reference database</string>
-	<string name="RegPrecise">RegPrecise Motif Reference database</string>
-	<string name="COG_myva">COG myva annotation tools</string>
-</vbhtml>
