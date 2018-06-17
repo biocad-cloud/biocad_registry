@@ -36,4 +36,14 @@ Module AppContainer
             End If
         End With
     End Function
+
+    Public Function GetGCModeller() As String
+        Dim appPath$ = App.GetVariable("GCModeller")
+
+        If appPath.DirectoryExists Then
+            Return appPath
+        Else
+            Throw New EntryPointNotFoundException("Missing GCModeller tools!")
+        End If
+    End Function
 End Module
