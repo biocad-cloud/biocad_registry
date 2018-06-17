@@ -74,6 +74,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -93,12 +94,12 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BiostackApp.vb" />
-    <Compile Include="KEGG.vb" />
-    <Compile Include="Debugger.vb" />
-    <Compile Include="Apps.vb" />
-    <Compile Include="WebApp.vb" />
-    <Compile Include="Platform.vb" />
+    <Compile Include="mysql\bioCAD\accept_file_type.vb" />
+    <Compile Include="mysql\bioCAD\analysis.vb" />
+    <Compile Include="mysql\bioCAD\analysis_app.vb" />
+    <Compile Include="mysql\bioCAD\content_types.vb" />
+    <Compile Include="mysql\bioCAD\data_files.vb" />
+    <Compile Include="mysql\bioCAD\exception.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -114,7 +115,14 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Tasks\COGMyva.vb" />
+    <Compile Include="mysql\bioCAD\project.vb" />
+    <Compile Include="mysql\bioCAD\project_files.vb" />
+    <Compile Include="mysql\bioCAD\project_types.vb" />
+    <Compile Include="mysql\bioCAD\report.vb" />
+    <Compile Include="mysql\bioCAD\task.vb" />
+    <Compile Include="mysql\bioCAD\user.vb" />
+    <Compile Include="mysql\bioCAD\user_activity.vb" />
+    <Compile Include="mysql\bioCAD\user_settings.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">
