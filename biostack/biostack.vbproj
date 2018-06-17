@@ -94,6 +94,11 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Daemon.d.vb" />
+    <Compile Include="GCModeller\Apps.vb" />
+    <Compile Include="AppContainer.vb" />
+    <Compile Include="GCModeller\GeneSetEnrichment.vb" />
+    <Compile Include="IBiostackApp.vb" />
     <Compile Include="mysql\bioCAD\accept_file_type.vb" />
     <Compile Include="mysql\bioCAD\analysis.vb" />
     <Compile Include="mysql\bioCAD\analysis_app.vb" />
@@ -170,5 +175,8 @@
       <Name>47-dotnet_Microsoft.VisualBasic</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
+  <Import Project="E:\GCModeller\src\runtime\mysqli\mysqliHelper\mysqliHelper.projitems" Label="Shared" />
+  <Import Project="E:\GCModeller\src\Settings\Shared\InternalApps_CLI\InternalApps_CLI.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
