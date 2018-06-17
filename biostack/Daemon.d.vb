@@ -16,10 +16,20 @@ Imports SMRUCC.WebCloud.HTTPInternal.Platform
 Public Class Daemon : Inherits WebApp
 
     ReadOnly mysqli As New MySqli
+    ReadOnly OSS_ROOT$
 
     Public Sub New(main As PlatformEngine)
         Call MyBase.New(main)
         Call MySqliHelper.init(mysqli)
+
+        OSS_ROOT = App.GetVariable("OSS_ROOT")
+
+        If OSS_ROOT.DirectoryExists Then
+            Call $"OSS_ROOT mounted at: {OSS_ROOT}".__INFO_ECHO
+        Else
+            Call $"Invalid OSS_ROOT location: {OSS_ROOT}".PrintException
+            Throw New InvalidOperationException(OSS_ROOT)
+        End If
     End Sub
 
     <ExportAPI("/biostack.d/task_push.vbs")>
@@ -50,6 +60,12 @@ Public Class Daemon : Inherits WebApp
 
     Private Sub taskWorker(task As bioCAD.task)
         Dim app As IBiostackApp = AppContainer.GetApp(task.app_id)
-        Dim workspace$ = ""
+        ' https://github.com/GCModeller-Cloud/bioCAD/blame/ca6c0ecddfdebbe08a7d7b42e11e456f5cdc3f35/biostack/api.php#L54
+        Dim workspace$ = $"/data/upload/{task.user_id}/{task.app_id}/{task.id}/"
+        Dim exception = app.RunApp(task.parameters, OSS_ROOT & workspace)
+
+        If Not exception Is Nothing Then
+
+        End If
     End Sub
 End Class

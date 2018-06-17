@@ -9,7 +9,7 @@ Public Class GeneSetEnrichment : Implements IBiostackApp
         End Get
     End Property
 
-    Public Function RunApp(argumentJSON As String, workspace As String) As String Implements IBiostackApp.RunApp
-
+    Public Function RunApp(argumentJSON As String, workspace As String) As Exception Implements IBiostackApp.RunApp
+        Throw New NotImplementedException()
     End Function
 End Class

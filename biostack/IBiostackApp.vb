@@ -8,6 +8,6 @@
     ''' <param name="argumentJSON$"></param>
     ''' <param name="workspace$"></param>
     ''' <returns></returns>
-    Function RunApp(argumentJSON$, workspace$) As String
+    Function RunApp(argumentJSON$, workspace$) As Exception
 
 End Interface
