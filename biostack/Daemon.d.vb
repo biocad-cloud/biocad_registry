@@ -74,7 +74,7 @@ Imports SMRUCC.WebCloud.HTTPInternal.Platform
     Private Sub taskWorker(task As bioCAD.task)
         Dim app As IBiostackApp = AppContainer.GetApp(task.app_id)
         ' https://github.com/GCModeller-Cloud/bioCAD/blame/ca6c0ecddfdebbe08a7d7b42e11e456f5cdc3f35/biostack/api.php#L54
-        Dim workspace$ = $"/data/upload/{task.user_id}/{task.app_id}/{task.id}/"
+        Dim workspace$ = $"/upload/{task.user_id}/{task.app_id}/{task.id}/"
 
         If task.user_id > 0 Then
             ' 是一个注册用户，会根据用户的账户配置发送电子邮件

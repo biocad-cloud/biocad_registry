@@ -11,10 +11,12 @@ Public Class GeneSetEnrichment : Implements IBiostackApp
     End Property
 
     ReadOnly profiler As Profiler
+    ReadOnly eggHTS As eggHTS
     ReadOnly repository$
 
     Sub New()
         profiler = New Profiler(AppContainer.GetGCModeller & "/Profiler.exe")
+        eggHTS = New eggHTS(AppContainer.GetGCModeller & "/eggHTS.exe")
         repository = App.GetVariable("repository") & "/backgrounds/"
     End Sub
 
