@@ -10,11 +10,11 @@ Public Class GeneSetEnrichment : Implements IBiostackApp
         End Get
     End Property
 
-    ReadOnly eggHTS As eggHTS
+    ReadOnly profiler As Profiler
     ReadOnly repository$
 
     Sub New()
-        eggHTS = New eggHTS(AppContainer.GetGCModeller & "/eggHTS.exe")
+        profiler = New Profiler(AppContainer.GetGCModeller & "/Profiler.exe")
         repository = App.GetVariable("repository") & "/backgrounds/"
     End Sub
 
@@ -23,8 +23,23 @@ Public Class GeneSetEnrichment : Implements IBiostackApp
         Dim organism$ = args!organism
         Dim orgName$ = args!organismName
         Dim geneSet$ = workspace & "/geneSet.txt"
+        Dim background$ = $"{repository}/{organism}"
+        Dim uniprot$ = $"{background}/uniprot.XML"
+        Dim KEGGOut$ = workspace & "/enrichment_KO.csv"
+        Dim GOOut$ = workspace & "/enrichment_GO.csv"
+
+        ' kegg
+        Call profiler.EnrichmentTest(background & "/KO_background.XML", geneSet, uniprot, KEGGOut)
+        ' go
+        Call profiler.EnrichmentTest(background & "/GO_background.XML", geneSet, uniprot, GOOut)
+
+        ' 分别进行绘图
+        ' ko
+        ' go
+
+        ' zip 打包下载备用
 
 
-
+        Return Nothing
     End Function
 End Class
