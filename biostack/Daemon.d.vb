@@ -95,7 +95,11 @@ Imports SMRUCC.WebCloud.HTTPInternal.Platform
         Dim exception = app.RunApp(task.parameters, OSS_ROOT & workspace)
 
         If Not exception Is Nothing Then
-
+            task.status = 500
+        Else
+            task.status = 200
         End If
+
+        Call mysqli.ExecUpdate(task)
     End Sub
 End Class

@@ -31,9 +31,9 @@ Public Class GeneSetEnrichment : Implements IBiostackApp
         Dim GOOut$ = workspace & "/enrichment_GO.csv"
 
         ' kegg
-        Call profiler.EnrichmentTest(background & "/KO_background.XML", geneSet, uniprot, KEGGOut)
+        Call profiler.EnrichmentTest(background & "/KO_background.XML", geneSet, uniprot, KEGGOut, hide_progress:=True)
         ' go
-        Call profiler.EnrichmentTest(background & "/GO_background.XML", geneSet, uniprot, GOOut)
+        Call profiler.EnrichmentTest(background & "/GO_background.XML", geneSet, uniprot, GOOut, hide_progress:=True)
 
         ' 分别进行绘图
         ' ko
