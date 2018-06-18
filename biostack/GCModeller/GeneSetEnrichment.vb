@@ -1,7 +1,10 @@
-﻿Imports System.IO.Compression
+﻿Imports System.Drawing
+Imports System.IO.Compression
 Imports biostack.GCModellerApps
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.Data.csv
+Imports Microsoft.VisualBasic.Imaging
+Imports Microsoft.VisualBasic.Imaging.BitmapImage
 Imports Microsoft.VisualBasic.Serialization.JSON
 
 <AppEntry(GCModeller.Apps.Enrichment)>
@@ -65,10 +68,15 @@ Public Class GeneSetEnrichment : Implements IBiostackApp
         ' ko
         Call eggHTS.Converts(KEGGOut, keggTerms)
         Call eggHTS.KEGG_enrichment(keggTerms, out:=keggPlot)
-
+        Call keggPlot.LoadImage _
+                     .CorpBlank(20, Color.White) _
+                     .SaveAs(keggPlot)
         ' go
         Call eggHTS.Converts(GOOut, goTerms)
         Call eggHTS.GO_enrichmentPlot(goTerms, go:=repository & "/Go.obo", out:=goPlot)
+        Call goPlot.LoadImage _
+                   .CorpBlank(20, Color.White) _
+                   .SaveAs(goPlot)
 
         ' zip 打包下载备用
         Dim packageFiles$() = workspace _
