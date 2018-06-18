@@ -170,7 +170,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\GCModeller\src\runtime\httpd\httpd\httpd.vbproj">
+    <ProjectReference Include="E:\GCModeller\src\runtime\httpd\httpd\httpd.vbproj">
       <Project>{ce825e49-0386-4ab1-b452-b104ed3f7deb}</Project>
       <Name>httpd</Name>
     </ProjectReference>

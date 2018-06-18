@@ -29,11 +29,16 @@ Public Class GeneSetEnrichment : Implements IBiostackApp
         Dim uniprot$ = $"{background}/uniprot.XML"
         Dim KEGGOut$ = workspace & "/enrichment_KO.csv"
         Dim GOOut$ = workspace & "/enrichment_GO.csv"
+        Dim converts$ = workspace & "/converts_UniProt.txt"
+
+        ' 先进行编号的类型的统一转换
+        ' 然后再使用转换过后的编号进行富集计算分析
+        Call profiler.IDconverts(uniprot, geneSet, out:=converts)
 
         ' kegg
-        Call profiler.EnrichmentTest(background & "/KO_background.XML", geneSet, uniprot, KEGGOut, hide_progress:=True)
+        Call profiler.EnrichmentTest(background & "/KO_background.XML", converts, KEGGOut, hide_progress:=True)
         ' go
-        Call profiler.EnrichmentTest(background & "/GO_background.XML", geneSet, uniprot, GOOut, hide_progress:=True)
+        Call profiler.EnrichmentTest(background & "/GO_background.XML", converts, GOOut, hide_progress:=True)
 
         ' 分别进行绘图
         ' ko
