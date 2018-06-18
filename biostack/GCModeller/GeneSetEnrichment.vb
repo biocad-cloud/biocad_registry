@@ -1,4 +1,6 @@
-﻿Imports biostack.GCModellerApps
+﻿Imports System.IO.Compression
+Imports biostack.GCModellerApps
+Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.Data.csv
 Imports Microsoft.VisualBasic.Serialization.JSON
 
@@ -43,15 +45,33 @@ Public Class GeneSetEnrichment : Implements IBiostackApp
 
         ' 合并，方便显示于结果页面之上
         Dim all$ = workspace & "/enrichment[1].csv"
+        Dim zip$ = workspace & "/result.zip"
 
-        Call DocumentExtensions.DirectAppends({KEGGOut, GOOut}, all)
+        Call DocumentExtensions.DirectAppends(
+            {KEGGOut, GOOut},
+            all,
+            orderBy:=Function(r)
+                         Return Val(r!pvalue)
+                     End Function)
 
         ' 分别进行绘图
         ' ko
         ' go
 
         ' zip 打包下载备用
+        Dim packageFiles$() = workspace _
+            .EnumerateFiles("*.*") _
+            .Where(Function(file)
+                       Return Not file.ExtensionSuffix.TextEquals("zip")
+                   End Function) _
+            .ToArray
 
+        Call GZip.AddToArchive(
+            packageFiles, zip,
+            ArchiveAction.Replace,
+            Overwrite.Always,
+            CompressionLevel.Optimal
+        )
 
         Return Nothing
     End Function
