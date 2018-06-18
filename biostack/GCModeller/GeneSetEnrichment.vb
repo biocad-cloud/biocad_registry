@@ -11,16 +11,19 @@ Public Class GeneSetEnrichment : Implements IBiostackApp
     End Property
 
     ReadOnly eggHTS As eggHTS
+    ReadOnly repository$
 
     Sub New()
         eggHTS = New eggHTS(AppContainer.GetGCModeller & "/eggHTS.exe")
+        repository = App.GetVariable("repository") & "/backgrounds/"
     End Sub
 
-    Public Function RunApp(argumentJSON As String, workspace As String) As Exception Implements IBiostackApp.RunApp
+    Public Function RunApp(argumentJSON$, workspace$) As Exception Implements IBiostackApp.RunApp
         Dim args = argumentJSON.LoadObject(Of Dictionary(Of String, String))
         Dim organism$ = args!organism
         Dim orgName$ = args!organismName
         Dim geneSet$ = workspace & "/geneSet.txt"
+
 
 
     End Function

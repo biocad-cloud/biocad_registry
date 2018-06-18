@@ -31,6 +31,17 @@ Imports SMRUCC.WebCloud.HTTPInternal.Platform
         End If
     End Sub
 
+    ''' <summary>
+    ''' Debugger
+    ''' </summary>
+    ''' <param name="mysql"></param>
+    Sub New(mysql As MySqli)
+        Call MyBase.New(Nothing)
+
+        mysqli = mysql
+        OSS_ROOT = App.GetVariable("OSS_ROOT")
+    End Sub
+
     <ExportAPI("/biostack.d/task_push.vbs")>
     Public Function TaskPush(request As HttpRequest, response As HttpResponse) As Boolean
         Call PlatformEngine.RunTask(AddressOf TaskWorker)
