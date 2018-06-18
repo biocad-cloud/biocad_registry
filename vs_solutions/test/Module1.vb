@@ -14,6 +14,8 @@ Module Module1
 
         Dim d As New Daemon(mysql)
 
-        Call d.TaskWorker()
+        Call d.TaskWorker(True)
+
+        Pause()
     End Sub
 End Module

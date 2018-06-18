@@ -44,17 +44,29 @@ Imports SMRUCC.WebCloud.HTTPInternal.Platform
 
     <ExportAPI("/biostack.d/task_push.vbs")>
     Public Function TaskPush(request As HttpRequest, response As HttpResponse) As Boolean
-        Call PlatformEngine.RunTask(AddressOf TaskWorker)
+        Call PlatformEngine _
+            .RunTask(Sub()
+                         Call TaskWorker(cleanup:=False)
+                     End Sub)
         Call response.SuccessMsg("Task trigger pushed!")
 
         Return True
     End Function
 
-    Public Sub TaskWorker()
+    Public Sub TaskWorker(cleanup As Boolean)
         Dim task As bioCAD.task
+        Dim condition$
+
+        If cleanup Then
+            condition = "`status` = '0' OR `status` = '1'"
+        Else
+            condition = "`status` = '0'"
+        End If
 
         Do While True
-            task = New Table(Of bioCAD.task)(mysqli).Where($"`status` = '0'").Find
+            task = New Table(Of bioCAD.task)(mysqli) _
+                .Where(condition) _
+                .Find
 
             If task Is Nothing Then
                 Exit Do
