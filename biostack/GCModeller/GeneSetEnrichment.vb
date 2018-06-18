@@ -15,12 +15,14 @@ Public Class GeneSetEnrichment : Implements IBiostackApp
 
     ReadOnly profiler As Profiler
     ReadOnly eggHTS As eggHTS
+    ReadOnly backgroundRepository$
     ReadOnly repository$
 
     Sub New()
         profiler = New Profiler(AppContainer.GetGCModeller & "/Profiler.exe")
         eggHTS = New eggHTS(AppContainer.GetGCModeller & "/eggHTS.exe")
-        repository = App.GetVariable("repository") & "/backgrounds/"
+        backgroundRepository = App.GetVariable("repository") & "/backgrounds/"
+        repository = App.GetVariable("repository")
     End Sub
 
     Public Function RunApp(argumentJSON$, workspace$) As Exception Implements IBiostackApp.RunApp
@@ -28,7 +30,7 @@ Public Class GeneSetEnrichment : Implements IBiostackApp
         Dim organism$ = args!organism
         Dim orgName$ = args!organismName
         Dim geneSet$ = workspace & "/geneSet.txt"
-        Dim background$ = $"{repository}/{organism}"
+        Dim background$ = $"{backgroundRepository}/{organism}"
         Dim uniprot$ = $"{background}/uniprot.XML"
         Dim KEGGOut$ = workspace & "/enrichment_KO.csv"
         Dim GOOut$ = workspace & "/enrichment_GO.csv"
@@ -55,8 +57,18 @@ Public Class GeneSetEnrichment : Implements IBiostackApp
                      End Function)
 
         ' 分别进行绘图
+        Dim keggTerms$ = App.GetAppSysTempFile(".csv", App.PID)
+        Dim goTerms$ = App.GetAppSysTempFile(".csv", App.PID)
+        Dim keggPlot$ = workspace & "/KEGG.png"
+        Dim goPlot$ = workspace & "/GO_terms.png"
+
         ' ko
+        Call eggHTS.Converts(KEGGOut, keggTerms)
+        Call eggHTS.KEGG_enrichment(keggTerms, out:=keggPlot)
+
         ' go
+        Call eggHTS.Converts(GOOut, goTerms)
+        Call eggHTS.GO_enrichmentPlot(goTerms, go:=repository & "/Go.obo", out:=goPlot)
 
         ' zip 打包下载备用
         Dim packageFiles$() = workspace _
