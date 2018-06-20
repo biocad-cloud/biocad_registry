@@ -1,6 +1,5 @@
 ﻿Imports biostack.GCModellerApps
 Imports Microsoft.VisualBasic.CommandLine.Reflection
-Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Oracle.LinuxCompatibility.MySQL
 Imports SMRUCC.WebCloud.HTTPInternal
 Imports SMRUCC.WebCloud.HTTPInternal.AppEngine
@@ -73,6 +72,7 @@ Imports SMRUCC.WebCloud.HTTPInternal.Platform
             )
         End If
 
+        Call response.AccessControlAllowOrigin.SetValue("*")
         Call response.SuccessMsg("Tweaks!")
 
         Return True
