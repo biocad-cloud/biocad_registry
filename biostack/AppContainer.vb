@@ -6,10 +6,13 @@ Imports Oracle.LinuxCompatibility.MySQL.Expressions
 
 Module AppContainer
 
-    ReadOnly defines As New Dictionary(Of GCModeller.Apps, Type)
+    Public ReadOnly defines As New Dictionary(Of GCModeller.Apps, Type)
+    Public ReadOnly repository$
 
     Sub New()
         Call LoadApps()
+
+        repository = App.GetVariable("repository")
     End Sub
 
     Private Sub LoadApps()
