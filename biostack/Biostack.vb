@@ -1,5 +1,8 @@
-﻿Imports biostack.GCModellerApps
+﻿Imports System.Drawing
+Imports biostack.GCModellerApps
 Imports Microsoft.VisualBasic.CommandLine.Reflection
+Imports Microsoft.VisualBasic.Imaging
+Imports Microsoft.VisualBasic.Imaging.BitmapImage
 Imports Oracle.LinuxCompatibility.MySQL
 Imports SMRUCC.WebCloud.HTTPInternal
 Imports SMRUCC.WebCloud.HTTPInternal.AppEngine
@@ -71,6 +74,10 @@ Imports SMRUCC.WebCloud.HTTPInternal.Platform
                 out:=output
             )
         End If
+
+        Call output.LoadImage _
+            .CorpBlank(20, Color.White) _
+            .SaveAs(output)
 
         Call response.AccessControlAllowOrigin.SetValue("*")
         Call response.SuccessMsg("Tweaks!")
