@@ -115,6 +115,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Biostack.vb" />
     <Compile Include="Daemon.d.vb" />
     <Compile Include="GCModeller\Apps.vb" />
     <Compile Include="AppContainer.vb" />

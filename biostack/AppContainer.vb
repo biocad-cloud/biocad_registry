@@ -1,5 +1,8 @@
-﻿Imports Microsoft.VisualBasic.Emit.Delegates
+﻿Imports System.Runtime.CompilerServices
+Imports Microsoft.VisualBasic.Emit.Delegates
 Imports Microsoft.VisualBasic.Language
+Imports Oracle.LinuxCompatibility.MySQL
+Imports Oracle.LinuxCompatibility.MySQL.Expressions
 
 Module AppContainer
 
@@ -44,6 +47,19 @@ Module AppContainer
             Return appPath
         Else
             Throw New EntryPointNotFoundException("Missing GCModeller tools!")
+        End If
+    End Function
+
+    <Extension>
+    Public Function GetWorkspace(mysqli As MySqli, taskID$) As String
+        Dim task = New Table(Of MySql.bioCAD.task)(mysqli) _
+            .Where($"`id` = '{taskID}' OR `sha1` = '{taskID}'") _
+            .Find
+
+        If task Is Nothing Then
+            Return Nothing
+        Else
+            Return $"/upload/{task.user_id}/{task.app_id}/{task.id}/"
         End If
     End Function
 End Module
