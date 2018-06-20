@@ -3,6 +3,7 @@ Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Oracle.LinuxCompatibility.MySQL
 Imports SMRUCC.WebCloud.HTTPInternal.AppEngine
+Imports SMRUCC.WebCloud.HTTPInternal.AppEngine.APIMethods
 Imports SMRUCC.WebCloud.HTTPInternal.AppEngine.APIMethods.Arguments
 Imports SMRUCC.WebCloud.HTTPInternal.Platform
 
@@ -31,6 +32,7 @@ Imports SMRUCC.WebCloud.HTTPInternal.Platform
     End Sub
 
     <ExportAPI("/biostack/CustomEnrichmentPlot.vbs")>
+    <POST>
     Public Function CustomEnrichmentPlot(request As HttpPOSTRequest, response As HttpResponse) As Boolean
         Dim type$ = request.URLParameters("type")
         Dim id$ = request.URLParameters("id")

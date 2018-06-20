@@ -5,6 +5,7 @@ Imports Oracle.LinuxCompatibility.MySQL
 Imports Oracle.LinuxCompatibility.MySQL.Expressions
 Imports SMRUCC.WebCloud.HTTPInternal
 Imports SMRUCC.WebCloud.HTTPInternal.AppEngine
+Imports SMRUCC.WebCloud.HTTPInternal.AppEngine.APIMethods
 Imports SMRUCC.WebCloud.HTTPInternal.AppEngine.APIMethods.Arguments
 Imports SMRUCC.WebCloud.HTTPInternal.Platform
 
@@ -43,6 +44,7 @@ Imports SMRUCC.WebCloud.HTTPInternal.Platform
     End Sub
 
     <ExportAPI("/biostack.d/task_push.vbs")>
+    <[GET]>
     Public Function TaskPush(request As HttpRequest, response As HttpResponse) As Boolean
         Call PlatformEngine _
             .RunTask(Sub()

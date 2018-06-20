@@ -1,1 +1,1 @@
-"./App/httpd" /start /wwwroot "./wwwroot" /port 80 /threads 10 /@set database='SMRUCC-cloud';host='localhost';password='root';port='3306';user='root'
+"./App/httpd" /start /wwwroot ../www /port 83 /@set "GCModeller=E:\GCModeller\GCModeller\bin;repository=P:\Resources;OSS_ROOT=D:\GCModeller-Cloud\php\data"
