@@ -1,5 +1,3 @@
-
-
 const put.taxonomic_group = function(name, note = "") {
     const base = getOption("biocad");
     const url  = `${base}/registry/put/taxonomic/`;

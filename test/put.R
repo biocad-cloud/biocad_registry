@@ -1,3 +1,3 @@
-require(CellRender);
+require(biocad_registry);
 
-taxonomic_group.create("Xanthomonadales"); 
+put.taxonomic_group("Xanthomonadales"); 
