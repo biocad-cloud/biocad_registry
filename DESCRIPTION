@@ -1,0 +1,11 @@
+Package: biocad_registry
+Type: Package
+Title: Rscript client to the biocad cloud services
+Version: 1.0.148
+Author: xieguigang <xie.guigang@gcmodeller.org>
+Maintainer: xieguigang <xie.guigang@gcmodeller.org>
+Description: Rscript client to the biocad cloud services
+License: MIT License
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.1
