@@ -1,2 +1,0 @@
-reflector --reflects /sql ./jp_kegg2.sql /namespace mysql --language visualbasic /split /out "G:\GCModeller\src\GCModeller\data\KEGG\mysql"
-reflector /MySQL.Markdown /sql ./jp_kegg2.sql /out ./README.md 

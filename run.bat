@@ -1,1 +1,0 @@
-"./App/httpd" /start /wwwroot ../www /port 83 /@set "GCModeller=E:\GCModeller\GCModeller\bin;repository=P:\Resources;OSS_ROOT=D:\GCModeller-Cloud\php\data"
