@@ -1,10 +1,10 @@
 Package: biocad_registry
 Type: Package
-Title: Rscript client to the biocad cloud services
+Title: Access the GCModeller cloud repository
 Version: 1.0.148
 Author: xieguigang <xie.guigang@gcmodeller.org>
 Maintainer: xieguigang <xie.guigang@gcmodeller.org>
-Description: Rscript client to the biocad cloud services
+Description: Rscript client to the web api for access the GCModeller cloud repository
 License: MIT License
 Encoding: UTF-8
 LazyData: true
