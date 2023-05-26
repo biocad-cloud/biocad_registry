@@ -35,13 +35,21 @@ for(tax in alldata) {
             id: id, 
             name: name
         }
-    }) |> which(x -> startsWith(x$id, "genome.jsp"));
+    }) 
+    |> which(x -> startsWith(x$id, "genome.jsp"))
+    |> lapply(function(x) {
+        x$id = last(strsplit(x$id, "=", fixed = TRUE));
+        x;
+    }, names = x -> x$name)
+    ;
 
     # str(taxonomics);
 
     for(genome in taxonomics) {
         str(genome);
     }
+
+    biocad_registry::put.genome_group(grp = tax$id, taxonomics);
 
     stop();
 }

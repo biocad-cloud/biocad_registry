@@ -14,3 +14,17 @@ const put.taxonomic_group = function(name, id, note = "") {
 
     return(resp$info$id);
 }
+
+#' put a group of genome entry onto registry
+#' 
+#' @param grp the taxonomic_group id
+#' @param genomes a set of genome entry info, a list set of tuple data list
+#'    in format of ``list(id, name)``.
+#' 
+const put.genome_group = function(grp, genomes) {
+    const base = getOption("biocad");
+    const url  = `${base}/put/genomes/?grp=${grp}`;
+    const resp = requests.post(url, list(li = genomes)) |> http::content();
+
+    str(resp);
+}
