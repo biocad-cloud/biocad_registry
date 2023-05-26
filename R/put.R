@@ -3,10 +3,10 @@
 #' @return the unique reference id of the new taxonomic group
 #'   in the registry.
 #' 
-const put.taxonomic_group = function(name, note = "") {
+const put.taxonomic_group = function(name, id, note = "") {
     const base = getOption("biocad");
     const url  = `${base}/put/taxonomic/`;
-    const resp = requests.post(url, list(name, note)) |> http::content();
+    const resp = requests.post(url, list(name, note, id)) |> http::content();
 
     # view of the taxonomic object put 
     # response
