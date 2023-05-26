@@ -37,7 +37,11 @@ for(tax in alldata) {
         }
     }) |> which(x -> startsWith(x$id, "genome.jsp"));
 
-    str(taxonomics);
+    # str(taxonomics);
+
+    for(genome in taxonomics) {
+        str(genome);
+    }
 
     stop();
 }
