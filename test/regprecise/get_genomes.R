@@ -8,7 +8,7 @@ setwd(@dir);
 require(JSON);
 
 const alldata = biocad_registry::pull_taxonomic();
-const local = http::cache("./cache/");
+const local = http.cache("./cache/");
 
 # str(alldata);
 
@@ -22,22 +22,21 @@ for(tax in alldata) {
     let body = tbl["tbody"];
     let rows = body["tr"];
     let taxonomics = lapply(rows, function(r) {
-        var cells = r["td"];
-        var name = cells[1];
+        let cells = r["td"];
+        let name = cells[1];
         
-        name = name.innerHTML;
+        name = name["innerHTML"];
         
-        var id = Html.link(name);
+        let id = Html::link(name);
         
-        name = Html.plainText(name);
+        name = Html::plainText(name);
         
-        return {
+        {
             id: id, 
             name: name
         }
-    });
+    }) |> which(x -> startsWith(x$id, "genome.jsp"));
 
-    str(group);
     str(taxonomics);
 
     stop();

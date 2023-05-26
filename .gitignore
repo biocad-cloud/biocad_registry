@@ -11,6 +11,8 @@
 *.userprefs
 
 App/
+cache/
+.cache/
 
 # Build results
 [Dd]ebug/
