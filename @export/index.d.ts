@@ -8,10 +8,17 @@ declare namespace biocad_registry {
       */
       function onLoad(): object;
    }
+   /**
+     * @param id default value Is ``null``.
+   */
+   function pull_taxonomic(id?: any): object;
    module put {
+      /**
+      */
+      function genome_group(grp: any, genomes: any): object;
       /**
         * @param note default value Is ````.
       */
-      function taxonomic_group(name: any, note?: string): object;
+      function taxonomic_group(name: any, id: any, note?: string): object;
    }
 }
