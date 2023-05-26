@@ -49,7 +49,10 @@ for(tax in alldata) {
         str(genome);
     }
 
+try({
     biocad_registry::put.genome_group(grp = tax$id, taxonomics);
+})
 
-    stop();
+
+    # stop();
 }
