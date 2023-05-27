@@ -21,6 +21,6 @@ for(tax in alldata) {
         const gene_text = requests.get(`https://regprecise.lbl.gov/ExportServlet?type=gene&genomeId=${genome$id}`, cache = local);
         const motif_text = requests.get(`https://regprecise.lbl.gov/ExportServlet?type=site&genomeId=${genome$id}`, cache = local);
 
-        sleep(3);
+       # sleep(3);
     }
 }
