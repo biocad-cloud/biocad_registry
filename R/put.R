@@ -8,7 +8,7 @@ const put.taxonomic_group = function(name, id, note = "") {
     const url  = `${base}/put/taxonomic/`;
     const resp = url 
     |> requests.post(list(name, note, id)) 
-    |> http::content(throw.http_error = FALSE)
+    |> http::content(throw.http.error = FALSE)
     ;
 
     # view of the taxonomic object put 
@@ -29,7 +29,7 @@ const put.genome_group = function(grp, genomes) {
     const url  = `${base}/put/genomes/?grp=${grp}`;
     const resp = url 
     |> requests.post(list(li = genomes)) 
-    |> http::content(throw.http_error = FALSE)
+    |> http::content(throw.http.error = FALSE)
     ;
 
     str(resp);
@@ -40,7 +40,7 @@ const put.operon = function(genome_id, genes) {
     const url  = `${base}/put/operons/?genome=${genome_id}`;
     const resp = url 
     |> requests.post(list(li = genes)) 
-    |> http::content(throw.http_error = FALSE)
+    |> http::content(throw.http.error = FALSE)
     ;
 
     str(resp);
