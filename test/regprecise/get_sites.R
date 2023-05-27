@@ -21,6 +21,24 @@ for(tax in alldata) {
         const gene_text = requests.get(`https://regprecise.lbl.gov/ExportServlet?type=gene&genomeId=${genome$id}`, cache = local);
         const motif_text = requests.get(`https://regprecise.lbl.gov/ExportServlet?type=site&genomeId=${genome$id}`, cache = local);
 
+        const operons = gene_text |> content(plain_text = TRUE) |> read.operon();
+        const motifs = motif_text |> content(plain_text = TRUE) |> read.motifs();
+
+        # str(operons);
+
+        for(operon in operons) {
+            let operon_genes = lapply([operon]::members, x -> as.list(x));
+            operon_genes = lapply(operon_genes, function(x) {
+                x$id = x$vimssId;
+                x$dblinks = list(vimssId = x$vimssId);
+                x;
+            }, names = x -> x$locusId);
+            str(operon_genes);
+
+            stop();
+        }
+
+        stop();
        # sleep(3);
     }
 }

@@ -28,3 +28,11 @@ const put.genome_group = function(grp, genomes) {
 
     str(resp);
 }
+
+const put.operon = function(genome_id, genes) {
+    const base = getOption("biocad");
+    const url  = `${base}/put/operons/?genome=${genome_id}`;
+    const resp = requests.post(url, list(li = genes)) |> http::content();
+
+    str(resp);
+}
