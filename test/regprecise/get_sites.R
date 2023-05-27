@@ -38,7 +38,7 @@ for(tax in alldata) {
             biocad_registry::put.operon(genome$id, operon_genes);
         }
 
-        stop();
+       #  stop();
        # sleep(3);
     }
 }
