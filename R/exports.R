@@ -1,7 +1,9 @@
-const get_motif_sites = function(family) {
+const motif_sites_family = "exportServlet/motif_sites/family";
+
+const get_motif_sites = function(family, fasta = FALSE) {
     const base = getOption("biocad");
-    const url = `http://registry.biocad.cloud:8848/exportServlet/motif_sites/family/?q=${family}`;
-    const data = url 
+    const url = `${base}/${motif_sites_family}/?q=${family}`;
+    const data = url
     |> requests.get()
     |> http::content()
     ;
@@ -13,8 +15,10 @@ const get_motif_sites = function(family) {
     const [count, sites] = data$info;
 
     if (count == 0) {
-        NULL;
-    } else {
+        return(NULL);
+    }
+
+    if (!fasta) {
         data.frame(
             gene_id    = sites@gene_id,
             gene_name  = sites@gene_name,
@@ -23,5 +27,10 @@ const get_motif_sites = function(family) {
             motif_site = sites@site,
             row.names  = `${sites@gene_id}:${sites@loci}`
         );
+    } else {
+        as.fasta(data.frame(
+            title = `${sites@gene_id}:${sites@loci}`,
+            sequence = sites@site
+        ));
     }
 }
