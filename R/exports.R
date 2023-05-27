@@ -1,5 +1,15 @@
+imports "bioseq.fasta" from "seqtoolkit";
+
+#' web url component path for export motif sites
+#' 
 const motif_sites_family = "exportServlet/motif_sites/family";
 
+#' Export motif sites from the biocad registry
+#' 
+#' @param family A specific motif family for export data
+#' @param fasta this parameter affect the return value is a dataframe
+#'    or fasta collection object
+#' 
 const get_motif_sites = function(family, fasta = FALSE) {
     const base = getOption("biocad");
     const url = `${base}/${motif_sites_family}/?q=${family}`;
