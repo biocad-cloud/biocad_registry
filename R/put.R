@@ -6,7 +6,10 @@
 const put.taxonomic_group = function(name, id, note = "") {
     const base = getOption("biocad");
     const url  = `${base}/put/taxonomic/`;
-    const resp = requests.post(url, list(name, note, id)) |> http::content();
+    const resp = url 
+    |> requests.post(list(name, note, id)) 
+    |> http::content(throw.http_error = FALSE)
+    ;
 
     # view of the taxonomic object put 
     # response
@@ -24,7 +27,10 @@ const put.taxonomic_group = function(name, id, note = "") {
 const put.genome_group = function(grp, genomes) {
     const base = getOption("biocad");
     const url  = `${base}/put/genomes/?grp=${grp}`;
-    const resp = requests.post(url, list(li = genomes)) |> http::content();
+    const resp = url 
+    |> requests.post(list(li = genomes)) 
+    |> http::content(throw.http_error = FALSE)
+    ;
 
     str(resp);
 }
@@ -32,7 +38,10 @@ const put.genome_group = function(grp, genomes) {
 const put.operon = function(genome_id, genes) {
     const base = getOption("biocad");
     const url  = `${base}/put/operons/?genome=${genome_id}`;
-    const resp = requests.post(url, list(li = genes)) |> http::content();
+    const resp = url 
+    |> requests.post(list(li = genes)) 
+    |> http::content(throw.http_error = FALSE)
+    ;
 
     str(resp);
 }
