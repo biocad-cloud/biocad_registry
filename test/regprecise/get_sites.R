@@ -39,17 +39,22 @@ for(tax in alldata) {
         # }
 
         for(motif in motifs) {
-            let sites = [motif]::regulatorySites;
+            let sites = lapply([motif]::regulatorySites, x -> as.list(x));
             let type = [motif]::type;
             let family = [motif]::family;
             let regulator = as.list([motif]::regulator);
 
-            str(type);
+            str(as.character(type));
             str(family);
             str(regulator);
 
             str(sites);
-            str(motif);
+            # str(motif);
+    # stop();
+
+            biocad_registry::put.regulation(
+                genome_id = genome$id, regulator, family, type, sites);
+
             stop();
         }
 

@@ -45,3 +45,18 @@ const put.operon = function(genome_id, genes) {
 
     str(resp);
 }
+
+const put.regulation = function(genome_id, regulator, family, type, sites) {
+    const base = getOption("biocad");
+    const url  = `${base}/put/regulation/?genome=${genome_id}&regulator=${regulator$name}&regulator_name=${urlencode(regulator$text)}`;
+    const resp = url 
+    |> requests.post(list(
+        li = sites, 
+        family = family, 
+        type = as.character(type)
+    ))
+    |> http::content(throw.http.error = FALSE)
+    ;
+
+    str(resp);
+}
