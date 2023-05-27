@@ -26,16 +26,31 @@ for(tax in alldata) {
 
         # str(operons);
 
-        for(operon in operons) {
-            let operon_genes = lapply([operon]::members, x -> as.list(x));
-            operon_genes = lapply(operon_genes, function(x) {
-                x$id = x$vimssId;
-                x$dblinks = list(MicrobesOnline = x$vimssId);
-                x;
-            }, names = x -> x$locusId);
-            str(operon_genes);
+        # for(operon in operons) {
+        #     let operon_genes = lapply([operon]::members, x -> as.list(x));
+        #     operon_genes = lapply(operon_genes, function(x) {
+        #         x$id = x$vimssId;
+        #         x$dblinks = list(MicrobesOnline = x$vimssId);
+        #         x;
+        #     }, names = x -> x$locusId);
+        #     str(operon_genes);
 
-            biocad_registry::put.operon(genome$id, operon_genes);
+        #     biocad_registry::put.operon(genome$id, operon_genes);
+        # }
+
+        for(motif in motifs) {
+            let sites = [motif]::regulatorySites;
+            let type = [motif]::type;
+            let family = [motif]::family;
+            let regulator = as.list([motif]::regulator);
+
+            str(type);
+            str(family);
+            str(regulator);
+
+            str(sites);
+            str(motif);
+            stop();
         }
 
        #  stop();
