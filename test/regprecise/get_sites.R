@@ -30,12 +30,12 @@ for(tax in alldata) {
             let operon_genes = lapply([operon]::members, x -> as.list(x));
             operon_genes = lapply(operon_genes, function(x) {
                 x$id = x$vimssId;
-                x$dblinks = list(vimssId = x$vimssId);
+                x$dblinks = list(MicrobesOnline = x$vimssId);
                 x;
             }, names = x -> x$locusId);
             str(operon_genes);
 
-            stop();
+            biocad_registry::put.operon(genome$id, operon_genes);
         }
 
         stop();
