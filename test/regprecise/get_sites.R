@@ -58,7 +58,7 @@ for(tax in alldata) {
             # stop();
         }
 
-        stop();
+       #  stop();
        # sleep(3);
     }
 }
