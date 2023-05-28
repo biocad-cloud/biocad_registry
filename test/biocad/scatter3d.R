@@ -2,7 +2,7 @@ require(ggplot);
 
 options(strict = FALSE);
 
-bitmap(file = `${@dir}/UMAP3d.png`, size = [2400, 2000]) {
+bitmap(file = `${@dir}/UMAP3d.png`, size = [4800, 4100]) {
     
 	let data = read.csv(`${@dir}/UMAP3.csv`, row.names = 1);
 	# data[, "class"] = `class_${data[, "class"]}`;
