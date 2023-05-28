@@ -13,6 +13,7 @@
 App/
 cache/
 .cache/
+test/biocad/exports/
 
 # Build results
 [Dd]ebug/
