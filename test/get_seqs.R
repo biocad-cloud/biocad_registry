@@ -56,6 +56,23 @@ for(i in 1:1000) {
             let seq = parse_seqs(id = gene$xref_id);
             str(seq);
 
+            let prot_seq = parse.fasta(seq$protein);
+            let gene_seq = parse.fasta(seq$gene);
+
+#             str(prot_seq);
+#             str(gene_seq);
+# print([gene_seq]::SequenceData);
+# print([prot_seq]::SequenceData);
+#             stop();
+
+            biocad_registry::put.sequence(
+                gene_id = gene$biocad_id, 
+                locus_tag = gene$gene_id, 
+                gene_seq = [gene_seq]::SequenceData,
+                prot_seq = [prot_seq]::SequenceData,
+                note = seq$note
+            );
+# stop();
             sleep(1);
         }
     }

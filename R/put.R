@@ -60,3 +60,16 @@ const put.regulation = function(genome_id, regulator, family, type, sites) {
 
     str(resp);
 }
+
+const put.sequence = function(gene_id, locus_tag, gene_seq, prot_seq, note = NULL) {
+    const base = getOption("biocad");
+    const url = `${base}/put/seqs/?gene_id=${gene_id}&locus_tag=${locus_tag}`;
+    const resp = url 
+    |> requests.post(list(
+        gene_seq, prot_seq, note
+    ))
+    |> http::content(throw.http.error = FALSE)
+    ;
+
+    str(resp);
+}
