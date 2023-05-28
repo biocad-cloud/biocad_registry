@@ -7,6 +7,8 @@ motifs = biocad_registry::get_motif_sites(family = "PsrA");
 
 print(motifs);
 
+imports "bioseq.patterns" from "seqtoolkit";
+
 motif_familys = biocad_registry::pull_motif_family();
 i = motif_familys$nsize > 5;
 motif_familys = motif_familys[i, ];
@@ -20,4 +22,6 @@ for(family in motif_familys$family) {
     print(motifs);
     fa = as.fasta(data.frame(title = rownames(motifs), sequence = motifs$motif_site));
     write.fasta(fa, file = `${@dir}/exports/${normalizeFileName(family)}.fa`);
+
+    
 }
