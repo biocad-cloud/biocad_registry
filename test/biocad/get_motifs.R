@@ -23,5 +23,10 @@ for(family in motif_familys$family) {
     fa = as.fasta(data.frame(title = rownames(motifs), sequence = motifs$motif_site));
     write.fasta(fa, file = `${@dir}/exports/${normalizeFileName(family)}.fa`);
 
-    
+    let pack = as.data.frame(as.seq_graph(fa, mol_type = "DNA"), type = "DNA");
+    pack[, "class"] = family;
+
+    print(pack);
+
+    stop();
 }
