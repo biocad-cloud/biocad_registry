@@ -3,6 +3,7 @@ imports "bioseq.fasta" from "seqtoolkit";
 #' web url component path for export motif sites
 #' 
 const motif_sites_family = "exportServlet/motif_sites/family";
+const gene_dblinks = "exportServlet/gene/dblink";
 
 #' Export motif sites from the biocad registry
 #' 
@@ -42,5 +43,20 @@ const get_motif_sites = function(family, fasta = FALSE) {
             title = `${sites@gene_id}:${sites@loci}`,
             sequence = sites@site
         ));
+    }
+}
+
+const get_dblinks = function(dbname, page = 1, page_size = 1000) {
+    const base = getOption("biocad");
+    const url = `${base}/${gene_dblinks}/?src=${dbname}&page=${page}&page_size=${page_size}`;
+    const data = url
+    |> requests.get()
+    |> http::content()
+    ;
+
+    if (data$code != 0) {
+        stop(data$info);
+    } else {
+        data$info;
     }
 }

@@ -5,7 +5,7 @@ package_utils::attach(`${@dir}/../`);
 
 setwd(@dir);
 
-const local = http.cache("./.cache/");
+const local = http.cache("E:/UniProt/.cache");
 
 parse_seqs = function(id) {
     const url = `http://www.microbesonline.org/cgi-bin/fetchLocus.cgi?locus=${id}&disp=4`;
@@ -40,3 +40,23 @@ parse_seqs = function(id) {
 
 
 str(parse_seqs(id = 5519438));
+
+for(i in 1:1000) {
+    let db_links = biocad_registry::get_dblinks("MicrobesOnline", page = i);
+
+    # str(db_links);
+
+    if (as.integer(db_links$count) == 0) {
+        print("query data complete!");
+        break;
+    } else {
+        for(gene in db_links$query) {
+            str(gene);
+
+            let seq = parse_seqs(id = gene$xref_id);
+            str(seq);
+
+            sleep(1);
+        }
+    }
+}
