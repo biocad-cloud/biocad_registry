@@ -11,7 +11,15 @@ parse_seqs = function(id) {
     const url = `http://www.microbesonline.org/cgi-bin/fetchLocus.cgi?locus=${id}&disp=4`;
     const html = requests.get(url, cache = local) |> http::content(plain_text = TRUE);
 
-    print(html);
+    # print(html);
+
+    const tables = Html::tables(html);
+    const title = Html::title(html);
+
+    print(title);
+    print(tables);
+
+    stop();
 }
 
 
