@@ -14,6 +14,7 @@ App/
 cache/
 .cache/
 test/biocad/exports/
+test/.cache/
 
 # Build results
 [Dd]ebug/
@@ -246,3 +247,4 @@ _Pvt_Extensions
 /App
 /vs_solutions/raw
 CellRender.zip
+test/.cache/b1/7bb1e80367bbdd7c5d039379553f441e.txt
