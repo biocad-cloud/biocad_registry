@@ -13,13 +13,29 @@ parse_seqs = function(id) {
 
     # print(html);
 
-    const tables = Html::tables(html);
+    const tables = Html::tables(html, del_newline = FALSE);
     const title = Html::title(html);
+    const seqs = t(last(tables));
+
+    colnames(seqs) = unlist(seqs[1,, drop = TRUE ]);
 
     print(title);
-    print(tables);
+    # print(seqs);
 
-    stop();
+    print(colnames(seqs));
+
+    const protein = last( seqs$Protein);
+    const gene_seq = last( seqs$Coding);
+
+    print(protein);
+    print(gene_seq);
+
+    {
+        vimssid: id,
+        note: title,
+        protein: protein,
+        gene: gene_seq
+    }
 }
 
 
