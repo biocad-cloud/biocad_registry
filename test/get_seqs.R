@@ -41,7 +41,7 @@ parse_seqs = function(id) {
 
 str(parse_seqs(id = 5519438));
 
-for(i in 1:1000) {
+for(i in 2:1000) {
     let db_links = biocad_registry::get_dblinks("MicrobesOnline", page = i);
 
     # str(db_links);
