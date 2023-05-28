@@ -17,6 +17,8 @@ motif_familys = motif_familys[i, ];
 
 print(motif_familys);
 
+let seq_graph_data = NULL;
+
 for(family in motif_familys$family) {
     motifs = biocad_registry::get_motif_sites(family = family); 
     print(motifs);
@@ -28,5 +30,11 @@ for(family in motif_familys$family) {
 
     print(pack);
 
-    stop();
+   seq_graph_data = rbind(seq_graph_data, pack);
+write.csv(pack, file = `${@dir}/exports/${normalizeFileName(family)}.csv`, row.names = TRUE);
+    # stop();
+
+    NULL;
 }
+
+write.csv(seq_graph_data, file = `${@dir}/motif_graph.csv`, row.names = TRUE);
