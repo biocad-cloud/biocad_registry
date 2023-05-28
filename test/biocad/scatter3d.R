@@ -6,7 +6,12 @@ bitmap(file = `${@dir}/UMAP3d.png`, size = [4800, 4100]) {
     
 	let data = read.csv(`${@dir}/UMAP3.csv`, row.names = 1);
 	# data[, "class"] = `class_${data[, "class"]}`;
-	
+	let i = data$class in ["Crp","Fur","LexA","CcpA","ArgR","Zur",
+	"Fnr","NrdR","CodY","Rex","MetJ","NtrC","HrcA","HexR",
+	"PurR","LiuR","NarP","PsrA","IscR","MetR","GlxR","RpoN","TyrR","FadR","FruR"];
+
+data = data[i, ];
+
 	# colorset = {
 	# class_5:"red",
 	# class_0:"blue",

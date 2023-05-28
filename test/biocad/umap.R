@@ -11,7 +11,11 @@ data[, "v2"] = NULL;
 data[, "v3"] = NULL;
 data[, "v4"] = NULL;
 
-let dim3 = umap(data, dimension = 3, spectral_cos = TRUE);
+let dim3 = umap(data, dimension = 3, spectral_cos = TRUE,
+numberOfNeighbors = 31, 
+setOpMixRatio = 0.65,
+minDist = 1
+);
 let result = as.data.frame(dim3$umap, labels = dim3$labels);
 
 result[, "class"] = labels;
