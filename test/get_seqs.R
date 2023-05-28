@@ -32,7 +32,7 @@ parse_seqs = function(id) {
 
     {
         vimssid: id,
-        note: title,
+        note: tagvalue(title, ":"),
         protein: protein,
         gene: gene_seq
     }
