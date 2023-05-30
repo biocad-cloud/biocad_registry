@@ -1,21 +1,34 @@
 require(GCModeller);
 
-options(http.cache_dir = @dir);
+setwd(@dir);
+options(http.cache_dir = "./.cache/");
 
-tax = taxonomy_search("Magnetospirillum magneticum AMB-1");
+let genome_list = read.csv("F:/bioCAD/mysql/genomes.csv", row.names = 1)$name;
+let download_genbank = function(genome) {
+    for(tax in taxonomy_search(genome)) {
+        let assm_list = reference_genome(ncbi_taxid = tax) |> first();
+        let id = assm_list$assembly$assembly_accession;
 
-str(tax);
+        str(tax);
+        str(assm_list);
+        str(id);
 
-assm_list = reference_genome(ncbi_taxid =tax );
-assm_list = first(assm_list);
+        if (!is.null(id)) {
+            fetch_genbank(accession_id = id);
+        }
 
-str(assm_list);
+        sleep(3);
+    }
 
-let id = assm_list$assembly$assembly_accession;
+    invisible(NULL);
+}
 
-str(id);
+print(genome_list);
 
+for(name in genome_list) {
+    try({
+        download_genbank(name);
+    });
 
-let gb = fetch_genbank(accession_id = id);
-
-print(gb);
+    invisible(NULL);
+}
