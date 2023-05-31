@@ -1,7 +1,7 @@
 require(GCModeller);
 
 setwd(@dir);
-options(http.cache_dir = "./.cache/");
+options(http.cache_dir = "E:/UniProt/genbank");
 
 let genome_list = read.csv("F:/bioCAD/mysql/genomes.csv", row.names = 1)$name;
 let download_genbank = function(genome) {
