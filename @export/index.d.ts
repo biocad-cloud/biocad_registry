@@ -18,6 +18,7 @@ declare namespace biocad_registry {
      * @param fasta default value Is ``false``.
    */
    function get_motif_sites(family: any, fasta?: boolean): object;
+   go_namespace: any;
    motif_sites_family: string;
    /**
      * @param genome_id default value Is ``null``.
@@ -31,6 +32,9 @@ declare namespace biocad_registry {
       /**
       */
       function genome_group(grp: any, genomes: any): object;
+      /**
+      */
+      function go_term(term: any): object;
       /**
       */
       function ncbi_tax(tax: any): object;
