@@ -18,6 +18,12 @@ const put.go_term = function(term) {
     term$id        = $"\d+"(term$id);
     term$def       = gsub(term$def, '"', "");
 
+    if (is.null(term$is_obsolete)) {
+        term$is_obsolete = FALSE;
+    } else {
+        term$is_obsolete = as.logical(term$is_obsolete);
+    }
+
     str(term);
 
     const resp = url 
