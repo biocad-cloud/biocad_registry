@@ -53,4 +53,7 @@ declare namespace biocad_registry {
       */
       function taxonomic_group(name: any, id: any, note?: string): object;
    }
+   /**
+   */
+   function wrap_list(a: any): object;
 }

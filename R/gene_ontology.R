@@ -13,8 +13,14 @@ const put.go_term = function(term) {
     term$namespace = go_namespace[[term$namespace]];
     term$is_a      = wrap_list(is_a(term$is_a)$id);
     term$synonym   = wrap_list(synonym(term$synonym)$name);
+    term$xref      = term_xrefs(term$xref);
 
     str(term);
 
-    stop();
+    const resp = url 
+    |> requests.post(term) 
+    |> http::content(throw.http.error = FALSE)
+    ;
+
+    str(resp);
 }

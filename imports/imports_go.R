@@ -11,6 +11,5 @@ for(term in terms) {
 
     biocad_registry::put.go_term(term);
 
-    str(term);
     stop();
 }
