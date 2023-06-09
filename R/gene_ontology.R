@@ -11,8 +11,8 @@ const put.go_term = function(term) {
     const url = `${base}/gene_ontology/add/`;
 
     term$namespace = go_namespace[[term$namespace]];
-    term$is_a = is_a(term$is_a)$id;
-    term$synonym = synonym(term$synonym)$name;
+    term$is_a      = wrap_list(is_a(term$is_a)$id);
+    term$synonym   = wrap_list(synonym(term$synonym)$name);
 
     str(term);
 
