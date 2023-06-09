@@ -11,9 +11,12 @@ const put.go_term = function(term) {
     const url = `${base}/gene_ontology/add/`;
 
     term$namespace = go_namespace[[term$namespace]];
-    term$is_a      = wrap_list(is_a(term$is_a)$id);
+    term$is_a      = is_a(term$is_a)$id;
+    term$is_a      = wrap_list(unlist($"\d+"(term$is_a)));
     term$synonym   = wrap_list(synonym(term$synonym)$name);
     term$xref      = term_xrefs(term$xref);
+    term$id        = $"\d+"(term$id);
+    term$def       = gsub(term$def, '"', "");
 
     str(term);
 
