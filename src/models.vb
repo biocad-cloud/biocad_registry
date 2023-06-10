@@ -11,6 +11,7 @@ Imports SMRUCC.Rsharp.Runtime.Interop
 <RTypeExport("subcellular_locations", GetType(subcellular_locations))>
 <RTypeExport("vocabulary", GetType(vocabulary))>
 <RTypeExport("pathway", GetType(pathway))>
+<RTypeExport("complex", GetType(complex))>
 Module models
 
     Public Sub Main()

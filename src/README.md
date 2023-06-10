@@ -11,8 +11,40 @@ MySql database field attributes notes in this development document:
 > + **UN**: Unsigned;
 > + **ZF**: Zero Fill
 
-Generate time: 6/10/2023 11:43:02 AM<br />
+Generate time: 6/11/2023 12:33:14 AM<br />
 By: ``mysqli.vb`` reflector tool ([https://github.com/xieguigang/mysqli.vb](https://github.com/xieguigang/mysqli.vb))
+
+<div style="page-break-after: always;"></div>
+
+***
+
+## complex
+
+
+
+|field|type|attributes|description|
+|-----|----|----------|-----------|
+|id|Int64 (11)|``AI``, ``NN``, ``PK``||
+|molecule_id|Int64 (11)|``NN``|the molecules id of current complex entity|
+|component_id|Int64 (11)|``NN``|One part of the component of current complex, the molecules id|
+|n_components|Int64 (11)|``NN``|the number of the component parts of current complex|
+|name|VarChar (2048)|``NN``|the name of current complex|
+
+
+#### SQL Declare
+
+```SQL
+CREATE TABLE IF NOT EXISTS `complex` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `molecule_id` INT UNSIGNED NOT NULL COMMENT 'the molecules id of current complex entity',
+  `component_id` INT UNSIGNED NOT NULL COMMENT 'One part of the component of current complex, the molecules id',
+  `n_components` INT UNSIGNED NOT NULL DEFAULT 0 COMMENT 'the number of the component parts of current complex',
+  `name` VARCHAR(2048) NOT NULL COMMENT 'the name of current complex',
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+```
+
 
 <div style="page-break-after: always;"></div>
 
