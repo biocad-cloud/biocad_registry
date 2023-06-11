@@ -11,7 +11,7 @@ MySql database field attributes notes in this development document:
 > + **UN**: Unsigned;
 > + **ZF**: Zero Fill
 
-Generate time: 6/11/2023 12:33:14 AM<br />
+Generate time: 6/11/2023 2:10:47 PM<br />
 By: ``mysqli.vb`` reflector tool ([https://github.com/xieguigang/mysqli.vb](https://github.com/xieguigang/mysqli.vb))
 
 <div style="page-break-after: always;"></div>
@@ -554,6 +554,7 @@ ENGINE = InnoDB;
 |n_right|Int64 (11)|``NN``||
 |n_regulator|Int64 (11)||count for enzyme or something of which associated with this reaction link|
 |add_time|DateTime ()|``NN``||
+|note|Text ()|||
 
 
 #### SQL Declare
@@ -566,6 +567,7 @@ CREATE TABLE IF NOT EXISTS `reaction_node` (
   `n_right` INT NOT NULL DEFAULT 0,
   `n_regulator` INT NULL DEFAULT 0 COMMENT 'count for enzyme or something of which associated with this reaction link',
   `add_time` DATETIME NOT NULL DEFAULT now(),
+  `note` MEDIUMTEXT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
 COMMENT = 'define the biochemical reaction data';
