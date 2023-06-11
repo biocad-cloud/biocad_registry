@@ -20,7 +20,7 @@ let dblinks = [];
 
 print(basename(models));
 
-for(file in models[1:3]) {
+for(file in models) {
     let model = read.sbml(file);
     let compartments = extract.compartments(model, json = TRUE);
     let compounds = extract_compounds(model, json = TRUE);
