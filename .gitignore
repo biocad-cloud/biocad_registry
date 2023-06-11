@@ -256,3 +256,4 @@ test/biocad/motif_graph.csv
 test/biocad/UMAP3d.zip
 *.zip
 imports/reactions/cad_registry_reaction_node.sql
+imports/reactions/cad_registry_subcellular_compartments.sql
