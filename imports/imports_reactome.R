@@ -13,6 +13,7 @@ let reaction_node = [];
 let subcellular_compartments = [];
 let subcellular_locations = [];
 let reaction_graph = [];
+let molecules = [];
 
 print(basename(models));
 
@@ -27,6 +28,21 @@ for(file in models[1:3]) {
     str(compartments);
     str(compounds);
     str(reactions);
+
+    molecules = append(molecules, sapply(compounds, function(c) {
+        new molecules(
+            id = c$id,
+            molecule_id = c$id,
+            type = 1,
+            name = c$name,
+            seq_num = 0,
+             synonym_num = 0,
+             ncbi_taxid = 0,
+             category_id = 0,
+             description = c$notes,
+             add_time = now()
+        );
+    }));
 
     reaction_node = append(reaction_node, sapply(reactions, function(r) {
         new reaction_node(
@@ -100,5 +116,6 @@ reaction_node
 |> append(subcellular_compartments)
 |> append(subcellular_locations)
 |> append(reaction_graph)
+|> append(molecules)
 |> mysql::dump_inserts(dir = `${@dir}/reactions/`)
 ;
