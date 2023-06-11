@@ -16,6 +16,7 @@ let reaction_graph = [];
 let molecules = [];
 let pathway = [];
 let complex = [];
+let dblinks = [];
 
 print(basename(models));
 
@@ -69,6 +70,18 @@ for(file in models[1:3]) {
         );
     }));
 
+    dblinks = append(dblinks, sapply(compounds, function(c) {
+        sapply(c$is, function(cid) {
+            new dblinks(
+                db_src = 1,
+                xref_id = cid,
+                entity_id = c$id,
+                entity_type = 1,
+               add_time = now() 
+            ); 
+        });
+    }) |> unlist());
+
     reaction_node = append(reaction_node, sapply(reactions, function(r) {
         new reaction_node(
             id = r$id,
@@ -80,6 +93,18 @@ for(file in models[1:3]) {
             note = r$notes
         );
     }));
+
+    dblinks = append(dblinks, sapply(reactions, function(r) {
+        sapply(r$is, function(ext_id) {
+            new dblinks(
+                db_src = 1,
+                xref_id = ext_id,
+                entity_id = r$id,
+                entity_type = 2,
+                add_time = now()
+            );
+        });
+    }) |> unlist());
 
     reaction_graph = append(reaction_graph, sapply(reactions, function(r) {
         let cpds = r$reactants;
@@ -126,6 +151,18 @@ for(file in models[1:3]) {
         );
     }));
 
+    dblinks = append(dblinks, sapply(compartments, function(c) {
+        sapply(c$is, function(cid) {
+            new dblinks(
+                db_src = 1,
+                xref_id = cid,
+                entity_id = c$id,
+                entity_type = 4,
+                add_time = now()
+            );
+        });
+    }) |> unlist());
+
     subcellular_locations = append(subcellular_locations, sapply(reactions, function(r) {
         new subcellular_locations(
             biological_process = r$id,
@@ -146,5 +183,6 @@ reaction_node
 |> append(molecules)
 |> append(pathway)
 |> append(complex)
+|> append(dblinks)
 |> mysql::dump_inserts(dir = `${@dir}/reactions/`)
 ;
