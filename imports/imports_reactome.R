@@ -9,15 +9,15 @@ print(basename(models));
 
 for(file in models) {
     let model = read.sbml(file);
-    let compartments = extract.compartments(model);
-    let compounds = extract_compounds(model);
-    let reactions = extract_reactions(model);
+    let compartments = extract.compartments(model, json = TRUE);
+    let compounds = extract_compounds(model, json = TRUE);
+    let reactions = extract_reactions(model, json = TRUE);
 
-    compounds = compounds[order(compounds$name), ];
+    # compounds = compounds[order(compounds$name), ];
 
-    print(compartments);
-    print(compounds);
-    print(reactions);
+    str(compartments);
+    str(compounds);
+    str(reactions);
 
     stop();
 }
