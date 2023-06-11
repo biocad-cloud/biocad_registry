@@ -11,6 +11,7 @@ const models = list.files(repo, pattern = "*.sbml");
 
 let reaction_node = [];
 let subcellular_compartments = [];
+let subcellular_locations = [];
 
 print(basename(models));
 
@@ -45,11 +46,19 @@ for(file in models[1:3]) {
         );
     }));
 
+    subcellular_locations = append(subcellular_locations, sapply(reactions, function(r) {
+        new subcellular_locations(
+            biological_process = r$id,
+            compartment = as.integer($"\d+"(r$compartment))
+        );
+    }));
+
     # stop();
     invisible(NULL);
 }
 
 reaction_node
 |> append(subcellular_compartments)
+|> append(subcellular_locations)
 |> mysql::dump_inserts(dir = `${@dir}/reactions/`)
 ;
