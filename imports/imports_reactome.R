@@ -12,6 +12,7 @@ const models = list.files(repo, pattern = "*.sbml");
 let reaction_node = [];
 let subcellular_compartments = [];
 let subcellular_locations = [];
+let reaction_graph = [];
 
 print(basename(models));
 
@@ -38,6 +39,44 @@ for(file in models[1:3]) {
             note = r$notes
         );
     }));
+
+    reaction_graph = append(reaction_graph, sapply(reactions, function(r) {
+        let cpds = r$reactants;
+        let rtns = sapply(names(cpds), function(id) {
+            new reaction_graph(
+                reaction_id = r$id,
+                molecule_id = as.integer($"\d+"(id)),
+                name = compounds[[id]]$name,
+                stoichiometric = cpds[[id]],
+                type = 1
+            ); 
+        });
+
+        cpds = r$products;
+
+        let prods = sapply(names(cpds), function(id) {
+            new reaction_graph(
+                reaction_id = r$id,
+                molecule_id = as.integer($"\d+"(id)),
+                name = compounds[[id]]$name,
+                stoichiometric = cpds[[id]],
+                type = 2
+            ); 
+        });
+
+        let enzs = sapply(r$modifiers, function(id) {
+            new reaction_graph(
+                reaction_id = r$id,
+                molecule_id = as.integer($"\d+"(id)),
+                name = compounds[[id]]$name,
+                stoichiometric = 0,
+                type = 3
+            ); 
+        });
+
+        append(rtns, append(prods, enzs));
+    }) |> unlist());
+
     subcellular_compartments = append(subcellular_compartments, sapply(compartments, function(c) {
         new subcellular_compartments(
             id = c$id,
@@ -60,5 +99,6 @@ for(file in models[1:3]) {
 reaction_node
 |> append(subcellular_compartments)
 |> append(subcellular_locations)
+|> append(reaction_graph)
 |> mysql::dump_inserts(dir = `${@dir}/reactions/`)
 ;
