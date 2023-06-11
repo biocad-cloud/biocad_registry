@@ -11,11 +11,13 @@ for(file in models) {
     let model = read.sbml(file);
     let compartments = extract.compartments(model);
     let compounds = extract_compounds(model);
+    let reactions = extract_reactions(model);
 
     compounds = compounds[order(compounds$name), ];
 
     print(compartments);
     print(compounds);
+    print(reactions);
 
     stop();
 }
