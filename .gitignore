@@ -260,3 +260,4 @@ imports/reactions/cad_registry_subcellular_compartments.sql
 imports/reactions/cad_registry_subcellular_locations.sql
 imports/reactions/cad_registry_reaction_graph.sql
 imports/reactions/cad_registry_molecules.sql
+imports/reactions/cad_registry_pathway.sql

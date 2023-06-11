@@ -14,6 +14,7 @@ let subcellular_compartments = [];
 let subcellular_locations = [];
 let reaction_graph = [];
 let molecules = [];
+let pathway = [];
 
 print(basename(models));
 
@@ -22,12 +23,21 @@ for(file in models[1:3]) {
     let compartments = extract.compartments(model, json = TRUE);
     let compounds = extract_compounds(model, json = TRUE);
     let reactions = extract_reactions(model, json = TRUE);
+    let pwy_model = extract.pathway_model(model);
 
     # compounds = compounds[order(compounds$name), ];
 
     str(compartments);
     str(compounds);
     str(reactions);
+
+    pathway = append(pathway, new pathway(
+        id = pwy_model$id,
+        name = pwy_model$name,
+        add_time = now(),
+        source = 1,
+        note = pwy_model$notes
+    ));
 
     molecules = append(molecules, sapply(compounds, function(c) {
         new molecules(
@@ -112,10 +122,13 @@ for(file in models[1:3]) {
     invisible(NULL);
 }
 
+print(pathway);
+
 reaction_node
 |> append(subcellular_compartments)
 |> append(subcellular_locations)
 |> append(reaction_graph)
 |> append(molecules)
+|> append(pathway)
 |> mysql::dump_inserts(dir = `${@dir}/reactions/`)
 ;
