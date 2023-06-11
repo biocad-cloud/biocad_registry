@@ -15,6 +15,7 @@ let subcellular_locations = [];
 let reaction_graph = [];
 let molecules = [];
 let pathway = [];
+let complex = [];
 
 print(basename(models));
 
