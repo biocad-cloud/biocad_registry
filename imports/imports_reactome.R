@@ -32,6 +32,20 @@ for(file in models[1:3]) {
     str(compounds);
     str(reactions);
 
+    complex = append(complex, compounds |> which(c -> length(c$components) > 0) |> sapply(function(c) {
+        const n_components = length(c$components);
+
+        # FNV1a_hashcode
+        sapply(c$components, function(cid) {
+            new complex(
+                molecule_id =  c$id,
+                component_id = FNV1a_hashcode(cid),
+                n_components = n_components,
+                name = c$name
+            );
+        });
+    }) |> unlist());
+
     pathway = append(pathway, new pathway(
         id = pwy_model$id,
         name = pwy_model$name,
@@ -131,5 +145,6 @@ reaction_node
 |> append(reaction_graph)
 |> append(molecules)
 |> append(pathway)
+|> append(complex)
 |> mysql::dump_inserts(dir = `${@dir}/reactions/`)
 ;
