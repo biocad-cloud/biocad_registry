@@ -8,15 +8,7 @@ imports "models" from "biocad_registry";
 
 const repo = "E:\UniProt\all_species.3.1.sbml";
 const models = list.files(repo, pattern = "*.sbml");
-
-let reaction_node = [];
-let subcellular_compartments = [];
-let subcellular_locations = [];
-let reaction_graph = [];
-let molecules = [];
-let pathway = [];
-let complex = [];
-let dblinks = [];
+const mysql = mysql::create_filedump(dir = `${@dir}/reactions/`);
 
 print(basename(models));
 
@@ -33,7 +25,7 @@ for(file in models) {
     str(compounds);
     str(reactions);
 
-    complex = append(complex, compounds |> which(c -> length(c$components) > 0) |> sapply(function(c) {
+    mysql |> write_dumps(compounds |> which(c -> length(c$components) > 0) |> sapply(function(c) {
         const n_components = length(c$components);
 
         # FNV1a_hashcode
@@ -47,7 +39,7 @@ for(file in models) {
         });
     }) |> unlist());
 
-    pathway = append(pathway, new pathway(
+    mysql |> write_dumps(new pathway(
         id = pwy_model$id,
         name = pwy_model$name,
         add_time = now(),
@@ -55,7 +47,7 @@ for(file in models) {
         note = pwy_model$notes
     ));
 
-    molecules = append(molecules, sapply(compounds, function(c) {
+    mysql |> write_dumps(sapply(compounds, function(c) {
         new molecules(
             id = c$id,
             molecule_id = c$id,
@@ -70,7 +62,7 @@ for(file in models) {
         );
     }));
 
-    dblinks = append(dblinks, sapply(compounds, function(c) {
+    mysql |> write_dumps(sapply(compounds, function(c) {
         sapply(c$is, function(cid) {
             new dblinks(
                 db_src = 1,
@@ -82,7 +74,7 @@ for(file in models) {
         });
     }) |> unlist());
 
-    reaction_node = append(reaction_node, sapply(reactions, function(r) {
+    mysql |> write_dumps(sapply(reactions, function(r) {
         new reaction_node(
             id = r$id,
             name = r$name,
@@ -94,7 +86,7 @@ for(file in models) {
         );
     }));
 
-    dblinks = append(dblinks, sapply(reactions, function(r) {
+    mysql |> write_dumps(sapply(reactions, function(r) {
         sapply(r$is, function(ext_id) {
             new dblinks(
                 db_src = 1,
@@ -106,7 +98,7 @@ for(file in models) {
         });
     }) |> unlist());
 
-    reaction_graph = append(reaction_graph, sapply(reactions, function(r) {
+    mysql |> write_dumps(sapply(reactions, function(r) {
         let cpds = r$reactants;
         let rtns = sapply(names(cpds), function(id) {
             new reaction_graph(
@@ -143,7 +135,7 @@ for(file in models) {
         append(rtns, append(prods, enzs));
     }) |> unlist());
 
-    subcellular_compartments = append(subcellular_compartments, sapply(compartments, function(c) {
+    mysql |> write_dumps(sapply(compartments, function(c) {
         new subcellular_compartments(
             id = c$id,
             name = c$name,
@@ -151,7 +143,7 @@ for(file in models) {
         );
     }));
 
-    dblinks = append(dblinks, sapply(compartments, function(c) {
+    mysql |> write_dumps(sapply(compartments, function(c) {
         sapply(c$is, function(cid) {
             new dblinks(
                 db_src = 1,
@@ -163,7 +155,7 @@ for(file in models) {
         });
     }) |> unlist());
 
-    subcellular_locations = append(subcellular_locations, sapply(reactions, function(r) {
+    mysql |> write_dumps(sapply(reactions, function(r) {
         new subcellular_locations(
             biological_process = r$id,
             compartment = as.integer($"\d+"(r$compartment))
@@ -176,13 +168,4 @@ for(file in models) {
 
 print(pathway);
 
-reaction_node
-|> append(subcellular_compartments)
-|> append(subcellular_locations)
-|> append(reaction_graph)
-|> append(molecules)
-|> append(pathway)
-|> append(complex)
-|> append(dblinks)
-|> mysql::dump_inserts(dir = `${@dir}/reactions/`)
-;
+close(mysql);
