@@ -2,7 +2,7 @@
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports Oracle.LinuxCompatibility.MySQL.Uri
 
-Namespace biocad_registry
+Namespace biocad_registryModel
 
 Public MustInherit Class db_mysql : Inherits IDatabase
 Protected ReadOnly complex As Model
