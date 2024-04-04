@@ -1,4 +1,4 @@
-﻿Imports biocad_registry.biocad_registry
+﻿Imports biocad_registry.biocad_registryModel
 Imports Microsoft.VisualBasic.Scripting.MetaData
 Imports SMRUCC.Rsharp.Runtime.Interop
 
@@ -12,6 +12,7 @@ Imports SMRUCC.Rsharp.Runtime.Interop
 <RTypeExport("vocabulary", GetType(vocabulary))>
 <RTypeExport("pathway", GetType(pathway))>
 <RTypeExport("complex", GetType(complex))>
+<RTypeExport("biocad_registry", GetType(biocad_registry))>
 Module models
 
     Public Sub Main()

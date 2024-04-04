@@ -1,7 +1,6 @@
-﻿Imports Oracle.LinuxCompatibility.MySQL
-Imports Oracle.LinuxCompatibility.MySQL.Uri
+﻿Imports Oracle.LinuxCompatibility.MySQL.Uri
 
-Public Class biocad_registry : Inherits biocad_registry
+Public Class biocad_registry : Inherits biocad_registryModel.db_mysql
 
     Sub New(mysql As ConnectionUri)
         Call MyBase.New(mysql)
