@@ -8,18 +8,18 @@ declare namespace biocad_registry {
       */
       function onLoad(): object;
    }
-   gene_dblinks: string;
+   gene_dblinks: any;
    /**
      * @param page default value Is ``1``.
      * @param page_size default value Is ``1000``.
    */
-   function get_dblinks(dbname: any, page?: object, page_size?: object): object;
+   function get_dblinks(dbname: any, page?: any, page_size?: any): object;
    /**
      * @param fasta default value Is ``false``.
    */
-   function get_motif_sites(family: any, fasta?: boolean): object;
+   function get_motif_sites(family: any, fasta?: any): object;
    go_namespace: any;
-   motif_sites_family: string;
+   motif_sites_family: any;
    /**
      * @param genome_id default value Is ``null``.
    */
@@ -51,7 +51,7 @@ declare namespace biocad_registry {
       /**
         * @param note default value Is ````.
       */
-      function taxonomic_group(name: any, id: any, note?: string): object;
+      function taxonomic_group(name: any, id: any, note?: any): object;
    }
    /**
    */
