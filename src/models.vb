@@ -5,10 +5,10 @@ Imports SMRUCC.Rsharp.Runtime.Interop
 <Package("models")>
 <RTypeExport("reaction_node", GetType(reaction_node))>
 <RTypeExport("reaction_graph", GetType(reaction_graph))>
-<RTypeExport("molecules", GetType(molecules))>
-<RTypeExport("dblinks", GetType(dblinks))>
+<RTypeExport("molecules", GetType(molecule))>
+<RTypeExport("dblinks", GetType(db_xrefs))>
 <RTypeExport("subcellular_compartments", GetType(subcellular_compartments))>
-<RTypeExport("subcellular_locations", GetType(subcellular_locations))>
+<RTypeExport("subcellular_locations", GetType(subcellular_location))>
 <RTypeExport("vocabulary", GetType(vocabulary))>
 <RTypeExport("pathway", GetType(pathway))>
 <RTypeExport("complex", GetType(complex))>

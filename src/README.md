@@ -11,7 +11,7 @@ MySql database field attributes notes in this development document:
 > + **UN**: Unsigned;
 > + **ZF**: Zero Fill
 
-Generate time: 8/2/2024 10:44:44 PM<br />
+Generate time: 8/2/2024 10:49:02 PM<br />
 By: ``mysqli.vb`` reflector tool ([https://github.com/xieguigang/mysqli.vb](https://github.com/xieguigang/mysqli.vb))
 
 <div style="page-break-after: always;"></div>
@@ -115,6 +115,69 @@ CREATE TABLE `molecule` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='The molecular entity object';
+```
+
+
+<div style="page-break-after: always;"></div>
+
+***
+
+## pathway
+
+
+
+|field|type|attributes|description|
+|-----|----|----------|-----------|
+|id|int (11)|``AI``, ``NN``, ``PK``, ``UN``||
+|name|varchar (1024)|``NN``||
+|add_time|datetime|``NN``||
+|note|text|||
+
+
+#### SQL Declare
+
+```SQL
+CREATE TABLE `pathway` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(1024) COLLATE utf8mb3_bin NOT NULL,
+  `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `note` longtext COLLATE utf8mb3_bin,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  UNIQUE KEY `name_UNIQUE` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+```
+
+
+<div style="page-break-after: always;"></div>
+
+***
+
+## pathway_graph
+
+
+
+|field|type|attributes|description|
+|-----|----|----------|-----------|
+|id|int (11)|``AI``, ``NN``, ``PK``, ``UN``||
+|pathway_id|int (11)|``NN``, ``UN``||
+|entity_id|int (11)|``NN``, ``UN``||
+|add_time|datetime|``NN``||
+|note|text|||
+
+
+#### SQL Declare
+
+```SQL
+CREATE TABLE `pathway_graph` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `pathway_id` int unsigned NOT NULL,
+  `entity_id` int unsigned NOT NULL,
+  `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `note` longtext COLLATE utf8mb3_bin,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 ```
 
 

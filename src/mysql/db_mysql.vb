@@ -8,6 +8,8 @@ Public MustInherit Class db_mysql : Inherits IDatabase
 Protected ReadOnly m_complex As Model
 Protected ReadOnly m_db_xrefs As Model
 Protected ReadOnly m_molecule As Model
+Protected ReadOnly m_pathway As Model
+Protected ReadOnly m_pathway_graph As Model
 Protected ReadOnly m_sequence_graph As Model
 Protected ReadOnly m_subcellular_compartments As Model
 Protected ReadOnly m_subcellular_location As Model
@@ -18,6 +20,8 @@ Call MyBase.New(mysqli)
 Me.m_complex = model(Of complex)()
 Me.m_db_xrefs = model(Of db_xrefs)()
 Me.m_molecule = model(Of molecule)()
+Me.m_pathway = model(Of pathway)()
+Me.m_pathway_graph = model(Of pathway_graph)()
 Me.m_sequence_graph = model(Of sequence_graph)()
 Me.m_subcellular_compartments = model(Of subcellular_compartments)()
 Me.m_subcellular_location = model(Of subcellular_location)()
