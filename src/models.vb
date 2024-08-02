@@ -3,7 +3,7 @@ Imports Microsoft.VisualBasic.Scripting.MetaData
 Imports SMRUCC.Rsharp.Runtime.Interop
 
 <Package("models")>
-<RTypeExport("reaction_node", GetType(reaction_node))>
+<RTypeExport("reaction_node", GetType(reaction))>
 <RTypeExport("reaction_graph", GetType(reaction_graph))>
 <RTypeExport("molecules", GetType(molecule))>
 <RTypeExport("dblinks", GetType(db_xrefs))>

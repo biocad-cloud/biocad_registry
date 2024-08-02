@@ -11,7 +11,7 @@ MySql database field attributes notes in this development document:
 > + **UN**: Unsigned;
 > + **ZF**: Zero Fill
 
-Generate time: 8/2/2024 10:49:02 PM<br />
+Generate time: 8/2/2024 10:55:26 PM<br />
 By: ``mysqli.vb`` reflector tool ([https://github.com/xieguigang/mysqli.vb](https://github.com/xieguigang/mysqli.vb))
 
 <div style="page-break-after: always;"></div>
@@ -173,6 +173,74 @@ CREATE TABLE `pathway_graph` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
   `pathway_id` int unsigned NOT NULL,
   `entity_id` int unsigned NOT NULL,
+  `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `note` longtext COLLATE utf8mb3_bin,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+```
+
+
+<div style="page-break-after: always;"></div>
+
+***
+
+## reaction
+
+
+
+|field|type|attributes|description|
+|-----|----|----------|-----------|
+|id|int (11)|``AI``, ``NN``, ``PK``, ``UN``||
+|name|varchar (1024)|``NN``||
+|equation|text|``NN``||
+|add_time|datetime|``NN``||
+|note|text|||
+
+
+#### SQL Declare
+
+```SQL
+CREATE TABLE `reaction` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(1024) COLLATE utf8mb3_bin NOT NULL,
+  `equation` mediumtext COLLATE utf8mb3_bin NOT NULL,
+  `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `note` longtext COLLATE utf8mb3_bin,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='the definition of the biological reaction process';
+```
+
+
+<div style="page-break-after: always;"></div>
+
+***
+
+## reaction_graph
+
+
+
+|field|type|attributes|description|
+|-----|----|----------|-----------|
+|id|int (11)|``AI``, ``NN``, ``PK``, ``UN``||
+|reaction|int (11)|``NN``, ``UN``||
+|molecule_id|int (11)|``NN``, ``UN``||
+|role|int (11)|``NN``, ``UN``||
+|factor|double|||
+|add_time|datetime|``NN``||
+|note|text|||
+
+
+#### SQL Declare
+
+```SQL
+CREATE TABLE `reaction_graph` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `reaction` int unsigned NOT NULL,
+  `molecule_id` int unsigned NOT NULL,
+  `role` int unsigned NOT NULL,
+  `factor` double DEFAULT NULL,
   `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `note` longtext COLLATE utf8mb3_bin,
   PRIMARY KEY (`id`),
