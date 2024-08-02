@@ -35,4 +35,9 @@ Module models
     Public Function vocabulary_id(biocad_registry As biocad_registry, term As String, category As String) As UInteger
         Return biocad_registry.getVocabulary(term, category)
     End Function
+
+    <ExportAPI("subcellular_location")>
+    Public Function subcellular_location(biocad_registry As biocad_registry, name As String, topology As String) As UInteger
+        Return biocad_registry.getSubcellularLocation(name, topology)
+    End Function
 End Module
