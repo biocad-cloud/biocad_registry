@@ -30,12 +30,13 @@
             <code id="clr_ts">
 # namespace biocad_registry.biocad_registryModel
 export class reaction_graph extends <a href="/vignettes/clr/Oracle/LinuxCompatibility/MySQL/MySQLTable.html">MySQLTable</a> {
+   add_time: <a href="/vignettes/clr/System/DateTime.html">DateTime</a>;
+   factor: double;
    id: integer;
    molecule_id: integer;
-   name: string;
-   reaction_id: integer;
-   stoichiometric: double;
-   type: boolean;
+   note: string;
+   reaction: integer;
+   role: integer;
 }
 </code>
         </pre>
@@ -44,6 +45,7 @@ export class reaction_graph extends <a href="/vignettes/clr/Oracle/LinuxCompatib
 
         <ol>
 <li>this class extends from <a href="/vignettes/clr/Oracle/LinuxCompatibility/MySQL/MySQLTable.html">MySQLTable</a> class: <a href="/vignettes/clr/Oracle/LinuxCompatibility/MySQL/MySQLTable.html">MySQLTable</a></li>
+<li>use by <i>property</i> member <code>add_time</code>: <a href="/vignettes/clr/System/DateTime.html">DateTime</a></li>
 </ol>
 
 
@@ -58,4 +60,4 @@ export class reaction_graph extends <a href="/vignettes/clr/Oracle/LinuxCompatib
 <script type="text/javascript" src="../../_assets/highlights.js"></script>
 <script type="text/javascript">r_highlights("clr_ts");</script>
 
-</html>
+</html>
