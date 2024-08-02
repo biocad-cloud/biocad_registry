@@ -2,6 +2,9 @@
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports Oracle.LinuxCompatibility.MySQL.Uri
 
+''' <summary>
+''' a wrapper of the biocad registry database
+''' </summary>
 Public Class biocad_registry : Inherits biocad_registryModel.db_mysql
 
     Sub New(mysql As ConnectionUri)

@@ -2,6 +2,9 @@
 Imports Microsoft.VisualBasic.Scripting.MetaData
 Imports SMRUCC.Rsharp.Runtime.Interop
 
+''' <summary>
+''' exports the biocad registry database models
+''' </summary>
 <Package("models")>
 <RTypeExport("reaction_node", GetType(reaction))>
 <RTypeExport("reaction_graph", GetType(reaction_graph))>
