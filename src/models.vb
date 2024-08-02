@@ -1,4 +1,5 @@
 ﻿Imports biocad_registry.biocad_registryModel
+Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.Scripting.MetaData
 Imports SMRUCC.Rsharp.Runtime.Interop
 
@@ -21,4 +22,16 @@ Module models
     Public Sub Main()
 
     End Sub
+
+    ''' <summary>
+    ''' get the vocabulary term id
+    ''' </summary>
+    ''' <param name="biocad_registry"></param>
+    ''' <param name="term"></param>
+    ''' <param name="category"></param>
+    ''' <returns></returns>
+    <ExportAPI("vocabulary_id")>
+    Public Function vocabulary_id(biocad_registry As biocad_registry, term As String, category As String) As UInteger
+        Return biocad_registry.getVocabulary(term, category)
+    End Function
 End Module
