@@ -6,3 +6,8 @@
 
 /**
 */
+declare namespace models {
+   /**
+   */
+   function vocabulary_id(biocad_registry: object, term: string, category: string): object;
+}
