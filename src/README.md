@@ -11,7 +11,7 @@ MySql database field attributes notes in this development document:
 > + **UN**: Unsigned;
 > + **ZF**: Zero Fill
 
-Generate time: 8/2/2024 11:01:17 PM<br />
+Generate time: 8/3/2024 2:52:32 AM<br />
 By: ``mysqli.vb`` reflector tool ([https://github.com/xieguigang/mysqli.vb](https://github.com/xieguigang/mysqli.vb))
 
 <div style="page-break-after: always;"></div>
@@ -295,6 +295,7 @@ CREATE TABLE `sequence_graph` (
 |-----|----|----------|-----------|
 |id|int (11)|``AI``, ``NN``, ``PK``, ``UN``||
 |compartment_name|varchar (1024)|``NN``||
+|topology|varchar (1024)|||
 |add_time|datetime|``NN``||
 |note|text|||
 
@@ -305,6 +306,7 @@ CREATE TABLE `sequence_graph` (
 CREATE TABLE `subcellular_compartments` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
   `compartment_name` varchar(1024) COLLATE utf8mb3_bin NOT NULL,
+  `topology` varchar(1024) COLLATE utf8mb3_bin DEFAULT NULL,
   `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `note` longtext COLLATE utf8mb3_bin,
   PRIMARY KEY (`id`),
