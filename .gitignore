@@ -264,3 +264,11 @@ imports/reactions/cad_registry_pathway.sql
 imports/reactions/cad_registry_complex.sql
 imports/reactions/cad_registry_dblinks.sql
 test/uniprotkb_taxonomy_id_2_AND_model_organ_2024_08_02.xml
+test/obsolete/imports/reactions/cad_registry_complex.sql
+test/obsolete/imports/reactions/cad_registry_dblinks.sql
+test/obsolete/imports/reactions/cad_registry_molecules.sql
+test/obsolete/imports/reactions/cad_registry_pathway.sql
+test/obsolete/imports/reactions/cad_registry_reaction_graph.sql
+test/obsolete/imports/reactions/cad_registry_reaction_node.sql
+test/obsolete/imports/reactions/cad_registry_subcellular_compartments.sql
+test/obsolete/imports/reactions/cad_registry_subcellular_locations.sql
