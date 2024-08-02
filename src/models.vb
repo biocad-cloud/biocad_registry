@@ -17,6 +17,7 @@ Imports SMRUCC.Rsharp.Runtime.Interop
 <RTypeExport("pathway", GetType(pathway))>
 <RTypeExport("complex", GetType(complex))>
 <RTypeExport("biocad_registry", GetType(biocad_registry))>
+<RTypeExport("cad_registry", GetType(biocad_registry))>
 Module models
 
     Public Sub Main()
