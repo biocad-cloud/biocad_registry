@@ -8,52 +8,10 @@ declare namespace biocad_registry {
       */
       function onLoad(): object;
    }
-   gene_dblinks: any;
    /**
-     * @param page default value Is ``1``.
-     * @param page_size default value Is ``1000``.
+     * @param host default value Is ``localhost``.
+     * @param port default value Is ``3306``.
+     * @param dbname default value Is ``cad_registry``.
    */
-   function get_dblinks(dbname: any, page?: any, page_size?: any): object;
-   /**
-     * @param fasta default value Is ``false``.
-   */
-   function get_motif_sites(family: any, fasta?: any): object;
-   go_namespace: any;
-   motif_sites_family: any;
-   /**
-     * @param genome_id default value Is ``null``.
-   */
-   function pull_motif_family(genome_id?: any): object;
-   /**
-     * @param id default value Is ``null``.
-   */
-   function pull_taxonomic(id?: any): object;
-   module put {
-      /**
-      */
-      function genome_group(grp: any, genomes: any): object;
-      /**
-      */
-      function go_term(term: any): object;
-      /**
-      */
-      function ncbi_tax(tax: any): object;
-      /**
-      */
-      function operon(genome_id: any, genes: any): object;
-      /**
-      */
-      function regulation(genome_id: any, regulator: any, family: any, type: any, sites: any): object;
-      /**
-        * @param note default value Is ``null``.
-      */
-      function sequence(gene_id: any, locus_tag: any, gene_seq: any, prot_seq: any, note?: any): object;
-      /**
-        * @param note default value Is ````.
-      */
-      function taxonomic_group(name: any, id: any, note?: any): object;
-   }
-   /**
-   */
-   function wrap_list(a: any): object;
+   function open_registry(user: any, passwd: any, host?: any, port?: any, dbname?: any): object;
 }
