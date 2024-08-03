@@ -42,9 +42,9 @@ const imports_uniprot = function(biocad_registry, uniprot) {
         if (is.null(mol)) {
             biocad_registry |> table("molecule") |> add(
                 name = xrefs$name,
-                mass = bioseq.fasta::mass(fa),
+                mass = bioseq.fasta::mass(fa, type="Protein"),
                 type = term_prot,
-                formula = `prot(len=${nchar([fa]::SequenceData)})`,
+                formula = seq_formula(fa, type="Protein"),
                 parent = 0,
                 note = info
             );
