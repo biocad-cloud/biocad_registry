@@ -46,7 +46,7 @@ const imports_pubchem = function(biocad_registry, pubchem) {
         }
 
         let xrefs = compound$xref;
-        let smiles = gsub(xrefs$SMILES, "%10",""); 
+        let smiles = gsub(xrefs$SMILES, "%10","") |> gsub("%11","")|> gsub("%12",""); 
 
         xrefs$InChIkey = NULL;
         xrefs$InChI  = NULL;
