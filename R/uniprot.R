@@ -2,6 +2,8 @@ imports "uniprot" from "seqtoolkit";
 imports "dataset" from "MLkit";
 imports "bioseq.fasta" from "seqtoolkit";
 
+require(buffer);
+
 #' helper function for imports uniprot proteins
 #' 
 const imports_uniprot = function(biocad_registry, uniprot) {
@@ -17,6 +19,7 @@ const imports_uniprot = function(biocad_registry, uniprot) {
         }
     }
     let db_xrefs = biocad_registry |> table("db_xrefs");
+    let protein_graph = biocad_registry |> vocabulary_id("protein_graph","Embedding");
 
     for(let prot in pool) {
         let fa = uniprot::get_sequence(prot);
@@ -51,14 +54,31 @@ const imports_uniprot = function(biocad_registry, uniprot) {
             let db_key = biocad_registry |> vocabulary_id(dbname, "External Database");
 
             for(id in idlist) {
-                db_xrefs |> add(
-                    obj_id = mol$id,
+                if (!(db_xrefs |> check(obj_id = mol$id,
                     db_key = db_key,
                     xref = id,
-                    type = term_prot 
-                );
+                    type = term_prot ))) {
+                        db_xrefs |> add(
+                            obj_id = mol$id,
+                            db_key = db_key,
+                            xref = id,
+                            type = term_prot 
+                        );
+                    }
             }
         }
+
+        fa_vec = base64(packBuffer(fa_vec)|> zlib_stream());
+
+        if (!(biocad_registry |> table("sequence_graph") |> check("molecule_id"))) {
+            biocad_registry |> table("sequence_graph") |> add(
+                molecule_id = mol$id,
+                sequence = [fa]::SequenceData,
+                seq_graph = fa_vec,
+                embedding = protein_graph
+            );
+        }
+
 
         cat("\n\n");
         print(fa_vec);
