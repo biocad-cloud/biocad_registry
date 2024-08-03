@@ -1,10 +1,10 @@
 Package: biocad_registry
 Type: Package
-Title: Access the GCModeller cloud repository
+Title: Database system for access the GCModeller cloud repository
 Version: 1.0.148
 Author: xieguigang <xie.guigang@gcmodeller.org>
 Maintainer: xieguigang <xie.guigang@gcmodeller.org>
-Description: Rscript client to the web api for access the GCModeller cloud repository
+Description: Database system for access the GCModeller cloud repository
 License: MIT License
 Encoding: UTF-8
 LazyData: true
