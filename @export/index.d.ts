@@ -18,6 +18,9 @@ declare namespace biocad_registry {
    */
    function metabolite_term(biocad_registry: any): object;
    /**
+   */
+   function molecule_entity(biocad_registry: any): object;
+   /**
      * @param host default value Is ``localhost``.
      * @param port default value Is ``3306``.
      * @param dbname default value Is ``cad_registry``.
