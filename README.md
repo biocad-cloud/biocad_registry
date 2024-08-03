@@ -1,3 +1,4 @@
-## Web api for access the GCModeller cloud repository
+## Database system for access the GCModeller cloud repository
 
-http://gcmodeller.org 2023. All rights reserved.
++ https://gcmodeller.org/ 2023. All rights reserved.
++ https://biocad.cloud/ 2024. All rights reserved.
