@@ -11,7 +11,7 @@ MySql database field attributes notes in this development document:
 > + **UN**: Unsigned;
 > + **ZF**: Zero Fill
 
-Generate time: 8/3/2024 2:52:32 AM<br />
+Generate time: 8/3/2024 12:40:46 PM<br />
 By: ``mysqli.vb`` reflector tool ([https://github.com/xieguigang/mysqli.vb](https://github.com/xieguigang/mysqli.vb))
 
 <div style="page-break-after: always;"></div>
@@ -75,7 +75,8 @@ CREATE TABLE `db_xrefs` (
   `type` int unsigned NOT NULL,
   `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `id_UNIQUE` (`id`)
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  UNIQUE KEY `unique_dblink` (`obj_id`,`db_key`,`xref`,`type`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 ```
 
@@ -91,10 +92,10 @@ CREATE TABLE `db_xrefs` (
 |field|type|attributes|description|
 |-----|----|----------|-----------|
 |id|int (11)|``AI``, ``NN``, ``PK``, ``UN``||
-|name|varchar (1024)|``NN``|the name of the molecule|
+|name|varchar (512)|``NN``|the name of the molecule|
 |mass|double|``NN``|the molecular exact mass|
 |type|int (11)|``NN``, ``UN``|the molecule type, the id of the vocabulary term, value could be nucl(DNA), RNA, prot, metabolite, complex|
-|formula|varchar (255)|``NN``|metabolite formula or nucl/prot sequence|
+|formula|varchar (128)|``NN``|metabolite formula or nucl/prot sequence|
 |parent|int (11)|``NN``, ``UN``|the parent metabolite id, example as RNA is a parent of polypeptide, and gene is a parent of RNA sequence.|
 |add_time|datetime|``NN``|add time of current molecular entity|
 |note|text||description text about current entity object|
@@ -105,15 +106,16 @@ CREATE TABLE `db_xrefs` (
 ```SQL
 CREATE TABLE `molecule` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(1024) COLLATE utf8mb3_bin NOT NULL COMMENT 'the name of the molecule',
+  `name` varchar(512) COLLATE utf8mb3_bin NOT NULL COMMENT 'the name of the molecule',
   `mass` double NOT NULL COMMENT 'the molecular exact mass',
   `type` int unsigned NOT NULL COMMENT 'the molecule type, the id of the vocabulary term, value could be nucl(DNA), RNA, prot, metabolite, complex',
-  `formula` varchar(255) COLLATE utf8mb3_bin NOT NULL COMMENT 'metabolite formula or nucl/prot sequence',
+  `formula` varchar(128) COLLATE utf8mb3_bin NOT NULL COMMENT 'metabolite formula or nucl/prot sequence',
   `parent` int unsigned NOT NULL COMMENT 'the parent metabolite id, example as RNA is a parent of polypeptide, and gene is a parent of RNA sequence.',
   `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'add time of current molecular entity',
   `note` longtext COLLATE utf8mb3_bin COMMENT 'description text about current entity object',
   PRIMARY KEY (`id`),
-  UNIQUE KEY `id_UNIQUE` (`id`)
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  UNIQUE KEY `unique_molecule` (`type`,`name`) /*!80000 INVISIBLE */
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='The molecular entity object';
 ```
 
@@ -329,6 +331,7 @@ CREATE TABLE `subcellular_compartments` (
 |id|int (11)|``AI``, ``NN``, ``PK``, ``UN``||
 |compartment_id|int (11)|``NN``, ``UN``||
 |obj_id|int (11)|``NN``, ``UN``||
+|entity|int (11)|``NN``, ``UN``|the vocabulary type id of the entity object, could be molecule, reaction or pathways|
 |add_time|datetime|``NN``||
 |note|text|||
 
@@ -340,10 +343,12 @@ CREATE TABLE `subcellular_location` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
   `compartment_id` int unsigned NOT NULL,
   `obj_id` int unsigned NOT NULL,
+  `entity` int unsigned NOT NULL COMMENT 'the vocabulary type id of the entity object, could be molecule, reaction or pathways',
   `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `note` longtext COLLATE utf8mb3_bin,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `id_UNIQUE` (`id`)
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  UNIQUE KEY `unique_reference` (`compartment_id`,`obj_id`,`entity`) /*!80000 INVISIBLE */
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='associates the subcellular_compartments and the molecule objects';
 ```
 
