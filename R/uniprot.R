@@ -9,6 +9,7 @@ require(buffer);
 const imports_uniprot = function(biocad_registry, uniprot) {
     let sgt = SGT(alphabets = bioseq.fasta::chars("Protein"));
     let term_prot = biocad_registry::protein_term(biocad_registry);
+    let entity_prot = biocad_registry::molecule_entity(biocad_registry);
     let pool = {
         if (is.array(uniprot)) {
             tqdm(uniprot);
@@ -20,6 +21,8 @@ const imports_uniprot = function(biocad_registry, uniprot) {
     }
     let db_xrefs = biocad_registry |> table("db_xrefs");
     let protein_graph = biocad_registry |> vocabulary_id("protein_graph","Embedding");
+    let compartments = biocad_registry |> table("subcellular_compartments");
+    let location_link = biocad_registry |> table("subcellular_location");
 
     for(let prot in pool) {
         let fa = uniprot::get_sequence(prot);
@@ -79,6 +82,20 @@ const imports_uniprot = function(biocad_registry, uniprot) {
             );
         }
 
+        for(loc in as.list(loc, byrow = TRUE)) {
+            if (!(compartments |> check(compartment_name = loc$location))) {
+                compartments |> add(compartment_name = loc$location,
+                    topology = loc$topology);
+            }
+
+            let compartment = compartments |> where(compartment_name = loc$location) |> find();
+
+            location_link |> add(
+                compartment_id = compartment$id,
+                obj_id = mol$id,
+                entity = entity_prot
+            );
+        }
 
         cat("\n\n");
         print(fa_vec);
