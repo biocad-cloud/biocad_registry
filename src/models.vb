@@ -32,8 +32,8 @@ Module models
     ''' <param name="category"></param>
     ''' <returns></returns>
     <ExportAPI("vocabulary_id")>
-    Public Function vocabulary_id(biocad_registry As biocad_registry, term As String, category As String) As UInteger
-        Return biocad_registry.getVocabulary(term, category)
+    Public Function vocabulary_id(biocad_registry As biocad_registry, term As String, category As String, Optional desc As String = "") As UInteger
+        Return biocad_registry.getVocabulary(term, category, desc)
     End Function
 
     <ExportAPI("subcellular_location")>

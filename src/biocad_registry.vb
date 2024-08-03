@@ -11,7 +11,7 @@ Public Class biocad_registry : Inherits biocad_registryModel.db_mysql
         Call MyBase.New(mysql)
     End Sub
 
-    Public Function getVocabulary(term As String, category As String) As UInteger
+    Public Function getVocabulary(term As String, category As String, Optional description As String = "") As UInteger
         Static cache As New Dictionary(Of String, UInteger)
         SyncLock cache
             Return cache.ComputeIfAbsent($"{Strings.LCase(category)}:{Strings.LCase(term)}",
@@ -24,7 +24,8 @@ Public Class biocad_registry : Inherits biocad_registryModel.db_mysql
                                If check Is Nothing Then
                                    Call m_vocabulary.add(
                                        field("category") = category,
-                                       field("term") = term
+                                       field("term") = term,
+                                       field("note") = description
                                    )
                                    check = m_vocabulary.where(
                                       field("category") = category,

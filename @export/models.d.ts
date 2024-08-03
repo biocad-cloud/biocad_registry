@@ -11,6 +11,7 @@ declare namespace models {
    */
    function subcellular_location(biocad_registry: object, name: string, topology: string): object;
    /**
+     * @param desc default value Is ``''``.
    */
-   function vocabulary_id(biocad_registry: object, term: string, category: string): object;
+   function vocabulary_id(biocad_registry: object, term: string, category: string, desc?: string): object;
 }
