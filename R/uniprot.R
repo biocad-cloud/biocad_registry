@@ -6,14 +6,19 @@ imports "bioseq.fasta" from "seqtoolkit";
 #' 
 const imports_uniprot = function(biocad_registry, uniprot) {
     let sgt = SGT(alphabets = bioseq.fasta::chars("Protein"));
-
-    let term_gene = biocad_registry |> vocabulary_id("Nucleic Acid","Molecule Type");
-    let term_rna = biocad_registry |> vocabulary_id("RNA","Molecule Type");
-    let term_prot = biocad_registry |> vocabulary_id("Polypeptide","Molecule Type");
-    let term_metabolite = biocad_registry |> vocabulary_id("Metabolite","Molecule Type");
+    let term_prot = biocad_registry::protein_term();
     let db_id = list();
+    let pool = {
+        if (is.array(uniprot)) {
+            tqdm(uniprot);
+        } else {
+            # is pipeline enumerator
+            # tqdm can not be used
+            uniprot;
+        }
+    }
 
-    for(let prot in tqdm(uniprot)) {
+    for(let prot in pool) {
         let fa = uniprot::get_sequence(prot);
         let info = uniprot::get_description(prot);
         let loc = uniprot::get_subcellularlocation(prot);
