@@ -13,6 +13,9 @@ declare namespace biocad_registry {
    function gene_term(biocad_registry: any): object;
    /**
    */
+   function imports_pubchem(biocad_registry: any, pubchem: any): object;
+   /**
+   */
    function imports_uniprot(biocad_registry: any, uniprot: any): object;
    /**
    */
