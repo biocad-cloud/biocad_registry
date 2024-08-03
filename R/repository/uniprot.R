@@ -53,6 +53,11 @@ const imports_uniprot = function(biocad_registry, uniprot) {
                 name = xrefs$name) |> find();
         }
 
+        if (is.null(mol)) {
+            # error while add new metabolite
+            next;
+        }
+
         xrefs = xrefs$xrefs;
 
         for(dbname in names(xrefs)) {

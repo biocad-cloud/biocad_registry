@@ -40,6 +40,11 @@ const imports_pubchem = function(biocad_registry, pubchem) {
                 name = compound$name) |> find();
         }
 
+        if (is.null(mol)) {
+            # error while add new metabolite
+            next;
+        }
+
         let xrefs = compound$xref;
         let smiles = gsub(xrefs$SMILES, "%10",""); 
 
