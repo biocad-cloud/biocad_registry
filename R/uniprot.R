@@ -6,8 +6,7 @@ imports "bioseq.fasta" from "seqtoolkit";
 #' 
 const imports_uniprot = function(biocad_registry, uniprot) {
     let sgt = SGT(alphabets = bioseq.fasta::chars("Protein"));
-    let term_prot = biocad_registry::protein_term();
-    let db_id = list();
+    let term_prot = biocad_registry::protein_term(biocad_registry);
     let pool = {
         if (is.array(uniprot)) {
             tqdm(uniprot);
@@ -17,6 +16,7 @@ const imports_uniprot = function(biocad_registry, uniprot) {
             uniprot;
         }
     }
+    let db_xrefs = biocad_registry |> table("db_xrefs");
 
     for(let prot in pool) {
         let fa = uniprot::get_sequence(prot);
@@ -39,6 +39,25 @@ const imports_uniprot = function(biocad_registry, uniprot) {
                 parent = 0,
                 note = info
             );
+
+            mol = biocad_registry |> table("molecule") |> where(type = term_prot,
+                name = xrefs$name) |> find();
+        }
+
+        xrefs = xrefs$xrefs;
+
+        for(dbname in names(xrefs)) {
+            let idlist = xrefs[[dbname]];
+            let db_key = biocad_registry |> vocabulary_id(dbname, "External Database");
+
+            for(id in idlist) {
+                db_xrefs |> add(
+                    obj_id = mol$id,
+                    db_key = db_key,
+                    xref = id,
+                    type = term_prot 
+                );
+            }
         }
 
         cat("\n\n");
