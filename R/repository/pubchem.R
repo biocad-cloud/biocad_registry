@@ -1,3 +1,5 @@
+imports "pubchem_kit" from "mzkit";
+
 const imports_pubchem = function(biocad_registry, pubchem) {
     let term_metabolite = biocad_registry::metabolite_term(biocad_registry);
     let entity_metabolite = biocad_registry::molecule_entity(biocad_registry);
@@ -15,6 +17,8 @@ const imports_pubchem = function(biocad_registry, pubchem) {
     let location_link = biocad_registry |> table("subcellular_location");
 
     for(let compound in pubchem) {
-        
+        compound = metadata.pugView(compound);
+        str(compound);
+        stop();
     }
 }
