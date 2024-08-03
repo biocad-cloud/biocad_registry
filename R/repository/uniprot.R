@@ -25,6 +25,7 @@ const imports_uniprot = function(biocad_registry, uniprot) {
     );
     let compartments = biocad_registry |> table("subcellular_compartments");
     let location_link = biocad_registry |> table("subcellular_location");
+    let seq_graph = biocad_registry |> table("sequence_graph");
 
     for(let prot in pool) {
         let fa = uniprot::get_sequence(prot);
@@ -75,8 +76,8 @@ const imports_uniprot = function(biocad_registry, uniprot) {
 
         fa_vec = base64(packBuffer(fa_vec)|> zlib_stream());
 
-        if (!(biocad_registry |> table("sequence_graph") |> check("molecule_id"))) {
-            biocad_registry |> table("sequence_graph") |> add(
+        if (!(seq_graph |> check(molecule_id = mol$id))) {
+            seq_graph |> add(
                 molecule_id = mol$id,
                 sequence = [fa]::SequenceData,
                 seq_graph = fa_vec,
@@ -93,11 +94,15 @@ const imports_uniprot = function(biocad_registry, uniprot) {
 
             let compartment = compartments |> where(compartment_name = loc$location) |> find();
 
-            location_link |> add(
-                compartment_id = compartment$id,
+            if (!(location_link |> check(compartment_id = compartment$id,
                 obj_id = mol$id,
-                entity = entity_prot
-            );
+                entity = entity_prot))) {
+                    location_link |> add(
+                        compartment_id = compartment$id,
+                        obj_id = mol$id,
+                        entity = entity_prot
+                    );
+                }
         }
     }
 
