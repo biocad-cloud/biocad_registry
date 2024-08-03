@@ -86,8 +86,9 @@ const imports_uniprot = function(biocad_registry, uniprot) {
 
         for(loc in as.list(loc, byrow = TRUE)) {
             if (!(compartments |> check(compartment_name = loc$location))) {
+                # str(loc);
                 compartments |> add(compartment_name = loc$location,
-                    topology = loc$topology);
+                    topology = trim(loc$topology) || "");
             }
 
             let compartment = compartments |> where(compartment_name = loc$location) |> find();
