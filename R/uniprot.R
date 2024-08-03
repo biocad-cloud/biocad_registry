@@ -20,7 +20,9 @@ const imports_uniprot = function(biocad_registry, uniprot) {
         }
     }
     let db_xrefs = biocad_registry |> table("db_xrefs");
-    let protein_graph = biocad_registry |> vocabulary_id("protein_graph","Embedding");
+    let protein_graph = biocad_registry |> vocabulary_id("Protein_graph","Embedding", 
+        desc =bencode( [sgt]::feature_names)
+    );
     let compartments = biocad_registry |> table("subcellular_compartments");
     let location_link = biocad_registry |> table("subcellular_location");
 
@@ -41,7 +43,7 @@ const imports_uniprot = function(biocad_registry, uniprot) {
                 name = xrefs$name,
                 mass = bioseq.fasta::mass(fa),
                 type = term_prot,
-                formula = "prot",
+                formula = `prot(len=${nchar([fa]::SequenceData)})`,
                 parent = 0,
                 note = info
             );
@@ -96,13 +98,7 @@ const imports_uniprot = function(biocad_registry, uniprot) {
                 entity = entity_prot
             );
         }
-
-        cat("\n\n");
-        print(fa_vec);
-        print(info);
-        print(loc);
-        str(xrefs);
-
-        stop();
     }
+
+    invisible(NULL);
 }
