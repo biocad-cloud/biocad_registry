@@ -89,10 +89,5 @@ const imports_pubchem = function(biocad_registry, pubchem) {
                 }
             }
         }
-
-
-
-        str(compound);
-        stop();
     }
 }
