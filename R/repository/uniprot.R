@@ -33,14 +33,17 @@ const imports_uniprot = function(biocad_registry, uniprot) {
         let loc = uniprot::get_subcellularlocation(prot);
         let xrefs = uniprot::get_xrefs(prot);
         let fa_vec = sgt |> fit_embedding([fa]::SequenceData);
+        let uniprot_id = [prot]::accessions;
 
+        uniprot_id = uniprot_id[1];
         info = paste(info, sep = "; ");
 
         let mol = biocad_registry |> table("molecule") |> where(type = term_prot,
-            name = xrefs$name) |> find();
+            xref_id = uniprot_id) |> find();
 
         if (is.null(mol)) {
             biocad_registry |> table("molecule") |> add(
+                xref_id = uniprot_id,
                 name = xrefs$name,
                 mass = bioseq.fasta::mass(fa, type="Protein"),
                 type = term_prot,
@@ -50,7 +53,7 @@ const imports_uniprot = function(biocad_registry, uniprot) {
             );
 
             mol = biocad_registry |> table("molecule") |> where(type = term_prot,
-                name = xrefs$name) |> find();
+                xref_id = uniprot_id) |> find();
         }
 
         if (is.null(mol)) {
