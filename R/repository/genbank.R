@@ -62,11 +62,23 @@ const imports_genebank = function(biocad_registry, genebank) {
             );
         }
 
-        print(note_str);
-        print(nt_seq);
-        str(gene);
-        str(gene_synonym);
-        str(db_xref);
-        stop(); 
+        for(dbname in names(db_xref)) {
+            let idlist = db_xref[[dbname]];
+            let db_key = biocad_registry |> vocabulary_id(dbname, "External Database");
+
+            for(id in idlist) {
+                if (!(db_xrefs |> check(obj_id = mol$id,
+                    db_key = db_key,
+                    xref = id,
+                    type = term_gene ))) {
+                        db_xrefs |> add(
+                            obj_id = mol$id,
+                            db_key = db_key,
+                            xref = id,
+                            type = term_gene
+                        );
+                    }
+            }
+        }
     }
 }
