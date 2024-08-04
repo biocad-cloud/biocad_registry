@@ -23,11 +23,13 @@ const imports_pubchem = function(biocad_registry, pubchem) {
     for(let compound in pubchem) {
         compound = as.list(metadata.pugView(compound));
 
+        let cid = `PubChem:${compound$ID}`;
         let mol = metabolite  |> where(type = term_metabolite ,
-            name = compound$name) |> find();
+            xref_id = cid ) |> find();
 
         if (is.null(mol)) {
             metabolite |> add(
+                xref_id = cid,
                 name = compound$name,
                 mass = formula::eval(compound$formula),
                 type =  term_metabolite,
@@ -37,7 +39,7 @@ const imports_pubchem = function(biocad_registry, pubchem) {
             );
 
             mol =metabolite  |> where(type =term_metabolite,
-                name = compound$name) |> find();
+                xref_id = cid ) |> find();
         }
 
         if (is.null(mol)) {
