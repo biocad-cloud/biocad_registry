@@ -11,7 +11,7 @@ MySql database field attributes notes in this development document:
 > + **UN**: Unsigned;
 > + **ZF**: Zero Fill
 
-Generate time: 8/3/2024 12:40:46 PM<br />
+Generate time: 8/4/2024 5:32:43 PM<br />
 By: ``mysqli.vb`` reflector tool ([https://github.com/xieguigang/mysqli.vb](https://github.com/xieguigang/mysqli.vb))
 
 <div style="page-break-after: always;"></div>
