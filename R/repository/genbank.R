@@ -4,6 +4,12 @@ const imports_genebank = function(biocad_registry, genebank) {
     let term_gene = biocad_registry |> gene_term();
     let genes = genebank |> enumerateFeatures(keys = ["CDS","tRNA","ncRNA","rRNA"]);
     let gene_pool =  biocad_registry |> table("molecule");
+    let sgt = SGT(alphabets = bioseq.fasta::chars("DNA"));
+    let db_xrefs = biocad_registry |> table("db_xrefs");
+    let Nucleotide_graph = biocad_registry |> vocabulary_id("Nucleotide_graph","Embedding", 
+        desc =bencode( [sgt]::feature_names)
+    );
+    let seq_graph = biocad_registry |> table("sequence_graph");
 
     for(gene in tqdm(genes)) {
         let nt_seq = as.fasta(gene);
@@ -18,7 +24,8 @@ const imports_genebank = function(biocad_registry, genebank) {
                 trim_value = TRUE,
                 as_list = TRUE,
                 union_list = TRUE);
-        
+        let fa_vec = sgt |> fit_embedding([nt_seq]::SequenceData);
+
         gene <- gene$gene;
 
         let mol = gene_pool   |> where(type = term_gene ,
@@ -44,6 +51,16 @@ const imports_genebank = function(biocad_registry, genebank) {
             next;
         }
 
+        fa_vec = base64(packBuffer(fa_vec)|> zlib_stream());
+
+        if (!(seq_graph |> check(molecule_id = mol$id))) {
+            seq_graph |> add(
+                molecule_id = mol$id,
+                sequence = [nt_seq]::SequenceData,
+                seq_graph = fa_vec,
+                embedding = Nucleotide_graph
+            );
+        }
 
         print(note_str);
         print(nt_seq);
