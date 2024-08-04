@@ -1,6 +1,8 @@
 require(biocad_registry);
 
-let biocad_registry = open_registry("root", 123456);
-let genebank = resolve_repository("J:\ossfs\pubchem\repo\pugViews");
+setwd(@dir);
 
-biocad_registry |> imports_pubchem (pubchem);
+let biocad_registry = open_registry("root", 123456);
+let genebank =read.genbank("./Escherichia coli str. K-12 substr. MG1655.txt");
+
+biocad_registry |> imports_genebank ( genebank);
