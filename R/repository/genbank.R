@@ -5,6 +5,6 @@ const imports_genebank = function(biocad_registry, genebank) {
     let genes = genebank |> enumerateFeatures(keys = ["gene","tRNA","ncRNA","rRNA"]);
 
     for(gene in tqdm(genes)) {
-        
+        str(gene |> featureMeta());
     }
 }
