@@ -13,6 +13,9 @@ declare namespace biocad_registry {
    function gene_term(biocad_registry: any): object;
    /**
    */
+   function imports_chebi(biocad_registry: any, chebi: any): object;
+   /**
+   */
    function imports_genebank(biocad_registry: any, genebank: any): object;
    /**
    */
