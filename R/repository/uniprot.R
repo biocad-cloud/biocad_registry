@@ -80,11 +80,11 @@ const imports_uniprot = function(biocad_registry, uniprot) {
                         );
                     }
             }
-        }
-
-        fa_vec = base64(packBuffer(fa_vec)|> zlib_stream());
+        }        
 
         if (!(seq_graph |> check(molecule_id = mol$id))) {
+            fa_vec <- base64(packBuffer(fa_vec)|> zlib_stream());
+
             seq_graph |> add(
                 molecule_id = mol$id,
                 sequence = [fa]::SequenceData,

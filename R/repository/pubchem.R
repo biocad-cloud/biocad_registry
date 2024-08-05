@@ -2,6 +2,8 @@ imports "pubchem_kit" from "mzkit";
 imports "formula" from "mzkit";
 imports "SMILES" from "mzkit";
 
+#' imports the reference metabolite set from pubchem database
+#' 
 const imports_pubchem = function(biocad_registry, pubchem) {
     let term_metabolite = biocad_registry::metabolite_term(biocad_registry);
     let entity_metabolite = biocad_registry::molecule_entity(biocad_registry);
