@@ -15,7 +15,7 @@ const imports_rhea = function(biocad_registry, rhea) {
             reactions |> add(
                 db_xref = rxn$entry,
                 name = rxn$definition,
-                equation = rxn$equation,
+                equation = rxn$definition,
                 note = rxn$comment
             );
 
