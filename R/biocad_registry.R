@@ -17,3 +17,11 @@ const metabolite_term = function(biocad_registry) {
 const molecule_entity = function(biocad_registry) {
     biocad_registry |> vocabulary_id("Molecule","Entity Type");
 }
+
+const reaction_model = function(biocad_registry) {
+    biocad_registry |> vocabulary_id("Biological Reaction","Biological Process");
+}
+
+const enzyme_regulation = function(biocad_registry) {
+    biocad_registry |> vocabulary_id("Enzymatic Catalysis","Regulation Type");
+}
