@@ -11,7 +11,7 @@ MySql database field attributes notes in this development document:
 > + **UN**: Unsigned;
 > + **ZF**: Zero Fill
 
-Generate time: 8/4/2024 9:32:45 PM<br />
+Generate time: 8/7/2024 8:42:29 PM<br />
 By: ``mysqli.vb`` reflector tool ([https://github.com/xieguigang/mysqli.vb](https://github.com/xieguigang/mysqli.vb))
 
 <div style="page-break-after: always;"></div>
@@ -62,7 +62,7 @@ CREATE TABLE `complex` (
 |obj_id|int (11)|``NN``, ``UN``||
 |db_key|int (11)|``NN``, ``UN``||
 |xref|varchar (255)|``NN``||
-|type|int (11)|``NN``, ``UN``||
+|type|int (11)|``NN``, ``UN``|the target type of obj_id that point to, could be molecules, reactions, pathways|
 |add_time|datetime|``NN``||
 
 
@@ -74,7 +74,7 @@ CREATE TABLE `db_xrefs` (
   `obj_id` int unsigned NOT NULL,
   `db_key` int unsigned NOT NULL,
   `xref` varchar(255) COLLATE utf8mb3_bin NOT NULL,
-  `type` int unsigned NOT NULL,
+  `type` int unsigned NOT NULL COMMENT 'the target type of obj_id that point to, could be molecules, reactions, pathways',
   `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
@@ -122,12 +122,46 @@ CREATE TABLE `molecule` (
   `note` longtext COLLATE utf8mb3_bin COMMENT 'description text about current entity object',
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`) /*!80000 INVISIBLE */,
-  UNIQUE KEY `unique_molecule` (`type`,`name`) /*!80000 INVISIBLE */,
+  UNIQUE KEY `unique_molecule` (`type`,`xref_id`),
   KEY `data_type_idx` (`type`),
   KEY `parent_molecule_idx` (`parent`),
   KEY `name_index` (`name`),
   KEY `xref_index` (`xref_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='The molecular entity object inside a cell';
+```
+
+
+<div style="page-break-after: always;"></div>
+
+***
+
+## molecule_function
+
+
+
+|field|type|attributes|description|
+|-----|----|----------|-----------|
+|id|int (11)|``AI``, ``NN``, ``PK``, ``UN``||
+|molecule_id|int (11)|``NN``, ``UN``||
+|regulation_term|int (11)|``NN``, ``UN``||
+|add_time|datetime|``NN``||
+|note|text|||
+
+
+#### SQL Declare
+
+```SQL
+CREATE TABLE `molecule_function` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `molecule_id` int unsigned NOT NULL,
+  `regulation_term` int unsigned NOT NULL,
+  `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `note` longtext COLLATE utf8mb3_bin,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  KEY `molecule_entity_idx` (`molecule_id`),
+  KEY `regulation_info_idx` (`regulation_term`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 ```
 
 
@@ -243,8 +277,8 @@ CREATE TABLE `reaction` (
 |id|int (11)|``AI``, ``NN``, ``PK``, ``UN``||
 |reaction|int (11)|``NN``, ``UN``||
 |molecule_id|int (11)|``NN``, ``UN``||
-|role|int (11)|``NN``, ``UN``||
-|factor|double|||
+|role|int (11)|``NN``, ``UN``|the vocabulary term of the molecule role inside this reaction model|
+|factor|double|``NN``||
 |add_time|datetime|``NN``||
 |note|text|||
 
@@ -256,8 +290,8 @@ CREATE TABLE `reaction_graph` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
   `reaction` int unsigned NOT NULL,
   `molecule_id` int unsigned NOT NULL,
-  `role` int unsigned NOT NULL,
-  `factor` double DEFAULT NULL,
+  `role` int unsigned NOT NULL COMMENT 'the vocabulary term of the molecule role inside this reaction model',
+  `factor` double NOT NULL DEFAULT '1',
   `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `note` longtext COLLATE utf8mb3_bin,
   PRIMARY KEY (`id`),
@@ -265,6 +299,42 @@ CREATE TABLE `reaction_graph` (
   KEY `reaction_info_idx` (`reaction`),
   KEY `molecule_data_idx` (`molecule_id`),
   KEY `role_term_idx` (`role`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+```
+
+
+<div style="page-break-after: always;"></div>
+
+***
+
+## regulation_graph
+
+
+
+|field|type|attributes|description|
+|-----|----|----------|-----------|
+|id|int (11)|``AI``, ``NN``, ``PK``, ``UN``||
+|term|varchar (64)|``NN``||
+|role|int (11)|``NN``, ``UN``||
+|reaction_id|int (11)|``NN``, ``UN``||
+|add_time|datetime|``NN``||
+|note|text|||
+
+
+#### SQL Declare
+
+```SQL
+CREATE TABLE `regulation_graph` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `term` varchar(64) COLLATE utf8mb3_bin NOT NULL,
+  `role` int unsigned NOT NULL,
+  `reaction_id` int unsigned NOT NULL,
+  `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `note` longtext COLLATE utf8mb3_bin,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  KEY `role_term_idx` (`role`),
+  KEY `reaction_process_idx` (`reaction_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 ```
 
@@ -406,7 +476,7 @@ CREATE TABLE `vocabulary` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `search_term` (`category`,`term`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 ```
 
 
