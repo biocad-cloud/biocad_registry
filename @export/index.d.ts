@@ -10,6 +10,9 @@ declare namespace biocad_registry {
    }
    /**
    */
+   function enzyme_regulation(biocad_registry: any): object;
+   /**
+   */
    function gene_term(biocad_registry: any): object;
    /**
    */
@@ -41,6 +44,9 @@ declare namespace biocad_registry {
    /**
    */
    function protein_term(biocad_registry: any): object;
+   /**
+   */
+   function reaction_model(biocad_registry: any): object;
    /**
    */
    function rna_term(biocad_registry: any): object;
