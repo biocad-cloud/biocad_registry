@@ -22,6 +22,9 @@ declare namespace biocad_registry {
    function imports_pubchem(biocad_registry: any, pubchem: any): object;
    /**
    */
+   function imports_rhea(biocad_registry: any, rhea: any): object;
+   /**
+   */
    function imports_uniprot(biocad_registry: any, uniprot: any): object;
    /**
    */
