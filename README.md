@@ -1,4 +1,12 @@
-## Database system for access the GCModeller cloud repository
+# Database system for access the GCModeller cloud repository
+
+## Build database 
+
+1. imports ChEBI database
+2. imports Rhea reaction database
+3. imports Pubchem database
+4. imports uniprot database
+5. imports genbank database file
 
 ![](src/biocad_registry.png)
 
