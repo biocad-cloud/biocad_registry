@@ -64,24 +64,28 @@ const __push_compound_metadata = function(biocad_registry, compound, mol) {
     xrefs$extras  = NULL;
     
     let met_struct = SMILES::parse(trim(smiles, '" '), strict = FALSE);
-    let atoms_vec = SMILES::atoms(met_struct);
 
-    atoms_vec = atoms_vec 
-    |> groupBy("group") 
-    |> lapply(grp -> sum(grp$links))
-    ;
+    # null means parser error
+    if (!is.null(met_struct)) {
+        let atoms_vec = SMILES::atoms(met_struct);
 
-    let embedding = bencode( names(atoms_vec));
-    atoms_vec = as.numeric(unlist(atoms_vec));
-    atoms_vec = base64(packBuffer(atoms_vec )|> zlib_stream());
+        atoms_vec = atoms_vec 
+        |> groupBy("group") 
+        |> lapply(grp -> sum(grp$links))
+        ;
 
-    if (!(seq_graph |> check(molecule_id = mol$id))) {
-        seq_graph |> add(
-            molecule_id = mol$id,
-            sequence = smiles,
-            seq_graph = atoms_vec,
-            embedding = embedding
-        );
+        let embedding = bencode( names(atoms_vec));
+        atoms_vec = as.numeric(unlist(atoms_vec));
+        atoms_vec = base64(packBuffer(atoms_vec )|> zlib_stream());
+
+        if (!(seq_graph |> check(molecule_id = mol$id))) {
+            seq_graph |> add(
+                molecule_id = mol$id,
+                sequence = smiles,
+                seq_graph = atoms_vec,
+                embedding = embedding
+            );
+        }
     }
 
     for(dbname in names(xrefs)) {
