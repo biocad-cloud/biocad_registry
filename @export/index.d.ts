@@ -10,6 +10,9 @@ declare namespace biocad_registry {
    }
    /**
    */
+   function __push_compound_metadata(biocad_registry: any, compound: any, mol: any): object;
+   /**
+   */
    function enzyme_regulation(biocad_registry: any): object;
    /**
    */
