@@ -47,55 +47,59 @@ const imports_pubchem = function(biocad_registry, pubchem) {
         if (is.null(mol)) {
             # error while add new metabolite
             next;
+        } else {
+            biocad_registry |> __push_compound_metadata(compound, mol);
         }
+    }
+}
 
-        let xrefs = compound$xref;
-        let smiles = gsub(xrefs$SMILES, "%",""); 
+const __push_compound_metadata = function(biocad_registry, compound, mol) {
+    let xrefs = compound$xref;
+    let smiles = gsub(xrefs$SMILES, "%",""); 
 
-        xrefs$InChIkey = NULL;
-        xrefs$InChI  = NULL;
-        xrefs$SMILES = NULL;
-        xrefs$extras  = NULL;
+    xrefs$InChIkey = NULL;
+    xrefs$InChI  = NULL;
+    xrefs$SMILES = NULL;
+    xrefs$extras  = NULL;
 
-        let met_struct = SMILES::parse(trim(smiles, '" '), strict = FALSE);
-        let atoms_vec = SMILES::atoms(met_struct);
+    let met_struct = SMILES::parse(trim(smiles, '" '), strict = FALSE);
+    let atoms_vec = SMILES::atoms(met_struct);
 
-        atoms_vec = atoms_vec 
-        |> groupBy("group") 
-        |> lapply(grp -> sum(grp$links))
-        ;
+    atoms_vec = atoms_vec 
+    |> groupBy("group") 
+    |> lapply(grp -> sum(grp$links))
+    ;
 
-        let embedding = bencode( names(atoms_vec));
-        atoms_vec = as.numeric(unlist(atoms_vec));
-        atoms_vec = base64(packBuffer(atoms_vec )|> zlib_stream());
+    let embedding = bencode( names(atoms_vec));
+    atoms_vec = as.numeric(unlist(atoms_vec));
+    atoms_vec = base64(packBuffer(atoms_vec )|> zlib_stream());
 
-        if (!(seq_graph |> check(molecule_id = mol$id))) {
-            seq_graph |> add(
-                molecule_id = mol$id,
-                sequence = smiles,
-                seq_graph = atoms_vec,
-                embedding = embedding
-            );
-        }
+    if (!(seq_graph |> check(molecule_id = mol$id))) {
+        seq_graph |> add(
+            molecule_id = mol$id,
+            sequence = smiles,
+            seq_graph = atoms_vec,
+            embedding = embedding
+        );
+    }
 
-        for(dbname in names(xrefs)) {
-            let idlist = xrefs[[dbname]];
-            let db_key = biocad_registry |> vocabulary_id(dbname, "External Database");
+    for(dbname in names(xrefs)) {
+        let idlist = xrefs[[dbname]];
+        let db_key = biocad_registry |> vocabulary_id(dbname, "External Database");
 
-            if (length(idlist) > 0) {
-                for(id in idlist) {
-                    if (!(db_xrefs |> check(obj_id = mol$id,
-                        db_key = db_key,
-                        xref = id,
-                        type = term_metabolite ))) {
-                            db_xrefs |> add(
-                                obj_id = mol$id,
-                                db_key = db_key,
-                                xref = id,
-                                type =term_metabolite
-                            );
-                        }
-                }
+        if (length(idlist) > 0) {
+            for(id in idlist) {
+                if (!(db_xrefs |> check(obj_id = mol$id,
+                    db_key = db_key,
+                    xref = id,
+                    type = term_metabolite ))) {
+                        db_xrefs |> add(
+                            obj_id = mol$id,
+                            db_key = db_key,
+                            xref = id,
+                            type =term_metabolite
+                        );
+                    }
             }
         }
     }
