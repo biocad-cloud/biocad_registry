@@ -14,6 +14,10 @@ const metabolite_term = function(biocad_registry) {
     biocad_registry |> vocabulary_id("Metabolite","Molecule Type");
 }
 
+const molecule_terms = function(biocad_registry) {
+    sapply(["Nucleic Acid" "RNA" "Polypeptide" "Metabolite"], term -> biocad_registry |> vocabulary_id(term,"Molecule Type"));
+}
+
 const molecule_entity = function(biocad_registry) {
     biocad_registry |> vocabulary_id("Molecule","Entity Type");
 }
