@@ -20,6 +20,10 @@ const imports_chebi = function(biocad_registry, chebi) {
 
         meta = as.list(meta);
 
+        if (meta$exact_mass < 0) {
+            meta$exact_mass = 0;
+        }
+
         if (is.null(mol)) {
             metabolite |> add(
                 xref_id = xref_id,
