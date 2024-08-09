@@ -16,11 +16,9 @@ const imports_pubchem = function(biocad_registry, pubchem) {
             pubchem;
         }
     }
-    let db_xrefs = biocad_registry |> table("db_xrefs");
     let compartments = biocad_registry |> table("subcellular_compartments");
     let location_link = biocad_registry |> table("subcellular_location");
-    let metabolite = biocad_registry |> table("molecule");
-    let seq_graph = biocad_registry |> table("sequence_graph");
+    let metabolite = biocad_registry |> table("molecule");    
 
     for(let compound in pubchem) {
         compound = as.list(metadata.pugView(compound));
@@ -54,14 +52,17 @@ const imports_pubchem = function(biocad_registry, pubchem) {
 }
 
 const __push_compound_metadata = function(biocad_registry, compound, mol) {
+    let seq_graph = biocad_registry |> table("sequence_graph");
+    let db_xrefs = biocad_registry |> table("db_xrefs");
     let xrefs = compound$xref;
     let smiles = gsub(xrefs$SMILES, "%",""); 
+    let term_metabolite = biocad_registry::metabolite_term(biocad_registry);
 
     xrefs$InChIkey = NULL;
     xrefs$InChI  = NULL;
     xrefs$SMILES = NULL;
     xrefs$extras  = NULL;
-
+    
     let met_struct = SMILES::parse(trim(smiles, '" '), strict = FALSE);
     let atoms_vec = SMILES::atoms(met_struct);
 

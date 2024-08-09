@@ -38,12 +38,8 @@ const imports_chebi = function(biocad_registry, chebi) {
         if (is.null(mol)) {
             # error while add new metabolite
             next;
+        } else {
+            biocad_registry |> __push_compound_metadata(meta, mol);
         }
-
-        let xrefs = meta$xref;
-        
-
-        str(mol);
-        stop();
     }
 }
