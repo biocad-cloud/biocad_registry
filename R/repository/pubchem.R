@@ -94,17 +94,19 @@ const __push_compound_metadata = function(biocad_registry, compound, mol) {
 
         if (length(idlist) > 0) {
             for(id in idlist) {
-                if (!(db_xrefs |> check(obj_id = mol$id,
-                    db_key = db_key,
-                    xref = id,
-                    type = term_metabolite ))) {
-                        db_xrefs |> add(
-                            obj_id = mol$id,
-                            db_key = db_key,
-                            xref = id,
-                            type =term_metabolite
-                        );
-                    }
+                if (nchar(id) > 0) {
+                    if (!(db_xrefs |> check(obj_id = mol$id,
+                        db_key = db_key,
+                        xref = id,
+                        type = term_metabolite ))) {
+                            db_xrefs |> add(
+                                obj_id = mol$id,
+                                db_key = db_key,
+                                xref = id,
+                                type =term_metabolite
+                            );
+                        }
+                }
             }
         }
     }
