@@ -1,3 +1,5 @@
+imports "massbank" from "mzkit";
+
 #' imports the metabolite set from chebi database
 #' 
 const imports_chebi = function(biocad_registry, chebi) {
@@ -8,4 +10,12 @@ const imports_chebi = function(biocad_registry, chebi) {
     let location_link = biocad_registry |> table("subcellular_location");
     let metabolite = biocad_registry |> table("molecule");
     let seq_graph = biocad_registry |> table("sequence_graph");
+
+    chebi = massbank::extract_chebi_compounds(chebi);
+
+    for(let mol in tqdm(chebi)) {
+        mol = as.list(mol);
+        str(mol);
+        stop();
+    }
 }
