@@ -18,11 +18,18 @@ declare namespace biocad_registry {
    */
    function gene_term(biocad_registry: any): object;
    /**
+     * @param dbname default value Is ``null``.
+   */
+   function get_molecule_by_dbxref(registry: any, db_xref: any, dbname?: any): object;
+   /**
    */
    function imports_chebi(biocad_registry: any, chebi: any): object;
    /**
    */
    function imports_genebank(biocad_registry: any, genebank: any): object;
+   /**
+   */
+   function imports_metacyc(): object;
    /**
    */
    function imports_pubchem(biocad_registry: any, pubchem: any): object;
@@ -38,6 +45,9 @@ declare namespace biocad_registry {
    /**
    */
    function molecule_entity(biocad_registry: any): object;
+   /**
+   */
+   function molecule_terms(biocad_registry: any): object;
    /**
      * @param host default value Is ``localhost``.
      * @param port default value Is ``3306``.
