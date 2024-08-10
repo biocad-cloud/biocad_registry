@@ -1,3 +1,5 @@
+#' imports the rhea reaction database
+#' 
 const imports_rhea = function(biocad_registry, rhea) {
     let reactions = biocad_registry |> table("reaction");
     let graph = biocad_registry |> table("regulation_graph");

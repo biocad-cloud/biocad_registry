@@ -2,6 +2,9 @@ imports "massbank" from "mzkit";
 
 #' imports the metabolite set from chebi database
 #' 
+#' @param chebi the chebi ontology OBO database, the metabolite 
+#'     compound data will be extract from this database obejct. 
+#'
 const imports_chebi = function(biocad_registry, chebi) {
     let term_metabolite = biocad_registry::metabolite_term(biocad_registry);
     let entity_metabolite = biocad_registry::molecule_entity(biocad_registry);

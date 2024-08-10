@@ -2,6 +2,13 @@ imports "GenBank" from "seqtoolkit";
 
 #' imports gene from ncbi genbank file
 #' 
+#' @param genebank A ncbi genebank data object, all CDS/rna features inside 
+#'    this genebank data object will be extract and imports into
+#'    database.
+#' 
+#' @details this function will make association between the gene/rna 
+#'    and uniprot protein molecules.
+#' 
 const imports_genebank = function(biocad_registry, genebank) {
     let term_gene = biocad_registry |> gene_term();
     let genes = genebank |> enumerateFeatures(keys = ["CDS","tRNA","ncRNA","rRNA"]);

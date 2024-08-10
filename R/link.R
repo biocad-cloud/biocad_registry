@@ -1,3 +1,7 @@
+#' Get molecule id via a specific database cross reference link id
+#' 
+#' @return an integer id of the target molecule, NULL when object not found.
+#' 
 const get_molecule_by_dbxref = function(registry, db_xref, dbname = NULL) {
     if (nchar(dbname) > 0) {
         let db_key = registry |> vocabulary_id(dbname, "External Database");
