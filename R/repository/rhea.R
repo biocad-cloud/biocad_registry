@@ -24,6 +24,7 @@ const imports_rhea = function(biocad_registry, rhea) {
             r = reactions |> where(db_xref = rxn$entry) |> find();
         } 
 
+        # add ec number for the enzymatic regulation
         for(ec_number in rxn$enzyme) {
             if (!(graph |> check(term = ec_number, role = enzyme_term, reaction_id = r$id))) {
                 graph |> add(
@@ -34,6 +35,7 @@ const imports_rhea = function(biocad_registry, rhea) {
             }
         }
 
+        # add external reference id of current reaction object
         for(db_xref in rxn$db_xrefs) {
             let [name, text] = db_xref;
             let db_key = biocad_registry |> vocabulary_id(name, "External Database");
@@ -47,5 +49,8 @@ const imports_rhea = function(biocad_registry, rhea) {
                 );
             }
         }
+
+        # how to link the reaction with metabolite molecules
+        
     }
 }
