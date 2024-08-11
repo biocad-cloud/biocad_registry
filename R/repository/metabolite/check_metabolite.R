@@ -17,7 +17,7 @@ const check_metabolite = function(biocad_registry, compound) {
     xrefs <- unlist(xrefs);
     xrefs <- xrefs[nchar(xrefs) > 0];
     
-    if (lenth(xrefs) > 0) {
+    if (length(xrefs) > 0) {
         compound = biocad_registry 
         |> table("db_xrefs") 
         |> left_join("molecule") 

@@ -16,7 +16,7 @@ const imports_chebi = function(biocad_registry, chebi) {
 
     for(let meta in tqdm(chebi)) {
         let xref_id  = [meta]::ID;
-        let compound = as.list(compound);
+        let compound = as.list(meta);
         let mol_info = biocad_registry |> find_molecule(compound, xref_id);
 
         if (is.null(mol_info)) {
