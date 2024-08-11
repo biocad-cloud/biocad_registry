@@ -30,6 +30,9 @@ const check_metabolite = function(biocad_registry, compound) {
         |> find("molecule.*")
         ;
 
+        # debug mysql
+        stop(biocad_registry |> get_last_sql());
+        
         if (is.null(compound)) {
             NULL;
         } else {

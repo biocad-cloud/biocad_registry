@@ -19,6 +19,9 @@ declare namespace biocad_registry {
    function enzyme_regulation(biocad_registry: any): object;
    /**
    */
+   function find_molecule(biocad_registry: any, meta: any, xref_id: any): object;
+   /**
+   */
    function gene_term(biocad_registry: any): object;
    /**
      * @param dbname default value Is ``null``.
