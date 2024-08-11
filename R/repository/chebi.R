@@ -15,36 +15,17 @@ const imports_chebi = function(biocad_registry, chebi) {
     chebi = massbank::extract_chebi_compounds(chebi);
 
     for(let meta in tqdm(chebi)) {
-        let xref_id = [meta]::ID;
-        let mol = metabolite |> where(type = term_metabolite ,
-            xref_id = xref_id ) |> find();
+        let xref_id  = [meta]::ID;
+        let compound = as.list(compound);
+        let mol_id   = biocad_registry |> find_molecule(compound, xref_id);
 
-        meta = as.list(meta);
-
-        if (meta$exact_mass < 0) {
-            meta$exact_mass = 0;
-        }
-
-        if (is.null(mol)) {
-            metabolite |> add(
-                xref_id = xref_id,
-                name = meta$name,
-                mass = formula::eval(meta$formula),
-                type =  term_metabolite,
-                formula = meta$formula,
-                parent = 0,
-                note = meta$description  
-            );
-
-            mol =metabolite  |> where(type =term_metabolite,
-                xref_id = xref_id ) |> find();
-        }
-
-        if (is.null(mol)) {
+        if (is.null(mol_id)) {
             # error while add new metabolite
             next;
         } else {
-            biocad_registry |> __push_compound_metadata(meta, mol);
+            biocad_registry 
+            |> __push_compound_metadata(compound, mol_id)
+            ;
         }
     }
 }
