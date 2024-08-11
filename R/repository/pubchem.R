@@ -20,33 +20,16 @@ const imports_pubchem = function(biocad_registry, pubchem) {
     let location_link = biocad_registry |> table("subcellular_location");
     let metabolite = biocad_registry |> table("molecule");    
 
-    for(let compound in pubchem) {
-        compound = as.list(metadata.pugView(compound));
-
+    for(let meta in pubchem) {
+        let compound = as.list(metadata.pugView(meta));
         let cid = `PubChem:${compound$ID}`;
-        let mol = metabolite  |> where(type = term_metabolite ,
-            xref_id = cid ) |> find();
+        let mol_id = biocad_registry |> find_molecule(compound, cid);
 
-        if (is.null(mol)) {
-            metabolite |> add(
-                xref_id = cid,
-                name = compound$name,
-                mass = formula::eval(compound$formula),
-                type =  term_metabolite,
-                formula = compound$formula,
-                parent = 0,
-                note = compound$description  
-            );
-
-            mol =metabolite  |> where(type =term_metabolite,
-                xref_id = cid ) |> find();
-        }
-
-        if (is.null(mol)) {
+        if (is.null(mol_id)) {
             # error while add new metabolite
             next;
         } else {
-            biocad_registry |> __push_compound_metadata(compound, mol);
+            biocad_registry |> __push_compound_metadata(compound, mol_id);
         }
     }
 }
