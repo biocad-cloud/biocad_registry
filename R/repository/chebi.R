@@ -6,11 +6,11 @@ imports "massbank" from "mzkit";
 #'     compound data will be extract from this database obejct. 
 #'
 const imports_chebi = function(biocad_registry, chebi) {
-    let term_metabolite = biocad_registry::metabolite_term(biocad_registry);
+    let term_metabolite   = biocad_registry::metabolite_term(biocad_registry);
     let entity_metabolite = biocad_registry::molecule_entity(biocad_registry);
-    let compartments = biocad_registry |> table("subcellular_compartments");
-    let location_link = biocad_registry |> table("subcellular_location");
-    let metabolite = biocad_registry |> table("molecule");
+    let compartments      = biocad_registry |> table("subcellular_compartments");
+    let location_link     = biocad_registry |> table("subcellular_location");
+    let metabolite        = biocad_registry |> table("molecule");
 
     chebi = massbank::extract_chebi_compounds(chebi);
 
