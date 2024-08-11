@@ -3,6 +3,7 @@
 const imports_rhea = function(biocad_registry, rhea) {
     let reactions = biocad_registry |> table("reaction");
     let graph = biocad_registry |> table("regulation_graph");
+    let metabolite_graph = biocad_registry |> table("reaction_graph");
     let xrefs = biocad_registry |> table("db_xrefs");
     let enzyme_term = biocad_registry |> enzyme_regulation();
     let rxn_term = biocad_registry |> reaction_model();  
@@ -51,6 +52,29 @@ const imports_rhea = function(biocad_registry, rhea) {
         }
 
         # how to link the reaction with metabolite molecules
-        
+        for(compound in rxn$compounds) {
+            if (compound$side != "*") {
+                let role_id = biocad_registry |> vocabulary_id(compound$side, "Compound Role");
+
+                compound = compound$compound;
+
+                if (!(metabolite_graph |> check(
+                        reaction = r$id,
+                        db_xref = compound$entry,
+                        role = role_id
+                    ))) {
+                    metabolite_graph |> add(
+                        reaction = r$id,
+                        molecule_id = 0,
+                        db_xref = compound$entry,
+                        role = role_id,
+                        factor = 1,
+                        note = `${compound$name} (${compound$formula})`
+                    );
+                }
+            }
+        }
+
+        stop();
     }
 }
