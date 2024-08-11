@@ -35,9 +35,12 @@ const find_molecule = function(biocad_registry, meta, xref_id) {
             # error while add new metabolite
             NULL;
         } else {
-            mol$id;
+            mol;
         }
     } else {
-        mol_id;
+        metabolite 
+        |> where(id = mol_id) 
+        |> find()
+        ;
     }
 }

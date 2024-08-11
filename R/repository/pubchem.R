@@ -23,13 +23,13 @@ const imports_pubchem = function(biocad_registry, pubchem) {
     for(let meta in pubchem) {
         let compound = as.list(metadata.pugView(meta));
         let cid = `PubChem:${compound$ID}`;
-        let mol_id = biocad_registry |> find_molecule(compound, cid);
+        let mol = biocad_registry |> find_molecule(compound, cid);
 
-        if (is.null(mol_id)) {
+        if (is.null(mol)) {
             # error while add new metabolite
             next;
         } else {
-            biocad_registry |> __push_compound_metadata(compound, mol_id);
+            biocad_registry |> __push_compound_metadata(compound, mol);
         }
     }
 }

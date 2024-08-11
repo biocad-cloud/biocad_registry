@@ -17,14 +17,14 @@ const imports_chebi = function(biocad_registry, chebi) {
     for(let meta in tqdm(chebi)) {
         let xref_id  = [meta]::ID;
         let compound = as.list(compound);
-        let mol_id   = biocad_registry |> find_molecule(compound, xref_id);
+        let mol_info = biocad_registry |> find_molecule(compound, xref_id);
 
-        if (is.null(mol_id)) {
+        if (is.null(mol_info)) {
             # error while add new metabolite
             next;
         } else {
             biocad_registry 
-            |> __push_compound_metadata(compound, mol_id)
+            |> __push_compound_metadata(compound, mol_info)
             ;
         }
     }
