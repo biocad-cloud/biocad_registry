@@ -8,7 +8,7 @@ const __push_compound_metadata = function(biocad_registry, compound, mol) {
     let seq_graph = biocad_registry |> table("sequence_graph");
     let db_xrefs  = biocad_registry |> table("db_xrefs");
     let xrefs     = compound$xref;
-    let smiles    = gsub(xrefs$SMILES, "%",""); 
+    let smiles    = gsub(xrefs$SMILES, "%","") |> trim('" '); 
     let term_metabolite = biocad_registry::metabolite_term(biocad_registry);
 
     # removes all molecular strucutre data
@@ -17,7 +17,7 @@ const __push_compound_metadata = function(biocad_registry, compound, mol) {
     xrefs$SMILES   <- NULL;
     xrefs$extras   <- NULL;
     
-    let met_struct = SMILES::parse(trim(smiles, '" '), strict = FALSE);
+    let met_struct = SMILES::parse(smiles, strict = FALSE);
 
     # null means parser error
     if (!is.null(met_struct)) {
@@ -37,7 +37,8 @@ const __push_compound_metadata = function(biocad_registry, compound, mol) {
                 molecule_id = mol$id,
                 sequence    = smiles,
                 seq_graph   = atoms_vec,
-                embedding   = embedding
+                embedding   = embedding,
+                hashcode    = md5(smiles)
             );
         }
     }

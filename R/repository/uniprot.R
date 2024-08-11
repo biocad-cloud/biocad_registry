@@ -89,7 +89,8 @@ const imports_uniprot = function(biocad_registry, uniprot) {
                 molecule_id = mol$id,
                 sequence = [fa]::SequenceData,
                 seq_graph = fa_vec,
-                embedding = protein_graph
+                embedding = protein_graph,
+                hashcode = md5(tolower([fa]::SequenceData))
             );
         }
 

@@ -67,7 +67,8 @@ const imports_genebank = function(biocad_registry, genebank) {
                 molecule_id = mol$id,
                 sequence = [nt_seq]::SequenceData,
                 seq_graph = fa_vec,
-                embedding = Nucleotide_graph
+                embedding = Nucleotide_graph,
+                hashcode = md5(tolower([nt_seq]::SequenceData))
             );
         }
 
