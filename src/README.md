@@ -11,7 +11,7 @@ MySql database field attributes notes in this development document:
 > + **UN**: Unsigned;
 > + **ZF**: Zero Fill
 
-Generate time: 8/11/2024 9:55:43 PM<br />
+Generate time: 8/21/2024 9:49:34 PM<br />
 By: ``mysqli.vb`` reflector tool ([https://github.com/xieguigang/mysqli.vb](https://github.com/xieguigang/mysqli.vb))
 
 <div style="page-break-after: always;"></div>
@@ -85,6 +85,50 @@ ENGINE = InnoDB;
 
 ***
 
+## kinetic_law
+
+
+
+|field|type|attributes|description|
+|-----|----|----------|-----------|
+|id|int (11)|``AI``, ``NN``, ``PK``, ``UN``||
+|db_xref|varchar (64)|``NN``||
+|lambda|varchar (1024)|``NN``||
+|params|varchar (1024)|``NN``||
+|temperature|double|``NN``||
+|pH|double|``NN``, ``UN``||
+|uniprot|varchar (45)|``NN``||
+|function_id|int (11)|``NN``, ``UN``||
+|add_time|datetime|``NN``||
+|note|text|||
+
+<div style="page-break-after: always;"></div>
+
+
+#### SQL Declare
+
+```SQL
+CREATE TABLE IF NOT EXISTS `kinetic_law` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `db_xref` VARCHAR(64) NOT NULL,
+  `lambda` VARCHAR(1024) NOT NULL,
+  `params` VARCHAR(1024) NOT NULL,
+  `temperature` DOUBLE NOT NULL DEFAULT 37,
+  `pH` DOUBLE UNSIGNED NOT NULL DEFAULT 7.5,
+  `uniprot` VARCHAR(45) NOT NULL,
+  `function_id` INT UNSIGNED NOT NULL,
+  `add_time` DATETIME NOT NULL DEFAULT now(),
+  `note` LONGTEXT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+```
+
+
+<div style="page-break-after: always;"></div>
+
+***
+
 ## molecule
 
 The molecular entity object inside a cell
@@ -133,8 +177,8 @@ COMMENT = 'The molecular entity object inside a cell';
 |field|type|attributes|description|
 |-----|----|----------|-----------|
 |id|int (11)|``AI``, ``NN``, ``PK``, ``UN``||
-|molecule_id|int (11)|``NN``, ``UN``||
-|regulation_term|int (11)|``NN``, ``UN``||
+|molecule_id|int (11)|``NN``, ``UN``|the molecule id, usually be the protein molecule id|
+|regulation_term|int (11)|``NN``, ``UN``|the id of the term in regulation graph table|
 |add_time|datetime|``NN``||
 |note|text|||
 
@@ -144,8 +188,8 @@ COMMENT = 'The molecular entity object inside a cell';
 ```SQL
 CREATE TABLE IF NOT EXISTS `molecule_function` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `molecule_id` INT UNSIGNED NOT NULL,
-  `regulation_term` INT UNSIGNED NOT NULL,
+  `molecule_id` INT UNSIGNED NOT NULL COMMENT 'the molecule id, usually be the protein molecule id',
+  `regulation_term` INT UNSIGNED NOT NULL COMMENT 'the id of the term in regulation graph table',
   `add_time` DATETIME NOT NULL DEFAULT now(),
   `note` LONGTEXT NULL,
   PRIMARY KEY (`id`))
