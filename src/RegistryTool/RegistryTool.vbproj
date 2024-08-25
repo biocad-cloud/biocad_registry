@@ -6,12 +6,9 @@
     <StartupObject>Sub Main</StartupObject>
     <UseWindowsForms>true</UseWindowsForms>
     <MyType>WindowsForms</MyType>
+    <Platforms>AnyCPU;x64</Platforms>
+    <Configurations>Debug;Release;gcmodeller_desktop</Configurations>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Remove="Form1.Designer.vb" />
-    <Compile Remove="Form1.vb" />
-  </ItemGroup>
 
   <ItemGroup>
     <Import Include="System.Data" />

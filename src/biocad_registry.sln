@@ -65,8 +65,8 @@ Global
 		{07B8535F-565C-43C4-88BC-476556B8AAD6}.Desktop|x86.Build.0 = Debug|x86
 		{07B8535F-565C-43C4-88BC-476556B8AAD6}.gcmodeller_desktop|Any CPU.ActiveCfg = Debug|Any CPU
 		{07B8535F-565C-43C4-88BC-476556B8AAD6}.gcmodeller_desktop|Any CPU.Build.0 = Debug|Any CPU
-		{07B8535F-565C-43C4-88BC-476556B8AAD6}.gcmodeller_desktop|x64.ActiveCfg = Debug|Any CPU
-		{07B8535F-565C-43C4-88BC-476556B8AAD6}.gcmodeller_desktop|x64.Build.0 = Debug|Any CPU
+		{07B8535F-565C-43C4-88BC-476556B8AAD6}.gcmodeller_desktop|x64.ActiveCfg = gcmodeller_desktop|x64
+		{07B8535F-565C-43C4-88BC-476556B8AAD6}.gcmodeller_desktop|x64.Build.0 = gcmodeller_desktop|x64
 		{07B8535F-565C-43C4-88BC-476556B8AAD6}.gcmodeller_desktop|x86.ActiveCfg = Debug|Any CPU
 		{07B8535F-565C-43C4-88BC-476556B8AAD6}.gcmodeller_desktop|x86.Build.0 = Debug|Any CPU
 		{07B8535F-565C-43C4-88BC-476556B8AAD6}.LipidSearch|Any CPU.ActiveCfg = Debug|Any CPU
@@ -185,8 +185,8 @@ Global
 		{6ACD4A5C-449D-4706-8F2F-AA88B8536A9D}.Desktop|x86.Build.0 = Desktop|Any CPU
 		{6ACD4A5C-449D-4706-8F2F-AA88B8536A9D}.gcmodeller_desktop|Any CPU.ActiveCfg = Debug|Any CPU
 		{6ACD4A5C-449D-4706-8F2F-AA88B8536A9D}.gcmodeller_desktop|Any CPU.Build.0 = Debug|Any CPU
-		{6ACD4A5C-449D-4706-8F2F-AA88B8536A9D}.gcmodeller_desktop|x64.ActiveCfg = Debug|x64
-		{6ACD4A5C-449D-4706-8F2F-AA88B8536A9D}.gcmodeller_desktop|x64.Build.0 = Debug|x64
+		{6ACD4A5C-449D-4706-8F2F-AA88B8536A9D}.gcmodeller_desktop|x64.ActiveCfg = Desktop|x64
+		{6ACD4A5C-449D-4706-8F2F-AA88B8536A9D}.gcmodeller_desktop|x64.Build.0 = Desktop|x64
 		{6ACD4A5C-449D-4706-8F2F-AA88B8536A9D}.gcmodeller_desktop|x86.ActiveCfg = Debug|Any CPU
 		{6ACD4A5C-449D-4706-8F2F-AA88B8536A9D}.gcmodeller_desktop|x86.Build.0 = Debug|Any CPU
 		{6ACD4A5C-449D-4706-8F2F-AA88B8536A9D}.LipidSearch|Any CPU.ActiveCfg = Debug|Any CPU
@@ -365,8 +365,8 @@ Global
 		{542ED969-0AF8-4235-B470-99D87B71F47D}.Desktop|x86.Build.0 = Debug|Any CPU
 		{542ED969-0AF8-4235-B470-99D87B71F47D}.gcmodeller_desktop|Any CPU.ActiveCfg = Debug|Any CPU
 		{542ED969-0AF8-4235-B470-99D87B71F47D}.gcmodeller_desktop|Any CPU.Build.0 = Debug|Any CPU
-		{542ED969-0AF8-4235-B470-99D87B71F47D}.gcmodeller_desktop|x64.ActiveCfg = Debug|Any CPU
-		{542ED969-0AF8-4235-B470-99D87B71F47D}.gcmodeller_desktop|x64.Build.0 = Debug|Any CPU
+		{542ED969-0AF8-4235-B470-99D87B71F47D}.gcmodeller_desktop|x64.ActiveCfg = gcmodeller_desktop|x64
+		{542ED969-0AF8-4235-B470-99D87B71F47D}.gcmodeller_desktop|x64.Build.0 = gcmodeller_desktop|x64
 		{542ED969-0AF8-4235-B470-99D87B71F47D}.gcmodeller_desktop|x86.ActiveCfg = Debug|Any CPU
 		{542ED969-0AF8-4235-B470-99D87B71F47D}.gcmodeller_desktop|x86.Build.0 = Debug|Any CPU
 		{542ED969-0AF8-4235-B470-99D87B71F47D}.LipidSearch|Any CPU.ActiveCfg = Debug|Any CPU
@@ -407,8 +407,8 @@ Global
 		{542ED969-0AF8-4235-B470-99D87B71F47D}.Release|x86.Build.0 = Release|Any CPU
 		{542ED969-0AF8-4235-B470-99D87B71F47D}.Rsharp_app_release|Any CPU.ActiveCfg = Release|Any CPU
 		{542ED969-0AF8-4235-B470-99D87B71F47D}.Rsharp_app_release|Any CPU.Build.0 = Release|Any CPU
-		{542ED969-0AF8-4235-B470-99D87B71F47D}.Rsharp_app_release|x64.ActiveCfg = Release|Any CPU
-		{542ED969-0AF8-4235-B470-99D87B71F47D}.Rsharp_app_release|x64.Build.0 = Release|Any CPU
+		{542ED969-0AF8-4235-B470-99D87B71F47D}.Rsharp_app_release|x64.ActiveCfg = Release|x64
+		{542ED969-0AF8-4235-B470-99D87B71F47D}.Rsharp_app_release|x64.Build.0 = Release|x64
 		{542ED969-0AF8-4235-B470-99D87B71F47D}.Rsharp_app_release|x86.ActiveCfg = Release|Any CPU
 		{542ED969-0AF8-4235-B470-99D87B71F47D}.Rsharp_app_release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
