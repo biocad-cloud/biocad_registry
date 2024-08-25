@@ -11,7 +11,7 @@ MySql database field attributes notes in this development document:
 > + **UN**: Unsigned;
 > + **ZF**: Zero Fill
 
-Generate time: 8/25/2024 6:07:08 PM<br />
+Generate time: 8/25/2024 6:14:00 PM<br />
 By: ``mysqli.vb`` reflector tool ([https://github.com/xieguigang/mysqli.vb](https://github.com/xieguigang/mysqli.vb))
 
 <div style="page-break-after: always;"></div>
@@ -87,20 +87,20 @@ ENGINE = InnoDB;
 
 ## kinetic_law
 
-
+the enzymatic catalytic kinetics lambda model
 
 |field|type|attributes|description|
 |-----|----|----------|-----------|
 |id|int (11)|``AI``, ``NN``, ``PK``, ``UN``||
-|db_xref|varchar (64)|``NN``||
-|lambda|varchar (1024)|``NN``||
-|params|varchar (1024)|``NN``||
-|temperature|double|``NN``||
-|pH|double|``NN``, ``UN``||
-|uniprot|varchar (45)|``NN``||
-|function_id|int (11)|``NN``, ``UN``||
+|db_xref|varchar (64)|``NN``|the external reference id of current kinetics lambda model|
+|lambda|varchar (1024)|``NN``|the lambda expression of the kinetics|
+|params|varchar (1024)|``NN``|parameter set of the current kinetics lambda epxression|
+|temperature|double|``NN``|temperature of the enzyme catalytic kinetics|
+|pH|double|``NN``, ``UN``|pH of the enzyme catalytic kinetics|
+|uniprot|varchar (45)|``NN``|the uniprot id of the current enzyme model|
+|function_id|int (11)|``NN``, ``UN``|the internal reference id of the molecule function record|
 |add_time|datetime|``NN``||
-|note|text|||
+|note|text||description note text about current enzyme kinetics lambda model|
 
 <div style="page-break-after: always;"></div>
 
@@ -110,17 +110,18 @@ ENGINE = InnoDB;
 ```SQL
 CREATE TABLE IF NOT EXISTS `kinetic_law` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `db_xref` VARCHAR(64) NOT NULL,
-  `lambda` VARCHAR(1024) NOT NULL,
-  `params` VARCHAR(1024) NOT NULL,
-  `temperature` DOUBLE NOT NULL DEFAULT 37,
-  `pH` DOUBLE UNSIGNED NOT NULL DEFAULT 7.5,
-  `uniprot` VARCHAR(45) NOT NULL,
-  `function_id` INT UNSIGNED NOT NULL,
+  `db_xref` VARCHAR(64) NOT NULL COMMENT 'the external reference id of current kinetics lambda model',
+  `lambda` VARCHAR(1024) NOT NULL COMMENT 'the lambda expression of the kinetics',
+  `params` VARCHAR(1024) NOT NULL COMMENT 'parameter set of the current kinetics lambda epxression',
+  `temperature` DOUBLE NOT NULL DEFAULT 37 COMMENT 'temperature of the enzyme catalytic kinetics',
+  `pH` DOUBLE UNSIGNED NOT NULL DEFAULT 7.5 COMMENT 'pH of the enzyme catalytic kinetics',
+  `uniprot` VARCHAR(45) NOT NULL COMMENT 'the uniprot id of the current enzyme model',
+  `function_id` INT UNSIGNED NOT NULL COMMENT 'the internal reference id of the molecule function record',
   `add_time` DATETIME NOT NULL DEFAULT now(),
-  `note` LONGTEXT NULL,
+  `note` LONGTEXT NULL COMMENT 'description note text about current enzyme kinetics lambda model',
   PRIMARY KEY (`id`))
-ENGINE = InnoDB;
+ENGINE = InnoDB
+COMMENT = 'the enzymatic catalytic kinetics lambda model';
 
 ```
 
