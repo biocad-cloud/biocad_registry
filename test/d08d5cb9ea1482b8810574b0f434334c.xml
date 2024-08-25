@@ -1,0 +1,1384 @@
+﻿<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<sbml xmlns="http://www.sbml.org/sbml/level3/version1/core" level="3" version="1">
+  <model name="SABIOmdl20Aug2024219">
+<notes><body xmlns="http://www.w3.org/1999/xhtml">
+<p>
+This model has been created with the help of the SABIO-RK Database
+(http://sabio.h-its.org/) 
+ (c) 2005-2024 HITS gGmbH http://www.h-its.org
+
+</p><br/>
+To cite SABIO-RK Database, please use
+"http://www.ncbi.nlm.nih.gov/pubmed/22102587"
+<br/>
+SABIO-RK - database for biochemical reaction kinetics. Wittig U, Kania R, Golebiewski M, Rey M, Shi L, Jong L, Algaa E, Weidemann A, Sauer-Danzwith H, Mir S, Krebs O, Bittkowski M, Wetsch E, Rojas I, Mueller W. Nucleic Acids Res. 2012;40(Database issue)790-6
+</body></notes>
+      <listOfFunctionDefinitions>
+      <functionDefinition id="KL_5622" sboTerm="SBO:0000029">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+          <lambda>
+            <bvar>
+              <ci> E </ci>
+            </bvar>
+            <bvar>
+              <ci> A </ci>
+            </bvar>
+            <bvar>
+              <ci> KmA </ci>
+            </bvar>
+            <bvar>
+              <ci> Vmax_KmA </ci>
+            </bvar>
+            <bvar>
+              <ci> Vmax </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> Vmax </ci>
+                <ci> A </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> KmA </ci>
+                <ci> A </ci>
+              </apply>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="KL_5627" sboTerm="SBO:0000029">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+          <lambda>
+            <bvar>
+              <ci> KmA </ci>
+            </bvar>
+            <bvar>
+              <ci> E </ci>
+            </bvar>
+            <bvar>
+              <ci> Vmax_KmA </ci>
+            </bvar>
+            <bvar>
+              <ci> A </ci>
+            </bvar>
+            <bvar>
+              <ci> Vmax </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> Vmax </ci>
+                <ci> A </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> KmA </ci>
+                <ci> A </ci>
+              </apply>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="KL_5625" sboTerm="SBO:0000029">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+          <lambda>
+            <bvar>
+              <ci> Vmax_KmA </ci>
+            </bvar>
+            <bvar>
+              <ci> KmA </ci>
+            </bvar>
+            <bvar>
+              <ci> E </ci>
+            </bvar>
+            <bvar>
+              <ci> Vmax </ci>
+            </bvar>
+            <bvar>
+              <ci> A </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> Vmax </ci>
+                <ci> A </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> KmA </ci>
+                <ci> A </ci>
+              </apply>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="KL_5624" sboTerm="SBO:0000029">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+          <lambda>
+            <bvar>
+              <ci> Vmax </ci>
+            </bvar>
+            <bvar>
+              <ci> KmA </ci>
+            </bvar>
+            <bvar>
+              <ci> E </ci>
+            </bvar>
+            <bvar>
+              <ci> A </ci>
+            </bvar>
+            <bvar>
+              <ci> Vmax_KmA </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> Vmax </ci>
+                <ci> A </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> KmA </ci>
+                <ci> A </ci>
+              </apply>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="KL_5620" sboTerm="SBO:0000029">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+          <lambda>
+            <bvar>
+              <ci> E </ci>
+            </bvar>
+            <bvar>
+              <ci> A </ci>
+            </bvar>
+            <bvar>
+              <ci> KmA </ci>
+            </bvar>
+            <bvar>
+              <ci> Vmax_KmA </ci>
+            </bvar>
+            <bvar>
+              <ci> Vmax </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> Vmax </ci>
+                <ci> A </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> KmA </ci>
+                <ci> A </ci>
+              </apply>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="KL_5619" sboTerm="SBO:0000029">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+          <lambda>
+            <bvar>
+              <ci> A </ci>
+            </bvar>
+            <bvar>
+              <ci> KmA </ci>
+            </bvar>
+            <bvar>
+              <ci> Vmax </ci>
+            </bvar>
+            <bvar>
+              <ci> Vmax_KmA </ci>
+            </bvar>
+            <bvar>
+              <ci> E </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> Vmax </ci>
+                <ci> A </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> KmA </ci>
+                <ci> A </ci>
+              </apply>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="KL_5623" sboTerm="SBO:0000029">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+          <lambda>
+            <bvar>
+              <ci> KmA </ci>
+            </bvar>
+            <bvar>
+              <ci> A </ci>
+            </bvar>
+            <bvar>
+              <ci> Vmax_KmA </ci>
+            </bvar>
+            <bvar>
+              <ci> E </ci>
+            </bvar>
+            <bvar>
+              <ci> Vmax </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> Vmax </ci>
+                <ci> A </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> KmA </ci>
+                <ci> A </ci>
+              </apply>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="KL_5621" sboTerm="SBO:0000029">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+          <lambda>
+            <bvar>
+              <ci> KmA </ci>
+            </bvar>
+            <bvar>
+              <ci> Vmax_KmA </ci>
+            </bvar>
+            <bvar>
+              <ci> Vmax </ci>
+            </bvar>
+            <bvar>
+              <ci> A </ci>
+            </bvar>
+            <bvar>
+              <ci> E </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> Vmax </ci>
+                <ci> A </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> KmA </ci>
+                <ci> A </ci>
+              </apply>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="KL_5626" sboTerm="SBO:0000029">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+          <lambda>
+            <bvar>
+              <ci> Vmax </ci>
+            </bvar>
+            <bvar>
+              <ci> E </ci>
+            </bvar>
+            <bvar>
+              <ci> Vmax_KmA </ci>
+            </bvar>
+            <bvar>
+              <ci> KmA </ci>
+            </bvar>
+            <bvar>
+              <ci> A </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> Vmax </ci>
+                <ci> A </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> KmA </ci>
+                <ci> A </ci>
+              </apply>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="KL_5618" sboTerm="SBO:0000029">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+          <lambda>
+            <bvar>
+              <ci> E </ci>
+            </bvar>
+            <bvar>
+              <ci> Vmax_KmA </ci>
+            </bvar>
+            <bvar>
+              <ci> A </ci>
+            </bvar>
+            <bvar>
+              <ci> KmA </ci>
+            </bvar>
+            <bvar>
+              <ci> Vmax </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> Vmax </ci>
+                <ci> A </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> KmA </ci>
+                <ci> A </ci>
+              </apply>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+    </listOfFunctionDefinitions>
+    <listOfUnitDefinitions>
+      <unitDefinition id="M" name="M">
+        <listOfUnits>
+          <unit scale="1" exponent="-1" multiplier="1" kind="litre"/>
+          <unit scale="1" exponent="1" multiplier="1" kind="mole"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="lgwedgeoneswedgeone" name="l*g^(-1)*s^(-1)">
+        <listOfUnits>
+          <unit scale="1" exponent="-1" multiplier="1" kind="gram"/>
+          <unit scale="1" exponent="1" multiplier="1" kind="litre"/>
+          <unit scale="1" exponent="-1" multiplier="1" kind="second"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="molswedgeonegwedgeone" name="mol*s^(-1)*g^(-1)">
+        <listOfUnits>
+          <unit scale="1" exponent="-1" multiplier="1" kind="gram"/>
+          <unit scale="1" exponent="1" multiplier="1" kind="mole"/>
+          <unit scale="1" exponent="-1" multiplier="1" kind="second"/>
+        </listOfUnits>
+      </unitDefinition>
+    </listOfUnitDefinitions>
+    <listOfCompartments>
+      <compartment id="compart_microsome" constant="true" name="microsome"/>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species id="SPC_40_microsome" initialConcentration="1" constant="false" hasOnlySubstanceUnits="false" name="H2O" metaid="META_SPC_40_microsome" boundaryCondition="false" compartment="compart_microsome">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#META_SPC_40_microsome">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:15377"/>
+                  <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:5585"/>
+                  <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:44819"/>
+                  <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:44701"/>
+                  <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:44292"/>
+                  <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:43228"/>
+                  <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:42857"/>
+                  <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:42043"/>
+                  <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:41981"/>
+                  <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:41979"/>
+                  <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:33813"/>
+                  <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:33811"/>
+                  <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:33806"/>
+                  <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:29375"/>
+                  <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:29374"/>
+                  <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:29373"/>
+                  <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:27313"/>
+                  <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:13352"/>
+                  <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:10743"/>
+                  <rdf:li rdf:resource="https://identifiers.org/kegg.compound/C00001"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+</species>
+      <species id="SPC_21342_microsome" initialConcentration="1" constant="false" hasOnlySubstanceUnits="false" name="(1-Chloroethenyl)oxirane" metaid="META_SPC_21342_microsome" boundaryCondition="false" compartment="compart_microsome"/>
+      <species id="SPC_21366_microsome" initialConcentration="1" constant="false" hasOnlySubstanceUnits="false" name="3-Chloro-3-butene-1,2-diol" metaid="META_SPC_21366_microsome" boundaryCondition="false" compartment="compart_microsome"/>
+      <species id="ENZ_29266_microsome" initialConcentration="1" constant="false" hasOnlySubstanceUnits="false" name="microsomal epoxide hydrolase(Enzyme) wildtype" metaid="META_ENZ_29266_microsome" boundaryCondition="false" compartment="compart_microsome">
+        <annotation>
+<sbrk:sabiork xmlns:sbrk="http://sabiork.h-its.org">
+<sbrk:modifierType>Modifier-Catalyst</sbrk:modifierType>
+</sbrk:sabiork>                  <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#META_ENZ_29266_microsome">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/uniprot/P07099"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+</species>
+      <species id="ENZ_29286_microsome" initialConcentration="1" constant="false" hasOnlySubstanceUnits="false" name="microsomal epoxide hydrolase(Enzyme) wildtype" metaid="META_ENZ_29286_microsome" boundaryCondition="false" compartment="compart_microsome">
+        <annotation>
+<sbrk:sabiork xmlns:sbrk="http://sabiork.h-its.org">
+<sbrk:modifierType>Modifier-Catalyst</sbrk:modifierType>
+</sbrk:sabiork>                  <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#META_ENZ_29286_microsome">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/uniprot/P07099"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+</species>
+      <species id="ENZ_29278_microsome" initialConcentration="1" constant="false" hasOnlySubstanceUnits="false" name="microsomal epoxide hydrolase(Enzyme) wildtype" metaid="META_ENZ_29278_microsome" boundaryCondition="false" compartment="compart_microsome">
+        <annotation>
+<sbrk:sabiork xmlns:sbrk="http://sabiork.h-its.org">
+<sbrk:modifierType>Modifier-Catalyst</sbrk:modifierType>
+</sbrk:sabiork>                  <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#META_ENZ_29278_microsome">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/uniprot/P07687"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+</species>
+      <species id="ENZ_29274_microsome" initialConcentration="1" constant="false" hasOnlySubstanceUnits="false" name="microsomal epoxide hydrolase(Enzyme) wildtype" metaid="META_ENZ_29274_microsome" boundaryCondition="false" compartment="compart_microsome">
+        <annotation>
+<sbrk:sabiork xmlns:sbrk="http://sabiork.h-its.org">
+<sbrk:modifierType>Modifier-Catalyst</sbrk:modifierType>
+</sbrk:sabiork>                  <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#META_ENZ_29274_microsome">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/uniprot/P07687"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+</species>
+      <species id="ENZ_29258_microsome" initialConcentration="1" constant="false" hasOnlySubstanceUnits="false" name="microsomal epoxide hydrolase(Enzyme) wildtype" metaid="META_ENZ_29258_microsome" boundaryCondition="false" compartment="compart_microsome">
+        <annotation>
+<sbrk:sabiork xmlns:sbrk="http://sabiork.h-its.org">
+<sbrk:modifierType>Modifier-Catalyst</sbrk:modifierType>
+</sbrk:sabiork>                  <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#META_ENZ_29258_microsome">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/uniprot/P07687"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+</species>
+      <species id="ENZ_29254_microsome" initialConcentration="1" constant="false" hasOnlySubstanceUnits="false" name="microsomal epoxide hydrolase(Enzyme) wildtype" metaid="META_ENZ_29254_microsome" boundaryCondition="false" compartment="compart_microsome">
+        <annotation>
+<sbrk:sabiork xmlns:sbrk="http://sabiork.h-its.org">
+<sbrk:modifierType>Modifier-Catalyst</sbrk:modifierType>
+</sbrk:sabiork>                  <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#META_ENZ_29254_microsome">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/uniprot/P07687"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+</species>
+      <species id="ENZ_29270_microsome" initialConcentration="1" constant="false" hasOnlySubstanceUnits="false" name="microsomal epoxide hydrolase(Enzyme) wildtype" metaid="META_ENZ_29270_microsome" boundaryCondition="false" compartment="compart_microsome">
+        <annotation>
+<sbrk:sabiork xmlns:sbrk="http://sabiork.h-its.org">
+<sbrk:modifierType>Modifier-Catalyst</sbrk:modifierType>
+</sbrk:sabiork>                  <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#META_ENZ_29270_microsome">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/uniprot/Q9D379"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+</species>
+      <species id="ENZ_29262_microsome" initialConcentration="1" constant="false" hasOnlySubstanceUnits="false" name="microsomal epoxide hydrolase(Enzyme) wildtype" metaid="META_ENZ_29262_microsome" boundaryCondition="false" compartment="compart_microsome"/>
+      <species id="ENZ_29282_microsome" initialConcentration="1" constant="false" hasOnlySubstanceUnits="false" name="microsomal epoxide hydrolase(Enzyme) wildtype" metaid="META_ENZ_29282_microsome" boundaryCondition="false" compartment="compart_microsome"/>
+      <species id="ENZ_29250_microsome" initialConcentration="1" constant="false" hasOnlySubstanceUnits="false" name="microsomal epoxide hydrolase(Enzyme) wildtype" metaid="META_ENZ_29250_microsome" boundaryCondition="false" compartment="compart_microsome">
+        <annotation>
+<sbrk:sabiork xmlns:sbrk="http://sabiork.h-its.org">
+<sbrk:modifierType>Modifier-Catalyst</sbrk:modifierType>
+</sbrk:sabiork>                  <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#META_ENZ_29250_microsome">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/uniprot/Q9D379"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+</species>
+    </listOfSpecies>
+    <listOfReactions>
+      <reaction id="REAC_0" metaid="META_REAC_0" reversible="true" fast="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#META_REAC_0">
+              <bqbiol:isVersionOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/ec-code/3.3.2.9"/>
+                </rdf:Bag>
+              </bqbiol:isVersionOf>
+              <bqbiol:hasTaxon>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/taxonomy/9606"/>
+                </rdf:Bag>
+              </bqbiol:hasTaxon>
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/sabiork.reaction/7243"/>
+                </rdf:Bag>
+              </bqbiol:is>
+              <bqbiol:occursIn>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/bto/BTO:0000759"/>
+                </rdf:Bag>
+              </bqbiol:occursIn>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+        <listOfReactants>
+          <speciesReference constant="true" species="SPC_40_microsome" sboTerm="SBO:0000015" stoichiometry="1"/>
+          <speciesReference constant="true" species="SPC_21342_microsome" sboTerm="SBO:0000015" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference constant="true" species="SPC_21366_microsome" sboTerm="SBO:0000011" stoichiometry="1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="ENZ_29266_microsome" sboTerm="SBO:0000460"/>
+        </listOfModifiers>
+        <kineticLaw metaid="META_KL_5622" sboTerm="SBO:0000029">
+          <annotation>
+<sbrk:sabiork xmlns:sbrk="http://sabiork.h-its.org">
+<sbrk:kineticLawID>5622</sbrk:kineticLawID>
+<sbrk:experimentalConditions>
+<sbrk:temperature>
+<sbrk:startValueTemperature>38.0</sbrk:startValueTemperature>
+<sbrk:temperatureUnit>°C</sbrk:temperatureUnit>
+</sbrk:temperature>
+<sbrk:pH>
+<sbrk:startValuepH>7.4</sbrk:startValuepH>
+</sbrk:pH>
+<sbrk:buffer> 0.1 M phosphate, 15 mM MgCl2, 0.1 mM EDTA, 0.8 mM Glucose 6-phosphate, 1 U/ml Glucose 6-phosphate dehydrogenase</sbrk:buffer>
+</sbrk:experimentalConditions>
+</sbrk:sabiork>
+                      <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+              <rdf:Description rdf:about="#META_KL_5622">
+                <bqbiol:isDescribedBy>
+                  <rdf:Bag>
+                    <rdf:li rdf:resource="https://identifiers.org/pubmed/14976339"/>
+                  </rdf:Bag>
+                </bqbiol:isDescribedBy>
+                <bqbiol:isDescribedBy>
+                  <rdf:Bag>
+                    <rdf:li rdf:resource="https://identifiers.org/sabiork.kineticrecord/5622"/>
+                  </rdf:Bag>
+                </bqbiol:isDescribedBy>
+              </rdf:Description>
+            </rdf:RDF>
+          </annotation>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <ci> KL_5622 </ci>
+              <ci> ENZ_29266_microsome </ci>
+              <ci> SPC_21342_microsome </ci>
+              <ci> KmA_SPC_21342_microsome </ci>
+              <ci> Vmax_KmA_SPC_21342_microsome </ci>
+              <ci> Vmax </ci>
+            </apply>
+          </math>
+                  <listOfLocalParameters>
+            <localParameter id="KmA_SPC_21342_microsome" name="KmA_oneChloroethenyloxirane" value="9.97E-5" sboTerm="SBO:0000027" units="M"/>
+            <localParameter id="Vmax_KmA_SPC_21342_microsome" name="Vmax_KmA_oneChloroethenyloxirane" value="0.01019444" sboTerm="SBO:0000301" units="lgwedgeoneswedgeone"/>
+            <localParameter id="Vmax" name="Vmax" value="1.016667E-6" sboTerm="SBO:0000186" units="molswedgeonegwedgeone"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id="REAC_1" metaid="META_REAC_1" reversible="true" fast="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#META_REAC_1">
+              <bqbiol:isVersionOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/ec-code/3.3.2.9"/>
+                </rdf:Bag>
+              </bqbiol:isVersionOf>
+              <bqbiol:hasTaxon>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/taxonomy/9606"/>
+                </rdf:Bag>
+              </bqbiol:hasTaxon>
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/sabiork.reaction/7243"/>
+                </rdf:Bag>
+              </bqbiol:is>
+              <bqbiol:occursIn>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/bto/BTO:0000763"/>
+                </rdf:Bag>
+              </bqbiol:occursIn>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+        <listOfReactants>
+          <speciesReference constant="true" species="SPC_40_microsome" sboTerm="SBO:0000015" stoichiometry="1"/>
+          <speciesReference constant="true" species="SPC_21342_microsome" sboTerm="SBO:0000015" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference constant="true" species="SPC_21366_microsome" sboTerm="SBO:0000011" stoichiometry="1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="ENZ_29286_microsome" sboTerm="SBO:0000460"/>
+        </listOfModifiers>
+        <kineticLaw metaid="META_KL_5627" sboTerm="SBO:0000029">
+          <annotation>
+<sbrk:sabiork xmlns:sbrk="http://sabiork.h-its.org">
+<sbrk:kineticLawID>5627</sbrk:kineticLawID>
+<sbrk:experimentalConditions>
+<sbrk:temperature>
+<sbrk:startValueTemperature>38.0</sbrk:startValueTemperature>
+<sbrk:temperatureUnit>°C</sbrk:temperatureUnit>
+</sbrk:temperature>
+<sbrk:pH>
+<sbrk:startValuepH>7.4</sbrk:startValuepH>
+</sbrk:pH>
+<sbrk:buffer> 0.1 M phosphate, 15 mM MgCl2, 0.1 mM EDTA, 0.8 mM Glucose 6-phosphate, 1 U/ml Glucose 6-phosphate dehydrogenase</sbrk:buffer>
+</sbrk:experimentalConditions>
+</sbrk:sabiork>
+                      <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+              <rdf:Description rdf:about="#META_KL_5627">
+                <bqbiol:isDescribedBy>
+                  <rdf:Bag>
+                    <rdf:li rdf:resource="https://identifiers.org/pubmed/14976339"/>
+                  </rdf:Bag>
+                </bqbiol:isDescribedBy>
+                <bqbiol:isDescribedBy>
+                  <rdf:Bag>
+                    <rdf:li rdf:resource="https://identifiers.org/sabiork.kineticrecord/5627"/>
+                  </rdf:Bag>
+                </bqbiol:isDescribedBy>
+              </rdf:Description>
+            </rdf:RDF>
+          </annotation>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <ci> KL_5627 </ci>
+              <ci> KmA_SPC_21342_microsome </ci>
+              <ci> ENZ_29286_microsome </ci>
+              <ci> Vmax_KmA_SPC_21342_microsome </ci>
+              <ci> SPC_21342_microsome </ci>
+              <ci> Vmax </ci>
+            </apply>
+          </math>
+                  <listOfLocalParameters>
+            <localParameter id="KmA_SPC_21342_microsome" name="KmA_oneChloroethenyloxirane" value="7.22E-5" sboTerm="SBO:0000027" units="M"/>
+            <localParameter id="Vmax_KmA_SPC_21342_microsome" name="Vmax_KmA_oneChloroethenyloxirane" value="0.002222222" sboTerm="SBO:0000301" units="lgwedgeoneswedgeone"/>
+            <localParameter id="Vmax" name="Vmax" value="1.611111E-7" sboTerm="SBO:0000186" units="molswedgeonegwedgeone"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id="REAC_2" metaid="META_REAC_2" reversible="true" fast="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#META_REAC_2">
+              <bqbiol:isVersionOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/ec-code/3.3.2.9"/>
+                </rdf:Bag>
+              </bqbiol:isVersionOf>
+              <bqbiol:hasTaxon>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/taxonomy/10116"/>
+                </rdf:Bag>
+              </bqbiol:hasTaxon>
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/sabiork.reaction/7243"/>
+                </rdf:Bag>
+              </bqbiol:is>
+              <bqbiol:occursIn>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/bto/BTO:0000763"/>
+                </rdf:Bag>
+              </bqbiol:occursIn>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+        <listOfReactants>
+          <speciesReference constant="true" species="SPC_40_microsome" sboTerm="SBO:0000015" stoichiometry="1"/>
+          <speciesReference constant="true" species="SPC_21342_microsome" sboTerm="SBO:0000015" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference constant="true" species="SPC_21366_microsome" sboTerm="SBO:0000011" stoichiometry="1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="ENZ_29278_microsome" sboTerm="SBO:0000460"/>
+        </listOfModifiers>
+        <kineticLaw metaid="META_KL_5625" sboTerm="SBO:0000029">
+          <annotation>
+<sbrk:sabiork xmlns:sbrk="http://sabiork.h-its.org">
+<sbrk:kineticLawID>5625</sbrk:kineticLawID>
+<sbrk:experimentalConditions>
+<sbrk:temperature>
+<sbrk:startValueTemperature>38.0</sbrk:startValueTemperature>
+<sbrk:temperatureUnit>°C</sbrk:temperatureUnit>
+</sbrk:temperature>
+<sbrk:pH>
+<sbrk:startValuepH>7.4</sbrk:startValuepH>
+</sbrk:pH>
+<sbrk:buffer> 0.1 M phosphate, 15 mM MgCl2, 0.1 mM EDTA, 0.8 mM Glucose 6-phosphate, 1 U/ml Glucose 6-phosphate dehydrogenase</sbrk:buffer>
+</sbrk:experimentalConditions>
+</sbrk:sabiork>
+                      <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+              <rdf:Description rdf:about="#META_KL_5625">
+                <bqbiol:isDescribedBy>
+                  <rdf:Bag>
+                    <rdf:li rdf:resource="https://identifiers.org/pubmed/14976339"/>
+                  </rdf:Bag>
+                </bqbiol:isDescribedBy>
+                <bqbiol:isDescribedBy>
+                  <rdf:Bag>
+                    <rdf:li rdf:resource="https://identifiers.org/sabiork.kineticrecord/5625"/>
+                  </rdf:Bag>
+                </bqbiol:isDescribedBy>
+              </rdf:Description>
+            </rdf:RDF>
+          </annotation>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <ci> KL_5625 </ci>
+              <ci> Vmax_KmA_SPC_21342_microsome </ci>
+              <ci> KmA_SPC_21342_microsome </ci>
+              <ci> ENZ_29278_microsome </ci>
+              <ci> Vmax </ci>
+              <ci> SPC_21342_microsome </ci>
+            </apply>
+          </math>
+                  <listOfLocalParameters>
+            <localParameter id="Vmax_KmA_SPC_21342_microsome" name="Vmax_KmA_oneChloroethenyloxirane" value="0.0004722222" sboTerm="SBO:0000301" units="lgwedgeoneswedgeone"/>
+            <localParameter id="KmA_SPC_21342_microsome" name="KmA_oneChloroethenyloxirane" value="9.16E-5" sboTerm="SBO:0000027" units="M"/>
+            <localParameter id="Vmax" name="Vmax" value="4.444444E-8" sboTerm="SBO:0000186" units="molswedgeonegwedgeone"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id="REAC_3" metaid="META_REAC_3" reversible="true" fast="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#META_REAC_3">
+              <bqbiol:isVersionOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/ec-code/3.3.2.9"/>
+                </rdf:Bag>
+              </bqbiol:isVersionOf>
+              <bqbiol:hasTaxon>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/taxonomy/10116"/>
+                </rdf:Bag>
+              </bqbiol:hasTaxon>
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/sabiork.reaction/7243"/>
+                </rdf:Bag>
+              </bqbiol:is>
+              <bqbiol:occursIn>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/bto/BTO:0000763"/>
+                </rdf:Bag>
+              </bqbiol:occursIn>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+        <listOfReactants>
+          <speciesReference constant="true" species="SPC_21342_microsome" sboTerm="SBO:0000015" stoichiometry="1"/>
+          <speciesReference constant="true" species="SPC_40_microsome" sboTerm="SBO:0000015" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference constant="true" species="SPC_21366_microsome" sboTerm="SBO:0000011" stoichiometry="1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="ENZ_29274_microsome" sboTerm="SBO:0000460"/>
+        </listOfModifiers>
+        <kineticLaw metaid="META_KL_5624" sboTerm="SBO:0000029">
+          <annotation>
+<sbrk:sabiork xmlns:sbrk="http://sabiork.h-its.org">
+<sbrk:kineticLawID>5624</sbrk:kineticLawID>
+<sbrk:experimentalConditions>
+<sbrk:temperature>
+<sbrk:startValueTemperature>38.0</sbrk:startValueTemperature>
+<sbrk:temperatureUnit>°C</sbrk:temperatureUnit>
+</sbrk:temperature>
+<sbrk:pH>
+<sbrk:startValuepH>7.4</sbrk:startValuepH>
+</sbrk:pH>
+<sbrk:buffer> 0.1 M phosphate, 15 mM MgCl2, 0.1 mM EDTA, 0.8 mM Glucose 6-phosphate, 1 U/ml Glucose 6-phosphate dehydrogenase</sbrk:buffer>
+</sbrk:experimentalConditions>
+</sbrk:sabiork>
+                      <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+              <rdf:Description rdf:about="#META_KL_5624">
+                <bqbiol:isDescribedBy>
+                  <rdf:Bag>
+                    <rdf:li rdf:resource="https://identifiers.org/pubmed/14976339"/>
+                  </rdf:Bag>
+                </bqbiol:isDescribedBy>
+                <bqbiol:isDescribedBy>
+                  <rdf:Bag>
+                    <rdf:li rdf:resource="https://identifiers.org/sabiork.kineticrecord/5624"/>
+                  </rdf:Bag>
+                </bqbiol:isDescribedBy>
+              </rdf:Description>
+            </rdf:RDF>
+          </annotation>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <ci> KL_5624 </ci>
+              <ci> Vmax </ci>
+              <ci> KmA_SPC_21342_microsome </ci>
+              <ci> ENZ_29274_microsome </ci>
+              <ci> SPC_21342_microsome </ci>
+              <ci> Vmax_KmA_SPC_21342_microsome </ci>
+            </apply>
+          </math>
+                  <listOfLocalParameters>
+            <localParameter id="Vmax" name="Vmax" value="3.333333E-8" sboTerm="SBO:0000186" units="molswedgeonegwedgeone"/>
+            <localParameter id="KmA_SPC_21342_microsome" name="KmA_oneChloroethenyloxirane" value="9.09E-5" sboTerm="SBO:0000027" units="M"/>
+            <localParameter id="Vmax_KmA_SPC_21342_microsome" name="Vmax_KmA_oneChloroethenyloxirane" value="0.0003611111" sboTerm="SBO:0000301" units="lgwedgeoneswedgeone"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id="REAC_4" metaid="META_REAC_4" reversible="true" fast="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#META_REAC_4">
+              <bqbiol:isVersionOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/ec-code/3.3.2.9"/>
+                </rdf:Bag>
+              </bqbiol:isVersionOf>
+              <bqbiol:hasTaxon>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/taxonomy/10116"/>
+                </rdf:Bag>
+              </bqbiol:hasTaxon>
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/sabiork.reaction/7243"/>
+                </rdf:Bag>
+              </bqbiol:is>
+              <bqbiol:occursIn>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/bto/BTO:0000759"/>
+                </rdf:Bag>
+              </bqbiol:occursIn>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+        <listOfReactants>
+          <speciesReference constant="true" species="SPC_40_microsome" sboTerm="SBO:0000015" stoichiometry="1"/>
+          <speciesReference constant="true" species="SPC_21342_microsome" sboTerm="SBO:0000015" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference constant="true" species="SPC_21366_microsome" sboTerm="SBO:0000011" stoichiometry="1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="ENZ_29258_microsome" sboTerm="SBO:0000460"/>
+        </listOfModifiers>
+        <kineticLaw metaid="META_KL_5620" sboTerm="SBO:0000029">
+          <annotation>
+<sbrk:sabiork xmlns:sbrk="http://sabiork.h-its.org">
+<sbrk:kineticLawID>5620</sbrk:kineticLawID>
+<sbrk:experimentalConditions>
+<sbrk:temperature>
+<sbrk:startValueTemperature>38.0</sbrk:startValueTemperature>
+<sbrk:temperatureUnit>°C</sbrk:temperatureUnit>
+</sbrk:temperature>
+<sbrk:pH>
+<sbrk:startValuepH>7.4</sbrk:startValuepH>
+</sbrk:pH>
+<sbrk:buffer> 0.1 M phosphate, 15 mM MgCl2, 0.1 mM EDTA, 0.8 mM Glucose 6-phosphate, 1 U/ml Glucose 6-phosphate dehydrogenase</sbrk:buffer>
+</sbrk:experimentalConditions>
+</sbrk:sabiork>
+                      <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+              <rdf:Description rdf:about="#META_KL_5620">
+                <bqbiol:isDescribedBy>
+                  <rdf:Bag>
+                    <rdf:li rdf:resource="https://identifiers.org/pubmed/14976339"/>
+                  </rdf:Bag>
+                </bqbiol:isDescribedBy>
+                <bqbiol:isDescribedBy>
+                  <rdf:Bag>
+                    <rdf:li rdf:resource="https://identifiers.org/sabiork.kineticrecord/5620"/>
+                  </rdf:Bag>
+                </bqbiol:isDescribedBy>
+              </rdf:Description>
+            </rdf:RDF>
+          </annotation>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <ci> KL_5620 </ci>
+              <ci> ENZ_29258_microsome </ci>
+              <ci> SPC_21342_microsome </ci>
+              <ci> KmA_SPC_21342_microsome </ci>
+              <ci> Vmax_KmA_SPC_21342_microsome </ci>
+              <ci> Vmax </ci>
+            </apply>
+          </math>
+                  <listOfLocalParameters>
+            <localParameter id="KmA_SPC_21342_microsome" name="KmA_oneChloroethenyloxirane" value="5.3E-5" sboTerm="SBO:0000027" units="M"/>
+            <localParameter id="Vmax_KmA_SPC_21342_microsome" name="Vmax_KmA_oneChloroethenyloxirane" value="0.003361111" sboTerm="SBO:0000301" units="lgwedgeoneswedgeone"/>
+            <localParameter id="Vmax" name="Vmax" value="1.777778E-7" sboTerm="SBO:0000186" units="molswedgeonegwedgeone"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id="REAC_5" metaid="META_REAC_5" reversible="true" fast="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#META_REAC_5">
+              <bqbiol:isVersionOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/ec-code/3.3.2.9"/>
+                </rdf:Bag>
+              </bqbiol:isVersionOf>
+              <bqbiol:hasTaxon>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/taxonomy/10116"/>
+                </rdf:Bag>
+              </bqbiol:hasTaxon>
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/sabiork.reaction/7243"/>
+                </rdf:Bag>
+              </bqbiol:is>
+              <bqbiol:occursIn>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/bto/BTO:0000759"/>
+                </rdf:Bag>
+              </bqbiol:occursIn>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+        <listOfReactants>
+          <speciesReference constant="true" species="SPC_21342_microsome" sboTerm="SBO:0000015" stoichiometry="1"/>
+          <speciesReference constant="true" species="SPC_40_microsome" sboTerm="SBO:0000015" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference constant="true" species="SPC_21366_microsome" sboTerm="SBO:0000011" stoichiometry="1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="ENZ_29254_microsome" sboTerm="SBO:0000460"/>
+        </listOfModifiers>
+        <kineticLaw metaid="META_KL_5619" sboTerm="SBO:0000029">
+          <annotation>
+<sbrk:sabiork xmlns:sbrk="http://sabiork.h-its.org">
+<sbrk:kineticLawID>5619</sbrk:kineticLawID>
+<sbrk:experimentalConditions>
+<sbrk:temperature>
+<sbrk:startValueTemperature>38.0</sbrk:startValueTemperature>
+<sbrk:temperatureUnit>°C</sbrk:temperatureUnit>
+</sbrk:temperature>
+<sbrk:pH>
+<sbrk:startValuepH>7.4</sbrk:startValuepH>
+</sbrk:pH>
+<sbrk:buffer> 0.1 M phosphate, 15 mM MgCl2, 0.1 mM EDTA, 0.8 mM Glucose 6-phosphate, 1 U/ml Glucose 6-phosphate dehydrogenase</sbrk:buffer>
+</sbrk:experimentalConditions>
+</sbrk:sabiork>
+                      <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+              <rdf:Description rdf:about="#META_KL_5619">
+                <bqbiol:isDescribedBy>
+                  <rdf:Bag>
+                    <rdf:li rdf:resource="https://identifiers.org/pubmed/14976339"/>
+                  </rdf:Bag>
+                </bqbiol:isDescribedBy>
+                <bqbiol:isDescribedBy>
+                  <rdf:Bag>
+                    <rdf:li rdf:resource="https://identifiers.org/sabiork.kineticrecord/5619"/>
+                  </rdf:Bag>
+                </bqbiol:isDescribedBy>
+              </rdf:Description>
+            </rdf:RDF>
+          </annotation>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <ci> KL_5619 </ci>
+              <ci> SPC_21342_microsome </ci>
+              <ci> KmA_SPC_21342_microsome </ci>
+              <ci> Vmax </ci>
+              <ci> Vmax_KmA_SPC_21342_microsome </ci>
+              <ci> ENZ_29254_microsome </ci>
+            </apply>
+          </math>
+                  <listOfLocalParameters>
+            <localParameter id="KmA_SPC_21342_microsome" name="KmA_oneChloroethenyloxirane" value="4.15E-5" sboTerm="SBO:0000027" units="M"/>
+            <localParameter id="Vmax" name="Vmax" value="1.666667E-7" sboTerm="SBO:0000186" units="molswedgeonegwedgeone"/>
+            <localParameter id="Vmax_KmA_SPC_21342_microsome" name="Vmax_KmA_oneChloroethenyloxirane" value="0.004027778" sboTerm="SBO:0000301" units="lgwedgeoneswedgeone"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id="REAC_6" metaid="META_REAC_6" reversible="true" fast="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#META_REAC_6">
+              <bqbiol:isVersionOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/ec-code/3.3.2.9"/>
+                </rdf:Bag>
+              </bqbiol:isVersionOf>
+              <bqbiol:hasTaxon>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/taxonomy/10090"/>
+                </rdf:Bag>
+              </bqbiol:hasTaxon>
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/sabiork.reaction/7243"/>
+                </rdf:Bag>
+              </bqbiol:is>
+              <bqbiol:occursIn>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/bto/BTO:0000763"/>
+                </rdf:Bag>
+              </bqbiol:occursIn>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+        <listOfReactants>
+          <speciesReference constant="true" species="SPC_40_microsome" sboTerm="SBO:0000015" stoichiometry="1"/>
+          <speciesReference constant="true" species="SPC_21342_microsome" sboTerm="SBO:0000015" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference constant="true" species="SPC_21366_microsome" sboTerm="SBO:0000011" stoichiometry="1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="ENZ_29270_microsome" sboTerm="SBO:0000460"/>
+        </listOfModifiers>
+        <kineticLaw metaid="META_KL_5623" sboTerm="SBO:0000029">
+          <annotation>
+<sbrk:sabiork xmlns:sbrk="http://sabiork.h-its.org">
+<sbrk:kineticLawID>5623</sbrk:kineticLawID>
+<sbrk:experimentalConditions>
+<sbrk:temperature>
+<sbrk:startValueTemperature>38.0</sbrk:startValueTemperature>
+<sbrk:temperatureUnit>°C</sbrk:temperatureUnit>
+</sbrk:temperature>
+<sbrk:pH>
+<sbrk:startValuepH>7.4</sbrk:startValuepH>
+</sbrk:pH>
+<sbrk:buffer> 0.1 M phosphate, 15 mM MgCl2, 0.1 mM EDTA, 0.8 mM Glucose 6-phosphate, 1 U/ml Glucose 6-phosphate dehydrogenase</sbrk:buffer>
+</sbrk:experimentalConditions>
+</sbrk:sabiork>
+                      <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+              <rdf:Description rdf:about="#META_KL_5623">
+                <bqbiol:isDescribedBy>
+                  <rdf:Bag>
+                    <rdf:li rdf:resource="https://identifiers.org/pubmed/14976339"/>
+                  </rdf:Bag>
+                </bqbiol:isDescribedBy>
+                <bqbiol:isDescribedBy>
+                  <rdf:Bag>
+                    <rdf:li rdf:resource="https://identifiers.org/sabiork.kineticrecord/5623"/>
+                  </rdf:Bag>
+                </bqbiol:isDescribedBy>
+              </rdf:Description>
+            </rdf:RDF>
+          </annotation>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <ci> KL_5623 </ci>
+              <ci> KmA_SPC_21342_microsome </ci>
+              <ci> SPC_21342_microsome </ci>
+              <ci> Vmax_KmA_SPC_21342_microsome </ci>
+              <ci> ENZ_29270_microsome </ci>
+              <ci> Vmax </ci>
+            </apply>
+          </math>
+                  <listOfLocalParameters>
+            <localParameter id="KmA_SPC_21342_microsome" name="KmA_oneChloroethenyloxirane" value="5.15E-5" sboTerm="SBO:0000027" units="M"/>
+            <localParameter id="Vmax_KmA_SPC_21342_microsome" name="Vmax_KmA_oneChloroethenyloxirane" value="0.0005833333" sboTerm="SBO:0000301" units="lgwedgeoneswedgeone"/>
+            <localParameter id="Vmax" name="Vmax" value="3.055556E-8" sboTerm="SBO:0000186" units="molswedgeonegwedgeone"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id="REAC_7" metaid="META_REAC_7" reversible="true" fast="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#META_REAC_7">
+              <bqbiol:isVersionOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/ec-code/3.3.2.9"/>
+                </rdf:Bag>
+              </bqbiol:isVersionOf>
+              <bqbiol:hasTaxon>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/taxonomy/10036"/>
+                </rdf:Bag>
+              </bqbiol:hasTaxon>
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/sabiork.reaction/7243"/>
+                </rdf:Bag>
+              </bqbiol:is>
+              <bqbiol:occursIn>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/bto/BTO:0000759"/>
+                </rdf:Bag>
+              </bqbiol:occursIn>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+        <listOfReactants>
+          <speciesReference constant="true" species="SPC_40_microsome" sboTerm="SBO:0000015" stoichiometry="1"/>
+          <speciesReference constant="true" species="SPC_21342_microsome" sboTerm="SBO:0000015" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference constant="true" species="SPC_21366_microsome" sboTerm="SBO:0000011" stoichiometry="1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="ENZ_29262_microsome" sboTerm="SBO:0000460"/>
+        </listOfModifiers>
+        <kineticLaw metaid="META_KL_5621" sboTerm="SBO:0000029">
+          <annotation>
+<sbrk:sabiork xmlns:sbrk="http://sabiork.h-its.org">
+<sbrk:kineticLawID>5621</sbrk:kineticLawID>
+<sbrk:experimentalConditions>
+<sbrk:temperature>
+<sbrk:startValueTemperature>38.0</sbrk:startValueTemperature>
+<sbrk:temperatureUnit>°C</sbrk:temperatureUnit>
+</sbrk:temperature>
+<sbrk:pH>
+<sbrk:startValuepH>7.4</sbrk:startValuepH>
+</sbrk:pH>
+<sbrk:buffer> 0.1 M phosphate, 15 mM MgCl2, 0.1 mM EDTA, 0.8 mM Glucose 6-phosphate, 1 U/ml Glucose 6-phosphate dehydrogenase</sbrk:buffer>
+</sbrk:experimentalConditions>
+</sbrk:sabiork>
+                      <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+              <rdf:Description rdf:about="#META_KL_5621">
+                <bqbiol:isDescribedBy>
+                  <rdf:Bag>
+                    <rdf:li rdf:resource="https://identifiers.org/pubmed/14976339"/>
+                  </rdf:Bag>
+                </bqbiol:isDescribedBy>
+                <bqbiol:isDescribedBy>
+                  <rdf:Bag>
+                    <rdf:li rdf:resource="https://identifiers.org/sabiork.kineticrecord/5621"/>
+                  </rdf:Bag>
+                </bqbiol:isDescribedBy>
+              </rdf:Description>
+            </rdf:RDF>
+          </annotation>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <ci> KL_5621 </ci>
+              <ci> KmA_SPC_21342_microsome </ci>
+              <ci> Vmax_KmA_SPC_21342_microsome </ci>
+              <ci> Vmax </ci>
+              <ci> SPC_21342_microsome </ci>
+              <ci> ENZ_29262_microsome </ci>
+            </apply>
+          </math>
+                  <listOfLocalParameters>
+            <localParameter id="KmA_SPC_21342_microsome" name="KmA_oneChloroethenyloxirane" value="7.38E-5" sboTerm="SBO:0000027" units="M"/>
+            <localParameter id="Vmax_KmA_SPC_21342_microsome" name="Vmax_KmA_oneChloroethenyloxirane" value="0.009361111" sboTerm="SBO:0000301" units="lgwedgeoneswedgeone"/>
+            <localParameter id="Vmax" name="Vmax" value="6.916667E-7" sboTerm="SBO:0000186" units="molswedgeonegwedgeone"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id="REAC_8" metaid="META_REAC_8" reversible="true" fast="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#META_REAC_8">
+              <bqbiol:isVersionOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/ec-code/3.3.2.9"/>
+                </rdf:Bag>
+              </bqbiol:isVersionOf>
+              <bqbiol:hasTaxon>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/taxonomy/10036"/>
+                </rdf:Bag>
+              </bqbiol:hasTaxon>
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/sabiork.reaction/7243"/>
+                </rdf:Bag>
+              </bqbiol:is>
+              <bqbiol:occursIn>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/bto/BTO:0000763"/>
+                </rdf:Bag>
+              </bqbiol:occursIn>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+        <listOfReactants>
+          <speciesReference constant="true" species="SPC_21342_microsome" sboTerm="SBO:0000015" stoichiometry="1"/>
+          <speciesReference constant="true" species="SPC_40_microsome" sboTerm="SBO:0000015" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference constant="true" species="SPC_21366_microsome" sboTerm="SBO:0000011" stoichiometry="1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="ENZ_29282_microsome" sboTerm="SBO:0000460"/>
+        </listOfModifiers>
+        <kineticLaw metaid="META_KL_5626" sboTerm="SBO:0000029">
+          <annotation>
+<sbrk:sabiork xmlns:sbrk="http://sabiork.h-its.org">
+<sbrk:kineticLawID>5626</sbrk:kineticLawID>
+<sbrk:experimentalConditions>
+<sbrk:temperature>
+<sbrk:startValueTemperature>38.0</sbrk:startValueTemperature>
+<sbrk:temperatureUnit>°C</sbrk:temperatureUnit>
+</sbrk:temperature>
+<sbrk:pH>
+<sbrk:startValuepH>7.4</sbrk:startValuepH>
+</sbrk:pH>
+<sbrk:buffer> 0.1 M phosphate, 15 mM MgCl2, 0.1 mM EDTA, 0.8 mM Glucose 6-phosphate, 1 U/ml Glucose 6-phosphate dehydrogenase</sbrk:buffer>
+</sbrk:experimentalConditions>
+</sbrk:sabiork>
+                      <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+              <rdf:Description rdf:about="#META_KL_5626">
+                <bqbiol:isDescribedBy>
+                  <rdf:Bag>
+                    <rdf:li rdf:resource="https://identifiers.org/pubmed/14976339"/>
+                  </rdf:Bag>
+                </bqbiol:isDescribedBy>
+                <bqbiol:isDescribedBy>
+                  <rdf:Bag>
+                    <rdf:li rdf:resource="https://identifiers.org/sabiork.kineticrecord/5626"/>
+                  </rdf:Bag>
+                </bqbiol:isDescribedBy>
+              </rdf:Description>
+            </rdf:RDF>
+          </annotation>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <ci> KL_5626 </ci>
+              <ci> Vmax </ci>
+              <ci> ENZ_29282_microsome </ci>
+              <ci> Vmax_KmA_SPC_21342_microsome </ci>
+              <ci> KmA_SPC_21342_microsome </ci>
+              <ci> SPC_21342_microsome </ci>
+            </apply>
+          </math>
+                  <listOfLocalParameters>
+            <localParameter id="Vmax" name="Vmax" value="3.722222E-7" sboTerm="SBO:0000186" units="molswedgeonegwedgeone"/>
+            <localParameter id="Vmax_KmA_SPC_21342_microsome" name="Vmax_KmA_oneChloroethenyloxirane" value="0.001972222" sboTerm="SBO:0000301" units="lgwedgeoneswedgeone"/>
+            <localParameter id="KmA_SPC_21342_microsome" name="KmA_oneChloroethenyloxirane" value="0.0001876" sboTerm="SBO:0000027" units="M"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id="REAC_9" metaid="META_REAC_9" reversible="true" fast="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#META_REAC_9">
+              <bqbiol:isVersionOf>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/ec-code/3.3.2.9"/>
+                </rdf:Bag>
+              </bqbiol:isVersionOf>
+              <bqbiol:hasTaxon>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/taxonomy/10090"/>
+                </rdf:Bag>
+              </bqbiol:hasTaxon>
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/sabiork.reaction/7243"/>
+                </rdf:Bag>
+              </bqbiol:is>
+              <bqbiol:occursIn>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/bto/BTO:0000759"/>
+                </rdf:Bag>
+              </bqbiol:occursIn>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+        <listOfReactants>
+          <speciesReference constant="true" species="SPC_21342_microsome" sboTerm="SBO:0000015" stoichiometry="1"/>
+          <speciesReference constant="true" species="SPC_40_microsome" sboTerm="SBO:0000015" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference constant="true" species="SPC_21366_microsome" sboTerm="SBO:0000011" stoichiometry="1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="ENZ_29250_microsome" sboTerm="SBO:0000460"/>
+        </listOfModifiers>
+        <kineticLaw metaid="META_KL_5618" sboTerm="SBO:0000029">
+          <annotation>
+<sbrk:sabiork xmlns:sbrk="http://sabiork.h-its.org">
+<sbrk:kineticLawID>5618</sbrk:kineticLawID>
+<sbrk:experimentalConditions>
+<sbrk:temperature>
+<sbrk:startValueTemperature>38.0</sbrk:startValueTemperature>
+<sbrk:temperatureUnit>°C</sbrk:temperatureUnit>
+</sbrk:temperature>
+<sbrk:pH>
+<sbrk:startValuepH>7.4</sbrk:startValuepH>
+</sbrk:pH>
+<sbrk:buffer> 0.1 M phosphate, 15 mM MgCl2, 0.1 mM EDTA, 0.8 mM Glucose 6-phosphate, 1 U/ml Glucose 6-phosphate dehydrogenase</sbrk:buffer>
+</sbrk:experimentalConditions>
+</sbrk:sabiork>
+                      <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+              <rdf:Description rdf:about="#META_KL_5618">
+                <bqbiol:isDescribedBy>
+                  <rdf:Bag>
+                    <rdf:li rdf:resource="https://identifiers.org/pubmed/14976339"/>
+                  </rdf:Bag>
+                </bqbiol:isDescribedBy>
+                <bqbiol:isDescribedBy>
+                  <rdf:Bag>
+                    <rdf:li rdf:resource="https://identifiers.org/sabiork.kineticrecord/5618"/>
+                  </rdf:Bag>
+                </bqbiol:isDescribedBy>
+              </rdf:Description>
+            </rdf:RDF>
+          </annotation>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <ci> KL_5618 </ci>
+              <ci> ENZ_29250_microsome </ci>
+              <ci> Vmax_KmA_SPC_21342_microsome </ci>
+              <ci> SPC_21342_microsome </ci>
+              <ci> KmA_SPC_21342_microsome </ci>
+              <ci> Vmax </ci>
+            </apply>
+          </math>
+                  <listOfLocalParameters>
+            <localParameter id="Vmax_KmA_SPC_21342_microsome" name="Vmax_KmA_oneChloroethenyloxirane" value="0.001861111" sboTerm="SBO:0000301" units="lgwedgeoneswedgeone"/>
+            <localParameter id="KmA_SPC_21342_microsome" name="KmA_oneChloroethenyloxirane" value="2.09E-5" sboTerm="SBO:0000027" units="M"/>
+            <localParameter id="Vmax" name="Vmax" value="3.888889E-8" sboTerm="SBO:0000186" units="molswedgeonegwedgeone"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+    </listOfReactions>
+  </model>
+</sbml>
