@@ -1,4 +1,4 @@
-﻿Imports Microsoft.VisualBasic.ApplicationServices
+﻿Imports Oracle.LinuxCompatibility.MySQL.Uri
 
 Namespace My
 
@@ -25,6 +25,22 @@ Namespace My
     ' End Sub
 
     Partial Friend Class MyApplication
+
+        Public Shared ReadOnly Property biocad_registry As biocad_registry.biocad_registry
+
+        Public Shared Function Load() As Boolean
+            Dim mysqli As New ConnectionUri With {
+                .Database = "cad_registry",
+                .IPAddress = "localhost",
+                .Password = 123456,
+                .Port = 3306,
+                .User = "root"
+            }
+
+            _biocad_registry = New biocad_registry.biocad_registry(mysqli)
+
+            Return biocad_registry.getDriver.Ping >= 0
+        End Function
 
     End Class
 End Namespace

@@ -7,6 +7,12 @@ Imports Oracle.LinuxCompatibility.MySQL.Uri
 ''' </summary>
 Public Class biocad_registry : Inherits biocad_registryModel.db_mysql
 
+    Public ReadOnly Property vocabulary As Model
+        Get
+            Return m_vocabulary
+        End Get
+    End Property
+
     Sub New(mysql As ConnectionUri)
         Call MyBase.New(mysql)
     End Sub
