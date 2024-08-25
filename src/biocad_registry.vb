@@ -19,6 +19,30 @@ Public Class biocad_registry : Inherits biocad_registryModel.db_mysql
         End Get
     End Property
 
+    Public ReadOnly Property reaction_graph As Model
+        Get
+            Return m_reaction_graph
+        End Get
+    End Property
+
+    Public ReadOnly Property regulation_graph As Model
+        Get
+            Return m_regulation_graph
+        End Get
+    End Property
+
+    Public ReadOnly Property db_xrefs As Model
+        Get
+            Return m_db_xrefs
+        End Get
+    End Property
+
+    Public ReadOnly Property molecule_function As Model
+        Get
+            Return m_molecule_function
+        End Get
+    End Property
+
     Sub New(mysql As ConnectionUri)
         Call MyBase.New(mysql)
     End Sub
