@@ -11,7 +11,7 @@ MySql database field attributes notes in this development document:
 > + **UN**: Unsigned;
 > + **ZF**: Zero Fill
 
-Generate time: 8/25/2024 6:14:00 PM<br />
+Generate time: 8/25/2024 7:27:44 PM<br />
 By: ``mysqli.vb`` reflector tool ([https://github.com/xieguigang/mysqli.vb](https://github.com/xieguigang/mysqli.vb))
 
 <div style="page-break-after: always;"></div>
@@ -40,7 +40,10 @@ CREATE TABLE IF NOT EXISTS `complex` (
   `component_id` INT UNSIGNED NOT NULL COMMENT 'the component molecule id',
   `add_time` DATETIME NOT NULL DEFAULT now(),
   `note` LONGTEXT NULL,
-  PRIMARY KEY (`id`))
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
+  INDEX `molecule_info_idx` (`molecule_id` ASC) VISIBLE,
+  INDEX `component_info_idx` (`component_id` ASC) VISIBLE)
 ENGINE = InnoDB
 COMMENT = 'the complex component composition graph data';
 
@@ -75,7 +78,14 @@ CREATE TABLE IF NOT EXISTS `db_xrefs` (
   `xref` VARCHAR(255) NOT NULL,
   `type` INT UNSIGNED NOT NULL COMMENT 'the target type of obj_id that point to, could be molecules, reactions, pathways',
   `add_time` DATETIME NOT NULL DEFAULT now(),
-  PRIMARY KEY (`id`))
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
+  INDEX `molecule_id_idx` (`obj_id` ASC) VISIBLE,
+  INDEX `db_name_idx` (`db_key` ASC) VISIBLE,
+  INDEX `object_type_idx` (`type` ASC) VISIBLE,
+  UNIQUE INDEX `unique_dblink` (`obj_id` ASC, `db_key` ASC, `xref` ASC, `type` ASC) VISIBLE,
+  INDEX `find_xrefs` (`type` ASC, `xref` ASC) VISIBLE,
+  INDEX `dbid_index` (`xref` ASC) VISIBLE)
 ENGINE = InnoDB;
 
 ```
@@ -119,7 +129,13 @@ CREATE TABLE IF NOT EXISTS `kinetic_law` (
   `function_id` INT UNSIGNED NOT NULL COMMENT 'the internal reference id of the molecule function record',
   `add_time` DATETIME NOT NULL DEFAULT now(),
   `note` LONGTEXT NULL COMMENT 'description note text about current enzyme kinetics lambda model',
-  PRIMARY KEY (`id`))
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
+  INDEX `regulation_id_idx` (`function_id` ASC) INVISIBLE,
+  INDEX `xrefs_index` (`db_xref` ASC) INVISIBLE,
+  INDEX `ph_filter` (`pH` ASC) INVISIBLE,
+  INDEX `temperature_filter` (`temperature` ASC) VISIBLE,
+  INDEX `uniprot_index` (`uniprot` ASC) VISIBLE)
 ENGINE = InnoDB
 COMMENT = 'the enzymatic catalytic kinetics lambda model';
 
@@ -160,7 +176,14 @@ CREATE TABLE IF NOT EXISTS `molecule` (
   `parent` INT UNSIGNED NOT NULL COMMENT 'the parent metabolite id, example as RNA is a parent of polypeptide, and gene is a parent of RNA sequence.',
   `add_time` DATETIME NOT NULL DEFAULT now() COMMENT 'add time of current molecular entity',
   `note` LONGTEXT NULL COMMENT 'description text about current entity object',
-  PRIMARY KEY (`id`))
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC) INVISIBLE,
+  INDEX `data_type_idx` (`type` ASC) VISIBLE,
+  INDEX `parent_molecule_idx` (`parent` ASC) VISIBLE,
+  UNIQUE INDEX `unique_molecule` (`type` ASC, `xref_id` ASC) VISIBLE,
+  INDEX `name_index` (`name` ASC) VISIBLE,
+  INDEX `xref_index` (`xref_id` ASC) VISIBLE,
+  INDEX `mass_filter` (`mass` ASC) VISIBLE)
 ENGINE = InnoDB
 COMMENT = 'The molecular entity object inside a cell';
 
@@ -193,7 +216,10 @@ CREATE TABLE IF NOT EXISTS `molecule_function` (
   `regulation_term` INT UNSIGNED NOT NULL COMMENT 'the id of the term in regulation graph table',
   `add_time` DATETIME NOT NULL DEFAULT now(),
   `note` LONGTEXT NULL,
-  PRIMARY KEY (`id`))
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
+  INDEX `molecule_entity_idx` (`molecule_id` ASC) VISIBLE,
+  INDEX `regulation_info_idx` (`regulation_term` ASC) VISIBLE)
 ENGINE = InnoDB;
 
 ```
@@ -225,7 +251,9 @@ CREATE TABLE IF NOT EXISTS `pathway` (
   `name` VARCHAR(1024) NOT NULL COMMENT 'the pathway name',
   `add_time` DATETIME NOT NULL DEFAULT now(),
   `note` LONGTEXT NULL,
-  PRIMARY KEY (`id`))
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
+  UNIQUE INDEX `name_UNIQUE` (`name` ASC) VISIBLE)
 ENGINE = InnoDB;
 
 ```
@@ -257,7 +285,10 @@ CREATE TABLE IF NOT EXISTS `pathway_graph` (
   `entity_id` INT UNSIGNED NOT NULL,
   `add_time` DATETIME NOT NULL DEFAULT now(),
   `note` LONGTEXT NULL,
-  PRIMARY KEY (`id`))
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
+  INDEX `pathway_info_idx` (`pathway_id` ASC) VISIBLE,
+  INDEX `molecule_data_idx` (`entity_id` ASC) VISIBLE)
 ENGINE = InnoDB;
 
 ```
@@ -291,7 +322,9 @@ CREATE TABLE IF NOT EXISTS `reaction` (
   `equation` MEDIUMTEXT NOT NULL,
   `add_time` DATETIME NOT NULL DEFAULT now(),
   `note` LONGTEXT NULL,
-  PRIMARY KEY (`id`))
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
+  UNIQUE INDEX `db_xref_UNIQUE` (`db_xref` ASC) VISIBLE)
 ENGINE = InnoDB
 COMMENT = 'the definition of the biological reaction process';
 
@@ -330,7 +363,12 @@ CREATE TABLE IF NOT EXISTS `reaction_graph` (
   `factor` DOUBLE NOT NULL DEFAULT 1,
   `add_time` DATETIME NOT NULL DEFAULT now(),
   `note` LONGTEXT NULL,
-  PRIMARY KEY (`id`))
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC) INVISIBLE,
+  INDEX `reaction_info_idx` (`reaction` ASC) VISIBLE,
+  INDEX `molecule_data_idx` (`molecule_id` ASC) VISIBLE,
+  INDEX `role_term_idx` (`role` ASC) VISIBLE,
+  INDEX `check_duplicated` (`reaction` ASC, `db_xref` ASC, `role` ASC) VISIBLE)
 ENGINE = InnoDB
 COMMENT = 'the relationship between the reaction model and molecule objects';
 
@@ -365,7 +403,10 @@ CREATE TABLE IF NOT EXISTS `regulation_graph` (
   `reaction_id` INT UNSIGNED NOT NULL,
   `add_time` DATETIME NOT NULL DEFAULT now(),
   `note` LONGTEXT NULL,
-  PRIMARY KEY (`id`))
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
+  INDEX `role_term_idx` (`role` ASC) VISIBLE,
+  INDEX `reaction_process_idx` (`reaction_id` ASC) VISIBLE)
 ENGINE = InnoDB;
 
 ```
@@ -401,7 +442,10 @@ CREATE TABLE IF NOT EXISTS `sequence_graph` (
   `seq_graph` LONGTEXT NOT NULL COMMENT 'base64 encoded double vector of the embedding result',
   `embedding` LONGTEXT NOT NULL COMMENT 'the embedding keys, for dna, always ATGC, for RNA always AUGC, for popypeptide always 20 Amino acid, for small metabolite, is the atom groups that parsed from the smiles graph ',
   `add_time` DATETIME NOT NULL DEFAULT now(),
-  PRIMARY KEY (`id`))
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
+  INDEX `molecules_idx` (`molecule_id` ASC) VISIBLE,
+  INDEX `search_sequence` (`hashcode` ASC) VISIBLE)
 ENGINE = InnoDB
 COMMENT = 'the sequence composition data';
 
@@ -434,7 +478,9 @@ CREATE TABLE IF NOT EXISTS `subcellular_compartments` (
   `topology` VARCHAR(1024) NULL,
   `add_time` DATETIME NOT NULL DEFAULT now(),
   `note` LONGTEXT NULL,
-  PRIMARY KEY (`id`))
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
+  UNIQUE INDEX `compartment_name_UNIQUE` (`compartment_name` ASC) VISIBLE)
 ENGINE = InnoDB
 COMMENT = 'defines the subcellular compartments';
 
@@ -469,7 +515,12 @@ CREATE TABLE IF NOT EXISTS `subcellular_location` (
   `entity` INT UNSIGNED NOT NULL COMMENT 'the vocabulary type id of the entity object, could be molecule, reaction or pathways',
   `add_time` DATETIME NOT NULL DEFAULT now(),
   `note` LONGTEXT NULL,
-  PRIMARY KEY (`id`))
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
+  INDEX `subcellular_compartments_idx` (`compartment_id` ASC) VISIBLE,
+  INDEX `molecule_obj_idx` (`obj_id` ASC) VISIBLE,
+  UNIQUE INDEX `unique_reference` (`compartment_id` ASC, `obj_id` ASC, `entity` ASC) INVISIBLE,
+  INDEX `link_entity_type_idx` (`entity` ASC) VISIBLE)
 ENGINE = InnoDB
 COMMENT = 'associates the subcellular_compartments and the molecule objects';
 
@@ -504,7 +555,9 @@ CREATE TABLE IF NOT EXISTS `vocabulary` (
   `color` VARCHAR(8) NOT NULL DEFAULT '#000000' COMMENT 'the html color code, example as #ffffff',
   `add_time` DATETIME NOT NULL DEFAULT now(),
   `note` LONGTEXT NULL,
-  PRIMARY KEY (`id`))
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
+  INDEX `search_term` (`category` ASC, `term` ASC) VISIBLE)
 ENGINE = InnoDB;
 
 ```
