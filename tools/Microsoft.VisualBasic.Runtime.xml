@@ -17590,7 +17590,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="customOrder">可能会出现大小写不对的情况？</param>
  <returns></returns>
 </member>
-<member name="M:Microsoft.VisualBasic.ListExtensions.Indexing``1(System.Collections.Generic.IEnumerable{``0})">
+<member name="M:Microsoft.VisualBasic.ListExtensions.Indexing``1(System.Collections.Generic.IEnumerable{``0},System.Int32)">
  <summary>
  从一个对象集合中创建索引，请注意，传递进入这个函数的参数应该是经过去重操作之后的数据
  </summary>
@@ -19093,7 +19093,12 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  </summary>
  <param name="html"></param>
  <returns></returns>
- <remarks></remarks>
+ <remarks>
+ use this function for get the xml/html element tag value, example as:
+ 
+ ' get "title &lt;b>aaa&lt;/b>"
+ &lt;h1>title &lt;b>aaa&lt;/b>&lt;/h1>
+ </remarks>
 </member>
 <member name="F:Microsoft.VisualBasic.Text.Parser.HtmlParser.HtmlStrips.LineFeed">
  <summary>
@@ -28673,6 +28678,15 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="ch"></param>
  <returns></returns>
 </member>
+<member name="M:Microsoft.VisualBasic.RegexExtensions.Replace(System.Text.RegularExpressions.Regex,System.Text.StringBuilder@,System.String,System.String)">
+ <summary>
+ A helper function for make sub-string replacement
+ </summary>
+ <param name="r"></param>
+ <param name="str"></param>
+ <param name="replacement"></param>
+ <param name="stringCopy"></param>
+</member>
 <member name="M:Microsoft.VisualBasic.RegexExtensions.StartsWith(System.String,System.String,System.Text.RegularExpressions.RegexOptions)">
  <summary>
  Determines whether the beginning of this string instance matches the specified
@@ -37935,6 +37949,16 @@ to take away yo [rest of string was truncated]&quot;;.
  <summary>
  ensure that the number is converted as bytes always in network byte order outputs.
  </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Serialization.BinaryDumping.NetworkByteOrderBuffer.GetBytes(System.Collections.Generic.IEnumerable{System.Double})">
+ <summary>
+ make binary data encoding of a given numeric vector
+ </summary>
+ <param name="d"></param>
+ <returns></returns>
+ <remarks>
+ a wrapper function of the <see cref="F:Microsoft.VisualBasic.Serialization.BinaryDumping.NetworkByteOrderBuffer.encode"/>
+ </remarks>
 </member>
 <member name="T:Microsoft.VisualBasic.Serialization.BinaryDumping.DoVisitObject">
  <summary>

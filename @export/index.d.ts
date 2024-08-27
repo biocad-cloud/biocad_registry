@@ -44,7 +44,19 @@ declare namespace biocad_registry {
    function imports_rhea(biocad_registry: any, rhea: any): object;
    /**
    */
+   function imports_sabiork(biocad_registry: any, repo: any): object;
+   /**
+   */
    function imports_uniprot(biocad_registry: any, uniprot: any): object;
+   /**
+   */
+   function link_gene_proteins(biocad_registry: any): object;
+   /**
+   */
+   function link_reaction_enzymes(biocad_registry: any): object;
+   /**
+   */
+   function link_reaction_metabolites(biocad_registry: any): object;
    /**
    */
    function metabolite_term(biocad_registry: any): object;
