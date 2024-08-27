@@ -1,0 +1,3206 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<sbml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" level="3" version="1" xmlns="http://www.sbml.org/sbml/level3/version1/core">
+   <model name="SABIOmdl19Aug2024620">
+      <notes>
+         <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>
+This model has been created with the help of the SABIO-RK Database
+(http://sabio.h-its.org/) 
+ (c) 2005-2024 HITS gGmbH http://www.h-its.org
+
+</p>
+SABIO-RK - database for biochemical reaction kinetics. Wittig U, Kania R, Golebiewski M, Rey M, Shi L, Jong L, Algaa E, Weidemann A, Sauer-Danzwith H, Mir S, Krebs O, Bittkowski M, Wetsch E, Rojas I, Mueller W. Nucleic Acids Res. 2012;40(Database issue)790-6
+</body>
+      </notes>
+      <listOfCompartments>
+         <compartment id="compart_chloroplast" name="chloroplast" size="0" constant="true" />
+         <compartment id="compart_Cell" name="Cell" size="0" constant="true" />
+      </listOfCompartments>
+      <listOfSpecies>
+         <species id="SPC_39_chloroplast" name="H+" compartment="compart_chloroplast" boundaryCondition="false" hasOnlySubstanceUnits="false" constant="false" metaid="META_SPC_39_chloroplast" initialConcentration="1">
+            <annotation>
+               <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Description rdf:about="#META_SPC_39_chloroplast">
+                     <bqbiol:is>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:15378" />
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:5584" />
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:29234" />
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:29233" />
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:24636" />
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:13357" />
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:10744" />
+                           <rdf:li rdf:resource="https://identifiers.org/kegg.compound/C00080" />
+                        </rdf:Bag>
+                     </bqbiol:is>
+                  </rdf:Description>
+               </rdf:RDF>
+            </annotation>
+         </species>
+         <species id="SPC_2286_chloroplast" name="Acrolein" compartment="compart_chloroplast" boundaryCondition="false" hasOnlySubstanceUnits="false" constant="false" metaid="META_SPC_2286_chloroplast" initialConcentration="1">
+            <annotation>
+               <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Description rdf:about="#META_SPC_2286_chloroplast">
+                     <bqbiol:is>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:15368" />
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:2434" />
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:22214" />
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:13720" />
+                           <rdf:li rdf:resource="https://identifiers.org/kegg.compound/C01471" />
+                        </rdf:Bag>
+                     </bqbiol:is>
+                  </rdf:Description>
+               </rdf:RDF>
+            </annotation>
+         </species>
+         <species id="SPC_1262_chloroplast" name="NADPH" compartment="compart_chloroplast" boundaryCondition="false" hasOnlySubstanceUnits="false" constant="false" metaid="META_SPC_1262_chloroplast" initialConcentration="1">
+            <annotation>
+               <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Description rdf:about="#META_SPC_1262_chloroplast">
+                     <bqbiol:is>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:16474" />
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:7425" />
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:57783" />
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:44286" />
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:21904" />
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:13400" />
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:13399" />
+                           <rdf:li rdf:resource="https://identifiers.org/kegg.compound/C00005" />
+                        </rdf:Bag>
+                     </bqbiol:is>
+                  </rdf:Description>
+               </rdf:RDF>
+            </annotation>
+         </species>
+         <species id="SPC_1263_chloroplast" name="NADP+" compartment="compart_chloroplast" boundaryCondition="false" hasOnlySubstanceUnits="false" constant="false" metaid="META_SPC_1263_chloroplast" initialConcentration="1">
+            <annotation>
+               <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Description rdf:about="#META_SPC_1263_chloroplast">
+                     <bqbiol:is>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:44409" />
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:25523" />
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:18009" />
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:7424" />
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:58349" />
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:44405" />
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:21903" />
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:13398" />
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:13397" />
+                           <rdf:li rdf:resource="https://identifiers.org/kegg.compound/C00006" />
+                           <rdf:li rdf:resource="https://identifiers.org/kegg.compound/C11037" />
+                        </rdf:Bag>
+                     </bqbiol:is>
+                  </rdf:Description>
+               </rdf:RDF>
+            </annotation>
+         </species>
+         <species id="SPC_2056_chloroplast" name="Propanal" compartment="compart_chloroplast" boundaryCondition="false" hasOnlySubstanceUnits="false" constant="false" metaid="META_SPC_2056_chloroplast" initialConcentration="1">
+            <annotation>
+               <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Description rdf:about="#META_SPC_2056_chloroplast">
+                     <bqbiol:is>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:17153" />
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:8468" />
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:45052" />
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:41359" />
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:26281" />
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:14898" />
+                           <rdf:li rdf:resource="https://identifiers.org/kegg.compound/C00479" />
+                        </rdf:Bag>
+                     </bqbiol:is>
+                  </rdf:Description>
+               </rdf:RDF>
+            </annotation>
+         </species>
+         <species id="ENZ_377915_chloroplast" name="Enzyme wildtype" compartment="compart_chloroplast" boundaryCondition="false" hasOnlySubstanceUnits="false" constant="false" metaid="META_ENZ_377915_chloroplast" initialConcentration="1">
+            <annotation>
+               <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Description rdf:about="#META_ENZ_377915_chloroplast">
+                     <bqbiol:is>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/uniprot/E2S0A5" />
+                        </rdf:Bag>
+                     </bqbiol:is>
+                  </rdf:Description>
+               </rdf:RDF>
+            </annotation>
+         </species>
+         <species id="SPC_20832_chloroplast" name="Crotonaldehyde" compartment="compart_chloroplast" boundaryCondition="false" hasOnlySubstanceUnits="false" constant="false" metaid="META_SPC_20832_chloroplast" initialConcentration="1">
+            <annotation>
+               <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Description rdf:about="#META_SPC_20832_chloroplast">
+                     <bqbiol:is>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:41607" />
+                           <rdf:li rdf:resource="https://identifiers.org/kegg.compound/C19377" />
+                        </rdf:Bag>
+                     </bqbiol:is>
+                  </rdf:Description>
+               </rdf:RDF>
+            </annotation>
+         </species>
+         <species id="SPC_2281_chloroplast" name="Butanal" compartment="compart_chloroplast" boundaryCondition="false" hasOnlySubstanceUnits="false" constant="false" metaid="META_SPC_2281_chloroplast" initialConcentration="1">
+            <annotation>
+               <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Description rdf:about="#META_SPC_2281_chloroplast">
+                     <bqbiol:is>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:15743" />
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:3233" />
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:22938" />
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:13923" />
+                           <rdf:li rdf:resource="https://identifiers.org/kegg.compound/C01412" />
+                        </rdf:Bag>
+                     </bqbiol:is>
+                  </rdf:Description>
+               </rdf:RDF>
+            </annotation>
+         </species>
+         <species id="ENZ_377921_chloroplast" name="Enzyme wildtype" compartment="compart_chloroplast" boundaryCondition="false" hasOnlySubstanceUnits="false" constant="false" metaid="META_ENZ_377921_chloroplast" initialConcentration="1">
+            <annotation>
+               <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Description rdf:about="#META_ENZ_377921_chloroplast">
+                     <bqbiol:is>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/uniprot/E2S0A5" />
+                        </rdf:Bag>
+                     </bqbiol:is>
+                  </rdf:Description>
+               </rdf:RDF>
+            </annotation>
+         </species>
+         <species id="SPC_38_chloroplast" name="NADH" compartment="compart_chloroplast" boundaryCondition="false" hasOnlySubstanceUnits="false" constant="false" metaid="META_SPC_38_chloroplast" initialConcentration="1">
+            <annotation>
+               <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Description rdf:about="#META_SPC_38_chloroplast">
+                     <bqbiol:is>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:16908" />
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:7423" />
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:57945" />
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:44216" />
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:21902" />
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:13396" />
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:13395" />
+                           <rdf:li rdf:resource="https://identifiers.org/kegg.compound/C00004" />
+                        </rdf:Bag>
+                     </bqbiol:is>
+                  </rdf:Description>
+               </rdf:RDF>
+            </annotation>
+         </species>
+         <species id="SPC_37_chloroplast" name="NAD+" compartment="compart_chloroplast" boundaryCondition="false" hasOnlySubstanceUnits="false" constant="false" metaid="META_SPC_37_chloroplast" initialConcentration="1">
+            <annotation>
+               <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Description rdf:about="#META_SPC_37_chloroplast">
+                     <bqbiol:is>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:44215" />
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:13389" />
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:15846" />
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:7422" />
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:57540" />
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:44281" />
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:44214" />
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:21901" />
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:13394" />
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:13393" />
+                           <rdf:li rdf:resource="https://identifiers.org/kegg.compound/C00003" />
+                        </rdf:Bag>
+                     </bqbiol:is>
+                  </rdf:Description>
+               </rdf:RDF>
+            </annotation>
+         </species>
+         <species id="ENZ_377957_chloroplast" name="Enzyme wildtype" compartment="compart_chloroplast" boundaryCondition="false" hasOnlySubstanceUnits="false" constant="false" metaid="META_ENZ_377957_chloroplast" initialConcentration="1">
+            <annotation>
+               <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Description rdf:about="#META_ENZ_377957_chloroplast">
+                     <bqbiol:is>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/uniprot/E2S0A5" />
+                        </rdf:Bag>
+                     </bqbiol:is>
+                  </rdf:Description>
+               </rdf:RDF>
+            </annotation>
+         </species>
+         <species id="ENZ_377963_chloroplast" name="Enzyme wildtype GST-tag" compartment="compart_chloroplast" boundaryCondition="false" hasOnlySubstanceUnits="false" constant="false" metaid="META_ENZ_377963_chloroplast" initialConcentration="1">
+            <annotation>
+               <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Description rdf:about="#META_ENZ_377963_chloroplast">
+                     <bqbiol:is>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/uniprot/Q9ZUC1" />
+                        </rdf:Bag>
+                     </bqbiol:is>
+                  </rdf:Description>
+               </rdf:RDF>
+            </annotation>
+         </species>
+         <species id="SPC_31505_chloroplast" name="3-Penten-2-one" compartment="compart_chloroplast" boundaryCondition="false" hasOnlySubstanceUnits="false" constant="false" metaid="META_SPC_31505_chloroplast" initialConcentration="1">
+            <annotation>
+               <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Description rdf:about="#META_SPC_31505_chloroplast">
+                     <bqbiol:is>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:89540" />
+                        </rdf:Bag>
+                     </bqbiol:is>
+                  </rdf:Description>
+               </rdf:RDF>
+            </annotation>
+         </species>
+         <species id="SPC_2343_chloroplast" name="2-Pentanone" compartment="compart_chloroplast" boundaryCondition="false" hasOnlySubstanceUnits="false" constant="false" metaid="META_SPC_2343_chloroplast" initialConcentration="1">
+            <annotation>
+               <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Description rdf:about="#META_SPC_2343_chloroplast">
+                     <bqbiol:is>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:16472" />
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:7978" />
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:25886" />
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:14748" />
+                           <rdf:li rdf:resource="https://identifiers.org/kegg.compound/C01949" />
+                        </rdf:Bag>
+                     </bqbiol:is>
+                  </rdf:Description>
+               </rdf:RDF>
+            </annotation>
+         </species>
+         <species id="ENZ_377939_chloroplast" name="Enzyme wildtype" compartment="compart_chloroplast" boundaryCondition="false" hasOnlySubstanceUnits="false" constant="false" metaid="META_ENZ_377939_chloroplast" initialConcentration="1">
+            <annotation>
+               <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Description rdf:about="#META_ENZ_377939_chloroplast">
+                     <bqbiol:is>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/uniprot/E2S0A5" />
+                        </rdf:Bag>
+                     </bqbiol:is>
+                  </rdf:Description>
+               </rdf:RDF>
+            </annotation>
+         </species>
+         <species id="ENZ_377951_chloroplast" name="Enzyme wildtype" compartment="compart_chloroplast" boundaryCondition="false" hasOnlySubstanceUnits="false" constant="false" metaid="META_ENZ_377951_chloroplast" initialConcentration="1">
+            <annotation>
+               <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Description rdf:about="#META_ENZ_377951_chloroplast">
+                     <bqbiol:is>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/uniprot/E2S0A5" />
+                        </rdf:Bag>
+                     </bqbiol:is>
+                  </rdf:Description>
+               </rdf:RDF>
+            </annotation>
+         </species>
+         <species id="ENZ_377969_chloroplast" name="Enzyme wildtype GST-tag" compartment="compart_chloroplast" boundaryCondition="false" hasOnlySubstanceUnits="false" constant="false" metaid="META_ENZ_377969_chloroplast" initialConcentration="1">
+            <annotation>
+               <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Description rdf:about="#META_ENZ_377969_chloroplast">
+                     <bqbiol:is>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/uniprot/Q9ZUC1" />
+                        </rdf:Bag>
+                     </bqbiol:is>
+                  </rdf:Description>
+               </rdf:RDF>
+            </annotation>
+         </species>
+         <species id="ENZ_377975_chloroplast" name="Enzyme wildtype GST-tag" compartment="compart_chloroplast" boundaryCondition="false" hasOnlySubstanceUnits="false" constant="false" metaid="META_ENZ_377975_chloroplast" initialConcentration="1">
+            <annotation>
+               <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Description rdf:about="#META_ENZ_377975_chloroplast">
+                     <bqbiol:is>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/uniprot/Q9ZUC1" />
+                        </rdf:Bag>
+                     </bqbiol:is>
+                  </rdf:Description>
+               </rdf:RDF>
+            </annotation>
+         </species>
+         <species id="SPC_30271_chloroplast" name="3-Buten-2-one" compartment="compart_chloroplast" boundaryCondition="false" hasOnlySubstanceUnits="false" constant="false" metaid="META_SPC_30271_chloroplast" initialConcentration="1" />
+         <species id="SPC_2545_chloroplast" name="2-Butanone" compartment="compart_chloroplast" boundaryCondition="false" hasOnlySubstanceUnits="false" constant="false" metaid="META_SPC_2545_chloroplast" initialConcentration="1">
+            <annotation>
+               <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Description rdf:about="#META_SPC_2545_chloroplast">
+                     <bqbiol:is>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:28398" />
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:6858" />
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:25249" />
+                           <rdf:li rdf:resource="https://identifiers.org/kegg.compound/C02845" />
+                        </rdf:Bag>
+                     </bqbiol:is>
+                  </rdf:Description>
+               </rdf:RDF>
+            </annotation>
+         </species>
+         <species id="ENZ_377927_chloroplast" name="Enzyme wildtype" compartment="compart_chloroplast" boundaryCondition="false" hasOnlySubstanceUnits="false" constant="false" metaid="META_ENZ_377927_chloroplast" initialConcentration="1">
+            <annotation>
+               <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Description rdf:about="#META_ENZ_377927_chloroplast">
+                     <bqbiol:is>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/uniprot/E2S0A5" />
+                        </rdf:Bag>
+                     </bqbiol:is>
+                  </rdf:Description>
+               </rdf:RDF>
+            </annotation>
+         </species>
+         <species id="SPC_31504_chloroplast" name="1-Penten-3-one" compartment="compart_chloroplast" boundaryCondition="false" hasOnlySubstanceUnits="false" constant="false" metaid="META_SPC_31504_chloroplast" initialConcentration="1">
+            <annotation>
+               <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Description rdf:about="#META_SPC_31504_chloroplast">
+                     <bqbiol:is>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:89945" />
+                        </rdf:Bag>
+                     </bqbiol:is>
+                  </rdf:Description>
+               </rdf:RDF>
+            </annotation>
+         </species>
+         <species id="SPC_23238_chloroplast" name="3-Pentanone" compartment="compart_chloroplast" boundaryCondition="false" hasOnlySubstanceUnits="false" constant="false" metaid="META_SPC_23238_chloroplast" initialConcentration="1">
+            <annotation>
+               <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Description rdf:about="#META_SPC_23238_chloroplast">
+                     <bqbiol:is>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:67886" />
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:87755" />
+                        </rdf:Bag>
+                     </bqbiol:is>
+                  </rdf:Description>
+               </rdf:RDF>
+            </annotation>
+         </species>
+         <species id="ENZ_377933_chloroplast" name="Enzyme wildtype" compartment="compart_chloroplast" boundaryCondition="false" hasOnlySubstanceUnits="false" constant="false" metaid="META_ENZ_377933_chloroplast" initialConcentration="1">
+            <annotation>
+               <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Description rdf:about="#META_ENZ_377933_chloroplast">
+                     <bqbiol:is>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/uniprot/E2S0A5" />
+                        </rdf:Bag>
+                     </bqbiol:is>
+                  </rdf:Description>
+               </rdf:RDF>
+            </annotation>
+         </species>
+         <species id="SPC_31507_chloroplast" name="4-Hexen-3-one" compartment="compart_chloroplast" boundaryCondition="false" hasOnlySubstanceUnits="false" constant="false" metaid="META_SPC_31507_chloroplast" initialConcentration="1">
+            <annotation>
+               <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Description rdf:about="#META_SPC_31507_chloroplast">
+                     <bqbiol:is>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:89801" />
+                        </rdf:Bag>
+                     </bqbiol:is>
+                  </rdf:Description>
+               </rdf:RDF>
+            </annotation>
+         </species>
+         <species id="SPC_31506_chloroplast" name="3-Hexanone" compartment="compart_chloroplast" boundaryCondition="false" hasOnlySubstanceUnits="false" constant="false" metaid="META_SPC_31506_chloroplast" initialConcentration="1">
+            <annotation>
+               <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Description rdf:about="#META_SPC_31506_chloroplast">
+                     <bqbiol:is>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:89891" />
+                        </rdf:Bag>
+                     </bqbiol:is>
+                  </rdf:Description>
+               </rdf:RDF>
+            </annotation>
+         </species>
+         <species id="ENZ_377945_chloroplast" name="Enzyme wildtype" compartment="compart_chloroplast" boundaryCondition="false" hasOnlySubstanceUnits="false" constant="false" metaid="META_ENZ_377945_chloroplast" initialConcentration="1">
+            <annotation>
+               <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Description rdf:about="#META_ENZ_377945_chloroplast">
+                     <bqbiol:is>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/uniprot/E2S0A5" />
+                        </rdf:Bag>
+                     </bqbiol:is>
+                  </rdf:Description>
+               </rdf:RDF>
+            </annotation>
+         </species>
+         <species id="ENZ_377987_chloroplast" name="Enzyme wildtype GST-tag" compartment="compart_chloroplast" boundaryCondition="false" hasOnlySubstanceUnits="false" constant="false" metaid="META_ENZ_377987_chloroplast" initialConcentration="1">
+            <annotation>
+               <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Description rdf:about="#META_ENZ_377987_chloroplast">
+                     <bqbiol:is>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/uniprot/Q9ZUC1" />
+                        </rdf:Bag>
+                     </bqbiol:is>
+                  </rdf:Description>
+               </rdf:RDF>
+            </annotation>
+         </species>
+         <species id="ENZ_377993_chloroplast" name="Enzyme wildtype GST-tag" compartment="compart_chloroplast" boundaryCondition="false" hasOnlySubstanceUnits="false" constant="false" metaid="META_ENZ_377993_chloroplast" initialConcentration="1">
+            <annotation>
+               <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Description rdf:about="#META_ENZ_377993_chloroplast">
+                     <bqbiol:is>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/uniprot/Q9ZUC1" />
+                        </rdf:Bag>
+                     </bqbiol:is>
+                  </rdf:Description>
+               </rdf:RDF>
+            </annotation>
+         </species>
+         <species id="ENZ_377981_chloroplast" name="Enzyme wildtype GST-tag" compartment="compart_chloroplast" boundaryCondition="false" hasOnlySubstanceUnits="false" constant="false" metaid="META_ENZ_377981_chloroplast" initialConcentration="1">
+            <annotation>
+               <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Description rdf:about="#META_ENZ_377981_chloroplast">
+                     <bqbiol:is>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/uniprot/Q9ZUC1" />
+                        </rdf:Bag>
+                     </bqbiol:is>
+                  </rdf:Description>
+               </rdf:RDF>
+            </annotation>
+         </species>
+         <species id="ENZ_377999_chloroplast" name="Enzyme wildtype GST-tag" compartment="compart_chloroplast" boundaryCondition="false" hasOnlySubstanceUnits="false" constant="false" metaid="META_ENZ_377999_chloroplast" initialConcentration="1">
+            <annotation>
+               <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Description rdf:about="#META_ENZ_377999_chloroplast">
+                     <bqbiol:is>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/uniprot/Q9ZUC1" />
+                        </rdf:Bag>
+                     </bqbiol:is>
+                  </rdf:Description>
+               </rdf:RDF>
+            </annotation>
+         </species>
+         <species id="SPC_6180_Cell" name="Cyclohex-2-enone" compartment="compart_Cell" boundaryCondition="false" hasOnlySubstanceUnits="false" constant="false" metaid="META_SPC_6180_Cell" initialConcentration="1">
+            <annotation>
+               <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Description rdf:about="#META_SPC_6180_Cell">
+                     <bqbiol:is>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:15977" />
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:4007" />
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:23463" />
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:14047" />
+                           <rdf:li rdf:resource="https://identifiers.org/kegg.compound/C02395" />
+                        </rdf:Bag>
+                     </bqbiol:is>
+                  </rdf:Description>
+               </rdf:RDF>
+            </annotation>
+         </species>
+         <species id="SPC_38_Cell" name="NADH" compartment="compart_Cell" boundaryCondition="false" hasOnlySubstanceUnits="false" constant="false" metaid="META_SPC_38_Cell" initialConcentration="1">
+            <annotation>
+               <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Description rdf:about="#META_SPC_38_Cell">
+                     <bqbiol:is>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:16908" />
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:7423" />
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:57945" />
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:44216" />
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:21902" />
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:13396" />
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:13395" />
+                           <rdf:li rdf:resource="https://identifiers.org/kegg.compound/C00004" />
+                        </rdf:Bag>
+                     </bqbiol:is>
+                  </rdf:Description>
+               </rdf:RDF>
+            </annotation>
+         </species>
+         <species id="SPC_5081_Cell" name="Cyclohexanone" compartment="compart_Cell" boundaryCondition="false" hasOnlySubstanceUnits="false" constant="false" metaid="META_SPC_5081_Cell" initialConcentration="1">
+            <annotation>
+               <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Description rdf:about="#META_SPC_5081_Cell">
+                     <bqbiol:is>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:17854" />
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:41770" />
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:4014" />
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:23481" />
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:14052" />
+                           <rdf:li rdf:resource="https://identifiers.org/kegg.compound/C00414" />
+                        </rdf:Bag>
+                     </bqbiol:is>
+                  </rdf:Description>
+               </rdf:RDF>
+            </annotation>
+         </species>
+         <species id="SPC_37_Cell" name="NAD+" compartment="compart_Cell" boundaryCondition="false" hasOnlySubstanceUnits="false" constant="false" metaid="META_SPC_37_Cell" initialConcentration="1">
+            <annotation>
+               <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Description rdf:about="#META_SPC_37_Cell">
+                     <bqbiol:is>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:44215" />
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:13389" />
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:15846" />
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:7422" />
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:57540" />
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:44281" />
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:44214" />
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:21901" />
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:13394" />
+                           <rdf:li rdf:resource="https://identifiers.org/chebi/CHEBI:13393" />
+                           <rdf:li rdf:resource="https://identifiers.org/kegg.compound/C00003" />
+                        </rdf:Bag>
+                     </bqbiol:is>
+                  </rdf:Description>
+               </rdf:RDF>
+            </annotation>
+         </species>
+         <species id="ENZ_30893_Cell" name="Enzyme wildtype" compartment="compart_Cell" boundaryCondition="false" hasOnlySubstanceUnits="false" constant="false" metaid="META_ENZ_30893_Cell" initialConcentration="1">
+            <annotation>
+               <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Description rdf:about="#META_ENZ_30893_Cell">
+                     <bqbiol:is>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/uniprot/Q51990" />
+                        </rdf:Bag>
+                     </bqbiol:is>
+                  </rdf:Description>
+               </rdf:RDF>
+            </annotation>
+         </species>
+         <species id="ENZ_30913_Cell" name="Enzyme mutant N189A" compartment="compart_Cell" boundaryCondition="false" hasOnlySubstanceUnits="false" constant="false" metaid="META_ENZ_30913_Cell" initialConcentration="1">
+            <annotation>
+               <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Description rdf:about="#META_ENZ_30913_Cell">
+                     <bqbiol:is>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/uniprot/Q51990" />
+                        </rdf:Bag>
+                     </bqbiol:is>
+                  </rdf:Description>
+               </rdf:RDF>
+            </annotation>
+         </species>
+         <species id="ENZ_30918_Cell" name="Enzyme mutant N189A" compartment="compart_Cell" boundaryCondition="false" hasOnlySubstanceUnits="false" constant="false" metaid="META_ENZ_30918_Cell" initialConcentration="1">
+            <annotation>
+               <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Description rdf:about="#META_ENZ_30918_Cell">
+                     <bqbiol:is>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/uniprot/Q51990" />
+                        </rdf:Bag>
+                     </bqbiol:is>
+                  </rdf:Description>
+               </rdf:RDF>
+            </annotation>
+         </species>
+         <species id="ENZ_30908_Cell" name="Enzyme wildtype" compartment="compart_Cell" boundaryCondition="false" hasOnlySubstanceUnits="false" constant="false" metaid="META_ENZ_30908_Cell" initialConcentration="1">
+            <annotation>
+               <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Description rdf:about="#META_ENZ_30908_Cell">
+                     <bqbiol:is>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/uniprot/Q51990" />
+                        </rdf:Bag>
+                     </bqbiol:is>
+                  </rdf:Description>
+               </rdf:RDF>
+            </annotation>
+         </species>
+         <species id="ENZ_30898_Cell" name="Enzyme mutant C191A" compartment="compart_Cell" boundaryCondition="false" hasOnlySubstanceUnits="false" constant="false" metaid="META_ENZ_30898_Cell" initialConcentration="1">
+            <annotation>
+               <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Description rdf:about="#META_ENZ_30898_Cell">
+                     <bqbiol:is>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/uniprot/Q51990" />
+                        </rdf:Bag>
+                     </bqbiol:is>
+                  </rdf:Description>
+               </rdf:RDF>
+            </annotation>
+         </species>
+         <species id="ENZ_30903_Cell" name="Enzyme mutant C191A" compartment="compart_Cell" boundaryCondition="false" hasOnlySubstanceUnits="false" constant="false" metaid="META_ENZ_30903_Cell" initialConcentration="1">
+            <annotation>
+               <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Description rdf:about="#META_ENZ_30903_Cell">
+                     <bqbiol:is>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/uniprot/Q51990" />
+                        </rdf:Bag>
+                     </bqbiol:is>
+                  </rdf:Description>
+               </rdf:RDF>
+            </annotation>
+         </species>
+      </listOfSpecies>
+      <listOfReactions>
+         <reaction id="REAC_0" reversible="true" fast="false" metaid="META_REAC_0">
+            <annotation>
+               <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Description rdf:about="#META_REAC_0">
+                     <bqbiol:is>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/sabiork.reaction/15377" />
+                        </rdf:Bag>
+                     </bqbiol:is>
+                     <bqbiol:isVersionOf>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/ec-code/1.3.1.-" />
+                        </rdf:Bag>
+                     </bqbiol:isVersionOf>
+                     <bqbiol:hasTaxon>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/taxonomy/3659" />
+                        </rdf:Bag>
+                     </bqbiol:hasTaxon>
+                     <bqbiol:occursIn>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/bto/BTO:0000713" />
+                        </rdf:Bag>
+                     </bqbiol:occursIn>
+                  </rdf:Description>
+               </rdf:RDF>
+            </annotation>
+            <listOfReactants>
+               <speciesReference species="SPC_39_chloroplast" stoichiometry="1" constant="true" />
+               <speciesReference species="SPC_2286_chloroplast" stoichiometry="1" constant="true" />
+               <speciesReference species="SPC_1262_chloroplast" stoichiometry="1" constant="true" />
+            </listOfReactants>
+            <listOfProducts>
+               <speciesReference species="SPC_1263_chloroplast" stoichiometry="1" constant="true" />
+               <speciesReference species="SPC_2056_chloroplast" stoichiometry="1" constant="true" />
+            </listOfProducts>
+            <listOfModifiers>
+               <modifierSpeciesReference species="ENZ_377915_chloroplast" />
+            </listOfModifiers>
+            <kineticLaw metaid="META_KL_66175" sboTerm="SBO:0000029">
+               <annotation xmlns:sbrk="http://sabiork.h-its.org">
+                  <sbrk:sabiork>
+                     <sbrk:kineticLawID>66175</sbrk:kineticLawID>
+                     <sbrk:experimentalConditions>
+                        <sbrk:pH>
+                           <sbrk:startValuepH>7</sbrk:startValuepH>
+                        </sbrk:pH>
+                        <sbrk:buffer>50 mM HEPES-NaOH</sbrk:buffer>
+                     </sbrk:experimentalConditions>
+                  </sbrk:sabiork>
+                  <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                     <rdf:Description rdf:about="#META_KL_66175">
+                        <bqbiol:isDescribedBy>
+                           <rdf:Bag>
+                              <rdf:li rdf:resource="https://identifiers.org/pubmed/21169366" />
+                           </rdf:Bag>
+                        </bqbiol:isDescribedBy>
+                        <bqbiol:isDescribedBy>
+                           <rdf:Bag>
+                              <rdf:li rdf:resource="https://identifiers.org/sabiork.kineticrecord/66175" />
+                           </rdf:Bag>
+                        </bqbiol:isDescribedBy>
+                     </rdf:Description>
+                  </rdf:RDF>
+               </annotation>
+               <math xmlns="http://www.w3.org/1998/Math/MathML">
+                  <apply>
+                     <ci> KL_66175 </ci>
+                     <ci> SPC_2286_chloroplast </ci>
+                     <ci> Km_SPC_2286_chloroplast </ci>
+                     <ci> kcat </ci>
+                     <ci> ENZ_377915_chloroplast </ci>
+                     <ci> kcat_Km_SPC_2286_chloroplast </ci>
+                     <ci> SPC_1262_chloroplast </ci>
+                  </apply>
+               </math>
+               <listOfLocalParameters>
+                  <localParameter id="Km_SPC_2286_chloroplast" name="Km_Acrolein" value="0.0136" sboTerm="SBO:0000027" units="M" />
+                  <localParameter id="kcat" name="kcat" value="63" sboTerm="SBO:0000025" units="swedgeone" />
+                  <localParameter id="kcat_Km_SPC_2286_chloroplast" name="kcat_Km_Acrolein" value="4630" sboTerm="SBO:0000302" units="Mwedgeoneswedgeone" />
+               </listOfLocalParameters>
+            </kineticLaw>
+         </reaction>
+         <reaction id="REAC_1" reversible="true" fast="false" metaid="META_REAC_1">
+            <annotation>
+               <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Description rdf:about="#META_REAC_1">
+                     <bqbiol:is>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/sabiork.reaction/15378" />
+                        </rdf:Bag>
+                     </bqbiol:is>
+                     <bqbiol:isVersionOf>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/ec-code/1.3.1.-" />
+                        </rdf:Bag>
+                     </bqbiol:isVersionOf>
+                     <bqbiol:hasTaxon>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/taxonomy/3659" />
+                        </rdf:Bag>
+                     </bqbiol:hasTaxon>
+                     <bqbiol:occursIn>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/bto/BTO:0000713" />
+                        </rdf:Bag>
+                     </bqbiol:occursIn>
+                  </rdf:Description>
+               </rdf:RDF>
+            </annotation>
+            <listOfReactants>
+               <speciesReference species="SPC_39_chloroplast" stoichiometry="1" constant="true" />
+               <speciesReference species="SPC_20832_chloroplast" stoichiometry="1" constant="true" />
+               <speciesReference species="SPC_1262_chloroplast" stoichiometry="1" constant="true" />
+            </listOfReactants>
+            <listOfProducts>
+               <speciesReference species="SPC_2281_chloroplast" stoichiometry="1" constant="true" />
+               <speciesReference species="SPC_1263_chloroplast" stoichiometry="1" constant="true" />
+            </listOfProducts>
+            <listOfModifiers>
+               <modifierSpeciesReference species="ENZ_377921_chloroplast" />
+            </listOfModifiers>
+            <kineticLaw metaid="META_KL_66176" sboTerm="SBO:0000029">
+               <annotation xmlns:sbrk="http://sabiork.h-its.org">
+                  <sbrk:sabiork>
+                     <sbrk:kineticLawID>66176</sbrk:kineticLawID>
+                     <sbrk:experimentalConditions>
+                        <sbrk:pH>
+                           <sbrk:startValuepH>7</sbrk:startValuepH>
+                        </sbrk:pH>
+                        <sbrk:buffer>50 mM HEPES-NaOH</sbrk:buffer>
+                     </sbrk:experimentalConditions>
+                  </sbrk:sabiork>
+                  <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                     <rdf:Description rdf:about="#META_KL_66176">
+                        <bqbiol:isDescribedBy>
+                           <rdf:Bag>
+                              <rdf:li rdf:resource="https://identifiers.org/pubmed/21169366" />
+                           </rdf:Bag>
+                        </bqbiol:isDescribedBy>
+                        <bqbiol:isDescribedBy>
+                           <rdf:Bag>
+                              <rdf:li rdf:resource="https://identifiers.org/sabiork.kineticrecord/66176" />
+                           </rdf:Bag>
+                        </bqbiol:isDescribedBy>
+                     </rdf:Description>
+                  </rdf:RDF>
+               </annotation>
+               <math xmlns="http://www.w3.org/1998/Math/MathML">
+                  <apply>
+                     <ci> KL_66176 </ci>
+                     <ci> kcat </ci>
+                     <ci> kcat_Km_SPC_20832_chloroplast </ci>
+                     <ci> SPC_1262_chloroplast </ci>
+                     <ci> ENZ_377921_chloroplast </ci>
+                     <ci> Km_SPC_20832_chloroplast </ci>
+                     <ci> SPC_20832_chloroplast </ci>
+                  </apply>
+               </math>
+               <listOfLocalParameters>
+                  <localParameter id="kcat" name="kcat" value="42" sboTerm="SBO:0000025" units="swedgeone" />
+                  <localParameter id="kcat_Km_SPC_20832_chloroplast" name="kcat_Km_Crotonaldehyde" value="1410" sboTerm="SBO:0000302" units="Mwedgeoneswedgeone" />
+                  <localParameter id="Km_SPC_20832_chloroplast" name="Km_Crotonaldehyde" value="0.0298" sboTerm="SBO:0000027" units="M" />
+               </listOfLocalParameters>
+            </kineticLaw>
+         </reaction>
+         <reaction id="REAC_2" reversible="true" fast="false" metaid="META_REAC_2">
+            <annotation>
+               <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Description rdf:about="#META_REAC_2">
+                     <bqbiol:is>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/sabiork.reaction/15383" />
+                        </rdf:Bag>
+                     </bqbiol:is>
+                     <bqbiol:isVersionOf>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/ec-code/1.3.1.-" />
+                        </rdf:Bag>
+                     </bqbiol:isVersionOf>
+                     <bqbiol:hasTaxon>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/taxonomy/3659" />
+                        </rdf:Bag>
+                     </bqbiol:hasTaxon>
+                     <bqbiol:occursIn>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/bto/BTO:0000713" />
+                        </rdf:Bag>
+                     </bqbiol:occursIn>
+                  </rdf:Description>
+               </rdf:RDF>
+            </annotation>
+            <listOfReactants>
+               <speciesReference species="SPC_2286_chloroplast" stoichiometry="1" constant="true" />
+               <speciesReference species="SPC_38_chloroplast" stoichiometry="1" constant="true" />
+               <speciesReference species="SPC_39_chloroplast" stoichiometry="1" constant="true" />
+            </listOfReactants>
+            <listOfProducts>
+               <speciesReference species="SPC_2056_chloroplast" stoichiometry="1" constant="true" />
+               <speciesReference species="SPC_37_chloroplast" stoichiometry="1" constant="true" />
+            </listOfProducts>
+            <listOfModifiers>
+               <modifierSpeciesReference species="ENZ_377957_chloroplast" />
+            </listOfModifiers>
+            <kineticLaw metaid="META_KL_66182" sboTerm="SBO:0000029">
+               <annotation xmlns:sbrk="http://sabiork.h-its.org">
+                  <sbrk:sabiork>
+                     <sbrk:kineticLawID>66182</sbrk:kineticLawID>
+                     <sbrk:experimentalConditions>
+                        <sbrk:pH>
+                           <sbrk:startValuepH>7</sbrk:startValuepH>
+                        </sbrk:pH>
+                        <sbrk:buffer>50 mM HEPES-NaOH</sbrk:buffer>
+                     </sbrk:experimentalConditions>
+                  </sbrk:sabiork>
+                  <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                     <rdf:Description rdf:about="#META_KL_66182">
+                        <bqbiol:isDescribedBy>
+                           <rdf:Bag>
+                              <rdf:li rdf:resource="https://identifiers.org/pubmed/21169366" />
+                           </rdf:Bag>
+                        </bqbiol:isDescribedBy>
+                        <bqbiol:isDescribedBy>
+                           <rdf:Bag>
+                              <rdf:li rdf:resource="https://identifiers.org/sabiork.kineticrecord/66182" />
+                           </rdf:Bag>
+                        </bqbiol:isDescribedBy>
+                     </rdf:Description>
+                  </rdf:RDF>
+               </annotation>
+               <math xmlns="http://www.w3.org/1998/Math/MathML">
+                  <apply>
+                     <ci> KL_66182 </ci>
+                     <ci> kcat </ci>
+                     <ci> ENZ_377957_chloroplast </ci>
+                     <ci> SPC_38_chloroplast </ci>
+                     <ci> Km_SPC_38_chloroplast </ci>
+                     <ci> kcat_Km_SPC_38_chloroplast </ci>
+                     <ci> SPC_2286_chloroplast </ci>
+                  </apply>
+               </math>
+               <listOfLocalParameters>
+                  <localParameter id="kcat" name="kcat" value="75" sboTerm="SBO:0000025" units="swedgeone" />
+                  <localParameter id="Km_SPC_38_chloroplast" name="Km_NADH" value="0.00464" sboTerm="SBO:0000027" units="M" />
+                  <localParameter id="kcat_Km_SPC_38_chloroplast" name="kcat_Km_NADH" value="16200" sboTerm="SBO:0000302" units="Mwedgeoneswedgeone" />
+               </listOfLocalParameters>
+            </kineticLaw>
+         </reaction>
+         <reaction id="REAC_3" reversible="true" fast="false" metaid="META_REAC_3">
+            <annotation>
+               <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Description rdf:about="#META_REAC_3">
+                     <bqbiol:is>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/sabiork.reaction/15383" />
+                        </rdf:Bag>
+                     </bqbiol:is>
+                     <bqbiol:isVersionOf>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/ec-code/1.3.1.-" />
+                        </rdf:Bag>
+                     </bqbiol:isVersionOf>
+                     <bqbiol:hasTaxon>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/taxonomy/3702" />
+                        </rdf:Bag>
+                     </bqbiol:hasTaxon>
+                  </rdf:Description>
+               </rdf:RDF>
+            </annotation>
+            <listOfReactants>
+               <speciesReference species="SPC_38_chloroplast" stoichiometry="1" constant="true" />
+               <speciesReference species="SPC_2286_chloroplast" stoichiometry="1" constant="true" />
+               <speciesReference species="SPC_39_chloroplast" stoichiometry="1" constant="true" />
+            </listOfReactants>
+            <listOfProducts>
+               <speciesReference species="SPC_37_chloroplast" stoichiometry="1" constant="true" />
+               <speciesReference species="SPC_2056_chloroplast" stoichiometry="1" constant="true" />
+            </listOfProducts>
+            <listOfModifiers>
+               <modifierSpeciesReference species="ENZ_377963_chloroplast" />
+            </listOfModifiers>
+            <kineticLaw metaid="META_KL_66183" sboTerm="SBO:0000029">
+               <annotation xmlns:sbrk="http://sabiork.h-its.org">
+                  <sbrk:sabiork>
+                     <sbrk:kineticLawID>66183</sbrk:kineticLawID>
+                     <sbrk:experimentalConditions>
+                        <sbrk:pH>
+                           <sbrk:startValuepH>7</sbrk:startValuepH>
+                        </sbrk:pH>
+                        <sbrk:buffer>50 mM HEPES-NaOH</sbrk:buffer>
+                     </sbrk:experimentalConditions>
+                  </sbrk:sabiork>
+                  <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                     <rdf:Description rdf:about="#META_KL_66183">
+                        <bqbiol:isDescribedBy>
+                           <rdf:Bag>
+                              <rdf:li rdf:resource="https://identifiers.org/pubmed/21169366" />
+                           </rdf:Bag>
+                        </bqbiol:isDescribedBy>
+                        <bqbiol:isDescribedBy>
+                           <rdf:Bag>
+                              <rdf:li rdf:resource="https://identifiers.org/sabiork.kineticrecord/66183" />
+                           </rdf:Bag>
+                        </bqbiol:isDescribedBy>
+                     </rdf:Description>
+                  </rdf:RDF>
+               </annotation>
+               <math xmlns="http://www.w3.org/1998/Math/MathML">
+                  <apply>
+                     <ci> KL_66183 </ci>
+                     <ci> ENZ_377963_chloroplast </ci>
+                     <ci> SPC_2286_chloroplast </ci>
+                     <ci> Km_SPC_38_chloroplast </ci>
+                     <ci> kcat_Km_SPC_38_chloroplast </ci>
+                     <ci> SPC_38_chloroplast </ci>
+                     <ci> kcat </ci>
+                  </apply>
+               </math>
+               <listOfLocalParameters>
+                  <localParameter id="Km_SPC_38_chloroplast" name="Km_NADH" value="5.3E-05" sboTerm="SBO:0000027" units="M" />
+                  <localParameter id="kcat_Km_SPC_38_chloroplast" name="kcat_Km_NADH" value="434000" sboTerm="SBO:0000302" units="Mwedgeoneswedgeone" />
+                  <localParameter id="kcat" name="kcat" value="23" sboTerm="SBO:0000025" units="swedgeone" />
+               </listOfLocalParameters>
+            </kineticLaw>
+         </reaction>
+         <reaction id="REAC_4" reversible="true" fast="false" metaid="META_REAC_4">
+            <annotation>
+               <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Description rdf:about="#META_REAC_4">
+                     <bqbiol:is>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/sabiork.reaction/15381" />
+                        </rdf:Bag>
+                     </bqbiol:is>
+                     <bqbiol:isVersionOf>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/ec-code/1.3.1.-" />
+                        </rdf:Bag>
+                     </bqbiol:isVersionOf>
+                     <bqbiol:hasTaxon>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/taxonomy/3659" />
+                        </rdf:Bag>
+                     </bqbiol:hasTaxon>
+                     <bqbiol:occursIn>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/bto/BTO:0000713" />
+                        </rdf:Bag>
+                     </bqbiol:occursIn>
+                  </rdf:Description>
+               </rdf:RDF>
+            </annotation>
+            <listOfReactants>
+               <speciesReference species="SPC_1262_chloroplast" stoichiometry="1" constant="true" />
+               <speciesReference species="SPC_39_chloroplast" stoichiometry="1" constant="true" />
+               <speciesReference species="SPC_31505_chloroplast" stoichiometry="1" constant="true" />
+            </listOfReactants>
+            <listOfProducts>
+               <speciesReference species="SPC_1263_chloroplast" stoichiometry="1" constant="true" />
+               <speciesReference species="SPC_2343_chloroplast" stoichiometry="1" constant="true" />
+            </listOfProducts>
+            <listOfModifiers>
+               <modifierSpeciesReference species="ENZ_377939_chloroplast" />
+            </listOfModifiers>
+            <kineticLaw metaid="META_KL_66179" sboTerm="SBO:0000029">
+               <annotation xmlns:sbrk="http://sabiork.h-its.org">
+                  <sbrk:sabiork>
+                     <sbrk:kineticLawID>66179</sbrk:kineticLawID>
+                     <sbrk:experimentalConditions>
+                        <sbrk:pH>
+                           <sbrk:startValuepH>7</sbrk:startValuepH>
+                        </sbrk:pH>
+                        <sbrk:buffer>50 mM HEPES-NaOH</sbrk:buffer>
+                     </sbrk:experimentalConditions>
+                  </sbrk:sabiork>
+                  <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                     <rdf:Description rdf:about="#META_KL_66179">
+                        <bqbiol:isDescribedBy>
+                           <rdf:Bag>
+                              <rdf:li rdf:resource="https://identifiers.org/pubmed/21169366" />
+                           </rdf:Bag>
+                        </bqbiol:isDescribedBy>
+                        <bqbiol:isDescribedBy>
+                           <rdf:Bag>
+                              <rdf:li rdf:resource="https://identifiers.org/sabiork.kineticrecord/66179" />
+                           </rdf:Bag>
+                        </bqbiol:isDescribedBy>
+                     </rdf:Description>
+                  </rdf:RDF>
+               </annotation>
+               <math xmlns="http://www.w3.org/1998/Math/MathML">
+                  <apply>
+                     <ci> KL_66179 </ci>
+                     <ci> Km_SPC_31505_chloroplast </ci>
+                     <ci> kcat_Km_SPC_31505_chloroplast </ci>
+                     <ci> kcat </ci>
+                     <ci> SPC_31505_chloroplast </ci>
+                     <ci> ENZ_377939_chloroplast </ci>
+                     <ci> SPC_1262_chloroplast </ci>
+                  </apply>
+               </math>
+               <listOfLocalParameters>
+                  <localParameter id="Km_SPC_31505_chloroplast" name="Km_3Pententwoone" value="0.00063" sboTerm="SBO:0000027" units="M" />
+                  <localParameter id="kcat_Km_SPC_31505_chloroplast" name="kcat_Km_3Pententwoone" value="34900" sboTerm="SBO:0000302" units="Mwedgeoneswedgeone" />
+                  <localParameter id="kcat" name="kcat" value="22" sboTerm="SBO:0000025" units="swedgeone" />
+               </listOfLocalParameters>
+            </kineticLaw>
+         </reaction>
+         <reaction id="REAC_5" reversible="true" fast="false" metaid="META_REAC_5">
+            <annotation>
+               <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Description rdf:about="#META_REAC_5">
+                     <bqbiol:is>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/sabiork.reaction/15377" />
+                        </rdf:Bag>
+                     </bqbiol:is>
+                     <bqbiol:isVersionOf>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/ec-code/1.3.1.-" />
+                        </rdf:Bag>
+                     </bqbiol:isVersionOf>
+                     <bqbiol:hasTaxon>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/taxonomy/3659" />
+                        </rdf:Bag>
+                     </bqbiol:hasTaxon>
+                     <bqbiol:occursIn>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/bto/BTO:0000713" />
+                        </rdf:Bag>
+                     </bqbiol:occursIn>
+                  </rdf:Description>
+               </rdf:RDF>
+            </annotation>
+            <listOfReactants>
+               <speciesReference species="SPC_1262_chloroplast" stoichiometry="1" constant="true" />
+               <speciesReference species="SPC_39_chloroplast" stoichiometry="1" constant="true" />
+               <speciesReference species="SPC_2286_chloroplast" stoichiometry="1" constant="true" />
+            </listOfReactants>
+            <listOfProducts>
+               <speciesReference species="SPC_1263_chloroplast" stoichiometry="1" constant="true" />
+               <speciesReference species="SPC_2056_chloroplast" stoichiometry="1" constant="true" />
+            </listOfProducts>
+            <listOfModifiers>
+               <modifierSpeciesReference species="ENZ_377951_chloroplast" />
+            </listOfModifiers>
+            <kineticLaw metaid="META_KL_66181" sboTerm="SBO:0000029">
+               <annotation xmlns:sbrk="http://sabiork.h-its.org">
+                  <sbrk:sabiork>
+                     <sbrk:kineticLawID>66181</sbrk:kineticLawID>
+                     <sbrk:experimentalConditions>
+                        <sbrk:pH>
+                           <sbrk:startValuepH>7</sbrk:startValuepH>
+                        </sbrk:pH>
+                        <sbrk:buffer>50 mM HEPES-NaOH</sbrk:buffer>
+                     </sbrk:experimentalConditions>
+                  </sbrk:sabiork>
+                  <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                     <rdf:Description rdf:about="#META_KL_66181">
+                        <bqbiol:isDescribedBy>
+                           <rdf:Bag>
+                              <rdf:li rdf:resource="https://identifiers.org/pubmed/21169366" />
+                           </rdf:Bag>
+                        </bqbiol:isDescribedBy>
+                        <bqbiol:isDescribedBy>
+                           <rdf:Bag>
+                              <rdf:li rdf:resource="https://identifiers.org/sabiork.kineticrecord/66181" />
+                           </rdf:Bag>
+                        </bqbiol:isDescribedBy>
+                     </rdf:Description>
+                  </rdf:RDF>
+               </annotation>
+               <math xmlns="http://www.w3.org/1998/Math/MathML">
+                  <apply>
+                     <ci> KL_66181 </ci>
+                     <ci> kcat </ci>
+                     <ci> Km_SPC_1262_chloroplast </ci>
+                     <ci> kcat_Km_SPC_1262_chloroplast </ci>
+                     <ci> ENZ_377951_chloroplast </ci>
+                     <ci> SPC_1262_chloroplast </ci>
+                     <ci> SPC_2286_chloroplast </ci>
+                  </apply>
+               </math>
+               <listOfLocalParameters>
+                  <localParameter id="kcat" name="kcat" value="75" sboTerm="SBO:0000025" units="swedgeone" />
+                  <localParameter id="Km_SPC_1262_chloroplast" name="Km_NADPH" value="0.000185" sboTerm="SBO:0000027" units="M" />
+                  <localParameter id="kcat_Km_SPC_1262_chloroplast" name="kcat_Km_NADPH" value="406000" sboTerm="SBO:0000302" units="Mwedgeoneswedgeone" />
+               </listOfLocalParameters>
+            </kineticLaw>
+         </reaction>
+         <reaction id="REAC_6" reversible="true" fast="false" metaid="META_REAC_6">
+            <annotation>
+               <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Description rdf:about="#META_REAC_6">
+                     <bqbiol:is>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/sabiork.reaction/15377" />
+                        </rdf:Bag>
+                     </bqbiol:is>
+                     <bqbiol:isVersionOf>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/ec-code/1.3.1.-" />
+                        </rdf:Bag>
+                     </bqbiol:isVersionOf>
+                     <bqbiol:hasTaxon>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/taxonomy/3702" />
+                        </rdf:Bag>
+                     </bqbiol:hasTaxon>
+                  </rdf:Description>
+               </rdf:RDF>
+            </annotation>
+            <listOfReactants>
+               <speciesReference species="SPC_1262_chloroplast" stoichiometry="1" constant="true" />
+               <speciesReference species="SPC_39_chloroplast" stoichiometry="1" constant="true" />
+               <speciesReference species="SPC_2286_chloroplast" stoichiometry="1" constant="true" />
+            </listOfReactants>
+            <listOfProducts>
+               <speciesReference species="SPC_1263_chloroplast" stoichiometry="1" constant="true" />
+               <speciesReference species="SPC_2056_chloroplast" stoichiometry="1" constant="true" />
+            </listOfProducts>
+            <listOfModifiers>
+               <modifierSpeciesReference species="ENZ_377969_chloroplast" />
+            </listOfModifiers>
+            <kineticLaw metaid="META_KL_66184" sboTerm="SBO:0000029">
+               <annotation xmlns:sbrk="http://sabiork.h-its.org">
+                  <sbrk:sabiork>
+                     <sbrk:kineticLawID>66184</sbrk:kineticLawID>
+                     <sbrk:experimentalConditions>
+                        <sbrk:pH>
+                           <sbrk:startValuepH>7</sbrk:startValuepH>
+                        </sbrk:pH>
+                        <sbrk:buffer>50 mM HEPES-NaOH</sbrk:buffer>
+                     </sbrk:experimentalConditions>
+                  </sbrk:sabiork>
+                  <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                     <rdf:Description rdf:about="#META_KL_66184">
+                        <bqbiol:isDescribedBy>
+                           <rdf:Bag>
+                              <rdf:li rdf:resource="https://identifiers.org/pubmed/21169366" />
+                           </rdf:Bag>
+                        </bqbiol:isDescribedBy>
+                        <bqbiol:isDescribedBy>
+                           <rdf:Bag>
+                              <rdf:li rdf:resource="https://identifiers.org/sabiork.kineticrecord/66184" />
+                           </rdf:Bag>
+                        </bqbiol:isDescribedBy>
+                     </rdf:Description>
+                  </rdf:RDF>
+               </annotation>
+               <math xmlns="http://www.w3.org/1998/Math/MathML">
+                  <apply>
+                     <ci> KL_66184 </ci>
+                     <ci> Km_SPC_1262_chloroplast </ci>
+                     <ci> ENZ_377969_chloroplast </ci>
+                     <ci> kcat </ci>
+                     <ci> SPC_1262_chloroplast </ci>
+                     <ci> kcat_Km_SPC_1262_chloroplast </ci>
+                     <ci> SPC_2286_chloroplast </ci>
+                  </apply>
+               </math>
+               <listOfLocalParameters>
+                  <localParameter id="Km_SPC_1262_chloroplast" name="Km_NADPH" value="1E-05" sboTerm="SBO:0000027" units="M" />
+                  <localParameter id="kcat" name="kcat" value="23" sboTerm="SBO:0000025" units="swedgeone" />
+                  <localParameter id="kcat_Km_SPC_1262_chloroplast" name="kcat_Km_NADPH" value="2300000" sboTerm="SBO:0000302" units="Mwedgeoneswedgeone" />
+               </listOfLocalParameters>
+            </kineticLaw>
+         </reaction>
+         <reaction id="REAC_7" reversible="true" fast="false" metaid="META_REAC_7">
+            <annotation>
+               <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Description rdf:about="#META_REAC_7">
+                     <bqbiol:is>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/sabiork.reaction/15377" />
+                        </rdf:Bag>
+                     </bqbiol:is>
+                     <bqbiol:isVersionOf>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/ec-code/1.3.1.-" />
+                        </rdf:Bag>
+                     </bqbiol:isVersionOf>
+                     <bqbiol:hasTaxon>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/taxonomy/3702" />
+                        </rdf:Bag>
+                     </bqbiol:hasTaxon>
+                  </rdf:Description>
+               </rdf:RDF>
+            </annotation>
+            <listOfReactants>
+               <speciesReference species="SPC_2286_chloroplast" stoichiometry="1" constant="true" />
+               <speciesReference species="SPC_1262_chloroplast" stoichiometry="1" constant="true" />
+               <speciesReference species="SPC_39_chloroplast" stoichiometry="1" constant="true" />
+            </listOfReactants>
+            <listOfProducts>
+               <speciesReference species="SPC_1263_chloroplast" stoichiometry="1" constant="true" />
+               <speciesReference species="SPC_2056_chloroplast" stoichiometry="1" constant="true" />
+            </listOfProducts>
+            <listOfModifiers>
+               <modifierSpeciesReference species="ENZ_377975_chloroplast" />
+            </listOfModifiers>
+            <kineticLaw metaid="META_KL_66185" sboTerm="SBO:0000029">
+               <annotation xmlns:sbrk="http://sabiork.h-its.org">
+                  <sbrk:sabiork>
+                     <sbrk:kineticLawID>66185</sbrk:kineticLawID>
+                     <sbrk:experimentalConditions>
+                        <sbrk:pH>
+                           <sbrk:startValuepH>7</sbrk:startValuepH>
+                        </sbrk:pH>
+                        <sbrk:buffer>50 mM HEPES-NaOH</sbrk:buffer>
+                     </sbrk:experimentalConditions>
+                  </sbrk:sabiork>
+                  <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                     <rdf:Description rdf:about="#META_KL_66185">
+                        <bqbiol:isDescribedBy>
+                           <rdf:Bag>
+                              <rdf:li rdf:resource="https://identifiers.org/pubmed/21169366" />
+                           </rdf:Bag>
+                        </bqbiol:isDescribedBy>
+                        <bqbiol:isDescribedBy>
+                           <rdf:Bag>
+                              <rdf:li rdf:resource="https://identifiers.org/sabiork.kineticrecord/66185" />
+                           </rdf:Bag>
+                        </bqbiol:isDescribedBy>
+                     </rdf:Description>
+                  </rdf:RDF>
+               </annotation>
+               <math xmlns="http://www.w3.org/1998/Math/MathML">
+                  <apply>
+                     <ci> KL_66185 </ci>
+                     <ci> kcat </ci>
+                     <ci> Km_SPC_2286_chloroplast </ci>
+                     <ci> SPC_2286_chloroplast </ci>
+                     <ci> kcat_Km_SPC_2286_chloroplast </ci>
+                     <ci> ENZ_377975_chloroplast </ci>
+                     <ci> SPC_1262_chloroplast </ci>
+                  </apply>
+               </math>
+               <listOfLocalParameters>
+                  <localParameter id="kcat" name="kcat" value="22" sboTerm="SBO:0000025" units="swedgeone" />
+                  <localParameter id="Km_SPC_2286_chloroplast" name="Km_Acrolein" value="0.0035" sboTerm="SBO:0000027" units="M" />
+                  <localParameter id="kcat_Km_SPC_2286_chloroplast" name="kcat_Km_Acrolein" value="6280" sboTerm="SBO:0000302" units="Mwedgeoneswedgeone" />
+               </listOfLocalParameters>
+            </kineticLaw>
+         </reaction>
+         <reaction id="REAC_8" reversible="true" fast="false" metaid="META_REAC_8">
+            <annotation>
+               <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Description rdf:about="#META_REAC_8">
+                     <bqbiol:is>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/sabiork.reaction/15379" />
+                        </rdf:Bag>
+                     </bqbiol:is>
+                     <bqbiol:isVersionOf>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/ec-code/1.3.1.-" />
+                        </rdf:Bag>
+                     </bqbiol:isVersionOf>
+                     <bqbiol:hasTaxon>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/taxonomy/3659" />
+                        </rdf:Bag>
+                     </bqbiol:hasTaxon>
+                     <bqbiol:occursIn>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/bto/BTO:0000713" />
+                        </rdf:Bag>
+                     </bqbiol:occursIn>
+                  </rdf:Description>
+               </rdf:RDF>
+            </annotation>
+            <listOfReactants>
+               <speciesReference species="SPC_30271_chloroplast" stoichiometry="1" constant="true" />
+               <speciesReference species="SPC_39_chloroplast" stoichiometry="1" constant="true" />
+               <speciesReference species="SPC_1262_chloroplast" stoichiometry="1" constant="true" />
+            </listOfReactants>
+            <listOfProducts>
+               <speciesReference species="SPC_2545_chloroplast" stoichiometry="1" constant="true" />
+               <speciesReference species="SPC_1263_chloroplast" stoichiometry="1" constant="true" />
+            </listOfProducts>
+            <listOfModifiers>
+               <modifierSpeciesReference species="ENZ_377927_chloroplast" />
+            </listOfModifiers>
+            <kineticLaw metaid="META_KL_66177" sboTerm="SBO:0000029">
+               <annotation xmlns:sbrk="http://sabiork.h-its.org">
+                  <sbrk:sabiork>
+                     <sbrk:kineticLawID>66177</sbrk:kineticLawID>
+                     <sbrk:experimentalConditions>
+                        <sbrk:pH>
+                           <sbrk:startValuepH>7</sbrk:startValuepH>
+                        </sbrk:pH>
+                        <sbrk:buffer>50 mM HEPES-NaOH</sbrk:buffer>
+                     </sbrk:experimentalConditions>
+                  </sbrk:sabiork>
+                  <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                     <rdf:Description rdf:about="#META_KL_66177">
+                        <bqbiol:isDescribedBy>
+                           <rdf:Bag>
+                              <rdf:li rdf:resource="https://identifiers.org/pubmed/21169366" />
+                           </rdf:Bag>
+                        </bqbiol:isDescribedBy>
+                        <bqbiol:isDescribedBy>
+                           <rdf:Bag>
+                              <rdf:li rdf:resource="https://identifiers.org/sabiork.kineticrecord/66177" />
+                           </rdf:Bag>
+                        </bqbiol:isDescribedBy>
+                     </rdf:Description>
+                  </rdf:RDF>
+               </annotation>
+               <math xmlns="http://www.w3.org/1998/Math/MathML">
+                  <apply>
+                     <ci> KL_66177 </ci>
+                     <ci> SPC_30271_chloroplast </ci>
+                     <ci> kcat_Km_SPC_30271_chloroplast </ci>
+                     <ci> ENZ_377927_chloroplast </ci>
+                     <ci> kcat </ci>
+                     <ci> Km_SPC_30271_chloroplast </ci>
+                     <ci> SPC_1262_chloroplast </ci>
+                  </apply>
+               </math>
+               <listOfLocalParameters>
+                  <localParameter id="kcat_Km_SPC_30271_chloroplast" name="kcat_Km_3Butentwoone" value="25700" sboTerm="SBO:0000302" units="Mwedgeoneswedgeone" />
+                  <localParameter id="kcat" name="kcat" value="74" sboTerm="SBO:0000025" units="swedgeone" />
+                  <localParameter id="Km_SPC_30271_chloroplast" name="Km_3Butentwoone" value="0.00288" sboTerm="SBO:0000027" units="M" />
+               </listOfLocalParameters>
+            </kineticLaw>
+         </reaction>
+         <reaction id="REAC_9" reversible="true" fast="false" metaid="META_REAC_9">
+            <annotation>
+               <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Description rdf:about="#META_REAC_9">
+                     <bqbiol:is>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/sabiork.reaction/15380" />
+                        </rdf:Bag>
+                     </bqbiol:is>
+                     <bqbiol:isVersionOf>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/ec-code/1.3.1.-" />
+                        </rdf:Bag>
+                     </bqbiol:isVersionOf>
+                     <bqbiol:hasTaxon>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/taxonomy/3659" />
+                        </rdf:Bag>
+                     </bqbiol:hasTaxon>
+                     <bqbiol:occursIn>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/bto/BTO:0000713" />
+                        </rdf:Bag>
+                     </bqbiol:occursIn>
+                  </rdf:Description>
+               </rdf:RDF>
+            </annotation>
+            <listOfReactants>
+               <speciesReference species="SPC_31504_chloroplast" stoichiometry="1" constant="true" />
+               <speciesReference species="SPC_39_chloroplast" stoichiometry="1" constant="true" />
+               <speciesReference species="SPC_1262_chloroplast" stoichiometry="1" constant="true" />
+            </listOfReactants>
+            <listOfProducts>
+               <speciesReference species="SPC_1263_chloroplast" stoichiometry="1" constant="true" />
+               <speciesReference species="SPC_23238_chloroplast" stoichiometry="1" constant="true" />
+            </listOfProducts>
+            <listOfModifiers>
+               <modifierSpeciesReference species="ENZ_377933_chloroplast" />
+            </listOfModifiers>
+            <kineticLaw metaid="META_KL_66178" sboTerm="SBO:0000029">
+               <annotation xmlns:sbrk="http://sabiork.h-its.org">
+                  <sbrk:sabiork>
+                     <sbrk:kineticLawID>66178</sbrk:kineticLawID>
+                     <sbrk:experimentalConditions>
+                        <sbrk:pH>
+                           <sbrk:startValuepH>7</sbrk:startValuepH>
+                        </sbrk:pH>
+                        <sbrk:buffer>50 mM HEPES-NaOH</sbrk:buffer>
+                     </sbrk:experimentalConditions>
+                  </sbrk:sabiork>
+                  <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                     <rdf:Description rdf:about="#META_KL_66178">
+                        <bqbiol:isDescribedBy>
+                           <rdf:Bag>
+                              <rdf:li rdf:resource="https://identifiers.org/pubmed/21169366" />
+                           </rdf:Bag>
+                        </bqbiol:isDescribedBy>
+                        <bqbiol:isDescribedBy>
+                           <rdf:Bag>
+                              <rdf:li rdf:resource="https://identifiers.org/sabiork.kineticrecord/66178" />
+                           </rdf:Bag>
+                        </bqbiol:isDescribedBy>
+                     </rdf:Description>
+                  </rdf:RDF>
+               </annotation>
+               <math xmlns="http://www.w3.org/1998/Math/MathML">
+                  <apply>
+                     <ci> KL_66178 </ci>
+                     <ci> Km_SPC_31504_chloroplast </ci>
+                     <ci> kcat </ci>
+                     <ci> SPC_1262_chloroplast </ci>
+                     <ci> SPC_31504_chloroplast </ci>
+                     <ci> kcat_Km_SPC_31504_chloroplast </ci>
+                     <ci> ENZ_377933_chloroplast </ci>
+                  </apply>
+               </math>
+               <listOfLocalParameters>
+                  <localParameter id="Km_SPC_31504_chloroplast" name="Km_onePenten3one" value="0.00058" sboTerm="SBO:0000027" units="M" />
+                  <localParameter id="kcat" name="kcat" value="61" sboTerm="SBO:0000025" units="swedgeone" />
+                  <localParameter id="kcat_Km_SPC_31504_chloroplast" name="kcat_Km_onePenten3one" value="105000" sboTerm="SBO:0000302" units="Mwedgeoneswedgeone" />
+               </listOfLocalParameters>
+            </kineticLaw>
+         </reaction>
+         <reaction id="REAC_10" reversible="true" fast="false" metaid="META_REAC_10">
+            <annotation>
+               <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Description rdf:about="#META_REAC_10">
+                     <bqbiol:is>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/sabiork.reaction/15382" />
+                        </rdf:Bag>
+                     </bqbiol:is>
+                     <bqbiol:isVersionOf>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/ec-code/1.3.1.-" />
+                        </rdf:Bag>
+                     </bqbiol:isVersionOf>
+                     <bqbiol:hasTaxon>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/taxonomy/3659" />
+                        </rdf:Bag>
+                     </bqbiol:hasTaxon>
+                     <bqbiol:occursIn>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/bto/BTO:0000713" />
+                        </rdf:Bag>
+                     </bqbiol:occursIn>
+                  </rdf:Description>
+               </rdf:RDF>
+            </annotation>
+            <listOfReactants>
+               <speciesReference species="SPC_39_chloroplast" stoichiometry="1" constant="true" />
+               <speciesReference species="SPC_31507_chloroplast" stoichiometry="1" constant="true" />
+               <speciesReference species="SPC_1262_chloroplast" stoichiometry="1" constant="true" />
+            </listOfReactants>
+            <listOfProducts>
+               <speciesReference species="SPC_1263_chloroplast" stoichiometry="1" constant="true" />
+               <speciesReference species="SPC_31506_chloroplast" stoichiometry="1" constant="true" />
+            </listOfProducts>
+            <listOfModifiers>
+               <modifierSpeciesReference species="ENZ_377945_chloroplast" />
+            </listOfModifiers>
+            <kineticLaw metaid="META_KL_66180" sboTerm="SBO:0000029">
+               <annotation xmlns:sbrk="http://sabiork.h-its.org">
+                  <sbrk:sabiork>
+                     <sbrk:kineticLawID>66180</sbrk:kineticLawID>
+                     <sbrk:experimentalConditions>
+                        <sbrk:pH>
+                           <sbrk:startValuepH>7</sbrk:startValuepH>
+                        </sbrk:pH>
+                        <sbrk:buffer>50 mM HEPES-NaOH</sbrk:buffer>
+                     </sbrk:experimentalConditions>
+                  </sbrk:sabiork>
+                  <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                     <rdf:Description rdf:about="#META_KL_66180">
+                        <bqbiol:isDescribedBy>
+                           <rdf:Bag>
+                              <rdf:li rdf:resource="https://identifiers.org/pubmed/21169366" />
+                           </rdf:Bag>
+                        </bqbiol:isDescribedBy>
+                        <bqbiol:isDescribedBy>
+                           <rdf:Bag>
+                              <rdf:li rdf:resource="https://identifiers.org/sabiork.kineticrecord/66180" />
+                           </rdf:Bag>
+                        </bqbiol:isDescribedBy>
+                     </rdf:Description>
+                  </rdf:RDF>
+               </annotation>
+               <math xmlns="http://www.w3.org/1998/Math/MathML">
+                  <apply>
+                     <ci> KL_66180 </ci>
+                     <ci> Km_SPC_31507_chloroplast </ci>
+                     <ci> kcat_Km_SPC_31507_chloroplast </ci>
+                     <ci> SPC_31507_chloroplast </ci>
+                     <ci> kcat </ci>
+                     <ci> ENZ_377945_chloroplast </ci>
+                     <ci> SPC_1262_chloroplast </ci>
+                  </apply>
+               </math>
+               <listOfLocalParameters>
+                  <localParameter id="Km_SPC_31507_chloroplast" name="Km_4Hexen3one" value="2.3E-05" sboTerm="SBO:0000027" units="M" />
+                  <localParameter id="kcat_Km_SPC_31507_chloroplast" name="kcat_Km_4Hexen3one" value="2960000" sboTerm="SBO:0000302" units="Mwedgeoneswedgeone" />
+                  <localParameter id="kcat" name="kcat" value="68" sboTerm="SBO:0000025" units="swedgeone" />
+               </listOfLocalParameters>
+            </kineticLaw>
+         </reaction>
+         <reaction id="REAC_11" reversible="true" fast="false" metaid="META_REAC_11">
+            <annotation>
+               <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Description rdf:about="#META_REAC_11">
+                     <bqbiol:is>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/sabiork.reaction/15379" />
+                        </rdf:Bag>
+                     </bqbiol:is>
+                     <bqbiol:isVersionOf>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/ec-code/1.3.1.-" />
+                        </rdf:Bag>
+                     </bqbiol:isVersionOf>
+                     <bqbiol:hasTaxon>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/taxonomy/3702" />
+                        </rdf:Bag>
+                     </bqbiol:hasTaxon>
+                  </rdf:Description>
+               </rdf:RDF>
+            </annotation>
+            <listOfReactants>
+               <speciesReference species="SPC_39_chloroplast" stoichiometry="1" constant="true" />
+               <speciesReference species="SPC_30271_chloroplast" stoichiometry="1" constant="true" />
+               <speciesReference species="SPC_1262_chloroplast" stoichiometry="1" constant="true" />
+            </listOfReactants>
+            <listOfProducts>
+               <speciesReference species="SPC_2545_chloroplast" stoichiometry="1" constant="true" />
+               <speciesReference species="SPC_1263_chloroplast" stoichiometry="1" constant="true" />
+            </listOfProducts>
+            <listOfModifiers>
+               <modifierSpeciesReference species="ENZ_377987_chloroplast" />
+            </listOfModifiers>
+            <kineticLaw metaid="META_KL_66187" sboTerm="SBO:0000029">
+               <annotation xmlns:sbrk="http://sabiork.h-its.org">
+                  <sbrk:sabiork>
+                     <sbrk:kineticLawID>66187</sbrk:kineticLawID>
+                     <sbrk:experimentalConditions>
+                        <sbrk:pH>
+                           <sbrk:startValuepH>7</sbrk:startValuepH>
+                        </sbrk:pH>
+                        <sbrk:buffer>50 mM HEPES-NaOH</sbrk:buffer>
+                     </sbrk:experimentalConditions>
+                  </sbrk:sabiork>
+                  <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                     <rdf:Description rdf:about="#META_KL_66187">
+                        <bqbiol:isDescribedBy>
+                           <rdf:Bag>
+                              <rdf:li rdf:resource="https://identifiers.org/pubmed/21169366" />
+                           </rdf:Bag>
+                        </bqbiol:isDescribedBy>
+                        <bqbiol:isDescribedBy>
+                           <rdf:Bag>
+                              <rdf:li rdf:resource="https://identifiers.org/sabiork.kineticrecord/66187" />
+                           </rdf:Bag>
+                        </bqbiol:isDescribedBy>
+                     </rdf:Description>
+                  </rdf:RDF>
+               </annotation>
+               <math xmlns="http://www.w3.org/1998/Math/MathML">
+                  <apply>
+                     <ci> KL_66187 </ci>
+                     <ci> kcat </ci>
+                     <ci> Km_SPC_30271_chloroplast </ci>
+                     <ci> kcat_Km_SPC_30271_chloroplast </ci>
+                     <ci> ENZ_377987_chloroplast </ci>
+                     <ci> SPC_30271_chloroplast </ci>
+                     <ci> SPC_1262_chloroplast </ci>
+                  </apply>
+               </math>
+               <listOfLocalParameters>
+                  <localParameter id="kcat" name="kcat" value="3.5" sboTerm="SBO:0000025" units="swedgeone" />
+                  <localParameter id="Km_SPC_30271_chloroplast" name="Km_3Butentwoone" value="0.00013" sboTerm="SBO:0000027" units="M" />
+                  <localParameter id="kcat_Km_SPC_30271_chloroplast" name="kcat_Km_3Butentwoone" value="26900" sboTerm="SBO:0000302" units="Mwedgeoneswedgeone" />
+               </listOfLocalParameters>
+            </kineticLaw>
+         </reaction>
+         <reaction id="REAC_12" reversible="true" fast="false" metaid="META_REAC_12">
+            <annotation>
+               <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Description rdf:about="#META_REAC_12">
+                     <bqbiol:is>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/sabiork.reaction/15380" />
+                        </rdf:Bag>
+                     </bqbiol:is>
+                     <bqbiol:isVersionOf>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/ec-code/1.3.1.-" />
+                        </rdf:Bag>
+                     </bqbiol:isVersionOf>
+                     <bqbiol:hasTaxon>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/taxonomy/3702" />
+                        </rdf:Bag>
+                     </bqbiol:hasTaxon>
+                  </rdf:Description>
+               </rdf:RDF>
+            </annotation>
+            <listOfReactants>
+               <speciesReference species="SPC_1262_chloroplast" stoichiometry="1" constant="true" />
+               <speciesReference species="SPC_39_chloroplast" stoichiometry="1" constant="true" />
+               <speciesReference species="SPC_31504_chloroplast" stoichiometry="1" constant="true" />
+            </listOfReactants>
+            <listOfProducts>
+               <speciesReference species="SPC_1263_chloroplast" stoichiometry="1" constant="true" />
+               <speciesReference species="SPC_23238_chloroplast" stoichiometry="1" constant="true" />
+            </listOfProducts>
+            <listOfModifiers>
+               <modifierSpeciesReference species="ENZ_377993_chloroplast" />
+            </listOfModifiers>
+            <kineticLaw metaid="META_KL_66188" sboTerm="SBO:0000029">
+               <annotation xmlns:sbrk="http://sabiork.h-its.org">
+                  <sbrk:sabiork>
+                     <sbrk:kineticLawID>66188</sbrk:kineticLawID>
+                     <sbrk:experimentalConditions>
+                        <sbrk:pH>
+                           <sbrk:startValuepH>7</sbrk:startValuepH>
+                        </sbrk:pH>
+                        <sbrk:buffer>50 mM HEPES-NaOH</sbrk:buffer>
+                     </sbrk:experimentalConditions>
+                  </sbrk:sabiork>
+                  <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                     <rdf:Description rdf:about="#META_KL_66188">
+                        <bqbiol:isDescribedBy>
+                           <rdf:Bag>
+                              <rdf:li rdf:resource="https://identifiers.org/pubmed/21169366" />
+                           </rdf:Bag>
+                        </bqbiol:isDescribedBy>
+                        <bqbiol:isDescribedBy>
+                           <rdf:Bag>
+                              <rdf:li rdf:resource="https://identifiers.org/sabiork.kineticrecord/66188" />
+                           </rdf:Bag>
+                        </bqbiol:isDescribedBy>
+                     </rdf:Description>
+                  </rdf:RDF>
+               </annotation>
+               <math xmlns="http://www.w3.org/1998/Math/MathML">
+                  <apply>
+                     <ci> KL_66188 </ci>
+                     <ci> ENZ_377993_chloroplast </ci>
+                     <ci> kcat_Km_SPC_31504_chloroplast </ci>
+                     <ci> SPC_31504_chloroplast </ci>
+                     <ci> SPC_1262_chloroplast </ci>
+                     <ci> Km_SPC_31504_chloroplast </ci>
+                     <ci> kcat </ci>
+                  </apply>
+               </math>
+               <listOfLocalParameters>
+                  <localParameter id="kcat_Km_SPC_31504_chloroplast" name="kcat_Km_onePenten3one" value="13800" sboTerm="SBO:0000302" units="Mwedgeoneswedgeone" />
+                  <localParameter id="Km_SPC_31504_chloroplast" name="Km_onePenten3one" value="0.00029" sboTerm="SBO:0000027" units="M" />
+                  <localParameter id="kcat" name="kcat" value="4" sboTerm="SBO:0000025" units="swedgeone" />
+               </listOfLocalParameters>
+            </kineticLaw>
+         </reaction>
+         <reaction id="REAC_13" reversible="true" fast="false" metaid="META_REAC_13">
+            <annotation>
+               <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Description rdf:about="#META_REAC_13">
+                     <bqbiol:is>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/sabiork.reaction/15378" />
+                        </rdf:Bag>
+                     </bqbiol:is>
+                     <bqbiol:isVersionOf>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/ec-code/1.3.1.-" />
+                        </rdf:Bag>
+                     </bqbiol:isVersionOf>
+                     <bqbiol:hasTaxon>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/taxonomy/3702" />
+                        </rdf:Bag>
+                     </bqbiol:hasTaxon>
+                  </rdf:Description>
+               </rdf:RDF>
+            </annotation>
+            <listOfReactants>
+               <speciesReference species="SPC_20832_chloroplast" stoichiometry="1" constant="true" />
+               <speciesReference species="SPC_1262_chloroplast" stoichiometry="1" constant="true" />
+               <speciesReference species="SPC_39_chloroplast" stoichiometry="1" constant="true" />
+            </listOfReactants>
+            <listOfProducts>
+               <speciesReference species="SPC_2281_chloroplast" stoichiometry="1" constant="true" />
+               <speciesReference species="SPC_1263_chloroplast" stoichiometry="1" constant="true" />
+            </listOfProducts>
+            <listOfModifiers>
+               <modifierSpeciesReference species="ENZ_377981_chloroplast" />
+            </listOfModifiers>
+            <kineticLaw metaid="META_KL_66186" sboTerm="SBO:0000029">
+               <annotation xmlns:sbrk="http://sabiork.h-its.org">
+                  <sbrk:sabiork>
+                     <sbrk:kineticLawID>66186</sbrk:kineticLawID>
+                     <sbrk:experimentalConditions>
+                        <sbrk:pH>
+                           <sbrk:startValuepH>7</sbrk:startValuepH>
+                        </sbrk:pH>
+                        <sbrk:buffer>50 mM HEPES-NaOH</sbrk:buffer>
+                     </sbrk:experimentalConditions>
+                  </sbrk:sabiork>
+                  <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                     <rdf:Description rdf:about="#META_KL_66186">
+                        <bqbiol:isDescribedBy>
+                           <rdf:Bag>
+                              <rdf:li rdf:resource="https://identifiers.org/pubmed/21169366" />
+                           </rdf:Bag>
+                        </bqbiol:isDescribedBy>
+                        <bqbiol:isDescribedBy>
+                           <rdf:Bag>
+                              <rdf:li rdf:resource="https://identifiers.org/sabiork.kineticrecord/66186" />
+                           </rdf:Bag>
+                        </bqbiol:isDescribedBy>
+                     </rdf:Description>
+                  </rdf:RDF>
+               </annotation>
+               <math xmlns="http://www.w3.org/1998/Math/MathML">
+                  <apply>
+                     <ci> KL_66186 </ci>
+                     <ci> kcat </ci>
+                     <ci> ENZ_377981_chloroplast </ci>
+                     <ci> Km_SPC_20832_chloroplast </ci>
+                     <ci> SPC_20832_chloroplast </ci>
+                     <ci> kcat_Km_SPC_20832_chloroplast </ci>
+                     <ci> SPC_1262_chloroplast </ci>
+                  </apply>
+               </math>
+               <listOfLocalParameters>
+                  <localParameter id="kcat" name="kcat" value="1.3" sboTerm="SBO:0000025" units="swedgeone" />
+                  <localParameter id="Km_SPC_20832_chloroplast" name="Km_Crotonaldehyde" value="0.0018" sboTerm="SBO:0000027" units="M" />
+                  <localParameter id="kcat_Km_SPC_20832_chloroplast" name="kcat_Km_Crotonaldehyde" value="720" sboTerm="SBO:0000302" units="Mwedgeoneswedgeone" />
+               </listOfLocalParameters>
+            </kineticLaw>
+         </reaction>
+         <reaction id="REAC_14" reversible="true" fast="false" metaid="META_REAC_14">
+            <annotation>
+               <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Description rdf:about="#META_REAC_14">
+                     <bqbiol:is>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/sabiork.reaction/15382" />
+                        </rdf:Bag>
+                     </bqbiol:is>
+                     <bqbiol:isVersionOf>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/ec-code/1.3.1.-" />
+                        </rdf:Bag>
+                     </bqbiol:isVersionOf>
+                     <bqbiol:hasTaxon>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/taxonomy/3702" />
+                        </rdf:Bag>
+                     </bqbiol:hasTaxon>
+                  </rdf:Description>
+               </rdf:RDF>
+            </annotation>
+            <listOfReactants>
+               <speciesReference species="SPC_39_chloroplast" stoichiometry="1" constant="true" />
+               <speciesReference species="SPC_31507_chloroplast" stoichiometry="1" constant="true" />
+               <speciesReference species="SPC_1262_chloroplast" stoichiometry="1" constant="true" />
+            </listOfReactants>
+            <listOfProducts>
+               <speciesReference species="SPC_1263_chloroplast" stoichiometry="1" constant="true" />
+               <speciesReference species="SPC_31506_chloroplast" stoichiometry="1" constant="true" />
+            </listOfProducts>
+            <listOfModifiers>
+               <modifierSpeciesReference species="ENZ_377999_chloroplast" />
+            </listOfModifiers>
+            <kineticLaw metaid="META_KL_66189" sboTerm="SBO:0000029">
+               <annotation xmlns:sbrk="http://sabiork.h-its.org">
+                  <sbrk:sabiork>
+                     <sbrk:kineticLawID>66189</sbrk:kineticLawID>
+                     <sbrk:experimentalConditions>
+                        <sbrk:pH>
+                           <sbrk:startValuepH>7</sbrk:startValuepH>
+                        </sbrk:pH>
+                        <sbrk:buffer>50 mM HEPES-NaOH</sbrk:buffer>
+                     </sbrk:experimentalConditions>
+                  </sbrk:sabiork>
+                  <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                     <rdf:Description rdf:about="#META_KL_66189">
+                        <bqbiol:isDescribedBy>
+                           <rdf:Bag>
+                              <rdf:li rdf:resource="https://identifiers.org/pubmed/21169366" />
+                           </rdf:Bag>
+                        </bqbiol:isDescribedBy>
+                        <bqbiol:isDescribedBy>
+                           <rdf:Bag>
+                              <rdf:li rdf:resource="https://identifiers.org/sabiork.kineticrecord/66189" />
+                           </rdf:Bag>
+                        </bqbiol:isDescribedBy>
+                     </rdf:Description>
+                  </rdf:RDF>
+               </annotation>
+               <math xmlns="http://www.w3.org/1998/Math/MathML">
+                  <apply>
+                     <ci> KL_66189 </ci>
+                     <ci> kcat_Km_SPC_31507_chloroplast </ci>
+                     <ci> kcat </ci>
+                     <ci> ENZ_377999_chloroplast </ci>
+                     <ci> Km_SPC_31507_chloroplast </ci>
+                     <ci> SPC_31507_chloroplast </ci>
+                     <ci> SPC_1262_chloroplast </ci>
+                  </apply>
+               </math>
+               <listOfLocalParameters>
+                  <localParameter id="kcat_Km_SPC_31507_chloroplast" name="kcat_Km_4Hexen3one" value="27500" sboTerm="SBO:0000302" units="Mwedgeoneswedgeone" />
+                  <localParameter id="kcat" name="kcat" value="3.3" sboTerm="SBO:0000025" units="swedgeone" />
+                  <localParameter id="Km_SPC_31507_chloroplast" name="Km_4Hexen3one" value="0.00012" sboTerm="SBO:0000027" units="M" />
+               </listOfLocalParameters>
+            </kineticLaw>
+         </reaction>
+         <reaction id="REAC_15" reversible="true" fast="false" metaid="META_REAC_15">
+            <annotation>
+               <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Description rdf:about="#META_REAC_15">
+                     <bqbiol:is>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/sabiork.reaction/7323" />
+                        </rdf:Bag>
+                     </bqbiol:is>
+                     <bqbiol:isVersionOf>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/ec-code/1.3.1.-" />
+                        </rdf:Bag>
+                     </bqbiol:isVersionOf>
+                     <bqbiol:hasTaxon>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/taxonomy/303" />
+                        </rdf:Bag>
+                     </bqbiol:hasTaxon>
+                  </rdf:Description>
+               </rdf:RDF>
+            </annotation>
+            <listOfReactants>
+               <speciesReference species="SPC_6180_Cell" stoichiometry="1" constant="true" />
+               <speciesReference species="SPC_38_Cell" stoichiometry="1" constant="true" />
+            </listOfReactants>
+            <listOfProducts>
+               <speciesReference species="SPC_5081_Cell" stoichiometry="1" constant="true" />
+               <speciesReference species="SPC_37_Cell" stoichiometry="1" constant="true" />
+            </listOfProducts>
+            <listOfModifiers>
+               <modifierSpeciesReference species="ENZ_30893_Cell" />
+            </listOfModifiers>
+            <kineticLaw metaid="META_KL_5923" sboTerm="SBO:0000029">
+               <annotation xmlns:sbrk="http://sabiork.h-its.org">
+                  <sbrk:sabiork>
+                     <sbrk:kineticLawID>5923</sbrk:kineticLawID>
+                     <sbrk:experimentalConditions>
+                        <sbrk:temperature>
+                           <sbrk:startValueTemperature>25</sbrk:startValueTemperature>
+                           <sbrk:temperatureUnit>°C</sbrk:temperatureUnit>
+                        </sbrk:temperature>
+                        <sbrk:pH>
+                           <sbrk:startValuepH>7</sbrk:startValuepH>
+                        </sbrk:pH>
+                        <sbrk:buffer> 50 mM potassium phosphate</sbrk:buffer>
+                     </sbrk:experimentalConditions>
+                  </sbrk:sabiork>
+                  <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                     <rdf:Description rdf:about="#META_KL_5923">
+                        <bqbiol:isDescribedBy>
+                           <rdf:Bag>
+                              <rdf:li rdf:resource="https://identifiers.org/pubmed/12048188" />
+                           </rdf:Bag>
+                        </bqbiol:isDescribedBy>
+                        <bqbiol:isDescribedBy>
+                           <rdf:Bag>
+                              <rdf:li rdf:resource="https://identifiers.org/sabiork.kineticrecord/5923" />
+                           </rdf:Bag>
+                        </bqbiol:isDescribedBy>
+                     </rdf:Description>
+                  </rdf:RDF>
+               </annotation>
+               <math xmlns="http://www.w3.org/1998/Math/MathML">
+                  <apply>
+                     <ci> KL_5923 </ci>
+                     <ci> SPC_6180_Cell </ci>
+                     <ci> kcat </ci>
+                     <ci> ENZ_30893_Cell </ci>
+                     <ci> SPC_38_Cell </ci>
+                     <ci> Km_SPC_6180_Cell </ci>
+                  </apply>
+               </math>
+               <listOfLocalParameters>
+                  <localParameter id="kcat" name="kcat" value="0.8" sboTerm="SBO:0000025" units="swedgeone" />
+                  <localParameter id="Km_SPC_6180_Cell" name="Km_Cyclohex2enone" value="0.0042" sboTerm="SBO:0000027" units="M" />
+               </listOfLocalParameters>
+            </kineticLaw>
+         </reaction>
+         <reaction id="REAC_16" reversible="true" fast="false" metaid="META_REAC_16">
+            <annotation>
+               <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Description rdf:about="#META_REAC_16">
+                     <bqbiol:is>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/sabiork.reaction/7323" />
+                        </rdf:Bag>
+                     </bqbiol:is>
+                     <bqbiol:isVersionOf>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/ec-code/1.3.1.-" />
+                        </rdf:Bag>
+                     </bqbiol:isVersionOf>
+                     <bqbiol:hasTaxon>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/taxonomy/303" />
+                        </rdf:Bag>
+                     </bqbiol:hasTaxon>
+                  </rdf:Description>
+               </rdf:RDF>
+            </annotation>
+            <listOfReactants>
+               <speciesReference species="SPC_38_Cell" stoichiometry="1" constant="true" />
+               <speciesReference species="SPC_6180_Cell" stoichiometry="1" constant="true" />
+            </listOfReactants>
+            <listOfProducts>
+               <speciesReference species="SPC_37_Cell" stoichiometry="1" constant="true" />
+               <speciesReference species="SPC_5081_Cell" stoichiometry="1" constant="true" />
+            </listOfProducts>
+            <listOfModifiers>
+               <modifierSpeciesReference species="ENZ_30913_Cell" />
+            </listOfModifiers>
+            <kineticLaw metaid="META_KL_5927" sboTerm="SBO:0000455">
+               <annotation xmlns:sbrk="http://sabiork.h-its.org">
+                  <sbrk:sabiork>
+                     <sbrk:kineticLawID>5927</sbrk:kineticLawID>
+                     <sbrk:experimentalConditions>
+                        <sbrk:temperature>
+                           <sbrk:startValueTemperature>25</sbrk:startValueTemperature>
+                           <sbrk:temperatureUnit>°C</sbrk:temperatureUnit>
+                        </sbrk:temperature>
+                        <sbrk:pH>
+                           <sbrk:startValuepH>7</sbrk:startValuepH>
+                        </sbrk:pH>
+                        <sbrk:buffer> 50 mM potassium phosphate</sbrk:buffer>
+                     </sbrk:experimentalConditions>
+                  </sbrk:sabiork>
+                  <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                     <rdf:Description rdf:about="#META_KL_5927">
+                        <bqbiol:isDescribedBy>
+                           <rdf:Bag>
+                              <rdf:li rdf:resource="https://identifiers.org/pubmed/15632179" />
+                           </rdf:Bag>
+                        </bqbiol:isDescribedBy>
+                        <bqbiol:isDescribedBy>
+                           <rdf:Bag>
+                              <rdf:li rdf:resource="https://identifiers.org/sabiork.kineticrecord/5927" />
+                           </rdf:Bag>
+                        </bqbiol:isDescribedBy>
+                     </rdf:Description>
+                  </rdf:RDF>
+               </annotation>
+               <math xmlns="http://www.w3.org/1998/Math/MathML">
+                  <apply>
+                     <ci> KL_5927 </ci>
+                     <ci> Ki_SPC_6180_Cell </ci>
+                     <ci> SPC_6180_Cell </ci>
+                     <ci> Km_SPC_6180_Cell </ci>
+                     <ci> ENZ_30913_Cell </ci>
+                     <ci> kcat </ci>
+                  </apply>
+               </math>
+               <listOfLocalParameters>
+                  <localParameter id="Ki_SPC_6180_Cell" name="Ki_Cyclohex2enone" value="0.0138" sboTerm="SBO:0000261" units="M" />
+                  <localParameter id="Km_SPC_6180_Cell" name="Km_Cyclohex2enone" value="0.0022" sboTerm="SBO:0000027" units="M" />
+                  <localParameter id="kcat" name="kcat" value="0.089" sboTerm="SBO:0000025" units="swedgeone" />
+               </listOfLocalParameters>
+            </kineticLaw>
+         </reaction>
+         <reaction id="REAC_17" reversible="true" fast="false" metaid="META_REAC_17">
+            <annotation>
+               <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Description rdf:about="#META_REAC_17">
+                     <bqbiol:is>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/sabiork.reaction/7323" />
+                        </rdf:Bag>
+                     </bqbiol:is>
+                     <bqbiol:isVersionOf>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/ec-code/1.3.1.-" />
+                        </rdf:Bag>
+                     </bqbiol:isVersionOf>
+                     <bqbiol:hasTaxon>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/taxonomy/303" />
+                        </rdf:Bag>
+                     </bqbiol:hasTaxon>
+                  </rdf:Description>
+               </rdf:RDF>
+            </annotation>
+            <listOfReactants>
+               <speciesReference species="SPC_38_Cell" stoichiometry="1" constant="true" />
+               <speciesReference species="SPC_6180_Cell" stoichiometry="1" constant="true" />
+            </listOfReactants>
+            <listOfProducts>
+               <speciesReference species="SPC_37_Cell" stoichiometry="1" constant="true" />
+               <speciesReference species="SPC_5081_Cell" stoichiometry="1" constant="true" />
+            </listOfProducts>
+            <listOfModifiers>
+               <modifierSpeciesReference species="ENZ_30918_Cell" />
+            </listOfModifiers>
+            <kineticLaw metaid="META_KL_5928" sboTerm="SBO:0000029">
+               <annotation xmlns:sbrk="http://sabiork.h-its.org">
+                  <sbrk:sabiork>
+                     <sbrk:kineticLawID>5928</sbrk:kineticLawID>
+                     <sbrk:experimentalConditions>
+                        <sbrk:temperature>
+                           <sbrk:startValueTemperature>25</sbrk:startValueTemperature>
+                           <sbrk:temperatureUnit>°C</sbrk:temperatureUnit>
+                        </sbrk:temperature>
+                        <sbrk:pH>
+                           <sbrk:startValuepH>7</sbrk:startValuepH>
+                        </sbrk:pH>
+                        <sbrk:buffer> 50 mM potassium phosphate</sbrk:buffer>
+                     </sbrk:experimentalConditions>
+                  </sbrk:sabiork>
+                  <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                     <rdf:Description rdf:about="#META_KL_5928">
+                        <bqbiol:isDescribedBy>
+                           <rdf:Bag>
+                              <rdf:li rdf:resource="https://identifiers.org/pubmed/15632179" />
+                           </rdf:Bag>
+                        </bqbiol:isDescribedBy>
+                        <bqbiol:isDescribedBy>
+                           <rdf:Bag>
+                              <rdf:li rdf:resource="https://identifiers.org/sabiork.kineticrecord/5928" />
+                           </rdf:Bag>
+                        </bqbiol:isDescribedBy>
+                     </rdf:Description>
+                  </rdf:RDF>
+               </annotation>
+               <math xmlns="http://www.w3.org/1998/Math/MathML">
+                  <apply>
+                     <ci> KL_5928 </ci>
+                     <ci> Km_SPC_38_Cell </ci>
+                     <ci> SPC_6180_Cell </ci>
+                     <ci> kcat </ci>
+                     <ci> SPC_38_Cell </ci>
+                     <ci> ENZ_30918_Cell </ci>
+                  </apply>
+               </math>
+               <listOfLocalParameters>
+                  <localParameter id="Km_SPC_38_Cell" name="Km_NADH" value="0.0001193" sboTerm="SBO:0000027" units="M" />
+                  <localParameter id="kcat" name="kcat" value="0.083" sboTerm="SBO:0000025" units="swedgeone" />
+               </listOfLocalParameters>
+            </kineticLaw>
+         </reaction>
+         <reaction id="REAC_18" reversible="true" fast="false" metaid="META_REAC_18">
+            <annotation>
+               <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Description rdf:about="#META_REAC_18">
+                     <bqbiol:is>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/sabiork.reaction/7323" />
+                        </rdf:Bag>
+                     </bqbiol:is>
+                     <bqbiol:isVersionOf>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/ec-code/1.3.1.-" />
+                        </rdf:Bag>
+                     </bqbiol:isVersionOf>
+                     <bqbiol:hasTaxon>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/taxonomy/303" />
+                        </rdf:Bag>
+                     </bqbiol:hasTaxon>
+                  </rdf:Description>
+               </rdf:RDF>
+            </annotation>
+            <listOfReactants>
+               <speciesReference species="SPC_6180_Cell" stoichiometry="1" constant="true" />
+               <speciesReference species="SPC_38_Cell" stoichiometry="1" constant="true" />
+            </listOfReactants>
+            <listOfProducts>
+               <speciesReference species="SPC_37_Cell" stoichiometry="1" constant="true" />
+               <speciesReference species="SPC_5081_Cell" stoichiometry="1" constant="true" />
+            </listOfProducts>
+            <listOfModifiers>
+               <modifierSpeciesReference species="ENZ_30908_Cell" />
+            </listOfModifiers>
+            <kineticLaw metaid="META_KL_5926" sboTerm="SBO:0000029">
+               <annotation xmlns:sbrk="http://sabiork.h-its.org">
+                  <sbrk:sabiork>
+                     <sbrk:kineticLawID>5926</sbrk:kineticLawID>
+                     <sbrk:experimentalConditions>
+                        <sbrk:temperature>
+                           <sbrk:startValueTemperature>25</sbrk:startValueTemperature>
+                           <sbrk:temperatureUnit>°C</sbrk:temperatureUnit>
+                        </sbrk:temperature>
+                        <sbrk:pH>
+                           <sbrk:startValuepH>7</sbrk:startValuepH>
+                        </sbrk:pH>
+                        <sbrk:buffer> 50 mM potassium phosphate</sbrk:buffer>
+                     </sbrk:experimentalConditions>
+                  </sbrk:sabiork>
+                  <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                     <rdf:Description rdf:about="#META_KL_5926">
+                        <bqbiol:isDescribedBy>
+                           <rdf:Bag>
+                              <rdf:li rdf:resource="https://identifiers.org/pubmed/12048188" />
+                           </rdf:Bag>
+                        </bqbiol:isDescribedBy>
+                        <bqbiol:isDescribedBy>
+                           <rdf:Bag>
+                              <rdf:li rdf:resource="https://identifiers.org/sabiork.kineticrecord/5926" />
+                           </rdf:Bag>
+                        </bqbiol:isDescribedBy>
+                     </rdf:Description>
+                  </rdf:RDF>
+               </annotation>
+               <math xmlns="http://www.w3.org/1998/Math/MathML">
+                  <apply>
+                     <ci> KL_5926 </ci>
+                     <ci> SPC_38_Cell </ci>
+                     <ci> Km_SPC_38_Cell </ci>
+                     <ci> ENZ_30908_Cell </ci>
+                     <ci> kcat </ci>
+                     <ci> SPC_6180_Cell </ci>
+                  </apply>
+               </math>
+               <listOfLocalParameters>
+                  <localParameter id="Km_SPC_38_Cell" name="Km_NADH" value="0.0089" sboTerm="SBO:0000027" units="M" />
+                  <localParameter id="kcat" name="kcat" value="0.88" sboTerm="SBO:0000025" units="swedgeone" />
+               </listOfLocalParameters>
+            </kineticLaw>
+         </reaction>
+         <reaction id="REAC_19" reversible="true" fast="false" metaid="META_REAC_19">
+            <annotation>
+               <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Description rdf:about="#META_REAC_19">
+                     <bqbiol:is>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/sabiork.reaction/7323" />
+                        </rdf:Bag>
+                     </bqbiol:is>
+                     <bqbiol:isVersionOf>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/ec-code/1.3.1.-" />
+                        </rdf:Bag>
+                     </bqbiol:isVersionOf>
+                     <bqbiol:hasTaxon>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/taxonomy/303" />
+                        </rdf:Bag>
+                     </bqbiol:hasTaxon>
+                  </rdf:Description>
+               </rdf:RDF>
+            </annotation>
+            <listOfReactants>
+               <speciesReference species="SPC_6180_Cell" stoichiometry="1" constant="true" />
+               <speciesReference species="SPC_38_Cell" stoichiometry="1" constant="true" />
+            </listOfReactants>
+            <listOfProducts>
+               <speciesReference species="SPC_37_Cell" stoichiometry="1" constant="true" />
+               <speciesReference species="SPC_5081_Cell" stoichiometry="1" constant="true" />
+            </listOfProducts>
+            <listOfModifiers>
+               <modifierSpeciesReference species="ENZ_30898_Cell" />
+            </listOfModifiers>
+            <kineticLaw metaid="META_KL_5924" sboTerm="SBO:0000029">
+               <annotation xmlns:sbrk="http://sabiork.h-its.org">
+                  <sbrk:sabiork>
+                     <sbrk:kineticLawID>5924</sbrk:kineticLawID>
+                     <sbrk:experimentalConditions>
+                        <sbrk:temperature>
+                           <sbrk:startValueTemperature>25</sbrk:startValueTemperature>
+                           <sbrk:temperatureUnit>°C</sbrk:temperatureUnit>
+                        </sbrk:temperature>
+                        <sbrk:pH>
+                           <sbrk:startValuepH>7</sbrk:startValuepH>
+                        </sbrk:pH>
+                        <sbrk:buffer> 50 mM potassium phosphate</sbrk:buffer>
+                     </sbrk:experimentalConditions>
+                  </sbrk:sabiork>
+                  <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                     <rdf:Description rdf:about="#META_KL_5924">
+                        <bqbiol:isDescribedBy>
+                           <rdf:Bag>
+                              <rdf:li rdf:resource="https://identifiers.org/pubmed/12048188" />
+                           </rdf:Bag>
+                        </bqbiol:isDescribedBy>
+                        <bqbiol:isDescribedBy>
+                           <rdf:Bag>
+                              <rdf:li rdf:resource="https://identifiers.org/sabiork.kineticrecord/5924" />
+                           </rdf:Bag>
+                        </bqbiol:isDescribedBy>
+                     </rdf:Description>
+                  </rdf:RDF>
+               </annotation>
+               <math xmlns="http://www.w3.org/1998/Math/MathML">
+                  <apply>
+                     <ci> KL_5924 </ci>
+                     <ci> ENZ_30898_Cell </ci>
+                     <ci> SPC_38_Cell </ci>
+                     <ci> kcat </ci>
+                     <ci> SPC_6180_Cell </ci>
+                     <ci> Km_SPC_6180_Cell </ci>
+                  </apply>
+               </math>
+               <listOfLocalParameters>
+                  <localParameter id="kcat" name="kcat" value="0.32" sboTerm="SBO:0000025" units="swedgeone" />
+                  <localParameter id="Km_SPC_6180_Cell" name="Km_Cyclohex2enone" value="0.0085" sboTerm="SBO:0000027" units="M" />
+               </listOfLocalParameters>
+            </kineticLaw>
+         </reaction>
+         <reaction id="REAC_20" reversible="true" fast="false" metaid="META_REAC_20">
+            <annotation>
+               <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                  <rdf:Description rdf:about="#META_REAC_20">
+                     <bqbiol:is>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/sabiork.reaction/7323" />
+                        </rdf:Bag>
+                     </bqbiol:is>
+                     <bqbiol:isVersionOf>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/ec-code/1.3.1.-" />
+                        </rdf:Bag>
+                     </bqbiol:isVersionOf>
+                     <bqbiol:hasTaxon>
+                        <rdf:Bag>
+                           <rdf:li rdf:resource="https://identifiers.org/taxonomy/303" />
+                        </rdf:Bag>
+                     </bqbiol:hasTaxon>
+                  </rdf:Description>
+               </rdf:RDF>
+            </annotation>
+            <listOfReactants>
+               <speciesReference species="SPC_6180_Cell" stoichiometry="1" constant="true" />
+               <speciesReference species="SPC_38_Cell" stoichiometry="1" constant="true" />
+            </listOfReactants>
+            <listOfProducts>
+               <speciesReference species="SPC_37_Cell" stoichiometry="1" constant="true" />
+               <speciesReference species="SPC_5081_Cell" stoichiometry="1" constant="true" />
+            </listOfProducts>
+            <listOfModifiers>
+               <modifierSpeciesReference species="ENZ_30903_Cell" />
+            </listOfModifiers>
+            <kineticLaw metaid="META_KL_5925" sboTerm="SBO:0000029">
+               <annotation xmlns:sbrk="http://sabiork.h-its.org">
+                  <sbrk:sabiork>
+                     <sbrk:kineticLawID>5925</sbrk:kineticLawID>
+                     <sbrk:experimentalConditions>
+                        <sbrk:temperature>
+                           <sbrk:startValueTemperature>25</sbrk:startValueTemperature>
+                           <sbrk:temperatureUnit>°C</sbrk:temperatureUnit>
+                        </sbrk:temperature>
+                        <sbrk:pH>
+                           <sbrk:startValuepH>7</sbrk:startValuepH>
+                        </sbrk:pH>
+                        <sbrk:buffer> 50 mM potassium phosphate</sbrk:buffer>
+                     </sbrk:experimentalConditions>
+                  </sbrk:sabiork>
+                  <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                     <rdf:Description rdf:about="#META_KL_5925">
+                        <bqbiol:isDescribedBy>
+                           <rdf:Bag>
+                              <rdf:li rdf:resource="https://identifiers.org/pubmed/12048188" />
+                           </rdf:Bag>
+                        </bqbiol:isDescribedBy>
+                        <bqbiol:isDescribedBy>
+                           <rdf:Bag>
+                              <rdf:li rdf:resource="https://identifiers.org/sabiork.kineticrecord/5925" />
+                           </rdf:Bag>
+                        </bqbiol:isDescribedBy>
+                     </rdf:Description>
+                  </rdf:RDF>
+               </annotation>
+               <math xmlns="http://www.w3.org/1998/Math/MathML">
+                  <apply>
+                     <ci> KL_5925 </ci>
+                     <ci> SPC_38_Cell </ci>
+                     <ci> Km_SPC_6180_Cell </ci>
+                     <ci> kcat </ci>
+                     <ci> SPC_6180_Cell </ci>
+                     <ci> ENZ_30903_Cell </ci>
+                  </apply>
+               </math>
+               <listOfLocalParameters>
+                  <localParameter id="Km_SPC_6180_Cell" name="Km_Cyclohex2enone" value="0.0085" sboTerm="SBO:0000027" units="M" />
+                  <localParameter id="kcat" name="kcat" value="0.34" sboTerm="SBO:0000025" units="swedgeone" />
+               </listOfLocalParameters>
+            </kineticLaw>
+         </reaction>
+      </listOfReactions>
+      <listOfUnitDefinitions>
+         <unitDefinition id="M" name="M">
+            <listOfUnits>
+               <unit scale="1" exponent="-1" multiplier="1" kind="litre" />
+               <unit scale="1" exponent="1" multiplier="1" kind="mole" />
+            </listOfUnits>
+         </unitDefinition>
+         <unitDefinition id="swedgeone" name="s^(-1)">
+            <listOfUnits>
+               <unit scale="1" exponent="-1" multiplier="1" kind="second" />
+            </listOfUnits>
+         </unitDefinition>
+         <unitDefinition id="Mwedgeoneswedgeone" name="M^(-1)*s^(-1)">
+            <listOfUnits>
+               <unit scale="1" exponent="1" multiplier="1" kind="litre" />
+               <unit scale="1" exponent="-1" multiplier="1" kind="mole" />
+               <unit scale="1" exponent="-1" multiplier="1" kind="second" />
+            </listOfUnits>
+         </unitDefinition>
+      </listOfUnitDefinitions>
+      <listOfFunctionDefinitions>
+         <functionDefinition id="KL_66175" sboTerm="SBO:0000029">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">
+               <lambda>
+                  <bvar>
+                     <ci> S </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> Km </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> kcat </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> E </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> kcat_Km </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> A </ci>
+                  </bvar>
+                  <apply>
+                     <divide />
+                     <apply>
+                        <ci> S </ci>
+                        <times />
+                        <apply>
+                           <ci> kcat </ci>
+                           <ci> E </ci>
+                           <times />
+                        </apply>
+                     </apply>
+                     <apply>
+                        <ci> Km </ci>
+                        <ci> S </ci>
+                        <plus />
+                     </apply>
+                  </apply>
+               </lambda>
+            </math>
+         </functionDefinition>
+         <functionDefinition id="KL_66176" sboTerm="SBO:0000029">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">
+               <lambda>
+                  <bvar>
+                     <ci> kcat </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> kcat_Km </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> A </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> E </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> Km </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> S </ci>
+                  </bvar>
+                  <apply>
+                     <divide />
+                     <apply>
+                        <ci> S </ci>
+                        <times />
+                        <apply>
+                           <ci> kcat </ci>
+                           <ci> E </ci>
+                           <times />
+                        </apply>
+                     </apply>
+                     <apply>
+                        <ci> Km </ci>
+                        <ci> S </ci>
+                        <plus />
+                     </apply>
+                  </apply>
+               </lambda>
+            </math>
+         </functionDefinition>
+         <functionDefinition id="KL_66182" sboTerm="SBO:0000029">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">
+               <lambda>
+                  <bvar>
+                     <ci> kcat </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> E </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> S </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> Km </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> kcat_Km </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> A </ci>
+                  </bvar>
+                  <apply>
+                     <divide />
+                     <apply>
+                        <ci> S </ci>
+                        <times />
+                        <apply>
+                           <ci> kcat </ci>
+                           <ci> E </ci>
+                           <times />
+                        </apply>
+                     </apply>
+                     <apply>
+                        <ci> Km </ci>
+                        <ci> S </ci>
+                        <plus />
+                     </apply>
+                  </apply>
+               </lambda>
+            </math>
+         </functionDefinition>
+         <functionDefinition id="KL_66183" sboTerm="SBO:0000029">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">
+               <lambda>
+                  <bvar>
+                     <ci> E </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> A </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> Km </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> kcat_Km </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> S </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> kcat </ci>
+                  </bvar>
+                  <apply>
+                     <divide />
+                     <apply>
+                        <ci> S </ci>
+                        <times />
+                        <apply>
+                           <ci> kcat </ci>
+                           <ci> E </ci>
+                           <times />
+                        </apply>
+                     </apply>
+                     <apply>
+                        <ci> Km </ci>
+                        <ci> S </ci>
+                        <plus />
+                     </apply>
+                  </apply>
+               </lambda>
+            </math>
+         </functionDefinition>
+         <functionDefinition id="KL_66179" sboTerm="SBO:0000029">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">
+               <lambda>
+                  <bvar>
+                     <ci> Km </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> kcat_Km </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> kcat </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> S </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> E </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> A </ci>
+                  </bvar>
+                  <apply>
+                     <divide />
+                     <apply>
+                        <ci> S </ci>
+                        <times />
+                        <apply>
+                           <ci> kcat </ci>
+                           <ci> E </ci>
+                           <times />
+                        </apply>
+                     </apply>
+                     <apply>
+                        <ci> Km </ci>
+                        <ci> S </ci>
+                        <plus />
+                     </apply>
+                  </apply>
+               </lambda>
+            </math>
+         </functionDefinition>
+         <functionDefinition id="KL_66181" sboTerm="SBO:0000029">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">
+               <lambda>
+                  <bvar>
+                     <ci> kcat </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> Km </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> kcat_Km </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> E </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> S </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> A </ci>
+                  </bvar>
+                  <apply>
+                     <divide />
+                     <apply>
+                        <ci> S </ci>
+                        <times />
+                        <apply>
+                           <ci> kcat </ci>
+                           <ci> E </ci>
+                           <times />
+                        </apply>
+                     </apply>
+                     <apply>
+                        <ci> Km </ci>
+                        <ci> S </ci>
+                        <plus />
+                     </apply>
+                  </apply>
+               </lambda>
+            </math>
+         </functionDefinition>
+         <functionDefinition id="KL_66184" sboTerm="SBO:0000029">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">
+               <lambda>
+                  <bvar>
+                     <ci> Km </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> E </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> kcat </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> S </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> kcat_Km </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> A </ci>
+                  </bvar>
+                  <apply>
+                     <divide />
+                     <apply>
+                        <ci> S </ci>
+                        <times />
+                        <apply>
+                           <ci> kcat </ci>
+                           <ci> E </ci>
+                           <times />
+                        </apply>
+                     </apply>
+                     <apply>
+                        <ci> Km </ci>
+                        <ci> S </ci>
+                        <plus />
+                     </apply>
+                  </apply>
+               </lambda>
+            </math>
+         </functionDefinition>
+         <functionDefinition id="KL_66185" sboTerm="SBO:0000029">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">
+               <lambda>
+                  <bvar>
+                     <ci> kcat </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> Km </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> S </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> kcat_Km </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> E </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> A </ci>
+                  </bvar>
+                  <apply>
+                     <divide />
+                     <apply>
+                        <ci> S </ci>
+                        <times />
+                        <apply>
+                           <ci> kcat </ci>
+                           <ci> E </ci>
+                           <times />
+                        </apply>
+                     </apply>
+                     <apply>
+                        <ci> Km </ci>
+                        <ci> S </ci>
+                        <plus />
+                     </apply>
+                  </apply>
+               </lambda>
+            </math>
+         </functionDefinition>
+         <functionDefinition id="KL_66177" sboTerm="SBO:0000029">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">
+               <lambda>
+                  <bvar>
+                     <ci> S </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> kcat_Km </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> E </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> kcat </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> Km </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> A </ci>
+                  </bvar>
+                  <apply>
+                     <divide />
+                     <apply>
+                        <ci> S </ci>
+                        <times />
+                        <apply>
+                           <ci> kcat </ci>
+                           <ci> E </ci>
+                           <times />
+                        </apply>
+                     </apply>
+                     <apply>
+                        <ci> Km </ci>
+                        <ci> S </ci>
+                        <plus />
+                     </apply>
+                  </apply>
+               </lambda>
+            </math>
+         </functionDefinition>
+         <functionDefinition id="KL_66178" sboTerm="SBO:0000029">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">
+               <lambda>
+                  <bvar>
+                     <ci> Km </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> kcat </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> A </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> S </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> kcat_Km </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> E </ci>
+                  </bvar>
+                  <apply>
+                     <divide />
+                     <apply>
+                        <ci> S </ci>
+                        <times />
+                        <apply>
+                           <ci> kcat </ci>
+                           <ci> E </ci>
+                           <times />
+                        </apply>
+                     </apply>
+                     <apply>
+                        <ci> Km </ci>
+                        <ci> S </ci>
+                        <plus />
+                     </apply>
+                  </apply>
+               </lambda>
+            </math>
+         </functionDefinition>
+         <functionDefinition id="KL_66180" sboTerm="SBO:0000029">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">
+               <lambda>
+                  <bvar>
+                     <ci> Km </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> kcat_Km </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> S </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> kcat </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> E </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> A </ci>
+                  </bvar>
+                  <apply>
+                     <divide />
+                     <apply>
+                        <ci> S </ci>
+                        <times />
+                        <apply>
+                           <ci> kcat </ci>
+                           <ci> E </ci>
+                           <times />
+                        </apply>
+                     </apply>
+                     <apply>
+                        <ci> Km </ci>
+                        <ci> S </ci>
+                        <plus />
+                     </apply>
+                  </apply>
+               </lambda>
+            </math>
+         </functionDefinition>
+         <functionDefinition id="KL_66187" sboTerm="SBO:0000029">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">
+               <lambda>
+                  <bvar>
+                     <ci> kcat </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> Km </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> kcat_Km </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> E </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> S </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> A </ci>
+                  </bvar>
+                  <apply>
+                     <divide />
+                     <apply>
+                        <ci> S </ci>
+                        <times />
+                        <apply>
+                           <ci> kcat </ci>
+                           <ci> E </ci>
+                           <times />
+                        </apply>
+                     </apply>
+                     <apply>
+                        <ci> Km </ci>
+                        <ci> S </ci>
+                        <plus />
+                     </apply>
+                  </apply>
+               </lambda>
+            </math>
+         </functionDefinition>
+         <functionDefinition id="KL_66188" sboTerm="SBO:0000029">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">
+               <lambda>
+                  <bvar>
+                     <ci> E </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> kcat_Km </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> S </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> A </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> Km </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> kcat </ci>
+                  </bvar>
+                  <apply>
+                     <divide />
+                     <apply>
+                        <ci> S </ci>
+                        <times />
+                        <apply>
+                           <ci> kcat </ci>
+                           <ci> E </ci>
+                           <times />
+                        </apply>
+                     </apply>
+                     <apply>
+                        <ci> Km </ci>
+                        <ci> S </ci>
+                        <plus />
+                     </apply>
+                  </apply>
+               </lambda>
+            </math>
+         </functionDefinition>
+         <functionDefinition id="KL_66186" sboTerm="SBO:0000029">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">
+               <lambda>
+                  <bvar>
+                     <ci> kcat </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> E </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> Km </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> S </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> kcat_Km </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> A </ci>
+                  </bvar>
+                  <apply>
+                     <divide />
+                     <apply>
+                        <ci> S </ci>
+                        <times />
+                        <apply>
+                           <ci> kcat </ci>
+                           <ci> E </ci>
+                           <times />
+                        </apply>
+                     </apply>
+                     <apply>
+                        <ci> Km </ci>
+                        <ci> S </ci>
+                        <plus />
+                     </apply>
+                  </apply>
+               </lambda>
+            </math>
+         </functionDefinition>
+         <functionDefinition id="KL_66189" sboTerm="SBO:0000029">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">
+               <lambda>
+                  <bvar>
+                     <ci> kcat_Km </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> kcat </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> E </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> Km </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> S </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> A </ci>
+                  </bvar>
+                  <apply>
+                     <divide />
+                     <apply>
+                        <ci> S </ci>
+                        <times />
+                        <apply>
+                           <ci> kcat </ci>
+                           <ci> E </ci>
+                           <times />
+                        </apply>
+                     </apply>
+                     <apply>
+                        <ci> Km </ci>
+                        <ci> S </ci>
+                        <plus />
+                     </apply>
+                  </apply>
+               </lambda>
+            </math>
+         </functionDefinition>
+         <functionDefinition id="KL_5923" sboTerm="SBO:0000029">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">
+               <lambda>
+                  <bvar>
+                     <ci> A </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> kcat </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> E </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> B </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> Km </ci>
+                  </bvar>
+                  <apply>
+                     <divide />
+                     <apply>
+                        <ci> A </ci>
+                        <times />
+                        <apply>
+                           <ci> E </ci>
+                           <ci> kcat </ci>
+                           <times />
+                        </apply>
+                     </apply>
+                     <apply>
+                        <ci> Km </ci>
+                        <ci> A </ci>
+                        <plus />
+                     </apply>
+                  </apply>
+               </lambda>
+            </math>
+         </functionDefinition>
+         <functionDefinition id="KL_5927" sboTerm="SBO:0000455">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">
+               <lambda>
+                  <bvar>
+                     <ci> Ki </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> A </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> Km </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> E </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> kcat </ci>
+                  </bvar>
+                  <apply>
+                     <divide />
+                     <apply>
+                        <ci> E </ci>
+                        <ci> kcat </ci>
+                        <times />
+                     </apply>
+                     <apply>
+                        <plus />
+                        <apply>
+                           <plus />
+                           <cn type="integer"> 1 </cn>
+                           <apply>
+                              <ci> Km </ci>
+                              <ci> A </ci>
+                              <divide />
+                           </apply>
+                        </apply>
+                        <apply>
+                           <ci> A </ci>
+                           <ci> Ki </ci>
+                           <divide />
+                        </apply>
+                     </apply>
+                  </apply>
+               </lambda>
+            </math>
+         </functionDefinition>
+         <functionDefinition id="KL_5928" sboTerm="SBO:0000029">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">
+               <lambda>
+                  <bvar>
+                     <ci> Km </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> B </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> kcat </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> A </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> E </ci>
+                  </bvar>
+                  <apply>
+                     <divide />
+                     <apply>
+                        <ci> A </ci>
+                        <times />
+                        <apply>
+                           <ci> E </ci>
+                           <ci> kcat </ci>
+                           <times />
+                        </apply>
+                     </apply>
+                     <apply>
+                        <ci> Km </ci>
+                        <ci> A </ci>
+                        <plus />
+                     </apply>
+                  </apply>
+               </lambda>
+            </math>
+         </functionDefinition>
+         <functionDefinition id="KL_5926" sboTerm="SBO:0000029">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">
+               <lambda>
+                  <bvar>
+                     <ci> A </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> Km </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> E </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> kcat </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> B </ci>
+                  </bvar>
+                  <apply>
+                     <divide />
+                     <apply>
+                        <ci> A </ci>
+                        <times />
+                        <apply>
+                           <ci> E </ci>
+                           <ci> kcat </ci>
+                           <times />
+                        </apply>
+                     </apply>
+                     <apply>
+                        <ci> Km </ci>
+                        <ci> A </ci>
+                        <plus />
+                     </apply>
+                  </apply>
+               </lambda>
+            </math>
+         </functionDefinition>
+         <functionDefinition id="KL_5924" sboTerm="SBO:0000029">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">
+               <lambda>
+                  <bvar>
+                     <ci> E </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> B </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> kcat </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> A </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> Km </ci>
+                  </bvar>
+                  <apply>
+                     <divide />
+                     <apply>
+                        <ci> A </ci>
+                        <times />
+                        <apply>
+                           <ci> E </ci>
+                           <ci> kcat </ci>
+                           <times />
+                        </apply>
+                     </apply>
+                     <apply>
+                        <ci> Km </ci>
+                        <ci> A </ci>
+                        <plus />
+                     </apply>
+                  </apply>
+               </lambda>
+            </math>
+         </functionDefinition>
+         <functionDefinition id="KL_5925" sboTerm="SBO:0000029">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">
+               <lambda>
+                  <bvar>
+                     <ci> A </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> Km </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> kcat </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> B </ci>
+                  </bvar>
+                  <bvar>
+                     <ci> E </ci>
+                  </bvar>
+                  <apply>
+                     <divide />
+                     <apply>
+                        <ci> A </ci>
+                        <times />
+                        <apply>
+                           <ci> E </ci>
+                           <ci> kcat </ci>
+                           <times />
+                        </apply>
+                     </apply>
+                     <apply>
+                        <ci> Km </ci>
+                        <ci> A </ci>
+                        <plus />
+                     </apply>
+                  </apply>
+               </lambda>
+            </math>
+         </functionDefinition>
+      </listOfFunctionDefinitions>
+   </model>
+</sbml>

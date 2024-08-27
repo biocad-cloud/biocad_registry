@@ -4,12 +4,13 @@ imports "sabiork" from "biosystem";
 
 setwd(@dir);
 
-let docs = parseSbml("./d08d5cb9ea1482b8810574b0f434334c.xml");
+let docs = parseSbml("./1.3.1  With NAD+ or NADP+ as acceptor.xml");
 
 str(docs);
 
 docs = sbmlReader(docs);
 
 for(rxn in [docs]::reactions) {
-    str(rxn);
+    str(docs |> metabolite_species(rxn));
+    stop();
 }
