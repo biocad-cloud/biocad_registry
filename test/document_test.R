@@ -20,12 +20,13 @@ for(rxn in [docs]::reactions) {
     let funcs = biocad_registry |> enzyme_function(
         enzyme_id = uniprot,
         ec_number = ec_number,
-        metabolites = metabolites);
+        metabolites = all_db_xrefs);
 
     # str(metabolites);
     print(all_db_xrefs);
     str(info);
     print(funcs);
+    print(attr(funcs,"sql"));
 
     # stop();
 }
