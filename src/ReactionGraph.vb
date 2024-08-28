@@ -11,9 +11,12 @@ Module ReactionGraph
             .select(Of biocad_registryModel.reaction_graph)
 
         For Each rxn In pull.GroupBy(Function(r) r.reaction)
-            If speciesSet.Length = rxn.Count Then
-                Yield rxn.Key
-            End If
+            ' speciesSet may contains various kinds of id
+            ' rxn metabolite count always not equals to the speciesSet
+            ' so removes this filter
+            ' If speciesSet.Length = rxn.Count Then
+            Yield rxn.Key
+            ' End If
         Next
     End Function
 
