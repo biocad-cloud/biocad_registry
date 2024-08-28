@@ -1,6 +1,8 @@
 ﻿Imports biocad_registry.biocad_registryModel
 Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.Scripting.MetaData
+Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
+Imports Oracle.LinuxCompatibility.MySQL.Reflection.DbAttributes
 Imports SMRUCC.Rsharp.Runtime
 Imports SMRUCC.Rsharp.Runtime.Internal.[Object]
 Imports SMRUCC.Rsharp.Runtime.Interop
@@ -69,4 +71,32 @@ Module models
 
         Return d
     End Function
+
+    <ExportAPI("enzyme")>
+    Public Function enzyme_query(biocad_registry As biocad_registry, ec_number As String) As Object
+        Dim q = biocad_registry.regulation_graph _
+            .left_join("reaction") _
+            .on(field("`reaction`.id") = field("reaction_id")) _
+            .where(ReactionGraph.buildEcNumberQuery(ec_number)) _
+            .select(Of EnzymeReaction)("`reaction`.id", "term", "db_xref", "name")
+        Dim tbl As New dataframe With {
+            .columns = New Dictionary(Of String, Array),
+            .rownames = q _
+                .Select(Function(r) r.id.ToString) _
+                .ToArray
+        }
+
+        Call tbl.add("term", q.Select(Function(i) i.term))
+        Call tbl.add("db_xrefs", q.Select(Function(i) i.db_xref))
+        Call tbl.add("name", q.Select(Function(i) i.name))
+
+        Return tbl
+    End Function
 End Module
+
+Public Class EnzymeReaction
+    <DatabaseField> Public Property id As UInteger
+    <DatabaseField> Public Property term As String
+    <DatabaseField> Public Property db_xref As String
+    <DatabaseField> Public Property name As String
+End Class

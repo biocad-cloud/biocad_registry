@@ -33,7 +33,7 @@ Module ReactionGraph
         Next
     End Function
 
-    Private Function buildEcNumberQuery(ec_number As String) As FieldAssert
+    Public Function buildEcNumberQuery(ec_number As String) As FieldAssert
         Dim trim = Strings.Trim(ec_number).Trim("-"c, "."c)
         Dim t = trim.Split("."c)
 
