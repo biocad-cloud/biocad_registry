@@ -24,14 +24,24 @@ Module ReactionGraph
 
         For Each reaction_id As UInteger In biocad_registry.FindReaction(metabolites)
             Dim check = biocad_registry.regulation_graph _
-                .where(field("reaction_id") = reaction_id,
-                       field("term") = ec_number) _
+                .where(field("reaction_id") = reaction_id, buildEcNumberQuery(ec_number)) _
                 .find(Of biocad_registryModel.regulation_graph)
 
             If check IsNot Nothing Then
                 Yield check
             End If
         Next
+    End Function
+
+    Private Function buildEcNumberQuery(ec_number As String) As FieldAssert
+        Dim trim = Strings.Trim(ec_number).Trim("-"c, "."c)
+        Dim t = trim.Split("."c)
+
+        If t.Length <> 4 Then
+            Return field("term") Like t.JoinBy(".") & ".%"
+        Else
+            Return field("term") = trim
+        End If
     End Function
 
     ''' <summary>
