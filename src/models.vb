@@ -89,6 +89,7 @@ Module models
         Call tbl.add("term", q.Select(Function(i) i.term))
         Call tbl.add("db_xrefs", q.Select(Function(i) i.db_xref))
         Call tbl.add("name", q.Select(Function(i) i.name))
+        Call tbl.setAttribute("sql", biocad_registry.regulation_graph.GetLastMySql)
 
         Return tbl
     End Function
