@@ -31,8 +31,7 @@ const imports_uniprot = function(biocad_registry, uniprot) {
         let fa = uniprot::get_sequence(prot);
         let info = uniprot::get_description(prot);
         let loc = uniprot::get_subcellularlocation(prot);
-        let xrefs = uniprot::get_xrefs(prot);
-        let fa_vec = sgt |> fit_embedding([fa]::SequenceData);
+        let xrefs = uniprot::get_xrefs(prot);        
         let uniprot_id = [prot]::accessions;
 
         uniprot_id = uniprot_id[1];
@@ -83,6 +82,8 @@ const imports_uniprot = function(biocad_registry, uniprot) {
         }        
 
         if (!(seq_graph |> check(molecule_id = mol$id))) {
+            let fa_vec = sgt |> fit_embedding([fa]::SequenceData,safe =TRUE);
+
             fa_vec <- base64(packBuffer(fa_vec)|> zlib_stream());
 
             seq_graph |> add(
