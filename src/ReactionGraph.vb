@@ -61,6 +61,10 @@ Module ReactionGraph
             .Select(Function(r) r.id) _
             .ToArray
 
+        If regulations.IsNullOrEmpty Then
+            Return New biocad_registryModel.molecule_function() {}
+        End If
+
         Return biocad_registry.molecule_function _
             .where(field("molecule_id").in(enzyme_molecule),
                    field("regulation_term").in(regulations)) _
