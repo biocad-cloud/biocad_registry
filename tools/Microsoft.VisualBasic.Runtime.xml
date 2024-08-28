@@ -5628,6 +5628,17 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  </summary>
  <returns></returns>
 </member>
+<member name="M:Microsoft.VisualBasic.ApplicationServices.Zip.ZipStream.#ctor(System.IO.Stream,System.Boolean)">
+ <summary>
+ 
+ </summary>
+ <param name="file"></param>
+ <param name="is_readonly">
+ readonly mode just allows for read data from the zip archive file, and 
+ set this parameter value to FALSE will enable for create entry inside 
+ the file.
+ </param>
+</member>
 <member name="M:Microsoft.VisualBasic.ApplicationServices.Zip.ZipStream.ToString">
  <summary>
  debug view of the stream source
@@ -26757,12 +26768,19 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  可以在全局范围内重复使用这个随机数发生器
  不同的代码重复使用这个种子，这样子可以尽量的模拟出真正的随机行为
  </summary>
- <returns></returns>
+ <returns>
+ A thread safe random value generator. No needs for synclock
+ </returns>
  <remarks>
  the random seed value of this property value can 
  be reset by the <see cref="M:Microsoft.VisualBasic.Math.RandomExtensions.SetSeed(System.Int32)"/>
  method.
  </remarks>
+</member>
+<member name="F:Microsoft.VisualBasic.Math.RandomExtensions._seeds">
+ <summary>
+ make a new random generator for all thread
+ </summary>
 </member>
 <member name="M:Microsoft.VisualBasic.Math.RandomExtensions.NextDouble">
  <summary>
@@ -32130,6 +32148,11 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
 	+ ``random`` converts to the single-parameter overload of NextNumber
 	+ ``randomize`` converts to the parameterless overload of Seed
 	+ ``srand`` converts to the single-parameter overload of Seed
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Language.C.RandomNumbers.r">
+ <summary>
+ use thread local for may thread safe
  </summary>
 </member>
 <member name="M:Microsoft.VisualBasic.Language.C.RandomNumbers.rand">
