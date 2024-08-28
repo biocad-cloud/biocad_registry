@@ -34,6 +34,15 @@ Module ReactionGraph
         Next
     End Function
 
+    ''' <summary>
+    ''' Find the molecule function that associated with the given enzymatic reaction context information.
+    ''' </summary>
+    ''' <param name="biocad_registry"></param>
+    ''' <param name="enzyme_id">the external database source id of the enzyme molecule, 
+    ''' usually be the uniprot protein id.</param>
+    ''' <param name="ec_number">the ec number of the enzyme and the reaction</param>
+    ''' <param name="metabolites">a collection of the external database metabolite id</param>
+    ''' <returns></returns>
     <Extension>
     Public Function FindFunction(biocad_registry As biocad_registry,
                                  enzyme_id As String,
