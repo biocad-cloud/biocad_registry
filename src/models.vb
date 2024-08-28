@@ -1,7 +1,10 @@
 ﻿Imports biocad_registry.biocad_registryModel
 Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.Scripting.MetaData
+Imports SMRUCC.Rsharp.Runtime
+Imports SMRUCC.Rsharp.Runtime.Internal.[Object]
 Imports SMRUCC.Rsharp.Runtime.Interop
+Imports SMRUCC.Rsharp.Runtime.Vectorization
 
 ''' <summary>
 ''' exports the biocad registry database models
@@ -39,5 +42,31 @@ Module models
     <ExportAPI("subcellular_location")>
     Public Function subcellular_location(biocad_registry As biocad_registry, name As String, topology As String) As UInteger
         Return biocad_registry.getSubcellularLocation(name, topology)
+    End Function
+
+    <ExportAPI("enzyme_function")>
+    Public Function find_function(biocad_registry As biocad_registry,
+                                  enzyme_id As String,
+                                  ec_number As String,
+                                  <RRawVectorArgument>
+                                  metabolites As Object,
+                                  Optional env As Environment = Nothing) As Object
+
+        Dim funcs = biocad_registry _
+            .FindFunction(enzyme_id, ec_number, CLRVector.asCharacter(metabolites)) _
+            .ToArray
+        Dim d As New dataframe With {
+            .columns = New Dictionary(Of String, Array),
+            .rownames = funcs _
+                .Select(Function(a) a.id.ToString) _
+                .ToArray
+        }
+
+        Call d.add("molecule_id", funcs.Select(Function(f) f.molecule_id))
+        Call d.add("regulation_term", funcs.Select(Function(f) f.regulation_term))
+        Call d.add("add_time", funcs.Select(Function(f) f.add_time))
+        Call d.add("note", funcs.Select(Function(f) f.note))
+
+        Return d
     End Function
 End Module
