@@ -68,6 +68,7 @@ Module models
         Call d.add("regulation_term", funcs.Select(Function(f) f.regulation_term))
         Call d.add("add_time", funcs.Select(Function(f) f.add_time))
         Call d.add("note", funcs.Select(Function(f) f.note))
+        Call d.setAttribute("sql", biocad_registry.getDriver.LastMySql)
 
         Return d
     End Function
