@@ -74,7 +74,7 @@ Module ReactionGraph
             .Select(Function(r) r.id) _
             .ToArray
 
-        If regulations.IsNullOrEmpty Then
+        If regulations.IsNullOrEmpty OrElse enzyme_molecule.IsNullOrEmpty Then
             Return New biocad_registryModel.molecule_function() {}
         End If
 
