@@ -8,6 +8,10 @@
 */
 declare namespace models {
    /**
+     * @param env default value Is ``null``.
+   */
+   function enzyme_function(biocad_registry: object, enzyme_id: string, ec_number: string, metabolites: any, env?: object): any;
+   /**
    */
    function subcellular_location(biocad_registry: object, name: string, topology: string): object;
    /**
