@@ -6,7 +6,7 @@ require(buffer);
 
 #' helper function for imports uniprot proteins
 #' 
-const imports_uniprot = function(biocad_registry, uniprot) {
+const imports_uniprot = function(biocad_registry, uniprot, fast_check = FALSE) {
     let sgt = SGT(alphabets = bioseq.fasta::chars("Protein"));
     let term_prot = biocad_registry::protein_term(biocad_registry);
     let entity_prot = biocad_registry::molecule_entity(biocad_registry);
@@ -20,6 +20,7 @@ const imports_uniprot = function(biocad_registry, uniprot) {
         }
     }
     let db_xrefs = biocad_registry |> table("db_xrefs");
+    let uniprot_key = biocad_registry |> vocabulary_id("uniprot", "External Database");
     let protein_graph = biocad_registry |> vocabulary_id("Protein_graph","Embedding", 
         desc =bencode( [sgt]::feature_names)
     );
@@ -33,6 +34,16 @@ const imports_uniprot = function(biocad_registry, uniprot) {
         let loc = uniprot::get_subcellularlocation(prot);
         let xrefs = uniprot::get_xrefs(prot);        
         let uniprot_id = [prot]::accessions;
+
+        # if any uniprot id was found inside database
+        # then skip of current protein
+        # in fast check mode
+        if (fast_check) {
+            if (db_xrefs |> check(db_key = uniprot_key, type = term_prot, xref in uniprot_id)) {
+                # skip of current exiisted protein record
+                next;
+            }
+        }
 
         uniprot_id = uniprot_id[1];
         info = paste(info, sep = "; ");
@@ -58,6 +69,21 @@ const imports_uniprot = function(biocad_registry, uniprot) {
         if (is.null(mol)) {
             # error while add new metabolite
             next;
+        } else {
+            # add all uniprot id into database
+            for(let id in uniprot_id) {
+                if (!(db_xrefs |> check(obj_id = mol$id,
+                    db_key =  uniprot_key,
+                    xref = id,
+                    type = term_prot ))) {
+                        db_xrefs |> add(
+                            obj_id = mol$id,
+                            db_key = uniprot_key,
+                            xref = id,
+                            type = term_prot 
+                        );
+                    }
+            }
         }
 
         xrefs = xrefs$xrefs;
