@@ -46,8 +46,9 @@ declare namespace biocad_registry {
    */
    function imports_sabiork(biocad_registry: any, repo: any): object;
    /**
+     * @param fast_check default value Is ``false``.
    */
-   function imports_uniprot(biocad_registry: any, uniprot: any): object;
+   function imports_uniprot(biocad_registry: any, uniprot: any, fast_check?: any): object;
    /**
    */
    function link_gene_proteins(biocad_registry: any): object;
