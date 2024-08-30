@@ -41,6 +41,7 @@ const imports_uniprot = function(biocad_registry, uniprot, fast_check = FALSE) {
         if (fast_check) {
             if (db_xrefs |> check(db_key = uniprot_key, type = term_prot, xref in uniprot_id)) {
                 # skip of current exiisted protein record
+                # cat(["skip protein ", uniprot_id[1], " by fast check!"]);
                 next;
             }
         }
