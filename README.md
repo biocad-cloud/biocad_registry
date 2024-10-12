@@ -1,5 +1,7 @@
 # Database system for access the GCModeller cloud repository
 
+A data repository system for GCModeller make reconstruction of the GMM(genome-wide metabolic model).
+
 ## Build database 
 
 1. imports ChEBI database
