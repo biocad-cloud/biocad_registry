@@ -2708,7 +2708,7 @@ ATT I Ile      ACT T Thr      AAT N As [rest of string was truncated]&quot;;.
  <param name="path">XML文件路径</param>
  <returns></returns>
 </member>
-<member name="M:SMRUCC.genomics.Assembly.Uniprot.XML.UniProtXML.EnumerateEntries(System.String,System.Boolean,System.Boolean)">
+<member name="M:SMRUCC.genomics.Assembly.Uniprot.XML.UniProtXML.EnumerateEntries(System.String,System.Boolean,System.Boolean,System.Boolean)">
  <summary>
  Enumerate all of the data entries in a ultra large size uniprot XML database.
  (使用这个函数来读取超大的uniprot XML数据库)
@@ -4700,7 +4700,7 @@ ATT I Ile      ACT T Thr      AAT N As [rest of string was truncated]&quot;;.
  <param name="scale$"></param>
  <returns></returns>
 </member>
-<member name="M:SMRUCC.genomics.Assembly.KEGG.WebServices.LocalRender.renderGenes(Microsoft.VisualBasic.Imaging.Graphics2D@,System.Drawing.Font,System.Drawing.Brush,SMRUCC.genomics.Assembly.KEGG.WebServices.XML.Map,System.Drawing.SizeF,SMRUCC.genomics.Assembly.KEGG.WebServices.MapHighlights)">
+<member name="M:SMRUCC.genomics.Assembly.KEGG.WebServices.LocalRender.renderGenes(Microsoft.VisualBasic.Imaging.IGraphics@,System.Drawing.Font,System.Drawing.Brush,SMRUCC.genomics.Assembly.KEGG.WebServices.XML.Map,System.Drawing.SizeF,SMRUCC.genomics.Assembly.KEGG.WebServices.MapHighlights)">
  <summary>
  rect
  </summary>
@@ -4708,7 +4708,7 @@ ATT I Ile      ACT T Thr      AAT N As [rest of string was truncated]&quot;;.
  <param name="map"></param>
  <param name="list"></param>
 </member>
-<member name="M:SMRUCC.genomics.Assembly.KEGG.WebServices.LocalRender.renderCompound(Microsoft.VisualBasic.Imaging.Graphics2D@,System.Drawing.Font,SMRUCC.genomics.Assembly.KEGG.WebServices.XML.Map,System.Drawing.SizeF,Microsoft.VisualBasic.ComponentModel.DataSourceModel.NamedValue{System.String}[])">
+<member name="M:SMRUCC.genomics.Assembly.KEGG.WebServices.LocalRender.renderCompound(Microsoft.VisualBasic.Imaging.IGraphics@,System.Drawing.Font,SMRUCC.genomics.Assembly.KEGG.WebServices.XML.Map,System.Drawing.SizeF,Microsoft.VisualBasic.ComponentModel.DataSourceModel.NamedValue{System.String}[])">
  <summary>
  circle
  </summary>
@@ -4716,7 +4716,7 @@ ATT I Ile      ACT T Thr      AAT N As [rest of string was truncated]&quot;;.
  <param name="map"></param>
  <param name="list"></param>
 </member>
-<member name="M:SMRUCC.genomics.Assembly.KEGG.WebServices.LocalRender.CompoundShapeDrawing(Microsoft.VisualBasic.ComponentModel.DataSourceModel.NamedValue{System.String},System.Collections.Generic.Dictionary{System.String,Microsoft.VisualBasic.ComponentModel.DataSourceModel.NamedValue{SMRUCC.genomics.Assembly.KEGG.WebServices.XML.Area[]}},System.Drawing.Font,Microsoft.VisualBasic.Imaging.Graphics2D,System.Drawing.SizeF,System.Drawing.SizeF)">
+<member name="M:SMRUCC.genomics.Assembly.KEGG.WebServices.LocalRender.CompoundShapeDrawing(Microsoft.VisualBasic.ComponentModel.DataSourceModel.NamedValue{System.String},System.Collections.Generic.Dictionary{System.String,Microsoft.VisualBasic.ComponentModel.DataSourceModel.NamedValue{SMRUCC.genomics.Assembly.KEGG.WebServices.XML.Area[]}},System.Drawing.Font,Microsoft.VisualBasic.Imaging.IGraphics,System.Drawing.SizeF,System.Drawing.SizeF)">
  <summary>
  
  </summary>

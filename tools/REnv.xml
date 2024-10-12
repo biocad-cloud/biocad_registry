@@ -55,7 +55,7 @@ to [rest of string was truncated]&quot;;.
 </member>
 <member name="M:SMRUCC.Rsharp.ApiArgumentHelpers.slot(System.String)">
  <summary>
- create a slot value reference inside a tuple <see cref="T:SMRUCC.Rsharp.Runtime.Internal.Object.list"/> for construct a new list data
+ create a slot value reference inside a tuple <see cref="M:SMRUCC.Rsharp.ApiArgumentHelpers.list(Microsoft.VisualBasic.Language.ArgumentReference[])"/> for construct a new list data
  </summary>
  <param name="name"></param>
  <returns></returns>
@@ -915,6 +915,15 @@ to [rest of string was truncated]&quot;;.
  </summary>
  <param name="symbol"></param>
  <param name="stack"></param>
+</member>
+<member name="M:SMRUCC.Rsharp.Interpreter.ExecuteEngine.ExpressionSymbols.Closure.DeclareNewSymbol.GetSymbolName">
+ <summary>
+ get symbol name string
+ </summary>
+ <returns>
+ usually be the first element of the names array. For multiple names, 
+ a string json array text will be generates from this function.
+ </returns>
 </member>
 <member name="M:SMRUCC.Rsharp.Interpreter.ExecuteEngine.ExpressionSymbols.Closure.DeclareNewSymbol.Evaluate(SMRUCC.Rsharp.Runtime.Environment)">
  <summary>
@@ -3567,6 +3576,21 @@ to take away yo [rest of string was truncated]&quot;;.
  <param name="default$"></param>
  <returns></returns>
 </member>
+<member name="M:SMRUCC.Rsharp.Runtime.graphicsPipeline.getSize(System.Collections.Generic.Dictionary{System.String,System.Object},SMRUCC.Rsharp.Runtime.Environment,System.Drawing.SizeF)">
+ <summary>
+ get size value from the arguments list
+ </summary>
+ <param name="args"></param>
+ <param name="env"></param>
+ <param name="default">the default size value is the parameter is not found</param>
+ <returns>
+ size is get via the parameter names:
+ 
+ 1. size: should be an integer vector of [width,height]
+ 2. w and h
+ 3. width and height
+ </returns>
+</member>
 <member name="P:SMRUCC.Rsharp.Runtime.Internal.debug.verbose">
  <summary>
  啰嗦模式下会输出一些调试信息
@@ -3737,7 +3761,7 @@ to take away yo [rest of string was truncated]&quot;;.
  <summary>
  overloads <paramref name="name"/> = (
     x As <see cref="T:System.Object"/>, 
-    args As <see cref="T:SMRUCC.Rsharp.Runtime.Internal.Object.list"/>, 
+    args As <see cref="M:SMRUCC.Rsharp.ApiArgumentHelpers.list(Microsoft.VisualBasic.Language.ArgumentReference[])"/>, 
     env As <see cref="T:SMRUCC.Rsharp.Runtime.Environment"/>
  ) As <see cref="T:System.Object"/>
  </summary>
@@ -7032,260 +7056,6 @@ to take away yo [rest of string was truncated]&quot;;.
  <param name="env"></param>
  <returns></returns>
 </member>
-<member name="P:SMRUCC.Rsharp.Runtime.Internal.Invokes.graphics.curDev">
- <summary>
- the current actived graphics device
- </summary>
-</member>
-<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.graphics.openNew(Microsoft.VisualBasic.Imaging.IGraphics,System.IO.Stream,SMRUCC.Rsharp.Runtime.Internal.Object.list)">
- <summary>
- a common method for create new graphics device
- </summary>
- <param name="dev"></param>
- <param name="buffer"></param>
- <param name="args"></param>
-</member>
-<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.graphics.devOff(System.Int32,SMRUCC.Rsharp.Runtime.Environment)">
- <summary>
- returns the number and name of the new active device 
- (after the specified device has been shut down).
- </summary>
- <param name="which">An integer specifying a device number.</param>
- <returns></returns>
-</member>
-<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.graphics.devCur">
- <summary>
- returns a length-one named integer vector giving the number and name of the 
- active device, or 1, the null device, if none is active.
- </summary>
- <returns></returns>
-</member>
-<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.graphics.setCurrentDev(Microsoft.VisualBasic.Imaging.IGraphics,System.Int32,SMRUCC.Rsharp.Runtime.Environment)">
- <summary>
- dev.set makes the specified device the active device. If there 
- is no device with that number, it is equivalent to dev.next. 
- If which = 1 it opens a new device and selects that.
- </summary>
- <returns></returns>
-</member>
-<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.graphics.drawText(System.Double,System.Double,System.String,System.Object,System.Drawing.Font,SMRUCC.Rsharp.Runtime.Environment)">
- <summary>
- ## Add Text to a Plot
- 
- text draws the strings given in the vector labels at 
- the coordinates given by x and y. y may be missing 
- since xy.coords(x, y) is used for construction of the 
- coordinates.
- </summary>
- <param name="x">numeric vectors of coordinates where 
- the text labels should be written. If the length of 
- x and y differs, the shorter one is recycled.
- </param>
- <param name="y">numeric vectors of coordinates where 
- the text labels should be written. If the length of 
- x and y differs, the shorter one is recycled.
- </param>
- <param name="labels"></param>
- <returns></returns>
-</member>
-<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.graphics.rasterPixels(System.Object,SMRUCC.Rsharp.Runtime.Environment)">
- <summary>
- convert the image to a collection of raster pixels
- </summary>
- <param name="image"></param>
- <param name="env"></param>
- <returns>
- A dataframe object that contains the raster pixel data
- </returns>
-</member>
-<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.graphics.rasterImage(System.Drawing.Image,System.Single,System.Single,System.Object,SMRUCC.Rsharp.Runtime.Environment)">
- <summary>
- draw a raster image on a specific position
- </summary>
- <param name="image"></param>
- <param name="x"></param>
- <param name="y"></param>
- <param name="size"></param>
- <param name="env"></param>
-</member>
-<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.graphics.plot(System.Object,System.Object,SMRUCC.Rsharp.Runtime.Environment)">
- <summary>
- ## Generic X-Y Plotting
- 
- Generic function for plotting of R objects. 
- </summary>
- <param name="graphics">
- the graphics context
- </param>
- <param name="args">plot arguments</param>
- <param name="env"></param>
- <returns></returns>
-</member>
-<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.graphics.wmf(System.Object,System.Object,SMRUCC.Rsharp.Runtime.Internal.Object.list,SMRUCC.Rsharp.Runtime.Environment)">
- <summary>
- windows metafile device
- </summary>
- <param name="image"></param>
- <param name="file"></param>
- <param name="args"></param>
- <param name="env"></param>
- <returns></returns>
-</member>
-<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.graphics.bitmap(System.Object,System.Object,Microsoft.VisualBasic.Imaging.ImageFormats,SMRUCC.Rsharp.Runtime.Internal.Object.list,SMRUCC.Rsharp.Runtime.Environment)">
- <summary>
- ## Graphics Device for Bitmap Files via Ghostscript
- 
- save image data as bitmap image file, bitmap generates 
- a graphics file. dev2bitmap copies the current graphics 
- device to a file in a graphics format.
- </summary>
- <param name="image"></param>
- <param name="file">The output file name, with an appropriate extension.</param>
- <param name="args">
- additional arguments for the bitmap device:
- 
- 1. size, width, height: Dimensions of the display region.
- 2. res, dpi: Resolution, in dots per inch.
- </param>
- <param name="env"></param>
- <remarks>
- This section describes the implementation of the conventions for 
- graphics devices set out in the “R Internals Manual”. These devices 
- follow the underlying device, so when viewed at the stated res:
- 
- 1. The Default device size Is 7 inches square.
- 2. Font sizes are In big points.
- 3. The Default font family Is (For the standard Ghostscript setup) URW Nimbus Sans.
- 4. Line widths are As a multiple Of 1/96 inch, With no minimum.
- 5. Circle of any radius are allowed.
- 6. Colours are interpreted by the viewing/printing application.
- 
- </remarks>
- <returns></returns>
-</member>
-<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.graphics.png(System.Object,System.Object,System.Int32,System.Int32,System.Object,System.Single,System.Object,System.Object,System.Object,System.Boolean,System.Object,System.Boolean,System.Object,SMRUCC.Rsharp.Runtime.Internal.Object.list,SMRUCC.Rsharp.Runtime.Environment)">
- <summary>
- ### BMP, JPEG, PNG and TIFF graphics devices
- 
- Graphics devices for BMP, JPEG, PNG and TIFF format bitmap files.
- </summary>
- <param name="filename">the path Of the output file, up To 511 characters. The page 
- number Is substituted If a C Integer format Is included In the character String, 
- As In the Default, And tilde-expansion Is performed (see path.expand). (The result 
- must be less than 600 characters Long. See postscript For further details.)
- </param>
- <param name="width">the width of the device.</param>
- <param name="height">the height of the device.</param>
- <param name="units">The units in which height and width are given. Can be px (pixels,
- the default), in (inches), cm or mm.</param>
- <param name="pointsize">the default pointsize of plotted text, interpreted as big
- points (1/72 inch) at res ppi.</param>
- <param name="bg">the initial background colour: can be overridden by setting par("bg").
- </param>
- <param name="res">The nominal resolution In ppi which will be recorded In the bitmap 
- file, If a positive Integer. Also used For units other than the Default. If Not 
- specified, taken As 72 ppi To Set the size Of text And line widths.</param>
- <param name="family">A length-one character vector specifying the default font family. 
- The default means to use the font numbers on the Windows GDI versions and "sans" on 
- the cairographics versions.</param>
- <param name="restoreConsole">See the ‘Details’ section of windows. For type == "windows" 
- only.</param>
- <param name="type">Should be plotting be done using Windows GDI or cairographics?</param>
- <param name="antialias">Length-one character vector.
-
- For allowed values And their effect on fonts with type = "windows" see windows: 
- For that type if the argument Is missing the default Is taken from 
- ``windows.options()$bitmap.aa.win``.
-
- For allowed values And their effect (on fonts And lines, but Not fills) with 
- type = "cairo" see svg.</param>
- <returns></returns>
-</member>
-<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.graphics.OpenNewBitmapDevice(System.Object,SMRUCC.Rsharp.Runtime.Internal.Object.list,SMRUCC.Rsharp.Runtime.Environment)">
- <summary>
- image data is nothing
- </summary>
- <param name="file"></param>
- <param name="args"></param>
- <param name="env"></param>
- <returns></returns>
-</member>
-<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.graphics.readImage(System.Object,SMRUCC.Rsharp.Runtime.Environment)">
- <summary>
- readImage: this function reads various types of images
- 
- Reads images of type .png, .jpeg, .jpg, .tiff
- 
- This function takes as input a string-path and returns the image in a matrix or array form. 
- Supported types of images are .png, .jpeg, .jpg, .tiff. Extension types similar to .tiff 
- such as .tif, .TIFF, .TIF are also supported
- </summary>
- <param name="file">a string specifying the path to the saved image</param>
- <returns>the image in a matrix or array form</returns>
-</member>
-<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.graphics.thumbnail(System.Object,System.Int32,SMRUCC.Rsharp.Runtime.Environment)">
- <summary>
- Create thumbnail image
- </summary>
- <param name="image"></param>
- <param name="max_width"></param>
- <param name="env"></param>
- <returns></returns>
-</member>
-<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.graphics.resizeImage(System.Object,System.Double[],SMRUCC.Rsharp.Runtime.Environment)">
- <summary>
- resize image to a new pixel size
- </summary>
- <param name="image"></param>
- <param name="factor">
- + a single number will be scale the image lager or smaller
- + a numeric vector with two element will specific the new size in pixel directly
- + other situation will throw a new exception
- </param>
- <param name="env"></param>
- <returns></returns>
-</member>
-<member name="T:SMRUCC.Rsharp.Runtime.Internal.Invokes.graphicsDevice">
- <summary>
- the internal graphics device handle of the R# environment
- </summary>
-</member>
-<member name="F:SMRUCC.Rsharp.Runtime.Internal.Invokes.graphicsDevice.g">
- <summary>
- the graphics device for plot rendering
- </summary>
-</member>
-<member name="P:SMRUCC.Rsharp.Runtime.Internal.Invokes.graphicsDevice.Item(System.String)">
- <summary>
- get argument value by name
- </summary>
- <param name="ref"></param>
- <returns>
- this method get value directly from the <see cref="F:SMRUCC.Rsharp.Runtime.Internal.Invokes.graphicsDevice.args"/> data 
- list, an exception will be throw if the argument name key is 
- missing.
- 
- for safely get the argument value from this object, use the 
- <see cref="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.graphicsDevice.getArgumentValue(System.String,SMRUCC.Rsharp.Runtime.Internal.Object.list)"/> method.
- </returns>
-</member>
-<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.graphicsDevice.getArgumentValue(System.String,SMRUCC.Rsharp.Runtime.Internal.Object.list)">
- <summary>
- try <see cref="F:SMRUCC.Rsharp.Runtime.Internal.Invokes.graphicsDevice.args"/> at first, then this function will 
- try to find the argument value in <paramref name="args2"/> 
- if the argument name is missing from the <see cref="F:SMRUCC.Rsharp.Runtime.Internal.Invokes.graphicsDevice.args"/>
- collection.
- </summary>
- <param name="ref">the argument name to find</param>
- <param name="args2">
- this argument value can be nothing
- </param>
- <returns>
- this function is a safe function, value nothing will 
- be returns if all argument pack is missing the required
- argument name key.
- </returns>
-</member>
 <member name="T:SMRUCC.Rsharp.Runtime.Internal.Invokes.LinqPipeline.dataframe_methods">
  <summary>
  some common dataframe operations
@@ -9726,7 +9496,7 @@ to take away yo [rest of string was truncated]&quot;;.
  <param name="env"></param>
  <returns></returns>
 </member>
-<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.stringr.strsplit(System.String[],System.Object,System.Boolean,SMRUCC.Rsharp.Runtime.Environment)">
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.stringr.strsplit(System.String[],System.Object,System.Boolean,System.Boolean,SMRUCC.Rsharp.Runtime.Environment)">
  <summary>
  ### Split the Elements of a Character Vector
  
@@ -12590,7 +12360,7 @@ to take away yo [rest of string was truncated]&quot;;.
  the generic overloads function should be a delegate function of:
  
  ```
- Delegate GenericFunction(x As <see cref="T:System.Object"/>, args As <see cref="T:SMRUCC.Rsharp.Runtime.Internal.Object.list"/>, env As <see cref="T:SMRUCC.Rsharp.Runtime.Environment"/>) As <see cref="T:System.Object"/>
+ Delegate GenericFunction(x As <see cref="T:System.Object"/>, args As <see cref="M:SMRUCC.Rsharp.ApiArgumentHelpers.list(Microsoft.VisualBasic.Language.ArgumentReference[])"/>, env As <see cref="T:SMRUCC.Rsharp.Runtime.Environment"/>) As <see cref="T:System.Object"/>
  ```
  </remarks>
 </member>
@@ -12669,7 +12439,7 @@ to take away yo [rest of string was truncated]&quot;;.
 </member>
 <member name="M:SMRUCC.Rsharp.Runtime.Interop.RApiReturnAttribute.#ctor(System.String[])">
  <summary>
- this function returns a R# <see cref="T:SMRUCC.Rsharp.Runtime.Internal.Object.list"/> with these specific first level slot keys
+ this function returns a R# <see cref="M:SMRUCC.Rsharp.ApiArgumentHelpers.list(Microsoft.VisualBasic.Language.ArgumentReference[])"/> with these specific first level slot keys
  </summary>
  <param name="slots"></param>
 </member>
