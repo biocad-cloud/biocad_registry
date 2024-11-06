@@ -3987,6 +3987,18 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="builder"></param>
  <param name="alignment"></param>
 </member>
+<member name="M:Microsoft.VisualBasic.ApplicationServices.Terminal.TablePrinter.ConsoleTableBuilderExtensions.RealLength(System.String,System.Boolean)">
+ <summary>
+ Get the real width for do console print of a string
+ </summary>
+ <param name="value"></param>
+ <param name="withUtf8Characters"></param>
+ <returns></returns>
+ <remarks>
+ 1 char width for ascii character, and
+ 2 char width for chinese character.
+ </remarks>
+</member>
 <member name="T:Microsoft.VisualBasic.ApplicationServices.Terminal.TablePrinter.Flags.CharMapPositions">
  <summary>
  Check map here https://raw.githubusercontent.com/minhhungit/ConsoleTableExt/master/wiki/Images/CharMapPositions.png
@@ -10063,7 +10075,9 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <summary>
  A binary tree model for do data clustering
  </summary>
- <typeparam name="K"></typeparam>
+ <typeparam name="K">
+ the key data type andalso the cluster value type
+ </typeparam>
 </member>
 <member name="F:Microsoft.VisualBasic.ComponentModel.Algorithm.BinaryTree.AVLClusterTree`1.addClusterMember">
  <summary>
@@ -16426,6 +16440,11 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  (线程不安全的图片数据对象)
  </remarks>
 </member>
+<member name="F:Microsoft.VisualBasic.Imaging.BitmapImage.BitmapBuffer.memoryBuffer">
+ <summary>
+ current bitmap data is construct from a pixel data array, not read from memory via pointer.
+ </summary>
+</member>
 <member name="F:Microsoft.VisualBasic.Imaging.BitmapImage.BitmapBuffer.channels">
  <summary>
  图片可能是 BGRA 4通道
@@ -16460,6 +16479,24 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  </summary>
  <returns></returns>
 </member>
+<member name="P:Microsoft.VisualBasic.Imaging.BitmapImage.BitmapBuffer.Stride">
+ <summary>
+ Stride is the number of bytes your code must iterate past to reach the next vertical pixel.
+ </summary>
+ <returns>
+ always be width * pixel_size on .NET 8.0 runtime;
+ may be not matched with width * pixel_size on .net 4.8 runtime
+ </returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Imaging.BitmapImage.BitmapBuffer.GetPixelChannels">
+ <summary>
+ get the pixel channels in memory buffer
+ </summary>
+ <returns>
+ 3 - for 24bit rgb pixel format
+ 4 - for 32bit argb pixel format
+ </returns>
+</member>
 <member name="M:Microsoft.VisualBasic.Imaging.BitmapImage.BitmapBuffer.GetImage(System.Boolean)">
  <summary>
  Gets a copy of the original raw image value that which constructed 
@@ -16491,6 +16528,14 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  A <see cref="T:System.Drawing.Color"/> structure that represents the color of the specified pixel.
  </returns>
  
+</member>
+<member name="M:Microsoft.VisualBasic.Imaging.BitmapImage.BitmapBuffer.GetAlpha(System.Int32,System.Int32)">
+ <summary>
+ get the alpha channel data from a given pixel
+ </summary>
+ <param name="x"></param>
+ <param name="y"></param>
+ <returns></returns>
 </member>
 <member name="M:Microsoft.VisualBasic.Imaging.BitmapImage.BitmapBuffer.GetARGBStream">
  <summary>
@@ -16553,6 +16598,15 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <returns></returns>
  
 </member>
+<member name="M:Microsoft.VisualBasic.Imaging.BitmapImage.BitmapBuffer.FromBitmap(System.Drawing.Bitmap)">
+ <summary>
+ 
+ </summary>
+ <param name="curBitmap"></param>
+ <returns>
+ get the reference of the <see cref="!:Bitmap.MemoryBuffer"/> data directly
+ </returns>
+</member>
 <member name="M:Microsoft.VisualBasic.Imaging.BitmapImage.BitmapBuffer.FromBitmap(System.Drawing.Bitmap,System.Drawing.Imaging.ImageLockMode)">
  <summary>
  使用这个函数进行写数据的话，会修改到原图
@@ -16593,6 +16647,27 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="column">the x location</param>
  <returns></returns>
 </member>
+<member name="M:Microsoft.VisualBasic.Imaging.BitmapImage.BitmapResizer.CubicInterpolation(System.Byte[0:,0:],System.Double)">
+ <summary>
+ Cubic interpolate
+ </summary>
+ <param name="input"></param>
+ <param name="scale"></param>
+ <returns></returns>
+ 
+</member>
+<member name="M:Microsoft.VisualBasic.Imaging.BitmapImage.BitmapResizer.BilinearInterpolation(System.Byte[0:,0:]@,System.Int32,System.Int32,System.Int32,System.Int32)">
+ <summary>
+ Bilinear interpolation
+ </summary>
+ <param name="srcImage"></param>
+ <param name="srcWidth"></param>
+ <param name="srcHeight"></param>
+ <param name="dstWidth"></param>
+ <param name="dstHeight"></param>
+ <returns></returns>
+ 
+</member>
 <member name="T:Microsoft.VisualBasic.Imaging.BitmapImage.BitmapScale">
  <summary>
  Grayscale and binarization extensions
@@ -16628,7 +16703,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  So, single pixel access call to <see cref="M:System.Drawing.Bitmap.SetPixel(System.Int32,System.Int32,System.Drawing.Color)"/>/<see cref="M:System.Drawing.Bitmap.GetPixel(System.Int32,System.Int32)"/> Or 
  even retrieve Width/Height properties does something Like: 
  lock handle In place-Get/Set value/unlock handle. It Is the most inefficient way To manipulate bitmaps In .NET. 
- The author should read about <see cref="M:System.Drawing.Bitmap.LockBits(System.Drawing.Rectangle,System.Drawing.Imaging.ImageLockMode,System.Drawing.Imaging.PixelFormat)"/> first.
+ The author should read about ``Bitmap.LockBits`` first.
  </remarks>
 </member>
 <member name="M:Microsoft.VisualBasic.Imaging.BitmapImage.BitmapScale.scanInternal(Microsoft.VisualBasic.Emit.Marshal.Byte,Microsoft.VisualBasic.Imaging.BitmapImage.BitmapScale.BinarizationStyles)">
@@ -16698,11 +16773,222 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="buffer"></param>
  <returns></returns>
 </member>
-<member name="M:Microsoft.VisualBasic.Imaging.BitmapImage.StreamWriter.BitmapWriter.SaveColorImage(System.String)">
+<member name="M:Microsoft.VisualBasic.Imaging.BitmapImage.FileStream.BinarySerializationExtensions.Serialize``1(``0)">
  <summary>
- Save
+ Convert struct to byte[]
  </summary>
- <param name="path"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.Imaging.BitmapImage.FileStream.BinarySerializationExtensions.Deserialize``1(System.Byte[])">
+ <summary>
+ Convert byte[] to struct
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.Imaging.BitmapImage.FileStream.Bitmap">
+ <summary>
+ A in-memory bitmap image model
+ </summary>
+ <remarks>
+ This is simple Bitmap library that helps you wrap binary data (pixels) into BMP header for saving into file and vice versa.
+ 
+ It supports only 24 bits BGR And 32 bits BGRA Byte arrays.
+ Library supports x86 (little-endian) And ARM (big-endian).
+ 
+ > https://github.com/dsoronda/bmp-sharp
+ </remarks>
+</member>
+<member name="P:Microsoft.VisualBasic.Imaging.BitmapImage.FileStream.Bitmap.BytesPerRow">
+ <summary>
+ BMP file must be aligned at 4 butes at the end of row
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Imaging.BitmapImage.FileStream.Bitmap.BytesPerPixel">
+ <summary>
+ NOTE: we don't care for images that are less than 24 bits
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Imaging.BitmapImage.FileStream.Bitmap.PixelDataFliped">
+ <summary>
+ Get reversed order or rows.
+ For Bitmap image, pixel rows are stored from bottom to top.
+ So first row in bitmap file is lowest row in Image.
+ </summary>
+ <returns>Pixel data with reversed (fliped) rows</returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Imaging.BitmapImage.FileStream.Bitmap.#ctor(System.Int32,System.Int32,System.Byte[],Microsoft.VisualBasic.Imaging.BitmapImage.FileStream.BitsPerPixelEnum)">
+ <summary>
+ Create new Bitmap object
+ </summary>
+ <param name="width"></param>
+ <param name="height"></param>
+ <param name="pixelData"></param>
+ <param name="bitsPerPixel"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.Imaging.BitmapImage.FileStream.Bitmap.GetBmpBytes(System.Boolean)">
+ <summary>
+ Get bitmap as byte aray for saving to file
+ </summary>
+ <param name="flipped">Flip (reverse order of) rows. Bitmap pixel rows are stored from bottom to up as shown in image</param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Imaging.BitmapImage.FileStream.Bitmap.GetBmpStream(System.Boolean)">
+ <summary>
+ Get bitmap as byte stream for saving to file
+ </summary>
+ <param name="flipped">Flip (reverse order of) rows. Bitmap pixel rows are stored from bottom to up as shown in image</param>
+ <returns>
+ get in-memory stream data of the current bitmap object, could not 
+ be processed when bitmap object is greater than 2GB.
+ </returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Imaging.BitmapImage.FileStream.Bitmap.RequiredBytesPerRow(System.Int32,Microsoft.VisualBasic.Imaging.BitmapImage.FileStream.BitsPerPixelEnum)">
+ <summary>
+ BMP file must be aligned at 4 bytes at the end of row
+ </summary>
+ <param name="width">Image Width</param>
+ <param name="bitsPerPixel">Bits per pixel</param>
+ <returns>How many bytes BMP requires per row</returns>
+ 
+</member>
+<member name="M:Microsoft.VisualBasic.Imaging.BitmapImage.FileStream.Bitmap.IsPaddingRequired(System.Int32,Microsoft.VisualBasic.Imaging.BitmapImage.FileStream.BitsPerPixelEnum,System.Int32)">
+ <summary>
+ Check if padding is required (extra bytes for a row).
+ </summary>
+ <param name="width">Width of image</param>
+ <param name="bitsPerPixel">Bits per pixels to calculate actual byte requirement</param>
+ <param name="bytesPerRow">BMP required bytes per row</param>
+ <returns>True/false if we need to allocate extra bytes (for BMP saving) for padding</returns>
+ 
+</member>
+<member name="T:Microsoft.VisualBasic.Imaging.BitmapImage.FileStream.BitmapFileHeader">
+ <summary>
+ Keep proper byte layout in memory
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Imaging.BitmapImage.FileStream.BitmapFileHeader.BitmapFileHeaderSizeInBytes">
+ <summary>
+ FileHeader headerSize in bytes (fist 14 bytes from start)
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Imaging.BitmapImage.FileStream.BitmapFileHeader.#ctor(System.UInt32)">
+ <summary>
+ Explicitly set file in size
+ </summary>
+ <param name="fileSize"></param>
+</member>
+<member name="F:Microsoft.VisualBasic.Imaging.BitmapImage.FileStream.BitmapFileHeader.PixelDataOffset">
+ <summary>
+ The offset, i.e. starting address, of the byte where the bitmap image data (pixel array) can be found from the beggining of the file
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Imaging.BitmapImage.FileStream.BitmapFileHeader.#ctor(System.Int32,System.Int32,Microsoft.VisualBasic.Imaging.BitmapImage.FileStream.BitsPerPixelEnum,System.Int32)">
+ <summary>
+ Create header and calculate file size depending on input data
+ </summary>
+ <param name="width"></param>
+ <param name="height"></param>
+ <param name="bitsPerPixel"></param>
+ <param name="rawImageSize">Depends on row padding and number of rows</param>
+</member>
+<member name="P:Microsoft.VisualBasic.Imaging.BitmapImage.FileStream.BitmapFileHeader.HeaderBytes">
+ <summary>
+ Get header bytes
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Imaging.BitmapImage.FileStream.BitmapFileHeader.GetHeaderFromBytes(System.Byte[])">
+ <summary>
+ Generate BitmapFileHeader from first 14 bytes
+ </summary>
+ <param name="headerBytes"></param>
+ <returns>BitmapFileHeader or throws exception</returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Imaging.BitmapImage.FileStream.BitmapFileHelper.ReadFileAsBitmap(System.String,System.Boolean)">
+ <summary>
+ read bitmap file in-memory
+ </summary>
+ <param name="fileName"></param>
+ <param name="flipRows"></param>
+ <returns></returns>
+ <remarks>
+ only process the bitmap image data in size smaller than 2GB
+ </remarks>
+</member>
+<member name="T:Microsoft.VisualBasic.Imaging.BitmapImage.FileStream.BytesPerPixelEnum">
+ <summary>
+ Number of bytes for specific Pixel format.
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.Imaging.BitmapImage.FileStream.BitmapInfoHeader.Width">
+ <summary>
+ the bitmap Width in pixels (signed integer)
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.Imaging.BitmapImage.FileStream.BitmapInfoHeader.Height">
+ <summary>
+ the bitmap Height in pixels (signed integer)
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.Imaging.BitmapImage.FileStream.BitmapInfoHeader.ColorPlanes">
+ <summary>
+ the number of color planes (must be 1)
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.Imaging.BitmapImage.FileStream.BitmapInfoHeader.BitsPerPixel">
+ <summary>
+ the number of bits per pixel, which is the color depth of the image. Typical values are 1, 4, 8, 16, 24 and 32.
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.Imaging.BitmapImage.FileStream.BitmapInfoHeader.CompressionMethod">
+ <summary>
+ 0 	BI_RGB (UNCOMPRESSED)
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.Imaging.BitmapImage.FileStream.BitmapInfoHeader.ImageSize">
+ <summary>
+ the image size. This is the size of the raw bitmap data; a dummy 0 can be given for BI_RGB bitmaps.
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.Imaging.BitmapImage.FileStream.BitmapInfoHeader.HorizontalPixelPerMeter">
+ <summary>
+ the horizontal resolution of the image. (pixel per metre, signed integer)
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.Imaging.BitmapImage.FileStream.BitmapInfoHeader.VerticalPixelPerMeter">
+ <summary>
+ the vertical resolution of the image. (pixel per metre, signed integer)
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Imaging.BitmapImage.FileStream.BitmapInfoHeader.nuberOfColorsInPallete">
+ <summary>
+ the number of colors in the color palette, or 0 to default to 2n (not used)
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Imaging.BitmapImage.FileStream.BitmapInfoHeader.numberOfImportantColorsUsed">
+ <summary>
+ numberOfImportantColorsUsed (not used)
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Imaging.BitmapImage.FileStream.BitmapInfoHeader.#ctor(System.Int32,System.Int32,Microsoft.VisualBasic.Imaging.BitmapImage.FileStream.BitsPerPixelEnum,System.Int32,System.Int32,System.Int32,Microsoft.VisualBasic.Imaging.BitmapImage.FileStream.CompressionMethod)">
+ <summary>
+ DIB header (bitmap information header)
+ This is standard Windows BITMAPINFOHEADER as described here https://en.wikipedia.org/wiki/BMP_file_format#Bitmap_file_header
+ </summary>
+ <param name="width"></param>
+ <param name="height"></param>
+ <param name="bitsPerPixel"></param>
+ <param name="rawImageSize"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.Imaging.BitmapImage.FileStream.BitmapInfoHeaderRGBA.#ctor(System.Int32,System.Int32,Microsoft.VisualBasic.Imaging.BitmapImage.FileStream.BitsPerPixelEnum,System.Int32,System.Int32,System.Int32,Microsoft.VisualBasic.Imaging.BitmapImage.FileStream.CompressionMethod)">
+ <summary>
+ DIB header (bitmap information header)
+ This is standard Windows BITMAPINFOHEADER as described here https://en.wikipedia.org/wiki/BMP_file_format#Bitmap_file_header
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.Imaging.BitmapImage.FileStream.BitmapInfoHeaderRGBA.HeaderInfoBytes">
+ <summary>
+ This is BitmapInfoHeader for ARGB32 as described here https://en.wikipedia.org/wiki/BMP_file_format#Example_2
+ </summary>
 </member>
 <member name="T:Microsoft.VisualBasic.Imaging.BitmapImage.RTCP">
  <summary>
@@ -17239,17 +17525,22 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
 </member>
 <member name="F:Microsoft.VisualBasic.Imaging.Driver.Drivers.SVG">
  <summary>
- <see cref="!:GraphicsSVG"/>, mime type: image/svg+xml
+ mime type: image/svg+xml
  </summary>
 </member>
 <member name="F:Microsoft.VisualBasic.Imaging.Driver.Drivers.PS">
  <summary>
- <see cref="!:GraphicsPS"/>
+ application/postscript
  </summary>
 </member>
 <member name="F:Microsoft.VisualBasic.Imaging.Driver.Drivers.WMF">
  <summary>
  Windows meta file
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Imaging.Driver.Drivers.PDF">
+ <summary>
+ application/pdf
  </summary>
 </member>
 <member name="T:Microsoft.VisualBasic.Imaging.Driver.GdiRasterGraphics">
@@ -17261,8 +17552,8 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <summary>
  The graphics engine driver type indicator, 
  
- + for <see cref="F:Microsoft.VisualBasic.Imaging.Driver.Drivers.GDI"/> -> <see cref="!:ImageData"/>(<see cref="T:System.Drawing.Image"/>, <see cref="T:System.Drawing.Bitmap"/>)
- + for <see cref="F:Microsoft.VisualBasic.Imaging.Driver.Drivers.SVG"/> -> <see cref="!:SVGData"/>(<see cref="!:SVGDocument"/>)
+ + for <see cref="F:Microsoft.VisualBasic.Imaging.Driver.Drivers.GDI"/> -> ImageData(<see cref="T:System.Drawing.Image"/>, <see cref="T:System.Drawing.Bitmap"/>)
+ + for <see cref="F:Microsoft.VisualBasic.Imaging.Driver.Drivers.SVG"/> -> SVGData(SVGDocument)
  
  (驱动程序的类型)
  </summary>
@@ -17425,7 +17716,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
 <member name="M:Microsoft.VisualBasic.Imaging.GraphicsExtensions.LoadImage(System.String,System.Boolean,System.Boolean)">
  <summary>
  Load image from a file and then close the file handle.
- (使用<see cref="M:System.Drawing.Image.FromFile(System.String)"/>函数在加载完成图像到Dispose这段之间内都不会释放文件句柄，
+ (使用<see cref="M:System.Drawing.Image.FromStream(System.IO.Stream)"/>函数在加载完成图像到Dispose这段之间内都不会释放文件句柄，
  则使用这个函数则没有这个问题，在图片加载之后会立即释放掉文件句柄)
  </summary>
  <param name="path"></param>
@@ -17433,6 +17724,14 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  当参数<paramref name="throwEx"/>为false时候，函数返回空值的话，说明图片文件错误
  例如文件未下载完成或者发生了二进制移码
  </returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Imaging.GraphicsExtensions.LoadImage(System.Byte[],System.Boolean)">
+ <summary>
+ cast the memory stream buffer as the gdi+ image
+ </summary>
+ <param name="rawStream"></param>
+ <param name="throwEx"></param>
+ <returns></returns>
 </member>
 <member name="M:Microsoft.VisualBasic.Imaging.GraphicsExtensions.GetStreamBuffer(System.Drawing.Image)">
  <summary>
@@ -17471,12 +17770,30 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  Encapsulates a GDI+(bitmap, wmf)/SVG etc drawing surface. This class must be inherited.
  </summary>
  <remarks>
- <see cref="T:System.Drawing.Graphics"/>
+ an default interface wrapper of the .NET gdi+ Graphics object
  </remarks>
 </member>
 <member name="P:Microsoft.VisualBasic.Imaging.IGraphics.Size">
  <summary>
  the current canvas size in pixels: [width, height]
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Imaging.IGraphics.Driver">
+ <summary>
+ Get graphics driver code
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Imaging.IGraphics.Width">
+ <summary>
+ the image graphics width
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Imaging.IGraphics.Height">
+ <summary>
+ the image graphics height
  </summary>
  <returns></returns>
 </member>
@@ -17504,6 +17821,11 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  </summary>
  <returns></returns>
 </member>
+<member name="F:Microsoft.VisualBasic.Imaging.IGraphics.m_isDisposed">
+ <summary>
+ use this flag for avoid multiple calls of the dispose/release handle method
+ </summary>
+</member>
 <member name="M:Microsoft.VisualBasic.Imaging.IGraphics.#ctor(System.Int32)">
  <summary>
  config graphics canvas dpi
@@ -17515,6 +17837,33 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  config graphics canvas dpi
  </summary>
  <param name="dpiXY"></param>
+</member>
+<member name="P:Microsoft.VisualBasic.Imaging.IGraphics.RenderingOrigin">
+ <summary>
+ Gets or sets the rendering origin of this System.Drawing.Graphics for dithering
+ and for hatch brushes.
+ </summary>
+ <returns>
+ A System.Drawing.Point structure that represents the dither origin for 8-bits-per-pixel
+ and 16-bits-per-pixel dithering and is also used to set the origin for hatch
+ brushes.
+ </returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Imaging.IGraphics.TextContrast">
+ <summary>
+ Gets or sets the gamma correction value for rendering text.
+ </summary>
+ <returns>
+ The gamma correction value used for rendering antialiased and ClearType text.
+ </returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Imaging.IGraphics.AddMetafileComment(System.Byte[])">
+ <summary>
+ Adds a comment to the current System.Drawing.Imaging.Metafile.
+ </summary>
+ <param name="data">
+ Array of bytes that contains the comment.
+ </param>
 </member>
 <member name="M:Microsoft.VisualBasic.Imaging.IGraphics.Clear(System.Drawing.Color)">
  <summary>
@@ -17537,6 +17886,18 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <summary>
  Releases all resources used by this System.Drawing.Graphics.    
  </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Imaging.IGraphics.DrawArc(System.Drawing.Pen,System.Drawing.RectangleF,System.Single,System.Single)">
+ <summary>
+ Draws an arc representing a portion of an ellipse specified by a System.Drawing.RectangleF
+ structure.
+ </summary>
+ <param name="pen">System.Drawing.Pen that determines the color, width, and style of the arc.</param>
+ <param name="rect">System.Drawing.RectangleF structure that defines the boundaries of the ellipse.</param>
+ <param name="startAngle">Angle in degrees measured clockwise from the x-axis to the starting point of
+ the arc.</param>
+ <param name="sweepAngle">Angle in degrees measured clockwise from the startAngle parameter to ending point
+ of the arc.</param>
 </member>
 <member name="M:Microsoft.VisualBasic.Imaging.IGraphics.DrawArc(System.Drawing.Pen,System.Drawing.Rectangle,System.Single,System.Single)">
  <summary>
@@ -17709,6 +18070,25 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="sweepAngle">Angle in degrees measured clockwise from the startAngle parameter to the second
  side of the pie section.</param>
 </member>
+<member name="M:Microsoft.VisualBasic.Imaging.IGraphics.FillPie(System.Drawing.Brush,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+ <summary>
+ Fills the interior of a pie section defined by an ellipse specified by a pair
+ of coordinates, a width, a height, and two radial lines.
+ </summary>
+ <param name="brush">System.Drawing.Brush that determines the characteristics of the fill.</param>
+ <param name="x">The x-coordinate of the upper-left corner of the bounding rectangle that defines
+ the ellipse from which the pie section comes.</param>
+ <param name="y">The y-coordinate of the upper-left corner of the bounding rectangle that defines
+ the ellipse from which the pie section comes.</param>
+ <param name="width">Width of the bounding rectangle that defines the ellipse from which the pie section
+ comes.</param>
+ <param name="height">Height of the bounding rectangle that defines the ellipse from which the pie
+ section comes.</param>
+ <param name="startAngle">Angle in degrees measured clockwise from the x-axis to the first side of the
+ pie section.</param>
+ <param name="sweepAngle">Angle in degrees measured clockwise from the startAngle parameter to the second
+ side of the pie section.</param>
+</member>
 <member name="M:Microsoft.VisualBasic.Imaging.IGraphics.FillPie(System.Drawing.Brush,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single)">
  <summary>
  Fills the interior of a pie section defined by an ellipse specified by a pair
@@ -17727,6 +18107,15 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  pie section.</param>
  <param name="sweepAngle">Angle in degrees measured clockwise from the startAngle parameter to the second
  side of the pie section.</param>
+</member>
+<member name="M:Microsoft.VisualBasic.Imaging.IGraphics.FillPolygon(System.Drawing.Brush,System.Drawing.Point[])">
+ <summary>
+ Fills the interior of a polygon defined by an array of points specified by System.Drawing.Point
+ structures.
+ </summary>
+ <param name="brush">System.Drawing.Brush that determines the characteristics of the fill.</param>
+ <param name="points">Array of System.Drawing.Point structures that represent the vertices of the polygon
+ to fill.</param>
 </member>
 <member name="M:Microsoft.VisualBasic.Imaging.IGraphics.FillPolygon(System.Drawing.Brush,System.Drawing.PointF[])">
  <summary>
@@ -17764,6 +18153,28 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <see cref="T:System.Drawing.RectangleF"/> structure that represents the rectangle to fill.
  </param>
 </member>
+<member name="M:Microsoft.VisualBasic.Imaging.IGraphics.FillRectangle(System.Drawing.Brush,System.Int32,System.Int32,System.Int32,System.Int32)">
+ <summary>
+ Fills the interior of a rectangle specified by a pair of coordinates, a width,
+ and a height.
+ </summary>
+ <param name="brush">System.Drawing.Brush that determines the characteristics of the fill.</param>
+ <param name="x">The x-coordinate of the upper-left corner of the rectangle to fill.</param>
+ <param name="y">The y-coordinate of the upper-left corner of the rectangle to fill.</param>
+ <param name="width">Width of the rectangle to fill.</param>
+ <param name="height">Height of the rectangle to fill.</param>
+</member>
+<member name="M:Microsoft.VisualBasic.Imaging.IGraphics.FillRectangle(System.Drawing.Brush,System.Single,System.Single,System.Single,System.Single)">
+ <summary>
+ Fills the interior of a rectangle specified by a pair of coordinates, a width,
+ and a height.
+ </summary>
+ <param name="brush">System.Drawing.Brush that determines the characteristics of the fill.</param>
+ <param name="x">The x-coordinate of the upper-left corner of the rectangle to fill.</param>
+ <param name="y">The y-coordinate of the upper-left corner of the rectangle to fill.</param>
+ <param name="width">Width of the rectangle to fill.</param>
+ <param name="height">Height of the rectangle to fill.</param>
+</member>
 <member name="M:Microsoft.VisualBasic.Imaging.IGraphics.FillRectangles(System.Drawing.Brush,System.Drawing.RectangleF[])">
  <summary>
  Fills the interiors of a series of rectangles specified by System.Drawing.Rectangle
@@ -17781,6 +18192,20 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="brush">System.Drawing.Brush that determines the characteristics of the fill.</param>
  <param name="rects">Array of System.Drawing.Rectangle structures that represent the rectangles to
  fill.</param>
+</member>
+<member name="M:Microsoft.VisualBasic.Imaging.IGraphics.Flush">
+ <summary>
+ Forces execution of all pending graphics operations and returns immediately without
+ waiting for the operations to finish.
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Imaging.IGraphics.GetContextInfo">
+ <summary>
+ Gets the cumulative graphics context.
+ </summary>
+ <returns>
+ An System.Object representing the cumulative graphics context.
+ </returns>
 </member>
 <member name="M:Microsoft.VisualBasic.Imaging.IGraphics.IsVisible(System.Drawing.PointF)">
  <summary>
@@ -17849,7 +18274,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="text">String to measure.</param>
  <param name="font"><see cref="P:Microsoft.VisualBasic.Imaging.IGraphics.Font"/> that defines the text format of the string.</param>
  <returns>This method returns a <see cref="M:Microsoft.VisualBasic.Imaging.GraphicsExtensions.SizeF(System.Drawing.Size)"/> structure that represents the size,
- in the units specified by the <see cref="!:PageUnit"/> property, of the
+ in the units specified by the PageUnit property, of the
  string specified by the text parameter as drawn with the font parameter.
  </returns>
 </member>
@@ -18391,7 +18816,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
 </member>
 <member name="M:Microsoft.VisualBasic.Imaging.Math2D.GeomTransform.CircleRectangle(System.Drawing.PointF,System.Single)">
  <summary>
- <see cref="M:System.Drawing.Graphics.DrawEllipse(System.Drawing.Pen,System.Drawing.RectangleF)"/>
+ <see cref="M:Microsoft.VisualBasic.Imaging.IGraphics.DrawEllipse(System.Drawing.Pen,System.Drawing.RectangleF)"/>
  </summary>
  <param name="center"></param>
  <param name="r!"></param>
@@ -20365,6 +20790,31 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  nothing.
  </returns>
 </member>
+<member name="M:Microsoft.VisualBasic.ListExtensions.Swap``1(System.Collections.Generic.List{``0}@,System.Int32,System.Int32)">
+ <summary>
+ swap the position of two specific element inside a given list collection object
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="l"></param>
+ <param name="i%"></param>
+ <param name="j%"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.ListExtensions.ForEach``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0,System.Int32})">
+ <summary>
+ for each loop
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="source"></param>
+ <param name="action"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.ListExtensions.ForEach``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0})">
+ <summary>
+ for each loop
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="source"></param>
+ <param name="action"></param>
+</member>
 <member name="M:Microsoft.VisualBasic.ListExtensions.ToList``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Boolean)">
  <summary>
  Initializes a new instance of the <see cref="M:Microsoft.VisualBasic.Language.LanguageAPI.list(Microsoft.VisualBasic.Language.ArgumentReference[])"/>`1 class that
@@ -20382,7 +20832,9 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="source">
  The collection whose elements are copied to the new list.
  </param>
- 
+ <remarks>
+ 如果source集合是空值的话，不会抛错
+ </remarks>
 </member>
 <member name="M:Microsoft.VisualBasic.ListExtensions.HasKey(System.Collections.Hashtable,System.Object)">
  <summary>
@@ -20676,6 +21128,15 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="source"></param>
  <param name="delimiter">和字符串的Split函数一样，这里作为delimiter的元素都不会出现在结果之中</param>
  <param name="deliPosition">是否还应该在分区的结果之中包含有分隔符对象？默认不包含</param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.VectorExtensions.CopyOf``1(``0[],System.Int32)">
+ <summary>
+ java arrays.copyOf
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="a"></param>
+ <param name="newLen"></param>
  <returns></returns>
 </member>
 <member name="M:Microsoft.VisualBasic.VectorExtensions.CopyOf``1(``0[],System.Int32[],System.Boolean)">
@@ -20997,6 +21458,11 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <see cref="F:Microsoft.VisualBasic.Constants.vbTab"/>
  </summary>
 </member>
+<member name="F:Microsoft.VisualBasic.Text.ASCII.Whitespace">
+ <summary>
+ a collection of the ascii whitespace chars
+ </summary>
+</member>
 <member name="F:Microsoft.VisualBasic.Text.ASCII.Quot">
  <summary>
  双引号``"``
@@ -21303,8 +21769,11 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
 </member>
 <member name="T:Microsoft.VisualBasic.Text.GB2312">
  <summary>
- 汉字拼音转换类
+ A helper module for processing of the chinese characters
  </summary>
+ <remarks>
+ 汉字拼音转换类
+ </remarks>
 </member>
 <member name="P:Microsoft.VisualBasic.Text.GB2312.otherChinese">
  <summary>
@@ -21364,6 +21833,13 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  </summary>
  <param name="str">汉字字符串</param>
  <returns>转换后的拼音(全拼)字符串</returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Text.GB2312.IsChineseCharacter(System.Char)">
+ <summary>
+ Check of the given character is a chinese character or not?
+ </summary>
+ <param name="character"></param>
+ <returns></returns>
 </member>
 <member name="T:Microsoft.VisualBasic.Text.TextEncodings">
  <summary>
@@ -21829,10 +22305,15 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
 </member>
 <member name="M:Microsoft.VisualBasic.Text.Parser.HtmlParser.HtmlStrips.StripHTMLTags(System.String,System.Boolean)">
  <summary>
- Removes the html tags from the text string.(这个函数会移除所有的html标签)
+ Removes the html tags from the text string.
  </summary>
  <param name="s"></param>
- <returns></returns>
+ <returns>
+ a plain text that removes all html format tags
+ </returns>
+ <remarks>
+ (这个函数会移除所有的html标签)
+ </remarks>
 </member>
 <member name="M:Microsoft.VisualBasic.Text.Parser.HtmlParser.HtmlStrips.paragraph(System.String,System.Boolean)">
  <summary>
@@ -22232,20 +22713,27 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  </summary>
  
 </member>
-<member name="M:Microsoft.VisualBasic.Text.Similarity.Evaluations.Evaluate(System.String,System.String,System.Boolean,System.Double,Microsoft.VisualBasic.ComponentModel.Algorithm.DynamicProgramming.Levenshtein.DistResult@)">
+<member name="T:Microsoft.VisualBasic.Text.Similarity.Evaluations">
+ <summary>
+ text string similarity evaluation module
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Text.Similarity.Evaluations.Evaluate(System.String,System.String,System.Boolean,System.Double,Microsoft.VisualBasic.ComponentModel.Algorithm.DynamicProgramming.Levenshtein.DistResult@,System.Boolean)">
  <summary>
  两个字符串之间是通过单词的排布的相似度来比较相似度的
  </summary>
  <param name="s1"></param>
  <param name="s2"></param>
  <param name="ignoreCase"></param>
- <param name="cost#"></param>
+ <param name="cost"></param>
  <param name="dist"></param>
- <returns></returns>
+ <returns>
+ A similarity score in value between [0,1]
+ </returns>
 </member>
-<member name="M:Microsoft.VisualBasic.Text.Similarity.Evaluations.LevenshteinEvaluate(System.String,System.String,System.Boolean,System.Double,Microsoft.VisualBasic.ComponentModel.Algorithm.DynamicProgramming.Levenshtein.DistResult@)">
+<member name="M:Microsoft.VisualBasic.Text.Similarity.Evaluations.LevenshteinEvaluate(System.String,System.String,System.Boolean,System.Double,Microsoft.VisualBasic.ComponentModel.Algorithm.DynamicProgramming.Levenshtein.DistResult@,System.Boolean)">
  <summary>
- 计算字符串，这个是直接通过计算字符而非像<see cref="M:Microsoft.VisualBasic.Text.Similarity.Evaluations.Evaluate(System.String,System.String,System.Boolean,System.Double,Microsoft.VisualBasic.ComponentModel.Algorithm.DynamicProgramming.Levenshtein.DistResult@)"/>方法之中计算单词的
+ 计算字符串，这个是直接通过计算字符而非像<see cref="M:Microsoft.VisualBasic.Text.Similarity.Evaluations.Evaluate(System.String,System.String,System.Boolean,System.Double,Microsoft.VisualBasic.ComponentModel.Algorithm.DynamicProgramming.Levenshtein.DistResult@,System.Boolean)"/>方法之中计算单词的
  </summary>
  <param name="s1$"></param>
  <param name="s2$"></param>
@@ -22269,6 +22757,29 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="s1$"></param>
  <param name="s2$"></param>
  <param name="caseSensitive"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Text.Similarity.Evaluations.LevenshteinOrder``1(System.Collections.Generic.IEnumerable{``0},System.String,System.Func{``0,System.Collections.Generic.IEnumerable{System.String}},System.Boolean,System.Double,System.Double,System.Boolean)">
+ <summary>
+ Make text similariy sort in desc order
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="collection"></param>
+ <param name="query"></param>
+ <param name="cutoff"></param>
+ <param name="strlen_diff"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Text.Similarity.Evaluations.StringSelection(System.String,System.Collections.Generic.IEnumerable{System.String},System.Double,System.Boolean,System.Boolean)">
+ <summary>
+ Get most similar string from the given <paramref name="collection"/>
+ </summary>
+ <param name="query">the text for the similarity measurement</param>
+ <param name="collection">a given string collection for compares with the 
+ given <paramref name="query"/> text string.</param>
+ <param name="cutoff"></param>
+ <param name="ignoreCase"></param>
+ <param name="tokenBased"></param>
  <returns></returns>
 </member>
 <member name="M:Microsoft.VisualBasic.Text.Levenshtein.LevExtensions.StripSymbol(System.String,System.String,System.Boolean)">
@@ -22311,6 +22822,25 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="subject"></param>
  <returns></returns>
  
+</member>
+<member name="T:Microsoft.VisualBasic.Text.Levenshtein.LevenshteinTree">
+ <summary>
+ a text string similarity index
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Text.Levenshtein.LevenshteinTree.Query(System.String)">
+ <summary>
+ query the indexed string data via string similarity
+ </summary>
+ <param name="s"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Text.Levenshtein.LevenshteinTreeIndex.Query(System.String)">
+ <summary>
+ query the indexed data via string key similarity
+ </summary>
+ <param name="s"></param>
+ <returns></returns>
 </member>
 <member name="M:Microsoft.VisualBasic.Text.Xml.Extensions.FormatHTML(System.String)">
  <summary>
@@ -22492,7 +23022,6 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
 <member name="M:Microsoft.VisualBasic.Text.Xml.Linq.Data.LoadUltraLargeXMLDataSet``1(System.String,System.String,System.String,System.Func{System.Xml.Linq.XElement,System.Boolean},System.Func{System.String,System.String},System.Boolean,System.Type[],System.Boolean)">
  <summary>
  Apply on a ultra large size XML database, which its data size is greater than 1GB to 100GB or even more.
- (这个函数是直接忽略掉根节点的名称以及属性的,使用这个函数只需要关注于需要提取的数据的节点名称即可)
  </summary>
  <typeparam name="T"></typeparam>
  <param name="path">文件路径</param>
@@ -22503,11 +23032,13 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  因为后续的Xml反序列化操作在大数据集合下话费的时间会非常长
  </param>
  <returns></returns>
+ <remarks>
+ (这个函数是直接忽略掉根节点的名称以及属性的,使用这个函数只需要关注于需要提取的数据的节点名称即可)
+ </remarks>
 </member>
 <member name="M:Microsoft.VisualBasic.Text.Xml.Linq.Data.LoadUltraLargeXMLDataSet``1(System.IO.Stream,System.String,System.String,System.Func{System.Xml.Linq.XElement,System.Boolean},System.Func{System.String,System.String},System.Boolean,System.Type[],System.Boolean)">
  <summary>
  Apply on a ultra large size XML database, which its data size is greater than 1GB to 100GB or even more.
- (这个函数是直接忽略掉根节点的名称以及属性的,使用这个函数只需要关注于需要提取的数据的节点名称即可)
  </summary>
  <typeparam name="T"></typeparam>
  <param name="s">The document stream data</param>
@@ -22521,6 +23052,9 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  pre-processing the each xml document text block before parsed as the target clr object
  </param>
  <returns></returns>
+ <remarks>
+ (这个函数是直接忽略掉根节点的名称以及属性的,使用这个函数只需要关注于需要提取的数据的节点名称即可)
+ </remarks>
 </member>
 <member name="M:Microsoft.VisualBasic.Text.Xml.Linq.Data.LoadArrayNodes``1(System.String,System.String,System.String,System.Func{System.Xml.Linq.XElement,System.Boolean},System.Boolean,System.Boolean)">
  <summary>
@@ -26842,6 +27376,11 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  .net clr object vector data property ``get/set`` helper.
  </summary>
 </member>
+<member name="F:Microsoft.VisualBasic.Emit.Delegates.DataObjectVector.data">
+ <summary>
+ the raw input pool data
+ </summary>
+</member>
 <member name="F:Microsoft.VisualBasic.Emit.Delegates.DataObjectVector.properties">
  <summary>
  Using for expression tree compile to delegate by using <see cref="T:Microsoft.VisualBasic.ComponentModel.DataSourceModel.SchemaMaps.BindProperty`1"/>, 
@@ -28333,14 +28872,14 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="s$"></param>
  <returns></returns>
 </member>
-<member name="M:Microsoft.VisualBasic.StringHelpers.MaxLengthString(System.Collections.Generic.IEnumerable{System.String})">
+<member name="M:Microsoft.VisualBasic.StringHelpers.MaxLengthString(System.Collections.Generic.IEnumerable{System.String},System.Boolean)">
  <summary>
- 常用于gdi+绘图操作，和<see cref="M:System.Drawing.Graphics.MeasureString(System.String,System.Drawing.Font)"/>共同使用
+ 常用于gdi+绘图操作，和<see cref="M:Microsoft.VisualBasic.Imaging.IGraphics.MeasureString(System.String,System.Drawing.Font)"/>共同使用
  </summary>
  <param name="source"></param>
  <returns></returns>
 </member>
-<member name="M:Microsoft.VisualBasic.StringHelpers.MaxLengthString``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.String})">
+<member name="M:Microsoft.VisualBasic.StringHelpers.MaxLengthString``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.String},System.Boolean)">
  <summary>
  获取最大长度的字符串
  </summary>
@@ -28721,7 +29260,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="opt"></param>
  <returns></returns>
  <remarks>
- 这个函数是一个安全的函数：对于空值字符串对象会直接返回一个空字符串
+ 这个函数是一个安全的函数：对于空值字符串对象会直接返回一个长度为零的空字符串，不会返回空值。
  </remarks>
 </member>
 <member name="M:Microsoft.VisualBasic.StringHelpers.Split(System.Collections.Generic.IEnumerable{System.String},System.String,System.Boolean,System.Text.RegularExpressions.RegexOptions)">
@@ -37350,6 +37889,17 @@ to take away yo [rest of string was truncated]&quot;;.
  <summary>
  Visited reference types
  </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.Serialization.BinaryDumping.ObjectOutputStream">
+ <summary>
+ clr object binary serialization helper
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Serialization.BinaryDumping.ObjectOutputStream.WriteObject(System.Object)">
+ <summary>
+ safe any kind of clr object to binary file
+ </summary>
+ <param name="obj"></param>
 </member>
 <member name="T:Microsoft.VisualBasic.Serialization.BinaryDumping.StructSerializer">
  <summary>

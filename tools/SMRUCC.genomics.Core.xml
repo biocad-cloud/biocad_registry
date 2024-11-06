@@ -13326,6 +13326,13 @@ to take away yo [rest of string was truncated]&quot;;.
  <param name="idx$">对index的描述，可以是title也可以直接是index数字</param>
  <returns></returns>
 </member>
+<member name="M:SMRUCC.genomics.SequenceModel.FASTA.Extensions.writeFasta(System.Collections.Generic.IEnumerable{System.String},System.String,System.Int32,System.String)">
+ <summary>
+ Writes the sequences in FASTA format to a file with the given name </summary>
+ <param name="sequences"> </param>
+ <param name="filename"> </param>
+ 
+</member>
 <member name="T:SMRUCC.genomics.SequenceModel.FASTA.HeaderFormats">
  <summary>
  Fasta序列在不同的数据库之中的标题的格式的帮助函数模块
@@ -14040,6 +14047,16 @@ to take away yo [rest of string was truncated]&quot;;.
  <remarks>
  不可以trim序列的起始，否则会乱码
  </remarks>
+</member>
+<member name="F:SMRUCC.genomics.SequenceModel.NucleotideModels.Bases.Deoxyribonucleotide">
+ <summary>
+ Formula data of each DNA bases
+ </summary>
+</member>
+<member name="F:SMRUCC.genomics.SequenceModel.NucleotideModels.Bases.Ribonucleotide">
+ <summary>
+ Formula data of each RNA bases
+ </summary>
 </member>
 <member name="M:SMRUCC.genomics.SequenceModel.NucleotideModels.Extensions.LevenshteinDistance(System.String,System.String)">
  <summary>
