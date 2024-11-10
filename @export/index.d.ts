@@ -35,7 +35,7 @@ declare namespace biocad_registry {
    function imports_genebank(biocad_registry: any, genebank: any): object;
    /**
    */
-   function imports_metacyc(): object;
+   function imports_metacyc(biocad_registry: any, metacyc: any): object;
    /**
    */
    function imports_pubchem(biocad_registry: any, pubchem: any): object;
@@ -58,6 +58,12 @@ declare namespace biocad_registry {
    /**
    */
    function link_reaction_metabolites(biocad_registry: any): object;
+   /**
+   */
+   function load_biocyc_compounds(biocad_registry: any, metacyc: any): object;
+   /**
+   */
+   function load_biocyc_reactions(biocad_registry: any, metacyc: any): object;
    /**
    */
    function metabolite_term(biocad_registry: any): object;

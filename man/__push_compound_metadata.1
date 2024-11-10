@@ -13,9 +13,13 @@ __push_compound_metadata \- __push_compound_metadata(biocad.registry, compound, 
 .PP
 \fBmol\fB \fR\- . the molecule record about this compound inside current biocad_registry. a ``id`` data property is required inside this molecule record.
 .PP
+.SH DETAILS
+.PP
+the required of the compound metadata data structure should be: ```r list( ID = "unique-id", formula = "formula-string", exact_mass = 0, name = "name_string", IUPACName = "name_string", description = "description_string", synonym = ["synonyms", "names"], xref = list( chebi = "", KEGG = "", pubchem = "", HMDB = "", Wikipedia = "", lipidmaps = "", MeSH = "", MetaCyc = "", foodb = "", CAS = "", InChIkey = "", InChI = "", SMILES = "" ) ); ```
+.PP
 .SH FILES
 .PP
-SMRUCC/R#.declare_function.__push_compound_metadata at push_compound_metadata.R:line 7
+SMRUCC/R#.declare_function.__push_compound_metadata at push_compound_metadata.R:line 36
 .PP
 .SH COPYRIGHT
 Copyright © xieguigang <xie.guigang@gcmodeller.org>, MIT License Licensed 2024

@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>save compound metadata</title>
+    <title>load and imports compounds from the metacyc database</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
     <link rel="stylesheet" type="text/css" href="../../_assets/page.css">
@@ -13,12 +13,12 @@
 
         <table style="width: 100%;">
             <tr>
-                <td>__push_compound_metadata {biocad_registry}</td>
+                <td>load_biocyc_compounds {biocad_registry}</td>
                 <td style="text-align: right;">R Documentation</td>
             </tr>
         </table>
 
-        <h2>save compound metadata</h2>
+        <h2>load and imports compounds from the metacyc database</h2>
 
         <h3>Description</h3>
 
@@ -27,26 +27,19 @@
         <h3>Usage</h3>
 
         <div style="width: 100%; padding-left: 3%; color: black;">
-            <pre><code class='language-R' style="color: black; font-weight:normal;"><strong>__push_compound_metadata</strong>(<i>biocad.registry</i>, <i>compound</i>, <i>mol</i>);</code></pre>
+            <pre><code class='language-R' style="color: black; font-weight:normal;"><strong>load_biocyc_compounds</strong>(<i>biocad.registry</i>, <i>metacyc</i>);</code></pre>
         </div>
 
         <h3>Arguments</h3>
 
         <table>
             
-<dt>compound</dt>
-<dd><p><p>the compound metadata</p></p></dd>
-
-
-<dt>mol</dt>
-<dd><p><p>the molecule record about this compound inside current biocad_registry. a <code>id</code> data property is required inside this molecule record.</p></p></dd>
-
         </table>
 
 
-        <h3 style="display: block;">Details</h3>
+        <h3 style="display: none;">Details</h3>
 
-        <p>the required of the compound metadata data structure should be: <code>r list( ID = "unique-id", formula = "formula-string", exact_mass = 0, name = "name_string", IUPACName = "name_string", description = "description_string", synonym = ["synonyms", "names"], xref = list( chebi = "", KEGG = "", pubchem = "", HMDB = "", Wikipedia = "", lipidmaps = "", MeSH = "", MetaCyc = "", foodb = "", CAS = "", InChIkey = "", InChI = "", SMILES = "" ) ); </code>`</p>
+        
 
         <h3 style="display: block">Authors</h3>
 
