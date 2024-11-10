@@ -87,7 +87,7 @@ const push_reaction = function(biocad_registry, reaction) {
                     molecule_id = 0,
                     db_xref = compound$entry,
                     role = role_id,
-                    factor = (compound$factor) || 1,
+                    factor = (compound$factor) || 1.0,
                     note = `${compound$name} (${compound$formula})`
                 );
             }
