@@ -6,11 +6,20 @@ const imports_metacyc = function(biocad_registry, metacyc) {
     metacyc <- open.biocyc(metacyc);
 
     biocad_registry |> load_biocyc_reactions(metacyc);
-    biocad_registry |> load_biocyc_compounds(metacyc);
+    # biocad_registry |> load_biocyc_compounds(metacyc);
 }
 
 const load_biocyc_reactions = function(biocad_registry, metacyc) {
+    let reactions = biocad_registry |> table("reaction");
+    let graph = biocad_registry |> table("regulation_graph");
+    let metabolite_graph = biocad_registry |> table("reaction_graph");
+    let xrefs = biocad_registry |> table("db_xrefs");
+    let enzyme_term = biocad_registry |> enzyme_regulation();
+    let rxn_term = biocad_registry |> reaction_model();  
 
+    for(let rxn in tqdm(metacyc |> getReactions())) {
+        
+    }
 }
 
 #' load and imports compounds from the metacyc database
