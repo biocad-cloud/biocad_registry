@@ -3,11 +3,16 @@ imports "BioCyc" from "annotationKit";
 #' helper function for imports the metacyc molecules and reactions
 #' 
 const imports_metacyc = function(biocad_registry, metacyc) {
-    let term_metabolite   = biocad_registry::metabolite_term(biocad_registry);
-    let entity_metabolite = biocad_registry::molecule_entity(biocad_registry);
-
     metacyc <- open.biocyc(metacyc);
 
+    biocad_registry |> load_biocyc_compounds(metacyc);
+}
+
+#' load and imports compounds from the metacyc database
+#'
+const load_biocyc_compounds = function(biocad_registry, metacyc) {
+    let term_metabolite   = biocad_registry::metabolite_term(biocad_registry);
+    let entity_metabolite = biocad_registry::molecule_entity(biocad_registry);
     # imports metabolites
     let compartments = biocad_registry |> table("subcellular_compartments");
     let location_link = biocad_registry |> table("subcellular_location");
