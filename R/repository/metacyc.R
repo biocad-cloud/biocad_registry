@@ -18,7 +18,7 @@ const load_biocyc_reactions = function(biocad_registry, metacyc) {
                 entry = [c]::ID ,
                 name = [c]::ID,
                 formula = [c]::ID, 
-                factor = [c]::Stoichiometry
+                factor = as.numeric([c]::Stoichiometry)
             ));
         });
         let right = lapply( [rxn]::right, function(c) {
@@ -26,7 +26,7 @@ const load_biocyc_reactions = function(biocad_registry, metacyc) {
                 entry = [c]::ID ,
                 name = [c]::ID,
                 formula = [c]::ID, 
-                factor = [c]::Stoichiometry
+                factor = as.numeric([c]::Stoichiometry)
             ));
         });
 

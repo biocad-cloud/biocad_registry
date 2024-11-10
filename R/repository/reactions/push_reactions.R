@@ -80,6 +80,8 @@ const push_reaction = function(biocad_registry, reaction) {
                     role = role_id
                 ))) {
                 
+                let stoichiometry = (compound$factor) || 1.0;
+
                 metabolite_graph |> add(
                     reaction = r$id,
                     # do object linking at later via function
@@ -87,7 +89,7 @@ const push_reaction = function(biocad_registry, reaction) {
                     molecule_id = 0,
                     db_xref = compound$entry,
                     role = role_id,
-                    factor = (compound$factor) || 1.0,
+                    factor = ifelse( is.infinite(stoichiometry),1,stoichiometry) ,
                     note = `${compound$name} (${compound$formula})`
                 );
             }
