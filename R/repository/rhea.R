@@ -63,8 +63,11 @@ const imports_rhea = function(biocad_registry, rhea) {
                         db_xref = compound$entry,
                         role = role_id
                     ))) {
+                    
                     metabolite_graph |> add(
                         reaction = r$id,
+                        # do object linking at later via function
+                        # ``link_reaction_metabolites``
                         molecule_id = 0,
                         db_xref = compound$entry,
                         role = role_id,

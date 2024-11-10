@@ -1,3 +1,5 @@
+#' Set molecule id link
+#' 
 const link_reaction_metabolites = function(biocad_registry) {
     let page_size = 3000;
     let molecule = biocad_registry |> table("molecule");
