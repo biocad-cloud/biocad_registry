@@ -55,20 +55,13 @@ const imports_metacyc = function(biocad_registry, metacyc) {
             )
         );
 
-        str(meta);
+        let mol = biocad_registry |> find_molecule(meta, meta$ID);
 
-        # stop();
-        # try({
-        #     let compound = as.list(metadata.pugView(meta));
-        #     let cid = `PubChem:${compound$ID}`;
-        #     let mol = biocad_registry |> find_molecule(compound, cid);
-
-        #     if (is.null(mol)) {
-        #         # error while add new metabolite
-        #         next;
-        #     } else {
-        #         biocad_registry |> __push_compound_metadata(compound, mol);
-        #     }
-        # });
+        if (is.null(mol)) {
+            # error while add new metabolite
+            next;
+        } else {
+            biocad_registry |> __push_compound_metadata(meta, mol);
+        }
     }
 }
