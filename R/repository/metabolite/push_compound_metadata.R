@@ -4,6 +4,35 @@
 #' @param mol the molecule record about this compound inside current biocad_registry. 
 #'    a ``id`` data property is required inside this molecule record.
 #' 
+#' @details the required of the compound metadata data structure should be:
+#' 
+#' ```r
+#' list(
+#'    ID = "unique-id",
+#'    formula = "formula-string",
+#'    exact_mass = 0,
+#'    name = "name_string",
+#'    IUPACName = "name_string",
+#'    description = "description_string",
+#'    synonym = ["synonyms", "names"],
+#'    xref = list(
+#'        chebi = "",
+#'        KEGG = "",
+#'        pubchem = "",
+#'        HMDB = "",
+#'        Wikipedia = "",
+#'        lipidmaps = "",
+#'        MeSH = "",
+#'        MetaCyc = "",
+#'        foodb = "",
+#'        CAS = "",
+#'        InChIkey = "",
+#'        InChI = "",
+#'        SMILES = ""
+#'    )
+#' );
+#' ```
+#' 
 const __push_compound_metadata = function(biocad_registry, compound, mol) {
     let seq_graph = biocad_registry |> table("sequence_graph");
     let db_xrefs  = biocad_registry |> table("db_xrefs");

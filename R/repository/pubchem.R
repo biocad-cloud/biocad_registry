@@ -21,7 +21,7 @@ const imports_pubchem = function(biocad_registry, pubchem) {
     let metabolite = biocad_registry |> table("molecule");    
 
     for(let meta in pubchem) {
-        try({
+        # try({
             let compound = as.list(metadata.pugView(meta));
             let cid = `PubChem:${compound$ID}`;
             let mol = biocad_registry |> find_molecule(compound, cid);
@@ -32,7 +32,7 @@ const imports_pubchem = function(biocad_registry, pubchem) {
             } else {
                 biocad_registry |> __push_compound_metadata(compound, mol);
             }
-        });
+        # });
     }
 }
 

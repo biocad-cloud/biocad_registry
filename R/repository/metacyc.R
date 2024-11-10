@@ -15,9 +15,39 @@ const imports_metacyc = function(biocad_registry, metacyc) {
 
     for(let meta in tqdm(metacyc |> getCompounds())) {
         let formula_str = meta |> BioCyc::formula(meta);
+        let dbkeys = meta |> BioCyc::db_links(meta);
+
+        if (length(dbkeys) > 0) {
+            str(dbkeys);
+            stop();
+        }
 
         meta <- as.list(meta);
         meta$formula <- formula_str;
+        meta <- list(
+            ID = meta$uniqueId,
+            formula = formula_str,
+            exact_mass = 0,
+            name = meta$commonName,
+            IUPACName = meta$commonName,
+            description = meta$comment,
+            synonym = meta$synonyms,
+            xref = list(
+                chebi = NULL,
+                KEGG = NULL,
+                pubchem = NULL,
+                HMDB = NULL,
+                Wikipedia = NULL,
+                lipidmaps = NULL,
+                MeSH = NULL,
+                MetaCyc = meta$uniqueId,
+                foodb = NULL,
+                CAS = NULL,
+                InChIkey = "-",
+                InChI = meta$nonStandardInChI,
+                SMILES = meta$SMILES
+            )
+        );
 
         str(meta);
 
