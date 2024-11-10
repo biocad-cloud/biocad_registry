@@ -17,11 +17,6 @@ const imports_metacyc = function(biocad_registry, metacyc) {
         let formula_str = meta |> BioCyc::formula(meta);
         let dbkeys = meta |> BioCyc::db_links(meta);
 
-        if (length(dbkeys) > 0) {
-            str(dbkeys);
-            stop();
-        }
-
         meta <- as.list(meta);
         meta$formula <- formula_str;
         meta <- list(
@@ -52,7 +47,11 @@ const imports_metacyc = function(biocad_registry, metacyc) {
                 CAS = dbkeys$cas,
                 InChIkey = (meta$InChIKey) || "-",
                 InChI = (meta$InChI) || (meta$nonStandardInChI),
-                SMILES = meta$SMILES
+                SMILES = meta$SMILES,
+                METANETX = dbkeys$metanetx,
+                refmet = dbkeys$refmet,
+                Metabolights = dbkeys$metabolights,
+                Bigg = dbkeys$bigg
             )
         );
 
