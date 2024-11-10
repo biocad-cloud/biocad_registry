@@ -46,7 +46,13 @@ const __push_compound_metadata = function(biocad_registry, compound, mol) {
     xrefs$SMILES   <- NULL;
     xrefs$extras   <- NULL;
     
-    let met_struct = SMILES::parse(smiles, strict = FALSE);
+    let met_struct = {
+        if (nchar(smiles) == 0) {
+            NULL;
+        } else {
+            SMILES::parse(smiles, strict = FALSE);
+        }
+    };
 
     # null means parser error
     if (!is.null(met_struct)) {
