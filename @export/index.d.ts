@@ -84,6 +84,9 @@ declare namespace biocad_registry {
    function protein_term(biocad_registry: any): object;
    /**
    */
+   function push_reaction(biocad_registry: any, reaction: any): object;
+   /**
+   */
    function reaction_model(biocad_registry: any): object;
    /**
    */

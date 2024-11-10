@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Set molecule id link</title>
+    <title>Push a single reaction model into registry database</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
     <link rel="stylesheet" type="text/css" href="../../_assets/page.css">
@@ -13,12 +13,12 @@
 
         <table style="width: 100%;">
             <tr>
-                <td>link_reaction_metabolites {biocad_registry}</td>
+                <td>push_reaction {biocad_registry}</td>
                 <td style="text-align: right;">R Documentation</td>
             </tr>
         </table>
 
-        <h2>Set molecule id link</h2>
+        <h2>Push a single reaction model into registry database</h2>
 
         <h3>Description</h3>
 
@@ -27,19 +27,22 @@
         <h3>Usage</h3>
 
         <div style="width: 100%; padding-left: 3%; color: black;">
-            <pre><code class='language-R' style="color: black; font-weight:normal;"><strong>link_reaction_metabolites</strong>(<i>biocad.registry</i>);</code></pre>
+            <pre><code class='language-R' style="color: black; font-weight:normal;"><strong>push_reaction</strong>(<i>biocad.registry</i>, <i>reaction</i>);</code></pre>
         </div>
 
         <h3>Arguments</h3>
 
         <table>
             
+<dt>reaction</dt>
+<dd><p><p>the external reaction data object</p></p></dd>
+
         </table>
 
 
-        <h3 style="display: none;">Details</h3>
+        <h3 style="display: block;">Details</h3>
 
-        
+        <p>the reaction data model should be a data list in format: <code>r list( entry = "unique_id", definition = "name", comment = "description_string", enzyme = ["ec_number"], db_xrefs = [list(name = "dbname", text = "xref_id")], compounds = [list( side = "string", compound = list(entry,name,formula, factor)) ] ) </code>`</p>
 
         <h3 style="display: block">Authors</h3>
 

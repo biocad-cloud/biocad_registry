@@ -1,0 +1,22 @@
+﻿.TH PUSH_REACTION 1 2024-Nov "" "Push a single reaction model into registry database"
+.SH NAME
+push_reaction \- push_reaction(biocad.registry, reaction)
+.SH SYNOPSIS
+\fIpush_reaction(biocad.registry, reaction)\fR
+.SH OPTIONS
+.PP
+\fBbiocad.registry\fB \fR\- . 
+.PP
+.PP
+\fBreaction\fB \fR\- . the external reaction data object
+.PP
+.SH DETAILS
+.PP
+the reaction data model should be a data list in format: ```r list( entry = "unique_id", definition = "name", comment = "description_string", enzyme = ["ec_number"], db_xrefs = [list(name = "dbname", text = "xref_id")], compounds = [list( side = "string", compound = list(entry,name,formula, factor)) ] ) ```
+.PP
+.SH FILES
+.PP
+SMRUCC/R#.declare_function.push_reaction at push_reactions.R:line 21
+.PP
+.SH COPYRIGHT
+Copyright © xieguigang <xie.guigang@gcmodeller.org>, MIT License Licensed 2024
