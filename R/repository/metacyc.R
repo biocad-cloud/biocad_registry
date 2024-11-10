@@ -39,8 +39,8 @@ const load_biocyc_reactions = function(biocad_registry, metacyc) {
             db_xrefs = [],
             compounds = append(left,right)
         );
-        str(rxn);
-        stop();
+        
+        biocad_registry |> push_reaction(reaction = rxn);
     }
 }
 
