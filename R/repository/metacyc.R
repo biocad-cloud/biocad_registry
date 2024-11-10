@@ -5,7 +5,12 @@ imports "BioCyc" from "annotationKit";
 const imports_metacyc = function(biocad_registry, metacyc) {
     metacyc <- open.biocyc(metacyc);
 
+    biocad_registry |> load_biocyc_reactions(metacyc);
     biocad_registry |> load_biocyc_compounds(metacyc);
+}
+
+const load_biocyc_reactions = function(biocad_registry, metacyc) {
+
 }
 
 #' load and imports compounds from the metacyc database
