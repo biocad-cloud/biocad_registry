@@ -11,8 +11,34 @@ const imports_metacyc = function(biocad_registry, metacyc) {
 
 const load_biocyc_reactions = function(biocad_registry, metacyc) {
     for(let rxn in tqdm(metacyc |> getReactions())) {
-        rxn <- as.list(rxn);
+        let equation_string = rxn |> BioCyc::formula(rxn);
+        let ec = [rxn]::ec_number;
+        let left = lapply([rxn]::left, function(c) {
+            list(side = "substrate", compound = list(
+                entry = [c]::ID ,
+                name = [c]::ID,
+                formula = [c]::ID, 
+                factor = [c]::Stoichiometry
+            ));
+        });
+        let right = lapply( [rxn]::right, function(c) {
+            list(side = "product", compound = list(
+                entry = [c]::ID ,
+                name = [c]::ID,
+                formula = [c]::ID, 
+                factor = [c]::Stoichiometry
+            ));
+        });
 
+        rxn <- as.list(rxn);
+        rxn <- list(
+            entry = rxn$uniqueId,
+            definition = equation_string,
+            comment = rxn$comment,
+            enzyme = [ec]::ECNumberString,
+            db_xrefs = [],
+            compounds = append(left,right)
+        );
         str(rxn);
         stop();
     }

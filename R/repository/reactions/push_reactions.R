@@ -13,7 +13,7 @@
 #'    db_xrefs = [list(name = "dbname", text = "xref_id")],
 #'    compounds = [list(
 #'       side = "string", 
-#'       compound = list(entry,name,formula))
+#'       compound = list(entry,name,formula, factor))
 #'    ]
 #' )
 #' ```
@@ -87,7 +87,7 @@ const push_reaction = function(biocad_registry, reaction) {
                     molecule_id = 0,
                     db_xref = compound$entry,
                     role = role_id,
-                    factor = 1,
+                    factor = (compound$factor) || 1,
                     note = `${compound$name} (${compound$formula})`
                 );
             }
