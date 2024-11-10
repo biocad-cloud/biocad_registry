@@ -33,12 +33,19 @@ const imports_metacyc = function(biocad_registry, metacyc) {
             description = meta$comment,
             synonym = meta$synonyms,
             xref = list(
-                chebi = dbkeys$chebi,
+                chebi = {
+                    if (length(dbkeys$chebi) > 0) {
+                        `CHEBI:${dbkeys$chebi}`;
+                    } else {
+                        NULL;
+                    }
+                },
                 KEGG = dbkeys$kegg,
                 pubchem = dbkeys$pubchem,
                 HMDB = dbkeys$hmdb,
                 Wikipedia = dbkeys$wikipedia,
                 lipidmaps = dbkeys$lipidmaps,
+                DrugBank = dbkeys$drugbank,
                 MeSH = dbkeys$mesh,
                 MetaCyc = meta$uniqueId,
                 foodb = dbkeys$foodb,
