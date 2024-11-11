@@ -5,12 +5,17 @@ imports "BioCyc" from "annotationKit";
 const imports_metacyc = function(biocad_registry, metacyc) {
     metacyc <- open.biocyc(metacyc);
 
+    biocad_registry |> load_biocyc_genes(metacyc);
     # biocad_registry |> load_biocyc_reactions(metacyc);
     # biocad_registry |> load_biocyc_compounds(metacyc);
 }
 
 const load_biocyc_genes = function(biocad_registry, metacyc) {
-    
+    let genes = metacyc |> BioCyc::getGenes(metacyc, dnaseq = file.path(metacyc, "dnaseq.fsa"));
+
+    for(let gene in tqdm(genes)) {
+
+    }
 }
 
 const load_biocyc_reactions = function(biocad_registry, metacyc) {
