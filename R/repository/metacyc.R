@@ -15,7 +15,7 @@ const load_biocyc_genes = function(biocad_registry, metacyc) {
     let term_gene = biocad_registry |> gene_term();
     let gene_pool =  biocad_registry |> table("molecule");
     let sgt = SGT(alphabets = bioseq.fasta::chars("DNA"));
-    let db_xrefs = biocad_registry |> table("db_xrefs");
+    let db_xrefSet = biocad_registry |> table("db_xrefs");
     let Nucleotide_graph = biocad_registry |> vocabulary_id("Nucleotide_graph","Embedding", 
         desc =bencode( [sgt]::feature_names)
     );    
@@ -25,19 +25,62 @@ const load_biocyc_genes = function(biocad_registry, metacyc) {
 
         gene <- as.list(gene);
 
+        let mass = bioseq.fasta::mass(gene$dnaseq, type="DNA");
         let gene_ids = [gene$accession1, gene$accession2, gene$uniqueId] |> append(unlist(unlist(db_xrefs)));
         let mol = gene_pool 
             |> left_join("db_xrefs") 
             |> on(db_xrefs.obj_id = molecule.id)  
             |> where(molecule.type = term_gene ,
-                    xref in gene_ids) 
+                    mass between [mass * 0.85, mass *1.25],
+                    db_xrefs.xref in gene_ids) 
             |> find()
             ;
 
+        if (is.null(mol)) {
+            gene_pool |> add(
+                xref_id = gene$uniqueId,
+                name = gene$commonName,
+                mass = mass,
+                type =  term_gene,
+                formula = seq_formula(gene$dnaseq, type="DNA"),
+                parent = 0,
+                note = gene$comment
+            );
 
-        str(gene);
-        str(db_xrefs);
-        stop();
+            mol =gene_pool  |> where(type =term_gene,
+                xref_id = gene$uniqueId ) |> find();
+        }
+
+        if (is.null(mol)) {
+            # error while add new metabolite
+            next;
+        } else {
+            biocad_registry |> save_nucleotide_embedding(
+                mol_id = mol$id,
+                dnaseq = gene$dnaseq,
+                sgt = sgt,
+                Nucleotide_graph = Nucleotide_graph
+            );
+        }   
+
+        for(dbname in names(db_xrefs)) {
+            let idlist = db_xrefs[[dbname]];
+            let db_key = biocad_registry |> vocabulary_id(dbname, "External Database");
+
+            for(id in idlist) {
+                if (!(db_xrefSet |> check(obj_id = mol$id,
+                    db_key = db_key,
+                    xref = id,
+                    type = term_gene ))) {
+                        db_xrefSet |> add(
+                            obj_id = mol$id,
+                            db_key = db_key,
+                            xref = id,
+                            type = term_gene
+                        );
+                    }
+            }
+        }
     }
 }
 
