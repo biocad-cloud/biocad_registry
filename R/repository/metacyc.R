@@ -31,6 +31,11 @@ const load_biocyc_genes = function(biocad_registry, metacyc) {
 
         gene_ids <- gene_ids[nchar(gene_ids) > 0];
 
+        if (nchar(gene$dnaseq) == 0) {
+            gene$dnaseq = "";
+            mass = 0;
+        }
+
         let mol = gene_pool 
             |> left_join("db_xrefs") 
             |> on(db_xrefs.obj_id = molecule.id)  
