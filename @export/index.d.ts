@@ -94,4 +94,7 @@ declare namespace biocad_registry {
    /**
    */
    function rna_term(biocad_registry: any): object;
+   /**
+   */
+   function save_nucleotide_embedding(biocad_registry: any, mol_id: any, dnaseq: any, sgt: any, Nucleotide_graph: any): object;
 }

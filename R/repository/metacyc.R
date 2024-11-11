@@ -12,9 +12,32 @@ const imports_metacyc = function(biocad_registry, metacyc) {
 
 const load_biocyc_genes = function(biocad_registry, metacyc) {
     let genes = metacyc |> BioCyc::getGenes(metacyc, dnaseq = file.path(metacyc, "dnaseq.fsa"));
+    let term_gene = biocad_registry |> gene_term();
+    let gene_pool =  biocad_registry |> table("molecule");
+    let sgt = SGT(alphabets = bioseq.fasta::chars("DNA"));
+    let db_xrefs = biocad_registry |> table("db_xrefs");
+    let Nucleotide_graph = biocad_registry |> vocabulary_id("Nucleotide_graph","Embedding", 
+        desc =bencode( [sgt]::feature_names)
+    );    
 
     for(let gene in tqdm(genes)) {
+        let db_xrefs = BioCyc::db_links(gene);
 
+        gene <- as.list(gene);
+
+        let gene_ids = [gene$accession1, gene$accession2, gene$uniqueId] |> append(unlist(unlist(db_xrefs)));
+        let mol = gene_pool 
+            |> left_join("db_xrefs") 
+            |> on(db_xrefs.obj_id = molecule.id)  
+            |> where(molecule.type = term_gene ,
+                    xref in gene_ids) 
+            |> find()
+            ;
+
+
+        str(gene);
+        str(db_xrefs);
+        stop();
     }
 }
 
