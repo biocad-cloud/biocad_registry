@@ -17,8 +17,7 @@ const imports_genebank = function(biocad_registry, genebank) {
     let db_xrefs = biocad_registry |> table("db_xrefs");
     let Nucleotide_graph = biocad_registry |> vocabulary_id("Nucleotide_graph","Embedding", 
         desc =bencode( [sgt]::feature_names)
-    );
-    let seq_graph = biocad_registry |> table("sequence_graph");
+    );    
 
     for(gene in tqdm(genes)) {
         let nt_seq = as.fasta(gene);
@@ -33,7 +32,6 @@ const imports_genebank = function(biocad_registry, genebank) {
                 trim_value = TRUE,
                 as_list = TRUE,
                 union_list = TRUE);
-        let fa_vec = sgt |> fit_embedding([nt_seq]::SequenceData);
 
         gene <- gene$gene;
 
@@ -58,19 +56,14 @@ const imports_genebank = function(biocad_registry, genebank) {
         if (is.null(mol)) {
             # error while add new metabolite
             next;
-        }
-
-        fa_vec = base64(packBuffer(fa_vec)|> zlib_stream());
-
-        if (!(seq_graph |> check(molecule_id = mol$id))) {
-            seq_graph |> add(
-                molecule_id = mol$id,
-                sequence = [nt_seq]::SequenceData,
-                seq_graph = fa_vec,
-                embedding = Nucleotide_graph,
-                hashcode = md5(tolower([nt_seq]::SequenceData))
+        } else {
+            biocad_registry |> save_nucleotide_embedding(
+                mol_id = mol$id,
+                dnaseq = [nt_seq]::SequenceData,
+                sgt = sgt,
+                Nucleotide_graph = Nucleotide_graph
             );
-        }
+        }      
 
         for(dbname in names(db_xref)) {
             let idlist = db_xref[[dbname]];
@@ -90,5 +83,21 @@ const imports_genebank = function(biocad_registry, genebank) {
                     }
             }
         }
+    }
+}
+
+const save_nucleotide_embedding = function(biocad_registry, mol_id, dnaseq, sgt, Nucleotide_graph) {
+    let fa_vec = sgt |> fit_embedding(dnaseq);
+    let seq_graph = biocad_registry |> table("sequence_graph");
+
+    if (!(seq_graph |> check(molecule_id = mol_id))) {
+        fa_vec <- base64(packBuffer(fa_vec)|> zlib_stream());
+        seq_graph |> add(
+            molecule_id = mol_id,
+            sequence = dnaseq,
+            seq_graph = fa_vec,
+            embedding = Nucleotide_graph,
+            hashcode = md5(tolower(dnaseq))
+        );
     }
 }
