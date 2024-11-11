@@ -12,7 +12,14 @@ const imports_metacyc = function(biocad_registry, metacyc) {
 }
 
 const load_biocyc_proteins = function(biocad_registry, metacyc) {
-    
+    let proteins = metacyc |> BioCyc::getProteins(metacyc, protseq = file.path(metacyc, "protseq.fsa"));
+
+    for(let aa in tqdm(proteins)) {
+        aa <- as.list(aa);
+
+        str(aa);
+        # stop();
+    }
 }
 
 const load_biocyc_genes = function(biocad_registry, metacyc) {
