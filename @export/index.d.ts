@@ -63,6 +63,9 @@ declare namespace biocad_registry {
    function load_biocyc_compounds(biocad_registry: any, metacyc: any): object;
    /**
    */
+   function load_biocyc_genes(biocad_registry: any, metacyc: any): object;
+   /**
+   */
    function load_biocyc_reactions(biocad_registry: any, metacyc: any): object;
    /**
    */
