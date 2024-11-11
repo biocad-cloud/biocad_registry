@@ -13,12 +13,93 @@ const imports_metacyc = function(biocad_registry, metacyc) {
 
 const load_biocyc_proteins = function(biocad_registry, metacyc) {
     let proteins = metacyc |> BioCyc::getProteins(metacyc, protseq = file.path(metacyc, "protseq.fsa"));
+    let sgt = SGT(alphabets = bioseq.fasta::chars("Protein"));
+    let term_prot = biocad_registry::protein_term(biocad_registry);
+    let entity_prot = biocad_registry::molecule_entity(biocad_registry);
+    let db_xrefSet = biocad_registry |> table("db_xrefs");
+    let protein_graph = biocad_registry |> vocabulary_id("Protein_graph","Embedding", 
+        desc =bencode( [sgt]::feature_names)
+    );
+    let prot_pool = biocad_registry |> table("molecule");
+    let seq_graph = biocad_registry |> table("sequence_graph");
 
     for(let aa in tqdm(proteins)) {
-        aa <- as.list(aa);
+        let db_xrefs = BioCyc::db_links(aa);
 
-        str(aa);
-        # stop();
+        aa <- as.list(aa);
+        db_xrefs$BioCyc <- aa$uniqueId;
+
+        let mass = bioseq.fasta::mass(aa$protseq , type="Protein");
+        let prot_ids = unlist(db_xrefs) |> unlist() |> append(aa$uniqueId);
+
+        prot_ids <- prot_ids[nchar(prot_ids) > 0];
+
+        if (nchar(aa$protseq) == 0) {
+            aa$protseq <- "";
+            mass <- 0;
+        }
+
+        let mol = prot_pool
+            |> left_join("db_xrefs") 
+            |> on(db_xrefs.obj_id = molecule.id)  
+            |> where(molecule.type = term_prot ,
+                    mass between [mass * 0.85, mass *1.25],
+                    db_xrefs.xref in prot_ids) 
+            |> find()
+            ;
+
+        if (is.null(mol)) {
+            prot_pool |> add(
+                xref_id = aa$uniqueId,
+                name = aa$commonName,
+                mass = mass,
+                type = term_prot,
+                formula = seq_formula(aa$protseq, type="Protein"),
+                parent = 0,
+                note = (aa$comment) || (aa$commonName)
+            );
+
+            mol = prot_pool |> where(type = term_prot,
+                xref_id = aa$uniqueId) |> find();
+        }
+
+        if (is.null(mol)) {
+            # error while add new metabolite
+            next;
+        } else {
+            for(dbname in names(db_xrefs)) {
+                let idlist = db_xrefs[[dbname]];
+                let db_key = biocad_registry |> vocabulary_id(dbname, "External Database");
+
+                for(id in idlist) {
+                    if (!(db_xrefSet |> check(obj_id = mol$id,
+                        db_key = db_key,
+                        xref = id,
+                        type = term_prot ))) {
+                            db_xrefSet |> add(
+                                obj_id = mol$id,
+                                db_key = db_key,
+                                xref = id,
+                                type = term_prot 
+                            );
+                        }
+                }
+            }     
+
+            if (!(seq_graph |> check(molecule_id = mol$id))) {
+                let fa_vec = sgt |> fit_embedding(aa$protseq,safe =TRUE);
+
+                fa_vec <- base64(packBuffer(fa_vec)|> zlib_stream());
+
+                seq_graph |> add(
+                    molecule_id = mol$id,
+                    sequence = aa$protseq,
+                    seq_graph = fa_vec,
+                    embedding = protein_graph,
+                    hashcode = md5(tolower(aa$protseq))
+                );
+            }
+        }
     }
 }
 
