@@ -51,7 +51,7 @@ const load_biocyc_proteins = function(biocad_registry, metacyc) {
         if (is.null(mol)) {
             prot_pool |> add(
                 xref_id = aa$uniqueId,
-                name = aa$commonName,
+                name = (aa$commonName) || (aa$uniqueId),
                 mass = mass,
                 type = term_prot,
                 formula = seq_formula(aa$protseq, type="Protein"),
