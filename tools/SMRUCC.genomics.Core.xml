@@ -11201,6 +11201,11 @@ Get feature site data by nucleotide location.
  </summary>
  <returns></returns>
 </member>
+<member name="T:SMRUCC.genomics.ComponentModel.EquaionModel.DefaultTypes.CompoundSpecieReference">
+ <summary>
+ the compound model reference.
+ </summary>
+</member>
 <member name="P:SMRUCC.genomics.ComponentModel.EquaionModel.DefaultTypes.CompoundSpecieReference.Stoichiometry">
  <summary>
  化学计量数
