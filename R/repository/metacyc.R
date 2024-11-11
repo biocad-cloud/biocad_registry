@@ -24,9 +24,13 @@ const load_biocyc_genes = function(biocad_registry, metacyc) {
         let db_xrefs = BioCyc::db_links(gene);
 
         gene <- as.list(gene);
+        db_xrefs$BioCyc <- gene$uniqueId;
 
         let mass = bioseq.fasta::mass(gene$dnaseq, type="DNA");
         let gene_ids = [gene$accession1, gene$accession2, gene$uniqueId] |> append(unlist(unlist(db_xrefs)));
+
+        gene_ids <- gene_ids[nchar(gene_ids) > 0];
+
         let mol = gene_pool 
             |> left_join("db_xrefs") 
             |> on(db_xrefs.obj_id = molecule.id)  

@@ -2193,6 +2193,17 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  apply for the zip archive/HDS streampack
  </remarks>
 </member>
+<member name="T:Microsoft.VisualBasic.ApplicationServices.IWorkspace">
+ <summary>
+ A abstract reference to a workdir
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.ApplicationServices.IWorkspace.Workspace">
+ <summary>
+ the workdir path of current workspace object
+ </summary>
+ <returns></returns>
+</member>
 <member name="T:Microsoft.VisualBasic.ApplicationServices.MemoryStreamPool">
  <summary>
  
