@@ -5,8 +5,8 @@ imports "BioCyc" from "annotationKit";
 const imports_metacyc = function(biocad_registry, metacyc) {
     metacyc <- open.biocyc(metacyc);
 
-    biocad_registry |> load_biocyc_proteins(metacyc);
     # biocad_registry |> load_biocyc_genes(metacyc);
+    biocad_registry |> load_biocyc_proteins(metacyc);
     # biocad_registry |> load_biocyc_reactions(metacyc);
     # biocad_registry |> load_biocyc_compounds(metacyc);
 }
@@ -22,6 +22,8 @@ const load_biocyc_proteins = function(biocad_registry, metacyc) {
     );
     let prot_pool = biocad_registry |> table("molecule");
     let seq_graph = biocad_registry |> table("sequence_graph");
+    let biocyc_term = biocad_registry |> vocabulary_id("BioCyc","External Database");
+    let term_gene = biocad_registry |> gene_term();
 
     for(let aa in tqdm(proteins)) {
         let db_xrefs = BioCyc::db_links(aa);
@@ -67,6 +69,28 @@ const load_biocyc_proteins = function(biocad_registry, metacyc) {
             # error while add new metabolite
             next;
         } else {
+            # link to gene parent
+            let gene_parent = prot_pool 
+                |> left_join("db_xrefs") 
+                |> on(db_xrefs.obj_id = molecule.id)
+                |> where(
+                    molecule.type = term_gene,
+                    db_key = biocyc_term,
+                    xref = aa$gene
+                ) 
+                |> find("`molecule`.*")
+                ;
+
+            if (!is.null(gene_parent)) {
+                prot_pool 
+                |> where(id = mol$id) 
+                |> limit(1) 
+                |> save(
+                    parent = gene_parent$id
+                )
+                ;
+            }
+
             for(dbname in names(db_xrefs)) {
                 let idlist = db_xrefs[[dbname]];
                 let db_key = biocad_registry |> vocabulary_id(dbname, "External Database");
