@@ -8,40 +8,42 @@ const imports_kegg = function(biocad_registry, kegg) {
     let metabolite = biocad_registry |> table("molecule");    
 
     for(let cpd in tqdm(kegg)) {
+        let dblinks = [cpd]::DbLinks;
+    
         cpd <- as.list(cpd);
+
+        if (length(dblinks) > 0) {
+            dblinks <- data.frame(
+                dbname = [dblinks]::DBName,
+                db_xref = [dblinks]::entry 
+            );
+            dblinks <- dblinks 
+                |> groupBy("dbname") 
+                |> lapply(a -> unique(a$db_xref))
+                ; 
+        } else {
+            dblinks <- NULL;
+        }
+
         cpd <- list(
-            ID = meta$uniqueId,
-            formula = formula_str,
+            ID = cpd$entry,
+            formula = cpd$formula,
             exact_mass = 0,
-            name = ifelse(nchar(meta$commonName) > 0, meta$commonName, meta$uniqueId),
-            IUPACName = meta$commonName,
-            description = meta$comment,
-            synonym = meta$synonyms,
+            name = ifelse(length(cpd$commonNames) == 0, cpd$entry, .Internal::first(cpd$commonNames)),
+            IUPACName = cpd$commonNames,
+            description = paste(cpd$commonNames, sep = "; "),
+            synonym = cpd$commonNames,
             xref = list(
                 chebi = {
-                    if (length(dbkeys$chebi) > 0) {
-                        `CHEBI:${dbkeys$chebi}`;
+                    if (length(dblinks$ChEBI) > 0) {
+                        `CHEBI:${dblinks$ChEBI}`;
                     } else {
                         NULL;
                     }
                 },
-                KEGG = dbkeys$kegg,
-                pubchem = dbkeys$pubchem,
-                HMDB = dbkeys$hmdb,
-                Wikipedia = dbkeys$wikipedia,
-                lipidmaps = dbkeys$lipidmaps,
-                DrugBank = dbkeys$drugbank,
-                MeSH = dbkeys$mesh,
-                MetaCyc = meta$uniqueId,
-                foodb = dbkeys$foodb,
-                CAS = dbkeys$cas,
-                InChIkey = (meta$InChIKey) || "-",
-                InChI = (meta$InChI) || (meta$nonStandardInChI),
-                SMILES = meta$SMILES,
-                METANETX = dbkeys$metanetx,
-                refmet = dbkeys$refmet,
-                Metabolights = dbkeys$metabolights,
-                Bigg = dbkeys$bigg
+                KEGG = cpd$entry,
+                pubchem = dblinks$PubChem,               
+                CAS = dblinks$CAS
             )
         );
 
