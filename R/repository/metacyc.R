@@ -262,13 +262,13 @@ const load_biocyc_compounds = function(biocad_registry, metacyc) {
         meta <- as.list(meta);
         meta$formula <- formula_str;
         meta <- list(
-            ID = meta$uniqueId,
-            formula = formula_str,
-            exact_mass = 0,
-            name = ifelse(nchar(meta$commonName) > 0, meta$commonName, meta$uniqueId),
-            IUPACName = meta$commonName,
+            ID          = meta$uniqueId,
+            formula     = formula_str,
+            exact_mass  = 0,
+            name        = ifelse(nchar(meta$commonName) > 0, meta$commonName, meta$uniqueId),
+            IUPACName   = meta$commonName,
             description = meta$comment,
-            synonym = meta$synonyms,
+            synonym     = meta$synonyms,
             xref = list(
                 chebi = {
                     if (length(dbkeys$chebi) > 0) {
@@ -277,23 +277,23 @@ const load_biocyc_compounds = function(biocad_registry, metacyc) {
                         NULL;
                     }
                 },
-                KEGG = dbkeys$kegg,
-                pubchem = dbkeys$pubchem,
-                HMDB = dbkeys$hmdb,
-                Wikipedia = dbkeys$wikipedia,
-                lipidmaps = dbkeys$lipidmaps,
-                DrugBank = dbkeys$drugbank,
-                MeSH = dbkeys$mesh,
-                MetaCyc = meta$uniqueId,
-                foodb = dbkeys$foodb,
-                CAS = dbkeys$cas,
-                InChIkey = (meta$InChIKey) || "-",
-                InChI = (meta$InChI) || (meta$nonStandardInChI),
-                SMILES = meta$SMILES,
-                METANETX = dbkeys$metanetx,
-                refmet = dbkeys$refmet,
+                KEGG         = dbkeys$kegg,
+                pubchem      = dbkeys$pubchem,
+                HMDB         = dbkeys$hmdb,
+                Wikipedia    = dbkeys$wikipedia,
+                lipidmaps    = dbkeys$lipidmaps,
+                DrugBank     = dbkeys$drugbank,
+                MeSH         = dbkeys$mesh,
+                MetaCyc      = meta$uniqueId,
+                foodb        = dbkeys$foodb,
+                CAS          = dbkeys$cas,
+                InChIkey     = (meta$InChIKey) || "-",
+                InChI        = (meta$InChI) || (meta$nonStandardInChI),
+                SMILES       = meta$SMILES,
+                METANETX     = dbkeys$metanetx,
+                refmet       = dbkeys$refmet,
                 Metabolights = dbkeys$metabolights,
-                Bigg = dbkeys$bigg
+                Bigg         = dbkeys$bigg
             )
         );
 
