@@ -57,3 +57,39 @@ const imports_kegg = function(biocad_registry, kegg) {
         }
     }
 }
+
+const imports_kegg_reaction = function(biocad_registry, kegg) {
+    let model = NULL;
+    let left = NULL;
+    let right = NULL;
+
+    for(let rxn in tqdm(kegg)) {
+        rxn <- as.list(rxn); 
+        model <- rxn$ReactionModel;
+        left <- model$Reactants;        
+        left <- lapply(left, a -> list(
+            side = "substrate", 
+            compound = list(entry=a$ID,name=a$ID,formula="", factor=a$Stoichiometry)
+        )); 
+        right <- model$Products;
+        right <- lapply(right, a -> list(
+            side = "product",
+            compound = list(entry=a$ID,name=a$ID,formula="", factor=a$Stoichiometry)
+        ));
+
+        names(left) <- sapply(left, a -> a$compound$entry);
+        names(right) <- sapply(right, a -> a$compound$entry);
+
+        rxn <- list(
+            entry = rxn$ID,
+            name =  rxn$CommonNames,
+            definition = rxn$Definition,
+            comment = rxn$CommonNames,
+            enzyme = rxn$Enzyme ,
+            db_xrefs = NULL,
+            compounds = append(left,right)
+        );
+
+        biocad_registry |> push_reaction(reaction = rxn);
+    }
+}

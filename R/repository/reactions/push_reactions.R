@@ -33,7 +33,7 @@ const push_reaction = function(biocad_registry, reaction) {
     if (is.null(r)) {
         reactions |> add(
             db_xref = rxn$entry,
-            name = rxn$definition,
+            name = (rxn$name) || (rxn$definition),
             equation = rxn$definition,
             note = rxn$comment
         );
