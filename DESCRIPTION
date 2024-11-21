@@ -1,10 +1,12 @@
 Package: biocad_registry
 Type: Package
-Title: Database system for access the GCModeller cloud repository
+Title: Build GCModeller cloud repository database
 Version: 1.0.148
 Author: xieguigang <xie.guigang@gcmodeller.org>
 Maintainer: xieguigang <xie.guigang@gcmodeller.org>
-Description: Database system for access the GCModeller cloud repository
+Description: A package for build database system of the GCModeller cloud repository.
+Provides imports script for handling multiple public database content as upstream 
+input for the biocad system. 
 License: MIT License
 Encoding: UTF-8
 LazyData: true
