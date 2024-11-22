@@ -12636,9 +12636,14 @@ to take away yo [rest of string was truncated]&quot;;.
  The name of the target function for overloads
  </param>
 </member>
+<member name="T:SMRUCC.Rsharp.Runtime.Interop.RGenericOverloads">
+ <summary>
+ <see cref="T:SMRUCC.Rsharp.Runtime.Interop.RGenericOverloadsAttribute"/> parser result
+ </summary>
+</member>
 <member name="P:SMRUCC.Rsharp.Runtime.Interop.RGenericOverloads.name">
  <summary>
- the name of the target function
+ the name of the target generic overloads function
  </summary>
  <returns></returns>
 </member>

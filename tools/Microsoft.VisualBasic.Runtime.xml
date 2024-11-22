@@ -2319,11 +2319,16 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
 </member>
 <member name="M:Microsoft.VisualBasic.ApplicationServices.SubStream.#ctor(System.IO.Stream,System.Int64,System.Int64)">
  <summary>
- 
+ Construct a new stream data view window
  </summary>
  <param name="s"></param>
  <param name="offset"></param>
  <param name="length"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.ApplicationServices.SubStream.Flush">
+ <summary>
+ commit data to the base stream
+ </summary>
 </member>
 <member name="M:Microsoft.VisualBasic.ApplicationServices.SubStream.SetLength(System.Int64)">
  <inheritdoc />
@@ -15036,6 +15041,11 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  返回-1表示这个列表之中没有任何元素是大于输入的参数<paramref name="o"/>的
  </returns>
 </member>
+<member name="T:Microsoft.VisualBasic.ComponentModel.Ranges.Unit.ByteSize">
+ <summary>
+ the unit for binary data file size
+ </summary>
+</member>
 <member name="M:Microsoft.VisualBasic.ComponentModel.Ranges.Unit.ParserExtensions.ParseByteSize(System.String)">
  <summary>
  Parse the byte size in bytes
@@ -19878,19 +19888,21 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
 <member name="M:Microsoft.VisualBasic.IsNullOrEmptyExtensions.IsNullOrEmpty(System.Array)">
  <summary>
  This object array is a null object or contains zero count items.
- (判断某一个对象数组是否为空)
  </summary>
  <returns></returns>
- <remarks></remarks>
+ <remarks>
+ (判断某一个对象数组是否为空)
+ </remarks>
  
 </member>
 <member name="M:Microsoft.VisualBasic.IsNullOrEmptyExtensions.IsNullOrEmpty``1(``0[])">
  <summary>
  This object array is a null object or contains zero count items.
- (判断某一个对象数组是否为空)
  </summary>
  <returns></returns>
- <remarks></remarks>
+ <remarks>
+ (判断某一个对象数组是否为空)
+ </remarks>
 </member>
 <member name="M:Microsoft.VisualBasic.IsNullOrEmptyExtensions.GetLength``1(``0[])">
  <summary>
@@ -20028,6 +20040,17 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <summary>
  Linq Helpers.(为了方便编写Linq代码而构建的一个拓展模块)
  </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Linq.Extensions.AtWhich``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})">
+ <summary>
+ An index of liked function for find the first element its index offset that matches the condition test
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="collection"></param>
+ <param name="where"></param>
+ <returns>
+ -1 means not found
+ </returns>
 </member>
 <member name="M:Microsoft.VisualBasic.Linq.Extensions.Populate``1(System.Collections.Generic.IEnumerable{``0},System.Boolean,System.Int32)">
  <summary>
@@ -23053,6 +23076,13 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  JSON存储的时候,这个属性会被自动忽略掉
  </remarks>
 </member>
+<member name="M:Microsoft.VisualBasic.Text.Xml.Models.XmlList`1.op_Implicit(`0)~Microsoft.VisualBasic.Text.Xml.Models.XmlList{`0}">
+ <summary>
+ cast the scalar value to a list
+ </summary>
+ <param name="scalar"></param>
+ <returns></returns>
+</member>
 <member name="T:Microsoft.VisualBasic.Text.Xml.Models.Sequence">
  <summary>
  A numeric sequence model
@@ -23903,15 +23933,15 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
 <member name="M:Microsoft.VisualBasic.Extensions.TryCount``1(System.Collections.Generic.IEnumerable{``0})">
  <summary>
  Gets the element counts in the target data collection, if the collection object is nothing or empty
- then this function will returns ZERO, others returns Collection.Count.(返回一个数据集合之中的元素的数目，
- 假若这个集合是空值或者空的，则返回0，其他情况则返回Count拓展函数的结果)
+ then this function will returns ZERO, others returns Collection.Count.
  </summary>
  <typeparam name="T"></typeparam>
  <param name="collection"></param>
  <returns>this is a safe function: this function returns zero 
  if the given input <paramref name="collection"/> object is nothing
  </returns>
- <remarks></remarks>
+ <remarks>(返回一个数据集合之中的元素的数目，
+ 假若这个集合是空值或者空的，则返回0，其他情况则返回Count拓展函数的结果)</remarks>
 </member>
 <member name="M:Microsoft.VisualBasic.Extensions.Offset(System.Int32[]@,System.Int32)">
  <summary>
@@ -24888,7 +24918,6 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
 <member name="M:Microsoft.VisualBasic.PathExtensions.ExtensionSuffix(System.String)">
  <summary>
  returns a file extension suffix name in lower case.
- (函数返回文件的拓展名后缀，请注意，这里的返回值是不会带有小数点的)
  </summary>
  <param name="path">the file path string</param>
  <returns>
@@ -24899,6 +24928,8 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <remarks>
  this is a safe function, which mean the value Nothing will never 
  be returns from this function.
+ 
+ (函数返回文件的拓展名后缀，请注意，这里的返回值是不会带有小数点的)
  </remarks>
 </member>
 <member name="M:Microsoft.VisualBasic.PathExtensions.ExtensionSuffix(System.String,System.String[])">

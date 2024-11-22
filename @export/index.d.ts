@@ -13,6 +13,9 @@ declare namespace biocad_registry {
    function __push_compound_metadata(biocad_registry: any, compound: any, mol: any): object;
    /**
    */
+   function cast_kegg_reaction(rxn: any): object;
+   /**
+   */
    function check_metabolite(biocad_registry: any, compound: any): object;
    /**
    */
@@ -33,6 +36,12 @@ declare namespace biocad_registry {
    /**
    */
    function imports_genebank(biocad_registry: any, genebank: any): object;
+   /**
+   */
+   function imports_kegg(biocad_registry: any, kegg: any): object;
+   /**
+   */
+   function imports_kegg_reaction(biocad_registry: any, kegg: any): object;
    /**
    */
    function imports_metacyc(biocad_registry: any, metacyc: any): object;

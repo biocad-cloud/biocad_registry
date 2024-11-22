@@ -1,0 +1,1707 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+Oracle.LinuxCompatibility.LibMySQL
+</name>
+</assembly>
+<members>
+<member name="M:Oracle.LinuxCompatibility.MySQL.DataClientExtensions.SelectALL``1(Oracle.LinuxCompatibility.MySQL.MySqli)">
+ <summary>
+ 从数据库之中加载所有的数据到程序的内存之中，只推荐表的数据量比较小的使用，
+ 使用这个函数加载完数据到内存之中后，进行内存之中的查询操作，会很明显提升应用程序的执行性能
+ 
+ ```SQL
+ SELECT * FROM `{table.Database}`.`{table.TableName}`;
+ ```
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="mysql"></param>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.DataClientExtensions.OccupancyLoad``1(Microsoft.VisualBasic.ComponentModel.DataSourceModel.SchemaMaps.BindProperty{Oracle.LinuxCompatibility.MySQL.Reflection.DbAttributes.DatabaseField}[],``0,System.Boolean)">
+ <summary>
+ 这个函数统计出<see cref="T:Oracle.LinuxCompatibility.MySQL.MySQLTable"/>所代表的二维表格之中，具有值得属性的数量占所有的属性的百分比
+ </summary>
+ <param name="schema"></param>
+ <param name="o"></param>
+ <param name="zeroAsNull"></param>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.DataClientExtensions.GroupFills``1(``0,Microsoft.VisualBasic.ComponentModel.DataSourceModel.SchemaMaps.BindProperty{Oracle.LinuxCompatibility.MySQL.Reflection.DbAttributes.DatabaseField}[],``0[])">
+ <summary>
+ 将<paramref name="group"/>之中不为空的属性值填充进入
+ <paramref name="obj"/>之中为空值的属性上
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="obj"></param>
+ <param name="group"></param>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.DataDumps.DumpMySQL(System.IO.StreamWriter,Oracle.LinuxCompatibility.MySQL.MySQLTable[][])">
+ <summary>
+ This function works for the tables that have foreign key constraint between each others.
+ (这个函数只适用于比较小规模的数据库的导出)
+ </summary>
+ <param name="output"></param>
+ <param name="tables"></param>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.DataDumps.DumpTransaction(System.Collections.Generic.IEnumerable{Oracle.LinuxCompatibility.MySQL.MySQLTable},System.IO.TextWriter,System.Type,System.Func{Oracle.LinuxCompatibility.MySQL.MySQLTable,System.String},System.String,System.Boolean,System.Boolean)">
+ <summary>
+ 生成用于将数据集合批量导入数据库的INSERT SQL事务
+ </summary>
+ <param name="source"></param>
+ <param name="type">
+ Only allowed action ``insert/update/delete/replace``, if the user custom SQL generator 
+ <paramref name="custom"/> is nothing, then this parameter works.
+ </param>
+ <param name="custom">
+ User custom SQL generator. If this parameter is not nothing, then <paramref name="type"/> will disabled.
+ </param>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.DataDumps.DumpTransaction``1(System.Collections.Generic.IEnumerable{``0},System.Func{Oracle.LinuxCompatibility.MySQL.MySQLTable,System.String},System.String,System.Boolean,System.Boolean)">
+ <summary>
+ 生成用于将数据集合批量导入数据库的INSERT SQL事务
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="source"></param>
+ <param name="type">
+ Only allowed action ``insert/update/delete/replace``, if the user custom SQL generator 
+ <paramref name="custom"/> is nothing, then this parameter works.
+ </param>
+ <param name="custom">
+ User custom SQL generator. If this parameter is not nothing, then <paramref name="type"/> will disabled.
+ </param>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.DataDumps.DumpLargeTransaction``1(System.Collections.Generic.IEnumerable{``0},System.String,System.Func{Oracle.LinuxCompatibility.MySQL.MySQLTable,System.String},System.String,System.Boolean,System.Boolean)">
+ <summary>
+ Write a very large SQL table data collection into a SQL file.
+ (适合导出一个非常大的mysql数据表)
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="source"></param>
+ <param name="path$"></param>
+ <param name="custom"></param>
+ <param name="type$"></param>
+ <param name="distinct"></param>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.DataDumps.DumpTransaction``1(System.Collections.Generic.IEnumerable{``0},System.String,Microsoft.VisualBasic.Text.Encodings,System.String,System.Boolean,System.Boolean)">
+ <summary>
+ This function is only works for the table that without any foreign key constraint.
+ 
+ (这个函数只适合于没有外键约束的数据表)
+ 
+ 从<see cref="T:Oracle.LinuxCompatibility.MySQL.MySQLTable"/>之中生成SQL语句之后保存到指定的文件句柄之上，
+ + 假若所输入的文件句柄是带有``.sql``后缀的话，会直接保存为该文件，
+ + 反之会被当作为文件夹，当前的集合对象会保存为与类型相同名称的sql文件
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="source"></param>
+ <param name="path$">
+ 请注意，在这里假若字符串是含有sql作为文件名后缀的话，会直接用作为文件路径来保存
+ 假若不是以sql为后缀的话，会被当做文件夹来处理
+ </param>
+ <param name="encoding"></param>
+ <param name="distinct">是否对<see cref="M:Oracle.LinuxCompatibility.MySQL.MySQLTable.GetDumpInsertValue(System.Boolean)"/>进行去重处理？默认是</param>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.DataDumps.CsvImportsHelper(System.String)">
+ <summary>
+ 将csv导入数据库之中的帮助工具，利用这个工具解析csv文件的头部标题行，生成``Create Table``脚本
+ </summary>
+ <param name="path"></param>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.DumpTaskRunner.Dispose">
+ <summary>
+ Call this method for commit the remaining data to 
+ the local transaction dump sql file
+ </summary>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.Extensions.GetCreateTableMetaSQL``1">
+ <summary>
+ 读取CreateTable元数据
+ </summary>
+ <typeparam name="T"></typeparam>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.Extensions.ClearTable``1(Oracle.LinuxCompatibility.MySQL.MySqli)">
+ <summary>
+ 如果成功，则返回空值，如果不成功，会返回错误消息
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="mysql"></param>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.Extensions.GetAttribute``1(System.Reflection.PropertyInfo)">
+ <summary>
+ Get the specific type of custom attribute from a property.
+ (从一个属性对象中获取特定的自定义属性对象)
+ </summary>
+ <typeparam name="T">The type of the custom attribute.(自定义属性的类型)</typeparam>
+ <param name="Property">Target property object.(目标属性对象)</param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.Extensions.GetDbDataType(System.Type)">
+ <summary>
+ Get the data type of a field in the data table.
+ (获取数据表之中的某一个域的数据类型)
+ </summary>
+ <param name="Type"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="T:Oracle.LinuxCompatibility.MySQL.LinqExports">
+ <summary>
+ 使用Linq方法进行非常大的数据库的导出操作
+ </summary>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.LinqExports.ProjectDumping(System.Collections.Generic.IEnumerable{Oracle.LinuxCompatibility.MySQL.MySQLTable},System.String,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+ <summary>
+ 将数据结果导出到一个文件夹之中，文件名为表名称
+ </summary>
+ <param name="source">名字必须为表名称</param>
+ <param name="EXPORT$"></param>
+ <param name="singleTransaction">
+ Merge the sql files that exported into a large single sql transaction file? Default is not.
+ </param>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.LinqExports.joinTransactionSql(System.String,System.String,System.String)">
+ <summary>
+ Merge the sql files that exported into a large single sql transaction file.
+ </summary>
+ <param name="saveSQL$"></param>
+ <param name="dbName$"></param>
+ <param name="EXPORT$"></param>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.CreateDataType.CreateDataType(System.String)">
+ <summary>
+ Mapping the MySQL database type and visual basic data type 
+ </summary>
+ <param name="type_define"></param>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.ExpressionSyntax.field(System.String)">
+ <summary>
+ Create a new field reference
+ </summary>
+ <param name="name"></param>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.ExpressionSyntax.field(System.String,System.String)">
+ <summary>
+ Create a new table field reference
+ </summary>
+ <param name="table"></param>
+ <param name="name"></param>
+ <returns></returns>
+ 
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert.is_nothing">
+ <summary>
+ test current field value is null?
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert.GetSafeName">
+ <summary>
+ this function will make sure that the special word example as 
+ mysql keyword: select/insert/etc will be wrapped as `name`, 
+ so that this will not cause the mysql syntax error.
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert.EnsureSafeName(System.String)">
+ <summary>
+ ensure that the given field name is safe when build sql query text
+ </summary>
+ <param name="name"></param>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert.call_on(System.String,System.String[])">
+ <summary>
+ call on the function, current value is the function its first parameter
+ </summary>
+ <param name="func"></param>
+ <param name="args"></param>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert.ToString">
+ <summary>
+ generates the sql expression
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert.op_Equality(Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert,Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert)">
+ <summary>
+ left join xxx on xx = xx
+ </summary>
+ <param name="x1"></param>
+ <param name="x2"></param>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert.AssignOperator(Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert,System.String,System.String)">
+ <summary>
+ 
+ </summary>
+ <param name="field"></param>
+ <param name="op"></param>
+ <param name="val_exp">
+ the value expression, should be wrapped if it is a string before call this helper function
+ </param>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert.op_Equality(Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert,System.DateTime)">
+ <summary>
+ the date value will be format to string via <see cref="M:Oracle.LinuxCompatibility.MySQL.Scripting.Extensions.ToMySqlDateTimeString(System.DateTime)"/> for avoid mysql format error
+ </summary>
+ <param name="field"></param>
+ <param name="val"></param>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert.op_Like(Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert,System.String)">
+ <summary>
+ field LIKE '%pattern%'
+ </summary>
+ <param name="field"></param>
+ <param name="val"></param>
+ <returns></returns>
+</member>
+<member name="T:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.Model">
+ <summary>
+ 
+ </summary>
+</member>
+<member name="P:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.Model.GetLastMySql">
+ <summary>
+ get last execute mysql script
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.Model.GetLastErrorMessage">
+ <summary>
+ get the error message of the last <see cref="T:System.Exception"/>.
+ </summary>
+ <returns></returns>
+</member>
+<member name="F:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.Model.cache">
+ <summary>
+ cache of the table schema
+ </summary>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.Model.#ctor(System.String,Oracle.LinuxCompatibility.MySQL.Uri.ConnectionUri)">
+ <summary>
+ 
+ </summary>
+ <param name="table">the table name</param>
+ <param name="conn"></param>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.Model.inspectSchema(System.String,System.String)">
+ <summary>
+ inspect of the database table schema
+ </summary>
+ <param name="database"></param>
+ <param name="table"></param>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.Model.where(System.String)">
+ <summary>
+ WHERE
+ </summary>
+ <param name="q"></param>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.Model.where(Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert[])">
+ <summary>
+ WHERE
+ </summary>
+ <param name="asserts"></param>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.Model.field(System.String)">
+ <summary>
+ `table`.`field`
+ </summary>
+ <param name="name"></param>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.Model.f(System.String)">
+ <summary>
+ `table`.`field`
+ </summary>
+ <param name="name"></param>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.Model.find``1(System.String[])">
+ <summary>
+ SELECT LIMIT 1
+ </summary>
+ <typeparam name="T"></typeparam>
+ <returns>
+ this function returns nothing if not found
+ </returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.Model.find(System.String[])">
+ <summary>
+ 
+ </summary>
+ <param name="fields"></param>
+ <returns>
+ this function returns nothing if no data could be found
+ </returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.Model.select``1(System.String[])">
+ <summary>
+ SELECT
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="fields"></param>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.Model.project``1(System.String)">
+ <summary>
+ project a field column as vector from the database
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="field">the field name to project as vector</param>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.Model.save(Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert[])">
+ <summary>
+ UPDATE
+ </summary>
+ <param name="fields"></param>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.Model.add(Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert[])">
+ <summary>
+ INSERT INTO
+ </summary>
+ <param name="fields"></param>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.Model.delete">
+ <summary>
+ DELETE FROM
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.Model.limit(System.Int32,System.Nullable{System.Int32})">
+ <summary>
+ LIMIT m,n
+ </summary>
+ <param name="m"></param>
+ <param name="n"></param>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.Model.left_join(System.String)">
+ <summary>
+ LEFT JOIN
+ </summary>
+ <param name="table"></param>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.Model.on(Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert[])">
+ <summary>
+ LEFT JOIN ON
+ </summary>
+ <param name="fields"></param>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.Model.order_by(System.String[])">
+ <summary>
+ ORDER BY
+ </summary>
+ <param name="fields"></param>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.Model.order_by(System.String[],System.Boolean)">
+ <summary>
+ ORDER BY DESC
+ </summary>
+ <param name="fields"></param>
+ <param name="desc"></param>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.Model.order_by(System.String,System.Boolean)">
+ <summary>
+ ORDER BY DESC
+ </summary>
+ <param name="field"></param>
+ <param name="desc"></param>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.Model.distinct">
+ <summary>
+ DISTINCT
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:Oracle.LinuxCompatibility.MySQL.IDatabase">
+ <summary>
+ an abstract database wrapper for multiple database table models in clr types
+ </summary>
+</member>
+<member name="F:Oracle.LinuxCompatibility.MySQL.IDatabase.mysqli">
+ <summary>
+ the wrapper for the mysql query functions
+ </summary>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.IDatabase.model``1">
+ <summary>
+ create a new data table model for create mysql query
+ </summary>
+ <typeparam name="T"></typeparam>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.IDatabase.CreateModel(System.String)">
+ <summary>
+ create a model reference to a specific table
+ </summary>
+ <param name="name">the table name</param>
+ <returns></returns>
+</member>
+<member name="T:Oracle.LinuxCompatibility.MySQL.MySqli">
+ <summary>
+ MySql database server connection module.
+ </summary>
+ <remarks>(与MySql数据库服务器之间的通信操作的封装模块)</remarks>
+</member>
+<member name="E:Oracle.LinuxCompatibility.MySQL.MySqli.ThrowException">
+ <summary>
+ A error occurred during the execution of a sql command or transaction.
+ (在执行SQL命令或者提交一个事务的时候发生了错误) 
+ </summary>
+ <param name="Ex">
+ The detail information of the occurred error.
+ (所发生的错误的详细信息)
+ </param>
+ <remarks></remarks>
+</member>
+<member name="F:Oracle.LinuxCompatibility.MySQL.MySqli._log">
+ <summary>
+ 20240319
+ 
+ <see cref="M:Microsoft.VisualBasic.App.LogException(System.Exception,System.String@)"/> method will create 
+ too much log file in the app data directory, this may crash the filesystem
+ when too much error happends. so use this log file module instead the app 
+ log exception method.
+ </summary>
+</member>
+<member name="P:Oracle.LinuxCompatibility.MySQL.MySqli.UriMySQL">
+ <summary>
+ A Formatted connection string using for the connection established to the database server. 
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="P:Oracle.LinuxCompatibility.MySQL.MySqli.LastMySql">
+ <summary>
+ get last mysql statement that executed.
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqli.#ctor(Oracle.LinuxCompatibility.MySQL.Uri.ConnectionUri,System.String)">
+ <summary>
+ Creates a new mysql session object from connection uri.
+ </summary>
+ <param name="uri"></param>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqli.Connect(Oracle.LinuxCompatibility.MySQL.Uri.ConnectionUri,System.Boolean)">
+ <summary>
+ Connect to the database server using a assigned mysql connection helper object. The function returns the ping value of the client to the MYSQL database server.
+ (使用一个由用户所指定参数的连接字符串生成器来打开一个对服务器的连接，之后返回客户端对数据库服务器的ping值) 
+ </summary>
+ <param name="MySQLConnection"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqli.Connect(System.String)">
+ <summary>
+ Connect to the database server using a assigned mysql connection string.
+ (使用一个由用户所制定的连接字符串连接MySql数据库服务器) 
+ </summary>
+ <param name="ConnectionString"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqli.ExecuteScalar``1(System.String)">
+ <summary>
+ Executes the query, and returns the first column of the first row in the 
+ result set returned by the query. Additional columns or rows are ignored.
+ (请注意，这个函数会自动判断添加``LIMIT 1``限定在SQL语句末尾)
+ </summary>
+ <returns>如果数据表之中没有符合条件的结果数据，那么这个函数将会返回空值</returns>
+ <param name="SQL">
+ 这个函数会自动进行判断添加``LIMIT 1``限定，所以不需要刻意担心
+ </param>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqli.ExecuteAggregate``1(System.String)">
+ <summary>
+ 执行聚合函数并返回值
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="SQL"></param>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqli.ExecuteScalarAuto``1(System.String)">
+ <summary>
+ 
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="[where]">只需要给出条件WHERE表达式即可，函数会自动生成SQL查询语句</param>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqli.Execute(System.String,System.Boolean)">
+ <summary>
+ Execute a DML/DDL sql command and then return the row number that the row was affected 
+ by this command, and you should open a connection to a database server before you call 
+ this function. 
+ (执行一个DML/DDL命令并且返回受此命令的执行所影响的行数，你应该在打开一个数据库服务器的连接之
+ 后调用本函数，执行SQL语句发生错误时会返回负数)
+ </summary>
+ <param name="SQL">DML/DDL sql command, not a SELECT command(DML/DDL 命令，而非一个SELECT语句)</param>
+ <returns>
+ Return the row number that was affected by the DML/DDL command, if the databse 
+ server connection is interrupt or errors occurred during the executes, this 
+ function will return a negative number.
+ (返回受DML/DDL命令所影响的行数，假若数据库服务器断开连接或者在命令执行的期间发生错误，
+ 则这个函数会返回一个负数)
+ </returns>
+ <remarks></remarks>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqli.Fetch(System.String,System.Boolean)">
+ <summary>
+ Execute a 'SELECT' query command and then returns the query result of this sql command.
+ </summary>
+ <param name="SQL"></param>
+ <returns>
+ this function may returns nothing when mysql query error happends
+ </returns>
+ <remarks>(执行一个'SELECT'查询命令之后返回本查询命令的查询结果。请注意，这个工具并不会自动关闭数据库连接，
+ 请在使用完毕之后手工Close掉，以节省服务器资源) </remarks>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqli.Query``1(System.String,System.Boolean)">
+ <summary>
+ 使用这个函数进行批量数据的查询操作，基于反射操作的ORM解决方案。
+ 假若只需要查询一条数据库记录的话，则推荐使用<see cref="M:Oracle.LinuxCompatibility.MySQL.MySqli.ExecuteScalar``1(System.String)"/>函数以获取更高的性能
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="SQL"></param>
+ <param name="throwExp"></param>
+ <returns>
+ this function will returns nothing if the mysql query error, 
+ this is different with empty array when for query no data.
+ </returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqli.Project``1(System.String,System.String,System.Boolean)">
+ <summary>
+ 
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="sql"></param>
+ <param name="field"></param>
+ <param name="throwExp"></param>
+ <returns>
+ this function will returns nothing if the mysql query error
+ </returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqli.CommitTransaction(System.String,System.Exception@)">
+ <summary>
+ Commit a transaction command collection to the database server and then return the 
+ result that this transaction is commit successfully or not. 
+ (向数据库服务器提交一个事务之后返回本事务是否被成功提交)
+ </summary>
+ <param name="transaction"></param>
+ <returns>
+ Return the result that this transaction is commit succeedor not.
+ (返回本事务是否被成功提交至数据库服务器)
+ </returns>
+ <remarks></remarks>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqli.__throwExceptionHelper(System.Exception,System.String,System.Boolean)">
+ <summary>
+ wrap the sql execute context and set the <see cref="P:Oracle.LinuxCompatibility.MySQL.MySqli.LastError"/>
+ </summary>
+ <param name="ex"></param>
+ <param name="SQL$"></param>
+ <param name="throwExp"></param>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqli.Ping">
+ <summary>
+ Test the connection of the client to the mysql database server and then 
+ return the communication delay time between the client and the server. 
+ This function should be call after you connection to a database server.
+ (测试客户端和MySql数据库服务器之间的通信连接并且返回二者之间的通信延时。
+ 这个函数应该在你连接上一个数据库服务器之后进行调用，-1值表示客户端与服务器之间通信失败.)
+ </summary>
+ <returns>当函数返回一个负数的时候，表明Ping操作失败，即无数据库服务器连接</returns>
+ <remarks></remarks>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqli.op_Implicit(System.String)~Oracle.LinuxCompatibility.MySQL.MySqli">
+ <summary>
+ Open a mysql connection using a specific connection string
+ </summary>
+ <param name="strUri">The mysql connection string</param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqli.op_Implicit(Oracle.LinuxCompatibility.MySQL.Uri.ConnectionUri)~Oracle.LinuxCompatibility.MySQL.MySqli">
+ <summary>
+ Open a  mysql  connection using a connection helper object
+ </summary>
+ <param name="uri">The connection helper object</param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqli.op_LessThanOrEqual(Oracle.LinuxCompatibility.MySQL.MySqli,Oracle.LinuxCompatibility.MySQL.Uri.ConnectionUri)">
+ <summary>
+ ``mysql.Connect(cnn)``, 返回-1表示与数据库服务器通信失败
+ </summary>
+ <param name="mysql"></param>
+ <param name="cnn"></param>
+ <returns></returns>
+</member>
+<member name="T:Oracle.LinuxCompatibility.MySQL.Uri.ConnectionUri">
+ <summary>
+ The connection parameter for the MYSQL database server.
+ 
+ (MySQL服务器的远程连接参数)
+ </summary>
+ <remarks>
+ #### Using MySqlCommand
+
+ A MySqlCommand has the CommandText And CommandType properties associated With it. 
+ The CommandText will be handled differently depending On the setting Of 
+ CommandType. 
+ 
+ CommandType can be one Of: 
+
+ + Text -An SQL text command (default)
+ + StoredProcedure -The name of a Stored Procedure
+ + TableDirect -The name of a table (New in Connector/Net 6.2)
+
+ The Default CommandType, Text, is used For executing queries And other SQL commands. 
+ Some example Of this can be found In the following section Section 4.1.2, 
+ **“The MySqlCommand Object”**.
+
+ + If CommandType Is set to StoredProcedure, set CommandText to the name of the Stored Procedure to access.
+ + If CommandType Is set to TableDirect, all rows And columns of the named table 
+   will be returned when you call one of the Execute methods. In effect, 
+   this command performs a SELECT * on the table specified. The CommandText property 
+   Is set to the name of the table to query. This Is illustrated by the 
+   following code snippet
+
+ ```vbnet
+ ' ...
+ Dim cmd As New MySqlCommand()
+ cmd.CommandText = "mytable"
+ cmd.Connection = someConnection
+ cmd.CommandType = CommandType.TableDirect
+ Dim reader As MySqlDataReader = cmd.ExecuteReader()
+
+ Do While (reader.Read())
+     Call Console.WriteLine(reader(0), reader(1)...)
+ Loop
+ ' ...
+ ```
+ 
+ Examples of using the CommandType of StoredProcedure can be found in the section 
+ Section 5.10, “Accessing Stored Procedures with Connector/Net”.
+ Commands can have a timeout associated With them. This Is useful As you may Not 
+ want a situation were a command takes up an excessive amount Of time. 
+ A timeout can be Set Using the CommandTimeout Property. The following code snippet
+ sets a timeout Of one minute:
+
+ ```vbnet
+ Dim cmd As New MySqlCommand()
+ cmd.CommandTimeout = 60
+ ```
+ 
+ The Default value Is 30 seconds. **Avoid a value Of 0, which indicates an indefinite
+ wait.** To change the Default command timeout, use the connection String 
+ Option Default Command Timeout.
+ Prior to MySQL Connector/Net 6.2, MySqlCommand.CommandTimeout included user processing 
+ time, that Is processing time Not related To direct use Of the connector. 
+ Timeout was implemented through a .NET Timer, that triggered after CommandTimeout seconds.
+ This timer consumed a thread.
+ MySQL Connector/Net 6.2 introduced timeouts that are aligned With how Microsoft Handles 
+ SqlCommand.CommandTimeout. This Property Is the cumulative timeout 
+ For all network reads And writes during command execution Or processing Of the results.
+ A timeout can still occur In the MySqlReader.Read method after the first 
+ row Is returned, And does Not include user processing time, only IO operations. 
+ The 6.2 implementation uses the underlying stream timeout facility, so Is more 
+ efficient In that it does Not require the additional timer thread As was the Case With 
+ the previous implementation.
+ </remarks>
+</member>
+<member name="P:Oracle.LinuxCompatibility.MySQL.Uri.ConnectionUri.IPAddress">
+ <summary>
+ The server IP address, you can using ``localhost`` to specific the local machine.
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks>(服务器的IP地址，可以使用localhost来指代本机)</remarks>
+</member>
+<member name="P:Oracle.LinuxCompatibility.MySQL.Uri.ConnectionUri.Port">
+ <summary>
+ The port number of the remote database server.
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks>(数据库服务器的端口号)</remarks>
+</member>
+<member name="P:Oracle.LinuxCompatibility.MySQL.Uri.ConnectionUri.Database">
+ <summary>
+ ``Using &lt;database_name>``.
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks>(数据库的名称)</remarks>
+</member>
+<member name="P:Oracle.LinuxCompatibility.MySQL.Uri.ConnectionUri.TimeOut">
+ <summary>
+ 这个属性会在链接字符串之中设置查询超时的选项，单位为秒：
+ 
+ ```
+ default command timeout={TimeOut};
+ ```
+ 
+ + 假若这个参数值为负数，则不会进行设置，默认值为-1，为负值，则默认不会设置超时选项，即使用默认的超时设置30秒
+ + 假若这个参数值为0，则会被设置为无限等待
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Oracle.LinuxCompatibility.MySQL.Uri.ConnectionUri.error_log">
+ <summary>
+ the file path of the error log file, null or empty string means default error log file in temp filesystem.
+ </summary>
+ <returns></returns>
+ <remarks>
+ the error log file path only works for the bencode uri serialization
+ </remarks>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.Uri.ConnectionUri.#ctor(Oracle.LinuxCompatibility.MySQL.Uri.ConnectionUri,System.String)">
+ <summary>
+ make parameter value copy of the mysql connection string.
+ </summary>
+ <param name="uri"></param>
+ <param name="DbName">
+ the another database name
+ </param>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.Uri.ConnectionUri.GetConnectionString">
+ <summary>
+ Get a connection string for the connection establish of a client to a mysql database 
+ server using the specific paramenter that was assigned by the user.
+ (获取一个由用户指定连接参数的用于建立客户端和MySql数据库服务器之间的连接的连接字符串)
+ </summary>
+ <returns></returns>
+ <remarks></remarks>
+ 
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.Uri.ConnectionUri.CreateObject(System.String)">
+ <summary>
+ Create a mysql connection using the connection uri
+ </summary>
+ <param name="url"></param>
+ <returns></returns>
+ <remarks></remarks>
+ 
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.Uri.ConnectionUri.op_Explicit(Oracle.LinuxCompatibility.MySQL.Uri.ConnectionUri)~System.String">
+ <summary>
+ Conver the ConnectionHelper object to a mysql connection string using 
+ the specific parameter which assigned by the user.
+ (将使用由用户指定连接参数的连接生成器转换为Mysql数据库的连接字符串)
+ </summary>
+ <param name="uri"></param>
+ <returns></returns>
+ <remarks></remarks>
+ 
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.Uri.ConnectionUri.op_Implicit(System.String)~Oracle.LinuxCompatibility.MySQL.Uri.ConnectionUri">
+ <summary>
+ 
+ </summary>
+ <param name="url">MySql connection string.(MySql连接字符串)</param>
+ <returns></returns>
+ <remarks>
+ </remarks>
+ 
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.Uri.ConnectionUri.TryParsing(System.String)">
+ <summary>
+ 函数会自动解析MySQL格式或者uri拓展格式
+ </summary>
+ <param name="uri">MySQL连接字符串或者uri拓展格式</param>
+ <returns></returns>
+</member>
+<member name="T:Oracle.LinuxCompatibility.MySQL.Uri.UriBuilder">
+ <summary>
+ 解析url格式的链接字符串
+ </summary>
+</member>
+<member name="F:Oracle.LinuxCompatibility.MySQL.Uri.UriBuilder.SERVERSITE">
+ <summary>
+ IP地址或者localhost
+ </summary>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.Uri.UriBuilder.UriParser(System.String)">
+ <summary>
+ 解析url格式的链接字符串
+ </summary>
+ <param name="uri"></param>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.Uri.UriBuilder.MySQLParser(System.String)">
+ <summary>
+ ``Database={0}; Data Source={1}; User Id={2}; Password={3}; Port={4}``
+ </summary>
+ <param name="cnn"></param>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.Uri.UriEncryption.GenerateUri(Oracle.LinuxCompatibility.MySQL.Uri.ConnectionUri,System.Func{System.String,System.String})">
+ <summary>
+ 重新生成链接url字符串
+ </summary>
+ <returns></returns>
+ <param name="passwordEncryption">用户自定义的密码加密信息</param>
+ <remarks></remarks>
+ 
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.Uri.UriEncryption.CreateObject(System.String,System.Func{System.String,System.String})">
+ <summary>
+ 从配置数据之中加载数据库的连接信息
+ </summary>
+ <param name="url"></param>
+ <param name="passwordDecryption"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="T:Oracle.LinuxCompatibility.MySQL.MySQLTable">
+ <summary>
+ Type Fundamentals of this mysql ORM solution.(这个数据表对象是MYSQL ORM解决方案的类型基础)
+ </summary>
+ 
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySQLTable.GetReplaceSQL">
+ <summary>
+ Generates the mysql specific ``REPLACE INTO`` SQL statement. 
+ (如果已经存在了一条相同主键值的记录，则删除它然后在插入更新值；
+ 假若不存在，则直接插入新数据，这条命令几乎等价于<see cref="M:Microsoft.VisualBasic.ComponentModel.DataSourceModel.SchemaMaps.SQLTable.GetInsertSQL"/>命令，所不同的是这个会自动处理旧记录，可能会不安全，
+ 因为旧记录可能会在你不知情的情况下被意外的更新了；
+ 并且由于需要先判断记录是否存在，执行的速度也比直接的Insert操作要慢一些，大批量数据插入不建议这个操作)
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:Oracle.LinuxCompatibility.MySQL.Reflection.DataTable`1">
+ <summary>
+ A table object of a specific table schema that mapping a table object in the mysql database.
+ (一个映射到MYSQL数据库中的指定的表之上的表对象)
+ </summary>
+ <typeparam name="Schema">
+ The table shcema which define on the custom attribut of a class.
+ (定义于一个类之中的自定义属性的表结构)
+ </typeparam>
+ <remarks></remarks>
+</member>
+<member name="F:Oracle.LinuxCompatibility.MySQL.Reflection.DataTable`1.DeleteSQL">
+ <summary>
+ 'DELETE' sql text generator of a record that type of schema.
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:Oracle.LinuxCompatibility.MySQL.Reflection.DataTable`1.InsertSQL">
+ <summary>
+ 'INSERT' sql text generator of a record that type of schema.
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:Oracle.LinuxCompatibility.MySQL.Reflection.DataTable`1.UpdateSQL">
+ <summary>
+ 'UPDATE' sql text generator of a record that type of schema.
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:Oracle.LinuxCompatibility.MySQL.Reflection.DataTable`1.Transaction">
+ <summary>
+ The sql transaction that will be commit to the mysql database.
+ (将要被提交至MYSQL数据库之中的SQL事务集)
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:Oracle.LinuxCompatibility.MySQL.Reflection.DataTable`1.TableSchema">
+ <summary>
+ The structure definition information which was parsed from the custom attribut on a class object.
+ (从一个类对象上面的自定义属性之中解析出来的表结构信息)
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:Oracle.LinuxCompatibility.MySQL.Reflection.DataTable`1._listData">
+ <summary>
+ DataSet of the table in the database.
+ (数据库的表之中的数据集)
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="P:Oracle.LinuxCompatibility.MySQL.Reflection.DataTable`1.ErrorMessage">
+ <summary>
+ The error information that come from MYSQL database server.
+ (来自于MYSQL数据库服务器的错误信息)
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:Oracle.LinuxCompatibility.MySQL.Reflection.DataTable`1.ListData">
+ <summary>
+ DataSet of the table in the database. Do not edit the data directly from this property...
+ (数据库的表之中的数据集，请不要直接在这个属性之上修改数据)
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.Reflection.DataTable`1.Create">
+ <summary>
+ Execute ``CREATE TABLE`` sql.
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.Reflection.DataTable`1.GetHandle(`0)">
+ <summary>
+ Get a specific record in the dataset by compaired the UNIQUE_INDEX field value.
+ (通过值唯一的索引字段来获取一个特定的数据记录)
+ </summary>
+ <param name="Record"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.Reflection.DataTable`1.Delete(`0)">
+ <summary>
+ Delete a record in the table. Please notice that, in order to decrease the usage of CPU and networking traffic, the 
+ change is not directly affect on the database server, it will be store as a delete sql in the memory and accumulated 
+ as a transaction, the change of the database will not happen until you call the commit method to make this change 
+ permanently in the database.
+ (删除表中的一条记录。请注意：为了减少服务器的计算资源和网络流量的消耗，在使用本模块对数据库作出修改的时候，更改并不会直接提
+ 交至数据库之中的，而是将修改作为一条SQL语句存储下来并对这些命令进行积累作为一个事务存在，即数据库不会受到修改的影响直到你将
+ 本事务提交至数据库服务器之上)
+ </summary>
+ <param name="Record"></param>
+ <remarks></remarks>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.Reflection.DataTable`1.Insert(`0)">
+ <summary>
+ Insert a record in the table. Please notice that, in order to decrease the usage of CPU and networking traffic, the 
+ change is not directly affect on the database server, it will be store as a insert sql in the memory and accumulated 
+ as a transaction, the change of the database will not happen until you call the commit method to make this change 
+ permanently in the database.
+ (向表中插入一条新记录。请注意：为了减少服务器的计算资源和网络流量的消耗，在使用本模块对数据库作出修改的时候，更改并不会直接提
+ 交至数据库之中的，而是将修改作为一条SQL语句存储下来并对这些命令进行积累作为一个事务存在，即数据库不会受到修改的影响直到你将
+ 本事务提交至数据库服务器之上)
+ </summary>
+ <param name="Record"></param>
+ <remarks></remarks>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.Reflection.DataTable`1.Update(`0)">
+ <summary>
+ Update a record in the table. Please notice that, in order to decrease the usage of CPU and networking traffic, the 
+ change is not directly affect on the database server, it will be store as a update sql in the memory and accumulated 
+ as a transaction, the change of the database will not happen until you call the commit method to make this change 
+ permanently in the database.
+ (修改表中的一条记录。请注意：为了减少服务器的计算资源和网络流量的消耗，在使用本模块对数据库作出修改的时候，更改并不会直接提
+ 交至数据库之中的，而是将修改作为一条SQL语句存储下来并对这些命令进行积累作为一个事务存在，即数据库不会受到修改的影响直到你将
+ 本事务提交至数据库服务器之上)
+ </summary>
+ <param name="Record"></param>
+ <remarks></remarks>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.Reflection.DataTable`1.Fetch(System.Int32)">
+ <summary>
+ Load the data from database server. Please notice that: every time you call this function, the transaction will be commit to the database server in.
+ (从数据库服务器之中加载数据，请注意：每一次加载数据都会将先前的所积累下来的事务提交至数据库服务器之上)
+ </summary>
+ <param name="Count">
+ The count of the record that will be read from the server. Notice: Zero or negative is stands for 
+ load all records in the database.
+ (从数据库中读取的记录数目。请注意：值0和负数值都表示加载数据库的表中的所有数据)
+ </param>
+ <remarks></remarks>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.Reflection.DataTable`1.Query(System.String)">
+ <summary>
+ Query a data table using Reflection.(使用反射机制来查询一个数据表)
+ </summary>
+ <param name="SQL">Sql 'SELECT' query statement.(Sql 'SELECT' 查询语句)</param>
+ <returns>The target data table.(目标数据表)</returns>
+ <remarks></remarks>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.Reflection.DataTable`1.Commit">
+ <summary>
+ Commit the transaction to the database server to make the change permanently.
+ (将事务集提交至数据库服务器之上以永久的修改数据库) 
+ </summary>
+ <returns>The transaction commit is successfully or not.(事务集是否被成功提交)</returns>
+ <remarks></remarks>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.Reflection.DataTable`1.op_Explicit(Oracle.LinuxCompatibility.MySQL.Reflection.DataTable{`0})~System.Collections.Generic.List{`0}">
+ <summary>
+ Convert the mapping object to a dataset
+ </summary>
+ <param name="schema"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.Reflection.DataTable`1.op_Implicit(Oracle.LinuxCompatibility.MySQL.Uri.ConnectionUri)~Oracle.LinuxCompatibility.MySQL.Reflection.DataTable{`0}">
+ <summary>
+ Initialize the mapping from a connection object
+ </summary>
+ <param name="uri"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.Reflection.DataTable`1.op_Implicit(System.String)~Oracle.LinuxCompatibility.MySQL.Reflection.DataTable{`0}">
+ <summary>
+ Initialize the mapping from a connection string
+ </summary>
+ <param name="uri"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.Reflection.DataTable`1.op_Implicit(System.Xml.Linq.XElement)~Oracle.LinuxCompatibility.MySQL.Reflection.DataTable{`0}">
+ <summary>
+ Initialize the mapping from a connection string
+ </summary>
+ <param name="xml"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="T:Oracle.LinuxCompatibility.MySQL.Reflection.DbAttributes.DataType">
+ <summary>
+ Please notice that some data type in mysql database is not allow combine with some specific field 
+ attribute, and I can't find out this potential error in this code. So, when your schema definition can't 
+ create a table then you must check this combination is correct or not in the mysql.
+ (请注意：在MySql数据库中有一些数据类型是不能够和一些字段的属性组合使用的，我不能够在本代码中检查出此潜在
+ 的错误。故，当你定义的对象类型无法创建表的时候，请检查你的字段属性的组合是否有错误？)
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.Reflection.DbAttributes.DataType.ToString">
+ <summary>
+ 显示mysql数据库之中的数据类型的定义字符串
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.Reflection.DbAttributes.DataType.op_Equality(Oracle.LinuxCompatibility.MySQL.Reflection.DbAttributes.DataType,Oracle.LinuxCompatibility.MySQL.Reflection.DbAttributes.DataType)">
+ <summary>
+ compares two data type is equals to each other ot not?
+ </summary>
+ <param name="t1"></param>
+ <param name="t2"></param>
+ <returns></returns>
+</member>
+<member name="T:Oracle.LinuxCompatibility.MySQL.Reflection.DbAttributes.DbAttribute">
+ <summary>
+ The field attribute in the database.
+ (数据库中的字段的属性)
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="T:Oracle.LinuxCompatibility.MySQL.Reflection.DbAttributes.DatabaseField">
+ <summary>
+ Custom attribute class to mapping the field in the data table.
+ (用于映射数据库中的表中的某一个字段的自定义属性类型)
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="P:Oracle.LinuxCompatibility.MySQL.Reflection.DbAttributes.DatabaseField.Name">
+ <summary>
+ Get or set the name of the database field.
+ (获取或者设置数据库表中的字段的名称)
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.Reflection.DbAttributes.DatabaseField.op_Explicit(Oracle.LinuxCompatibility.MySQL.Reflection.DbAttributes.DatabaseField)~System.String">
+ <summary>
+ Get the field name property.
+ (获取字段名)
+ </summary>
+ <param name="DbField"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="T:Oracle.LinuxCompatibility.MySQL.Reflection.DbAttributes.Unique">
+ <summary>
+ The value of this field is unique in a data table.
+ (本字段的值在一张表中唯一)
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="T:Oracle.LinuxCompatibility.MySQL.Reflection.DbAttributes.PrimaryKey">
+ <summary>
+ This field is the primary key of the data table.
+ (本字段是本数据表的主键)
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="T:Oracle.LinuxCompatibility.MySQL.Reflection.DbAttributes.NotNULL">
+ <summary>
+ The value of this field can not be null.
+ (本字段的值不能为空)
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="T:Oracle.LinuxCompatibility.MySQL.Reflection.DbAttributes.Unsigned">
+ <summary>
+ This filed value can not be a negative number, it just works on the number type.
+ (本字段的值不能够是一个负数值，本属性仅适用于数值类型)
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="T:Oracle.LinuxCompatibility.MySQL.Reflection.DbAttributes.AutoIncrement">
+ <summary>
+ When we create new row in the table, this field's value will plus 1 automatically. 
+ (本属性指出本字段值将会自动加1当我们在表中新添加一条记录的时候)
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="T:Oracle.LinuxCompatibility.MySQL.Reflection.DbAttributes.MySqlDbType">
+ <summary>
+ Enum all of the data type in the mysql database.
+ (枚举MYSQL数据库中所有的数据类型)
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:Oracle.LinuxCompatibility.MySQL.Reflection.DbAttributes.MySqlDbType.BigInt">
+ <summary>
+ Long
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:Oracle.LinuxCompatibility.MySQL.Reflection.DbAttributes.MySqlDbType.Boolean">
+ <summary>
+ ``TINYINT(1)``
+ </summary>
+</member>
+<member name="F:Oracle.LinuxCompatibility.MySQL.Reflection.DbAttributes.MySqlDbType.TinyInt">
+ <summary>
+ + ``TINYINT(1)`` 在VB.NET之中是<see cref="T:System.Boolean"/>
+ </summary>
+</member>
+<member name="T:Oracle.LinuxCompatibility.MySQL.Reflection.DbAttributes.TableName">
+ <summary>
+ The name of the mysql table, this attribute can only applied on the Class/structure definition.
+ </summary>
+</member>
+<member name="P:Oracle.LinuxCompatibility.MySQL.Reflection.DbAttributes.TableName.Name">
+ <summary>
+ 数据库的表名
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Oracle.LinuxCompatibility.MySQL.Reflection.DbAttributes.TableName.Database">
+ <summary>
+ 这个数据表所处的数据库的名称，可选的属性
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.Reflection.DbAttributes.TableName.#ctor(System.String)">
+ <summary>
+ 使用表名来初始化这个元数据属性
+ </summary>
+ <param name="Name"></param>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.Reflection.DbAttributes.TableName.op_Explicit(Oracle.LinuxCompatibility.MySQL.Reflection.DbAttributes.TableName)~System.String">
+ <summary>
+ Get the table name property.(获取表名称)
+ </summary>
+ <param name="attr"></param>
+ <returns></returns>
+ <remarks></remarks>
+ 
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.Reflection.DbReflector.ReadFirst``1(System.Data.DataTableReader)">
+ <summary>
+ 假若目标数据表不存在数据记录，则会返回空值
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="Reader"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.Reflection.DbReflector.LoadProject``1(System.Data.DataTableReader,System.String,Microsoft.VisualBasic.Language.Value{System.String})">
+ <summary>
+ load table field projection
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="reader"></param>
+ <param name="field">the table column name, should no table name prefix</param>
+ <param name="getErr"></param>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.Reflection.DbReflector.tryCastObject``1(System.Data.DataTableReader,System.Type,Microsoft.VisualBasic.Linq.SeqValue{System.Reflection.PropertyInfo}[],System.Exception@)">
+ <summary>
+ database view to clr object in trycast if type mis-matched
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="reader"></param>
+ <param name="type"></param>
+ <param name="fields"></param>
+ <param name="err"></param>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.Reflection.DbReflector.directCastObject``1(System.Data.DataTableReader,System.Type,Microsoft.VisualBasic.Linq.SeqValue{System.Reflection.PropertyInfo}[],System.Exception@)">
+ <summary>
+ database view to clr object in directcast
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="reader"></param>
+ <param name="type"></param>
+ <param name="fields"></param>
+ <param name="err"></param>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.Reflection.DbReflector.GetCurrentOrdinals(System.Data.Common.DbDataReader)">
+ <summary>
+ 获取当前表之中可用的列名称列表
+ </summary>
+ <param name="reader"></param>
+ <returns></returns>
+</member>
+<member name="T:Oracle.LinuxCompatibility.MySQL.Reflection.Helper.FieldDescription">
+ <summary>
+ result of mysql ``describ table``
+ </summary>
+</member>
+<member name="T:Oracle.LinuxCompatibility.MySQL.Reflection.Helper.SchemaCache`1">
+ <summary>
+ A cache holder for the .net clr object schema inside the database
+ </summary>
+ <typeparam name="T"></typeparam>
+</member>
+<member name="F:Oracle.LinuxCompatibility.MySQL.Reflection.Helper.SchemaCache`1.Cache">
+ <summary>
+ the field data of current data type mapping result
+ </summary>
+</member>
+<member name="T:Oracle.LinuxCompatibility.MySQL.Reflection.Schema.Field">
+ <summary>
+ Mysql database field
+ </summary>
+</member>
+<member name="P:Oracle.LinuxCompatibility.MySQL.Reflection.Schema.Field.Unsigned">
+ <summary>
+ UNSIGNED
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Oracle.LinuxCompatibility.MySQL.Reflection.Schema.Field.NotNull">
+ <summary>
+ NOT NULL
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Oracle.LinuxCompatibility.MySQL.Reflection.Schema.Field.AutoIncrement">
+ <summary>
+ AUTO_INCREMENT
+ (值是自动增长的)
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Oracle.LinuxCompatibility.MySQL.Reflection.Schema.Field.ZeroFill">
+ <summary>
+ ZEROFILL
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Oracle.LinuxCompatibility.MySQL.Reflection.Schema.Field.PropertyInfo">
+ <summary>
+ The property information of this custom database field attribute. 
+ </summary>
+ <remarks>The reflection binding</remarks>
+</member>
+<member name="T:Oracle.LinuxCompatibility.MySQL.Reflection.Schema.Table">
+ <summary>
+ The table schema that we define on the custom attributes of a Class.
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="P:Oracle.LinuxCompatibility.MySQL.Reflection.Schema.Table.TableName">
+ <summary>
+ The mysql table name
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:Oracle.LinuxCompatibility.MySQL.Reflection.Schema.Table.PrimaryFields">
+ <summary>
+ 主键，主要根据这个属性来生成WHERE条件
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Oracle.LinuxCompatibility.MySQL.Reflection.Schema.Table.Fields">
+ <summary>
+ 获取这个数据表的列定义集合
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Oracle.LinuxCompatibility.MySQL.Reflection.Schema.Table.FieldNames">
+ <summary>
+ 获取这个数据表的列名称的集合
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Oracle.LinuxCompatibility.MySQL.Reflection.Schema.Table.Database">
+ <summary>
+ 这张数据表所在数据库的名称
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Oracle.LinuxCompatibility.MySQL.Reflection.Schema.Table.DatabaseField(System.String)">
+ <summary>
+ 查找不到则返回空值
+ </summary>
+ <param name="FieldName"></param>
+ <returns></returns>
+</member>
+<member name="P:Oracle.LinuxCompatibility.MySQL.Reflection.Schema.Table.Index">
+ <summary>
+ The index field when execute the update/delete sql.
+ </summary>
+ <remarks>Long/Integer first, then the Text is second, the primary key is the last consideration.</remarks>
+</member>
+<member name="P:Oracle.LinuxCompatibility.MySQL.Reflection.Schema.Table.SQL">
+ <summary>
+ Create Table SQL, optional...
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.Reflection.Schema.Table.#ctor(System.Type)">
+ <summary>
+ 从数据类型之中直接创建``schema``对象
+ </summary>
+ <param name="schema"></param>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.Reflection.Schema.Table.#ctor(System.Collections.Generic.Dictionary{System.String,Oracle.LinuxCompatibility.MySQL.Reflection.Schema.Field})">
+ <summary>
+ 这里不进行反射解析，直接使用已经存在的数据进行数据表模型的构造
+ </summary>
+ <param name="databaseFields"></param>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.Reflection.Schema.Table.__indexing(System.String,System.Reflection.PropertyInfo,System.Reflection.PropertyInfo[])">
+ <summary>
+ Indexing from the primary key attributed field.
+ </summary>
+ <param name="Index2"></param>
+ <param name="Indexproperty2"></param>
+ <param name="ItemProperty"></param>
+ <remarks></remarks>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.Reflection.Schema.Table.GetTableName(System.Type)">
+ <summary>
+ 使用这个函数从类型的元数据之中解析出数据库表名
+ </summary>
+ <param name="type"></param>
+ <returns></returns>
+</member>
+<member name="T:Oracle.LinuxCompatibility.MySQL.Reflection.SQL.CreateTableSQL">
+ <summary>
+ Generate the CREATE TABLE sql of the target table schema class object.
+ (生成目标数据表模式的"CREATE TABLE" sql语句)
+ </summary>
+ <remarks>
+ Example SQL:
+ 
+ CREATE  TABLE `Table_Name` (
+   `Field1` INT UNSIGNED ZEROFILL NOT NULL DEFAULT 4444 ,
+   `Field2` VARCHAR(45) BINARY NOT NULL DEFAULT '534534' ,
+   `Field3` INT UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT ,
+  PRIMARY KEY (`Field1`, `Field2`, `Field3`) ,
+  UNIQUE INDEX `Field1_UNIQUE` (`Field1` ASC) ,
+  UNIQUE INDEX `Field2_UNIQUE` (`Field2` ASC) );
+ </remarks>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.Reflection.SQL.CreateTableSQL.FromSchema(Oracle.LinuxCompatibility.MySQL.Reflection.Schema.Table)">
+ <summary>
+ Generate the 'CREATE TABLE' sql command.
+ (生成'CREATE TABLE' sql命令)
+ </summary>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="T:Oracle.LinuxCompatibility.MySQL.Reflection.SQL.Delete`1">
+ <summary>
+ 
+ </summary>
+ <typeparam name="Schema"></typeparam>
+ <remarks>
+ Example SQL:
+ 
+ DELETE FROM `TableName` WHERE `IndexFieldName`='value';
+ </remarks>
+</member>
+<member name="T:Oracle.LinuxCompatibility.MySQL.Reflection.SQL.Insert`1">
+ <summary>
+ 
+ </summary>
+ <remarks>
+ Example SQL:
+ 
+ INSERT INTO `TableName` (`Field1`, `Field2`, `Field3`) VALUES ('1', '1', '1');
+ </remarks>
+</member>
+<member name="F:Oracle.LinuxCompatibility.MySQL.Reflection.SQL.Insert`1.InsertSQL">
+ <summary>
+ INSERT INTO `TableName` (`Field1`, `Field2`, `Field3`, ...) VALUES ('{0}', '{1}', '{2}', ...);
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.Reflection.SQL.Insert`1.Generate(`0)">
+ <summary>
+ Generate the INSERT sql command of the instance of the specific type of 'Schema'.
+ (生成特定的'Schema'数据类型实例的 'INSERT' sql命令)
+ </summary>
+ <param name="value">The instance to generate this command of type 'Schema'</param>
+ <returns>INSERT sql text</returns>
+ <remarks></remarks>
+</member>
+<member name="T:Oracle.LinuxCompatibility.MySQL.Reflection.SQL.NamespaceDoc">
+ <summary>
+ Data model object for generates mysql statements.
+ </summary>
+</member>
+<member name="F:Oracle.LinuxCompatibility.MySQL.Reflection.SQL.SQL._schemaInfo">
+ <summary>
+ The table schema of the sql generation target.(用于生成SQL语句的表结构属性)
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="T:Oracle.LinuxCompatibility.MySQL.Reflection.SQL.SqlGenerateMethods">
+ <summary>
+ 请注意，Where语句之中的变量总是<see cref="P:Oracle.LinuxCompatibility.MySQL.Reflection.Schema.Table.Index"></see>属性值中的值
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.Reflection.SQL.SqlGenerateMethods.GenerateInsertSql(Oracle.LinuxCompatibility.MySQL.Reflection.Schema.Table,System.Boolean)">
+ <summary>
+ 
+ </summary>
+ <param name="Schema"></param>
+ <param name="trimAutoIncrement">
+ 假若这个参数值为真的话，则表示假若有列是被标记为自动增长的，则不需要在INSERT_SQL之中在添加他的值了
+ </param>
+ <returns></returns>
+ 
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.Reflection.SQL.SqlGenerateMethods.__fields(Oracle.LinuxCompatibility.MySQL.Reflection.Schema.Table,System.Boolean)">
+ <summary>
+ 返回字段的名称列表
+ </summary>
+ <param name="schema"></param>
+ <param name="trimAutoIncrement"></param>
+ <returns></returns>
+</member>
+<member name="T:Oracle.LinuxCompatibility.MySQL.Reflection.SQL.Update`1">
+ <summary>
+ 
+ </summary>
+ <remarks>
+ Example SQL:
+ 
+ UPDATE `TableName` 
+ SET `Field1`='value', `Field2`='value' 
+ WHERE `IndexField`='index';
+ </remarks>
+</member>
+<member name="F:Oracle.LinuxCompatibility.MySQL.Reflection.SQL.Update`1.UpdateSQL">
+ <summary>
+ 
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:Oracle.LinuxCompatibility.MySQL.Scripting.Extensions.DateTimePattern">
+ <summary>
+ 2018-04-24 03:15:21
+ </summary>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.Scripting.Extensions.ToMySqlDateTimeString(System.DateTime)">
+ <summary>
+ 可能由于操作系统的语言或者文化的差异，直接使用<see cref="T:System.DateTime"></see>的ToString方法所得到的字符串可能会在一些环境配置之下
+ 无法正确的插入MySQL数据库之中，所以需要使用本方法在将对象实例进行转换为SQL语句的时候进行转换为字符串
+ </summary>
+ <param name="value"></param>
+ <returns></returns>
+ <remarks></remarks>
+ 
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.Scripting.Extensions.EnsureLimit1(System.String)">
+ <summary>
+ 确保``SELECT`` SQL语句是以``LIMIT 1``截尾的
+ </summary>
+ <param name="SQL">已经被Trim过了的</param>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.Scripting.Extensions.DropTableSQL``1">
+ <summary>
+ ``DROP TABLE IF EXISTS `{<see cref="M:Oracle.LinuxCompatibility.MySQL.Reflection.Schema.Table.GetTableName(System.Type)"/>(GetType(<typeparamref name="T"/>))}`;``
+ </summary>
+ <typeparam name="T"></typeparam>
+ <returns></returns>
+ 
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.Scripting.Extensions.MySqlUnescaping(System.String)">
+ <summary>
+ 空值会返回空字符串
+ </summary>
+ <param name="value"></param>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.Scripting.Extensions.FullTextEscape(System.String)">
+ <summary>
+ Removes the special operator character from the query text for avoid the unexpected query output
+ </summary>
+ <param name="value"></param>
+ <returns></returns>
+ 
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.Scripting.Extensions.MySqlEscaping(System.String,System.Boolean)">
+ <summary>
+ 处理字符串之中的特殊字符的转义。(这是一个安全的函数，如果输入的字符串为空，则这个函数会输出空字符串)
+ </summary>
+ <param name="value"></param>
+ <param name="like">
+ % will not be escaped when do like pattern search
+ </param>
+ <returns></returns>
+ 
+</member>
+<member name="T:Oracle.LinuxCompatibility.MySQL.ServerApp.MemoryCache`1">
+ <summary>
+ For the biological database, due to the reason of very few UPDATE/INSERT query but with 
+ more active SELECT query. So that a memory cache is important for the improvements 
+ on the database query performance.
+ (这个缓存对象对于不经常更新数据，即只执行SELECT查询操作的数据表非常有效
+ 至少对于生物信息学的数据库而言，由于更新数据很缓慢，大部分时候都只是执行SELECT查询操作，所以非常好用)
+ </summary>
+ <typeparam name="T"></typeparam>
+</member>
+<member name="F:Oracle.LinuxCompatibility.MySQL.ServerApp.MemoryCache`1.__index">
+ <summary>
+ 这个索引是由用户手动指定的
+ </summary>
+</member>
+<member name="F:Oracle.LinuxCompatibility.MySQL.ServerApp.MemoryCache`1.__fields">
+ <summary>
+ ``propertyName -> FieldName``
+ </summary>
+</member>
+<member name="F:Oracle.LinuxCompatibility.MySQL.ServerApp.MemoryCache`1.sizeOf">
+ <summary>
+ 用于计算内存的使用量，进行自动缓存清除的算法
+ </summary>
+</member>
+<member name="F:Oracle.LinuxCompatibility.MySQL.ServerApp.MemoryCache`1.hits">
+ <summary>
+ 会对查询进行统计，定时进行排序，这个哈希表的键名和<see cref="F:Oracle.LinuxCompatibility.MySQL.ServerApp.MemoryCache`1.__cache"/>哈希表的键名是一样的
+ </summary>
+</member>
+<member name="F:Oracle.LinuxCompatibility.MySQL.ServerApp.MemoryCache`1.currentSize">
+ <summary>
+ 估算出来的当前这个缓存对象的内存占用量
+ </summary>
+</member>
+<member name="P:Oracle.LinuxCompatibility.MySQL.ServerApp.MemoryCache`1.MemorySizeThreshold">
+ <summary>
+ 当这个缓存对象的内存占用超过这个阈值之后就会开始进行自动内存清理
+ 将<see cref="F:Oracle.LinuxCompatibility.MySQL.ServerApp.MemoryCache`1.hits"/>哈希表之中的较少hits的对象删除
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Oracle.LinuxCompatibility.MySQL.ServerApp.MemoryCache`1.MeasureCounts">
+ <summary>
+ 默认是执行了2048次查询之后进行一次缓存内存计算，判断是否需要进行内存清理
+ </summary>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.ServerApp.MemoryCache`1.#ctor(Oracle.LinuxCompatibility.MySQL.Uri.ConnectionUri,System.String[])">
+ <summary>
+ 
+ </summary>
+ <param name="cnn"></param>
+ <param name="index$">属性名列表，请尽量使用``NameOf``操作符来获取</param>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.ServerApp.MemoryCache`1.push(System.String)">
+ <summary>
+ 进行hit次数的统计以及累加查询次数
+ </summary>
+ <param name="key$"></param>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.ServerApp.MemoryCache`1.cleanup">
+ <summary>
+ Auto cleanup cache memory
+ </summary>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.ServerApp.MemoryCache`1.__indexKey(`0)">
+ <summary>
+ 对从数据库之中读取回来的对象建立缓存之中的索引
+ </summary>
+ <param name="o"></param>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.ServerApp.MemoryCache`1.Query(System.String,System.Boolean)">
+ <summary>
+ SQL语句直接用作为key
+ </summary>
+ <param name="SQL$"></param>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.ServerApp.MemoryCache`1.Clone(`0[])">
+ <summary>
+ 当不进行Clone操作的话，会由于Class引用的缘故导致Cache的数据也被修改，所以在这里使用这个函数来避免这种情况的发生
+ </summary>
+ <param name="array"></param>
+ <returns></returns>
+</member>
+<member name="T:Oracle.LinuxCompatibility.MySQL.ServerApp.MemorySize`1">
+ <summary>
+ Try measure the specifci SQL table object its memory size. 
+ Probably using for the automaticaly cache memory cleanup algorightm.
+ (分析某一个表实体对象的内存占用大小)
+ </summary>
+ <typeparam name="T"></typeparam>
+</member>
+<member name="P:Oracle.LinuxCompatibility.MySQL.ServerApp.MemorySize`1.Schema">
+ <summary>
+ ORM表对象的所有可读的属性集合
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Oracle.LinuxCompatibility.MySQL.ServerApp.MemorySize`1.Measuring(`0)">
+ <summary>
+ ```vbnet
+ Dim sizeOf As New MemorySize(Of T)
+ Dim size&amp; = sizeOf(obj)
+ ```
+ </summary>
+ <param name="o"></param>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.ServerApp.MemorySize`1.MeasureSize(`0)">
+ <summary>
+ 因为对于<see cref="T:Oracle.LinuxCompatibility.MySQL.MySQLTable"/>而言，字段都是简单的初始类型，所以进行内存大小的计算会非常简单
+ </summary>
+ <param name="o"></param>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.Workbench.Dump.RestoreWorker.ImportsData(System.String,System.String)">
+ <summary>
+ 会需要动态编译
+ </summary>
+ <param name="dumpDir"></param>
+ <returns></returns>
+</member>
+</members>
+</doc>
