@@ -6891,7 +6891,7 @@ to take away yo [rest of string was truncated]&quot;;.
  <param name="envir"></param>
  <returns></returns>
 </member>
-<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.file.file(System.String,System.IO.FileMode,System.Boolean)">
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.file.file(System.String,System.IO.FileMode,System.Boolean,Microsoft.VisualBasic.ApplicationServices.IFileSystemEnvironment)">
  <summary>
  Functions to create, open and close connections, i.e., 
  "generalized files", such as possibly compressed files, 
@@ -6901,6 +6901,9 @@ to take away yo [rest of string was truncated]&quot;;.
  <param name="open">
  character string. A description of how to open the connection (if it should be opened initially). 
  See section ‘Modes’ for possible values.
+ </param>
+ <param name="repo">
+ this function will open an internal block stream if this repository reference has been specificed.
  </param>
  <returns></returns>
  <remarks>
@@ -12298,6 +12301,16 @@ to take away yo [rest of string was truncated]&quot;;.
  an error <see cref="T:SMRUCC.Rsharp.Runtime.Components.Message"/> will be returns if the conversion error happends
  </returns>
 </member>
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Object.Converts.RCType.castUnsure(System.Object,System.Type,System.Type,SMRUCC.Rsharp.Runtime.Environment)">
+ <summary>
+ Make ctype function cache at here based on the type assigned rule
+ </summary>
+ <param name="obj"></param>
+ <param name="objType"></param>
+ <param name="type"></param>
+ <param name="env"></param>
+ <returns></returns>
+</member>
 <member name="M:SMRUCC.Rsharp.Runtime.Internal.Object.reflector.GetStructure(System.Object,SMRUCC.Rsharp.Runtime.GlobalEnvironment,System.String,System.Int32)">
  <summary>
  a helper method for view data structure of the given object
@@ -14728,6 +14741,12 @@ to take away yo [rest of string was truncated]&quot;;.
 <member name="M:SMRUCC.Rsharp.Development.Components.tqdmList.getKeys">
  <summary>
  wrap tqdm from this function
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.Rsharp.Development.Components.tqdmList.pullData">
+ <summary>
+ populate of the data collection with tqdm progress bar
  </summary>
  <returns></returns>
 </member>

@@ -27079,6 +27079,11 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <returns>The Pearson of the sequence of values, or null if the source sequence is
  empty or contains only values that are null.</returns>
 </member>
+<member name="T:Microsoft.VisualBasic.Math.Statistics.Linq.EnumerableStatsVariance">
+ <summary>
+ make sqrt of the variance result will be the standard deviation
+ </summary>
+</member>
 <member name="T:Microsoft.VisualBasic.Math.Trigonometric">
  <summary>
  三角函数拓展模块
@@ -36987,6 +36992,16 @@ to take away yo [rest of string was truncated]&quot;;.
  </summary>
  <param name="obj"></param>
  <returns>函数找不到会返回Nothing</returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Scripting.Runtime.ImplictCType.GetCTypeOperator(System.Type,System.Type)">
+ <summary>
+ get ctype operator function for cast <paramref name="fromType"/> to <paramref name="ctypeTo"/>.
+ </summary>
+ <param name="fromType"></param>
+ <param name="ctypeTo"></param>
+ <returns>
+ this function returns nothing if the ctype operator is not found
+ </returns>
 </member>
 <member name="T:Microsoft.VisualBasic.Scripting.Runtime.NumberConversionRoutines">
  <summary>
