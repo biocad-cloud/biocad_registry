@@ -29,12 +29,13 @@ Namespace My
         Public Shared ReadOnly Property biocad_registry As biocad_registry.biocad_registry
 
         Public Shared Function Load() As Boolean
+            Dim config As Settings = Settings.Load
             Dim mysqli As New ConnectionUri With {
-                .Database = "cad_registry",
-                .IPAddress = "localhost",
-                .Password = 123456,
-                .Port = 3306,
-                .User = "root"
+                .Database = config.dbname,
+                .IPAddress = config.host,
+                .Password = config.password,
+                .Port = config.port,
+                .User = config.user
             }
 
             _biocad_registry = New biocad_registry.biocad_registry(mysqli)
