@@ -32,4 +32,10 @@ Public Class FormMain
     Private Sub SettingsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SettingsToolStripMenuItem.Click
         Call New FormSettings().ShowDialog()
     End Sub
+
+    Private Sub MoleculesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MoleculesToolStripMenuItem.Click
+        Dim view As New FormMoleculeTable
+        view.MdiParent = Me
+        view.Show()
+    End Sub
 End Class
