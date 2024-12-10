@@ -30,6 +30,6 @@ Public Class FormMain
     End Sub
 
     Private Sub SettingsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SettingsToolStripMenuItem.Click
-
+        Call New FormSettings().ShowDialog()
     End Sub
 End Class

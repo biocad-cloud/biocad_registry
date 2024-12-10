@@ -38384,7 +38384,7 @@ to take away yo [rest of string was truncated]&quot;;.
  <returns></returns>
  
 </member>
-<member name="M:Microsoft.VisualBasic.Serialization.JSON.JsonContract.LoadJsonFile``1(System.String,System.Text.Encoding,System.Boolean,System.Collections.Generic.IEnumerable{System.Type})">
+<member name="M:Microsoft.VisualBasic.Serialization.JSON.JsonContract.LoadJsonFile``1(System.String,System.Text.Encoding,System.Boolean,System.Collections.Generic.IEnumerable{System.Type},System.Boolean)">
  <summary>
  Create object instance from a json text of a given text file. 
  </summary>
