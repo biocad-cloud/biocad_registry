@@ -4,7 +4,7 @@ Imports Oracle.LinuxCompatibility.MySQL.Reflection.DbAttributes
 
 Public Class FormMoleculeTable
 
-    Dim page As Integer
+    Dim page As Integer = 1
     Dim page_size As Integer = 5000
 
     Private Function GetVocabulary() As Integer
@@ -75,12 +75,17 @@ Public Class FormMoleculeTable
 
     Private Sub FormMoleculeTable_Load(sender As Object, e As EventArgs) Handles Me.Load
         ToolStripComboBox1.SelectedIndex = 0
+        LoadPage()
+    End Sub
+
+    Private Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
+        LoadPage()
     End Sub
 End Class
 
 Public Class MoleculeData
 
-    <DatabaseField> Public ReadOnly molecule_id As UInteger
+    <DatabaseField> Public Property molecule_id As UInteger
     <DatabaseField> Public Property xref_id As String
     <DatabaseField> Public Property name As String
     <DatabaseField> Public Property formula As String
