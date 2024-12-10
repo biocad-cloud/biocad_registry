@@ -280,6 +280,12 @@ Oracle.LinuxCompatibility.LibMySQL
  </summary>
  <returns></returns>
 </member>
+<member name="P:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.Model.GetLastError">
+ <summary>
+ get the clr exception error data for the last sql query
+ </summary>
+ <returns></returns>
+</member>
 <member name="P:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.Model.GetLastErrorMessage">
  <summary>
  get the error message of the last <see cref="T:System.Exception"/>.
@@ -455,6 +461,7 @@ Oracle.LinuxCompatibility.LibMySQL
  </summary>
  <typeparam name="T"></typeparam>
  <returns></returns>
+ 
 </member>
 <member name="M:Oracle.LinuxCompatibility.MySQL.IDatabase.CreateModel(System.String)">
  <summary>
@@ -462,6 +469,7 @@ Oracle.LinuxCompatibility.LibMySQL
  </summary>
  <param name="name">the table name</param>
  <returns></returns>
+ 
 </member>
 <member name="T:Oracle.LinuxCompatibility.MySQL.MySqli">
  <summary>

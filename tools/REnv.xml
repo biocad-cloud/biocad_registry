@@ -2150,8 +2150,11 @@ to [rest of string was truncated]&quot;;.
 </member>
 <member name="P:SMRUCC.Rsharp.Interpreter.RInterpreter.globalEnvir">
  <summary>
- Global runtime environment.(全局环境)
+ Global runtime environment.
  </summary>
+ <remarks>
+ (全局环境)
+ </remarks>
 </member>
 <member name="P:SMRUCC.Rsharp.Interpreter.RInterpreter.debug">
  <summary>
@@ -3560,6 +3563,60 @@ to take away yo [rest of string was truncated]&quot;;.
  </summary>
  <returns></returns>
 </member>
+<member name="T:SMRUCC.Rsharp.Runtime.SymbolSet">
+ <summary>
+ A pool set of the R# runtime symbols
+ </summary>
+</member>
+<member name="P:SMRUCC.Rsharp.Runtime.SymbolSet.SymbolNames">
+ <summary>
+ get all variable symbol names inside current symbol list
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.Rsharp.Runtime.SymbolSet.#ctor(SMRUCC.Rsharp.Runtime.SymbolSet)">
+ <summary>
+ make symbol list copy
+ </summary>
+ <param name="copy"></param>
+</member>
+<member name="M:SMRUCC.Rsharp.Runtime.SymbolSet.CheckSymbolExists(System.String)">
+ <summary>
+ Check of the given symbol name is existsed inside current symbols collection
+ </summary>
+ <param name="name"></param>
+ <returns></returns>
+ 
+</member>
+<member name="M:SMRUCC.Rsharp.Runtime.SymbolSet.Add(SMRUCC.Rsharp.Runtime.Components.Symbol)">
+ <summary>
+ Add a new symbol into current symbol list
+ </summary>
+ <param name="symbol"></param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.Rsharp.Runtime.SymbolSet.Add(System.String,SMRUCC.Rsharp.Runtime.Components.Symbol)">
+ <summary>
+ 
+ </summary>
+ <param name="name"></param>
+ <param name="symbol"></param>
+ <returns></returns>
+ <remarks>
+ this add function may cause the in-consist name mapping problem. due to the 
+ reason of key name parameter value maybe different with the 
+ <see cref="P:SMRUCC.Rsharp.Runtime.Components.Symbol.name"/> value.
+ </remarks>
+</member>
+<member name="M:SMRUCC.Rsharp.Runtime.SymbolSet.FindSymbol(System.String)">
+ <summary>
+ try get value from the symbol set dictionary object
+ </summary>
+ <param name="name">a given symbol name to find associated symbol value</param>
+ <returns>
+ this function returns nothing if the given symbol name is not found insdie this collection
+ </returns>
+</member>
 <member name="M:SMRUCC.Rsharp.Runtime.Extensions.TryCatch(System.Func{System.Object},System.Boolean)">
  <summary>
  If exception happens, then this function will catch 
@@ -4446,6 +4503,13 @@ to take away yo [rest of string was truncated]&quot;;.
  non-strict cbind invoke.
  </param>
  <param name="env"></param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.base.rowwise(SMRUCC.Rsharp.Runtime.Internal.Object.dataframe,System.Boolean,SMRUCC.Rsharp.Runtime.Environment)">
+ <summary>
+ dataframe to rows
+ </summary>
+ <param name="x"></param>
  <returns></returns>
 </member>
 <member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.base.t(SMRUCC.Rsharp.Runtime.Internal.Object.dataframe,System.Boolean,SMRUCC.Rsharp.Runtime.Environment)">
@@ -8812,6 +8876,28 @@ to take away yo [rest of string was truncated]&quot;;.
  efficient, and provided mostly for didactical reasons.
  </remarks>
 </member>
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.math.lcm_r(System.Object,System.Object,SMRUCC.Rsharp.Runtime.Environment)">
+ <summary>
+ Function to calculate the Least Common Multiple (LCM)
+ </summary>
+ <param name="a"></param>
+ <param name="b"></param>
+ <param name="env"></param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.math.root(System.Object,System.Int32,System.Double)">
+ <summary>
+ finds root of specific degree of number.
+ </summary>
+ <param name="x">should be a numeric vector</param>
+ <param name="n">
+ Degree of root.
+ </param>
+ <param name="eps">
+ Precision with which the calculations are performed. value should be in range (0,1).
+ </param>
+ <returns>Root of number.</returns>
+</member>
 <member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.ranking.rank(System.Double[],System.Boolean,Microsoft.VisualBasic.Math.Correlations.Ranking.Strategies)">
  <summary>
  ### Sample Ranks
@@ -10945,6 +11031,12 @@ to take away yo [rest of string was truncated]&quot;;.
  <param name="index"></param>
  <returns></returns>
 </member>
+<member name="P:SMRUCC.Rsharp.Runtime.Internal.Object.dataframe.rowViews">
+ <summary>
+ debug view of this dataframe object in rows, debug used only.
+ </summary>
+ <returns></returns>
+</member>
 <member name="M:SMRUCC.Rsharp.Runtime.Internal.Object.dataframe.#ctor(SMRUCC.Rsharp.Runtime.Internal.Object.dataframe)">
  <summary>
  do data clone
@@ -12072,7 +12164,7 @@ to take away yo [rest of string was truncated]&quot;;.
  <summary>
  Cast the given vector or list to integer type
  </summary>
- <param name="obj"></param>
+ <param name="x"></param>
  <returns></returns>
 </member>
 <member name="M:SMRUCC.Rsharp.Runtime.Internal.Object.Converts.RConversion.asDouble(System.Object,SMRUCC.Rsharp.Runtime.Environment)">
@@ -14178,6 +14270,12 @@ to take away yo [rest of string was truncated]&quot;;.
  </summary>
  <returns></returns>
 </member>
+<member name="P:SMRUCC.Rsharp.Runtime.Components.Symbol.readonly">
+ <summary>
+ current symbol value is constant lock binding in the environment?
+ </summary>
+ <returns></returns>
+</member>
 <member name="P:SMRUCC.Rsharp.Runtime.Components.Symbol.typeId">
  <summary>
  <see cref="P:SMRUCC.Rsharp.Runtime.Interop.RType.fullName"/>, key for <see cref="P:SMRUCC.Rsharp.Runtime.GlobalEnvironment.types"/>
@@ -14443,10 +14541,15 @@ to take away yo [rest of string was truncated]&quot;;.
  <typeparam name="TOut"></typeparam>
  <param name="x"></param>
  <param name="y"></param>
- <param name="[do]"></param>
+ <param name="do"></param>
  <returns>
  error message or array of <typeparamref name="TOut"/>.
  </returns>
+ <remarks>
+ the <paramref name="do"/> delegate function should be used for measure two scalar element value:
+ 
+ op_evaluator = function(a,b,env) {...}
+ </remarks>
 </member>
 <member name="M:SMRUCC.Rsharp.Runtime.Vectorization.Core.VectorAlignment(System.Array[])">
  <summary>

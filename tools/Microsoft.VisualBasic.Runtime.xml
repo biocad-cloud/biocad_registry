@@ -260,6 +260,22 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="flags"></param>
  <returns></returns>
 </member>
+<member name="T:Microsoft.VisualBasic.My.JavaScript.IJavaScriptObjectAccessor">
+ <summary>
+ Interface helper for get value by name
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.My.JavaScript.IJavaScriptObjectAccessor.Accessor(System.String)">
+ <summary>
+ get member value by name
+ </summary>
+ <param name="name">
+ the member name, could be property name or field name
+ </param>
+ <returns>
+ the object member value
+ </returns>
+</member>
 <member name="F:Microsoft.VisualBasic.My.JavaScript.MemberAccessorResult.Undefined">
  <summary>
  Member is not exists in current javascript object
@@ -286,6 +302,12 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  </summary>
  <returns></returns>
 </member>
+<member name="P:Microsoft.VisualBasic.My.JavaScript.JavaScriptObject.length">
+ <summary>
+ the size of the member collection in this javascript object
+ </summary>
+ <returns></returns>
+</member>
 <member name="P:Microsoft.VisualBasic.My.JavaScript.JavaScriptObject.Item(System.String)">
  <summary>
  只针对Public的属性或者字段有效
@@ -298,10 +320,23 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  如果存在无参数的函数，则也会被归类为只读属性？
  </summary>
 </member>
-<member name="M:Microsoft.VisualBasic.My.JavaScript.JavaScriptObject.GetGenericJson">
+<member name="M:Microsoft.VisualBasic.My.JavaScript.JavaScriptObject.GetGenericJSON">
  <summary>
  populate all members data
  </summary>
+ <returns>
+ Apply for create json in dynamics
+ </returns>
+ <remarks>
+ only works for the object in primitive type
+ </remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.My.JavaScript.JavaScriptObject.CreateDynamicObject(System.String[],System.Object[])">
+ <summary>
+ A wrapper for <see cref="M:Microsoft.VisualBasic.DynamicType.Create"/>
+ </summary>
+ <param name="names"></param>
+ <param name="values"></param>
  <returns></returns>
 </member>
 <member name="P:Microsoft.VisualBasic.My.JavaScript.JavaScriptValue.Accessor">
@@ -321,6 +356,17 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  is scalar constant literal value?
  </summary>
  <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.My.JavaScript.JavaScriptValue.SetValue(System.Object)">
+ <summary>
+ proxy of set value to slot or clr object member
+ </summary>
+ <param name="value"></param>
+ <remarks>
+ if current value proxy is literal value, then this method just update the 
+ slot value, or set member value via the reflection operation.
+ </remarks>
+ 
 </member>
 <member name="M:Microsoft.VisualBasic.My.JavaScript.JavaScriptValue.CheckLiteral">
  <summary>
@@ -7861,6 +7907,14 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  </param>
  <returns></returns>
 </member>
+<member name="M:Microsoft.VisualBasic.CommandLine.PipelineProcess.CheckProcessStreamOpen(System.Diagnostics.Process@,System.IO.StreamReader@)">
+ <summary>
+ A common wrapper for check of the sub-process stdout stream is avaiable?
+ </summary>
+ <param name="p"></param>
+ <param name="reader"></param>
+ <returns></returns>
+</member>
 <member name="M:Microsoft.VisualBasic.CommandLine.PipelineProcess.CreatePipeline(System.String,System.String,System.Boolean,System.String)">
  <summary>
  Create a new process
@@ -9979,7 +10033,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
 </member>
 <member name="M:Microsoft.VisualBasic.ComponentModel.Algorithm.BinaryTree.AVLClusterTree`1.Search(`0)">
  <summary>
- 
+ Make key search and then populate all hits cluster member
  </summary>
  <param name="key"></param>
  <returns></returns>
@@ -10865,7 +10919,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="target"></param>
  <returns></returns>
 </member>
-<member name="M:Microsoft.VisualBasic.ComponentModel.DataSourceModel.IProperty.SetValue(System.Object,System.Object)">
+<member name="M:Microsoft.VisualBasic.ComponentModel.DataSourceModel.IProperty.SetValue(System.Object@,System.Object)">
  <summary>
  Set <paramref name="value"/> to the property of <paramref name="target"/> object.
  </summary>
@@ -10934,6 +10988,13 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <remarks>
  has no <see cref="P:Microsoft.VisualBasic.ComponentModel.DataSourceModel.NamedCollection`1.name"/> andalso no <see cref="P:Microsoft.VisualBasic.ComponentModel.DataSourceModel.NamedCollection`1.value"/>
  </remarks>
+</member>
+<member name="P:Microsoft.VisualBasic.ComponentModel.DataSourceModel.NamedCollection`1.Item(System.Int32)">
+ <summary>
+ get/set value in a gvien offset position of the data array.
+ </summary>
+ <param name="index"></param>
+ <returns></returns>
 </member>
 <member name="P:Microsoft.VisualBasic.ComponentModel.DataSourceModel.NamedCollection`1.Length">
  <summary>
@@ -11345,7 +11406,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  </summary>
  <returns></returns>
 </member>
-<member name="M:Microsoft.VisualBasic.ComponentModel.DataSourceModel.SchemaMaps.BindProperty`1.SetValue(System.Object,System.Object)">
+<member name="M:Microsoft.VisualBasic.ComponentModel.DataSourceModel.SchemaMaps.BindProperty`1.SetValue(System.Object@,System.Object)">
  <summary>
  Sets the property value of a specified object with optional index values for
  index properties.
@@ -12007,6 +12068,12 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="autoCastEnum">
  and also treate the enum type as primitive value?(enum is integer)
  </param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.ComponentModel.DataSourceModel.DataFramework.GetPrimitiveTypes">
+ <summary>
+ Enumerates all pre-defined clr runtime primitive types.
+ </summary>
  <returns></returns>
 </member>
 <member name="M:Microsoft.VisualBasic.ComponentModel.DataSourceModel.DataFramework.IsCollection``1(System.Type)">
@@ -13744,7 +13811,10 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <typeparam name="T">Unique identifier provider <see cref="P:Microsoft.VisualBasic.ComponentModel.DataSourceModel.Repository.IKeyedEntity`1.Key"/></typeparam>
  <param name="source"></param>
  <returns></returns>
- 
+ <remarks>
+ 20241125
+ NOTE: the generated dictionary is a sort dictionary, keys will be re-ordered!
+ </remarks>
 </member>
 <member name="M:Microsoft.VisualBasic.ComponentModel.Collection.KeyValuePairExtensions.FlatTable``1(Microsoft.VisualBasic.ComponentModel.Collection.Dictionary{Microsoft.VisualBasic.ComponentModel.DataSourceModel.NamedValue{``0}})">
  <summary>
@@ -17155,6 +17225,15 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  translate to html color string.
  </remarks>
  
+</member>
+<member name="M:Microsoft.VisualBasic.Imaging.HexColor.ConvertToRbg(System.String)">
+ <summary>
+ Parse html color code as rgb color
+ </summary>
+ <param name="HexColor"></param>
+ <returns>
+ this function will returns <see cref="P:System.Drawing.Color.Black"/> if the given html color string is empty.
+ </returns>
 </member>
 <member name="M:Microsoft.VisualBasic.Imaging.HexColor.OLE(System.String)">
  <summary>
@@ -20802,6 +20881,14 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="list"></param>
  <returns></returns>
 </member>
+<member name="M:Microsoft.VisualBasic.ListExtensions.PopFirst``1(System.Collections.Generic.List{``0}@)">
+ <summary>
+ Remove the first element from the list and then returns this removed element.
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="list"></param>
+ <returns></returns>
+</member>
 <member name="T:Microsoft.VisualBasic.VectorExtensions">
  <summary>
  Extension methods for the .NET object sequence
@@ -20838,11 +20925,14 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
 </member>
 <member name="M:Microsoft.VisualBasic.VectorExtensions.Add``1(``0[]@,``0)">
  <summary>
- Dynamics add a element into the target array.(注意：不推荐使用这个函数来频繁的向数组中添加元素，这个函数会频繁的分配内存，效率非常低)
+ Dynamics add a element into the target array.
  </summary>
  <typeparam name="T"></typeparam>
  <param name="vector"></param>
  <param name="value"></param>
+ <remarks>
+ (注意：不推荐使用这个函数来频繁的向数组中添加元素，这个函数会频繁的分配内存，效率非常低)
+ </remarks>
 </member>
 <member name="M:Microsoft.VisualBasic.VectorExtensions.Add``1(``0[]@,System.Collections.Generic.IEnumerable{``0})">
  <summary>
@@ -20854,11 +20944,14 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
 </member>
 <member name="M:Microsoft.VisualBasic.VectorExtensions.Add``1(``0[]@,``0[])">
  <summary>
- Add given elements into an array object.(会自动跳过空集合，这个方法是安全的)
+ Add given elements into an array object.
  </summary>
  <typeparam name="T"></typeparam>
  <param name="vector"></param>
  <param name="value"></param>
+ <remarks>
+ (会自动跳过空集合，这个方法是安全的)
+ </remarks>
 </member>
 <member name="M:Microsoft.VisualBasic.VectorExtensions.Append``1(``0[],System.Collections.Generic.IEnumerable{``0})">
  <summary>
@@ -20901,12 +20994,15 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
 </member>
 <member name="M:Microsoft.VisualBasic.VectorExtensions.Delete``1(``0[],System.Int32)">
  <summary>
- Removes array element at index.(请注意，这个函数并不会修改原来的数组，而是创建一个新的拷贝)
+ Removes array element at index.
  </summary>
  <typeparam name="T"></typeparam>
  <param name="vector"></param>
- <param name="index%"></param>
+ <param name="index"></param>
  <returns></returns>
+ <remarks>
+ (请注意，这个函数并不会修改原来的数组，而是创建一个新的拷贝)
+ </remarks>
 </member>
 <member name="M:Microsoft.VisualBasic.VectorExtensions.Delete``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{System.Int32})">
  <summary>
@@ -24361,7 +24457,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  Removes the last element in the List object.
  </summary>
  <typeparam name="T"></typeparam>
- <param name="dotNETlist"></param>
+ <param name="clrList"></param>
  <returns></returns>
  <remarks>
  (这个拓展函数同时兼容.NET框架的list类型以及sciBASIC之中的list类型)
@@ -24371,6 +24467,14 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <summary>
  Removes the last element in the List object.
  (这个拓展函数同时兼容.NET框架的list类型以及sciBASIC之中的<see cref="T:Microsoft.VisualBasic.Language.List`1"/>类型)
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="list"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Extensions.RemoveFirst``1(Microsoft.VisualBasic.Language.List{``0}@)">
+ <summary>
+ Removes the first element and then returns the list
  </summary>
  <typeparam name="T"></typeparam>
  <param name="list"></param>
@@ -25953,6 +26057,42 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  如果参数小于范围，该函数将返回最小数值。
  </remarks>
 </member>
+<member name="M:Microsoft.VisualBasic.Math.VBMath.LeastCommonMultiple(System.Int32,System.Int32)">
+ <summary>
+ Function to calculate the Least Common Multiple (LCM)
+ </summary>
+ <param name="a"></param>
+ <param name="b"></param>
+ <returns></returns>
+ <remarks>
+ 计算最小公倍数
+ </remarks>
+ 
+</member>
+<member name="M:Microsoft.VisualBasic.Math.VBMath.EuclidGcd(System.Int32,System.Int32)">
+ <summary>
+ Method which computes GCD of two numbers using Euclid's algorithm.
+ </summary>
+ <param name="a">First number.</param>
+ <param name="b">Second number.</param>
+ <returns>GCD of source numbers.</returns>
+ <exception cref="T:System.ArgumentOutOfRangeException">Thrown when source numbers are out of range.</exception>
+ <remarks>
+ 计算最大公约数
+ </remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.Math.VBMath.SteinGcd(System.Int32,System.Int32)">
+ <summary>
+ Method which computes GCD of two numbers using Stein's algorithm.
+ </summary>
+ <param name="a">First number.</param>
+ <param name="b">Second number.</param>
+ <returns>GCD of source numbers.</returns>
+ <exception cref="T:System.ArgumentOutOfRangeException">Thrown when source numbers are out of range.</exception>
+ <remarks>
+ 计算最大公约数
+ </remarks>
+</member>
 <member name="M:Microsoft.VisualBasic.Math.VBMath.Log2(System.Double)">
  <summary>
  ``Math.Log(x, newBase:=2)``
@@ -26378,11 +26518,28 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
 </member>
 <member name="M:Microsoft.VisualBasic.Math.NumeralSystem.TranslateDecimal(System.Int32,System.Char[])">
  <summary>
- 将十进制数转换到另外的一个数进制
+ A helper function for translate decimal number to the number of another kind of custom number system
  </summary>
- <param name="d%"></param>
- <param name="alphas"></param>
+ <param name="d"></param>
+ <param name="alphabets"></param>
  <returns></returns>
+ <remarks>
+ 将十进制数转换到另外的一个数进制
+ </remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.Math.NumeralSystem.FindNthRoot(System.Double,System.Int32,System.Double)">
+ <summary>
+ Method which finds root of specific degree of number.
+ </summary>
+ <param name="number">Source number.</param>
+ <param name="degree">Degree of root.</param>
+ <param name="precision">Precision with which the calculations are performed. value should be in range (0,1).</param>
+ <returns>Root of number.</returns>
+ <exception cref="T:System.ArgumentOutOfRangeException">Thrown when values of degree or precision are out of range.</exception>
+ <exception cref="T:System.ArgumentException">Thrown when root's degree is even for calculation with negative numbers.</exception>
+ <remarks>
+ 开n次方
+ </remarks>
 </member>
 <member name="T:Microsoft.VisualBasic.Math.Parallel.MatrixDotProduct">
  <summary>
@@ -26718,23 +26875,6 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <returns></returns>
  
 </member>
-<member name="T:Microsoft.VisualBasic.Math.RandomRange">
- <summary>
- 针对负数到正数的range随机数，小数位最多精确到1E-4
- </summary>
-</member>
-<member name="M:Microsoft.VisualBasic.Math.RandomRange.GetRandom(System.Double,System.Double,System.Int32,System.Boolean)">
- <summary>
- 
- </summary>
- <param name="from"></param>
- <param name="[to]"></param>
- <param name="INF"></param>
- <param name="forceInit">
- True的时候会通过牺牲性能来强制重新实例化随机数发生器来获取足够的随机
- </param>
- <returns></returns>
-</member>
 <member name="M:Microsoft.VisualBasic.Math.ScaleMaps.TrimRanges(System.Double[],System.Double,System.Double)">
  <summary>
  Trims the data ranges, 
@@ -26788,34 +26928,6 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="data">numeric matrix</param>
  <param name="center">either a logical value or a numeric vector of length equal to the number of columns of x</param>
  <param name="isScale">either a logical value or a numeric vector of length equal to the number of columns of x</param>
- <returns></returns>
-</member>
-<member name="T:Microsoft.VisualBasic.Math.ScientificNotation">
- <summary>
- 科学记数法
- </summary>
-</member>
-<member name="M:Microsoft.VisualBasic.Math.ScientificNotation.PowerLog10(System.Double,System.Int32)">
- <summary>
- 返回零表示比较小的常数
- </summary>
- <param name="x"></param>
- <param name="INF">当位数超过这个值之后将会被判定为非常大或者非常小的一个数</param>
- <returns></returns>
-</member>
-<member name="M:Microsoft.VisualBasic.Math.ScientificNotation.UsingScientificNotation(System.Double,System.Int32)">
- <summary>
- 是否需要科学记数法来格式化？
- </summary>
- <param name="x#"></param>
- <param name="INF%"></param>
- <returns></returns>
-</member>
-<member name="M:Microsoft.VisualBasic.Math.ScientificNotation.FormatScientificNotation(System.Double,System.Int32)">
- <summary>
- 强制格式化为科学记数法
- </summary>
- <param name="decimal%"></param>
  <returns></returns>
 </member>
 <member name="M:Microsoft.VisualBasic.Math.SIMD.Add.f64_op_add_f64_scalar(System.Double[],System.Double)">
@@ -27723,10 +27835,64 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
 </member>
 <member name="T:Microsoft.VisualBasic.DynamicType">
  <summary>
- 
+ Build dynamics clr runtime type
  </summary>
  <remarks>
  https://blog.wedport.co.uk/2020/06/10/generating-c-net-core-classes-at-runtime/
+ </remarks>
+</member>
+<member name="F:Microsoft.VisualBasic.DynamicType.PropertyInfo.Name">
+ <summary>
+ the property name
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.DynamicType.PropertyInfo.PropertyType">
+ <summary>
+ the property data type
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.DynamicType.PropertyInfo.Description">
+ <summary>
+ [optional] the description text for tagged the <see cref="T:System.ComponentModel.DescriptionAttribute"/> value to current property.
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.DynamicType.PropertyInfo.DisplayName">
+ <summary>
+ [optional] the name display string for tagged the <see cref="T:System.ComponentModel.DisplayNameAttribute"/> value to current property.
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.DynamicType.AddDisplayName(System.Reflection.Emit.PropertyBuilder,System.String)">
+ <summary>
+ add <see cref="T:System.ComponentModel.DisplayNameAttribute"/>
+ </summary>
+ <param name="propertyBuilder"></param>
+ <param name="display"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.DynamicType.AddDescription(System.Reflection.Emit.PropertyBuilder,System.String)">
+ <summary>
+ add <see cref="T:System.ComponentModel.DescriptionAttribute"/>
+ </summary>
+ <param name="propertyBuilder"></param>
+ <param name="desc"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.DynamicType.CreateValidSymbolName(System.String)">
+ <summary>
+ A helper function for create a valid symbol name
+ </summary>
+ <param name="key"></param>
+ <returns></returns>
+ 
+</member>
+<member name="M:Microsoft.VisualBasic.DynamicType.Create(System.Collections.Generic.Dictionary{System.String,System.Object})">
+ <summary>
+ Create dynamics object in debug view
+ </summary>
+ <param name="metadata"></param>
+ <returns></returns>
+ <remarks>
+ the type object that generated at here has different class guid, for create array of the dynamics type object, 
+ you should create the template dynamics clr type at first, and then set property value for each data in the 
+ array seperately.
  </remarks>
 </member>
 <member name="M:Microsoft.VisualBasic.EnumHelpers.GetAllEnumFlags``1(``0)">
@@ -35616,6 +35782,20 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="n"></param>
  <returns></returns>
 </member>
+<member name="T:Microsoft.VisualBasic.Language.Record">
+ <summary>
+ Data record type in VisualBasic
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Language.Record.op_Equality(Microsoft.VisualBasic.Language.Record,Microsoft.VisualBasic.Language.Record)">
+ <summary>
+ Make check of the value equals?
+ </summary>
+ <param name="a"></param>
+ <param name="b"></param>
+ <returns></returns>
+ 
+</member>
 <member name="T:Microsoft.VisualBasic.Language.Value`1">
  <summary>
  You can applying this data type into a dictionary object to makes the mathematics calculation more easily.
@@ -37809,6 +37989,13 @@ to take away yo [rest of string was truncated]&quot;;.
  <summary>
  ensure that the number is converted as bytes always in network byte order outputs.
  </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Serialization.BinaryDumping.NetworkByteOrderBuffer.Base64String(System.Collections.Generic.IEnumerable{System.Double})">
+ <summary>
+ encode the given numeric data vector in network byte order and then returns the base64 encode string
+ </summary>
+ <param name="data"></param>
+ <returns></returns>
 </member>
 <member name="M:Microsoft.VisualBasic.Serialization.BinaryDumping.NetworkByteOrderBuffer.GetBytes(System.Collections.Generic.IEnumerable{System.Double})">
  <summary>

@@ -28,4 +28,8 @@ Public Class FormMain
         view.Text = "`biocad_registry`.`subcellular_compartments`"
         view.Show()
     End Sub
+
+    Private Sub SettingsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SettingsToolStripMenuItem.Click
+
+    End Sub
 End Class

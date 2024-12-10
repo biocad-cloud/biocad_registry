@@ -28,6 +28,8 @@ Partial Class FormMain
         Me.DataToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.VocabularyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SubCellularCompartmentsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SettingsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -42,7 +44,7 @@ Partial Class FormMain
         '
         'FileToolStripMenuItem
         '
-        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExitToolStripMenuItem})
+        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SettingsToolStripMenuItem, Me.ToolStripMenuItem1, Me.ExitToolStripMenuItem})
         Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
         Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 20)
         Me.FileToolStripMenuItem.Text = "File"
@@ -50,7 +52,7 @@ Partial Class FormMain
         'ExitToolStripMenuItem
         '
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(93, 22)
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.ExitToolStripMenuItem.Text = "Exit"
         '
         'DataToolStripMenuItem
@@ -63,7 +65,7 @@ Partial Class FormMain
         'VocabularyToolStripMenuItem
         '
         Me.VocabularyToolStripMenuItem.Name = "VocabularyToolStripMenuItem"
-        Me.VocabularyToolStripMenuItem.Size = New System.Drawing.Size(132, 22)
+        Me.VocabularyToolStripMenuItem.Size = New System.Drawing.Size(217, 22)
         Me.VocabularyToolStripMenuItem.Text = "Vocabulary"
         '
         'SubCellularCompartmentsToolStripMenuItem
@@ -71,6 +73,17 @@ Partial Class FormMain
         Me.SubCellularCompartmentsToolStripMenuItem.Name = "SubCellularCompartmentsToolStripMenuItem"
         Me.SubCellularCompartmentsToolStripMenuItem.Size = New System.Drawing.Size(217, 22)
         Me.SubCellularCompartmentsToolStripMenuItem.Text = "SubCellular Compartments"
+        '
+        'SettingsToolStripMenuItem
+        '
+        Me.SettingsToolStripMenuItem.Name = "SettingsToolStripMenuItem"
+        Me.SettingsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.SettingsToolStripMenuItem.Text = "Settings"
+        '
+        'ToolStripMenuItem1
+        '
+        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(177, 6)
         '
         'FormMain
         '
@@ -95,4 +108,6 @@ Partial Class FormMain
     Friend WithEvents VocabularyToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ExitToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents SubCellularCompartmentsToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents SettingsToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStripMenuItem1 As ToolStripSeparator
 End Class
