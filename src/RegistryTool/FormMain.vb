@@ -38,4 +38,12 @@ Public Class FormMain
         view.MdiParent = Me
         view.Show()
     End Sub
+
+    Private Sub ExportMetabolitesDatabaseToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportMetabolitesDatabaseToolStripMenuItem.Click
+        Using file As New SaveFileDialog With {.Filter = "Metabolite Annotation Database(*.dat)|*.dat"}
+            If file.ShowDialog = DialogResult.OK Then
+
+            End If
+        End Using
+    End Sub
 End Class

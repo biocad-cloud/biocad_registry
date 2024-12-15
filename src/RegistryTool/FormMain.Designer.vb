@@ -31,6 +31,8 @@ Partial Class FormMain
         Me.VocabularyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SubCellularCompartmentsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MoleculesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ExportMetabolitesDatabaseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -69,7 +71,7 @@ Partial Class FormMain
         '
         'DataToolStripMenuItem
         '
-        Me.DataToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.VocabularyToolStripMenuItem, Me.SubCellularCompartmentsToolStripMenuItem, Me.MoleculesToolStripMenuItem})
+        Me.DataToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.VocabularyToolStripMenuItem, Me.SubCellularCompartmentsToolStripMenuItem, Me.MoleculesToolStripMenuItem, Me.ToolStripMenuItem2, Me.ExportMetabolitesDatabaseToolStripMenuItem})
         Me.DataToolStripMenuItem.Name = "DataToolStripMenuItem"
         Me.DataToolStripMenuItem.Size = New System.Drawing.Size(43, 20)
         Me.DataToolStripMenuItem.Text = "Data"
@@ -77,20 +79,31 @@ Partial Class FormMain
         'VocabularyToolStripMenuItem
         '
         Me.VocabularyToolStripMenuItem.Name = "VocabularyToolStripMenuItem"
-        Me.VocabularyToolStripMenuItem.Size = New System.Drawing.Size(217, 22)
+        Me.VocabularyToolStripMenuItem.Size = New System.Drawing.Size(224, 22)
         Me.VocabularyToolStripMenuItem.Text = "Vocabulary"
         '
         'SubCellularCompartmentsToolStripMenuItem
         '
         Me.SubCellularCompartmentsToolStripMenuItem.Name = "SubCellularCompartmentsToolStripMenuItem"
-        Me.SubCellularCompartmentsToolStripMenuItem.Size = New System.Drawing.Size(217, 22)
+        Me.SubCellularCompartmentsToolStripMenuItem.Size = New System.Drawing.Size(224, 22)
         Me.SubCellularCompartmentsToolStripMenuItem.Text = "SubCellular Compartments"
         '
         'MoleculesToolStripMenuItem
         '
         Me.MoleculesToolStripMenuItem.Name = "MoleculesToolStripMenuItem"
-        Me.MoleculesToolStripMenuItem.Size = New System.Drawing.Size(217, 22)
+        Me.MoleculesToolStripMenuItem.Size = New System.Drawing.Size(224, 22)
         Me.MoleculesToolStripMenuItem.Text = "Molecules"
+        '
+        'ToolStripMenuItem2
+        '
+        Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
+        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(221, 6)
+        '
+        'ExportMetabolitesDatabaseToolStripMenuItem
+        '
+        Me.ExportMetabolitesDatabaseToolStripMenuItem.Name = "ExportMetabolitesDatabaseToolStripMenuItem"
+        Me.ExportMetabolitesDatabaseToolStripMenuItem.Size = New System.Drawing.Size(224, 22)
+        Me.ExportMetabolitesDatabaseToolStripMenuItem.Text = "Export Metabolites Database"
         '
         'FormMain
         '
@@ -118,4 +131,6 @@ Partial Class FormMain
     Friend WithEvents SettingsToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem1 As ToolStripSeparator
     Friend WithEvents MoleculesToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStripMenuItem2 As ToolStripSeparator
+    Friend WithEvents ExportMetabolitesDatabaseToolStripMenuItem As ToolStripMenuItem
 End Class
