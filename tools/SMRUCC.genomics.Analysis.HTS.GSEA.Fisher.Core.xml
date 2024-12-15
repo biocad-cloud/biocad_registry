@@ -1,0 +1,203 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+SMRUCC.genomics.Analysis.HTS.GSEA.Fisher.Core
+</name>
+</assembly>
+<members>
+<member name="T:SMRUCC.genomics.Analysis.HTS.GSEA.Enrichment">
+ <summary>
+ 基于Fisher Extract test算法的富集分析
+ </summary>
+</member>
+<member name="M:SMRUCC.genomics.Analysis.HTS.GSEA.Enrichment.BackgroundSize(System.Collections.Generic.IEnumerable{SMRUCC.genomics.Analysis.HTS.GSEA.Cluster})">
+ <summary>
+ evaluate the unique idset size in the given cluster background model
+ </summary>
+ <param name="clusters"></param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Analysis.HTS.GSEA.Enrichment.Enrichment(SMRUCC.genomics.Analysis.HTS.GSEA.Background,System.Collections.Generic.IEnumerable{System.String},System.Int32,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Action{System.String})">
+ <summary>
+ 基于Fisher精确检验的基因列表富集计算分析
+ </summary>
+ <param name="genome"></param>
+ <param name="list">需要进行富集计算分析的目标基因列表</param>
+ <param name="outputAll">将会忽略掉所有没有交集的结果</param>
+ <param name="showProgress"></param>
+ <returns>
+ 返回来的结果没有进行FDR计算
+ </returns>
+</member>
+<member name="M:SMRUCC.genomics.Analysis.HTS.GSEA.Enrichment.calcResult(SMRUCC.genomics.Analysis.HTS.GSEA.Cluster,System.String[],System.Int32,System.Int32,System.Boolean)">
+ <summary>
+ 计算基因集合的功能富集结果
+ </summary>
+ <param name="cluster">根据我们的先验知识所创建的一个基因集合，一般为KEGG代谢途径或者GO词条</param>
+ <param name="enriched">在当前的基因集合中与我们所给定的基因列表所产生交集的基因id的列表，即我们的差异基因列表中属于当前的代谢途径的基因的列表</param>
+ <param name="inputSize">输入的原始的通过实验所获取得到的基因列表的大小，即我们的差异基因的id的数量</param>
+ <param name="genes">背景基因组中的总的基因数量</param>
+ <param name="outputAll"></param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Analysis.HTS.GSEA.Enrichment.FDRCorrection(System.Collections.Generic.IEnumerable{SMRUCC.genomics.Analysis.HTS.GSEA.EnrichmentResult})">
+ <summary>
+ 进行计算结果的假阳性FDR控制计算
+ </summary>
+ <param name="enrichments">根据我们所提供的基因列表，对每一个代谢途径的富集计算结果的集合</param>
+ <returns></returns>
+</member>
+<member name="T:SMRUCC.genomics.Analysis.HTS.GSEA.EnrichmentResult">
+ <summary>
+ The GCModeller enrichment analysis output table
+ </summary>
+</member>
+<member name="P:SMRUCC.genomics.Analysis.HTS.GSEA.EnrichmentResult.enriched">
+ <summary>
+ 我们的差异基因列表中，属于目标代谢途径的基因的数量 / 在我们的差异基因列表中，不属于当前的代谢途径的基因的数量
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Analysis.HTS.GSEA.EnrichmentResult.IDs">
+ <summary>
+ the enriched gene id set: input id set intersect with the background cluster id set.
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:SMRUCC.genomics.Analysis.HTS.GSEA.GSEACalculate">
+ <summary>
+ Only apply for evluates of the enrichment for a vs b comparision
+ </summary>
+</member>
+<member name="M:SMRUCC.genomics.Analysis.HTS.GSEA.GSEACalculate.Enrich(Microsoft.VisualBasic.ComponentModel.DataSourceModel.NamedValue{System.Double}[],Microsoft.VisualBasic.ComponentModel.Collection.Index{System.String},System.Int32)">
+ <summary>
+ Enrichment for one specific pathway
+ </summary>
+ <param name="geneExpression">
+ all gene mean expression value, usually be the foldchange value of the a vs b comparision result.
+ </param>
+ <param name="geneSet">
+ gene set in current pathway
+ </param>
+ <param name="permutations"></param>
+ <returns></returns>
+</member>
+<member name="T:SMRUCC.genomics.Analysis.HTS.GSEA.Background">
+ <summary>
+ a collection of the functional related gene consist of this background model.
+ (假设基因组是有许多个功能聚类的集合构成的)
+ </summary>
+ <remarks>
+ the functional related geneset is modelling as the <see cref="P:SMRUCC.genomics.Analysis.HTS.GSEA.Background.clusters"/> at here.
+ </remarks>
+</member>
+<member name="P:SMRUCC.genomics.Analysis.HTS.GSEA.Background.id">
+ <summary>
+ A brief unique id code. Such as kegg organism code or ncbi taxonomy id.
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Analysis.HTS.GSEA.Background.size">
+ <summary>
+ The number of genes in this background genome.
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Analysis.HTS.GSEA.Background.clusters">
+ <summary>
+ a collection of the functional related genesets.
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Analysis.HTS.GSEA.Background.GetBackgroundGene(System.String)">
+ <summary>
+ 
+ </summary>
+ <param name="geneId"></param>
+ <returns>
+ returns nothing if target gene is not found
+ </returns>
+</member>
+<member name="M:SMRUCC.genomics.Analysis.HTS.GSEA.Background.GetClusterTable">
+ <summary>
+ Make a dictionary index of the <see cref="P:SMRUCC.genomics.Analysis.HTS.GSEA.Background.clusters"/>, via the <see cref="P:SMRUCC.genomics.Analysis.HTS.GSEA.Cluster.ID"/> as key.
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:SMRUCC.genomics.Analysis.HTS.GSEA.BackgroundGene">
+ <summary>
+ a member gene in a gsea cluster model, or a symbol reference to the target object.
+ </summary>
+ <remarks>
+ the term data model <see cref="T:Microsoft.VisualBasic.Text.Xml.Models.NamedValue"/> was used at here 
+ for serialized as xml model file.
+ </remarks>
+</member>
+<member name="P:SMRUCC.genomics.Analysis.HTS.GSEA.BackgroundGene.name">
+ <summary>
+ The gene name
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Analysis.HTS.GSEA.BackgroundGene.term_id">
+ <summary>
+ alias id of current gene entity.
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Analysis.HTS.GSEA.BackgroundGene.locus_tag">
+ <summary>
+ a tuple data of ``[geneId => description]`` mapping.
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:SMRUCC.genomics.Analysis.HTS.GSEA.Cluster">
+ <summary>
+ A collection of the functional related <see cref="T:SMRUCC.genomics.Analysis.HTS.GSEA.BackgroundGene"/>.
+ (主要是KEGG代谢途径，也可以是其他的具有生物学意义的聚类结果)
+ </summary>
+</member>
+<member name="P:SMRUCC.genomics.Analysis.HTS.GSEA.Cluster.ID">
+ <summary>
+ The cluster id.(代谢途径的编号或者其他的标识符)
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Analysis.HTS.GSEA.Cluster.names">
+ <summary>
+ The common name of current term <see cref="P:SMRUCC.genomics.Analysis.HTS.GSEA.Cluster.ID"/>
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Analysis.HTS.GSEA.Cluster.description">
+ <summary>
+ A brief description on term function.
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Analysis.HTS.GSEA.Cluster.members">
+ <summary>
+ 当前的这个聚类之中的基因列表
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Analysis.HTS.GSEA.Cluster.memberIds">
+ <summary>
+ get the collection of all member theirs <see cref="P:SMRUCC.genomics.ComponentModel.DBLinkBuilder.Synonym.accessionID"/>
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Analysis.HTS.GSEA.OntologyBackground.ImportsTree``1(Microsoft.VisualBasic.Data.GraphTheory.Tree{``0},System.Func{``0,SMRUCC.genomics.Analysis.HTS.GSEA.BackgroundGene})">
+ <summary>
+ Create a enrichment background based on a ontology tree model
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="tree">
+ the ontology tree
+ </param>
+ <param name="createTerm"></param>
+ <returns></returns>
+</member>
+</members>
+</doc>

@@ -1,0 +1,119 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+BioNovoGene.BioDeep.Chemistry.XrefEngine
+</name>
+</assembly>
+<members>
+<member name="T:BioNovoGene.BioDeep.Chemistry.MetaLib.My.Resources.Resources">
+<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.MetaLib.My.Resources.Resources.ResourceManager">
+<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.MetaLib.My.Resources.Resources.Culture">
+<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.MetaLib.ChemOntClassify.kingdom">
+ <summary>
+ level 1
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.MetaLib.ChemOntClassify.superClass">
+ <summary>
+ level 2
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.MetaLib.ChemOntClassify.class">
+ <summary>
+ level 3
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.MetaLib.ChemOntClassify.subClass">
+ <summary>
+ level 4
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.MetaLib.ChemOntClassify.#ctor(System.String)">
+ <summary>
+ 
+ </summary>
+ <param name="obo">The file path of ``ChemOnt_2_1.obo``</param>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.MetaLib.ChemOntClassify.FilterByLevel(System.Collections.Generic.IEnumerable{BioNovoGene.BioDeep.Chemistry.MetaLib.ClassyfireAnnotation},System.Int32)">
+ <summary>
+ 将对应分类层次等级的注释分类信息取出来
+ </summary>
+ <param name="anno"></param>
+ <param name="level%"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.MetaLib.ChemOntClassify.termsByLevel(System.Int32)">
+ <summary>
+ Get terms by level on tree
+ </summary>
+ <param name="level"></param>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemistry.MetaLib.ClassyfireAnnotation">
+ <summary>
+ Parser for file download from https://jcheminf.biomedcentral.com/articles/10.1186/s13321-016-0174-y
+ </summary>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.MetaLib.ClassyfireAnnotation.CompoundID">
+ <summary>
+ Compound id in given database.
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.MetaLib.ClassyfireAnnotation.ChemOntID">
+ <summary>
+ 分类的term id
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.MetaLib.ClassyfireInfoTable.CompoundID">
+ <summary>
+ Compound id in given database.
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemistry.MetaLib.FillClass">
+ <summary>
+ 因为在这里填充数据是直接进行的,所以structure而言是值类型,只能够修改函数之中的副本,所以在这个模块之中,类型参数都必须要限制为引用类型
+ </summary>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.MetaLib.FillClass.ClassyfireFillerLambda``1(System.Collections.Generic.IEnumerable{BioNovoGene.BioDeep.Chemistry.MetaLib.ClassyfireAnnotation},BioNovoGene.BioDeep.Chemistry.MetaLib.ChemOntClassify,System.Func{``0,System.String})">
+ <summary>
+ 构建出一个信息填充表达式, 即分子的注释信息传递进入函数, 然后函数尝试填充<see cref="T:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.ICompoundClass"/>物质结构分类信息后返回原始对象的引用
+ </summary>
+ <typeparam name="cpd"></typeparam>
+ <param name="anno"></param>
+ <param name="classifyObo"></param>
+ <param name="getKey"></param>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemistry.MetaLib.LocalRepository">
+ <summary>
+ read only metabolite annotation information data repository
+ </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemistry.MetaLib.LocalRepository.s">
+ <summary>
+ the repository file stream data
+ </summary>
+</member>
+</members>
+</doc>

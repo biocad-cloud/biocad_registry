@@ -1,0 +1,766 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+BioNovoGene.Analytical.MassSpectrometry.Math.Deconvolution
+</name>
+</assembly>
+<members>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.MzGroup">
+ <summary>
+ XIC dataset that used for deconv
+ </summary>
+ <remarks>
+ A collection of the <see cref="T:BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.ChromatogramTick"/> data that 
+ tagged with a numeric m/z value.
+ </remarks>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.MzGroup.mz">
+ <summary>
+ target ion m/z
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.MzGroup.XIC">
+ <summary>
+ the chromatogram data of current target ion
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.MzGroup.tag">
+ <summary>
+ usually be the sample data file name.
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.MzGroup.size">
+ <summary>
+ get point counts of <see cref="P:BioNovoGene.Analytical.MassSpectrometry.Math.MzGroup.XIC"/>.
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.PeakFeature">
+ <summary>
+ a result peak feature
+ </summary>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.PeakFeature.xcms_id">
+ <summary>
+ the unique reference id of the current peak object
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.PeakFeature.mz">
+ <summary>
+ the xic m/z
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.PeakFeature.rt">
+ <summary>
+ 出峰达到峰高最大值<see cref="P:BioNovoGene.Analytical.MassSpectrometry.Math.PeakFeature.maxInto"/>的时间点
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.PeakFeature.RI">
+ <summary>
+ the retention index of the corresponding <see cref="P:BioNovoGene.Analytical.MassSpectrometry.Math.PeakFeature.rt"/> value.
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.PeakFeature.maxInto">
+ <summary>
+ 这个区域的最大峰高度
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.PeakFeature.baseline">
+ <summary>
+ 所计算出来的基线的响应强度
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.PeakFeature.integration">
+ <summary>
+ 当前的这个ROI的峰面积积分值
+ </summary>
+ <returns></returns>
+ <remarks>
+ 为当前的ROI峰面积占整个TIC峰面积的百分比，一个实验所导出来的所有的ROI的
+ 积分值加起来应该是约等于100的
+ </remarks>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.PeakFeature.area">
+ <summary>
+ 计算得到的峰面积
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.PeakFeature.noise">
+ <summary>
+ 噪声的面积积分百分比
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.PeakFeature.rawfile">
+ <summary>
+ the sample file name reference
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.PeakFeature.snRatio">
+ <summary>
+ 信噪比
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.PeakFeature.#ctor(BioNovoGene.Analytical.MassSpectrometry.Math.PeakFeature)">
+ <summary>
+ make data copy
+ </summary>
+ <param name="peakdata"></param>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.PeakFeature.#ctor(BioNovoGene.Analytical.MassSpectrometry.Math.XcmsSamplePeak)">
+ <summary>
+ make object data copy
+ </summary>
+ <param name="peakdata"></param>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.RIRefer">
+ <summary>
+ the retention index reference
+ </summary>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.RIRefer.RI">
+ <summary>
+ the reference retention index value
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.RtShift">
+ <summary>
+ the rt shift result
+ </summary>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.RtShift.sample">
+ <summary>
+ the sample name
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.RtShift.refer_rt">
+ <summary>
+ the reference rt
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.RtShift.shift">
+ <summary>
+ <see cref="P:BioNovoGene.Analytical.MassSpectrometry.Math.RtShift.sample_rt"/> - <see cref="P:BioNovoGene.Analytical.MassSpectrometry.Math.RtShift.refer_rt"/>. 
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.XICPool">
+ <summary>
+ grouping ion XIC data from multiple sample data file
+ </summary>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.XICPool.GetXICMatrix(System.Double,BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Tolerance)">
+ <summary>
+ get XIC data for ion matches
+ </summary>
+ <param name="mz">the given ion target m/z value</param>
+ <param name="mzdiff">the mass tolerance error</param>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Deconvolution">
+ <summary>
+ #### 解卷积计算步骤
+ 
+ 1. 首先对每一个原始数据点按照mz进行数据分组
+ 2. 对每一个mz数据分组按照rt进行升序排序
+ 3. 对每一个mz数据分组进行解卷积，得到峰列表
+ 4. 输出peaktable结果，完成解卷积操作
+ </summary>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Deconvolution.GetPeakGroups(BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.ChromatogramOverlapList,Microsoft.VisualBasic.ComponentModel.Ranges.Model.DoubleRange,System.Double,System.Double,System.Boolean,System.Boolean)">
+ <summary>
+ 
+ </summary>
+ <param name="overlaps"></param>
+ <param name="peakwidth"></param>
+ <param name="quantile#"></param>
+ <param name="sn_threshold"></param>
+ <param name="joint"></param>
+ <param name="single">take the top single peak feature in each <see cref="T:BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.Chromatogram"/>.</param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Deconvolution.GetPeakGroups(BioNovoGene.Analytical.MassSpectrometry.Math.MzGroup,Microsoft.VisualBasic.ComponentModel.Ranges.Model.DoubleRange,System.Double,System.Double,System.Boolean)">
+ <summary>
+ All of the mz value in <paramref name="mzpoints"/> should be equals
+ </summary>
+ <param name="mzpoints"></param>
+ <returns></returns>
+ <remarks>实际的解卷积操作步骤：应用于处理复杂的样本数据</remarks>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Deconvolution.GetMzGroups``1(System.Collections.Generic.IEnumerable{``0},System.Double,BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Tolerance)">
+ <summary>
+ 1. Separation of mass signals, generate XIC sequence data.
+ </summary>
+ <param name="scans"></param>
+ <returns></returns>
+ <remarks>
+ (进行原始数据的mz分组操作，然后进行rt的升序排序)
+ </remarks>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Deconvolution.GetMzGroups``1(Microsoft.VisualBasic.ComponentModel.DataSourceModel.NamedCollection{``0},System.Double)">
+ <summary>
+ the ion m/z is evaluated via the highest intensity point,
+  and the XIC has been re-order by time asc
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="group"></param>
+ <param name="rtwin"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Deconvolution.DecoMzGroups(System.Collections.Generic.IEnumerable{BioNovoGene.Analytical.MassSpectrometry.Math.MzGroup},Microsoft.VisualBasic.ComponentModel.Ranges.Model.DoubleRange,System.Double,System.Double,System.Int32,System.Boolean,System.Boolean,System.String)">
+ <summary>
+ 2. 对得到的XIC进行峰查找
+ </summary>
+ <param name="mzgroups"></param>
+ <param name="quantile"></param>
+ <param name="source">set the source tag value to <see cref="P:BioNovoGene.Analytical.MassSpectrometry.Math.PeakFeature.rawfile"/></param>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.GCMSDeconv">
+ <summary>
+ tools for decode GC-MS raw data
+ </summary>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.GCMSDeconv.DeconvGCMSRawdata(System.Collections.Generic.IEnumerable{BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.PeakMs2},Microsoft.VisualBasic.ComponentModel.Ranges.Model.DoubleRange,System.Double,System.Double,System.Boolean)">
+ <summary>
+ this function deconvolution of the gc-ms TIC data, extract the corresponding peaks,
+ and then extract the ms1 spectrum fro each detected peaks data.
+ </summary>
+ <param name="gcms">should be a collection of the ms1 scan data which is extract from the rawdata files.</param>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.GCMSPeak">
+ <summary>
+ A gcms peak feature
+ </summary>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.GCMSPeak.Spectrum">
+ <summary>
+ the average spectrum of current GCMS peak ROI
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.MzBins">
+ <summary>
+ algorithm for find the real m/z
+ </summary>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.PeakAlignment">
+ <summary>
+ 峰对齐操作主要是针对保留时间漂移进行矫正
+ 
+ 在峰对齐操作之中所处理的对象就是不同的样本原始数据文件之间的在给定误差下相同``m/z``的峰之间的保留时间矫正的操作
+ 峰对齐的一个基础的操作为比较峰的相似度
+ </summary>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.PeakAlignment.RIAlignment(System.Collections.Generic.IEnumerable{Microsoft.VisualBasic.ComponentModel.DataSourceModel.NamedCollection{BioNovoGene.Analytical.MassSpectrometry.Math.PeakFeature}},System.Collections.Generic.List{BioNovoGene.Analytical.MassSpectrometry.Math.RtShift},System.Double,System.Double,System.Boolean)">
+ <summary>
+ create peaktable matrix by retention index alignment.
+ </summary>
+ <param name="samples"></param>
+ <param name="top_ion">
+ use the top intensity/area ion its m/z value as peak ion m/z.
+ </param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.PeakAlignment.CowAlignment(System.Collections.Generic.IEnumerable{Microsoft.VisualBasic.ComponentModel.DataSourceModel.NamedCollection{BioNovoGene.Analytical.MassSpectrometry.Math.PeakFeature}})">
+ <summary>
+ Make peak alignment via COW alignment algorithm.
+ </summary>
+ <param name="samples">the peak collection for each sample file, a sample </param>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.PeakSet">
+ <summary>
+ A collection of the <see cref="T:BioNovoGene.Analytical.MassSpectrometry.Math.xcms2"/> peak features data
+ </summary>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.PeakSet.peaks">
+ <summary>
+ the ROI peaks data
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.PeakSet.sampleNames">
+ <summary>
+ the samples names in current ROI peak set
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.PeakSet.ROIs">
+ <summary>
+ get number of the ROI peaks in current dataset
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.PeakSet.GetById(System.String)">
+ <summary>
+ try to get a peak by its unique reference id
+ </summary>
+ <param name="xcms_id"></param>
+ <returns>null value will be returns if the given 
+ <paramref name="xcms_id"/> is not existed inside
+ index.</returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.PeakSet.FilterMz(System.Double,System.Double)">
+ <summary>
+ get XIC data
+ </summary>
+ <param name="mz"></param>
+ <param name="mzdiff"></param>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.SampleFiles">
+ <summary>
+ the sample file types
+ </summary>
+</member>
+<member name="F:BioNovoGene.Analytical.MassSpectrometry.Math.SampleFiles.Sample">
+ <summary>
+ the user sample file
+ </summary>
+</member>
+<member name="F:BioNovoGene.Analytical.MassSpectrometry.Math.SampleFiles.Standard">
+ <summary>
+ standard curve data file
+ </summary>
+</member>
+<member name="F:BioNovoGene.Analytical.MassSpectrometry.Math.SampleFiles.QC">
+ <summary>
+ quality control file
+ </summary>
+</member>
+<member name="F:BioNovoGene.Analytical.MassSpectrometry.Math.SampleFiles.KB">
+ <summary>
+ the blank
+ </summary>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.SaveXcms">
+ <summary>
+ the <see cref="T:BioNovoGene.Analytical.MassSpectrometry.Math.xcms2"/> read/write helper
+ </summary>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.SaveXcms.ReadTextTable(System.String,System.Boolean,System.Boolean,System.String[])">
+ <summary>
+ read table in ascii text file
+ </summary>
+ <param name="file"></param>
+ <param name="tsv"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.SaveXcms.DumpSample(BioNovoGene.Analytical.MassSpectrometry.Math.PeakSet,System.IO.Stream)">
+ <summary>
+ save as binary file
+ </summary>
+ <param name="sample"></param>
+ <param name="file"></param>
+ 
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.SaveXcms.DumpSample(System.Collections.Generic.IEnumerable{BioNovoGene.Analytical.MassSpectrometry.Math.xcms2},System.Int32,System.String[],System.IO.Stream)">
+ <summary>
+ 
+ </summary>
+ <param name="sample"></param>
+ <param name="npeaks">number of ROI peaks in current table, not the number of sample files.</param>
+ <param name="sampleNames"></param>
+ <param name="file"></param>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.SaveXcms.ReadSamplePeaks(System.IO.Stream)">
+ <summary>
+ read table data from rawdata file
+ </summary>
+ <param name="file"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.SaveXcms.ReadSample(System.IO.Stream)">
+ <summary>
+ load binary file
+ </summary>
+ <param name="file"></param>
+ <returns></returns>
+ 
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.AccumulateROI">
+ <summary>
+ 根据累加线来查找色谱峰的ROI
+ </summary>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.AccumulateROI.PopulateROI(Microsoft.VisualBasic.Math.Scripting.IVector{BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.ChromatogramTick},Microsoft.VisualBasic.ComponentModel.Ranges.Model.DoubleRange,Microsoft.VisualBasic.ComponentModel.Ranges.Model.DoubleRange,System.Double,System.Double,System.Double)">
+ <summary>
+ cut chromatogram via rt range and then populate all ROI from <see cref="M:BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.AccumulateROI.PopulateROI(Microsoft.VisualBasic.Math.Scripting.IVector{BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.ChromatogramTick},Microsoft.VisualBasic.ComponentModel.Ranges.Model.DoubleRange,Microsoft.VisualBasic.ComponentModel.Ranges.Model.DoubleRange,System.Double,System.Double,System.Double)"/>
+ </summary>
+ <param name="chromatogram"></param>
+ <param name="rt"></param>
+ <param name="peakwidth"></param>
+ <param name="angleThreshold#"></param>
+ <param name="baselineQuantile#"></param>
+ <param name="snThreshold"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.AccumulateROI.PopulateROI(Microsoft.VisualBasic.Math.Scripting.IVector{BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.ChromatogramTick},Microsoft.VisualBasic.ComponentModel.Ranges.Model.DoubleRange,System.Double,System.Double,System.Double,System.Boolean,System.Int32)">
+ <summary>
+ The input data parameter <paramref name="chromatogram"/> for this function should be 
+ sort in asc order at first!
+ 
+ (在这个函数之中，只是查找出了色谱峰的时间范围，但是并未对峰面积做积分计算)
+ </summary>
+ <param name="angleThreshold">
+ The higher of this value it is, the more sensible it its.
+ (区分色谱峰的累加线切线角度的阈值，单位为度)
+ </param>
+ <param name="snThreshold">
+ negative value means no threshold cutoff
+ </param>
+ <returns></returns>
+ <remarks>
+ 这个方法对于MRM的数据的处理结果比较可靠，但是对于GCMS的实验数据，
+ 由于GCMS实验数据的峰比较窄，这个函数不太适合处理GCMS的峰
+ </remarks>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.AccumulateROI.dt(Microsoft.VisualBasic.Math.SignalProcessing.PeakFinding.SignalPeak,Microsoft.VisualBasic.Math.SignalProcessing.PeakFinding.SignalPeak)">
+ <summary>
+ 
+ </summary>
+ <param name="p1">p(i)</param>
+ <param name="p0">p(i-1)</param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.ChromatogramMath.IntensityArray(System.Collections.Generic.IEnumerable{BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.ChromatogramTick})">
+ <summary>
+ <see cref="P:BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.ChromatogramTick.Intensity"/>
+ </summary>
+ <param name="chromatogram"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.ChromatogramMath.Baseline(System.Collections.Generic.IEnumerable{BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.ChromatogramTick},System.Double)">
+ <summary>
+ Detection of the signal base line based on the quantile method.
+ </summary>
+ <param name="chromatogram"></param>
+ <param name="quantile#"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.ChromatogramMath.Summary(System.Collections.Generic.IEnumerable{BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.ChromatogramTick},System.Double)">
+ <summary>
+ Quantile summary of the chromatogram tick <see cref="P:BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.ChromatogramTick.Intensity"/>
+ </summary>
+ <param name="chromatogram"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.Extensions.GetXIC(BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.MoleculeNetworking.NetworkingNode)">
+ <summary>
+ extract the ion Chromatogram data from a set of the ms2 parent ion data
+ </summary>
+ <param name="network"></param>
+ <returns></returns>
+ 
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.Extensions.Ticks(System.Collections.Generic.IEnumerable{BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.PeakMs2})">
+ <summary>
+ extract the ion Chromatogram data from a set of the ms2 parent ion data
+ </summary>
+ <param name="peaks"></param>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.Quantile">
+ <summary>
+ 可以通过这个quantile分布对象来了解基线数据是否计算正确
+ </summary>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.Quantile.Quantile">
+ <summary>
+ Quantile value in this <see cref="P:BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.Quantile.Percentage"/>
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.Quantile.Percentage">
+ <summary>
+ [0, 1] quantile percentage
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.ROI">
+ <summary>
+ Region of interest(on retention time dimension).
+ </summary>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.ROI.time">
+ <summary>
+ 这个区域的起始和结束的时间点
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.ROI.rt">
+ <summary>
+ 出峰达到峰高最大值<see cref="P:BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.ROI.maxInto"/>的时间点
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.ROI.maxInto">
+ <summary>
+ 这个区域的最大峰高度
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.ROI.ticks">
+ <summary>
+ 在这个ROI时间窗区域内的色谱图数据
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.ROI.baseline">
+ <summary>
+ 所计算出来的基线的响应强度
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.ROI.integration">
+ <summary>
+ 当前的这个ROI的峰面积积分值
+ </summary>
+ <returns></returns>
+ <remarks>
+ 为当前的ROI峰面积占整个TIC峰面积的百分比，一个实验所导出来的所有的ROI的
+ 积分值加起来应该是约等于100的
+ </remarks>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.ROI.noise">
+ <summary>
+ 噪声的面积积分百分比
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.ROI.snRatio">
+ <summary>
+ 信噪比
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.ROI.peakWidth">
+ <summary>
+ the window length of retention <see cref="P:BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.ROI.time"/>.
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.MarkupData.MS1Extensions">
+ <summary>
+ Helper for processing of the MRM ms1 chromatogram data
+ </summary>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.MarkupData.MS1Extensions.Ms1Chromatogram(System.Collections.Generic.IEnumerable{System.ValueTuple{System.Double,System.Double,System.Double}},BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Tolerance)">
+ <summary>
+ 将质谱之中的ms1的结果，按照mz进行分组，之后再按照时间排序即可得到随时间变化的信号曲线
+ </summary>
+ <returns></returns>
+ 
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Tasks.peaktable_task.#ctor(System.Int32,System.Boolean,System.Nullable{System.Int32})">
+ <summary>
+ construct a new parallel task executator
+ </summary>
+ <param name="nsize"></param>
+ <remarks>
+ the thread count for run the parallel task is configed
+ via the <see cref="F:Microsoft.VisualBasic.Parallel.VectorTask.n_threads"/> by default.
+ </remarks>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Tasks.peak_align_task.#ctor(Microsoft.VisualBasic.ComponentModel.DataSourceModel.NamedCollection{BioNovoGene.Analytical.MassSpectrometry.Math.PeakFeature}[],System.Double)">
+ <summary>
+ 
+ </summary>
+ <param name="peaks">
+ peaks data should be group by mz
+ </param>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Tasks.xic_deco_task">
+ <summary>
+ make peak deconvolution and alignment between the samples
+ </summary>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.xcms2">
+ <summary>
+ the peak table format table file model of xcms version 2
+ </summary>
+ <remarks>
+ a <see cref="T:BioNovoGene.Analytical.MassSpectrometry.Math.IMs1Scan"/> peak object
+ </remarks>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.xcms2.ID">
+ <summary>
+ the feature unique id
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.xcms2.mz">
+ <summary>
+ the ion m/z
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.xcms2.mzmin">
+ <summary>
+ the min of ion m/z value
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.xcms2.mzmax">
+ <summary>
+ the max of the ion m/z value
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.xcms2.rt">
+ <summary>
+ the rt value in max peak data point
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.xcms2.RI">
+ <summary>
+ the retention index value based on the rt transformation
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.xcms2.npeaks">
+ <summary>
+ this feature has n sample data(value should be a positive number)
+ </summary>
+ <returns></returns>
+ 
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.xcms2.MakeUniqueId(System.Collections.Generic.IEnumerable{BioNovoGene.Analytical.MassSpectrometry.Math.xcms2})">
+ <summary>
+ just make the <see cref="P:BioNovoGene.Analytical.MassSpectrometry.Math.xcms2.ID"/> unique
+ </summary>
+ <param name="peaktable"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.xcms2.Impute">
+ <summary>
+ impute missing data with half of the min positive value
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.XcmsSamplePeak">
+ <summary>
+ cast ``findPeaks`` result to dataframe
+ </summary>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.XcmsSamplePeak.mz">
+ <summary>
+ 峰的中心质荷比（m/z）值。
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.XcmsSamplePeak.mzmin">
+ <summary>
+ 峰的最低质荷比（m/z）值。
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.XcmsSamplePeak.mzmax">
+ <summary>
+ 峰的最高质荷比（m/z）值。
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.XcmsSamplePeak.rt">
+ <summary>
+ 峰的中心保留时间（Retention Time，RT）。
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.XcmsSamplePeak.rtmin">
+ <summary>
+ 峰的起始保留时间。
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.XcmsSamplePeak.rtmax">
+ <summary>
+ 峰的结束保留时间。
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.XcmsSamplePeak.into">
+ <summary>
+ 峰的总强度（积分强度）。
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.XcmsSamplePeak.intb">
+ <summary>
+ 峰的峰下面积（峰的积分面积）。
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.XcmsSamplePeak.maxo">
+ <summary>
+ 峰的最大原始强度值。
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.XcmsSamplePeak.maxf">
+ <summary>
+ 峰的最大过滤强度值。
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.XcmsSamplePeak.sn">
+ <summary>
+ 峰的信噪比（Signal-to-Noise ratio）。
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.XcmsSamplePeak.ID">
+ <summary>
+ 峰的索引或标识符。
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.XcmsTable">
+ <summary>
+ helper function for generates the xcms peaktable liked table object
+ </summary>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.XcmsTable.XcmsTable(System.Collections.Generic.IEnumerable{Microsoft.VisualBasic.ComponentModel.DataSourceModel.NamedCollection{BioNovoGene.Analytical.MassSpectrometry.Math.PeakFeature}})">
+ <summary>
+ A general method for create xcms peaktable
+ </summary>
+ <param name="samples"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.XcmsTable.XicTable(System.Collections.Generic.IEnumerable{Microsoft.VisualBasic.ComponentModel.DataSourceModel.NamedCollection{BioNovoGene.Analytical.MassSpectrometry.Math.PeakFeature}},System.Double,System.Collections.Generic.List{BioNovoGene.Analytical.MassSpectrometry.Math.RtShift},System.Boolean)">
+ <summary>
+ 
+ </summary>
+ <param name="samples">XIC data between different samples</param>
+ <param name="rtwin"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.XcmsTable.Ms1Scatter(BioNovoGene.Analytical.MassSpectrometry.Math.PeakSet,System.String)">
+ <summary>
+ Extract of the scatter data
+ </summary>
+ <param name="peakset"></param>
+ <param name="dimension"></param>
+ <returns></returns>
+</member>
+</members>
+</doc>

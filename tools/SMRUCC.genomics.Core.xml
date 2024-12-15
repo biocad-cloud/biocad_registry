@@ -1746,6 +1746,11 @@ ATT I Ile      ACT T Thr      AAT N As [rest of string was truncated]&quot;;.
  <returns></returns>
  <remarks></remarks>
 </member>
+<member name="T:SMRUCC.genomics.Assembly.Uniprot.Web.Entry">
+ <summary>
+ tabular export of the protein list in tsv format
+ </summary>
+</member>
 <member name="F:SMRUCC.genomics.Assembly.Uniprot.Web.ID_types.ACC_ID">
  <summary>
  UniProtKB AC/ID

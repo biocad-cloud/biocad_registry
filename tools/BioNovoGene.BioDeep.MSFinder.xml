@@ -1,0 +1,179 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+BioNovoGene.BioDeep.MSFinder
+</name>
+</assembly>
+<members>
+<member name="T:BioNovoGene.BioDeep.MSFinder.AnalysisParamOfMsfinder">
+ <summary>
+ This is the storage of analysis parameters used in MS-FINDER program.
+ </summary>
+</member>
+<member name="T:BioNovoGene.BioDeep.MSFinder.AnnotatedIon">
+ <summary>
+ This class is the storage of adduct or isotope ion assignment used in MS-FINDER program.
+ </summary>
+</member>
+<member name="P:BioNovoGene.BioDeep.MSFinder.AnnotatedIon.IsotopeName">
+ <summary> 
+ C-13, O-18, and something 
+ </summary>
+</member>
+<member name="P:BioNovoGene.BioDeep.MSFinder.DerivatizationFormula.D">
+ <summary>
+ H[2] isotopic element
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.BioDeep.MSFinder.ExistFormulaQuery">
+ <summary>
+ This is the class variable to store the internal query of molecular formula.
+ The queries are stored in .EFD file of the same folder of main program (should be).
+ The EFD file will be retrieved by ExistFormulaDbParcer.cs.
+ </summary>
+</member>
+<member name="T:BioNovoGene.BioDeep.MSFinder.FormulaGenerator">
+ <summary>
+ This class is the main program to find the molecular formula candidates from the mass spectra and to rank them.
+ </summary>
+ <remarks>
+ MS-DIAL MassFinder Code
+ </remarks>
+</member>
+<member name="M:BioNovoGene.BioDeep.MSFinder.FormulaGenerator.#ctor(BioNovoGene.BioDeep.MSFinder.AnalysisParamOfMsfinder)">
+ <summary>
+ This is the constructor of this program.
+ The parameters will be set by the user-defined paramerters.
+ </summary>
+ <param name="param"></param>
+</member>
+<member name="M:BioNovoGene.BioDeep.MSFinder.FormulaGenerator.GetFormulaCandidateList(System.Collections.Generic.List{BioNovoGene.BioDeep.Chemoinformatics.Formula.MS.ProductIon},System.Collections.Generic.List{BioNovoGene.BioDeep.Chemoinformatics.Formula.MS.NeutralLoss},System.Collections.Generic.List{BioNovoGene.BioDeep.MSFinder.ExistFormulaQuery},BioNovoGene.BioDeep.MSFinder.AnalysisParamOfMsfinder,System.Double,System.Double,System.Double,BioNovoGene.BioDeep.MSFinder.RawData,BioNovoGene.BioDeep.Chemoinformatics.Formula.MS.AdductIon,System.Boolean)">
+ <summary>
+ This is the main method to find the formula candidates.
+ MS-FINDER program now utilizes three internal databases including formulaDB, neutralLossDB, and existFormulaDB.
+ </summary>
+ <param name="neutralLossDB"></param>
+ <param name="existFormulaDB"></param>
+ <param name="mass"></param>
+ <param name="m1Intensity"></param>
+ <param name="m2Intensity"></param>
+ <param name="rawData"></param>
+ <param name="adductIon"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.MSFinder.FormulaGenerator.GetFormulaCandidateList(BioNovoGene.BioDeep.MSFinder.RawData,System.Collections.Generic.List{BioNovoGene.BioDeep.MSFinder.ExistFormulaQuery},BioNovoGene.BioDeep.MSFinder.AnalysisParamOfMsfinder,System.Double,System.Double,System.Double,BioNovoGene.BioDeep.Chemoinformatics.Formula.MS.AdductIon,System.Boolean)">
+ <summary>
+ This is the main method to find the formula candidates.
+ MS-FINDER program now utilizes three internal databases including formulaDB, neutralLossDB, and existFormulaDB.
+ </summary>
+ <param name="existFormulaDB"></param>
+ <param name="mass"></param>
+ <param name="m1Intensity"></param>
+ <param name="m2Intensity"></param>
+ <param name="adductIon"></param>
+ <param name="isotopeCheck"></param>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.BioDeep.MSFinder.FragmentAssigner">
+ <summary>
+ spectrum peak annotation helper
+ </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.MSFinder.FragmentAssigner.productIonDB">
+ <summary>
+ must be sort by mass
+ </summary>
+</member>
+<member name="M:BioNovoGene.BioDeep.MSFinder.FragmentAssigner.#ctor(System.Double)">
+ <summary>
+ use default profile
+ </summary>
+</member>
+<member name="M:BioNovoGene.BioDeep.MSFinder.FragmentAssigner.FastFragmnetAssigner(System.Collections.Generic.List{BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.SpectrumPeak},BioNovoGene.BioDeep.Chemoinformatics.Formula.Formula,BioNovoGene.BioDeep.Chemoinformatics.Formula.MS.AdductIon)">
+ <summary>
+ peaklist should be centroid and refined. For peaklist refining, use GetRefinedPeaklist.
+ </summary>
+ <param name="peaklist">the ms2 spectrum matrix</param>
+ <param name="formula">the annotated formula</param>
+ <remarks>
+ this function only populate out the product ion fragment which has 
+ the annotation result
+ </remarks>
+</member>
+<member name="M:BioNovoGene.BioDeep.MSFinder.FragmentAssigner.FastNeutralLossAssigner(System.Collections.Generic.List{BioNovoGene.BioDeep.Chemoinformatics.Formula.MS.NeutralLoss},System.Collections.Generic.List{BioNovoGene.BioDeep.Chemoinformatics.Formula.MS.NeutralLoss},BioNovoGene.BioDeep.Chemoinformatics.Formula.Formula,System.Double,BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.MassToleranceType,BioNovoGene.BioDeep.Chemoinformatics.Formula.MS.AdductIon)">
+ <summary>
+ The neutralLosslist can be made by GetNeutralLossList after using GetRefinedPeaklist.
+ </summary>
+ <param name="neutralLosslist"></param>
+ <param name="neutralLossDB"></param>
+ <param name="originalFormula"></param>
+ <param name="adductIon"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.MSFinder.FragmentAssigner.GetNeutralLossList(System.Collections.Generic.List{BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.SpectrumPeak},System.Double,System.Double)">
+ <summary>
+ peaklist should be centroid and refined. For peaklist refining, use GetRefinedPeaklist.
+ </summary>
+ <param name="peaklist"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.MSFinder.FragmentAssigner.GetRefinedPeaklist(BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.SpectrumPeak[],System.Double,System.Double,System.Double,System.Double,BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.MassToleranceType,System.Int32,System.Boolean,System.Boolean)">
+ <summary>
+ peaklist should be centroid.
+ </summary>
+ <param name="peaklist"></param>
+ <param name="precursorMz"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.MSFinder.FragmentAssigner.GetRefinedPeaklist(System.Collections.Generic.List{BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.SpectrumPeak},System.Double,System.Double,System.Double,System.Double,BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.MassToleranceType)">
+ <summary>
+ peaklist should be centroid.
+ </summary>
+ <param name="peaklist"></param>
+ <param name="precursorMz"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.MSFinder.FragmentAssigner.GetCentroidMsMsSpectrum(BioNovoGene.BioDeep.MSFinder.RawData)">
+ <summary>
+ get centroid spectrum: judge if the type is profile or centroid
+ </summary>
+ <param name="rawData"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.MSFinder.FeatureSearchHandler.MatchByExactMass``1(System.Collections.Generic.IEnumerable{Microsoft.VisualBasic.ComponentModel.DataSourceModel.NamedValue{``0[]}},System.Double,BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Tolerance)">
+ <summary>
+ run search in parallel with auto task schedule.
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="rawdata"></param>
+ <param name="exact_mass"></param>
+ <param name="ppm"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.MSFinder.FeatureSearchHandler.MatchByExactMass``1(System.Collections.Generic.IEnumerable{``0},System.Double,System.String,BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Tolerance)">
+ <summary>
+ 
+ </summary>
+ <param name="exact_mass"></param>
+ <param name="raw">
+ the rawdata spectrum collection which is extract from the rawdata file.
+ </param>
+ <param name="source">the source file name of the <paramref name="raw"/></param>
+ <param name="ppm"></param>
+ <returns></returns>
+ 
+</member>
+<member name="T:BioNovoGene.BioDeep.MSFinder.ParentMatch">
+ <summary>
+ a precursor matched ms2 spectrum data
+ </summary>
+</member>
+<member name="T:BioNovoGene.BioDeep.MSFinder.RawData">
+ <summary>
+ a spectrum data which is extract from the raw data file.
+ </summary>
+</member>
+</members>
+</doc>

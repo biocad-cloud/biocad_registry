@@ -1,0 +1,658 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+BioNovoGene.BioDeep.MSEngine
+</name>
+</assembly>
+<members>
+<member name="T:BioNovoGene.BioDeep.MSEngine.AnnotationPack">
+ <summary>
+ Result data pack for save the annotation result data
+ </summary>
+ <remarks>
+ data export for internal annotation workflow, handling to customer report and view on mzkit workbench.
+ </remarks>
+</member>
+<member name="P:BioNovoGene.BioDeep.MSEngine.AnnotationPack.libraries">
+ <summary>
+ the ms2 spectrum alignment search hits
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.MSEngine.AnnotationPack.XIC">
+ <summary>
+ [xcms_id => XIC across multiple sample files]
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.MSEngine.AnnotationPack.peaks">
+ <summary>
+ the ms1 peaktable
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.MSEngine.AnnotationPack.samplefiles">
+ <summary>
+ get all sample file names
+ </summary>
+ <returns>
+ this function returns the sample file name without extension names
+ </returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.MSEngine.AnnotationPack.CreatePeakSet">
+ <summary>
+ get peaktable
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.MSEngine.AnnotationPack.LoadMemory">
+ <summary>
+ Make a copy of current in-memory data pack
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.MSEngine.AnnotationPack.Dispose">
+ <summary>
+ just release the memory content data at here
+ </summary>
+</member>
+<member name="T:BioNovoGene.BioDeep.MSEngine.AlignmentHit">
+ <summary>
+ the annotation result of a specific peak
+ </summary>
+</member>
+<member name="P:BioNovoGene.BioDeep.MSEngine.AlignmentHit.samplefiles">
+ <summary>
+ sample hits of current library reference
+ </summary>
+ <returns></returns>
+ <remarks>
+ null or empty means annotation in ms1 level
+ </remarks>
+</member>
+<member name="M:BioNovoGene.BioDeep.MSEngine.AlignmentHit.#ctor(BioNovoGene.BioDeep.MSEngine.AlignmentHit)">
+ <summary>
+ make a copy of the alignment hit result data
+ </summary>
+ <param name="copy"></param>
+</member>
+<member name="T:BioNovoGene.BioDeep.MSEngine.Ms2Score">
+ <summary>
+ the ms2 alignment result
+ </summary>
+</member>
+<member name="P:BioNovoGene.BioDeep.MSEngine.Ms2Score.precursor">
+ <summary>
+ the precursor m/z of the ms2 spectrum
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.MSEngine.Ms2Score.rt">
+ <summary>
+ rt of the ms2 spectrum precursor ion
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.MSEngine.Ms2Score.intensity">
+ <summary>
+ intensity of the ms2 spectrum its precursor ion
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.MSEngine.Ms2Score.libname">
+ <summary>
+ the library hit name
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.MSEngine.Ms2Score.score">
+ <summary>
+ ms2 alignment score
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.MSEngine.Ms2Score.ms2">
+ <summary>
+ the ms2 spectrum of current alignment hit result
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.MSEngine.Ms2Score.source">
+ <summary>
+ the source file name
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.MSEngine.IReportRender.colorSet">
+ <summary>
+ the color schema for the heatmap rendering
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.MSEngine.IReportRender.samplefiles">
+ <summary>
+ ordinal of the sample files or the sample file display selection list
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.MSEngine.IReportRender.Tabular(System.Collections.Generic.IEnumerable{System.String},System.Action{System.String},System.Boolean)">
+ <summary>
+ implements of the html table report
+ </summary>
+ <param name="refSet"></param>
+ <param name="rt_cell"></param>
+ <returns>this function generates the html table code for view report</returns>
+</member>
+<member name="F:BioNovoGene.BioDeep.MSEngine.ReportRender.metabolites">
+ <summary>
+ metabolite indexed via the biodeep id 
+ </summary>
+ <remarks>
+ multiple <see cref="T:BioNovoGene.BioDeep.MSEngine.AlignmentHit"/> value for multiple precursor type
+ </remarks>
+</member>
+<member name="F:BioNovoGene.BioDeep.MSEngine.ReportRender.ions">
+ <summary>
+ metabolite indexed via the xcms ion id
+ </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.MSEngine.ReportRender.peaks">
+ <summary>
+ indexed via the xcms id
+ </summary>
+</member>
+<member name="P:BioNovoGene.BioDeep.MSEngine.ReportRender.samplefiles">
+ <summary>
+ ordinal of the sample files or the sample file display selection list
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.MSEngine.ReportRender.SetIndex(BioNovoGene.BioDeep.MSEngine.AnnotationPack,System.Collections.Generic.Dictionary{System.String,BioNovoGene.BioDeep.MSEngine.AlignmentHit}@,System.Collections.Generic.Dictionary{System.String,BioNovoGene.BioDeep.MSEngine.AlignmentHit}@)">
+ <summary>
+ Create object index from the annotation result.
+ </summary>
+ <param name="pack"></param>
+ <param name="ions">indexed via the <see cref="P:BioNovoGene.BioDeep.MSEngine.AlignmentHit.xcms_id"/></param>
+ <param name="metabolites">indexed via the generated key via the <see cref="P:BioNovoGene.BioDeep.MSEngine.AlignmentHit.biodeep_id"/> and <see cref="P:BioNovoGene.BioDeep.MSEngine.AlignmentHit.adducts"/></param>
+</member>
+<member name="M:BioNovoGene.BioDeep.MSEngine.ReportRender.Tabular(System.Collections.Generic.IEnumerable{System.String},System.Boolean,System.Boolean)">
+ <summary>
+ 
+ </summary>
+ <param name="biodeep_ids"></param>
+ <returns>
+ iterates the html table text, the first element is always the table header title row.
+ </returns>
+</member>
+<member name="T:BioNovoGene.BioDeep.MSEngine.LibraryWorkspace">
+ <summary>
+ A temp workspace of a single reference library
+ </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.MSEngine.LibraryWorkspace.annotations">
+ <summary>
+ libname|adducts as unique key
+ </summary>
+</member>
+<member name="M:BioNovoGene.BioDeep.MSEngine.LibraryWorkspace.add(BioNovoGene.BioDeep.MSEngine.Ms2Score)">
+ <summary>
+ add to workspace temp buffer
+ </summary>
+ <param name="score"></param>
+ <remarks>
+ thread unsafe
+ </remarks>
+</member>
+<member name="M:BioNovoGene.BioDeep.MSEngine.LibraryWorkspace.GetAnnotations(System.Boolean)">
+ <summary>
+ 
+ </summary>
+ <returns>
+ Only populate the alignment result which has ms1 peak assigned by default.
+ </returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.MSEngine.LibraryWorkspace.commit(System.String,BioNovoGene.BioDeep.MSEngine.AlignmentHit)">
+ <summary>
+ commit the annotation and ms2 alignment details
+ </summary>
+ <param name="xref_id"></param>
+ <param name="annotation"></param>
+ <remarks>
+ thread unsafe
+ </remarks>
+</member>
+<member name="M:BioNovoGene.BioDeep.MSEngine.LibraryWorkspace.read(System.IO.Stream,System.Boolean,System.Boolean)">
+ <summary>
+ 
+ </summary>
+ <param name="file"></param>
+ <param name="mz_bin"></param>
+ <param name="filter_ms1">
+ do not load ms1 annotation result? default is yes
+ </param>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.BioDeep.MSEngine.DBPool">
+ <summary>
+ database pool of the metabolites database
+ </summary>
+</member>
+<member name="T:BioNovoGene.BioDeep.MSEngine.IMzQuery">
+ <summary>
+ Query annotation candidates by the given m/z mass value
+ </summary>
+</member>
+<member name="M:BioNovoGene.BioDeep.MSEngine.IMzQuery.QueryByMz(System.Double)">
+ <summary>
+ Query annotation candidates by the given m/z mass value
+ </summary>
+ <param name="mz"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.MSEngine.IMzQuery.MSetAnnotation(System.Collections.Generic.IEnumerable{System.Double},System.Int32)">
+ <summary>
+ query a set of m/z peak list
+ </summary>
+ <param name="mzlist"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.MSEngine.Library`1.GetMetadataByID(System.String)">
+ <summary>
+ get metabolite annotation data by id reference
+ </summary>
+ <param name="id"></param>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.BioDeep.MSEngine.LibraryData">
+ <summary>
+ the library reference data model for mass spectrum search
+ </summary>
+</member>
+<member name="T:BioNovoGene.BioDeep.MSEngine.MassIndexKey">
+ <summary>
+ Indexed of target compound by m/z
+ </summary>
+</member>
+<member name="M:BioNovoGene.BioDeep.MSEngine.MassIndexKey.ToString">
+ <summary>
+ debug view
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.MSEngine.IMassSearch.QueryByMass(System.Double)">
+ <summary>
+ Provides a mass value and then populate all related metabolite reference data
+ </summary>
+ <param name="mass"></param>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.BioDeep.MSEngine.MassSearchIndex`1">
+ <summary>
+ A simple implements of exact mass search index
+ </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.MSEngine.MassSearchIndex`1.tolerance">
+ <summary>
+ mass tolerance value for match sample mz and threocal mz
+ </summary>
+</member>
+<member name="M:BioNovoGene.BioDeep.MSEngine.MassSearchIndex`1.#ctor(System.Collections.Generic.IEnumerable{`0},System.Func{System.Double,System.Object},BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Tolerance)">
+ <summary>
+ 
+ </summary>
+ <param name="mass"></param>
+ <param name="activator">
+ returns object due to the reason of reflection not working
+ well on build a dynamics delegate type
+ </param>
+ <param name="tolerance">
+ tolerance used for filter mass hit, not the tolerance of build search index
+ </param>
+</member>
+<member name="T:BioNovoGene.BioDeep.MSEngine.IIonProperty">
+ <summary>
+ Molecule ion metadata
+ </summary>
+</member>
+<member name="T:BioNovoGene.BioDeep.MSEngine.IMoleculeMsProperty">
+ <summary>
+ 
+ </summary>
+ <remarks>
+ especially used for library record
+ </remarks>
+</member>
+<member name="T:BioNovoGene.BioDeep.MSEngine.MoleculeMsReference">
+ <summary>
+ a ms scan of the ms2 spectrum data model, <see cref="T:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.PeakMs2"/> object liked spectrum data.
+ </summary>
+</member>
+<member name="P:BioNovoGene.BioDeep.MSEngine.MoleculeMsReference.Spectrum">
+ <summary>
+ the spectrum data
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.MSEngine.MoleculeMsReference.QuantMass">
+ <summary>
+ used for GCMS project
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.MSEngine.MoleculeMsReference.CompoundClass">
+ <summary>
+ lipidomics
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.MSEngine.MoleculeMsReference.Links">
+ <summary>
+ used to link molecule record to databases. Each database must be separated by semi-colon (;)
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.MSEngine.MoleculeMsReference.DatabaseID">
+ <summary>
+ used for binbase, fastaDB etc
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.MSEngine.MoleculeMsReference.DatabaseUniqueIdentifier">
+ <summary>
+ used for binbase, fastaDB etc
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.MSEngine.MoleculeMsReference.RetentionTimeTolerance">
+ <summary>
+ used for text library searching
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.MSEngine.MoleculeMsReference.MassTolerance">
+ <summary>
+ used for text library searching
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.MSEngine.MoleculeMsReference.MinimumPeakHeight">
+ <summary>
+ used for text library searching
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.MSEngine.MoleculeMsReference.IsTargetMolecule">
+ <summary>
+ used for text library searching
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.MSEngine.MsScanMatching.GetIsotopeRatioSimilarity(System.Collections.Generic.IReadOnlyList{BioNovoGene.BioDeep.Chemoinformatics.Formula.IsotopicPatterns.IsotopicPeak},System.Collections.Generic.IReadOnlyList{BioNovoGene.BioDeep.Chemoinformatics.Formula.IsotopicPatterns.IsotopicPeak},System.Double,System.Double)">
+ <summary>
+ This method returns the similarity score between theoretical isotopic ratios and experimental isotopic patterns in MS1 axis.
+ This method will utilize up to [M+4] for their calculations.
+ </summary>
+ <param name="peaks1">
+ Add the MS1 spectrum with respect to the focused data point.
+ </param>
+ <param name="peaks2">
+ Add the theoretical isotopic abundances. The theoretical patterns are supposed to be calculated in MSP parcer.
+ </param>
+ <param name="targetedMz">
+ Add the experimental precursor mass.
+ </param>
+ <param name="tolerance">
+ Add the torelance to merge the spectrum of experimental MS1.
+ </param>
+ <returns>
+ The similarity score which is standadized from 0 (no similarity) to 1 (consistency) will be return.
+ </returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.MSEngine.MsScanMatching.GetMatchedPeaksScores(BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.IMSScanProperty,BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.IMSScanProperty,System.Double,System.Double,System.Double)">
+ <summary>
+ This method returns the presence similarity (% of matched fragments) between the experimental MS/MS spectrum and the standard MS/MS spectrum.
+ So, this program will calculate how many fragments of library spectrum are found in the experimental spectrum and will return the %.
+ double[] [0]m/z[1]intensity
+ 
+ </summary>
+ <param name="prop1">
+ Add the experimental MS/MS spectrum.
+ </param>
+ <param name="prop2">
+ Add the theoretical MS/MS spectrum. The theoretical MS/MS spectrum is supposed to be retreived in MSP parcer.
+ </param>
+ <param name="bin">
+ Add the bin value to merge the abundance of m/z.
+ </param>
+ <returns>
+ [0] The similarity score which is standadized from 0 (no similarity) to 1 (consistency) will be returned.
+ [1] MatchedPeaksCount is also returned.
+ </returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.MSEngine.MsScanMatching.GetAndromedaScore(System.Collections.Generic.List{BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.SpectrumPeak},System.Double,System.Double)">
+ <summary>
+ please set the 'mached spectral peaks' list obtained from the method of GetMachedSpectralPeaks where isMatched property is set to each spectrum peak obj
+ </summary>
+ <param name="peaks"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.MSEngine.MsScanMatching.GetMachedSpectralPeaks(BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.IMSScanProperty,System.Int32,BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.IMSScanProperty,System.Double,System.Double,System.Double)">
+ <summary>
+ <param name="prop1">
+ Add the experimental MS/MS spectrum.
+ </param>
+ <param name="prop2">
+ Add the theoretical MS/MS spectrum. The theoretical MS/MS spectrum is supposed to be retreived in MSP parcer.
+ </param>
+ <param name="bin">
+ Add the bin value to merge the abundance of m/z.
+ </param>
+ </summary>
+</member>
+<member name="M:BioNovoGene.BioDeep.MSEngine.MsScanMatching.GetReverseDotProduct(BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.IMSScanProperty,BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.IMSScanProperty,System.Double,System.Double,System.Double)">
+ <summary>
+ This program will return so called reverse dot product similarity as described in the previous resport.
+ Stein, S. E. An Integrated Method for Spectrum Extraction. J.Am.Soc.Mass.Spectrom, 10, 770-781, 1999.
+ The spectrum similarity of MS/MS with respect to library spectrum will be calculated in this method.
+ </summary>
+ <param name="prop1">
+ Add the experimental MS/MS spectrum.
+ </param>
+ <param name="prop2">
+ Add the theoretical MS/MS spectrum. The theoretical MS/MS spectrum is supposed to be retreived in MSP parcer.
+ </param>
+ <param name="bin">
+ Add the bin value to merge the abundance of m/z.
+ </param>
+ <returns>
+ The similarity score which is standadized from 0 (no similarity) to 1 (consistency) will be return.
+ </returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.MSEngine.MsScanMatching.GetWeightedDotProduct(BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.IMSScanProperty,BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.IMSScanProperty,System.Double,System.Double,System.Double)">
+ <summary>
+ This program will return so called dot product similarity as described in the previous resport.
+ Stein, S. E. An Integrated Method for Spectrum Extraction. J.Am.Soc.Mass.Spectrom, 10, 770-781, 1999.
+ The spectrum similarity of MS/MS will be calculated in this method.
+ </summary>
+ <param name="prop1">
+ Add the experimental MS/MS spectrum.
+ </param>
+ <param name="prop2">
+ Add the theoretical MS/MS spectrum. The theoretical MS/MS spectrum is supposed to be retreived in MSP parcer.
+ </param>
+ <param name="bin">
+ Add the bin value to merge the abundance of m/z.
+ </param>
+ <returns>
+ The similarity score which is standadized from 0 (no similarity) to 1 (consistency) will be return.
+ </returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.MSEngine.MsScanMatching.GetGaussianSimilarity(System.Double,System.Double,System.Double)">
+ <summary>
+ This method is to calculate the similarity of retention time differences or precursor ion difference from the library information as described in the previous report.
+ Tsugawa, H. et al. Anal.Chem. 85, 5191-5199, 2013.
+ </summary>
+ <param name="actual">
+ Add the experimental m/z or retention time.
+ </param>
+ <param name="reference">
+ Add the theoretical m/z or library's retention time.
+ </param>
+ <param name="tolrance">
+ Add the user-defined search tolerance.
+ </param>
+ <returns>
+ The similarity score which is standadized from 0 (no similarity) to 1 (consistency) will be return.
+ </returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.MSEngine.MsScanMatching.GetTotalSimilarity(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Boolean,BioNovoGene.BioDeep.MSEngine.TargetOmics,System.Boolean)">
+ <summary>
+ MS-DIAL program utilizes the total similarity score to rank the compound candidates.
+ This method is to calculate it from four scores including RT, isotopic ratios, m/z, and MS/MS similarities.
+ </summary>
+ <param name="accurateMassSimilarity"></param>
+ <param name="rtSimilarity"></param>
+ <param name="isotopeSimilarity"></param>
+ <param name="spectraSimilarity"></param>
+ <param name="reverseSearchSimilarity"></param>
+ <param name="presenceSimilarity"></param>
+ <returns>
+ The similarity score which is standadized from 0 (no similarity) to 1 (consistency) will be return.
+ </returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.MSEngine.MsScanMatching.GetTotalSimilarity(System.Double,System.Double,System.Double,System.Boolean)">
+ <summary>
+ MS-DIAL program also calculate the total similarity score without the MS/MS similarity scoring.
+ It means that the total score will be calculated from RT, m/z, and isotopic similarities.
+ </summary>
+ <param name="accurateMassSimilarity"></param>
+ <param name="rtSimilarity"></param>
+ <param name="isotopeSimilarity"></param>
+ <returns>
+ The similarity score which is standadized from 0 (no similarity) to 1 (consistency) will be return.
+ </returns>
+</member>
+<member name="T:BioNovoGene.BioDeep.MSEngine.MSSearch`1">
+ <summary>
+ Engine for run m/z query
+ </summary>
+ <typeparam name="Compound"></typeparam>
+</member>
+<member name="F:BioNovoGene.BioDeep.MSEngine.MSSearch`1.index">
+ <summary>
+ index by unique id
+ </summary>
+</member>
+<member name="P:BioNovoGene.BioDeep.MSEngine.MSSearch`1.Metadata">
+ <summary>
+ pull all compound meta data from current m/z search index
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.MSEngine.MSSearch`1.#ctor(System.Collections.Generic.IEnumerable{`0},BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Tolerance,BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.MzCalculator[],System.Func{`0,System.Double},System.Func{`0,System.Collections.Generic.Dictionary{System.String,System.String}},Microsoft.VisualBasic.ComponentModel.Ranges.Model.DoubleRange)">
+ <summary>
+ 
+ </summary>
+ <param name="tree"></param>
+ <param name="tolerance">
+ the mass tolerance value between two mass value
+ </param>
+ <param name="precursorTypes"></param>
+ <param name="score"></param>
+</member>
+<member name="M:BioNovoGene.BioDeep.MSEngine.MSSearch`1.GetCompound(System.String)">
+ <summary>
+ get kegg compound by a given kegg id
+ </summary>
+ <param name="id">
+ kegg compound id in pattern ``C\d+``
+ </param>
+ <returns>
+ this function returns nothing if the target compound id
+ is not exists in the current database
+ </returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.MSEngine.MSSearch`1.QueryByMz(System.Double)">
+ <summary>
+ 
+ </summary>
+ <param name="mz"></param>
+ <returns>
+ 函数返回符合条件的kegg代谢物编号
+ </returns>
+ <remarks>
+ the query score is zero from this function
+ </remarks>
+</member>
+<member name="T:BioNovoGene.BioDeep.MSEngine.MzQuery">
+ <summary>
+ query result of a ms1 m/z ion
+ </summary>
+</member>
+<member name="P:BioNovoGene.BioDeep.MSEngine.MzQuery.mz">
+ <summary>
+ the source ``m/z`` value
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.MSEngine.MzQuery.mz_ref">
+ <summary>
+ the evaluated theoretical m/z value based 
+ on the precursor type and formula string 
+ data.
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.MSEngine.MzQuery.unique_id">
+ <summary>
+ the unique id of the target query result metabolite
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.MSEngine.MzQuery.score">
+ <summary>
+ used in MSJointConnection peak list annotation.
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.MSEngine.MzQuery.ReferenceKey(BioNovoGene.BioDeep.MSEngine.MzQuery,System.String)">
+ <summary>
+ makes a unique reference key of current mz query result
+ </summary>
+ <returns></returns>
+ 
+</member>
+<member name="M:BioNovoGene.BioDeep.MSEngine.MzQuery.ToString">
+ <summary>
+ unique_id precursor_type, m/z xxx.xxxx; score=xxx
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.MSEngine.PeptideCalc.Sequence2PeptidesByVariableModifications(BioNovoGene.BioDeep.MSEngine.Peptide,BioNovoGene.BioDeep.MSEngine.ModificationContainer,System.Int32,System.Double,System.Double)">
+ <summary>
+ peptide should be processed by Sequence2PeptideByFixedModifications before using this method
+ </summary>
+ <param name="peptide"></param>
+ <param name="container"></param>
+ <param name="maxNumberOfModificationsPerPeptide"></param>
+ <returns></returns>
+</member>
+<member name="F:BioNovoGene.BioDeep.MSEngine.SequenceToSpec.comparer">
+ <summary>
+ default is 20ppm tolerance error for treated the two mass value as equals.
+ </summary>
+</member>
+<member name="T:BioNovoGene.BioDeep.MSEngine.MsScanMatchResult">
+ <summary>
+ ms spectrum annotation result
+ </summary>
+</member>
+<member name="M:BioNovoGene.BioDeep.MSEngine.SpectrumHandler.EstimateIsotopes(System.Collections.Generic.List{BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.SpectrumPeak},System.Double,System.Boolean,System.Int32)">
+ <summary>
+ peak list must be sorted by m/z (ordering)
+ peak should be initialized by new Peak() { Mz = spec[0], Intensity = spec[1], Charge = 1, IsotopeFrag = false  }
+ </summary>
+</member>
+</members>
+</doc>

@@ -1,0 +1,1549 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+BioNovoGene.BioDeep.Chemistry.Massbank
+</name>
+</assembly>
+<members>
+<member name="F:BioNovoGene.BioDeep.Chemistry.Units.percent">
+ <summary>
+ 百分之一``[%]``
+ </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemistry.Units.permil">
+ <summary>
+ 千分之一``[‰]``
+ </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemistry.Units.floz_gallon_UK">
+ <summary>
+ ``液量盎司/加仑``(UK)
+ </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemistry.Units.floz_gallon_US">
+ <summary>
+ ``液量盎司/加仑``(US)
+ </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemistry.Units.cuin_cuft">
+ <summary>
+ ``立方英寸/立方英尺``
+ </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemistry.Units.cuin_cuyard">
+ <summary>
+ ``立方英寸/立方码``
+ </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemistry.Units.drops_gallon_UK">
+ <summary>
+ ``滴/加仑``(UK)
+ </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemistry.Units.drops_gallon_US">
+ <summary>
+ ``滴/加仑``(US)
+ </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemistry.Units.drops_cuft">
+ <summary>
+ ``滴/立方英尺``
+ </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemistry.Units.oz_pound">
+ <summary>
+ ``盎司/镑``
+ </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemistry.Units.oz_ton_UK">
+ <summary>
+ ``盎司/吨``(UK)
+ </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemistry.Units.oz_ton_US">
+ <summary>
+ ``盎司/吨``(US)
+ </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemistry.Units.ppm">
+ <summary>
+ Parts per million
+ </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemistry.Units.parts_billion">
+ <summary>
+ 十亿分之一
+ </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemistry.Units.mL_litre">
+ <summary>
+ ``毫升/升``
+ </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemistry.Units.mL_megalitre">
+ <summary>
+ ``毫升/兆升``
+ </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemistry.Units.mL_cumetre">
+ <summary>
+ ``毫升/立方米``
+ </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemistry.Units.drops_mL">
+ <summary>
+ ``滴/毫升``
+ </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemistry.Units.drops_litre">
+ <summary>
+ ``滴/升``
+ </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemistry.Units.drops_cumetre">
+ <summary>
+ ``滴/立方米``
+ </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemistry.Units.milligrams_kg">
+ <summary>
+ ``毫克/公斤`` 
+ </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemistry.Units.grams_kg">
+ <summary>
+ ``克/公斤``
+ </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemistry.Units.grams_tonne">
+ <summary>
+ ``克/吨`` 
+ </summary>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.MetaLib.KEGGExtensions.Xref(SMRUCC.genomics.Assembly.KEGG.DBGET.bGetObject.Compound)">
+ <summary>
+ extract the cross reference link data from kegg compound annotation data model
+ </summary>
+ <param name="kegg"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.MetaLib.KEGGExtensions.KEGGDrugGlyan2Compound(System.ValueTuple{System.String,System.String})">
+ <summary>
+ 将KEGG数据库之中的药物编号以及Glyan物质的编号转换为Compound编号
+ </summary>
+ <param name="input">
+ 包含有两个字段的tuple数据：
+ 
+ + keggDrug KEGG的药物数据库的文件路径
+ + KEGGcpd KEGG的代谢物数据库的文件夹路径，在这个文件夹里面应该包含有Glyan物质的数据
+ </param>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemistry.MetaLib.ExactMassSearch`1">
+ <summary>
+ handler for exact mass of the metabolites annotation on MS1 level.
+ </summary>
+ <typeparam name="T"></typeparam>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemistry.MetaLib.ChemicalNameEquality">
+ <summary>
+ 判断两个化学名称是否相同？
+ </summary>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.MetaLib.ChemicalNameEquality.RemoveChiralFlag(System.String)">
+ <summary>
+ 将化合物名称之中的手性标志移除
+ </summary>
+ <param name="name"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.MetaLib.ChemicalNameEquality.OxoName(System.String)">
+ <summary>
+ 氧代,氧络的,含氧的
+ </summary>
+ <param name="name"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.MetaLib.ChemicalNameEquality.Distinct(System.Collections.Generic.IEnumerable{System.String})">
+ <summary>
+ 这个函数是为了将大小写不同的名字给去除掉重复
+ </summary>
+ <param name="names"></param>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemistry.MetaLib.TreeSearch">
+ <summary>
+ 在数据库的编号定义比较模糊的情况下, 会需要使用这个模块进行快速匹配搜索
+ </summary>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.MetaLib.TreeSearch.#ctor(System.Double)">
+ <summary>
+ 
+ </summary>
+ <param name="score">认为两个物质注释指的是相同的物质的最低得分</param>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemistry.MetaLib.CrossReference.Validation">
+ <summary>
+ the xref id string format validation
+ </summary>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.MetaLib.CrossReference.Validation.IsEmptyXrefId(System.String)">
+ <summary>
+ test for the id with integer part
+ </summary>
+ <param name="id">example as 'HMDB0000001'</param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.MetaLib.CrossReference.Validation.IsEmptyIdString(System.String)">
+ <summary>
+ test for the id without integer part
+ </summary>
+ <param name="id">example as 'ATP'</param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.MetaLib.CrossReference.Validation.IsCASNumber(System.String)">
+ <summary>
+ ``XXX-XXX-XXX``
+ </summary>
+ <param name="synonym"></param>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemistry.MetaLib.CrossReference.xref">
+ <summary>
+ The database cross reference set of a specific metabolite object.
+ </summary>
+ <remarks>
+ (对某一个物质在数据库之间的相互引用编号)
+ </remarks>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.MetaLib.CrossReference.xref.chebi">
+ <summary>
+ chebi main id, Chemical Entities of Biological Interest (ChEBI)
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.MetaLib.CrossReference.xref.pubchem">
+ <summary>
+ The pubchem cid
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.MetaLib.CrossReference.xref.CAS">
+ <summary>
+ Multiple CAS id may exists
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.MetaLib.CrossReference.xref.extras">
+ <summary>
+ other additional database id set
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.MetaLib.CrossReference.xref.Extra(System.String)">
+ <summary>
+ get xref id from <see cref="P:BioNovoGene.BioDeep.Chemistry.MetaLib.CrossReference.xref.extras"/> dictionary
+ </summary>
+ <param name="dbname"></param>
+ <returns>this property getter returns nothing if not found</returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.MetaLib.CrossReference.xref.#ctor(SMRUCC.genomics.Assembly.ELIXIR.EBI.ChEBI.XML.ChEBIEntity)">
+ <summary>
+ extract the cross reference id set from a chebi metabolite data
+ </summary>
+ <param name="chebi"></param>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.MetaLib.CrossReference.xref.#ctor(BioNovoGene.BioDeep.Chemistry.TMIC.HMDB.MetaDb)">
+ <summary>
+ extract the cross reference id set from a hmdb metabolite data
+ </summary>
+ <param name="meta"></param>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.MetaLib.CrossReference.xref.Join(BioNovoGene.BioDeep.Chemistry.MetaLib.CrossReference.xref)">
+ <summary>
+ This function will fill current <see cref="T:BioNovoGene.BioDeep.Chemistry.MetaLib.CrossReference.xref"/> object with 
+ additional property data from <paramref name="another"/> data object.
+ </summary>
+ <param name="another"></param>
+ <returns>construct a new cross reference set data object</returns>
+ 
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.MetaLib.CrossReference.xref.PopulateXrefs(System.Boolean,System.Boolean)">
+ <summary>
+ Convert a cross reference set as a database id collection
+ </summary>
+ <param name="parseList">
+ this parameter will treat the xref id as a set of the id 
+ collection, where the id set elements is seperated by the 
+ ``;`` symbol.
+ </param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.MetaLib.CrossReference.xref.op_Concatenate(BioNovoGene.BioDeep.Chemistry.MetaLib.CrossReference.xref,BioNovoGene.BioDeep.Chemistry.MetaLib.CrossReference.xref)">
+ <summary>
+ fill of the corss reference id content in <paramref name="b"/> into <paramref name="a"/>
+ </summary>
+ <param name="a"></param>
+ <param name="b"></param>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemistry.MetaLib.CrossReference.XrefExtensions">
+ <summary>
+ helper function for re-format the input id string to canonical format
+ </summary>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.MetaLib.CrossReference.XrefExtensions.FormatChEBI(System.String)">
+ <summary>
+ helper function for re-format the input chebi id string to canonical format
+ </summary>
+ <param name="id"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.MetaLib.CrossReference.XrefExtensions.FormatHMDB(System.String)">
+ <summary>
+ helper function for re-format the input hmdb id string to canonical format
+ </summary>
+ <param name="id"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.MetaLib.CrossReference.XrefSchema.Join(BioNovoGene.BioDeep.Chemistry.MetaLib.CrossReference.xref,BioNovoGene.BioDeep.Chemistry.MetaLib.CrossReference.xref)">
+ <summary>
+ Merge two cross reference set and then create a new cross reference set.
+ </summary>
+ <param name="a"></param>
+ <param name="b"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.MetaLib.CrossReference.XrefSchema.PullCollection(BioNovoGene.BioDeep.Chemistry.MetaLib.CrossReference.xref,System.Boolean)">
+ <summary>
+ Convert a cross reference set as a database id collection
+ </summary>
+ <param name="xref"></param>
+ <param name="parseList">
+ this parameter will treat the xref id as a set of the id 
+ collection, where the id set elements is seperated by the 
+ ``;`` symbol.
+ </param>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.ICompoundClass">
+ <summary>
+ 主要是取自HMDB数据库之中的代谢物分类信息
+ </summary>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.ClassReader">
+ <summary>
+ a helper for get <see cref="T:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.ICompoundClass"/> data
+ </summary>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.ClassReader.EnumerateId">
+ <summary>
+ try to enumerate all the reference id inside current 
+ class data index pool
+ </summary>
+ <returns>
+ a collection of the metabolite reference id, which could be used 
+ for get the compound class data via the <see cref="M:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.ClassReader.GetClass(System.String)"/> method.
+ </returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.ClassReader.ToSet(BioNovoGene.BioDeep.Chemistry.MetaLib.Models.ICompoundClass)">
+ <summary>
+ populate the class structure data in string array:
+ 
+ 1. <see cref="P:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.ICompoundClass.kingdom"/>
+ 2. <see cref="P:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.ICompoundClass.super_class"/>
+ 3. <see cref="P:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.ICompoundClass.class"/>
+ 4. <see cref="P:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.ICompoundClass.sub_class"/>
+ 5. <see cref="P:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.ICompoundClass.molecular_framework"/>
+ </summary>
+ <param name="c"></param>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaInfo">
+ <summary>
+ the very basic metabolite annotation data model
+ </summary>
+ <remarks>
+ this data model includes the metabolite annotation information, includes:
+ 
+ 1. basic metabolite information, example as formula, name, etc
+ 2. database cross reference: <see cref="P:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaInfo.xref"/>
+ </remarks>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaInfo.ID">
+ <summary>
+ 该物质在整合库之中的唯一标识符
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaInfo.IUPACName">
+ <summary>
+ IUPAC name refers to the systematic name given to a chemical compound according to the rules and 
+ guidelines established by the International Union of Pure and Applied Chemistry (IUPAC). IUPAC is 
+ an international organization that aims to advance the field of chemistry by developing standards
+ and nomenclature for chemicals.
+ 
+ The IUPAC name of a compound provides a unique and unambiguous identifier for that compound, which
+ is essential for clear communication among chemists and other scientists. These names are based 
+ on a set of systematic rules that take into account the structure and composition of the compound.
+ 
+ For example, the IUPAC name for the common sugar glucose is (2R,3S,4R,5R)-2,3,4,5,6-pentahydroxyhexanal.
+ This name describes the specific arrangement of atoms and functional groups in the glucose molecule.
+ 
+ IUPAC names are particularly important for complex organic compounds, where common names can be 
+ confusing or non-existent. They are widely used in scientific literature, patents, and other 
+ technical documents related to chemistry.
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaInfo.synonym">
+ <summary>
+ the synonym of current metabolite, multiple names in different languages maybe contains inside this data names pool
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaInfo.xref">
+ <summary>
+ The database cross reference of current metabolite and the molecule structure data.
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaInfo.GetXrefId(System.String)">
+ <summary>
+ get database cross reference id by database name
+ </summary>
+ <param name="field">
+ the database name
+ </param>
+ <returns>
+ db_xref
+ </returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaInfo.ToString">
+ <summary>
+ display the name for debug view
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.BiosampleSource.reference">
+ <summary>
+ the reference source
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.CompoundClass">
+ <summary>
+ the data model of the compound class information
+ </summary>
+ <remarks>
+ this class information model is mainly address on the HMDB
+ metabolite ontology class levels.
+ </remarks>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaLib">
+ <summary>
+ 对``chebi/kegg/pubchem/HMDB/metlin``的物质注释信息整合库，这个数据库只要为了生成编号，名称之类的注释信息而构建的
+ </summary>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaLib.pathways">
+ <summary>
+ 包含有这个物质的KEGG pathway的编号的集合，只有当<see cref="P:BioNovoGene.BioDeep.Chemistry.MetaLib.CrossReference.xref.KEGG"/>
+ 存在值的时候才会存在这个属性
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaLib.#ctor(BioNovoGene.BioDeep.Chemistry.MetaLib.Models.ICompoundClass)">
+ <summary>
+ creator a metabolite annotation data with compound class assigned
+ </summary>
+ <param name="class">the compound class data</param>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaLib.Equals(BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaLib)">
+ <summary>
+ 相同的物质可能在数据库之间有好几个编号?
+ </summary>
+ <param name="other"></param>
+ <returns></returns>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemistry.MetaLib.CommonNames.NameRanking.symbols">
+ <summary>
+ the white space is exclude from the symbol list, due to 
+ the reason of the white space is recommended in the 
+ common name, example as: "Magneson I"
+ </summary>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.MetaLib.CommonNames.NameRanking.Ranking(System.Collections.Generic.IEnumerable{System.String},System.Int32,System.Int32)">
+ <summary>
+ ranking the input names with score order in desc
+ </summary>
+ <param name="names"></param>
+ <param name="maxLen"></param>
+ <param name="minLen"></param>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemistry.MetaLib.CommonNames.ChemicalFormulaRule">
+ <summary>
+ avoid the chemical formula string
+ Ca3
+ </summary>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemistry.MetaLib.CommonNames.NumberRule">
+ <summary>
+ is number?
+ avoid the number as name
+ 1.22
+ </summary>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemistry.MetaLib.CommonNames.DatabaseIdRule">
+ <summary>
+ avoid the database id
+ </summary>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemistry.MetaLib.CommonNames.InchiKeyRule">
+ <summary>
+ inchikey
+ </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemistry.MetaLib.NaturalLanguageTerm.OligopeptideName">
+ <summary>
+ 低聚肽的名称匹配模式
+ </summary>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.MetaLib.NaturalLanguageTerm.ParseVendorName(System.String)">
+ <summary>
+ 尝试将文本之中的仪器厂商的名称解析出来
+ </summary>
+ <param name="text"></param>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemistry.MetaLib.RefMet">
+ <summary>
+ RefMet: A Reference set of Metabolite names
+ </summary>
+ <remarks>
+ RefMet Naming Conventions
+ 
+ The names used in RefMet are generally based on common, officially accepted terms and 
+ incorporate notations which are appropriate for the type of analytical technique used.
+ In general, high-throughput untargeted MS experiments are not capable of deducing 
+ stereochemistry, double bond position/geometry and sn position (for glycerolipids/
+ lycerophospholipids). Secondly, the type of MS technique employed, as well as the mass
+ accuacy of the instrument will produce identifications at different levels of detail. 
+ For example, MS/MS methods are capable of identifying acyl chain substituents in lipids 
+ (e.g. PC 16:0/20:4) whereas MS methods only using precursor ion information might report 
+ these ions as "sum-composition" species (e.g. PC 36:4). RefMet covers both types of 
+ notations in an effort to enable data-sharing and comparative analysis of metabolomics 
+ data, using an analytical chemistry-centric approach.
+ 
+ The "sum-composition" lipid species indicate the number Of carbons And number Of "double
+ bond equivalents" (DBE), but Not chain positions Or Double bond regiochemistry And geometry.
+ The concept Of a Double bond equivalent unites a range Of chemical functionality which 
+ gives rise To isobaric features by mass spectometry. For example a chain containing a ring 
+ results In loss Of 2 hydrogen atoms (compared To a linear Structure) And thus has 1 DBE 
+ since the mass And molecular formula Is identical To a linear Structure With one Double bond.
+ Similarly, conversion Of a hydroxyl group To ketone results In loss Of 2 hydrogen atoms,
+ therefore the ketone Is assigned 1 DBE. Where applicable, the number Of oxygen atoms Is added 
+ To the abbreviation, separated by a semi-colon. Oxygen atoms In the Class-specific functional
+ group (e.g. the carboxylic acid group For fatty acids Or the phospholcholine group For PC) 
+ are excluded. In the Case Of sphingolipids, all oxygen atoms apart from the amide oxygen are
+ included, In order To discrminate, For example, between 1-deoxyceramides (;O), ceramides (;O2) 
+ And phytoceramides (;O3).
+ 
+ Some notes pertaining To different metabolite classes are outlined below.
+ </remarks>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemistry.CASDetails">
+ <summary>
+ The metabolite data model from the cas registry details
+ </summary>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.ChEBI.ChEBIObo.ImportsMetabolites(SMRUCC.genomics.foundation.OBO_Foundry.IO.Models.OBOFile)">
+ <summary>
+ Extract the metabolite annotation information from the chebi ontology database file
+ </summary>
+ <param name="chebi"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.ChEBI.ChEBIObo.ExtractTerm(SMRUCC.genomics.foundation.OBO_Foundry.IO.Models.RawTerm)">
+ <summary>
+ convert the chebi ontology term as the mzkit metabolite annotation data model
+ </summary>
+ <param name="term"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.ChEBI.ChEBIObo.SafeGetString(System.Collections.Generic.Dictionary{System.String,Microsoft.VisualBasic.Text.Xml.Models.NamedValue[]},System.String)">
+ <summary>
+ deal with the missing value data safely
+ </summary>
+ <param name="properties"></param>
+ <param name="key"></param>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemistry.ChEBI.Wraper">
+ <summary>
+ mzkit data reader wrapper of the <see cref="T:SMRUCC.genomics.Assembly.ELIXIR.EBI.ChEBI.XML.ChEBIEntity"/> xml request result data.
+ </summary>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.ChEBI.Wraper.chebi">
+ <summary>
+ the source data object
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemistry.HERB.HerbCompoundObject">
+ <summary>
+ 
+ </summary>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemistry.HERB.HerbReader">
+ <summary>
+ data reader helper for the herbs database tables
+ </summary>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.HERB.HerbReader.LoadDatabase(System.String)">
+ <summary>
+ load the herb database folder and then assemble the <see cref="T:BioNovoGene.BioDeep.Chemistry.HERB.HerbCompoundObject"/> collection.
+ </summary>
+ <param name="dir"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.LipidMaps.BackgroundModel.CreateCategoryBackground(System.Collections.Generic.IEnumerable{BioNovoGene.BioDeep.Chemistry.LipidMaps.MetaData})">
+ <summary>
+ create lipidmaps class background model for run enrichment analysis
+ </summary>
+ <param name="lipidmaps"></param>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemistry.LipidMaps.LipidClassReader">
+ <summary>
+ A helper module for get lipidmaps <see cref="T:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.CompoundClass"/> information via a given lipidmaps id
+ </summary>
+ <remarks>
+ the lipidmaps metabolite data in this module is indexed via the lipidmaps id: <see cref="P:BioNovoGene.BioDeep.Chemistry.LipidMaps.MetaData.LM_ID"/>.
+ </remarks>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemistry.LipidMaps.LipidClassReader.index">
+ <summary>
+ the lipidmaps database was indexed via the lipidmaps id at here
+ </summary>
+ <remarks>
+ the key is the lipidmaps id <see cref="P:BioNovoGene.BioDeep.Chemistry.LipidMaps.MetaData.LM_ID"/>
+ </remarks>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.LipidMaps.LipidClassReader.lipids">
+ <summary>
+ get number of the lipids inside the database
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.LipidMaps.LipidClassReader.GetClass(System.String)">
+ <summary>
+ get lipidmaps class information via a given lipidmaps id 
+ </summary>
+ <param name="id"></param>
+ <returns>this function may returns nothing if the given <paramref name="id"/>
+ is not exists inside the database index.</returns>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemistry.LipidMaps.LipidNameReader.index">
+ <summary>
+ index by lipidmaps id
+ </summary>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.LipidMaps.LipidNameReader.GetName(System.String)">
+ <summary>
+ get lipid <see cref="P:BioNovoGene.BioDeep.Chemistry.LipidMaps.MetaData.ABBREVIATION"/> name by its id
+ </summary>
+ <param name="id"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.LipidMaps.MapsHelper.CreateMaps(System.Collections.Generic.IEnumerable{BioNovoGene.BioDeep.Chemoinformatics.SDF.SDF})">
+ <summary>
+ 创建lipidmap之中的分子信息到其他的数据库的映射
+ </summary>
+ <param name="lipidMaps"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.LipidMaps.MetaTable.ProjectVectors(BioNovoGene.BioDeep.Chemistry.LipidMaps.MetaData[])">
+ <summary>
+ cast object set to dataframe columns
+ </summary>
+ <param name="lipidmaps"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.LipidMaps.MetaTable.WriteRepository(System.Collections.Generic.IEnumerable{BioNovoGene.BioDeep.Chemistry.LipidMaps.MetaData},System.IO.Stream)">
+ <summary>
+ write the lipidmaps database in messagepack format
+ </summary>
+ <param name="data"></param>
+ <param name="file"></param>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemistry.LipidMaps.MetaData">
+ <summary>
+ lipidmaps annotation data model, which is original extract from the SDF data objects.
+ </summary>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.LipidMaps.MetaData.LM_ID">
+ <summary>
+ The lipidmaps unique reference id
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.LipidMaps.MetaData.PUBCHEM_SID">
+ <summary>
+ PubChem Substance accession identifier (SID)
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.LipidMaps.MetaData.PUBCHEM_CID">
+ <summary>
+ PubChem Compound accession identifier (CID)
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.LipidMaps.MetaData.Data(BioNovoGene.BioDeep.Chemoinformatics.SDF.SDF)">
+ <summary>
+ extract annotation information from the SDF metadata object
+ </summary>
+ <param name="sdf"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.LipidMaps.MetaData.EqualsAny(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
+ <summary>
+ 只要任意一个编号对象相等，就认为两个对象是同一种物质？
+ </summary>
+ <param name="name"></param>
+ <param name="systematicName"></param>
+ <param name="kegg"></param>
+ <param name="chebi"></param>
+ <param name="hmdb"></param>
+ <param name="inchiKey"></param>
+ <param name="inchi"></param>
+ <param name="metabolomicsID"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.LipidMaps.MetaData.ToString">
+ <summary>
+ <see cref="P:BioNovoGene.BioDeep.Chemistry.LipidMaps.MetaData.COMMON_NAME"/>
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemistry.LOTUS.NaturalProduct">
+ <summary>
+ Natural Products Online is an open source project for Natural Products (NPs) storage,
+ search and analysis. This page hosts LOTUS, one of the biggest and best annotated
+ resources for NPs occurrences available free of charge and without any restriction. 
+ LOTUS is a living database, which is hosted both here and on Wikidata.The Wikidata 
+ version allows for community curation and addition of novel data. The current version
+ allows a more user friendly experience (such as structural search, taxonomy oriented 
+ query, flat table and structures exports). If you use LOTUS in your research, please 
+ cite the following work: Adriano Rutz, Maria Sorokina, Jakub Galgonek, Daniel Mietchen,
+ Egon Willighagen, Arnaud Gaudry, James G Graham, Ralf Stephan, Roderic Page, Jiří 
+ Vondrášek, Christoph Steinbeck, Guido F Pauli, Jean-Luc Wolfender, Jonathan Bisson, 
+ Pierre-Marie Allard (2022) The LOTUS initiative for open knowledge management in 
+ natural products research. eLife 11:e70780. https://doi.org/10.7554/eLife.70780
+ </summary>
+ <remarks>
+ https://lotus.naturalproducts.net/
+ </remarks>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.LOTUS.NaturalProduct.CreateMetabolite">
+ <summary>
+ Convert the lotus natural product model as mzkit internal metabolite object.
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.LOTUS.NaturalProduct.Parse(System.IO.Stream)">
+ <summary>
+ Parse the lotus NPOC2021 bson dump file as metabolite data model
+ </summary>
+ <param name="NPOC2021"></param>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemistry.Massbank.DATA.Record">
+ <summary>
+ The massbank data records
+ </summary>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.Massbank.DATA.CH.IUPAC">
+ <summary>
+ ``InChI``
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.Massbank.DATA.PeakData.mz">
+ <summary>
+ 碎片的质核比数据
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.Massbank.DATA.PeakData.relint">
+ <summary>
+ 相对信号强度
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.Massbank.PeakDataHelper.Join(System.Collections.Generic.IEnumerable{Microsoft.VisualBasic.ComponentModel.TagData.DoubleTagged{System.Double}})">
+ <summary>
+ ``x,y x,y x,y .....``
+ </summary>
+ <param name="peakData"></param>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemistry.Massbank.PeakDataHelper.NormalizationMethods">
+ <summary>
+ 归一化方法列表
+ </summary>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.Massbank.PeakDataHelper.Normalize(BioNovoGene.BioDeep.Chemistry.Massbank.DATA.Record,BioNovoGene.BioDeep.Chemistry.Massbank.PeakDataHelper.NormalizationMethods)">
+ <summary>
+ ###### 对峰的信号量进行归一化处理，即将信号量转换为0到1之间的百分比
+ 
+ + <see cref="F:BioNovoGene.BioDeep.Chemistry.Massbank.PeakDataHelper.NormalizationMethods.RelativeSum"/>
+ 这些``rel.int.``是用来鉴定单个物质的碎片响应值就可以按上面那样 算
+ 那就是单个碎片的相对峰值除以该物质的所有碎片的相对峰值之和，获得
+ 就是将``rel.int.``都加起来，然后``rel.int.``列里面的每一个值都除以这个和就行了么？
+ 
+ + <see cref="F:BioNovoGene.BioDeep.Chemistry.Massbank.PeakDataHelper.NormalizationMethods.RelativeMax"/>
+ 直接使用相对信号强度除以最大的信号强度得到百分比值进行归一化
+ </summary>
+ <param name="record">``MS/MS``信号峰数据</param>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.NamespaceDoc">
+ <summary>
+ The ncbi pubchem metabolite annotation database file processor
+ </summary>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.CIDSynonym">
+ <summary>
+ These are listings of all names associated with a CID. The
+ unfiltered list are names aggregated from all SIDs whose 
+ standardized form Is that CID, sorted by weight With the "best"
+ names first. The filtered list has some names removed that are
+ considered inconsistend With the Structure. Both are gzipped text
+ files with CID, tab, And name on each line. Note that the
+ names may be composed Of more than one word, separated by spaces.
+ </summary>
+ <remarks>Data for ``CID-Synonym-filtered.gz`` file</remarks>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.CIDSynonym.LoadNames(System.String,System.Boolean)">
+ <summary>
+ 
+ </summary>
+ <param name="file"></param>
+ <param name="filter"></param>
+ <returns></returns>
+ <remarks>
+ ' 第一个名称是权重最好的名称
+ </remarks>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.ImageFly.GetImage(System.String,System.String,System.Boolean)">
+ <summary>
+ 
+ </summary>
+ <param name="cid"></param>
+ <param name="doBgTransparent">
+ 是否将得到的图片的背景设置为透明
+ </param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.ImageFly.GetImage(System.String,System.Int32,System.Int32,System.Boolean)">
+ <summary>
+ 
+ </summary>
+ <param name="cid"></param>
+ <param name="width"></param>
+ <param name="height"></param>
+ <param name="doBgTransparent">
+ 是否将得到的图片的背景设置为透明
+ </param>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.MetaData">
+ <summary>
+ NCBI compound annotation meta data in sdf file.
+ </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.MetaData.properties">
+ <summary>
+ Schema cache of current data reader class object
+ </summary>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.SIDMap">
+ <summary>
+ This is a listing of all (live) SIDs with their source names and
+ registry identifiers, and the standardized CID If present. It Is 
+ a gzipped text file where Each line contains at least three
+ columns: SID, tab, source name, tab, registry identifier; then
+ a fourth column Of tab, CID If there Is a standardized CID For 
+ the given SID.
+ </summary>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.SIDMap.sourceName">
+ <summary>
+ the source database name, example as: KEGG, ChEBI, etc
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.SIDMap.registryIdentifier">
+ <summary>
+ the external database id, example as KEGG id, HMDB id or something.
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.SIDMap.GetMaps(System.String,System.Boolean)">
+ <summary>
+ 
+ </summary>
+ <param name="handle">SID-Map.txt file path or its file content.</param>
+ <param name="skipNoCID">
+ By default is skip all of the record rows that without CID assigned.
+ </param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.Extensions.castStrings(System.Object)">
+ <summary>
+ cast a given object value as string array
+ </summary>
+ <param name="part"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.Extensions.GetInformation(BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.Section,System.String,System.Boolean)">
+ <summary>
+ 如果<paramref name="key"/>是使用索引语法,则索引的起始下标是从零开始的
+ </summary>
+ <param name="section"></param>
+ <param name="key$"></param>
+ <param name="multipleInfo"></param>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.Graph.GraphId.GraphId">
+ <summary>
+ a union method for get the current id value:
+ 
+ + <see cref="P:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.Graph.GraphId.CID"/>
+ + <see cref="P:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.Graph.GraphId.MeSH"/>
+ + <see cref="P:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.Graph.GraphId.GeneSymbol"/>
+ 
+ </summary>
+ <returns></returns>
+ 
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.Graph.Evidence">
+ <summary>
+ evidence data for the knowledge graph link
+ </summary>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.Graph.Evidence.Graph">
+ <summary>
+ a union method for get one of the evidence graph data for current knowledg graph:
+ 
+ + <see cref="P:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.Graph.Evidence.ChemicalDiseaseNeighbor"/>
+ + <see cref="P:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.Graph.Evidence.ChemicalGeneSymbolNeighbor"/>
+ + <see cref="P:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.Graph.Evidence.ChemicalNeighbor"/>
+ 
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.Graph.MeshGraph">
+ <summary>
+ graph [id1 -> id2] with evidences
+ </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.Graph.Types.ChemicalGeneSymbolNeighbor">
+ <summary>
+ Metabolite Gene Association
+ </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.Graph.Types.ChemicalDiseaseNeighbor">
+ <summary>
+ Metabolite Disease Association
+ </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.Graph.Types.ChemicalNeighbor">
+ <summary>
+ Metabolite Literature Co-Occurrence
+ </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.Graph.Types.GeneSymbolDiseaseNeighbor">
+ <summary>
+ Gene Disease Association
+ </summary>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.MetaInfoReader.GetInform(BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.PugViewRecord,System.String)">
+ <summary>
+ 如果<paramref name="path"/>的末端是使用索引语法,则索引的起始下标是从零开始的
+ </summary>
+ <param name="view"></param>
+ <param name="path"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.MetaInfoReader.GetInformList(BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.PugViewRecord,System.String)">
+ <summary>
+ 
+ </summary>
+ <param name="view"></param>
+ <param name="path"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.MetaInfoReader.GetMetaInfo(BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.PugViewRecord)">
+ <summary>
+ 从pubchem数据库之中提取注释所需要的必须基本信息
+ </summary>
+ <returns></returns>
+ 
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.Information.InfoType">
+ <summary>
+ Try get data type of the information its <see cref="P:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.Information.Value"/>
+ </summary>
+ <returns>
+ this function will returns nothing if the given <see cref="P:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.Information.Value"/> is nothing
+ </returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.Information.InfoValue">
+ <summary>
+ this method will returns nothing if the source <see cref="P:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.Information.Value"/> is nothing
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.InformationSection">
+ <summary>
+ A folder liked data structure that used for store the annotation information in category.
+ 
+ each annotation information is save in categoried data <see cref="P:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.InformationSection.Sections"/>.
+ </summary>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.InformationSection.Sections">
+ <summary>
+ the information sections
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.Section">
+ <summary>
+ A general data model for show the annotation information
+ </summary>
+ <remarks>
+ A category data
+ </remarks>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.Section.TOCHeading">
+ <summary>
+ the category title
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.PugViewRecord">
+ <summary>
+ the metabolite annotation data xml in pubchem database
+ </summary>
+ <remarks>
+ the cross database reference information source is inside 
+ the <see cref="P:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.PugViewRecord.Reference"/> data.
+ </remarks>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.ExtensionModels.ReactionGraph">
+ <summary>
+ reaction.json data which downloaded from pubchem
+ </summary>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.Web.QueryXml">
+ <summary>
+ result data set for pubchem query summary
+ </summary>
+ <remarks>
+ [Download]
+ Summary (Search Results)
+ XML format
+ 
+ this xml data model is a kind of summary of the pubchem <see cref="T:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.PugViewRecord"/> xml data.
+ </remarks>
+ 
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.Web.QueryXml.cmpdname">
+ <summary>
+ a string array
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.Web.QueryXml.meshheadings">
+ <summary>
+ a string array
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.Web.QueryXml.sidsrcname">
+ <summary>
+ a string array
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.Web.QueryXml.annotation">
+ <summary>
+ a string array
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.Web.QueryXml.cmpdsynonym">
+ <summary>
+ a string array
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.Query.GetQueryHandler``1(System.String,System.Boolean,System.Int32)">
+ <summary>
+ 根据类型获取数据请求查询的接口对象
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="handle"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.Query.QueryCID(System.String,System.String,System.Boolean,System.Boolean@,System.Int32)">
+ <summary>
+ Query pubchem compound id by a given name
+ </summary>
+ <param name="name"></param>
+ <param name="cacheFolder$"></param>
+ <returns>
+ a list of pubchem hit cid
+ </returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.Query.QueryCID(System.String,Microsoft.VisualBasic.ApplicationServices.IFileSystemEnvironment,System.Boolean,System.Boolean@,System.Int32)">
+ <summary>
+ Query pubchem compound id by a given name
+ </summary>
+ <param name="name"></param>
+ <param name="cacheFolder$"></param>
+ <returns>
+ a list of pubchem hit cid
+ </returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.Query.QueryPugViews(System.String,System.String,System.Boolean)">
+ <summary>
+ Query compound annotation information by a given name
+ </summary>
+ <param name="name"></param>
+ <param name="cacheFolder">
+ The folder for save cache json/xml data, which are downloads from pubchem web server.
+ </param>
+ <returns></returns>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.CIDQuery.queryCAS_URL">
+ <summary>
+ Search pubchem by CAS
+ </summary>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.CIDQuery.prefix(System.String)">
+ <summary>
+ Path prefix of the compound name
+ </summary>
+ <param name="name"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.WebQuery.prefix(System.String)">
+ <summary>
+ Path prefix of the CID number
+ </summary>
+ <param name="name"></param>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.QueryResponse.Fault">
+ <summary>
+ 当这个属性为空值的时候说明请求成功,反之不为空的时候说明出现了错误
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.QueryTableExport">
+ <summary>
+ Table export result of <see cref="T:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.JsonQuery"/>
+ </summary>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.PubMed">
+ <summary>
+ A publication record in pubmed database
+ </summary>
+ <remarks>
+ dump data from pubchem data that make associates from pubchem and pubmed
+ </remarks>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.PubMed.pmid">
+ <summary>
+ the article pubmed id
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.PubMed.meshheadings">
+ <summary>
+ keywords about this article
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.PubMed.cids">
+ <summary>
+ the related compound list about this article
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.PubChemDescriptorRepo.#ctor(System.String)">
+ <summary>
+ 
+ </summary>
+ <param name="dir">
+ The database file is consist with multiple db files:
+ 
+ 1. cid index database
+ 2. chemical descriptor property values database files.
+ 
+ </param>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.TMIC.FooDB.FoodSource.food_name">
+ <summary>
+ 学名
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.TMIC.FooDB.FoodSource.food_general_name">
+ <summary>
+ 俗名
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemistry.TMIC.FooDB.StoredProcedure">
+ <summary>
+ The stored procedure for foodb read/write
+ </summary>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.TMIC.FooDB.StoredProcedure.UnitConversion(System.Double,System.String,System.Double)">
+ <summary>
+ 将单位都统一转换为``mg/100g``
+ </summary>
+ <param name="value#"></param>
+ <param name="unit$"></param>
+ <param name="mw">摩尔分子量</param>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemistry.TMIC.HMDB.MetaReference">
+ <summary>
+ A simple data model for the hmdb metabolite information 
+ 
+ the <see cref="P:BioNovoGene.BioDeep.Chemistry.TMIC.HMDB.MetaReference.synonyms"/> is just a simple string collection in the hmdb xml file.
+ </summary>
+ <remarks>
+ 主要是为了简化数据额存储
+ </remarks>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.TMIC.HMDB.MetaReference.accession">
+ <summary>
+ HMDB ID, hmdb的主编号
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.TMIC.HMDB.MetaReference.secondary_accessions">
+ <summary>
+ Secondary Accession Numbers
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.TMIC.HMDB.MetaReference.name">
+ <summary>
+ Common Name
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.TMIC.HMDB.MetaReference.synonyms">
+ <summary>
+ other synonym names from external database
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.TMIC.HMDB.MetaReference.Mass">
+ <summary>
+ 因为XML反序列化的时候，有些分子可能会还不存在<see cref="P:BioNovoGene.BioDeep.Chemistry.TMIC.HMDB.MetaReference.average_molecular_weight"/>实验数据，
+ 这个属性为空字符串，则转换为Double的时候会报错
+ 在这里使用一个额外的属性来避免这种错误
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemistry.TMIC.HMDB.metabolite">
+ <summary>
+ the xml file data model of the hmdb metabolite, this object contains the full 
+ record data of a hmdb metabolite.
+ 
+ the <see cref="P:BioNovoGene.BioDeep.Chemistry.TMIC.HMDB.metabolite.ontology"/> data contains the category ontology information about this
+ hmdb metabolite, example as:
+ 
+ 1. Physiological effect, example as Health effect
+ 2. Disposition, example as the <see cref="T:BioNovoGene.BioDeep.Chemistry.TMIC.HMDB.biospecimen_locations"/>, <see cref="T:BioNovoGene.BioDeep.Chemistry.TMIC.HMDB.tissue_locations"/>, etc
+ 3. Process, example as the biological process information
+ 4. Role, the biological roles of current metabolite
+ 
+ 
+ </summary>
+ <remarks>
+ 当前这个对象类型的<see cref="P:Microsoft.VisualBasic.ComponentModel.DataSourceModel.Repository.IKeyedEntity`1.Key"/>接口主键为<see cref="P:BioNovoGene.BioDeep.Chemistry.TMIC.HMDB.MetaReference.accession"/>属性
+ </remarks>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.TMIC.HMDB.metabolite.state">
+ <summary>
+ solid/liquid, 固态还是液态？
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.TMIC.HMDB.metabolite.experimental_properties">
+ <summary>
+ Physical Properties: Experimental Molecular Properties	
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.TMIC.HMDB.metabolite.predicted_properties">
+ <summary>
+ Physical Properties: Predicted Molecular Properties
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.TMIC.HMDB.metabolite.Load(System.String)">
+ <summary>
+ Iterates of the HMDB dataset
+ </summary>
+ <param name="path$"></param>
+ <returns></returns>
+ 
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemistry.TMIC.HMDB.secondary_accessions">
+ <summary>
+ 次级编号
+ </summary>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemistry.TMIC.HMDB.taxonomy">
+ <summary>
+ Metabolite compound chemical structure classification
+ </summary>
+ <remarks>
+ all these data contains in this model is the string array:
+ 
+ + <see cref="P:BioNovoGene.BioDeep.Chemistry.TMIC.HMDB.taxonomy.alternative_parents"/>
+ + <see cref="P:BioNovoGene.BioDeep.Chemistry.TMIC.HMDB.taxonomy.substituents"/>
+ + <see cref="P:BioNovoGene.BioDeep.Chemistry.TMIC.HMDB.taxonomy.external_descriptors"/>
+ </remarks>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemistry.TMIC.HMDB.ontology">
+ <summary>
+ a collection of the <see cref="T:BioNovoGene.BioDeep.Chemistry.TMIC.HMDB.ontology_term"/>
+ </summary>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.TMIC.HMDB.HMDBExtensions.LoadHMDBTaxonomy(System.String)">
+ <summary>
+ Build hmdb metabolite classify table.
+ </summary>
+ <param name="path$"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.TMIC.HMDB.HMDBExtensions.NameMatch(System.String[])">
+ <summary>
+ 返回一个函数指针，指示目标代谢物是否被匹配上？
+ 如果被匹配上则会返回HMDB之中的化合物的名称，否则返回空字符串
+ </summary>
+ <param name="names$"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.TMIC.HMDB.HMDBExtensions.CheckNames(System.Collections.Generic.IEnumerable{BioNovoGene.BioDeep.Chemistry.TMIC.HMDB.metabolite},System.String[])">
+ <summary>
+ 
+ </summary>
+ <param name="metabolites">HMDB subset from <see cref="M:BioNovoGene.BioDeep.Chemistry.TMIC.HMDB.HMDBExtensions.MatchMetabolites(System.Collections.Generic.IEnumerable{BioNovoGene.BioDeep.Chemistry.TMIC.HMDB.metabolite},System.String[],System.Boolean)"/></param>
+ <param name="names$"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.TMIC.HMDB.HMDBExtensions.CheckNames(System.Collections.Generic.IEnumerable{BioNovoGene.BioDeep.Chemistry.TMIC.HMDB.metabolite},System.Collections.Generic.IEnumerable{Microsoft.VisualBasic.ComponentModel.DataSourceModel.NamedValue{System.String}})">
+ <summary>
+ 
+ </summary>
+ <param name="metabolites">HMDB subset from <see cref="M:BioNovoGene.BioDeep.Chemistry.TMIC.HMDB.HMDBExtensions.MatchMetabolites(System.Collections.Generic.IEnumerable{BioNovoGene.BioDeep.Chemistry.TMIC.HMDB.metabolite},System.String[],System.Boolean)"/></param>
+ <param name="names"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.TMIC.HMDB.HMDBExtensions.LoadXML(System.String)">
+ <summary>
+ parse the ultra large hmdb metabolite database xml file.
+ </summary>
+ <param name="path$"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.TMIC.HMDB.HMDBExtensions.BuildAsTable(System.String,System.String[])">
+ <summary>
+ 将HMDB导出为csv格式，假若<paramref name="names"/>不为空的话，还会按照这个列表进行筛选
+ </summary>
+ <param name="path$"></param>
+ <param name="names$"></param>
+ <returns></returns>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemistry.TMIC.HMDB.Repository.BioSampleExtensions.samples">
+ <summary>
+ enum integer to factor strings
+ </summary>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.TMIC.HMDB.Repository.BioSampleExtensions.ParseSampleType(System.String)">
+ <summary>
+ 这个拓展函数接受使用``|``分隔的token来进行or运算
+ </summary>
+ <param name="type"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.TMIC.HMDB.Repository.BioSampleExtensions.GetSampleLocations(BioNovoGene.BioDeep.Chemistry.TMIC.HMDB.Repository.BioSamples)">
+ <summary>
+ convert the <see cref="T:BioNovoGene.BioDeep.Chemistry.TMIC.HMDB.Repository.BioSamples"/> flag integer to the factor strings
+ </summary>
+ <param name="type"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.TMIC.HMDB.Repository.RepositoryExtensions.GetMetabolite(System.String,System.String,System.Boolean)">
+ <summary>
+ get hmdb metabolite data from online web services
+ </summary>
+ <param name="id">
+ get data via this given hmdb metabolite id
+ </param>
+ <param name="cache">
+ the local cache dir
+ </param>
+ <param name="offline">
+ running the data query in offline mode?
+ </param>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.TMIC.HMDB.Spectra.SpectraFile.database_id">
+ <summary>
+ HMDB ID
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.TMIC.HMDB.Spectra.Extensions.PopulateSpectras(System.String)">
+ <summary>
+ 
+ </summary>
+ <param name="repository"></param>
+ <returns>
+ populate a collection of the tuple data for: [file name, spectral]
+ </returns>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemistry.TMIC.HMDB.Spectra.MSMS">
+ <summary>
+ the MS/MS data file
+ </summary>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.TMIC.HMDB.ChemicalDescriptor.accession">
+ <summary>
+ HMDB main accession
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.TMIC.HMDB.ChemicalDescriptor.descriptors">
+ <summary>
+ The chemical descriptor names
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.TMIC.HMDB.ChemicalDescriptor.ToDescriptor">
+ <summary>
+ Create descriptor data set for machine learning 
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemistry.TMIC.HMDB.MetaDb">
+ <summary>
+ store the hmdb metabolite information in table format
+ </summary>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.TMIC.MarkerDB.XML.DataSet.chemicals">
+ <summary>
+ all_chemicals.xml
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.TMIC.MarkerDB.XML.DataSet.karyotypes">
+ <summary>
+ all_karyotypes.xml
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.TMIC.MarkerDB.XML.DataSet.sequence_variants">
+ <summary>
+ all_sequence_variants.xml
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.TMIC.MarkerDB.XML.DataSet.proteins">
+ <summary>
+ all_proteins.xml
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.TMIC.MarkerDB.XML.biomarkers.chemical">
+ <summary>
+ + all_exposure_chemicals.xml
+ + all_diagnostic_chemicals.xml
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.TMIC.MarkerDB.XML.biomarkers.gene">
+ <summary>
+ all_predictive_genetics.xml
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.TMIC.MarkerDB.XML.biomarkers.protein">
+ <summary>
+ all_diagnostic_proteins.xml
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.TMIC.MarkerDB.XML.biomarkers.karyotype">
+ <summary>
+ all_diagnostic_karyotypes.xml
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemistry.TMIC.MarkerDB.Exports">
+ <summary>
+ methods for export database tables
+ </summary>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.SDFExtensions.Data``1(BioNovoGene.BioDeep.Chemoinformatics.SDF.SDF,System.Collections.Generic.Dictionary{System.String,System.Reflection.PropertyInfo})">
+ <summary>
+ Generic method for parsing the SDF meta annotation data.
+ </summary>
+ <typeparam name="MetaData"></typeparam>
+ <param name="sdf"></param>
+ <param name="properties">将<see cref="F:BioNovoGene.BioDeep.Chemistry.SDFExtensions.defaultKeys"/>之中的键名称映射为对应的成员属性的字典</param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.SDFExtensions.DumpingPubChemAnnotations(System.String,System.String,System.String[])">
+ <summary>
+ 
+ </summary>
+ <param name="repository$">The NCBI ftp download directory</param>
+ <param name="keys">Using user custom selected keys or pubchem default keys for save the meta data.</param>
+ <param name="save$"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.Statistics.KEGGPathwayCoverages(System.Collections.Generic.IEnumerable{System.String},System.String)">
+ <summary>
+ 
+ </summary>
+ <param name="cpd">KEGG compounds id list.</param>
+ <param name="br08901">The KEGG reference map data directory</param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.Statistics.HMDBCoverages(System.Collections.Generic.IEnumerable{System.String},System.String,System.Int32@)">
+ <summary>
+ 
+ </summary>
+ <param name="list">HMDB id list</param>
+ <param name="hmdb">The hmdb XML database file path.</param>
+ <returns></returns>
+</member>
+</members>
+</doc>

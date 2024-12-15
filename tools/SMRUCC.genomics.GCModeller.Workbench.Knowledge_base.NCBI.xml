@@ -1,0 +1,362 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI
+</name>
+</assembly>
+<members>
+<member name="T:SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.BITS.BookPartWrapper">
+ <summary>
+ the xml definition of the ncbi book data
+ </summary>
+ <remarks>
+ A set of Book Interchange Tag Suite (BITS)
+ DTD modules was written as the basis for
+ publishing, interchange, and repository
+ book DTDs, with the intention that DTDs for
+ specific purposes, such as this Book
+ DTD, would be developed based on them.
+ 
+ This Book Interchange DTD has been developed
+ from the ANSI/NISO JATS Z39.96 DTD modules,
+ in the approved manner, making changes to the
+ declarations in those modules by over-riding
+ Parameter Entity contents. These overrides
+ are defined in the three BITS book
+ customization modules:
+ 
+ ```
+     %bookcustom-classes.ent;
+     %bookcustom-mixes.ent;
+     %bookcustom-models.ent;
+ ```
+ 
+ which are called from this DTD file.
+ </remarks>
+</member>
+<member name="P:SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.BITS.MixedCitation.title">
+ <summary>
+ the article-title
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.Citation.nlm_cite">
+ <summary>
+ NLM
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.Citation.ama_cite">
+ <summary>
+ AMA
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.Citation.apa_cite">
+ <summary>
+ APA
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.Citation.mla_cite">
+ <summary>
+ MLA
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.MeSH.DescriptorRecord">
+ <summary>
+ the mesh term record
+ </summary>
+</member>
+<member name="P:SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.MeSH.DescriptorRecord.DescriptorUI">
+ <summary>
+ Descriptor unique id
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.MeSH.DescriptorRecordSet">
+ <summary>
+ the mesh Descriptor Record Set xml file
+ </summary>
+ <remarks>
+ which could be download from the ncbi ftp website: 
+ 
+ https://nlmpubs.nlm.nih.gov/projects/mesh/MESH_FILES/xmlmesh/
+ https://nlmpubs.nlm.nih.gov/projects/mesh/MESH_FILES/xmlmesh/desc2024.zip
+ 
+ https://nlmpubs.nlm.nih.gov/projects/mesh/MESH_FILES/xmlmesh/?_gl=1*jikpoo*_ga*MTQ4NzExODI0OS4xNjg3NDAyOTQ4*_ga_7147EPK006*MTcxMTE2MDE3Ny4xLjEuMTcxMTE2MDQzNC4wLjAuMA..*_ga_P1FPTH9PL4*MTcxMTE2MDE3Ny4xLjEuMTcxMTE2MDQzNC4wLjAuMA..
+ </remarks>
+</member>
+<member name="M:SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.MeSH.DescriptorRecordSet.TreeTermIndex(System.Collections.Generic.IEnumerable{SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.MeSH.DescriptorRecord})">
+ <summary>
+ create term index by name
+ </summary>
+ <param name="terms"></param>
+ <returns></returns>
+</member>
+<member name="T:SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.MeSH.Tree.MeshCategory">
+ <summary>
+ # MeSH Tree Structures
+
+ MeSH descriptors are organized in 16 categories: category A for anatomic 
+ terms, category B for organisms, C for diseases, D for drugs and chemicals, 
+ etc. Each category is further divided into subcategories. Within each 
+ subcategory, descriptors are arrayed hierarchically from most general 
+ to most specific in up to thirteen hierarchical levels. Because of the
+ branching structure of the hierarchies, these lists are sometimes referred 
+ to as "trees". Each MeSH descriptor appears in at least one place in the 
+ trees, and may appear in as many additional places as may be appropriate.
+ Those who use MeSH should find the most specific MeSH descriptor that 
+ is available to represent each concept of interest.
+ 
+ For example, articles concerning Streptococcus pneumoniae will be found 
+ under the descriptor Streptococcus Pneumoniae rather than the broader 
+ term Streptococcus, while an article referring to a new streptococcal 
+ bacterium which is not yet in the vocabulary will be listed directly under 
+ Streptococcus. Accordingly, the user may consult the trees to find additional
+ subject headings which are more specific than a given heading, and broader 
+ headings as well. For example, under Abnormalities, there are specific 
+ abnormalities:
+ 
+ ```
+ Congenital Abnormalities C16.131
+     Abnormalities, Drug Induced C16.131.042
+     Abnormalities, Multiple C16.131.077
+         22q11 Deletion Syndrome C16.131.077.019
+             DiGeorge Syndrome C16.131.077.019.500
+ ```
+ 
+ In the MeSH Browser, each descriptor is followed by the number that indicates
+ its tree location. It may also be followed by one or more additional numbers,
+ in smaller type, and truncated at the third level, indicating other tree
+ locations of the same term. The numbers serve only to locate the descriptors 
+ in each tree and to alphabetize those at a given tree level. They have no 
+ intrinsic significance; e.g., the fact that D12.776.641 and D12.644.641 both 
+ have the three digit group 641 does not imply any common characteristic. The
+ numbers are subject to change when new descriptors are added or the hierarchical 
+ arrangement is revised to reflect vocabulary changes.
+ </summary>
+ <remarks>
+ ABCDEFGHIJKLMNVZ
+ </remarks>
+</member>
+<member name="F:SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.MeSH.Tree.MeshCategory.None">
+ <summary>
+ Unknown
+ </summary>
+</member>
+<member name="F:SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.MeSH.Tree.MeshCategory.A">
+ <summary>
+ Anatomy [A] 
+ </summary>
+</member>
+<member name="F:SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.MeSH.Tree.MeshCategory.B">
+ <summary>
+ Organisms [B] 
+ </summary>
+</member>
+<member name="F:SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.MeSH.Tree.MeshCategory.C">
+ <summary>
+ Diseases [C] 
+ </summary>
+</member>
+<member name="F:SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.MeSH.Tree.MeshCategory.D">
+ <summary>
+ Chemicals and Drugs [D] 
+ </summary>
+</member>
+<member name="F:SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.MeSH.Tree.MeshCategory.E">
+ <summary>
+ Analytical, Diagnostic and Therapeutic Techniques, and Equipment [E] 
+ </summary>
+</member>
+<member name="F:SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.MeSH.Tree.MeshCategory.F">
+ <summary>
+ Psychiatry and Psychology [F] 
+ </summary>
+</member>
+<member name="F:SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.MeSH.Tree.MeshCategory.G">
+ <summary>
+ Phenomena and Processes [G] 
+ </summary>
+</member>
+<member name="F:SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.MeSH.Tree.MeshCategory.H">
+ <summary>
+ Disciplines and Occupations [H] 
+ </summary>
+</member>
+<member name="F:SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.MeSH.Tree.MeshCategory.I">
+ <summary>
+ Anthropology, Education, Sociology, and Social Phenomena [I] 
+ </summary>
+</member>
+<member name="F:SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.MeSH.Tree.MeshCategory.J">
+ <summary>
+ Technology, Industry, and Agriculture [J] 
+ </summary>
+</member>
+<member name="F:SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.MeSH.Tree.MeshCategory.K">
+ <summary>
+ Humanities [K] 
+ </summary>
+</member>
+<member name="F:SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.MeSH.Tree.MeshCategory.L">
+ <summary>
+ Information Science [L] 
+ </summary>
+</member>
+<member name="F:SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.MeSH.Tree.MeshCategory.M">
+ <summary>
+ Named Groups [M] 
+ </summary>
+</member>
+<member name="F:SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.MeSH.Tree.MeshCategory.N">
+ <summary>
+ Health Care [N] 
+ </summary>
+</member>
+<member name="F:SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.MeSH.Tree.MeshCategory.V">
+ <summary>
+ Publication Characteristics [V] 
+ </summary>
+</member>
+<member name="F:SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.MeSH.Tree.MeshCategory.Z">
+ <summary>
+ Geographicals [Z] 
+ </summary>
+</member>
+<member name="M:SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.MeSH.Tree.Reader.ParseCategory(System.String)">
+ <summary>
+ parse the given string term as <see cref="T:SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.MeSH.Tree.MeshCategory"/> enum value
+ </summary>
+ <param name="tree"></param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.MeSH.Tree.Reader.ReadTerms(System.IO.Stream)">
+ <summary>
+ parse the mesh tree from a given text data stream
+ </summary>
+ <param name="s"></param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.MeSH.Tree.Reader.ParseTree(System.String)">
+ <summary>
+ parse the mesh tree from a specific text file
+ </summary>
+ <param name="file"></param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.MeSH.Tree.Reader.ParseTree(System.IO.StreamReader)">
+ <summary>
+ build a mesh term tree via the tree path that assigned to each term
+ </summary>
+ <param name="file"></param>
+ <returns></returns>
+</member>
+<member name="T:SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.MeSH.Tree.Term">
+ <summary>
+ the mesh tree
+ </summary>
+</member>
+<member name="P:SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.MeSH.Tree.Term.term">
+ <summary>
+ the mesh term name
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.MeSH.Tree.Term.tree">
+ <summary>
+ the tree path
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.PubMed.PubmedArticle">
+ <summary>
+ PubMed® comprises more than 36 million citations for biomedical literature from MEDLINE, 
+ life science journals, and online books. Citations may include links to full text content 
+ from PubMed Central and publisher web sites.
+ </summary>
+ <remarks>
+ A single pubmed article object inside a xml metadata file
+ </remarks>
+</member>
+<member name="P:SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.PubMed.PubmedArticle.MedlineCitation">
+ <summary>
+ MEDLINE®/PubMed® Journal Article Citation Format
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.PubMed.PubmedArticle.GetTitle">
+ <summary>
+ get article title
+ </summary>
+ <returns>
+ this function will returns a title string with html tag unescaped
+ </returns>
+</member>
+<member name="M:SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.PubMed.PubmedArticle.GetAbstractText">
+ <summary>
+ get the article abstract text
+ </summary>
+ <returns>
+ this function will returns a text content of the article abstract with html tag unescaped.
+ </returns>
+</member>
+<member name="T:SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.PubMed.MedlineCitation">
+ <summary>
+ MEDLINE®/PubMed® Journal Article Citation Format
+ </summary>
+ <remarks>
+ The National Library of Medicine® (NLM®) uses the ANSI/NISO Z39.29-2005 (R2010) Bibliographic 
+ References standard as the basis for the format of MEDLINE/PubMed citations to journal articles. 
+ The National Information Standards Organization (NISO) is a non-profit association accredited 
+ by the American National Standards Institute (ANSI) to identify, develop, maintain and publish 
+ technical standards in the area of library and information science.
+
+ Guidance on the NLM interpretation of this national standard can be found in Citing Medicine: 
+ the NLM Style Guide For Authors, Editors, And Publishers, available via the National Center For 
+ Biotechnology Information (NCBI) Bookshelf.  
+
+ PubMed citations In the Summary (text) display format are compatible With ANSI/NISO Z39.29-2005 
+ (R2010). This format Is useful For a list Of references Or a bibliography. Here Is a sample 
+ citation In the Summary (text) display format:
+
+ ```
+ Freedman SB, Adler M, Seshadri R, Powell EC. Oral ondansetron For gastroenteritis In a pediatric 
+ emergency department. N Engl J Med. 2006 Apr 20;354(16):1698-705. PubMed PMID: 16625009.
+ ```
+
+ The last element In the citation above identifies the unique identification number In PubMed (PMID).
+
+ The NLM citation format Is also the foundation For the reference style approved by the Recommendations
+ For the Conduct, Reporting, Editing And Publication Of Scholarly Work In Medical Journals, a product 
+ Of the International Committee Of Medical Journal Editors (ICMJE). Please refer To Section IV.A.3.g.ii, 
+ References Style And Format, Of the PDF version Of the ICMJE Recommendations. The ICMJE Web site also 
+ lists the journals that follow the ICMJE Recommendations. NLM hosts And maintains a Web page 
+ featuring sample citations extracted from Or based On Citing Medicine For easy use by the ICMJE 
+ audience.
+ </remarks>
+</member>
+<member name="M:SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.PubMed.PubmedArticleSet.LoadStream(System.IO.Stream,System.Boolean)">
+ <summary>
+ 
+ </summary>
+ <param name="s">A stream of a large xml document file</param>
+ <returns></returns>
+ 
+</member>
+<member name="F:SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.PubMed.PubMedServicesExtensions.tool_info">
+ <summary>
+ > https://www.ncbi.nlm.nih.gov/pmc/tools/developers/
+ 
+ Include two parameters that help to identify your service or application to our servers:
+
+ + ``tool`` should be the name Of the application, As a String value With no internal spaces, And
+ + ``email`` should be the e-mail address Of the maintainer Of the tool, And should be a valid e-mail address.
+ 
+ </summary>
+</member>
+</members>
+</doc>

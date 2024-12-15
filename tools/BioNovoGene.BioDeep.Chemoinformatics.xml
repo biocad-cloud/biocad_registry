@@ -1,0 +1,1620 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+BioNovoGene.BioDeep.Chemoinformatics
+</name>
+</assembly>
+<members>
+<member name="T:BioNovoGene.BioDeep.Chemoinformatics.My.Resources.Resources">
+<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.My.Resources.Resources.ResourceManager">
+<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.My.Resources.Resources.Culture">
+<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemoinformatics.CASNumber">
+ <summary>
+ Chemical Abstracts Service Number of a specific metabolite
+ </summary>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.CASNumber.Verify(System.String)">
+ <summary>
+ CAS号（第一、二部分数字）的最后一位乘以1，最后第二位乘以2，往前依此类推，
+ 然后再把所有的乘积相加，和除以10，余数就是第三部分的校验码。举例来说，
+ 水（H2O）的CAS编号前两部分是7732-18，则其校验码
+ ( 8×1 + 1×2 + 2×3 + 3×4 + 7×5 + 7×6 ) /10 = 105/10 = 10余5，
+ 所以水的CAS号为7732-18-5。
+ </summary>
+ <param name="cas"></param>
+ <returns></returns>
+ <remarks>
+ 第一部分有2到7位数字，第二部分有2位数字，第三部分有1位数字作为校验码
+ </remarks>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemoinformatics.ChemicalDescriptor">
+ <summary>
+ Chemical descriptor
+ </summary>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.ChemicalDescriptor.XLogP3">
+ <summary>
+ Computed Octanol/Water Partition Coefficient
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.ChemicalDescriptor.HydrogenDonors">
+ <summary>
+ Hydrogen Bond Donor Count
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.ChemicalDescriptor.HydrogenAcceptor">
+ <summary>
+ Hydrogen Bond Acceptor count
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.ChemicalDescriptor.RotatableBonds">
+ <summary>
+ Rotatable Bond Count
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.ChemicalDescriptor.schema">
+ <summary>
+ All of the property reflection info of <see cref="T:BioNovoGene.BioDeep.Chemoinformatics.ChemicalDescriptor"/> object.
+ </summary>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemoinformatics.ChemicalMarkupLanguage.MarkupFile">
+ <summary>
+ Chemical Markup Language
+ 
+ https://www.xml-cml.org/
+ </summary>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.Formula.AbbrevStatsType.Symbol">
+ <summary>
+ The symbol for the abbreviation, e.g. Ph for 
+ the phenyl group or Ala for alanine (3 letter 
+ codes for amino acids)
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.Formula.AbbrevStatsType.Formula">
+ <summary>
+ Cannot contain other abbreviations
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.Formula.AbbrevStatsType.Mass">
+ <summary>
+ Computed mass for quick reference
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.Formula.AbbrevStatsType.IsAminoAcid">
+ <summary>
+ True if an amino acid
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.Formula.AbbrevStatsType.OneLetterSymbol">
+ <summary>
+ Only used for amino acids
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.Formula.AbbrevStatsType.Comment">
+ <summary>
+ Description of the abbreviation
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.Formula.FormalCharge.CorrectChargeEmpirical(BioNovoGene.BioDeep.Chemoinformatics.Formula.Formula)">
+ <summary>
+ Correct charge using rules for an empirical formula
+ </summary>
+ <param name="x"></param>
+ <returns>Corrected charge</returns>
+ <remarks></remarks>
+ 
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.Formula.FormalCharge.CorrectChargeEmpirical(System.Double,BioNovoGene.BioDeep.Chemoinformatics.Formula.ElementNumType)">
+ <summary>
+ Correct charge using rules for an empirical formula
+ </summary>
+ <param name="totalCharge"></param>
+ <returns>Corrected charge</returns>
+ <remarks></remarks>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.Formula.FormulaScanner.n">
+ <summary>
+ 处理在化学式之中遇到的小字母``n``设置的一个默认值
+ 设置这个值主要是应用于化学式比较
+ </summary>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.Formula.FormulaScanner.EvaluateExactMass(System.String,System.Int32)">
+ <summary>
+ 
+ </summary>
+ <param name="formula"></param>
+ <param name="n%"></param>
+ <returns>
+ this function will returns -1 if the <paramref name="formula"/> input is invalid
+ </returns>
+ <remarks>
+ the mapping from <paramref name="formula"/> string to the exact mass value will be cached in this function.
+ </remarks>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.Formula.FormulaScanner.ScanFormula(System.String,System.Int32)">
+ <summary>
+ Parse the given formula string value as the <see cref="T:BioNovoGene.BioDeep.Chemoinformatics.Formula.Formula"/> object
+ </summary>
+ <param name="formula">
+ The formula string, A chemical formula is a notation used by scientists 
+ to show the number and type of atoms present in a molecule, using the 
+ atomic symbols and numerical subscripts. A chemical formula is a simple 
+ representation, in writing, of a three dimensional molecule that exists.
+ A chemical formula describes a substance, down to the exact atoms which 
+ make it up.
+ </param>
+ <param name="n">for counting polymers atoms</param>
+ <returns>
+ the formula string keeps the same order with the input 
+ <paramref name="formula"/>; and also this function will
+ returns nothing if the given <paramref name="formula"/>
+ string is empty or null
+ </returns>
+ <remarks>
+ The ``CType/CDbl`` convertor operator could be used for get extract mass value
+ from the generated formula object, due to the reason of this function may 
+ returns nothing if the formula input string is empty or incorrect. the CType
+ and CDbl operator will handling such null reference error safely
+ </remarks>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.Formula.FormulaScanner.push(System.Char)">
+ <summary>
+ end of current atom and clear the buffer
+ </summary>
+ <param name="c"></param>
+ <remarks>
+ the method will populate a new atom and its atom number
+ </remarks>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.Formula.FormulaSearch.reorderCandidateElements(System.Boolean@)">
+ <summary>
+ 为了方便计算HC比例以及加速计算，在这里总是将C放在第一位，H放在第二位
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.Formula.FormulaSearch.PPM(System.Double,System.Double)">
+ <summary>
+ 分子量差值
+ </summary>
+ <param name="measured#"></param>
+ <param name="actualValue#"></param>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemoinformatics.Formula.IsotopicPatterns.Calculator">
+ <summary>
+ isotopic pattern calculator
+ </summary>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.Formula.IsotopicPatterns.Calculator.frange(System.Double,System.Double,System.Double)">
+ <summary>
+ Returns an iterator of floats
+ in the range [&lt;min_val>,&lt;max_val>] including
+ &lt;min_val> but excluding &lt;max_val> With
+ an interval Of &lt;Step>.
+ </summary>
+ <param name="min_val"></param>
+ <param name="max_val"></param>
+ <param name="[step]"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.Formula.IsotopicPatterns.Calculator.gaussian_iter(System.Double[],System.Double,System.Double,System.Double)">
+ <summary>
+ Returns an iterator for application
+ of the gaussian function with parameters
+ &lt;a>, &lt;b> And &lt;fwhm> To the list &lt;xs>.
+ </summary>
+ <param name="xs"></param>
+ <param name="a"></param>
+ <param name="b"></param>
+ <param name="fwhm"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.Formula.IsotopicPatterns.Calculator.gaussian(System.Double[],System.Double,System.Double,System.Double)">
+ <summary>
+ Applies the gaussian with the given
+ parameters to the passed in list.
+ </summary>
+ <param name="xs"></param>
+ <param name="a"></param>
+ <param name="b"></param>
+ <param name="fwhm"></param>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.Formula.IsotopicPatterns.Isotope.Mass">
+ <summary>
+ Exact Mass
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.Formula.IsotopicPatterns.Isotope.Prob">
+ <summary>
+ Natural Relative Abundance
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.Formula.IsotopicPatterns.Isotope.NumNeutrons">
+ <summary>
+ Nominal Mass
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemoinformatics.Formula.IsotopicPatterns.IsotopeCalculator">
+ <summary>
+ This class will be used to calculate the theoretical isotopic abundances from formula string.
+ </summary>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.Formula.IsotopicPatterns.IsotopeCalculator.GetAccurateIsotopeProperty(System.String,System.Int32,BioNovoGene.BioDeep.Chemoinformatics.Formula.IsotopicPatterns.IupacDatabase)">
+ <summary>
+ This method calculate the theoretical isotopic abundances with the exact m/z from the molecular formula string such as C6H12O6.
+ </summary>
+ <param name="elementName">Put the formula string.</param>
+ <param name="massFilter">Put the integar value that you want ot calculate until the isotopic value. Ex. if you put 3, this method calculate the isotopic abundances until M+3. </param>
+ <param name="iupacReferenceBean">Put the iupac bean which can be retrived with IupacParcer.cs.</param>
+ <returns>This program returns the theoretical isotopic abundances with the exact m/z values.</returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.Formula.IsotopicPatterns.IsotopeCalculator.GetNominalIsotopeProperty(System.String,System.Int32,BioNovoGene.BioDeep.Chemoinformatics.Formula.IsotopicPatterns.IupacDatabase)">
+ <summary>
+ This method calculate the theoretical isotopic abundances with the nominal m/z from the molecular formula string such as C6H12O6.
+ </summary>
+ <param name="elementName">Put the formula string.</param>
+ <param name="massFilter">Put the integar value that you want ot calculate until the isotopic value. Ex. if you put 3, this method calculate the isotopic abundances until M+3. </param>
+ <param name="iupacReferenceBean">Put the iupac bean which can be retrived with IupacParcer.cs.</param>
+ <returns>This program returns the theoretical isotopic abundances with the nominal m/z values.</returns>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.Formula.IsotopicPatterns.IsotopeCount.atoms">
+ <summary>
+ [0] atom_type
+ </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.Formula.IsotopicPatterns.IsotopeCount.nom_mass">
+ <summary>
+ [1] nom_mass
+ </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.Formula.IsotopicPatterns.IsotopeCount.prob">
+ <summary>
+ [2] probility
+ </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.Formula.IsotopicPatterns.IsotopeCount.abundance">
+ <summary>
+ normalized by <see cref="F:BioNovoGene.BioDeep.Chemoinformatics.Formula.IsotopicPatterns.IsotopeCount.prob"/>
+ </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.Formula.IsotopicPatterns.IsotopeCount.abs_mass">
+ <summary>
+ [3] exact mass
+ </summary>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemoinformatics.Formula.IsotopicPatterns.IupacDatabase">
+ <summary>
+ This is the storage of IUPAC queries described in 'IUPAC.txt' of Resources folder of MSDIAL assembry.
+ Each chemical element such as C, N, O, S has the generic list of IupacChemicalElement.cs.
+ This Iupac.cs has the queries of each chemical element detail as the dictionary.
+ </summary>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemoinformatics.Formula.IsotopicPatterns.AtomProperty">
+ <summary>
+ This is the storage of the properties for natural isotope ratio calculation.
+ This element is prepared for each chemical element such as C, H, N, O, S included in internal IUPAC queries.
+ </summary>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemoinformatics.Formula.IsotopicPatterns.AtomElementProperty">
+ <summary>
+ This is the storage of natural abundance or mass properties of each chemical element such as 12C, 13C etc.
+ </summary>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemoinformatics.Formula.IsotopicPatterns.IsotopicPeak">
+ <summary>
+ 'IsotopicPeak.cs' and 'Isotope.cs' are the storage of isotope calculation result for a fomula.
+ The detail of the properties such as M+1, M+2, etc is stored in this class.
+ Relative intensity is standardized to 100 as the maximum
+ </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.Formula.Canonical.orders">
+ <summary>
+ C -> H -> N -> O -> P -> S -> Cl -> others
+ </summary>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemoinformatics.Formula.Element">
+ <summary>
+ Data Load Statements
+ 
+ Uncertainties from CRC Handbook of Chemistry and Physics
+ For Radioactive elements, the most stable isotope is NOT used;
+ instead, an average Mol. Weight is used, just like with other elements.
+ Data obtained from the Perma-Chart Science Series periodic table, 1993.
+ Uncertainties from CRC Handoobk of Chemistry and Physics, except for
+ Radioactive elements, where uncertainty was estimated to be .n5 where
+ intSpecificElementProperty represents the number digits after the decimal point but before the last
+ number of the molecular weight.
+ 
+ For example, for No, MW = 259.1009 (?.0005)
+ </summary>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.Formula.Element.id">
+ <summary>
+ the iupac ID
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.Formula.Element.symbol">
+ <summary>
+ the element atom symbol, or the element name in MS-DIAL
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.Formula.Element.name">
+ <summary>
+ common name of current element atom symbol
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.Formula.Element.isotopic">
+ <summary>
+ isotopic Element Weights
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.Formula.Element.MemoryPopulateElements">
+ <summary>
+ A in-memory database for the element mass
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemoinformatics.Formula.ElementsExactMass">
+ <summary>
+ A in-memory database that place the most common used element mass data
+ [Mass Diff Dictionary]
+ </summary>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemoinformatics.Formula.Formula">
+ <summary>
+ A chemical formula is a notation used by scientists to show the 
+ number and type of atoms present in a molecule, using the atomic 
+ symbols and numerical subscripts. A chemical formula is a simple 
+ representation, in writing, of a three dimensional molecule 
+ that exists. A chemical formula describes a substance, down to 
+ the exact atoms which make it up.
+ </summary>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.Formula.Formula.CountsByElement">
+ <summary>
+ atom_count_tuples
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.Formula.Formula.EmpiricalFormula">
+ <summary>
+ get formula string
+ </summary>
+ <returns></returns>
+ <remarks>
+ this formula string data is build with the 
+ <see cref="M:BioNovoGene.BioDeep.Chemoinformatics.Formula.Canonical.BuildCanonicalFormula(BioNovoGene.BioDeep.Chemoinformatics.Formula.Formula)"/> function 
+ or user specific input
+ </remarks>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.Formula.Formula.Elements">
+ <summary>
+ get all elements label that parse from current formula object
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.Formula.Formula.GetAtomCount(System.String)">
+ <summary>
+ get element count by the given specific atom label
+ </summary>
+ <param name="atom"></param>
+ <returns>
+ this default property returns ZERO if the given 
+ <paramref name="atom"/> is not found in current 
+ formula
+ </returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.Formula.Formula.ExactMass">
+ <summary>
+ sum all isotopic mass of the atom elements. 
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.Formula.Formula.#ctor(System.Collections.Generic.IDictionary{System.String,System.Int32},System.String)">
+ <summary>
+ constructor will make a value copy of the input element composition <paramref name="counts"/> vector.
+ </summary>
+ <param name="counts">
+ constructor will make a value copy of this element composition vector.
+ </param>
+ <param name="formula"></param>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.Formula.Formula.#ctor(BioNovoGene.BioDeep.Chemoinformatics.Formula.Formula)">
+ <summary>
+ make value copy of the given formula
+ </summary>
+ <param name="copy"></param>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.Formula.Formula.#ctor">
+ <summary>
+ construct a new empty formula object
+ </summary>
+ <remarks>
+ you can create a new formula string by adding new atom number 
+ profiles into atom composition <see cref="P:BioNovoGene.BioDeep.Chemoinformatics.Formula.Formula.CountsByElement"/>.
+ </remarks>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.Formula.Formula.CheckElement(System.String)">
+ <summary>
+ Check of the specific element is inside current formula object?
+ </summary>
+ <param name="elementName"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.Formula.Formula.ToString">
+ <summary>
+ show <see cref="P:BioNovoGene.BioDeep.Chemoinformatics.Formula.Formula.EmpiricalFormula"/>
+ </summary>
+ <returns></returns>
+ 
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.Formula.Formula.EqualsTo(BioNovoGene.BioDeep.Chemoinformatics.Formula.Formula,System.Boolean)">
+ <summary>
+ check the given formula <paramref name="fb"/> is equals to current formula object?
+ </summary>
+ <param name="fb"></param>
+ <param name="isIgnoreHydrogen"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.Formula.Formula.op_Equality(BioNovoGene.BioDeep.Chemoinformatics.Formula.Formula,BioNovoGene.BioDeep.Chemoinformatics.Formula.Formula)">
+ <summary>
+ check <paramref name="f1"/> equals to <paramref name="f2"/> via <see cref="M:BioNovoGene.BioDeep.Chemoinformatics.Formula.Formula.EqualsTo(BioNovoGene.BioDeep.Chemoinformatics.Formula.Formula,System.Boolean)"/> function.
+ </summary>
+ <param name="f1"></param>
+ <param name="f2"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.Formula.Formula.op_Multiply(BioNovoGene.BioDeep.Chemoinformatics.Formula.Formula,System.Int32)">
+ <summary>
+ Multiply of the formula composition
+ </summary>
+ <param name="composition"></param>
+ <param name="n"></param>
+ <returns></returns>
+ <remarks>
+ this function will create a new formula object
+ </remarks>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.Formula.Formula.op_Multiply(System.Int32,BioNovoGene.BioDeep.Chemoinformatics.Formula.Formula)">
+ <summary>
+ Multiply of the formula composition
+ </summary>
+ <param name="n"></param>
+ <param name="composition"></param>
+ <returns></returns>
+ <remarks>
+ this function will create a new formula object
+ </remarks>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.Formula.Formula.op_Addition(BioNovoGene.BioDeep.Chemoinformatics.Formula.Formula,BioNovoGene.BioDeep.Chemoinformatics.Formula.Formula)">
+ <summary>
+ make union of the atom count number profile <see cref="P:BioNovoGene.BioDeep.Chemoinformatics.Formula.Formula.CountsByElement"/> 
+ between two given formula object.
+ </summary>
+ <param name="a"></param>
+ <param name="b"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.Formula.Formula.op_Subtraction(BioNovoGene.BioDeep.Chemoinformatics.Formula.Formula,BioNovoGene.BioDeep.Chemoinformatics.Formula.Formula)">
+ <summary>
+ a - b will create a new formula composition.
+ </summary>
+ <param name="a"></param>
+ <param name="b"></param>
+ <returns>
+ the generated formula may contains the negative count element
+ </returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.Formula.Formula.op_Explicit(BioNovoGene.BioDeep.Chemoinformatics.Formula.Formula)~System.Double">
+ <summary>
+ safe get the extract mass from the formula object
+ </summary>
+ <param name="f"></param>
+ <returns>
+ this function may returns -1 if the given formula is nothing
+ </returns>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemoinformatics.Formula.FormulaComposition">
+ <summary>
+ the formula search result
+ </summary>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.Formula.FormulaComposition.charge">
+ <summary>
+ the charge value of current formula
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.Formula.FormulaComposition.ppm">
+ <summary>
+ the ppm error between the theriocal mass value and the input mass value
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.Formula.FormulaComposition.HCRatio">
+ <summary>
+ Hydrogen/Carbon element ratio
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.Formula.FormulaComposition.AppendElement(System.String,System.Int32)">
+ <summary>
+ make a copy and then append a given atom element into formula model
+ </summary>
+ <param name="element"></param>
+ <param name="count"></param>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemoinformatics.Formula.MS.AdductIon">
+ <summary>
+ A <see cref="T:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.MzCalculator"/> liked precursor m/z evaluation model.
+ 
+ This is the storage of adduct ion information.
+ </summary>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.Formula.MS.AdductIon.#ctor">
+ <summary>
+ Initializes a new instance of the AdductIon class.
+ <para>
+ This constructor is preserved for use with MessagePack for C#, and direct usage is deprecated. If used as a default value,
+ consider using the AdductIon.Default property. If you know the AdductIonName, consider using the AdductIon.GetAdductIon method.
+ </para>
+ </summary>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.Formula.MS.AdductIon.AdductIonName">
+ <summary>
+ the precursor adduct name, example as ``[M+H]+``
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.Formula.MS.AdductIon.HasAdduct">
+ <summary>
+ false value for ``[M]+`` or ``[M]-``.
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.Formula.MS.AdductIon.GetAdductIon(System.String)">
+ <summary>
+ This method returns the AdductIon class variable from the adduct string.
+ </summary>
+ <param name="adductName">Add the formula string such as "C6H12O6"</param>
+ <returns>AdductIon</returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.Formula.MS.MemorySheet.GetDefault(System.Int32)">
+ <summary>
+ https://www.acdlabs.com/blog/common-adduct-and-fragment-ions-in-mass-spectrometry/
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemoinformatics.Formula.MS.ProductIon">
+ <summary>
+ This class is the storage of product ion assignment used in MS-FINDER program.
+ </summary>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemoinformatics.Formula.MS.NeutralLoss">
+ <summary>
+ This class is the storage of each neutral loss information used in MS-FINDER program.
+ </summary>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemoinformatics.Formula.SearchOption">
+ <summary>
+ options for evaluate a formula for matches a given experiment mass
+ </summary>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.Formula.SearchOption.ppm">
+ <summary>
+ the mass tolerance between the formula evaluated mass and the experiment mass
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.Formula.SearchOption.candidateSize">
+ <summary>
+ number of the element types in current search option
+ </summary>
+ <returns></returns>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.Formula.SearchOption._candidateElements">
+ <summary>
+ a collection of the candidate elements
+ </summary>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.Formula.SevenGoldenRulesCheck.ValenceCheckByHydrogenShift(BioNovoGene.BioDeep.Chemoinformatics.Formula.Formula)">
+ <summary>
+ Rule #4 – Hydrogen/Carbon element ratio check
+ 
+ + In most cases the hydrogen/carbon ratio does not exceed ``H/C`` > 3 with rare exception such as in methylhydrazine (CH6N2).
+ + Conversely, the ``H/C`` ratio Is usually smaller than 2, And should Not be less than 0.125 Like in the case of tetracyanopyrrole (C8HN5).
+ + Most typical ratios are found between ``2.0 > H/C > 0.5``
+ + More than 99.7% Of all formulas were included With H/C ratios between ``0.2–3.1``. Consequently, we Call this range the 'common range'.
+ + However, a number of chemical classes fall out of this range, And we have hence enabled the user to select 'extended ranges' covering 99.99% of all formulas in this development database (H/C 0.1–6).
+ </summary>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.Formula.SevenGoldenRulesCheck.HeteroAtomCheck(BioNovoGene.BioDeep.Chemoinformatics.Formula.Formula,BioNovoGene.BioDeep.Chemoinformatics.Formula.CoverRange)">
+ <summary>
+ Rule #4 – Hydrogen/Carbon element ratio check
+ 
+ + In most cases the hydrogen/carbon ratio does not exceed ``H/C`` > 3 with rare exception such as in methylhydrazine (CH6N2).
+ + Conversely, the ``H/C`` ratio Is usually smaller than 2, And should Not be less than 0.125 Like in the case of tetracyanopyrrole (C8HN5).
+ + Most typical ratios are found between ``2.0 > H/C > 0.5``
+ + More than 99.7% Of all formulas were included With H/C ratios between ``0.2–3.1``. Consequently, we Call this range the 'common range'.
+ + However, a number of chemical classes fall out of this range, And we have hence enabled the user to select 'extended ranges' covering 99.99% of all formulas in this development database (H/C 0.1–6).
+ </summary>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.Formula.SevenGoldenRulesCheck.ProbabilityCheck(BioNovoGene.BioDeep.Chemoinformatics.Formula.Formula)">
+ <summary>
+ Rule #6 – element probability check
+ 
+ Multiple element count restriction for compounds &lt; 2000 Da, 
+ based on the examination of the Beilstein database and the 
+ Dictionary of Natural Products
+ </summary>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemoinformatics.GenericCompound">
+ <summary>
+ a generic compound model for metaDNA modelling
+ </summary>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.Extensions">
+ <summary>
+ 
+ </summary>
+ <remarks>
+ https://github.com/mnowotka/chembl_ikey
+ </remarks>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.Extensions.MakeHashCode(System.String)">
+ <summary>
+ function for generates the inchikey based on the inchi string data
+ </summary>
+ <param name="inchi"></param>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InChI">
+ <summary>
+ The InChI identifier parser
+ 
+ 国际化合物标识（英语：InChI，英语：International Chemical Identifier）是由国际纯粹与
+ 应用化学联合会和美国国家标准技术研究所（National Institute of Standards and Technology，NIST）
+ 联合制定的，用以唯一标识化合物IUPAC名称的字符串。
+ </summary>
+ <remarks>
+ Parsing an InChI (International Chemical Identifier) string can be a complex task 
+ due to the detailed and structured format of the InChI. However, the InChI format 
+ is designed to be readable by both humans and machines, and it can be broken down 
+ into several layers that represent different aspects of the chemical substance.
+ 
+ Here's a basic guide on how to manually parse an InChI string:
+ 
+ 1. **InChI Version**: The InChI string starts with the version number, followed by a slash. For example, `InChI=1S/`.
+ 2. **Formula Layer**: This is the chemical formula of the compound. It starts after the version and
+    is enclosed in parentheses. For example, `InChI=1S/C6H12O6/` indicates that the compound is composed of 6 carbon, 
+    12 hydrogen, and 6 oxygen atoms.
+ 3. **Main Layer**: This layer describes the connectivity of atoms in the molecule and is followed by a slash. It can 
+    include:
+    - Atom connectivity (`c`)
+    - Hydrogen atoms (`h`)
+    - Charge (`q`)
+    - Stereochemistry (`b`, `t`, `m`)
+ 4. **Stereochemical Layer**: This layer provides information about the stereochemistry of the compound if applicable. 
+    It is also followed by a slash.
+ 5. **Isotopic Layer**: If the compound contains isotopes, this layer will provide that information, followed by a slash.
+ 6. **Fixed-H Layer**: This layer indicates the positions of non-exchangeable hydrogen atoms and is followed by a slash.
+ 7. **Reconnected Layer**: In cases where the molecule can be disconnected into multiple subunits, this layer will describe 
+    the reconnected form of the molecule.
+ 8. **Charge Layer**: This layer indicates the net electric charge of the compound.
+ 9. **Auxiliary Information**: Sometimes additional information is provided in parentheses at the end of the InChI string.
+ 
+ Here's an example of an InChI string broken down into its components:
+ 
+ ```
+ InChI=1S/C6H12O6/c7-1-2-3(8)4(9)5(10)6(11)12-1/h1-11H/t2-6+/m1/s1
+ ```
+ 
+ - `InChI=1S/` indicates the InChI version.
+ - `C6H12O6/` is the formula layer.
+ - `c7-1-2-3(8)4(9)5(10)6(11)` is the main layer with atom connectivity.
+ - `h1-11H` indicates the presence of hydrogen atoms.
+ - `t2-6+` indicates the stereochemistry.
+ - `/m1/s1` provides additional stereochemical information.
+ </remarks>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InChI.GetStruct">
+ <summary>
+ convert the inchi structure to SDF structure data
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InChI.ToString">
+ <summary>
+ Generate A InChI string base on the layer information
+ </summary>
+ <returns></returns>
+ 
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InChIKey">
+ <summary>
+ ``AAAAAAAAAAAAAA-BBBBBBBBFV-P``
+ </summary>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.Layer">
+ <summary>
+ ### Layers of the identifier
+ 
+ ``{InChI version}`` 
+
+ #### 1. Main Layer (M): 
+ + ``/{formula}`` 
+ + ``/c{connections}``
+ + ``/h{H_atoms}`` 
+
+ #### 2. Charge Layer 
+ + ``/q{charge}`` 
+ + ``/p{protons}``
+
+ #### 3. Stereo Layer 
+ + ``/b{stereo:dbond}`` 
+ + ``/t{stereo:sp3}`` 
+ + ``/m{stereo:sp3:inverted}`` 
+ + ``/s{stereo:type (1=abs, 2=rel, 3=rac)}`` 
+
+ #### 4. Isotopic Layer (MI): 
+ + ``/i{isotopicatoms}*`` 
+ + ``/h{isotopic:exchangeable_H}`` 
+ + ``/b{isotopic:stereo:dbond}`` 
+ + ``/t{isotopic:stereo:sp3}`` 
+ + ``/m{isotopic:stereo:sp3:inverted}`` 
+ + ``/s{isotopic:stereo:type (1=abs, 2=rel, 3=rac)}`` 
+
+ #### 5. Fixed H Layer (F): 
+ + ``/f{fixed_Hformula}*`` 
+ + ``/h{fixed_H:H_fixed}`` 
+ + ``/q{fixed_H:charge}`` 
+ + ``/b{fixed_H:stereo:dbond}`` 
+ + ``/t{fixed_H:stereo:sp3}`` 
+ + ``/m{fixed_H:stereo:sp3:inverted}`` 
+ + ``/s{fixed_H:stereo:type (1=abs, 2=rel, 3=rac)}`` 
+
+ ### (6.) Fixed/Isotopic Combination (FI) 
+ + ``/i{fixed_H:isotopic:atoms}*`` 
+ + ``/b{fixed_H:isotopic:stereo:dbond}`` 
+ + ``/t{fixed_H:isotopic:stereo:sp3}`` 
+ + ``/m{fixed_H:isotopic:stereo:sp3:inverted}`` 
+ + ``/s{fixed_H:isotopic:stereo:type (1=abs, 2=rel, 3=rac)}`` 
+ + ``/o{transposition}``
+ </summary>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.MainLayer">
+ <summary>
+ 主层（main layer）：以``1``表示
+ </summary>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.MainLayer.Formula">
+ <summary>
+ Chemical formula (no prefix). This is the only sublayer that must occur in every InChI.
+ </summary>
+ <returns></returns>
+ <remarks>
+ For a compounds composed of a single component, this is the conventional Hill-sorted 
+ elemental formula. For compounds containing multiple components, the Hill-sorted 
+ formulas of the individual components are sorted according to the guidelines in Figure 
+ 1 and separated by dots.
+ </remarks>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.MainLayer.Struct">
+ <summary>
+ Atom connections (prefix: "c"). The atoms in the chemical formula (except for hydrogens) 
+ are numbered in sequence; this sublayer describes which atoms are connected by bonds to 
+ which other ones.
+ </summary>
+ <returns></returns>
+ <remarks>
+ ##### Connections (except ``H``)
+ 
+ This lists the bonds between the atoms in the structure, partitioned into as many as three 
+ sublayers. The first represents all bonds other than those to non-bridging H-atoms, the 
+ second represents bonds of all immobile H-atoms, and the third provides locations of any 
+ mobile H-atoms. The last sublayer represents H-atoms that can be found at more than one 
+ location in a compound due to well-known varieties of isomerization. It identifies the groups 
+ of atoms that share one or more mobile hydrogen atoms In addition to hydrogen atoms, mobile 
+ H groups may contain mobile negative charges. These charges are included in the charge layer.
+ </remarks>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.MainLayer.Hydrogen">
+ <summary>
+ Hydrogen atoms (prefix: "h"). Describes how many hydrogen atoms are connected to each of 
+ the other atoms.
+ </summary>
+ <returns></returns>
+ <remarks>
+ H (static H and mobile H groups)
+ </remarks>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.ChargeLayer">
+ <summary>
+ 电荷层（charge layer）：以``q``表示
+ </summary>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.ChargeLayer.Proton">
+ <summary>
+ proton sublayer (prefix: "p" for "protons")
+ </summary>
+ <returns></returns>
+ <remarks>
+ The number of protons removed from or added to the substance so that a given component may be 
+ represented without regard to its degree of protonation.
+ </remarks>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.ChargeLayer.Charge">
+ <summary>
+ charge sublayer (prefix: "q")
+ </summary>
+ <returns></returns>
+ <remarks>
+ The net charges of the components are represented in this layer as independent tags. By design, 
+ the InChI does not distinguish between structures that differ only in the formal positions of 
+ their electrons.
+ </remarks>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.StereochemicalLayer">
+ <summary>
+ 立体化学层（Stereochemical layer）：以``t``，``m``，``s``表示
+ </summary>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.StereochemicalLayer.DoubleBounds">
+ <summary>
+ double bonds and cumulenes (prefix: "b")
+ </summary>
+ <returns></returns>
+ <remarks>
+ ##### Double Bond sp2 (Z/E) Stereo
+ 
+ Expression of this stereo configuration is easily done in 2-dimensional drawings. When double bonds 
+ are rigid, stereoisomerism is readily represented without ambiguity. However, in alternating bond 
+ systems, some non-rigid bonds may be formally drawn as double. Bonds in these systems, when discovered 
+ by InChI algorithms, are not assigned stereo labels. Also, to avoid needless stereodescriptors in 
+ aromatic and other small rings, no sp2 stereoisomerism information is generated in rings containing 
+ 7 or fewer members.
+ </remarks>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.StereochemicalLayer.Tetrahedral">
+ <summary>
+ tetrahedral stereochemistry of atoms and allenes (prefixes: "t", "m")
+ </summary>
+ <returns></returns>
+ <remarks>
+ ##### Tetrahedral Stereo
+ 
+ Tetrahedral (typically, sp3) stereochemistry is readily represented using conventional wedge/hatch (out/in) 
+ bonds commonly employed in 2D drawings. Relative tetrahedral stereochemistry is represented first, 
+ optionally followed by a tag to indicate absolute stereochemistry. When a stereocenter configuration is not 
+ known to the structure author, an „unknown‟ descriptor may be specified, which will then appear in the 
+ stereo layer. If a possible stereocenter is found, but no stereo information is provided, it will be 
+ represented in a stereolayer by a not-given (``undefined``) flag.
+ </remarks>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.StereochemicalLayer.Type">
+ <summary>
+ type of stereochemistry information (prefix: "s")
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.IsotopicLayer">
+ <summary>
+ 异构体层（Isotopic layer）：以``i``表示
+ </summary>
+ <remarks>
+ Isotopic layer (prefixes: "i", "h", as well as "b", "t", "m", "s" for isotopic 
+ stereochemistry)
+ 
+ This is a layer in which different isotopically labeled atoms are identified. Exchangeable isotopic hydrogen atoms 
+ (deuterium and tritium) are listed separately. The layer also holds any changes in stereochemistry caused by the 
+ presence of isotopes.
+ </remarks>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.FixedHLayer">
+ <summary>
+ 固定氢原子（Fixed-H layer）：以``f``表示
+ </summary>
+ <remarks>
+ Fixed-H layer (prefix: "f"); contains some or all of the above types of layers 
+ except atom connections; may end with "o" sublayer; never included in standard 
+ InChI
+ 
+ When potentially mobile H atoms are detected and the user specifies that they should be immobile (tautomerism not 
+ allowed), this layer binds these H atoms to the atoms specified in the input structure. When this, in effect, 
+ causes a change in earlier layers, appropriate changes are added to this layer (earlier layers 1-4 are not 
+ affected).
+ </remarks>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.ReconnectedLayer">
+ <summary>
+ 再连接层（Reconnected Layer）：以``r``表示
+ </summary>
+ <remarks>
+ Reconnected layer (prefix: "r"); contains the whole InChI of a structure with 
+ reconnected metal atoms; never included in standard InChI
+ </remarks>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiBondStereo.NONE">
+ <summary>
+ No stereo information recorded for this bond </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiBondStereo.SINGLE_1UP">
+ <summary>
+ sharp end points to this atom i.e. reference atom is <seealso cref="P:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiBond.Start"/> </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiBondStereo.SINGLE_1EITHER">
+ <summary>
+ sharp end points to this atom i.e. reference atom is <seealso cref="P:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiBond.Start"/> </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiBondStereo.SINGLE_1DOWN">
+ <summary>
+ sharp end points to this atom i.e. reference atom is <seealso cref="P:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiBond.Start"/> </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiBondStereo.SINGLE_2UP">
+ <summary>
+ sharp end points to the opposite atom i.e. reference atom is <seealso cref="P:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiBond.End"/> </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiBondStereo.SINGLE_2EITHER">
+ <summary>
+ sharp end points to the opposite atom i.e. reference atom is <seealso cref="P:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiBond.End"/> </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiBondStereo.SINGLE_2DOWN">
+ <summary>
+ sharp end points to the opposite atom i.e. reference atom is <seealso cref="P:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiBond.End"/> </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiBondStereo.DOUBLE_EITHER">
+ <summary>
+ unknown stereobond geometry </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiBondType.ALTERN">
+ <summary>
+ avoid by all means </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiFlag.NEWPSOFF">
+ <summary>
+ Both ends of wedge point to stereocenters [compatible with standard InChI] </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiFlag.DoNotAddH">
+ <summary>
+ All hydrogens in input structure are explicit [compatible with standard InChI] </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiFlag.SNon">
+ <summary>
+ Ignore stereo [compatible with standard InChI] </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiFlag.SRel">
+ <summary>
+ Use relative stereo </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiFlag.SRac">
+ <summary>
+ Use racemic stereo </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiFlag.SUCF">
+ <summary>
+ Use Chiral Flag in MOL/SD file record: if On – use Absolute stereo, Off – use Relative stereo </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiFlag.ChiralFlagON">
+ <summary>
+ Set chiral flag ON </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiFlag.ChiralFlagOFF">
+ <summary>
+ Set chiral flag OFF </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiFlag.LargeMolecules">
+ <summary>
+ Allows input of molecules up to 32767 atoms [Produces 'InChI=1B' indicating beta status of resulting identifiers] </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiFlag.SUU">
+ <summary>
+ Always indicate unknown/undefined stereo </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiFlag.SLUUD">
+ <summary>
+ Stereo labels for "unknown" and "undefined" are different, 'u' and '?', resp. </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiFlag.FixedH">
+ <summary>
+ Include Fixed H layer </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiFlag.RecMet">
+ <summary>
+ Include reconnected metals results </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiFlag.KET">
+ <summary>
+ Account for keto-enol tautomerism (experimental) </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiFlag.OneFiveT">
+ <summary>
+ Account for 1,5-tautomerism (experimental) </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiFlag.AuxNone">
+ <summary>
+ Omit auxiliary information </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiFlag.WarnOnEmptyStructure">
+ <summary>
+ Warn and produce empty InChI for empty structure
+ NOTE: This option doesn't currently work due to an InChI library bug
+ </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiFlag.SaveOpt">
+ <summary>
+ Save custom InChI creation options (non-standard InChI) </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiFlag.NoWarnings">
+ <summary>
+ Suppress all warning messages </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiFlag.LooseTSACheck">
+ <summary>
+ Relax criteria of ambiguous drawing for in-ring tetrahedral stereo </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiFlag.Polymers">
+ <summary>
+ Allow processing of polymers (experimental) </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiFlag.Polymers105">
+ <summary>
+ Allow processing of polymers (experimental, legacy mode of v. 1.05) </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiFlag.FoldCRU">
+ <summary>
+ Remove repeats within constitutional repeating units (CRU/SRU) </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiFlag.NoFrameShift">
+ <summary>
+ Disable polymer CRU frame shift </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiFlag.NoEdits">
+ <summary>
+ Disable polymer CRU frame shift and folding </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiFlag.NPZz">
+ <summary>
+ Allow non-polymer-related Zz atoms (pseudo element placeholders) </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiFlag.SAtZz">
+ <summary>
+ Allow stereo at atoms connected to Zz </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiFlag.SAbs">
+ <summary>
+ Use absolute stereo (this is the default, so this flag is typically redundant) </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiFlag.OutErrInChI">
+ <summary>
+ Output an empty InChI ("InChI=1//" or "InChI=1S//") on error </summary>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiInputFromAuxinfoOutput.ChiralFlag">
+ <summary>
+ True if the structure was marked as chiral
+ False if marked as not chiral
+ null if not marked
+ @return
+ </summary>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiInputFromInchiOutput.WarningFlags">
+ <summary>
+ see INCHIDIFF in inchicmp.h.
+ 
+ [x][y]:
+ x=0 =&gt; Reconnected if present in InChI otherwise Disconnected/Normal
+ x=1 =&gt; Disconnected layer if Reconnected layer is present
+ y=1 =&gt; Main layer or Mobile-H
+ y=0 =&gt; Fixed-H layer
+ @return
+ </summary>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiKeyOutput.Block1HashExtension">
+ <summary>
+ Returns the rest of the 256-bit SHA-2 signature for the first block
+ @return
+ </summary>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiKeyOutput.Block2HashExtension">
+ <summary>
+ Returns the rest of the 256-bit SHA-2 signature for the second block
+ @return
+ </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiKeyStatus.OK">
+ <summary>
+ Success; no errors or warnings </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiKeyStatus.UNKNOWN_ERROR">
+ <summary>
+ Unknown program error </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiKeyStatus.EMPTY_INPUT">
+ <summary>
+ Source string is empty </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiKeyStatus.INVALID_INCHI_PREFIX">
+ <summary>
+ Invalid InChI prefix or invalid version (not 1) </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiKeyStatus.NOT_ENOUGH_MEMORY">
+ <summary>
+ Not enough memory </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiKeyStatus.INVALID_INCHI">
+ <summary>
+ Source InChI has invalid layout </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiKeyStatus.INVALID_STD_INCHI">
+ <summary>
+ Source standard InChI has invalid layout </summary>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiOptions.InchiOptionsBuilder.withTimeout(System.Int32)">
+ <summary>
+ Timeout in seconds (0 = infinite timeout) </summary>
+ <param name="timeoutSecs">
+ @return </param>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiOptions.InchiOptionsBuilder.withTimeoutMilliSeconds(System.Int64)">
+ <summary>
+ Timeout in milliseconds (0 = infinite timeout) </summary>
+ <param name="timeoutMilliSecs">
+ @return </param>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiStatus.SUCCESS">
+ <summary>
+ Success; no errors or warnings </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiStatus.WARNING">
+ <summary>
+ Success; warning(s) issued </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiStatus.ERROR">
+ <summary>
+ Error: no InChI has been created </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiStereo.STEREO_IMPLICIT_H">
+ <summary>
+ Use when a stereocentre's configuration references an implicit hydrogen 
+ </summary>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiStereo.CentralAtom">
+ <summary>
+ Null for <seealso cref="F:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiStereoType.DoubleBond"/>
+ @return
+ </summary>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiStereo.createTetrahedralStereo(BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiAtom,BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiAtom,BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiAtom,BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiAtom,BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiAtom,BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiStereoParity)">
+ <summary>
+ Defines the stereo configuration around the give centralAtom. The four vertexes of the tetrahedral centre should be given along with the parity.
+ If one of the vertexes is an implicit hydrogen use <seealso cref="F:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiStereo.STEREO_IMPLICIT_H"/>. If one is a lone pair, use the centralAtom for this vertex </summary>
+ <param name="centralAtom"> </param>
+ <param name="atom1"> </param>
+ <param name="atom2"> </param>
+ <param name="atom3"> </param>
+ <param name="atom4"> </param>
+ <param name="parity">
+ @return </param>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiStereo.createDoubleBondStereo(BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiAtom,BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiAtom,BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiAtom,BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiAtom,BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiStereoParity)">
+ <summary>
+ <pre>
+ Given
+ A       E
+  \     /
+   C = D
+  /     \
+ B       F
+ 
+ atom1 is A (or B)
+ atom2 is C
+ atom3 is D
+ atom4 is E (or F)
+ and the parity is whether atom1 and atom2 are on the same side; <seealso cref="F:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiStereoParity.ODD"/> if on the same side
+ Atom1/2 should be chosen such that neither are implicit hydrogen
+ 
+ For a cumulene (NOTE stereochemistry on cumulenes with more than 3 double bonds are unsupported by InChI)
+ Given
+ A               G
+  \             /
+   C = D = E = F
+  /             \
+ B               H
+ 
+ atom1 is A (or B)
+ atom2 is D
+ atom3 is E
+ atom4 is G (or H)
+ 
+ Atom1/2 should be chosen such that neither are implicit hydrogen
+ 
+ For the 2 adjacent double-bond case use <seealso cref="M:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiStereo.createAllenalStereo(BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiAtom,BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiAtom,BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiAtom,BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiAtom,BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiAtom,BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiStereoParity)"/>
+ </pre> </summary>
+ <param name="atom1"> </param>
+ <param name="atom2"> </param>
+ <param name="atom3"> </param>
+ <param name="atom4"> </param>
+ <param name="parity">
+ @return </param>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiStereo.createAllenalStereo(BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiAtom,BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiAtom,BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiAtom,BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiAtom,BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiAtom,BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiStereoParity)">
+ <summary>
+ <pre>
+ Defines the stereo configuration of an allenal stereocentre, these behave like an extended tetrahedron.
+ The four vertexes of the tetrahedron should be given along with the parity.
+ If one of the vertexes is an implicit hydrogen use <seealso cref="F:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.InchiStereo.STEREO_IMPLICIT_H"/>.
+ 
+ Given
+ A           F
+  \         /
+   C = D = E
+  /         \
+ B           G
+ 
+ centralAtom is D
+ atom1 is A 
+ atom2 is B
+ atom3 is F
+ atom4 is G
+ 
+ (NOTE allenal centers with more than 2 double bonds are unsupported by InChI)
+ </pre> </summary>
+ <param name="centralAtom"> </param>
+ <param name="atom1"> </param>
+ <param name="atom2"> </param>
+ <param name="atom3"> </param>
+ <param name="atom4"> </param>
+ <param name="parity">
+ @return </param>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.Lipidomics.BondPosition.structure">
+ <summary>
+ E/Z
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemoinformatics.Lipidomics.Chain">
+ <summary>
+ the lipid carbon chain
+ </summary>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.Lipidomics.AliasNameMapper.LipidSearchToLipidMaps(BioNovoGene.BioDeep.Chemoinformatics.Lipidomics.LipidName)">
+ <summary>
+ this function will make a value copy of the given <paramref name="lipidsearch"/> and
+ then try to alias mapping of the lipid class name.
+ </summary>
+ <param name="lipidsearch"></param>
+ <returns></returns>
+ 
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemoinformatics.Lipidomics.LipidName">
+ <summary>
+ the lipid name data
+ </summary>
+ <remarks>
+ the function <see cref="M:BioNovoGene.BioDeep.Chemoinformatics.Lipidomics.LipidName.ParseLipidName(System.String)"/> could be used for parse the lipid name string into 
+ the class name with the multiple <see cref="T:BioNovoGene.BioDeep.Chemoinformatics.Lipidomics.Chain"/> information. the lipid name that we parsed
+ should not be a common name.
+ </remarks>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.Lipidomics.LipidName.className">
+ <summary>
+ the main class of current lipid metabolite
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.Lipidomics.LipidName.chains">
+ <summary>
+ the carbon chains of current lipid data
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.Lipidomics.LipidName.id">
+ <summary>
+ the database reference id of current lipid name
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.Lipidomics.LipidName.#ctor(BioNovoGene.BioDeep.Chemoinformatics.Lipidomics.LipidName)">
+ <summary>
+ make value copy
+ </summary>
+ <param name="value"></param>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.Lipidomics.LipidName.ToOverviewName">
+ <summary>
+ get ABBREVIATION name of this lipid, $"{className}({totalCarbons}:{totalDBes})"
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.Lipidomics.LipidName.ParseLipidName(System.String)">
+ <summary>
+ parse lipid name components
+ </summary>
+ <param name="name"></param>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemoinformatics.MetaboliteAnnotation">
+ <summary>
+ A basic metabolite annotation data model
+ </summary>
+ <remarks>
+ contains the basic annotation metadata: id, name, exact mass, and formula data
+ </remarks>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.MetaboliteAnnotation.Id">
+ <summary>
+ the unique reference id of current metabolite
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.MetaboliteAnnotation.CommonName">
+ <summary>
+ common name of the current metabolite
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.MetaboliteAnnotation.ExactMass">
+ <summary>
+ exact mass value of current metabolite, which it could be evaluated from the <see cref="P:BioNovoGene.BioDeep.Chemoinformatics.MetaboliteAnnotation.Formula"/>
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.MetaboliteAnnotation.Formula">
+ <summary>
+ atom compositions of current metabolite
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemoinformatics.ExactMassMapping">
+ <summary>
+ a simple data model for associates the metabolite id with its exact mass value 
+ </summary>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.ExactMassMapping.id">
+ <summary>
+ the biodeep id in integer number format
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.NaturalProduct.GlycosylNameSolver.GlycosylNameParser(System.String)">
+ <summary>
+ 
+ </summary>
+ <param name="glycosyl"></param>
+ <returns></returns>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.NaturalProduct.NameTokens.na">
+ <summary>
+ invalid component name scanner token
+ </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.NaturalProduct.NameTokens.name">
+ <summary>
+ glycosyl
+ </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.NaturalProduct.NameTokens.open">
+ <summary>
+ (
+ </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.NaturalProduct.NameTokens.close">
+ <summary>
+ )
+ </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.NaturalProduct.NameTokens.number">
+ <summary>
+ <see cref="T:BioNovoGene.BioDeep.Chemoinformatics.NaturalProduct.QuantityPrefix"/>
+ </summary>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemoinformatics.SDF.NamespaceDoc">
+ <summary>
+ The SDF molecule annotation file format handler module
+ </summary>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemoinformatics.SDF.SDF">
+ <summary>
+ #### Structure-data file
+ 
+ SDF or Structures Data File is a common file format developed by Molecular Design Limited 
+ to handle a list of molecular structures with associated properties. 
+ The file format has been published (Dalby et al., J. Chem. Inf. Comput. Sci. 1992, 32: 244-255).
+ 
+ + LMSD Structure-data file (http://www.lipidmaps.org/resources/downloads/index.html)
+ + PubChem FTP SDF(ftp://ftp.ncbi.nlm.nih.gov/pubchem/Compound/CURRENT-Full/SDF)
+ </summary>
+ <remarks>
+ https://cactus.nci.nih.gov/SDF_toolkit/
+ 
+ The SDF Toolkit in Perl 5
+ 
+ Dalby A, Nourse JG, Hounshell WD, Gushurst Aki, Grier DL, Leland BA, Laufer J. 
+ Description of several chemical-structure file formats used by computer-programs developed at Molecular Design Limited. 
+ Journal of Chemical Information and Computer Sciences 
+ 32:(3) 244-255, May-Jun 1992.
+ 
+ http://www.nonlinear.com/progenesis/sdf-studio/v0.9/faq/sdf-file-format-guidance.aspx
+ https://en.wikipedia.org/wiki/Chemical_table_file#SDF
+ </remarks>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.SDF.SDF.ID">
+ <summary>
+ The name of the molecule
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.SDF.SDF.Software">
+ <summary>
+ Details of the software used to generate the compound structure
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.SDF.SDF.Structure">
+ <summary>
+ The molecular structure.
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.SDF.SDF.MetaData">
+ <summary>
+ the metadata that could be used as the annotation information of current molecule.
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.SDF.SDF.MoleculePopulator(System.String,System.Int32,System.Boolean)">
+ <summary>
+ Scan and parsing all of the ``*.sdf`` model file in the target <paramref name="directory"/>
+ </summary>
+ <param name="directory$"></param>
+ <param name="takes%"></param>
+ <param name="echo"></param>
+ <returns></returns>
+ 
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemoinformatics.SDF.SDFParser">
+ <summary>
+ An internal file parser module
+ </summary>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.SDF.SDFParser.IterateParser(System.String,System.Boolean,System.Boolean)">
+ <summary>
+ 解析单个的SDF文件
+ </summary>
+ <param name="path$"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.SDF.SDFParser.solveOffset(System.String[])">
+ <summary>
+ 假设Program名称的行总是不是空的
+ </summary>
+ <param name="block"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.SDF.SDFParser.ScanKeys(System.String)">
+ <summary>
+ 这个函数可能在构建csv文件进行数据存储的时候回有用
+ </summary>
+ <param name="directory"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.SDF.SDFParser.MoleculePopulator(System.String,System.Int32,System.Boolean,System.Boolean)">
+ <summary>
+ Scan and parsing all of the ``*.sdf`` model file in the target <paramref name="directory"/>
+ </summary>
+ <param name="directory$"></param>
+ <param name="takes%"></param>
+ <param name="echo"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.SDF.Models.Atom.ensureValidFormat(System.String[])">
+ <summary>
+ 三维坐标的轴的值只有4位小数
+ </summary>
+ <param name="tokens"></param>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemoinformatics.SDF.Models.Bound">
+ <summary>
+ Connection between atoms
+ </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.SDF.Models.BoundTypes.Other">
+ <summary>
+ 非碳原子的化学键连接可能会存在其他数量的键
+ </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.SDF.Models.BoundTypes.Single">
+ <summary>
+ 单键
+ </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.SDF.Models.BoundTypes.Double">
+ <summary>
+ 双键
+ </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.SDF.Models.BoundTypes.Triple">
+ <summary>
+ 三键
+ </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.SDF.Models.BoundTypes.Aromatic">
+ <summary>
+ 四键
+ </summary>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemoinformatics.SDF.Models.BoundStereos">
+ <summary>
+ 空间立体结构的类型
+ </summary>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemoinformatics.SDF.Models.Structure">
+ <summary>
+ The molecular structure.
+ </summary>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.SDF.Models.Structure.parseCounter(System.String)">
+ <summary>
+ Next comes the so-called "counts" line. This line is made up of twelve fixed-length fields 
+ 
+ + the first eleven are three characters long, 
+ + and the last six characters long. 
+ 
+ The first two fields are the most critical, and give the number of atoms and bonds 
+ described in the compound.
+ 
+ ```
+   9  8  0     0  0  0  0  0  0999 V2000
+ ```
+ 
+ So this compound will have 9 atoms And 8 bonds described. Often, hydrogens - especially 
+ those attached To elements such As carbon Or oxygen - are left implicit (And will be 
+ included based On the available valences) rather than being included In the file.
+ </summary>
+ <param name="line"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.SDF.Models.Structure.Parse(System.String)">
+ <summary>
+ 从分子结构文本数据之中解析出分子的结构模型数据
+ </summary>
+ <param name="mol">这个参数同时兼容文本内容或者文本文件的路径</param>
+ <returns></returns>
+</member>
+</members>
+</doc>

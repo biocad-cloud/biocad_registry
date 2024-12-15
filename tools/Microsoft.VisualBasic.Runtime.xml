@@ -13931,6 +13931,14 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="MAT"></param>
  <returns></returns>
 </member>
+<member name="M:Microsoft.VisualBasic.ComponentModel.Collection.RectangularArray.CopyOf``1(``0[][]@)">
+ <summary>
+ Make deep copy of the rectangular array value
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="m"></param>
+ <returns></returns>
+</member>
 <member name="M:Microsoft.VisualBasic.ComponentModel.Collection.RectangularArray.Matrix``1(System.Int32,System.Int32)">
  <summary>
  Create an empty matrix with m row and n cols.
@@ -26307,10 +26315,12 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
 </member>
 <member name="M:Microsoft.VisualBasic.Math.VBMath.RMS(System.Collections.Generic.IEnumerable{System.Double})">
  <summary>
- Root mean square.(均方根)
+ Root mean square.
  </summary>
  <returns></returns>
- 
+ <remarks>
+ (均方根)
+ </remarks>
 </member>
 <member name="M:Microsoft.VisualBasic.Math.VBMath.RSD(System.Collections.Generic.IEnumerable{System.Double})">
  <summary>

@@ -1,0 +1,2710 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+BioNovoGene.Analytical.MassSpectrometry.Math
+</name>
+</assembly>
+<members>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.ActivationMethods">
+ <summary>
+ Activation Types enum
+ </summary>
+ <remarks>
+ This enum mirrors ThermoFisher.CommonCore.Data.FilterEnums.ActivationType/CollisionType
+ 
+ 在质谱数据中，Collision Type（碰撞类型）和Activation Method（活化方法）通常是指代同一概念的不同术语。
+ 在质谱分析中，为了将大分子（如蛋白质、多肽、聚合物等）打碎成更小的片段以进行分析，常使用一种称为碰撞
+ 诱导解离（Collision-Induced Dissociation, CID）的技术。这个过程中，使用高能碰撞来激活分子，
+ 从而产生碎片。
+ 
+ 活化方法（Activation Method）是一个更广泛的术语，它包括了碰撞诱导解离（CID）以及其他可能的活化技术，
+ 例如电子捕获解离（Electron Capture Dissociation, ECD）、红外多光子解离（Infrared Multiphoton 
+ Dissociation, IRMPD）和黑体红外辐射解离（Blackbody Infrared Radiative Dissociation, BIRD）等。
+ 
+ 碰撞类型（Collision Type）则更具体地指明了在碰撞诱导解离过程中所使用的特定类型，例如使用氩、氖等气体作为碰撞气体来产生碰撞。
+ 
+ 因此，虽然这两个术语在语境上有所不同，但它们都是描述在质谱分析中用来使分子离子发生裂解的方法。
+ 在具体的实验和文献中，它们的含义可能会根据上下文有所变化，但基本上可以认为是相关的概念。
+
+ 除了碰撞诱导解离（CID），还有其他几种常见的活化方法，用于在质谱分析中产生离子碎片，以便进行结构解析和表征。
+ 这些方法包括：
+ 
+ + 电子捕获解离（Electron Capture Dissociation, ECD）：这种方法在低温下使用电子来断裂分子中的键，特别适用于大分子，如蛋白质和肽。ECD通常用于保持分子中的非共价相互作用，以便更好地理解分子结构。
+ + 红外多光子解离（Infrared Multiphoton Dissociation, IRMPD）：IRMPD使用红外激光的光子能量来激发分子振动，从而导致分子内部的键断裂。这种方法对于具有强红外吸收的分子特别有效。
+ + 黑体红外辐射解离（Blackbody Infrared Radiative Dissociation, BIRD）：BIRD是一种利用黑体辐射源的红外光子能量来解离分子中的键的方法。这种方法通常用于研究大分子和生物大分子。
+ + 快速加热解离（Pulsed Q-TOF）:这种方法通过在离子飞行管中施加快速电压脉冲，使离子加速并获得足够的动能，从而在碰撞过程中发生解离。
+ + 紫外光解离（Ultraviolet Photodissociation, UVPD）：UVPD使用紫外光来激发离子，导致特定的键断裂。这种方法对于具有特定紫外线吸收特性的分子非常有效。
+ + 活化离子飞行时间质谱（Activating Ion Time-of-Flight, ACTOF）：这是一种将离子在飞行管中加速并使其在特定的距离内发生碰撞，从而产生碎片的方法。
+ + 溶剂辅助解离（Solvent Assisted Dissociation, SAD）：SAD是一种在离子源中引入溶剂，以促进离子在形成过程中的解离。
+ 
+ 这些活化方法的选择取决于分析物的类型、所需的解析水平和质谱仪的配置。不同的活化方法可以提供不同的碎片模式和
+ 结构信息，因此在实际应用中，研究人员会根据具体的研究目的选择最合适的活化方法。
+ 
+ (这个枚举值为Byte类型，请勿修改，否则mzPack文件格式读写会出现问题)
+ </remarks>
+</member>
+<member name="F:BioNovoGene.Analytical.MassSpectrometry.Math.ActivationMethods.Unknown">
+ <summary>
+ Unknown activation type
+ </summary>
+</member>
+<member name="F:BioNovoGene.Analytical.MassSpectrometry.Math.ActivationMethods.CID">
+ <summary>
+ Collision-Induced Dissociation
+ 
+ In collision-induced dissociation (CID), activation of the selected ions 
+ occurs by collision(s) with neutral gas molecules in a collision cell. 
+ This experiment can be done at high (keV) collision energies, using tandem 
+ sector and time-of-flight instruments, or at low (eV range) energies, in 
+ tandem quadrupole and ion trapping instruments.
+ </summary>
+</member>
+<member name="F:BioNovoGene.Analytical.MassSpectrometry.Math.ActivationMethods.MPD">
+ <summary>
+ Multi Photon Dissociation
+ </summary>
+</member>
+<member name="F:BioNovoGene.Analytical.MassSpectrometry.Math.ActivationMethods.ECD">
+ <summary>
+ Electron Capture Dissociation
+ 
+ unique fragmentation mechanisms of multiply-charged species can be studied 
+ by electron-capture dissociation (ECD). The ECD technique has been recognized 
+ as an efficient means to study non-covalent interactions and to gain 
+ sequence information in proteomics applications.
+ </summary>
+</member>
+<member name="F:BioNovoGene.Analytical.MassSpectrometry.Math.ActivationMethods.PQD">
+ <summary>
+ Pulsed Q Dissociation
+ </summary>
+</member>
+<member name="F:BioNovoGene.Analytical.MassSpectrometry.Math.ActivationMethods.ETD">
+ <summary>
+ Electron Transfer Dissociation
+ 
+ Electron transfer dissociation (ETD) involves transfer of an electron from a 
+ radical anion to the analyte cation and also produces c and z type ions, and 
+ has been implemented with wide variety of mass analyzers, most commonly ion 
+ traps.
+ </summary>
+</member>
+<member name="F:BioNovoGene.Analytical.MassSpectrometry.Math.ActivationMethods.HCD">
+ <summary>
+ High-energy Collision-induce Dissociation (psi-ms: beam-type collision-induced dissociation)
+ </summary>
+</member>
+<member name="F:BioNovoGene.Analytical.MassSpectrometry.Math.ActivationMethods.AnyType">
+ <summary>
+ Any activation type
+ </summary>
+</member>
+<member name="F:BioNovoGene.Analytical.MassSpectrometry.Math.ActivationMethods.SA">
+ <summary>
+ Supplemental Activation
+ </summary>
+</member>
+<member name="F:BioNovoGene.Analytical.MassSpectrometry.Math.ActivationMethods.PTR">
+ <summary>
+ Proton Transfer Reaction
+ </summary>
+</member>
+<member name="F:BioNovoGene.Analytical.MassSpectrometry.Math.ActivationMethods.NETD">
+ <summary>
+ Negative Electron Transfer Dissociation
+ </summary>
+</member>
+<member name="F:BioNovoGene.Analytical.MassSpectrometry.Math.ActivationMethods.NPTR">
+ <summary>
+ Negative Proton Transfer Reaction
+ </summary>
+</member>
+<member name="F:BioNovoGene.Analytical.MassSpectrometry.Math.ActivationMethods.UVPD">
+ <summary>
+ Ultraviolet Photo Dissociation
+ </summary>
+</member>
+<member name="F:BioNovoGene.Analytical.MassSpectrometry.Math.ActivationMethods.ModeA">
+ <summary>
+ Mode A
+ </summary>
+</member>
+<member name="F:BioNovoGene.Analytical.MassSpectrometry.Math.ActivationMethods.ModeB">
+ <summary>
+ Mode B
+ </summary>
+</member>
+<member name="F:BioNovoGene.Analytical.MassSpectrometry.Math.ActivationMethods.ModeC">
+ <summary>
+ Mode C
+ </summary>
+</member>
+<member name="F:BioNovoGene.Analytical.MassSpectrometry.Math.ActivationMethods.ModeD">
+ <summary>
+ Mode D
+ </summary>
+</member>
+<member name="F:BioNovoGene.Analytical.MassSpectrometry.Math.ActivationMethods.ModeE">
+ <summary>
+ Mode E
+ </summary>
+</member>
+<member name="F:BioNovoGene.Analytical.MassSpectrometry.Math.ActivationMethods.ModeF">
+ <summary>
+ Mode F
+ </summary>
+</member>
+<member name="F:BioNovoGene.Analytical.MassSpectrometry.Math.ActivationMethods.ModeG">
+ <summary>
+ Mode G
+ </summary>
+</member>
+<member name="F:BioNovoGene.Analytical.MassSpectrometry.Math.ActivationMethods.ModeH">
+ <summary>
+ Mode H
+ </summary>
+</member>
+<member name="F:BioNovoGene.Analytical.MassSpectrometry.Math.ActivationMethods.ModeI">
+ <summary>
+ Mode I
+ </summary>
+</member>
+<member name="F:BioNovoGene.Analytical.MassSpectrometry.Math.ActivationMethods.ModeJ">
+ <summary>
+ Mode J
+ </summary>
+</member>
+<member name="F:BioNovoGene.Analytical.MassSpectrometry.Math.ActivationMethods.ModeK">
+ <summary>
+ Mode K
+ </summary>
+</member>
+<member name="F:BioNovoGene.Analytical.MassSpectrometry.Math.ActivationMethods.ModeL">
+ <summary>
+ Mode L
+ </summary>
+</member>
+<member name="F:BioNovoGene.Analytical.MassSpectrometry.Math.ActivationMethods.ModeM">
+ <summary>
+ Mode M
+ </summary>
+</member>
+<member name="F:BioNovoGene.Analytical.MassSpectrometry.Math.ActivationMethods.ModeN">
+ <summary>
+ Mode N
+ </summary>
+</member>
+<member name="F:BioNovoGene.Analytical.MassSpectrometry.Math.ActivationMethods.ModeO">
+ <summary>
+ Mode O
+ </summary>
+</member>
+<member name="F:BioNovoGene.Analytical.MassSpectrometry.Math.ActivationMethods.ModeP">
+ <summary>
+ Mode P
+ </summary>
+</member>
+<member name="F:BioNovoGene.Analytical.MassSpectrometry.Math.ActivationMethods.ModeQ">
+ <summary>
+ Mode Q
+ </summary>
+</member>
+<member name="F:BioNovoGene.Analytical.MassSpectrometry.Math.ActivationMethods.ModeR">
+ <summary>
+ Mode R
+ </summary>
+</member>
+<member name="F:BioNovoGene.Analytical.MassSpectrometry.Math.ActivationMethods.ModeS">
+ <summary>
+ Mode S
+ </summary>
+</member>
+<member name="F:BioNovoGene.Analytical.MassSpectrometry.Math.ActivationMethods.ModeT">
+ <summary>
+ Mode T
+ </summary>
+</member>
+<member name="F:BioNovoGene.Analytical.MassSpectrometry.Math.ActivationMethods.ModeU">
+ <summary>
+ Mode U
+ </summary>
+</member>
+<member name="F:BioNovoGene.Analytical.MassSpectrometry.Math.ActivationMethods.ModeV">
+ <summary>
+ Mode V
+ </summary>
+</member>
+<member name="F:BioNovoGene.Analytical.MassSpectrometry.Math.ActivationMethods.ModeW">
+ <summary>
+ Mode W
+ </summary>
+</member>
+<member name="F:BioNovoGene.Analytical.MassSpectrometry.Math.ActivationMethods.ModeX">
+ <summary>
+ Mode X
+ </summary>
+</member>
+<member name="F:BioNovoGene.Analytical.MassSpectrometry.Math.ActivationMethods.ModeY">
+ <summary>
+ Mode Y
+ </summary>
+</member>
+<member name="F:BioNovoGene.Analytical.MassSpectrometry.Math.ActivationMethods.ModeZ">
+ <summary>
+ Mode Z
+ </summary>
+</member>
+<member name="F:BioNovoGene.Analytical.MassSpectrometry.Math.ActivationMethods.LastActivation">
+ <summary>
+ Last Activation
+ </summary>
+</member>
+<member name="F:BioNovoGene.Analytical.MassSpectrometry.Math.ActivationMethods.SID">
+ <summary>
+ Collisional activation upon impact of precursor ions on solid surfaces, 
+ surface-induced dissociation (SID), is gaining importance as an alternative 
+ to gas targets and has been implemented in several different types of mass 
+ spectrometers.
+ </summary>
+</member>
+<member name="F:BioNovoGene.Analytical.MassSpectrometry.Math.ActivationMethods.IRMPD">
+ <summary>
+ Trapping instruments, such as quadrupole ion traps and Fourier transform ion 
+ cyclotron resonance instruments, are particularly useful for the photoactivation 
+ of ions, specifically for fragmentation of precursor ions by infrared 
+ multiphoton dissociation (IRMPD). IRMPD is a non-selective activation method 
+ and usually yields rich fragmentation spectra. 
+ </summary>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.Chromatogram">
+ <summary>
+ A data union model of TIC/BPC
+ </summary>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.Chromatogram.TIC">
+ <summary>
+ total ion current
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.Chromatogram.BPC">
+ <summary>
+ base peak intensity
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.Chromatogram.name">
+ <summary>
+ usually be a sample name
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.Chromatogram.length">
+ <summary>
+ the length of <see cref="P:BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.Chromatogram.scan_time"/> data points.
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.ChromatogramOverlapList">
+ <summary>
+ a collection of <see cref="T:BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.Chromatogram"/>
+ </summary>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.ChromatogramOverlapList.EnumerateSignals">
+ <summary>
+ enumerates all <see cref="T:BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.Chromatogram"/> from <see cref="P:BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.ChromatogramOverlapList.overlaps"/>.
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.ChromatogramSerial">
+ <summary>
+ A label tagged chromatogram data
+ </summary>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.ChromatogramSerial.Name">
+ <summary>
+ the data label
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.ChromatogramSerial.size">
+ <summary>
+ get the tick count in current <see cref="P:BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.ChromatogramSerial.Chromatogram"/> signal data.
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.ChromatogramSerial.rtmin">
+ <summary>
+ get the min rt of current <see cref="P:BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.ChromatogramSerial.Chromatogram"/>
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.ChromatogramSerial.rtmax">
+ <summary>
+ get the max rt of current <see cref="P:BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.ChromatogramSerial.Chromatogram"/>
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.ChromatogramTick">
+ <summary>
+ The chromatogram signal ticks (``{time => intensity}``)
+ </summary>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.ChromatogramTick.Time">
+ <summary>
+ The signal tick time in second
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.ChromatogramTick.Intensity">
+ <summary>
+ number of detector counts
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.ChromatogramTick.#ctor(Microsoft.VisualBasic.ComponentModel.TagData.ITimeSignal)">
+ <summary>
+ make signal tick data copy
+ </summary>
+ <param name="tick"></param>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.RetentionTime.#ctor(System.Double,BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.ChromXType,BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.ChromXUnit)">
+ <summary>
+ Only MessagePack for C# use this constructor. Use ctor(double, ChromXUnit) instead.
+ </summary>
+ <param name="value"></param>
+ <param name="_type"></param>
+ <param name="unit"></param>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.RetentionIndex.#ctor(System.Double,BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.ChromXType,BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.ChromXUnit)">
+ <summary>
+ Only MessagePack for C# use this constructor. Use ctor(double, ChromXUnit) instead.
+ </summary>
+ <param name="value"></param>
+ <param name="_type"></param>
+ <param name="unit"></param>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.DriftTime.#ctor(System.Double,BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.ChromXType,BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.ChromXUnit)">
+ <summary>
+ Only MessagePack for C# use this constructor. Use ctor(double, ChromXUnit) instead.
+ </summary>
+ <param name="value"></param>
+ <param name="_type"></param>
+ <param name="unit"></param>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.MzValue.#ctor(System.Double,BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.ChromXType,BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.ChromXUnit)">
+ <summary>
+ Only MessagePack for C# use this constructor. Use ctor(double, ChromXUnit) instead.
+ </summary>
+ <param name="value"></param>
+ <param name="_type"></param>
+ <param name="unit"></param>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.IROI">
+ <summary>
+ [rtmin, rtmax] a ROI region within a specific RT range
+ 
+ 一个ROI区域就是色谱图上面的一个时间范围内的色谱峰数据
+ </summary>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.IROI.rtmin">
+ <summary>
+ 色谱图区域范围的时间下限
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.IROI.rtmax">
+ <summary>
+ 色谱图区域范围的时间上限
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Extensions.Trim(BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LibraryMatrix@,System.Double)">
+ <summary>
+ 将响应强度低于一定值的碎片进行删除
+ </summary>
+ <param name="library"></param>
+ <param name="intoCutoff">相对相应强度的删除阈值, 值范围为``[0, 1]``</param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Extensions.TrimBaseline(System.Collections.Generic.IEnumerable{BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ms2})">
+ <summary>
+ 主要是针对AB5600设备的数据, 将相同的信号强度的杂峰碎片都删除
+ </summary>
+ <param name="ms2"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Extensions.RetentionIndex(BioNovoGene.Analytical.MassSpectrometry.Math.IRetentionTime,System.ValueTuple{System.Double,System.Double},System.ValueTuple{System.Double,System.Double})">
+ <summary>
+ 根据保留时间来计算出保留指数
+ </summary>
+ <param name="rt"></param>
+ <param name="A"></param>
+ <param name="B"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Extensions.KovatsRI(System.Int32,System.Int32,System.Double,System.Double,System.Double)">
+ <summary>
+ Kovats retention index
+ </summary>
+ <param name="small_n"></param>
+ <param name="large_N"></param>
+ <param name="ti"></param>
+ <param name="t_smalln"></param>
+ <param name="t_largeN"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Extensions.RetentionIndex``1(BioNovoGene.Analytical.MassSpectrometry.Math.IRetentionTime,``0,``0)">
+ <summary>
+ 根据保留时间来计算出保留指数
+ </summary>
+ <param name="rt"></param>
+ <param name="A"></param>
+ <param name="B"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Extensions.GroupByMz(System.Collections.Generic.IEnumerable{BioNovoGene.Analytical.MassSpectrometry.Math.ms1_scan},BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Tolerance)">
+ <summary>
+ 在一定的误差范围内按照m/z对碎片进行分组操作，并取出该分组内的信号响应值最大值作为该分组的信号响应
+ </summary>
+ <param name="mz"></param>
+ <param name="tolerance"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Extensions.CreateLibraryMatrix(System.Collections.Generic.IEnumerable{BioNovoGene.Analytical.MassSpectrometry.Math.ms1_scan},System.String)">
+ <summary>
+ 这个拓展适用于``GC/MS``的标准品图谱，当然也适用于LC/MS的时间窗口采样结果
+ </summary>
+ <param name="fragments"></param>
+ <returns></returns>
+ 
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Annotations.IExactMassProvider">
+ <summary>
+ An interface for provides the exact mass value
+ </summary>
+ <remarks>
+ The mass recorded by a mass spectrometer can refer to different physical 
+ quantities depending on the characteristics of the instrument and the 
+ manner in which the mass spectrum is displayed.
+ 
+ ## Units
+ 
+ The dalton(symbol: Da) Is the standard unit that Is used for indicating 
+ mass on an atomic Or molecular scale (atomic mass).[1] The unified atomic 
+ mass unit (symbol: u) Is equivalent to the dalton. One dalton Is 
+ approximately the mass of one a single proton Or neutron.[2] The unified 
+ atomic mass unit has a value of 1.660538921(73)×10−27 kg.[3] The amu 
+ without the "unified" prefix Is an obsolete unit based on oxygen, which 
+ was replaced in 1961.
+ 
+ ## Molecular mass
+
+ Theoretical isotope distribution For the molecular ion Of caffeine
+ The molecular mass (abbreviated Mr) Of a substance, formerly also called 
+ molecular weight And abbreviated As MW, Is the mass Of one molecule Of 
+ that substance, relative To the unified atomic mass unit u (equal To 1/12 
+ the mass Of one atom Of 12C). Due To this relativity, the molecular mass 
+ Of a substance Is commonly referred To As the relative molecular mass, 
+ And abbreviated To Mr.
+ 
+ ## Average mass
+ 
+ The average mass Of a molecule Is obtained by summing the average atomic 
+ masses Of the constituent elements. For example, the average mass Of 
+ natural water With formula H2O Is 
+ 
+ 1.00794 + 1.00794 + 15.9994 = 18.01528 Da.
+ 
+ ## Mass number
+ 
+ The mass number, also called the nucleon number, Is the number Of protons 
+ And neutrons In an atomic nucleus. The mass number Is unique For Each 
+ isotope Of an element And Is written either after the element name Or As 
+ a superscript To the left Of an element's symbol. For example, carbon-12 
+ (12C) has 6 protons and 6 neutrons.
+ 
+ ## Nominal mass
+ 
+ The nominal mass For an element Is the mass number Of its most abundant 
+ naturally occurring stable isotope, And For an ion Or molecule, the nominal 
+ mass Is the sum Of the nominal masses Of the constituent atoms.[4][5] 
+ Isotope abundances are tabulated by IUPAC:[6] for example carbon has two 
+ stable isotopes 12C at 98.9% natural abundance And 13C at 1.1% natural 
+ abundance, thus the nominal mass of carbon Is 12. The nominal mass Is Not 
+ always the lowest mass number, for example iron has isotopes 54Fe, 56Fe, 
+ 57Fe, And 58Fe with abundances 6%, 92%, 2%, And 0.3%, respectively, And a 
+ nominal mass of 56 Da. For a molecule, the nominal mass Is obtained by 
+ summing the nominal masses of the constituent elements, for example water 
+ has two hydrogen atoms with nominal mass 1 Da And one oxygen atom with nominal 
+ mass 16 Da, therefore the nominal mass of H2O Is 18 Da.
+ 
+ In mass spectrometry, the difference between the nominal mass And the 
+ monoisotopic mass Is the mass defect.[7] This differs from the definition 
+ of mass defect used in physics which Is the difference between the mass of
+ a composite particle And the sum of the masses of its constituent parts.[8]
+ 
+ ## Accurate mass
+ 
+ The accurate mass (more appropriately, the measured accurate mass[9]) Is an 
+ experimentally determined mass that allows the elemental composition To be 
+ determined.[10] For molecules With mass below 200 Da, 5 ppm accuracy Is often 
+ sufficient To uniquely determine the elemental composition.[11]
+ 
+ ## Exact mass
+ 
+ The exact mass Of an isotopic species (more appropriately, the calculated 
+ exact mass[9]) Is obtained by summing the masses Of the individual isotopes 
+ Of the molecule. For example, the exact mass Of water containing two hydrogen-1 
+ (1H) And one oxygen-16 (16O) Is 1.0078 + 1.0078 + 15.9949 = 18.0105 Da. 
+ The exact mass Of heavy water, containing two hydrogen-2 (deuterium Or 2H) 
+ And one oxygen-16 (16O) Is 2.0141 + 2.0141 + 15.9949 = 20.0229 Da.
+
+ When an exact mass value Is given without specifying an isotopic species, it 
+ normally refers to the most abundant isotopic species.
+ 
+ ## Monoisotopic mass
+ Main article: monoisotopic mass
+ The monoisotopic mass Is the sum Of the masses Of the atoms In a molecule Using 
+ the unbound, ground-state, rest mass Of the principal (most abundant) isotope 
+ For Each element.[12][5] The monoisotopic mass Of a molecule Or ion Is the exact
+ mass obtained Using the principal isotopes. Monoisotopic mass Is typically 
+ expressed In daltons.
+
+ For typical organic compounds, where the monoisotopic mass Is most commonly used, 
+ this also results in the lightest isotope being selected. For some heavier atoms 
+ such as iron And argon the principal isotope Is Not the lightest isotope. The 
+ mass spectrum peak corresponding To the monoisotopic mass Is often Not observed 
+ For large molecules, but can be determined from the isotopic distribution.
+ 
+ ## Most abundant mass
+
+ Theoretical isotope distribution For the molecular ion Of glucagon (C153H224N42O50S)
+ 
+ This refers To the mass Of the molecule With the most highly represented isotope 
+ distribution, based On the natural abundance Of the isotopes.
+ 
+ ## Isotopomer and isotopologue
+ 
+ Isotopomers (isotopic isomers) are isomers having the same number of each isotopic 
+ atom, but differing in the positions of the isotopic atoms.[15] For example, 
+ CH3CHDCH3 And CH3CH2CH2D are a pair of structural isotopomers.
+
+ Isotopomers should Not be confused With isotopologues, which are chemical species 
+ that differ In the isotopic composition Of their molecules Or ions. For example, 
+ three isotopologues Of the water molecule With different isotopic composition Of 
+ hydrogen are: HOH, HOD And DOD, where D stands for deuterium (2H).
+ 
+ ## Kendrick mass
+ 
+ The Kendrick mass Is a mass obtained by multiplying the measured mass by a numeric
+ factor. The Kendrick mass Is used To aid In the identification Of molecules Of similar 
+ chemical Structure from peaks In mass spectra.[16][17] The method Of stating mass was 
+ suggested In 1963 by the chemist Edward Kendrick.
+
+ According to the procedure outlined by Kendrick, the mass of CH2 Is defined as 14.000 Da, 
+ instead of 14.01565 Da.[18][19]
+
+ The Kendrick mass For a family Of compounds F Is given by[20]
+
+ Kendrick mass = (observed mass)×nominal mass()exact mass
+
+ {\displaystyle {\mbox{Kendrick mass}}~(F)=({\mbox{observed mass}})\times {\frac {{\mbox{nominal mass}}~(F)}{{\mbox{exact mass}}~(F)}}.}
+ 
+ For hydrocarbon analysis, F = CH2.
+ 
+ ## Mass defect (mass spectrometry)
+ 
+ The mass defect used In nuclear physics Is different from its use In mass spectrometry. 
+ In nuclear physics, the mass defect Is the difference In the mass Of a composite particle
+ And the sum Of the masses Of its component parts. In mass spectrometry the mass defect 
+ Is defined As the difference between the exact mass And the nearest Integer mass.[21][22]
+
+ The Kendrick mass defect Is the exact Kendrick mass subtracted from the nearest Integer 
+ Kendrick mass.[23]
+
+ Mass defect filtering can be used To selectively detect compounds With a mass spectrometer
+ based On their chemical composition.[7]
+ 
+ ## Packing fraction (mass spectrometry)
+
+ Francis William Aston won the 1922 Nobel Prize In Chemistry For his discovery, by means 
+ Of his mass spectrograph, Of isotopes, In a large number Of non-radioactive elements, 
+ And For his enunciation Of the whole number rule.[24][25]
+ 
+ The term packing fraction was defined by Aston As the difference Of the measured mass M And 
+ the nearest Integer mass I (based On the oxygen-16 mass scale) divided by the quantity 
+ comprising the mass number multiplied by ten thousand:[26]
+
+ {\displaystyle f={\frac {M-I}{10^{4}\ I}}}.
+
+ Aston's early model of nuclear structure (prior to the discovery of the neutron) postulated 
+ that the electromagnetic fields of closely packed protons and electrons in the nucleus would 
+ interfere and a fraction of the mass would be destroyed.[27] A low packing fraction is 
+ indicative of a stable nucleus.[28]
+ 
+ ## Nitrogen rule
+ 
+ The nitrogen rule states that organic compounds containing exclusively hydrogen, carbon, 
+ nitrogen, oxygen, silicon, phosphorus, sulfur, And the halogens either have an odd nominal 
+ mass that indicates an odd number Of nitrogen atoms are present Or an even nominal mass that 
+ indicates an even number Of nitrogen atoms are present In the molecular ion.[29][30]
+ 
+ ## Prout's hypothesis and the whole number rule
+ 
+ The whole number rule states that the masses Of the isotopes are Integer multiples Of the mass 
+ Of the hydrogen atom.[31] The rule Is a modified version Of Prout's hypothesis proposed in 1815, 
+ to the effect that atomic weights are multiples of the weight of the hydrogen atom.[32]
+ </remarks>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Annotations.IExactMassProvider.ExactMass">
+ <summary>
+ The exact mass of an isotopic species (more appropriately, the calculated exact mass)
+ is obtained by summing the masses of the individual isotopes of the molecule. For 
+ example, the exact mass of water containing two hydrogen-1 (1H) and one oxygen-16 (16O)
+ is 1.0078 + 1.0078 + 15.9949 = 18.0105 Da. The exact mass of heavy water, containing 
+ two hydrogen-2 (deuterium or 2H) and one oxygen-16 (16O) is 
+ 2.0141 + 2.0141 + 15.9949 = 20.0229 Da.
+
+ When an exact mass value Is given without specifying an isotopic species, it normally
+ refers to the most abundant isotopic species.
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Annotations.ICompoundNameProvider">
+ <summary>
+ An interface for provides the metabolite common names
+ </summary>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Annotations.IFormulaProvider">
+ <summary>
+ An interface for provides the chemical formula value
+ </summary>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Annotations.IFormulaProvider.Formula">
+ <summary>
+ A chemical formula is a notation used by scientists to show 
+ the number and type of atoms present in a molecule, using 
+ the atomic symbols and numerical subscripts. A chemical formula 
+ is a simple representation, in writing, of a three dimensional 
+ molecule that exists. A chemical formula describes a substance,
+ down to the exact atoms which make it up.
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.AdductIonParser">
+ <summary>
+ MS-DIAL AdductIonParser
+ </summary>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.AdductIonParser.GetFormulaAndNumber(System.String)">
+ <summary>
+ 2H -> H, 2
+ 3Na -> Na, 3
+ </summary>
+ <param name="formula"></param>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.ExactMass">
+ <summary>
+ exact mass calculator apply for LCMS analysis.
+ </summary>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.ExactMass.SetExactMassParser(System.Func{System.String,System.Double})">
+ <summary>
+ set the parser lambda function from here for handling all
+ unknown symbols
+ </summary>
+ <param name="eval"></param>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.ExactMass.Weight(System.String)">
+ <summary>
+ get the exact mass of the given formula symbol part
+ </summary>
+ <param name="symbol"></param>
+ <returns>
+ get symbol from <see cref="F:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.ExactMass.weights"/> or evaluate the symbol
+ from the external formula parser function
+ </returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.ExactMass.Eval(System.String)">
+ <summary>
+ 主要是用于计算<see cref="P:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.MzCalculator.adducts"/>部分的质量
+ </summary>
+ <param name="formula"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.ExactMass.Mul(System.String)">
+ <summary>
+ parse the element group multiply
+ </summary>
+ <param name="token"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.Parser.ParseMzCalculator(System.String,System.String,System.Boolean)">
+ <summary>
+ 这个函数是具有缓存功能的
+ </summary>
+ <param name="precursor_type">如果这个字符串没有电荷数量结尾,则这个函数默认是带有1个单位的电荷的</param>
+ <param name="ionMode">只允许出现``+/-``这两种字符串</param>
+ <param name="skipEvalAdducts">
+ 如果有时候只需要对<paramref name="precursor_type"/>字符串做格式化,而不需要做计算的话,可以将这个参数设置为True,加快计算效率
+ </param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.Parser.Formula(System.String,System.Boolean)">
+ <summary>
+ parse the formula adducts parts
+ </summary>
+ <param name="precursor_type">the precursor type expression, example as: [M+H]+</param>
+ <param name="raw"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.Parser.GetAdductParts(System.String)">
+ <summary>
+ <see cref="M:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.Parser.Formula(System.String,System.Boolean)"/>
+ </summary>
+ <param name="precursor_type"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.Extensions.PrintTable(System.Collections.Generic.IEnumerable{BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.PrecursorInfo},System.IO.TextWriter)">
+ <summary>
+ Debug used
+ </summary>
+ <param name="report"></param>
+ <param name="output"></param>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.IonModes">
+ <summary>
+ Ion Modes, +/-
+ </summary>
+ <remarks>
+ integer value is matched with the thermo fisher ms raw file reader
+ do not modify the constant value at here
+ </remarks>
+</member>
+<member name="F:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.IonModes.Unknown">
+ <summary>
+ Unknown Ion Mode
+ </summary>
+</member>
+<member name="F:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.IonModes.Positive">
+ <summary>
+ Positive Ion Mode
+ </summary>
+</member>
+<member name="F:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.IonModes.Negative">
+ <summary>
+ Negative Ion Mode
+ </summary>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.MzCalculator">
+ <summary>
+ m/z calculator for a given ion precursor type
+ </summary>
+ <remarks>
+ this precursor adduct data model could be used for construct 
+ the <see cref="T:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.PrecursorInfo"/> data.
+ </remarks>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.MzCalculator.charge">
+ <summary>
+ 电荷量的符号无所谓,计算出来的m/z结果值总是正数
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.MzCalculator.adducts">
+ <summary>
+ 是可能会出现负数的加和结果，例如[M-H2O]的adducts为-18
+ </summary>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.MzCalculator.mode">
+ <summary>
+ only one of the char +/-
+ </summary>
+ <returns></returns>
+ <remarks>
+ equals to the <see cref="T:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.IonModes"/>
+ </remarks>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.MzCalculator.#ctor(System.String,System.Int32,System.Double,System.Double,System.Char)">
+ <summary>
+ 
+ </summary>
+ <param name="type$"></param>
+ <param name="charge%"></param>
+ <param name="M#"></param>
+ <param name="adducts#"></param>
+ <param name="mode">只允许``+/-``这两种符号出现</param>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.MzCalculator.CalcMass(System.Double)">
+ <summary>
+ Evaluate the exact mass from m/z based on current precursor adducts data
+ </summary>
+ <param name="mz#"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.MzCalculator.CalcMZ(System.Double)">
+ <summary>
+ 通过所给定的精确分子质量计算出``m/z``
+ </summary>
+ <param name="mass#"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.MzCalculator.AdductMZ(System.Double,System.Double,System.Int32,BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.IonModes,System.Int32)">
+ <summary>
+ 返回加和物的m/z数据
+ </summary>
+ <param name="exactMass">the exact mass of the metabolite</param>
+ <param name="AdductIonAccurateMass">the exact mass of the adduct ion</param>
+ <param name="chargeNumber">the charge value of the adduct ion</param>
+ <param name="M">
+ Adduct Ion Xmer
+ </param>
+ <returns></returns>
+ 
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.MzCalculator.ReverseMass(System.Double,System.Double,System.Int32,System.Double,BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.IonModes)">
+ <summary>
+ 从质谱的MS/MS的前体的m/z结果反推目标分子的mass结果
+ </summary>
+ <param name="mz#"></param>
+ <param name="M#"></param>
+ <param name="chargeNumber%"></param>
+ <param name="adductIonAccurateMass#"></param>
+ <returns></returns>
+ 
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.MzCalculator.EvaluateAll(System.Double,System.String,System.Boolean)">
+ <summary>
+ 
+ </summary>
+ <param name="mass">
+ mass value or ``m/z``
+ </param>
+ <param name="mode"><see cref="M:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.Provider.ParseIonMode(System.String,BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.IonModes@,System.Boolean,System.Boolean,System.Boolean)"/></param>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.PrecursorInfo">
+ <summary>
+ a ion m/z data model, includes the adducts data and <see cref="T:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.IonModes"/> polarity data.
+ </summary>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.PrecursorInfo.precursor_type">
+ <summary>
+ the precursor adducts information
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.PrecursorInfo.adduct">
+ <summary>
+ the exact mass value of the <see cref="P:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.PrecursorInfo.precursor_type"/> adducts information.
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.PrecursorInfo.mz">
+ <summary>
+ mz or exact mass
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.PrecursorInfo.ionMode">
+ <summary>
+ the ion polarity data, related to the <see cref="P:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.PrecursorInfo.charge"/> value
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.PrecursorType">
+ <summary>
+ 质谱前体离子计算器
+ </summary>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.PrecursorType.CalcMass(System.String,System.Int32,System.String)">
+ <summary>
+ 
+ </summary>
+ <param name="chargeMode">+/-</param>
+ <param name="charge"></param>
+ <param name="precursor_type"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.PrecursorType.FindPrecursorType(System.Double,System.Double,System.Int32,System.String,BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Tolerance)">
+ <summary>
+ 计算出前体离子的加和模式
+ </summary>
+ <param name="mass">分子质量</param>
+ <param name="precursor_mz">前体的m/z</param>
+ <param name="charge">the signed charge value.</param>
+ <param name="chargeMode">极性</param>
+ <param name="tolerance">所能够容忍的质量误差</param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.PrecursorType.FindPrecursorType(System.Collections.Generic.IEnumerable{BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.MzCalculator},System.Double,System.Double,BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Tolerance)">
+ <summary>
+ 
+ </summary>
+ <param name="mass"></param>
+ <param name="precursorMZ"></param>
+ <param name="calculator">得到某一个离子模式下的计算程序</param>
+ <param name="tolerance"></param>
+ <returns></returns>
+ 
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.Provider">
+ <summary>
+ 提供一些常用的前体母离子加和物类型的mz计算
+ </summary>
+ <remarks>
+ ###### 2019-03-14 经过测试,无错误
+ </remarks>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.Provider.Positive(System.String)">
+ <summary>
+ 解析出阳离子模式的加合物形式
+ </summary>
+ <param name="mode">例如[M]+，[M+H]+等</param>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.Provider.Negative(System.String)">
+ <summary>
+ 解析出阴离子模式的加合物形式
+ </summary>
+ <param name="mode">例如[M]-，[M-H]-等</param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.Provider.Calculators(System.String[])">
+ <summary>
+ get internal m/z calculator
+ </summary>
+ <param name="precursor_types"></param>
+ <returns></returns>
+ <remarks>
+ this function has an internal cache hash table for the given input adducts string.
+ and the new precursor adducts object will be parsed if it not found inside 
+ the internal cache.
+ </remarks>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.Provider.ParseIonMode(System.String,System.Boolean,System.Boolean,System.Boolean)">
+ <summary>
+ 这个函数返回1或者-1,用来分别对应于阳离子和阴离子
+ </summary>
+ <param name="mode"></param>
+ <param name="allowsUnknown">
+ zero will be returns if this parameter value is set to TRUE, otherwise this
+ parser function will throw an exception
+ </param>
+ <param name="allowAdductParser">
+ allow parse the ion polarity mode value from the adducts model string
+ </param>
+ <returns>
+ function returns 1(positive) or -1(negative)
+ </returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.Provider.GetCalculator(System.String,System.Boolean)">
+ <summary>
+ Get the internal default adducts data set via parse the ion polarity value from a given string
+ </summary>
+ <param name="ion_mode">any character string that could 
+ be parse a <see cref="T:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.IonModes"/> value via the 
+ <see cref="M:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.Provider.ParseIonMode(System.String,BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.IonModes@,System.Boolean,System.Boolean,System.Boolean)"/> function.
+ </param>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.TypeMatch">
+ <summary>
+ The precursor type matches result between the ion m/z value and the metabolite exact mass value.
+ </summary>
+</member>
+<member name="F:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.TypeMatch.errors">
+ <summary>
+ The mass error
+ </summary>
+</member>
+<member name="F:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.TypeMatch.precursorType">
+ <summary>
+ the precursor type adducts matched result in string name
+ </summary>
+</member>
+<member name="F:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.TypeMatch.adducts">
+ <summary>
+ the precursor type model object
+ </summary>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.DAmethod">
+ <summary>
+ Mass tolerance in delta mass error
+ </summary>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.DAmethod.GetErrorPPM">
+ <summary>
+ try to convert the mass dalton error as ppm error for 
+ compares the da tolerance with the ppm tolerance in 
+ some of the situation
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.IMassBin">
+ <summary>
+ an abstract mass window model
+ </summary>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.IMassSet">
+ <summary>
+ an abstract model of the mass collection
+ </summary>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.MassExtensions.Mass(System.Collections.Generic.IEnumerable{BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.MassWindow})">
+ <summary>
+ get all mass value from the mass window data
+ </summary>
+ <param name="masslist"></param>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.MassWindow">
+ <summary>
+ the m/z bin data
+ </summary>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.MassWindow.mass">
+ <summary>
+ the real mass value
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.MassWindow.mzmin">
+ <summary>
+ the left of current mass window
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.MassWindow.mzmax">
+ <summary>
+ the right of current mass window
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.MassWindow.#ctor(System.Double)">
+ <summary>
+ create from a single mass value
+ </summary>
+ <param name="mass"></param>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PPMmethod">
+ <summary>
+ part per million ``1/10^6``.
+ 
+ PPM tolerance calculator
+ </summary>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PPMmethod.PPM(System.Double,System.Double)">
+ <summary>
+ 分子量差值
+ </summary>
+ <param name="measured#"></param>
+ <param name="actualValue#"></param>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.MassToleranceType">
+ <summary>
+ Type of the mass <see cref="T:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Tolerance"/>
+ </summary>
+</member>
+<member name="F:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.MassToleranceType.Da">
+ <summary>
+ <see cref="T:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.DAmethod"/>
+ </summary>
+</member>
+<member name="F:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.MassToleranceType.Ppm">
+ <summary>
+ <see cref="T:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PPMmethod"/>
+ </summary>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Tolerance">
+ <summary>
+ The m/z tolerance methods, spectrum equality comparer.
+ </summary>
+ <remarks>
+ (可以直接使用这个对象的索引属性来进行计算判断,索引属性表示两个``m/z``值之间是否相等)
+ </remarks>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Tolerance.Interface">
+ <summary>
+ <see cref="P:Microsoft.VisualBasic.Math.NumberEqualityComparer.DeltaTolerance"/>(分子质量误差的上限值)
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Tolerance.Type">
+ <summary>
+ ppm method or dalton method
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Tolerance.DefaultTolerance">
+ <summary>
+ 默认的误差计算是小于0.3个道尔顿以内
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Tolerance.Equals(System.Double,System.Double)">
+ <summary>
+ 判断两个分子质量是否一致
+ </summary>
+ <param name="mz1"></param>
+ <param name="mz2"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Tolerance.GetErrorPPM">
+ <summary>
+ try to convert the mass dalton error as ppm error for 
+ compares the da tolerance with the ppm tolerance in 
+ some of the situation
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Tolerance.AsScore(System.Double,System.Double)">
+ <summary>
+ 将分子质量误差值转换为百分比得分
+ </summary>
+ <param name="mz1#"></param>
+ <param name="mz2#"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Tolerance.MassError(System.Double,System.Double)">
+ <summary>
+ 计算出两个分子质量之间的误差值的大小
+ </summary>
+ <param name="mz1#"></param>
+ <param name="mz2#"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Tolerance.Compares(System.Double,System.Double)">
+ <summary>
+ Represents the method that compares two mass value.
+ </summary>
+ <param name="mass1"></param>
+ <param name="mass2"></param>
+ <returns>
+ A signed integer that indicates the relative values of x and y, as shown in the
+ following table.
+ 
+ |Value         |Meaning             |
+ |--------------|--------------------|
+ |Less than 0   |x is less than y.   |
+ |0             |x equals y.         |
+ |Greater than 0|x is greater than y.|
+ </returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Tolerance.MatchTolerance(System.Double)">
+ <summary>
+ 判断目标分子质量误差是否符合当前的误差要求
+ </summary>
+ <param name="error"></param>
+ <returns></returns>
+ 
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Tolerance.PPM(System.Double)">
+ <summary>
+ create the ppm tolerance error object
+ </summary>
+ <param name="value#"></param>
+ <returns></returns>
+ 
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Tolerance.SubPPM(System.Double,System.Double)">
+ <summary>
+ 将当前的质量值减去给定的ppm质量差
+ </summary>
+ <param name="mass#"></param>
+ <param name="ppm#"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Tolerance.AddPPM(System.Double,System.Double)">
+ <summary>
+ 将当前的质量值加上给定的ppm质量差
+ </summary>
+ <param name="mass#"></param>
+ <param name="ppm#"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Tolerance.ParseScript(System.String)">
+ <summary>
+ + da:xxx
+ + ppm:xxx
+ </summary>
+ <param name="script">
+ the tolerance script value text also could be a simple number:
+ 
+ 1. if less than 1, means da:xxx
+ 2. if greater than or equals to 1, means ppm:xxx
+ </param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Tolerance.CheckScriptText(System.String)">
+ <summary>
+ check of the input script text is in valid format or not
+ </summary>
+ <param name="script"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Tolerance.op_GreaterThan(BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Tolerance,BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Tolerance)">
+ <summary>
+ the tolerance error of <paramref name="d1"/> is greater than the tolerance error of <paramref name="d2"/>?
+ </summary>
+ <param name="d1"></param>
+ <param name="d2"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Tolerance.Equals(BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ISpectrumPeak,BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ISpectrumPeak)">
+ <summary>
+ SpectrumEqualityComparer
+ </summary>
+ <param name="x"></param>
+ <param name="y"></param>
+ <returns></returns>
+ <remarks>
+ could be used for group the peaks data via the .net framework internal groupby function by implements this interface.
+ </remarks>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1ScatterCache">
+ <summary>
+ A binary data cache helper of the <see cref="T:BioNovoGene.Analytical.MassSpectrometry.Math.ms1_scan"/> data point collection.
+ </summary>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1Feature">
+ <summary>
+ The ms1 peak
+ </summary>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.MetaInfo">
+ <summary>
+ 质谱标准品基本注释信息
+ </summary>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.MetaInfo.xref">
+ <summary>
+ 这个ms1信息所对应的物质在数据库之中的编号信息列表
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.IMs1">
+ <summary>
+ [mz, rt] tuple
+ </summary>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.IRetentionTime">
+ <summary>
+ A time point related data
+ </summary>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.IRetentionTime.rt">
+ <summary>
+ Rt in seconds
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.IRetentionIndex">
+ <summary>
+ A time point related data
+ </summary>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.IRetentionIndex.RI">
+ <summary>
+ the retention index
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.IMs1Scan">
+ <summary>
+ [mz, rt, intensity]
+ </summary>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.IMS1Annotation">
+ <summary>
+ the abstract annotation result model of a ion, this abstract interface model 
+ contains data properties:
+ 
+ 1. the entity key: is the unique reference id of the targetd annotated metabolite in the source database
+ 2. the ion adducts precursor type: the adducts type of the target annotated metabolite convert to the 
+    given ion mz data
+ </summary>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.IMS1Annotation.precursor_type">
+ <summary>
+ the ion annotated result
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1FeatureExtensions.peakGroup(System.String,System.Int32)">
+ <summary>
+ 从xcms程序包所生成的格式为``MaTb``的uid中产生一个选择的区间
+ </summary>
+ <param name="mzrt"></param>
+ <returns></returns>
+ <remarks>
+ 利用得到的编号列表从另外的一个物质表中选取对应的feature
+ </remarks>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1FeatureExtensions.SequenceOrder``1(System.Collections.Generic.IEnumerable{``0},BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Tolerance,System.Double)">
+ <summary>
+ reorder scan points into a sequence for downstream data analysis
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="seq"></param>
+ <param name="mzwidth"></param>
+ <param name="rtwin"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1FeatureExtensions.MzWindow(System.Double,System.Double)">
+ <summary>
+ Function to calculate m/z window given an ion and ppm tolerance
+ </summary>
+ <param name="mz">m/z or mass value</param>
+ <param name="ppm">ppm tolerance for the m/z window</param>
+ <returns>A tuple of length 2 with min m/z and max m/z</returns>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.ms1_scan">
+ <summary>
+ A TICPoint [mz, rt, intensity]
+ </summary>
+ <remarks>
+ a <see cref="T:Microsoft.VisualBasic.ComponentModel.TagData.ITimeSignal"/> data point
+ </remarks>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.ms1_scan.#ctor(BioNovoGene.Analytical.MassSpectrometry.Math.IMs1Scan)">
+ <summary>
+ make value copy from an general abstract ms1 scatter peak model.
+ </summary>
+ <param name="scan"></param>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.ms1_scan.GroupByMz(System.Collections.Generic.IEnumerable{BioNovoGene.Analytical.MassSpectrometry.Math.ms1_scan},BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Tolerance)">
+ <summary>
+ 按照``m/z``分组合并取出<see cref="P:BioNovoGene.Analytical.MassSpectrometry.Math.ms1_scan.intensity"/>最大值作为合并之后的结果
+ 这个函数是忽略掉<see cref="P:BioNovoGene.Analytical.MassSpectrometry.Math.ms1_scan.scan_time"/>的，即认为这些数据都是获取自同一个
+ <see cref="P:BioNovoGene.Analytical.MassSpectrometry.Math.ms1_scan.scan_time"/>下的结果
+ </summary>
+ <param name="data"></param>
+ <param name="tolerance">默认是误差在0.3个道尔顿以内</param>
+ <returns></returns>
+ <remarks>
+ 类似于centroid
+ </remarks>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Peaktable">
+ <summary>
+ 一级信息表
+ </summary>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Peaktable.id">
+ <summary>
+ 可以是差异代谢物的编号
+ </summary>
+ <returns></returns>
+ <remarks>
+ xcms_id
+ </remarks>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Peaktable.mass">
+ <summary>
+ the ion m/z(mass value).
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Peaktable.rtMinute">
+ <summary>
+ 以分钟为单位的保留时间
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Peaktable.scan">
+ <summary>
+ The scan number
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Peaktable.ionization">
+ <summary>
+ CID/HCD
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Peaktable.annotation">
+ <summary>
+ the precursor adducts
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.PolarityData`1">
+ <summary>
+ tuple data model of the polarity data
+ </summary>
+ <typeparam name="T"></typeparam>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.AlignmentProvider">
+ <summary>
+ the spectrum similarity score provider
+ </summary>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.AlignmentProvider.GetScore(BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml.SSM2MatrixFragment[])">
+ <summary>
+ evaluate the [forward,reverse] cosine score
+ </summary>
+ <param name="alignment"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.AlignmentProvider.CreateAlignment(BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ms2[],BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ms2[])">
+ <summary>
+ Creates only the ms2 spectrum alignment result output, missing precursor ion and reference information metadata.
+ </summary>
+ <param name="a">the spectrum peaks of the query.</param>
+ <param name="b">the spectrum peaks of the reference.</param>
+ <returns></returns>
+</member>
+<member name="F:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.CosAlignment.scoreAggregate">
+ <summary>
+ 1. min
+ 2. max
+ 3. sum
+ </summary>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.SpectralEntropy">
+ <summary>
+ The similarity score for spectral comparison
+ 
+ https://github.com/YuanyueLi/SpectralEntropy/blob/master/spectral_entropy/math_distance.py
+ </summary>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.SpectralEntropy.unweighted_entropy_distance(Microsoft.VisualBasic.Math.LinearAlgebra.Vector,Microsoft.VisualBasic.Math.LinearAlgebra.Vector)">
+ <summary>
+ Unweighted entropy distance:
+ 
+ ```
+ -\frac{2\times S_{PQ}-S_P-S_Q} {ln(4)}, S_I=\sum_{i} {I_i ln(I_i)}
+ ```
+ </summary>
+ <param name="p"></param>
+ <param name="q"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.SpectralEntropy.entropy_distance(Microsoft.VisualBasic.Math.LinearAlgebra.Vector,Microsoft.VisualBasic.Math.LinearAlgebra.Vector)">
+ <summary>
+ Entropy distance:
+ 
+ ```
+ -\frac{2\times S_{PQ}^{'}-S_P^{'}-S_Q^{'}} {ln(4)}, S_I^{'}=\sum_{i} {I_i^{'} ln(I_i^{'})}, I^{'}=I^{w}, with\ w=0.25+S\times 0.5\ (S&lt;1.5)
+ ```
+ </summary>
+ <param name="p"></param>
+ <param name="q"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.SpectralEntropy.StandardizeSpectrum(BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LibraryMatrix)">
+ <summary>
+ 因为计算熵需要概率向量总合为1，所以在这里应该是使用总离子做归一化，而非使用最大值做归一化
+ </summary>
+ <param name="ms"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.SpectralEntropy.calculate_entropy_similarity(BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml.SSM2MatrixFragment[])">
+ <summary>
+ 
+ </summary>
+ <param name="alignment">
+ the intensity value must be standardized
+ </param>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.CheckInSourceFragments">
+ <summary>
+ module for check LC-MS in-source fragment result
+ </summary>
+</member>
+<member name="F:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.CheckInSourceFragments.peakdata">
+ <summary>
+ index of rt
+ </summary>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.CheckInSourceFragments.CheckOfFragments(System.Double,System.Double,System.Double)">
+ <summary>
+ Check the given ms1 ion is generated from the in-source fragment result?
+ </summary>
+ <param name="mz">the m/z of the target ms1 ion</param>
+ <param name="rt">the rt of the target ms1 ion</param>
+ <returns>
+ this function returns value TRUE means the given ms1 information 
+ is possible ab in-source fragment data
+ </returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.CheckInSourceFragments.CheckOfFragments(BioNovoGene.Analytical.MassSpectrometry.Math.ms1_scan,System.Double)">
+ <summary>
+ Check the given ms1 ion is generated from the in-source fragment result?
+ </summary>
+ <param name="ms1">
+ the target ms1 ion data for check in-source fragment
+ </param>
+ <returns>
+ this function returns value TRUE means the given ms1 information 
+ is possible ab in-source fragment data
+ </returns>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.GlobalAlignment">
+ <summary>
+ Global alignment of two MS/MS matrix.
+ </summary>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.GlobalAlignment.TopPeaks(BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LibraryMatrix,System.Int32)">
+ <summary>
+ 取出响应度前<paramref name="top"/>个数量的质谱图碎片
+ </summary>
+ <param name="spectra"></param>
+ <param name="top%"></param>
+ <returns></returns>
+ 
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.GlobalAlignment.SharedPeakCount(BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LibraryMatrix,BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LibraryMatrix,BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Tolerance,System.Int32)">
+ <summary>
+ 只计算响应度最高的前<paramref name="top"/>个二级碎片之中的相同mz的碎片数量
+ </summary>
+ <param name="query"></param>
+ <param name="subject"></param>
+ <param name="tolerance"></param>
+ <param name="top%"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.GlobalAlignment.JaccardIndex(BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ms2[],BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ms2[],BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Tolerance,System.Int32)">
+ <summary>
+ 计算两个质谱图之间的杰卡德相似性系数
+ </summary>
+ <param name="x"></param>
+ <param name="y"></param>
+ <param name="tolerance"></param>
+ <param name="topSet"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.GlobalAlignment.TwoDirectionSSM(BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ms2[],BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ms2[],BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Tolerance)">
+ <summary>
+ xy分别为预测或者标准品的结果数据，无顺序之分，并且这两个质谱图数据应该是经过centroid化之后的
+ </summary>
+ <param name="x">
+ 
+ </param>
+ <param name="y"></param>
+ <returns></returns>
+ 
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.GlobalAlignment.Align(BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ms2[],BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ms2[],BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Tolerance)">
+ <summary>
+ 以<paramref name="ref"/>为基准，从<paramref name="query"/>之中选择出对应的<see cref="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ms2.mz"/>信号响应信息，完成对齐操作
+ </summary>
+ <param name="query"></param>
+ <param name="ref"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.GlobalAlignment.AlignMatrix(BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ms2[],BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ms2[],BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Tolerance)">
+ <summary>
+ 在ref之中找不到对应的mz，则into为零
+ </summary>
+ <param name="query"></param>
+ <param name="ref"></param>
+ <param name="tolerance"></param>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ISpectrumScanData">
+ <summary>
+ an abstract spectrum source data model which is describ the source data model 
+ from the assembly rawdata file.
+ </summary>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LibraryMatrixExtensions">
+ <summary>
+ Library matrix math
+ </summary>
+ 
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LibraryMatrixExtensions.SumMs(BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LibraryMatrix)">
+ <summary>
+ SUM(<see cref="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ms2.intensity"/>)
+ </summary>
+ <param name="matrix"></param>
+ <returns></returns>
+ 
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LibraryMatrixExtensions.Max(BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LibraryMatrix)">
+ <summary>
+ MAX(<see cref="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ms2.intensity"/>)
+ </summary>
+ <param name="matrix"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LibraryMatrixExtensions.AsMatrix(System.Collections.Generic.IEnumerable{BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Library},System.String,System.Boolean)">
+ <summary>
+ 
+ </summary>
+ <param name="lib_ms2"></param>
+ <param name="title"></param>
+ <param name="normalize">matrix will be normalized to [0, 1]</param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LibraryMatrixExtensions.CentroidMode(BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LibraryMatrix,BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Tolerance,BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LowAbundanceTrimming,System.Func{System.Collections.Generic.IEnumerable{System.Double},System.Double})">
+ <summary>
+ Convert profile matrix to centroid matrix
+ </summary>
+ <param name="[lib]"></param>
+ <returns></returns>
+ 
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LibraryMatrixExtensions.Centroid(BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ms2[],BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Tolerance,BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LowAbundanceTrimming)">
+ <summary>
+ Convert profile matrix to centroid matrix
+ 
+ the intensity value in a mzbin group is aggregate by the max intensity value 
+ </summary>
+ <param name="peaks"></param>
+ <param name="cutoff"></param>
+ <returns></returns>
+ <remarks>
+ order of data processing:
+ 
+ ``intensity_cutoff -> centroid``
+ </remarks>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LibraryMatrixExtensions.Centroid(BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ms2[],BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Tolerance,BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LowAbundanceTrimming,System.Func{System.Collections.Generic.IEnumerable{System.Double},System.Double})">
+ <summary>
+ Convert profile matrix to centroid matrix
+ 
+ the intensity value in a mzbin group is aggregate by the sum intensity value 
+ </summary>
+ <param name="peaks"></param>
+ <param name="tolerance"></param>
+ <param name="cutoff"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LibraryMatrixExtensions.AbSciexBaselineHandling(System.Collections.Generic.IEnumerable{BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ms2},System.Int32)">
+ <summary>
+ removes noise peak of the ab5600 raw data file
+ </summary>
+ <param name="msData"></param>
+ <param name="cut"></param>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Library">
+ <summary>
+ MS2 fragment matrix
+ </summary>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Library.ID">
+ <summary>
+ Fragment ID in this matrix.
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Library.PrecursorMz">
+ <summary>
+ 前体离子的m/z
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Library.ProductMz">
+ <summary>
+ 碎片的m/z
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Library.LibraryIntensity">
+ <summary>
+ 当前的这个碎片的信号强度
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Library.Name">
+ <summary>
+ library name
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LibraryMatrix">
+ <summary>
+ The <see cref="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LibraryMatrix.ms2"/> library matrix object model
+ </summary>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LibraryMatrix.ms2">
+ <summary>
+ The list of molecular fragment
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LibraryMatrix.centroid">
+ <summary>
+ mass spectrometry data in centroid mode? 
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LibraryMatrix.intensity">
+ <summary>
+ get the numeric vector of the <see cref="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ms2.intensity"/> value
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LibraryMatrix.totalIon">
+ <summary>
+ sum of <see cref="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LibraryMatrix.intensity"/>
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LibraryMatrix.entropy">
+ <summary>
+ evaluates the spectrum peaks' shannon entropy value based on the <see cref="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LibraryMatrix.intensity"/> 
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LibraryMatrix.mz">
+ <summary>
+ get all ms2 fragment peaks m/z values
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LibraryMatrix.GetMaxInto">
+ <summary>
+ get basepeak ion
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LibraryMatrix.AlignMatrix(BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ms2[],BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Tolerance)">
+ <summary>
+ Create ms2 fragment peaks alignment with a given mass tolerance value
+ </summary>
+ <param name="data"></param>
+ <param name="tolerance">
+ the mass tolerance value
+ </param>
+ <returns></returns>
+ <remarks>
+ this function could be used for generates the peak matrix for the spectrum 
+ alignment purpose.
+ </remarks>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LibraryMatrix.op_Division(BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LibraryMatrix,System.Double)">
+ <summary>
+ normalized to [0, 1]
+ </summary>
+ <param name="matrix"></param>
+ <param name="x">should be max intensity</param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LibraryMatrix.op_Multiply(BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LibraryMatrix,System.Double)">
+ <summary>
+ ``<see cref="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ms2.intensity"/> *= x``
+ </summary>
+ <param name="matrix"></param>
+ <param name="x#"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LibraryMatrix.op_Implicit(BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ms2[])~BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LibraryMatrix">
+ <summary>
+ Convert the ms2 data collection to <see cref="T:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LibraryMatrix"/>
+ </summary>
+ <param name="ms2"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LibraryMatrix.op_Implicit(System.Collections.Generic.List{BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ms2})~BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LibraryMatrix">
+ <summary>
+ Convert the ms2 data collection to <see cref="T:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LibraryMatrix"/>
+ </summary>
+ <param name="ms2"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LibraryMatrix.op_Implicit(System.Int32[])~BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LibraryMatrix">
+ <summary>
+ 将一个整形数列表转换为mz向量，这个转换函数为调试用的
+ </summary>
+ <param name="mzlist"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LibraryMatrix.op_Explicit(BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LibraryMatrix)~System.ValueTuple{System.Double,System.Double}[]">
+ <summary>
+ Library matrix to ``&lt;m/z, intensity>`` tuples.
+ </summary>
+ <param name="matrix"></param>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ms2">
+ <summary>
+ A spectra fragment with m/z and into data.
+ </summary>
+ <remarks>
+ [mz, into, annotation]
+ 
+ the mass spectrum data model that based on this peak collection has:
+ 
+ + <see cref="T:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.PeakMs2"/>
+ + <see cref="T:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.PeakList"/>
+ 
+ a more complex of this spectrum peak data model is <see cref="T:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.SpectrumPeak"/> object
+ </remarks>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ms2.mz">
+ <summary>
+ Molecular fragment m/z.(or the mass value)
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ms2.intensity">
+ <summary>
+ Relative intensity.(percentage) 
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ms2.Annotation">
+ <summary>
+ Peak annotation data or something else
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ms2.#ctor(System.Double,System.Double)">
+ <summary>
+ Create a spectrum fragment data model
+ </summary>
+ <param name="mz"></param>
+ <param name="intensity"></param>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ms2.CompareTo(System.Object)">
+ <summary>
+ compares by mz value
+ </summary>
+ <param name="other"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ms2.RelativeIntensity(BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ms2[])">
+ <summary>
+ 以质谱峰中最强峰作为100％，称为基峰（该离子的丰度最大、最稳定），然后用各种峰的离子流强度除以基峰的离子流强度，所得的百分数就是相对强度。 
+ </summary>
+ <param name="matrix"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ms2.AbsoluteIntensity(BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ms2[])">
+ <summary>
+ 绝对强度是将所有离子峰的离子流强度相加作为总离子流，用各离子峰的离子强度除以总离子流，得出各离子流占总离子流的百分数(总离子流是100％)。 
+ </summary>
+ <param name="matrix"></param>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.MzAnnotation.productMz">
+ <summary>
+ the target ion m/z value
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.MzAnnotation.annotation">
+ <summary>
+ the ion annotation result, could be the metabolite id 
+ or metabolite name, something else.
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.PeakList">
+ <summary>
+ Spectrum data in vector model
+ </summary>
+ <remarks>
+ if the <see cref="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.PeakList.MRM"/> data is not empty, then it means current spectrum
+ peaks data is the data for MRM targetted analysis
+ </remarks>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.PeakList.mz">
+ <summary>
+ the ion fragment mass list
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.PeakList.into">
+ <summary>
+ the signal intensity strength 
+ value of the corresponding ion 
+ fragment mass data.
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.PeakList.size">
+ <summary>
+ gets the number of the ion fragments 
+ in current peak list object data.
+ </summary>
+ <returns></returns>
+ <remarks>
+ ZERO will be returned if the current peak list
+ object has no fragment data or value is NULL
+ </remarks>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.PeakList.GetPeaks">
+ <summary>
+ get spectrum data from current scan data object.
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.MRM">
+ <summary>
+ the MRM ion pair data model
+ </summary>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.IMsScan">
+ <summary>
+ An abstract mass spectrum model, could be used for get spectrum peaks data
+ </summary>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.PeakMs2">
+ <summary>
+ 将mzXML文件之中的每一个ms2 scan转换而来
+ </summary>
+ <remarks>
+ A union data model of the ms1 annotation data 
+ associated with the ms2 peak scan data.
+ </remarks>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.PeakMs2.mz">
+ <summary>
+ The precursor ``m/z`` value.
+ (一级母离子的``m/z``)
+ </summary>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.PeakMs2.rt">
+ <summary>
+ 一级母离子的出峰时间
+ </summary>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.PeakMs2.intensity">
+ <summary>
+ 一级母离子的响应强度
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.PeakMs2.file">
+ <summary>
+ 原始数据文件名
+ </summary>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.PeakMs2.scan">
+ <summary>
+ 数据扫描编号
+ </summary>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.PeakMs2.lib_guid">
+ <summary>
+ A unique variable name, meaning could be different with <see cref="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LibraryMatrix.name" />. 
+ </summary>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.PeakMs2.precursor_type">
+ <summary>
+ adducts type of the <see cref="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.PeakMs2.mz"/> value.
+ </summary>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.PeakMs2.mzInto">
+ <summary>
+ 二级碎片信息
+ </summary>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.PeakMs2.meta">
+ <summary>
+ the associated meta/properties about this spectrum data object.
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.PeakMs2.Ms2Intensity">
+ <summary>
+ 获取得到二级碎片的响应强度值的和,这个响应强度值是和其对应的一级母离子的响应强度值是呈正相关的
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.PeakMs2.fragments">
+ <summary>
+ the number of the fragments in current spectrum peaks
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.PeakMs2.#ctor(BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.PeakMs2)">
+ <summary>
+ make a value copy of the spectrum data
+ </summary>
+ <param name="clone"></param>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.PeakMs2.RtInSecond(System.String)">
+ <summary>
+ 将mzXML文件之中的RT文本解析为以秒为单位的rt保留时间数值
+ </summary>
+ <param name="rt">诸如``PT508.716S``这样格式的表达式字符串</param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.PeakMs2.AlignMatrix(BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ms2[],BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Tolerance)">
+ <summary>
+ 当前的这个<see cref="T:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.PeakMs2"/>如果在<paramref name="ref"/>找不到对应的``m/z``
+ 则对应的部分的into为零
+ </summary>
+ <param name="ref"></param>
+ <param name="tolerance"></param>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ISpectrumPeak">
+ <summary>
+ an abstract spectrum fragment peak model
+ </summary>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ISpectrumPeak.Mass">
+ <summary>
+ the ion fragment peak m/z(mass value)
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ISpectrumPeak.Intensity">
+ <summary>
+ the peak intensity value in mass spectrum
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.SpectrumPeak">
+ <summary>
+ A more details of the spectrum peak model than <see cref="T:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ms2"/> object
+ </summary>
+ <remarks>
+ MS-DIAL model, use the property <see cref="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.SpectrumPeak.SpectrumComment"/> for set the metabolite related information 
+ </remarks>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.SpectrumPeak.#ctor(BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ms2)">
+ <summary>
+ do make data copy
+ </summary>
+ <param name="fragment"></param>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LowAbundanceTrimming.intoCutff">
+ <summary>
+ default ``5%`` percentage cutoff
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LowAbundanceTrimming.Default">
+ <summary>
+ intocutoff = 0.05
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LowAbundanceTrimming.Trim(System.Collections.Generic.IEnumerable{BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ms2})">
+ <summary>
+ Removes the fragment peaks which its intensity value which is lower than the specific threshold
+ </summary>
+ <param name="spectrum"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LowAbundanceTrimming.ParseScript(System.String)">
+ <summary>
+ 
+ </summary>
+ <param name="str">
+ 1. 0.xxx percentage
+ 2. q:0.xxx quantile
+ </param>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.RelativeIntensityCutoff">
+ <summary>
+ cutoff for n/max(n) relative intensity data result
+ </summary>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.RelativeIntensityCutoff.#ctor(System.Double)">
+ <summary>
+ create a new percentage cutoff model
+ </summary>
+ <param name="cutoff">
+ ``[0,1]`` percentage cutoff value
+ </param>
+ 
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml.AlignmentOutput">
+ <summary>
+ the spectrum similarity comparision result object
+ </summary>
+ <remarks>
+ contains the score and spectrum fragment alignment details result data.
+ </remarks>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml.AlignmentOutput.forward">
+ <summary>
+ the forward cosine score
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml.AlignmentOutput.reverse">
+ <summary>
+ the reverse cosine score
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml.AlignmentOutput.jaccard">
+ <summary>
+ the jaccard index between the fragment set of query vs subject
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml.AlignmentOutput.entropy">
+ <summary>
+ the spectrum entropy similarity
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml.AlignmentOutput.cosine">
+ <summary>
+ the min value of <see cref="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml.AlignmentOutput.forward"/> and <see cref="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml.AlignmentOutput.reverse"/>
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml.AlignmentOutput.mean">
+ <summary>
+ get score mean result
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml.AlignmentOutput.query">
+ <summary>
+ the reference to the sample query
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml.AlignmentOutput.reference">
+ <summary>
+ the reference to the reference library
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml.AlignmentOutput.GetAlignmentMirror">
+ <summary>
+ construct a tuple of the spectrum data as the mirror alignment
+ </summary>
+ <returns></returns>
+ <remarks>
+ the name of the generated <see cref="T:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LibraryMatrix"/> object is generates from the metadata of query and reference.
+ </remarks>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml.Meta">
+ <summary>
+ [id, mz, rt, intensity]
+ </summary>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml.Ms2AlignMatrix">
+ <summary>
+ read biodeep spectra alignment output matrix
+ </summary>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml.Ms2AlignMatrix.SSM">
+ <summary>
+ 计算两个色谱矩阵之间的余弦相似度
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml.SSM2MatrixFragment">
+ <summary>
+ tuple data of [mz, query_intensity, reference_intensity]
+ </summary>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml.SSM2MatrixFragment.mz">
+ <summary>
+ The m/z value of the query fragment
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml.SSM2MatrixFragment.query">
+ <summary>
+ intensity in the query spectrum data
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml.SSM2MatrixFragment.ref">
+ <summary>
+ intensity in the reference spectrum data
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml.SSM2MatrixFragment.da">
+ <summary>
+ Mass delta between the query and reference fragment in unit ``da``
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.MoleculeNetworking.Extensions.SplitClusterRT(BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.MoleculeNetworking.NetworkingNode,System.Double)">
+ <summary>
+ Split the current spectrum cluster into multiple part of the sub-cluster via a given rt window
+ </summary>
+ <param name="cluster"></param>
+ <param name="rt_win"></param>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.MoleculeNetworking.NetworkingNode.size">
+ <summary>
+ get collection size of the <see cref="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.MoleculeNetworking.NetworkingNode.members"/> in current network node
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.MoleculeNetworking.NetworkingNode.referenceId">
+ <summary>
+ get the reference <see cref="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LibraryMatrix.name"/> from the <see cref="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.MoleculeNetworking.NetworkingNode.representation"/>
+ spectrum object as the reference id of current network node
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.MoleculeNetworking.NetworkingNode.Create(System.Double,BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.SpectrumCluster,BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Tolerance,BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LowAbundanceTrimming)">
+ <summary>
+ 
+ </summary>
+ <param name="raw"></param>
+ <param name="tolerance">ms2 tolerance</param>
+ <returns></returns>
+ 
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.MoleculeNetworking.NetworkingNode.Create(System.Double,BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.PeakMs2[],BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Tolerance,BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LowAbundanceTrimming)">
+ <summary>
+ 
+ </summary>
+ <param name="raw"></param>
+ <param name="tolerance">ms2 tolerance</param>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.MoleculeNetworking.LinkSet">
+ <summary>
+ A collection of the cluster similarity score
+ </summary>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.MoleculeNetworking.Protocols">
+ <summary>
+ this algorithm module works on create molecular networking
+ for a small bundle of the ms2 spectrum data
+ </summary>
+ <remarks>
+ algorithm descriptions:
+ 
+ 1. 按照母离子m/z二叉树聚类
+ 2. 每一个聚类结果作为一个node进行碎片合并
+ 3. 基于node进行molecular networking
+ 4. 导出网络数据
+ </remarks>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.MoleculeNetworking.Protocols.#ctor(BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Tolerance,BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Tolerance,System.Double,System.Double,BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LowAbundanceTrimming)">
+ <summary>
+ construct a workflow for create molecular networking pipeline which is
+ used for running on a small bundle of the ms2 spectrum data.
+ </summary>
+ <param name="ms1_tolerance">
+ the mzdiff tolerance value for group the ms2 spectrum via the precursor m/z,
+ for precursor m/z comes from the ms1 deconvolution peaktable, tolerance error
+ should be smaller in ppm unit; 
+ for precursor m/z comes from the ms2 parent ion m/z, tolerance error should 
+ be larger in da unit. 
+ </param>
+ <param name="ms2_tolerance">
+ the mzdiff tolerance value for do ms2 peak centroid or peak matches for do the
+ cos similarity score evaluation, should be larger tolerance value in unit da,
+ value of this tolerance parameter could be da:0.3
+ </param>
+ <param name="treeIdentical">score cutoff for assert that spectrum in the binary tree
+ is in the same cluster node</param>
+ <param name="treeSimilar">
+ score cutoff for assert that spectrum in the binary tree should be put into the right
+ node.
+ </param>
+ <param name="intoCutoff">intensity cutoff value for make spectrum centroid</param>
+ <remarks>
+ this workflow usually used for processing the ms2 spectrum inside a 
+ single raw data file
+ </remarks>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.MoleculeNetworking.Protocols.BinaryTree(System.Collections.Generic.IEnumerable{BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.PeakMs2})">
+ <summary>
+ 步骤1
+ </summary>
+ <param name="raw"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.MoleculeNetworking.Protocols.centroid(BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.PeakMs2)">
+ <summary>
+ 为了减少内存占用，在这里进行离散化
+ </summary>
+ <param name="raw"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.MoleculeNetworking.Protocols.ProduceNodes(System.Collections.Generic.IEnumerable{BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.PeakMs2})">
+ <summary>
+ 
+ </summary>
+ <param name="raw">
+ processing all ms2 spectrum data at here for a cluster session
+ </param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.MzGrouping.PopulateUniquePeakMatrix(BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.SpectrumCluster,BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Tolerance,System.Double,BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Tolerance,BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LowAbundanceTrimming)">
+ <summary>
+ group by mz/rt
+ </summary>
+ <param name="cluster"></param>
+ <param name="parentErr"></param>
+ <param name="rtwidth#"></param>
+ <param name="centroidErr"></param>
+ <param name="intocutoff"></param>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.MzIndex">
+ <summary>
+ represents the ion m/z as a index
+ </summary>
+ <remarks>
+ a tuple value of ion m/z feature couple with its offset index
+ </remarks>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.MzIndex.index">
+ <summary>
+ the index value
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.MzIndex.Tuple">
+ <summary>
+ get the fallback tuple data
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.MzIndex.op_Multiply(System.Int32,BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.MzIndex)">
+ <summary>
+ calculate the binary data file offset
+ </summary>
+ <param name="sizeof"></param>
+ <param name="index"></param>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.MzPool">
+ <summary>
+ a wrapper of the binary search function for do mz search 
+ with given tolerance error in fast speed.
+ </summary>
+ <remarks>
+ this class module is works based on the binary search helper <see cref="T:Microsoft.VisualBasic.ComponentModel.Algorithm.BlockSearchFunction`1"/>
+ </remarks>
+</member>
+<member name="F:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.MzPool.index">
+ <summary>
+ a wrapper of the binary search function
+ </summary>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.MzPool.size">
+ <summary>
+ the number of the mz peaks input
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.MzPool.raw">
+ <summary>
+ get a set of the raw input ion mz element values,
+ this length of this vector is equals to the <see cref="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.MzPool.size"/>
+ property value.
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.MzPool.Search(System.Double,System.Nullable{System.Double})">
+ <summary>
+ get a set of the index hits that matches the given absolute error.
+ </summary>
+ <param name="mz">target mz value to do search</param>
+ <param name="mzdiff"></param>
+ <returns>this function returns empty collection if no hits was found.</returns>
+ 
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.MzPool.SearchBest(System.Double,System.Nullable{System.Double})">
+ <summary>
+ get the index hit with smallest absolute error
+ </summary>
+ <param name="mz">the target mz numeric value to do search</param>
+ <param name="mzdiff"></param>
+ <returns>
+ this function returns nothing if no hits could be found
+ </returns>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.SpectraEncoder">
+ <summary>
+ Spectra matrix encoder helper for mysql/csv
+ </summary>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.SpectraEncoder.SpectrumSum``1(System.Collections.Generic.IEnumerable{``0},System.Double,System.Boolean)">
+ <summary>
+ Create a representative spectrum via sum or mean aggregate method
+ </summary>
+ <param name="spectrum"></param>
+ <param name="centroid"></param>
+ <param name="average">make average spectrum instead of make sum of the spectrum peaks</param>
+ <returns>
+ this function returns a sum spectrum of the given spectrum collection. may be returns nothing if the given spectrum collection is empty.
+ </returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.SpectraEncoder.DeconvoluteScan(System.Double[],System.Double[],System.Int32,BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.MzPool)">
+ <summary>
+ make alignment of the scan data to a given set of the mz index data
+ </summary>
+ <param name="mz"></param>
+ <param name="into"></param>
+ <param name="len">
+ should be the length of the <paramref name="mzIndex"/>
+ </param>
+ <param name="mzIndex"></param>
+ <returns>
+ a vector of the intensity data which is aligned with the mz vector
+ </returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.SpectraEncoder.GetEncoder``1(System.Func{``0,System.Double},System.Func{``0,System.Double})">
+ <summary>
+ 将质谱图编码为base64字符串
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="getX"></param>
+ <param name="getY"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.SpectraEncoder.Decode(System.String,System.String)">
+ <summary>
+ 
+ </summary>
+ <param name="mz64"></param>
+ <param name="into64"></param>
+ <returns></returns>
+ <remarks>
+ the numeric data vector should be encoded in network byte order
+ </remarks>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.SpectraEncoder.Decode(System.String)">
+ <summary>
+ 对base64字符串做解码，重新生成质谱图
+ </summary>
+ <param name="base64"></param>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.IMSScanProperty">
+ <summary>
+ A spectrum object
+ </summary>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.SpectrumCluster">
+ <summary>
+ A collection of <see cref="T:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.PeakMs2"/> spectrum data
+ </summary>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.SpectrumCluster.Representative">
+ <summary>
+ 当前的这个质谱图聚类之中的代表性质谱图
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.SpectrumCluster.cluster">
+ <summary>
+ 在这个属性之中也会通过包含有<see cref="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.SpectrumCluster.Representative"/>代表质谱图
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.SpectrumCluster.Length">
+ <summary>
+ <see cref="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.SpectrumCluster.cluster"/> members count
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.SpectrumTreeCluster">
+ <summary>
+ The spectral network (molecular network, MN) concept is
+ based on the organization And visualization of tandem MS
+ information via spectral similarity (homologous MS2 fragmentations).
+ 
+ Structurally related compounds usually share
+ similar MS/MS spectra, And GNPS groups the similar spectra
+ in a network-based format, allowing the visual exploration of
+ identical And analogous molecules.
+ </summary>
+ <remarks>
+ 因为在标准品实验之中仅包含有标准品以及流动相物质
+ 标准品的质谱碎片理论上应该是数量最多的,所以在这里
+ 通过二叉树对所有的质谱图进行聚类,取出成员最多的簇
+ 作为候选的标准品质谱图
+ </remarks>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.SpectrumTreeCluster.#ctor(System.Comparison{BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.PeakMs2},BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Tolerance,BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LowAbundanceTrimming,System.Boolean)">
+ <summary>
+ 
+ </summary>
+ <param name="compares">
+ By default is SSM method <see cref="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.SpectrumTreeCluster.SSMCompares(BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Tolerance,BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LowAbundanceTrimming,System.Double,System.Double,BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ScoreAggregates)"/>
+ </param>
+ <param name="mzwidth">
+ apply for centroid algorithm
+ </param>
+ <param name="showReport">Show progress report?</param>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.SpectrumTreeCluster.SSMCompares(BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Tolerance,BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LowAbundanceTrimming,System.Double,System.Double,BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ScoreAggregates)">
+ <summary>
+ 默认是取forward和reverse之间的最低分
+ </summary>
+ <param name="tolerance">By default is m/z tolerance with ppm20</param>
+ <param name="equalsScore">判断两个质谱图是相同的所需的最低得分</param>
+ <param name="gtScore">将质谱图划分到二叉树的右节点的所需要的最低得分</param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.SpectrumTreeCluster.PopulateClusters">
+ <summary>
+ 将通过二叉树所构建得到的所有聚类结果返回给调用者, 这个函数返回来的质谱图的矩阵都是未经处理的原始矩阵数据
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.SpectrumTreeCluster.Best(System.Func{BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.SpectrumCluster,System.Double})">
+ <summary>
+ Get the top score cluster with a given <paramref name="score"/> evaluation function.
+ </summary>
+ <param name="score"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.SplashID.AbstractSpectrum.MsSplashId``1(``0)">
+ <summary>
+ calculate the splash-id hashcode via the spectrum matrix data.
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="spec"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.SplashID.AbstractSpectrum.getSortedIonsByIntensity(BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.SplashID.ISpectrum,System.Boolean)">
+ <summary>
+ returns the current spectrum's list of ions sorted by descending intensities
+ </summary>
+ <param name="desc"></param>
+ <returns></returns>
+ 
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.SplashID.AbstractSpectrum.getSortedIonsByMZ(BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.SplashID.ISpectrum,System.Boolean)">
+ <summary>
+ returns the current spectrum's list of ions sorted by ascending m/z ratio values
+ </summary>
+ <param name="desc"></param>
+ <returns></returns>
+ 
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.SplashID.AbstractSpectrum.toRelative(BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.SplashID.ISpectrum,System.Double)">
+ <summary>
+ calculate the relative spectrum in the range [0 .. 100]
+ </summary>
+ <param name="scale"></param>
+ <returns></returns>
+ 
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.SplashID.ISpectrum">
+ <summary>
+ the abstract spectrum object, a spectrum object is a
+ kind of the fragment collection object
+ </summary>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.SplashID.ISpectrum.GetIons">
+ <summary>
+ get the ion peaks data
+ </summary>
+ <returns></returns>
+</member>
+<member name="F:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.SplashID.Splash.scalingOfRelativeIntensity">
+ <summary>
+ how to scale the spectrum
+ </summary>
+</member>
+<member name="F:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.SplashID.Splash.ION_SEPERATOR">
+ <summary>
+ how should ions in the string representation be separeted
+ </summary>
+</member>
+<member name="F:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.SplashID.Splash.maxCharactersForSpectrumBlockTruncation">
+ <summary>
+ how many character should be in the spectrum block. Basically this reduces the SHA256 code down
+ to a fixed length of N characater
+ </summary>
+</member>
+<member name="F:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.SplashID.Splash.fixedPrecissionOfMasses">
+ <summary>
+ Fixed precission of masses
+ </summary>
+</member>
+<member name="F:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.SplashID.Splash.MZ_PRECISION_FACTOR">
+ <summary>
+ factor to scale m/z floating point values
+ </summary>
+</member>
+<member name="F:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.SplashID.Splash.fixedPrecissionOfIntensities">
+ <summary>
+ Fixed precission of intensites
+ </summary>
+</member>
+<member name="F:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.SplashID.Splash.INTENSITY_PRECISION_FACTOR">
+ <summary>
+ factor to scale m/z floating point values
+ </summary>
+</member>
+<member name="F:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.SplashID.Splash.EPSILON">
+ <summary>
+ Correction factor to avoid floating point issues between implementations
+ and processor architectures
+ </summary>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.SplashID.Splash.CalcSplashID``1(``0)">
+ <summary>
+ calculate the splash id of a given spectrum object from this function
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="spectrum"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.SplashID.Splash.getFirstBlock(BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.SplashID.SpectrumType)">
+ <summary>
+ Generates the version block
+ </summary>
+ <param name="specType">type of spectrum beign splashed</param>
+ <returns>the version block as a string</returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.SplashID.Splash.getHistoBlock(BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.SplashID.ISpectrum,System.Int32,System.Int32,System.Int32)">
+ <summary>
+ calculates a histogram of the spectrum. If weighted, it sums the mz * intensities for the peaks in each bin
+ </summary>
+ <param name="spec">the spectrum data (in mz:int pairs)</param>
+ <returns>the histogram block for the given spectrum</returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.SplashID.Splash.getSpectrumBlock(BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.SplashID.ISpectrum)">
+ <summary>
+ calculate the hash for the whole spectrum
+ </summary>
+ <param name="spec">the spectrum data (in mz:int pairs)</param>
+ <returns>the Hash of the spectrum data</returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.SplashID.Splash.translateBase(System.String,System.Int32,System.Int32,System.Int32)">
+ <summary>
+ Translate a number in string format from one numerical base to another
+ </summary>
+ <param name="number">number in string format</param>
+ <param name="initialBase">base in which the given number is represented</param>
+ <param name="finalBase">base to translate the number to, up to 36</param>
+ <param name="fill">minimum length of string</param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.DIADecompose.GetSampleComposition">
+ <summary>
+ 
+ </summary>
+ <returns></returns>
+ <remarks>
+ composition vector has been normalized into [0,1]
+ </remarks>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.DIADecompose.DecomposeSpectrum(System.Int32,System.Int32,System.Double,System.Double)">
+ <summary>
+ make the spectrum set decompose into multiple spectrum groups via the NMF method
+ </summary>
+ <param name="n"></param>
+ <param name="maxItrs"></param>
+ <param name="tolerance"></param>
+ <param name="eps"></param>
+ <returns></returns>
+ <remarks>
+ NOTE: this decompose method may returns empty collection due to the reason of one of 
+ the collection its weight maybe all smaller than given cutoff.
+ </remarks>
+</member>
+</members>
+</doc>

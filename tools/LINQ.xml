@@ -1,0 +1,390 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+LINQ
+</name>
+</assembly>
+<members>
+<member name="T:LINQ.Interpreter.ExecutableContext">
+ <summary>
+ Execute context of LINQ query
+ </summary>
+</member>
+<member name="P:LINQ.Interpreter.ExecutableContext.env">
+ <summary>
+ Symbol and data environment
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:LINQ.Interpreter.ExecutableContext.linq">
+ <summary>
+ current executed linq query expression
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:LINQ.Interpreter.Expressions.CommandLineArgument">
+ <summary>
+ $"--opt"
+ </summary>
+</member>
+<member name="T:LINQ.Interpreter.Expressions.Expression">
+ <summary>
+ the Linq expression
+ </summary>
+</member>
+<member name="M:LINQ.Interpreter.Expressions.Expression.Exec(LINQ.Interpreter.ExecutableContext)">
+ <summary>
+ Evaluate the expression
+ </summary>
+ <param name="context"></param>
+ <returns></returns>
+</member>
+<member name="M:LINQ.Interpreter.Expressions.PipelineKeyword.FixLiteral(LINQ.Interpreter.Expressions.Expression)">
+ <summary>
+ 将字符串常量表示转换为变量引用
+ </summary>
+ <param name="expr"></param>
+ <returns></returns>
+</member>
+<member name="T:LINQ.Interpreter.Expressions.OutputProjection">
+ <summary>
+ data projection: ``SELECT &lt;fields>``
+ </summary>
+</member>
+<member name="T:LINQ.Interpreter.Expressions.SymbolDeclare">
+ <summary>
+ declare a new temp symbol: ``LET x = ...``
+ </summary>
+</member>
+<member name="T:LINQ.Interpreter.Expressions.WhereFilter">
+ <summary>
+ data filter: ``WHERE &lt;condition>``
+ </summary>
+</member>
+<member name="F:LINQ.Interpreter.Expressions.WhereFilter.filter">
+ <summary>
+ A conditional test expression
+ </summary>
+</member>
+<member name="F:LINQ.Interpreter.Expressions.WhereFilter.query">
+ <summary>
+ the index query
+ </summary>
+</member>
+<member name="M:LINQ.Interpreter.Expressions.WhereFilter.Exec(LINQ.Interpreter.ExecutableContext)">
+ <summary>
+ This function should returns a logical value for indicates 
+ that current value could be pass the filter or not
+ </summary>
+ <param name="context"></param>
+ <returns></returns>
+ <remarks>
+ this function implements as the full table scanning
+ </remarks>
+</member>
+<member name="T:LINQ.Interpreter.QueryInterpreter">
+ <summary>
+ interpreter of the linq query expression
+ </summary>
+</member>
+<member name="T:LINQ.Interpreter.Query.AggregateExpression">
+ <summary>
+ aggregate ... into ...
+ </summary>
+</member>
+<member name="T:LINQ.Interpreter.Query.ProjectionExpression">
+ <summary>
+ from ... select ...
+ </summary>
+</member>
+<member name="M:LINQ.Interpreter.Query.ProjectionExpression.Exec(LINQ.Interpreter.ExecutableContext)">
+ <summary>
+ 
+ </summary>
+ <param name="context"></param>
+ <returns>
+ array of <see cref="T:Microsoft.VisualBasic.My.JavaScript.JavaScriptObject"/>
+ </returns>
+</member>
+<member name="M:LINQ.Script.StackParser.DoSplitByTopLevelStack(System.Collections.Generic.IEnumerable{LINQ.Language.Token},System.Func{LINQ.Language.Token,System.Boolean},System.Boolean,System.Boolean,System.Boolean)">
+ <summary>
+ 根据最顶端的关键词以及括号进行栈片段的分割
+ </summary>
+ <param name="tokenList"></param>
+ <returns></returns>
+</member>
+<member name="M:LINQ.Language.Tokenizer.createToken(System.Nullable{System.Char})">
+ <summary>
+ 这个函数在创建单词的同时还会将缓存之中的信息清理干净
+ </summary>
+ <param name="bufferNext"></param>
+ <returns></returns>
+</member>
+<member name="T:LINQ.Language.Tokens">
+ <summary>
+ 
+ </summary>
+</member>
+<member name="F:LINQ.Language.Tokens.Interpolation">
+ <summary>
+ the string interpolation
+ </summary>
+</member>
+<member name="F:LINQ.Language.Tokens.Literal">
+ <summary>
+ the string literal
+ </summary>
+</member>
+<member name="F:LINQ.Language.Tokens.Terminator">
+ <summary>
+ 与VB语言类似的，是以换行作为语句结束
+ </summary>
+</member>
+<member name="M:LINQ.MemoryIndex.GetData``1(System.String)">
+ <summary>
+ a proxy reader function for read data from the internal data resource set.
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="field">the filed name/property name.</param>
+ <returns></returns>
+</member>
+<member name="M:LINQ.MemoryIndex.CheckScalar(System.String)">
+ <summary>
+ check of the data field its element type is scalar type or not
+ </summary>
+ <param name="field"></param>
+ <returns>
+ data frame object field should always be scalar, and the clr object its property field may be an array
+ </returns>
+</member>
+<member name="M:LINQ.MemoryIndex.FullText(System.String)">
+ <summary>
+ make full text search index on a specific field
+ </summary>
+ <param name="field"></param>
+ <returns></returns>
+</member>
+<member name="T:LINQ.MemoryPool">
+ <summary>
+ index of the general clr object array.
+ </summary>
+</member>
+<member name="M:LINQ.MemoryPool.Query(System.Collections.Generic.IEnumerable{LINQ.Query})">
+ <summary>
+ 
+ </summary>
+ <param name="filter"></param>
+ <returns>
+ this function will returns nothing if query filter has no result
+ </returns>
+</member>
+<member name="M:LINQ.MemoryQuery.GetIndex(System.Collections.Generic.IEnumerable{LINQ.Query})">
+ <summary>
+ 
+ </summary>
+ <param name="filter"></param>
+ <returns>
+ this function will returns nothing if query filter has no result
+ </returns>
+</member>
+<member name="M:LINQ.MemoryQuery.ValueRangeSearch(LINQ.Query,System.Int32[]@)">
+ <summary>
+ implements between ... and ... range search
+ </summary>
+ <param name="q"></param>
+ <param name="index"></param>
+</member>
+<member name="T:LINQ.MemoryTable">
+ <summary>
+ an in-memory data table with search index supports
+ </summary>
+</member>
+<member name="M:LINQ.MemoryTable.Query(System.Collections.Generic.IEnumerable{LINQ.Query})">
+ <summary>
+ 
+ </summary>
+ <param name="filter"></param>
+ <returns>
+ this function will returns nothing if query filter has no result
+ </returns>
+</member>
+<member name="M:LINQ.MemoryTable.CheckScalar(System.String)">
+ <summary>
+ data fields element type in dataframe always scalar
+ </summary>
+ <param name="field"></param>
+ <returns></returns>
+</member>
+<member name="M:LINQ.Program.RunQuery(System.String,Microsoft.VisualBasic.CommandLine.CommandLine)">
+ <summary>
+ &lt;xxx.linq> [/output &lt;result.csv>]
+ </summary>
+ <param name="file"></param>
+ <param name="args"></param>
+ <returns></returns>
+</member>
+<member name="T:LINQ.Runtime.Environment">
+ <summary>
+ A linq runtime environment
+ </summary>
+</member>
+<member name="M:LINQ.DocumentPool.Save(System.String)">
+ <summary>
+ save the document text to file
+ </summary>
+ <param name="doc"></param>
+ <remarks>
+ this function usually be used for save the document text string
+ to file and then returns the offset value of the document.
+ </remarks>
+</member>
+<member name="M:LINQ.DocumentPool.GetIndex">
+ <summary>
+ usually used for load index from file
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:LINQ.DocumentPool.GetDocument(System.Int32)">
+ <summary>
+ read document text from file via a given index
+ </summary>
+ <param name="id"></param>
+ <returns></returns>
+</member>
+<member name="M:LINQ.DocumentPool.WriteIndex(LINQ.InvertedIndex)">
+ <summary>
+ apply for save index to file
+ </summary>
+ <param name="index"></param>
+</member>
+<member name="M:LINQ.FTSEngine.Indexing(System.String)">
+ <summary>
+ add index of a single document
+ </summary>
+ <param name="doc"></param>
+ <remarks>
+ thread unsafe
+ </remarks>
+</member>
+<member name="T:LINQ.InvertedIndex">
+ <summary>
+ The core of FTS is a data structure called Inverted Index. 
+ The Inverted Index associates every word in documents with documents that contain the word.
+ </summary>
+ <remarks>
+ https://artem.krylysov.com/blog/2020/07/28/lets-build-a-full-text-search-engine/
+ </remarks>
+</member>
+<member name="M:LINQ.InvertedIndex.MoveNext">
+ <summary>
+ get a new id for the new document data
+ </summary>
+ <returns></returns>
+ <remarks>
+ this function call will make the index id advance 1. updates the index status to the next new document.
+ </remarks>
+</member>
+<member name="M:LINQ.InvertedIndex.Search(System.String)">
+ <summary>
+ Boolean queries
+ </summary>
+ <param name="text"></param>
+ <returns></returns>
+</member>
+<member name="T:LINQ.RangeIndex`1">
+ <summary>
+ in-memory index of the numeric value
+ </summary>
+ <typeparam name="T"></typeparam>
+</member>
+<member name="T:LINQ.SearchIndex">
+ <summary>
+ a general search index model, usually be apply for the text search index
+ </summary>
+</member>
+<member name="F:LINQ.SearchIndex.documents">
+ <summary>
+ document data pool
+ </summary>
+</member>
+<member name="M:LINQ.SearchIndex.Indexing(System.Collections.Generic.IEnumerable{System.String})">
+ <summary>
+ make index of the given document set
+ </summary>
+ <param name="doc">
+ each element insdie the input doc collection is a document.
+ </param>
+ <remarks>
+ usually be apply for processing index for the dataframe field or clr object array with scalar property value
+ </remarks>
+</member>
+<member name="M:LINQ.SearchIndex.Indexing(System.Collections.Generic.IEnumerable{System.String[]})">
+ <summary>
+ make index of the given document set
+ </summary>
+ <param name="doc">
+ each element inside the input doc collection is consist with multiple document contents.
+ each value in one collection element share the same index offset value. due to the reason of 
+ each value in one collection element comes from the same object property field. 
+ </param>
+ <remarks>
+ usually be apply for processing index for the clr object array with string array property value.
+ </remarks>
+</member>
+<member name="M:LINQ.SearchIndex.Indexing(System.String)">
+ <summary>
+ make data index with auto index offset incremental
+ </summary>
+ <param name="doc">the doc content data for make index</param>
+</member>
+<member name="M:LINQ.SearchIndex.Indexing(System.String,System.Int32)">
+ <summary>
+ index helper for non-scalar data field
+ </summary>
+ <param name="doc"></param>
+ <param name="id"></param>
+ <remarks>
+ multiple document content data share the same document id
+ </remarks>
+</member>
+<member name="T:LINQ.TermHashIndex">
+ <summary>
+ use the clr dictionary hash index for make the term string indexed
+ </summary>
+</member>
+<member name="F:LINQ.TermHashIndex.hashIndex">
+ <summary>
+ term mapping to the document id set
+ </summary>
+</member>
+<member name="F:LINQ.TermHashIndex.documentMaps">
+ <summary>
+ index mapping for resolve mapping the external index with the document index
+ </summary>
+ <remarks>
+ a mapping of document id to the query id
+ </remarks>
+</member>
+<member name="M:LINQ.TermHashIndex.Indexing(System.String)">
+ <summary>
+ index for the scalar data field
+ </summary>
+ <param name="doc"></param>
+ 
+</member>
+<member name="M:LINQ.TermHashIndex.Indexing(System.String,System.Int32)">
+ <summary>
+ 
+ </summary>
+ <param name="doc">the document content data for make hash index</param>
+ <param name="id">the document id that associated with the given document content data</param>
+</member>
+<member name="M:LINQ.TermHashIndex.IndexingOneDocument(System.String[])">
+ <summary>
+ helper function for make index for the non-scalar data field
+ </summary>
+ <param name="data"></param>
+</member>
+</members>
+</doc>
