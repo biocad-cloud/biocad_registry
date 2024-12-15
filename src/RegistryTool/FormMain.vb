@@ -67,7 +67,8 @@ Public Class FormMain
                 repo.CommitBlock()
                 println($"commit block data: {++block}")
             Else
-                Call repo.Add(mol)
+                i += 1
+                repo.Add(mol)
             End If
         Next
 
