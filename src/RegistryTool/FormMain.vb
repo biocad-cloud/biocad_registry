@@ -49,6 +49,7 @@ Public Class FormMain
                     Function(println)
                         Return ExportLocal(println, file.FileName)
                     End Function)
+                Call MessageBox.Show("Export metabolite local annotation repository database success!", "Task Finish", MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If
         End Using
     End Sub
