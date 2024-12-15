@@ -1,4 +1,5 @@
-﻿Imports Oracle.LinuxCompatibility.MySQL.Uri
+﻿Imports System.Runtime.CompilerServices
+Imports Oracle.LinuxCompatibility.MySQL.Uri
 
 Namespace My
 
@@ -41,6 +42,11 @@ Namespace My
             _biocad_registry = New biocad_registry.biocad_registry(mysqli)
 
             Return biocad_registry.getDriver.Ping >= 0
+        End Function
+
+        <MethodImpl(MethodImplOptions.AggressiveInlining)>
+        Public Shared Function Loading(Of T)(getter As Func(Of Action(Of String), T)) As T
+            Return FormBuzyLoader.Loading(getter)
         End Function
 
     End Class

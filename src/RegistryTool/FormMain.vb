@@ -1,5 +1,6 @@
 ﻿Imports biocad_registry
 Imports BioNovoGene.BioDeep.Chemistry.MetaLib
+Imports Microsoft.VisualBasic.Language
 Imports RegistryTool.My
 Imports Metadata = BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaLib
 
@@ -44,20 +45,33 @@ Public Class FormMain
     Private Sub ExportMetabolitesDatabaseToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportMetabolitesDatabaseToolStripMenuItem.Click
         Using file As New SaveFileDialog With {.Filter = "Metabolite Annotation Database(*.dat)|*.dat"}
             If file.ShowDialog = DialogResult.OK Then
-                Dim i As Integer = 0
-                Dim repo As New RepositoryWriter(file.FileName.Open(IO.FileMode.OpenOrCreate, doClear:=True))
-
-                For Each mol As Metadata In MetaboliteAnnotations.ExportAnnotation
-                    If i > 5000 Then
-                        i = 0
-                        repo.CommitBlock()
-                    Else
-                        Call repo.Add(mol)
-                    End If
-                Next
-
-                Call repo.Dispose()
+                Call MyApplication.Loading(
+                    Function(println)
+                        Return ExportLocal(println, file.FileName)
+                    End Function)
             End If
         End Using
     End Sub
+
+    Private Shared Function ExportLocal(println As Action(Of String), filename As String) As Boolean
+        Dim i As Integer = 0
+        Dim repo As New RepositoryWriter(filename.Open(IO.FileMode.OpenOrCreate, doClear:=True))
+        Dim block As i32 = 1
+
+        Call println("Export metabolite annotation into local repository...")
+
+        For Each mol As Metadata In MetaboliteAnnotations.ExportAnnotation
+            If i > 5000 Then
+                i = 0
+                repo.CommitBlock()
+                println($"commit block data: {++block}")
+            Else
+                Call repo.Add(mol)
+            End If
+        Next
+
+        Call repo.Dispose()
+
+        Return True
+    End Function
 End Class
