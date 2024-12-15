@@ -1,5 +1,7 @@
 ﻿Imports biocad_registry
+Imports BioNovoGene.BioDeep.Chemistry.MetaLib
 Imports RegistryTool.My
+Imports Metadata = BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaLib
 
 Public Class FormMain
 
@@ -42,7 +44,19 @@ Public Class FormMain
     Private Sub ExportMetabolitesDatabaseToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportMetabolitesDatabaseToolStripMenuItem.Click
         Using file As New SaveFileDialog With {.Filter = "Metabolite Annotation Database(*.dat)|*.dat"}
             If file.ShowDialog = DialogResult.OK Then
+                Dim i As Integer = 0
+                Dim repo As New RepositoryWriter(file.FileName.Open(IO.FileMode.OpenOrCreate, doClear:=True))
 
+                For Each mol As Metadata In MetaboliteAnnotations.ExportAnnotation
+                    If i > 5000 Then
+                        i = 0
+                        repo.CommitBlock()
+                    Else
+                        Call repo.Add(mol)
+                    End If
+                Next
+
+                Call repo.Dispose()
             End If
         End Using
     End Sub
