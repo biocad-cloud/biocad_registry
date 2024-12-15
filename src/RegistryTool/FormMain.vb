@@ -62,7 +62,7 @@ Public Class FormMain
         Call println("Export metabolite annotation into local repository...")
 
         For Each mol As Metadata In MetaboliteAnnotations.ExportAnnotation
-            If i > 5000 Then
+            If i > 2000 Then
                 i = 0
                 repo.CommitBlock()
                 println($"commit block data: {++block}")

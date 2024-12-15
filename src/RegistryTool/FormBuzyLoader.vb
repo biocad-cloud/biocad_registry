@@ -14,7 +14,7 @@ Public Class FormBuzyLoader
 
             ' run background task
             result = task(AddressOf loader.Println)
-            loader.Close()
+            loader.Invoke(Sub() loader.Close())
         End Sub
 
         <MethodImpl(MethodImplOptions.AggressiveInlining)>
