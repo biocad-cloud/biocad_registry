@@ -63,6 +63,7 @@
     <ProjectReference Include="..\..\..\GCModeller\src\R-sharp\R#\Rsharp-netcore5.vbproj" />
     <ProjectReference Include="..\..\..\GCModeller\src\runtime\sciBASIC#\Microsoft.VisualBasic.Core\src\Core.vbproj" />
     <ProjectReference Include="..\..\..\graphQL\src\mysqli\LibMySQL\LibMySQL.vbproj" />
+    <ProjectReference Include="..\..\..\mzkit\src\metadb\XrefEngine\XrefEngine.NET5.vbproj" />
     <ProjectReference Include="..\biocad_registry.vbproj" />
   </ItemGroup>
 
