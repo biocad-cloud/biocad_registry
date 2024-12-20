@@ -2111,6 +2111,12 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  </summary>
  <returns></returns>
 </member>
+<member name="P:Microsoft.VisualBasic.ApplicationServices.FileSystemTree.FullName">
+ <summary>
+ absolute full path
+ </summary>
+ <returns></returns>
+</member>
 <member name="M:Microsoft.VisualBasic.ApplicationServices.FileSystemTree.GetFile(System.String)">
  <summary>
  Get a node by its key name in current tree node
@@ -2125,6 +2131,12 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  add a new filesystem node and then returns the new node object.
  </summary>
  <param name="name"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.ApplicationServices.FileSystemTree.ToString">
+ <summary>
+ absolute full path
+ </summary>
  <returns></returns>
 </member>
 <member name="M:Microsoft.VisualBasic.ApplicationServices.FileSystemTree.GetFile(Microsoft.VisualBasic.ApplicationServices.FileSystemTree,System.String)">
@@ -10013,9 +10025,14 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="target"></param>
  <returns>Returns ``-1`` means no search result</returns>
 </member>
-<member name="F:Microsoft.VisualBasic.ComponentModel.Algorithm.BinaryTree.DelegateTreeInsertCallback`2.insertDuplicated">
+<member name="F:Microsoft.VisualBasic.ComponentModel.Algorithm.BinaryTree.DelegateTreeInsertCallback`2.m_duplicated">
  <summary>
  usually for add cluster member into cluster
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.ComponentModel.Algorithm.BinaryTree.DelegateTreeInsertCallback`2.#ctor">
+ <summary>
+ default is do nothing
  </summary>
 </member>
 <member name="T:Microsoft.VisualBasic.ComponentModel.Algorithm.BinaryTree.AVLClusterTree`1">
@@ -30714,6 +30731,19 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  对所输入的流进行gzip压缩
  </summary>
  <param name="stream"></param>
+ <param name="noMagic">
+ omit the gzip magic number?
+ </param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Net.Http.GZipStreamHandler.GZipAsBase64(System.Collections.Generic.IEnumerable{System.Byte},System.Boolean)">
+ <summary>
+ 
+ </summary>
+ <param name="bytes"></param>
+ <param name="noMagic">
+ omit the gzip magic number?
+ </param>
  <returns></returns>
 </member>
 <member name="M:Microsoft.VisualBasic.Net.Http.GZipStreamHandler.GZipAsBase64(System.IO.Stream,System.Boolean)">
@@ -38000,7 +38030,7 @@ to take away yo [rest of string was truncated]&quot;;.
  ensure that the number is converted as bytes always in network byte order outputs.
  </summary>
 </member>
-<member name="M:Microsoft.VisualBasic.Serialization.BinaryDumping.NetworkByteOrderBuffer.Base64String(System.Collections.Generic.IEnumerable{System.Double})">
+<member name="M:Microsoft.VisualBasic.Serialization.BinaryDumping.NetworkByteOrderBuffer.Base64String(System.Collections.Generic.IEnumerable{System.Double},System.Boolean)">
  <summary>
  encode the given numeric data vector in network byte order and then returns the base64 encode string
  </summary>

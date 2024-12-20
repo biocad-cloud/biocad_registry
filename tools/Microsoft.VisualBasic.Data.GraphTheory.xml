@@ -756,9 +756,11 @@ Microsoft.VisualBasic.Data.GraphTheory
 </member>
 <member name="T:Microsoft.VisualBasic.Data.GraphTheory.Vertex">
  <summary>
- 图之中的节点
+ Vertex in a graph
  </summary>
- 
+ <remarks>
+ 图之中的节点
+ </remarks>
 </member>
 <member name="P:Microsoft.VisualBasic.Data.GraphTheory.Vertex.label">
  <summary>
@@ -768,9 +770,12 @@ Microsoft.VisualBasic.Data.GraphTheory
 </member>
 <member name="P:Microsoft.VisualBasic.Data.GraphTheory.Vertex.ID">
  <summary>
- Array index.(使用数字表示的唯一标识符)
+ Array index.
  </summary>
  <returns></returns>
+ <remarks>
+ (使用数字表示的唯一标识符)
+ </remarks>
 </member>
 <member name="M:Microsoft.VisualBasic.Data.GraphTheory.Vertex.Equals(System.Object)">
  <summary>
@@ -1100,6 +1105,13 @@ Microsoft.VisualBasic.Data.GraphTheory
  <param name="V"></param>
  <returns></returns>
 </member>
+<member name="T:Microsoft.VisualBasic.Data.GraphTheory.AbstractTree`2">
+ <summary>
+ An abstract tree data model
+ </summary>
+ <typeparam name="T">the data type of the reference key its associated data.</typeparam>
+ <typeparam name="K">the data type of the reference key</typeparam>
+</member>
 <member name="P:Microsoft.VisualBasic.Data.GraphTheory.AbstractTree`2.Childs">
  <summary>
  Childs table, key is the property <see cref="P:Microsoft.VisualBasic.Data.GraphTheory.Vertex.label"/>
@@ -1114,6 +1126,13 @@ Microsoft.VisualBasic.Data.GraphTheory
  <remarks>
  在序列化之中会需要忽略掉这个属性，否则会产生无限递归
  </remarks>
+</member>
+<member name="P:Microsoft.VisualBasic.Data.GraphTheory.AbstractTree`2.Child(`1)">
+ <summary>
+ Get child node with a reference key
+ </summary>
+ <param name="key"></param>
+ <returns></returns>
 </member>
 <member name="P:Microsoft.VisualBasic.Data.GraphTheory.AbstractTree`2.Count">
  <summary>
@@ -1378,10 +1397,12 @@ Microsoft.VisualBasic.Data.GraphTheory
 </member>
 <member name="T:Microsoft.VisualBasic.Data.GraphTheory.Tree`2">
  <summary>
- Tree node with data..(可以直接被使用的树对象类型)
+ Tree node with data.
  </summary>
  <typeparam name="T"></typeparam>
- 
+ <remarks>
+ (可以直接被使用的树对象类型)
+ </remarks>
 </member>
 <member name="T:Microsoft.VisualBasic.Data.GraphTheory.Tree`1">
  <summary>
@@ -1630,7 +1651,7 @@ Microsoft.VisualBasic.Data.GraphTheory
  <param name="g"></param>
  <returns></returns>
 </member>
-<member name="M:Microsoft.VisualBasic.Data.GraphTheory.Utils.Build``2(Microsoft.VisualBasic.Data.GraphTheory.Tree{``0,``1})">
+<member name="M:Microsoft.VisualBasic.Data.GraphTheory.Utils.Build``2(Microsoft.VisualBasic.Data.GraphTheory.Tree{``0,``1},System.Boolean)">
  <summary>
  Tree to string
  </summary>

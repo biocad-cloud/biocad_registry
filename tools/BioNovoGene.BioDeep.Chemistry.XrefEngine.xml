@@ -109,6 +109,9 @@ BioNovoGene.BioDeep.Chemistry.XrefEngine
  <summary>
  read only metabolite annotation information data repository
  </summary>
+ <remarks>
+ implements of <see cref="T:BioNovoGene.BioDeep.MSEngine.IMetaDb"/>
+ </remarks>
 </member>
 <member name="F:BioNovoGene.BioDeep.Chemistry.MetaLib.LocalRepository.s">
  <summary>

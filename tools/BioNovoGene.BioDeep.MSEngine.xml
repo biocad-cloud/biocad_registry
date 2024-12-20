@@ -257,6 +257,27 @@ BioNovoGene.BioDeep.MSEngine
  <param name="mzlist"></param>
  <returns></returns>
 </member>
+<member name="T:BioNovoGene.BioDeep.MSEngine.IMetaDb">
+ <summary>
+ annotation data getter
+ </summary>
+ <remarks>
+ get by unique reference id
+ </remarks>
+</member>
+<member name="M:BioNovoGene.BioDeep.MSEngine.IMetaDb.GetMetadata(System.String)">
+ <summary>
+ get the general annotation metadata object by its unique reference id
+ </summary>
+ <param name="uniqueId"></param>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.BioDeep.MSEngine.Library`1">
+ <summary>
+ A reference spectrum and annotation data provider
+ </summary>
+ <typeparam name="T"></typeparam>
+</member>
 <member name="M:BioNovoGene.BioDeep.MSEngine.Library`1.GetMetadataByID(System.String)">
  <summary>
  get metabolite annotation data by id reference
