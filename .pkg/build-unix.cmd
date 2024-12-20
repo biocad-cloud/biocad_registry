@@ -8,4 +8,4 @@ SET REnv="%R_HOME%/R#.exe"
 %Rscript% --build /src ../ /save ../biocad_registry.zip --skip-src-build
 %REnv% --install.packages ../biocad_registry.zip
 
-pause
+REM pause
