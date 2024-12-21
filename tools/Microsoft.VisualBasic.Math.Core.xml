@@ -4071,6 +4071,14 @@ Microsoft.VisualBasic.Math.Core
  <param name="s"></param>
  <returns></returns>
 </member>
+<member name="M:Microsoft.VisualBasic.Math.Extensions.SSM_SIMD(System.Double[],System.Double[])">
+ <summary>
+ SIMD version of the modified cosine score
+ </summary>
+ <param name="q"></param>
+ <param name="s"></param>
+ <returns></returns>
+</member>
 <member name="M:Microsoft.VisualBasic.Math.Extensions.AsVector(System.Collections.Generic.IEnumerable{System.Double})">
  <summary>
  Construct the <see cref="T:Microsoft.VisualBasic.Math.LinearAlgebra.Vector"/> class from a numeric collecton.

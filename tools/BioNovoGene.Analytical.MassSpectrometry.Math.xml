@@ -2366,6 +2366,14 @@ BioNovoGene.Analytical.MassSpectrometry.Math
  </summary>
  <returns></returns>
 </member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.MzIndex.op_Explicit(BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.MzIndex)~System.Int32">
+ <summary>
+ extract of the index offset data
+ </summary>
+ <param name="index"></param>
+ <returns></returns>
+ 
+</member>
 <member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.MzIndex.op_Multiply(System.Int32,BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.MzIndex)">
  <summary>
  calculate the binary data file offset
