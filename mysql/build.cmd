@@ -1,4 +1,4 @@
-REM @echo off
+@echo off
 
 set reflector="\graphQL\src\mysqli\App\Reflector.exe"
 set R_src="../src/mysql"

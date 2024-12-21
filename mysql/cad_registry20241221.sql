@@ -139,6 +139,28 @@ CREATE TABLE `molecule_function` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `odor`
+--
+
+DROP TABLE IF EXISTS `odor`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `odor` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `molecule_id` int unsigned NOT NULL,
+  `category` int unsigned NOT NULL,
+  `odor` varchar(255) COLLATE utf8mb3_bin DEFAULT NULL,
+  `hashcode` varchar(32) COLLATE utf8mb3_bin NOT NULL,
+  `value` double NOT NULL DEFAULT '0',
+  `unit` int unsigned NOT NULL,
+  `text` varchar(255) COLLATE utf8mb3_bin NOT NULL,
+  `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='odor information about the metabolite molecules';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `pathway`
 --
 
@@ -344,4 +366,4 @@ CREATE TABLE `vocabulary` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-12-21 15:20:23
+-- Dump completed on 2024-12-21 15:44:37
