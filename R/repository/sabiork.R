@@ -32,7 +32,7 @@ const imports_sabiork = function(biocad_registry, repo) {
                     |> where(type=4, xref in substrate) 
                     |> group_by("obj_id") 
                     |> order_by("count",desc=TRUE) 
-                    |> find(["obj_id","count(*) as count"])
+                    |> find("obj_id","count(*) as count")
                     ;
 
                     if (length(substrate) ==0) {
