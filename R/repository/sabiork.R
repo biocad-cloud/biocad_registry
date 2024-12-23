@@ -14,7 +14,7 @@ const imports_sabiork = function(biocad_registry, repo) {
             sbml <- unset_sbml(sbml);
         }
 
-        print(sbml);
-        stop();
+        # print(sbml);
+        # stop();
     }
 }
