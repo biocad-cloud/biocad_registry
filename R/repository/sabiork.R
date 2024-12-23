@@ -7,6 +7,14 @@ const imports_sabiork = function(biocad_registry, repo) {
 
     for(let filepath in tqdm(repo)) {
         let sbml = parseSbml(filepath |> readText());
-        
+
+        if ([sbml]::empty) {
+            next;
+        } else {
+            sbml <- as.data.frame(sbml);
+        }
+
+        print(sbml);
+        stop();
     }
 }

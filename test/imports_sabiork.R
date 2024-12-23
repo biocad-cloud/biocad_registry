@@ -5,3 +5,4 @@ let repo = list.files("J:\2022_nar\sabio-rk\.cache", pattern = "*.xml", recursiv
 
 print(repo);
 
+biocad_registry |> imports_sabiork(repo);
