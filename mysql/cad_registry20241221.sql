@@ -73,11 +73,12 @@ CREATE TABLE `kinetic_law` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
   `db_xref` varchar(64) COLLATE utf8mb3_bin NOT NULL COMMENT 'the external reference id of current kinetics lambda model',
   `lambda` varchar(1024) COLLATE utf8mb3_bin NOT NULL COMMENT 'the lambda expression of the kinetics',
-  `params` varchar(1024) COLLATE utf8mb3_bin NOT NULL COMMENT 'parameter set of the current kinetics lambda epxression',
+  `params` varchar(1024) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL COMMENT 'parameter set of the current kinetics lambda epxression, in json string format',
   `temperature` double NOT NULL DEFAULT '37' COMMENT 'temperature of the enzyme catalytic kinetics',
   `pH` double unsigned NOT NULL DEFAULT '7.5' COMMENT 'pH of the enzyme catalytic kinetics',
+  `substrate_id` int unsigned NOT NULL COMMENT 'id reference to the metabolite molecule',
   `uniprot` varchar(45) COLLATE utf8mb3_bin NOT NULL COMMENT 'the uniprot id of the current enzyme model, the kinetics parameter is associated with a specific molecule instance',
-  `function_id` int unsigned NOT NULL COMMENT 'the internal reference id of the molecule function record',
+  `function_id` int unsigned NOT NULL COMMENT 'the internal reference id of the molecule function record, usually link to the ec_number of current kineticis',
   `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `note` longtext COLLATE utf8mb3_bin COMMENT 'description note text about current enzyme kinetics lambda model',
   PRIMARY KEY (`id`),
@@ -366,4 +367,4 @@ CREATE TABLE `vocabulary` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-12-21 15:44:37
+-- Dump completed on 2024-12-23 18:51:28
