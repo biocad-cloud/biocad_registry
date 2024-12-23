@@ -256,6 +256,15 @@ BioNovoGene.Analytical.MassSpectrometry.Math.Deconvolution
  </summary>
  <returns></returns>
 </member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.GCMSPeak.CreateFeature(System.Collections.Generic.IEnumerable{BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.PeakMs2},BioNovoGene.Analytical.MassSpectrometry.Math.xcms2,System.Double)">
+ <summary>
+ Create peak for a single peak feature data
+ </summary>
+ <param name="raw"></param>
+ <param name="peak"></param>
+ <param name="rtwin"></param>
+ <returns></returns>
+</member>
 <member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.MzBins">
  <summary>
  algorithm for find the real m/z
