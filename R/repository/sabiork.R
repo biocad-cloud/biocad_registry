@@ -11,7 +11,7 @@ const imports_sabiork = function(biocad_registry, repo) {
         if ([sbml]::empty) {
             next;
         } else {
-            sbml <- as.data.frame(sbml);
+            sbml <- unset_sbml(sbml);
         }
 
         print(sbml);
