@@ -25,7 +25,13 @@ const imports_sabiork = function(biocad_registry, repo) {
                 let args = [rxn]::parameters;
                 let xrefs = [rxn]::xref;
                 let uniprot_id = [rxn]::uniprot_id;
-                let substrate = xrefs[[args$S]]; 
+                let substrate = {
+                    if ("S" in args) {
+                        xrefs[[args$S]];
+                    } else {
+                        NULL;
+                    }
+                }; 
 
                 if (length(substrate)>0) {
                     substrate = db_xrefs 
