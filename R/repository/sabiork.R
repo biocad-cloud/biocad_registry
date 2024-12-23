@@ -57,14 +57,7 @@ const imports_sabiork = function(biocad_registry, repo) {
                     json_str = JSON::json_encode(rxn),
                     note = [rxn]::reaction
                 );
-
-                str(enzymes);
-                str(args);
-                str(xrefs);
-                str(rxn);
             }
         }
-
-        stop();
     }
 }
