@@ -36,3 +36,42 @@ const imports_pubchem = function(biocad_registry, pubchem) {
     }
 }
 
+const imports_odor = function(biocad_registry, pubchem) {
+    let pubchem_term = biocad_registry |> vocabulary_id("pubchem","External Database");
+    let odor_class = list(
+        odor  = biocad_registry |> vocabulary_id("odor","Odor Category"),
+        taste = biocad_registry |> vocabulary_id("taste","Odor Category"),
+        color = biocad_registry |> vocabulary_id("color","Odor Category")
+    ); 
+    let odors = biocad_registry |> table("odor");
+
+    for(let meta in pubchem) {
+        let data = metadata.pugView(meta);
+        let odors_data = odors(data);
+        let cid  = [data]::ID;
+        let molecule = biocad_registry |> table("db_xrefs") 
+            |> where(db_key=pubchem_term, xref=cid)
+            |> find()
+            ;
+
+        if (nrow(odors_data) > 0 && !is.null(molecule)) {
+            let registry_id = molecule$obj_id;
+
+            for(let term in as.list(odors_data,byrow=TRUE)) {
+                let class_id = odor_class[[term$category]];
+
+                if (!(odors |> check(molecule_id= registry_id, category = class_id, odor = term$odor))) {
+                    odors |> add(
+                        molecule_id= registry_id, 
+                        category = class_id, 
+                        odor = term$odor,
+                        hashcode = md5(term$odor),
+                        value = 0,
+                        unit = 0,
+                        text = term$text
+                    );
+                }
+            }
+        }
+    }
+}
