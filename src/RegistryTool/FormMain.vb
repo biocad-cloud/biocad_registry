@@ -108,4 +108,10 @@ Public Class FormMain
 
         Return True
     End Function
+
+    Private Sub FlavorOdorsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FlavorOdorsToolStripMenuItem.Click
+        Dim viewer As New FormOdors
+        viewer.MdiParent = Me
+        viewer.Show()
+    End Sub
 End Class

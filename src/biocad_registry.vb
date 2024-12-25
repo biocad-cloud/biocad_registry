@@ -55,6 +55,12 @@ Public Class biocad_registry : Inherits biocad_registryModel.db_mysql
         End Get
     End Property
 
+    Public ReadOnly Property odor As Model
+        Get
+            Return m_odor
+        End Get
+    End Property
+
     Sub New(mysql As ConnectionUri)
         Call MyBase.New(mysql)
     End Sub

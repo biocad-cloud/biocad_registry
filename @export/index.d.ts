@@ -47,6 +47,9 @@ declare namespace biocad_registry {
    function imports_metacyc(biocad_registry: any, metacyc: any): object;
    /**
    */
+   function imports_odor(biocad_registry: any, pubchem: any): object;
+   /**
+   */
    function imports_pubchem(biocad_registry: any, pubchem: any): object;
    /**
    */

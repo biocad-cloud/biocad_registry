@@ -35,6 +35,7 @@ Partial Class FormMain
         Me.ExportMetabolitesDatabaseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.FlavorOdorsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -74,7 +75,7 @@ Partial Class FormMain
         '
         'DataToolStripMenuItem
         '
-        Me.DataToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.VocabularyToolStripMenuItem, Me.SubCellularCompartmentsToolStripMenuItem, Me.MoleculesToolStripMenuItem, Me.ToolStripMenuItem2, Me.ExportMetabolitesDatabaseToolStripMenuItem})
+        Me.DataToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.VocabularyToolStripMenuItem, Me.MoleculesToolStripMenuItem, Me.SubCellularCompartmentsToolStripMenuItem, Me.FlavorOdorsToolStripMenuItem, Me.ToolStripMenuItem2, Me.ExportMetabolitesDatabaseToolStripMenuItem})
         Me.DataToolStripMenuItem.Name = "DataToolStripMenuItem"
         Me.DataToolStripMenuItem.Size = New System.Drawing.Size(43, 20)
         Me.DataToolStripMenuItem.Text = "Data"
@@ -123,6 +124,12 @@ Partial Class FormMain
         Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(42, 17)
         Me.ToolStripStatusLabel1.Text = "Ready!"
         '
+        'FlavorOdorsToolStripMenuItem
+        '
+        Me.FlavorOdorsToolStripMenuItem.Name = "FlavorOdorsToolStripMenuItem"
+        Me.FlavorOdorsToolStripMenuItem.Size = New System.Drawing.Size(224, 22)
+        Me.FlavorOdorsToolStripMenuItem.Text = "Flavor Odors"
+        '
         'FormMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
@@ -156,4 +163,5 @@ Partial Class FormMain
     Friend WithEvents ExportMetabolitesDatabaseToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents StatusStrip1 As StatusStrip
     Friend WithEvents ToolStripStatusLabel1 As ToolStripStatusLabel
+    Friend WithEvents FlavorOdorsToolStripMenuItem As ToolStripMenuItem
 End Class
