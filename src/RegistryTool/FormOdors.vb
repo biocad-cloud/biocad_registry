@@ -67,6 +67,21 @@ Public Class FormOdors
     Private Async Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
         Await loadPage()
     End Sub
+
+    Private Async Sub ToolStripButton2_Click(sender As Object, e As EventArgs) Handles ToolStripButton2.Click
+        page -= 1
+
+        If page < 1 Then
+            page = 1
+        Else
+            Await loadPage()
+        End If
+    End Sub
+
+    Private Async Sub ToolStripButton3_Click(sender As Object, e As EventArgs) Handles ToolStripButton3.Click
+        page += 1
+        Await loadPage()
+    End Sub
 End Class
 
 Public Class OdorData
