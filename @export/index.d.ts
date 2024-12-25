@@ -46,8 +46,9 @@ declare namespace biocad_registry {
    */
    function imports_metacyc(biocad_registry: any, metacyc: any): object;
    /**
+     * @param fast_check default value Is ``false``.
    */
-   function imports_odor(biocad_registry: any, pubchem: any): object;
+   function imports_odor(biocad_registry: any, pubchem: any, fast_check?: any): object;
    /**
    */
    function imports_pubchem(biocad_registry: any, pubchem: any): object;

@@ -36,7 +36,7 @@ const imports_pubchem = function(biocad_registry, pubchem) {
     }
 }
 
-const imports_odor = function(biocad_registry, pubchem) {
+const imports_odor = function(biocad_registry, pubchem, fast_check = FALSE) {
     let pubchem_term = biocad_registry |> vocabulary_id("pubchem","External Database");
     let odor_class = list(
         odor  = biocad_registry |> vocabulary_id("odor","Odor Category"),
@@ -56,6 +56,10 @@ const imports_odor = function(biocad_registry, pubchem) {
 
         if (nrow(odors_data) > 0 && !is.null(molecule)) {
             let registry_id = molecule$obj_id;
+
+            if (fast_check && (odors |> check(molecule_id= registry_id))) {
+                next;
+            }
 
             for(let term in as.list(odors_data,byrow=TRUE)) {
                 let class_id = odor_class[[term$category]];
