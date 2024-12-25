@@ -1118,6 +1118,12 @@ Microsoft.VisualBasic.Data.GraphTheory
  </summary>
  <returns></returns>
 </member>
+<member name="P:Microsoft.VisualBasic.Data.GraphTheory.AbstractTree`2.ChildNodes">
+ <summary>
+ a collection of the direct childs in current tree node
+ </summary>
+ <returns></returns>
+</member>
 <member name="P:Microsoft.VisualBasic.Data.GraphTheory.AbstractTree`2.Parent">
  <summary>
  
@@ -1144,17 +1150,6 @@ Microsoft.VisualBasic.Data.GraphTheory
  而是返回当前树节点下的所有的子节点的数量
  </remarks>
  
-</member>
-<member name="M:Microsoft.VisualBasic.Data.GraphTheory.AbstractTree`2.EnumerateChilds(System.Boolean)">
- <summary>
- Returns the values of <see cref="P:Microsoft.VisualBasic.Data.GraphTheory.AbstractTree`2.Childs"/>
- </summary>
- <param name="popAll">
- just populate the childs in current tree node by default, 
- and set this parameter to value true for populate all 
- child nodes inside current tree node
- </param>
- <returns></returns>
 </member>
 <member name="M:Microsoft.VisualBasic.Data.GraphTheory.AbstractTree`2.CountLeafs">
  <summary>

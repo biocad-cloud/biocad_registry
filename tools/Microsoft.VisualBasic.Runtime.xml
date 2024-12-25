@@ -6319,6 +6319,11 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  </summary>
  <param name="s$"></param>
 </member>
+<member name="T:Microsoft.VisualBasic.Parallel.BufferPipe">
+ <summary>
+ the abstract base type of the package data
+ </summary>
+</member>
 <member name="T:Microsoft.VisualBasic.Parallel.DataPipe">
  <summary>
  a <see cref="T:System.IO.MemoryStream"/> liked in-memory data
@@ -10126,6 +10131,11 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  </summary>
  <param name="compares"></param>
  <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.ComponentModel.Algorithm.BinaryTree.Extensions">
+ <summary>
+ Help methods for the binary tree operations
+ </summary>
 </member>
 <member name="M:Microsoft.VisualBasic.ComponentModel.Algorithm.BinaryTree.Extensions.Find``2(Microsoft.VisualBasic.ComponentModel.Algorithm.BinaryTree.BinaryTree{``0,``1},``0,System.Comparison{``0})">
  <summary>
@@ -14359,18 +14369,18 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  </summary>
  <returns></returns>
 </member>
-<member name="P:Microsoft.VisualBasic.ComponentModel.DataStructures.Tree.ITreeNode`1.ChildNodes">
+<member name="P:Microsoft.VisualBasic.ComponentModel.DataStructures.Tree.ITreeNodeData`1.ChildNodes">
  <summary>
  Children
  </summary>
 </member>
-<member name="P:Microsoft.VisualBasic.ComponentModel.DataStructures.Tree.ITreeNode`1.IsLeaf">
+<member name="P:Microsoft.VisualBasic.ComponentModel.DataStructures.Tree.ITreeNodeData`1.IsLeaf">
  <summary>
  Is this node have no childs
  </summary>
  <returns></returns>
 </member>
-<member name="P:Microsoft.VisualBasic.ComponentModel.DataStructures.Tree.ITreeNode`1.IsRoot">
+<member name="P:Microsoft.VisualBasic.ComponentModel.DataStructures.Tree.ITreeNodeData`1.IsRoot">
  <summary>
  I this node have no parents
  </summary>
@@ -14408,6 +14418,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  
  </summary>
  <param name="name"></param>
+ 
 </member>
 <member name="P:Microsoft.VisualBasic.ComponentModel.DataStructures.Tree.TreeNodeBase`1.IsLeaf">
  <summary>
@@ -14460,10 +14471,23 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  </summary>
  <param name="children"></param>
 </member>
-<member name="M:Microsoft.VisualBasic.ComponentModel.DataStructures.Tree.TreeNodeBase`1.GetEnumerator">
+<member name="M:Microsoft.VisualBasic.ComponentModel.DataStructures.Tree.TreeNodeBase`1.GenericEnumerator">
  <summary>
- Iterates all of my childs
+ enumerates all childs in current tree node
  </summary>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.ComponentModel.DataStructures.Tree.TreeTools">
+ <summary>
+ extension method tools for abstract tree model
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.ComponentModel.DataStructures.Tree.TreeTools.EnumerateAllChilds``1(Microsoft.VisualBasic.ComponentModel.DataStructures.Tree.ITreeNodeData{``0})">
+ <summary>
+ enumerates all childs in current tree node
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="tree"></param>
  <returns></returns>
 </member>
 <member name="M:Microsoft.VisualBasic.ComponentModel.Triggers.ITrigger.TestRun">

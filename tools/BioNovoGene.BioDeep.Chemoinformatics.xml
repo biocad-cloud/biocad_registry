@@ -41,6 +41,22 @@ BioNovoGene.BioDeep.Chemoinformatics
  第一部分有2到7位数字，第二部分有2位数字，第三部分有1位数字作为校验码
  </remarks>
 </member>
+<member name="T:BioNovoGene.BioDeep.Chemoinformatics.Value">
+ <summary>
+ value with reference source
+ </summary>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemoinformatics.UnitValue">
+ <summary>
+ value with data unit tagged
+ </summary>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.UnitValue.unit">
+ <summary>
+ the data unit of the <see cref="P:BioNovoGene.BioDeep.Chemoinformatics.Value.value"/>.
+ </summary>
+ <returns></returns>
+</member>
 <member name="T:BioNovoGene.BioDeep.Chemoinformatics.ChemicalDescriptor">
  <summary>
  Chemical descriptor

@@ -1888,6 +1888,11 @@ BioNovoGene.Analytical.MassSpectrometry.Math
  <param name="matrix"></param>
  <returns></returns>
 </member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.MzAnnotation">
+ <summary>
+ annotation of the m/z value
+ </summary>
+</member>
 <member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.MzAnnotation.productMz">
  <summary>
  the target ion m/z value
@@ -1899,6 +1904,14 @@ BioNovoGene.Analytical.MassSpectrometry.Math
  the ion annotation result, could be the metabolite id 
  or metabolite name, something else.
  </summary>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.MzAnnotation.op_Subtraction(BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.MzAnnotation,System.Double)">
+ <summary>
+ make evaluation of the mass delta
+ </summary>
+ <param name="anno"></param>
+ <param name="mass"></param>
  <returns></returns>
 </member>
 <member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.PeakList">

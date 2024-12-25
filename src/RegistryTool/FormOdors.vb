@@ -7,12 +7,12 @@ Public Class FormOdors
     Dim page As Integer = 1
     Dim page_size As Integer = 3000
 
-    Private Sub FormOdors_Load(sender As Object, e As EventArgs) Handles Me.Load
-
+    Private Async Sub FormOdors_Load(sender As Object, e As EventArgs) Handles Me.Load
+        Await loadPage()
     End Sub
 
-    Private Sub loadPage()
-        Dim q = OdorData.LoadPage(page, page_size)
+    Private Async Function loadPage() As Task
+        Dim q = Await OdorData.LoadPage(page, page_size)
 
         DataGridView1.Rows.Clear()
 
@@ -24,7 +24,7 @@ Public Class FormOdors
         Next
 
         DataGridView1.CommitEdit(DataGridViewDataErrorContexts.Commit)
-    End Sub
+    End Function
 
     Private Function getSelected() As OdorData
         Dim selRows = DataGridView1.SelectedRows
@@ -36,7 +36,7 @@ Public Class FormOdors
         End If
     End Function
 
-    Private Sub DeleteToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteToolStripMenuItem.Click
+    Private Async Sub DeleteToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteToolStripMenuItem.Click
         Dim odor As OdorData = getSelected()
 
         If odor Is Nothing Then
@@ -45,11 +45,12 @@ Public Class FormOdors
 
         If MessageBox.Show($"Going to delete current odor data: {odor.odor} ({odor.name})?", "Delete Confirmed", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) = DialogResult.OK Then
 
-            Call MyApplication.biocad_registry.odor.where(field("id") = odor.id).limit(1).delete()
+            MyApplication.biocad_registry.odor.where(field("id") = odor.id).limit(1).delete()
+            Await loadPage()
         End If
     End Sub
 
-    Private Sub DeleteSimilarToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteSimilarToolStripMenuItem.Click
+    Private Async Sub DeleteSimilarToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteSimilarToolStripMenuItem.Click
         Dim odor As OdorData = getSelected()
 
         If odor Is Nothing Then
@@ -58,8 +59,13 @@ Public Class FormOdors
 
         If MessageBox.Show($"Going to delete all odor data: {odor.odor}?", "Delete Confirmed", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) = DialogResult.OK Then
 
-            Call MyApplication.biocad_registry.odor.where(field("odor") = odor.odor).delete()
+            MyApplication.biocad_registry.odor.where(field("odor") = odor.odor).delete()
+            Await loadPage()
         End If
+    End Sub
+
+    Private Async Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
+        Await loadPage()
     End Sub
 End Class
 
@@ -73,9 +79,9 @@ Public Class OdorData
     <DatabaseField> Public Property odor As String
     <DatabaseField> Public Property text As String
 
-    Public Shared Function LoadPage(page As Integer, page_size As Integer) As OdorData()
+    Public Shared Async Function LoadPage(page As Integer, page_size As Integer) As Task(Of OdorData())
         Dim offset As Long = (page - 1) * page_size
-        Dim q = MyApplication.biocad_registry.odor _
+        Dim q = Await Task.Run(Function() MyApplication.biocad_registry.odor _
             .left_join("molecule") _
             .on(field("`molecule`.id") = field("molecule_id")) _
             .left_join("vocabulary") _
@@ -87,7 +93,7 @@ Public Class OdorData
     "formula",
     "`vocabulary`.term AS category",
     "odor",
-    "text")
+    "text"))
 
         Return q
     End Function
