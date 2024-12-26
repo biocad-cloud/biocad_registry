@@ -14,7 +14,11 @@ Public Class FormOdors
     Private Async Function loadPage() As Task
         Dim q = Await OdorData.LoadPage(page, page_size)
 
+        DataGridView1.Visible = True
+        DataGridView2.Visible = False
         DataGridView1.Rows.Clear()
+        DataGridView2.Dock = DockStyle.None
+        DataGridView1.Dock = DockStyle.Fill
 
         For Each item In q
             Dim i = DataGridView1.Rows.Add(item.name, item.formula, item.category, item.odor, item.text)
@@ -82,6 +86,66 @@ Public Class FormOdors
         page += 1
         Await loadPage()
     End Sub
+
+    Private Async Sub ToolStripButton4_Click() Handles ToolStripButton4.Click
+        If ToolStripButton4.Checked Then
+            DataGridView2.Visible = True
+            DataGridView1.Visible = False
+            DataGridView1.Dock = DockStyle.None
+            DataGridView2.Dock = DockStyle.Fill
+            DataGridView2.Visible = True
+
+            Dim terms = Await Task.Run(Function() OdorTerm.LoadTerms)
+
+            Call DataGridView2.Rows.Clear()
+
+            For Each term In terms
+                Dim i = DataGridView2.Rows.Add(term.category, term.term, term.count)
+                Dim row = DataGridView2.Rows(i)
+
+                row.Tag = term
+            Next
+        Else
+            DataGridView1.Visible = True
+            DataGridView2.Visible = False
+            DataGridView2.Dock = DockStyle.None
+            DataGridView1.Dock = DockStyle.Fill
+        End If
+    End Sub
+
+    Private Async Sub DeleteTermRecordsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteTermRecordsToolStripMenuItem.Click
+        Dim selRows = DataGridView2.SelectedRows
+
+        If selRows.Count = 0 Then
+            Return
+        Else
+            Dim term As OdorTerm = selRows(0).Tag
+
+            Await Task.Run(
+                Sub()
+                    Call MyApplication.biocad_registry.odor.where(field("odor") = term.term).delete()
+                End Sub)
+
+            ToolStripButton4_Click()
+        End If
+    End Sub
+End Class
+
+Public Class OdorTerm
+
+    <DatabaseField> Public Property category As String
+    <DatabaseField> Public Property term As String
+    <DatabaseField> Public Property count As Integer
+
+    Public Shared Function LoadTerms() As OdorTerm()
+        Return MyApplication.biocad_registry.odor _
+            .left_join("vocabulary") _
+            .on(field("`vocabulary`.id") = field("`odor`.category")) _
+            .group_by("term", "odor") _
+            .order_by("count", desc:=True) _
+            .select(Of OdorTerm)("term AS category", "odor AS term", "COUNT(*) AS count")
+    End Function
+
 End Class
 
 Public Class OdorData
