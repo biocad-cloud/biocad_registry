@@ -194,6 +194,7 @@ Partial Class FormOdors
         Me.DataGridView2.Location = New System.Drawing.Point(135, 85)
         Me.DataGridView2.Name = "DataGridView2"
         Me.DataGridView2.RowTemplate.Height = 23
+        Me.DataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.DataGridView2.Size = New System.Drawing.Size(641, 273)
         Me.DataGridView2.TabIndex = 3
         '
@@ -220,7 +221,7 @@ Partial Class FormOdors
         '
         Me.ContextMenuStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DeleteTermRecordsToolStripMenuItem})
         Me.ContextMenuStrip2.Name = "ContextMenuStrip2"
-        Me.ContextMenuStrip2.Size = New System.Drawing.Size(182, 48)
+        Me.ContextMenuStrip2.Size = New System.Drawing.Size(182, 26)
         '
         'DeleteTermRecordsToolStripMenuItem
         '
