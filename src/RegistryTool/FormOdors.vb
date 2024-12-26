@@ -119,18 +119,28 @@ Public Class FormOdors
         If selRows.Count = 0 Then
             Return
         Else
-            Dim term As OdorTerm = selRows(0).Tag
+            Dim refresh As Boolean = False
 
-            If MessageBox.Show($"Delete all {term.count} odor information of term: {term.term}({term.category})",
+            For i As Integer = 0 To selRows.Count - 1
+                Dim term As OdorTerm = selRows(i).Tag
+
+                If MessageBox.Show($"Delete all {term.count} odor information of term: {term.term}({term.category})",
                                "Check Operation",
                                MessageBoxButtons.OKCancel,
                                MessageBoxIcon.Information) = DialogResult.OK Then
 
-                Await Task.Run(
-                    Sub()
-                        Call MyApplication.biocad_registry.odor.where(field("odor") = term.term).delete()
-                    End Sub)
+                    Await Task.Run(
+                        Sub()
+                            Call MyApplication.biocad_registry.odor.where(field("odor") = term.term).delete()
+                        End Sub)
 
+                    refresh = True
+                Else
+                    Exit For
+                End If
+            Next
+
+            If refresh Then
                 ToolStripButton4_Click()
             End If
         End If
