@@ -121,12 +121,18 @@ Public Class FormOdors
         Else
             Dim term As OdorTerm = selRows(0).Tag
 
-            Await Task.Run(
-                Sub()
-                    Call MyApplication.biocad_registry.odor.where(field("odor") = term.term).delete()
-                End Sub)
+            If MessageBox.Show($"Delete all {term.count} odor information of term: {term.term}({term.category})",
+                               "Check Operation",
+                               MessageBoxButtons.OKCancel,
+                               MessageBoxIcon.Information) = DialogResult.OK Then
 
-            ToolStripButton4_Click()
+                Await Task.Run(
+                    Sub()
+                        Call MyApplication.biocad_registry.odor.where(field("odor") = term.term).delete()
+                    End Sub)
+
+                ToolStripButton4_Click()
+            End If
         End If
     End Sub
 End Class
@@ -135,14 +141,14 @@ Public Class OdorTerm
 
     <DatabaseField> Public Property category As String
     <DatabaseField> Public Property term As String
-    <DatabaseField> Public Property count As Integer
+    <DatabaseField> Public Property count As Long
 
     Public Shared Function LoadTerms() As OdorTerm()
         Return MyApplication.biocad_registry.odor _
             .left_join("vocabulary") _
             .on(field("`vocabulary`.id") = field("`odor`.category")) _
             .group_by("term", "odor") _
-            .order_by("count", desc:=True) _
+            .order_by("count") _
             .select(Of OdorTerm)("term AS category", "odor AS term", "COUNT(*) AS count")
     End Function
 
