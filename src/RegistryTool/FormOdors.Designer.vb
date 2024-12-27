@@ -47,6 +47,7 @@ Partial Class FormOdors
         Me.Column7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ContextMenuStrip2 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.DeleteTermRecordsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DeleteRecordsSkipConfirmToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStrip1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
@@ -219,15 +220,21 @@ Partial Class FormOdors
         '
         'ContextMenuStrip2
         '
-        Me.ContextMenuStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DeleteTermRecordsToolStripMenuItem})
+        Me.ContextMenuStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DeleteTermRecordsToolStripMenuItem, Me.DeleteRecordsSkipConfirmToolStripMenuItem})
         Me.ContextMenuStrip2.Name = "ContextMenuStrip2"
-        Me.ContextMenuStrip2.Size = New System.Drawing.Size(182, 26)
+        Me.ContextMenuStrip2.Size = New System.Drawing.Size(225, 70)
         '
         'DeleteTermRecordsToolStripMenuItem
         '
         Me.DeleteTermRecordsToolStripMenuItem.Name = "DeleteTermRecordsToolStripMenuItem"
-        Me.DeleteTermRecordsToolStripMenuItem.Size = New System.Drawing.Size(181, 22)
+        Me.DeleteTermRecordsToolStripMenuItem.Size = New System.Drawing.Size(224, 22)
         Me.DeleteTermRecordsToolStripMenuItem.Text = "Delete Term Records"
+        '
+        'DeleteRecordsSkipConfirmToolStripMenuItem
+        '
+        Me.DeleteRecordsSkipConfirmToolStripMenuItem.Name = "DeleteRecordsSkipConfirmToolStripMenuItem"
+        Me.DeleteRecordsSkipConfirmToolStripMenuItem.Size = New System.Drawing.Size(224, 22)
+        Me.DeleteRecordsSkipConfirmToolStripMenuItem.Text = "Delete Records Skip Confirm"
         '
         'FormOdors
         '
@@ -274,4 +281,5 @@ Partial Class FormOdors
     Friend WithEvents Column7 As DataGridViewTextBoxColumn
     Friend WithEvents ContextMenuStrip2 As ContextMenuStrip
     Friend WithEvents DeleteTermRecordsToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents DeleteRecordsSkipConfirmToolStripMenuItem As ToolStripMenuItem
 End Class

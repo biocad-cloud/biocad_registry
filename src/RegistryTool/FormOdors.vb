@@ -145,6 +145,35 @@ Public Class FormOdors
             End If
         End If
     End Sub
+
+    Private Async Sub DeleteRecordsSkipConfirmToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteRecordsSkipConfirmToolStripMenuItem.Click
+        Dim selRows = DataGridView2.SelectedRows
+        Dim list As New List(Of String)
+
+        For i As Integer = 0 To selRows.Count - 1
+            Dim term As OdorTerm = selRows(i).Tag
+            list.Add($"{term.term} ({term.category})")
+        Next
+
+        If selRows.Count = 0 Then
+            Return
+        ElseIf MessageBox.Show($"Delete all {list.count} odor information of term:" & vbCrLf & list.JoinBy(vbCrLf),
+                               "Check Operation",
+                               MessageBoxButtons.OKCancel,
+                               MessageBoxIcon.Information) = DialogResult.OK Then
+
+            For i As Integer = 0 To selRows.Count - 1
+                Dim term As OdorTerm = selRows(i).Tag
+
+                Await Task.Run(
+                        Sub()
+                            Call MyApplication.biocad_registry.odor.where(field("odor") = term.term).delete()
+                        End Sub)
+            Next
+
+            ToolStripButton4_Click()
+        End If
+    End Sub
 End Class
 
 Public Class OdorTerm
