@@ -157,7 +157,7 @@ Public Class FormOdors
 
         If selRows.Count = 0 Then
             Return
-        ElseIf MessageBox.Show($"Delete all {list.count} odor information of term:" & vbCrLf & list.JoinBy(vbCrLf),
+        ElseIf MessageBox.Show($"Delete all {list.count} odor information of term:" & vbCrLf & vbCrLf & list.JoinBy(vbCrLf),
                                "Check Operation",
                                MessageBoxButtons.OKCancel,
                                MessageBoxIcon.Information) = DialogResult.OK Then

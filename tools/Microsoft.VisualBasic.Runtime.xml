@@ -4617,7 +4617,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  https://github.com/shaltielshmid/TqdmSharp
  </remarks>
 </member>
-<member name="M:Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm.TqdmWrapper.Wrap``1(System.Collections.Generic.ICollection{``0},System.Int32,System.Int32,System.Boolean)">
+<member name="M:Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm.TqdmWrapper.Wrap``1(System.Collections.Generic.ICollection{``0},System.Int32,System.Int32,System.Boolean,System.Boolean)">
  <summary>
  Wraps a collection with a progress bar for iteration, providing visual feedback on progress.
  </summary>
@@ -4627,7 +4627,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="useColor">Indicates whether to use colored output for the progress bar.</param>
  <returns>An enumerable that iterates over the collection with progress tracking.</returns> 
 </member>
-<member name="M:Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm.TqdmWrapper.Wrap``1(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Int32,System.Int32,System.Boolean)">
+<member name="M:Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm.TqdmWrapper.Wrap``1(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean)">
  <summary>
  Wraps an enumerable with a specified total count with a progress bar for iteration, providing visual feedback on progress.
  </summary>
@@ -4638,7 +4638,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="useColor">Indicates whether to use colored output for the progress bar.</param>
  <returns>An enumerable that iterates over the collection with progress tracking.</returns>
 </member>
-<member name="M:Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm.TqdmWrapper.Wrap``1(System.Collections.Generic.ICollection{``0},Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm.ProgressBar@,System.Int32,System.Int32,System.Boolean)">
+<member name="M:Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm.TqdmWrapper.Wrap``1(System.Collections.Generic.ICollection{``0},Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm.ProgressBar@,System.Int32,System.Int32,System.Boolean,System.Boolean)">
  <summary>
  Wraps a collection with a progress bar for iteration and provides the progress bar instance for external control (like custom labels).
  </summary>
@@ -4650,7 +4650,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <returns>An enumerable that iterates over the collection with progress tracking.</returns>
  
 </member>
-<member name="M:Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm.TqdmWrapper.Wrap``1(System.Collections.Generic.IEnumerable{``0},System.Int32,Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm.ProgressBar@,System.Int32,System.Int32,System.Boolean)">
+<member name="M:Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm.TqdmWrapper.Wrap``1(System.Collections.Generic.IEnumerable{``0},System.Int32,Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm.ProgressBar@,System.Int32,System.Int32,System.Boolean,System.Boolean)">
  <summary>
  Wraps an enumerable with a specified total count with a progress bar for iteration and provides the progress bar instance for external control (like custom labels).
  </summary>
@@ -4662,7 +4662,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="useColor">Indicates whether to use colored output for the progress bar.</param>
  <returns>An enumerable that iterates over the collection with progress tracking.</returns>
 </member>
-<member name="M:Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm.TqdmWrapper.Range(System.Int32,System.Int32,Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm.ProgressBar@,System.Int32,System.Int32,System.Boolean)">
+<member name="M:Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm.TqdmWrapper.Range(System.Int32,System.Int32,Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm.ProgressBar@,System.Int32,System.Int32,System.Boolean,System.Boolean)">
  <summary>
  Generates a sequence of integral numbers within a specified range.
  </summary>
@@ -17539,6 +17539,13 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="padding">
  the graphics drawing layout context information, should be an integer vector of paddings
  </param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Imaging.Driver.DriverLoad.LoadFromStream(System.IO.Stream)">
+ <summary>
+ load image from stream data
+ </summary>
+ <param name="s"></param>
  <returns></returns>
 </member>
 <member name="M:Microsoft.VisualBasic.Imaging.Driver.DriverLoad.DefaultGraphicsDevice(System.Nullable{Microsoft.VisualBasic.Imaging.Driver.Drivers})">
