@@ -26,10 +26,7 @@ const imports_sabiork = function(biocad_registry, repo) {
                 let xrefs = [rxn]::xref;
                 let uniprot_id = [rxn]::uniprot_id;
                 let substrate = __find_substrate_id(args, xrefs); 
-str(args);
-str(xrefs);
-str(substrate );
-stop();
+
                 if (length(substrate)>0) {
                     substrate = db_xrefs 
                     |> where(type=4, xref in substrate) 
@@ -38,7 +35,7 @@ stop();
                     |> find("obj_id","count(*) as count")
                     ;
 
-                    stop(get_last_sql(db_xrefs));
+                    # stop(get_last_sql(db_xrefs));
 
                     if (length(substrate) ==0) {
                         substrate <- 0;
