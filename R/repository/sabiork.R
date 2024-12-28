@@ -25,14 +25,11 @@ const imports_sabiork = function(biocad_registry, repo) {
                 let args = [rxn]::parameters;
                 let xrefs = [rxn]::xref;
                 let uniprot_id = [rxn]::uniprot_id;
-                let substrate = {
-                    if ("S" in args) {
-                        xrefs[[args$S]];
-                    } else {
-                        NULL;
-                    }
-                }; 
-
+                let substrate = __find_substrate_id(args, xrefs); 
+str(args);
+str(xrefs);
+str(substrate );
+stop();
                 if (length(substrate)>0) {
                     substrate = db_xrefs 
                     |> where(type=4, xref in substrate) 
@@ -40,6 +37,8 @@ const imports_sabiork = function(biocad_registry, repo) {
                     |> order_by("count",desc=TRUE) 
                     |> find("obj_id","count(*) as count")
                     ;
+
+                    stop(get_last_sql(db_xrefs));
 
                     if (length(substrate) ==0) {
                         substrate <- 0;
@@ -66,4 +65,18 @@ const imports_sabiork = function(biocad_registry, repo) {
             }
         }
     }
+}
+
+const __find_substrate_id = function(args, xrefs) {
+    let keys = names(args);
+
+    for(let chr in ["S","A","B","C"]) {
+        if (any(chr == keys)) {
+            let key = args[[chr]];
+            return(xrefs[[key]]);
+            break;
+        }
+    }
+
+    NULL;
 }
