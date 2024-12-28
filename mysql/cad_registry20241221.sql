@@ -63,6 +63,23 @@ CREATE TABLE `db_xrefs` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `genomics`
+--
+
+DROP TABLE IF EXISTS `genomics`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `genomics` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `ncbi_taxid` int unsigned NOT NULL,
+  `nt` longtext COLLATE utf8mb3_bin NOT NULL,
+  `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='genome nucleotide sequence data';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `kinetic_law`
 --
 
@@ -72,23 +89,25 @@ DROP TABLE IF EXISTS `kinetic_law`;
 CREATE TABLE `kinetic_law` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
   `db_xref` varchar(64) COLLATE utf8mb3_bin NOT NULL COMMENT 'the external reference id of current kinetics lambda model',
-  `lambda` varchar(1024) COLLATE utf8mb3_bin NOT NULL COMMENT 'the lambda expression of the kinetics',
-  `params` varchar(1024) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL COMMENT 'parameter set of the current kinetics lambda epxression, in json string format',
+  `params` varchar(1024) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'parameter set of the current kinetics lambda epxression, in json string format',
+  `lambda` mediumtext CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL COMMENT 'the lambda expression of the kinetics',
   `temperature` double NOT NULL DEFAULT '37' COMMENT 'temperature of the enzyme catalytic kinetics',
   `pH` double unsigned NOT NULL DEFAULT '7.5' COMMENT 'pH of the enzyme catalytic kinetics',
+  `buffer` mediumtext COLLATE utf8mb3_bin,
   `substrate_id` int unsigned NOT NULL COMMENT 'id reference to the metabolite molecule',
-  `uniprot` varchar(45) COLLATE utf8mb3_bin NOT NULL COMMENT 'the uniprot id of the current enzyme model, the kinetics parameter is associated with a specific molecule instance',
-  `function_id` int unsigned NOT NULL COMMENT 'the internal reference id of the molecule function record, usually link to the ec_number of current kineticis',
+  `uniprot` varchar(45) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL COMMENT 'the uniprot id of the current enzyme model, the kinetics parameter is associated with a specific molecule instance. could be missing',
+  `ec_number` varchar(128) COLLATE utf8mb3_bin NOT NULL DEFAULT '-' COMMENT 'the enzyme ec_number reference id of the molecule function record',
+  `json_str` json NOT NULL COMMENT 'the raw json string data of current kinetics data',
   `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `note` longtext COLLATE utf8mb3_bin COMMENT 'description note text about current enzyme kinetics lambda model',
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
-  KEY `regulation_id_idx` (`function_id`) /*!80000 INVISIBLE */,
-  KEY `xrefs_index` (`db_xref`) /*!80000 INVISIBLE */,
-  KEY `ph_filter` (`pH`) /*!80000 INVISIBLE */,
+  KEY `regulation_id_idx` (`ec_number`),
+  KEY `xrefs_index` (`db_xref`),
+  KEY `ph_filter` (`pH`),
   KEY `temperature_filter` (`temperature`),
   KEY `uniprot_index` (`uniprot`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='the enzymatic catalytic kinetics lambda model';
+) ENGINE=InnoDB AUTO_INCREMENT=35252 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='the enzymatic catalytic kinetics lambda model';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -140,6 +159,25 @@ CREATE TABLE `molecule_function` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `ncbi_taxonomy`
+--
+
+DROP TABLE IF EXISTS `ncbi_taxonomy`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ncbi_taxonomy` (
+  `id` int unsigned NOT NULL COMMENT 'ncbi tax id',
+  `taxname` varchar(255) COLLATE utf8mb3_bin NOT NULL,
+  `childs` json DEFAULT NULL COMMENT 'tax id of the direct child nodes, json array',
+  `parent_id` int unsigned DEFAULT NULL,
+  `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `description` longtext COLLATE utf8mb3_bin,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='the ncbi taxonomy information';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `odor`
 --
 
@@ -154,11 +192,16 @@ CREATE TABLE `odor` (
   `hashcode` varchar(32) COLLATE utf8mb3_bin NOT NULL,
   `value` double NOT NULL DEFAULT '0',
   `unit` int unsigned NOT NULL,
-  `text` varchar(255) COLLATE utf8mb3_bin NOT NULL,
+  `text` tinytext COLLATE utf8mb3_bin NOT NULL,
   `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='odor information about the metabolite molecules';
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  KEY `odor_term_index` (`odor`),
+  KEY `class_index` (`category`),
+  KEY `mol_index` (`molecule_id`),
+  KEY `check_odor` (`molecule_id`,`category`,`odor`),
+  FULLTEXT KEY `search_text` (`text`)
+) ENGINE=InnoDB AUTO_INCREMENT=69396 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='odor information about the metabolite molecules';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -347,7 +390,7 @@ CREATE TABLE `vocabulary` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `search_term` (`category`,`term`)
-) ENGINE=InnoDB AUTO_INCREMENT=160 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=163 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -367,4 +410,4 @@ CREATE TABLE `vocabulary` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-12-23 18:51:28
+-- Dump completed on 2024-12-28 11:47:54
