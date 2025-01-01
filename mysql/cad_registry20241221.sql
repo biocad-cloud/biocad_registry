@@ -71,8 +71,9 @@ DROP TABLE IF EXISTS `genomics`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `genomics` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `ncbi_taxid` int unsigned NOT NULL,
-  `nt` longtext COLLATE utf8mb3_bin NOT NULL,
+  `ncbi_taxid` int unsigned NOT NULL COMMENT 'the ncbi taxonomy id',
+  `db_xref` varchar(45) COLLATE utf8mb3_bin DEFAULT NULL COMMENT 'ncbi genbank accession id of current genomics sequence',
+  `nt` longtext CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL COMMENT 'sequence data',
   `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
@@ -89,7 +90,7 @@ DROP TABLE IF EXISTS `kinetic_law`;
 CREATE TABLE `kinetic_law` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
   `db_xref` varchar(64) COLLATE utf8mb3_bin NOT NULL COMMENT 'the external reference id of current kinetics lambda model',
-  `params` varchar(1024) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'parameter set of the current kinetics lambda epxression, in json string format',
+  `params` json NOT NULL COMMENT 'parameter set of the current kinetics lambda epxression, in json string format',
   `lambda` mediumtext CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL COMMENT 'the lambda expression of the kinetics',
   `temperature` double NOT NULL DEFAULT '37' COMMENT 'temperature of the enzyme catalytic kinetics',
   `pH` double unsigned NOT NULL DEFAULT '7.5' COMMENT 'pH of the enzyme catalytic kinetics',
@@ -107,7 +108,7 @@ CREATE TABLE `kinetic_law` (
   KEY `ph_filter` (`pH`),
   KEY `temperature_filter` (`temperature`),
   KEY `uniprot_index` (`uniprot`)
-) ENGINE=InnoDB AUTO_INCREMENT=35252 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='the enzymatic catalytic kinetics lambda model';
+) ENGINE=InnoDB AUTO_INCREMENT=35204 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='the enzymatic catalytic kinetics lambda model';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -410,4 +411,4 @@ CREATE TABLE `vocabulary` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-12-28 11:47:54
+-- Dump completed on 2025-01-01 15:37:35
