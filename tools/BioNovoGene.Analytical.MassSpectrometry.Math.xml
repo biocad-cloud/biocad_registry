@@ -1937,6 +1937,15 @@ BioNovoGene.Analytical.MassSpectrometry.Math
  </summary>
  <returns></returns>
 </member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.PeakList.metadata">
+ <summary>
+ the peak annotation of the corresponding ion peak data
+ </summary>
+ <returns></returns>
+ <remarks>
+ this property should be on size equals to the spectrum peak set: <see cref="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.PeakList.mz"/> or just leaves nothing.
+ </remarks>
+</member>
 <member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.PeakList.size">
  <summary>
  gets the number of the ion fragments 
