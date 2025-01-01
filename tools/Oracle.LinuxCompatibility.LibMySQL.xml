@@ -205,6 +205,13 @@ Oracle.LinuxCompatibility.LibMySQL
  </summary>
  <returns></returns>
 </member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert.in_expr(System.String)">
+ <summary>
+ 
+ </summary>
+ <param name="expr">sql query expression</param>
+ <returns></returns>
+</member>
 <member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert.GetSafeName">
  <summary>
  this function will make sure that the special word example as 
@@ -422,6 +429,9 @@ Oracle.LinuxCompatibility.LibMySQL
  </summary>
  <param name="fields"></param>
  <returns></returns>
+ <remarks>
+ fields parameter data could be field name or an expression
+ </remarks>
 </member>
 <member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.Model.order_by(System.String[],System.Boolean)">
  <summary>
