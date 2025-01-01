@@ -10,6 +10,9 @@ declare namespace biocad_registry {
    }
    /**
    */
+   function __find_substrate_id(args: any, xrefs: any): object;
+   /**
+   */
    function __push_compound_metadata(biocad_registry: any, compound: any, mol: any): object;
    /**
    */
@@ -20,6 +23,12 @@ declare namespace biocad_registry {
    /**
    */
    function enzyme_regulation(biocad_registry: any): object;
+   /**
+   */
+   function export_enzymatic(biocad_registry: any): object;
+   /**
+   */
+   function export_reactionLinks(biocad_registry: any): object;
    /**
    */
    function find_molecule(biocad_registry: any, meta: any, xref_id: any): object;
