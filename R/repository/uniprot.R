@@ -20,6 +20,7 @@ const imports_uniprot = function(biocad_registry, uniprot, fast_check = FALSE) {
         }
     }
     let db_xrefs = biocad_registry |> table("db_xrefs");
+    let labels = biocad_registry |> table("molecule_tags");
     let uniprot_key = biocad_registry |> vocabulary_id("uniprot", "External Database");
     let protein_graph = biocad_registry |> vocabulary_id("Protein_graph","Embedding", 
         desc =bencode( [sgt]::feature_names)
@@ -33,6 +34,7 @@ const imports_uniprot = function(biocad_registry, uniprot, fast_check = FALSE) {
         let info = uniprot::get_description(prot);
         let loc = uniprot::get_subcellularlocation(prot);
         let xrefs = uniprot::get_xrefs(prot);        
+        let keywords = uniprot::get_keywords(prot);
         let uniprot_id = [prot]::accessions;
 
         # if any uniprot id was found inside database
@@ -71,6 +73,23 @@ const imports_uniprot = function(biocad_registry, uniprot, fast_check = FALSE) {
             # error while add new metabolite
             next;
         } else {
+            # add keyword association
+            # [id,keyword]
+            for(let word in as.list(keywords,byrow=TRUE)) {
+                let word_id = biocad_registry |> vocabulary_id(
+                    word$id, "UniProt Keywords",
+                    desc = word$keyword
+                );
+
+                if (!(labels |> check(tag_id=word_id,molecule_id=mol$id))) {
+                    labels |> add(
+                        tag_id=word_id,
+                        molecule_id=mol$id,
+                        description = word$keyword
+                    );
+                }
+            }
+
             # add all uniprot id into database
             for(let id in uniprot_id) {
                 if (!(db_xrefs |> check(obj_id = mol$id,

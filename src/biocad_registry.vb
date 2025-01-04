@@ -65,6 +65,16 @@ Public Class biocad_registry : Inherits biocad_registryModel.db_mysql
         Call MyBase.New(mysql)
     End Sub
 
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="term"></param>
+    ''' <param name="category"></param>
+    ''' <param name="description"></param>
+    ''' <returns></returns>
+    ''' <remarks>
+    ''' has an internal cache of the vocabulary term data
+    ''' </remarks>
     Public Function getVocabulary(term As String, category As String, Optional description As String = "") As UInteger
         Static cache As New Dictionary(Of String, UInteger)
         SyncLock cache
