@@ -165,6 +165,27 @@ CREATE TABLE `molecule_function` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `molecule_tags`
+--
+
+DROP TABLE IF EXISTS `molecule_tags`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `molecule_tags` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `tag_id` int unsigned NOT NULL COMMENT 'id reference to the vocabulary table',
+  `molecule_id` int unsigned NOT NULL,
+  `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `description` longtext COLLATE utf8mb3_bin,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  KEY `check_label` (`tag_id`,`molecule_id`),
+  KEY `filter_tag` (`tag_id`),
+  KEY `filter_obj` (`molecule_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='keywords, tags, labels of the molecule entity';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `ncbi_taxonomy`
 --
 
@@ -418,4 +439,4 @@ CREATE TABLE `vocabulary` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-01-04 12:06:35
+-- Dump completed on 2025-01-05  1:20:05
