@@ -73,12 +73,15 @@ CREATE TABLE `genomics` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
   `ncbi_taxid` int unsigned NOT NULL COMMENT 'the ncbi taxonomy id',
   `db_xref` varchar(45) COLLATE utf8mb3_bin DEFAULT NULL COMMENT 'ncbi genbank accession id of current genomics sequence',
+  `def` mediumtext COLLATE utf8mb3_bin NOT NULL,
   `nt` longtext CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL COMMENT 'sequence data',
   `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `comment` longtext COLLATE utf8mb3_bin,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `taxonomy_index` (`ncbi_taxid`),
-  KEY `accession_index` (`db_xref`)
+  KEY `accession_index` (`db_xref`) /*!80000 INVISIBLE */,
+  FULLTEXT KEY `search_text` (`def`,`comment`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='genome nucleotide sequence data';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -415,4 +418,4 @@ CREATE TABLE `vocabulary` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-01-01 16:32:06
+-- Dump completed on 2025-01-04 12:06:35
