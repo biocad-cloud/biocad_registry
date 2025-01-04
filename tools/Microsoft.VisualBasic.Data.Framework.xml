@@ -2207,7 +2207,7 @@ Microsoft.VisualBasic.Data.Framework
  For each item in the source data fram, invoke a specific task
  </summary>
  <typeparam name="T"></typeparam>
- <param name="invoke"></param>
+ <param name="callback"></param>
 </member>
 <member name="M:Microsoft.VisualBasic.Data.csv.IO.Linq.DataStream.ForEachBlock``1(System.Action{``0[]},System.Int32,System.Boolean)">
  <summary>

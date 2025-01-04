@@ -3484,6 +3484,11 @@ to take away yo [rest of string was truncated]&quot;;.
  <param name="libs"></param>
  <returns></returns>
 </member>
+<member name="T:SMRUCC.Rsharp.Runtime.SymbolNamespaceSolver">
+ <summary>
+ Package namespace environment
+ </summary>
+</member>
 <member name="F:SMRUCC.Rsharp.Runtime.SymbolNamespaceSolver.funcOverloads">
  <summary>
  an overrloads of [func_name => [namespace => func]]

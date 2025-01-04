@@ -31286,7 +31286,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <summary>
  
  </summary>
- <param name="expression$">
+ <param name="expression">
  Example as:
  
  ```
@@ -31325,7 +31325,14 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  @return
  </summary>
 </member>
-<member name="M:Microsoft.VisualBasic.Net.Tcp.IPv4.NumericIpToSymbolic(System.Nullable{System.Int32})">
+<member name="M:Microsoft.VisualBasic.Net.Tcp.IPv4.NumericIpToSymbolic(System.String,System.Boolean)">
+ <summary>
+ 
+ </summary>
+ <param name="hexIp"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Net.Tcp.IPv4.NumericIpToSymbolic(System.Int32)">
  <summary>
  Get the IP in symbolic form, i.e. ``xxx.xxx.xxx.xxx``
  </summary>
@@ -31488,6 +31495,9 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  获取操作系统已用的端口号
  </summary>
  <returns></returns>
+ <remarks>
+ not supported on linux
+ </remarks>
 </member>
 <member name="M:Microsoft.VisualBasic.Net.Tcp.TCPExtensions.PortIsAvailable(System.Int32)">
  <summary>
@@ -31549,12 +31559,6 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  </summary>
  <param name="str">Required format string: ``IPAddress:Port``</param>
  <remarks></remarks>
-</member>
-<member name="M:Microsoft.VisualBasic.Net.IPEndPoint.ToString">
- <summary>
- http://IPAddress:&lt;Port>/
- </summary>
- <returns></returns>
 </member>
 <member name="M:Microsoft.VisualBasic.Net.IPEndPoint.GetIPEndPoint">
  <summary>
