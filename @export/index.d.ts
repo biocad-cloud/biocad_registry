@@ -47,6 +47,9 @@ declare namespace biocad_registry {
    function imports_genebank(biocad_registry: any, genebank: any): object;
    /**
    */
+   function imports_genomic_refseq(biocad_registry: any, gbff: any): object;
+   /**
+   */
    function imports_kegg(biocad_registry: any, kegg: any): object;
    /**
    */
