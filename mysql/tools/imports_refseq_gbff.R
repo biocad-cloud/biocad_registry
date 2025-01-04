@@ -10,8 +10,8 @@ let registry = open_registry("root", 123456, host = hostname);
 print("imports genbank refseq files");
 print(basename(gbff_files));
 
-for(let file in tqdm(gbff_files)) {
+for(let filepath in tqdm(gbff_files)) {
     try({
-        registry |> imports_genomic_refseq(gbff=file);
+        registry |> imports_genomic_refseq(gbff=filepath);
     });    
 }
