@@ -373,6 +373,13 @@ Oracle.LinuxCompatibility.LibMySQL
  <param name="fields"></param>
  <returns></returns>
 </member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.Model.select_sql(System.String[])">
+ <summary>
+ generates the sql expression of select query
+ </summary>
+ <param name="fields"></param>
+ <returns></returns>
+</member>
 <member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.Model.project``1(System.String)">
  <summary>
  project a field column as vector from the database

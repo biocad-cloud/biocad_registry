@@ -3523,6 +3523,15 @@ Microsoft.VisualBasic.Math.Core
  </returns>
  
 </member>
+<member name="M:Microsoft.VisualBasic.Math.Distributions.Bootstraping.TabulateBin(System.Collections.Generic.IEnumerable{System.Double},System.Boolean,System.Int32)">
+ <summary>
+ Find top frequency binbox
+ </summary>
+ <param name="data"></param>
+ <param name="topBin"></param>
+ <param name="bags">binbox number of the fix width cut bins method</param>
+ <returns></returns>
+</member>
 <member name="T:Microsoft.VisualBasic.Math.Distributions.DirichletDistribution">
  <summary>
  Dirichlet distribution
@@ -4002,7 +4011,7 @@ Microsoft.VisualBasic.Math.Core
  <param name="q"></param>
  <param name="N"></param>
  <param name="eps"></param>
- <returns></returns>
+ <returns>[min,max] of the data range.</returns>
 </member>
 <member name="M:Microsoft.VisualBasic.Math.Distributions.TrIQ.DiscreteLevels(System.Collections.Generic.IEnumerable{System.Double},System.Int32,System.Nullable{System.Double})">
  <summary>

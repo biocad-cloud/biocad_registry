@@ -634,6 +634,15 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  </summary>
  <returns></returns>
 </member>
+<member name="P:Microsoft.VisualBasic.App.EnableTqdm">
+ <summary>
+ Enable of show tqdm progress bar? default is enable.
+ </summary>
+ <returns>default is true, get config from ``tqdm`` variable from the runtime framework.</returns>
+ <remarks>
+ There is a bug about the tqdm progressbar when processing as a slave background process on windows system.
+ </remarks>
+</member>
 <member name="P:Microsoft.VisualBasic.App.CPUCoreNumbers">
  <summary>
  Numbers of the CPU kernels on the current machine.
@@ -10125,6 +10134,12 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  </summary>
  <returns></returns>
 </member>
+<member name="M:Microsoft.VisualBasic.ComponentModel.Algorithm.BinaryTree.ClusterKey`1.Add(`0)">
+ <summary>
+ get all cluster data from this cluster data object, the first element is the root seed of current tree node
+ </summary>
+ <param name="newMember"></param>
+</member>
 <member name="M:Microsoft.VisualBasic.ComponentModel.Algorithm.BinaryTree.ClusterKey`1.DoComparison(System.Comparison{`0},Microsoft.VisualBasic.ComponentModel.Algorithm.BinaryTree.ComparisonDirectionPrefers,System.Boolean)">
  <summary>
  在这里应该是多个key比较一个query
@@ -17589,6 +17604,46 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  application/pdf
  </summary>
 </member>
+<member name="F:Microsoft.VisualBasic.Imaging.Driver.Drivers.PostScript">
+ <summary>
+ The PostScript file format is a page description language (PDL) developed by Adobe Systems, Inc. It was first 
+ introduced in 1982 and has since become a standard for printing and imaging in the graphics and publishing 
+ industries. PostScript is a powerful and flexible format used primarily for printing high-quality text and
+ graphics.
+ 
+ Here are some key aspects of the PostScript file format:
+ 
+ 1. **Language-Based Format**: PostScript is not just a file format but a full-fledged programming language. 
+    It includes a set of commands that describe how text, graphics, and images should be rendered on a page.
+ 2. **Device Independence**: One of the main advantages of PostScript is its device independence. This means
+    that a PostScript file can be created on one device and then printed or displayed on another device without 
+    needing to adjust the file for the specific characteristics of the output device.
+ 3. **Vector Graphics**: PostScript is particularly well-suited for vector graphics, which are defined by 
+    mathematical equations rather than pixels. This allows for crisp, high-resolution output at any size.
+ 4. **Encapsulated PostScript (EPS)**: A variant of PostScript, EPS is a file format that can be used to exchange 
+    graphics between different applications. EPS files can contain both vector and bitmap graphics and are often
+    used for logos, illustrations, and other graphics that need to be integrated into larger documents.
+ 5. **Font Handling**: PostScript introduced sophisticated font handling, including the ability to scale and rotate 
+    text. It also supports both Type 1 and Type 3 fonts, which are outline fonts that can be scaled to any size
+    without losing quality.
+ 6. **Complex Page Layouts**: PostScript is capable of describing very complex page layouts, including text in 
+    multiple columns, overlapping graphics, and nested objects.
+ 7. **Interpreted Language**: PostScript files are interpreted by a PostScript interpreter, which is typically 
+    built into a printer or a raster image processor (RIP). The interpreter reads the PostScript commands and
+    renders the page accordingly.
+ 8. **Compatibility**: While PostScript was once the dominant format for professional printing, its use has declined 
+    somewhat with the rise of PDF (Portable Document Format), also developed by Adobe. However, PostScript remains 
+    important in certain niches, and many printers and RIPs still support it.
+ 9. **File Extensions**: PostScript files commonly have the extensions .ps (for PostScript) or .eps (for Encapsulated PostScript).
+ 10. **Programming Features**: PostScript includes programming constructs such as variables, loops, and conditionals, 
+     which allow for a high degree of automation and customization in the creation of documents.
+     
+ Despite the rise of other formats like PDF, PostScript still has a place in the world of digital printing and publishing, 
+ particularly for applications where precise control over the output is required. It's also worth noting that many of the
+ concepts and technologies introduced with PostScript laid the groundwork for later developments in digital graphics and 
+ document management.
+ </summary>
+</member>
 <member name="T:Microsoft.VisualBasic.Imaging.Driver.GdiRasterGraphics">
  <summary>
  
@@ -20630,7 +20685,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="counts">当目标数目大于或者等于目标集合的数目的时候，则返回目标集合</param>
  <returns></returns>
  <remarks>
- this function use the default <see cref="P:Microsoft.VisualBasic.Math.RandomExtensions.seeds"/>
+ this function use the default <see cref="P:Microsoft.VisualBasic.Math.RandomExtensions.seeds"/>; this function is very slow on processing huge dataset
  </remarks>
 </member>
 <member name="M:Microsoft.VisualBasic.Linq.VectorAssertExtensions.LengthEquals``1(System.Int32,System.Boolean,System.Collections.Generic.IEnumerable{``0}[])">
@@ -20809,7 +20864,10 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  </summary>
  <typeparam name="T"></typeparam>
  <param name="list"></param>
- <returns></returns>
+ <returns>
+ this function returns the item with top frequency in the given list sequence; 
+ and nothing will be returns if the given collection is empty.
+ </returns>
 </member>
 <member name="M:Microsoft.VisualBasic.ListExtensions.DoEach``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0})">
  <summary>
@@ -22783,6 +22841,11 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  + (0, 1): similarity threshold
  </summary>
 </member>
+<member name="T:Microsoft.VisualBasic.Text.Similarity.DirectTextComparer">
+ <summary>
+ A wrapper of the <see cref="M:Microsoft.VisualBasic.StringHelpers.TextEquals(System.String,System.String,System.Boolean,System.Boolean)"/> function
+ </summary>
+</member>
 <member name="T:Microsoft.VisualBasic.Text.Similarity.ISimilarity">
  <summary>
  Summary description for StringMatcher.
@@ -22842,9 +22905,20 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <typeparam name="T"></typeparam>
  <param name="collection"></param>
  <param name="query"></param>
- <param name="cutoff"></param>
+ <param name="cutoff">
+ this text similarity cutoff will filter out some content from the result.
+ </param>
  <param name="strlen_diff"></param>
- <returns></returns>
+ <returns>
+ a sort collection result by the text similarity measurement. this result
+ collection may has elements number less than the input <paramref name="collection"/> 
+ elements number.
+ </returns>
+ <remarks>
+ this function will removes the item inside the collection
+ which its text similarity is smaller than the cutoff of given 
+ <paramref name="query"/> text.
+ </remarks>
 </member>
 <member name="M:Microsoft.VisualBasic.Text.Similarity.Evaluations.StringSelection(System.String,System.Collections.Generic.IEnumerable{System.String},System.Double,System.Boolean,System.Boolean)">
  <summary>
@@ -30658,13 +30732,20 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  </param>
  <returns></returns>
 </member>
-<member name="M:Microsoft.VisualBasic.Net.Http.Base64Codec.DecodeBase64(System.String,System.Text.Encoding,System.Boolean)">
+<member name="M:Microsoft.VisualBasic.Net.Http.Base64Codec.DecodeBase64(System.String,System.Text.Encoding,System.Boolean,System.Boolean)">
  <summary>
  将base64字符串还原为原来的字符串文本
  </summary>
- <param name="base64$"></param>
+ <param name="base64">a base64 encoded text string data for make decode</param>
  <param name="encoding"></param>
- <returns></returns>
+ <param name="strict">
+ throw exception when error occurs during base64 decode? this function will 
+ returns empty string if not strict and exception happends. 
+ </param>
+ <returns>
+ this function may returns empty string when the given base64 string is invalid 
+ and case the base64 decoder error and set strict parameter to false.
+ </returns>
 </member>
 <member name="M:Microsoft.VisualBasic.Net.Http.Base64Codec.ToBase64String(System.Collections.Generic.IEnumerable{System.Byte})">
  <summary>
@@ -31509,9 +31590,10 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
 <member name="T:Microsoft.VisualBasic.Net.IPEndPoint">
  <summary>
  The object of <see cref="T:System.Net.IPEndPoint"/> can not be Xml serialization.
- (系统自带的<see cref="T:System.Net.IPEndPoint"></see>不能够进行Xml序列化)
  </summary>
- <remarks></remarks>
+ <remarks>
+ (系统自带的<see cref="T:System.Net.IPEndPoint"></see>不能够进行Xml序列化)
+ </remarks>
 </member>
 <member name="P:Microsoft.VisualBasic.Net.IPEndPoint.guid">
  <summary>

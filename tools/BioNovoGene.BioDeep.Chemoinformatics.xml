@@ -98,6 +98,61 @@ BioNovoGene.BioDeep.Chemoinformatics
  https://www.xml-cml.org/
  </summary>
 </member>
+<member name="T:BioNovoGene.BioDeep.Chemoinformatics.ICrossReference">
+ <summary>
+ the external database cross reference
+ </summary>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.ICrossReference.chebi">
+ <summary>
+ chebi main id, Chemical Entities of Biological Interest (ChEBI)
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.ICrossReference.pubchem">
+ <summary>
+ The pubchem cid
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.ICrossReference.CAS">
+ <summary>
+ Multiple CAS id may exists
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.CrossReferenceData.UnionData``2(System.Collections.Generic.IEnumerable{``1},BioNovoGene.BioDeep.Chemoinformatics.CrossReferenceData.SetMeta{``1})">
+ <summary>
+ Union a collection of the metabolite data into a single metabolite data model
+ </summary>
+ <typeparam name="C"></typeparam>
+ <typeparam name="T"></typeparam>
+ <param name="group">a collection of the metabolite data that should be populates 
+ from the <see cref="M:BioNovoGene.BioDeep.Chemoinformatics.CrossReferenceData.UniqueGroups``2(System.Collections.Generic.IEnumerable{``1})"/> function.
+ </param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.CrossReferenceData.MakeGroups``2(System.Collections.Generic.IEnumerable{``1})">
+ <summary>
+ Check of the name/id equality via the string comparision directly
+ </summary>
+ <typeparam name="C"></typeparam>
+ <typeparam name="T"></typeparam>
+ <param name="massGroup">
+ a group of the metabolite data with the same exact mass value
+ </param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.CrossReferenceData.Compares``2(``1,``1)">
+ <summary>
+ Check of the two metabolite information similarity via the jaccard index
+ </summary>
+ <typeparam name="C"></typeparam>
+ <typeparam name="T"></typeparam>
+ <param name="x"></param>
+ <param name="y"></param>
+ <returns></returns>
+</member>
 <member name="P:BioNovoGene.BioDeep.Chemoinformatics.Formula.AbbrevStatsType.Symbol">
  <summary>
  The symbol for the abbreviation, e.g. Ph for 
@@ -505,6 +560,17 @@ BioNovoGene.BioDeep.Chemoinformatics
  <param name="isIgnoreHydrogen"></param>
  <returns></returns>
 </member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.Formula.Formula.CompareFormalCharge(BioNovoGene.BioDeep.Chemoinformatics.Formula.Formula,System.Int32@)">
+ <summary>
+ Check of the two formula has formal charge 
+ </summary>
+ <param name="fb"></param>
+ <param name="deltaCharge"></param>
+ <returns>
+ does these two formula reference to a same compound but with different formal charge value?
+ false means these formula reference to different compound object
+ </returns>
+</member>
 <member name="M:BioNovoGene.BioDeep.Chemoinformatics.Formula.Formula.op_Equality(BioNovoGene.BioDeep.Chemoinformatics.Formula.Formula,BioNovoGene.BioDeep.Chemoinformatics.Formula.Formula)">
  <summary>
  check <paramref name="f1"/> equals to <paramref name="f2"/> via <see cref="M:BioNovoGene.BioDeep.Chemoinformatics.Formula.Formula.EqualsTo(BioNovoGene.BioDeep.Chemoinformatics.Formula.Formula,System.Boolean)"/> function.
@@ -701,6 +767,19 @@ BioNovoGene.BioDeep.Chemoinformatics
 <member name="T:BioNovoGene.BioDeep.Chemoinformatics.GenericCompound">
  <summary>
  a generic compound model for metaDNA modelling
+ </summary>
+ <remarks>
+ A union of the abstract interface model:
+ 
+ + <see cref="T:Microsoft.VisualBasic.ComponentModel.Collection.Generic.IReadOnlyId"/>: for the unique database reference id;
+ + <see cref="T:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Annotations.IExactMassProvider"/>: for exact mass value of the metabolite
+ + <see cref="T:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Annotations.ICompoundNameProvider"/>: for the metabolite common name
+ + <see cref="T:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Annotations.IFormulaProvider"/>: for provides the chemical formula string
+ </remarks>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemoinformatics.ICompoundClass">
+ <summary>
+ 主要是取自HMDB数据库之中的代谢物分类信息
  </summary>
 </member>
 <member name="T:BioNovoGene.BioDeep.Chemoinformatics.IUPAC.InChI.Extensions">
@@ -1599,10 +1678,27 @@ BioNovoGene.BioDeep.Chemoinformatics
  空间立体结构的类型
  </summary>
 </member>
+<member name="T:BioNovoGene.BioDeep.Chemoinformatics.SDF.Models.GraphData">
+ <summary>
+ graph model conversion of the molecule structure data and the network graph object
+ </summary>
+</member>
 <member name="T:BioNovoGene.BioDeep.Chemoinformatics.SDF.Models.Structure">
  <summary>
  The molecular structure.
  </summary>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.SDF.Models.Structure.Atoms">
+ <summary>
+ the atom element vetriex collection.
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.SDF.Models.Structure.Bounds">
+ <summary>
+ the edge connections between the atoms
+ </summary>
+ <returns></returns>
 </member>
 <member name="M:BioNovoGene.BioDeep.Chemoinformatics.SDF.Models.Structure.parseCounter(System.String)">
  <summary>

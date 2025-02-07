@@ -563,12 +563,29 @@ Microsoft.VisualBasic.DataStorage.HDSPack
  nothing
  </returns>
 </member>
+<member name="T:Microsoft.VisualBasic.DataStorage.HDSPack.AttributeMetadata">
+ <summary>
+ a name key tagged attribute metadata.
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.DataStorage.HDSPack.AttributeMetadata.name">
+ <summary>
+ the attribute name
+ </summary>
+ <returns></returns>
+</member>
 <member name="M:Microsoft.VisualBasic.DataStorage.HDSPack.LazyAttribute.Add(System.String,System.Object)">
  <summary>
  add key-value paired data into the attribute list
  </summary>
  <param name="name"></param>
  <param name="value"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.DataStorage.HDSPack.LazyAttribute.BuildDynamicTypeObject">
+ <summary>
+ build a dynamics object that could be used for show in property grid controld
+ </summary>
+ <returns></returns>
 </member>
 </members>
 </doc>

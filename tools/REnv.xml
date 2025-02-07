@@ -457,6 +457,12 @@ to [rest of string was truncated]&quot;;.
  </summary>
  <returns></returns>
 </member>
+<member name="M:SMRUCC.Rsharp.Interpreter.ExecuteEngine.ExpressionSymbols.DataSets.FormulaExpression.GetResponseSymbol">
+ <summary>
+ A helper function for get symbol name from response <see cref="P:SMRUCC.Rsharp.Interpreter.ExecuteEngine.ExpressionSymbols.DataSets.FormulaExpression.var"/>.
+ </summary>
+ <returns></returns>
+</member>
 <member name="M:SMRUCC.Rsharp.Interpreter.ExecuteEngine.ExpressionSymbols.DataSets.FormulaExpression.GetSymbols(SMRUCC.Rsharp.Interpreter.ExecuteEngine.Expression)">
  <summary>
  get symbol names from a binary expression or a single symbol reference
@@ -2686,6 +2692,11 @@ to [rest of string was truncated]&quot;;.
 <member name="T:SMRUCC.Rsharp.Language.Syntax.SyntaxParser.ExpressionSignature">
  <summary>
  The signature determination of the given expression tokens 
+ </summary>
+</member>
+<member name="F:SMRUCC.Rsharp.Language.Syntax.SyntaxParser.ExpressionSignature.lambdaOperator">
+ <summary>
+ -> orelse =>
  </summary>
 </member>
 <member name="M:SMRUCC.Rsharp.Language.Syntax.SyntaxParser.ExpressionSignature.isLambdaFunction(Microsoft.VisualBasic.Language.List{SMRUCC.Rsharp.Language.TokenIcer.Token[]})">
@@ -6871,7 +6882,7 @@ to take away yo [rest of string was truncated]&quot;;.
  </param>
  <returns></returns>
 </member>
-<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.file.readLines(System.Object,Microsoft.VisualBasic.Text.Encodings,System.Boolean,SMRUCC.Rsharp.Runtime.Environment)">
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.file.readLines(System.Object,Microsoft.VisualBasic.Text.Encodings,System.Boolean,System.Nullable{System.Boolean},SMRUCC.Rsharp.Runtime.Environment)">
  <summary>
  Read Text Lines from a Connection
  
@@ -6883,6 +6894,9 @@ to take away yo [rest of string was truncated]&quot;;.
  a lazy load data pipeline. default value of this option is FALSE, which
  means this function will returns a character vector which contains all 
  data content lines directly.
+ </param>
+ <param name="strict">
+ this function will returns an empty string vector if not in strict mode
  </param>
  <returns></returns>
 </member>
@@ -7380,7 +7394,7 @@ to take away yo [rest of string was truncated]&quot;;.
  that implement System.Collections.Generic.IEnumerable`1.
  </summary>
 </member>
-<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.LinqPipeline.linq.left_join(SMRUCC.Rsharp.Runtime.Internal.Object.dataframe,SMRUCC.Rsharp.Runtime.Internal.Object.dataframe,System.String,System.String,System.String,System.Object,SMRUCC.Rsharp.Runtime.Environment)">
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.LinqPipeline.linq.left_join(SMRUCC.Rsharp.Runtime.Internal.Object.dataframe,SMRUCC.Rsharp.Runtime.Internal.Object.dataframe,System.String,System.String,System.Object,System.Object,SMRUCC.Rsharp.Runtime.Environment)">
  <summary>
  A left join is a type of relational join operation that combines 
  two datasets based on a common column or variable. The result of 
@@ -7391,7 +7405,10 @@ to take away yo [rest of string was truncated]&quot;;.
  <param name="right"></param>
  <param name="by">the field name that used for join two data table, if the field name that 
  specific by this parameter is existsed in both <paramref name="left"/> and 
- <paramref name="right"/>.</param>
+ <paramref name="right"/>.
+ 
+ this parameter option also could be an integer value 1-based.
+ </param>
  <param name="grep">
  text grep expression for the index key string value, see ``text_grep``.
  </param>
@@ -11031,7 +11048,7 @@ to take away yo [rest of string was truncated]&quot;;.
 </member>
 <member name="P:SMRUCC.Rsharp.Runtime.Internal.Object.dataframe.getColumnVector(System.Int32)">
  <summary>
- <see cref="M:SMRUCC.Rsharp.Runtime.Internal.Object.dataframe.getKeyByIndex(System.Int32)"/>
+ <see cref="M:SMRUCC.Rsharp.Runtime.Internal.Object.dataframe.getKeyByIndex(System.Int32)"/>, get column by 1-based offset
  </summary>
  <param name="index"></param>
  <returns></returns>

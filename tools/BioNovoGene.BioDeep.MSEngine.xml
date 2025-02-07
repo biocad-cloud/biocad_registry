@@ -409,6 +409,149 @@ BioNovoGene.BioDeep.MSEngine
  </summary>
  <returns></returns>
 </member>
+<member name="T:BioNovoGene.BioDeep.MSEngine.MSSearch`1">
+ <summary>
+ Engine for run m/z query
+ </summary>
+ <typeparam name="Compound"></typeparam>
+</member>
+<member name="F:BioNovoGene.BioDeep.MSEngine.MSSearch`1.index">
+ <summary>
+ index by unique id
+ </summary>
+</member>
+<member name="P:BioNovoGene.BioDeep.MSEngine.MSSearch`1.Metadata">
+ <summary>
+ pull all compound meta data from current m/z search index
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.MSEngine.MSSearch`1.#ctor(System.Collections.Generic.IEnumerable{`0},BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Tolerance,BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.MzCalculator[],System.Func{`0,System.Double},System.Func{`0,System.Collections.Generic.Dictionary{System.String,System.String}},Microsoft.VisualBasic.ComponentModel.Ranges.Model.DoubleRange)">
+ <summary>
+ 
+ </summary>
+ <param name="tree"></param>
+ <param name="tolerance">
+ the mass tolerance value between two mass value
+ </param>
+ <param name="precursorTypes"></param>
+ <param name="score"></param>
+</member>
+<member name="M:BioNovoGene.BioDeep.MSEngine.MSSearch`1.GetCompound(System.String)">
+ <summary>
+ get kegg compound by a given kegg id
+ </summary>
+ <param name="id">
+ kegg compound id in pattern ``C\d+``
+ </param>
+ <returns>
+ this function returns nothing if the target compound id
+ is not exists in the current database
+ </returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.MSEngine.MSSearch`1.QueryByMz(System.Double)">
+ <summary>
+ 
+ </summary>
+ <param name="mz"></param>
+ <returns>
+ 函数返回符合条件的kegg代谢物编号
+ </returns>
+ <remarks>
+ the query score is zero from this function
+ </remarks>
+</member>
+<member name="T:BioNovoGene.BioDeep.MSEngine.MzQuery">
+ <summary>
+ query result of a ms1 m/z ion
+ </summary>
+</member>
+<member name="P:BioNovoGene.BioDeep.MSEngine.MzQuery.mz">
+ <summary>
+ the source ``m/z`` value
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.MSEngine.MzQuery.mz_ref">
+ <summary>
+ the evaluated theoretical m/z value based 
+ on the precursor type and formula string 
+ data.
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.MSEngine.MzQuery.unique_id">
+ <summary>
+ the unique id of the target query result metabolite
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.MSEngine.MzQuery.score">
+ <summary>
+ used in MSJointConnection peak list annotation.
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.MSEngine.MzQuery.ReferenceKey(BioNovoGene.BioDeep.MSEngine.MzQuery,System.String)">
+ <summary>
+ makes a unique reference key of current mz query result
+ </summary>
+ <returns></returns>
+ 
+</member>
+<member name="M:BioNovoGene.BioDeep.MSEngine.MzQuery.ToString">
+ <summary>
+ unique_id precursor_type, m/z xxx.xxxx; score=xxx
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.MSEngine.PeptideCalc.Sequence2PeptidesByVariableModifications(BioNovoGene.BioDeep.MSEngine.Peptide,BioNovoGene.BioDeep.MSEngine.ModificationContainer,System.Int32,System.Double,System.Double)">
+ <summary>
+ peptide should be processed by Sequence2PeptideByFixedModifications before using this method
+ </summary>
+ <param name="peptide"></param>
+ <param name="container"></param>
+ <param name="maxNumberOfModificationsPerPeptide"></param>
+ <returns></returns>
+</member>
+<member name="F:BioNovoGene.BioDeep.MSEngine.SequenceToSpec.comparer">
+ <summary>
+ default is 20ppm tolerance error for treated the two mass value as equals.
+ </summary>
+</member>
+<member name="T:BioNovoGene.BioDeep.MSEngine.AnnotationData`1">
+ <summary>
+ the annotation result dataset
+ </summary>
+ <typeparam name="T"></typeparam>
+ <remarks>
+ the report table row will be generates from this object
+ </remarks>
+</member>
+<member name="P:BioNovoGene.BioDeep.MSEngine.AnnotationData`1.ID">
+ <summary>
+ A unique database reference id of current metabolite data object
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.MSEngine.AnnotationData`1.Xref">
+ <summary>
+ the external database cross reference
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.MSEngine.AnnotationData`1.Score">
+ <summary>
+ MSDIAL score
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.MSEngine.AnnotationData`1.Alignment">
+ <summary>
+ Spectrum alignment result
+ </summary>
+ <returns></returns>
+</member>
 <member name="M:BioNovoGene.BioDeep.MSEngine.MsScanMatching.GetIsotopeRatioSimilarity(System.Collections.Generic.IReadOnlyList{BioNovoGene.BioDeep.Chemoinformatics.Formula.IsotopicPatterns.IsotopicPeak},System.Collections.Generic.IReadOnlyList{BioNovoGene.BioDeep.Chemoinformatics.Formula.IsotopicPatterns.IsotopicPeak},System.Double,System.Double)">
  <summary>
  This method returns the similarity score between theoretical isotopic ratios and experimental isotopic patterns in MS1 axis.
@@ -554,120 +697,37 @@ BioNovoGene.BioDeep.MSEngine
  The similarity score which is standadized from 0 (no similarity) to 1 (consistency) will be return.
  </returns>
 </member>
-<member name="T:BioNovoGene.BioDeep.MSEngine.MSSearch`1">
- <summary>
- Engine for run m/z query
- </summary>
- <typeparam name="Compound"></typeparam>
-</member>
-<member name="F:BioNovoGene.BioDeep.MSEngine.MSSearch`1.index">
- <summary>
- index by unique id
- </summary>
-</member>
-<member name="P:BioNovoGene.BioDeep.MSEngine.MSSearch`1.Metadata">
- <summary>
- pull all compound meta data from current m/z search index
- </summary>
- <returns></returns>
-</member>
-<member name="M:BioNovoGene.BioDeep.MSEngine.MSSearch`1.#ctor(System.Collections.Generic.IEnumerable{`0},BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Tolerance,BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.MzCalculator[],System.Func{`0,System.Double},System.Func{`0,System.Collections.Generic.Dictionary{System.String,System.String}},Microsoft.VisualBasic.ComponentModel.Ranges.Model.DoubleRange)">
- <summary>
- 
- </summary>
- <param name="tree"></param>
- <param name="tolerance">
- the mass tolerance value between two mass value
- </param>
- <param name="precursorTypes"></param>
- <param name="score"></param>
-</member>
-<member name="M:BioNovoGene.BioDeep.MSEngine.MSSearch`1.GetCompound(System.String)">
- <summary>
- get kegg compound by a given kegg id
- </summary>
- <param name="id">
- kegg compound id in pattern ``C\d+``
- </param>
- <returns>
- this function returns nothing if the target compound id
- is not exists in the current database
- </returns>
-</member>
-<member name="M:BioNovoGene.BioDeep.MSEngine.MSSearch`1.QueryByMz(System.Double)">
- <summary>
- 
- </summary>
- <param name="mz"></param>
- <returns>
- 函数返回符合条件的kegg代谢物编号
- </returns>
- <remarks>
- the query score is zero from this function
- </remarks>
-</member>
-<member name="T:BioNovoGene.BioDeep.MSEngine.MzQuery">
- <summary>
- query result of a ms1 m/z ion
- </summary>
-</member>
-<member name="P:BioNovoGene.BioDeep.MSEngine.MzQuery.mz">
- <summary>
- the source ``m/z`` value
- </summary>
- <returns></returns>
-</member>
-<member name="P:BioNovoGene.BioDeep.MSEngine.MzQuery.mz_ref">
- <summary>
- the evaluated theoretical m/z value based 
- on the precursor type and formula string 
- data.
- </summary>
- <returns></returns>
-</member>
-<member name="P:BioNovoGene.BioDeep.MSEngine.MzQuery.unique_id">
- <summary>
- the unique id of the target query result metabolite
- </summary>
- <returns></returns>
-</member>
-<member name="P:BioNovoGene.BioDeep.MSEngine.MzQuery.score">
- <summary>
- used in MSJointConnection peak list annotation.
- </summary>
- <returns></returns>
-</member>
-<member name="M:BioNovoGene.BioDeep.MSEngine.MzQuery.ReferenceKey(BioNovoGene.BioDeep.MSEngine.MzQuery,System.String)">
- <summary>
- makes a unique reference key of current mz query result
- </summary>
- <returns></returns>
- 
-</member>
-<member name="M:BioNovoGene.BioDeep.MSEngine.MzQuery.ToString">
- <summary>
- unique_id precursor_type, m/z xxx.xxxx; score=xxx
- </summary>
- <returns></returns>
-</member>
-<member name="M:BioNovoGene.BioDeep.MSEngine.PeptideCalc.Sequence2PeptidesByVariableModifications(BioNovoGene.BioDeep.MSEngine.Peptide,BioNovoGene.BioDeep.MSEngine.ModificationContainer,System.Int32,System.Double,System.Double)">
- <summary>
- peptide should be processed by Sequence2PeptideByFixedModifications before using this method
- </summary>
- <param name="peptide"></param>
- <param name="container"></param>
- <param name="maxNumberOfModificationsPerPeptide"></param>
- <returns></returns>
-</member>
-<member name="F:BioNovoGene.BioDeep.MSEngine.SequenceToSpec.comparer">
- <summary>
- default is 20ppm tolerance error for treated the two mass value as equals.
- </summary>
-</member>
 <member name="T:BioNovoGene.BioDeep.MSEngine.MsScanMatchResult">
  <summary>
  ms spectrum annotation result
  </summary>
+ <remarks>
+ contains the score matched result
+ </remarks>
+</member>
+<member name="P:BioNovoGene.BioDeep.MSEngine.MsScanMatchResult.Name">
+ <summary>
+ basic annotated information
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.MSEngine.MsScanMatchResult.WeightedDotProduct">
+ <summary>
+ spectral similarity
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.MSEngine.MsScanMatchResult.LibraryID">
+ <summary>
+ Link to database
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.MSEngine.MsScanMatchResult.IsManuallyModified">
+ <summary>
+ Support for multiple annotation method
+ </summary>
+ <returns></returns>
 </member>
 <member name="M:BioNovoGene.BioDeep.MSEngine.SpectrumHandler.EstimateIsotopes(System.Collections.Generic.List{BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.SpectrumPeak},System.Double,System.Boolean,System.Int32)">
  <summary>

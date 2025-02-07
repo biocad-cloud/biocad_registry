@@ -420,6 +420,11 @@ BioNovoGene.Analytical.MassSpectrometry.Math
  </summary>
  <returns></returns>
 </member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Extensions">
+ <summary>
+ Some common helper function for the mass spectrum data
+ </summary>
+</member>
 <member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Extensions.Trim(BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LibraryMatrix@,System.Double)">
  <summary>
  将响应强度低于一定值的碎片进行删除
@@ -964,7 +969,9 @@ BioNovoGene.Analytical.MassSpectrometry.Math
  解析出阳离子模式的加合物形式
  </summary>
  <param name="mode">例如[M]+，[M+H]+等</param>
- <returns></returns>
+ <returns>
+ 
+ </returns>
 </member>
 <member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.Provider.Negative(System.String)">
  <summary>
@@ -974,6 +981,18 @@ BioNovoGene.Analytical.MassSpectrometry.Math
  <returns></returns>
 </member>
 <member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.Provider.Calculators(System.String[])">
+ <summary>
+ get internal m/z calculator
+ </summary>
+ <param name="precursor_types"></param>
+ <returns></returns>
+ <remarks>
+ this function has an internal cache hash table for the given input adducts string.
+ and the new precursor adducts object will be parsed if it not found inside 
+ the internal cache.
+ </remarks>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.Provider.Calculators(System.String[],System.Boolean)">
  <summary>
  get internal m/z calculator
  </summary>
@@ -1867,6 +1886,18 @@ BioNovoGene.Analytical.MassSpectrometry.Math
  <param name="mz"></param>
  <param name="intensity"></param>
 </member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ms2.#ctor(BioNovoGene.Analytical.MassSpectrometry.Math.IMs1Scan)">
+ <summary>
+ makes peak data copy
+ </summary>
+ <param name="peak"></param>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ms2.#ctor(BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ms2)">
+ <summary>
+ make value copy
+ </summary>
+ <param name="data"></param>
+</member>
 <member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ms2.CompareTo(System.Object)">
  <summary>
  compares by mz value
@@ -1892,6 +1923,9 @@ BioNovoGene.Analytical.MassSpectrometry.Math
  <summary>
  annotation of the m/z value
  </summary>
+ <remarks>
+ could be ctype cast to mz number value
+ </remarks>
 </member>
 <member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.MzAnnotation.productMz">
  <summary>
@@ -2221,7 +2255,7 @@ BioNovoGene.Analytical.MassSpectrometry.Math
 </member>
 <member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml.SSM2MatrixFragment">
  <summary>
- tuple data of [mz, query_intensity, reference_intensity]
+ tuple data of [mz, query_intensity, reference_intensity], a MatchedPeak model
  </summary>
 </member>
 <member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml.SSM2MatrixFragment.mz">

@@ -172,12 +172,12 @@ BioNovoGene.BioDeep.Chemistry.Massbank
  <param name="names"></param>
  <returns></returns>
 </member>
-<member name="T:BioNovoGene.BioDeep.Chemistry.MetaLib.TreeSearch">
+<member name="T:BioNovoGene.BioDeep.Chemistry.MetaLib.MetaDataTreeSearch">
  <summary>
  在数据库的编号定义比较模糊的情况下, 会需要使用这个模块进行快速匹配搜索
  </summary>
 </member>
-<member name="M:BioNovoGene.BioDeep.Chemistry.MetaLib.TreeSearch.#ctor(System.Double)">
+<member name="M:BioNovoGene.BioDeep.Chemistry.MetaLib.MetaDataTreeSearch.#ctor(System.Double)">
  <summary>
  
  </summary>
@@ -327,14 +327,9 @@ BioNovoGene.BioDeep.Chemistry.Massbank
  </param>
  <returns></returns>
 </member>
-<member name="T:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.ICompoundClass">
- <summary>
- 主要是取自HMDB数据库之中的代谢物分类信息
- </summary>
-</member>
 <member name="T:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.ClassReader">
  <summary>
- a helper for get <see cref="T:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.ICompoundClass"/> data
+ a helper for get <see cref="T:BioNovoGene.BioDeep.Chemoinformatics.ICompoundClass"/> data
  </summary>
 </member>
 <member name="M:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.ClassReader.EnumerateId">
@@ -347,15 +342,15 @@ BioNovoGene.BioDeep.Chemistry.Massbank
  for get the compound class data via the <see cref="M:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.ClassReader.GetClass(System.String)"/> method.
  </returns>
 </member>
-<member name="M:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.ClassReader.ToSet(BioNovoGene.BioDeep.Chemistry.MetaLib.Models.ICompoundClass)">
+<member name="M:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.ClassReader.ToSet(BioNovoGene.BioDeep.Chemoinformatics.ICompoundClass)">
  <summary>
  populate the class structure data in string array:
  
- 1. <see cref="P:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.ICompoundClass.kingdom"/>
- 2. <see cref="P:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.ICompoundClass.super_class"/>
- 3. <see cref="P:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.ICompoundClass.class"/>
- 4. <see cref="P:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.ICompoundClass.sub_class"/>
- 5. <see cref="P:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.ICompoundClass.molecular_framework"/>
+ 1. <see cref="P:BioNovoGene.BioDeep.Chemoinformatics.ICompoundClass.kingdom"/>
+ 2. <see cref="P:BioNovoGene.BioDeep.Chemoinformatics.ICompoundClass.super_class"/>
+ 3. <see cref="P:BioNovoGene.BioDeep.Chemoinformatics.ICompoundClass.class"/>
+ 4. <see cref="P:BioNovoGene.BioDeep.Chemoinformatics.ICompoundClass.sub_class"/>
+ 5. <see cref="P:BioNovoGene.BioDeep.Chemoinformatics.ICompoundClass.molecular_framework"/>
  </summary>
  <param name="c"></param>
  <returns></returns>
@@ -453,7 +448,7 @@ BioNovoGene.BioDeep.Chemistry.Massbank
  </summary>
  <returns></returns>
 </member>
-<member name="M:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaLib.#ctor(BioNovoGene.BioDeep.Chemistry.MetaLib.Models.ICompoundClass)">
+<member name="M:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaLib.#ctor(BioNovoGene.BioDeep.Chemoinformatics.ICompoundClass)">
  <summary>
  creator a metabolite annotation data with compound class assigned
  </summary>
@@ -515,6 +510,13 @@ BioNovoGene.BioDeep.Chemistry.Massbank
  尝试将文本之中的仪器厂商的名称解析出来
  </summary>
  <param name="text"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.MetaLib.NaturalLanguageTerm.ConvertToAcidName(System.String)">
+ <summary>
+ ate to acid name conversion
+ </summary>
+ <param name="compoundName"></param>
  <returns></returns>
 </member>
 <member name="T:BioNovoGene.BioDeep.Chemistry.MetaLib.RefMet">
@@ -1304,7 +1306,7 @@ BioNovoGene.BioDeep.Chemistry.Massbank
  </summary>
  <returns></returns>
 </member>
-<member name="M:BioNovoGene.BioDeep.Chemistry.TMIC.HMDB.metabolite.Load(System.String)">
+<member name="M:BioNovoGene.BioDeep.Chemistry.TMIC.HMDB.metabolite.Load(System.String,System.Boolean)">
  <summary>
  Iterates of the HMDB dataset
  </summary>
@@ -1365,7 +1367,7 @@ BioNovoGene.BioDeep.Chemistry.Massbank
  <param name="names"></param>
  <returns></returns>
 </member>
-<member name="M:BioNovoGene.BioDeep.Chemistry.TMIC.HMDB.HMDBExtensions.LoadXML(System.String)">
+<member name="M:BioNovoGene.BioDeep.Chemistry.TMIC.HMDB.HMDBExtensions.LoadXML(System.String,System.Boolean)">
  <summary>
  parse the ultra large hmdb metabolite database xml file.
  </summary>
@@ -1451,6 +1453,11 @@ BioNovoGene.BioDeep.Chemistry.Massbank
  Create descriptor data set for machine learning 
  </summary>
  <returns></returns>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemistry.TMIC.HMDB.MetaboliteTable">
+ <summary>
+ A simple metabolite table that used for save in messagepack format
+ </summary>
 </member>
 <member name="T:BioNovoGene.BioDeep.Chemistry.TMIC.HMDB.MetaDb">
  <summary>
