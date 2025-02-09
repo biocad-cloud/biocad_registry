@@ -698,6 +698,35 @@ BioNovoGene.Analytical.MassSpectrometry.Math
  </summary>
  <returns></returns>
 </member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Annotations.MetID">
+ <summary>
+ the ion annotation model
+ </summary>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Annotations.MetID.unique_id">
+ <summary>
+ the unique id of the target query result metabolite
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Annotations.MetID.precursor_type">
+ <summary>
+ the ion adducts of this ion precursor
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Annotations.MetID.mz">
+ <summary>
+ the source ``m/z`` value of current annotated ion feature.
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Annotations.MetID.name">
+ <summary>
+ the metabolite name of current ion that annotated.
+ </summary>
+ <returns></returns>
+</member>
 <member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.AdductIonParser">
  <summary>
  MS-DIAL AdductIonParser

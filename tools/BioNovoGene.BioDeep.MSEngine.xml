@@ -466,12 +466,6 @@ BioNovoGene.BioDeep.MSEngine
  query result of a ms1 m/z ion
  </summary>
 </member>
-<member name="P:BioNovoGene.BioDeep.MSEngine.MzQuery.mz">
- <summary>
- the source ``m/z`` value
- </summary>
- <returns></returns>
-</member>
 <member name="P:BioNovoGene.BioDeep.MSEngine.MzQuery.mz_ref">
  <summary>
  the evaluated theoretical m/z value based 
@@ -480,15 +474,15 @@ BioNovoGene.BioDeep.MSEngine
  </summary>
  <returns></returns>
 </member>
-<member name="P:BioNovoGene.BioDeep.MSEngine.MzQuery.unique_id">
- <summary>
- the unique id of the target query result metabolite
- </summary>
- <returns></returns>
-</member>
 <member name="P:BioNovoGene.BioDeep.MSEngine.MzQuery.score">
  <summary>
  used in MSJointConnection peak list annotation.
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.MSEngine.MzQuery.Clone">
+ <summary>
+ make value copy
  </summary>
  <returns></returns>
 </member>

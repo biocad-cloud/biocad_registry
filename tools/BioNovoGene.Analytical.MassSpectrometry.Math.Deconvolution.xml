@@ -318,6 +318,15 @@ BioNovoGene.Analytical.MassSpectrometry.Math.Deconvolution
  </summary>
  <returns></returns>
 </member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.PeakSet.annotations">
+ <summary>
+ annotation of the part of the <see cref="P:BioNovoGene.Analytical.MassSpectrometry.Math.PeakSet.peaks"/>
+ </summary>
+ <returns></returns>
+ <remarks>
+ the hash key of the dictionary is the <see cref="P:BioNovoGene.Analytical.MassSpectrometry.Math.xcms2.ID"/>.
+ </remarks>
+</member>
 <member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.PeakSet.GetById(System.String)">
  <summary>
  try to get a peak by its unique reference id
