@@ -271,7 +271,7 @@ SMRUCC.genomics.foundation.OBO_Foundry
  <returns></returns>
  
 </member>
-<member name="M:SMRUCC.genomics.foundation.OBO_Foundry.IO.Writer.ToLines``1(``0,Microsoft.VisualBasic.ComponentModel.Collection.Dictionary{Microsoft.VisualBasic.ComponentModel.DataSourceModel.SchemaMaps.BindProperty{SMRUCC.genomics.foundation.OBO_Foundry.IO.Reflection.Field}},Microsoft.VisualBasic.ComponentModel.Collection.Index{System.String})">
+<member name="M:SMRUCC.genomics.foundation.OBO_Foundry.IO.Writer.ToLines``1(``0,Microsoft.VisualBasic.ComponentModel.Collection.Dictionary{Microsoft.VisualBasic.ComponentModel.DataSourceModel.SchemaMaps.BindProperty{SMRUCC.genomics.foundation.OBO_Foundry.IO.Reflection.Field}},Microsoft.VisualBasic.ComponentModel.Collection.Index{System.String},System.String,System.Boolean)">
  <summary>
  For generates the obo document and save data model into the file system.
  </summary>

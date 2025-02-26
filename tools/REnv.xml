@@ -1001,6 +1001,12 @@ to [rest of string was truncated]&quot;;.
  (其实就是一段拥有自己的<see cref="T:SMRUCC.Rsharp.Runtime.Environment"/>的没有名称的匿名函数)
  </summary>
 </member>
+<member name="M:SMRUCC.Rsharp.Interpreter.ExecuteEngine.ExpressionSymbols.Closure.ClosureExpression.#ctor(SMRUCC.Rsharp.Interpreter.ExecuteEngine.Expression[])">
+ <summary>
+ construct closure from a collection of the multiple expression
+ </summary>
+ <param name="code"></param>
+</member>
 <member name="T:SMRUCC.Rsharp.Interpreter.ExecuteEngine.ExpressionSymbols.Closure.DeclareLambdaFunction">
  <summary>
  只允许简单的表达式出现在这里
@@ -4556,13 +4562,117 @@ to take away yo [rest of string was truncated]&quot;;.
  <param name="size"></param>
  <returns></returns>
 </member>
-<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.base.unitOfT(System.Object,System.Object,SMRUCC.Rsharp.Runtime.Environment)">
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.base.unitOfT(System.Object,System.Object,System.Object,SMRUCC.Rsharp.Runtime.Environment)">
  <summary>
- get or set unit to a given vector
+ ### Function to Create a Unit Object
+ 
+ get or set unit to a given vector. This function creates a unit object — a vector of unit values. 
+ A unit value is typically just a single numeric value with an associated unit.
  </summary>
- <param name="x"></param>
- <param name="unit"></param>
- <returns></returns>
+ <param name="x">A numeric vector. For is.unit, any R object.</param>
+ <param name="units">A character vector specifying the units for the corresponding numeric values.</param>
+ <param name="data">
+ This argument is used to supply extra information for special unit types.
+ </param>
+ <returns>
+ a numeric vector data that tagged with the given specific unit value, or returns the 
+ units name of the given vector data if the <paramref name="units"/> parameter has 
+ not been assigned.
+ </returns>
+ <remarks>
+ Unit objects allow the user to specify locations and dimensions in a large number of different
+ coordinate systems. All drawing occurs relative to a viewport and the units specifies what
+ coordinate system to use within that viewport.
+ 
+ Possible units (coordinate systems) are:
+ 
+ "npc"
+ Normalised Parent Coordinates (the default). The origin of the viewport is (0, 0) and the 
+ viewport has a width and height of 1 unit. For example, (0.5, 0.5) is the centre of the 
+ viewport.
+ 
+ "cm"
+ Centimetres.
+ 
+ "inches"
+ Inches. 1 in = 2.54 cm.
+ 
+ "mm"
+ Millimetres. 10 mm = 1 cm.
+ 
+ "points"
+ Points. 72.27 pt = 1 in.
+ 
+ "picas"
+ Picas. 1 pc = 12 pt.
+ 
+ "bigpts"
+ Big Points. 72 bp = 1 in.
+ 
+ "dida"
+ Dida. 1157 dd = 1238 pt.
+ 
+ "cicero"
+ Cicero. 1 cc = 12 dd.
+ 
+ "scaledpts"
+ Scaled Points. 65536 sp = 1 pt.
+ 
+ "lines"
+ Lines of text. Locations and dimensions are in terms of multiples of the default text size of the
+ viewport (as specified by the viewport's fontsize and lineheight).
+ 
+ "char"
+ Multiples of nominal font height of the viewport (as specified by the viewport's fontsize).
+ 
+ "native"
+ Locations and dimensions are relative to the viewport's xscale and yscale.
+ 
+ "snpc"
+ Square Normalised Parent Coordinates. Same as Normalised Parent Coordinates, except gives the same
+ answer for horizontal and vertical locations/dimensions. It uses the lesser of npc-width and npc-height. 
+ This is useful for making things which are a proportion of the viewport, but have to be square 
+ (or have a fixed aspect ratio).
+ 
+ "strwidth"
+ Multiples of the width of the string specified in the data argument. The font size is determined by
+ the pointsize of the viewport.
+ 
+ "strheight"
+ Multiples of the height of the string specified in the data argument. The font size is determined by 
+ the pointsize of the viewport.
+ 
+ "grobwidth"
+ Multiples of the width of the grob specified in the data argument.
+ 
+ "grobheight"
+ Multiples of the height of the grob specified in the data argument.
+ 
+ A number of variations are also allowed for the most common units. For example, it is possible to 
+ use "in" or "inch" instead of "inches" and "centimetre" or "centimeter" instead of "cm".
+ 
+ A special units value of "null" is also allowed, but only makes sense when used in specifying widths of
+ columns or heights of rows in grid layouts (see grid.layout).
+ 
+ The data argument must be a list when the unit.length() is greater than 1. For example,
+ 
+ ```r
+ unit(rep(1, 3), c("npc", "strwidth", "inches"),
+ data = list(NULL, "my string", NULL))
+ ```
+ 
+ It is possible to subset unit objects in the normal way and to perform subassignment (see the examples),
+ but a special function unit.c is provided for combining unit objects.
+ 
+ Certain arithmetic and summary operations are defined for unit objects. In particular, it is possible 
+ to add and subtract unit objects (e.g., unit(1, "npc") - unit(1, "inches")), and to specify the minimum 
+ or maximum of a list of unit objects (e.g., min(unit(0.5, "npc"), unit(1, "inches"))).
+ 
+ There is a format method for units, which should respond to the arguments for the default format method, 
+ e.g., digits to control the number of significant digits printed for numeric values.
+ 
+ The is.unit() function is a convenience for checking whether x inherits from the "unit" class.
+ </remarks>
 </member>
 <member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.base.__invisible(System.Object)">
  <summary>
@@ -4706,7 +4816,9 @@ to take away yo [rest of string was truncated]&quot;;.
  </summary>
  <param name="slots">objects, possibly named.</param>
  <param name="envir"></param>
- <returns></returns>
+ <returns>
+ 
+ </returns>
 </member>
 <member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.base.summary(System.Object,System.Object,SMRUCC.Rsharp.Runtime.Environment)">
  <summary>
@@ -5436,7 +5548,7 @@ to take away yo [rest of string was truncated]&quot;;.
  
  Functions to get or set the names of an object.
  </summary>
- <param name="[object]">an R object.</param>
+ <param name="object">an R object.</param>
  <param name="namelist">
  a character vector of up to the same length as ``x``, or ``NULL``.
  </param>
@@ -5497,6 +5609,13 @@ to take away yo [rest of string was truncated]&quot;;.
  <returns>A character vector of same length as names with each 
  changed to a syntactically valid name, in the current locale's 
  encoding.</returns>
+</member>
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.base.uniqueNames(System.Object)">
+ <summary>
+ make the given name string be unique
+ </summary>
+ <param name="names"></param>
+ <returns>this function by extends the numeric suffix to the duplictaed name for make the name string be uniqued!</returns>
 </member>
 <member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.base.rownames(System.Object,System.Array,SMRUCC.Rsharp.Runtime.Environment)">
  <summary>
@@ -7161,7 +7280,7 @@ to take away yo [rest of string was truncated]&quot;;.
  character vectors, containing file names or paths.
  </param>
 </member>
-<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.file.unlinks(System.String[])">
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.file.unlinks(System.String[],SMRUCC.Rsharp.Runtime.Environment)">
  <summary>
  Delete files or directories
  </summary>
@@ -7394,7 +7513,7 @@ to take away yo [rest of string was truncated]&quot;;.
  that implement System.Collections.Generic.IEnumerable`1.
  </summary>
 </member>
-<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.LinqPipeline.linq.left_join(SMRUCC.Rsharp.Runtime.Internal.Object.dataframe,SMRUCC.Rsharp.Runtime.Internal.Object.dataframe,System.String,System.String,System.Object,System.Object,SMRUCC.Rsharp.Runtime.Environment)">
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.LinqPipeline.linq.left_join(SMRUCC.Rsharp.Runtime.Internal.Object.dataframe,SMRUCC.Rsharp.Runtime.Internal.Object.dataframe,System.Object,System.Object,System.Object,System.Object,SMRUCC.Rsharp.Runtime.Environment)">
  <summary>
  A left join is a type of relational join operation that combines 
  two datasets based on a common column or variable. The result of 
@@ -11098,6 +11217,14 @@ to take away yo [rest of string was truncated]&quot;;.
  <param name="keys"></param>
  <returns></returns>
 </member>
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Object.dataframe.detach(System.String)">
+ <summary>
+ delete the specific col and get the deleted col array
+ </summary>
+ <param name="col"></param>
+ <returns>this function will returns nothing if the given <paramref name="col"/> 
+ is not existed inside the dataframe columns.</returns>
+</member>
 <member name="M:SMRUCC.Rsharp.Runtime.Internal.Object.dataframe.getKeyByIndex(System.Int32)">
  <summary>
  将列索引号转换为列名称
@@ -11413,6 +11540,16 @@ to take away yo [rest of string was truncated]&quot;;.
  
  1. this function just add slot value directly even if the given value is nothing
  2. ``setByName`` function will removes slot if the value is nothing
+ </remarks>
+</member>
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Object.list.unique_add(System.String,System.Object)">
+ <summary>
+ add unique key-value safely
+ </summary>
+ <param name="name">duplicated name will be appends a suffix string for avoid the key conflicts</param>
+ <param name="value"></param>
+ <remarks>
+ the duplicated name will be resolved safely in this function.
  </remarks>
 </member>
 <member name="M:SMRUCC.Rsharp.Runtime.Internal.Object.list.add(System.String,System.String)">
@@ -11905,7 +12042,9 @@ to take away yo [rest of string was truncated]&quot;;.
  <param name="vbobj"></param>
  <param name="args"></param>
  <param name="env"></param>
- <returns></returns>
+ <returns>
+ this function may returns an error message if the clr object property read error.
+ </returns>
 </member>
 <member name="M:SMRUCC.Rsharp.Runtime.Internal.Object.Converts.castRaw.castToRawRoutine(SMRUCC.Rsharp.Runtime.Environment,System.Object,Microsoft.VisualBasic.Text.Encodings,System.Boolean)">
  <summary>
@@ -13709,6 +13848,13 @@ to take away yo [rest of string was truncated]&quot;;.
  the function will returns nothing if the type mapping is not valid
  </returns>
 </member>
+<member name="M:SMRUCC.Rsharp.Runtime.RVectorExtensions.AllNothing(System.Array)">
+ <summary>
+ check all elements inside the given array is all nothing?
+ </summary>
+ <param name="v"></param>
+ <returns></returns>
+</member>
 <member name="M:SMRUCC.Rsharp.Runtime.RVectorExtensions.isVector``1(System.Object)">
  <summary>
  Object ``x`` is an array of <typeparamref name="T"/>?
@@ -14120,6 +14266,9 @@ to take away yo [rest of string was truncated]&quot;;.
  <summary>
  The warning message and exception message
  </summary>
+ <remarks>
+ this runtime message object is a collection of the error message string
+ </remarks>
 </member>
 <member name="P:SMRUCC.Rsharp.Runtime.Components.Message.message">
  <summary>
@@ -14473,6 +14622,15 @@ to take away yo [rest of string was truncated]&quot;;.
  <summary>
  Data cast type helper for the primitive array in CLR function code
  </summary>
+</member>
+<member name="M:SMRUCC.Rsharp.Runtime.Vectorization.CLRVector.safeCharacters(System.Object)">
+ <summary>
+ 
+ </summary>
+ <param name="x"></param>
+ <returns>
+ the returns string array always not null
+ </returns>
 </member>
 <member name="M:SMRUCC.Rsharp.Runtime.Vectorization.CLRVector.asCharacter(System.Object)">
  <summary>

@@ -2553,7 +2553,7 @@ BioNovoGene.Analytical.MassSpectrometry.Math
  <param name="getY"></param>
  <returns></returns>
 </member>
-<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.SpectraEncoder.Decode(System.String,System.String)">
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.SpectraEncoder.Decode(System.String,System.String,Microsoft.VisualBasic.Serialization.BinaryDumping.NetworkByteOrderBuffer.Compression,System.Boolean)">
  <summary>
  
  </summary>
@@ -2570,6 +2570,16 @@ BioNovoGene.Analytical.MassSpectrometry.Math
  </summary>
  <param name="base64"></param>
  <returns></returns>
+ <remarks>
+ the text format description about the input data:
+ 
+ input data should be a text encoded matrix data:
+ 
+ each line is a ion fragment data, in layout of [mz][tab][intensity]
+ then multiple ion fragments data consist the matrix text
+ 
+ the matrix text then encoded as base64 string in utf-8 text encoded format.
+ </remarks>
 </member>
 <member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.IMSScanProperty">
  <summary>

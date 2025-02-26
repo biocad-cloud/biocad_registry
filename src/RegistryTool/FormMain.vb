@@ -2,7 +2,7 @@
 Imports biocad_registry
 Imports BioNovoGene.BioDeep.Chemistry.MetaLib
 Imports BioNovoGene.BioDeep.Chemistry.MetaLib.CrossReference
-Imports Microsoft.VisualBasic.Data.csv.IO
+Imports Microsoft.VisualBasic.Data.Framework.IO
 Imports Microsoft.VisualBasic.Language
 Imports RegistryTool.My
 Imports Metadata = BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaLib

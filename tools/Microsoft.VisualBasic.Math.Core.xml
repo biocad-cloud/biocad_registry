@@ -4566,6 +4566,22 @@ Microsoft.VisualBasic.Math.Core
  <param name="seed">种子质数。 31，33，37 。。。</param>
  <returns></returns>
 </member>
+<member name="M:Microsoft.VisualBasic.Math.HashMaps.HashMap.HashCodePair(System.Int32,System.Int32)">
+ <summary>
+ generate unique hashcode for a tuple object
+ </summary>
+ <param name="a">hashcode of one clr object.</param>
+ <param name="b">hashcode of another clr object.</param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Math.HashMaps.HashMap.HashCodePair(System.UInt64,System.UInt64)">
+ <summary>
+ generate unique hashcode for a tuple object
+ </summary>
+ <param name="a">hashcode of one clr object.</param>
+ <param name="b">hashcode of another clr object.</param>
+ <returns></returns>
+</member>
 <member name="T:Microsoft.VisualBasic.Math.HashMaps.JenkinsHash">
  <summary>
  Original source from http://256.com/sources/jenkins_hash_java/

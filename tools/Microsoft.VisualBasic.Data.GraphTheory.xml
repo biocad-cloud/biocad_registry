@@ -476,6 +476,97 @@ Microsoft.VisualBasic.Data.GraphTheory
  <param name="totalNodes"></param>
  <remarks></remarks>
 </member>
+<member name="T:Microsoft.VisualBasic.Data.GraphTheory.EMD.Edge">
+ <summary>
+ @author Telmo Menezes (telmo@telmomenezes.com)
+ 
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.Data.GraphTheory.EMD.Feature2D">
+ <summary>
+ @author Telmo Menezes (telmo@telmomenezes.com)
+ 
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.Data.GraphTheory.EMD.JFastEMD">
+ <summary>
+ Earth Mover's Distance
+ 
+ @author Telmo Menezes (telmo@telmomenezes.com)
+ @author Ofir Pele
+ 
+ </summary>
+ <remarks>
+ https://github.com/telmomenezes/JFastEMD
+ </remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.GraphTheory.EMD.JFastEMD.distance(Microsoft.VisualBasic.Data.GraphTheory.EMD.Signature,Microsoft.VisualBasic.Data.GraphTheory.EMD.Signature,System.Double)">
+ <summary>
+ This interface is similar to Rubner's interface. See:
+ http://www.cs.duke.edu/~tomasi/software/emd.htm
+ 
+ To get the same results as Rubner's code you should set extra_mass_penalty to 0,
+ and divide by the minimum of the sum of the two signature's weights. However, I
+ suggest not to do this as you lose the metric property and more importantly, in my
+ experience the performance is better with emd_hat. for more on the difference
+ between emd and emd_hat, see the paper:
+ A Linear Time Histogram Metric for Improved SIFT Matching
+ Ofir Pele, Michael Werman
+ ECCV 2008
+ 
+ To get shorter running time, set the ground distance function to
+ be a thresholded distance. For example: min(L2, T). Where T is some threshold.
+ Note that the running time is shorter with smaller T values. Note also that
+ thresholding the distance will probably increase accuracy. Finally, a thresholded
+ metric is also a metric. See paper:
+ Fast and Robust Earth Mover's Distances
+ Ofir Pele, Michael Werman
+ ICCV 2009
+ 
+ If you use this code, please cite the papers.
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.GraphTheory.EMD.Run.emdDist(System.Double[],System.Double[],System.Int32,System.Double)">
+ <summary>
+ A Linear Time Histogram Metric for Improved SIFT Matching
+ Ofir Pele, Michael Werman
+ ECCV 2008
+ bibTex:
+ @INPROCEEDINGS{Pele-eccv2008,
+ author = {Ofir Pele and Michael Werman},
+ title = {A Linear Time Histogram Metric for Improved SIFT Matching},
+ booktitle = {ECCV},
+ year = {2008}
+ }
+ Fast and Robust Earth Mover's Distances
+ Ofir Pele, Michael Werman
+ ICCV 2009
+ @INPROCEEDINGS{Pele-iccv2009,
+ author = {Ofir Pele and Michael Werman},
+ title = {Fast and Robust Earth Mover's Distances},
+ booktitle = {ICCV},
+ year = {2009}
+ }
+ </summary>
+ <param name="map1">vector 1</param>
+ <param name="map2">vector 2</param>
+ <param name="bins">any positive integer number</param>
+ <param name="extraMassPenalty">
+ penalty for extra mass. 0 for no penalty, -1 for the default, other positive values to specify the penalty;
+ An extraMassPenalty of -1 means that the extra mass penalty is the maximum distance found between two features.
+ </param>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.Data.GraphTheory.EMD.Signature">
+ <summary>
+ Signatures can be used to represent sparse n-dimensional matrices. They are a collection of 
+ features and their respective weights. Feature is an interface that you must implement for
+ your specific application.
+ 
+ @author Telmo Menezes (telmo@telmomenezes.com)
+ 
+ </summary>
+</member>
 <member name="M:Microsoft.VisualBasic.Data.GraphTheory.Extensions.VisitTree``1(Microsoft.VisualBasic.Data.GraphTheory.Tree{``0},System.Collections.Generic.IEnumerable{System.String})">
  <summary>
  Visit tree node by a given path token

@@ -96,6 +96,16 @@ Microsoft.VisualBasic.MIME.application.json
  <typeparam name="T"></typeparam>
  <returns></returns>
 </member>
+<member name="M:Microsoft.VisualBasic.MIME.application.json.Javascript.JsonElement.ParseJSON(System.String,Microsoft.VisualBasic.MIME.application.json.Javascript.JsonElement)">
+ <summary>
+ Parse the json string as clr json element
+ </summary>
+ <param name="jsonStr"></param>
+ <param name="default">
+ set the default json value returns if the given json string is nothing or ``null`` literal.
+ </param>
+ <returns></returns>
+</member>
 <member name="T:Microsoft.VisualBasic.MIME.application.json.Javascript.JsonModel">
  <summary>
  The abstract model of the array/object
