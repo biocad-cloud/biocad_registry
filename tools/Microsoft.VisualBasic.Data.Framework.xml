@@ -22,6 +22,208 @@ Microsoft.VisualBasic.Data.Framework
   resource lookups using this strongly typed resource class.
 </summary>
 </member>
+<member name="T:Microsoft.VisualBasic.Data.Framework.DataFrame">
+ <summary>
+ R language liked dataframe object
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.Data.Framework.DataFrame.features">
+ <summary>
+ the dataframe columns
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Data.Framework.DataFrame.rownames">
+ <summary>
+ get the row names labels in current dataframe object, the size of 
+ this row names vector should be equals to the number of rows in 
+ current dataframe object.
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Data.Framework.DataFrame.dims">
+ <summary>
+ the dimension size of current dataframe object, with data axis dimension 
+ mapping of:
+ 
+ 1. width: feature size, column size
+ 2. height: sample size, row size
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Data.Framework.DataFrame.featureNames">
+ <summary>
+ the column field names
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Data.Framework.DataFrame.nsamples">
+ <summary>
+ the n rows of the matrix
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Data.Framework.DataFrame.nfeatures">
+ <summary>
+ get the number of the feature columns inside current dataframe object
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Data.Framework.DataFrame.Item(System.String)">
+ <summary>
+ get a column field from dataframe by given feature column name
+ </summary>
+ <param name="featureName"></param>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Data.Framework.DataFrame.Item(System.Collections.Generic.IEnumerable{System.String})">
+ <summary>
+ make dataframe column fields projection
+ </summary>
+ <param name="cols"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.Framework.DataFrame.delete(System.String)">
+ <summary>
+ removes a column field from current dataframe object by a given field name
+ </summary>
+ <param name="featureName"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.Framework.DataFrame.add(System.String,System.Collections.Generic.IEnumerable{System.Double})">
+ <summary>
+ add a new feature column into current dataframe object
+ </summary>
+ <param name="featureName"></param>
+ <param name="v">
+ a data field column data in double numeric type
+ </param>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.Framework.DataFrame.add(System.String,System.Collections.Generic.IEnumerable{System.Int32})">
+ <summary>
+ add a new feature column into current dataframe object
+ </summary>
+ <param name="featureName"></param>
+ <param name="v">
+ a data field column data in integer type
+ </param>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.Framework.DataFrame.add(Microsoft.VisualBasic.Data.Framework.FeatureVector)">
+ <summary>
+ add a new feature column into current dataframe object
+ </summary>
+ <param name="feature"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.Framework.DataFrame.row(System.Int32)">
+ <summary>
+ get row by index
+ </summary>
+ <param name="i"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.Framework.DataFrame.foreachRow">
+ <summary>
+ iterates through all data rows inside current dataframe object
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.Framework.DataFrame.slice(System.Collections.Generic.IEnumerable{System.String})">
+ <summary>
+ slice the dataframe row by a collection of the given row names labels
+ </summary>
+ <param name="rownames"></param>
+ <returns></returns>
+ <remarks>
+ this function could be used for make dataframe rows re-order by rownames
+ </remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.Framework.DataFrame.Union(Microsoft.VisualBasic.Data.Framework.DataFrame)">
+ <summary>
+ current dataframe object append the additional data 
+ to right side and then create a new dataframe
+ </summary>
+ <param name="append"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.Framework.FastLoader.ReadCsv(System.IO.Stream,System.Char,System.Boolean,Microsoft.VisualBasic.Text.Encodings)">
+ <summary>
+ 在这里仅是针对简单格式的csv文件进行快速文件读取操作，对于包含有复杂格式字符串的csv文件，
+ 任然需要通过csv文件模块进行读取，之后再通过相应的API进行对象转换
+ </summary>
+ <param name="file"></param>
+ <returns></returns>
+ <remarks>
+ 简单格式的含义：
+ 
+ 1. csv文件之中无注释元数据信息
+ 2. 单元格的字符串之中无逗号，制表符等分隔符
+ </remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.Framework.FastLoader.ParseFeature(Microsoft.VisualBasic.Language.List{System.String},System.String)">
+ <summary>
+ Parse the feature column
+ </summary>
+ <param name="data"></param>
+ <param name="name"></param>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.Data.Framework.FeatureVector">
+ <summary>
+ the feature column vector
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.Data.Framework.FeatureVector.vector">
+ <summary>
+ a generic data vector
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Data.Framework.FeatureVector.type">
+ <summary>
+ the vector element scalar type, example as <see cref="T:System.Int32"/>, <see cref="T:System.Double"/>, etc...
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Data.Framework.FeatureVector.name">
+ <summary>
+ the feature name
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Data.Framework.FeatureVector.isScalar">
+ <summary>
+ does current vector has no data or just a single value?
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Data.Framework.FeatureVector.size">
+ <summary>
+ the vector length
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Data.Framework.FeatureVector.GetValue(System.Int32)">
+ <summary>
+ get element value by index
+ </summary>
+ <param name="i"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.Framework.NumericDataSet.NumericGetter(Microsoft.VisualBasic.Data.Framework.FeatureVector)">
+ <summary>
+ a getter delegate helper for number type
+ </summary>
+ <param name="v"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.Framework.NumericDataSet.PullDataSet``1(Microsoft.VisualBasic.Data.Framework.DataFrame)">
+ <summary>
+ convert the row data inside the given dataframe as given type of the row data objects
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="df"></param>
+ <returns></returns>
+</member>
 <member name="T:Microsoft.VisualBasic.Data.Framework.DATA.DataRows">
  <summary>
  提供了类似于R语言之中的``cbind``操作类似的按照列进行数据框合并的方法

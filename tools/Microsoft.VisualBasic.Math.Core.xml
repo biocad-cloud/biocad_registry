@@ -1367,16 +1367,6 @@ Microsoft.VisualBasic.Math.Core
  <param name="s"></param>
  <returns></returns>
 </member>
-<member name="T:Microsoft.VisualBasic.Math.LinearAlgebra.Matrix.INumericMatrix">
- <summary>
- an abstract model of the numeric matrix object
- </summary>
-</member>
-<member name="M:Microsoft.VisualBasic.Math.LinearAlgebra.Matrix.INumericMatrix.ArrayPack(System.Boolean)">
- <summary>Copy the internal two-dimensional array.</summary>
- <returns>Two-dimensional array copy of matrix elements.
- </returns>
-</member>
 <member name="T:Microsoft.VisualBasic.Math.LinearAlgebra.Matrix.GeneralMatrix">
  <summary>
  [m,n]

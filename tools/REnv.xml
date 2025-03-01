@@ -3022,6 +3022,19 @@ to take away yo [rest of string was truncated]&quot;;.
  <summary>
  R# I/O redirect and interface for Rserve http server
  </summary>
+ <remarks>
+ a <see cref="T:System.IO.TextWriter"/> sub class object.
+ </remarks>
+</member>
+<member name="F:SMRUCC.Rsharp.Runtime.RContentOutput.stdout">
+ <summary>
+ usually be the console standard output 
+ </summary>
+</member>
+<member name="F:SMRUCC.Rsharp.Runtime.RContentOutput.logfile">
+ <summary>
+ save the print content to the *.log local file
+ </summary>
 </member>
 <member name="P:SMRUCC.Rsharp.Runtime.RContentOutput.isLogOpen">
  <summary>

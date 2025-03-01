@@ -26492,6 +26492,16 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  </summary>
  
 </member>
+<member name="T:Microsoft.VisualBasic.Math.INumericMatrix">
+ <summary>
+ an abstract model of the numeric matrix object
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Math.INumericMatrix.ArrayPack(System.Boolean)">
+ <summary>Copy the internal two-dimensional array.</summary>
+ <returns>Two-dimensional array copy of matrix elements.
+ </returns>
+</member>
 <member name="T:Microsoft.VisualBasic.Math.MatrixExtensions">
  <summary>
  This class contains methods that perform mathematical operations on matrices.
@@ -37237,6 +37247,25 @@ to take away yo [rest of string was truncated]&quot;;.
  Convert the numeric <see cref="T:System.Object"/> type as the <see cref="T:System.String"/> text type by <see cref="M:Microsoft.VisualBasic.Scripting.InputHandler.ToString(System.Object,System.String,System.Boolean)"/>.
  </summary>
  <param name="values"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Scripting.Runtime.CastStringVector.AsCharacter(System.Collections.Generic.IEnumerable{System.Double},System.Boolean,System.String)">
+ <summary>
+ Cats the given numeric vector as character string.
+ </summary>
+ <param name="values"></param>
+ <param name="negPrefix">add prefix to the positive value for make align with the negative symbol, 
+ example as if this parameter is set to true:
+ 
+ ```
+  256.333
+ -111.112  
+ ```
+ 
+ the positive number ``256.333`` has a white space prefix for make aligned with the negative 
+ value ``-111.112``.
+ </param>
+ <param name="format"></param>
  <returns></returns>
 </member>
 <member name="M:Microsoft.VisualBasic.Scripting.Runtime.CastStringVector.AsCharacter``1(System.Collections.Generic.IEnumerable{``0},System.String)">
