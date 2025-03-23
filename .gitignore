@@ -274,3 +274,4 @@ test/obsolete/imports/reactions/cad_registry_subcellular_compartments.sql
 test/obsolete/imports/reactions/cad_registry_subcellular_locations.sql
 test/chebi.obo
 test/export_test/km.csv
+mysql/cad_registry.mwb.bak
