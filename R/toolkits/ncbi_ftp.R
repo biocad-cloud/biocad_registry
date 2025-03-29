@@ -3,11 +3,40 @@ imports "ftp" from "webKit";
 #' ftp reference to the ncbi ftp server
 const ncbi = new ftp(server = "ftp.ncbi.nlm.nih.gov");
 
-#' Helper function for get ncbi genbank file
+#' Download GenBank Assembly File from NCBI FTP Server
 #' 
-#' @param asm_id the genbank assembly reference id of the target genome
-#' @param repo_dir the local directory path for save the downloaded ncbi genbank file
+#' This helper function constructs the NCBI FTP path for a given assembly ID, retrieves 
+#' the corresponding GenBank genomic file (*.gbff.gz), and downloads it to a local directory.
+#'
+#' @param asm_id Character. NCBI GenBank assembly accession ID in the format "prefix_Integers" 
+#'   (e.g., "GCF_123456789"). The prefix typically indicates the assembly type (e.g., GCF/GCA), 
+#'   followed by a 9+ digit identifier.
+#' @param repo_dir Character. Local directory path to save the downloaded file. 
+#'   Defaults to the current working directory ("./").
 #' 
+#' @return Invisibly returns the full path to the downloaded file. Primarily called for 
+#'   its side effect of downloading the GenBank file to the specified directory.
+#' 
+#' @details The function:
+#' \enumerate{
+#'   \item Parses the assembly ID into prefix and numeric components
+#'   \item Constructs the NCBI FTP directory path using the ID structure
+#'   \item Retrieves the compressed GenBank file (*_genomic.gbff.gz)
+#'   \item Downloads the file to the specified local directory
+#' }
+#' 
+#' @note Requires an active internet connection and proper NCBI FTP access. File paths 
+#'   are case-sensitive. The function assumes `ncbi` is a pre-configured FTP connection 
+#'   object with `list.ftp_dirs()` and `ftp.get()` methods.
+#' 
+#' @examples
+#' \dontrun{
+#' # Download assembly GCF_123456789 to the current directory
+#' get_genbank("GCF_123456789")
+#' 
+#' # Save to a custom directory
+#' get_genbank("GCA_987654321", repo_dir = "path/to/genbank_files")
+#' }
 const get_genbank = function(asm_id, repo_dir = "./") {
     let parts <- strsplit(asm_id, "_");
     let prefix = unlist(parts[1]);
