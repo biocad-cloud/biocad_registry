@@ -4,8 +4,53 @@ imports "bioseq.fasta" from "seqtoolkit";
 
 require(buffer);
 
-#' helper function for imports uniprot proteins
+#' Import UniProt proteins into biocad registry database
 #' 
+#' This helper function imports protein data from UniProt into a biocad registry database, 
+#' handling sequence embeddings, cross-references, subcellular locations, and keyword associations.
+#'
+#' @param biocad_registry A biocad database registry connection object.
+#' @param uniprot UniProt protein accession(s). Can be either:
+#'                - A character vector of UniProt IDs
+#'                - A pipeline enumerator for stream processing
+#' @param fast_check Logical. If TRUE, skips proteins already existing in the database 
+#'                   using quick verification. Default = FALSE.
+#'
+#' @return Invisibly returns NULL. Mainly used for its side effects of populating 
+#'         the biocad registry database.
+#'
+#' @details The function performs these main operations:
+#' 1. Initializes sequence embedding transformer (SGT) for protein sequences
+#' 2. Sets up database terminology references for proteins
+#' 3. Processes input proteins with progress tracking where possible
+#' 4. For each protein:
+#'    - Retrieves sequence, descriptions, locations, and cross-references from UniProt
+#'    - Checks existing records if fast_check is enabled
+#'    - Creates new molecule entry if not existing
+#'    - Adds keyword associations and cross-references (both UniProt and external databases)
+#'    - Generates and stores sequence graph embeddings
+#'    - Records subcellular localization information
+#'
+#' @section Database Tables Modified:
+#' - molecule: Main protein entity storage
+#' - db_xrefs: Cross-references to external databases
+#' - molecule_tags: Keyword associations
+#' - sequence_graph: Protein sequence embeddings
+#' - subcellular_compartments: Cellular localization data
+#' - subcellular_location: Protein-compartment relationships
+#'
+#' @note Requires connection to UniProt web services and proper configuration of 
+#'       the biocad registry database schema. The SGT embedding process may be
+#'       computationally intensive for large datasets.
+#'
+#' @examples
+#' \dontrun{
+#' # Import single protein with progress tracking
+#' imports_uniprot(biocad_registry, "P12345")
+#' 
+#' # Batch import with fast checking
+#' imports_uniprot(biocad_registry, c("P12345", "Q67890"), fast_check = TRUE)
+#' }
 const imports_uniprot = function(biocad_registry, uniprot, fast_check = FALSE) {
     let sgt = SGT(alphabets = bioseq.fasta::chars("Protein"));
     let term_prot = biocad_registry::protein_term(biocad_registry);
