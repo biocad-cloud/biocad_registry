@@ -1,7 +1,55 @@
-#' imports enzymatic kinetics model
+#' Import enzymatic kinetics models from SABIO-RK
+#'
+#' This function imports enzyme kinetic data from SABIO-RK SBML files into a biocad 
+#' registry database, handling model parsing, parameter extraction, and database 
+#' relationship mapping.
+#'
+#' @param biocad_registry A biocad database registry connection object
+#' @param repo Input specification for kinetic data. Can be either:
+#'             - Character vector of SBML file paths
+#'             - Pipeline enumerator for stream processing
+#'
+#' @return Invisibly returns NULL. Mainly used for populating the biocad registry 
+#'         database with kinetic data.
 #' 
-#' @param repo a character vector of the xml data files for the enzymatic kinetics data
-#' 
+#' @details The function performs these key operations:
+#' 1. Processes SBML files from SABIO-RK database
+#' 2. For each biochemical reaction:
+#'    - Extracts kinetic parameters and enzyme information
+#'    - Links reactions to existing substrate references via database cross-references
+#'    - Stores complete kinetic models with environmental conditions (pH, temperature)
+#'    - Maintains traceability through SABIO-RK identifiers
+#' 3. Handles duplicate prevention using native database checks
+#'
+#' @section Database Integration:
+#' - kinetic_laws: Main storage for kinetic parameters and model metadata
+#' - db_xrefs: Cross-reference system for substrate identification
+#'
+#' @section Data Processing Workflow:
+#' 1. SBML file parsing and validation
+#' 2. Reaction parameter extraction:
+#'    - Kinetic constants (lambda)
+#'    - Experimental conditions (pH, temperature, buffer)
+#'    - Enzyme associations (UniProt IDs, EC numbers)
+#' 3. Substrate identification through cross-reference matching
+#' 4. JSON-structured storage of raw reaction data
+#'
+#' @note Important implementation details:
+#' - Requires valid SBML files from SABIO-RK database
+#' - Depends on biosystem package for SBML parsing
+#' - Uses JSON encoding for complex parameter structures
+#' - Auto-skips invalid/malformed SBML files
+#' - Substrate matching uses type=4 cross-references (verify database schema)
+#' - Progress tracking only available for file vector inputs
+#'
+#' @examples
+#' \dontrun{
+#' # Import single SBML file
+#' imports_sabiork(biocad_registry, "path/to/kinetics.xml")
+#'
+#' # Batch import multiple files
+#' imports_sabiork(biocad_registry, c("file1.xml", "file2.xml")) 
+#' }
 const imports_sabiork = function(biocad_registry, repo) {
     imports "sabiork" from "biosystem";
 
