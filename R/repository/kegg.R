@@ -1,7 +1,63 @@
-#' imports kegg compound into data repository
+#' Import KEGG compound data into biocad registry
+#'
+#' This function imports chemical compound data from KEGG database into a biocad 
+#' registry system, handling metabolite registration, cross-reference management, 
+#' and compound metadata integration.
+#'
+#' @param biocad_registry A biocad database registry connection object
+#' @param kegg KEGG compound data input. Can be either:
+#'             - KEGG Compound object collection
+#'             - List of parsed KEGG entries
+#'             - Pipeline enumerator for stream processing
+#'
+#' @return Invisibly returns NULL. Mainly used for populating the biocad registry 
+#'         with metabolite data and associated cross-references.
 #' 
-#' @param kegg a kegg compound collection
-#' 
+#' @details The function performs these key operations:
+#' 1. Initializes database terminology for metabolite entities
+#' 2. Processes KEGG compound entries with progress tracking
+#' 3. For each compound:
+#'    - Extracts database cross-references (ChEBI, PubChem, CAS)
+#'    - Builds standardized compound metadata structure
+#'    - Checks for existing registry entries
+#'    - Updates database with new compounds and related information
+#' 4. Maintains cross-database consistency through:
+#'    - KEGG-to-external database identifier mapping
+#'    - Synonym management
+#'    - Structural data preservation
+#'
+#' @section Data Structure Transformation:
+#' Converts KEGG compound objects to biocad registry format with:
+#' - Core identifiers (KEGG ID)
+#' - Chemical descriptors (formula, common names)
+#' - Cross-system references (ChEBI, PubChem, CAS)
+#' - Synonym management through common names aggregation
+#'
+#' @section Database Integration:
+#' - molecule: Main metabolite entity storage
+#' - Associated tables via __push_compound_metadata (assumed to handle):
+#'   - Synonym tables
+#'   - Structural data storage
+#'   - Cross-reference management
+#'
+#' @note Important implementation considerations:
+#' - Requires properly formatted KEGG compound objects/entries
+#' - Exact mass values default to 0 (verify upstream calculation needs)
+#' - ChEBI IDs are automatically prefixed with "CHEBI:" 
+#' - Skips compounds with existing registry entries
+#' - Common names handling:
+#'   - First common name used as primary name
+#'   - All names aggregated in description/synonym fields
+#' - Cross-reference fields accept multiple IDs per database
+#'
+#' @examples
+#' \dontrun{
+#' # Import from KEGG API response
+#' imports_kegg(biocad_registry, kegg_compounds)
+#'
+#' # Import from parsed file
+#' imports_kegg(biocad_registry, read_kegg("compound.xml"))
+#' }
 const imports_kegg = function(biocad_registry, kegg) {
     let term_metabolite = biocad_registry::metabolite_term(biocad_registry);
     let entity_metabolite = biocad_registry::molecule_entity(biocad_registry);
