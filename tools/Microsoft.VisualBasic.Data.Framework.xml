@@ -582,7 +582,7 @@ Microsoft.VisualBasic.Data.Framework
  <remarks></remarks>
  
 </member>
-<member name="M:Microsoft.VisualBasic.Data.Framework.DataImports.SampleForType(System.Collections.Generic.IEnumerable{System.String})">
+<member name="M:Microsoft.VisualBasic.Data.Framework.DataImports.SampleForType(System.Collections.Generic.IEnumerable{System.String},System.Boolean)">
  <summary>
  从字符串集合之中推测可能的列数据的类型
  </summary>

@@ -4047,7 +4047,7 @@ to take away yo [rest of string was truncated]&quot;;.
  from a clr <see cref="T:System.Reflection.MethodInfo"/> pointer to <see cref="T:SMRUCC.Rsharp.Runtime.Interop.RMethodInfo"/> 
  automatically.</remarks>
 </member>
-<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.applys.sapply(System.Object,System.Object,SMRUCC.Rsharp.Runtime.Environment)">
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.applys.sapply(System.Object,System.Object,System.Boolean,SMRUCC.Rsharp.Runtime.Environment)">
  <summary>
  # Apply a Function over a List or Vector
  
@@ -4064,6 +4064,9 @@ to take away yo [rest of string was truncated]&quot;;.
  the Function to be applied To Each element Of X: see 'Details’. 
  In the case of functions like +, %*%, the function name must be 
  backquoted or quoted.
+ </param>
+ <param name="stream">
+ run in lazy stream mode? default is not.
  </param>
  <param name="envir"></param>
  <returns></returns>
@@ -4452,7 +4455,7 @@ to take away yo [rest of string was truncated]&quot;;.
  respectively).
  </remarks>
 </member>
-<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.base.rep(System.Object,System.Int32,SMRUCC.Rsharp.Runtime.Environment)">
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.base.rep(System.Object,System.Nullable{System.Int32},System.Nullable{System.Int32},SMRUCC.Rsharp.Runtime.Environment)">
  <summary>
  ### Replicate Elements of Vectors and Lists
  
@@ -4463,6 +4466,11 @@ to take away yo [rest of string was truncated]&quot;;.
  a vector (of any mode including a list) or a factor or (for rep only) 
  a POSIXct or POSIXlt or Date object; or an S4 object containing such 
  an object.
+ </param>
+ <param name="each">
+ non-negative integer. Each element of x is repeated each times. Other 
+ inputs will be coerced to an integer or double vector and the first 
+ element taken. Treated as 1 if NA or invalid.
  </param>
  <param name="times">an integer-valued vector giving the (non-negative) 
  number of times to repeat each element if of length length(x), or to 
@@ -8823,6 +8831,17 @@ to take away yo [rest of string was truncated]&quot;;.
  <param name="max">lower And upper limits of the distribution. Must be finite.</param>
  <returns></returns>
 </member>
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.math.rexp(System.Int32,System.Double)">
+ <summary>
+ ### The Exponential Distribution
+ 
+ Density, distribution function, quantile function and random generation for the exponential 
+ distribution with rate rate (i.e., mean 1/rate).
+ </summary>
+ <param name="n">number of observations. If length(n) > 1, the length is taken to be the number required.</param>
+ <param name="rate">vector of rates.</param>
+ <returns></returns>
+</member>
 <member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.math.rnorm(System.Int32,System.Double,System.Double)">
  <summary>
  ### The Normal Distribution
@@ -9312,7 +9331,7 @@ to take away yo [rest of string was truncated]&quot;;.
  functions And environments (which are returned unchanged).
  </remarks>
 </member>
-<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.reflections.parse(System.String,SMRUCC.Rsharp.Runtime.Environment)">
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.reflections.parse(System.String,System.Object,SMRUCC.Rsharp.Runtime.Environment)">
  <summary>
  ### Parse Expressions
  
@@ -9323,6 +9342,13 @@ to take away yo [rest of string was truncated]&quot;;.
  they were lines of a file. Other R objects will be coerced to 
  character if possible.
  </param>
+ 
+ <param name="file">
+ a connection, or a character String giving the name Of a file Or a URL To read 
+ the expressions from. If file Is "" And text Is missing Or NULL Then input 
+ Is taken from the console.
+ </param>
+ 
  <returns>An object of type "expression", with up to n elements if 
  specified as a non-negative integer.
  
@@ -9332,6 +9358,7 @@ to take away yo [rest of string was truncated]&quot;;.
  If encoding Is "latin1" Or "UTF-8", Or If text Is supplied With 
  every element Of known encoding In a Latin-1 Or UTF-8 locale.
  </returns>
+ 
  <remarks>
  If text has length greater than zero (after coercion) it is used 
  in preference to file.
@@ -10392,7 +10419,7 @@ to take away yo [rest of string was truncated]&quot;;.
  <param name="keys"></param>
  <returns>index value is zero based</returns>
 </member>
-<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.utils.wget(System.String,System.Object,SMRUCC.Rsharp.Runtime.Environment)">
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.utils.wget_file(System.String,System.Object,SMRUCC.Rsharp.Runtime.Environment)">
  <summary>
  retrieving files using HTTP, HTTPS, FTP and FTPS, the most widely used Internet protocols.
  </summary>
@@ -11474,6 +11501,11 @@ to take away yo [rest of string was truncated]&quot;;.
  <param name="factor"></param>
  <returns></returns>
 </member>
+<member name="T:SMRUCC.Rsharp.Runtime.Internal.Object.generator">
+ <summary>
+ A generator function wrapper
+ </summary>
+</member>
 <member name="T:SMRUCC.Rsharp.Runtime.Internal.Object.invalidObject">
  <summary>
  NA literal value
@@ -11593,6 +11625,9 @@ to take away yo [rest of string was truncated]&quot;;.
  </summary>
  <param name="name"></param>
  <returns></returns>
+ <remarks>
+ check for the dictionary key is existsed?
+ </remarks>
  
 </member>
 <member name="M:SMRUCC.Rsharp.Runtime.Internal.Object.list.hasNames(System.String[])">
@@ -11844,7 +11879,11 @@ to take away yo [rest of string was truncated]&quot;;.
  <typeparam name="T"></typeparam>
  <param name="upstream">the upstream data</param>
  <param name="finalize"></param>
- <returns></returns>
+ <returns>
+ </returns>
+ <remarks>
+ just a simple wrapper to the <see cref="F:SMRUCC.Rsharp.Runtime.Internal.Object.pipeline.pipeline"/> object constructor function.
+ </remarks>
 </member>
 <member name="M:SMRUCC.Rsharp.Runtime.Internal.Object.pipeline.TryCreatePipeline``1(System.Object,SMRUCC.Rsharp.Runtime.Environment,System.Boolean,System.String)">
  <summary>
@@ -13688,7 +13727,7 @@ to take away yo [rest of string was truncated]&quot;;.
 </member>
 <member name="P:SMRUCC.Rsharp.Runtime.Interop.RType.any">
  <summary>
- <see cref="T:System.Object"/>
+ mapping to the clr <see cref="T:System.Object"/> type.
  </summary>
  <returns></returns>
 </member>
@@ -14501,6 +14540,12 @@ to take away yo [rest of string was truncated]&quot;;.
  NULL
  </summary>
  <param name="constraint"></param>
+</member>
+<member name="M:SMRUCC.Rsharp.Runtime.Components.Symbol.#ctor(System.Object)">
+ <summary>
+ just wrap the clr runtime value
+ </summary>
+ <param name="wrap_val"></param>
 </member>
 <member name="M:SMRUCC.Rsharp.Runtime.Components.Symbol.setValue(System.Object,SMRUCC.Rsharp.Runtime.Environment,System.Boolean)">
  <summary>
@@ -15454,6 +15499,13 @@ to take away yo [rest of string was truncated]&quot;;.
  helper function for print code with syntax highlights
  </summary>
  <param name="code"></param>
+ <param name="dev"></param>
+</member>
+<member name="M:SMRUCC.Rsharp.Development.ConsoleSyntaxHighlightPrinter.PrintAsHtmlSpans(System.Collections.Generic.IEnumerable{SMRUCC.Rsharp.Language.TokenIcer.Token},System.IO.TextWriter)">
+ <summary>
+ html syntax highlights
+ </summary>
+ <param name="tokens"></param>
  <param name="dev"></param>
 </member>
 <member name="M:SMRUCC.Rsharp.Development.UnixManPagePrinter.printManPage(SMRUCC.Rsharp.Runtime.Interop.RMethodInfo,Microsoft.VisualBasic.ApplicationServices.Development.XmlDoc.Assembly.ProjectMember,SMRUCC.Rsharp.Runtime.RContentOutput)">

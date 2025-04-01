@@ -268,14 +268,6 @@ BioNovoGene.BioDeep.Chemoinformatics
  </summary>
  <returns></returns>
 </member>
-<member name="M:BioNovoGene.BioDeep.Chemoinformatics.Formula.FormulaSearch.PPM(System.Double,System.Double)">
- <summary>
- 分子量差值
- </summary>
- <param name="measured#"></param>
- <param name="actualValue#"></param>
- <returns></returns>
-</member>
 <member name="T:BioNovoGene.BioDeep.Chemoinformatics.Formula.IsotopicPatterns.Calculator">
  <summary>
  isotopic pattern calculator
@@ -527,7 +519,10 @@ BioNovoGene.BioDeep.Chemoinformatics
  <summary>
  make value copy of the given formula
  </summary>
- <param name="copy"></param>
+ <param name="copy">make the copy of the element counts</param>
+ <remarks>
+ this constructor function will removes all elements with zero count.
+ </remarks>
 </member>
 <member name="M:BioNovoGene.BioDeep.Chemoinformatics.Formula.Formula.#ctor">
  <summary>
@@ -543,7 +538,11 @@ BioNovoGene.BioDeep.Chemoinformatics
  Check of the specific element is inside current formula object?
  </summary>
  <param name="elementName"></param>
- <returns></returns>
+ <returns>
+ this function returns true if the given element is existsed inside the
+ formula composition list and also the corresponding element counts 
+ is greater than zero. 
+ </returns>
 </member>
 <member name="M:BioNovoGene.BioDeep.Chemoinformatics.Formula.Formula.ToString">
  <summary>
@@ -695,20 +694,25 @@ BioNovoGene.BioDeep.Chemoinformatics
  <param name="adductName">Add the formula string such as "C6H12O6"</param>
  <returns>AdductIon</returns>
 </member>
+<member name="T:BioNovoGene.BioDeep.Chemoinformatics.Formula.MS.AnnotationType">
+ <summary>
+ the annotation source type of the product formula
+ </summary>
+</member>
 <member name="M:BioNovoGene.BioDeep.Chemoinformatics.Formula.MS.MemorySheet.GetDefault(System.Int32)">
  <summary>
  https://www.acdlabs.com/blog/common-adduct-and-fragment-ions-in-mass-spectrometry/
  </summary>
  <returns></returns>
 </member>
-<member name="T:BioNovoGene.BioDeep.Chemoinformatics.Formula.MS.ProductIon">
- <summary>
- This class is the storage of product ion assignment used in MS-FINDER program.
- </summary>
-</member>
 <member name="T:BioNovoGene.BioDeep.Chemoinformatics.Formula.MS.NeutralLoss">
  <summary>
  This class is the storage of each neutral loss information used in MS-FINDER program.
+ </summary>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemoinformatics.Formula.MS.ProductIon">
+ <summary>
+ This class is the storage of product ion assignment used in MS-FINDER program.
  </summary>
 </member>
 <member name="T:BioNovoGene.BioDeep.Chemoinformatics.Formula.SearchOption">
@@ -741,7 +745,8 @@ BioNovoGene.BioDeep.Chemoinformatics
  + Conversely, the ``H/C`` ratio Is usually smaller than 2, And should Not be less than 0.125 Like in the case of tetracyanopyrrole (C8HN5).
  + Most typical ratios are found between ``2.0 > H/C > 0.5``
  + More than 99.7% Of all formulas were included With H/C ratios between ``0.2–3.1``. Consequently, we Call this range the 'common range'.
- + However, a number of chemical classes fall out of this range, And we have hence enabled the user to select 'extended ranges' covering 99.99% of all formulas in this development database (H/C 0.1–6).
+ + However, a number of chemical classes fall out of this range, And we have hence enabled the user to select 'extended ranges'
+   covering 99.99% of all formulas in this development database (H/C 0.1–6).
  </summary>
 </member>
 <member name="M:BioNovoGene.BioDeep.Chemoinformatics.Formula.SevenGoldenRulesCheck.HeteroAtomCheck(BioNovoGene.BioDeep.Chemoinformatics.Formula.Formula,BioNovoGene.BioDeep.Chemoinformatics.Formula.CoverRange)">
@@ -752,7 +757,8 @@ BioNovoGene.BioDeep.Chemoinformatics
  + Conversely, the ``H/C`` ratio Is usually smaller than 2, And should Not be less than 0.125 Like in the case of tetracyanopyrrole (C8HN5).
  + Most typical ratios are found between ``2.0 > H/C > 0.5``
  + More than 99.7% Of all formulas were included With H/C ratios between ``0.2–3.1``. Consequently, we Call this range the 'common range'.
- + However, a number of chemical classes fall out of this range, And we have hence enabled the user to select 'extended ranges' covering 99.99% of all formulas in this development database (H/C 0.1–6).
+ + However, a number of chemical classes fall out of this range, And we have hence enabled the user to select 'extended ranges'
+   covering 99.99% of all formulas in this development database (H/C 0.1–6).
  </summary>
 </member>
 <member name="M:BioNovoGene.BioDeep.Chemoinformatics.Formula.SevenGoldenRulesCheck.ProbabilityCheck(BioNovoGene.BioDeep.Chemoinformatics.Formula.Formula)">
@@ -1505,6 +1511,12 @@ BioNovoGene.BioDeep.Chemoinformatics
  </summary>
  <returns></returns>
 </member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.MorganFingerprint.MorganAtom.Atom">
+ <summary>
+ the element atom name
+ </summary>
+ <returns></returns>
+</member>
 <member name="T:BioNovoGene.BioDeep.Chemoinformatics.MorganFingerprint.MorganFingerprint">
  <summary>
  Morgan fingerprints, also known as circular fingerprints, are a type of molecular fingerprint 
@@ -1549,23 +1561,6 @@ BioNovoGene.BioDeep.Chemoinformatics
  around it. This makes them effective for comparing the similarity of molecules based on their 
  structural features.
  </summary>
-</member>
-<member name="M:BioNovoGene.BioDeep.Chemoinformatics.MorganFingerprint.MorganFingerprint.GetAtomCode(System.String)">
- <summary>
- Simple hash function for atom type
- </summary>
- <param name="element"></param>
- <returns></returns>
-</member>
-<member name="M:BioNovoGene.BioDeep.Chemoinformatics.MorganFingerprint.MorganFingerprint.HashCodes(System.UInt64,System.UInt64,BioNovoGene.BioDeep.Chemoinformatics.SDF.Models.BoundTypes,BioNovoGene.BioDeep.Chemoinformatics.SDF.Models.BoundStereos)">
- <summary>
- Combine the codes and return a new hash code
- </summary>
- <param name="code1"></param>
- <param name="code2"></param>
- <param name="bondType"></param>
- <param name="stereo"></param>
- <returns></returns>
 </member>
 <member name="M:BioNovoGene.BioDeep.Chemoinformatics.NaturalProduct.GlycosylNameSolver.GlycosylNameParser(System.String)">
  <summary>

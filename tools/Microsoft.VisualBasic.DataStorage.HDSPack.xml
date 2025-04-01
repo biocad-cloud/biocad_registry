@@ -41,10 +41,16 @@ Microsoft.VisualBasic.DataStorage.HDSPack
  </summary>
  <param name="dir"></param>
  <returns>
- contains data file and file group object
+ contains data file and file group object, for filter only data objects, the linq 
+ extension function <see cref="M:System.Linq.Enumerable.OfType``1(System.Collections.IEnumerable)"/> 
+ with generic parameter type <see cref="T:Microsoft.VisualBasic.DataStorage.HDSPack.FileSystem.StreamBlock"/> constrained
+ is recommended.
  </returns>
  <remarks>
- get all the files/dirs inside current dir object and its child dirs
+ get all the files/dirs inside current dir object and its child dirs.
+ this function will returns an empty collection if the given dir object
+ is nothing andalso <paramref name="safe"/> parameter value is configured 
+ as true.
  </remarks>
 </member>
 <member name="M:Microsoft.VisualBasic.DataStorage.HDSPack.Debugger.Tree(Microsoft.VisualBasic.DataStorage.HDSPack.FileSystem.StreamGroup,System.IO.TextWriter,System.Int32,Microsoft.VisualBasic.DataStorage.HDSPack.FileSystem.StreamPack,System.Boolean)">
@@ -514,6 +520,21 @@ Microsoft.VisualBasic.DataStorage.HDSPack
  <remarks>
  this function may be too slow if too much file to process
  </remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.DataStorage.HDSPack.FileSystem.StreamPack.OpenReadOnly(System.String,System.Boolean)">
+ <summary>
+ Open a stream pack data file for read data
+ </summary>
+ <param name="filepath"></param>
+ <param name="strict_missing">
+ this parameter controls the behaviours about the missing <paramref name="filepath"/>, if this
+ parameter is set to value true(default behaviours), function will throw file not found 
+ exception, otherwise will returns an empty stream object. 
+ </param>
+ <returns>
+ this function may returns an empty stream data if the given <paramref name="filepath"/> is
+ missing on the filesystem andalso not set <paramref name="strict_missing"/> to true.
+ </returns>
 </member>
 <member name="M:Microsoft.VisualBasic.DataStorage.HDSPack.FileSystem.StreamPack.flushStreamPack">
  <summary>

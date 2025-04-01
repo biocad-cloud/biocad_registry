@@ -263,6 +263,75 @@ Microsoft.VisualBasic.Data.GraphTheory
  </param>
  <returns></returns>
 </member>
+<member name="P:Microsoft.VisualBasic.Data.GraphTheory.Analysis.MorganFingerprint.IMorganAtom.Type">
+ <summary>
+ the node type
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.Data.GraphTheory.Analysis.MorganFingerprint.GraphMorganFingerprint`2">
+ <summary>
+ Morgan fingerprints, also known as circular fingerprints, are a type of molecular fingerprint 
+ used in cheminformatics to represent the structure of chemical compounds. The algorithm steps 
+ for generating Morgan fingerprints are as follows:
+ 
+ 1. **Initialization**:
+  - Start with the initial set of atoms in the molecule.
+  - Assign a unique identifier (e.g., integer) to each atom.
+  
+ 2. **Atom Environment Encoding**:
+  - For each atom, encode its immediate environment, which includes the atom type and the types of its directly connected neighbors.
+  - This information can be represented as a string or a hash.
+  
+ 3. **Iterative Expansion**:
+  - Expand the environment encoding iteratively to include atoms further away from the starting atom.
+  - In each iteration, update the encoding to include the types of atoms that are two, three, etc., bonds away from the starting atom.
+  
+ 4. **Hashing**:
+  - Convert the environment encoding into a fixed-size integer using a hashing function. This integer represents the fingerprint of the atom's environment.
+  - Different atoms in the molecule will have different fingerprints based on their environments.
+  
+ 5. **Circular Fingerprint Generation**:
+  - For each atom, generate a series of fingerprints that represent its environment at different radii (number of bonds away).
+  - The final fingerprint for an atom is a combination of these series of fingerprints.
+  
+ 6. **Molecular Fingerprint**:
+  - Combine the fingerprints of all atoms in the molecule to create the final molecular fingerprint.
+  - This can be done by taking the bitwise OR of all atom fingerprints, resulting in a single fingerprint that represents the entire molecule.
+  
+ 7. **Optional Folding**:
+  - To reduce the size of the fingerprint, an optional folding step can be applied. This involves 
+    dividing the fingerprint into chunks and performing a bitwise XOR operation within each chunk.
+    
+ 8. **Result**:
+  - The final result is a binary vector (or a list of integers) that represents the Morgan fingerprint 
+    of the molecule. This fingerprint can be used for similarity searching, clustering, and other 
+    cheminformatics tasks.
+    
+ Morgan fingerprints are particularly useful because they capture the circular nature of molecular
+ environments, meaning that the path taken to reach an atom is not as important as the environment 
+ around it. This makes them effective for comparing the similarity of molecules based on their 
+ structural features.
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.Data.GraphTheory.Analysis.MorganFingerprint.GraphMorganFingerprint`2.FingerprintLength">
+ <summary>
+ the size of the fingerprint data
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Data.GraphTheory.Analysis.MorganFingerprint.MorganGraph`2.Atoms">
+ <summary>
+ vertex nodes
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Data.GraphTheory.Analysis.MorganFingerprint.MorganGraph`2.Graph">
+ <summary>
+ the graph structure for make morgan fingerprint embedding
+ </summary>
+ <returns></returns>
+</member>
 <member name="T:Microsoft.VisualBasic.Data.GraphTheory.Analysis.PageRank.GraphMatrix">
  <summary>
  可以用来构建<see cref="T:Microsoft.VisualBasic.Data.GraphTheory.Analysis.PageRank.PageRank"/>计算所需要的index矩阵
@@ -365,6 +434,29 @@ Microsoft.VisualBasic.Data.GraphTheory
  <param name="e#">(epsilon) Is the convergence criteria, usually set to a tiny value.</param>
  <returns></returns>
  
+</member>
+<member name="F:Microsoft.VisualBasic.Data.GraphTheory.Analysis.Ullmann.T">
+ <summary>
+ The target graph
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Data.GraphTheory.Analysis.Ullmann.Q">
+ <summary>
+ the query graph
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.GraphTheory.Analysis.Ullmann.#ctor(System.Int32[][],System.Int32[][])">
+ <summary>
+ 
+ </summary>
+ <param name="largeGraphMatrix">target graph, should be a graph with larger vertex count</param>
+ <param name="searchGraphMatrix">query graph, should be a graph with smaller vertex count</param>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.GraphTheory.Analysis.Ullmann.FindIsomorphisms">
+ <summary>
+ get vertex node mapping result, which could be explained via the <see cref="M:Microsoft.VisualBasic.Data.GraphTheory.Analysis.Ullmann.ExplainNodeMapping(System.Collections.Generic.IEnumerable{System.Int32[]},System.String[],System.String[])"/> function.
+ </summary>
+ <returns></returns>
 </member>
 <member name="T:Microsoft.VisualBasic.Data.GraphTheory.Dijkstra.PQDijkstra.DijkstraFast">
  <summary> 
@@ -1570,7 +1662,7 @@ Microsoft.VisualBasic.Data.GraphTheory
  图对象的操作API，并不包括有I/O操作函数，这个模块仅仅是提供对象的逻辑操作的方法集合
  </summary>
 </member>
-<member name="F:Microsoft.VisualBasic.Data.GraphTheory.BipartiteMatching.Edge.fromVertex">
+<member name="P:Microsoft.VisualBasic.Data.GraphTheory.BipartiteMatching.Edge.fromVertex">
  <summary>
  an edge is composed of 2 vertices
  </summary>
@@ -1654,6 +1746,24 @@ Microsoft.VisualBasic.Data.GraphTheory
  <param name="sink"></param>
  <returns></returns>
 </member>
+<member name="T:Microsoft.VisualBasic.Data.GraphTheory.Network.Edge`1">
+ <summary>
+ interaction edge is a tuple of two node vertex object
+ </summary>
+ <typeparam name="T"></typeparam>
+</member>
+<member name="P:Microsoft.VisualBasic.Data.GraphTheory.Network.IndexEdge.U">
+ <summary>
+ index of the vertex u source
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Data.GraphTheory.Network.IndexEdge.V">
+ <summary>
+ index of the vertex v target
+ </summary>
+ <returns></returns>
+</member>
 <member name="T:Microsoft.VisualBasic.Data.GraphTheory.Network.Extensions">
  <summary>
  Graph network api module extensions
@@ -1716,6 +1826,21 @@ Microsoft.VisualBasic.Data.GraphTheory
  
  <summary>
  @author santi
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Data.GraphTheory.PQTree.direction">
+ <summary>
+ left/right
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Data.GraphTheory.PQTree.label">
+ <summary>
+ empty, partial, full
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.Data.GraphTheory.SparseGraph.IInteraction">
+ <summary>
+ interaction edge tuple of vertex reference id
  </summary>
 </member>
 <member name="P:Microsoft.VisualBasic.Data.GraphTheory.SparseGraph.IInteraction.source">

@@ -1149,8 +1149,8 @@ BioNovoGene.Analytical.MassSpectrometry.Math
  <summary>
  分子量差值
  </summary>
- <param name="measured#"></param>
- <param name="actualValue#"></param>
+ <param name="measured"></param>
+ <param name="actualValue"></param>
  <returns></returns>
 </member>
 <member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.MassToleranceType">
@@ -1277,6 +1277,8 @@ BioNovoGene.Analytical.MassSpectrometry.Math
 </member>
 <member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Tolerance.ParseScript(System.String)">
  <summary>
+ Parse the given string value as the tolerance error object
+ 
  + da:xxx
  + ppm:xxx
  </summary>
@@ -1286,7 +1288,9 @@ BioNovoGene.Analytical.MassSpectrometry.Math
  1. if less than 1, means da:xxx
  2. if greater than or equals to 1, means ppm:xxx
  </param>
- <returns></returns>
+ <returns>
+ this function will returns nothing if the given script string is in in-correct format.
+ </returns>
 </member>
 <member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Tolerance.CheckScriptText(System.String)">
  <summary>
@@ -1488,10 +1492,39 @@ BioNovoGene.Analytical.MassSpectrometry.Math
  </summary>
  <typeparam name="T"></typeparam>
 </member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.IMsAssemblyPack">
+ <summary>
+ an abstract rawdata file model for make data unify representation in mzkit
+ </summary>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.IMsAssemblyPack.source">
+ <summary>
+ the source data file reference name
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.IMsAssemblyPack.PickIonScatter(System.Double,System.Double,System.Double,System.Double)">
+ <summary>
+ get ion scan scatter data from the rawdata pack file
+ </summary>
+ <param name="mz"></param>
+ <param name="rt"></param>
+ <param name="mass_da"></param>
+ <param name="dt"></param>
+ <returns></returns>
+</member>
 <member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.AlignmentProvider">
  <summary>
  the spectrum similarity score provider
  </summary>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.AlignmentProvider.Cosine(BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Tolerance,BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LowAbundanceTrimming)">
+ <summary>
+ default is get the min forward and reverse consine score
+ </summary>
+ <param name="mzwidth"></param>
+ <param name="intocutoff"></param>
+ <returns></returns>
 </member>
 <member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.AlignmentProvider.GetScore(BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml.SSM2MatrixFragment[])">
  <summary>
@@ -1514,6 +1547,14 @@ BioNovoGene.Analytical.MassSpectrometry.Math
  2. max
  3. sum
  </summary>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.CosAlignment.GetScore(BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ms2[],BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ms2[])">
+ <summary>
+ default is get min score of forward and reverse
+ </summary>
+ <param name="a"></param>
+ <param name="b"></param>
+ <returns></returns>
 </member>
 <member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.SpectralEntropy">
  <summary>
@@ -1714,6 +1755,8 @@ BioNovoGene.Analytical.MassSpectrometry.Math
  order of data processing:
  
  ``intensity_cutoff -> centroid``
+ 
+ this function will always keeps the fragment peak annotation data.
  </remarks>
 </member>
 <member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LibraryMatrixExtensions.Centroid(BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ms2[],BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Tolerance,BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LowAbundanceTrimming,System.Func{System.Collections.Generic.IEnumerable{System.Double},System.Double})">
@@ -1726,6 +1769,9 @@ BioNovoGene.Analytical.MassSpectrometry.Math
  <param name="tolerance"></param>
  <param name="cutoff"></param>
  <returns></returns>
+ <remarks>
+ this function will keeps the annotation metadata for the peaks.
+ </remarks>
 </member>
 <member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LibraryMatrixExtensions.AbSciexBaselineHandling(System.Collections.Generic.IEnumerable{BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ms2},System.Int32)">
  <summary>
@@ -1838,6 +1884,9 @@ BioNovoGene.Analytical.MassSpectrometry.Math
  <param name="matrix"></param>
  <param name="x">should be max intensity</param>
  <returns></returns>
+ <remarks>
+ this operator just normalized the intensity value, fragment annotation metadata will not lost at here.
+ </remarks>
 </member>
 <member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LibraryMatrix.op_Multiply(BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LibraryMatrix,System.Double)">
  <summary>
@@ -2036,6 +2085,25 @@ BioNovoGene.Analytical.MassSpectrometry.Math
  An abstract mass spectrum model, could be used for get spectrum peaks data
  </summary>
 </member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.AnnotationMetadata">
+ <summary>
+ json list model for save the annotation metadata for
+ the ion and the corresponding peak fragments.
+ </summary>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.AnnotationMetadata.meta">
+ <summary>
+ <see cref="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.PeakMs2.meta"/>
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.AnnotationMetadata.annotation">
+ <summary>
+ A collection of the <see cref="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ms2.Annotation"/> for each peaks 
+ inside the collection <see cref="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.PeakMs2.mzInto"/>.
+ </summary>
+ <returns></returns>
+</member>
 <member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.PeakMs2">
  <summary>
  将mzXML文件之中的每一个ms2 scan转换而来
@@ -2158,6 +2226,16 @@ BioNovoGene.Analytical.MassSpectrometry.Math
  </summary>
  <param name="fragment"></param>
 </member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LowAbundanceTrimming">
+ <summary>
+ algorithm wrapper of the noise fragment filter by theirs intensity cutoff 
+ </summary>
+ <remarks>
+ the peak fragment <see cref="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ms2.Annotation"/> metadata maybe lost due 
+ to the reason of intensity filter will removes some fragment object 
+ that with lower intensity value.
+ </remarks>
+</member>
 <member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LowAbundanceTrimming.intoCutff">
  <summary>
  default ``5%`` percentage cutoff
@@ -2257,14 +2335,41 @@ BioNovoGene.Analytical.MassSpectrometry.Math
  </summary>
  <returns></returns>
 </member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml.AlignmentOutput.alignments">
+ <summary>
+ the spectrum alignment fragments details
+ </summary>
+ <returns></returns>
+</member>
 <member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml.AlignmentOutput.GetAlignmentMirror">
  <summary>
  construct a tuple of the spectrum data as the mirror alignment
  </summary>
  <returns></returns>
  <remarks>
- the name of the generated <see cref="T:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LibraryMatrix"/> object is generates from the metadata of query and reference.
+ the name of the generated <see cref="T:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LibraryMatrix"/> object is 
+ generates from the metadata of query and reference.
  </remarks>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml.AlignmentOutput.CreateLinearMatrix(System.Double[],System.Double[],System.Double[],System.String[])">
+ <summary>
+ Export function for the ``R#`` language
+ </summary>
+ <param name="mz"></param>
+ <param name="query"></param>
+ <param name="ref"></param>
+ <param name="annotation_str"></param>
+ <returns></returns>
+ 
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml.AlignmentOutput.ParseAlignmentLinearMatrix(System.String)">
+ <summary>
+ parse the string data as the peak fragment alignment details matrix.
+ </summary>
+ <param name="str"></param>
+ <returns>
+ an alingment details matrix between the sample query and reference spectrum.
+ </returns>
 </member>
 <member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml.Meta">
  <summary>
@@ -2308,6 +2413,12 @@ BioNovoGene.Analytical.MassSpectrometry.Math
 <member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml.SSM2MatrixFragment.da">
  <summary>
  Mass delta between the query and reference fragment in unit ``da``
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml.SSM2MatrixFragment.annotation">
+ <summary>
+ the annotation of current fragment peak <see cref="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml.SSM2MatrixFragment.mz"/>.
  </summary>
  <returns></returns>
 </member>
@@ -2698,6 +2809,9 @@ BioNovoGene.Analytical.MassSpectrometry.Math
  the abstract spectrum object, a spectrum object is a
  kind of the fragment collection object
  </summary>
+ <remarks>
+ usually be a collection of the <see cref="T:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ms2"/> peak fragment.
+ </remarks>
 </member>
 <member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.SplashID.ISpectrum.GetIons">
  <summary>

@@ -5241,6 +5241,12 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  Gets the revision version number of the operating system running on this computer.
  </summary>
 </member>
+<member name="P:Microsoft.VisualBasic.ApplicationServices.PerformanceCounter.LastCheckPoint">
+ <summary>
+ get last marked checkpoint
+ </summary>
+ <returns></returns>
+</member>
 <member name="M:Microsoft.VisualBasic.ApplicationServices.PerformanceCounter.Set">
  <summary>
  reset the counter
@@ -5252,6 +5258,24 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  create a checkpoint
  </summary>
  <param name="title"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.ApplicationServices.PerformanceCounter.Mark">
+ <summary>
+ reset the checkpoint to current 
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.ApplicationServices.TimeCounter.span0">
+ <summary>
+ time interval span from the begining
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.ApplicationServices.TimeCounter.span1">
+ <summary>
+ time interval span since from the last checkpoint
+ </summary>
+ <returns></returns>
 </member>
 <member name="M:Microsoft.VisualBasic.ApplicationServices.Plugin.Loader.GetPluginMethod(System.String,System.String)">
  <summary>
@@ -10605,15 +10629,6 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  </remarks>
 
 </member>
-<member name="M:Microsoft.VisualBasic.ComponentModel.Algorithm.DynamicProgramming.Levenshtein.LevenshteinDistance.createMatrix(System.Int32[],System.Int32[],System.Double)">
- <summary>
- Creates distance table for data visualization
- </summary>
- <param name="reference"></param>
- <param name="hypotheses"></param>
- <param name="cost"></param>
- <returns></returns>
-</member>
 <member name="M:Microsoft.VisualBasic.ComponentModel.Algorithm.DynamicProgramming.Levenshtein.LevenshteinDistance.CreateTable``1(``0[],``0[],Microsoft.VisualBasic.ComponentModel.Algorithm.DynamicProgramming.Cost{``0},Microsoft.VisualBasic.ComponentModel.DataStructures.GenericLambda{``0}.IEquals)">
  <summary>
  用于泛型的序列相似度比较
@@ -10648,7 +10663,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="cost"></param>
  <returns></returns>
 </member>
-<member name="M:Microsoft.VisualBasic.ComponentModel.Algorithm.DynamicProgramming.Levenshtein.LevenshteinDistance.ComputeDistance(System.Int32[],System.String,System.Double)">
+<member name="M:Microsoft.VisualBasic.ComponentModel.Algorithm.DynamicProgramming.Levenshtein.LevenshteinDistance.ComputeDistance(System.Int32[],System.String,System.Double,Microsoft.VisualBasic.ComponentModel.DataStructures.GenericLambda{System.Int32}.IEquals)">
  <summary>
  Implement the Levenshtein Edit Distance algorithm between string.
  </summary>
@@ -10668,7 +10683,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="distTable"></param>
  <returns></returns>
 </member>
-<member name="M:Microsoft.VisualBasic.ComponentModel.Algorithm.DynamicProgramming.Levenshtein.LevenshteinDistance.ComputeDistance(System.String,System.String,System.Double)">
+<member name="M:Microsoft.VisualBasic.ComponentModel.Algorithm.DynamicProgramming.Levenshtein.LevenshteinDistance.ComputeDistance(System.String,System.String,System.Double,Microsoft.VisualBasic.ComponentModel.DataStructures.GenericLambda{System.Char}.IEquals)">
  <summary>
  The edit distance between two strings is defined as the minimum number of
  edit operations required to transform one string into another.
@@ -11213,10 +11228,16 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  makes the name string unique by adding an additional numeric suffix
  </summary>
  <param name="names"></param>
+ <param name="duplicated">
+ get the duplicated names
+ </param>
  <returns>
  this function is a safe function, it will returns an empty string collection 
  if the given <paramref name="names"/> is nothing.
  </returns>
+ <remarks>
+ this function will erase the <paramref name="duplicated"/> at first and then make value assigned.
+ </remarks>
 </member>
 <member name="T:Microsoft.VisualBasic.ComponentModel.DataSourceModel.Repository.IMatched">
  <summary>
@@ -12249,7 +12270,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="skipFirstLine">The first line of the text document maybe is the title headers, skip this line?</param>
  <returns></returns>
 </member>
-<member name="M:Microsoft.VisualBasic.ComponentModel.DataSourceModel.TypeCast.DataImports.SampleForType(System.Collections.Generic.IReadOnlyCollection{System.String})">
+<member name="M:Microsoft.VisualBasic.ComponentModel.DataSourceModel.TypeCast.DataImports.SampleForType(System.Collections.Generic.IReadOnlyCollection{System.String},System.Boolean)">
  <summary>
  Sampling column data for test data type
  </summary>
@@ -12278,6 +12299,15 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  </summary>
  <param name="type"></param>
  <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.ComponentModel.DataSourceModel.TypeCast.TypeCaster`1.sizeOf">
+ <summary>
+ 
+ </summary>
+ <returns></returns>
+ <remarks>
+ string has no marshal size value, but data type of string always has a zero terminator
+ </remarks>
 </member>
 <member name="T:Microsoft.VisualBasic.ComponentModel.BitSet">
  <summary>
@@ -13523,7 +13553,9 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <typeparam name="V"></typeparam>
  <param name="table"></param>
  <param name="key"></param>
- <returns></returns>
+ <returns>
+ returns nothing if the given key is not existed inside the dictionary
+ </returns>
 </member>
 <member name="M:Microsoft.VisualBasic.ComponentModel.Collection.KeyValuePairExtensions.ToLower``1(System.Collections.Generic.Dictionary{System.String,``0})">
  <summary>
@@ -13964,6 +13996,19 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <typeparam name="T"></typeparam>
  <param name="m">m Rows</param>
  <param name="n">n Cols</param>
+ <returns></returns>
+ <remarks>
+ (生成一个有m行n列的矩阵，但是是使用数组来表示的)
+ </remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.ComponentModel.Collection.RectangularArray.Matrix``1(System.Int32,System.Int32,``0)">
+ <summary>
+ Create an empty matrix with m row and n cols.
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="m">m Rows</param>
+ <param name="n">n Cols</param>
+ <param name="s">fill the generated matrix this scalar value</param>
  <returns></returns>
  <remarks>
  (生成一个有m行n列的矩阵，但是是使用数组来表示的)
@@ -14867,6 +14912,17 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <returns><b>True</b> if the specified range overlaps with this range or
  <b>false</b> otherwise.</returns>
  
+</member>
+<member name="M:Microsoft.VisualBasic.ComponentModel.Ranges.Model.DoubleRange.op_Implicit(System.Double[])~Microsoft.VisualBasic.ComponentModel.Ranges.Model.DoubleRange">
+ <summary>
+ get [min,max] value range from a given vector of the input data
+ </summary>
+ <param name="data"></param>
+ <returns></returns>
+ <remarks>
+ this type cast operator is a kind of the safe function, for null input or
+ empty vector input, this operator will returns nothing.
+ </remarks>
 </member>
 <member name="M:Microsoft.VisualBasic.ComponentModel.Ranges.Model.DoubleRange.op_Like(System.Double,Microsoft.VisualBasic.ComponentModel.Ranges.Model.DoubleRange)">
  <summary>
@@ -17565,11 +17621,6 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  mime type: image/svg+xml
  </summary>
 </member>
-<member name="F:Microsoft.VisualBasic.Imaging.Driver.Drivers.PS">
- <summary>
- application/postscript
- </summary>
-</member>
 <member name="F:Microsoft.VisualBasic.Imaging.Driver.Drivers.WMF">
  <summary>
  Windows meta file
@@ -17699,6 +17750,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="s"></param>
  <param name="font"></param>
  <returns></returns>
+ 
 </member>
 <member name="T:Microsoft.VisualBasic.Imaging.DefaultFontValues">
  <summary>
@@ -17718,6 +17770,13 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="format$">大小写不敏感</param>
  <returns></returns>
  
+</member>
+<member name="M:Microsoft.VisualBasic.Imaging.GraphicsExtensions.PointF(System.Collections.Generic.IEnumerable{System.Drawing.Point})">
+ <summary>
+ Make batch convert of <see cref="T:System.Drawing.Point"/> to <see cref="T:System.Drawing.PointF"/> object
+ </summary>
+ <param name="polygon"></param>
+ <returns></returns>
 </member>
 <member name="M:Microsoft.VisualBasic.Imaging.GraphicsExtensions.Opacity(System.Drawing.Color,System.Double)">
  <summary>
@@ -18698,6 +18757,11 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  Base64
  </summary>
 </member>
+<member name="F:Microsoft.VisualBasic.Imaging.ImageFormats.PS">
+ <summary>
+ postscript
+ </summary>
+</member>
 <member name="T:Microsoft.VisualBasic.Imaging.Math2D.GeometryMath">
  <summary>
  https://stackoverflow.com/questions/30080/how-to-know-if-a-line-intersects-a-plane-in-c-basic-2d-geometry
@@ -18941,6 +19005,13 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  </summary>
  <param name="a"></param>
  <param name="b"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Imaging.Math2D.GeomTransform.Distance(System.Drawing.PointF,System.Double,System.Double)">
+ <summary>
+ 计算任意两点之间的欧几里得距离
+ </summary>
+ <param name="a"></param>
  <returns></returns>
 </member>
 <member name="M:Microsoft.VisualBasic.Imaging.Math2D.GeomTransform.Distance(System.Collections.Generic.IEnumerable{System.Drawing.Point},System.Drawing.Point)">
@@ -19896,8 +19967,16 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="table"></param>
  <param name="index">这个函数会自动处理空键名的情况</param>
  <param name="default"></param>
+ <param name="mute">
+ mute the verbose debug echo in debug mode?
+ </param>
  <returns></returns>
+ <remarks>
+ this function is a safe function:
  
+ 1. for input hash table object is nothing, this function will returns the default value
+ 2. for key is nothing or key is not found inside the hash table, this function also returns the default value
+ </remarks>
 </member>
 <member name="M:Microsoft.VisualBasic.CollectionValueGetter.Values``1(System.Collections.Generic.IEnumerable{Microsoft.VisualBasic.Language.Value{``0}.IValueOf})">
  <summary>
@@ -21162,7 +21241,9 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="array">要搜索的从零开始的一维数组。</param>
  <param name="o">要在 array 中查找的对象。</param>
  <returns>如果在整个 array 中找到 value 的第一个匹配项，则为该项的从零开始的索引；否则为 -1。</returns>
- 
+ <remarks>
+ this function returns -1 always if the given array is nothing
+ </remarks>
 </member>
 <member name="M:Microsoft.VisualBasic.VectorExtensions.Last``1(System.Collections.Generic.IEnumerable{``0},System.Int32)">
  <summary>
@@ -22866,7 +22947,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  A similarity score in value between [0,1]
  </returns>
 </member>
-<member name="M:Microsoft.VisualBasic.Text.Similarity.Evaluations.LevenshteinEvaluate(System.String,System.String,System.Boolean,System.Double,Microsoft.VisualBasic.ComponentModel.Algorithm.DynamicProgramming.Levenshtein.DistResult@,System.Boolean)">
+<member name="M:Microsoft.VisualBasic.Text.Similarity.Evaluations.LevenshteinEvaluate(System.String,System.String,System.Boolean,System.Double,Microsoft.VisualBasic.ComponentModel.Algorithm.DynamicProgramming.Levenshtein.DistResult@,System.Boolean,Microsoft.VisualBasic.ComponentModel.DataStructures.GenericLambda{System.Char}.IEquals)">
  <summary>
  计算字符串，这个是直接通过计算字符而非像<see cref="M:Microsoft.VisualBasic.Text.Similarity.Evaluations.Evaluate(System.String,System.String,System.Boolean,System.Double,Microsoft.VisualBasic.ComponentModel.Algorithm.DynamicProgramming.Levenshtein.DistResult@,System.Boolean)"/>方法之中计算单词的
  </summary>
@@ -22894,7 +22975,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="caseSensitive"></param>
  <returns></returns>
 </member>
-<member name="M:Microsoft.VisualBasic.Text.Similarity.Evaluations.LevenshteinOrder``1(System.Collections.Generic.IEnumerable{``0},System.String,System.Func{``0,System.Collections.Generic.IEnumerable{System.String}},System.Boolean,System.Double,System.Double,System.Boolean)">
+<member name="M:Microsoft.VisualBasic.Text.Similarity.Evaluations.LevenshteinOrder``1(System.Collections.Generic.IEnumerable{``0},System.String,System.Func{``0,System.Collections.Generic.IEnumerable{System.String}},System.Boolean,System.Double,System.Double,System.Boolean,Microsoft.VisualBasic.ComponentModel.DataStructures.GenericLambda{System.Char}.IEquals)">
  <summary>
  Make text similariy sort in desc order
  </summary>
@@ -22923,7 +23004,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="query">the text for the similarity measurement</param>
  <param name="collection">a given string collection for compares with the 
  given <paramref name="query"/> text string.</param>
- <param name="cutoff"></param>
+ <param name="cutoff">the similarity score cutoff for the string filter</param>
  <param name="ignoreCase"></param>
  <param name="tokenBased"></param>
  <returns></returns>
@@ -24112,15 +24193,19 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <summary>
  Join the string tokens with a given delimiter text.
  </summary>
- <param name="tokens"></param>
- <param name="delimiter"></param>
- <returns></returns>
- <remarks>
+ <param name="tokens">parts of the string tokens for make join</param>
+ <param name="delimiter">
+ the delimiter for make string join.
+ </param>
+ <returns>
  This is a safe function: if the source string collection is nothing, 
  then whistle function will returns a empty string instead of throw 
  exception.
  
- (a safe wrapper of <see cref="M:System.String.Join(System.String,System.Collections.Generic.IEnumerable{System.String})"/>，这是一个安全的函数，当数组为空的时候回返回空字符串)
+ (a safe wrapper of <see cref="M:System.String.Join(System.String,System.Collections.Generic.IEnumerable{System.String})"/>)
+ </returns>
+ <remarks>
+ 这是一个安全的函数，当数组为空的时候回返回空字符串
  </remarks>
 </member>
 <member name="M:Microsoft.VisualBasic.Extensions.JoinBy(System.Collections.Generic.IEnumerable{System.Int32},System.String)">
@@ -25052,14 +25137,14 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
 </member>
 <member name="M:Microsoft.VisualBasic.IOExtensions.OpenReadonly(System.String,System.Int32,System.Boolean)">
  <summary>
- <see cref="M:Microsoft.VisualBasic.IOExtensions.Open(System.String,System.IO.FileMode,System.Boolean,System.Boolean,System.Boolean)"/> file with readonly parameter set to TRUE
+ <see cref="M:Microsoft.VisualBasic.IOExtensions.Open(System.String,System.IO.FileMode,System.Boolean,System.Boolean,System.Boolean,System.Boolean)"/> file with readonly parameter set to TRUE
  </summary>
  <param name="path"></param>
  <param name="retryOpen"></param>
  <param name="verbose"></param>
  <returns></returns>
 </member>
-<member name="M:Microsoft.VisualBasic.IOExtensions.Open(System.String,System.IO.FileMode,System.Boolean,System.Boolean,System.Boolean)">
+<member name="M:Microsoft.VisualBasic.IOExtensions.Open(System.String,System.IO.FileMode,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
  <summary>
  Safe open a local file handle. Warning: this function is set to write mode by default, 
  if want using for read file, set <paramref name="doClear"/> to false!
@@ -25072,6 +25157,11 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  new file data by default. If want to append data or read file, set this argument to false.
  (写模式下默认将原来的文件数据清空)
  是否将原来的文件之中的数据清空？默认不是，否则将会以追加模式工作
+ </param>
+ <param name="aggressive">
+ memory usage in aggressive mode? default config true means the function will try to 
+ load all file data into memory when memory load config is max andalso if the file 
+ size is greater than 2GB threshold.
  </param>
  <returns></returns>
  <remarks>
@@ -25233,7 +25323,9 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  default filter is ``*.*``, which means select all files. 
  如果匹配的模式字符串是带有文件后缀名的，那么文件夹之中所有没有后缀名的文件都可能会被忽略掉
  </param>
- <returns></returns>
+ <returns>
+ scan for all sub-folder in recursive mode.
+ </returns>
 </member>
 <member name="M:Microsoft.VisualBasic.PathExtensions.ReadDirectory(System.String,Microsoft.VisualBasic.FileIO.SearchOption)">
  <summary>
@@ -25357,13 +25449,16 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
 </member>
 <member name="M:Microsoft.VisualBasic.PathExtensions.DirectoryExists(System.String)">
  <summary>
- Determine that the target directory is exists on the file system or not?(判断文件夹是否存在)
+ Determine that the target directory is exists on the file system or not?
  </summary>
  <param name="DIR"></param>
  <returns>
  1. for directory parameter <paramref name="DIR"/> is nothing or empty string: return false
  2. for directory not exists: return false
  </returns>
+ <remarks>
+ (判断文件夹是否存在)
+ </remarks>
 </member>
 <member name="M:Microsoft.VisualBasic.PathExtensions.DirectoryName(System.String)">
  <summary>
@@ -25862,6 +25957,14 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <remarks>
  SUM((x - y) ^ 2)
  </remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.Math.Correlations.DistanceMethods.BrayCurtis(System.Double[],System.Double[])">
+ <summary>
+ Bray-Curtis distance
+ </summary>
+ <param name="sample1"></param>
+ <param name="sample2"></param>
+ <returns></returns>
 </member>
 <member name="T:Microsoft.VisualBasic.Math.Correlations.Ranking">
  <summary>
@@ -26661,6 +26764,17 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  </summary>
  <returns></returns>
 </member>
+<member name="M:Microsoft.VisualBasic.Math.NumeralSystem.Ulp(System.Double)">
+ <summary>
+ Unit in the Last Place, ulp
+ </summary>
+ <param name="value"></param>
+ <returns></returns>
+ <remarks>
+ Math.ulp 是一个用于获取一个数的最小精度单位（Unit in the Last Place，ulp）的方法。
+ 这个方法在浮点数运算中非常有用，特别是在需要考虑数值精度和误差分析的场景。
+ </remarks>
+</member>
 <member name="M:Microsoft.VisualBasic.Math.NumeralSystem.TranslateDecimal(System.Int32,System.Char[])">
  <summary>
  A helper function for translate decimal number to the number of another kind of custom number system
@@ -26945,6 +27059,14 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <returns></returns>
  
 </member>
+<member name="M:Microsoft.VisualBasic.Math.RandomExtensions.ExponentialRandomNumbers(System.Double,System.Int32)">
+ <summary>
+ np.random.exponential
+ </summary>
+ <param name="lambda"></param>
+ <param name="size"></param>
+ <returns></returns>
+</member>
 <member name="M:Microsoft.VisualBasic.Math.RandomExtensions.NextGaussian(System.Random,System.Double,System.Double)">
  <summary>
  Generates normally distributed numbers. Each operation 
@@ -26991,7 +27113,21 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="r"></param>
  <param name = "list"></param>
 </member>
+<member name="M:Microsoft.VisualBasic.Math.RandomExtensions.Shuffle``1(System.Random,``0[]@,System.Nullable{System.Int32})">
+ <summary>
+ Shuffles a list in O(n) time by using the Fisher-Yates/Knuth algorithm.
+ </summary>
+ <param name="r"></param>
+ <param name = "list"></param>
+</member>
 <member name="M:Microsoft.VisualBasic.Math.RandomExtensions.Shuffle``1(System.Collections.Generic.List{``0}@)">
+ <summary>
+ makes the element inside the input list random orders
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="list"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.Math.RandomExtensions.Shuffle``1(``0[]@)">
  <summary>
  makes the element inside the input list random orders
  </summary>
@@ -28069,8 +28205,14 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  then function will return the string value from the ToString() function.
  </summary>
  <param name="value"></param>
+ <param name="deli">
+ a delimiter string for join multiple flag enumeration value theirs enum string
+ </param>
  <returns></returns>
- <remarks></remarks>
+ <remarks>
+ this extension function has an internal cache table for get the description
+ text of a given enum value
+ </remarks>
 </member>
 <member name="M:Microsoft.VisualBasic.MethodsExtension.TryInvoke``2(System.Func{``0,``1},``0,``1)">
  <summary>
@@ -28726,7 +28868,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  这个函数会判断科学计数法等格式
  </remarks>
 </member>
-<member name="M:Microsoft.VisualBasic.PrimitiveParser.IsInteger(System.String,System.Int32)">
+<member name="M:Microsoft.VisualBasic.PrimitiveParser.IsInteger(System.String,System.Int32,System.Boolean)">
  <summary>
  test the given string is in integer pattern?
  </summary>
@@ -29190,7 +29332,9 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="delimiter"></param>
  <param name="trim">Needs Removes all leading and trailing white-space characters from 
  the current <see cref="T:System.String"/> object.</param>
- <returns></returns>
+ <returns>
+ this function will returns empty data if the given string is nothing
+ </returns>
  
 </member>
 <member name="M:Microsoft.VisualBasic.StringHelpers.GetTagValue(System.String,System.String,System.String,System.Boolean)">
@@ -29358,9 +29502,9 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <summary>
  Get sub string value from the region that between the <paramref name="left"/> and <paramref name="right"/>.
  </summary>
- <param name="str$"></param>
- <param name="left$"></param>
- <param name="right$"></param>
+ <param name="str"></param>
+ <param name="left"></param>
+ <param name="right"></param>
  <returns></returns>
  <remarks>
  (这个函数是直接分别查找左右两边的定位字符串来进行切割的) 
@@ -31120,75 +31264,6 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="context"></param>
  <returns></returns>
 </member>
-<member name="T:Microsoft.VisualBasic.Net.Http.wget">
- <summary>
- 命令行下的下载程序组件
- </summary>
-</member>
-<member name="M:Microsoft.VisualBasic.Net.Http.wget.#ctor(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
- <summary>
- Create a new file download task
- </summary>
- <param name="url">The remote resource to download.</param>
- <param name="save">The file save location</param>
-</member>
-<member name="M:Microsoft.VisualBasic.Net.Http.wget.Run">
- <summary>
- Run the file download task
- </summary>
-</member>
-<member name="M:Microsoft.VisualBasic.Net.Http.wget.ReportRequest(System.Net.WebRequest,System.Net.WebResponse,System.String)">
- <summary>
- Do task summary
- </summary>
- <param name="req"></param>
- <param name="resp"></param>
-</member>
-<member name="M:Microsoft.VisualBasic.Net.Http.wget.Download(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.Boolean)">
- <summary>
- 执行有详细进度信息显示的文件下载操作, 如果只需要调用一个单纯的文件下载函数, 
- 请使用<see cref="M:Microsoft.VisualBasic.WebServiceUtils.DownloadFile(System.String,System.String,System.String,System.String,System.Int32,System.Net.DownloadProgressChangedEventHandler,System.String,System.Int32,System.Boolean,System.String)"/>拓展函数
- </summary>
- <param name="url$"></param>
- <param name="save$"></param>
- <returns></returns>
-</member>
-<member name="T:Microsoft.VisualBasic.Net.Http.wgetTask">
- <summary>
- 提供一些比较详细的数据信息和事件处理
- </summary>
-</member>
-<member name="P:Microsoft.VisualBasic.Net.Http.wgetTask.currentSize">
- <summary>
- Size that has been downloaded
- </summary>
-</member>
-<member name="P:Microsoft.VisualBasic.Net.Http.wgetTask.totalSize">
- <summary>
- Total size of the file that has to be downloaded
- </summary>
-</member>
-<member name="P:Microsoft.VisualBasic.Net.Http.wgetTask.downloadSpeed">
- <summary>
- KB/sec
- </summary>
- <returns></returns>
-</member>
-<member name="P:Microsoft.VisualBasic.Net.Http.wgetTask.isDownloading">
- <summary>
- Client status
- </summary>
- <returns></returns>
-</member>
-<member name="M:Microsoft.VisualBasic.Net.Http.wgetTask.#ctor(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
- <summary>
- 
- </summary>
- <param name="downloadUrl"></param>
- <param name="saveFile">
- Module will create a new <see cref="T:System.IO.FileStream"/> that writes to this desired download path
- </param>
-</member>
 <member name="T:Microsoft.VisualBasic.Net.Abstract.IServicesSocket">
  <summary>
  Socket listening object which is running at the server side asynchronous able multiple threading.
@@ -31249,6 +31324,81 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  </summary>
  <param name="url"></param>
  <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Net.WebClient.WebClient.OpenSaveStream">
+ <summary>
+ open save stream
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.Net.WebClient.wget">
+ <summary>
+ 命令行下的下载程序组件
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Net.WebClient.wget.#ctor(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+ <summary>
+ Create a new file download task
+ </summary>
+ <param name="url">The remote resource to download.</param>
+ <param name="save">The file save location</param>
+</member>
+<member name="M:Microsoft.VisualBasic.Net.WebClient.wget.Run">
+ <summary>
+ Run the file download task
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Net.WebClient.wget.ReportRequest(System.Net.WebRequest,System.Net.WebResponse,System.String)">
+ <summary>
+ Do task summary
+ </summary>
+ <param name="req"></param>
+ <param name="resp"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.Net.WebClient.wget.Download(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.Boolean)">
+ <summary>
+ 执行有详细进度信息显示的文件下载操作, 如果只需要调用一个单纯的文件下载函数, 
+ 请使用<see cref="M:Microsoft.VisualBasic.WebServiceUtils.DownloadFile(System.String,System.String,System.String,System.String,System.Int32,System.Net.DownloadProgressChangedEventHandler,System.String,System.Int32,System.Boolean,System.String)"/>拓展函数
+ </summary>
+ <param name="url$"></param>
+ <param name="save$"></param>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.Net.WebClient.wgetTask">
+ <summary>
+ 提供一些比较详细的数据信息和事件处理
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.Net.WebClient.wgetTask.currentSize">
+ <summary>
+ Size that has been downloaded
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.Net.WebClient.wgetTask.totalSize">
+ <summary>
+ Total size of the file that has to be downloaded
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.Net.WebClient.wgetTask.downloadSpeed">
+ <summary>
+ KB/sec
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Net.WebClient.wgetTask.isDownloading">
+ <summary>
+ Client status
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Net.WebClient.wgetTask.#ctor(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+ <summary>
+ 
+ </summary>
+ <param name="downloadUrl"></param>
+ <param name="saveFile">
+ Module will create a new <see cref="T:System.IO.FileStream"/> that writes to this desired download path
+ </param>
 </member>
 <member name="T:Microsoft.VisualBasic.Net.Protocols.ContentTypes.ContentType">
  <summary>
@@ -31954,7 +32104,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  this function will returns nothing if the http error happends.
  </returns>
 </member>
-<member name="M:Microsoft.VisualBasic.WebServiceUtils.POSTFile(System.String,System.Byte[],System.String,System.String)">
+<member name="M:Microsoft.VisualBasic.WebServiceUtils.POSTFile(System.String,System.Byte[],System.String,System.String,System.Int32,System.Boolean)">
  <summary>
  通过post上传文件
  </summary>
@@ -32222,6 +32372,13 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  This class provides the ability to simulate various classic C string functions
 	which don't have exact equivalents in the .NET Framework.
  </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Language.C.CString.Decode(System.String,System.Boolean)">
+ <summary>
+ decode of the meta char inside the given format string
+ </summary>
+ <param name="s"></param>
+ <returns></returns>
 </member>
 <member name="M:Microsoft.VisualBasic.Language.C.CString.ChangeCharacter(System.String,System.Int32,System.Char)">
  <summary>
@@ -33516,17 +33673,6 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  @version $Id: MathUtils.java,v 1.13 2006/08/31 14:57:24 rambaut Exp $
  </summary>
 </member>
-<member name="F:Microsoft.VisualBasic.Language.Java.MathUtils.random">
- <summary>
- A random number generator that is initialized with the clock when this
- class is loaded into the JVM. Use this for all random numbers. Note: This
- method or getting random numbers in not thread-safe. Since
- MersenneTwisterFast is currently (as of 9/01) not synchronized using this
- function may cause concurrency issues. Use the static get methods of the
- MersenneTwisterFast class for access to a single instance of the class,
- that has synchronization.
- </summary>
-</member>
 <member name="M:Microsoft.VisualBasic.Language.Java.MathUtils.randomChoice(System.Double[])">
  <summary>
  Chooses one category if a cumulative probability distribution is given 
@@ -33579,21 +33725,10 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  Access a default instance of this class, access is synchronized
  </summary>
 </member>
-<member name="M:Microsoft.VisualBasic.Language.Java.MathUtils.nextChar">
- <summary>
- Access a default instance of this class, access is synchronized
- </summary>
-</member>
 <member name="M:Microsoft.VisualBasic.Language.Java.MathUtils.nextGaussian">
  <summary>
  Access a default instance of this class, access is synchronized
  </summary>
-</member>
-<member name="M:Microsoft.VisualBasic.Language.Java.MathUtils.nextDouble">
- <summary>
- Access a default instance of this class, access is synchronized
- </summary>
- <returns> a pseudo random double precision floating point number in [01) </returns>
 </member>
 <member name="M:Microsoft.VisualBasic.Language.Java.MathUtils.randomLogDouble">
  <returns> log of random variable in [0,1] </returns>
@@ -33604,31 +33739,6 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  </summary>
 </member>
 <member name="M:Microsoft.VisualBasic.Language.Java.MathUtils.nextInverseGaussian(System.Double,System.Double)">
- <summary>
- Access a default instance of this class, access is synchronized
- </summary>
-</member>
-<member name="M:Microsoft.VisualBasic.Language.Java.MathUtils.nextFloat">
- <summary>
- Access a default instance of this class, access is synchronized
- </summary>
-</member>
-<member name="M:Microsoft.VisualBasic.Language.Java.MathUtils.nextLong">
- <summary>
- Access a default instance of this class, access is synchronized
- </summary>
-</member>
-<member name="M:Microsoft.VisualBasic.Language.Java.MathUtils.nextShort">
- <summary>
- Access a default instance of this class, access is synchronized
- </summary>
-</member>
-<member name="M:Microsoft.VisualBasic.Language.Java.MathUtils.nextInt">
- <summary>
- Access a default instance of this class, access is synchronized
- </summary>
-</member>
-<member name="M:Microsoft.VisualBasic.Language.Java.MathUtils.nextInt(System.Int32)">
  <summary>
  Access a default instance of this class, access is synchronized
  </summary>
@@ -33671,132 +33781,6 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
 <member name="M:Microsoft.VisualBasic.Language.Java.MathUtils.hypot(System.Double,System.Double)">
  <summary>
  Returns sqrt(a^2 + b^2) without under/overflow.
- </summary>
-</member>
-<member name="T:Microsoft.VisualBasic.Language.Java.MersenneTwisterFast">
- <summary>
- MersenneTwisterFast:
-  
- A simulation quality fast random number generator (MT19937) with the same
- public methods as java.util.Random.
-  
-  
- About the Mersenne Twister. This is a Java version of the C-program for
- MT19937: Integer version. next(32) generates one pseudorandom unsigned
- integer (32bit) which is uniformly distributed among 0 to 2^32-1 for each
- call. next(int bits) >>>'s by (32-bits) to get a value ranging between 0 and
- 2^bits-1 long inclusive; hope that's correct. setSeed(seed) set initial
- values to the working area of 624 words. For setSeed(seed), seed is any
- 32-bit integer except for 0.
-  
- Reference. M. Matsumoto and T. Nishimura, "Mersenne Twister: A
- 623-Dimensionally Equidistributed Uniform Pseudo-Random Number Generator",
- <i>ACM Transactions on Modeling and Computer Simulation,</i> Vol. 8, No. 1,
- January 1998, pp 3--30.
-  
-  
- Bug Fixes. This implementation implements the bug fixes made in Java 1.2's
- version of Random, which means it can be used with earlier versions of Java.
- See <a href=
- "http://www.javasoft.com/products/jdk/1.2/docs/api/java/util/Random.html">
- the JDK 1.2 java.util.Random documentation</a> for further documentation on
- the random-number generation contracts made. Additionally, there's an
- undocumented bug in the JDK java.util.Random.nextBytes() method, which this
- code fixes.
-  
-  
- Important Note. Just like java.util.Random, this generator accepts a long
- seed but doesn't use all of it. java.util.Random uses 48 bits. The Mersenne
- Twister instead uses 32 bits (int size). So it's best if your seed does not
- exceed the int range.
-  
-  
- <a href="http://www.cs.umd.edu/users/seanl/">Sean Luke's web page</a>
-  
-  
- - added shuffling method (Alexei Drummond)
-  
- - added gamma RV method (Marc Suchard)
-  
- This is now package private - it should be accessed using the instance in
- Random
- </summary>
-</member>
-<member name="F:Microsoft.VisualBasic.Language.Java.MersenneTwisterFast.serialVersionUID">
- 
-</member>
-<member name="M:Microsoft.VisualBasic.Language.Java.MersenneTwisterFast.#ctor">
- <summary>
- Constructor using the time of day as default seed.
- </summary>
-</member>
-<member name="M:Microsoft.VisualBasic.Language.Java.MersenneTwisterFast.#ctor(System.Int64)">
- <summary>
- Constructor using a given seed. Though you pass this seed in as a long,
- it's best to make sure it's actually an integer.
- </summary>
- <param name="seed">
-            generator starting number, often the time of day. </param>
-</member>
-<member name="P:Microsoft.VisualBasic.Language.Java.MersenneTwisterFast.Seed">
- <summary>
- Initalize the pseudo random number generator. The Mersenne Twister only
- uses an integer for its seed; It's best that you don't pass in a long
- that's bigger than an int.
- </summary>
-</member>
-<member name="M:Microsoft.VisualBasic.Language.Java.MersenneTwisterFast.nextInt(System.Int32)">
- <summary>
- Returns an integer drawn uniformly from 0 to n-1. Suffice it to say, n
- must be > 0, or an IllegalArgumentException is raised.
- </summary>
-</member>
-<member name="M:Microsoft.VisualBasic.Language.Java.MersenneTwisterFast.permute(System.Int32[])">
- <summary>
- Returns a uniform random permutation of int objects in array
- </summary>
-</member>
-<member name="M:Microsoft.VisualBasic.Language.Java.MersenneTwisterFast.shuffle(System.Int32[])">
- <summary>
- Shuffles an array.
- </summary>
-</member>
-<member name="M:Microsoft.VisualBasic.Language.Java.MersenneTwisterFast.shuffle(System.Int32[],System.Int32)">
- <summary>
- Shuffles an array. Shuffles numberOfShuffles times
- </summary>
-</member>
-<member name="M:Microsoft.VisualBasic.Language.Java.MersenneTwisterFast.shuffled(System.Int32)">
- <summary>
- Returns an array of shuffled indices of length l.
- </summary>
- <param name="l">
-            length of the array required. </param>
-</member>
-<member name="M:Microsoft.VisualBasic.Language.Java.MersenneTwisterFast.permuted(System.Int32)">
- <summary>
- Returns a uniform random permutation of ints 0,...,l-1
- </summary>
- <param name="l">
-            length of the array required. </param>
-</member>
-<member name="M:Microsoft.VisualBasic.Language.Java.MersenneTwisterFast.nextGamma(System.Double,System.Double)">
- <summary>
-****************************************************************
- * Gamma Distribution - Acceptance Rejection combined with *
- Acceptance Complement * *
- ****************************************************************** 
- * FUNCTION: - gds samples a random number from the standard * gamma
- distribution with parameter a > 0. * Acceptance Rejection gs for a &lt;
- 1 , * Acceptance Complement gd for a >= 1 . * REFERENCES: - J.H.
- Ahrens, U. Dieter (1974): Computer methods * for sampling from gamma,
- beta, Poisson and * binomial distributions, Computing 12, 223-246. *
- - J.H. Ahrens, U. Dieter (1982): Generating gamma * variates by a
- modified rejection technique, * Communications of the ACM 25, 47-54.
- * SUBPROGRAMS: - drand(seed) ... (0,1)-Uniform generator with *
- unsigned long integer *seed * - NORMAL(seed) ... Normal generator
- N(0,1). * *
- *****************************************************************
  </summary>
 </member>
 <member name="T:Microsoft.VisualBasic.Language.Java.NamespaceDoc">
@@ -38194,6 +38178,16 @@ to take away yo [rest of string was truncated]&quot;;.
 <member name="T:Microsoft.VisualBasic.Serialization.BinaryDumping.NetworkByteOrderBuffer">
  <summary>
  ensure that the number is converted as bytes always in network byte order outputs.
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Serialization.BinaryDumping.NetworkByteOrderBuffer.encode">
+ <summary>
+ encode the numeric vector as raw stream in network byte order
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Serialization.BinaryDumping.NetworkByteOrderBuffer.decode">
+ <summary>
+ decode the given raw stream as a numeric vector in network byte order
  </summary>
 </member>
 <member name="M:Microsoft.VisualBasic.Serialization.BinaryDumping.NetworkByteOrderBuffer.ParseDouble(System.String,Microsoft.VisualBasic.Serialization.BinaryDumping.NetworkByteOrderBuffer.Compression,System.Boolean)">

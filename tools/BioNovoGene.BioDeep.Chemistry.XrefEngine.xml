@@ -22,6 +22,88 @@ BioNovoGene.BioDeep.Chemistry.XrefEngine
   resource lookups using this strongly typed resource class.
 </summary>
 </member>
+<member name="T:BioNovoGene.BioDeep.Chemistry.MetaLib.AnnotationWorkspace">
+ <summary>
+ The temp workspace file of the biodeep annotation pipeline
+ </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemistry.MetaLib.AnnotationWorkspace.libraries">
+ <summary>
+ summary of the library result count
+ </summary>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.MetaLib.AnnotationWorkspace.file">
+ <summary>
+ try to get the file path of the pack file
+ </summary>
+ <returns></returns>
+ <remarks>
+ file path value could be nothing when the data pack is in readonly mode.
+ </remarks>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.MetaLib.AnnotationWorkspace.#ctor(System.IO.Stream,System.String,System.Int64)">
+ <summary>
+ construct of the workspace file reader/writer
+ </summary>
+ <param name="file"></param>
+ <param name="source_file"></param>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.MetaLib.AnnotationWorkspace.LoadMemory">
+ <summary>
+ Load in-memory data pack from the pack file stream
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.MetaLib.AnnotationWorkspace.LoadPeakTable">
+ <summary>
+ load ms1 peaktable data
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.MetaLib.AnnotationWorkspace.CacheXicTable``1(System.Collections.Generic.IEnumerable{``0},System.Double,System.Double)">
+ <summary>
+ Extract the XIC cache data from a given set of rawdata objects based on the peaktable information inside the workspace file
+ </summary>
+ <param name="files"></param>
+ <param name="mass_da">
+ the mass error window for extract the ms1 scatter data for the peak ion
+ </param>
+ <param name="rt_win">
+ the rt window size for extract the XIC peak data for the peak ion
+ </param>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.MetaLib.AnnotationWorkspace.CheckXicCache">
+ <summary>
+ Check of the xic cache data is existed inside current workspace file
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.MetaLib.AnnotationWorkspace.LoadXicGroup(System.String)">
+ <summary>
+ load xic data from cache pool
+ </summary>
+ <param name="ion"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.MetaLib.AnnotationWorkspace.SetPeakTable(System.Collections.Generic.IEnumerable{BioNovoGene.Analytical.MassSpectrometry.Math.xcms2})">
+ <summary>
+ save xcms peaktable to pack file
+ </summary>
+ <param name="peaks"></param>
+ <remarks>
+ the peaktable data has been commit to the filesystem automatically in this method.
+ </remarks>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.MetaLib.AnnotationWorkspace.Flush">
+ <summary>
+ Commit the memory cache data into filesystem
+ </summary>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.MetaLib.AnnotationWorkspace.Dispose">
+ <summary>
+ save the annotation result workspace
+ </summary>
+</member>
 <member name="P:BioNovoGene.BioDeep.Chemistry.MetaLib.ChemOntClassify.kingdom">
  <summary>
  level 1

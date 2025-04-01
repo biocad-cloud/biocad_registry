@@ -102,6 +102,17 @@ BioNovoGene.BioDeep.MSFinder
  the annotation result
  </remarks>
 </member>
+<member name="M:BioNovoGene.BioDeep.MSFinder.FragmentAssigner.getFormulaCandidatesbyLibrarySearch(BioNovoGene.BioDeep.Chemoinformatics.Formula.Formula,BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.IonModes,System.Double,System.Double,System.Collections.Generic.List{BioNovoGene.BioDeep.Chemoinformatics.Formula.MS.ProductIon})">
+ <summary>
+ make fragment annotation by search in <paramref name="productIonDB"/>
+ </summary>
+ <param name="formula"></param>
+ <param name="ionMode"></param>
+ <param name="mz"></param>
+ <param name="massTol"></param>
+ <param name="productIonDB"></param>
+ <returns></returns>
+</member>
 <member name="M:BioNovoGene.BioDeep.MSFinder.FragmentAssigner.FastNeutralLossAssigner(System.Collections.Generic.List{BioNovoGene.BioDeep.Chemoinformatics.Formula.MS.NeutralLoss},System.Collections.Generic.List{BioNovoGene.BioDeep.Chemoinformatics.Formula.MS.NeutralLoss},BioNovoGene.BioDeep.Chemoinformatics.Formula.Formula,System.Double,BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.MassToleranceType,BioNovoGene.BioDeep.Chemoinformatics.Formula.MS.AdductIon)">
  <summary>
  The neutralLosslist can be made by GetNeutralLossList after using GetRefinedPeaklist.
@@ -141,6 +152,18 @@ BioNovoGene.BioDeep.MSFinder
  </summary>
  <param name="rawData"></param>
  <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.MSFinder.FragmentAssigner.getValenceCheckedFragmentFormulaList(BioNovoGene.BioDeep.Chemoinformatics.Formula.Formula,BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.IonModes,System.Double,System.Double)">
+ <summary>
+ de-novo search of the fragment formula candidates
+ </summary>
+ <param name="formula">the molecule formula</param>
+ <param name="ionMode">adducts ion mode</param>
+ <param name="mass">ms2 fragment mz value</param>
+ <param name="massTol">mass tolerance error in mass delta delton</param>
+ <returns>
+ a candidate list of the fragment formula
+ </returns>
 </member>
 <member name="M:BioNovoGene.BioDeep.MSFinder.FeatureSearchHandler.MatchByExactMass``1(System.Collections.Generic.IEnumerable{Microsoft.VisualBasic.ComponentModel.DataSourceModel.NamedValue{``0[]}},System.Double,BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Tolerance)">
  <summary>

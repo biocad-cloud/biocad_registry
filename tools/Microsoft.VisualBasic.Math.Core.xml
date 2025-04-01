@@ -6,6 +6,20 @@ Microsoft.VisualBasic.Math.Core
 </name>
 </assembly>
 <members>
+<member name="M:Microsoft.VisualBasic.Math.LinearAlgebra.HelperExtensions.IsNaNImaginary(System.Collections.Generic.IEnumerable{System.Double})">
+ <summary>
+ get a logical vector for indicates that which elements inside the given numeric vector is invalid number, like NaN, Inf
+ </summary>
+ <param name="v"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Math.LinearAlgebra.HelperExtensions.NAremove(System.Collections.Generic.IEnumerable{System.Double})">
+ <summary>
+ removes all invalid number from the given numeric vector data
+ </summary>
+ <param name="x"></param>
+ <returns></returns>
+</member>
 <member name="M:Microsoft.VisualBasic.Math.LinearAlgebra.HelperExtensions.PrimitiveLinearEquation(System.Drawing.PointF,System.Drawing.PointF)">
  <summary>
  返回一元一次方程
@@ -1367,6 +1381,17 @@ Microsoft.VisualBasic.Math.Core
  <param name="s"></param>
  <returns></returns>
 </member>
+<member name="T:Microsoft.VisualBasic.Math.LinearAlgebra.Matrix.ILabeledMatrix">
+ <summary>
+ dataframe helper
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Math.LinearAlgebra.Matrix.ILabeledMatrix.GetLabels">
+ <summary>
+ get the labels of each row data
+ </summary>
+ <returns></returns>
+</member>
 <member name="T:Microsoft.VisualBasic.Math.LinearAlgebra.Matrix.GeneralMatrix">
  <summary>
  [m,n]
@@ -1457,6 +1482,175 @@ Microsoft.VisualBasic.Math.Core
  <param name="v"></param>
  <param name="m"></param>
  <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.Math.LinearAlgebra.Matrix.MDSScale.Data">
+ <summary>
+ Created by IntelliJ IDEA.
+ User: da
+ Date: 10/8/11
+ Time: 2:27 AM
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.Math.LinearAlgebra.Matrix.MDSScale.LandmarkMDS">
+ <summary>
+ Created by IntelliJ IDEA.
+ User: da
+ Date: 10/8/11
+ Time: 2:43 AM
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.Math.LinearAlgebra.Matrix.MDSScale.MDS">
+ <summary>
+ Created by IntelliJ IDEA.
+ User: da
+ Date: 10/8/11
+ Time: 2:25 AM
+ </summary>
+ <remarks>
+ https://github.com/asarnow/mdscale
+ </remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.Math.LinearAlgebra.Matrix.MDSScale.MDS.fullmds(System.Double[][],System.Int32)">
+ <summary>
+ 
+ </summary>
+ <param name="d">should be a NxN distance matrix.</param>
+ <param name="dim"></param>
+ <returns>
+ this function returns an column array with <paramref name="dim"/> elements, each elements is a dimension column result
+ </returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Math.LinearAlgebra.Matrix.MDSScale.MDSMethod.iterate">
+ <summary>
+ Perform 1 majorization iteration using this SMACOF instance. </summary>
+ <returns> report </returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Math.LinearAlgebra.Matrix.MDSScale.MDSMethod.iterate(System.Int32)">
+ <summary>
+ Perform n majorization iterations using this SMACOF instance. </summary>
+ <param name="n"> number of iterations </param>
+ <returns> report </returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Math.LinearAlgebra.Matrix.MDSScale.MDSMethod.iterate(System.Int32,System.Int32)">
+ <summary>
+ Perform majorization iterations until the maximum number of iterations
+ is reached, the maximum runtime has elapsed, or the change in
+ normalized stress falls below the threshold, whichever comes first. </summary>
+ <param name="iter"> maximum number of iterations </param>
+ <param name="threshold"> threshold for change in normalized stress </param>
+ <returns> report </returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Math.LinearAlgebra.Matrix.MDSScale.MDSMethod.weightMatrix(System.Double[][],System.Double)">
+ <summary>
+ Element-wise matrix exponentiation for self-weighting of distances. </summary>
+ <param name="D"> distance matrix or initial weights </param>
+ <param name="exponent"> power to raise each element the matrix </param>
+ <returns> exponentiated weights </returns>
+</member>
+<member name="T:Microsoft.VisualBasic.Math.LinearAlgebra.Matrix.MDSScale.SMACOF">
+ <summary>
+ A class implementing Stress Minimization by Majorizing a Complex Function (SMACOF).
+ 
+ Created by IntelliJ IDEA.
+ User: da
+ Date: 10/8/11
+ Time: 2:43 AM
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Math.LinearAlgebra.Matrix.MDSScale.SMACOF.#ctor(System.Double[][],System.Double[][],System.Double[][])">
+ <summary>
+ Construct a new SMACOF instance. </summary>
+ <param name="d"> distance matrix </param>
+ <param name="x"> initial coordinate matrix </param>
+ <param name="w"> weights matrix </param>
+</member>
+<member name="M:Microsoft.VisualBasic.Math.LinearAlgebra.Matrix.MDSScale.SMACOF.#ctor(System.Double[][],System.Double[][])">
+ <summary>
+ Construct a SMACOF instance without weights. </summary>
+ <param name="d"> distance matrix </param>
+ <param name="x"> initial coordinate matrix </param>
+</member>
+<member name="M:Microsoft.VisualBasic.Math.LinearAlgebra.Matrix.MDSScale.SMACOF.iterate(System.Int32)">
+ <summary>
+ Perform n majorization iterations using this SMACOF instance. </summary>
+ <param name="n"> number of iterations </param>
+ <returns> report </returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Math.LinearAlgebra.Matrix.MDSScale.SMACOF.iterate(System.Int32,System.Int32)">
+ <summary>
+ Perform majorization iterations until the maximum number of iterations
+ is reached, the maximum runtime has elapsed, or the change in
+ normalized stress falls below the threshold, whichever comes first. </summary>
+ <param name="iter"> maximum number of iterations </param>
+ <param name="threshold"> threshold for change in normalized stress </param>
+ <returns> report </returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Math.LinearAlgebra.Matrix.MDSScale.SMACOF.StressProp">
+ <summary>
+ Compute the absolute stress for this SMACOF instance. </summary>
+ <returns> stress </returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Math.LinearAlgebra.Matrix.MDSScale.SMACOF.NormalizedStressProp">
+ <summary>
+ Compute the normalized stress for this SMACOF instance. </summary>
+ <returns> normalized stress </returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Math.LinearAlgebra.Matrix.MDSScale.SMACOF.majorize(System.Double[][],System.Double[][],System.Double[][],System.Int32,System.Int32)">
+ <summary>
+ SMACOF algorithm (weighted). </summary>
+ <param name="x"> coordinates matrix </param>
+ <param name="d"> distance matrix </param>
+ <param name="w"> weights matrix </param>
+ <param name="iter"> maximum iterations </param>
+ <param name="threshold"> halting threshold for change in normalized stress </param>
+ <returns> report </returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Math.LinearAlgebra.Matrix.MDSScale.SMACOF.majorize(System.Double[][],System.Double[][],System.Int32,System.Int32)">
+ <summary>
+ SMACOF algorithm (unweighted). </summary>
+ <param name="x"> coordinates matrix </param>
+ <param name="d"> distance matrix </param>
+ <param name="iter"> maximum iterations </param>
+ <param name="threshold"> halting threshold for change in normalized stress </param>
+ <returns> report </returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Math.LinearAlgebra.Matrix.MDSScale.SMACOF.majorize(System.Double[][],System.Double[][],System.Double[][],System.Int32)">
+ <summary>
+ Bare SMACOF algorithm. Convenient for reading the algorithm. </summary>
+ <param name="x"> coordinates matrix </param>
+ <param name="d"> distance matrix </param>
+ <param name="w"> weights matrix </param>
+ <param name="iter"> number of iterations </param>
+</member>
+<member name="M:Microsoft.VisualBasic.Math.LinearAlgebra.Matrix.MDSScale.SMACOF.stress(System.Double[][],System.Double[][],System.Double[][])">
+ <summary>
+ Compute the absolute stress between a weighted distance matrix and a configuration of coordinates. </summary>
+ <param name="d"> distance matrix </param>
+ <param name="w"> weights matrix </param>
+ <param name="x"> coordinates matrix </param>
+ <returns> stress </returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Math.LinearAlgebra.Matrix.MDSScale.SMACOF.stress(System.Double[][],System.Double[][])">
+ <summary>
+ Compute the absolute stress between a distance matrix and a configuration of coordinates. </summary>
+ <param name="d"> distance matrix </param>
+ <param name="x"> coordinates matrix </param>
+ <returns> stress </returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Math.LinearAlgebra.Matrix.MDSScale.SMACOF.normalizedStress(System.Double[][],System.Double[][],System.Double[][])">
+ <summary>
+ Compute the normlized stress between a weighted distance matrix and a configuration of coordinates. </summary>
+ <param name="d"> distance matrix </param>
+ <param name="w"> weights matrix </param>
+ <param name="x"> coordinate matrix </param>
+ <returns> normalized stress </returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Math.LinearAlgebra.Matrix.MDSScale.SMACOF.normalizedStress(System.Double[][],System.Double[][])">
+ <summary>
+ Return the normlized stress between a distance matrix and a configuration of coordinates. </summary>
+ <param name="d"> distance matrix </param>
+ <param name="x"> coordinate matrix </param>
+ <returns> normalized stress </returns>
 </member>
 <member name="T:Microsoft.VisualBasic.Math.LinearAlgebra.Matrix.NumericMatrix">
  <summary>
@@ -2591,7 +2785,16 @@ Microsoft.VisualBasic.Math.Core
 </member>
 <member name="P:Microsoft.VisualBasic.Math.LinearAlgebra.Vector.IsNumeric">
  <summary>
+ check of current vector is scalar?
+ </summary>
+ <returns></returns>
+ <remarks>
  <see cref="P:Microsoft.VisualBasic.Math.Scripting.Rscript.GenericVector`1.Dim"/>为1?即当前的向量对象是否是只包含有一个数字？
+ </remarks>
+</member>
+<member name="P:Microsoft.VisualBasic.Math.LinearAlgebra.Vector.IsNaN">
+ <summary>
+ get NaN elements
  </summary>
  <returns></returns>
 </member>
@@ -2715,6 +2918,14 @@ Microsoft.VisualBasic.Math.Core
  <param name="index">
  The starting index position from which to create the vector.
  </param>
+</member>
+<member name="M:Microsoft.VisualBasic.Math.LinearAlgebra.Vector.AsDiagonal">
+ <summary>
+ Convert the vector as the diagonal matrix
+ </summary>
+ <returns>
+ returns a NxN matrix object, N size is equals to the vector dimension size
+ </returns>
 </member>
 <member name="M:Microsoft.VisualBasic.Math.LinearAlgebra.Vector.CopyTo(System.Double[]@,System.Int32)">
  <summary>
@@ -2942,6 +3153,22 @@ Microsoft.VisualBasic.Math.Core
  <returns></returns>
  
 </member>
+<member name="M:Microsoft.VisualBasic.Math.LinearAlgebra.Vector.dot(System.Double[]@,System.Double[]@)">
+ <summary>
+ helper function for vector dot product
+ </summary>
+ <param name="lhs"></param>
+ <param name="rhs"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Math.LinearAlgebra.Vector.dot(System.Single[]@,System.Single[]@)">
+ <summary>
+ helper function for vector dot product
+ </summary>
+ <param name="lhs"></param>
+ <param name="rhs"></param>
+ <returns></returns>
+</member>
 <member name="M:Microsoft.VisualBasic.Math.LinearAlgebra.Vector.Product">
  <summary>
  返回这个向量之中的所有的元素的乘积
@@ -3007,6 +3234,18 @@ Microsoft.VisualBasic.Math.Core
  this method can be affected by the <see cref="M:Microsoft.VisualBasic.Math.RandomExtensions.SetSeed(System.Int32)"/> method.
  </remarks> 
 
+</member>
+<member name="M:Microsoft.VisualBasic.Math.LinearAlgebra.Vector.norm(System.Int32,System.Double,System.Double)">
+ <summary>
+ create a vector that contains the random number from the gaussian distribution
+ </summary>
+ <param name="size"></param>
+ <param name="mu"></param>
+ <param name="sigma"></param>
+ <returns></returns>
+ <remarks>
+ gaussian number generated via the <see cref="M:Microsoft.VisualBasic.Math.RandomExtensions.NextGaussian(System.Double,System.Double)"/> method.
+ </remarks>
 </member>
 <member name="T:Microsoft.VisualBasic.Math.LinearAlgebra.HalfVector">
  <summary>
@@ -3130,6 +3369,19 @@ Microsoft.VisualBasic.Math.Core
  <returns>
  a set of the point data in float data type
  </returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Math.LinearAlgebra.Extensions.Top(Microsoft.VisualBasic.Math.LinearAlgebra.Vector,System.Int32)">
+ <summary>
+ Check of the elements of the vector inside the top n elements?
+ </summary>
+ <param name="vector"></param>
+ <param name="n"></param>
+ <returns>a logical vector that indicates that each corresponding element is inside the top n elements?</returns>
+ <remarks>
+ this function will create the top n element index, and then
+ check of the each vector elements that existed inside the
+ top n element index or not?
+ </remarks>
 </member>
 <member name="M:Microsoft.VisualBasic.Math.LinearAlgebra.Extensions.Take(Microsoft.VisualBasic.Math.LinearAlgebra.Vector,System.Collections.Generic.IEnumerable{System.Int32})">
  <summary>
@@ -3300,6 +3552,144 @@ Microsoft.VisualBasic.Math.Core
  <param name="source"></param>
  <returns></returns>
 </member>
+<member name="M:Microsoft.VisualBasic.Math.Distributions.Abundance.Skewness(System.Collections.Generic.IEnumerable{System.Double},Microsoft.VisualBasic.Math.Distributions.Abundance.AlgorithmType)">
+ <summary>
+ **Skewness**
+ 
+ Skewness is a fundamental statistical measure used to describe the asymmetry of the probability distribution of a 
+ real-valued random variable. It provides insights into the direction and extent of the deviation from a symmetric 
+ distribution.
+ 
+ ### Key Aspects of Skewness:
+ 
+ 1. **Definition**:
+ 
+    - Skewness is the third standardized moment of a distribution.
+    - It is calculated as the average of the cubed deviations of the data from its mean, standardized by the standard deviation raised to the third power.
+    
+ 2. **Types of Skewness**:
+ 
+    - **Zero Skewness**: Indicates a symmetric distribution where the mean, median, and mode are all equal.
+    - **Positive Skewness (Right-Skewed)**: The tail on the right side of the distribution is longer or fatter. In this case, the mean is greater than the median.
+    - **Negative Skewness (Left-Skewed)**: The tail on the left side of the distribution is longer or fatter. Here, the mean is less than the median.
+    
+ 3. **Interpretation**:
+ 
+    - Skewness values close to zero suggest a nearly symmetric distribution.
+    - Positive values indicate right-skewed distributions, while negative values indicate left-skewed distributions.
+    - The magnitude of the skewness value reflects the degree of asymmetry.
+    
+ 4. **Applications**:
+ 
+    - **Finance**: Used to analyze the distribution of returns on investments, helping investors understand the potential for extreme outcomes.
+    - **Economics**: Assists in examining income distributions, enabling economists to assess income inequality.
+    - **Natural Sciences**: Describes the distribution of experimental data in scientific research.
+    
+ 5. **Considerations**:
+ 
+    - Skewness is just one aspect of distribution shape and should be considered alongside other statistical measures like kurtosis for a comprehensive understanding.
+    - For small sample sizes, the estimation of skewness can be unreliable.
+    
+ In essence, skewness is a statistical tool for understanding the asymmetry of data distributions, 
+ with wide-ranging applications in various fields such as finance, economics, and the natural 
+ sciences.
+ 
+ </summary>
+ <remarks>
+ If x contains missings and these are not removed, the skewness is NA.
+ Otherwise, write xi for the non-missing elements of x, n for their number, μ for their mean, s for their standard deviation, and 
+ mr =∑i (xi −μ) ^ r /n for the sample moments of order r.
+
+ Joanes and Gill (1998) discuss three methods for estimating skewness:
+
+ Type 1: g1 = m3 / m2 ^ (3/2). This is the typical definition used in many older textbooks.
+ Type 2: G1 = g1 * sqrt(n(n−1)) /(n−2). Used in SAS and SPSS.
+ Type 3: b1 = m3 /s^3 = g1 * ((n−1)/n) ^ (3/2) . Used in MINITAB and BMDP.
+
+ All three skewness measures are unbiased under normality.
+ </remarks>
+</member>
+<member name="T:Microsoft.VisualBasic.Math.Distributions.Abundance.AlgorithmType">
+ <summary>
+ the algorithms for computing kurtosis/skewness
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Math.Distributions.Abundance.AlgorithmType.Classical">
+ <summary>
+ This is the typical definition used in many older textbooks.
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Math.Distributions.Abundance.AlgorithmType.SAS">
+ <summary>
+ Used in SAS and SPSS.
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Math.Distributions.Abundance.AlgorithmType.MINITAB">
+ <summary>
+ Used in MINITAB and BMDP.
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Math.Distributions.Abundance.Kurtosis(System.Collections.Generic.IEnumerable{System.Double},Microsoft.VisualBasic.Math.Distributions.Abundance.AlgorithmType)">
+ <summary>
+ **Kurtosis** is a statistical measure that describes the "tailedness" of the probability distribution of a
+ real-valued random variable. In simpler terms, it indicates the extent to which the tails of the distribution 
+ differ from those of a normal distribution.
+ 
+ ### Key Points about Kurtosis:
+ 
+ 1. **Definition**:
+ 
+    - Kurtosis is the fourth standardized moment of a distribution.
+    - It is calculated as the average of the squared deviations of the data from its mean, raised to the fourth power, standardized by the standard deviation raised to the fourth power.
+    
+ 2. **Types of Kurtosis**:
+ 
+    - **Mesokurtic**: Distributions with kurtosis similar to that of the normal distribution (kurtosis value of 3). The tails of a mesokurtic distribution are neither particularly fat nor particularly thin.
+    - **Leptokurtic**: Distributions with positive kurtosis greater than 3. These distributions have "fat tails" and a sharp peak, indicating more frequent large deviations from the mean than a normal distribution.
+    - **Platykurtic**: Distributions with kurtosis less than 3. These distributions have "thin tails" and a flatter peak, indicating fewer large deviations from the mean than a normal distribution.
+    
+ 3. **Excess Kurtosis**:
+ 
+    - Often, kurtosis is reported as "excess kurtosis," which is the kurtosis value minus 3. This adjustment makes the kurtosis of a normal distribution equal to 0.
+    - Positive excess kurtosis indicates a leptokurtic distribution, while negative excess kurtosis indicates a platykurtic distribution.
+    
+ 4. **Interpretation**:
+ 
+    - High kurtosis in a data set is an indicator that data has heavy tails or outliers. This can affect the performance of statistical models and methods that assume normality.
+    - Low kurtosis indicates that the data has light tails and lacks outliers.
+    
+ 5. **Applications**:
+ 
+    - In finance, kurtosis is used to describe the distribution of returns of an investment. A high kurtosis indicates a higher risk of extreme returns.
+    - In data analysis, kurtosis helps in understanding the shape of the data distribution and identifying potential outliers.
+    
+ 6. **Calculation in R**:
+ 
+    - The `kurtosis()` function in the `e1071` package can be used to calculate kurtosis in R.
+    - Alternatively, kurtosis can be calculated manually using the formula:
+    
+ ```R
+ kurtosis &lt;- sum((data - mean(data))^4) / ((length(data) - 1) * sd(data)^4) - 3
+ ```
+ 
+ kurtosis is a statistical measure for understanding the shape of a data distribution, particularly the behavior 
+ of its tails. It is widely used in various fields, including finance, data analysis, and statistics.
+ </summary>
+ <remarks>
+ If x contains missings and these are not removed, the kurtosis is NA.
+
+ Otherwise, write xi for the non-missing elements of x, n for their number, μ for their mean, s for their standard deviation, and 
+ mr = ∑i (xi −μ) ^ r /n for the sample moments of order r.
+
+ Joanes and Gill (1998) discuss three methods for estimating kurtosis:
+
+ Type 1: g2 = m4/m2 ^ 2 −3. This is the typical definition used in many older textbooks.
+ Type 2: G2 = ((n+1)*g2 +6)∗(n−1)/((n−2)(n−3)). Used in SAS and SPSS.
+ Type 3: b2 = m4 /s ^ 4 −3 = (g2 +3)(1−1/n) ^ 2 −3. Used in MINITAB and BMDP.
+
+ Only G2 (corresponding to type = 2) is unbiased under normality.
+ </remarks>
+</member>
 <member name="T:Microsoft.VisualBasic.Math.Distributions.Beta">
  <summary>
  Beta distribution
@@ -3423,6 +3813,29 @@ Microsoft.VisualBasic.Math.Core
  <param name="method"></param>
  <param name="eval"></param>
  <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Math.Distributions.BinBox.Violin.range">
+ <summary>
+ upper and lower bound range of the plot
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Math.Distributions.BinBox.Violin.ViolinDensity(System.Int32)">
+ <summary>
+ generates the plot data
+ </summary>
+ <param name="nPoints"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Math.Distributions.BinBox.Violin.Bandwidth">
+ <summary>
+ Silverman带宽计算法则
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Math.Distributions.BinBox.Violin.KDE(System.Double[],System.Double)">
+ <summary>
+ 计算核密度估计
+ </summary>
 </member>
 <member name="T:Microsoft.VisualBasic.Math.Distributions.Bootstraping">
  <summary>
@@ -5472,6 +5885,99 @@ Microsoft.VisualBasic.Math.Core
  the unique id of current object variable 
  </summary>
  <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.Math.Framework.Optimization.LBFGSB.BKLDLT">
+ <summary>
+ Bunch-Kaufman LDLT decomposition
+ </summary>
+ <remarks>
+ https://lbfgspp.statr.me/doc/BKLDLT_8h_source.html
+ </remarks>
+</member>
+<member name="T:Microsoft.VisualBasic.Math.Framework.Optimization.LBFGSB.BKLDLT.Pair">
+ <summary>
+ Compressed permutations
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.Math.Framework.Optimization.LBFGSB.BKLDLT.IndexType">
+ <summary>
+ Index reference, mutable
+ </summary>		
+</member>
+<member name="M:Microsoft.VisualBasic.Math.Framework.Optimization.LBFGSB.IGradFunction.gradient(System.Double[]@,System.Double[]@,System.Double)">
+ <summary>
+ finite difference, symmetrical gradient, stores result in grad[]
+ </summary>
+ <param name="x"></param>
+ <param name="grad"></param>
+ <param name="eps"></param>
+</member>
+<member name="T:Microsoft.VisualBasic.Math.Framework.Optimization.LBFGSB.LBFGSB">
+ <summary>
+ L-BFGS-B optimizer
+ 
+ # LBFGSBJava
+ 
+ L-BFGS-B box constrained optimizer 
+ 
+ * Most of the code ported from [LBFGS++](https://lbfgspp.statr.me/) code.
+ * MoreThuente line search ported from [R source](https://github.com/SurajGupta/r-source/blob/master/src/appl/lbfgsb.c#L2976) and 
+       [Julia LineSearches.jl](https://github.com/JuliaNLSolvers/LineSearches.jl/blob/master/src/morethuente.jl)
+ * MoreThuente can be used with strong or weak (default) Wolfe condition 
+ * LewisOverton (experimental, don't use) line search ported from [LBFGS-Lite](https://github.com/ZJU-FAST-Lab/LBFGS-Lite/blob/master/include/lbfgs.hpp)
+ 
+ LBFGSB is implemented without any dependencies.
+ 
+ See `org.generateme.lbfgsb.examples` for usage cases.
+ 
+ ## Target function
+ 
+ Each target function should implement `IGradFunction` interface.
+ 
+ * default implementation of `gradient` uses finite differences method
+ * implementing only `evaluate(x)` will use finite differences
+ * there is a possibility to calculate function value and gradient in one call, implement `gradient(x,grad)` and 
+   implement `in_place_gradient` to return `true`. See `Rosenbrock` in examples.
+ 
+ ## Licence
+ 
+ Copyright (c) 2023 GenerateMe
+ 
+ The MIT Licence
+ </summary>
+ <remarks>
+ https://github.com/genmeblog/LBFGSBJava
+ </remarks>
+</member>
+<member name="F:Microsoft.VisualBasic.Math.Framework.Optimization.LBFGSB.LineSearches.LewisOverton.PhiDPhi.drt">
+ <summary>
+ search direction (cauchy point - x)
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Math.Framework.Optimization.LBFGSB.LineSearches.LewisOverton.PhiDPhi.xp">
+ <summary>
+ previous x
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Math.Framework.Optimization.LBFGSB.LineSearches.LewisOverton.PhiDPhi.x">
+ <summary>
+ current x
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Math.Framework.Optimization.LBFGSB.LineSearches.LewisOverton.PhiDPhi.grad">
+ <summary>
+ gradient
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Math.Framework.Optimization.LBFGSB.LineSearches.LewisOverton.PhiDPhi.dg">
+ <summary>
+ dot(grad,drt)
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.Math.Framework.Optimization.LBFGSB.LineSearches.LineSearch">
+ <summary>
+ Line search methods for optimization and root-finding
+ </summary>
 </member>
 <member name="T:Microsoft.VisualBasic.Math.Scripting.Rscript.GenericVector`1">
  <summary>

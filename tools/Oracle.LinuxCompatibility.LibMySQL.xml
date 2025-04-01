@@ -226,6 +226,11 @@ Oracle.LinuxCompatibility.LibMySQL
  </summary>
  <param name="name"></param>
  <returns></returns>
+ <remarks>
+ this function try to wrap the given name with **`** symbol. if the given name already
+ have the wrapper **`**, then returns the original given name string from this 
+ function.
+ </remarks>
 </member>
 <member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert.call_on(System.String,System.String[])">
  <summary>
@@ -268,12 +273,35 @@ Oracle.LinuxCompatibility.LibMySQL
  <param name="val"></param>
  <returns></returns>
 </member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert.op_LessThan(Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert,System.String)">
+ <summary>
+ value comparision operator for evaluate: <paramref name="field"/> less than given <paramref name="val"/>
+ </summary>
+ <param name="field"></param>
+ <param name="val"></param>
+ <returns></returns>
+</member>
 <member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert.op_Like(Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert,System.String)">
  <summary>
  field LIKE '%pattern%'
  </summary>
  <param name="field"></param>
  <param name="val"></param>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert.op_OnesComplement(Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert)">
+ <summary>
+ unary not of the field assert logical result
+ </summary>
+ <param name="field"></param>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert.op_BitwiseOr(Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert,Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert)">
+ <summary>
+ logical expression a or b in mysql
+ </summary>
+ <param name="a"></param>
+ <param name="b"></param>
  <returns></returns>
 </member>
 <member name="T:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.Model">
@@ -561,6 +589,15 @@ Oracle.LinuxCompatibility.LibMySQL
  <param name="SQL">
  这个函数会自动进行判断添加``LIMIT 1``限定，所以不需要刻意担心
  </param>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqli.Exists(System.String)">
+ <summary>
+ check of the query has matches inside the database?
+ </summary>
+ <param name="query"></param>
+ <returns>
+ result of ``SELECT EXISTS``
+ </returns>
 </member>
 <member name="M:Oracle.LinuxCompatibility.MySQL.MySqli.ExecuteAggregate``1(System.String)">
  <summary>

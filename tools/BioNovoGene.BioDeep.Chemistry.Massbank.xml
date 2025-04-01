@@ -146,6 +146,12 @@ BioNovoGene.BioDeep.Chemistry.Massbank
  </summary>
  <typeparam name="T"></typeparam>
 </member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.MetaLib.MetaEquals.SimpleCheck.score">
+ <summary>
+ get the jaccard similarity score
+ </summary>
+ <returns></returns>
+</member>
 <member name="T:BioNovoGene.BioDeep.Chemistry.MetaLib.ChemicalNameEquality">
  <summary>
  判断两个化学名称是否相同？
@@ -182,6 +188,149 @@ BioNovoGene.BioDeep.Chemistry.Massbank
  
  </summary>
  <param name="score">认为两个物质注释指的是相同的物质的最低得分</param>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.BiosampleSource.reference">
+ <summary>
+ the reference source
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.CompoundClass">
+ <summary>
+ the data model of the compound class information
+ </summary>
+ <remarks>
+ this class information model is mainly address on the HMDB
+ metabolite ontology class levels.
+ </remarks>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.ClassReader">
+ <summary>
+ a helper for get <see cref="T:BioNovoGene.BioDeep.Chemoinformatics.ICompoundClass"/> data
+ </summary>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.ClassReader.EnumerateId">
+ <summary>
+ try to enumerate all the reference id inside current 
+ class data index pool
+ </summary>
+ <returns>
+ a collection of the metabolite reference id, which could be used 
+ for get the compound class data via the <see cref="M:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.ClassReader.GetClass(System.String)"/> method.
+ </returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.ClassReader.ToSet(BioNovoGene.BioDeep.Chemoinformatics.ICompoundClass)">
+ <summary>
+ populate the class structure data in string array:
+ 
+ 1. <see cref="P:BioNovoGene.BioDeep.Chemoinformatics.ICompoundClass.kingdom"/>
+ 2. <see cref="P:BioNovoGene.BioDeep.Chemoinformatics.ICompoundClass.super_class"/>
+ 3. <see cref="P:BioNovoGene.BioDeep.Chemoinformatics.ICompoundClass.class"/>
+ 4. <see cref="P:BioNovoGene.BioDeep.Chemoinformatics.ICompoundClass.sub_class"/>
+ 5. <see cref="P:BioNovoGene.BioDeep.Chemoinformatics.ICompoundClass.molecular_framework"/>
+ </summary>
+ <param name="c"></param>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaInfo">
+ <summary>
+ the very basic metabolite annotation data model
+ </summary>
+ <remarks>
+ this data model includes the metabolite annotation information, includes:
+ 
+ 1. basic metabolite information, example as formula, name, etc
+ 2. database cross reference: <see cref="P:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaInfo.xref"/>
+ </remarks>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaInfo.ID">
+ <summary>
+ 该物质在整合库之中的唯一标识符
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaInfo.IUPACName">
+ <summary>
+ IUPAC name refers to the systematic name given to a chemical compound according to the rules and 
+ guidelines established by the International Union of Pure and Applied Chemistry (IUPAC). IUPAC is 
+ an international organization that aims to advance the field of chemistry by developing standards
+ and nomenclature for chemicals.
+ 
+ The IUPAC name of a compound provides a unique and unambiguous identifier for that compound, which
+ is essential for clear communication among chemists and other scientists. These names are based 
+ on a set of systematic rules that take into account the structure and composition of the compound.
+ 
+ For example, the IUPAC name for the common sugar glucose is (2R,3S,4R,5R)-2,3,4,5,6-pentahydroxyhexanal.
+ This name describes the specific arrangement of atoms and functional groups in the glucose molecule.
+ 
+ IUPAC names are particularly important for complex organic compounds, where common names can be 
+ confusing or non-existent. They are widely used in scientific literature, patents, and other 
+ technical documents related to chemistry.
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaInfo.synonym">
+ <summary>
+ the synonym of current metabolite, multiple names in different languages maybe contains inside this data names pool
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaInfo.xref">
+ <summary>
+ The database cross reference of current metabolite and the molecule structure data.
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaInfo.GetXrefId(System.String)">
+ <summary>
+ get database cross reference id by database name
+ </summary>
+ <param name="field">
+ the database name
+ </param>
+ <returns>
+ db_xref, returns nothing if no corresponding data
+ </returns>
+ <remarks>
+ multiple id will be join with the delimiter ``;``.
+ </remarks>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaInfo.ToString">
+ <summary>
+ display the name for debug view
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaLib">
+ <summary>
+ 对``chebi/kegg/pubchem/HMDB/metlin``的物质注释信息整合库，这个数据库只要为了生成编号，名称之类的注释信息而构建的
+ </summary>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaLib.pathways">
+ <summary>
+ 包含有这个物质的KEGG pathway的编号的集合，只有当<see cref="P:BioNovoGene.BioDeep.Chemistry.MetaLib.CrossReference.xref.KEGG"/>
+ 存在值的时候才会存在这个属性
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaLib.#ctor(BioNovoGene.BioDeep.Chemoinformatics.ICompoundClass)">
+ <summary>
+ creator a metabolite annotation data with compound class assigned
+ </summary>
+ <param name="class">the compound class data</param>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaLib.#ctor(BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaLib)">
+ <summary>
+ make value copy
+ </summary>
+ <param name="clone"></param>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaLib.Equals(BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaLib)">
+ <summary>
+ 相同的物质可能在数据库之间有好几个编号?
+ </summary>
+ <param name="other"></param>
+ <returns></returns>
 </member>
 <member name="T:BioNovoGene.BioDeep.Chemistry.MetaLib.CrossReference.Validation">
  <summary>
@@ -288,6 +437,14 @@ BioNovoGene.BioDeep.Chemistry.Massbank
  <param name="b"></param>
  <returns></returns>
 </member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.MetaLib.CrossReference.xref.op_Like(BioNovoGene.BioDeep.Chemistry.MetaLib.CrossReference.xref,BioNovoGene.BioDeep.Chemistry.MetaLib.CrossReference.xref)">
+ <summary>
+ evaluate the jaccard score between two db_xrefs data
+ </summary>
+ <param name="a"></param>
+ <param name="b"></param>
+ <returns></returns>
+</member>
 <member name="T:BioNovoGene.BioDeep.Chemistry.MetaLib.CrossReference.XrefExtensions">
  <summary>
  helper function for re-format the input id string to canonical format
@@ -325,140 +482,6 @@ BioNovoGene.BioDeep.Chemistry.Massbank
  collection, where the id set elements is seperated by the 
  ``;`` symbol.
  </param>
- <returns></returns>
-</member>
-<member name="T:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.ClassReader">
- <summary>
- a helper for get <see cref="T:BioNovoGene.BioDeep.Chemoinformatics.ICompoundClass"/> data
- </summary>
-</member>
-<member name="M:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.ClassReader.EnumerateId">
- <summary>
- try to enumerate all the reference id inside current 
- class data index pool
- </summary>
- <returns>
- a collection of the metabolite reference id, which could be used 
- for get the compound class data via the <see cref="M:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.ClassReader.GetClass(System.String)"/> method.
- </returns>
-</member>
-<member name="M:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.ClassReader.ToSet(BioNovoGene.BioDeep.Chemoinformatics.ICompoundClass)">
- <summary>
- populate the class structure data in string array:
- 
- 1. <see cref="P:BioNovoGene.BioDeep.Chemoinformatics.ICompoundClass.kingdom"/>
- 2. <see cref="P:BioNovoGene.BioDeep.Chemoinformatics.ICompoundClass.super_class"/>
- 3. <see cref="P:BioNovoGene.BioDeep.Chemoinformatics.ICompoundClass.class"/>
- 4. <see cref="P:BioNovoGene.BioDeep.Chemoinformatics.ICompoundClass.sub_class"/>
- 5. <see cref="P:BioNovoGene.BioDeep.Chemoinformatics.ICompoundClass.molecular_framework"/>
- </summary>
- <param name="c"></param>
- <returns></returns>
-</member>
-<member name="T:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaInfo">
- <summary>
- the very basic metabolite annotation data model
- </summary>
- <remarks>
- this data model includes the metabolite annotation information, includes:
- 
- 1. basic metabolite information, example as formula, name, etc
- 2. database cross reference: <see cref="P:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaInfo.xref"/>
- </remarks>
-</member>
-<member name="P:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaInfo.ID">
- <summary>
- 该物质在整合库之中的唯一标识符
- </summary>
- <returns></returns>
-</member>
-<member name="P:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaInfo.IUPACName">
- <summary>
- IUPAC name refers to the systematic name given to a chemical compound according to the rules and 
- guidelines established by the International Union of Pure and Applied Chemistry (IUPAC). IUPAC is 
- an international organization that aims to advance the field of chemistry by developing standards
- and nomenclature for chemicals.
- 
- The IUPAC name of a compound provides a unique and unambiguous identifier for that compound, which
- is essential for clear communication among chemists and other scientists. These names are based 
- on a set of systematic rules that take into account the structure and composition of the compound.
- 
- For example, the IUPAC name for the common sugar glucose is (2R,3S,4R,5R)-2,3,4,5,6-pentahydroxyhexanal.
- This name describes the specific arrangement of atoms and functional groups in the glucose molecule.
- 
- IUPAC names are particularly important for complex organic compounds, where common names can be 
- confusing or non-existent. They are widely used in scientific literature, patents, and other 
- technical documents related to chemistry.
- </summary>
- <returns></returns>
-</member>
-<member name="P:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaInfo.synonym">
- <summary>
- the synonym of current metabolite, multiple names in different languages maybe contains inside this data names pool
- </summary>
- <returns></returns>
-</member>
-<member name="P:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaInfo.xref">
- <summary>
- The database cross reference of current metabolite and the molecule structure data.
- </summary>
- <returns></returns>
-</member>
-<member name="P:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaInfo.GetXrefId(System.String)">
- <summary>
- get database cross reference id by database name
- </summary>
- <param name="field">
- the database name
- </param>
- <returns>
- db_xref
- </returns>
-</member>
-<member name="M:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaInfo.ToString">
- <summary>
- display the name for debug view
- </summary>
- <returns></returns>
-</member>
-<member name="P:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.BiosampleSource.reference">
- <summary>
- the reference source
- </summary>
- <returns></returns>
-</member>
-<member name="T:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.CompoundClass">
- <summary>
- the data model of the compound class information
- </summary>
- <remarks>
- this class information model is mainly address on the HMDB
- metabolite ontology class levels.
- </remarks>
-</member>
-<member name="T:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaLib">
- <summary>
- 对``chebi/kegg/pubchem/HMDB/metlin``的物质注释信息整合库，这个数据库只要为了生成编号，名称之类的注释信息而构建的
- </summary>
-</member>
-<member name="P:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaLib.pathways">
- <summary>
- 包含有这个物质的KEGG pathway的编号的集合，只有当<see cref="P:BioNovoGene.BioDeep.Chemistry.MetaLib.CrossReference.xref.KEGG"/>
- 存在值的时候才会存在这个属性
- </summary>
- <returns></returns>
-</member>
-<member name="M:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaLib.#ctor(BioNovoGene.BioDeep.Chemoinformatics.ICompoundClass)">
- <summary>
- creator a metabolite annotation data with compound class assigned
- </summary>
- <param name="class">the compound class data</param>
-</member>
-<member name="M:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaLib.Equals(BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaLib)">
- <summary>
- 相同的物质可能在数据库之间有好几个编号?
- </summary>
- <param name="other"></param>
  <returns></returns>
 </member>
 <member name="F:BioNovoGene.BioDeep.Chemistry.MetaLib.CommonNames.NameRanking.symbols">
@@ -1381,6 +1404,13 @@ BioNovoGene.BioDeep.Chemistry.Massbank
  <param name="path$"></param>
  <param name="names$"></param>
  <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.TMIC.HMDB.HmdbConvertor.CreateReferenceData(BioNovoGene.BioDeep.Chemistry.TMIC.HMDB.metabolite)">
+ <summary>
+ Convert of the hmdb metabolite data as the mzkit internal metabolite annotation data model
+ </summary>
+ <param name="metabolite">the HMDB metabolite data</param>
+ <returns>mzkit metabolite annotation internal data model</returns>
 </member>
 <member name="F:BioNovoGene.BioDeep.Chemistry.TMIC.HMDB.Repository.BioSampleExtensions.samples">
  <summary>
