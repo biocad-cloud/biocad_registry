@@ -1,0 +1,28 @@
+﻿.TH GET_GENBANK 1 2025-Apr "" "Download GenBank Assembly File from NCBI FTP Server This helper function constructs the NCBI FTP path for a given assembly ID, retrieves the corresponding GenBank genomic file (*.gbff.gz), and downloads it to a local directory."
+.SH NAME
+get_genbank \- get_genbank(asm.id,
+    <i>repo.dir</i> = <span style='color: brown;'><strong>'./'</strong></span>)
+.SH SYNOPSIS
+\fIget_genbank(asm.id,
+    <i>repo.dir</i> = <span style='color: brown;'><strong>'./'</strong></span>)\fR
+.SH OPTIONS
+.PP
+\fBasm.id\fB \fR\- . 
+.PP
+.PP
+\fBrepo.dir\fB \fR\- './'. 
+.PP
+.SH VALUE
+.PP
+Invisibly returns the full path to the downloaded file. Primarily called for its side effect of downloading the GenBank file to the specified directory.
+.PP
+.SH DETAILS
+.PP
+The function: \enumerate{ \item Parses the assembly ID into prefix and numeric components \item Constructs the NCBI FTP directory path using the ID structure \item Retrieves the compressed GenBank file (*_genomic.gbff.gz) \item Downloads the file to the specified local directory }
+.PP
+.SH FILES
+.PP
+SMRUCC/R#.declare_function.get_genbank at ncbi_ftp.R:line 40
+.PP
+.SH COPYRIGHT
+Copyright © xieguigang <xie.guigang@gcmodeller.org>, MIT License Licensed 2025

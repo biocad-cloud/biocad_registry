@@ -2,10 +2,10 @@
 <html>
 
 <head>
-    <title>imports kegg compound into data repository</title>
+    <title>Import KEGG compound data into biocad registry This function imports chemical compound data from KEGG database into a biocad registry system, handling metabolite registration, cross-reference management, and compound metadata integration.</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-    <link rel="stylesheet" type="text/css" href="https://gcmodeller.org/lib/page.css">
+    <link rel="stylesheet" type="text/css" href="../../_assets/page.css">
 </head>
 
 <body>
@@ -18,7 +18,7 @@
             </tr>
         </table>
 
-        <h2>imports kegg compound into data repository</h2>
+        <h2>Import KEGG compound data into biocad registry This function imports chemical compound data from KEGG database into a biocad registry system, handling metabolite registration, cross-reference management, and compound metadata integration.</h2>
 
         <h3>Description</h3>
 
@@ -34,15 +34,19 @@
 
         <table>
             
+<dt>biocad.registry</dt>
+<dd><p><p>A biocad database registry connection object</p></p></dd>
+
+
 <dt>kegg</dt>
-<dd><p><p>a kegg compound collection</p></p></dd>
+<dd><p><p>KEGG compound data input. Can be either: - KEGG Compound object collection - List of parsed KEGG entries - Pipeline enumerator for stream processing</p></p></dd>
 
         </table>
 
 
-        <h3 style="display: none;">Details</h3>
+        <h3 style="display: block;">Details</h3>
 
-        
+        <p>The function performs these key operations: 1. Initializes database terminology for metabolite entities 2. Processes KEGG compound entries with progress tracking 3. For each compound: - Extracts database cross-references (ChEBI, PubChem, CAS) - Builds standardized compound metadata structure - Checks for existing registry entries - Updates database with new compounds and related information 4. Maintains cross-database consistency through: - KEGG-to-external database identifier mapping - Synonym management - Structural data preservation</p>
 
         <h3 style="display: block">Authors</h3>
 
@@ -50,7 +54,7 @@
 
         <h3>Value</h3>
 
-        This function has no value returns.
+        <p>Invisibly returns NULL. Mainly used for populating the biocad registry with metabolite data and associated cross-references.</p>
 
         <h3 style="display: none;">Examples</h3>
 
@@ -63,8 +67,8 @@
     </div>
 </body>
 
-<script type="text/javascript" src="https://gcmodeller.org/lib/R_syntax.js"></script>
-<script type="text/javascript" src="https://gcmodeller.org/lib/highlights.js"></script>
+<script type="text/javascript" src="../../_assets/R_syntax.js"></script>
+<script type="text/javascript" src="../../_assets/highlights.js"></script>
 <script type="text/javascript">r_highlights("example_r");</script>
 
 </html>

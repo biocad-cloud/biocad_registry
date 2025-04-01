@@ -36,6 +36,10 @@ declare namespace biocad_registry {
    */
    function gene_term(biocad_registry: any): object;
    /**
+     * @param repo_dir default value Is ``./``.
+   */
+   function get_genbank(asm_id: any, repo_dir?: any): object;
+   /**
      * @param dbname default value Is ``null``.
    */
    function get_molecule_by_dbxref(registry: any, db_xref: any, dbname?: any): object;
@@ -104,6 +108,7 @@ declare namespace biocad_registry {
    /**
    */
    function molecule_terms(biocad_registry: any): object;
+   ncbi: any;
    /**
      * @param host default value Is ``localhost``.
      * @param port default value Is ``3306``.

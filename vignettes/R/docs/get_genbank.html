@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Download GenBank Assembly File from NCBI FTP Server This helper function constructs the NCBI FTP path for a given assembly ID, retrieves the corresponding GenBank genomic file (*.gbff.gz), and downloads it to a local directory.</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <link rel="stylesheet" type="text/css" href="../../_assets/page.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <table style="width: 100%;">
+            <tr>
+                <td>get_genbank {biocad_registry}</td>
+                <td style="text-align: right;">R Documentation</td>
+            </tr>
+        </table>
+
+        <h2>Download GenBank Assembly File from NCBI FTP Server This helper function constructs the NCBI FTP path for a given assembly ID, retrieves the corresponding GenBank genomic file (*.gbff.gz), and downloads it to a local directory.</h2>
+
+        <h3>Description</h3>
+
+        
+
+        <h3>Usage</h3>
+
+        <div style="width: 100%; padding-left: 3%; color: black;">
+            <pre><code class='language-R' style="color: black; font-weight:normal;"><strong>get_genbank</strong>(<i>asm.id</i>,
+    <i>repo.dir</i> = <span style='color: brown;'><strong>'./'</strong></span>);</code></pre>
+        </div>
+
+        <h3>Arguments</h3>
+
+        <table>
+            
+<dt>asm.id</dt>
+<dd><p><p>Character. NCBI GenBank assembly accession ID in the format "prefix<em>Integers" (e.g., "GCF</em>123456789"). The prefix typically indicates the assembly type (e.g., GCF/GCA), followed by a 9+ digit identifier.</p></p></dd>
+
+
+<dt>repo.dir</dt>
+<dd><p><p>Character. Local directory path to save the downloaded file. Defaults to the current working directory ("./").</p></p></dd>
+
+        </table>
+
+
+        <h3 style="display: block;">Details</h3>
+
+        <p>The function: \enumerate{ \item Parses the assembly ID into prefix and numeric components \item Constructs the NCBI FTP directory path using the ID structure \item Retrieves the compressed GenBank file (*_genomic.gbff.gz) \item Downloads the file to the specified local directory }</p>
+
+        <h3 style="display: block">Authors</h3>
+
+        xieguigang &lt;xie.guigang@gcmodeller.org>
+
+        <h3>Value</h3>
+
+        <p>Invisibly returns the full path to the downloaded file. Primarily called for its side effect of downloading the GenBank file to the specified directory.</p>
+
+        <h3 style="display: none;">Examples</h3>
+
+        
+
+        <hr />
+        <div style="text-align: center;">[Package <em>biocad_registry</em> version 1.0.148 <a
+                href="../biocad_registry.html">Index</a>]
+        </div>
+    </div>
+</body>
+
+<script type="text/javascript" src="../../_assets/R_syntax.js"></script>
+<script type="text/javascript" src="../../_assets/highlights.js"></script>
+<script type="text/javascript">r_highlights("example_r");</script>
+
+</html>
