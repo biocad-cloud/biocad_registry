@@ -18,7 +18,13 @@ genomes <- data.frame(
 );
 
 print(genomes);
+print(unique(genomes$kingdom));
 
-let org = dbget::show_organism("hsa");
+let bacterial = genomes[genomes$kingdom == "Prokaryotes", ];
 
-str(as.list(org));
+for(let entry in as.list(bacterial,byrow=TRUE)) {
+    let org = dbget::show_organism(entry$kegg_code);
+
+    str(as.list(org));
+}
+
