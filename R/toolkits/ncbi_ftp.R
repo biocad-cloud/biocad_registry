@@ -1,8 +1,5 @@
 imports "ftp" from "webKit";
 
-#' ftp reference to the ncbi ftp server
-const ncbi = new ftp(server = "ftp.ncbi.nlm.nih.gov");
-
 #' Download GenBank Assembly File from NCBI FTP Server
 #' 
 #' This helper function constructs the NCBI FTP path for a given assembly ID, retrieves 
@@ -43,7 +40,8 @@ const get_genbank = function(asm_id, repo_dir = "./") {
     let int_id = unlist(parts[2]);
     let num_str = c(substr(int_id, 1, 3), substr(int_id, 4, 6), substr(int_id, 7, 9)); 
     let path = ["/genomes/all", prefix] |> append(num_str);
-    
+    let ncbi = new ftp(server = "ftp.ncbi.nlm.nih.gov");
+
     # build ftp path
     path   <- paste(path, sep = "/");
     asm_id <- list.ftp_dirs(ncbi, dir = path);

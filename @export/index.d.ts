@@ -108,7 +108,6 @@ declare namespace biocad_registry {
    /**
    */
    function molecule_terms(biocad_registry: any): object;
-   ncbi: any;
    /**
      * @param host default value Is ``localhost``.
      * @param port default value Is ``3306``.
