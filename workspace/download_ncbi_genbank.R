@@ -37,7 +37,11 @@ for(let entry in as.list(bacterial,byrow=TRUE)) {
     let gbff_file = file.path(repo_dir, `${kegg_code}-${source}.gbff.tar`);
 
     if (isTRUE((nchar(source) > 0) && !file.exists(gbff_file))) {
-        get_genbank(asm_id = source, repo_dir = gbff_file);
+        try({
+            get_genbank(asm_id = source, repo_dir = gbff_file);
+        });
+    } else {
+        print("skip existsed genbank assembly file...");
     }
     
     # stop();
