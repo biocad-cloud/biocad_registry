@@ -4,7 +4,7 @@ imports "dbget" from "kegg_kit";
 imports "kegg_api" from "kegg_kit";
 
 # tools for download kegg bacterial genomes
-options(dbget.cache = @dir);
+options(dbget.cache = "D:\datapool");
 
 let genomes = kegg_api::listing("organism");
 
