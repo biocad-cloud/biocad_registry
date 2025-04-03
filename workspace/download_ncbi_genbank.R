@@ -34,10 +34,13 @@ for(let entry in as.list(bacterial,byrow=TRUE)) {
 
     str(source);
 
-    if (nchar(source) > 0) {
-        get_genbank(asm_id = source, repo_dir = file.path(repo_dir, `${kegg_code}-${source}.tar.gz`));
+    let gbff_file = file.path(repo_dir, `${kegg_code}-${source}.gbff.tar`);
+
+    if (isTRUE((nchar(source) > 0) && !file.exists(gbff_file))) {
+        get_genbank(asm_id = source, repo_dir = gbff_file);
     }
     
-    stop();
+    # stop();
+    invisible(NULL);
 }
 
