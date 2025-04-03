@@ -24,21 +24,21 @@ let bacterial = genomes[genomes$kingdom == "Prokaryotes", ];
 let repo_dir= file.path(getOption("dbget.cache"),"ncbi_genbank");
 
 for(let entry in as.list(bacterial,byrow=TRUE)) {
-    let org = dbget::show_organism(entry$kegg_code);
-    let kegg_code = as.list(org)$code;
-    let source = as.list(org)$DataSource;
+    try({
+        let org = dbget::show_organism(entry$kegg_code);
+        let kegg_code = as.list(org)$code;
+        let source = as.list(org)$DataSource;
 
-    source = source@text |> which(url -> (instr(url,"ncbi.nlm.nih.gov") > 1) && (instr(url, "assembly") > 1));
-    source = last(strsplit(source, "/"));
-    source = first(strsplit(source,".",fixed=TRUE));
+        source = source@text |> which(url -> (instr(url,"ncbi.nlm.nih.gov") > 1) && (instr(url, "assembly") > 1));
+        source = last(strsplit(source, "/"));
+        source = first(strsplit(source,".",fixed=TRUE));
 
-    str(source);   
+        str(source);   
 
-    if (isTRUE(nchar(source) > 0)) {
-        try({
+        if (isTRUE(nchar(source) > 0)) {
             get_genbank(asm_id = source, repo_dir = file.path(repo_dir, `${kegg_code}-${source}/`));
-        });
-    }
+        }
+    });
     
     # stop();
     invisible(NULL);

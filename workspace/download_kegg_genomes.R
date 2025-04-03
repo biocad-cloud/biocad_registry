@@ -23,8 +23,9 @@ print(unique(genomes$kingdom));
 let bacterial = genomes[genomes$kingdom == "Prokaryotes", ];
 
 for(let entry in as.list(bacterial,byrow=TRUE)) {
-    let org = dbget::show_organism(entry$kegg_code);
-
-    str(as.list(org));
+    try({
+        let org = dbget::show_organism(entry$kegg_code);
+        # str(as.list(org));
+    });
 }
 
