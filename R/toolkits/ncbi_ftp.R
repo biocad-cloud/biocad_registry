@@ -47,12 +47,27 @@ const get_genbank = function(asm_id, repo_dir = "./") {
     asm_id <- list.ftp_dirs(ncbi, dir = path);
 
     # create genbank file url reference on the ftp server
+    # may contains multiple version assembly file
+    #
     let genbank_url = `${path}/${asm_id}/${asm_id}_genomic.gbff.gz`;
     
     print(asm_id);
     print(genbank_url);
 
-    # make ftp download of the archive file to
-    # local dir.
-    ncbi |> ftp.get(file = genbank_url, save = repo_dir);
+    for(let url in genbank_url) {
+        let local_file = file.path(repo_dir, basename(url, TRUE));
+
+        cat(`${url} => ${local_file} ... `);
+
+        # download all version assembly file at here?
+        if(!file.exists(local_file)) {
+            # make ftp download of the archive file to
+            # local dir.
+            ncbi |> ftp.get(file = genbank_url, save = local_file);
+            
+            cat("done!\n");
+        } else {
+            cat("skip!\n");
+        }
+    }
 }

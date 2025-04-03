@@ -32,16 +32,12 @@ for(let entry in as.list(bacterial,byrow=TRUE)) {
     source = last(strsplit(source, "/"));
     source = first(strsplit(source,".",fixed=TRUE));
 
-    str(source);
+    str(source);   
 
-    let gbff_file = file.path(repo_dir, `${kegg_code}-${source}.gbff.tar`);
-
-    if (isTRUE((nchar(source) > 0) && !file.exists(gbff_file))) {
+    if (isTRUE(nchar(source) > 0)) {
         try({
-            get_genbank(asm_id = source, repo_dir = gbff_file);
+            get_genbank(asm_id = source, repo_dir = file.path(repo_dir, `${kegg_code}-${source}/`));
         });
-    } else {
-        print("skip existsed genbank assembly file...");
     }
     
     # stop();
