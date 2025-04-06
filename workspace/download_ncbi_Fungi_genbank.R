@@ -18,12 +18,13 @@ genomes <- data.frame(
     lineage = genomes@{3}
 );
 
-print(genomes);
 print(unique(genomes$kingdom));
 
 let Fungi = genomes[genomes$kingdom == "Eukaryotes", ];
 Fungi = Fungi[Fungi$class == "Fungi", ];
 let repo_dir= file.path(getOption("dbget.cache"),"ncbi_genbank");
+
+print(Fungi );
 
 for(let entry in as.list(Fungi,byrow=TRUE)) {
     try({
