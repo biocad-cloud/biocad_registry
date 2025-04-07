@@ -2954,7 +2954,9 @@ Microsoft.VisualBasic.Math.Core
  </summary>
  <param name="v1"></param>
  <param name="v2"></param>
- <returns></returns>
+ <returns>
+ this operator is a safe function: if any one vector is nothing, then returns the copy of another vector directly.
+ </returns>
  <remarks></remarks>
 </member>
 <member name="M:Microsoft.VisualBasic.Math.LinearAlgebra.Vector.op_Subtraction(Microsoft.VisualBasic.Math.LinearAlgebra.Vector,Microsoft.VisualBasic.Math.LinearAlgebra.Vector)">

@@ -3953,6 +3953,11 @@ ATT I Ile      ACT T Thr      AAT N As [rest of string was truncated]&quot;;.
  </summary>
  <returns></returns>
 </member>
+<member name="T:SMRUCC.genomics.Assembly.KEGG.DBGET.bGetObject.Organism.ShowOrganism">
+ <summary>
+ http web handler for the kegg organism info page
+ </summary>
+</member>
 <member name="P:SMRUCC.genomics.Assembly.KEGG.DBGET.bGetObject.OrthologyTerms.EntityList">
  <summary>
  A collection of term id in array <see cref="P:SMRUCC.genomics.Assembly.KEGG.DBGET.bGetObject.OrthologyTerms.Terms"/>

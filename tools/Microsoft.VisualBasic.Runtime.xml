@@ -17478,6 +17478,13 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <remarks></remarks>
  
 </member>
+<member name="M:Microsoft.VisualBasic.Imaging.GDIColors.IsTransparent(System.Drawing.Color)">
+ <summary>
+ Check of the given color value is transparent color?
+ </summary>
+ <param name="c"></param>
+ <returns></returns>
+</member>
 <member name="M:Microsoft.VisualBasic.Imaging.GDIColors.Equals(System.Drawing.Color,System.Drawing.Color,System.Int32)">
  <summary>
  分别比较A,R,G,B这些属性值来判断这样个颜色对象值是否相等
@@ -31148,6 +31155,13 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  the timespan length for test the cache is expired in time?
  </summary>
 </member>
+<member name="M:Microsoft.VisualBasic.Net.Http.WebQuery`1.#cctor">
+ <summary>
+ config default web query parameters:
+ 
+ from cli: /@set sleep=3000;webquery.debug=TRUE
+ </summary>
+</member>
 <member name="M:Microsoft.VisualBasic.Net.Http.WebQuery`1.#ctor(System.Func{`0,System.String},Microsoft.VisualBasic.Serialization.IToString{`0},Microsoft.VisualBasic.Serialization.IObjectBuilder,System.Func{System.String,System.String},System.String,System.Int32,System.Boolean)">
  <summary>
  
@@ -31324,81 +31338,6 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  </summary>
  <param name="url"></param>
  <returns></returns>
-</member>
-<member name="M:Microsoft.VisualBasic.Net.WebClient.WebClient.OpenSaveStream">
- <summary>
- open save stream
- </summary>
- <returns></returns>
-</member>
-<member name="T:Microsoft.VisualBasic.Net.WebClient.wget">
- <summary>
- 命令行下的下载程序组件
- </summary>
-</member>
-<member name="M:Microsoft.VisualBasic.Net.WebClient.wget.#ctor(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
- <summary>
- Create a new file download task
- </summary>
- <param name="url">The remote resource to download.</param>
- <param name="save">The file save location</param>
-</member>
-<member name="M:Microsoft.VisualBasic.Net.WebClient.wget.Run">
- <summary>
- Run the file download task
- </summary>
-</member>
-<member name="M:Microsoft.VisualBasic.Net.WebClient.wget.ReportRequest(System.Net.WebRequest,System.Net.WebResponse,System.String)">
- <summary>
- Do task summary
- </summary>
- <param name="req"></param>
- <param name="resp"></param>
-</member>
-<member name="M:Microsoft.VisualBasic.Net.WebClient.wget.Download(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.Boolean)">
- <summary>
- 执行有详细进度信息显示的文件下载操作, 如果只需要调用一个单纯的文件下载函数, 
- 请使用<see cref="M:Microsoft.VisualBasic.WebServiceUtils.DownloadFile(System.String,System.String,System.String,System.String,System.Int32,System.Net.DownloadProgressChangedEventHandler,System.String,System.Int32,System.Boolean,System.String)"/>拓展函数
- </summary>
- <param name="url$"></param>
- <param name="save$"></param>
- <returns></returns>
-</member>
-<member name="T:Microsoft.VisualBasic.Net.WebClient.wgetTask">
- <summary>
- 提供一些比较详细的数据信息和事件处理
- </summary>
-</member>
-<member name="P:Microsoft.VisualBasic.Net.WebClient.wgetTask.currentSize">
- <summary>
- Size that has been downloaded
- </summary>
-</member>
-<member name="P:Microsoft.VisualBasic.Net.WebClient.wgetTask.totalSize">
- <summary>
- Total size of the file that has to be downloaded
- </summary>
-</member>
-<member name="P:Microsoft.VisualBasic.Net.WebClient.wgetTask.downloadSpeed">
- <summary>
- KB/sec
- </summary>
- <returns></returns>
-</member>
-<member name="P:Microsoft.VisualBasic.Net.WebClient.wgetTask.isDownloading">
- <summary>
- Client status
- </summary>
- <returns></returns>
-</member>
-<member name="M:Microsoft.VisualBasic.Net.WebClient.wgetTask.#ctor(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
- <summary>
- 
- </summary>
- <param name="downloadUrl"></param>
- <param name="saveFile">
- Module will create a new <see cref="T:System.IO.FileStream"/> that writes to this desired download path
- </param>
 </member>
 <member name="T:Microsoft.VisualBasic.Net.Protocols.ContentTypes.ContentType">
  <summary>
@@ -31882,6 +31821,81 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  </summary>
  <param name="ip"></param>
  <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Net.WebClient.WebClient.OpenSaveStream">
+ <summary>
+ open save stream
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.Net.WebClient.wget">
+ <summary>
+ 命令行下的下载程序组件
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Net.WebClient.wget.#ctor(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+ <summary>
+ Create a new file download task
+ </summary>
+ <param name="url">The remote resource to download.</param>
+ <param name="save">The file save location</param>
+</member>
+<member name="M:Microsoft.VisualBasic.Net.WebClient.wget.Run">
+ <summary>
+ Run the file download task
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Net.WebClient.wget.ReportRequest(System.Net.WebRequest,System.Net.WebResponse,System.String)">
+ <summary>
+ Do task summary
+ </summary>
+ <param name="req"></param>
+ <param name="resp"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.Net.WebClient.wget.Download(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.Boolean)">
+ <summary>
+ 执行有详细进度信息显示的文件下载操作, 如果只需要调用一个单纯的文件下载函数, 
+ 请使用<see cref="M:Microsoft.VisualBasic.WebServiceUtils.DownloadFile(System.String,System.String,System.String,System.String,System.Int32,System.Net.DownloadProgressChangedEventHandler,System.String,System.Int32,System.Boolean,System.String)"/>拓展函数
+ </summary>
+ <param name="url$"></param>
+ <param name="save$"></param>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.Net.WebClient.wgetTask">
+ <summary>
+ 提供一些比较详细的数据信息和事件处理
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.Net.WebClient.wgetTask.currentSize">
+ <summary>
+ Size that has been downloaded
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.Net.WebClient.wgetTask.totalSize">
+ <summary>
+ Total size of the file that has to be downloaded
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.Net.WebClient.wgetTask.downloadSpeed">
+ <summary>
+ KB/sec
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Net.WebClient.wgetTask.isDownloading">
+ <summary>
+ Client status
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Net.WebClient.wgetTask.#ctor(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+ <summary>
+ 
+ </summary>
+ <param name="downloadUrl"></param>
+ <param name="saveFile">
+ Module will create a new <see cref="T:System.IO.FileStream"/> that writes to this desired download path
+ </param>
 </member>
 <member name="T:Microsoft.VisualBasic.WebServiceUtils">
  <summary>

@@ -1698,6 +1698,15 @@ BioNovoGene.Analytical.MassSpectrometry.Math
  <param name="tolerance"></param>
  <returns></returns>
 </member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.GlobalAlignment.CreateAlignment(BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ms2[],BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ms2[],BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Tolerance)">
+ <summary>
+ 
+ </summary>
+ <param name="query">the sample query data</param>
+ <param name="refrs">the reference data</param>
+ <param name="tolerance"></param>
+ <returns></returns>
+</member>
 <member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ISpectrumScanData">
  <summary>
  an abstract spectrum source data model which is describ the source data model 

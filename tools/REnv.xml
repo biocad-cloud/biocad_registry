@@ -7114,6 +7114,13 @@ to take away yo [rest of string was truncated]&quot;;.
  <param name="envir"></param>
  <returns></returns>
 </member>
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.file.gzfile(System.String,System.IO.FileMode,SMRUCC.Rsharp.Runtime.Environment)">
+ <summary>
+ open a *.gz file for make file data read/write
+ </summary>
+ <param name="description$"></param>
+ <returns>stream object for read/write data</returns>
+</member>
 <member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.file.file(System.String,System.IO.FileMode,System.Boolean,Microsoft.VisualBasic.ApplicationServices.IFileSystemEnvironment)">
  <summary>
  Functions to create, open and close connections, i.e., 
