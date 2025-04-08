@@ -67,6 +67,12 @@ Public Class biocad_registry : Inherits biocad_registryModel.db_mysql
         End Get
     End Property
 
+    Public ReadOnly Property taxonomy_tree As Model
+        Get
+            Return m_taxonomy_tree
+        End Get
+    End Property
+
     Sub New(mysql As ConnectionUri)
         Call MyBase.New(mysql)
     End Sub

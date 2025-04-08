@@ -1,7 +1,7 @@
 ﻿Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm
 Imports Microsoft.VisualBasic.CommandLine.Reflection
+Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Scripting.MetaData
-Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports SMRUCC.genomics.Assembly.NCBI.GenBank
 Imports SMRUCC.genomics.Assembly.NCBI.Taxonomy
@@ -24,9 +24,16 @@ Module imports_api
                 field("id") = tax.taxid,
                 field("taxname") = tax.name,
                 field("nsize") = tax.children.TryCount,
-                field("childs") = tax.children.ToArray.GetJson,
                 field("parent_id") = tax.parent
             )
+
+            For Each id As Integer In tax.children.SafeQuery
+                Call registry.taxonomy_tree.add(
+                    field("tax_id") = tax.taxid,
+                    field("child_tax") = id
+                )
+            Next
+
             Call bar.SetLabel(tax.name)
         Next
 
