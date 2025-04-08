@@ -1,5 +1,7 @@
 ﻿Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.Scripting.MetaData
+Imports Microsoft.VisualBasic.Serialization.JSON
+Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports SMRUCC.genomics.Assembly.NCBI.GenBank
 Imports SMRUCC.genomics.Assembly.NCBI.Taxonomy
 
@@ -14,7 +16,17 @@ Module imports_api
 
     <ExportAPI("imports_taxonomy")>
     Public Function imports_taxonomy(registry As biocad_registry, taxdump As NcbiTaxonomyTree) As Object
+        For Each tax As TaxonomyNode In taxdump.Taxonomy.Values
+            Call registry.ncbi_taxonomy.add(
+                field("id") = tax.taxid,
+                field("taxname") = tax.name,
+                field("nsize") = tax.children.TryCount,
+                field("childs") = tax.children.ToArray.GetJson,
+                field("parent_id") = tax.parent
+            )
+        Next
 
+        Return Nothing
     End Function
 
 End Module
