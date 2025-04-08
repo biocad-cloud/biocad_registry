@@ -9118,6 +9118,15 @@ ATT I Ile      ACT T Thr      AAT N As [rest of string was truncated]&quot;;.
  <remarks></remarks>
 
 </member>
+<member name="M:SMRUCC.genomics.Assembly.NCBI.GenBank.GBFF.File.LoadDatabase(System.IO.Stream,System.String,System.Boolean)">
+ <summary>
+ Load multiple genbank assembly data that parsed from a specific data file
+ </summary>
+ <param name="file"></param>
+ <param name="defaultAccession"></param>
+ <param name="suppressError"></param>
+ <returns></returns>
+</member>
 <member name="M:SMRUCC.genomics.Assembly.NCBI.GenBank.GBFF.GbkParser.Read(System.String)">
  <summary>
  将一个GBK文件从硬盘文件之中读取出来，当发生错误的时候，会抛出错误
