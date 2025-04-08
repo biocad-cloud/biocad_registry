@@ -20,6 +20,8 @@ Module imports_api
         Dim bar As ProgressBar = Nothing
 
         For Each tax As TaxonomyNode In TqdmWrapper.Wrap(taxdump.Taxonomy.Values, bar:=bar)
+            Dim tree = registry.taxonomy_tree.batch_insert
+
             Call registry.ncbi_taxonomy.add(
                 field("id") = tax.taxid,
                 field("taxname") = tax.name,
@@ -29,12 +31,13 @@ Module imports_api
             )
 
             For Each id As Integer In tax.children.SafeQuery
-                Call registry.taxonomy_tree.add(
+                Call tree.add(
                     field("tax_id") = tax.taxid,
                     field("child_tax") = id
                 )
             Next
 
+            Call tree.commit()
             Call bar.SetLabel(tax.name)
         Next
 
