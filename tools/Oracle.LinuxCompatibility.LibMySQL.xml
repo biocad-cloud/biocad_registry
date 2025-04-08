@@ -176,6 +176,13 @@ Oracle.LinuxCompatibility.LibMySQL
  <param name="dbName$"></param>
  <param name="EXPORT$"></param>
 </member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.CommitInsert.add(Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert[])">
+ <summary>
+ INSERT INTO
+ </summary>
+ <param name="fields"></param>
+ 
+</member>
 <member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.CreateDataType.CreateDataType(System.String)">
  <summary>
  Mapping the MySQL database type and visual basic data type 
@@ -309,6 +316,21 @@ Oracle.LinuxCompatibility.LibMySQL
  
  </summary>
 </member>
+<member name="F:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.Model.chain">
+ <summary>
+ the source chain model
+ </summary>
+</member>
+<member name="F:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.Model.schema">
+ <summary>
+ current model table schema
+ </summary>
+</member>
+<member name="F:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.Model.mysql">
+ <summary>
+ the mysqli connection and data driver
+ </summary>
+</member>
 <member name="P:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.Model.GetLastMySql">
  <summary>
  get last execute mysql script
@@ -421,6 +443,12 @@ Oracle.LinuxCompatibility.LibMySQL
  UPDATE
  </summary>
  <param name="fields"></param>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.Model.batch_insert">
+ <summary>
+ Create commit task data for make batch insert into current table
+ </summary>
  <returns></returns>
 </member>
 <member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.Model.add(Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert[])">
