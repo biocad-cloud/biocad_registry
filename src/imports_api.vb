@@ -24,7 +24,8 @@ Module imports_api
                 field("id") = tax.taxid,
                 field("taxname") = tax.name,
                 field("nsize") = tax.nchilds,
-                field("parent_id") = tax.parent
+                field("parent_id") = tax.parent,
+                field("rank") = registry.getVocabulary(If(tax.rank.StringEmpty(, True), "norank", tax.rank), "Taxonomy Rank")
             )
 
             For Each id As Integer In tax.children.SafeQuery
