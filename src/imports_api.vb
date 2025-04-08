@@ -23,7 +23,7 @@ Module imports_api
             Call registry.ncbi_taxonomy.add(
                 field("id") = tax.taxid,
                 field("taxname") = tax.name,
-                field("nsize") = tax.children.TryCount,
+                field("nsize") = tax.nchilds,
                 field("parent_id") = tax.parent
             )
 
