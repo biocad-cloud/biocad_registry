@@ -29,20 +29,22 @@ Partial Class FormMain
         Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DataToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.VocabularyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.SubCellularCompartmentsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MoleculesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SubCellularCompartmentsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.FlavorOdorsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripSeparator()
         Me.ExportMetabolitesDatabaseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ImportsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.FlavorOdorsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GenBankToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'MenuStrip1
         '
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.DataToolStripMenuItem})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.DataToolStripMenuItem, Me.ImportsToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Size = New System.Drawing.Size(800, 24)
@@ -86,17 +88,23 @@ Partial Class FormMain
         Me.VocabularyToolStripMenuItem.Size = New System.Drawing.Size(224, 22)
         Me.VocabularyToolStripMenuItem.Text = "Vocabulary"
         '
+        'MoleculesToolStripMenuItem
+        '
+        Me.MoleculesToolStripMenuItem.Name = "MoleculesToolStripMenuItem"
+        Me.MoleculesToolStripMenuItem.Size = New System.Drawing.Size(224, 22)
+        Me.MoleculesToolStripMenuItem.Text = "Molecules"
+        '
         'SubCellularCompartmentsToolStripMenuItem
         '
         Me.SubCellularCompartmentsToolStripMenuItem.Name = "SubCellularCompartmentsToolStripMenuItem"
         Me.SubCellularCompartmentsToolStripMenuItem.Size = New System.Drawing.Size(224, 22)
         Me.SubCellularCompartmentsToolStripMenuItem.Text = "SubCellular Compartments"
         '
-        'MoleculesToolStripMenuItem
+        'FlavorOdorsToolStripMenuItem
         '
-        Me.MoleculesToolStripMenuItem.Name = "MoleculesToolStripMenuItem"
-        Me.MoleculesToolStripMenuItem.Size = New System.Drawing.Size(224, 22)
-        Me.MoleculesToolStripMenuItem.Text = "Molecules"
+        Me.FlavorOdorsToolStripMenuItem.Name = "FlavorOdorsToolStripMenuItem"
+        Me.FlavorOdorsToolStripMenuItem.Size = New System.Drawing.Size(224, 22)
+        Me.FlavorOdorsToolStripMenuItem.Text = "Flavor Odors"
         '
         'ToolStripMenuItem2
         '
@@ -108,6 +116,13 @@ Partial Class FormMain
         Me.ExportMetabolitesDatabaseToolStripMenuItem.Name = "ExportMetabolitesDatabaseToolStripMenuItem"
         Me.ExportMetabolitesDatabaseToolStripMenuItem.Size = New System.Drawing.Size(224, 22)
         Me.ExportMetabolitesDatabaseToolStripMenuItem.Text = "Export Metabolites Database"
+        '
+        'ImportsToolStripMenuItem
+        '
+        Me.ImportsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GenBankToolStripMenuItem})
+        Me.ImportsToolStripMenuItem.Name = "ImportsToolStripMenuItem"
+        Me.ImportsToolStripMenuItem.Size = New System.Drawing.Size(60, 20)
+        Me.ImportsToolStripMenuItem.Text = "Imports"
         '
         'StatusStrip1
         '
@@ -124,11 +139,11 @@ Partial Class FormMain
         Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(42, 17)
         Me.ToolStripStatusLabel1.Text = "Ready!"
         '
-        'FlavorOdorsToolStripMenuItem
+        'GenBankToolStripMenuItem
         '
-        Me.FlavorOdorsToolStripMenuItem.Name = "FlavorOdorsToolStripMenuItem"
-        Me.FlavorOdorsToolStripMenuItem.Size = New System.Drawing.Size(224, 22)
-        Me.FlavorOdorsToolStripMenuItem.Text = "Flavor Odors"
+        Me.GenBankToolStripMenuItem.Name = "GenBankToolStripMenuItem"
+        Me.GenBankToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.GenBankToolStripMenuItem.Text = "GenBank"
         '
         'FormMain
         '
@@ -164,4 +179,6 @@ Partial Class FormMain
     Friend WithEvents StatusStrip1 As StatusStrip
     Friend WithEvents ToolStripStatusLabel1 As ToolStripStatusLabel
     Friend WithEvents FlavorOdorsToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ImportsToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents GenBankToolStripMenuItem As ToolStripMenuItem
 End Class

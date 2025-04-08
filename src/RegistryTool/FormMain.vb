@@ -4,6 +4,7 @@ Imports BioNovoGene.BioDeep.Chemistry.MetaLib
 Imports BioNovoGene.BioDeep.Chemistry.MetaLib.CrossReference
 Imports Microsoft.VisualBasic.Data.Framework.IO
 Imports Microsoft.VisualBasic.Language
+Imports Microsoft.VisualBasic.Net.Http
 Imports RegistryTool.My
 Imports Metadata = BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaLib
 
@@ -113,5 +114,25 @@ Public Class FormMain
         Dim viewer As New FormOdors
         viewer.MdiParent = Me
         viewer.Show()
+    End Sub
+
+    Private Sub ImportsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ImportsToolStripMenuItem.Click
+
+    End Sub
+
+    Private Sub GenBankToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GenBankToolStripMenuItem.Click
+        Using file As New OpenFileDialog With {
+            .Filter = "NCBI Genbank(*.gbff;*.gb)|*.gbff;*.gb|Genbank Compression Archive File(*.gz)|*.gz"
+        }
+            If file.ShowDialog = DialogResult.OK Then
+                Dim gbff_stream As Stream
+
+                If file.FileName.ExtensionSuffix("gz") Then
+                    gbff_stream = file.FileName.ReadBinary.UnGzipStream
+                Else
+                    gbff_stream = file.FileName.Open(FileMode.Open, doClear:=False, [readOnly]:=True)
+                End If
+            End If
+        End Using
     End Sub
 End Class
