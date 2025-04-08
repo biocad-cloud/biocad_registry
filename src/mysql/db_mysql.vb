@@ -22,6 +22,7 @@ Protected ReadOnly m_regulation_graph As Model
 Protected ReadOnly m_sequence_graph As Model
 Protected ReadOnly m_subcellular_compartments As Model
 Protected ReadOnly m_subcellular_location As Model
+Protected ReadOnly m_synonym As Model
 Protected ReadOnly m_vocabulary As Model
 Protected Sub New(mysqli As ConnectionUri)
 Call MyBase.New(mysqli)
@@ -43,6 +44,7 @@ Me.m_regulation_graph = model(Of regulation_graph)()
 Me.m_sequence_graph = model(Of sequence_graph)()
 Me.m_subcellular_compartments = model(Of subcellular_compartments)()
 Me.m_subcellular_location = model(Of subcellular_location)()
+Me.m_synonym = model(Of synonym)()
 Me.m_vocabulary = model(Of vocabulary)()
 End Sub
 End Class
