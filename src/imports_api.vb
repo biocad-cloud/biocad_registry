@@ -1,4 +1,5 @@
-﻿Imports Microsoft.VisualBasic.CommandLine.Reflection
+﻿Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm
+Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.Scripting.MetaData
 Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
@@ -16,7 +17,9 @@ Module imports_api
 
     <ExportAPI("imports_taxonomy")>
     Public Function imports_taxonomy(registry As biocad_registry, taxdump As NcbiTaxonomyTree) As Object
-        For Each tax As TaxonomyNode In taxdump.Taxonomy.Values
+        Dim bar As ProgressBar = Nothing
+
+        For Each tax As TaxonomyNode In TqdmWrapper.Wrap(taxdump.Taxonomy.Values, bar:=bar)
             Call registry.ncbi_taxonomy.add(
                 field("id") = tax.taxid,
                 field("taxname") = tax.name,
@@ -24,6 +27,7 @@ Module imports_api
                 field("childs") = tax.children.ToArray.GetJson,
                 field("parent_id") = tax.parent
             )
+            Call bar.SetLabel(tax.name)
         Next
 
         Return Nothing
