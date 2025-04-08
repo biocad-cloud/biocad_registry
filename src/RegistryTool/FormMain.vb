@@ -6,6 +6,7 @@ Imports Microsoft.VisualBasic.Data.Framework.IO
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Net.Http
 Imports RegistryTool.My
+Imports SMRUCC.genomics.Assembly.NCBI.GenBank
 Imports Metadata = BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaLib
 
 Public Class FormMain
@@ -132,6 +133,10 @@ Public Class FormMain
                 Else
                     gbff_stream = file.FileName.Open(FileMode.Open, doClear:=False, [readOnly]:=True)
                 End If
+
+                For Each gb As GBFF.File In GBFF.File.LoadDatabase(gbff_stream)
+                    Call GenBankImports.ImportsData(MyApplication.biocad_registry, gb)
+                Next
             End If
         End Using
     End Sub
