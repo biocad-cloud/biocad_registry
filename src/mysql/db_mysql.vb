@@ -11,9 +11,12 @@ Protected ReadOnly m_genomics As Model
 Protected ReadOnly m_kinetic_law As Model
 Protected ReadOnly m_molecule As Model
 Protected ReadOnly m_molecule_function As Model
+Protected ReadOnly m_molecule_ontology As Model
 Protected ReadOnly m_molecule_tags As Model
 Protected ReadOnly m_ncbi_taxonomy As Model
 Protected ReadOnly m_odor As Model
+Protected ReadOnly m_ontology As Model
+Protected ReadOnly m_ontology_tree As Model
 Protected ReadOnly m_pathway As Model
 Protected ReadOnly m_pathway_graph As Model
 Protected ReadOnly m_reaction As Model
@@ -34,9 +37,12 @@ Me.m_genomics = model(Of genomics)()
 Me.m_kinetic_law = model(Of kinetic_law)()
 Me.m_molecule = model(Of molecule)()
 Me.m_molecule_function = model(Of molecule_function)()
+Me.m_molecule_ontology = model(Of molecule_ontology)()
 Me.m_molecule_tags = model(Of molecule_tags)()
 Me.m_ncbi_taxonomy = model(Of ncbi_taxonomy)()
 Me.m_odor = model(Of odor)()
+Me.m_ontology = model(Of ontology)()
+Me.m_ontology_tree = model(Of ontology_tree)()
 Me.m_pathway = model(Of pathway)()
 Me.m_pathway_graph = model(Of pathway_graph)()
 Me.m_reaction = model(Of reaction)()
