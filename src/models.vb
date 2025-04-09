@@ -2,7 +2,6 @@
 Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.Scripting.MetaData
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
-Imports Oracle.LinuxCompatibility.MySQL.Reflection.DbAttributes
 Imports SMRUCC.Rsharp.Runtime
 Imports SMRUCC.Rsharp.Runtime.Internal.[Object]
 Imports SMRUCC.Rsharp.Runtime.Interop
@@ -96,9 +95,4 @@ Module models
     End Function
 End Module
 
-Public Class EnzymeReaction
-    <DatabaseField> Public Property id As UInteger
-    <DatabaseField> Public Property term As String
-    <DatabaseField> Public Property db_xref As String
-    <DatabaseField> Public Property name As String
-End Class
+
