@@ -24,6 +24,7 @@ Public Module GenBankImports
             Dim polypeptide As String = cds_feature.Query(FeatureQualifiers.translation)
             Dim cds_id = cds_feature.Query(FeatureQualifiers.protein_id)
             Dim func = cds_feature.Query(FeatureQualifiers.product)
+            Dim mrna = gb.GetmRNASequence(mRNA:=cds_feature)
 
             If Not polypeptide Is Nothing Then
 
