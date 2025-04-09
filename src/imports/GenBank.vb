@@ -1,4 +1,5 @@
 ﻿Imports System.Runtime.CompilerServices
+Imports biocad_registry.biocad_registryModel
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports SMRUCC.genomics.Assembly.NCBI.GenBank
 Imports SMRUCC.genomics.Assembly.NCBI.GenBank.GBFF.Keywords.FEATURES
@@ -26,7 +27,14 @@ Public Module GenBankImports
             Dim func = cds_feature.Query(FeatureQualifiers.product)
             Dim mrna = gb.GetmRNASequence(mRNA:=cds_feature)
 
+            ' add gene molecule
+            Dim gene_mol As molecule
+
             If Not polypeptide Is Nothing Then
+                ' add mRNA molecule
+                Dim mRNA_mol As molecule
+
+                ' add polypeptide molecule
 
             End If
         Next
