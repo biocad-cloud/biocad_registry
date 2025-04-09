@@ -19,7 +19,8 @@ Public Module GenBankImports
             field("db_xref") = gb.Accession.AccessionId,
             field("def") = gb.Definition.Value,
             field("nt") = genomics.SequenceData,
-            field("comment") = gb.Comment.Comment
+            field("comment") = gb.Comment.Comment,
+            field("biom_string") = gb.Source.BiomString
         )
     End Sub
 
