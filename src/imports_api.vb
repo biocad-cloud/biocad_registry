@@ -22,7 +22,7 @@ Module imports_api
         For Each tax As TaxonomyNode In TqdmWrapper.Wrap(taxdump.Taxonomy.Values, bar:=bar)
             Dim tree = registry.taxonomy_tree.batch_insert(delayed:=True)
 
-            Call registry.ncbi_taxonomy.add(
+            Call registry.ncbi_taxonomy.delayed.add(
                 field("id") = tax.taxid,
                 field("taxname") = tax.name,
                 field("nsize") = tax.nchilds,
