@@ -15,7 +15,7 @@ Public Module GenBankImports
     <Extension>
     Private Sub AddGenomics(registry As biocad_registry, gb As GBFF.File, genomics As FastaSeq)
         Call registry.genomics.delayed.add(
-            field("ncbi_taxid") = 0,
+            field("ncbi_taxid") = CInt(Val(gb.Taxon)),
             field("db_xref") = gb.Accession.AccessionId,
             field("def") = gb.Definition.Value,
             field("nt") = genomics.SequenceData,
