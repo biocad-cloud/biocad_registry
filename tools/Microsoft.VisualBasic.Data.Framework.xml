@@ -145,7 +145,7 @@ Microsoft.VisualBasic.Data.Framework
  <param name="append"></param>
  <returns></returns>
 </member>
-<member name="M:Microsoft.VisualBasic.Data.Framework.FastLoader.ReadCsv(System.IO.Stream,System.Char,System.Boolean,Microsoft.VisualBasic.Text.Encodings)">
+<member name="M:Microsoft.VisualBasic.Data.Framework.FastLoader.ReadCsv(System.IO.Stream,System.Char,System.Boolean,Microsoft.VisualBasic.Text.Encodings,System.Boolean)">
  <summary>
  在这里仅是针对简单格式的csv文件进行快速文件读取操作，对于包含有复杂格式字符串的csv文件，
  任然需要通过csv文件模块进行读取，之后再通过相应的API进行对象转换
@@ -1169,6 +1169,14 @@ Microsoft.VisualBasic.Data.Framework
  解析器是否是处于由双引号所产生的栈之中？
  </summary>
 </member>
+<member name="M:Microsoft.VisualBasic.Data.Framework.IO.CSVFile.RowTokenizer.GetTokens(System.Char,System.Char)">
+ <summary>
+ A iterator function that parse the string line as cells content data
+ </summary>
+ <param name="delimiter"></param>
+ <param name="quot"></param>
+ <returns></returns>
+</member>
 <member name="M:Microsoft.VisualBasic.Data.Framework.IO.CSVFile.StreamIO.TypeOf(Microsoft.VisualBasic.Data.Framework.IO.File,System.Type[])">
  <summary>
  根据文件的头部的定义，从<paramref name="types"/>之中选取得到最合适的类型的定义
@@ -1225,7 +1233,7 @@ Microsoft.VisualBasic.Data.Framework
  通过Chars枚举来解析域，分隔符默认为逗号
  </summary>
  <param name="s"></param>
- <returns></returns>
+ <returns>this function returns empty string array for null or empty string input.</returns>
 </member>
 <member name="M:Microsoft.VisualBasic.Data.Framework.IO.CSVFile.Tokenizer.IsEmptyRow(System.String,System.Char)">
  <summary>

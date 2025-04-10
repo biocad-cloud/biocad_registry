@@ -12218,6 +12218,17 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  Property default value
  </summary>
 </member>
+<member name="T:Microsoft.VisualBasic.ComponentModel.DataSourceModel.ILabeledMatrix">
+ <summary>
+ dataframe helper
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.ComponentModel.DataSourceModel.ILabeledMatrix.GetLabels">
+ <summary>
+ get the labels of each row data
+ </summary>
+ <returns></returns>
+</member>
 <member name="T:Microsoft.VisualBasic.ComponentModel.DataSourceModel.TsvFileIO">
  <summary>
  将文件读取出来然后对每一行数据进行分割，由于没有使用自定义属性来标记列的名称，所以这个很简单的tsv加载器要求属性的名称与列名称要完全一致。

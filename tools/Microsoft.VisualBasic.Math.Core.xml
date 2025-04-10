@@ -1381,17 +1381,6 @@ Microsoft.VisualBasic.Math.Core
  <param name="s"></param>
  <returns></returns>
 </member>
-<member name="T:Microsoft.VisualBasic.Math.LinearAlgebra.Matrix.ILabeledMatrix">
- <summary>
- dataframe helper
- </summary>
-</member>
-<member name="M:Microsoft.VisualBasic.Math.LinearAlgebra.Matrix.ILabeledMatrix.GetLabels">
- <summary>
- get the labels of each row data
- </summary>
- <returns></returns>
-</member>
 <member name="T:Microsoft.VisualBasic.Math.LinearAlgebra.Matrix.GeneralMatrix">
  <summary>
  [m,n]
