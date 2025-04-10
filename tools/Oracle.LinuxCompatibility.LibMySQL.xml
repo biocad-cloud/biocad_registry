@@ -445,11 +445,20 @@ Oracle.LinuxCompatibility.LibMySQL
  <param name="fields"></param>
  <returns></returns>
 </member>
-<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.Model.batch_insert">
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.Model.batch_insert(System.Boolean)">
  <summary>
  Create commit task data for make batch insert into current table
  </summary>
  <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.Model.delayed">
+ <summary>
+ set delayed options for insert into
+ </summary>
+ <returns></returns>
+ <remarks>
+ this delayed options will be reste to no-delayed after insert has been called
+ </remarks>
 </member>
 <member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.Model.add(Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert[])">
  <summary>

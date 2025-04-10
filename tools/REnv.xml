@@ -618,14 +618,27 @@ to [rest of string was truncated]&quot;;.
  <param name="envir"></param>
  <returns></returns>
 </member>
-<member name="M:SMRUCC.Rsharp.Interpreter.ExecuteEngine.ExpressionSymbols.DataSets.Regexp.Matches(System.Text.RegularExpressions.Regex,SMRUCC.Rsharp.Interpreter.ExecuteEngine.Expression,SMRUCC.Rsharp.Runtime.Environment)">
+<member name="M:SMRUCC.Rsharp.Interpreter.ExecuteEngine.ExpressionSymbols.DataSets.Regexp.Matches(System.Text.RegularExpressions.Regex,SMRUCC.Rsharp.Interpreter.ExecuteEngine.Expression,System.Boolean,SMRUCC.Rsharp.Runtime.Environment)">
  <summary>
  do regular expression pattern matches
  </summary>
  <param name="r"></param>
  <param name="text"></param>
+ <param name="drop">controls of the function evaluation result</param>
  <param name="env"></param>
- <returns></returns>
+ <returns>
+ this function returns different result value based on the <paramref name="drop"/> option:
+ 
+ 1. drop = FALSE, for scalar string value, will returns a character vector that contains all matches result, 
+                  for multiple string input, this function will returns a list that contains all regexp 
+                  matches result for each elements string.
+                  
+ 2. drop = TRUE, for scalar string value, will returns a scalar character string of the first regexp matches
+                 result. for multiple string input, this function will returns a character vector which is 
+                 consist with the every first matches result of the multiple string input, empty string will 
+                 be placed in the result vector if the corresponding input string element has no matches 
+                 result.
+ </returns>
 </member>
 <member name="T:SMRUCC.Rsharp.Interpreter.ExecuteEngine.ExpressionSymbols.DataSets.StringInterpolation">
  <summary>
@@ -1476,6 +1489,21 @@ to [rest of string was truncated]&quot;;.
  <summary>
  the value data expression for assigned to the <see cref="P:SMRUCC.Rsharp.Interpreter.ExecuteEngine.ExpressionSymbols.Operators.ValueAssignExpression.targetSymbols"/>
  </summary>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.Rsharp.Interpreter.ExecuteEngine.ExpressionSymbols.Operators.ValueAssignExpression.EvaluateValue(SMRUCC.Rsharp.Runtime.Environment)">
+ <summary>
+ evaluate the <see cref="P:SMRUCC.Rsharp.Interpreter.ExecuteEngine.ExpressionSymbols.Operators.ValueAssignExpression.value"/> expression as the clr runtime value.
+ </summary>
+ <param name="env"></param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.Rsharp.Interpreter.ExecuteEngine.ExpressionSymbols.Operators.ValueAssignExpression.DoValueAssign(SMRUCC.Rsharp.Runtime.Environment,System.Object)">
+ <summary>
+ set the given <paramref name="value"/> to <see cref="P:SMRUCC.Rsharp.Interpreter.ExecuteEngine.ExpressionSymbols.Operators.ValueAssignExpression.targetSymbols"/>.
+ </summary>
+ <param name="envir"></param>
+ <param name="value"></param>
  <returns></returns>
 </member>
 <member name="M:SMRUCC.Rsharp.Interpreter.ExecuteEngine.ExpressionSymbols.Operators.ValueAssignExpression.setFromObjectList(SMRUCC.Rsharp.Runtime.Environment,SMRUCC.Rsharp.Interpreter.ExecuteEngine.Expression[],System.Boolean,System.Object)">

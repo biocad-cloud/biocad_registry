@@ -8762,6 +8762,11 @@ ATT I Ile      ACT T Thr      AAT N As [rest of string was truncated]&quot;;.
  <param name="Root"></param>
  <remarks></remarks>
 </member>
+<member name="T:SMRUCC.genomics.Assembly.NCBI.GenBank.CsvExports.Plasmid">
+ <summary>
+ tabular information about a plasmid replicate
+ </summary>
+</member>
 <member name="T:SMRUCC.genomics.Assembly.NCBI.GenBank.gbExportService">
  <summary>
  Genbank export methods collection.
@@ -8889,11 +8894,25 @@ ATT I Ile      ACT T Thr      AAT N As [rest of string was truncated]&quot;;.
  Method delegates for feature dumping
  </summary>
 </member>
+<member name="M:SMRUCC.genomics.Assembly.NCBI.GenBank.GBFFFeatureDumps.GetmRNASequence(SMRUCC.genomics.Assembly.NCBI.GenBank.GBFF.File,SMRUCC.genomics.Assembly.NCBI.GenBank.GBFF.Keywords.FEATURES.Feature)">
+ <summary>
+ get mRNA sequence
+ </summary>
+ <returns></returns>
+ 
+</member>
 <member name="M:SMRUCC.genomics.Assembly.NCBI.GenBank.Extensions.LocusMaps(SMRUCC.genomics.Assembly.NCBI.GenBank.TabularFormat.PTT)">
  <summary>
  ``[location => locus_tag]``
  </summary>
  <param name="PTT"></param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Assembly.NCBI.GenBank.Extensions.LoadPTT(System.String)">
+ <summary>
+ a shortcut of the <see cref="M:SMRUCC.genomics.Assembly.NCBI.GenBank.TabularFormat.PTT.Load(System.String,System.Boolean)"/> function.
+ </summary>
+ <param name="path"></param>
  <returns></returns>
 </member>
 <member name="M:SMRUCC.genomics.Assembly.NCBI.GenBank.Extensions.ExportProteins(SMRUCC.genomics.Assembly.NCBI.GenBank.GBFF.File)">
@@ -8939,9 +8958,9 @@ ATT I Ile      ACT T Thr      AAT N As [rest of string was truncated]&quot;;.
 </member>
 <member name="F:SMRUCC.genomics.Assembly.NCBI.GenBank.GBFF.IgbComponent.gb">
  <summary>
- Link to the genbank raw object.(这个构件对象所处在的``genbank``数据库对象.)
+ Link to the genbank raw object.
  </summary>
- <remarks></remarks>
+ <remarks>(这个构件对象所处在的``genbank``数据库对象.)</remarks>
 </member>
 <member name="T:SMRUCC.genomics.Assembly.NCBI.GenBank.GBFF.File">
  <summary>
@@ -9042,9 +9061,12 @@ ATT I Ile      ACT T Thr      AAT N As [rest of string was truncated]&quot;;.
 </member>
 <member name="P:SMRUCC.genomics.Assembly.NCBI.GenBank.GBFF.File.Taxon">
  <summary>
- 物种数据
+ get ncbi taxonomy id
  </summary>
  <returns></returns>
+ <remarks>
+ 物种数据
+ </remarks>
 </member>
 <member name="P:SMRUCC.genomics.Assembly.NCBI.GenBank.GBFF.File.HasSequenceData">
  <summary>
@@ -9245,9 +9267,9 @@ ATT I Ile      ACT T Thr      AAT N As [rest of string was truncated]&quot;;.
 </member>
 <member name="T:SMRUCC.genomics.Assembly.NCBI.GenBank.GBFF.Keywords.FEATURES.Feature">
  <summary>
- A sequence feature site on the genome DNA sequence.(基因组序列上面的特性区域片段)
+ A sequence feature site on the genome DNA sequence.
  </summary>
- <remarks></remarks>
+ <remarks>(基因组序列上面的特性区域片段)</remarks>
 </member>
 <member name="P:SMRUCC.genomics.Assembly.NCBI.GenBank.GBFF.Keywords.FEATURES.Feature.KeyName">
  <summary>
@@ -9257,9 +9279,9 @@ ATT I Ile      ACT T Thr      AAT N As [rest of string was truncated]&quot;;.
 </member>
 <member name="P:SMRUCC.genomics.Assembly.NCBI.GenBank.GBFF.Keywords.FEATURES.Feature.Location">
  <summary>
- The location of this feature site on the DNA chain.(本特性位点在DNA链上面的位置)
+ The location of this feature site on the DNA chain.
  </summary>
- <remarks></remarks>
+ <remarks>(本特性位点在DNA链上面的位置)</remarks>
 </member>
 <member name="P:SMRUCC.genomics.Assembly.NCBI.GenBank.GBFF.Keywords.FEATURES.Feature.SequenceData">
  <summary>
@@ -9368,19 +9390,39 @@ Get feature site data by nucleotide location.
  </summary>
  <remarks></remarks>
 </member>
+<member name="P:SMRUCC.genomics.Assembly.NCBI.GenBank.GBFF.Keywords.FEATURES.Location.Locations">
+ <summary>
+ join mutliple location for the extron.
+ join(...,...,...)
+ </summary>
+ <returns></returns>
+ <remarks>
+ 这个主要是应用于记录真核生物的mRNA外显子区域的位置，基于这个列表进行相应的序列片段提取，构建出一段完整的mRNA序列数据
+ </remarks>
+</member>
 <member name="P:SMRUCC.genomics.Assembly.NCBI.GenBank.GBFF.Keywords.FEATURES.Location.ContiguousRegion">
  <summary>
- 假若目标对象是真核生物基因组的话，则可能会因为内含子的原因出现不连续的片段，故而此时的<see cref="P:SMRUCC.genomics.Assembly.NCBI.GenBank.GBFF.Keywords.FEATURES.Location.Locations"></see>属性会有多个值，这个属性会尝试将连续的区域返回。对于原核生物而言，也可以直接使用这个属性来获取特性位点的在基因组序列之上的位置
+ 假若目标对象是真核生物基因组的话，则可能会因为内含子的原因出现不连续的片段，
+ 故而此时的<see cref="P:SMRUCC.genomics.Assembly.NCBI.GenBank.GBFF.Keywords.FEATURES.Location.Locations"></see>属性会有多个值，这个属性会尝试将连续
+ 的区域返回。对于原核生物而言，也可以直接使用这个属性来获取特性位点的在
+ 基因组序列之上的位置
  </summary>
  <value></value>
  <returns></returns>
  <remarks></remarks>
 </member>
+<member name="M:SMRUCC.genomics.Assembly.NCBI.GenBank.GBFF.Keywords.FEATURES.Location.op_Implicit(System.String)~SMRUCC.genomics.Assembly.NCBI.GenBank.GBFF.Keywords.FEATURES.Location">
+ <summary>
+ parse the location string
+ </summary>
+ <param name="strData"></param>
+ <returns></returns>
+</member>
 <member name="T:SMRUCC.genomics.Assembly.NCBI.GenBank.GBFF.Keywords.FEATURES.RegionSegment">
  <summary>
- A site region on the sequence.(序列上面的一个位点)
+ A site region on the sequence.
  </summary>
- <remarks></remarks>
+ <remarks>(序列上面的一个位点)</remarks>
 </member>
 <member name="M:SMRUCC.genomics.Assembly.NCBI.GenBank.GBFF.Keywords.FEATURES.ParserHelper.__formatString(System.Collections.Generic.IEnumerable{System.String})">
  <summary>
@@ -9661,11 +9703,12 @@ Get feature site data by nucleotide location.
 </member>
 <member name="M:SMRUCC.genomics.Assembly.NCBI.GenBank.GBFF.Keywords.ORIGIN.ToFasta">
  <summary>
- Returns the whole genome sequence which was records in this GenBank database file.
- (返回记录在本Genbank数据库文件之中的全基因组核酸序列)
+ Returns the whole genome sequence which was records in this GenBank database file. 
  </summary>
  <returns></returns>
- <remarks></remarks>
+ <remarks>
+ (返回记录在本Genbank数据库文件之中的全基因组核酸序列)
+ </remarks>
 </member>
 <member name="T:SMRUCC.genomics.Assembly.NCBI.GenBank.GBFF.Keywords.REFERENCE">
  <summary>
@@ -10048,6 +10091,11 @@ Get feature site data by nucleotide location.
  <typeparam name="T"></typeparam>
  <param name="FilePath"></param>
  <returns></returns>
+</member>
+<member name="T:SMRUCC.genomics.Assembly.NCBI.GenBank.TabularFormat.ProteinDescription">
+ <summary>
+ tabular data model for protein data information
+ </summary>
 </member>
 <member name="P:SMRUCC.genomics.Assembly.NCBI.GenBank.TabularFormat.ProteinDescription.RepliconName">
  <summary>
