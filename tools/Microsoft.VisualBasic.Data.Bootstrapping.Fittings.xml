@@ -55,6 +55,103 @@ Microsoft.VisualBasic.Data.Bootstrapping.Fittings
  <param name="beta">should be a column vector</param>
  <returns>the function argument values</returns>
 </member>
+<member name="T:Microsoft.VisualBasic.Data.Bootstrapping.LASSO.LassoFit">
+ <summary>
+ This class is a container for arrays and values that
+ are computed during computation of a lasso fit. It also
+ contains the final weights of features.
+ 
+ @author Yasser Ganjisaffar (http://www.ics.uci.edu/~yganjisa/)
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.Data.Bootstrapping.LASSO.LassoFit.numberOfLambdas">
+ <summary>
+ Number of lambda values
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Data.Bootstrapping.LASSO.LassoFit.intercepts">
+ <summary>
+ Intercepts
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Data.Bootstrapping.LASSO.LassoFit.compressedWeights">
+ <summary>
+ Compressed weights for each solution
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Data.Bootstrapping.LASSO.LassoFit.indices">
+ <summary>
+ Pointers to compressed weights
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Data.Bootstrapping.LASSO.LassoFit.numberOfWeights">
+ <summary>
+ Number of weights for each solution
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Data.Bootstrapping.LASSO.LassoFit.nonZeroWeights">
+ <summary>
+ Number of non-zero weights for each solution
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Data.Bootstrapping.LASSO.LassoFit.lambdas">
+ <summary>
+ The value of lambdas for each solution
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Data.Bootstrapping.LASSO.LassoFit.rsquared">
+ <summary>
+ R^2 value for each solution
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Data.Bootstrapping.LASSO.LassoFit.numberOfPasses">
+ <summary>
+ Total number of passes over data
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Data.Bootstrapping.LASSO.LassoFit.numFeatures">
+ <summary>
+ number of the data features that input from the training data
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.Data.Bootstrapping.LASSO.LassoFitGenerator">
+ <summary>
+ This implemenation is based on: Friedman, J., Hastie, T. and Tibshirani, R.
+ (2008) Regularization Paths for Generalized Linear Models via Coordinate
+ Descent. http://www-stat.stanford.edu/~hastie/Papers/glmnet.pdf
+ 
+ @author Yasser Ganjisaffar (http://www.ics.uci.edu/~yganjisa/)
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.Bootstrapping.LASSO.LassoFitGenerator.fit(System.Int32)">
+ <summary>
+ 
+ </summary>
+ <param name="maxAllowedFeaturesPerModel">
+ Generate the Lasso fit. The -1 arguments means that
+ there would be no limit on the maximum number of 
+ features per model
+ </param>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.Data.Bootstrapping.LASSO.MathUtil">
+ <summary>
+ Utility Math functions that are used by other classes.
+ 
+ @author Yasser Ganjisaffar (http://www.ics.uci.edu/~yganjisa/)
+ 
+ </summary>
+</member>
 <member name="T:Microsoft.VisualBasic.Data.Bootstrapping.LevenbergMarquardt.JamaHelper">
  <summary>
  Created by duy on 31/1/15.
