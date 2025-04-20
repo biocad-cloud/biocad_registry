@@ -106,7 +106,7 @@ Public Class GenBankImports
 
         If Not cds_feature Is Nothing Then
             ' add polypeptide molecule
-            Call AddProtein(cds_feature)
+            Call AddProtein(cds_feature, gene_mol)
         Else
             ' is rRNA or tRNA
             If tRNA.ContainsKey(locus_tag) Then
@@ -120,11 +120,76 @@ Public Class GenBankImports
         End If
     End Sub
 
-    Private Sub AddProtein(cds As Feature)
+    Private Sub AddProtein(cds As Feature, gene As molecule)
         Dim polypeptide As String = cds.Query(FeatureQualifiers.translation)
         Dim cds_id = cds.Query(FeatureQualifiers.protein_id)
         Dim func = cds.Query(FeatureQualifiers.product)
+        Dim protein = find_protein(cds_id)
+        Dim gene_name As String = cds.Query(FeatureQualifiers.gene)
+
+        If protein Is Nothing Then
+            registry.molecule.add(
+                field("xref_id") = ncbi_taxid & ":" & cds_id,
+                field("name") = If(gene_name, cds_id),
+                field("mass") = MolecularWeightCalculator.CalcMW_Polypeptide(polypeptide),
+                field("type") = vocabulary.protein_term,
+                field("formula") = MolecularWeightCalculator.PolypeptideFormula(polypeptide).ToString,
+                field("parent") = gene.id,
+                field("tax_id") = ncbi_taxid,
+                field("note") = func
+            )
+
+            protein = registry.molecule.find_object(field("xref_id") = ncbi_taxid & ":" & cds_id, field("tax_id") = ncbi_taxid)
+
+            ' add db_xrefs
+            registry.db_xrefs.delayed.add(
+                field("obj_id") = protein.id,
+                field("db_key") = vocabulary.genbank_term,
+                field("xref") = cds_id,
+                field("type") = vocabulary.protein_term
+            )
+            registry.db_xrefs.delayed.add(
+                field("obj_id") = protein.id,
+                field("db_key") = vocabulary.genbank_term,
+                field("xref") = cds.Query(FeatureQualifiers.locus_tag),
+                field("type") = vocabulary.protein_term
+            )
+
+            If Not gene_name.StringEmpty(, True) Then
+                ' add synonym name
+                registry.synonym.delayed.add(
+                    field("obj_id") = protein.id,
+                    field("type_id") = vocabulary.protein_term,
+                    field("hashcode") = LCase(gene_name).MD5,
+                    field("synonym") = gene_name,
+                    field("lang") = "en"
+                )
+            End If
+        End If
+
+        ' add protein sequence
+        If registry.sequence_graph.find_object(field("molecule_id") = protein.id) Is Nothing Then
+            registry.sequence_graph.delayed.add(
+                field("molecule_id") = protein.id,
+                field("sequence") = polypeptide,
+                field("hashcode") = LCase(polypeptide).MD5
+            )
+        End If
     End Sub
+
+    Public Function find_protein(cds_id) As molecule
+        Dim uniref As String = $"{ncbi_taxid}:{cds_id}"
+        Dim protein As molecule = registry.molecule.find_object(
+            field("xref_id") = uniref,
+            field("tax_id") = ncbi_taxid
+        )
+
+        If protein Is Nothing Then
+            ' find by db_xref
+        End If
+
+        Return protein
+    End Function
 
     Public Function find_gene(locus_tag As String) As molecule
         Dim uniref As String = $"{ncbi_taxid}:{locus_tag}"
@@ -132,7 +197,6 @@ Public Class GenBankImports
             field("xref_id") = uniref,
             field("tax_id") = ncbi_taxid
         )
-        Dim vocabulary As BioCadVocabulary = registry.vocabulary_terms
 
         If gene Is Nothing Then
             ' find by db_xref
