@@ -27,6 +27,7 @@ Public Module GenBankImports
             Dim cds_id = cds_feature.Query(FeatureQualifiers.protein_id)
             Dim func = cds_feature.Query(FeatureQualifiers.product)
             Dim mrna = gb.GetmRNASequence(mRNA:=cds_feature)
+            Dim gene_dbxref = $"{ncbi_taxid}:{locus_tag}"
 
             ' add gene molecule
             Dim gene_mol As molecule
@@ -34,9 +35,14 @@ Public Module GenBankImports
             If gene_mol Is Nothing Then
                 ' create new in the database
                 Call registry.molecule.add(
-                    field("xref_id") = locus_tag,
+                    field("xref_id") = gene_dbxref,
                     field("name") = locus_tag,
-                    field("mass") = MolecularWeightCalculator.CalcMW_Nucleotides(mrna, is_rna:=False)
+                    field("mass") = MolecularWeightCalculator.CalcMW_Nucleotides(mrna, is_rna:=False),
+                    field("type") = vocabulary.gene_term,
+                    field("formula") = MolecularWeightCalculator.DeoxyribonucleotideFormula(mrna).ToString,
+                    field("parent") = 0,
+                    field("tax_id") = ncbi_taxid,
+                    field("note") = func
                 )
             End If
 
