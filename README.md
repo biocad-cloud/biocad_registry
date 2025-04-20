@@ -10,7 +10,7 @@ A data repository system for GCModeller make reconstruction of the GMM(genome-wi
 4. imports uniprot database
 5. imports genbank database file
 
-![](src/biocad_registry.png)
+![](mysql/biocad_registry.png)
 
 + https://gcmodeller.org/ 2023. All rights reserved.
 + https://biocad.cloud/ 2024. All rights reserved.
