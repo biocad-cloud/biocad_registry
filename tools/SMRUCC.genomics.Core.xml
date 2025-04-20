@@ -9371,7 +9371,9 @@ Get feature site data by nucleotide location.
  <summary>
  列举出所有 该字段之下的域的数据
  </summary>
- <param name="fieldName"></param>
+ <param name="fieldName">
+ the feature name, example as gene/CDS/tRNA/rRNA, etc
+ </param>
  <returns></returns>
  <remarks></remarks>
 </member>

@@ -303,6 +303,14 @@ Oracle.LinuxCompatibility.LibMySQL
  <param name="field"></param>
  <returns></returns>
 </member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert.op_BitwiseAnd(Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert,Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert)">
+ <summary>
+ Logical AND operator between two query condition
+ </summary>
+ <param name="a"></param>
+ <param name="b"></param>
+ <returns></returns>
+</member>
 <member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert.op_BitwiseOr(Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert,Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert)">
  <summary>
  logical expression a or b in mysql

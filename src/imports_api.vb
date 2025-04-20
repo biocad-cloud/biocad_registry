@@ -11,7 +11,7 @@ Module imports_api
 
     <ExportAPI("imports_genbank")>
     Public Function imports_genbank(registry As biocad_registry, genbank As GBFF.File) As Object
-        Call GenBankImports.ImportsData(registry, genbank)
+        Call New GenBankImports(registry, genbank).ImportsData()
         Return Nothing
     End Function
 
