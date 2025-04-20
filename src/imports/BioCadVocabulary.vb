@@ -1,4 +1,6 @@
 ﻿
+Imports Microsoft.VisualBasic.ComponentModel.Collection
+
 ''' <summary>
 ''' A wrapper for the biocad registry vocabulary table
 ''' </summary>
@@ -18,12 +20,17 @@ Public Class BioCadVocabulary
     Public ReadOnly Property genbank_term As UInteger
     Public ReadOnly Property kegg_term As UInteger
     Public ReadOnly Property uniprot_term As UInteger
+    Public ReadOnly Property biocad_term As UInteger
 #End Region
 
     Public Const CategoryDatabase = "Database"
     Public Const CategoryMolecule = "Molecule Type"
 
+    ReadOnly registry As biocad_registry
+
     Sub New(registry As biocad_registry)
+        Me.registry = registry
+
         gene_term = registry.getVocabulary("Nucleic Acid", CategoryMolecule)
         rna_term = registry.getVocabulary("RNA", CategoryMolecule)
         protein_term = registry.getVocabulary("Polypeptide", CategoryMolecule)
@@ -36,5 +43,15 @@ Public Class BioCadVocabulary
         genbank_term = registry.getVocabulary("NCBI GenBank", CategoryDatabase)
         kegg_term = registry.getVocabulary("KEGG", CategoryDatabase)
         uniprot_term = registry.getVocabulary("UniProt", CategoryDatabase)
+        biocad_term = registry.getVocabulary("BioCAD Registry", CategoryDatabase)
     End Sub
+
+    Public Function GetBioCadOntology(id As String, Optional name As String = Nothing) As biocad_registryModel.ontology
+        Static cache As New Dictionary(Of String, biocad_registryModel.ontology)
+
+        Return cache.ComputeIfAbsent(id,
+            lazyValue:=Function(db_xref)
+                           Dim find = registry.ontology
+                       End Function)
+    End Function
 End Class

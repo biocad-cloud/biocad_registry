@@ -86,6 +86,24 @@ Public Class biocad_registry : Inherits biocad_registryModel.db_mysql
         End Get
     End Property
 
+    Public ReadOnly Property ontology As TableModel(Of biocad_registryModel.ontology)
+        Get
+            Return m_ontology
+        End Get
+    End Property
+
+    Public ReadOnly Property molecule_ontology As TableModel(Of biocad_registryModel.molecule_ontology)
+        Get
+            Return m_molecule_ontology
+        End Get
+    End Property
+
+    Public ReadOnly Property ontology_tree As TableModel(Of biocad_registryModel.ontology_tree)
+        Get
+            Return m_ontology_tree
+        End Get
+    End Property
+
     Public ReadOnly Property vocabulary_terms As BioCadVocabulary
 
     Sub New(mysql As ConnectionUri)
