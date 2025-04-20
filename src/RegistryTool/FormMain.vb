@@ -135,7 +135,7 @@ Public Class FormMain
                 End If
 
                 For Each gb As GBFF.File In GBFF.File.LoadDatabase(gbff_stream)
-                    Call GenBankImports.ImportsData(MyApplication.biocad_registry, gb)
+                    Call New GenBankImports(MyApplication.biocad_registry, gb).ImportsData()
                 Next
             End If
         End Using
