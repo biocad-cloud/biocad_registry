@@ -1,5 +1,6 @@
 ﻿Imports System.Runtime.CompilerServices
 Imports biocad_registry.biocad_registryModel
+Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports SMRUCC.genomics.Assembly.NCBI.GenBank
 Imports SMRUCC.genomics.Assembly.NCBI.GenBank.GBFF.Keywords.FEATURES
@@ -9,18 +10,24 @@ Imports SMRUCC.genomics.SequenceModel.FASTA
 Public Module GenBankImports
 
     <Extension>
-    Public Sub ImportsData(registry As biocad_registry, gb As GBFF.File)
-        Dim vocabulary As BioCadVocabulary = registry.vocabulary_terms
-        Dim ncbi_taxid = CUInt(Val(gb.Taxon))
-        Dim cds = gb.Features.AsEnumerable _
-            .AsParallel _
-            .Where(Function(f) f.KeyName = "CDS") _
+    Private Function LoadFeatureIndex(gb As GBFF.File, key As String) As Dictionary(Of String, Feature)
+        Return gb.Features _
+            .ListFeatures(key) _
             .ToDictionary(Function(f) f.Query(FeatureQualifiers.locus_tag),
                           Function(f)
                               Return f
                           End Function)
+    End Function
 
-        For Each gene As Feature In gb.Features.AsEnumerable.Where(Function(f) f.KeyName = "gene")
+    <Extension>
+    Public Sub ImportsData(registry As biocad_registry, gb As GBFF.File)
+        Dim vocabulary As BioCadVocabulary = registry.vocabulary_terms
+        Dim ncbi_taxid = CUInt(Val(gb.Taxon))
+        Dim cds = gb.LoadFeatureIndex("CDS")
+        Dim tRNA = gb.LoadFeatureIndex("tRNA")
+        Dim rRNA = gb.LoadFeatureIndex("rRNA")
+
+        For Each gene As Feature In TqdmWrapper.Wrap(gb.Features.AsEnumerable.Where(Function(f) f.KeyName = "gene").ToArray)
             Dim locus_tag As String = gene.Query(FeatureQualifiers.locus_tag)
             Dim cds_feature = cds.TryGetValue(locus_tag)
             Dim polypeptide As String = cds_feature.Query(FeatureQualifiers.translation)
@@ -36,7 +43,7 @@ Public Module GenBankImports
             If gene_mol Is Nothing Then
                 ' create new in the database
                 Call registry.molecule.add(
-                    field("xref_id") = gene_dbxref,
+                    field("xref_id") = locus_tag,
                     field("name") = If(gene_name, locus_tag),
                     field("mass") = MolecularWeightCalculator.CalcMW_Nucleotides(mrna, is_rna:=False),
                     field("type") = vocabulary.gene_term,
@@ -46,7 +53,7 @@ Public Module GenBankImports
                     field("note") = func
                 )
 
-                gene_mol = registry.molecule.find_object(field("xref_id") = gene_dbxref)
+                gene_mol = registry.molecule.find_object(field("xref_id") = locus_tag)
 
                 ' add db_xrefs
                 registry.db_xrefs.delayed.add(
@@ -72,8 +79,20 @@ Public Module GenBankImports
                 ' add mRNA molecule
                 Dim mRNA_mol As molecule
 
-                ' add polypeptide molecule
+                mrna = mrna.ToUpper.Replace("T", "U")
 
+
+                ' add polypeptide molecule
+            Else
+                ' is rRNA or tRNA
+                If tRNA.ContainsKey(locus_tag) Then
+
+                ElseIf rRNA.ContainsKey(locus_tag) Then
+
+                Else
+                    ' ? unknown
+
+                End If
             End If
         Next
 
@@ -82,7 +101,10 @@ Public Module GenBankImports
 
     Public Function find_gene(registry As biocad_registry, ncbi_taxid As UInteger, locus_tag As String) As molecule
         Dim uniref As String = $"{ncbi_taxid}:{locus_tag}"
-        Dim gene As molecule = registry.molecule.find_object(field("xref_id") = uniref)
+        Dim gene As molecule = registry.molecule.find_object(
+            field("xref_id") = locus_tag,
+            field("tax_id") = ncbi_taxid
+        )
         Dim vocabulary As BioCadVocabulary = registry.vocabulary_terms
 
         If gene Is Nothing Then
