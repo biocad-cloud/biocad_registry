@@ -3,6 +3,7 @@ Imports biocad_registry.biocad_registryModel
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports SMRUCC.genomics.Assembly.NCBI.GenBank
 Imports SMRUCC.genomics.Assembly.NCBI.GenBank.GBFF.Keywords.FEATURES
+Imports SMRUCC.genomics.SequenceModel
 Imports SMRUCC.genomics.SequenceModel.FASTA
 
 Public Module GenBankImports
@@ -29,6 +30,15 @@ Public Module GenBankImports
 
             ' add gene molecule
             Dim gene_mol As molecule
+
+            If gene_mol Is Nothing Then
+                ' create new in the database
+                Call registry.molecule.add(
+                    field("xref_id") = locus_tag,
+                    field("name") = locus_tag,
+                    field("mass") = MolecularWeightCalculator.CalcMW_Nucleotides(mrna, is_rna:=False)
+                )
+            End If
 
             If Not polypeptide Is Nothing Then
                 ' add mRNA molecule
