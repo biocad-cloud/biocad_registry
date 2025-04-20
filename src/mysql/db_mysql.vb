@@ -5,29 +5,29 @@ Imports Oracle.LinuxCompatibility.MySQL.Uri
 Namespace biocad_registryModel
 
 Public MustInherit Class db_mysql : Inherits IDatabase
-Protected ReadOnly m_complex As Model
-Protected ReadOnly m_db_xrefs As Model
-Protected ReadOnly m_genomics As Model
-Protected ReadOnly m_kinetic_law As Model
-Protected ReadOnly m_molecule As Model
-Protected ReadOnly m_molecule_function As Model
-Protected ReadOnly m_molecule_ontology As Model
-Protected ReadOnly m_molecule_tags As Model
-Protected ReadOnly m_ncbi_taxonomy As Model
-Protected ReadOnly m_odor As Model
-Protected ReadOnly m_ontology As Model
-Protected ReadOnly m_ontology_tree As Model
-Protected ReadOnly m_pathway As Model
-Protected ReadOnly m_pathway_graph As Model
-Protected ReadOnly m_reaction As Model
-Protected ReadOnly m_reaction_graph As Model
-Protected ReadOnly m_regulation_graph As Model
-Protected ReadOnly m_sequence_graph As Model
-Protected ReadOnly m_subcellular_compartments As Model
-Protected ReadOnly m_subcellular_location As Model
-Protected ReadOnly m_synonym As Model
-Protected ReadOnly m_taxonomy_tree As Model
-Protected ReadOnly m_vocabulary As Model
+Protected ReadOnly m_complex As TableModel(Of complex)
+Protected ReadOnly m_db_xrefs As TableModel(Of db_xrefs)
+Protected ReadOnly m_genomics As TableModel(Of genomics)
+Protected ReadOnly m_kinetic_law As TableModel(Of kinetic_law)
+Protected ReadOnly m_molecule As TableModel(Of molecule)
+Protected ReadOnly m_molecule_function As TableModel(Of molecule_function)
+Protected ReadOnly m_molecule_ontology As TableModel(Of molecule_ontology)
+Protected ReadOnly m_molecule_tags As TableModel(Of molecule_tags)
+Protected ReadOnly m_ncbi_taxonomy As TableModel(Of ncbi_taxonomy)
+Protected ReadOnly m_odor As TableModel(Of odor)
+Protected ReadOnly m_ontology As TableModel(Of ontology)
+Protected ReadOnly m_ontology_tree As TableModel(Of ontology_tree)
+Protected ReadOnly m_pathway As TableModel(Of pathway)
+Protected ReadOnly m_pathway_graph As TableModel(Of pathway_graph)
+Protected ReadOnly m_reaction As TableModel(Of reaction)
+Protected ReadOnly m_reaction_graph As TableModel(Of reaction_graph)
+Protected ReadOnly m_regulation_graph As TableModel(Of regulation_graph)
+Protected ReadOnly m_sequence_graph As TableModel(Of sequence_graph)
+Protected ReadOnly m_subcellular_compartments As TableModel(Of subcellular_compartments)
+Protected ReadOnly m_subcellular_location As TableModel(Of subcellular_location)
+Protected ReadOnly m_synonym As TableModel(Of synonym)
+Protected ReadOnly m_taxonomy_tree As TableModel(Of taxonomy_tree)
+Protected ReadOnly m_vocabulary As TableModel(Of vocabulary)
 Protected Sub New(mysqli As ConnectionUri)
 Call MyBase.New(mysqli)
 
