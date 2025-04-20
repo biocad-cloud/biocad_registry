@@ -1,5 +1,6 @@
 ﻿
 Imports Microsoft.VisualBasic.ComponentModel.Collection
+Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 
 ''' <summary>
 ''' A wrapper for the biocad registry vocabulary table
@@ -48,10 +49,23 @@ Public Class BioCadVocabulary
 
     Public Function GetBioCadOntology(id As String, Optional name As String = Nothing) As biocad_registryModel.ontology
         Static cache As New Dictionary(Of String, biocad_registryModel.ontology)
-
         Return cache.ComputeIfAbsent(id,
             lazyValue:=Function(db_xref)
-                           Dim find = registry.ontology
+                           Dim find = registry.ontology.find_object(field("db_xref") = db_xref, field("db_source") = biocad_term)
+
+                           If find Is Nothing Then
+                               registry.ontology.add(
+                                   field("db_xref") = db_xref,
+                                   field("db_source") = biocad_term,
+                                   field("name") = name
+                               )
+                               find = registry.ontology.find_object(
+                                   field("db_xref") = db_xref,
+                                   field("db_source") = biocad_term
+                               )
+                           End If
+
+                           Return find
                        End Function)
     End Function
 End Class
