@@ -1,4 +1,5 @@
 ﻿Imports Microsoft.VisualBasic.ComponentModel.Collection
+Imports Oracle.LinuxCompatibility.MySQL
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports Oracle.LinuxCompatibility.MySQL.Uri
 
@@ -43,7 +44,7 @@ Public Class biocad_registry : Inherits biocad_registryModel.db_mysql
         End Get
     End Property
 
-    Public ReadOnly Property molecule As Model
+    Public ReadOnly Property molecule As TableModel(Of biocad_registryModel.molecule)
         Get
             Return m_molecule
         End Get
@@ -73,14 +74,24 @@ Public Class biocad_registry : Inherits biocad_registryModel.db_mysql
         End Get
     End Property
 
-    Public ReadOnly Property genomics As Model
+    Public ReadOnly Property genomics As TableModel(Of biocad_registryModel.genomics)
         Get
             Return m_genomics
         End Get
     End Property
 
+    Public ReadOnly Property synonym As TableModel(Of biocad_registryModel.synonym)
+        Get
+            Return m_synonym
+        End Get
+    End Property
+
+    Public ReadOnly Property vocabulary_terms As BioCadVocabulary
+
     Sub New(mysql As ConnectionUri)
         Call MyBase.New(mysql)
+
+        vocabulary_terms = New BioCadVocabulary(Me)
     End Sub
 
     ''' <summary>
