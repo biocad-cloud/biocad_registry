@@ -8898,8 +8898,12 @@ ATT I Ile      ACT T Thr      AAT N As [rest of string was truncated]&quot;;.
  <summary>
  get mRNA sequence
  </summary>
- <returns></returns>
- 
+ <returns>
+ the DNA sequence of the target <paramref name="mRNA"/> gene.
+ </returns>
+ <remarks>
+ Cut and join genomics DNA sequence for the given mRNA features.
+ </remarks>
 </member>
 <member name="M:SMRUCC.genomics.Assembly.NCBI.GenBank.Extensions.LocusMaps(SMRUCC.genomics.Assembly.NCBI.GenBank.TabularFormat.PTT)">
  <summary>
@@ -12073,6 +12077,11 @@ Get feature site data by nucleotide location.
  high-throughput sequencing instruments such as the Illumina Genome Analyzer.
  </summary>
 </member>
+<member name="T:SMRUCC.genomics.ComponentModel.FormulaData">
+ <summary>
+ The formula composition data model
+ </summary>
+</member>
 <member name="T:SMRUCC.genomics.ComponentModel.PeriodicTable">
  <summary>
  元素周期表
@@ -14208,7 +14217,36 @@ to take away yo [rest of string was truncated]&quot;;.
  <returns></returns>
  
 </member>
+<member name="M:SMRUCC.genomics.SequenceModel.MolecularWeightCalculator.PolypeptideFormula(System.String)">
+ <summary>
+ Create formula for protein polypeptide sequence
+ </summary>
+ <param name="seq"></param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.SequenceModel.MolecularWeightCalculator.DeoxyribonucleotideFormula(System.String)">
+ <summary>
+ Create formula for DNA nucleotide sequence
+ </summary>
+ <param name="seq"></param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.SequenceModel.MolecularWeightCalculator.RibonucleotideFormula(System.String)">
+ <summary>
+ Create formula for RNA nucleotide sequence
+ </summary>
+ <param name="seq"></param>
+ <returns></returns>
+</member>
 <member name="M:SMRUCC.genomics.SequenceModel.MolecularWeightCalculator.CalcMW_Nucleotides(SMRUCC.genomics.SequenceModel.ISequenceModel,System.Boolean)">
+ <summary>
+ 计算核酸序列的相对分子质量
+ </summary>
+ <param name="seq"></param>
+ <returns></returns>
+ 
+</member>
+<member name="M:SMRUCC.genomics.SequenceModel.MolecularWeightCalculator.CalcMW_Nucleotides(System.String,System.Boolean)">
  <summary>
  计算核酸序列的相对分子质量
  </summary>

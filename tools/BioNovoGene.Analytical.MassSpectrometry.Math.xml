@@ -2624,6 +2624,16 @@ BioNovoGene.Analytical.MassSpectrometry.Math
  <returns>this function returns empty collection if no hits was found.</returns>
  
 </member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.MzPool.Query(System.Double,System.Nullable{System.Double})">
+ <summary>
+ A wrapper of the <see cref="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.MzPool.Search(System.Double,System.Nullable{System.Double})"/> function
+ </summary>
+ <param name="mz"></param>
+ <param name="mzdiff"></param>
+ <returns>
+ this function convert the search result <see cref="T:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.MzIndex"/> object as tuple value
+ </returns>
+</member>
 <member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.MzPool.SearchBest(System.Double,System.Nullable{System.Double})">
  <summary>
  get the index hit with smallest absolute error

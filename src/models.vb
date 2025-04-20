@@ -1,4 +1,5 @@
 ﻿Imports biocad_registry.biocad_registryModel
+Imports biocad_registry.views
 Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.Scripting.MetaData
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder

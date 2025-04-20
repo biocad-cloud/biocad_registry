@@ -81,7 +81,7 @@ Microsoft.VisualBasic.Data.Framework
  make dataframe column fields projection
  </summary>
  <param name="cols"></param>
- <returns></returns>
+ <returns>a subset of the dataframe value with fields projection</returns>
 </member>
 <member name="M:Microsoft.VisualBasic.Data.Framework.DataFrame.delete(System.String)">
  <summary>
@@ -2097,8 +2097,10 @@ Microsoft.VisualBasic.Data.Framework
 <member name="T:Microsoft.VisualBasic.Data.Framework.IO.EntityObject">
  <summary>
  The object entity, <see cref="T:Microsoft.VisualBasic.ComponentModel.DataSourceModel.DynamicPropertyBase`1"/>, <see cref="T:System.String"/>.
- (有名称属性的表抽象对象)
  </summary>
+ <remarks>
+ (有名称属性的表抽象对象)
+ </remarks>
 </member>
 <member name="P:Microsoft.VisualBasic.Data.Framework.IO.EntityObject.ID">
  <summary>

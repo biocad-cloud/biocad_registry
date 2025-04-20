@@ -7146,7 +7146,7 @@ to take away yo [rest of string was truncated]&quot;;.
  <summary>
  open a *.gz file for make file data read/write
  </summary>
- <param name="description$"></param>
+ <param name="description"></param>
  <returns>stream object for read/write data</returns>
 </member>
 <member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.file.file(System.String,System.IO.FileMode,System.Boolean,Microsoft.VisualBasic.ApplicationServices.IFileSystemEnvironment)">
@@ -14179,6 +14179,12 @@ to take away yo [rest of string was truncated]&quot;;.
  </summary>
  <returns></returns>
 </member>
+<member name="M:SMRUCC.Rsharp.Runtime.Serialize.dataframeBuffer.Serialize(System.IO.Stream)">
+ <summary>
+ write dataframe value to binary file
+ </summary>
+ <param name="buffer"></param>
+</member>
 <member name="M:SMRUCC.Rsharp.Runtime.Serialize.listBuffer.getValue">
  <summary>
  a wrapper to the <see cref="M:SMRUCC.Rsharp.Runtime.Serialize.listBuffer.getList"/> function
@@ -14582,6 +14588,16 @@ to take away yo [rest of string was truncated]&quot;;.
  </summary>
  <param name="name"></param>
  <param name="val"></param>
+ <example>
+ <code>
+ Dim obj As New RsharpDataObject
+ obj.setAttribute("name", "value")
+ </code>
+ </example>
+ <returns>this function returns the object itself for the chaining call</returns>
+ <remarks>
+ this function will create a new dictionary object if the attribute data is not initialized
+ </remarks>
 </member>
 <member name="M:SMRUCC.Rsharp.Runtime.Components.RsharpDataObject.getAttributeNames">
  <summary>

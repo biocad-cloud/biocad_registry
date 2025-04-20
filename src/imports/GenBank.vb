@@ -11,7 +11,7 @@ Public Module GenBankImports
     <Extension>
     Public Sub ImportsData(registry As biocad_registry, gb As GBFF.File)
         Dim vocabulary As New BioCadVocabulary(registry)
-        Dim ncbi_taxid = CInt(Val(gb.Taxon))
+        Dim ncbi_taxid = CUInt(Val(gb.Taxon))
         Dim cds = gb.Features.AsEnumerable _
             .AsParallel _
             .Where(Function(f) f.KeyName = "CDS") _
@@ -30,7 +30,7 @@ Public Module GenBankImports
             Dim gene_dbxref = $"{ncbi_taxid}:{locus_tag}"
 
             ' add gene molecule
-            Dim gene_mol As molecule
+            Dim gene_mol As molecule = find_gene(registry, ncbi_taxid, locus_tag, gene.Query(FeatureQualifiers.gene))
 
             If gene_mol Is Nothing Then
                 ' create new in the database
@@ -58,16 +58,24 @@ Public Module GenBankImports
         Call registry.AddGenomics(gb, gb.Origin.ToFasta)
     End Sub
 
+    Public Function find_gene(registry As biocad_registry, ncbi_taxid As UInteger, locus_tag As String, gene_name As String) As molecule
+
+    End Function
+
     <Extension>
     Private Sub AddGenomics(registry As biocad_registry, gb As GBFF.File, genomics As FastaSeq)
-        Call registry.genomics.delayed.add(
-            field("ncbi_taxid") = CInt(Val(gb.Taxon)),
-            field("db_xref") = gb.Accession.AccessionId,
-            field("def") = gb.Definition.Value,
-            field("nt") = genomics.SequenceData,
-            field("comment") = gb.Comment.Comment,
-            field("biom_string") = gb.Source.BiomString
-        )
+        Dim id As String = gb.Accession.AccessionId
+
+        If registry.genomics.find(Of biocad_registryModel.genomics)(field("db_xref") = id) Is Nothing Then
+            Call registry.genomics.delayed.add(
+                field("ncbi_taxid") = CInt(Val(gb.Taxon)),
+                field("db_xref") = gb.Accession.AccessionId,
+                field("def") = gb.Definition.Value,
+                field("nt") = genomics.SequenceData,
+                field("comment") = gb.Comment.Comment,
+                field("biom_string") = gb.Source.BiomString
+            )
+        End If
     End Sub
 
 End Module

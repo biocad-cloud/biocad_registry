@@ -1,4 +1,8 @@
-﻿Public Class BioCadVocabulary
+﻿
+''' <summary>
+''' A wrapper for the biocad registry vocabulary table
+''' </summary>
+Public Class BioCadVocabulary
 
 #Region "molecule type vocabulary"
     Public ReadOnly Property gene_term As UInteger
