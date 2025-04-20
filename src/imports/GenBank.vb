@@ -110,9 +110,25 @@ Public Class GenBankImports
         Else
             ' is rRNA or tRNA
             If tRNA.ContainsKey(locus_tag) Then
+                Dim tRNA_feature = tRNA(locus_tag)
+                Dim type As String = tRNA_feature.Query(FeatureQualifiers.product)
+                Dim ontology = vocabulary.GetBioCadOntology(type, type)
 
+                registry.molecule_ontology.add(
+                    field("molecule_id") = gene_mol.id,
+                    field("ontology_id") = ontology.id,
+                    field("evidence") = tRNA_feature.Query(FeatureQualifiers.note)
+                )
             ElseIf rRNA.ContainsKey(locus_tag) Then
+                Dim rRNA_feature = rRNA(locus_tag)
+                Dim type As String = rRNA_feature.Query(FeatureQualifiers.product)
+                Dim ontology = vocabulary.GetBioCadOntology(type.Replace(" ", "_"), type)
 
+                registry.molecule_ontology.add(
+                    field("molecule_id") = gene_mol.id,
+                    field("ontology_id") = ontology.id,
+                    field("evidence") = rRNA_feature.Query(FeatureQualifiers.note)
+                )
             Else
                 ' ? unknown
                 ' skip do nothing
