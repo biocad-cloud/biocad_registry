@@ -24,7 +24,7 @@ Public Class BioCadVocabulary
     Public ReadOnly Property biocad_term As UInteger
 #End Region
 
-    Public Const CategoryDatabase = "Database"
+    Public Const CategoryDatabase = "External Database"
     Public Const CategoryMolecule = "Molecule Type"
 
     ReadOnly registry As biocad_registry

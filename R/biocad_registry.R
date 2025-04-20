@@ -26,6 +26,9 @@ const molecule_terms = function(biocad_registry) {
     sapply(["Nucleic Acid" "RNA" "Polypeptide" "Metabolite"], term -> biocad_registry |> vocabulary_id(term,"Molecule Type"));
 }
 
+#' the molecule entity term
+#' 
+#' @details the "Nucleic Acid", "RNA", "Polypeptide", "Metabolite" is belong to the molecule entity object.
 const molecule_entity = function(biocad_registry) {
     biocad_registry |> vocabulary_id("Molecule","Entity Type");
 }
