@@ -124,7 +124,7 @@ Public Class GenBankImports
         Dim polypeptide As String = cds.Query(FeatureQualifiers.translation)
         Dim cds_id = cds.Query(FeatureQualifiers.protein_id)
         Dim func = cds.Query(FeatureQualifiers.product)
-        Dim protein = find_protein(cds_id)
+        Dim protein = find_protein(cds_id, cds.Query(FeatureQualifiers.locus_tag))
         Dim gene_name As String = cds.Query(FeatureQualifiers.gene)
 
         If protein Is Nothing Then
@@ -177,7 +177,7 @@ Public Class GenBankImports
         End If
     End Sub
 
-    Public Function find_protein(cds_id) As molecule
+    Public Function find_protein(cds_id$, locus_tag As String) As molecule
         Dim uniref As String = $"{ncbi_taxid}:{cds_id}"
         Dim protein As molecule = registry.molecule.find_object(
             field("xref_id") = uniref,
@@ -186,6 +186,14 @@ Public Class GenBankImports
 
         If protein Is Nothing Then
             ' find by db_xref
+            protein = registry.db_xrefs _
+                .left_join("molecule") _
+                .on(field("`molecule`.id") = "obj_id") _
+                .where(field("`molecule`.type") = vocabulary.protein_term,
+                       field("`db_xrefs`.type") = vocabulary.protein_term,
+                       (field("db_key") = vocabulary.genbank_term And field("xref") = cds_id) Or (field("db_key") = vocabulary.genbank_term And field("xref") = locus_tag)
+                ) _
+                .find(Of biocad_registryModel.molecule)("`molecule`.*")
         End If
 
         Return protein
