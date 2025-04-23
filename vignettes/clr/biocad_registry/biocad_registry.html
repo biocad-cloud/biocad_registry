@@ -5,7 +5,7 @@
     <title>biocad_registry.biocad_registry</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-    <link rel="stylesheet" type="text/css" href="https://gcmodeller.org/lib/page.css">
+    <link rel="stylesheet" type="text/css" href="../../_assets/page.css">
 </head>
 
 <body>
@@ -31,17 +31,22 @@
 # namespace biocad_registry
 export class biocad_registry extends <a href="/vignettes/clr/biocad_registry/biocad_registryModel/db_mysql.html">db_mysql</a> {
    db_xrefs: <a href="/vignettes/clr/Oracle/LinuxCompatibility/MySQL/MySqlBuilder/Model.html">Model</a>;
-   genomics: <a href="/vignettes/clr/Oracle/LinuxCompatibility/MySQL/MySqlBuilder/Model.html">Model</a>;
-   molecule: <a href="/vignettes/clr/Oracle/LinuxCompatibility/MySQL/MySqlBuilder/Model.html">Model</a>;
+   genomics: <a href="/vignettes/clr/Oracle/LinuxCompatibility/MySQL/TableModel`1.html">TableModel`1</a>;
+   molecule: <a href="/vignettes/clr/Oracle/LinuxCompatibility/MySQL/TableModel`1.html">TableModel`1</a>;
    molecule_function: <a href="/vignettes/clr/Oracle/LinuxCompatibility/MySQL/MySqlBuilder/Model.html">Model</a>;
+   molecule_ontology: <a href="/vignettes/clr/Oracle/LinuxCompatibility/MySQL/TableModel`1.html">TableModel`1</a>;
    ncbi_taxonomy: <a href="/vignettes/clr/Oracle/LinuxCompatibility/MySQL/MySqlBuilder/Model.html">Model</a>;
    odor: <a href="/vignettes/clr/Oracle/LinuxCompatibility/MySQL/MySqlBuilder/Model.html">Model</a>;
+   ontology: <a href="/vignettes/clr/Oracle/LinuxCompatibility/MySQL/TableModel`1.html">TableModel`1</a>;
+   ontology_tree: <a href="/vignettes/clr/Oracle/LinuxCompatibility/MySQL/TableModel`1.html">TableModel`1</a>;
    reaction_graph: <a href="/vignettes/clr/Oracle/LinuxCompatibility/MySQL/MySqlBuilder/Model.html">Model</a>;
    regulation_graph: <a href="/vignettes/clr/Oracle/LinuxCompatibility/MySQL/MySqlBuilder/Model.html">Model</a>;
-   sequence_graph: <a href="/vignettes/clr/Oracle/LinuxCompatibility/MySQL/MySqlBuilder/Model.html">Model</a>;
+   sequence_graph: <a href="/vignettes/clr/Oracle/LinuxCompatibility/MySQL/TableModel`1.html">TableModel`1</a>;
    subcellular_compartments: <a href="/vignettes/clr/Oracle/LinuxCompatibility/MySQL/MySqlBuilder/Model.html">Model</a>;
+   synonym: <a href="/vignettes/clr/Oracle/LinuxCompatibility/MySQL/TableModel`1.html">TableModel`1</a>;
    taxonomy_tree: <a href="/vignettes/clr/Oracle/LinuxCompatibility/MySQL/MySqlBuilder/Model.html">Model</a>;
    vocabulary: <a href="/vignettes/clr/Oracle/LinuxCompatibility/MySQL/MySqlBuilder/Model.html">Model</a>;
+   vocabulary_terms: <a href="/vignettes/clr/biocad_registry/BioCadVocabulary.html">BioCadVocabulary</a>;
 }
 </code>
         </pre>
@@ -51,17 +56,22 @@ export class biocad_registry extends <a href="/vignettes/clr/biocad_registry/bio
         <ol>
 <li>this class extends from <a href="/vignettes/clr/biocad_registry/biocad_registryModel/db_mysql.html">db_mysql</a> class: <a href="/vignettes/clr/biocad_registry/biocad_registryModel/db_mysql.html">db_mysql</a></li>
 <li>use by <i>property</i> member <code>db_xrefs</code>: <a href="/vignettes/clr/Oracle/LinuxCompatibility/MySQL/MySqlBuilder/Model.html">Model</a></li>
-<li>use by <i>property</i> member <code>genomics</code>: <a href="/vignettes/clr/Oracle/LinuxCompatibility/MySQL/MySqlBuilder/Model.html">Model</a></li>
-<li>use by <i>property</i> member <code>molecule</code>: <a href="/vignettes/clr/Oracle/LinuxCompatibility/MySQL/MySqlBuilder/Model.html">Model</a></li>
+<li>use by <i>property</i> member <code>genomics</code>: <a href="/vignettes/clr/Oracle/LinuxCompatibility/MySQL/TableModel`1.html">TableModel`1</a></li>
+<li>use by <i>property</i> member <code>molecule</code>: <a href="/vignettes/clr/Oracle/LinuxCompatibility/MySQL/TableModel`1.html">TableModel`1</a></li>
 <li>use by <i>property</i> member <code>molecule_function</code>: <a href="/vignettes/clr/Oracle/LinuxCompatibility/MySQL/MySqlBuilder/Model.html">Model</a></li>
+<li>use by <i>property</i> member <code>molecule_ontology</code>: <a href="/vignettes/clr/Oracle/LinuxCompatibility/MySQL/TableModel`1.html">TableModel`1</a></li>
 <li>use by <i>property</i> member <code>ncbi_taxonomy</code>: <a href="/vignettes/clr/Oracle/LinuxCompatibility/MySQL/MySqlBuilder/Model.html">Model</a></li>
 <li>use by <i>property</i> member <code>odor</code>: <a href="/vignettes/clr/Oracle/LinuxCompatibility/MySQL/MySqlBuilder/Model.html">Model</a></li>
+<li>use by <i>property</i> member <code>ontology</code>: <a href="/vignettes/clr/Oracle/LinuxCompatibility/MySQL/TableModel`1.html">TableModel`1</a></li>
+<li>use by <i>property</i> member <code>ontology_tree</code>: <a href="/vignettes/clr/Oracle/LinuxCompatibility/MySQL/TableModel`1.html">TableModel`1</a></li>
 <li>use by <i>property</i> member <code>reaction_graph</code>: <a href="/vignettes/clr/Oracle/LinuxCompatibility/MySQL/MySqlBuilder/Model.html">Model</a></li>
 <li>use by <i>property</i> member <code>regulation_graph</code>: <a href="/vignettes/clr/Oracle/LinuxCompatibility/MySQL/MySqlBuilder/Model.html">Model</a></li>
-<li>use by <i>property</i> member <code>sequence_graph</code>: <a href="/vignettes/clr/Oracle/LinuxCompatibility/MySQL/MySqlBuilder/Model.html">Model</a></li>
+<li>use by <i>property</i> member <code>sequence_graph</code>: <a href="/vignettes/clr/Oracle/LinuxCompatibility/MySQL/TableModel`1.html">TableModel`1</a></li>
 <li>use by <i>property</i> member <code>subcellular_compartments</code>: <a href="/vignettes/clr/Oracle/LinuxCompatibility/MySQL/MySqlBuilder/Model.html">Model</a></li>
+<li>use by <i>property</i> member <code>synonym</code>: <a href="/vignettes/clr/Oracle/LinuxCompatibility/MySQL/TableModel`1.html">TableModel`1</a></li>
 <li>use by <i>property</i> member <code>taxonomy_tree</code>: <a href="/vignettes/clr/Oracle/LinuxCompatibility/MySQL/MySqlBuilder/Model.html">Model</a></li>
 <li>use by <i>property</i> member <code>vocabulary</code>: <a href="/vignettes/clr/Oracle/LinuxCompatibility/MySQL/MySqlBuilder/Model.html">Model</a></li>
+<li>use by <i>property</i> member <code>vocabulary_terms</code>: <a href="/vignettes/clr/biocad_registry/BioCadVocabulary.html">BioCadVocabulary</a></li>
 </ol>
 
 
@@ -72,8 +82,8 @@ export class biocad_registry extends <a href="/vignettes/clr/biocad_registry/bio
     </div>
 </body>
 
-<script type="text/javascript" src="https://gcmodeller.org/lib/R_syntax.js"></script>
-<script type="text/javascript" src="https://gcmodeller.org/lib/highlights.js"></script>
+<script type="text/javascript" src="../../_assets/R_syntax.js"></script>
+<script type="text/javascript" src="../../_assets/highlights.js"></script>
 <script type="text/javascript">r_highlights("clr_ts");</script>
 
 </html>
