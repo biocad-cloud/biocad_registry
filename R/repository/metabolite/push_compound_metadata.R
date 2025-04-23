@@ -56,23 +56,24 @@ const __push_compound_metadata = function(biocad_registry, compound, mol) {
 
     # null means parser error
     if (!is.null(met_struct)) {
-        let atoms_vec = SMILES::atoms(met_struct);
+        # let atoms_vec = SMILES::atoms(met_struct);
 
-        atoms_vec = atoms_vec 
-        |> groupBy("group") 
-        |> lapply(grp -> sum(grp$links))
-        ;
+        # atoms_vec = atoms_vec 
+        # |> groupBy("group") 
+        # |> lapply(grp -> sum(grp$links))
+        # ;
 
-        let embedding = bencode( names(atoms_vec));
-        atoms_vec = as.numeric(unlist(atoms_vec));
-        atoms_vec = base64(packBuffer(atoms_vec ) |> zlib_stream());
+        # let embedding = bencode( names(atoms_vec));
+        # atoms_vec = as.numeric(unlist(atoms_vec));
+        # atoms_vec = base64(packBuffer(atoms_vec ) |> zlib_stream());
 
         if (!(seq_graph |> check(molecule_id = mol$id))) {
             seq_graph |> add(
                 molecule_id = mol$id,
                 sequence    = smiles,
-                seq_graph   = atoms_vec,
-                embedding   = embedding,
+                # seq_graph   = atoms_vec,
+                # embedding   = embedding,
+                morgan = "",
                 hashcode    = md5(smiles)
             );
         }
@@ -99,5 +100,22 @@ const __push_compound_metadata = function(biocad_registry, compound, mol) {
                 }
             }
         }
+    }
+
+    let synonyms = biocad_registry |> table("synonym");
+
+    for(name in compound$synonym) {
+        let hash = md5(tolower(name));
+        let check = synonyms |> check(obj_id = mol$id, type_id = term_metabolite, hashcode = hash);
+
+        if (!check) {
+            synonyms |> add(
+                obj_id = mol$id,
+                type_id = term_metabolite,
+                hashcode = hash,
+                synonym = name,
+                lang = 'en'
+            );
+        }        
     }
 }
