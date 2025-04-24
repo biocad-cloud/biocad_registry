@@ -208,6 +208,56 @@ BioNovoGene.BioDeep.Chemoinformatics
  <returns>Corrected charge</returns>
  <remarks></remarks>
 </member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.Formula.FormulaCalculateUtility.ConvertFormulaAdductPairToPrecursorAdduct(BioNovoGene.BioDeep.Chemoinformatics.Formula.Formula,BioNovoGene.BioDeep.Chemoinformatics.Formula.MS.AdductIon)">
+ <summary>
+ Convert the molecule formula to the precursor adduct formula.
+ </summary>
+ <param name="formula"></param>
+ <param name="adduct"></param>
+ <returns></returns>
+ <remarks>
+ + For example, [M+H]+ => C6H12O6+H
+ + For example, [M-H]- => C6H12O6-H
+ + For example, [M+Na]+ => C6H12O6+Na
+ + For example, [M+NH4]+ => C6H12O6+NH4
+ </remarks>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.Formula.FormulaCalculateUtility.GeneralMoleculeFormula(BioNovoGene.BioDeep.Chemoinformatics.Formula.Formula,BioNovoGene.BioDeep.Chemoinformatics.Formula.MS.AdductIon)">
+ <summary>
+ A general method for restore of the molecule formula from the given adduct ion formula
+ </summary>
+ <param name="adductIon"></param>
+ <param name="adduct"></param>
+ <returns></returns>
+ 
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.Formula.FormulaCalculateUtility.GeneralMoleculeFormula(BioNovoGene.BioDeep.Chemoinformatics.Formula.Formula,System.String)">
+ <summary>
+ A general method for restore of the molecule formula from the given adduct ion formula
+ </summary>
+ <param name="adductIon"></param>
+ <param name="adductIonName"></param>
+ <returns></returns>
+ 
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.Formula.FormulaCalculateUtility.GeneralAdductFormula(BioNovoGene.BioDeep.Chemoinformatics.Formula.Formula,BioNovoGene.BioDeep.Chemoinformatics.Formula.MS.AdductIon)">
+ <summary>
+ A general method for make conversion from molecule formula to adduct ion formula
+ </summary>
+ <param name="formula"></param>
+ <param name="adduct"></param>
+ <returns></returns>
+ 
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.Formula.FormulaCalculateUtility.GeneralAdductFormula(BioNovoGene.BioDeep.Chemoinformatics.Formula.Formula,System.String)">
+ <summary>
+ A general method for make conversion from molecule formula to adduct ion formula
+ </summary>
+ <param name="formula"></param>
+ <param name="adductIonName"></param>
+ <returns></returns>
+ 
+</member>
 <member name="F:BioNovoGene.BioDeep.Chemoinformatics.Formula.FormulaScanner.n">
  <summary>
  处理在化学式之中遇到的小字母``n``设置的一个默认值
@@ -618,6 +668,25 @@ BioNovoGene.BioDeep.Chemoinformatics
  <returns>
  the generated formula may contains the negative count element
  </returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.Formula.Formula.op_Subtraction(BioNovoGene.BioDeep.Chemoinformatics.Formula.Formula,System.String)">
+ <summary>
+ Parse the formula string <paramref name="fs"/> and then substract the element counts from the given formula <paramref name="f"/>.
+ </summary>
+ <param name="f"></param>
+ <param name="fs"></param>
+ <returns></returns>
+ <remarks>
+ the generated formula may contains the negative count element
+ </remarks>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.Formula.Formula.op_Addition(BioNovoGene.BioDeep.Chemoinformatics.Formula.Formula,System.String)">
+ <summary>
+ Parse the formula string <paramref name="fs"/> and then add the element counts into the given formula <paramref name="f"/>.
+ </summary>
+ <param name="f"></param>
+ <param name="fs"></param>
+ <returns></returns>
 </member>
 <member name="M:BioNovoGene.BioDeep.Chemoinformatics.Formula.Formula.op_Explicit(BioNovoGene.BioDeep.Chemoinformatics.Formula.Formula)~System.Double">
  <summary>
@@ -1695,7 +1764,7 @@ BioNovoGene.BioDeep.Chemoinformatics
 </member>
 <member name="T:BioNovoGene.BioDeep.Chemoinformatics.SDF.Models.Atom">
  <summary>
- atom element key and its spatial coordinates
+ atom element key with its spatial coordinates
  </summary>
 </member>
 <member name="P:BioNovoGene.BioDeep.Chemoinformatics.SDF.Models.Atom.Atom">
@@ -1721,6 +1790,9 @@ BioNovoGene.BioDeep.Chemoinformatics
  <summary>
  Connection between atoms
  </summary>
+ <remarks>
+ [i,j] index tuple of the connected atoms
+ </remarks>
 </member>
 <member name="P:BioNovoGene.BioDeep.Chemoinformatics.SDF.Models.Bound.i">
  <summary>

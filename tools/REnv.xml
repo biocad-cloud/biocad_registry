@@ -11854,6 +11854,20 @@ to take away yo [rest of string was truncated]&quot;;.
  the given index value <paramref name="i"/> should be a integer value from 1-based.
  </remarks>
 </member>
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Object.list.setByIndex(System.Int32,System.Object,SMRUCC.Rsharp.Runtime.Environment)">
+ <summary>
+ set value by index
+ </summary>
+ <param name="i">1-based index</param>
+ <param name="value">any kind of the clr runtime value to store in this tuple list that associated with this index.</param>
+ <param name="envir"></param>
+ <returns></returns>
+ <remarks>
+ the given index value <paramref name="i"/> should be a integer value from 1-based.
+ </remarks>
+ 
+ <exception cref="T:System.NotImplementedException"></exception>
+</member>
 <member name="M:SMRUCC.Rsharp.Runtime.Internal.Object.list.getByName(System.String)">
  <summary>
  If target key name is not found in list, then

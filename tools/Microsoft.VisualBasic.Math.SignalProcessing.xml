@@ -1213,6 +1213,102 @@ Microsoft.VisualBasic.Math.SignalProcessing
  <param name="max#">max of take by <see cref="P:Microsoft.VisualBasic.Math.SignalProcessing.GeneralSignal.Measures"/></param>
  <returns></returns>
 </member>
+<member name="M:Microsoft.VisualBasic.Math.SignalProcessing.KalmanFilter.Algorithm.kalman1_init(Microsoft.VisualBasic.Math.SignalProcessing.KalmanFilter.kalman1_state,System.Single,System.Single)">
+ <summary>
+ Initializes the 1-dimensional Kalman filter state structure
+ </summary>
+ <param name="state">The Kalman filter state structure to initialize</param>
+ <param name="init_x">Initial state value (x0)</param>
+ <param name="init_p">Initial error covariance estimate (p0)</param>
+ <remarks>
+ Default configuration:
+ <list type="bullet">
+ <item><description>State transition matrix (A) = 1.0</description></item>
+ <item><description>Observation matrix (H) = 1.0</description></item>
+ <item><description>Process noise covariance (q) = 200.0</description></item>
+ <item><description>Measurement noise covariance (r) = 500.0</description></item>
+ </list>
+ Note: These parameters should be tuned for specific applications
+ </remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.Math.SignalProcessing.KalmanFilter.Algorithm.kalman1_filter(Microsoft.VisualBasic.Math.SignalProcessing.KalmanFilter.kalman1_state,System.Single)">
+ <summary>
+ Performs 1-dimensional Kalman filtering
+ </summary>
+ <param name="state">Kalman filter state structure</param>
+ <param name="z_measure">Measurement value</param>
+ <returns>Filtered state estimate</returns>
+ <remarks>
+ Implements standard Kalman filter equations:
+ 1. Prediction step (state and covariance)
+ 2. Measurement update (Kalman gain, state correction, covariance update)
+ </remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.Math.SignalProcessing.KalmanFilter.Algorithm.kalman2_init(Microsoft.VisualBasic.Math.SignalProcessing.KalmanFilter.kalman2_state,System.Single[],System.Single[][])">
+ <summary>
+ Initializes the 2-dimensional Kalman filter state structure
+ </summary>
+ <param name="state">The Kalman filter state structure to initialize</param>
+ <param name="init_x">Initial state vector [x0, x1]</param>
+ <param name="init_p">Initial error covariance matrix (2x2)</param>
+ <remarks>
+ Default configuration:
+ <list type="bullet">
+ <item><description>State transition matrix (A) = [[1, 0.1], [0, 1]]</description></item>
+ <item><description>Observation matrix (H) = [1, 0]</description></item>
+ <item><description>Process noise covariance (q) = [1e-6, 1e-6]</description></item>
+ <item><description>Measurement noise covariance (r) = 1e-6</description></item>
+ </list>
+ Note: These parameters should be tuned for specific applications
+ </remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.Math.SignalProcessing.KalmanFilter.Algorithm.kalman2_filter(Microsoft.VisualBasic.Math.SignalProcessing.KalmanFilter.kalman2_state,System.Single)">
+ <summary>
+ Performs 2-dimensional Kalman filtering
+ </summary>
+ <param name="state">Kalman filter state structure</param>
+ <param name="z_measure">Measurement value</param>
+ <returns>Primary state estimate (x[0])</returns>
+ <remarks>
+ Updates both state vector elements (typically [position, velocity] or [angle, angular velocity])
+ and covariance matrix. Implements:
+ <list type="number">
+ <item><description>State prediction</description></item>
+ <item><description>Covariance prediction</description></item>
+ <item><description>Kalman gain calculation</description></item>
+ <item><description>State correction</description></item>
+ <item><description>Covariance update</description></item>
+ </list>
+ Returns the first element of the updated state vector (x[0])
+ </remarks>
+</member>
+<member name="T:Microsoft.VisualBasic.Math.SignalProcessing.KalmanFilter.kalman1_state">
+ <summary>
+ Represents the state of a 1-dimensional Kalman filter
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.Math.SignalProcessing.KalmanFilter.kalman2_state">
+ <summary>
+ Represents the state of a 2-dimensional Kalman filter
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.Math.SignalProcessing.HungarianAlgorithm.HungarianAlgorithm">
+ <summary>
+ Hungarian Algorithm.
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Math.SignalProcessing.HungarianAlgorithm.HungarianAlgorithm.FindAssignments(System.Double[0:,0:])">
+ <summary>
+ Finds the optimal assignments for a given matrix of agents and 
+ costed tasks such that the total cost is minimized.
+ </summary>
+ <param name="costs">A cost matrix; the element at row <em>i</em> 
+ and column <em>j</em> represents the cost of agent <em>i</em> 
+ performing task <em>j</em>.</param>
+ <returns>A matrix of assignments; the value of element <em>i</em> 
+ is the column of the task assigned to agent <em>i</em>.</returns>
+ <exception cref="T:System.ArgumentNullException"><paramref name="costs"/> is null.</exception>
+</member>
 <member name="T:Microsoft.VisualBasic.Math.SignalProcessing.NDtw.Dtw">
  <summary>
  Dynamic Time Warping (DTW) algorithm implementation

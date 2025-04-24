@@ -866,10 +866,10 @@ BioNovoGene.Analytical.MassSpectrometry.Math
  <summary>
  
  </summary>
- <param name="type$"></param>
- <param name="charge%"></param>
- <param name="M#"></param>
- <param name="adducts#"></param>
+ <param name="type"></param>
+ <param name="charge"></param>
+ <param name="M"></param>
+ <param name="adducts"></param>
  <param name="mode">只允许``+/-``这两种符号出现</param>
 </member>
 <member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.MzCalculator.CalcMass(System.Double)">
@@ -1008,6 +1008,15 @@ BioNovoGene.Analytical.MassSpectrometry.Math
  </summary>
  <param name="mode">例如[M]-，[M-H]-等</param>
  <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.Provider.ParseAdductModel(System.String)">
+ <summary>
+ 
+ </summary>
+ <param name="precursor_type"></param>
+ <returns>
+ this function will returns nothing if the given string is empty
+ </returns>
 </member>
 <member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.Provider.Calculators(System.String[])">
  <summary>

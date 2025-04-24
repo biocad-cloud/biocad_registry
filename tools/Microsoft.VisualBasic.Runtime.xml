@@ -13595,7 +13595,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="lazyValue"></param>
  <returns></returns>
  <remarks>
- target <paramref name="table"/> has been SyncLock at here
+ thread safe: target <paramref name="table"/> has been SyncLock at here
  </remarks>
 </member>
 <member name="M:Microsoft.VisualBasic.ComponentModel.Collection.KeyValuePairExtensions.Tuple``2(``0,``1)">
