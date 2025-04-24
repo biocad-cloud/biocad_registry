@@ -22972,8 +22972,11 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="s1$"></param>
  <param name="s2$"></param>
  <param name="ignoreCase"></param>
- <param name="cost#"></param>
+ <param name="cost"></param>
  <param name="dist"></param>
+ <param name="checkChar">
+ lambda function pointer for check two char is equals or not?
+ </param>
  <returns></returns>
 </member>
 <member name="M:Microsoft.VisualBasic.Text.Similarity.Evaluations.TokenOrders(System.String,System.String,System.Boolean)">
