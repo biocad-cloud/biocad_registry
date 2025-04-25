@@ -18,27 +18,35 @@ Module imports_api
     <ExportAPI("imports_taxonomy")>
     Public Function imports_taxonomy(registry As biocad_registry, taxdump As NcbiTaxonomyTree) As Object
         Dim bar As ProgressBar = Nothing
+        Dim blocks = taxdump.Taxonomy.Values _
+            .SplitIterator(1000) _
+            .ToArray
 
-        For Each tax As TaxonomyNode In TqdmWrapper.Wrap(taxdump.Taxonomy.Values, bar:=bar)
-            Dim tree = registry.taxonomy_tree.batch_insert(delayed:=True)
+        For Each taxlist As TaxonomyNode() In TqdmWrapper.Wrap(blocks, bar:=bar)
+            Dim tree = registry.taxonomy_tree.batch_insert(delayed:=False)
+            Dim transaction = registry.ncbi_taxonomy.open_transaction
 
-            Call registry.ncbi_taxonomy.delayed.add(
-                field("id") = tax.taxid,
-                field("taxname") = tax.name,
-                field("nsize") = tax.nchilds,
-                field("parent_id") = CUInt(Val(tax.parent)),
-                field("rank") = registry.getVocabulary(If(tax.rank.StringEmpty(, True), "no rank", tax.rank), "Taxonomy Rank")
-            )
-
-            For Each id As Integer In tax.children.SafeQuery
-                Call tree.add(
-                    field("tax_id") = tax.taxid,
-                    field("child_tax") = id
+            For Each tax As TaxonomyNode In taxlist
+                Call transaction.add(
+                    field("id") = tax.taxid,
+                    field("taxname") = tax.name,
+                    field("nsize") = tax.nchilds,
+                    field("parent_id") = CUInt(Val(tax.parent)),
+                    field("rank") = registry.getVocabulary(If(tax.rank.StringEmpty(, True), "no rank", tax.rank), "Taxonomy Rank")
                 )
+
+                For Each id As Integer In tax.children.SafeQuery
+                    Call tree.add(
+                        field("tax_id") = tax.taxid,
+                        field("child_tax") = id
+                    )
+                Next
             Next
 
-            Call tree.commit()
-            Call bar.SetLabel(tax.name)
+            Call tree.commit(transaction)
+            Call transaction.commit()
+
+            Call bar.SetLabel(taxlist(0).name)
         Next
 
         Return Nothing
