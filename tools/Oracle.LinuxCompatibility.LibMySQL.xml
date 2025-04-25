@@ -183,6 +183,11 @@ Oracle.LinuxCompatibility.LibMySQL
  <param name="fields"></param>
  
 </member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.CommitTransaction.Dispose(System.Boolean)">
+ <summary>
+ commit the transaction
+ </summary>
+</member>
 <member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.CreateDataType.CreateDataType(System.String)">
  <summary>
  Mapping the MySQL database type and visual basic data type 

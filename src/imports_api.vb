@@ -23,7 +23,7 @@ Module imports_api
             .ToArray
 
         For Each taxlist As TaxonomyNode() In TqdmWrapper.Wrap(blocks, bar:=bar)
-            Dim tree = registry.taxonomy_tree.batch_insert(delayed:=False)
+            Dim tree = registry.taxonomy_tree.batch_insert(max_blocksize:=2048)
             Dim transaction = registry.ncbi_taxonomy.open_transaction
 
             For Each tax As TaxonomyNode In taxlist
