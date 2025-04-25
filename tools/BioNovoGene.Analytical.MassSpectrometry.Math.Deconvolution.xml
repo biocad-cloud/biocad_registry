@@ -314,7 +314,7 @@ BioNovoGene.Analytical.MassSpectrometry.Math.Deconvolution
  峰对齐的一个基础的操作为比较峰的相似度
  </summary>
 </member>
-<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.PeakAlignment.RIAlignment(System.Collections.Generic.IEnumerable{Microsoft.VisualBasic.ComponentModel.DataSourceModel.NamedCollection{BioNovoGene.Analytical.MassSpectrometry.Math.PeakFeature}},System.Collections.Generic.List{BioNovoGene.Analytical.MassSpectrometry.Math.RtShift},System.Double,System.Double,System.Boolean)">
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.PeakAlignment.RIAlignment(System.Collections.Generic.IEnumerable{Microsoft.VisualBasic.ComponentModel.DataSourceModel.NamedCollection{BioNovoGene.Analytical.MassSpectrometry.Math.PeakFeature}},System.Collections.Generic.List{BioNovoGene.Analytical.MassSpectrometry.Math.RtShift},System.Double,System.Double,System.Boolean,Microsoft.VisualBasic.Scripting.Expressions.Aggregates)">
  <summary>
  create peaktable matrix by retention index alignment.
  </summary>

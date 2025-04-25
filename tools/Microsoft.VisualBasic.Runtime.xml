@@ -36353,7 +36353,25 @@ to take away yo [rest of string was truncated]&quot;;.
  Get ``Aggregate`` function by term.
  </summary>
  <param name="aggregate"></param>
- <returns></returns>
+ <returns>
+ A lambda function for aggregate a numeric vector
+ </returns>
+ 
+</member>
+<member name="M:Microsoft.VisualBasic.Scripting.Expressions.Aggregate.GetAggregateFunction2(Microsoft.VisualBasic.Scripting.Expressions.Aggregates)">
+ <summary>
+ Helper function for get lambda function by scripting text for two number parameter
+ </summary>
+ <param name="aggregate">
+ + max
+ + min
+ + average
+ + sum
+ + median
+ </param>
+ <returns>
+ a lambda function implements of interface y = f(a,b)
+ </returns>
 </member>
 <member name="T:Microsoft.VisualBasic.Scripting.Expressions.ArrayIndex">
  <summary>

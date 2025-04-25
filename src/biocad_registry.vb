@@ -151,7 +151,7 @@ Public Class biocad_registry : Inherits biocad_registryModel.db_mysql
         End If
 
         If check Is Nothing Then
-            Throw New InvalidProgramException
+            Throw New InvalidProgramException($"query of the biocad vocabulary term '{term}'@{category} error!")
         Else
             Return check.id
         End If
