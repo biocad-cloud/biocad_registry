@@ -464,7 +464,7 @@ Oracle.LinuxCompatibility.LibMySQL
  <param name="fields"></param>
  <returns></returns>
 </member>
-<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.Model.batch_insert(System.Int32,System.Boolean)">
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.Model.batch_insert(System.Int32,Oracle.LinuxCompatibility.MySQL.MySqlBuilder.InsertOptions)">
  <summary>
  Create commit task data for make batch insert into current table
  </summary>
