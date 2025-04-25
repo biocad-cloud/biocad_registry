@@ -189,6 +189,15 @@ Oracle.LinuxCompatibility.LibMySQL
  <param name="fields"></param>
  
 </member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.CommitTransaction.delayed">
+ <summary>
+ set delayed options for insert into
+ </summary>
+ <returns></returns>
+ <remarks>
+ this delayed options will be reste to no-delayed after insert has been called
+ </remarks>
+</member>
 <member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.CommitTransaction.Dispose(System.Boolean)">
  <summary>
  commit the transaction
