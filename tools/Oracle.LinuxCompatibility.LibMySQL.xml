@@ -176,6 +176,12 @@ Oracle.LinuxCompatibility.LibMySQL
  <param name="dbName$"></param>
  <param name="EXPORT$"></param>
 </member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.CommitInsert.commit">
+ <summary>
+ commit the batch insert transaction
+ </summary>
+ <returns></returns>
+</member>
 <member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.CommitInsert.add(Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert[])">
  <summary>
  INSERT INTO
@@ -458,7 +464,7 @@ Oracle.LinuxCompatibility.LibMySQL
  <param name="fields"></param>
  <returns></returns>
 </member>
-<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.Model.batch_insert(System.Boolean)">
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.Model.batch_insert(System.Int32,System.Boolean)">
  <summary>
  Create commit task data for make batch insert into current table
  </summary>
