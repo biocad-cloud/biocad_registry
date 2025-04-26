@@ -56,11 +56,16 @@ const get_genbank = function(asm_id, repo_dir = "./") {
 
     for(let url in genbank_url) {
         let local_file = file.path(repo_dir, basename(url, TRUE));
+        let check = file.exists(local_file);
+
+        if (check) {
+            check = gz_check(local_file);
+        }
 
         cat(`${url} => ${local_file} ... `);
 
         # download all version assembly file at here?
-        if(!file.exists(local_file)) {
+        if (!check) {
             # make ftp download of the archive file to
             # local dir.
             ncbi |> ftp.get(file = genbank_url, save = local_file);
