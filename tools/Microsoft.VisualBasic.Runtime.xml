@@ -19782,20 +19782,20 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
 <member name="M:Microsoft.VisualBasic.BucketOperators.Split``1(System.Collections.Generic.IEnumerable{``0},System.Int32)">
  <summary>
  Data partitioning function.
- (将目标集合之中的数据按照<paramref name="partitionSize"></paramref>参数分配到子集合之中，
- 这个函数之中不能够使用并行化Linq拓展，以保证元素之间的相互原有的顺序，
- 每一个子集合之中的元素数量为<paramref name="partitionSize"/>)
  </summary>
  <typeparam name="T"></typeparam>
  <param name="source"></param>
  <param name="partitionSize">每一个子集合之中的元素的数目</param>
  <returns></returns>
- <remarks></remarks>
+ <remarks>
+ (将目标集合之中的数据按照<paramref name="partitionSize"></paramref>参数分配到子集合之中，
+ 这个函数之中不能够使用并行化Linq拓展，以保证元素之间的相互原有的顺序，
+ 每一个子集合之中的元素数量为<paramref name="partitionSize"/>)
+ </remarks>
 </member>
 <member name="M:Microsoft.VisualBasic.BucketOperators.SplitIterator``1(System.Collections.Generic.IEnumerable{``0},System.Int32)">
  <summary>
  Performance the partitioning operation on the input sequence.
- (请注意，这个函数只适用于数量较少的序列。对所输入的序列进行分区操作，<paramref name="partitionSize"/>函数参数是每一个分区里面的元素的数量)
  </summary>
  <typeparam name="T"></typeparam>
  <param name="source"></param>
@@ -19803,15 +19803,21 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  The partition size should be less than the array upbound size
  </param>
  <returns></returns>
+ <remarks>
+ (请注意，这个函数只适用于数量较少的序列。对所输入的序列进行分区操作，<paramref name="partitionSize"/>函数参数是每一个分区里面的元素的数量)
+ </remarks>
 </member>
 <member name="M:Microsoft.VisualBasic.BucketOperators.Join``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0})">
  <summary>
- Merge two type specific collection.(函数会忽略掉空的集合，函数会构建一个新的集合，原有的集合不受影响)
+ Merge two type specific collection.
  </summary>
  <typeparam name="T"></typeparam>
  <param name="source"></param>
  <param name="target"></param>
  <returns></returns>
+ <remarks>
+ (函数会忽略掉空的集合，函数会构建一个新的集合，原有的集合不受影响)
+ </remarks>
 </member>
 <member name="M:Microsoft.VisualBasic.BucketOperators.Join``1(System.Collections.Generic.IEnumerable{``0},``0)">
  <summary>
