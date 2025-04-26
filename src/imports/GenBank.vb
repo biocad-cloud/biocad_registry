@@ -1,6 +1,7 @@
 ﻿Imports System.Runtime.CompilerServices
 Imports biocad_registry.biocad_registryModel
 Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm
+Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports SMRUCC.genomics.Assembly.NCBI.GenBank
 Imports SMRUCC.genomics.Assembly.NCBI.GenBank.GBFF.Keywords.FEATURES
@@ -59,6 +60,7 @@ Public Class GenBankImports
         ' add gene molecule
         Dim gene_mol As molecule = find_gene(locus_tag)
         Dim gene_name = gene.Query(FeatureQualifiers.gene)
+        Dim batch_db_xrefs As CommitInsert = registry.db_xrefs.batch_insert(opt:=InsertOptions.Ignore)
 
         If gene_mol Is Nothing Then
             ' create new in the database
@@ -76,7 +78,7 @@ Public Class GenBankImports
             gene_mol = registry.molecule.find_object(field("xref_id") = ncbi_taxid & ":" & locus_tag)
 
             ' add db_xrefs
-            registry.db_xrefs.delayed.add(
+            batch_db_xrefs.add(
                 field("obj_id") = gene_mol.id,
                 field("db_key") = vocabulary.genbank_term,
                 field("xref") = locus_tag,
@@ -95,6 +97,17 @@ Public Class GenBankImports
             End If
         End If
 
+        Dim xrefs = gene.QueryDuplicated("db_xref")
+
+        For Each db_xref As NamedValue(Of String) In xrefs.Select(Function(tag) tag.GetTagValue(":"))
+            Call batch_db_xrefs.add(
+                field("obj_id") = gene_mol.id,
+                field("db_key") = vocabulary.GetDatabaseKey(db_xref.Name),
+                field("xref") = db_xref.Value,
+                field("type") = vocabulary.gene_term
+            )
+        Next
+
         ' add gene sequence
         If registry.sequence_graph.find_object(field("molecule_id") = gene_mol.id) Is Nothing Then
             registry.sequence_graph.delayed.add(
@@ -106,7 +119,7 @@ Public Class GenBankImports
 
         If Not cds_feature Is Nothing Then
             ' add polypeptide molecule
-            Call AddProtein(cds_feature, gene_mol)
+            Call AddProtein(cds_feature, gene_mol, batch_db_xrefs)
         Else
             ' is rRNA or tRNA
             If tRNA.ContainsKey(locus_tag) Then
@@ -134,9 +147,11 @@ Public Class GenBankImports
                 ' skip do nothing
             End If
         End If
+
+        Call batch_db_xrefs.commit()
     End Sub
 
-    Private Sub AddProtein(cds As Feature, gene As molecule)
+    Private Sub AddProtein(cds As Feature, gene As molecule, batch_db_xrefs As CommitInsert)
         Dim polypeptide As String = cds.Query(FeatureQualifiers.translation)
         Dim cds_id = cds.Query(FeatureQualifiers.protein_id)
         Dim func = cds.Query(FeatureQualifiers.product)
@@ -155,16 +170,17 @@ Public Class GenBankImports
                 field("note") = func
             )
 
-            protein = registry.molecule.find_object(field("xref_id") = ncbi_taxid & ":" & cds_id, field("tax_id") = ncbi_taxid)
+            protein = registry.molecule.find_object(field("xref_id") = ncbi_taxid & ":" & cds_id,
+                                                    field("tax_id") = ncbi_taxid)
 
             ' add db_xrefs
-            registry.db_xrefs.delayed.add(
+            batch_db_xrefs.add(
                 field("obj_id") = protein.id,
                 field("db_key") = vocabulary.genbank_term,
                 field("xref") = cds_id,
                 field("type") = vocabulary.protein_term
             )
-            registry.db_xrefs.delayed.add(
+            batch_db_xrefs.add(
                 field("obj_id") = protein.id,
                 field("db_key") = vocabulary.genbank_term,
                 field("xref") = cds.Query(FeatureQualifiers.locus_tag),
@@ -182,6 +198,17 @@ Public Class GenBankImports
                 )
             End If
         End If
+
+        Dim xrefs = cds.QueryDuplicated("db_xref")
+
+        For Each db_xref As NamedValue(Of String) In xrefs.Select(Function(tag) tag.GetTagValue(":"))
+            Call batch_db_xrefs.add(
+                field("obj_id") = protein.id,
+                field("db_key") = vocabulary.GetDatabaseKey(db_xref.Name),
+                field("xref") = db_xref.Value,
+                field("type") = vocabulary.protein_term
+            )
+        Next
 
         ' add protein sequence
         If registry.sequence_graph.find_object(field("molecule_id") = protein.id) Is Nothing Then

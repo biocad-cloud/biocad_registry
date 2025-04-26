@@ -1,4 +1,5 @@
 ﻿
+Imports System.Runtime.CompilerServices
 Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 
@@ -43,9 +44,14 @@ Public Class BioCadVocabulary
         ' database source
         genbank_term = registry.getVocabulary("NCBI GenBank", CategoryDatabase)
         kegg_term = registry.getVocabulary("KEGG", CategoryDatabase)
-        uniprot_term = registry.getVocabulary("UniProt", CategoryDatabase)
+        uniprot_term = registry.getVocabulary("UniProtKB/Swiss-Prot", CategoryDatabase)
         biocad_term = registry.getVocabulary("BioCAD Registry", CategoryDatabase)
     End Sub
+
+    <MethodImpl(MethodImplOptions.AggressiveInlining)>
+    Public Function GetDatabaseKey(key As String) As UInteger
+        Return registry.getVocabulary(key, CategoryDatabase)
+    End Function
 
     Public Function GetBioCadOntology(id As String, Optional name As String = Nothing) As biocad_registryModel.ontology
         Static cache As New Dictionary(Of String, biocad_registryModel.ontology)
