@@ -46,9 +46,11 @@ declare namespace biocad_registry {
    /**
    */
    function imports_chebi(biocad_registry: any, chebi: any): object;
-   /**
-   */
-   function imports_genebank(biocad_registry: any, genebank: any): object;
+   module imports_genebank {
+      /**
+      */
+      function obsolete(biocad_registry: any, genebank: any): object;
+   }
    /**
    */
    function imports_genomic_refseq(biocad_registry: any, gbff: any): object;
