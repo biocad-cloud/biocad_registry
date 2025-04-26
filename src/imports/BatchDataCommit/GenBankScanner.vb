@@ -15,7 +15,12 @@ Public Class GenBankScanner
             Dim s As Stream = file.Open(FileMode.Open, doClear:=False, [readOnly]:=True)
 
             If file.ExtensionSuffix("gz") Then
-                s = s.UnGzipStream
+                Try
+                    s = s.UnGzipStream
+                Catch ex As Exception
+                    Call App.LogException(ex, file)
+                    Continue For
+                End Try
             End If
 
             For Each genome As GBFF.File In GBFF.File.LoadDatabase(s)

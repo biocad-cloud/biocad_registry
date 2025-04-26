@@ -7149,6 +7149,16 @@ to take away yo [rest of string was truncated]&quot;;.
  <param name="description"></param>
  <returns>stream object for read/write data</returns>
 </member>
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.file.gzcheck(System.Object,SMRUCC.Rsharp.Runtime.Environment)">
+ <summary>
+ check of the target gz file data is corrupted or not
+ </summary>
+ <param name="file"></param>
+ <param name="env"></param>
+ <returns>
+ true for no error in gzfile, false means the given gz file is corrupted
+ </returns>
+</member>
 <member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.file.file(System.String,System.IO.FileMode,System.Boolean,Microsoft.VisualBasic.ApplicationServices.IFileSystemEnvironment)">
  <summary>
  Functions to create, open and close connections, i.e., 

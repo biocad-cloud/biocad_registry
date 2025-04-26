@@ -9,9 +9,9 @@ Public Module BatchDataCommit
 
     <Extension>
     Public Sub importsGenomics(registry As biocad_registry, genomes As IEnumerable(Of GBFF.File))
-        Dim trans As CommitTransaction = registry.genomics.open_transaction.ignore
+        Dim trans As CommitTransaction = registry.genomics.open_transaction(5).ignore
 
-        For Each gb As GBFF.File In genomes
+        For Each gb As GBFF.File In genomes.Take(50)
             Dim id As String = gb.Accession.AccessionId
 
             Call trans.add(
