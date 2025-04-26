@@ -40,7 +40,7 @@ Public Class GenBankImports
     Private Sub ImportsGeneFeature(gene As Feature)
         Dim locus_tag As String = gene.Query(FeatureQualifiers.locus_tag)
         Dim cds_feature = cds.TryGetValue(locus_tag)
-        Dim rnaSeq = gb.GetmRNASequence(mRNA:=cds_feature)
+        Dim rnaSeq = gb.GetmRNASequence(mRNA:=If(cds_feature, gene))
         Dim gene_dbxref = $"{ncbi_taxid}:{locus_tag}"
         Dim func As String = Nothing
 
@@ -143,8 +143,12 @@ Public Class GenBankImports
                     field("evidence") = rRNA_feature.Query(FeatureQualifiers.note)
                 )
             Else
+                ' 20250426
                 ' ? unknown
+                ' pseudo gene with no function
+                '
                 ' skip do nothing
+                ' 
             End If
         End If
 
