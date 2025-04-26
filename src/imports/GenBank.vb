@@ -8,6 +8,9 @@ Imports SMRUCC.genomics.Assembly.NCBI.GenBank.GBFF.Keywords.FEATURES
 Imports SMRUCC.genomics.SequenceModel
 Imports SMRUCC.genomics.SequenceModel.FASTA
 
+''' <summary>
+''' imports a single new genomics data model
+''' </summary>
 Public Class GenBankImports
 
     ReadOnly registry As biocad_registry
