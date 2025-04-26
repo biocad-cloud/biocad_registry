@@ -13,14 +13,17 @@ Public Module BatchDataCommit
 
         For Each gb As GBFF.File In genomes.Take(50)
             Dim id As String = gb.Accession.AccessionId
+            Dim seq As String = Strings.Trim(gb.Origin.ToFasta.SequenceData.TrimNewLine)
 
             Call trans.add(
                 field("ncbi_taxid") = CInt(Val(gb.Taxon)),
                 field("db_xref") = id,
                 field("def") = gb.Definition.Value,
-                field("nt") = gb.Origin.ToFasta.SequenceData,
+                field("nt") = seq,
                 field("comment") = gb.Comment.Comment,
-                field("biom_string") = gb.Source.BiomString
+                field("biom_string") = gb.Source.BiomString,
+                field("length") = seq.Length,
+                field("checksum") = seq.ToUpper.MD5
             )
         Next
 
