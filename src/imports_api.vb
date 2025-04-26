@@ -15,6 +15,23 @@ Module imports_api
         Return Nothing
     End Function
 
+    <ExportAPI("genbank_repo")>
+    Public Function genbank_repo(dir As String) As GenBankScanner
+        Return New GenBankScanner(dir)
+    End Function
+
+    ''' <summary>
+    ''' make imports of the genomics sequence data into database
+    ''' </summary>
+    ''' <param name="registry"></param>
+    ''' <param name="genbank"></param>
+    ''' <returns></returns>
+    <ExportAPI("imports_genomics")>
+    Public Function imports_genomics(registry As biocad_registry, genbank As GenBankScanner) As Object
+        Call registry.importsGenomics(genbank.LoadData)
+        Return Nothing
+    End Function
+
     <ExportAPI("imports_taxonomy")>
     Public Function imports_taxonomy(registry As biocad_registry, taxdump As NcbiTaxonomyTree) As Object
         Dim bar As ProgressBar = Nothing
