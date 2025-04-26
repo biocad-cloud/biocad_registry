@@ -189,6 +189,48 @@ Oracle.LinuxCompatibility.LibMySQL
  <param name="fields"></param>
  
 </member>
+<member name="T:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.IDataCommitOperation">
+ <summary>
+ commit operation for the insert operation:
+ 
+ 1. <see cref="T:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.CommitInsert"/>
+ 2. <see cref="T:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.CommitTransaction"/>
+ 
+ </summary>
+ <remarks>
+ this class is used to commit the insert operation
+ </remarks>
+</member>
+<member name="T:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.IInsertModel`1">
+ <summary>
+ the abstract model for insert into sql
+ </summary>
+ <typeparam name="T"></typeparam>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.IInsertModel`1.delayed">
+ <summary>
+ insert delayed into
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.IInsertModel`1.ignore">
+ <summary>
+ insert ignore into
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.IInsertModel`1.clearOption">
+ <summary>
+ insert into
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.IInsertModel`1.add(Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert[])">
+ <summary>
+ implements of the insert into
+ </summary>
+ <param name="fields"></param>
+</member>
 <member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.CommitTransaction.delayed">
  <summary>
  set delayed options for insert into
