@@ -9,7 +9,13 @@
 declare namespace data_imports {
    /**
    */
+   function genbank_repo(dir: string): object;
+   /**
+   */
    function imports_genbank(registry: object, genbank: object): any;
+   /**
+   */
+   function imports_genomics(registry: object, genbank: object): any;
    /**
    */
    function imports_taxonomy(registry: object, taxdump: object): any;
