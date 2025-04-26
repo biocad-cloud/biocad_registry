@@ -244,9 +244,17 @@ Public Module GenBankTools
     Public Function LoadFeatureIndex(gb As GBFF.File, key As String) As Dictionary(Of String, Feature)
         Return gb.Features _
             .ListFeatures(key) _
-            .ToDictionary(Function(f) f.Query(FeatureQualifiers.locus_tag),
+            .GroupBy(Function(f)
+                         ' invalid file data
+                         ' duplicated locus_tag maybe existed
+                         Return f.Query(FeatureQualifiers.locus_tag)
+                     End Function) _
+            .ToDictionary(Function(f) f.Key,
                           Function(f)
-                              Return f
+                              If f.Count > 1 Then
+                                  Call $"found duplicated locu_tag: {f.Key}".Warning
+                              End If
+                              Return f.First
                           End Function)
     End Function
 
