@@ -1,10 +1,14 @@
 require(biocad_registry);
 
+imports "data_imports" from "biocad_registry";
+imports "GenBank" from "seqtoolkit";
+
 setwd(@dir);
 
-let biocad_registry = open_registry("root", 123456, host ="127.0.0.1");
-let genebank =read.genbank("./Escherichia coli str. K-12 substr. MG1655.txt");
+let biocad_registry = open_registry("xieguigang", 123456, host ="192.168.3.15");
+let genebank =read.genbank("./Escherichia coli str. K-12 substr. MG1655.txt", repliconTable=TRUE);
 
-print(unique(genebank |> featureKeys()));
+for(rep in genbank) {
+    biocad_registry |> imports_genebank (rep);
+}
 
-biocad_registry |> imports_genebank ( genebank);
