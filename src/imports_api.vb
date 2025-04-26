@@ -28,7 +28,10 @@ Module imports_api
     ''' <returns></returns>
     <ExportAPI("imports_genomics")>
     Public Function imports_genomics(registry As biocad_registry, genbank As GenBankScanner) As Object
-        Call registry.importsGenomics(genbank.LoadData)
+        For Each page As GBFF.File() In genbank.LoadPageData
+            Call registry.importsGenomics(page)
+        Next
+
         Return Nothing
     End Function
 

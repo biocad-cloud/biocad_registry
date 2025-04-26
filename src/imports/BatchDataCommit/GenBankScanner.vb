@@ -10,8 +10,18 @@ Public Class GenBankScanner
         Me.repo = repo
     End Sub
 
-    Public Iterator Function LoadData() As IEnumerable(Of GBFF.File)
-        For Each file As String In repo.ListFiles("*.gz", "*.gb", "*.txt")
+    Public Function LoadData() As IEnumerable(Of GBFF.File)
+        Return LoadData(pagefiles:=repo.ListFiles("*.gz", "*.gb", "*.txt"))
+    End Function
+
+    Public Iterator Function LoadPageData() As IEnumerable(Of GBFF.File())
+        For Each page As String() In repo.ListFiles("*.gz", "*.gb", "*.txt").SplitIterator(20)
+            Yield LoadData(pagefiles:=page).ToArray
+        Next
+    End Function
+
+    Public Shared Iterator Function LoadData(pagefiles As IEnumerable(Of String)) As IEnumerable(Of GBFF.File)
+        For Each file As String In pagefiles
             Dim s As Stream = file.Open(FileMode.Open, doClear:=False, [readOnly]:=True)
 
             If file.ExtensionSuffix("gz") Then
@@ -26,6 +36,8 @@ Public Class GenBankScanner
             For Each genome As GBFF.File In GBFF.File.LoadDatabase(s)
                 Yield genome
             Next
+
+            Call s.Dispose()
         Next
     End Function
 End Class
