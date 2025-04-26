@@ -162,9 +162,9 @@ Public Class GenBankImports
             registry.molecule.add(
                 field("xref_id") = ncbi_taxid & ":" & cds_id,
                 field("name") = If(gene_name, cds_id),
-                field("mass") = MolecularWeightCalculator.CalcMW_Polypeptide(polypeptide),
+                field("mass") = If(polypeptide.StringEmpty(, True), 0, MolecularWeightCalculator.CalcMW_Polypeptide(polypeptide)),
                 field("type") = vocabulary.protein_term,
-                field("formula") = MolecularWeightCalculator.PolypeptideFormula(polypeptide).ToString,
+                field("formula") = If(polypeptide.StringEmpty(, True), "", MolecularWeightCalculator.PolypeptideFormula(polypeptide).ToString),
                 field("parent") = gene.id,
                 field("tax_id") = ncbi_taxid,
                 field("note") = func
