@@ -40,26 +40,37 @@ Public Class GenBankImports
         Next
     End Sub
 
+    Public Function GetFunction(locus_tag As String) As String
+        If Not cds.ContainsKey(locus_tag) Then
+            ' is tRNA/rRNA
+            If tRNA.ContainsKey(locus_tag) Then
+                Return tRNA(locus_tag).Query(FeatureQualifiers.product)
+            ElseIf rRNA.ContainsKey(locus_tag) Then
+                Return rRNA(locus_tag).Query(FeatureQualifiers.product)
+            Else
+                Return locus_tag
+            End If
+        Else
+            Return cds(locus_tag).Query(FeatureQualifiers.product)
+        End If
+    End Function
+
+    Public Function GetRNA(gene As Feature) As String
+        Dim locus_tag As String = gene.Query(FeatureQualifiers.locus_tag)
+
+        If cds.ContainsKey(locus_tag) Then
+            Return gb.GetmRNASequence(mRNA:=cds(locus_tag))
+        Else
+            Return gb.GetmRNASequence(mRNA:=gene)
+        End If
+    End Function
+
     Private Sub ImportsGeneFeature(gene As Feature)
         Dim locus_tag As String = gene.Query(FeatureQualifiers.locus_tag)
         Dim cds_feature = cds.TryGetValue(locus_tag)
         Dim rnaSeq = gb.GetmRNASequence(mRNA:=If(cds_feature, gene))
         Dim gene_dbxref = $"{ncbi_taxid}:{locus_tag}"
-        Dim func As String = Nothing
-
-        If cds_feature Is Nothing Then
-            ' is tRNA/rRNA
-            If tRNA.ContainsKey(locus_tag) Then
-                func = tRNA(locus_tag).Query(FeatureQualifiers.product)
-            ElseIf rRNA.ContainsKey(locus_tag) Then
-                func = rRNA(locus_tag).Query(FeatureQualifiers.product)
-            Else
-                func = locus_tag
-            End If
-        Else
-            func = cds_feature.Query(FeatureQualifiers.product)
-        End If
-
+        Dim func As String = GetFunction(locus_tag)
         ' add gene molecule
         Dim gene_mol As molecule = find_gene(locus_tag)
         Dim gene_name = gene.Query(FeatureQualifiers.gene)
