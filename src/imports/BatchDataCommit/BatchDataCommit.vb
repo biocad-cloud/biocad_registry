@@ -32,36 +32,47 @@ Public Module BatchDataCommit
         Call trans.commit()
     End Sub
 
+    <Extension>
     Public Sub importsGenes(registry As biocad_registry, genomes As IEnumerable(Of GBFF.File))
         Dim trans As CommitTransaction = registry.molecule.open_transaction.ignore
-        Dim vocabulary = registry.vocabulary_terms
+        Dim vocabulary As BioCadVocabulary = registry.vocabulary_terms
 
         For Each gb As GBFF.File In genomes
-            Dim ncbi_taxid = CUInt(Val(gb.Taxon))
             Dim data As New GenBankImports(registry, gb)
+            Dim genes = gb.Features.ListFeatures("gene").ToArray
 
-            For Each gene As Feature In gb.Features.ListFeatures("gene")
-                Dim locus_tag As String = gene.Query(FeatureQualifiers.locus_tag)
-                Dim gene_name = gene.Query(FeatureQualifiers.gene)
-
-                If locus_tag Is Nothing Then
-                    Continue For
-                End If
-
-                Dim rnaSeq As String = data.GetRNA(gene)
-
-                Call trans.add(
-                   field("xref_id") = ncbi_taxid & ":" & locus_tag,
-                   field("name") = If(gene_name, locus_tag),
-                   field("mass") = MolecularWeightCalculator.CalcMW_Nucleotides(rnaSeq, is_rna:=False),
-                   field("type") = vocabulary.gene_term,
-                   field("formula") = MolecularWeightCalculator.DeoxyribonucleotideFormula(rnaSeq).ToString,
-                   field("parent") = 0,
-                   field("tax_id") = ncbi_taxid,
-                   field("note") = data.GetFunction(locus_tag)
-               )
-            Next
+            Call Parallel.For(0, genes.Length, Sub(i) data.addSingleGene(genes(i), trans, vocabulary))
         Next
+
+        Call trans.commit()
+    End Sub
+
+    <Extension>
+    Private Sub addSingleGene(data As GenBankImports, gene As Feature, ByRef trans As CommitTransaction, vocabulary As BioCadVocabulary)
+        Dim locus_tag As String = gene.Query(FeatureQualifiers.locus_tag)
+        Dim gene_name = gene.Query(FeatureQualifiers.gene)
+
+        If locus_tag Is Nothing Then
+            Return
+        End If
+
+        Dim rnaSeq As String = data.GetRNA(gene)
+        Dim massVal As Double = MolecularWeightCalculator.CalcMW_Nucleotides(rnaSeq, is_rna:=False)
+        Dim formula As String = MolecularWeightCalculator.DeoxyribonucleotideFormula(rnaSeq).ToString
+        Dim func As String = data.GetFunction(locus_tag)
+
+        SyncLock trans
+            Call trans.add(
+               field("xref_id") = data.ncbi_taxid & ":" & locus_tag,
+               field("name") = If(gene_name, locus_tag),
+               field("mass") = massVal,
+               field("type") = vocabulary.gene_term,
+               field("formula") = formula,
+               field("parent") = 0,
+               field("tax_id") = data.ncbi_taxid,
+               field("note") = func
+           )
+        End SyncLock
     End Sub
 
 End Module

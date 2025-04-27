@@ -16,7 +16,12 @@ Public Class GenBankImports
     ReadOnly registry As biocad_registry
     ReadOnly gb As GBFF.File
     ReadOnly vocabulary As BioCadVocabulary
-    ReadOnly ncbi_taxid As UInteger
+
+    ''' <summary>
+    ''' the ncbi taxonomy id of current genome
+    ''' </summary>
+    Friend ReadOnly ncbi_taxid As UInteger
+
     ReadOnly cds As Dictionary(Of String, Feature)
     ReadOnly rRNA As Dictionary(Of String, Feature)
     ReadOnly tRNA As Dictionary(Of String, Feature)
