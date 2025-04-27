@@ -60,6 +60,11 @@ Public Class GenBankImports
         End If
     End Function
 
+    ''' <summary>
+    ''' Cut DNA sequence
+    ''' </summary>
+    ''' <param name="gene"></param>
+    ''' <returns></returns>
     Public Function GetRNA(gene As Feature) As String
         Dim locus_tag As String = gene.Query(FeatureQualifiers.locus_tag)
 
