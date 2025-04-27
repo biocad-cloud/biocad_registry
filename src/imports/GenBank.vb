@@ -290,21 +290,31 @@ End Class
 
 Public Module GenBankTools
 
+    ''' <summary>
+    ''' index via the gene locus_tag
+    ''' </summary>
+    ''' <param name="gb"></param>
+    ''' <param name="key"></param>
+    ''' <returns></returns>
     <Extension>
     Public Function LoadFeatureIndex(gb As GBFF.File, key As String) As Dictionary(Of String, Feature)
         Return gb.Features _
             .ListFeatures(key) _
+            .Select(Function(f)
+                        Return (locus_tag:=f.Query(FeatureQualifiers.locus_tag), f)
+                    End Function) _
+            .Where(Function(f) Not f.locus_tag.StringEmpty(, True)) _
             .GroupBy(Function(f)
                          ' invalid file data
                          ' duplicated locus_tag maybe existed
-                         Return f.Query(FeatureQualifiers.locus_tag)
+                         Return f.locus_tag
                      End Function) _
             .ToDictionary(Function(f) f.Key,
                           Function(f)
                               If f.Count > 1 Then
                                   Call $"found duplicated locu_tag: {f.Key}".Warning
                               End If
-                              Return f.First
+                              Return f.First.f
                           End Function)
     End Function
 
