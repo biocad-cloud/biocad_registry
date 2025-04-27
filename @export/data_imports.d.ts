@@ -15,6 +15,9 @@ declare namespace data_imports {
    function imports_genbank(registry: object, genbank: object): any;
    /**
    */
+   function imports_genes(registry: object, genbank: object): any;
+   /**
+   */
    function imports_genomics(registry: object, genbank: object): any;
    /**
    */
