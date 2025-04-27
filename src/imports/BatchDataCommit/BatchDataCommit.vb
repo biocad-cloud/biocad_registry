@@ -41,6 +41,7 @@ Public Module BatchDataCommit
             Dim data As New GenBankImports(registry, gb)
             Dim genes = gb.Features.ListFeatures("gene").ToArray
 
+            Call VBDebugger.EchoLine("processing gene batch imports of genome " & gb.Definition.Value)
             Call Parallel.For(0, genes.Length, Sub(i) data.addSingleGene(genes(i), trans, vocabulary))
         Next
 
