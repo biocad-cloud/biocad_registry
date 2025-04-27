@@ -240,6 +240,13 @@ Oracle.LinuxCompatibility.LibMySQL
  this delayed options will be reste to no-delayed after insert has been called
  </remarks>
 </member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.CommitTransaction.add(Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert[])">
+ <summary>
+ just create the insert into sql and added into the transaction memory cache pool
+ </summary>
+ <param name="fields"></param>
+ <returns></returns>
+</member>
 <member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.CommitTransaction.Dispose(System.Boolean)">
  <summary>
  commit the transaction
