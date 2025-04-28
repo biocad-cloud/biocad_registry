@@ -58,8 +58,9 @@ CREATE TABLE `db_xrefs` (
   KEY `db_name_idx` (`db_key`),
   KEY `object_type_idx` (`type`),
   KEY `find_xrefs` (`type`,`xref`),
-  KEY `dbid_index` (`xref`)
-) ENGINE=InnoDB AUTO_INCREMENT=31057711 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+  KEY `dbid_index` (`xref`),
+  KEY `search_dbxrefs` (`obj_id`,`db_key`,`xref`,`type`)
+) ENGINE=InnoDB AUTO_INCREMENT=45504 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -75,15 +76,21 @@ CREATE TABLE `genomics` (
   `ncbi_taxid` int unsigned NOT NULL COMMENT 'the ncbi taxonomy id',
   `biom_string` varchar(4096) COLLATE utf8mb3_bin DEFAULT 'NA',
   `def` mediumtext CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL COMMENT 'definition and description about this genome',
+  `length` int unsigned NOT NULL DEFAULT '0',
+  `checksum` char(32) COLLATE utf8mb3_bin DEFAULT NULL,
   `nt` longtext CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'DNA sequence data',
+  `comment` longtext CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci,
   `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `comment` longtext CHARACTER SET utf8mb3 COLLATE utf8mb3_bin,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
+  UNIQUE KEY `unique_genome` (`db_xref`,`ncbi_taxid`),
   KEY `taxonomy_index` (`ncbi_taxid`),
-  KEY `accession_index` (`db_xref`) /*!80000 INVISIBLE */,
-  FULLTEXT KEY `search_text` (`def`,`comment`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='genome nucleotide sequence data pool, the genomics dna sequence is another kind of marcro molecule.';
+  KEY `accession_index` (`db_xref`),
+  KEY `sort_time` (`add_time` DESC),
+  FULLTEXT KEY `biom_index` (`biom_string`),
+  FULLTEXT KEY `def_index` (`def`),
+  FULLTEXT KEY `comment_text_index` (`comment`)
+) ENGINE=InnoDB AUTO_INCREMENT=414091 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='genome nucleotide sequence data pool, the genomics dna sequence is another kind of marcro molecule.';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -145,7 +152,7 @@ CREATE TABLE `molecule` (
   KEY `mass_filter` (`mass`),
   KEY `find_index` (`xref_id`,`type`),
   KEY `taxonomy_info_idx` (`tax_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1052704 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='The molecular entity object inside a cell';
+) ENGINE=InnoDB AUTO_INCREMENT=19107805 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='The molecular entity object inside a cell';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -185,7 +192,7 @@ CREATE TABLE `molecule_ontology` (
   UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `molecule_obj_idx` (`molecule_id`),
   KEY `ontology_term_idx` (`ontology_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=111 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -276,8 +283,9 @@ CREATE TABLE `ontology` (
   `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `description` longtext COLLATE utf8mb3_bin,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='molecule ontology class';
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  KEY `find_term` (`db_xref`,`db_source`)
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='molecule ontology class';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -421,15 +429,13 @@ CREATE TABLE `sequence_graph` (
   `molecule_id` int unsigned NOT NULL COMMENT 'the molecule reference id inside biocad registry system',
   `sequence` longtext COLLATE utf8mb3_bin NOT NULL COMMENT 'the molecule sequence data, for metabolite should be the SMILES structure string data, gene should be the nucleotide sequence data and protein should be the polypeptide sequence.',
   `hashcode` char(32) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL COMMENT 'md5 hashcode of the sequence data string',
-  `seq_graph` longtext COLLATE utf8mb3_bin NOT NULL COMMENT 'base64 encoded double vector of the SGT embedding result',
-  `morgan` longtext COLLATE utf8mb3_bin NOT NULL COMMENT 'base64 encoded morgan fingerprint of the k-mer graph of the sequence, or the morgan fingerprint of the metabolite molecular structure data',
-  `embedding` longtext CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL COMMENT 'the embedding keys, for dna, always ATGC, for RNA always AUGC, for popypeptide always 20 Amino acid, for small metabolite, is the atom groups that parsed from the smiles graph ',
+  `morgan` longtext CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci COMMENT 'base64 encoded morgan fingerprint of the k-mer(k=3) graph of the sequence, or the morgan fingerprint of the metabolite molecular structure data',
   `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `molecules_idx` (`molecule_id`),
   KEY `search_sequence` (`hashcode`)
-) ENGINE=InnoDB AUTO_INCREMENT=1034407 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='the sequence composition data of the molecule';
+) ENGINE=InnoDB AUTO_INCREMENT=3329569 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='the sequence composition data of the molecule';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -491,9 +497,10 @@ CREATE TABLE `synonym` (
   `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
-  KEY `filter_type` (`type_id`) /*!80000 INVISIBLE */,
-  KEY `filter_obj` (`obj_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='synonym names of the biocad registry object, example as: molecules, genomes, taxonomys, reactions, pathways';
+  KEY `filter_type` (`type_id`),
+  KEY `filter_obj` (`obj_id`),
+  KEY `search_name` (`obj_id`,`type_id`,`hashcode`)
+) ENGINE=InnoDB AUTO_INCREMENT=52925 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='synonym names of the biocad registry object, example as: molecules, genomes, taxonomys, reactions, pathways';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -512,7 +519,7 @@ CREATE TABLE `taxonomy_tree` (
   UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `tax_node_parent_idx` (`tax_id`),
   KEY `tax_node_child_idx` (`child_tax`)
-) ENGINE=InnoDB AUTO_INCREMENT=728270 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=2658554 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -532,7 +539,7 @@ CREATE TABLE `vocabulary` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `search_term` (`category`,`term`)
-) ENGINE=InnoDB AUTO_INCREMENT=207 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=270 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -552,4 +559,4 @@ CREATE TABLE `vocabulary` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-04-20 13:31:13
+-- Dump completed on 2025-04-29  2:05:25
