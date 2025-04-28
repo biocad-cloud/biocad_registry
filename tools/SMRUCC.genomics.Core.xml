@@ -14273,7 +14273,7 @@ to take away yo [rest of string was truncated]&quot;;.
 </member>
 <member name="F:SMRUCC.genomics.SequenceModel.NucleotideModels.Bases.Deoxyribonucleotide">
  <summary>
- Formula data of each DNA bases
+ Formula data of each DNA bases + degenerate bases
  </summary>
 </member>
 <member name="F:SMRUCC.genomics.SequenceModel.NucleotideModels.Bases.Ribonucleotide">
