@@ -13,7 +13,8 @@ Imports SMRUCC.genomics.SequenceModel.FASTA
 ''' </summary>
 Public Class GenBankImports
 
-    ReadOnly registry As biocad_registry
+    Friend ReadOnly registry As biocad_registry
+
     ReadOnly gb As GBFF.File
     ReadOnly vocabulary As BioCadVocabulary
 
@@ -65,6 +66,9 @@ Public Class GenBankImports
     ''' </summary>
     ''' <param name="gene"></param>
     ''' <returns></returns>
+    ''' <remarks>
+    ''' cut sequence from the CDS mRNA or rRNA/tRNA
+    ''' </remarks>
     Public Function GetRNA(gene As Feature) As String
         Dim locus_tag As String = gene.Query(FeatureQualifiers.locus_tag)
 

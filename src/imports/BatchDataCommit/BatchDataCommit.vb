@@ -33,6 +33,22 @@ Public Module BatchDataCommit
     End Sub
 
     <Extension>
+    Public Sub importsDNASequence(registry As biocad_registry, genomes As IEnumerable(Of GBFF.File))
+        Dim trans As CommitTransaction = registry.molecule.open_transaction.ignore
+        Dim vocabulary As BioCadVocabulary = registry.vocabulary_terms
+
+        For Each gb As GBFF.File In genomes
+            Dim data As New GenBankImports(registry, gb)
+            Dim genes = gb.Features.ListFeatures("gene").ToArray
+
+            Call VBDebugger.EchoLine("processing gene sequence batch imports of genome " & gb.Definition.Value)
+            Call Parallel.For(0, genes.Length, Sub(i) data.addSingleSeuqnece(genes(i), trans, vocabulary))
+        Next
+
+        Call trans.commit()
+    End Sub
+
+    <Extension>
     Public Sub importsGenes(registry As biocad_registry, genomes As IEnumerable(Of GBFF.File))
         Dim trans As CommitTransaction = registry.molecule.open_transaction.ignore
         Dim vocabulary As BioCadVocabulary = registry.vocabulary_terms
@@ -46,6 +62,32 @@ Public Module BatchDataCommit
         Next
 
         Call trans.commit()
+    End Sub
+
+    <Extension>
+    Private Sub addSingleSeuqnece(data As GenBankImports, gene As Feature, ByRef trans As CommitTransaction, vocabulary As BioCadVocabulary)
+        Dim locus_tag As String = gene.Query(FeatureQualifiers.locus_tag)
+
+        If locus_tag Is Nothing Then
+            Return
+        End If
+
+        Dim rnaSeq As String = data.GetRNA(gene)
+        Dim uniref As String = $"{data.ncbi_taxid}:{locus_tag}"
+        Dim gene_id As biocad_registryModel.molecule = data.registry.molecule _
+            .where(field("xref_id") = uniref,
+                   field("type") = vocabulary.gene_term) _
+            .find(Of biocad_registryModel.molecule)
+
+        If gene_id Is Nothing Then
+            Return
+        End If
+
+        Call trans.add(
+            field("molecule_id") = gene_id.id,
+            field("sequence") = rnaSeq,
+            field("hashcode") = LCase(rnaSeq).MD5
+        )
     End Sub
 
     <Extension>
