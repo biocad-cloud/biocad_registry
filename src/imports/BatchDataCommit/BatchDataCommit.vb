@@ -34,7 +34,7 @@ Public Module BatchDataCommit
 
     <Extension>
     Public Sub importsDNASequence(registry As biocad_registry, genomes As IEnumerable(Of GBFF.File))
-        Dim trans As CommitTransaction = registry.molecule.open_transaction.ignore
+        Dim trans As CommitTransaction = registry.sequence_graph.open_transaction.ignore
         Dim vocabulary As BioCadVocabulary = registry.vocabulary_terms
 
         For Each gb As GBFF.File In genomes
