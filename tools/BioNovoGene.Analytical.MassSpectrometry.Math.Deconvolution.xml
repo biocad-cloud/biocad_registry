@@ -716,6 +716,12 @@ BioNovoGene.Analytical.MassSpectrometry.Math.Deconvolution
  <returns></returns>
  
 </member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.xcms2.groups">
+ <summary>
+ number of the peak groups that merged in this ion ROI
+ </summary>
+ <returns></returns>
+</member>
 <member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.xcms2.intensity">
  <summary>
  A value read only property

@@ -9300,6 +9300,15 @@ ATT I Ile      ACT T Thr      AAT N As [rest of string was truncated]&quot;;.
  </summary>
  <remarks>这里不能够使用字典来进行储存数据，因为字典对大小写敏感并且这里面会有重复的Key出现</remarks>
 </member>
+<member name="M:SMRUCC.genomics.Assembly.NCBI.GenBank.GBFF.Keywords.FEATURES.Feature.Query(System.String)">
+ <summary>
+ 
+ </summary>
+ <param name="key">the feature qualifier name</param>
+ <returns>
+ this function returns nothing if the given key is not found in current feature.
+ </returns>
+</member>
 <member name="M:SMRUCC.genomics.Assembly.NCBI.GenBank.GBFF.Keywords.FEATURES.Feature.Query(SMRUCC.genomics.Assembly.NCBI.GenBank.GBFF.Keywords.FEATURES.FeatureQualifiers)">
  <summary>
  Get feature describ value string by key

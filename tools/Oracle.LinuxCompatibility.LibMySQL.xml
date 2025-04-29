@@ -247,6 +247,11 @@ Oracle.LinuxCompatibility.LibMySQL
  <param name="fields"></param>
  <returns></returns>
 </member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.CommitTransaction.commit">
+ <summary>
+ write the in-memory cache of the transaction data into database
+ </summary>
+</member>
 <member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.CommitTransaction.Dispose(System.Boolean)">
  <summary>
  commit the transaction
@@ -528,6 +533,16 @@ Oracle.LinuxCompatibility.LibMySQL
  </summary>
  <returns></returns>
  
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.Model.open_transaction(System.Int32)">
+ <summary>
+ 
+ </summary>
+ <param name="blockSize"></param>
+ <returns></returns>
+ <remarks>
+ just create an in-memory cache of the batch transaction data
+ </remarks>
 </member>
 <member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.Model.delayed">
  <summary>
