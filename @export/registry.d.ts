@@ -13,4 +13,7 @@ declare namespace registry {
    /**
    */
    function get_taxinfo(registry: object, tax: string): object;
+   /**
+   */
+   function taxonomy_lineage(registry: object, tax_id: string): object;
 }
