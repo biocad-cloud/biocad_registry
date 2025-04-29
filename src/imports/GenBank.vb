@@ -27,6 +27,12 @@ Public Class GenBankImports
     ReadOnly rRNA As Dictionary(Of String, Feature)
     ReadOnly tRNA As Dictionary(Of String, Feature)
 
+    Public ReadOnly Property desc As String
+        Get
+            Return gb.Definition.Value
+        End Get
+    End Property
+
     Sub New(registry As biocad_registry, gb As GBFF.File)
         Me.registry = registry
         Me.gb = gb
@@ -37,6 +43,10 @@ Public Class GenBankImports
         tRNA = gb.LoadFeatureIndex("tRNA")
         rRNA = gb.LoadFeatureIndex("rRNA")
     End Sub
+
+    Public Function getGenes() As IEnumerable(Of Feature)
+        Return gb.Features.ListFeatures("gene")
+    End Function
 
     <MethodImpl(MethodImplOptions.AggressiveInlining)>
     Public Function CheckProtein(locus_tag As String) As Boolean

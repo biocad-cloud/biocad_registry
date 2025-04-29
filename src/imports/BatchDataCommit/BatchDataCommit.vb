@@ -42,7 +42,7 @@ Public Module BatchDataCommit
             Dim genes = gb.Features.ListFeatures("gene").ToArray
 
             Call VBDebugger.EchoLine("processing gene sequence batch imports of genome " & gb.Definition.Value)
-            Call Parallel.For(0, genes.Length, Sub(i) data.addSingleSeuqnece(genes(i), trans, vocabulary))
+            Call Parallel.For(0, genes.Length, Sub(i) data.addSingleDNASeuqnece(genes(i), trans, vocabulary))
         Next
 
         Call trans.commit()
@@ -68,20 +68,34 @@ Public Module BatchDataCommit
     Public Sub importsProteins(registry As biocad_registry, genomes As IEnumerable(Of GBFF.File))
         Dim trans As CommitTransaction = registry.molecule.open_transaction.ignore
         Dim vocabulary As BioCadVocabulary = registry.vocabulary_terms
+        Dim pull As New List(Of GenBankImports)
 
         For Each gb As GBFF.File In genomes
             Dim data As New GenBankImports(registry, gb)
             Dim genes = gb.Features.ListFeatures("gene").ToArray
 
+            Call pull.Add(data)
             Call VBDebugger.EchoLine("processing protein data batch imports of genome " & gb.Definition.Value)
             Call Parallel.For(0, genes.Length, Sub(i) data.addSingleProtein(genes(i), trans, vocabulary))
+        Next
+
+        Call trans.commit()
+
+        trans = registry.sequence_graph.open_transaction.ignore
+
+        For Each gb As GenBankImports In pull
+            Dim data As GenBankImports = gb
+            Dim genes = gb.getGenes.ToArray
+
+            Call VBDebugger.EchoLine("processing protein sequence data batch imports of genome " & gb.desc)
+            Call Parallel.For(0, genes.Length, Sub(i) data.addSingleProteinSequence(genes(i), trans, vocabulary))
         Next
 
         Call trans.commit()
     End Sub
 
     <Extension>
-    Private Sub addSingleSeuqnece(data As GenBankImports, gene As Feature, ByRef trans As CommitTransaction, vocabulary As BioCadVocabulary)
+    Private Sub addSingleDNASeuqnece(data As GenBankImports, gene As Feature, ByRef trans As CommitTransaction, vocabulary As BioCadVocabulary)
         Dim locus_tag As String = gene.Query(FeatureQualifiers.locus_tag)
 
         If locus_tag Is Nothing Then
@@ -103,6 +117,36 @@ Public Module BatchDataCommit
             field("molecule_id") = gene_id.id,
             field("sequence") = rnaSeq,
             field("hashcode") = LCase(rnaSeq).MD5
+        )
+    End Sub
+
+    <Extension>
+    Private Sub addSingleProteinSequence(data As GenBankImports, gene As Feature, ByRef trans As CommitTransaction, vocabulary As BioCadVocabulary)
+        Dim locus_tag As String = gene.Query(FeatureQualifiers.locus_tag)
+
+        If locus_tag Is Nothing Then
+            Return
+        ElseIf Not data.CheckProtein(locus_tag) Then
+            Return
+        End If
+
+        Dim cds As Feature = data.GetCDS(locus_tag)
+        Dim cds_id = cds.Query(FeatureQualifiers.protein_id)
+        Dim protein_mol As biocad_registryModel.molecule = data.registry.molecule _
+            .where(field("xref_id") = $"{data.ncbi_taxid}:{cds_id}",
+                   field("type") = vocabulary.protein_term) _
+            .find(Of biocad_registryModel.molecule)
+
+        If protein_mol Is Nothing Then
+            Return
+        End If
+
+        Dim polyAASeq As String = Strings.Trim(cds.Query(FeatureQualifiers.translation))
+
+        Call trans.add(
+            field("molecule_id") = protein_mol.id,
+            field("sequence") = polyAASeq,
+            field("hashcode") = LCase(polyAASeq).MD5
         )
     End Sub
 
