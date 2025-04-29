@@ -286,3 +286,4 @@ workspace/.kegg/show_organism/ebw.html
 workspace/.kegg/show_organism/eco.html
 
 workspace/.kegg/
+test/biocad/taxonomy/Bacillales_genomics.fasta
