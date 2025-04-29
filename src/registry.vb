@@ -1,7 +1,9 @@
-﻿Imports Microsoft.VisualBasic.CommandLine.Reflection
+﻿Imports System.Runtime.CompilerServices
+Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.Scripting.MetaData
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports Oracle.LinuxCompatibility.MySQL.Reflection.DbAttributes
+Imports SMRUCC.genomics.Metagenomics
 Imports SMRUCC.Rsharp.Runtime
 Imports SMRUCC.Rsharp.Runtime.Internal.[Object]
 Imports SMRUCC.Rsharp.Runtime.Interop
@@ -37,6 +39,7 @@ Module registry
     ''' <param name="tax">the taxonomy name or the ncbi taxonomy id</param>
     ''' <returns></returns>
     <ExportAPI("get_taxinfo")>
+    <Extension>
     Public Function get_taxinfo(registry As biocad_registry, tax As String) As taxonomyInfo
         Dim q As FieldAssert
 
@@ -70,6 +73,33 @@ Module registry
     "term AS `rank`",
     "parent_id",
     "description")
+    End Function
+
+    <ExportAPI("taxonomy_lineage")>
+    Public Function taxonomy_lineage(registry As biocad_registry, tax_id As String) As Taxonomy
+        Dim taxnode As taxonomyInfo = registry.get_taxinfo(tax:=tax_id)
+        Dim lineage As New Dictionary(Of String, String) From {
+            {taxnode.rank, taxnode.taxname}
+        }
+        Dim list As New List(Of taxonomyInfo) From {taxnode}
+
+        Do While True
+            Dim parent = registry.taxonomy_tree _
+                .where(field("child_tax") = taxnode.ncbi_taxid) _
+                .find(Of biocad_registryModel.taxonomy_tree)
+
+            If parent Is Nothing Then
+                Exit Do
+            End If
+
+            taxnode = registry.get_taxinfo(tax:=parent.tax_id)
+            list.Add(taxnode)
+            lineage(taxnode.rank) = taxnode.taxname
+        Loop
+
+        Return New Taxonomy(lineage) With {
+            .ncbi_taxid = tax_id
+        }
     End Function
 
 End Module
