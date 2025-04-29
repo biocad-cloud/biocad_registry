@@ -39,6 +39,19 @@ Module registry
     "description")
     End Function
 
+    <ExportAPI("find_taxinfo")>
+    Public Function find_taxinfo(registry As biocad_registry, tax As String) As taxonomyInfo()
+        Return registry.ncbi_taxonomy _
+            .left_join("vocabulary") _
+            .on(field("`vocabulary`.id") = field("`ncbi_taxonomy`.`rank`")) _
+            .where(match("taxname", "description").against(tax, booleanMode:=True)) _
+            .select(Of taxonomyInfo)("ncbi_taxonomy.id AS ncbi_taxid",
+    "taxname",
+    "term AS `rank`",
+    "parent_id",
+    "description")
+    End Function
+
 End Module
 
 Public Class taxonomyInfo
