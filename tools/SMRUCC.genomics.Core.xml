@@ -12704,6 +12704,14 @@ to take away yo [rest of string was truncated]&quot;;.
  <param name="taxonomy$"></param>
  <returns></returns>
 </member>
+<member name="M:SMRUCC.genomics.Metagenomics.BIOMTaxonomy.FillLineageEmpty(System.Collections.Generic.Dictionary{System.String,System.String},System.String)">
+ <summary>
+ fill <paramref name="empty"/> to the missing taxonomy rank level
+ </summary>
+ <param name="lineage"></param>
+ <param name="empty">empty string for the missing taxonomy rank level</param>
+ <returns></returns>
+</member>
 <member name="T:SMRUCC.genomics.Metagenomics.BIOMTaxonomyParser">
  <summary>
  Parser and stringfier of <see cref="T:SMRUCC.genomics.Metagenomics.Taxonomy"/> object.
