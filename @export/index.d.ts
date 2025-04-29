@@ -27,8 +27,9 @@ declare namespace biocad_registry {
    */
    function export_enzymatic(biocad_registry: any): object;
    /**
+     * @param fasta default value Is ``true``.
    */
-   function export_genomics_fasta(biocad_registry: any, parent_taxname: any): object;
+   function export_genomics_fasta(biocad_registry: any, parent_taxname: any, fasta?: any): object;
    /**
    */
    function export_reactionLinks(biocad_registry: any): object;

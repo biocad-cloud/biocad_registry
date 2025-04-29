@@ -1,4 +1,4 @@
-const export_genomics_fasta = function(biocad_registry, parent_taxname) {
+const export_genomics_fasta = function(biocad_registry, parent_taxname, fasta = TRUE) {
     let taxnode = biocad_registry |> get_taxinfo(parent_taxname);
     let tax_list = biocad_registry |> child_list(tax_id = [taxnode]::ncbi_taxid,
                                 direct_list = FALSE);
@@ -42,6 +42,15 @@ const export_genomics_fasta = function(biocad_registry, parent_taxname) {
             ;
         }
     }
+
+    if (fasta) {
+        imports "bioseq.fasta" from "seqtoolkit";
+
+        genomics_seq[,"ncbi_taxid"] = `ncbi_taxid:${genomics_seq$ncbi_taxid}`;
+        genomics_seq[,"length"] = `length=${genomics_seq$length}`;
+        genomics_seq = as.list(genomics_seq,byrow = TRUE);
+        genomics_seq = sapply(genomics_seq, g -> bioseq.fasta::fasta(g$nt, attrs = [g$db_xref,g$ncbi_taxid,g$biom_string,g$length,g$def]));
+    } 
 
     return(genomics_seq);
 }
