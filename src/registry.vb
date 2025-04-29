@@ -2,6 +2,9 @@
 Imports Microsoft.VisualBasic.Scripting.MetaData
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports Oracle.LinuxCompatibility.MySQL.Reflection.DbAttributes
+Imports SMRUCC.Rsharp.Runtime
+Imports SMRUCC.Rsharp.Runtime.Internal.[Object]
+Imports SMRUCC.Rsharp.Runtime.Interop
 
 ''' <summary>
 ''' query of the biocad_registry
@@ -9,6 +12,23 @@ Imports Oracle.LinuxCompatibility.MySQL.Reflection.DbAttributes
 ''' 
 <Package("registry")>
 Module registry
+
+    Sub New()
+        Call Converts.makeDataframe.addHandler(GetType(taxonomyInfo()), AddressOf taxinfoTable)
+    End Sub
+
+    <RGenericOverloads("as.data.frame")>
+    Private Function taxinfoTable(list As taxonomyInfo(), args As list, env As Environment) As dataframe
+        Dim table As New dataframe With {.columns = New Dictionary(Of String, Array)}
+
+        Call table.add("ncbi_taxid", From tax As taxonomyInfo In list Select tax.ncbi_taxid)
+        Call table.add("taxname", From tax As taxonomyInfo In list Select tax.taxname)
+        Call table.add("rank", From tax As taxonomyInfo In list Select tax.rank)
+        Call table.add("parent_id", From tax As taxonomyInfo In list Select tax.parent_id)
+        Call table.add("description", From tax As taxonomyInfo In list Select tax.description)
+
+        Return table
+    End Function
 
     ''' <summary>
     ''' get taxonomy node information via the taxonomy name or the taxonomy id
