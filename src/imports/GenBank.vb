@@ -84,6 +84,10 @@ Public Class GenBankImports
         End If
     End Function
 
+    Public Function GetCDS(locus_tag As String) As Feature
+        Return cds.TryGetValue(locus_tag)
+    End Function
+
     Private Sub ImportsGeneFeature(gene As Feature)
         Dim locus_tag As String = gene.Query(FeatureQualifiers.locus_tag)
         Dim cds_feature = cds.TryGetValue(locus_tag)

@@ -113,23 +113,34 @@ Public Module BatchDataCommit
 
         If locus_tag Is Nothing Then
             Return
+        ElseIf Not data.CheckProtein(locus_tag) Then
+            Return
         End If
 
-        Dim rnaSeq As String = data.GetRNA(gene)
-        Dim massVal As Double = MolecularWeightCalculator.CalcMW_Nucleotides(rnaSeq, is_rna:=False)
-        Dim formula As String = MolecularWeightCalculator.DeoxyribonucleotideFormula(rnaSeq).ToString
+        Dim unifyKey As String = $"{data.ncbi_taxid}:{locus_tag}"
+        Dim gene_mol As biocad_registryModel.molecule = data.registry.molecule _
+            .where(field("xref_id") = unifyKey, field("tax_id") = data.ncbi_taxid) _
+            .find(Of biocad_registryModel.molecule)
+        Dim gene_id As UInteger = If(gene_mol Is Nothing, 0, gene_mol.id)
+
+        ' get mRNA sequence
+        Dim cds As Feature = data.GetCDS(locus_tag)
+        Dim polyAASeq As String = Strings.Trim(cds.Query(FeatureQualifiers.translation))
+        Dim massVal As Double = If(polyAASeq = "", 0, MolecularWeightCalculator.CalcMW_Polypeptide(polyAASeq))
+        Dim formula As String = If(polyAASeq = "", "", MolecularWeightCalculator.PolypeptideFormula(polyAASeq).ToString)
         Dim func As String = data.GetFunction(locus_tag)
+        Dim cds_id = cds.Query(FeatureQualifiers.protein_id)
 
         SyncLock trans
             Call trans.add(
-               field("xref_id") = data.ncbi_taxid & ":" & locus_tag,
-               field("name") = If(gene_name, locus_tag),
-               field("mass") = massVal,
-               field("type") = vocabulary.gene_term,
-               field("formula") = formula,
-               field("parent") = 0,
-               field("tax_id") = data.ncbi_taxid,
-               field("note") = func
+                field("xref_id") = data.ncbi_taxid & ":" & cds_id,
+                field("name") = If(gene_name, cds_id),
+                field("mass") = massVal,
+                field("type") = vocabulary.protein_term,
+                field("formula") = formula,
+                field("parent") = gene_id,
+                field("tax_id") = data.ncbi_taxid,
+                field("note") = func
            )
         End SyncLock
     End Sub
