@@ -102,6 +102,41 @@ Module registry
         }
     End Function
 
+    ''' <summary>
+    ''' get child taxonomy id list
+    ''' </summary>
+    ''' <param name="registry"></param>
+    ''' <param name="tax_id"></param>
+    ''' <returns></returns>
+    <ExportAPI("child_list")>
+    Public Function child_list(registry As biocad_registry,
+                               tax_id As String,
+                               Optional direct_list As Boolean = True) As Object
+
+        Dim list As List(Of biocad_registryModel.taxonomy_tree) = registry.taxonomy_tree _
+            .where(field("tax_id") = tax_id) _
+            .select(Of biocad_registryModel.taxonomy_tree) _
+            .AsList
+
+        If Not direct_list Then
+            Dim childs As biocad_registryModel.taxonomy_tree() = list.ToArray
+
+            Do While True
+                childs = registry.taxonomy_tree _
+                    .where(field("tax_id").in(childs.Select(Function(t) t.child_tax).Distinct)) _
+                    .select(Of biocad_registryModel.taxonomy_tree)
+
+                Call list.AddRange(childs)
+
+                If childs.IsNullOrEmpty Then
+                    Exit Do
+                End If
+            Loop
+        End If
+
+        Return list.Select(Function(t) t.child_tax).Distinct.ToArray
+    End Function
+
 End Module
 
 Public Class taxonomyInfo
