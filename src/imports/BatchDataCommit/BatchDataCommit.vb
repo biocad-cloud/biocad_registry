@@ -65,6 +65,22 @@ Public Module BatchDataCommit
     End Sub
 
     <Extension>
+    Public Sub importsProteins(registry As biocad_registry, genomes As IEnumerable(Of GBFF.File))
+        Dim trans As CommitTransaction = registry.molecule.open_transaction.ignore
+        Dim vocabulary As BioCadVocabulary = registry.vocabulary_terms
+
+        For Each gb As GBFF.File In genomes
+            Dim data As New GenBankImports(registry, gb)
+            Dim genes = gb.Features.ListFeatures("gene").ToArray
+
+            Call VBDebugger.EchoLine("processing protein data batch imports of genome " & gb.Definition.Value)
+            Call Parallel.For(0, genes.Length, Sub(i) data.addSingleProtein(genes(i), trans, vocabulary))
+        Next
+
+        Call trans.commit()
+    End Sub
+
+    <Extension>
     Private Sub addSingleSeuqnece(data As GenBankImports, gene As Feature, ByRef trans As CommitTransaction, vocabulary As BioCadVocabulary)
         Dim locus_tag As String = gene.Query(FeatureQualifiers.locus_tag)
 
@@ -88,6 +104,34 @@ Public Module BatchDataCommit
             field("sequence") = rnaSeq,
             field("hashcode") = LCase(rnaSeq).MD5
         )
+    End Sub
+
+    <Extension>
+    Private Sub addSingleProtein(data As GenBankImports, gene As Feature, ByRef trans As CommitTransaction, vocabulary As BioCadVocabulary)
+        Dim locus_tag As String = gene.Query(FeatureQualifiers.locus_tag)
+        Dim gene_name = gene.Query(FeatureQualifiers.gene)
+
+        If locus_tag Is Nothing Then
+            Return
+        End If
+
+        Dim rnaSeq As String = data.GetRNA(gene)
+        Dim massVal As Double = MolecularWeightCalculator.CalcMW_Nucleotides(rnaSeq, is_rna:=False)
+        Dim formula As String = MolecularWeightCalculator.DeoxyribonucleotideFormula(rnaSeq).ToString
+        Dim func As String = data.GetFunction(locus_tag)
+
+        SyncLock trans
+            Call trans.add(
+               field("xref_id") = data.ncbi_taxid & ":" & locus_tag,
+               field("name") = If(gene_name, locus_tag),
+               field("mass") = massVal,
+               field("type") = vocabulary.gene_term,
+               field("formula") = formula,
+               field("parent") = 0,
+               field("tax_id") = data.ncbi_taxid,
+               field("note") = func
+           )
+        End SyncLock
     End Sub
 
     <Extension>

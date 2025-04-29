@@ -38,6 +38,11 @@ Public Class GenBankImports
         rRNA = gb.LoadFeatureIndex("rRNA")
     End Sub
 
+    <MethodImpl(MethodImplOptions.AggressiveInlining)>
+    Public Function CheckProtein(locus_tag As String) As Boolean
+        Return cds.ContainsKey(locus_tag)
+    End Function
+
     Public Sub ImportsData()
         Call registry.AddGenomics(gb, gb.Origin.ToFasta)
 
