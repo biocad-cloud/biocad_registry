@@ -3464,7 +3464,7 @@ to take away yo [rest of string was truncated]&quot;;.
  load library module
  </summary>
  <param name="packageName">the library package name</param>
- <param name="silent">suppress of print message?</param>
+ <param name="silent">quietly option, suppress of print message?</param>
  <param name="ignoreMissingStartupPackages">debug used only</param>
  <returns>
  this function returns an error message object instance if
@@ -5925,7 +5925,7 @@ to take away yo [rest of string was truncated]&quot;;.
  <param name="env"></param>
  <returns></returns>
 </member>
-<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.base.library(System.String,SMRUCC.Rsharp.Runtime.Environment)">
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.base.library(System.String,System.Boolean,SMRUCC.Rsharp.Runtime.Environment)">
  <summary>
  # Loading/Attaching and Listing of Packages
  
@@ -5972,7 +5972,7 @@ to take away yo [rest of string was truncated]&quot;;.
  are searched before the libraries.
  </remarks>
 </member>
-<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.base.attachPackageFile(SMRUCC.Rsharp.Interpreter.RInterpreter,System.String)">
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.base.attachPackageFile(SMRUCC.Rsharp.Interpreter.RInterpreter,System.String,System.Boolean)">
  <summary>
  attact a given zip archive file as package
  </summary>
@@ -6148,7 +6148,7 @@ to take away yo [rest of string was truncated]&quot;;.
  <param name="env"></param>
  <returns>Returns the hash as a positive integer</returns>
 </member>
-<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.devtools.flash_load(System.String,SMRUCC.Rsharp.Runtime.GlobalEnvironment)">
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.devtools.flash_load(System.String,System.Boolean,SMRUCC.Rsharp.Runtime.GlobalEnvironment)">
  <summary>
  Load R script in directory
  
@@ -6156,6 +6156,9 @@ to take away yo [rest of string was truncated]&quot;;.
  by default is load all script in current directory.
  </summary>
  <param name="dir">The script source directory, by default is current workspace.</param>
+ <param name="quietly">
+ silent mode? default is verbose mode(show the package loading banner information)
+ </param>
 </member>
 <member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.devtools.fetchProfileData(SMRUCC.Rsharp.Runtime.Environment)">
  <summary>
@@ -16545,7 +16548,7 @@ to take away yo [rest of string was truncated]&quot;;.
  </summary>
  <remarks>
  the package loading procedure between the <see cref="M:SMRUCC.Rsharp.Development.Package.File.PackageLoader2.Hotload(System.String,SMRUCC.Rsharp.Runtime.GlobalEnvironment,SMRUCC.Rsharp.Development.Package.File.DESCRIPTION@)"/> and
- <see cref="M:SMRUCC.Rsharp.Development.Package.File.PackageLoader2.LoadPackage(Microsoft.VisualBasic.ApplicationServices.IFileSystemEnvironment,System.String,SMRUCC.Rsharp.Runtime.GlobalEnvironment)"/> is similar to each other, but have some significatent 
+ <see cref="M:SMRUCC.Rsharp.Development.Package.File.PackageLoader2.LoadPackage(Microsoft.VisualBasic.ApplicationServices.IFileSystemEnvironment,System.String,System.Boolean,SMRUCC.Rsharp.Runtime.GlobalEnvironment)"/> is similar to each other, but have some significatent 
  difference between each other:
  
  1. hotload function handling the source project folder, all of the R source is the original text file
@@ -16578,7 +16581,7 @@ to take away yo [rest of string was truncated]&quot;;.
  <param name="projDir">
  the package source project directory, which is should be un-build...
  for load the package directory which is installed into the R library
- folder, use the method <see cref="M:SMRUCC.Rsharp.Development.Package.File.PackageLoader2.LoadPackage(Microsoft.VisualBasic.ApplicationServices.IFileSystemEnvironment,System.String,SMRUCC.Rsharp.Runtime.GlobalEnvironment)"/>
+ folder, use the method <see cref="M:SMRUCC.Rsharp.Development.Package.File.PackageLoader2.LoadPackage(Microsoft.VisualBasic.ApplicationServices.IFileSystemEnvironment,System.String,System.Boolean,SMRUCC.Rsharp.Runtime.GlobalEnvironment)"/>
  instead.
  </param>
  <param name="env"></param>
@@ -16589,12 +16592,15 @@ to take away yo [rest of string was truncated]&quot;;.
  "r-sharp-help"
  </summary>
 </member>
-<member name="M:SMRUCC.Rsharp.Development.Package.File.PackageLoader2.LoadPackage(Microsoft.VisualBasic.ApplicationServices.IFileSystemEnvironment,System.String,SMRUCC.Rsharp.Runtime.GlobalEnvironment)">
+<member name="M:SMRUCC.Rsharp.Development.Package.File.PackageLoader2.LoadPackage(Microsoft.VisualBasic.ApplicationServices.IFileSystemEnvironment,System.String,System.Boolean,SMRUCC.Rsharp.Runtime.GlobalEnvironment)">
  <summary>
  attach installed package
  </summary>
  <param name="dir">the local physical filesystem</param>
  <param name="env"></param>
+ <param name="quietly">
+ options for mute the package loader banner display
+ </param>
 </member>
 <member name="M:SMRUCC.Rsharp.Development.Package.File.PackageLoader2.loadDependency(SMRUCC.Rsharp.Runtime.PackageEnvironment,SMRUCC.Rsharp.Development.Package.File.PackageNamespace)">
  <summary>
@@ -16602,6 +16608,14 @@ to take away yo [rest of string was truncated]&quot;;.
  </summary>
  <param name="env"></param>
  <param name="pkg"></param>
+</member>
+<member name="M:SMRUCC.Rsharp.Development.Package.File.PackageLoader2.callOnLoad(SMRUCC.Rsharp.Runtime.PackageEnvironment,System.Boolean,SMRUCC.Rsharp.Development.Package.File.PackageNamespace)">
+ <summary>
+ call package initilization loader function
+ </summary>
+ <param name="env"></param>
+ <param name="pkg"></param>
+ <returns></returns>
 </member>
 <member name="P:SMRUCC.Rsharp.Development.Package.File.PackageModel.symbols">
  <summary>

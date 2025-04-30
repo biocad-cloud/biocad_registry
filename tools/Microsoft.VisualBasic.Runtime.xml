@@ -24849,7 +24849,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="file"></param>
  <returns></returns>
 </member>
-<member name="M:Microsoft.VisualBasic.FileIO.Directory.CopyTo(System.String,System.Progress{System.String},System.Boolean)">
+<member name="M:Microsoft.VisualBasic.FileIO.Directory.CopyTo(System.String,System.IProgress{System.String},System.Boolean)">
  <summary>
  将当前的这个文件夹之中的内容拷贝到<paramref name="target"/>目标文件夹
  </summary>
