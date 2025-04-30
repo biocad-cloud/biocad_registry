@@ -1,4 +1,5 @@
 ﻿Imports System.Runtime.CompilerServices
+Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports SMRUCC.genomics.Assembly.NCBI.GenBank
 Imports SMRUCC.genomics.Assembly.NCBI.GenBank.GBFF.Keywords.FEATURES
@@ -92,6 +93,103 @@ Public Module BatchDataCommit
         Next
 
         Call trans.commit()
+    End Sub
+
+    <Extension>
+    Public Sub importsFeatureXrefs(registry As biocad_registry, genomes As IEnumerable(Of GBFF.File))
+        Dim trans As CommitTransaction = registry.db_xrefs.open_transaction.ignore
+        Dim vocabulary As BioCadVocabulary = registry.vocabulary_terms
+
+        For Each gb As GBFF.File In genomes
+            Dim data As New GenBankImports(registry, gb)
+            Dim genes = data.getGenes.ToArray
+
+            Call VBDebugger.EchoLine("processing gene feature corss reference id data batch imports of genome " & data.desc)
+            Call Parallel.For(0, genes.Length, Sub(i) data.addGeneDbXrefs(genes(i), trans, vocabulary))
+        Next
+
+        Call trans.commit()
+    End Sub
+
+    ''' <summary>
+    ''' add db_xrefs for gene/proteins
+    ''' </summary>
+    ''' <param name="data"></param>
+    ''' <param name="gene"></param>
+    ''' <param name="trans"></param>
+    ''' <param name="vocabulary"></param>
+    <Extension>
+    Private Sub addGeneDbXrefs(data As GenBankImports, gene As Feature, ByRef trans As CommitTransaction, vocabulary As BioCadVocabulary)
+        Dim locus_tag As String = gene.Query(FeatureQualifiers.locus_tag)
+
+        If locus_tag Is Nothing Then
+            Return
+        End If
+
+        Dim gene_id As biocad_registryModel.molecule = data.registry.molecule _
+            .where(field("xref_id") = $"{data.ncbi_taxid}:{locus_tag}",
+                   field("type") = vocabulary.gene_term) _
+            .find(Of biocad_registryModel.molecule)
+
+        If gene_id Is Nothing Then
+            Return
+        Else
+            Call trans.add(
+                field("obj_id") = gene_id.id,
+                field("db_key") = vocabulary.genbank_term,
+                field("xref") = locus_tag,
+                field("type") = vocabulary.gene_term
+            )
+
+            Dim xrefs = gene.QueryDuplicated("db_xref")
+
+            For Each db_xref As NamedValue(Of String) In xrefs.Select(Function(tag) tag.GetTagValue(":"))
+                Call trans.add(
+                    field("obj_id") = gene_id.id,
+                    field("db_key") = vocabulary.GetDatabaseKey(db_xref.Name),
+                    field("xref") = db_xref.Value,
+                    field("type") = vocabulary.gene_term
+                )
+            Next
+        End If
+
+        If data.CheckProtein(locus_tag) Then
+            Dim cds As Feature = data.GetCDS(locus_tag)
+            Dim cds_id = cds.Query(FeatureQualifiers.protein_id)
+            Dim protein_mol As biocad_registryModel.molecule = data.registry.molecule _
+                .where(field("xref_id") = $"{data.ncbi_taxid}:{cds_id}",
+                       field("type") = vocabulary.protein_term) _
+                .find(Of biocad_registryModel.molecule)
+
+            If protein_mol Is Nothing Then
+                Return
+            Else
+                ' add db_xrefs
+                Call trans.add(
+                    field("obj_id") = protein_mol.id,
+                    field("db_key") = vocabulary.genbank_term,
+                    field("xref") = cds_id,
+                    field("type") = vocabulary.protein_term
+                )
+                Call trans.add(
+                    field("obj_id") = protein_mol.id,
+                    field("db_key") = vocabulary.genbank_term,
+                    field("xref") = locus_tag,
+                    field("type") = vocabulary.protein_term
+                )
+
+                Dim xrefs = cds.QueryDuplicated("db_xref")
+
+                For Each db_xref As NamedValue(Of String) In xrefs.Select(Function(tag) tag.GetTagValue(":"))
+                    Call trans.add(
+                        field("obj_id") = protein_mol.id,
+                        field("db_key") = vocabulary.GetDatabaseKey(db_xref.Name),
+                        field("xref") = db_xref.Value,
+                        field("type") = vocabulary.protein_term
+                    )
+                Next
+            End If
+        End If
     End Sub
 
     <Extension>
