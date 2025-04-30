@@ -53,6 +53,15 @@ Module imports_api
         Return Nothing
     End Function
 
+    <ExportAPI("imports_dbxrefs")>
+    Public Function imports_dbxrefs(registry As biocad_registry, genbank As GenBankScanner) As Object
+        For Each page As GBFF.File() In genbank.LoadPageData
+            Call registry.importsFeatureXrefs(page)
+        Next
+
+        Return Nothing
+    End Function
+
     <ExportAPI("imports_taxonomy")>
     Public Function imports_taxonomy(registry As biocad_registry, taxdump As NcbiTaxonomyTree) As Object
         Dim bar As ProgressBar = Nothing
