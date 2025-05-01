@@ -12,6 +12,9 @@ declare namespace data_imports {
    function genbank_repo(dir: string): object;
    /**
    */
+   function imports_dbxrefs(registry: object, genbank: object): any;
+   /**
+   */
    function imports_dna_seqs(registry: object, genbank: object): any;
    /**
    */
