@@ -10,8 +10,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="fixTool\**" />
     <Compile Remove="RegistryTool\**" />
+    <EmbeddedResource Remove="fixTool\**" />
     <EmbeddedResource Remove="RegistryTool\**" />
+    <None Remove="fixTool\**" />
     <None Remove="RegistryTool\**" />
   </ItemGroup>
 

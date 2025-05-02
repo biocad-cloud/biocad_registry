@@ -280,6 +280,13 @@ Oracle.LinuxCompatibility.LibMySQL
  <returns></returns>
  
 </member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.ExpressionSyntax.count(Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert)">
+ <summary>
+ count(field) in mysql
+ </summary>
+ <param name="f"></param>
+ <returns></returns>
+</member>
 <member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert.is_nothing">
  <summary>
  test current field value is null?
@@ -392,6 +399,12 @@ Oracle.LinuxCompatibility.LibMySQL
  <param name="a"></param>
  <param name="b"></param>
  <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FilterConditions.#ctor(Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FilterConditions)">
+ <summary>
+ make condition filter value copy
+ </summary>
+ <param name="clone"></param>
 </member>
 <member name="T:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.Model">
  <summary>
