@@ -21,11 +21,43 @@ Module Program
         Call removesDuplicatedMolecules()
     End Sub
 
+    Sub removesDuplicatedSequence()
+        Do While True
+            Dim xref_ids As biocad_registryModel.sequence_graph() = registry.sequence_graph _
+                .group_by("molecule_id", "hashcode") _
+                .having(field("*").count > 1) _
+                .limit(1000) _
+                .select(Of biocad_registryModel.sequence_graph)("molecule_id", "hashcode")
+
+            If xref_ids.IsNullOrEmpty Then
+                Exit Do
+            Else
+                Call Console.WriteLine("Processing page data...")
+            End If
+
+            Dim bar As Tqdm.ProgressBar = Nothing
+
+            For Each id As biocad_registryModel.sequence_graph In TqdmWrapper.Wrap(xref_ids, bar:=bar)
+                Dim mols = registry.sequence_graph _
+                    .where(field("molecule_id") = id.molecule_id, field("hashcode") = id.hashcode) _
+                    .select(Of biocad_registryModel.sequence_graph)
+
+                For Each duplicated In mols.Skip(1)
+                    Call registry.molecule _
+                        .where(field("id") = duplicated.id) _
+                        .delete()
+                Next
+
+                Call bar.SetLabel(id.hashcode)
+            Next
+        Loop
+    End Sub
+
     Sub removesDuplicatedMolecules()
         Do While True
             Dim xref_ids As String() = registry.molecule _
                 .group_by("xref_id") _
-                .having(field("xref_id").count > 1) _
+                .having(field("*").count > 1) _
                 .limit(1000) _
                 .project(Of String)("xref_id")
 
