@@ -1,4 +1,6 @@
 Imports biocad_registry
+Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar
+Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports Oracle.LinuxCompatibility.MySQL.Uri
 
@@ -33,7 +35,9 @@ Module Program
                 Call Console.WriteLine("Processing page data...")
             End If
 
-            For Each id As String In xref_ids
+            Dim bar As Tqdm.ProgressBar = Nothing
+
+            For Each id As String In TqdmWrapper.Wrap(xref_ids, bar:=bar)
                 Dim mols = registry.molecule _
                     .where(field("xref_id") = id) _
                     .select(Of biocad_registryModel.molecule)
@@ -43,6 +47,8 @@ Module Program
                         .where(field("id") = duplicated.id) _
                         .delete()
                 Next
+
+                Call bar.SetLabel(id)
             Next
         Loop
 
