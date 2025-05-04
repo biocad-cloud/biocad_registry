@@ -29,6 +29,8 @@ Module Program
 
             If xref_ids.IsNullOrEmpty Then
                 Exit Do
+            Else
+                Call Console.WriteLine("Processing page data...")
             End If
 
             For Each id As String In xref_ids
