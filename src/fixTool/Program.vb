@@ -1,5 +1,4 @@
-Imports System
-Imports biocad_registry
+Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports Oracle.LinuxCompatibility.MySQL.Uri
 
 Module Program
@@ -21,6 +20,18 @@ Module Program
     Sub removesDuplicatedMolecules()
         Do While True
             Dim xref_ids As String() = registry.molecule.group_by("xref_id").having(field("xref_id").count > 1).limit(1000).project(Of String)("xref_id")
+
+            If xref_ids.IsNullOrEmpty Then
+                Exit Do
+            End If
+
+            For Each id As String In xref_ids
+                Dim mols = registry.molecule.where(field("xref_id") = id).select(Of biocad_registryModel.molecule)
+
+                For Each duplicated In mols.Skip(1)
+                    Call registry.molecule.where(field("id") = duplicated.id).delete
+                Next
+            Next
         Loop
     End Sub
 End Module
