@@ -36,6 +36,7 @@ Module Program
             End If
 
             Dim bar As Tqdm.ProgressBar = Nothing
+            Dim trans As CommitTransaction = registry.sequence_graph.open_transaction
 
             For Each id As biocad_registryModel.sequence_graph In TqdmWrapper.Wrap(xref_ids, bar:=bar)
                 Dim mols = registry.sequence_graph _
@@ -43,13 +44,13 @@ Module Program
                     .select(Of biocad_registryModel.sequence_graph)
 
                 For Each duplicated In mols.Skip(1)
-                    Call registry.molecule _
-                        .where(field("id") = duplicated.id) _
-                        .delete()
+                    Call trans.delete(field("id") = duplicated.id)
                 Next
 
                 Call bar.SetLabel(id.hashcode)
             Next
+
+            Call trans.commit()
         Loop
     End Sub
 
@@ -68,6 +69,7 @@ Module Program
             End If
 
             Dim bar As Tqdm.ProgressBar = Nothing
+            Dim trans As CommitTransaction = registry.sequence_graph.open_transaction
 
             For Each id As String In TqdmWrapper.Wrap(xref_ids, bar:=bar)
                 Dim mols = registry.molecule _
@@ -75,13 +77,13 @@ Module Program
                     .select(Of biocad_registryModel.molecule)
 
                 For Each duplicated In mols.Skip(1)
-                    Call registry.molecule _
-                        .where(field("id") = duplicated.id) _
-                        .delete()
+                    Call trans.delete(field("id") = duplicated.id)
                 Next
 
                 Call bar.SetLabel(id)
             Next
+
+            Call trans.commit()
         Loop
 
         Pause()
