@@ -59,7 +59,7 @@ Module Program
             Dim xref_ids As String() = registry.molecule _
                 .group_by("xref_id") _
                 .having(field("*").count > 1) _
-                .limit(1000) _
+                .limit(10000) _
                 .project(Of String)("xref_id")
 
             If xref_ids.IsNullOrEmpty Then
@@ -69,7 +69,7 @@ Module Program
             End If
 
             Dim bar As Tqdm.ProgressBar = Nothing
-            Dim trans As CommitTransaction = registry.sequence_graph.open_transaction
+            Dim trans As CommitTransaction = registry.molecule.open_transaction
 
             For Each id As String In TqdmWrapper.Wrap(xref_ids, bar:=bar)
                 Dim mols = registry.molecule _

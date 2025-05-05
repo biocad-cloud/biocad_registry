@@ -7365,6 +7365,18 @@ to take away yo [rest of string was truncated]&quot;;.
  </summary>
  <param name="dir"></param>
 </member>
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.file.isSystemDir(System.String)">
+ <summary>
+ Check of the given directory path is a system internal directory
+ or not.
+ 
+ The system directories are:
+ + Windows: c:\, c:/, c:, c:\program files, c:\program files (x86), c:\windows, c:\windows\system32, c:\windows\syswow64
+ + Linux: /bin, /boot, /dev, /etc, /home, /lib, /lib64, /media, /mnt, /opt, /root, /run, /sbin, /srv, /sys, /usr, /var
+ </summary>
+ <param name="dir"></param>
+ <returns></returns>
+</member>
 <member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.file.dataUri(System.Object,SMRUCC.Rsharp.Runtime.Environment)">
  <summary>
  read file as data URI string
