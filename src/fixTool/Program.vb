@@ -18,7 +18,7 @@ Module Program
 
     Sub Main(args As String())
         ' Console.WriteLine("Hello World!")
-        Call removesDuplicatedMolecules()
+        ' Call removesDuplicatedMolecules()
     End Sub
 
     Sub removesDuplicatedSequence()

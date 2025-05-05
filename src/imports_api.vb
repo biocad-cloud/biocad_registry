@@ -35,15 +35,6 @@ Module imports_api
         Return Nothing
     End Function
 
-    <ExportAPI("imports_dna_seqs")>
-    Public Function imports_dna_seqs(registry As biocad_registry, genbank As GenBankScanner) As Object
-        For Each page As GBFF.File() In genbank.LoadPageData
-            Call registry.importsDNASequence(page)
-        Next
-
-        Return Nothing
-    End Function
-
     <ExportAPI("imports_genes")>
     Public Function imports_genes(registry As biocad_registry, genbank As GenBankScanner) As Object
         For Each page As GBFF.File() In genbank.LoadPageData

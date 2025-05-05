@@ -34,15 +34,14 @@ Public Module BatchDataCommit
     End Sub
 
     <Extension>
-    Public Sub importsDNASequence(registry As biocad_registry, genomes As IEnumerable(Of GBFF.File))
+    Public Sub importsDNASequence(registry As biocad_registry, genomes As IEnumerable(Of GenBankImports))
         Dim trans As CommitTransaction = registry.sequence_graph.open_transaction.ignore
         Dim vocabulary As BioCadVocabulary = registry.vocabulary_terms
 
-        For Each gb As GBFF.File In genomes
-            Dim data As New GenBankImports(registry, gb)
-            Dim genes = gb.Features.ListFeatures("gene").ToArray
+        For Each data As GenBankImports In genomes
+            Dim genes = data.getGenes.ToArray
 
-            Call VBDebugger.EchoLine("processing gene sequence batch imports of genome " & gb.Definition.Value)
+            Call VBDebugger.EchoLine("processing gene sequence batch imports of genome " & data.desc)
             Call Parallel.For(0, genes.Length, Sub(i) data.addSingleDNASeuqnece(genes(i), trans, vocabulary))
         Next
 
@@ -53,16 +52,19 @@ Public Module BatchDataCommit
     Public Sub importsGenes(registry As biocad_registry, genomes As IEnumerable(Of GBFF.File))
         Dim trans As CommitTransaction = registry.molecule.open_transaction.ignore
         Dim vocabulary As BioCadVocabulary = registry.vocabulary_terms
+        Dim pull As New List(Of GenBankImports)
 
         For Each gb As GBFF.File In genomes
             Dim data As New GenBankImports(registry, gb)
             Dim genes = gb.Features.ListFeatures("gene").ToArray
 
+            Call pull.Add(data)
             Call VBDebugger.EchoLine("processing gene batch imports of genome " & gb.Definition.Value)
             Call Parallel.For(0, genes.Length, Sub(i) data.addSingleGene(genes(i), trans, vocabulary))
         Next
 
         Call trans.commit()
+        Call registry.importsDNASequence(pull)
     End Sub
 
     <Extension>
@@ -200,14 +202,14 @@ Public Module BatchDataCommit
             Return
         End If
 
-        Dim rnaSeq As String = data.GetRNA(gene)
+        Dim rnaSeq As String = Strings.Trim(data.GetRNA(gene)).ToUpper
         Dim uniref As String = $"{data.ncbi_taxid}:{locus_tag}"
         Dim gene_id As biocad_registryModel.molecule = data.registry.molecule _
             .where(field("xref_id") = uniref,
                    field("type") = vocabulary.gene_term) _
             .find(Of biocad_registryModel.molecule)
 
-        If gene_id Is Nothing Then
+        If gene_id Is Nothing OrElse rnaSeq = "" Then
             Return
         End If
 
@@ -239,7 +241,7 @@ Public Module BatchDataCommit
             Return
         End If
 
-        Dim polyAASeq As String = Strings.Trim(cds.Query(FeatureQualifiers.translation))
+        Dim polyAASeq As String = Strings.Trim(cds.Query(FeatureQualifiers.translation)).ToUpper
 
         Call trans.add(
             field("molecule_id") = protein_mol.id,
