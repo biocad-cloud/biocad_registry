@@ -52,6 +52,10 @@ Module Program
 
             Call trans.commit()
         Loop
+
+        Call Console.WriteLine("job done!")
+
+        Pause()
     End Sub
 
     Sub removesDuplicatedMolecules()
@@ -85,6 +89,8 @@ Module Program
 
             Call trans.commit()
         Loop
+
+        Call Console.WriteLine("job done!")
 
         Pause()
     End Sub
