@@ -44,6 +44,15 @@ Module imports_api
         Return Nothing
     End Function
 
+    <ExportAPI("imports_genbank_proteins")>
+    Public Function imports_genbank_proteins(registry As biocad_registry, genbank As GenBankScanner) As Object
+        For Each page As GBFF.File() In genbank.LoadPageData
+            Call registry.importsProteins(page)
+        Next
+
+        Return Nothing
+    End Function
+
     <ExportAPI("imports_dbxrefs")>
     Public Function imports_dbxrefs(registry As biocad_registry, genbank As GenBankScanner) As Object
         For Each page As GBFF.File() In genbank.LoadPageData
