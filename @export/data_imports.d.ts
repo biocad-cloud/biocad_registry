@@ -15,9 +15,6 @@ declare namespace data_imports {
    function imports_dbxrefs(registry: object, genbank: object): any;
    /**
    */
-   function imports_dna_seqs(registry: object, genbank: object): any;
-   /**
-   */
    function imports_genbank(registry: object, genbank: object): any;
    /**
    */
