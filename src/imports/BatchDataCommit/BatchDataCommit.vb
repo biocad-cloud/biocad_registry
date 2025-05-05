@@ -204,10 +204,14 @@ Public Module BatchDataCommit
 
         Dim rnaSeq As String = Strings.Trim(data.GetRNA(gene)).ToUpper
         Dim uniref As String = $"{data.ncbi_taxid}:{locus_tag}"
-        Dim gene_id As biocad_registryModel.molecule = data.registry.molecule _
-            .where(field("xref_id") = uniref,
-                   field("type") = vocabulary.gene_term) _
-            .find(Of biocad_registryModel.molecule)
+        Dim gene_id As biocad_registryModel.molecule
+
+        SyncLock data.registry.molecule
+            gene_id = data.registry.molecule _
+                .where(field("xref_id") = uniref,
+                       field("type") = vocabulary.gene_term) _
+                .find(Of biocad_registryModel.molecule)
+        End SyncLock
 
         If gene_id Is Nothing OrElse rnaSeq = "" Then
             Return
