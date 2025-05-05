@@ -42,7 +42,7 @@ Public Module BatchDataCommit
             Dim genes = data.getGenes.ToArray
 
             Call VBDebugger.EchoLine("processing gene sequence batch imports of genome " & data.desc)
-            Call Parallel.For(0, genes.Length, Sub(i) data.addSingleDNASeuqnece(genes(i), trans, vocabulary))
+            Call ForEach(genes, Sub(gene, i) data.addSingleDNASeuqnece(gene, trans, vocabulary))
         Next
 
         Call trans.commit()
@@ -60,7 +60,7 @@ Public Module BatchDataCommit
 
             Call pull.Add(data)
             Call VBDebugger.EchoLine("processing gene batch imports of genome " & gb.Definition.Value)
-            Call Parallel.For(0, genes.Length, Sub(i) data.addSingleGene(genes(i), trans, vocabulary))
+            Call ForEach(genes, Sub(gene, i) data.addSingleGene(gene, trans, vocabulary))
         Next
 
         Call trans.commit()
