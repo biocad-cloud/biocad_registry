@@ -6,5 +6,6 @@
 + [genbank_repo](data_imports/genbank_repo.1) 
 + [imports_genomics](data_imports/imports_genomics.1) 
 + [imports_genes](data_imports/imports_genes.1) 
++ [imports_genbank_proteins](data_imports/imports_genbank_proteins.1) 
 + [imports_dbxrefs](data_imports/imports_dbxrefs.1) 
 + [imports_taxonomy](data_imports/imports_taxonomy.1) 
