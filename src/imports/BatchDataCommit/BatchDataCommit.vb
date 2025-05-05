@@ -217,11 +217,19 @@ Public Module BatchDataCommit
             Return
         End If
 
-        Call trans.add(
-            field("molecule_id") = gene_id.id,
-            field("sequence") = rnaSeq,
-            field("hashcode") = LCase(rnaSeq).MD5
-        )
+        Dim hashcode As String = LCase(rnaSeq).MD5
+
+        If data.registry.sequence_graph _
+            .where(field("molecule_id") = gene_id.id,
+                   field("hashcode") = hashcode) _
+            .find(Of biocad_registryModel.sequence_graph) Is Nothing Then
+
+            Call trans.add(
+                field("molecule_id") = gene_id.id,
+                field("sequence") = rnaSeq,
+                field("hashcode") = hashcode
+            )
+        End If
     End Sub
 
     <Extension>
@@ -302,14 +310,20 @@ Public Module BatchDataCommit
             Return
         End If
 
-        Dim rnaSeq As String = data.GetRNA(gene)
-        Dim massVal As Double = MolecularWeightCalculator.CalcMW_Nucleotides(rnaSeq, is_rna:=False)
-        Dim formula As String = MolecularWeightCalculator.DeoxyribonucleotideFormula(rnaSeq).ToString
-        Dim func As String = data.GetFunction(locus_tag)
+        Dim uniref As String = data.ncbi_taxid & ":" & locus_tag
 
-        SyncLock trans
+        If data.registry.molecule _
+            .where(field("xref_id") = uniref) _
+            .find(Of biocad_registryModel.molecule) Is Nothing Then
+
+            Dim rnaSeq As String = data.GetRNA(gene)
+            Dim massVal As Double = MolecularWeightCalculator.CalcMW_Nucleotides(rnaSeq, is_rna:=False)
+            Dim formula As String = MolecularWeightCalculator.DeoxyribonucleotideFormula(rnaSeq).ToString
+            Dim func As String = data.GetFunction(locus_tag)
+
+            ' SyncLock trans
             Call trans.add(
-               field("xref_id") = data.ncbi_taxid & ":" & locus_tag,
+               field("xref_id") = uniref,
                field("name") = If(gene_name, locus_tag),
                field("mass") = massVal,
                field("type") = vocabulary.gene_term,
@@ -317,8 +331,9 @@ Public Module BatchDataCommit
                field("parent") = 0,
                field("tax_id") = data.ncbi_taxid,
                field("note") = func
-           )
-        End SyncLock
+            )
+            ' End SyncLock
+        End If
     End Sub
 
 End Module
