@@ -79,7 +79,7 @@ Public Module BatchDataCommit
 
             Call pull.Add(data)
             Call VBDebugger.EchoLine("processing protein data batch imports of genome " & gb.Definition.Value)
-            Call Parallel.For(0, genes.Length, Sub(i) data.addSingleProtein(genes(i), trans, vocabulary))
+            Call ForEach(genes, Sub(gene, i) data.addSingleProtein(gene, trans, vocabulary))
         Next
 
         Call trans.commit()
@@ -91,7 +91,7 @@ Public Module BatchDataCommit
             Dim genes = gb.getGenes.ToArray
 
             Call VBDebugger.EchoLine("processing protein sequence data batch imports of genome " & gb.desc)
-            Call Parallel.For(0, genes.Length, Sub(i) data.addSingleProteinSequence(genes(i), trans, vocabulary))
+            Call ForEach(genes, Sub(gene, i) data.addSingleProteinSequence(gene, trans, vocabulary))
         Next
 
         Call trans.commit()
@@ -254,11 +254,12 @@ Public Module BatchDataCommit
         End If
 
         Dim polyAASeq As String = Strings.Trim(cds.Query(FeatureQualifiers.translation)).ToUpper
+        Dim hashcode As String = LCase(polyAASeq).MD5
 
         Call trans.add(
             field("molecule_id") = protein_mol.id,
             field("sequence") = polyAASeq,
-            field("hashcode") = LCase(polyAASeq).MD5
+            field("hashcode") = hashcode
         )
     End Sub
 
@@ -281,15 +282,21 @@ Public Module BatchDataCommit
 
         ' get mRNA sequence
         Dim cds As Feature = data.GetCDS(locus_tag)
-        Dim polyAASeq As String = Strings.Trim(cds.Query(FeatureQualifiers.translation))
-        Dim massVal As Double = If(polyAASeq = "", 0, MolecularWeightCalculator.CalcMW_Polypeptide(polyAASeq))
-        Dim formula As String = If(polyAASeq = "", "", MolecularWeightCalculator.PolypeptideFormula(polyAASeq).ToString)
-        Dim func As String = data.GetFunction(locus_tag)
         Dim cds_id = cds.Query(FeatureQualifiers.protein_id)
+        Dim uniref = data.ncbi_taxid & ":" & cds_id
 
-        SyncLock trans
+        If data.registry.molecule _
+            .where(field("xref_id") = uniref) _
+            .find(Of biocad_registryModel.molecule) Is Nothing Then
+
+            Dim polyAASeq As String = Strings.Trim(cds.Query(FeatureQualifiers.translation))
+            Dim massVal As Double = If(polyAASeq = "", 0, MolecularWeightCalculator.CalcMW_Polypeptide(polyAASeq))
+            Dim formula As String = If(polyAASeq = "", "", MolecularWeightCalculator.PolypeptideFormula(polyAASeq).ToString)
+            Dim func As String = data.GetFunction(locus_tag)
+
+            ' SyncLock trans
             Call trans.add(
-                field("xref_id") = data.ncbi_taxid & ":" & cds_id,
+                field("xref_id") = uniref,
                 field("name") = If(gene_name, cds_id),
                 field("mass") = massVal,
                 field("type") = vocabulary.protein_term,
@@ -298,7 +305,8 @@ Public Module BatchDataCommit
                 field("tax_id") = data.ncbi_taxid,
                 field("note") = func
            )
-        End SyncLock
+            ' End SyncLock
+        End If
     End Sub
 
     <Extension>
