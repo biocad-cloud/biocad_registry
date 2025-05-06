@@ -1,0 +1,307 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+BioNovoGene.BioDeep.Chemoinformatics.SMILES
+</name>
+</assembly>
+<members>
+<member name="T:BioNovoGene.BioDeep.Chemoinformatics.SMILES.Atom">
+ <summary>
+ the atoms metadata for supports build formula and graph in SMILES parser
+ </summary>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.SMILES.Atom.valence">
+ <summary>
+ Possible net charge value of current element atom
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.SMILES.Atom.maxKeys">
+ <summary>
+ the max number of the chemical keys
+ (max charge number)
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.SMILES.AtomGroup.CheckDefaultLabel(System.String)">
+ <summary>
+ Check of the given atom group label is existsed inside the default atom group list
+ </summary>
+ <param name="label"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.SMILES.ChemicalMarkup.AsCML(BioNovoGene.BioDeep.Chemoinformatics.SMILES.ChemicalFormula)">
+ <summary>
+ cast the smiles graph as chemical markup language model data
+ </summary>
+ <param name="graph"></param>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemoinformatics.SMILES.Embedding.SmilesAtom">
+ <summary>
+ A csv table represents of the smiles atom data
+ </summary>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.SMILES.Embedding.SmilesAtom.ToString">
+ <summary>
+ get the group label string, this function will tagged the ``(aromatic)`` automatically
+ if current atom is on a ring of <see cref="P:BioNovoGene.BioDeep.Chemoinformatics.SMILES.Embedding.SmilesAtom.aromatic"/>.
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.SMILES.FormulaBuilder.Push(BioNovoGene.BioDeep.Chemoinformatics.SMILES.Atom,BioNovoGene.BioDeep.Chemoinformatics.SMILES.ChemicalElement)">
+ <summary>
+ add target element group into the target chemical formula data
+ </summary>
+ <param name="atom"></param>
+ <param name="element"></param>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.SMILES.FormulaBuilder.Push(System.String,System.Int32)">
+ <summary>
+ Add n elements into the target chemical formula composition data
+ </summary>
+ <param name="element"></param>
+ <param name="n"></param>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemoinformatics.SMILES.Bonds">
+ <summary>
+ Single, double, triple, and aromatic bonds are 
+ represented by the symbols ``-``, ``=``, ``#``, and ``:``, 
+ respectively. Adjacent atoms are assumed to be 
+ connected to each other by a single or aromatic 
+ bond (single and aromatic bonds may always be 
+ omitted).
+ </summary>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemoinformatics.SMILES.ChemicalElement">
+ <summary>
+ the chemical atom element
+ </summary>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.SMILES.ChemicalElement.elementName">
+ <summary>
+ the atom or atom group element label text
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.SMILES.ChemicalElement.Keys">
+ <summary>
+ 与当前的这个元素连接的化学键的数量
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.SMILES.ChemicalElement.coordinate">
+ <summary>
+ 2D coordinate ``[x,y]``
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.SMILES.ChemicalElement.group">
+ <summary>
+ the atom group name
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.SMILES.ChemicalElement.charge">
+ <summary>
+ the ion charge value
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.SMILES.ChemicalElement.hydrogen">
+ <summary>
+ The number of the hydrogen of current atom group it has
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.SMILES.ChemicalElement.#ctor(BioNovoGene.BioDeep.Chemoinformatics.SMILES.ChemicalElement,System.Int32)">
+ <summary>
+ make value copy from the base item
+ </summary>
+ <param name="base"></param>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.SMILES.ChemicalElement.#ctor(System.String,System.Nullable{System.Int32})">
+ <summary>
+ 
+ </summary>
+ <param name="element">
+ the atom or atom group element label text
+ </param>
+ <param name="index"></param>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.SMILES.ChemicalElement.SetAtomGroups(BioNovoGene.BioDeep.Chemoinformatics.SMILES.ChemicalFormula)">
+ <summary>
+ Set atom group label based on the chemical keys
+ </summary>
+ <param name="formula"></param>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.SMILES.ChemicalElement.SetAtomGroups(BioNovoGene.BioDeep.Chemoinformatics.SMILES.ChemicalElement,System.Int32)">
+ <summary>
+ Set atom group label based on the chemical keys
+ </summary>
+ <param name="atom"></param>
+ <param name="keys"></param>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemoinformatics.SMILES.ChemicalFormula">
+ <summary>
+ the molecule graph
+ </summary>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.SMILES.ChemicalFormula.AllBonds">
+ <summary>
+ the graph edges is the connection links between the atom groups
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.SMILES.ChemicalFormula.AllElements">
+ <summary>
+ the atom groups
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.SMILES.ChemicalFormula.FindKeys(System.String)">
+ <summary>
+ find atom element by unique reference id
+ </summary>
+ <param name="elementkey"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.SMILES.ChemicalFormula.Join(BioNovoGene.BioDeep.Chemoinformatics.SMILES.ChemicalFormula)">
+ <summary>
+ Add new independent part of the molecule into current molecule part
+ </summary>
+ <param name="part"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.SMILES.ChemicalFormula.ParseGraph(System.String,System.Boolean)">
+ <summary>
+ 
+ </summary>
+ <param name="SMILES"></param>
+ <param name="strict"></param>
+ <returns>
+ this function may returns nothing if the given smiles string is invalid and case the parser error when strict is false.
+ </returns>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemoinformatics.SMILES.ChemicalKey">
+ <summary>
+ the edge connection between the atoms
+ </summary>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.SMILES.ChemicalKey.bond">
+ <summary>
+ the charge of current chemical key
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.SMILES.ChemicalKey.source">
+ <summary>
+ atom group of source atom, apply for build linking matrix
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.SMILES.ChemicalKey.target">
+ <summary>
+ atom group of target atom, apply for build linking matrix
+ </summary>
+ <returns></returns>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.SMILES.Language.ElementTypes.Element">
+ <summary>
+ alphabet
+ </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.SMILES.Language.ElementTypes.AtomGroup">
+ <summary>
+ contains multiple atom label inside, example as: NH4+/PO3-
+ </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.SMILES.Language.ElementTypes.Key">
+ <summary>
+ <see cref="T:BioNovoGene.BioDeep.Chemoinformatics.SMILES.Bonds"/>
+ </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.SMILES.Language.ElementTypes.Open">
+ <summary>
+ (
+ </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.SMILES.Language.ElementTypes.Close">
+ <summary>
+ )
+ </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.SMILES.Language.ElementTypes.Disconnected">
+ <summary>
+ ##### Disconnected Structures
+ 
+ Disconnected compounds are written as individual structures separated by a "." (period). 
+ The order in which ions or ligands are listed is arbitrary. There is no implied pairing 
+ of one charge with another, nor is it necessary to have a net zero charge. If desired, 
+ the SMILES of one ion may be imbedded within another as shown in the example of sodium 
+ phenoxide.
+ 
+ Matching pairs of digits following atom specifications imply that the atoms are bonded 
+ to each other. The bond may be explicit (bond symbol and/or direction preceding the ring 
+ closure digit) or implicit (a nondirectional single or aromatic bond). This is true 
+ whether or not the bond ends up as part of a ring.
+ 
+ Adjacent atoms separated by dot (.) implies that the atoms are Not bonded To Each other. 
+ This Is True whether Or Not the atoms are In the same connected component.
+ 
+ For example, C1.C1 specifies the same molecule as CC(ethane)
+ </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.SMILES.Language.ElementTypes.Isomers">
+ <summary>
+ E/Z
+ </summary>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.SMILES.Language.Scanner.GetTokens">
+ <summary>
+ Parse SMILES tokens
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.SMILES.Language.Scanner.GetTokensInternal">
+ <summary>
+ Parse SMILES tokens
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.SMILES.Language.Scanner.MeasureElement(System.String)">
+ <summary>
+ 
+ </summary>
+ <param name="str"></param>
+ <returns></returns>
+ <remarks>
+ Atoms in aromatic rings are specified by lower case letters, e.g., 
+ 
+ 1. aliphatic carbon is represented by the capital letter C, 
+ 2. aromatic carbon by lower case c.
+ </remarks>
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemoinformatics.SMILES.Layout2D">
+ <summary>
+ methods for evaluate 2D layout of the molecule atoms
+ </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.SMILES.ParseChain.gid">
+ <summary>
+ the chemical graph id, for deal with the SMILES contains multiple independent parts
+ </summary>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.SMILES.ParseChain.ParseGraph(System.String,System.Boolean)">
+ <summary>
+ 
+ </summary>
+ <param name="SMILES"></param>
+ <param name="strict"></param>
+ <returns>
+ this function may returns nothing if the given smiles string is invalid and case the parser error when strict is false.
+ </returns>
+</member>
+</members>
+</doc>

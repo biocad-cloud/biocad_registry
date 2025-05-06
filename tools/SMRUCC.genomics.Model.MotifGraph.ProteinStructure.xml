@@ -1,0 +1,34 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+SMRUCC.genomics.Model.MotifGraph.ProteinStructure
+</name>
+</assembly>
+<members>
+<member name="T:SMRUCC.genomics.Model.MotifGraph.ProteinStructure.CreateMatrix">
+ <summary>
+ Create sgt embedding matrix
+ </summary>
+</member>
+<member name="P:SMRUCC.genomics.Model.MotifGraph.ProteinStructure.CreateMatrix.dimension">
+ <summary>
+ get the dimension size of the generated protein matrix via the function <see cref="M:SMRUCC.genomics.Model.MotifGraph.ProteinStructure.CreateMatrix.ToMatrix(SMRUCC.genomics.SequenceModel.FASTA.FastaSeq)"/>
+ </summary>
+ <returns>The CNN input size</returns>
+</member>
+<member name="T:SMRUCC.genomics.Model.MotifGraph.ProteinStructure.Kmer.KMerGraph">
+ <summary>
+ k-mer graph
+ </summary>
+</member>
+<member name="M:SMRUCC.genomics.Model.MotifGraph.ProteinStructure.Kmer.KMerGraph.GetFingerprint(System.Int32,System.Int32)">
+ <summary>
+ evaluate the morgan fingerprint of current sequence k-mer graph object
+ </summary>
+ <param name="radius"></param>
+ <param name="len"></param>
+ <returns></returns>
+</member>
+</members>
+</doc>

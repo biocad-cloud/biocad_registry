@@ -1,0 +1,2668 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+Microsoft.VisualBasic.MachineLearning
+</name>
+</assembly>
+<members>
+<member name="T:Microsoft.VisualBasic.MachineLearning.ComponentModel.Activations.ActiveFunction">
+ <summary>
+ 激活函数的存储于XML文档之中的数据模型
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.ComponentModel.Activations.ActiveFunction.name">
+ <summary>
+ The function name
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.ComponentModel.Activations.ActiveFunction.Arguments">
+ <summary>
+ 函数对象的构造参数列表
+ </summary>
+ <returns></returns>
+ <remarks>
+ 因为无法将字典对象进行Xml序列化, 所以在这里使用键值对集合来表示
+ </remarks>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.ComponentModel.Activations.ActiveFunction.Function">
+ <summary>
+ 通过这个只读属性来得到激活函数的对象模型
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.ComponentModel.Activations.ActiveFunction.op_Explicit(Microsoft.VisualBasic.MachineLearning.ComponentModel.Activations.ActiveFunction)~Microsoft.VisualBasic.MachineLearning.ComponentModel.Activations.IActivationFunction">
+ <summary>
+ 将激活函数从数据模型转换为对象模型
+ </summary>
+ <param name="af"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.ComponentModel.Activations.ActiveFunction.Parse(System.String)">
+ <summary>
+ 将文本表达式解析为激活函数的模型
+ </summary>
+ <param name="expression">这个字符串表达式应该是<see cref="M:Microsoft.VisualBasic.MachineLearning.ComponentModel.Activations.IActivationFunction.ToString"/>的函数输出结果字符串</param>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.ComponentModel.Activations.BipolarSigmoid">
+ <summary>
+ Bipolar sigmoid activation function.
+ </summary>
+
+ <remarks><para>The class represents bipolar sigmoid activation function with
+ the next expression:
+ <code lang="none">
+                2
+ f(x) = ------------------ - 1
+        1 + exp(-alpha * x)
+
+           2 * alpha * exp(-alpha * x )
+ f'(x) = -------------------------------- = alpha * (1 - f(x)^2) / 2
+           (1 + exp(-alpha * x))^2
+ </code>
+ </para>
+ 
+ <para>Output range of the function: <b>[-1, 1]</b>.</para>
+ 
+ <para>Functions graph:</para>
+ <img src="img/neuro/sigmoid_bipolar.bmp" width="242" height="172" />
+ </remarks>
+ 
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.ComponentModel.Activations.BipolarSigmoid.Alpha">
+ <summary>
+ Sigmoid's alpha value.
+ </summary>
+
+ <remarks><para>The value determines steepness of the function. Increasing value of
+ this property changes sigmoid to look more like a threshold function. Decreasing
+ value of this property makes sigmoid to be very smooth (slowly growing from its
+ minimum value to its maximum value).</para>
+
+ <para>Default value is set to <b>2</b>.</para>
+ </remarks>
+ 
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.ComponentModel.Activations.BipolarSigmoid.#ctor">
+ <summary>
+ Initializes a new instance of the <see cref="T:Microsoft.VisualBasic.MachineLearning.ComponentModel.Activations.SigmoidFunction"/> class.
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.ComponentModel.Activations.BipolarSigmoid.#ctor(System.Double)">
+ <summary>
+ Initializes a new instance of the <see cref="T:Microsoft.VisualBasic.MachineLearning.ComponentModel.Activations.BipolarSigmoid"/> class.
+ </summary>
+ 
+ <param name="alpha">Sigmoid's alpha value.</param>
+ 
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.ComponentModel.Activations.BipolarSigmoid.Function(System.Double)">
+ <summary>
+ Calculates function value.
+ </summary>
+
+ <param name="x">Function input value.</param>
+ 
+ <returns>Function output value, <i>f(x)</i>.</returns>
+
+ <remarks>The method calculates function value at point <paramref name="x"/>.</remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.ComponentModel.Activations.BipolarSigmoid.Derivative(System.Double)">
+ <summary>
+ Calculates function derivative.
+ </summary>
+ 
+ <param name="x">Function input value.</param>
+ 
+ <returns>Function derivative, <i>f'(x)</i>.</returns>
+ 
+ <remarks>The method calculates function derivative at point <paramref name="x"/>.</remarks>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.ComponentModel.Activations.HyperbolicTangent">
+ <summary>
+ 
+ </summary>
+ <remarks>
+ ```
+         e ^ x - e ^ -x
+ f(x) = -----------------
+         e ^ x + e ^ -x
+ 
+ ```
+ </remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.ComponentModel.Activations.HyperbolicTangent.Function(System.Double)">
+ <summary>
+ 这个函数接受的参数应该是一个弧度值
+ </summary>
+ <param name="x"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.ComponentModel.Activations.HyperbolicTangent.Derivative(System.Double)">
+ <summary>
+ 这个函数所接受的参数也是一个弧度值
+ </summary>
+ <param name="x"></param>
+ <returns></returns>
+ 
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.ComponentModel.Activations.ReLU.ReLU(System.Double[])">
+ <summary>
+ ReLU activator function will clip the negative value as zero
+ </summary>
+ <param name="x"></param>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.ComponentModel.Activations.Sigmoid">
+ <summary>
+ Sigmoid activation function.
+ </summary>
+
+ <remarks><para>The class represents sigmoid activation function with
+ the next expression:
+ <code lang="none">
+                1
+ f(x) = ------------------
+        1 + exp(-alpha * x)
+
+           alpha * exp(-alpha * x )
+ f'(x) = ---------------------------- = alpha * f(x) * (1 - f(x))
+           (1 + exp(-alpha * x))^2
+ </code>
+ </para>
+
+ <para>Output range of the function: <b>[0, 1]</b>.</para>
+ 
+ <para>Functions graph:</para>
+ <img src="img/neuro/sigmoid.bmp" width="242" height="172" />
+ </remarks>
+ 
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.ComponentModel.Activations.Sigmoid.Alpha">
+ <summary>
+ Sigmoid's alpha value.
+ </summary>
+ 
+ <remarks><para>The value determines steepness of the function. Increasing value of
+ this property changes sigmoid to look more like a threshold function. Decreasing
+ value of this property makes sigmoid to be very smooth (slowly growing from its
+ minimum value to its maximum value).</para>
+
+ <para>Default value is set to <b>2</b>.</para>
+ </remarks>
+ 
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.ComponentModel.Activations.Sigmoid.#ctor">
+ <summary>
+ Initializes a new instance of the <see cref="T:Microsoft.VisualBasic.MachineLearning.ComponentModel.Activations.Sigmoid"/> class.
+ </summary>
+ <remarks>
+ subclass of <see cref="T:Microsoft.VisualBasic.MachineLearning.ComponentModel.Activations.IActivationFunction"/>
+ </remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.ComponentModel.Activations.Sigmoid.#ctor(System.Double)">
+ <summary>
+ Initializes a new instance of the <see cref="T:Microsoft.VisualBasic.MachineLearning.ComponentModel.Activations.Sigmoid"/> class.
+ </summary>
+ 
+ <param name="alpha">Sigmoid's alpha value.</param>
+ <remarks>
+ subclass of <see cref="T:Microsoft.VisualBasic.MachineLearning.ComponentModel.Activations.IActivationFunction"/>
+ </remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.ComponentModel.Activations.Sigmoid.Function(System.Double)">
+ <summary>
+ Calculates function value.
+ </summary>
+
+ <param name="x">Function input value.</param>
+ 
+ <returns>Function output value, <i>f(x)</i>.</returns>
+
+ <remarks>The method calculates function value at point <paramref name="x"/>.</remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.ComponentModel.Activations.Sigmoid.Derivative(System.Double)">
+ <summary>
+ Calculates function derivative.
+ </summary>
+ 
+ <param name="x">Function input value.</param>
+ 
+ <returns>Function derivative, <i>f'(x)</i>.</returns>
+ 
+ <remarks>The method calculates function derivative at point <paramref name="x"/>.</remarks>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.ComponentModel.Activations.SigmoidFunction">
+ <summary>
+ https://github.com/trentsartain/Neural-Network/blob/master/NeuralNetwork/NeuralNetwork/Network/Sigmoid.cs
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.ComponentModel.Activations.Threshold">
+ <summary>
+ Threshold activation function.
+ </summary>
+
+ <remarks><para>The class represents threshold activation function with
+ the next expression:
+ <code lang="none">
+ f(x) = 1, if x >= 0, otherwise 0
+ </code>
+ </para>
+ 
+ <para>Output range of the function: <b>[0, 1]</b>.</para>
+ 
+ <para>Functions graph:</para>
+ <img src="img/neuro/threshold.bmp" width="242" height="172" />
+ </remarks>
+
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.ComponentModel.Activations.Threshold.#ctor">
+ <summary>
+ Initializes a new instance of the <see cref="T:Microsoft.VisualBasic.MachineLearning.ComponentModel.Activations.Threshold"/> class.
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.ComponentModel.Activations.Threshold.Function(System.Double)">
+ <summary>
+ Calculates function value.
+ </summary>
+
+ <param name="x">Function input value.</param>
+ 
+ <returns>Function output value, <i>f(x)</i>.</returns>
+
+ <remarks>The method calculates function value at point <paramref name="x"/>.</remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.ComponentModel.Activations.Threshold.Derivative(System.Double)">
+ <summary>
+ Calculates function derivative (not supported).
+ </summary>
+ 
+ <param name="x">Input value.</param>
+ 
+ <returns>Always returns 0.</returns>
+ 
+ <remarks><para><note>The method is not supported, because it is not possible to
+ calculate derivative of the function.</note></para></remarks>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.ComponentModel.Activations.IActivationFunction">
+ <summary>
+ Activation function interface.
+ </summary>
+ <remarks>
+ All activation functions, which are supposed to be used with
+ neurons, which calculate their output as a function of weighted sum of
+ their inputs, should implement this interfaces.
+ </remarks>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.ComponentModel.Activations.IActivationFunction.Truncate">
+ <summary>
+ 因为激活函数在求导之后,结果值可能会出现无穷大
+ 所以可以利用这个值来限制求导之后的结果最大值
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.ComponentModel.Activations.IActivationFunction.Function(System.Double)">
+ <summary>
+ Calculates function value.
+ </summary>
+ <param name="x">Function input value.</param>
+ <returns>Function output value, <i>f(x)</i>.</returns>
+ <remarks>
+ The method calculates function value at point <paramref name="x"/>.
+ </remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.ComponentModel.Activations.IActivationFunction.Derivative(System.Double)">
+ <summary>
+ Calculates function derivative.
+ </summary>
+ <param name="x">Function input value.</param>
+ <returns>Function derivative, <i>f'(x)</i>.</returns>
+ <remarks>
+ The method calculates function derivative at point <paramref name="x"/>.
+ </remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.ComponentModel.Activations.IActivationFunction.ToString">
+ <summary>
+ 必须要重写这个函数来将函数对象序列化为表达式字符串文本
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.ComponentModel.StoreProcedure.DataSet">
+ <summary>
+ A training dataset that stored in XML file.
+ </summary>
+ <remarks>
+ 一般只需要生成这个数据对象, 之后就可以直接使用这个对象来进行统一的训练代码调用即可
+ </remarks>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.ComponentModel.StoreProcedure.DataSet.DataSamples">
+ <summary>
+ the training data samples
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.ComponentModel.StoreProcedure.DataSet.NormalizeMatrix">
+ <summary>
+ 主要是对<see cref="P:Microsoft.VisualBasic.MachineLearning.ComponentModel.StoreProcedure.Sample.label"/>输入向量进行``[0, 1]``区间内的归一化操作
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.ComponentModel.StoreProcedure.DataSet.output">
+ <summary>
+ The element names of output vector
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.ComponentModel.StoreProcedure.DataSet.Size">
+ <summary>
+ 样本的矩阵大小：``[属性长度, 样本数量]``
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.ComponentModel.StoreProcedure.DataSet.OutputSize">
+ <summary>
+ 神经网络的输出节点的数量
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.ComponentModel.StoreProcedure.DataSet.PopulateNormalizedSamples(Microsoft.VisualBasic.DataMining.ComponentModel.Normalizer.Methods,System.Int32)">
+ <summary>
+ Populates all of the normalized training dataset from current matrix data object.
+ </summary>
+ <param name="dummyExtends">
+ This function will extends <see cref="P:Microsoft.VisualBasic.MachineLearning.ComponentModel.StoreProcedure.Sample.target"/> when this parameter is greater than ZERO.
+ </param>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.ComponentModel.StoreProcedure.NamespaceDoc">
+ <summary>
+ A common dataset for machine learnings
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.ComponentModel.StoreProcedure.NormalizeMatrix">
+ <summary>
+ A matrix for make the sample input normalized.(进行所输入的样本数据的归一化的矩阵)
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.ComponentModel.StoreProcedure.NormalizeMatrix.matrix">
+ <summary>
+ 每一个属性都具有一个归一化区间
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.ComponentModel.StoreProcedure.NormalizeMatrix.names">
+ <summary>
+ 属性名称列表,这个序列的长度是和<see cref="P:Microsoft.VisualBasic.MachineLearning.ComponentModel.StoreProcedure.NormalizeMatrix.matrix"/>的长度一致的,并且元素的顺序一一对应的
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.ComponentModel.StoreProcedure.NormalizeMatrix.NormalizeInput(Microsoft.VisualBasic.MachineLearning.ComponentModel.StoreProcedure.Sample,Microsoft.VisualBasic.DataMining.ComponentModel.Normalizer.Methods)">
+ <summary>
+ Normalize the <paramref name="sample"/> inputs <see cref="P:Microsoft.VisualBasic.MachineLearning.ComponentModel.StoreProcedure.Sample.label"/> to value range ``[0, 1]``
+ </summary>
+ <param name="sample"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.ComponentModel.StoreProcedure.NormalizeMatrix.NormalizeInput(System.Collections.Generic.IEnumerable{System.Double},Microsoft.VisualBasic.DataMining.ComponentModel.Normalizer.Methods)">
+ <summary>
+ Normalize the <paramref name="sample"/> inputs <see cref="P:Microsoft.VisualBasic.MachineLearning.ComponentModel.StoreProcedure.Sample.label"/> to value range ``[0, 1]``
+ </summary>
+ <param name="sample"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.ComponentModel.StoreProcedure.NormalizeMatrix.CreateFromSamples(System.Collections.Generic.IEnumerable{Microsoft.VisualBasic.MachineLearning.ComponentModel.StoreProcedure.Sample},System.Collections.Generic.IEnumerable{System.String},System.Boolean)">
+ <summary>
+ 神经网络会要求输入的属性值之间是可以直接进行比较的,
+ 所以为了能够直接进行比较,
+ 在这里将sample的每一个属性都按列归一化为``[0,1]``之间的结果
+ </summary>
+ <param name="samples"></param>
+ <param name="names">The property names, not sample id names</param>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.ComponentModel.StoreProcedure.MLDataFrame">
+ <summary>
+ a collection of the samples data
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.ComponentModel.StoreProcedure.MLDataFrame.samples">
+ <summary>
+ a collection of the samples data.
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.ComponentModel.StoreProcedure.MLDataFrame.featureNames">
+ <summary>
+ the column name of the <see cref="P:Microsoft.VisualBasic.MachineLearning.ComponentModel.StoreProcedure.SampleData.features"/> 
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.ComponentModel.StoreProcedure.MLDataFrame.featureLabels">
+ <summary>
+ the column name of the <see cref="P:Microsoft.VisualBasic.MachineLearning.ComponentModel.StoreProcedure.SampleData.labels"/>
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.ComponentModel.StoreProcedure.SampleData">
+ <summary>
+ the in-memory sample data object
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.ComponentModel.StoreProcedure.SampleData.id">
+ <summary>
+ the unique id
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.ComponentModel.StoreProcedure.SampleData.#ctor(Microsoft.VisualBasic.MachineLearning.ComponentModel.StoreProcedure.Sample)">
+ <summary>
+ make data copy from the given sample object, this constructor will assign the id, 
+ features and labels from the given sample data object.
+ </summary>
+ <param name="sample"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.ComponentModel.StoreProcedure.SampleData.#ctor(System.Double[])">
+ <summary>
+ create the dataset for predictions, so no label data
+ </summary>
+ <param name="data"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.ComponentModel.StoreProcedure.SampleData.TransformDataset(Microsoft.VisualBasic.MachineLearning.ComponentModel.StoreProcedure.SampleData[],System.Boolean,System.Boolean)">
+ <summary>
+ make dataset normalization
+ </summary>
+ <param name="trainset"></param>
+ <param name="is_generative"></param>
+ <param name="is_training"></param>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.ComponentModel.StoreProcedure.Sample">
+ <summary>
+ The training dataset, a data point with known label
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.ComponentModel.StoreProcedure.Sample.ID">
+ <summary>
+ 可选的数据集唯一标记信息
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.ComponentModel.StoreProcedure.Sample.label">
+ <summary>
+ Neuron network input parameters
+ </summary>
+ <returns></returns>
+ <remarks>
+ 属性值可能会很长,为了XML文件的美观,在这里使用element
+ 
+ 20200318 there is a bugs in xml serialization of the double array elements
+ and the numeric value is also not suitable use text as file save format
+ so the data for this property is save with base64 encoded of the numeric 
+ array.
+ </remarks>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.ComponentModel.StoreProcedure.Sample.target">
+ <summary>
+ The network expected output values
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.ComponentModel.StoreProcedure.Sample.vector">
+ <summary>
+ sample features data
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.ComponentModel.StoreProcedure.Sample.#ctor(System.Double[],System.Double[],System.String)">
+ <summary>
+ Create a new training dataset
+ </summary>
+ <param name="values">Neuron network input parameters</param>
+ <param name="targets">The network expected output values</param>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.ComponentModel.StoreProcedure.Sample.#ctor">
+ <summary>
+ Create a new empty training dataset
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.ComponentModel.StoreProcedure.SampleHelper.dimension(System.Collections.Generic.IEnumerable{Microsoft.VisualBasic.MachineLearning.ComponentModel.StoreProcedure.SampleData},System.Int32)">
+ <summary>
+ get feature dimension
+ </summary>
+ <param name="samples"></param>
+ <param name="[dim]"></param>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.ComponentModel.StoreProcedure.SampleList">
+ <summary>
+ the <see cref="T:Microsoft.VisualBasic.MachineLearning.ComponentModel.StoreProcedure.Sample"/> collection
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.ComponentModel.StoreProcedure.SampleList.items">
+ <summary>
+ 样本列表
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.Darwinism.DifferentialEvolution">
+ <summary>
+ In evolutionary computation, differential evolution (DE) is a method that optimizes a problem by 
+ iteratively trying to improve a candidate solution with regard to a given measure of quality. 
+ Such methods are commonly known as metaheuristics as they make few or no assumptions about the 
+ problem being optimized and can search very large spaces of candidate solutions. However, 
+ metaheuristics such as DE do not guarantee an optimal solution is ever found.
+ 
+ DE Is used For multidimensional real-valued functions but does Not use the gradient Of the problem 
+ being optimized, which means DE does Not require For the optimization problem To be differentiable 
+ As Is required by classic optimization methods such As gradient descent And quasi-newton methods. 
+ DE can therefore also be used On optimization problems that are Not even continuous, are noisy, 
+ change over time, etc.[1]
+ 
+ DE optimizes a problem by maintaining a population Of candidate solutions And creating New candidate 
+ solutions by combining existing ones according To its simple formulae, And Then keeping whichever 
+ candidate solution has the best score Or fitness On the optimization problem at hand. In this way 
+ the optimization problem Is treated As a black box that merely provides a measure Of quality given 
+ a candidate solution And the gradient Is therefore Not needed.
+ 
+ DE Is originally due To Storn And Price.[2][3] Books have been published On theoretical And practical 
+ aspects Of Using DE In parallel computing, multiobjective optimization, constrained optimization, 
+ And the books also contain surveys of application areas.[4][5][6][7] Excellent surveys on the 
+ multi-faceted research aspects of DE can be found in journal articles Like.[8][9]
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.Darwinism.DifferentialEvolution.GetPopulation``1(Microsoft.VisualBasic.MachineLearning.Darwinism.DifferentialEvolution.New{``0},System.Int32,Microsoft.VisualBasic.Math.IRandomSeeds)">
+ <summary>
+ Initialize population with individuals that have been initialized with uniform random noise
+ uniform noise means random value inside your search space
+ </summary>
+ <param name="newIndividual"></param>
+ <param name="popSize%"></param>
+ <returns></returns>
+ 
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.Darwinism.DifferentialEvolution.Evolution``1(System.Func{``0,System.Double},Microsoft.VisualBasic.MachineLearning.Darwinism.DifferentialEvolution.New{``0},System.Int32,System.Double,System.Double,System.Double,System.Int32,System.Int32,System.Action{Microsoft.VisualBasic.MachineLearning.Darwinism.GAF.outPrint},System.Boolean,Microsoft.VisualBasic.Math.IRandomSeeds)">
+ <summary>
+ 
+ </summary>
+ <typeparam name="Individual"></typeparam>
+ <param name="target"></param>
+ <param name="[new]">How to creates a new <typeparamref name="Individual"/></param>
+ <param name="N%">dimensionality of problem, means how many variables problem has.</param>
+ <param name="threshold#"></param>
+ <param name="maxIterations%"></param>
+ <param name="F">differential weight [0,2]</param>
+ <param name="CR">crossover probability [0,1]</param>
+ <param name="PopulationSize%"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.Darwinism.DifferentialEvolution.subPopulationEvolute``1(``0[],System.Double,System.Int32,System.Double,System.Double,System.Int32,System.Action{Microsoft.VisualBasic.MachineLearning.Darwinism.GAF.outPrint},System.Func{``0,System.Boolean,System.Double},System.Random)">
+ <summary>
+ 
+ </summary>
+ <typeparam name="Individual"></typeparam>
+ <param name="population"></param>
+ <param name="F#"></param>
+ <param name="N%"></param>
+ <param name="CR#"></param>
+ <param name="bestFit#"></param>
+ <param name="iterates%">i</param>
+ <param name="iteratePrints"></param>
+ <param name="fitnessFunction"></param>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.Darwinism.GAF.EnvironmentDriver`1">
+ <summary>
+ 发生种群进化所需要的环境压力产生器
+ </summary>
+ <typeparam name="Chr"></typeparam>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.Darwinism.GAF.EnvironmentDriver`1.Iterations">
+ <summary>
+ 需要运行的总的迭代次数
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.Darwinism.GAF.EnvironmentDriver`1.BestModel">
+ <summary>
+ get the <see cref="P:Microsoft.VisualBasic.MachineLearning.Darwinism.GAF.GeneticAlgorithm`1.Best"/>
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.Darwinism.GAF.EnvironmentDriver`1.#ctor(Microsoft.VisualBasic.MachineLearning.Darwinism.GAF.GeneticAlgorithm{`0},System.Action{`0,System.Double},System.Int32)">
+ <summary>
+ 创建一个新的环境压力驱动程序,用来驱动模型的进化学习
+ </summary>
+ <param name="ga"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.Darwinism.GAF.EnvironmentDriver`1.Terminate">
+ <summary>
+ 
+ </summary>
+ <example>
+ ' If fitness is satisfying - we can stop Genetic algorithm
+ 
+ If bestFit &lt;= Threshold Then
+     Call ga.Terminate()
+ End If
+ </example>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.Darwinism.GAF.Fitness`1">
+ <summary>
+ A function wrapper for calculate genome fitness in current environment.
+ 
+ (描述了如何从将目标染色体计算为fitness，从而能够量化突变带来的的优点)
+ </summary>
+ <typeparam name="Chr">
+ 这个泛型类型应该是集成至<see cref="T:Microsoft.VisualBasic.MachineLearning.Darwinism.Models.Chromosome`1"/>,但是为了兼容``DifferentialEvolution``
+ 模块计算函数的类型约束,在这里就不添加约束了
+ </typeparam>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.Darwinism.GAF.Fitness`1.Cacheable">
+ <summary>
+ 这个计算模块是否会缓存计算结果?
+ </summary>
+ <returns></returns>
+ <remarks>
+ the result is cached by the unique id of the target chr
+ </remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.Darwinism.GAF.Fitness`1.Calculate(`0,System.Boolean)">
+ <summary>
+ Assume that ``chromosome1`` is better than ``chromosome2``
+ 
+ ```vbnet
+ fit1 = calculate(chromosome1)
+ fit2 = calculate(chromosome2)
+ ```
+ 
+ So the following condition must be true:
+ 
+ ```vbnet
+ fit1.compareTo(fit2) &lt;= 0
+ ```
+ 
+ (假若是并行模式的之下，还要求这个函数是线程安全的)
+ </summary>
+ <param name="parallel">
+ 在计算函数的内部是否是应该是并行的?
+ 
+ 应该遵循以下的准则:
+ 
+ 1. 如果外部调用这个计算函数是并行的,那么这个parallel参数应该设置为false
+ 2. 如果是单线程的外部代码调用这个计算函数,那么这个parallel参数可以是true,即在函数的内部实现并行化
+ </param>
+ <remarks>
+ smaller value is better
+ </remarks>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.Darwinism.GAF.GeneticAlgorithm`1">
+ <summary>
+ The GA engine core
+ </summary>
+ <typeparam name="Chr"></typeparam>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.Darwinism.GAF.GeneticAlgorithm`1.population">
+ <summary>
+ 因为在迭代的过程中，旧的种群会被新的种群所替代
+ 所以在这里不可以加readonly修饰
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.Darwinism.GAF.GeneticAlgorithm`1.ParentChromosomesSurviveCount">
+ <summary>
+ Number of parental chromosomes, which survive (and move to new
+ population)
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.Darwinism.GAF.GeneticAlgorithm`1.#ctor(Microsoft.VisualBasic.MachineLearning.Darwinism.GAF.Population.Population{`0},Microsoft.VisualBasic.MachineLearning.Darwinism.GAF.Fitness{`0},Microsoft.VisualBasic.MachineLearning.Darwinism.GAF.Population.SubstitutionStrategy.Strategies,Microsoft.VisualBasic.Math.IRandomSeeds,System.Int32,Microsoft.VisualBasic.MachineLearning.Darwinism.GAF.Population.PopulationCollectionCreator{`0})">
+ <summary>
+ 
+ </summary>
+ <param name="population"></param>
+ <param name="fitnessFunc">
+ Calculates the fitness of the mutated chromesome in <paramref name="population"/>
+ </param>
+ <param name="seeds">The random number generator.</param>
+ <param name="cacheSize">
+ -1 means no cache
+ </param>
+ <param name="replacementStrategy">Strategy for new population replace the old population.
+ </param>
+ <param name="createPopulation">By default is create with <see cref="T:Microsoft.VisualBasic.MachineLearning.Darwinism.GAF.Population.PopulationList`1"/></param>
+ <remarks>
+ Just put the model that implements the <see cref="T:Microsoft.VisualBasic.MachineLearning.Darwinism.GAF.Fitness`1"/>, the
+ <see cref="T:Microsoft.VisualBasic.MachineLearning.Darwinism.Models.FitnessPool`1"/> will be created automatically in this 
+ constructor function.
+ </remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.Darwinism.GAF.GeneticAlgorithm`1.Evolve">
+ <summary>
+ 完成一次种群的迭代进化
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.Darwinism.GAF.GeneticAlgorithm`1.evolIterate(System.Int32)">
+ <summary>
+ 并行化过程之中的单个迭代
+ </summary>
+ <param name="i">种群之中的个体的序号,也就是即将发生的目标个体</param>
+ <returns></returns>
+ <remarks>
+ 进化发生的契机是个体的突变,这体现在
+
+ 1. 个体的基因组的变异,可能产生错误率更低的新个体
+ 2. 突变体和其他个体随机杂交,可能会产生错误率更低的新个体
+
+ 在这个函数中,需要完成的就是这两种突变的发生
+ </remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.Darwinism.GAF.GeneticAlgorithm`1.GetFitness(`0)">
+ <summary>
+ 调用这个函数的代码应该是非并行的
+ </summary>
+ <param name="chromosome"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.Darwinism.GAF.GeneticAlgorithm`1.UpdateMutationRate(System.Double)">
+ <summary>
+ 更新种群中的每一个个体的突变变异程度
+ </summary>
+ <param name="newRate"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.Darwinism.GAF.GeneticAlgorithm`1.Clear">
+ <summary>
+ Clear the internal cache
+ </summary>
+ 
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.Darwinism.GAF.Helper.GeneticHelper">
+ <summary>
+ 在这个模块之中,涉及到<see cref="T:Microsoft.VisualBasic.Math.LinearAlgebra.SparseVector"/>的所有函数都是应用于处理非常大的系统而构建的
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.Darwinism.GAF.Helper.GeneticHelper.Mutate(System.Double[]@,System.Random,System.Int32,System.Double)">
+ <summary>
+ Returns clone of current chromosome, which is mutated a bit
+ </summary>
+ <param name="v#"></param>
+ <param name="random"></param>
+ <param name="index">
+ + 如果这个坐标参数大于等于零,则会直接按照这个坐标值对指定位置的目标进行突变
+ + 反之小于零的时候,则是随机选取一个位置的目标进行突变
+ </param>
+ <remarks>
+ 在进行突变的时候应该是按照给定的范围来进行突变的
+ </remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.Darwinism.GAF.Helper.GeneticHelper.ByteMutate(System.Int32[]@,System.Random)">
+ <summary>
+ 这个函数不是数值变化，而是位值的变化，原来的某位数值为1，则突变后为零，原来某位数值为0，则突变之后为1
+ </summary>
+ <param name="v%"></param>
+ <param name="random"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.Darwinism.GAF.Helper.GeneticHelper.Crossover``1(System.Random,``0[]@,``0[]@)">
+ <summary>
+ Returns list of siblings 
+ Siblings are actually new chromosomes, 
+ created using any of crossover strategy
+ 
+ (两个向量的长度必须要一致, 输入的两个数组参数会被同时修改值)
+ </summary>
+ <param name="random"></param>
+ <param name="v1"></param>
+ <param name="v2"></param>
+ <remarks>
+ the size of <paramref name="v1"/> and <paramref name="v2"/> should be equals to each other!
+ </remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.Darwinism.GAF.Helper.GeneticHelper.Crossover(System.Random,Microsoft.VisualBasic.Math.LinearAlgebra.HalfVector@,Microsoft.VisualBasic.Math.LinearAlgebra.HalfVector@)">
+ <summary>
+ Returns list of siblings 
+ Siblings are actually new chromosomes, 
+ created using any of crossover strategy
+ 
+ (两个向量的长度必须要一致, 输入的两个数组参数会被同时修改值)
+ </summary>
+ <param name="random"></param>
+ <param name="v1#"></param>
+ <param name="v2#"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.Darwinism.GAF.Helper.InitializationHelper.InitialPopulation``1(``0,System.Int32,System.Boolean,System.Boolean,System.Boolean)">
+ <summary>
+ The simplest strategy for creating initial population <br/>
+ in real life it could be more complex.
+ </summary>
+ <param name="parallel">
+ sort the population in ga algorithm in parallel?
+ </param>
+ <param name="parallelInitialize">
+ generates the initial population in parallel?
+ </param>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.Darwinism.GAF.Helper.InitializationHelper.InitialPopulation``1(``0,System.Int32,Microsoft.VisualBasic.MachineLearning.Darwinism.GAF.Population.ParallelComputeFitness{``0},System.Boolean,System.Boolean)">
+ <summary>
+ The simplest strategy for creating initial population <br/>
+ in real life it could be more complex.
+ </summary>
+ <param name="parallel">
+ sort the population in ga algorithm in parallel?
+ </param>
+ <param name="parallelInitialize">
+ generates the initial population in parallel?
+ </param>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.Darwinism.GAF.Helper.InitializationHelper.InitialPopulation``1(``0,Microsoft.VisualBasic.MachineLearning.Darwinism.GAF.Population.IPopulation{``0},System.Boolean,System.Boolean)">
+ <summary>
+ The simplest strategy for creating initial population <br/>
+ in real life it could be more complex.
+ 
+ (如果<paramref name="population"/>对象的构造函数所传递的fitness计算函数是False，则整个GA的计算过程为串行计算过程)
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.Darwinism.GAF.Population.PopulationCollection`1.OrderBy(System.Func{System.String,System.Double})">
+ <summary>
+ 按照fitness进行升序排序,fitness越小,排在越前面
+ </summary>
+ <param name="fitness"></param>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.Darwinism.GAF.Population.IPopulation`1.capacitySize">
+ <summary>
+ 种群的容量上限大小
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.Darwinism.GAF.Population.IPopulation`1.Add(`0)">
+ <summary>
+ Add chromosome
+ </summary>
+ <param name="chromosome"></param>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.Darwinism.GAF.Population.ParallelComputeFitness`1">
+ <summary>
+ implements this interface for create custom parallel 
+ compute api function for run the genetic algorithm
+ </summary>
+ <typeparam name="chr"></typeparam>
+ <remarks>
+ 遗传算法的主要限速步骤是在fitness的计算之上
+ </remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.Darwinism.GAF.Population.ParallelDataSetCompute`1.ComputeFitness(Microsoft.VisualBasic.MachineLearning.Darwinism.Models.FitnessPool{`0},Microsoft.VisualBasic.MachineLearning.Darwinism.GAF.Population.PopulationCollection{`0})">
+ <summary>
+ the parallel is running in fitness calculation function, so we run sequential at here.
+ </summary>
+ <param name="comparator">
+ parallel computation between the dataset in this fitness calculation
+ </param>
+ <param name="source"></param>
+ <returns></returns>
+</member>
+<member name="F:Microsoft.VisualBasic.MachineLearning.Darwinism.GAF.Population.Population`1.Pcompute">
+ <summary>
+ 主要是通过这个比较耗时的计算部分实现并行化来
+ 加速整个计算过程
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.Darwinism.GAF.Population.Population`1.parallel">
+ <summary>
+ 是否使用并行模式在排序之前来计算出fitness
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.Darwinism.GAF.Population.Population`1.Size">
+ <summary>
+ The number of chromosome elements in current population.
+ (请注意,这个属性的值是随着<see cref="M:Microsoft.VisualBasic.MachineLearning.Darwinism.GAF.Population.IPopulation`1.Add(`0)"/>方法的调用而变化的,
+ 如果只需要获取得到种群的固定大小,可以使用<see cref="P:Microsoft.VisualBasic.MachineLearning.Darwinism.GAF.Population.IPopulation`1.capacitySize"/>
+ 属性)
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.Darwinism.GAF.Population.Population`1.Random(System.Random)">
+ <summary>
+ Gets random chromosome
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.Darwinism.GAF.Population.Population`1.Item(System.Int32)">
+ <summary>
+ Gets chromosome by index
+ </summary>
+ <param name="index%"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.Darwinism.GAF.Population.Population`1.#ctor(Microsoft.VisualBasic.MachineLearning.Darwinism.GAF.Population.PopulationCollection{`0},Microsoft.VisualBasic.Language.Variant{Microsoft.VisualBasic.MachineLearning.Darwinism.GAF.Population.ParallelComputeFitness{`0},System.Boolean})">
+ <summary>
+ 如果<paramref name="parallel"/>参数不是空的，则会启用这个参数的并行计算
+ </summary>
+ <param name="parallel"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.Darwinism.GAF.Population.Population`1.SortPopulationByFitness(Microsoft.VisualBasic.MachineLearning.Darwinism.Models.FitnessPool{`0})">
+ <summary>
+ 这里是ODEs参数估计的限速步骤
+ </summary>
+ <param name="comparator"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.Darwinism.GAF.Population.Population`1.Add(`0)">
+ <summary>
+ Add chromosome
+ </summary>
+ <param name="chromosome"></param>
+ 
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.Darwinism.GAF.Population.Population`1.Trim(System.Int32)">
+ <summary>
+ shortening population till specific number
+ </summary>
+ 
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.Darwinism.GAF.Population.PopulationList`1.OrderBy(System.Func{System.String,System.Double})">
+ <summary>
+ Order by [unique_hashKey => fitness]
+ </summary>
+ <param name="fitness"></param>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.Darwinism.GAF.Population.SubstitutionStrategy.EliteReplacement`1">
+ <summary>
+ 种群的精英杂交更替策略
+ </summary>
+ <typeparam name="Chr"></typeparam>
+</member>
+<member name="F:Microsoft.VisualBasic.MachineLearning.Darwinism.GAF.Population.SubstitutionStrategy.EliteReplacement`1.top">
+ <summary>
+ top percentage to keeps as elite
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.Darwinism.GAF.Population.SubstitutionStrategy.EliteReplacement`1.newPopulation(Microsoft.VisualBasic.MachineLearning.Darwinism.GAF.Population.Population{`0},Microsoft.VisualBasic.MachineLearning.Darwinism.GAF.GeneticAlgorithm{`0})">
+ <summary>
+ 只保留10%的个体,然后这些个体杂交补充到种群的大小
+ </summary>
+ <param name="newPop"></param>
+ <param name="GA"></param>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.Darwinism.GAF.Population.SubstitutionStrategy.Strategies">
+ <summary>
+ enums of the population substitution strategies
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.Darwinism.GAF.Population.SubstitutionStrategy.SimpleReplacement`1">
+ <summary>
+ 最简单的种群更替策略
+ </summary>
+ <typeparam name="Chr"></typeparam>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.Darwinism.GAF.Population.SubstitutionStrategy.SimpleReplacement`1.newPopulation(Microsoft.VisualBasic.MachineLearning.Darwinism.GAF.Population.Population{`0},Microsoft.VisualBasic.MachineLearning.Darwinism.GAF.GeneticAlgorithm{`0})">
+ <summary>
+ 下面的两个步骤是机器学习的关键
+ 
+ 通过排序,将错误率最小的种群排在前面
+ 错误率最大的种群排在后面
+ 然后对种群进行裁剪,将错误率比较大的种群删除
+ 从而实现了择优进化, 即程序模型对我们的训练数据集产生了学习
+ </summary>
+ <param name="newPop"></param>
+ <param name="GA"></param>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.Darwinism.Models.Chromosome`1">
+ <summary>
+ In computer programming, genetic representation is a way of representing 
+ solutions/individuals in evolutionary computation methods. Genetic 
+ representation can encode appearance, behavior, physical qualities of 
+ individuals. Designing a good genetic representation that is expressive 
+ and evolvable is a hard problem in evolutionary computation. Difference 
+ in genetic representations is one of the major criteria drawing a line 
+ between known classes of evolutionary computation.
+
+ Terminology often comes by analogy With natural genetics. The block Of 
+ computer memory that represents one candidate solution Is called an individual. 
+ The data In that block Is called a chromosome. Each chromosome consists Of 
+ genes. The possible values Of a particular gene are called alleles. A 
+ programmer may represent all the individuals Of a population Using binary 
+ encoding, permutational encoding, encoding by tree, Or any one Of several 
+ other representations.
+
+ Genetic algorithms use linear binary representations. The most standard one 
+ Is an array Of bits. Arrays Of other types And structures can be used In 
+ essentially the same way. The main Property that makes these genetic 
+ representations convenient Is that their parts are easily aligned due To 
+ their fixed size. This facilitates simple crossover operation. Variable 
+ length representations were also explored In Genetic algorithms, but crossover 
+ implementation Is more complex In this Case.
+
+ Evolution strategy uses linear real-valued representations, e.g. an array 
+ Of real values. It uses mostly gaussian mutation And blending/averaging 
+ crossover.
+
+ Genetic programming(GP) pioneered tree-Like representations And developed 
+ genetic operators suitable For such representations. Tree-Like representations 
+ are used In GP To represent And evolve functional programs With desired 
+ properties.
+
+ Human-based genetic algorithm (HBGA) offers a way to avoid solving hard 
+ representation problems by outsourcing all genetic operators to outside 
+ agents, in this case, humans. The algorithm has no need for knowledge 
+ of a particular fixed genetic representation as long as there are enough 
+ external agents capable of handling those representations, allowing for 
+ free-form And evolving genetic representations.
+ </summary>
+ <typeparam name="Chr"></typeparam>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.Darwinism.Models.Chromosome`1.MutationRate">
+ <summary>
+ 突变的变异程度，这个值应该是位于(0, 1)闭区间内的
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.Darwinism.Models.Chromosome`1.Crossover(`0)">
+ <summary>
+ In genetic algorithms, crossover is a genetic operator used to vary the programming 
+ of a chromosome or chromosomes from one generation to the next. It is analogous to 
+ reproduction and biological crossover, upon which genetic algorithms are based. 
+ Cross over is a process of taking more than one parent solutions and producing a 
+ child solution from them. There are methods for selection of the chromosomes.
+ </summary>
+ <param name="another">The another chromosome.</param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.Darwinism.Models.Chromosome`1.Mutate">
+ <summary>
+ Mutation is a genetic operator used to maintain genetic diversity from one generation 
+ of a population of genetic algorithm chromosomes to the next. It is analogous to 
+ biological mutation. Mutation alters one or more gene values in a chromosome from its 
+ initial state. In mutation, the solution may change entirely from the previous solution. 
+ Hence GA can come to better solution by using mutation. Mutation occurs during evolution 
+ according to a user-definable mutation probability. This probability should be set low. 
+ If it is set too high, the search will turn into a primitive random search.
+
+ The classic example Of a mutation Operator involves a probability that an arbitrary bit 
+ In a genetic sequence will be changed from its original state. A common method Of 
+ implementing the mutation Operator involves generating a random variable For Each bit 
+ In a sequence. This random variable tells whether Or Not a particular bit will be modified. 
+ This mutation procedure, based On the biological point mutation, Is called Single point 
+ mutation. Other types are inversion And floating point mutation. When the gene encoding 
+ Is restrictive As In permutation problems, mutations are swaps, inversions, And scrambles.
+
+ The purpose Of mutation In GAs Is preserving And introducing diversity. Mutation should 
+ allow the algorithm To avoid local minima by preventing the population Of chromosomes 
+ from becoming too similar To Each other, thus slowing Or even stopping evolution. This 
+ reasoning also explains the fact that most GA systems avoid only taking the fittest Of 
+ the population In generating the Next but rather a random (Or semi-random) selection 
+ With a weighting toward those that are fitter.
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.Darwinism.Models.FitnessPool`1">
+ <summary>
+ Compute fitness and cache the result data in this pool.
+ </summary>
+ <typeparam name="Individual"></typeparam>
+ <remarks>
+ this fitness calculation pool is works for the genetic algorithm module
+ </remarks>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.Darwinism.Models.GeneralFitnessPool`1">
+ <summary>
+ Compute fitness and cache the result data in this pool.
+ </summary>
+ <typeparam name="Individual"></typeparam>
+ <remarks>
+ works for genetic algorithm and <see cref="T:Microsoft.VisualBasic.MachineLearning.Darwinism.DifferentialEvolution"/>
+ </remarks>
+</member>
+<member name="F:Microsoft.VisualBasic.MachineLearning.Darwinism.Models.GeneralFitnessPool`1.cache">
+ <summary>
+ A fitness cache pool indexed via the unique id of target
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.Darwinism.Models.GeneralFitnessPool`1.#ctor(Microsoft.VisualBasic.MachineLearning.Darwinism.GAF.Fitness{`0},System.Int32,System.Func{`0,System.String})">
+ <summary>
+ </summary>
+ <param name="cacl">Expression for descript how to calculate the fitness.</param>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.Darwinism.Models.GeneralFitnessPool`1.Fitness(`0,System.Boolean)">
+ <summary>
+ This function tells how well given individual performs at given problem.
+ </summary>
+ <param name="[in]"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.Darwinism.Models.GeneralFitnessPool`1.Clear">
+ <summary>
+ Clear all cache data.
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.Extensions.ValueTruncate(System.Double,System.Double)">
+ <summary>
+ 对值进行约束剪裁
+ </summary>
+ <param name="value#"></param>
+ <param name="truncate">
+ the absolute value of the limitation.(修建的阈值应该是一个正实数来的)
+ </param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.Extensions.Delta(System.Double,System.Double)">
+ <summary>
+ Generate small delta for GA mutations
+ </summary>
+ <param name="x#"></param>
+ <param name="d#"></param>
+ <returns></returns>
+ <remarks>
+ 1 = 10 ^ 0  ~  0.1 = 10 ^ 1 * 0.1
+ 10 = 10 ^ 1  ~ 1 = 10 ^ 2 * 0.1
+ </remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.Extensions.ToDataMatrix``1(System.Collections.Generic.IEnumerable{Microsoft.VisualBasic.MachineLearning.ComponentModel.StoreProcedure.Sample},System.String[],System.String[])">
+ <summary>
+ Convert samples data to dataset matrix
+ </summary>
+ <typeparam name="T">The type of the target output dataset.</typeparam>
+ <param name="samples"></param>
+ <param name="names">The property names of the sample data vector.</param>
+ <param name="outputNames">The property names of the output vector for each sample</param>
+ <returns>
+ data layout of the populated matrix row:
+ 
+ ```
+ ID|names|outputNames
+ ```
+ </returns>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.IterationReporter`1">
+ <summary>
+ 用于报告基于迭代的机器学习算法的状态进度之类的信息的框架
+ </summary>
+ <remarks>
+ 这个对象模块应该是应用于训练部分的模块
+ </remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.IterationReporter`1.AttachReporter(Microsoft.VisualBasic.MachineLearning.IterationReporter{`0}.DoReport)">
+ <summary>
+ Attach the delegate function DoReport(iteration%, error#, model As <typeparamref name="T"/>)
+ </summary>
+ <param name="reporter"></param>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.Model">
+ <summary>
+ the base type of the machine learning model
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.QLearning.Action">
+ <summary>
+ One specific environment state have some possible actions,
+ but there is just one best action on the current environment state based on the accumulate q-values
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.QLearning.Action.EnvirState">
+ <summary>
+ The environment variables state as inputs for the machine.
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.QLearning.Action.Qvalues">
+ <summary>
+ Actions for the current state.
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.QLearning.Action.ToString">
+ <summary>
+ Environment -> actions' Q-values
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.QLearning.DataModel.QModel">
+ <summary>
+ Data model of the <see cref="T:Microsoft.VisualBasic.MachineLearning.QLearning.QTable`1"/>, you can using this object to stores the trained QL_AI into a file.
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.QLearning.DataModel.IndexCurve">
+ <summary>
+ 属性是时间
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.QLearning.QLearning`1">
+ <summary>
+ Q Learning sample class <br/>
+ <b>The goal of this code sample is for the character @ to reach the goal area G</b> <br/>
+ compile using "javac QLearning.java" <br/>
+ test using "java QLearning" <br/>
+ 
+ @author A.Liapis (Original author), A. Hartzen (2013 modifications) 
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.QLearning.QLearning`1.GoalRewards">
+ <summary>
+ 目标达成所得到的奖励
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.QLearning.QLearning`1.GoalPenalty">
+ <summary>
+ 目标没有达成的罚分
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.QLearning.QLearning`1.ActionRange">
+ <summary>
+ The size of the <see cref="T:Microsoft.VisualBasic.MachineLearning.QLearning.QTable`1"/>
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.QLearning.QLearning`1.run(System.Int32)">
+ <summary>
+ Takes a action for the agent.
+ </summary>
+ <param name="i">Iteration counts.</param>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.QLearning.QLearning`1.reset(System.Int32)">
+ <summary>
+ If the <see cref="P:Microsoft.VisualBasic.MachineLearning.QLearning.QLearning`1.GoalReached"/> then reset and continute learning.
+ </summary>
+ <param name="i">机器学习的当前的迭代次数</param>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.QLearning.QLearning`1.finishQLearn">
+ <summary>
+ You can save you Q table by overrides at here.
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.QLearning.IQStateFeatureSet">
+ <summary>
+ interface helper for write cdf model file
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.QLearning.QState`1">
+ <summary>
+ 
+ </summary>
+ <typeparam name="T">Status object</typeparam>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.QLearning.QState`1.State">
+ <summary>
+ 假若操作不会涉及到数据修改，请使用这个属性来减少性能的损失，<see cref="P:Microsoft.VisualBasic.MachineLearning.QLearning.QState`1.Current"/>属性返回的值和本属性是一样的，
+ 只不过<see cref="P:Microsoft.VisualBasic.MachineLearning.QLearning.QState`1.Current"/>属性是从<see cref="M:System.ICloneable.Clone"/>方法得到的数据，所以性能方面会有损失
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.QLearning.QState`1.Current">
+ <summary>
+ map before the action is taken, clone object: <see cref="M:System.ICloneable.Clone"/>
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.QLearning.QState`1.GetNextState(System.Int32)">
+ <summary>
+ Gets the <see cref="P:Microsoft.VisualBasic.MachineLearning.QLearning.QState`1.Current"/> states.
+ Returns the map state which results from an initial map state after an
+ action is applied. In case the action is invalid, the returned map is the
+ same as the initial one (no move). </summary>
+ <param name="action"> taken by the avatar ('@') </param>
+ <returns> resulting map after the action is taken </returns>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.QLearning.QTable`1">
+ <summary>
+ The heart of the Q-learning algorithm, the QTable contains the table
+ which maps states, actions and their Q values. This class has elaborate
+ documentation, and should be the focus of the students' body of work
+ for the purposes of this tutorial.
+
+ @author A.Liapis (Original author), A. Hartzen (2013 modifications); xie.guigang@gcmodeller.org (2016 modifications)
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.QLearning.QTable`1.Table">
+ <summary>
+ the table variable stores the Q-table, where the state is saved
+ directly as the actual map. Each map state has an array of Q values
+ for all the actions available for that state.
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.QLearning.QTable`1.ActionRange">
+ <summary>
+ the actionRange variable determines the number of actions available
+ at any map state, and therefore the number of Q values in each entry
+ of the Q-table.
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.QLearning.QTable`1.ExplorationChance">
+ <summary>
+ for e-greedy Q-learning, when taking an action a random number is
+ checked against the explorationChance variable: if the number is
+ below the explorationChance, then exploration takes place picking
+ an action at random. Note that the explorationChance is not a final
+ because it is customary that the exploration chance changes as the
+ training goes on.
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.QLearning.QTable`1.GammaValue">
+ <summary>
+ the discount factor is saved as the gammaValue variable. The
+ discount factor determines the importance of future rewards.
+ If the gammaValue is 0 then the AI will only consider immediate
+ rewards, while with a gammaValue near 1 (but below 1) the AI will
+ try to maximize the long-term reward even if it is many moves away.
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.QLearning.QTable`1.LearningRate">
+ <summary>
+ the learningRate determines how new information affects accumulated
+ information from previous instances. If the learningRate is 1, then
+ the new information completely overrides any previous information.
+ Note that the learningRate is not a final because it is
+ customary that the learningRate changes as the
+ training goes on.
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.MachineLearning.QLearning.QTable`1.previousState">
+ <summary>
+ Since in Q-learning the updates to the Q values are made ONE STEP
+ LATE, the state of the world when the action resulting in the reward
+ was made must be stored.
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.MachineLearning.QLearning.QTable`1.previousAction">
+ <summary>
+ Since in Q-learning the updates to the Q values are made ONE STEP
+ LATE, the index of the action which resulted in the reward must be
+ stored.
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.QLearning.QTable`1.#ctor(System.Int32)">
+ <summary>
+ Q table constructor, initiates variables. </summary>
+ <param name="actionRange"> number of actions available at any map state </param>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.QLearning.QTable`1.NextAction(`0)">
+ <summary>
+ For this example, the getNextAction function uses an e-greedy
+ approach, having exploration happen if the exploration chance
+ is rolled.
+ ( **** 请注意，这个函数所返回的值为最佳选择的Index编号，所以可能还需要进行一些转换 **** )
+ </summary>
+ <param name="map"> current map (state) </param>
+ <returns> the action to be taken by the calling program </returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.QLearning.QTable`1.getBestAction(`0)">
+ <summary>
+ The getBestAction function uses a greedy approach for finding
+ the best action to take. Note that if all Q values for the current
+ state are equal (such as all 0 if the state has never been visited
+ before), then getBestAction will always choose the same action.
+ If such an action is invalid, this may lead to a deadlock as the
+ map state never changes: for situations like these, exploration
+ can get the algorithm out of this deadlock.
+ </summary>
+ <param name="map"> current map (state) </param>
+ <returns> the action with the highest Q value </returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.QLearning.QTable`1.explore">
+ <summary>
+ The explore function is called for e-greedy algorithms.
+ It can choose an action at random from all available,
+ or can put more weight towards actions that have not been taken
+ as often as the others (most unknown).
+ </summary>
+ <returns> index of action to take </returns>
+ <remarks>在这里得到可能的下一步的动作的在动作列表里面编号值， Index</remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.QLearning.QTable`1.UpdateQvalue(System.Int32,`0)">
+ <summary>
+ The updateQvalue is the heart of the Q-learning algorithm. Based on
+ the reward gained by taking the action prevAction while being in the
+ state prevState, the updateQvalue must update the Q value of that
+ {prevState, prevAction} entry in the Q table. In order to do that,
+ the Q value of the best action of the current map state must also
+ be calculated.
+ </summary>
+ <param name="reward"> at the current map state </param>
+ <param name="map"> current map state (for finding the best action of the
+ current map state) </param>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.QLearning.QTable`1.MapToString(`0)">
+ <summary>
+ This helper function is used for entering the map state into the
+ HashMap </summary>
+ <param name="map"> </param>
+ <returns> String used as a key for the HashMap </returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.QLearning.QTable`1.getActionsQValues(`0)">
+ <summary>
+ The getActionsQValues function returns an array of Q values for
+ all the actions available at any state. Note that if the current
+ map state does not already exist in the Q table (never visited
+ before), then it is initiated with Q values of 0 for all of the
+ available actions.
+ </summary>
+ <param name="map"> current map (state) </param>
+ <returns> an array of Q values for all the actions available at any state </returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.QLearning.QTable`1.GetValues(`0)">
+ <summary>
+ Helper function to find the Q-values of a given map state.
+ </summary>
+ <param name="map"> current map (state) </param>
+ <returns> the Q-values stored of the Qtable entry of the map state, otherwise null if it is not found </returns>
+</member>
+<member name="F:Microsoft.VisualBasic.MachineLearning.RandomForests.Branch.status">
+ <summary>
+ 'F' for final branch
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.RandomForests.Branch.getMean(System.Double[])">
+ <summary>
+ This method returns the SNP for a given position.
+  It needs as arguments:
+  @arg position, the position of the SNP in the genomic combination
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.RandomForests.Branch.getClass(System.Double[])">
+ <summary>
+ This method returns the SNP for a given position.
+  It needs as arguments:
+  @arg position, the position of the SNP in the genomic combination
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.RandomForests.Branch.getMSE(System.Double[])">
+ <summary>
+ This method returns the SNP for a given position.
+  It needs as arguments:
+  @arg position, the position of the SNP in the genomic combination
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.RandomForests.Branch.getMissClass(System.Double[])">
+ <summary>
+ This method returns the SNP for a given position.
+  It needs as arguments:
+  @arg position, the position of the SNP in the genomic combination
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.RandomForests.LF_c">
+ <summary>
+ Loss function used for continuous features
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.RandomForests.Data">
+ <summary>
+ the training dataset
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.RandomForests.Data.phenotype">
+ <summary>
+ the actual label
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.RandomForests.Data.attributeNames">
+ <summary>
+ the feature names
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.RandomForests.LossFunction">
+ <summary>
+ This class provides a method to calculate the Loss function of a given attribute.
+ The method implements two sort of loss functions: 
+  	Info Gain (type=1) for classified covariates
+  	MSE (type=2)for continuous covariates.
+  	Pseudo-Huber Loss function (type=3).
+  	Cost function on misclassification (type=4) for classification problems.
+  	Gini index (type=5).
+ 
+  More Loss functions can be added in the future.
+ 
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.RandomForests.NamespaceDoc">
+ <summary>
+ # Random Forests
+ 
+ ## Overview
+ 
+ We assume that the user knows about the construction Of Single classification trees. Random Forests 
+ grows many classification trees. To classify a New Object from an input vector, put the input vector 
+ down Each Of the trees In the forest. Each tree gives a classification, And we say the tree "votes" 
+ For that Class. The forest chooses the classification having the most votes (over all the trees In 
+ the forest).
+ 
+ Each tree Is grown as follows
+ 
+ + If the number Of cases In the training Set Is N, sample N cases at random - but With replacement, 
+   from the original data. This sample will be the training Set For growing the tree.
+ + If there are M input variables, a number ``m&lt;&lt;M`` Is specified such that at Each node, m 
+   variables are selected at random out Of the M And the best split On these m Is used To split the node. 
+   The value Of m Is held constant during the forest growing.
+ + Each tree Is grown to the largest extent possible. There Is no pruning.
+ 
+ In the original paper on random forests, it was shown that the forest error rate depends on two things:
+ 
+ + The correlation between any two trees In the forest. Increasing the correlation increases the forest 
+   Error rate.
+ + The strength Of Each individual tree In the forest. A tree With a low Error rate Is a strong classifier. 
+   Increasing the strength Of the individual trees decreases the forest Error rate.
+ 
+ Reducing m reduces both the correlation And the strength. Increasing it increases both. Somewhere In 
+ between Is an "optimal" range Of m - usually quite wide. Using the oob Error rate (see below) a value 
+ Of m In the range can quickly be found. This Is the only adjustable parameter To which random forests 
+ Is somewhat sensitive.
+ 
+ ## Features of Random Forests
+ 
+ + It Is unexcelled in accuracy among current algorithms.
+ + It runs efficiently On large data bases.
+ + It can handle thousands Of input variables without variable deletion.
+ + It gives estimates Of what variables are important In the classification.
+ + It generates an internal unbiased estimate Of the generalization Error As the forest building progresses.
+ + It has an effective method For estimating missing data And maintains accuracy When a large proportion Of the data are missing.
+ + It has methods For balancing Error In Class population unbalanced data sets.
+ + Generated forests can be saved For future use On other data.
+ + Prototypes are computed that give information about the relation between the variables And the classification.
+ + It computes proximities between pairs Of cases that can be used In clustering, locating outliers, Or (by scaling) give interesting views Of the data.
+ + The capabilities Of the above can be extended To unlabeled data, leading To unsupervised clustering, data views And outlier detection.
+ + It offers an experimental method For detecting variable interactions.
+ 
+ ## Remarks
+ 
+ Random forests does Not overfit. You can run As many trees As you want. It Is fast. Running On a data 
+ Set With 50,000 cases And 100 variables, it produced 100 trees In 11 minutes On a 800Mhz machine. 
+ For large data sets the major memory requirement Is the storage Of the data itself, And three Integer 
+ arrays With the same dimensions As the data. If proximities are calculated, storage requirements grow 
+ As the number Of cases times the number Of trees.
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.RandomForests.RanFog">
+ <summary>
+ Random Forest for classified and regression problems 
+ </summary>
+ <remarks>
+ https://github.com/ogrecio/RanFog
+ </remarks>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.RandomForests.RanFog.max_tree">
+ <summary>
+ [ForestSize]Max number of trees to be constructed
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.RandomForests.RanFog.max_branch">
+ <summary>
+ Max number of branches allowed
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.RandomForests.RanFog.mtry">
+ <summary>
+ [mtry]
+ Number of Features randomly selected at each node,
+ Percentage of Features randomly selected at each node
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.RandomForests.RanFog.LF_c">
+ <summary>
+ [LossFunction]
+ Loss function used for continuous features
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.RandomForests.RanFog.VI">
+ <summary>
+ variable importance
+ </summary>
+ <returns></returns>
+ <remarks>
+ Write file with number of times each Feature was selected and its relative importance 
+ </remarks>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.RandomForests.RanFog.Selected">
+ <summary>
+ number of times SNPs are selected
+ </summary>
+ <returns></returns>
+ <remarks>
+ Write file with number of times each Feature was selected and its relative importance 
+ </remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.RandomForests.RanFog.Run(Microsoft.VisualBasic.MachineLearning.RandomForests.Data)">
+ <summary>
+ Program execution starts here. 
+ This method construct a random forest (Breiman, 2001. Machine Learning, 45)
+ for classification data (should be score as 0 or 1).
+  Results are written to files:
+    "Trees.txt" stores the miss-classification rate in the training set and the oob set at each tree
+    "Trees.test" stores the miss-classification rate in the testing set at each tree
+    "Variable_Importance.txt" stores the importance variable for each feature
+    "TimesSelected.txt" stores the number of times each feature was selected
+ 
+ The methods required a parameter file called 'params.txt' that must be located in the same folder as RanFog
+ The main method loads different parameters from this file 
+ 
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   Load parameter file                                                           
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.RandomForests.Result.outGEBV">
+ <summary>
+ Predicted GBV in training set
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.SVM.Cache.lru_delete(Microsoft.VisualBasic.MachineLearning.SVM.head_t)">
+ <summary>
+ delete from current location
+ </summary>
+ <param name="h"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.SVM.Cache.lru_insert(Microsoft.VisualBasic.MachineLearning.SVM.head_t)">
+ <summary>
+ insert to last position
+ </summary>
+ <param name="h"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.SVM.Cache.GetData(System.Int32,System.Single[]@,System.Int32)">
+ <summary>
+ request data [0,len)
+ return some position p where [p,len) need to be filled
+ (p >= len if nothing needs to be filled)
+ java: simulate pointer using single-element array
+ </summary>
+ <param name="index"></param>
+ <param name="data"></param>
+ <param name="len"></param>
+ <returns></returns>
+</member>
+<member name="F:Microsoft.VisualBasic.MachineLearning.SVM.head_t.prev">
+ <summary>
+ a cicular list
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.MachineLearning.SVM.head_t.next">
+ <summary>
+ a cicular list
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.MachineLearning.SVM.head_t.data">
+ <summary>
+ data[0,len) is cached in this entry
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.SVM.PrecomputedKernel">
+ <summary>
+ Class encapsulating a precomputed kernel, where each position indicates the similarity score for two items in the training data.
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.SVM.PrecomputedKernel.#ctor(System.Single[0:,0:])">
+ <summary>
+ Constructor.
+ </summary>
+ <param name="similarities">The similarity scores between all items in the training data</param>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.SVM.PrecomputedKernel.#ctor(System.Collections.Generic.List{Microsoft.VisualBasic.MachineLearning.SVM.Node[]},Microsoft.VisualBasic.MachineLearning.SVM.Parameter)">
+ <summary>
+ Constructor.
+ </summary>
+ <param name="nodes">Nodes for self-similarity analysis</param>
+ <param name="param">Parameters to use when computing similarities</param>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.SVM.PrecomputedKernel.#ctor(System.Collections.Generic.List{Microsoft.VisualBasic.MachineLearning.SVM.Node[]},System.Collections.Generic.List{Microsoft.VisualBasic.MachineLearning.SVM.Node[]},Microsoft.VisualBasic.MachineLearning.SVM.Parameter)">
+ <summary>
+ Constructor.
+ </summary>
+ <param name="rows">Nodes to use as the rows of the matrix</param>
+ <param name="columns">Nodes to use as the columns of the matrix</param>
+ <param name="param">Parameters to use when compute similarities</param>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.SVM.Logging.IsVerbose">
+ <summary>
+ Whether the system will output information to the console during the training process.
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.SVM.Model">
+ <summary>
+ Encapsulates an SVM Model.
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.SVM.Model.parameter">
+ <summary>
+ Parameter object.
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.SVM.Model.numberOfClasses">
+ <summary>
+ Number of classes in the model.
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.SVM.Model.supportVectorCount">
+ <summary>
+ Total number of support vectors.
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.SVM.Model.supportVectors">
+ <summary>
+ The support vectors.
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.SVM.Model.supportVectorCoefficients">
+ <summary>
+ The coefficients for the support vectors.
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.SVM.Model.supportVectorIndices">
+ <summary>
+ Values in [1,...,num_training_data] to indicate SVs in the training set
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.SVM.Model.rho">
+ <summary>
+ Constants in decision functions
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.SVM.Model.pairwiseProbabilityA">
+ <summary>
+ First pairwise probability.
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.SVM.Model.pairwiseProbabilityB">
+ <summary>
+ Second pairwise probability.
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.SVM.Model.classLabels">
+ <summary>
+ Class labels.
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.SVM.Model.numberOfSVPerClass">
+ <summary>
+ Number of support vectors per class.
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.SVM.Problem">
+ <summary>
+ Encapsulates a problem, or set of vectors which must be classified.
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.SVM.Problem.count">
+ <summary>
+ Number of vectors.
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.SVM.Problem.Y">
+ <summary>
+ Class labels.
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.SVM.Problem.X">
+ <summary>
+ Vector data.
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.SVM.Problem.maxIndex">
+ <summary>
+ Maximum index for a vector. this value is the width of each 
+ row in <see cref="P:Microsoft.VisualBasic.MachineLearning.SVM.Problem.X"/> and equals to the length of vector 
+ <see cref="P:Microsoft.VisualBasic.MachineLearning.SVM.Problem.dimensionNames"/> 
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.SVM.Problem.dimensionNames">
+ <summary>
+ the width of each row in <see cref="P:Microsoft.VisualBasic.MachineLearning.SVM.Problem.X"/>
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.SVM.Problem.#ctor(System.String[],Microsoft.VisualBasic.MachineLearning.SVM.Node[][],System.Int32)">
+ <summary>
+ Constructor.
+ </summary>
+ <param name="y">The class labels</param>
+ <param name="x">Vector data.</param>
+ <param name="maxIndex">Maximum index for a vector</param>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.SVM.Problem.#ctor">
+ <summary>
+ Empty Constructor. 
+ </summary>
+ <remarks>
+ Nothing is initialized.
+ </remarks>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.SVM.Node">
+ <summary>
+ Encapsulates a node in a Problem vector, with an index and a value (for more efficient representation
+ of sparse data.
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.SVM.Node.index">
+ <summary>
+ Index of this Node.
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.SVM.Node.value">
+ <summary>
+ Value at Index.
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.SVM.Node.#ctor">
+ <summary>
+ Default Constructor.
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.SVM.Node.#ctor(System.Int32,System.Double)">
+ <summary>
+ Constructor.
+ </summary>
+ <param name="index">The index of the value.</param>
+ <param name="value">The value to store.</param>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.SVM.Node.ToString">
+ <summary>
+ String representation of this Node as {index}:{value}.
+ </summary>
+ <returns>{index}:{value}</returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.SVM.Node.CompareTo(Microsoft.VisualBasic.MachineLearning.SVM.Node)">
+ <summary>
+ Compares this node with another.
+ </summary>
+ <param name="other">The node to compare to</param>
+ <returns>A positive number if this node is greater, a negative number if it is less than, or 0 if equal</returns>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.SVM.GridSquare">
+ <summary>
+ Class representing a grid square result.
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.MachineLearning.SVM.GridSquare.C">
+ <summary>
+ The C value
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.MachineLearning.SVM.GridSquare.Gamma">
+ <summary>
+ The Gamma value
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.MachineLearning.SVM.GridSquare.Score">
+ <summary>
+ The cross validation score
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.SVM.KernelType">
+ <summary>
+ Contains the various kernel types this library can use.
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.MachineLearning.SVM.KernelType.LINEAR">
+ <summary>
+ Linear: u'*v
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.MachineLearning.SVM.KernelType.POLY">
+ <summary>
+ Polynomial: (gamma*u'*v + coef0)^degree
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.MachineLearning.SVM.KernelType.RBF">
+ <summary>
+ Radial basis function: exp(-gamma*|u-v|^2)
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.MachineLearning.SVM.KernelType.SIGMOID">
+ <summary>
+ Sigmoid: tanh(gamma*u'*v + coef0)
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.MachineLearning.SVM.KernelType.PRECOMPUTED">
+ <summary>
+ Precomputed kernel
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.SVM.Parameter">
+ <summary>
+ This class contains the various parameters which can affect the way in which an SVM
+ is learned.  Unless you know what you are doing, chances are you are best off using
+ the default values.
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.MachineLearning.SVM.Parameter.m_Weights">
+ <summary>
+ Contains custom weights for class labels.  Default weight value is 1.
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.SVM.Parameter.svmType">
+ <summary>
+ Type of SVM (default C-SVC)
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.SVM.Parameter.kernelType">
+ <summary>
+ Type of kernel function (default Polynomial)
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.SVM.Parameter.degree">
+ <summary>
+ Degree in kernel function (default 3).
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.SVM.Parameter.gamma">
+ <summary>
+ Gamma in kernel function (default 1/k)
+ </summary>
+ <remarks>
+ 这个参数比较重要，千万不可以设置为零，否则将无法进行数据分类
+ </remarks>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.SVM.Parameter.coefficient0">
+ <summary>
+ Zeroeth coefficient in kernel function (default 0)
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.SVM.Parameter.cacheSize">
+ <summary>
+ Cache memory size in MB (default 100)
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.SVM.Parameter.EPS">
+ <summary>
+ Tolerance of termination criterion (default 0.001)
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.SVM.Parameter.c">
+ <summary>
+ The parameter C of C-SVC, epsilon-SVR, and nu-SVR (default 1)
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.SVM.Parameter.weights">
+ <summary>
+ <see cref="P:Microsoft.VisualBasic.DataMining.ComponentModel.Encoder.ColorClass.name"/>
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.SVM.Parameter.nu">
+ <summary>
+ The parameter nu of nu-SVC, one-class SVM, and nu-SVR (default 0.5)
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.SVM.Parameter.P">
+ <summary>
+ The epsilon in loss function of epsilon-SVR (default 0.1)
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.SVM.Parameter.shrinking">
+ <summary>
+ Whether to use the shrinking heuristics, (default True)
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.SVM.Parameter.probability">
+ <summary>
+ Whether to train an SVC or SVR model for probability estimates, (default False)
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.SVM.Parameter.#ctor">
+ <summary>
+ Default Constructor.  Gives good default values to all parameters.
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.SVM.Parameter.Clone">
+ <summary>
+ Creates a memberwise clone of this parameters object.
+ </summary>
+ <returns>The clone (as type Parameter)</returns>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.SVM.ParameterSelection">
+ <summary>
+ This class contains routines which perform parameter selection for a model which uses C-SVC and
+ an RBF kernel.
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.MachineLearning.SVM.ParameterSelection.NFOLD">
+ <summary>
+ Default number of times to divide the data.
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.MachineLearning.SVM.ParameterSelection.MIN_C">
+ <summary>
+ Default minimum power of 2 for the C value (-5)
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.MachineLearning.SVM.ParameterSelection.MAX_C">
+ <summary>
+ Default maximum power of 2 for the C value (15)
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.MachineLearning.SVM.ParameterSelection.C_STEP">
+ <summary>
+ Default power iteration step for the C value (2)
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.MachineLearning.SVM.ParameterSelection.MIN_G">
+ <summary>
+ Default minimum power of 2 for the Gamma value (-15)
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.MachineLearning.SVM.ParameterSelection.MAX_G">
+ <summary>
+ Default maximum power of 2 for the Gamma Value (3)
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.MachineLearning.SVM.ParameterSelection.G_STEP">
+ <summary>
+ Default power iteration step for the Gamma value (2)
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.MachineLearning.SVM.ParameterSelection.Threads">
+ <summary>
+ Used to control the degree of parallelism used in grid exploration.  Default value is the number of processors.
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.SVM.ParameterSelection.GetList(System.Double,System.Double,System.Double)">
+ <summary>
+ Returns a logarithmic list of values from minimum power of 2 to the maximum power of 2 using the provided iteration size.
+ </summary>
+ <param name="minPower">The minimum power of 2</param>
+ <param name="maxPower">The maximum power of 2</param>
+ <param name="iteration">The iteration size to use in powers</param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.SVM.ParameterSelection.Grid(Microsoft.VisualBasic.MachineLearning.SVM.Problem,System.Func{Microsoft.VisualBasic.MachineLearning.SVM.Parameter},System.Action{Microsoft.VisualBasic.MachineLearning.SVM.GridSquare},System.Double@,System.Double@)">
+ <summary>
+ Performs a Grid parameter selection, trying all possible combinations of the two lists and returning the
+ combination which performed best.  The default ranges of C and Gamma values are used.  Use this method if there is no validation data available, and it will
+ divide it 5 times to allow 5-fold validation (training on 4/5 and validating on 1/5, 5 times).
+ </summary>
+ <param name="problem">The training data</param>
+ <param name="createParams">The parameters to use when optimizing</param>
+ <param name="report">Function used to report results</param>
+ <param name="C">The optimal C value will be put into this variable</param>
+ <param name="Gamma">The optimal Gamma value will be put into this variable</param>
+ <returns>A list of grid squares and their results</returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.SVM.ParameterSelection.Grid(Microsoft.VisualBasic.MachineLearning.SVM.Problem,System.Func{Microsoft.VisualBasic.MachineLearning.SVM.Parameter},System.Collections.Generic.List{System.Double},System.Collections.Generic.List{System.Double},System.Action{Microsoft.VisualBasic.MachineLearning.SVM.GridSquare},System.Double@,System.Double@)">
+ <summary>
+ Performs a Grid parameter selection, trying all possible combinations of the two lists and returning the
+ combination which performed best.  Use this method if there is no validation data available, and it will
+ divide it 5 times to allow 5-fold validation (training on 4/5 and validating on 1/5, 5 times).
+ </summary>
+ <param name="problem">The training data</param>
+ <param name="createParams">The parameters to use when optimizing</param>
+ <param name="CValues">The set of C values to use</param>
+ <param name="GammaValues">The set of Gamma values to use</param>
+ <param name="report">Function used to report results</param>
+ <param name="C">The optimal C value will be put into this variable</param>
+ <param name="Gamma">The optimal Gamma value will be put into this variable</param>
+ <returns>A list of grid squares and their results</returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.SVM.ParameterSelection.Grid(Microsoft.VisualBasic.MachineLearning.SVM.Problem,System.Func{Microsoft.VisualBasic.MachineLearning.SVM.Parameter},System.Collections.Generic.List{System.Double},System.Collections.Generic.List{System.Double},System.Action{Microsoft.VisualBasic.MachineLearning.SVM.GridSquare},System.Int32,System.Double@,System.Double@)">
+ <summary>
+ Performs a Grid parameter selection, trying all possible combinations of the two lists and returning the
+ combination which performed best.  Use this method if validation data isn't available, as it will
+ divide the training data and train on a portion of it and test on the rest.
+ </summary>
+ <param name="problem">The training data</param>
+ <param name="createParams">The parameters to use when optimizing</param>
+ <param name="CValues">The set of C values to use</param>
+ <param name="GammaValues">The set of Gamma values to use</param>
+ <param name="report">Function used to report results</param>
+ <param name="nrfold">The number of times the data should be divided for validation</param>
+ <param name="C">The optimal C value will be placed in this variable</param>
+ <param name="Gamma">The optimal Gamma value will be placed in this variable</param>
+ <returns>A list of grid squares and their results</returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.SVM.ParameterSelection.Grid(Microsoft.VisualBasic.MachineLearning.SVM.Problem,Microsoft.VisualBasic.MachineLearning.SVM.Problem,System.Func{Microsoft.VisualBasic.MachineLearning.SVM.Parameter},System.Action{Microsoft.VisualBasic.MachineLearning.SVM.GridSquare},System.Double@,System.Double@)">
+ <summary>
+ Performs a Grid parameter selection, trying all possible combinations of the two lists and returning the
+ combination which performed best.  Uses the default values of C and Gamma.
+ </summary>
+ <param name="problem">The training data</param>
+ <param name="validation">The validation data</param>
+ <param name="createParams">The parameters to use when optimizing</param>
+ <param name="report">Function used to report results</param>
+ <param name="C">The optimal C value will be placed in this variable</param>
+ <param name="Gamma">The optimal Gamma value will be placed in this variable</param>
+ <returns>A list of grid squares and their results</returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.SVM.ParameterSelection.Grid(Microsoft.VisualBasic.MachineLearning.SVM.Problem,Microsoft.VisualBasic.MachineLearning.SVM.Problem,System.Func{Microsoft.VisualBasic.MachineLearning.SVM.Parameter},System.Collections.Generic.List{System.Double},System.Collections.Generic.List{System.Double},System.Action{Microsoft.VisualBasic.MachineLearning.SVM.GridSquare},System.Double@,System.Double@)">
+ <summary>
+ Performs a Grid parameter selection, trying all possible combinations of the two lists and returning the
+ combination which performed best.
+ </summary>
+ <param name="problem">The training data</param>
+ <param name="validation">The validation data</param>
+ <param name="createParams">The parameters to use when optimizing</param>
+ <param name="CValues">The C values to use</param>
+ <param name="GammaValues">The Gamma values to use</param>
+ <param name="report">Function used to report results</param>
+ <param name="C">The optimal C value will be placed in this variable</param>
+ <param name="Gamma">The optimal Gamma value will be placed in this variable</param>
+ <returns>A list of grid squares and their results</returns>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.SVM.SvmType">
+ <summary>
+ Contains all of the types of SVM this library can model.
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.MachineLearning.SVM.SvmType.C_SVC">
+ <summary>
+ C-SVC.
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.MachineLearning.SVM.SvmType.NU_SVC">
+ <summary>
+ nu-SVC.
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.MachineLearning.SVM.SvmType.ONE_CLASS">
+ <summary>
+ one-class SVM
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.MachineLearning.SVM.SvmType.EPSILON_SVR">
+ <summary>
+ epsilon-SVR
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.MachineLearning.SVM.SvmType.NU_SVR">
+ <summary>
+ nu-SVR
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.SVM.Prediction">
+ <summary>
+ Class containing the routines to perform class membership prediction using a trained SVM.
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.SVM.Prediction.Predict(Microsoft.VisualBasic.MachineLearning.SVM.Problem,System.String,Microsoft.VisualBasic.MachineLearning.SVM.Model,System.Boolean)">
+ <summary>
+ Predicts the class memberships of all the vectors in the problem.
+ </summary>
+ <param name="problem">The SVM Problem to solve</param>
+ <param name="outputFile">File for result output</param>
+ <param name="model">The Model to use</param>
+ <param name="predict_probability">Whether to output a distribution over the classes</param>
+ <returns>Percentage correctly labelled</returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.SVM.Prediction.PredictLabels(Microsoft.VisualBasic.MachineLearning.SVM.Model,Microsoft.VisualBasic.MachineLearning.SVM.Problem)">
+ <summary>
+ Predict the labels for all the data points in a problem.
+ </summary>
+ <param name="model">The model to use</param>
+ <param name="problem">The problem to solve</param>
+ <returns>The predicted labels</returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.SVM.Prediction.PredictLabelsProbability(Microsoft.VisualBasic.MachineLearning.SVM.Model,Microsoft.VisualBasic.MachineLearning.SVM.Problem)">
+ <summary>
+ Predict the probability distributions over all labels for each data point in a problem.
+ </summary>
+ <param name="model">The model to use</param>
+ <param name="problem">The problem to solve</param>
+ <returns>A distribution over labels for each data point</returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.SVM.Prediction.Predict(Microsoft.VisualBasic.MachineLearning.SVM.Model,Microsoft.VisualBasic.MachineLearning.SVM.Node[])">
+ <summary>
+ Predict the class for a single input vector.
+ </summary>
+ <param name="model">The Model to use for prediction</param>
+ <param name="x">The vector for which to predict class</param>
+ <returns>The result</returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.SVM.Prediction.PredictProbability(Microsoft.VisualBasic.MachineLearning.SVM.Model,Microsoft.VisualBasic.MachineLearning.SVM.Node[])">
+ <summary>
+ Predicts a class distribution for the single input vector.
+ </summary>
+ <param name="model">Model to use for prediction</param>
+ <param name="x">The vector for which to predict the class distribution</param>
+ <returns>A probability distribtion over classes</returns>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.SVM.Procedures.decision_function">
+ <summary>
+ decision_function
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.SVM.Procedures.sigmoid_train(System.Int32,System.Double[],Microsoft.VisualBasic.DataMining.ComponentModel.Encoder.ColorClass[],System.Double[])">
+ <summary>
+ Platt's binary SVM Probablistic Output: an improvement from Lin et al.
+ </summary>
+ <param name="l"></param>
+ <param name="dec_values"></param>
+ <param name="labels"></param>
+ <param name="probAB"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.SVM.Procedures.multiclass_probability(System.Int32,System.Double[0:,0:],System.Double[])">
+ <summary>
+ Method 2 from the multiclass_prob paper by Wu, Lin, and Weng
+ </summary>
+ <param name="k"></param>
+ <param name="r"></param>
+ <param name="p"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.SVM.Procedures.svm_binary_svc_probability(Microsoft.VisualBasic.MachineLearning.SVM.Problem,Microsoft.VisualBasic.MachineLearning.SVM.Parameter,System.Double,System.Double,System.Double[])">
+ <summary>
+ Cross-validation decision values for probability estimates
+ </summary>
+ <param name="prob"></param>
+ <param name="param"></param>
+ <param name="Cp"></param>
+ <param name="Cn"></param>
+ <param name="probAB"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.SVM.Procedures.svm_svr_probability(Microsoft.VisualBasic.MachineLearning.SVM.Problem,Microsoft.VisualBasic.MachineLearning.SVM.Parameter)">
+ <summary>
+ Return parameter of a Laplace distribution 
+ </summary>
+ <param name="prob"></param>
+ <param name="param"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.SVM.Procedures.svm_group_classes(Microsoft.VisualBasic.MachineLearning.SVM.Problem,System.Int32@,System.Int32[]@,System.Int32[]@,System.Int32[]@,System.Int32[])">
+ <summary>
+ group training data of the same class
+ </summary>
+ <param name="prob"></param>
+ <param name="nr_class_ret"></param>
+ <param name="label_ret">label name</param>
+ <param name="start_ret">begin of each class</param>
+ <param name="count_ret">#data of classes</param>
+ <param name="perm">indices to the original data, perm, length l, must be allocated before calling this subroutine</param>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.SVM.Procedures.oneClassSvm(Microsoft.VisualBasic.MachineLearning.SVM.Model@,Microsoft.VisualBasic.MachineLearning.SVM.Problem,Microsoft.VisualBasic.MachineLearning.SVM.Parameter)">
+ <summary>
+ regression or one-class-svm
+ </summary>
+ <param name="model"></param>
+ <param name="prob"></param>
+ <param name="param"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.SVM.Procedures.multipleClassification(Microsoft.VisualBasic.MachineLearning.SVM.Model@,Microsoft.VisualBasic.MachineLearning.SVM.Problem,Microsoft.VisualBasic.MachineLearning.SVM.Parameter)">
+ <summary>
+ classification
+ </summary>
+ <param name="model"></param>
+ <param name="prob"></param>
+ <param name="param"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.SVM.Procedures.svm_cross_validation(Microsoft.VisualBasic.MachineLearning.SVM.Problem,Microsoft.VisualBasic.MachineLearning.SVM.Parameter,System.Int32,Microsoft.VisualBasic.MachineLearning.SVM.SVMPrediction[])">
+ <summary>
+ Stratified cross validation
+ </summary>
+ <param name="prob"></param>
+ <param name="param"></param>
+ <param name="nr_fold"></param>
+ <param name="target"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.SVM.Procedures.svm_predict(Microsoft.VisualBasic.MachineLearning.SVM.Model,Microsoft.VisualBasic.MachineLearning.SVM.Node[])">
+ <summary>
+ 
+ </summary>
+ <param name="model"></param>
+ <param name="x"></param>
+ <returns>
+ 兼容分类以及打分这两种工作模式
+ </returns>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.SVM.GaussianTransform">
+ <summary>
+ A transform which learns the mean and variance of a sample set and uses these to transform new data
+ so that it has zero mean and unit variance.
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.SVM.GaussianTransform.#ctor(System.Double[],System.Double[])">
+ <summary>
+ Constructor.
+ </summary>
+ <param name="means">Means in each dimension</param>
+ <param name="stddevs">Standard deviation in each dimension</param>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.SVM.GaussianTransform.Compute(Microsoft.VisualBasic.MachineLearning.SVM.Problem)">
+ <summary>
+ Determines the Gaussian transform for the provided problem.
+ </summary>
+ <param name="prob">The Problem to analyze</param>
+ <returns>The Gaussian transform for the problem</returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.SVM.GaussianTransform.Transform(System.Double,System.Int32)">
+ <summary>
+ Transform the input value using the transform stored for the provided index.
+ </summary>
+ <param name="input">Input value</param>
+ <param name="index">Index of the transform to use</param>
+ <returns>The transformed value</returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.SVM.GaussianTransform.Transform(Microsoft.VisualBasic.MachineLearning.SVM.Node[])">
+ <summary>
+ Transforms the input array.
+ </summary>
+ <param name="input">The array to transform</param>
+ <returns>The transformed array</returns>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.SVM.IRangeTransform">
+ <summary>
+ Interface implemented by range transforms.
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.SVM.IRangeTransform.Transform(System.Double,System.Int32)">
+ <summary>
+ Transform the input value using the transform stored for the provided index.
+ </summary>
+ <param name="input">Input value</param>
+ <param name="index">Index of the transform to use</param>
+ <returns>The transformed value</returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.SVM.IRangeTransform.Transform(Microsoft.VisualBasic.MachineLearning.SVM.Node[])">
+ <summary>
+ Transforms the input array.
+ </summary>
+ <param name="input">The array to transform</param>
+ <returns>The transformed array</returns>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.SVM.RangeTransform">
+ <summary>
+ Class which encapsulates a range transformation.
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.MachineLearning.SVM.RangeTransform.DEFAULT_LOWER_BOUND">
+ <summary>
+ Default lower bound for scaling (-1).
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.MachineLearning.SVM.RangeTransform.DEFAULT_UPPER_BOUND">
+ <summary>
+ Default upper bound for scaling (1).
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.SVM.RangeTransform.#ctor(System.Double[],System.Double[],System.Double,System.Double)">
+ <summary>
+ Constructor.
+ </summary>
+ <param name="minValues">The minimum values in each dimension.</param>
+ <param name="maxValues">The maximum values in each dimension.</param>
+ <param name="lowerBound">The desired lower bound for all dimensions.</param>
+ <param name="upperBound">The desired upper bound for all dimensions.</param>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.SVM.RangeTransform.Compute(Microsoft.VisualBasic.MachineLearning.SVM.Problem)">
+ <summary>
+ Determines the Range transform for the provided problem.  Uses the default lower and upper bounds.
+ </summary>
+ <param name="prob">The Problem to analyze</param>
+ <returns>The Range transform for the problem</returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.SVM.RangeTransform.Compute(Microsoft.VisualBasic.MachineLearning.SVM.Problem,System.Double,System.Double)">
+ <summary>
+ Determines the Range transform for the provided problem.
+ </summary>
+ <param name="prob">The Problem to analyze</param>
+ <param name="lowerBound">The lower bound for scaling</param>
+ <param name="upperBound">The upper bound for scaling</param>
+ <returns>The Range transform for the problem</returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.SVM.RangeTransform.Transform(Microsoft.VisualBasic.MachineLearning.SVM.Node[])">
+ <summary>
+ Transforms the input array based upon the values provided.
+ </summary>
+ <param name="input">The input array</param>
+ <returns>A scaled array</returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.SVM.RangeTransform.Transform(System.Double,System.Int32)">
+ <summary>
+ Transforms this an input value using the scaling transform for the provided dimension.
+ </summary>
+ <param name="input">The input value to transform</param>
+ <param name="index">The dimension whose scaling transform should be used</param>
+ <returns>The scaled value</returns>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.SVM.Scaling">
+ <summary>
+ Deals with the scaling of Problems so they have uniform ranges across all dimensions in order to
+ result in better SVM performance.
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.SVM.Scaling.Scale(Microsoft.VisualBasic.MachineLearning.SVM.IRangeTransform,Microsoft.VisualBasic.MachineLearning.SVM.Problem)">
+ <summary>
+ Scales a problem using the provided range.  
+ This will not affect the parameter.
+ </summary>
+ <param name="prob">The problem to scale</param>
+ <param name="range">The Range transform to use in scaling</param>
+ <returns>The Scaled problem</returns>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.SVM.SolutionInfo.r">
+ <summary>
+ for Solver_NU
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.SVM.Solver">
+ <summary>
+ An SMO algorithm in Fan et al., JMLR 6(2005), p. 1889--1918
+ Solves:
+
+ ```
+	min 0.5(\alpha^T Q \alpha) + p^T \alpha
+
+		y^T \alpha = \delta
+		y_i = +1 or -1
+		0 &lt;= alpha_i &lt;= Cp for y_i = 1
+		0 &lt;= alpha_i &lt;= Cn for y_i = -1
+ ```
+ 
+ Given:
+
+	Q, p, y, Cp, Cn, and an initial feasible point \alpha
+	l is the size of vectors and matrices
+	eps is the stopping tolerance
+
+ solution will be put in \alpha, objective value will be put in obj
+
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.MachineLearning.SVM.Solver.G">
+ <summary>
+ gradient of objective function
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.SVM.Solver.reconstruct_gradient">
+ <summary>
+ reconstruct inactive elements of G from G_bar 
+ and free variables
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.SVM.Solver.select_working_set(System.Int32[])">
+ <summary>
+ return 1 if already optimal, return 0 otherwise
+ </summary>
+ <param name="working_set"></param>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.SVM.Solver_NU">
+ <summary>
+ Solver for nu-svm classification and regression
+ additional constraint: e^T \alpha = constant
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.SVM.Solver_NU.select_working_set(System.Int32[])">
+ <summary>
+ return 1 if already optimal, return 0 otherwise
+ </summary>
+ <param name="working_set"></param>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.SVM.SVC_Q">
+ <summary>
+ Q matrices for various formulations
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.SVM.StorageProcedure.SupportVector">
+ <summary>
+ data -> labels
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.SVM.StorageProcedure.ProblemTable.dimensionNames">
+ <summary>
+ the key collection of the support vector: <see cref="P:Microsoft.VisualBasic.ComponentModel.DataSourceModel.DynamicPropertyBase`1.Properties"/> inputs.
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.SVM.StorageProcedure.ProblemTable.GetTopicLabels(System.String)">
+ <summary>
+ 获取所指定的<paramref name="topic"/>下的所有标签数据，不去重
+ </summary>
+ <param name="topic"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.SVM.StorageProcedure.ProblemTable.GetProblem(System.String)">
+ <summary>
+ create a problem model under the given <paramref name="topic"/>
+ </summary>
+ <param name="topic"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.SVM.StorageProcedure.ProblemTable.Append(Microsoft.VisualBasic.MachineLearning.SVM.StorageProcedure.ProblemTable,Microsoft.VisualBasic.MachineLearning.SVM.StorageProcedure.ProblemTable)">
+ <summary>
+ row append
+ </summary>
+ <param name="a"></param>
+ <param name="b"></param>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.SVM.StorageProcedure.Model.parameter">
+ <summary>
+ Parameter object.
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.SVM.StorageProcedure.Model.numberOfClasses">
+ <summary>
+ Number of classes in the model.
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.SVM.StorageProcedure.Model.supportVectorCount">
+ <summary>
+ Total number of support vectors.
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.SVM.StorageProcedure.Model.supportVectors">
+ <summary>
+ The support vectors.
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.SVM.StorageProcedure.Model.supportVectorCoefficients">
+ <summary>
+ The coefficients for the support vectors.
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.SVM.StorageProcedure.Model.supportVectorIndices">
+ <summary>
+ Values in [1,...,num_training_data] to indicate SVs in the training set
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.SVM.StorageProcedure.Model.rho">
+ <summary>
+ Constants in decision functions
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.SVM.StorageProcedure.Model.pairwiseProbabilityA">
+ <summary>
+ First pairwise probability.
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.SVM.StorageProcedure.Model.pairwiseProbabilityB">
+ <summary>
+ Second pairwise probability.
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.SVM.StorageProcedure.Model.classLabels">
+ <summary>
+ Class labels.
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.SVM.StorageProcedure.Model.numberOfSVPerClass">
+ <summary>
+ Number of support vectors per class.
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.SVM.GaussianTransformText.Write(System.IO.TextWriter,Microsoft.VisualBasic.MachineLearning.SVM.GaussianTransform)">
+ <summary>
+ Saves the transform to the disk.  The samples are not stored, only the 
+ statistics.
+ </summary>
+ <param name="stream">The destination stream</param>
+ <param name="transform">The transform</param>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.SVM.ModelText.Write(System.IO.TextWriter,Microsoft.VisualBasic.MachineLearning.SVM.Model)">
+ <summary>
+ Writes a model to the provided stream.
+ </summary>
+ ''' <param name="output">The output stream</param>
+ ''' <param name="model">The model to write</param>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.SVM.ProblemText.Write(System.IO.TextWriter,Microsoft.VisualBasic.MachineLearning.SVM.Problem)">
+ <summary>
+ Writes a problem to a stream.
+ </summary>
+ <param name="output">The stream to write the problem to.</param>
+ <param name="problem">The problem to write.</param>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.SVM.TransformText.Write(System.IO.TextWriter,Microsoft.VisualBasic.MachineLearning.SVM.RangeTransform)">
+ <summary>
+ Writes this Range transform to a stream.
+ </summary>
+ <param name="output">The stream to write to</param>
+ <param name="r">The range to write</param>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.SVM.SVMModel">
+ <summary>
+ A trained svm data model that can be apply for classify analysis.
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.SVM.SVMModel.factors">
+ <summary>
+ use for get <see cref="T:Microsoft.VisualBasic.DataMining.ComponentModel.Encoder.ColorClass"/> based on 
+ the prediction result value
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.SVM.SVMMultipleSet">
+ <summary>
+ A collection of trained svm data model that can be apply for 
+ multiple dimension class classify analysis.
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.SVM.SVMUtilities">
+ <summary>
+ svm demo test
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.SVM.SVMUtilities.CreateRegressionProblem(System.Int32,System.Boolean)">
+ <summary>
+ SVR
+ </summary>
+ <param name="count"></param>
+ <param name="isTraining"></param>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.SVM.Training">
+ <summary>
+ Class containing the routines to train SVM models.
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.SVM.Training.PerformCrossValidation(Microsoft.VisualBasic.MachineLearning.SVM.Problem,Microsoft.VisualBasic.MachineLearning.SVM.Parameter,System.Int32)">
+ <summary>
+ Performs cross validation.
+ </summary>
+ <param name="problem">The training data</param>
+ <param name="parameters">The parameters to test</param>
+ <param name="nrfold">The number of cross validations to use</param>
+ <returns>The cross validation score</returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.SVM.Training.Train(Microsoft.VisualBasic.MachineLearning.SVM.Problem,Microsoft.VisualBasic.MachineLearning.SVM.Parameter)">
+ <summary>
+ Trains a model using the provided training data and parameters.
+ </summary>
+ <param name="problem">The training data</param>
+ <param name="parameters">The parameters to use</param>
+ <returns>A trained SVM Model</returns>
+</member>
+</members>
+</doc>
