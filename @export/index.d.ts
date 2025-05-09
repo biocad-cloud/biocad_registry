@@ -22,6 +22,9 @@ declare namespace biocad_registry {
    function check_metabolite(biocad_registry: any, compound: any): object;
    /**
    */
+   function check_metabolite_synonym(biocad_registry: any, compound: any): object;
+   /**
+   */
    function enzyme_regulation(biocad_registry: any): object;
    /**
    */
