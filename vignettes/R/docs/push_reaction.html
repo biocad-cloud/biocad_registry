@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Push a single reaction model into registry database</title>
+    <title>Push a single reaction model into the biocad registry database</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
     <link rel="stylesheet" type="text/css" href="../../_assets/page.css">
@@ -18,11 +18,11 @@
             </tr>
         </table>
 
-        <h2>Push a single reaction model into registry database</h2>
+        <h2>Push a single reaction model into the biocad registry database</h2>
 
         <h3>Description</h3>
 
-        
+        <p>This function adds or updates a reaction entry in the biocad registry database, including associated enzymes, database cross-references, and metabolite compounds.</p>
 
         <h3>Usage</h3>
 
@@ -34,15 +34,19 @@
 
         <table>
             
+<dt>biocad.registry</dt>
+<dd><p><p>An object representing the connection to the biocad registry database.</p></p></dd>
+
+
 <dt>reaction</dt>
-<dd><p><p>the external reaction data object</p></p></dd>
+<dd><p><p>A list containing the reaction data to be pushed into the database. See "Details" for the required structure.</p></p></dd>
 
         </table>
 
 
         <h3 style="display: block;">Details</h3>
 
-        <p>the reaction data model should be a data list in format: <code>r list( entry = "unique_id", definition = "name", comment = "description_string", enzyme = ["ec_number"], db_xrefs = [list(name = "dbname", text = "xref_id")], compounds = [list( side = "string", compound = list(entry,name,formula, factor)) ] ) </code>`</p>
+        <p>The `reaction` argument must be a list with the following structure: <code>r list( entry = "unique_id",                 # Unique identifier for the reaction (string) definition = "name",                  # Reaction name or equation (string) comment = "description_string",       # Optional description or notes (string) enzyme = list("ec_number1", ...),     # List of EC numbers (strings) for enzymatic regulation db_xrefs = list(                      # List of cross-references to external databases list(name = "dbname", text = "xref_id"), ... ), compounds = list(                     # List of compounds involved in the reaction list( side = "role_string",           # Compound role (e.g., "substrate", "product", "*" for unknown) compound = list(                # Compound details entry = "compound_id", name = "compound_name", formula = "chemical_formula", factor = stoichiometric_factor  # Numeric (default = 1.0 if missing) ) ), ... ) ) </code>` - If a reaction with the same `entry` exists, it will be ​<strong>updated</strong>​ with new data. - Enzymes, cross-references, and compounds are linked to the reaction entry. Duplicates are skipped. - Compounds with `side = "*"` are ignored (used for placeholder entries).</p>
 
         <h3 style="display: block">Authors</h3>
 
@@ -50,7 +54,7 @@
 
         <h3>Value</h3>
 
-        This function has no value returns.
+        <p>Invisibly returns `NULL`. The function's primary purpose is to modify the database.</p>
 
         <h3 style="display: none;">Examples</h3>
 

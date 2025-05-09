@@ -1,4 +1,4 @@
-﻿.TH CHECK_METABOLITE_SYNONYM 1 2025-May "" "check_metabolite_synonym"
+﻿.TH CHECK_METABOLITE_SYNONYM 1 2025-May "internal" "Internal metabolite synonym checker Helper function that searches for metabolites by name and synonyms when direct xref matching fails. Uses exact mass and MD5 hashing of synonyms for efficient lookup."
 .SH NAME
 check_metabolite_synonym \- check_metabolite_synonym(biocad.registry, compound)
 .SH SYNOPSIS
@@ -8,11 +8,19 @@ check_metabolite_synonym \- check_metabolite_synonym(biocad.registry, compound)
 \fBbiocad.registry\fB \fR\- . 
 .PP
 .PP
-\fBcompound\fB \fR\- . 
+\fBcompound\fB \fR\- . Compound list (see \code{check_metabolite} for structure)
+.PP
+.SH VALUE
+.PP
+An integer database ID if match found by name/synonym, otherwise \code{NULL}.
+.PP
+.SH DETAILS
+.PP
+Operates in two phases: \enumerate{ \item Direct name match with mass tolerance \item MD5 hash-based synonym search if name match fails }
 .PP
 .SH FILES
 .PP
-SMRUCC/R#.declare_function.check_metabolite_synonym at check_metabolite.R:line 55
+SMRUCC/R#.declare_function.check_metabolite_synonym at check_metabolite.R:line 111
 .PP
 .SH COPYRIGHT
 Copyright © xieguigang <xie.guigang@gcmodeller.org>, MIT License Licensed 2025

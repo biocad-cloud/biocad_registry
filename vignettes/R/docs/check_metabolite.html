@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>check of the metabolite is existsed inside database</title>
+    <title>Check if metabolite exists in database Searches for a metabolite in the BioCAD registry database by cross-references (xrefs) and exact mass. If no direct xref matches are found, falls back to checking common names and synonyms. Returns database ID if found.</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
     <link rel="stylesheet" type="text/css" href="../../_assets/page.css">
@@ -18,7 +18,7 @@
             </tr>
         </table>
 
-        <h2>check of the metabolite is existsed inside database</h2>
+        <h2>Check if metabolite exists in database Searches for a metabolite in the BioCAD registry database by cross-references (xrefs) and exact mass. If no direct xref matches are found, falls back to checking common names and synonyms. Returns database ID if found.</h2>
 
         <h3>Description</h3>
 
@@ -34,12 +34,19 @@
 
         <table>
             
+<dt>biocad.registry</dt>
+<dd><p><p>A database connection object representing the BioCAD registry database.</p></p></dd>
+
+
+<dt>compound</dt>
+<dd><p><p>A list containing metabolite information with the following elements: \itemize{ \item{xref - List of cross-references (database identifiers)} \item{formula - Chemical formula string} \item{name - Common name of the compound} \item{synonym - Vector of alternative names/synonyms} }</p></p></dd>
+
         </table>
 
 
-        <h3 style="display: none;">Details</h3>
+        <h3 style="display: block;">Details</h3>
 
-        
+        <p>The function performs the following steps: \enumerate{ \item Extracts and validates chemical formula (calculates exact mass) \item Queries database using cross-reference identifiers (xrefs) \item Performs mass tolerance search (±1 Da) \item If xref search fails, calls \code{check<em>metabolite</em>synonym} to check by name and synonyms }</p>
 
         <h3 style="display: block">Authors</h3>
 
@@ -47,7 +54,7 @@
 
         <h3>Value</h3>
 
-        <p>an integer unique id of the compound that matched with the compound xrefs information, NULL will be returns if the molecule metabolite data has not been found.</p>
+        <p>An integer representing the unique database ID of the matched compound. Returns \code{NULL} if no matching metabolite is found in the database.</p>
 
         <h3 style="display: none;">Examples</h3>
 

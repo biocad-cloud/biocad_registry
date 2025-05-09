@@ -1,4 +1,4 @@
-﻿.TH CHECK_METABOLITE 1 2025-May "" "check of the metabolite is existsed inside database"
+﻿.TH CHECK_METABOLITE 1 2025-May "" "Check if metabolite exists in database Searches for a metabolite in the BioCAD registry database by cross-references (xrefs) and exact mass. If no direct xref matches are found, falls back to checking common names and synonyms. Returns database ID if found."
 .SH NAME
 check_metabolite \- check_metabolite(biocad.registry, compound)
 .SH SYNOPSIS
@@ -8,15 +8,19 @@ check_metabolite \- check_metabolite(biocad.registry, compound)
 \fBbiocad.registry\fB \fR\- . 
 .PP
 .PP
-\fBcompound\fB \fR\- . 
+\fBcompound\fB \fR\- . A list containing metabolite information with the following elements: \itemize{ \item{xref - List of cross-references (database identifiers)} \item{formula - Chemical formula string} \item{name - Common name of the compound} \item{synonym - Vector of alternative names/synonyms} }
 .PP
 .SH VALUE
 .PP
-an integer unique id of the compound that matched with the compound xrefs information, NULL will be returns if the molecule metabolite data has not been found.
+An integer representing the unique database ID of the matched compound. Returns \code{NULL} if no matching metabolite is found in the database.
+.PP
+.SH DETAILS
+.PP
+The function performs the following steps: \enumerate{ \item Extracts and validates chemical formula (calculates exact mass) \item Queries database using cross-reference identifiers (xrefs) \item Performs mass tolerance search (±1 Da) \item If xref search fails, calls \code{check_metabolite_synonym} to check by name and synonyms }
 .PP
 .SH FILES
 .PP
-SMRUCC/R#.declare_function.check_metabolite at check_metabolite.R:line 7
+SMRUCC/R#.declare_function.check_metabolite at check_metabolite.R:line 42
 .PP
 .SH COPYRIGHT
 Copyright © xieguigang <xie.guigang@gcmodeller.org>, MIT License Licensed 2025

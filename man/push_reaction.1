@@ -1,22 +1,30 @@
-﻿.TH PUSH_REACTION 1 2025-May "" "Push a single reaction model into registry database"
+﻿.TH PUSH_REACTION 1 2025-May "" "Push a single reaction model into the biocad registry database"
 .SH NAME
 push_reaction \- push_reaction(biocad.registry, reaction)
 .SH SYNOPSIS
 \fIpush_reaction(biocad.registry, reaction)\fR
+.SH DESCRIPTION
+.PP
+This function adds or updates a reaction entry in the biocad registry database, including associated enzymes, database cross-references, and metabolite compounds.
+.PP
 .SH OPTIONS
 .PP
 \fBbiocad.registry\fB \fR\- . 
 .PP
 .PP
-\fBreaction\fB \fR\- . the external reaction data object
+\fBreaction\fB \fR\- . A list containing the reaction data to be pushed into the database. See "Details" for the required structure.
+.PP
+.SH VALUE
+.PP
+Invisibly returns `NULL`. The function's primary purpose is to modify the database.
 .PP
 .SH DETAILS
 .PP
-the reaction data model should be a data list in format: ```r list( entry = "unique_id", definition = "name", comment = "description_string", enzyme = ["ec_number"], db_xrefs = [list(name = "dbname", text = "xref_id")], compounds = [list( side = "string", compound = list(entry,name,formula, factor)) ] ) ```
+The `reaction` argument must be a list with the following structure: ```r list( entry = "unique_id",                 # Unique identifier for the reaction (string) definition = "name",                  # Reaction name or equation (string) comment = "description_string",       # Optional description or notes (string) enzyme = list("ec_number1", ...),     # List of EC numbers (strings) for enzymatic regulation db_xrefs = list(                      # List of cross-references to external databases list(name = "dbname", text = "xref_id"), ... ), compounds = list(                     # List of compounds involved in the reaction list( side = "role_string",           # Compound role (e.g., "substrate", "product", "*" for unknown) compound = list(                # Compound details entry = "compound_id", name = "compound_name", formula = "chemical_formula", factor = stoichiometric_factor  # Numeric (default = 1.0 if missing) ) ), ... ) ) ``` - If a reaction with the same `entry` exists, it will be ​**updated**​ with new data. - Enzymes, cross-references, and compounds are linked to the reaction entry. Duplicates are skipped. - Compounds with `side = "*"` are ignored (used for placeholder entries).
 .PP
 .SH FILES
 .PP
-SMRUCC/R#.declare_function.push_reaction at push_reactions.R:line 21
+SMRUCC/R#.declare_function.push_reaction at push_reactions.R:line 79
 .PP
 .SH COPYRIGHT
 Copyright © xieguigang <xie.guigang@gcmodeller.org>, MIT License Licensed 2025

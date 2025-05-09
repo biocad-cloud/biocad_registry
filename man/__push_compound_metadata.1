@@ -1,4 +1,4 @@
-﻿.TH __PUSH_COMPOUND_METADATA 1 2025-May "" "save compound metadata"
+﻿.TH __PUSH_COMPOUND_METADATA 1 2025-May "" "Save compound metadata to a biocad registry This function stores compound metadata into a biocad registry, updating several related tables including sequence_graph, db_xrefs, and synonyms."
 .SH NAME
 __push_compound_metadata \- __push_compound_metadata(biocad.registry, compound, mol)
 .SH SYNOPSIS
@@ -8,18 +8,22 @@ __push_compound_metadata \- __push_compound_metadata(biocad.registry, compound, 
 \fBbiocad.registry\fB \fR\- . 
 .PP
 .PP
-\fBcompound\fB \fR\- . the compound metadata
+\fBcompound\fB \fR\- . A list containing the compound's metadata. Must follow the structure specified in the Details section.
 .PP
 .PP
-\fBmol\fB \fR\- . the molecule record about this compound inside current biocad_registry. a ``id`` data property is required inside this molecule record.
+\fBmol\fB \fR\- . A molecule record from the current `biocad_registry`. Must contain a character `id` property to associate metadata with this molecule.
+.PP
+.SH VALUE
+.PP
+Invisibly returns `NULL`. This function is called for its side effects.
 .PP
 .SH DETAILS
 .PP
-the required of the compound metadata data structure should be: ```r list( ID = "unique-id", formula = "formula-string", exact_mass = 0, name = "name_string", IUPACName = "name_string", description = "description_string", synonym = ["synonyms", "names"], xref = list( chebi = "", KEGG = "", pubchem = "", HMDB = "", Wikipedia = "", lipidmaps = "", MeSH = "", MetaCyc = "", foodb = "", CAS = "", InChIkey = "", InChI = "", SMILES = "" ) ); ```
+The `compound` parameter must be a structured list with the following fields: ```r list( ID = "unique-id",               # Required: Unique identifier (character) formula = "formula-string",     # Required: Chemical formula (character) exact_mass = 0,                 # Required: Exact mass (numeric) name = "name_string",           # Required: Common name (character) IUPACName = "name_string",      # Required: IUPAC name (character) description = "description_string",  # Optional: Description (character) synonym = c("synonyms", "names"),    # Optional: Character vector of synonyms xref = list(                    # Optional: Cross-references to external databases chebi = "",                 # Use "" or omit if unavailable KEGG = "", pubchem = "", HMDB = "", Wikipedia = "", lipidmaps = "", MeSH = "", MetaCyc = "", foodb = "", CAS = "", InChIkey = "",              # Note: InChIkey/InChI/SMILES are stripped from xref InChI = "",                 #   and processed separately SMILES = "" ) ) ``` ### Processing Logic: 1. ​**Structure Handling**: - SMILES strings are parsed (non-strictly) and stored in `sequence_graph` if valid. Invalid SMILES are skipped. - InChIkey, InChI, and SMILES fields are removed from `xref` to avoid duplication; SMILES is explicitly stored in `sequence_graph`. 2. ​**Cross-References**: - Valid `xref` entries (non-empty strings) are added to `db_xrefs`, linked to the molecule's `id`. Each entry is checked for duplicates before insertion. 3. ​**Synonyms**: - Synonyms are stored in the `synonym` table with MD5 hashes to prevent duplicates. Only English (`lang = 'en'`) synonyms are supported.
 .PP
 .SH FILES
 .PP
-SMRUCC/R#.declare_function.__push_compound_metadata at push_compound_metadata.R:line 36
+SMRUCC/R#.declare_function.__push_compound_metadata at push_compound_metadata.R:line 87
 .PP
 .SH COPYRIGHT
 Copyright © xieguigang <xie.guigang@gcmodeller.org>, MIT License Licensed 2025

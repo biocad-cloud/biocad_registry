@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>check_metabolite_synonym</title>
+    <title>Internal metabolite synonym checker Helper function that searches for metabolites by name and synonyms when direct xref matching fails. Uses exact mass and MD5 hashing of synonyms for efficient lookup.</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
     <link rel="stylesheet" type="text/css" href="../../_assets/page.css">
@@ -18,7 +18,7 @@
             </tr>
         </table>
 
-        <h2>check_metabolite_synonym</h2>
+        <h2>Internal metabolite synonym checker Helper function that searches for metabolites by name and synonyms when direct xref matching fails. Uses exact mass and MD5 hashing of synonyms for efficient lookup.</h2>
 
         <h3>Description</h3>
 
@@ -34,12 +34,19 @@
 
         <table>
             
+<dt>biocad.registry</dt>
+<dd><p><p>A database connection object for BioCAD registry</p></p></dd>
+
+
+<dt>compound</dt>
+<dd><p><p>Compound list (see \code{check_metabolite} for structure)</p></p></dd>
+
         </table>
 
 
-        <h3 style="display: none;">Details</h3>
+        <h3 style="display: block;">Details</h3>
 
-        
+        <p>Operates in two phases: \enumerate{ \item Direct name match with mass tolerance \item MD5 hash-based synonym search if name match fails }</p>
 
         <h3 style="display: block">Authors</h3>
 
@@ -47,7 +54,7 @@
 
         <h3>Value</h3>
 
-        This function has no value returns.
+        <p>An integer database ID if match found by name/synonym, otherwise \code{NULL}.</p>
 
         <h3 style="display: none;">Examples</h3>
 
