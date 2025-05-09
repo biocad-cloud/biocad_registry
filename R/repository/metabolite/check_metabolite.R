@@ -1,9 +1,30 @@
-#' check of the metabolite is existsed inside database
+#' Check if a metabolite exists in the BioCAD registry database
 #' 
-#' @return an integer unique id of the compound that matched with the 
-#'   compound xrefs information, NULL will be returns if the molecule 
-#'   metabolite data has not been found.
+#' Performs a database lookup for metabolites using cross-references (xrefs) 
+#' and exact mass matching. First attempts direct xref matching, then falls 
+#' back to checking chemical synonyms if no direct matches are found.
+#'
+#' @param biocad_registry A database connection object to the BioCAD registry 
+#'        (e.g., MySQL/MariaDB connection through DBI)
+#' @param compound A list containing metabolite data with the following elements:
+#'        - xref: Named list of cross-references (e.g., KEGG, CHEBI, HMDB)
+#'        - formula: Chemical formula string
+#'        - name: Common name of metabolite
+#'        - synonym: Vector of synonym names
+#'
+#' @return An integer ID of the matching compound record if found, NULL if no 
+#'         match is found in the database. Return priority:
+#'         1. Direct xref matches in database
+#'         2. Synonym name matches
+#'         3. Exact name matches
 #' 
+#' @details The function:
+#'          - Calculates exact mass from chemical formula
+#'          - Filters structural identifiers (InChI, SMILES)
+#'          - Searches within ±1 Da mass tolerance window
+#'          - Uses MD5 hashes of lowercased synonyms for efficient matching
+#'          - Prioritizes direct cross-reference matches before falling back 
+#'            to name-based matching
 const check_metabolite = function(biocad_registry, compound) {
     let xrefs = as.list(compound$xref);
     let exact_mass = formula::eval(compound$formula);
@@ -52,6 +73,21 @@ const check_metabolite = function(biocad_registry, compound) {
     }
 }
 
+#' Internal metabolite lookup by name and synonyms
+#'
+#' Performs secondary metabolite lookup using common names and synonym hashes 
+#' when no direct xref matches are found. Not designed for direct use (called 
+#' internally by check_metabolite).
+#'
+#' @param biocad_registry Database connection object (see check_metabolite)
+#' @param compound Compound data list (see check_metabolite)
+#'
+#' @return An integer ID if name/synonym match found, NULL otherwise. Searches:
+#'         1. Exact name match first
+#'         2. MD5 hash matches of lowercased synonyms
+#' 
+#' @note Uses identical mass tolerance window (±1 Da) as check_metabolite.
+#'       Synonym matching uses hashed values to protect sensitive data.
 const check_metabolite_synonym = function(biocad_registry, compound) {
     let exact_mass = formula::eval(compound$formula);
 
