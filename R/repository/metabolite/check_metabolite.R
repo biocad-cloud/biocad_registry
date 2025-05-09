@@ -1,30 +1,44 @@
-#' Check if a metabolite exists in the BioCAD registry database
+#' Check if metabolite exists in database
 #' 
-#' Performs a database lookup for metabolites using cross-references (xrefs) 
-#' and exact mass matching. First attempts direct xref matching, then falls 
-#' back to checking chemical synonyms if no direct matches are found.
+#' Searches for a metabolite in the BioCAD registry database by cross-references 
+#' (xrefs) and exact mass. If no direct xref matches are found, falls back to
+#' checking common names and synonyms. Returns database ID if found.
 #'
-#' @param biocad_registry A database connection object to the BioCAD registry 
-#'        (e.g., MySQL/MariaDB connection through DBI)
-#' @param compound A list containing metabolite data with the following elements:
-#'        - xref: Named list of cross-references (e.g., KEGG, CHEBI, HMDB)
-#'        - formula: Chemical formula string
-#'        - name: Common name of metabolite
-#'        - synonym: Vector of synonym names
+#' @param biocad_registry A database connection object representing the BioCAD 
+#'        registry database.
+#' @param compound A list containing metabolite information with the following
+#'        elements:
+#'        \itemize{
+#'          \item{xref - List of cross-references (database identifiers)}
+#'          \item{formula - Chemical formula string}
+#'          \item{name - Common name of the compound}
+#'          \item{synonym - Vector of alternative names/synonyms}
+#'        }
 #'
-#' @return An integer ID of the matching compound record if found, NULL if no 
-#'         match is found in the database. Return priority:
-#'         1. Direct xref matches in database
-#'         2. Synonym name matches
-#'         3. Exact name matches
+#' @return An integer representing the unique database ID of the matched 
+#'         compound. Returns \code{NULL} if no matching metabolite is found 
+#'         in the database.
+#'
+#' @details The function performs the following steps:
+#' \enumerate{
+#'   \item Extracts and validates chemical formula (calculates exact mass)
+#'   \item Queries database using cross-reference identifiers (xrefs)
+#'   \item Performs mass tolerance search (±1 Da)
+#'   \item If xref search fails, calls \code{check_metabolite_synonym} to check
+#'         by name and synonyms
+#' }
 #' 
-#' @details The function:
-#'          - Calculates exact mass from chemical formula
-#'          - Filters structural identifiers (InChI, SMILES)
-#'          - Searches within ±1 Da mass tolerance window
-#'          - Uses MD5 hashes of lowercased synonyms for efficient matching
-#'          - Prioritizes direct cross-reference matches before falling back 
-#'            to name-based matching
+#' @examples
+#' \dontrun{
+#' # Assume biocad_registry is an established database connection
+#' compound <- list(
+#'   name = "glucose",
+#'   formula = "C6H12O6",
+#'   xref = list(KEGG = "C00031", CHEBI = "CHEBI:4167"),
+#'   synonym = c("dextrose", "blood sugar")
+#' )
+#' check_metabolite(biocad_registry, compound)
+#' }
 const check_metabolite = function(biocad_registry, compound) {
     let xrefs = as.list(compound$xref);
     let exact_mass = formula::eval(compound$formula);
@@ -73,21 +87,27 @@ const check_metabolite = function(biocad_registry, compound) {
     }
 }
 
-#' Internal metabolite lookup by name and synonyms
-#'
-#' Performs secondary metabolite lookup using common names and synonym hashes 
-#' when no direct xref matches are found. Not designed for direct use (called 
-#' internally by check_metabolite).
-#'
-#' @param biocad_registry Database connection object (see check_metabolite)
-#' @param compound Compound data list (see check_metabolite)
-#'
-#' @return An integer ID if name/synonym match found, NULL otherwise. Searches:
-#'         1. Exact name match first
-#'         2. MD5 hash matches of lowercased synonyms
+#' Internal metabolite synonym checker
 #' 
-#' @note Uses identical mass tolerance window (±1 Da) as check_metabolite.
-#'       Synonym matching uses hashed values to protect sensitive data.
+#' Helper function that searches for metabolites by name and synonyms when
+#' direct xref matching fails. Uses exact mass and MD5 hashing of synonyms
+#' for efficient lookup.
+#'
+#' @param biocad_registry A database connection object for BioCAD registry
+#' @param compound Compound list (see \code{check_metabolite} for structure)
+#'
+#' @return An integer database ID if match found by name/synonym, otherwise 
+#'         \code{NULL}.
+#'
+#' @details Operates in two phases:
+#' \enumerate{
+#'   \item Direct name match with mass tolerance
+#'   \item MD5 hash-based synonym search if name match fails
+#' }
+#' @note This function is not intended to be called directly - use 
+#'       \code{check_metabolite} instead.
+#'
+#' @keywords internal
 const check_metabolite_synonym = function(biocad_registry, compound) {
     let exact_mass = formula::eval(compound$formula);
 
