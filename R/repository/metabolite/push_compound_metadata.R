@@ -1,22 +1,30 @@
-#' save compound metadata
+#' Save compound metadata to a biocad registry
 #' 
-#' @param compound the compound metadata
-#' @param mol the molecule record about this compound inside current biocad_registry. 
-#'    a ``id`` data property is required inside this molecule record.
+#' This function stores compound metadata into a biocad registry, updating 
+#' several related tables including sequence_graph, db_xrefs, and synonyms.
+#'
+#' @param biocad_registry An object representing the biocad registry database 
+#'   where metadata will be stored. Must provide access to tables 
+#'   "sequence_graph", "db_xrefs", and "synonym".
+#' @param compound A list containing the compound's metadata. Must follow the 
+#'   structure specified in the Details section.
+#' @param mol A molecule record from the current `biocad_registry`. Must contain 
+#'   a character `id` property to associate metadata with this molecule.
 #' 
-#' @details the required of the compound metadata data structure should be:
+#' @details 
+#' The `compound` parameter must be a structured list with the following fields:
 #' 
 #' ```r
 #' list(
-#'    ID = "unique-id",
-#'    formula = "formula-string",
-#'    exact_mass = 0,
-#'    name = "name_string",
-#'    IUPACName = "name_string",
-#'    description = "description_string",
-#'    synonym = ["synonyms", "names"],
-#'    xref = list(
-#'        chebi = "",
+#'    ID = "unique-id",               # Required: Unique identifier (character)
+#'    formula = "formula-string",     # Required: Chemical formula (character)
+#'    exact_mass = 0,                 # Required: Exact mass (numeric)
+#'    name = "name_string",           # Required: Common name (character)
+#'    IUPACName = "name_string",      # Required: IUPAC name (character)
+#'    description = "description_string",  # Optional: Description (character)
+#'    synonym = c("synonyms", "names"),    # Optional: Character vector of synonyms
+#'    xref = list(                    # Optional: Cross-references to external databases
+#'        chebi = "",                 # Use "" or omit if unavailable
 #'        KEGG = "",
 #'        pubchem = "",
 #'        HMDB = "",
@@ -26,13 +34,56 @@
 #'        MetaCyc = "",
 #'        foodb = "",
 #'        CAS = "",
-#'        InChIkey = "",
-#'        InChI = "",
+#'        InChIkey = "",              # Note: InChIkey/InChI/SMILES are stripped from xref
+#'        InChI = "",                 #   and processed separately
 #'        SMILES = ""
 #'    )
-#' );
+#' )
 #' ```
 #' 
+#' ### Processing Logic:
+#' 1. ​**Structure Handling**:
+#'    - SMILES strings are parsed (non-strictly) and stored in `sequence_graph` 
+#'      if valid. Invalid SMILES are skipped.
+#'    - InChIkey, InChI, and SMILES fields are removed from `xref` to avoid 
+#'      duplication; SMILES is explicitly stored in `sequence_graph`.
+#' 
+#' 2. ​**Cross-References**:
+#'    - Valid `xref` entries (non-empty strings) are added to `db_xrefs`, 
+#'      linked to the molecule's `id`. Each entry is checked for duplicates 
+#'      before insertion.
+#' 
+#' 3. ​**Synonyms**:
+#'    - Synonyms are stored in the `synonym` table with MD5 hashes to prevent 
+#'      duplicates. Only English (`lang = 'en'`) synonyms are supported.
+#' 
+#' @section Side Effects:
+#' - Modifies tables in `biocad_registry`: 
+#'   - Adds entries to `sequence_graph` for valid SMILES.
+#'   - Adds cross-references to `db_xrefs`.
+#'   - Adds synonyms to `synonym`.
+#' - Duplicate entries are skipped using checks (e.g., `db_xrefs |> check(...)`).
+#' 
+#' @return Invisibly returns `NULL`. This function is called for its side effects.
+#' 
+#' @examples
+#' \dontrun{
+#' # Assume `registry` is a pre-configured biocad_registry
+#' compound <- list(
+#'   ID = "C00001",
+#'   formula = "H2O",
+#'   exact_mass = 18.0106,
+#'   name = "Water",
+#'   IUPACName = "Oxidane",
+#'   synonym = c("H2O", "Dihydrogen monoxide"),
+#'   xref = list(pubchem = "962", KEGG = "C00001")
+#' )
+#' mol <- list(id = "molecule_123")  # Pretend this is from biocad_registry
+#' 
+#' __push_compound_metadata(registry, compound, mol)
+#' }
+#' 
+#' @export
 const __push_compound_metadata = function(biocad_registry, compound, mol) {
     let seq_graph = biocad_registry |> table("sequence_graph");
     let db_xrefs  = biocad_registry |> table("db_xrefs");
