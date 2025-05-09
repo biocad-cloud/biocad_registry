@@ -54,6 +54,7 @@
 #' @export
 const find_molecule = function(biocad_registry, meta, xref_id) {
     # check database via xrefs at first
+    # and gets the compound molecule id
     let mol_id = check_metabolite(biocad_registry, compound = meta);
 
     if (is.null(mol_id)) {
