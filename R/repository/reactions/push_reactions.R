@@ -1,22 +1,80 @@
-#' Push a single reaction model into registry database
+#' Push a single reaction model into the biocad registry database
 #' 
-#' @param reaction the external reaction data object
+#' @description
+#' This function adds or updates a reaction entry in the biocad registry database, 
+#' including associated enzymes, database cross-references, and metabolite compounds.
 #' 
-#' @details the reaction data model should be a data list in format:
+#' @param biocad_registry An object representing the connection to the biocad registry database.
+#' @param reaction A list containing the reaction data to be pushed into the database. 
+#'   See "Details" for the required structure.
+#' 
+#' @details
+#' The `reaction` argument must be a list with the following structure:
 #' 
 #' ```r
 #' list(
-#'    entry = "unique_id",
-#'    definition = "name",
-#'    comment = "description_string",
-#'    enzyme = ["ec_number"],
-#'    db_xrefs = [list(name = "dbname", text = "xref_id")],
-#'    compounds = [list(
-#'       side = "string", 
-#'       compound = list(entry,name,formula, factor))
-#'    ]
+#'    entry = "unique_id",                 # Unique identifier for the reaction (string)
+#'    definition = "name",                  # Reaction name or equation (string)
+#'    comment = "description_string",       # Optional description or notes (string)
+#'    enzyme = list("ec_number1", ...),     # List of EC numbers (strings) for enzymatic regulation
+#'    db_xrefs = list(                      # List of cross-references to external databases
+#'       list(name = "dbname", text = "xref_id"), 
+#'       ...
+#'    ),
+#'    compounds = list(                     # List of compounds involved in the reaction
+#'       list(
+#'          side = "role_string",           # Compound role (e.g., "substrate", "product", "*" for unknown)
+#'          compound = list(                # Compound details
+#'             entry = "compound_id", 
+#'             name = "compound_name", 
+#'             formula = "chemical_formula",
+#'             factor = stoichiometric_factor  # Numeric (default = 1.0 if missing)
+#'          )
+#'       ), 
+#'       ...
+#'    )
 #' )
 #' ```
+#' 
+#' - If a reaction with the same `entry` exists, it will be ​**updated**​ with new data.
+#' - Enzymes, cross-references, and compounds are linked to the reaction entry. Duplicates are skipped.
+#' - Compounds with `side = "*"` are ignored (used for placeholder entries).
+#' 
+#' @section Side Effects:
+#' - Updates the `reaction`, `regulation_graph`, `reaction_graph`, and `db_xrefs` tables in the database.
+#' - Adds new entries for missing enzymes, compounds, or cross-references.
+#' 
+#' @return 
+#' Invisibly returns `NULL`. The function's primary purpose is to modify the database.
+#' 
+#' @examples
+#' \dontrun{
+#' # Example reaction data
+#' reaction_data <- list(
+#'   entry = "R00001",
+#'   definition = "ATP + H2O -> ADP + Phosphate",
+#'   comment = "Hydrolysis of ATP",
+#'   enzyme = list("3.6.1.3"),
+#'   db_xrefs = list(list(name = "KEGG", text = "R00001")),
+#'   compounds = list(
+#'     list(
+#'       side = "substrate",
+#'       compound = list(entry = "C00002", name = "ATP", formula = "C10H16N5O13P3", factor = 1)
+#'     ),
+#'     list(
+#'       side = "product",
+#'       compound = list(entry = "C00008", name = "ADP", formula = "C10H15N5O10P2", factor = 1)
+#'     )
+#'   )
+#' )
+#' 
+#' # Push to database
+#' push_reaction(biocad_registry = my_registry, reaction = reaction_data)
+#' }
+#' 
+#' @seealso
+#' - Use [link_reaction_metabolites()] to resolve compound IDs after pushing reactions.
+#' - See the database schema documentation for table structures.
 #' 
 const push_reaction = function(biocad_registry, reaction) {
     let reactions = biocad_registry |> table("reaction");
