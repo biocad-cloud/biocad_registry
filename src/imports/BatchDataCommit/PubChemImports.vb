@@ -2,6 +2,7 @@
 Imports BioNovoGene.BioDeep.Chemistry.MetaLib.CrossReference
 Imports BioNovoGene.BioDeep.Chemistry.MetaLib.Models
 Imports BioNovoGene.BioDeep.Chemistry.NCBI.PubChem
+Imports BioNovoGene.BioDeep.Chemoinformatics
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
@@ -45,6 +46,24 @@ Public Module PubChemImports
                     field("note") = meta.description
                 )
             End If
+        Next
+
+        Call trans.commit()
+
+        trans = registry.odor.open_transaction.ignore
+
+        For Each meta As MetaLib In TqdmWrapper.Wrap(metadata)
+            Dim mol As biocad_registryModel.molecule = registry.findMolecule(meta)
+
+            If mol Is Nothing Then
+                Continue For
+            End If
+
+            Dim odors = meta.chemical.Odor
+
+            For Each odor As UnitValue In odors
+
+            Next
         Next
 
         Call trans.commit()
