@@ -1,4 +1,5 @@
-﻿Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm
+﻿Imports BioNovoGene.BioDeep.Chemistry.NCBI.PubChem
+Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm
 Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Scripting.MetaData
@@ -19,6 +20,18 @@ Module imports_api
     Public Function genbank_repo(dir As String) As GenBankScanner
         Return New GenBankScanner(dir)
     End Function
+
+    <ExportAPI("pubchem_repo")>
+    Public Function pubchem_repo(dir As String) As PubChemScanner
+        Return New PubChemScanner(dir)
+    End Function
+
+    <ExportAPI("imports_pubchem_repo")>
+    Public Sub imports_pubchem_repo(registry As biocad_registry, repo As PubChemScanner)
+        For Each page As PugViewRecord() In repo.LoadPageData
+            Call PubChemImports.RunDataCommit(registry, page)
+        Next
+    End Sub
 
     ''' <summary>
     ''' make imports of the genomics sequence data into database

@@ -3,6 +3,7 @@ Imports BioNovoGene.BioDeep.Chemistry.MetaLib.CrossReference
 Imports BioNovoGene.BioDeep.Chemistry.MetaLib.Models
 Imports BioNovoGene.BioDeep.Chemistry.NCBI.PubChem
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
+Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Linq
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
@@ -13,7 +14,7 @@ Public Module PubChemImports
     Public Sub RunDataCommit(registry As biocad_registry, pagedata As PugViewRecord())
         Dim trans As CommitTransaction = registry.molecule.open_transaction.ignore
         Dim terms = registry.vocabulary_terms
-        Dim metadata As MetaLib() = pagedata _
+        Dim metadata As MetaLib() = pagedata.AsParallel _
             .Select(Function(m)
                         Try
                             Return m.GetMetaInfo
@@ -26,7 +27,7 @@ Public Module PubChemImports
             .Where(Function(m) Not m Is Nothing) _
             .ToArray
 
-        For Each meta As MetaLib In metadata
+        For Each meta As MetaLib In TqdmWrapper.Wrap(metadata)
             Dim mol As biocad_registryModel.molecule = registry.findMolecule(meta)
 
             If mol Is Nothing Then

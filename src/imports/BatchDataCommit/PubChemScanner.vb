@@ -13,7 +13,7 @@ Public Class PubChemScanner
     End Function
 
     Public Iterator Function LoadPageData() As IEnumerable(Of PugViewRecord())
-        For Each page As String() In repo.ListFiles("*.xml").SplitIterator(10000)
+        For Each page As String() In repo.ListFiles("*.xml").SplitIterator(1000)
             Yield LoadData(page).ToArray
         Next
     End Function
