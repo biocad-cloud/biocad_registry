@@ -48,6 +48,35 @@ Public Module PubChemImports
         Next
 
         Call trans.commit()
+
+        trans = registry.sequence_graph.open_transaction
+
+        For Each meta As MetaLib In TqdmWrapper.Wrap(metadata)
+            Dim smiles As String = meta.xref.SMILES
+
+            If smiles.StringEmpty(, True) Then
+                Continue For
+            End If
+
+            Dim mol As biocad_registryModel.molecule = registry.findMolecule(meta)
+
+            If mol Is Nothing Then
+                Continue For
+            End If
+
+            Dim seq = registry.sequence_graph.where(field("molecule_id") = mol.id).find(Of biocad_registryModel.sequence_graph)
+
+            If seq Is Nothing Then
+                trans.add(
+                    field("molecule_id") = mol.id,
+                    field("sequence") = smiles,
+                    field("hashcode") = smiles.MD5,
+                    field("morgan") = ""
+                )
+            End If
+        Next
+
+        Call trans.commit()
     End Sub
 
     <Extension>
