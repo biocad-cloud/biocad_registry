@@ -49,7 +49,7 @@ Public Module PubChemImports
 
         Call trans.commit()
 
-        trans = registry.sequence_graph.open_transaction
+        trans = registry.sequence_graph.open_transaction.ignore
 
         For Each meta As MetaLib In TqdmWrapper.Wrap(metadata)
             Dim smiles As String = meta.xref.SMILES
@@ -74,6 +74,36 @@ Public Module PubChemImports
                     field("morgan") = ""
                 )
             End If
+        Next
+
+        Call trans.commit()
+
+        trans = registry.db_xrefs.open_transaction.ignore
+
+        For Each meta As MetaLib In TqdmWrapper.Wrap(metadata)
+            Dim mol As biocad_registryModel.molecule = registry.findMolecule(meta)
+
+            If mol Is Nothing Then
+                Continue For
+            End If
+
+            Dim xrefs As NamedValue(Of String)() = meta.xref.PopulateXrefs(True, True).ToArray
+
+            For Each xref As NamedValue(Of String) In xrefs
+                Dim check = registry.db_xrefs _
+                    .where(field("obj_id") = mol.id,
+                           field("db_key") = terms.GetDatabaseKey(xref.Name),
+                           field("xref") = xref.Value).find(Of biocad_registryModel.db_xrefs)
+
+                If check Is Nothing Then
+                    Call trans.add(
+                        field("obj_id") = mol.id,
+                        field("db_key") = terms.GetDatabaseKey(xref.Name),
+                        field("xref") = xref.Value,
+                        field("type") = terms.metabolite_term
+                    )
+                End If
+            Next
         Next
 
         Call trans.commit()
