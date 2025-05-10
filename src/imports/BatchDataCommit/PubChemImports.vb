@@ -70,9 +70,9 @@ Public Module PubChemImports
                 Dim term_id As UInteger
 
                 Select Case group.Key
-                    Case "Odor" : term_id = odor_term
-                    Case "Taste" : term_id = taste_term
-                    Case "Color" : term_id = color_term
+                    Case "odor" : term_id = odor_term
+                    Case "taste" : term_id = taste_term
+                    Case "color" : term_id = color_term
                     Case Else
                         Throw New NotImplementedException(group.Key)
                 End Select
