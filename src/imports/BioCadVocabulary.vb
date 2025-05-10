@@ -55,6 +55,10 @@ Public Class BioCadVocabulary
         Return registry.getVocabulary(key, CategoryDatabase)
     End Function
 
+    Public Function GetVocabularyTerm(key As String, category As String) As UInteger
+        Return registry.getVocabulary(key, category)
+    End Function
+
     Public Function GetBioCadOntology(id As String, Optional name As String = Nothing) As biocad_registryModel.ontology
         Static cache As New Dictionary(Of String, biocad_registryModel.ontology)
         Return cache.ComputeIfAbsent(id,

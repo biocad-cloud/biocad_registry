@@ -1,4 +1,5 @@
 ﻿Imports System.Runtime.CompilerServices
+Imports BioNovoGene.BioDeep.Chemistry.MetaLib
 Imports BioNovoGene.BioDeep.Chemistry.MetaLib.CrossReference
 Imports BioNovoGene.BioDeep.Chemistry.MetaLib.Models
 Imports BioNovoGene.BioDeep.Chemistry.NCBI.PubChem
@@ -52,6 +53,10 @@ Public Module PubChemImports
 
         trans = registry.odor.open_transaction.ignore
 
+        Dim odor_term As UInteger = terms.GetVocabularyTerm("Odor", "Odor Category")
+        Dim taste_term As UInteger = terms.GetVocabularyTerm("Taste", "Odor Category")
+        Dim color_term As UInteger = terms.GetVocabularyTerm("Color", "Odor Category")
+
         For Each meta As MetaLib In TqdmWrapper.Wrap(metadata)
             Dim mol As biocad_registryModel.molecule = registry.findMolecule(meta)
 
@@ -59,10 +64,38 @@ Public Module PubChemImports
                 Continue For
             End If
 
-            Dim odors = meta.chemical.Odor
+            Dim odors As NamedValue(Of String)() = meta.chemical.EnumerateOdorTerms.ToArray
 
-            For Each odor As UnitValue In odors
+            For Each group As IGrouping(Of String, NamedValue(Of String)) In odors.GroupBy(Function(a) a.Name)
+                Dim term_id As UInteger
 
+                Select Case group.Key
+                    Case "Odor" : term_id = odor_term
+                    Case "Taste" : term_id = taste_term
+                    Case "Color" : term_id = color_term
+                    Case Else
+                        Throw New NotImplementedException(group.Key)
+                End Select
+
+                For Each odor As NamedValue(Of String) In group
+                    Dim check = registry.odor _
+                        .where(field("molecule_id") = mol.id,
+                               field("category") = term_id,
+                               field("odor") = odor.Value) _
+                        .find(Of biocad_registryModel.odor)
+
+                    If check Is Nothing Then
+                        Call registry.odor.add(
+                            field("molecule_id") = mol.id,
+                            field("category") = term_id,
+                            field("odor") = odor.Value,
+                            field("hashcode") = odor.Value.ToLower.MD5,
+                            field("value") = 0,
+                            field("unit") = 0,
+                            field("text") = odor.Description
+                        )
+                    End If
+                Next
             Next
         Next
 
