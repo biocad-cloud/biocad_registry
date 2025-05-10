@@ -107,6 +107,41 @@ Public Module PubChemImports
         Next
 
         Call trans.commit()
+
+        trans = registry.synonym.open_transaction.ignore
+
+        For Each meta As MetaLib In TqdmWrapper.Wrap(metadata)
+            Dim mol As biocad_registryModel.molecule = registry.findMolecule(meta)
+
+            If mol Is Nothing Then
+                Continue For
+            End If
+
+            Dim synonyms As String() = {meta.name, meta.IUPACName} _
+                .JoinIterates(meta.synonym) _
+                .Where(Function(s) Not s.StringEmpty(, True)) _
+                .Distinct _
+                .ToArray
+
+            For Each name As String In synonyms
+                Dim hash As String = name.ToLower.MD5
+                Dim check = registry.synonym _
+                    .where(field("obj_id") = mol.id, field("hashcode") = hash) _
+                    .find(Of biocad_registryModel.synonym)
+
+                If check Is Nothing Then
+                    Call trans.add(
+                        field("obj_id") = mol.id,
+                        field("type_id") = terms.metabolite_term,
+                        field("hashcode") = hash,
+                        field("synonym") = name,
+                        field("lang") = "en"
+                    )
+                End If
+            Next
+        Next
+
+        Call trans.commit()
     End Sub
 
     <Extension>
