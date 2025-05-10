@@ -35428,6 +35428,15 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  ``<see cref="M:Microsoft.VisualBasic.Language.C.CLangStringFormatProvider.sprintf(System.String,System.Object[])"/>`` syntax helpers
  </summary>
 </member>
+<member name="M:Microsoft.VisualBasic.Language.FormatHelpers.StartsWith(Microsoft.VisualBasic.Language.Value{System.String},System.Char)">
+ <summary>
+ Determines whether the beginning of this string instance matches the specified
+ string.
+ </summary>
+ <param name="str"></param>
+ <param name="c">The string to compare.</param>
+ <returns>true if value matches the beginning of this string; otherwise, false.</returns>
+</member>
 <member name="M:Microsoft.VisualBasic.Language.FormatHelpers.Trim(Microsoft.VisualBasic.Language.Value{System.String},System.Char[])">
  <summary>
  Removes all leading and trailing occurrences of a set of characters specified
@@ -35517,6 +35526,15 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  </summary>
  <param name="str"></param>
  <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Language.Values.ByRefValueExtensions.StartsWith(Microsoft.VisualBasic.Language.Value{System.String},System.String)">
+ <summary>
+ Determines whether the beginning of this string instance matches the specified
+ string.
+ </summary>
+ <param name="str"></param>
+ <param name="substr">The string to compare.</param>
+ <returns>true if value matches the beginning of this string; otherwise, false.</returns>
 </member>
 <member name="M:Microsoft.VisualBasic.Language.Values.ByRefValueExtensions.CreateDelegate(Microsoft.VisualBasic.Language.Value{System.Reflection.MethodInfo},System.Type)">
  <summary>
@@ -37390,6 +37408,13 @@ to take away yo [rest of string was truncated]&quot;;.
 <member name="M:Microsoft.VisualBasic.Scripting.Runtime.CastStringVector.AsSingle(System.Collections.Generic.IEnumerable{System.String})">
  <summary>
  parse string as float number in batch mode
+ </summary>
+ <param name="source"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Scripting.Runtime.CastStringVector.AsLong(System.Collections.Generic.IEnumerable{System.String})">
+ <summary>
+ parse string as long integer in batch mode
  </summary>
  <param name="source"></param>
  <returns></returns>

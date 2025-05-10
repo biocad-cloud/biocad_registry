@@ -54,7 +54,9 @@ Public Module PubChemImports
         Dim cid As String = $"PubChem:{meta.ID}"
 
         ' find molecule table via xref_id directly at first
-        Dim q = registry.molecule.where(field("xref_id") = cid).find(Of biocad_registryModel.molecule)
+        Dim q = registry.molecule _
+            .where(field("xref_id") = cid) _
+            .find(Of biocad_registryModel.molecule)
 
         If Not q Is Nothing Then
             Return q
