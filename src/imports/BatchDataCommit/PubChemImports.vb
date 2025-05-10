@@ -85,7 +85,7 @@ Public Module PubChemImports
                         .find(Of biocad_registryModel.odor)
 
                     If check Is Nothing Then
-                        Call registry.odor.add(
+                        Call trans.add(
                             field("molecule_id") = mol.id,
                             field("category") = term_id,
                             field("odor") = odor.Value,
