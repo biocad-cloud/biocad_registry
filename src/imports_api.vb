@@ -55,7 +55,7 @@ Module imports_api
     ''' <returns></returns>
     <ExportAPI("imports_metab_repo")>
     Public Function imports_metabolites(registry As biocad_registry, <RRawVectorArgument> metab As Object, Optional env As Environment = Nothing)
-        Dim pull As pipeline = pipeline.TryCreatePipeline(Of MetaLib)(metab, env)
+        Dim pull As pipeline = pipeline.TryCreatePipeline(Of MetaInfo)(metab, env)
 
         If pull.isError Then
             Return pull.getError

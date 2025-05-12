@@ -132,6 +132,15 @@ BioNovoGene.BioDeep.Chemoinformatics
  </param>
  <returns></returns>
 </member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.CrossReferenceData.UniqueGroups``2(System.Collections.Generic.IEnumerable{``1})">
+ <summary>
+ Create metabolite groups by names
+ </summary>
+ <typeparam name="C"></typeparam>
+ <typeparam name="T"></typeparam>
+ <param name="list"></param>
+ <returns></returns>
+</member>
 <member name="M:BioNovoGene.BioDeep.Chemoinformatics.CrossReferenceData.MakeGroups``2(System.Collections.Generic.IEnumerable{``1})">
  <summary>
  Check of the name/id equality via the string comparision directly
