@@ -9,6 +9,9 @@ Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports SMRUCC.genomics.Assembly.NCBI.GenBank
 Imports SMRUCC.genomics.Assembly.NCBI.Taxonomy
 Imports SMRUCC.genomics.foundation.OBO_Foundry.IO.Models
+Imports SMRUCC.Rsharp.Runtime
+Imports SMRUCC.Rsharp.Runtime.Internal.[Object]
+Imports SMRUCC.Rsharp.Runtime.Interop
 
 <Package("data_imports")>
 Module imports_api
@@ -42,6 +45,28 @@ Module imports_api
             Call MetaboliteImports.RunDataCommit(registry, page, uniref:=Function(m) m.ID)
         Next
     End Sub
+
+    ''' <summary>
+    ''' general function for make metabolite imports
+    ''' </summary>
+    ''' <param name="registry"></param>
+    ''' <param name="metab"></param>
+    ''' <param name="env"></param>
+    ''' <returns></returns>
+    <ExportAPI("imports_metab_repo")>
+    Public Function imports_metabolites(registry As biocad_registry, <RRawVectorArgument> metab As Object, Optional env As Environment = Nothing)
+        Dim pull As pipeline = pipeline.TryCreatePipeline(Of MetaLib)(metab, env)
+
+        If pull.isError Then
+            Return pull.getError
+        End If
+
+        For Each page As MetaInfo() In pull.populates(Of MetaInfo)(env).SplitIterator(3000)
+            Call MetaboliteImports.RunDataCommit(registry, page, uniref:=Function(m) m.ID)
+        Next
+
+        Return Nothing
+    End Function
 
     ''' <summary>
     ''' make imports of the genomics sequence data into database
