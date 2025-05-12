@@ -3,31 +3,18 @@ Imports BioNovoGene.BioDeep.Chemistry.MetaLib
 Imports BioNovoGene.BioDeep.Chemistry.MetaLib.CrossReference
 Imports BioNovoGene.BioDeep.Chemistry.MetaLib.Models
 Imports BioNovoGene.BioDeep.Chemistry.NCBI.PubChem
-Imports BioNovoGene.BioDeep.Chemoinformatics
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Linq
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 
-Public Module PubChemImports
+Public Module MetaboliteImports
 
     <Extension>
-    Public Sub RunDataCommit(registry As biocad_registry, pagedata As PugViewRecord())
+    Public Sub RunDataCommit(registry As biocad_registry, metadata As MetaInfo())
         Dim trans As CommitTransaction = registry.molecule.open_transaction.ignore
         Dim terms = registry.vocabulary_terms
-        Dim metadata As MetaLib() = pagedata.AsParallel _
-            .Select(Function(m)
-                        Try
-                            Return m.GetMetaInfo
-                        Catch ex As Exception
-                            Call App.LogException(ex)
-                        End Try
-
-                        Return Nothing
-                    End Function) _
-            .Where(Function(m) Not m Is Nothing) _
-            .ToArray
 
         For Each meta As MetaLib In TqdmWrapper.Wrap(metadata)
             Dim mol As biocad_registryModel.molecule = registry.findMolecule(meta)
@@ -258,5 +245,26 @@ Public Module PubChemImports
 
         Return Nothing
     End Function
+End Module
+
+Public Module PubChemImports
+
+    <Extension>
+    Public Sub RunDataCommit(registry As biocad_registry, pagedata As PugViewRecord())
+        Dim metadata As MetaInfo() = pagedata.AsParallel _
+            .Select(Function(m)
+                        Try
+                            Return DirectCast(m.GetMetaInfo, MetaInfo)
+                        Catch ex As Exception
+                            Call App.LogException(ex)
+                        End Try
+
+                        Return Nothing
+                    End Function) _
+            .Where(Function(m) Not m Is Nothing) _
+            .ToArray
+
+        Call MetaboliteImports.RunDataCommit(registry, metadata)
+    End Sub
 
 End Module

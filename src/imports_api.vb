@@ -1,4 +1,6 @@
-﻿Imports BioNovoGene.BioDeep.Chemistry.NCBI.PubChem
+﻿Imports BioNovoGene.BioDeep.Chemistry.ChEBI
+Imports BioNovoGene.BioDeep.Chemistry.MetaLib.Models
+Imports BioNovoGene.BioDeep.Chemistry.NCBI.PubChem
 Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm
 Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.Linq
@@ -6,6 +8,7 @@ Imports Microsoft.VisualBasic.Scripting.MetaData
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports SMRUCC.genomics.Assembly.NCBI.GenBank
 Imports SMRUCC.genomics.Assembly.NCBI.Taxonomy
+Imports SMRUCC.genomics.foundation.OBO_Foundry.IO.Models
 
 <Package("data_imports")>
 Module imports_api
@@ -30,6 +33,13 @@ Module imports_api
     Public Sub imports_pubchem_repo(registry As biocad_registry, repo As PubChemScanner)
         For Each page As PugViewRecord() In repo.LoadPageData
             Call PubChemImports.RunDataCommit(registry, page)
+        Next
+    End Sub
+
+    <ExportAPI("imports_chebi_repo")>
+    Public Sub imports_chebi(registry As biocad_registry, chebi As OBOFile)
+        For Each page As MetaInfo() In ChEBIObo.ImportsMetabolites(chebi).SplitIterator(3000)
+            Call MetaboliteImports.RunDataCommit(registry, page)
         Next
     End Sub
 
