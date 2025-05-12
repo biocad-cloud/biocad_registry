@@ -46,6 +46,8 @@ Public Module MetaboliteImports
         For Each meta As MetaInfo In TqdmWrapper.Wrap(metadata)
             If Not TypeOf meta Is MetaLib Then
                 Continue For
+            ElseIf DirectCast(meta, MetaLib).chemical Is Nothing Then
+                Continue For
             End If
 
             Dim mol As biocad_registryModel.molecule = registry.findMolecule(meta, uniref)
