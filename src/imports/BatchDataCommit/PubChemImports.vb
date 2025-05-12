@@ -1,6 +1,5 @@
 ﻿Imports System.Runtime.CompilerServices
 Imports BioNovoGene.BioDeep.Chemistry.MetaLib
-Imports BioNovoGene.BioDeep.Chemistry.MetaLib.CrossReference
 Imports BioNovoGene.BioDeep.Chemistry.MetaLib.Models
 Imports BioNovoGene.BioDeep.Chemistry.NCBI.PubChem
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
@@ -12,19 +11,19 @@ Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Public Module MetaboliteImports
 
     <Extension>
-    Public Sub RunDataCommit(registry As biocad_registry, metadata As MetaInfo())
+    Public Sub RunDataCommit(registry As biocad_registry, metadata As MetaInfo(), uniref As Func(Of MetaInfo, String))
         Dim trans As CommitTransaction = registry.molecule.open_transaction.ignore
         Dim terms = registry.vocabulary_terms
 
         For Each meta As MetaInfo In TqdmWrapper.Wrap(metadata)
-            Dim mol As biocad_registryModel.molecule = registry.findMolecule(meta)
+            Dim mol As biocad_registryModel.molecule = registry.findMolecule(meta, uniref)
 
             If mol Is Nothing Then
                 Dim mass As Double = FormulaScanner.EvaluateExactMass(meta.formula)
 
                 ' add new 
                 Call trans.add(
-                    field("xref_id") = $"PubChem:{meta.ID}",
+                    field("xref_id") = uniref(meta),
                     field("name") = meta.name,
                     field("mass") = If(mass < 0, 0, mass),
                     field("type") = terms.metabolite_term,
@@ -49,7 +48,7 @@ Public Module MetaboliteImports
                 Continue For
             End If
 
-            Dim mol As biocad_registryModel.molecule = registry.findMolecule(meta)
+            Dim mol As biocad_registryModel.molecule = registry.findMolecule(meta, uniref)
 
             If mol Is Nothing Then
                 Continue For
@@ -101,7 +100,7 @@ Public Module MetaboliteImports
                 Continue For
             End If
 
-            Dim mol As biocad_registryModel.molecule = registry.findMolecule(meta)
+            Dim mol As biocad_registryModel.molecule = registry.findMolecule(meta, uniref)
 
             If mol Is Nothing Then
                 Continue For
@@ -124,7 +123,7 @@ Public Module MetaboliteImports
         trans = registry.db_xrefs.open_transaction.ignore
 
         For Each meta As MetaInfo In TqdmWrapper.Wrap(metadata)
-            Dim mol As biocad_registryModel.molecule = registry.findMolecule(meta)
+            Dim mol As biocad_registryModel.molecule = registry.findMolecule(meta, uniref)
 
             If mol Is Nothing Then
                 Continue For
@@ -154,7 +153,7 @@ Public Module MetaboliteImports
         trans = registry.synonym.open_transaction.ignore
 
         For Each meta As MetaInfo In TqdmWrapper.Wrap(metadata)
-            Dim mol As biocad_registryModel.molecule = registry.findMolecule(meta)
+            Dim mol As biocad_registryModel.molecule = registry.findMolecule(meta, uniref)
 
             If mol Is Nothing Then
                 Continue For
@@ -188,8 +187,8 @@ Public Module MetaboliteImports
     End Sub
 
     <Extension>
-    Private Function findMolecule(registry As biocad_registry, meta As MetaInfo) As biocad_registryModel.molecule
-        Dim cid As String = $"PubChem:{meta.ID}"
+    Private Function findMolecule(registry As biocad_registry, meta As MetaInfo, uniref As Func(Of MetaInfo, String)) As biocad_registryModel.molecule
+        Dim cid As String = uniref(meta)
 
         ' find molecule table via xref_id directly at first
         Dim q = registry.molecule _
@@ -205,7 +204,7 @@ Public Module MetaboliteImports
         Dim xrefs As NamedValue(Of String)() = meta.xref.PopulateXrefs(True, True).ToArray
         Dim mass As Double = FormulaScanner.EvaluateExactMass(meta.formula)
 
-        For Each xref In xrefs
+        For Each xref As NamedValue(Of String) In xrefs
             filter = filter Or (field("db_key") = registry.vocabulary_terms.GetDatabaseKey(xref.Name) And field("xref") = xref.Value)
         Next
 
@@ -268,7 +267,7 @@ Public Module PubChemImports
             .Where(Function(m) Not m Is Nothing) _
             .ToArray
 
-        Call MetaboliteImports.RunDataCommit(registry, metadata)
+        Call MetaboliteImports.RunDataCommit(registry, metadata, Function(meta) $"PubChem:{meta.ID}")
     End Sub
 
 End Module

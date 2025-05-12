@@ -39,7 +39,7 @@ Module imports_api
     <ExportAPI("imports_chebi_repo")>
     Public Sub imports_chebi(registry As biocad_registry, chebi As OBOFile)
         For Each page As MetaInfo() In ChEBIObo.ImportsMetabolites(chebi).SplitIterator(3000)
-            Call MetaboliteImports.RunDataCommit(registry, page)
+            Call MetaboliteImports.RunDataCommit(registry, page, uniref:=Function(m) m.ID)
         Next
     End Sub
 
