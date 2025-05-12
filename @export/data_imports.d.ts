@@ -29,6 +29,10 @@ declare namespace data_imports {
    */
    function imports_genomics(registry: object, genbank: object): any;
    /**
+     * @param env default value Is ``null``.
+   */
+   function imports_metab_repo(registry: object, metab: any, env?: object): any;
+   /**
    */
    function imports_pubchem_repo(registry: object, repo: object): ;
    /**
