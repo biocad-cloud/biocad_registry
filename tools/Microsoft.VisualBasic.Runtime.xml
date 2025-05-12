@@ -36381,6 +36381,15 @@ to take away yo [rest of string was truncated]&quot;;.
  the average value
  </summary>
 </member>
+<member name="T:Microsoft.VisualBasic.Scripting.Expressions.IAggregate">
+ <summary>
+ Aggregate a numeric vector as a scalar numeric value
+ </summary>
+ <param name="data">
+ a numeric vector, should contains at least one element
+ </param>
+ <returns></returns>
+</member>
 <member name="T:Microsoft.VisualBasic.Scripting.Expressions.Aggregate">
  <summary>
  Helper module for get lambda function by scripting text

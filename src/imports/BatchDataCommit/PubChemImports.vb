@@ -16,7 +16,7 @@ Public Module MetaboliteImports
         Dim trans As CommitTransaction = registry.molecule.open_transaction.ignore
         Dim terms = registry.vocabulary_terms
 
-        For Each meta As MetaLib In TqdmWrapper.Wrap(metadata)
+        For Each meta As MetaInfo In TqdmWrapper.Wrap(metadata)
             Dim mol As biocad_registryModel.molecule = registry.findMolecule(meta)
 
             If mol Is Nothing Then
@@ -44,14 +44,18 @@ Public Module MetaboliteImports
         Dim taste_term As UInteger = terms.GetVocabularyTerm("Taste", "Odor Category")
         Dim color_term As UInteger = terms.GetVocabularyTerm("Color", "Odor Category")
 
-        For Each meta As MetaLib In TqdmWrapper.Wrap(metadata)
+        For Each meta As MetaInfo In TqdmWrapper.Wrap(metadata)
+            If Not TypeOf meta Is MetaLib Then
+                Continue For
+            End If
+
             Dim mol As biocad_registryModel.molecule = registry.findMolecule(meta)
 
             If mol Is Nothing Then
                 Continue For
             End If
 
-            Dim odors As NamedValue(Of String)() = meta.chemical.EnumerateOdorTerms.ToArray
+            Dim odors As NamedValue(Of String)() = DirectCast(meta, MetaLib).chemical.EnumerateOdorTerms.ToArray
 
             For Each group As IGrouping(Of String, NamedValue(Of String)) In odors.GroupBy(Function(a) a.Name)
                 Dim term_id As UInteger
@@ -90,7 +94,7 @@ Public Module MetaboliteImports
 
         trans = registry.sequence_graph.open_transaction.ignore
 
-        For Each meta As MetaLib In TqdmWrapper.Wrap(metadata)
+        For Each meta As MetaInfo In TqdmWrapper.Wrap(metadata)
             Dim smiles As String = meta.xref.SMILES
 
             If smiles.StringEmpty(, True) Then
@@ -119,7 +123,7 @@ Public Module MetaboliteImports
 
         trans = registry.db_xrefs.open_transaction.ignore
 
-        For Each meta As MetaLib In TqdmWrapper.Wrap(metadata)
+        For Each meta As MetaInfo In TqdmWrapper.Wrap(metadata)
             Dim mol As biocad_registryModel.molecule = registry.findMolecule(meta)
 
             If mol Is Nothing Then
@@ -149,7 +153,7 @@ Public Module MetaboliteImports
 
         trans = registry.synonym.open_transaction.ignore
 
-        For Each meta As MetaLib In TqdmWrapper.Wrap(metadata)
+        For Each meta As MetaInfo In TqdmWrapper.Wrap(metadata)
             Dim mol As biocad_registryModel.molecule = registry.findMolecule(meta)
 
             If mol Is Nothing Then
@@ -184,7 +188,7 @@ Public Module MetaboliteImports
     End Sub
 
     <Extension>
-    Private Function findMolecule(registry As biocad_registry, meta As MetaLib) As biocad_registryModel.molecule
+    Private Function findMolecule(registry As biocad_registry, meta As MetaInfo) As biocad_registryModel.molecule
         Dim cid As String = $"PubChem:{meta.ID}"
 
         ' find molecule table via xref_id directly at first

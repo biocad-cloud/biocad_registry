@@ -9156,7 +9156,7 @@ ATT I Ile      ACT T Thr      AAT N As [rest of string was truncated]&quot;;.
  <summary>
  将一个GBK文件从硬盘文件之中读取出来，当发生错误的时候，会抛出错误
  </summary>
- <param name="Path"></param>
+ <param name="path"></param>
  <returns></returns>
  <remarks></remarks>
 
@@ -9438,7 +9438,7 @@ Get feature site data by nucleotide location.
  </summary>
  <remarks>(序列上面的一个位点)</remarks>
 </member>
-<member name="M:SMRUCC.genomics.Assembly.NCBI.GenBank.GBFF.Keywords.FEATURES.ParserHelper.__formatString(System.Collections.Generic.IEnumerable{System.String})">
+<member name="M:SMRUCC.genomics.Assembly.NCBI.GenBank.GBFF.Keywords.FEATURES.ParserHelper.__formatString(System.Collections.Generic.IEnumerable{System.String},System.String)">
  <summary>
  去除数据中的断行
  </summary>

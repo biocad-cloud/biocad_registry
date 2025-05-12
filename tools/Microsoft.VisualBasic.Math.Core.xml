@@ -6118,7 +6118,7 @@ Microsoft.VisualBasic.Math.Core
  left op right
  </summary>
 </member>
-<member name="M:Microsoft.VisualBasic.Math.Scripting.MathExpression.Impl.BinaryExpression.#ctor(Microsoft.VisualBasic.Math.Scripting.MathExpression.Impl.Expression,Microsoft.VisualBasic.Math.Scripting.MathExpression.Impl.Expression,System.Char)">
+<member name="M:Microsoft.VisualBasic.Math.Scripting.MathExpression.Impl.BinaryExpression.#ctor(Microsoft.VisualBasic.Math.Scripting.MathExpression.Impl.Expression,Microsoft.VisualBasic.Math.Scripting.MathExpression.Impl.Expression,System.String)">
  <summary>
  construct a new binary expression of:
  
