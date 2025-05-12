@@ -15,6 +15,12 @@ Public Module MetaboliteImports
         Dim trans As CommitTransaction = registry.molecule.open_transaction.ignore
         Dim terms = registry.vocabulary_terms
 
+        If lazyMol Then
+            Call VBDebugger.EchoLine("the metabolute molecule will be created in transaction batch mode!")
+        Else
+            Call VBDebugger.EchoLine("the metabolute molecule will be created in one by one sequence mode!")
+        End If
+
         For Each meta As MetaInfo In TqdmWrapper.Wrap(metadata)
             Dim mol As biocad_registryModel.molecule = registry.findMolecule(meta, uniref)
 
