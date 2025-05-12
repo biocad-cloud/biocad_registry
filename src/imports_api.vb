@@ -54,7 +54,10 @@ Module imports_api
     ''' <param name="env"></param>
     ''' <returns></returns>
     <ExportAPI("imports_metab_repo")>
-    Public Function imports_metabolites(registry As biocad_registry, <RRawVectorArgument> metab As Object, Optional env As Environment = Nothing)
+    Public Function imports_metabolites(registry As biocad_registry, <RRawVectorArgument> metab As Object,
+                                        Optional lazy_molecule_ctor As Boolean = True,
+                                        Optional env As Environment = Nothing)
+
         Dim pull As pipeline = pipeline.TryCreatePipeline(Of MetaInfo)(metab, env)
 
         If pull.isError Then
@@ -62,7 +65,7 @@ Module imports_api
         End If
 
         For Each page As MetaInfo() In pull.populates(Of MetaInfo)(env).SplitIterator(3000)
-            Call MetaboliteImports.RunDataCommit(registry, page, uniref:=Function(m) m.ID)
+            Call MetaboliteImports.RunDataCommit(registry, page, uniref:=Function(m) m.ID, lazy_molecule_ctor)
         Next
 
         Return Nothing

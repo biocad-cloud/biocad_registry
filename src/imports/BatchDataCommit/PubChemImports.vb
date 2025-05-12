@@ -11,7 +11,7 @@ Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Public Module MetaboliteImports
 
     <Extension>
-    Public Sub RunDataCommit(registry As biocad_registry, metadata As MetaInfo(), uniref As Func(Of MetaInfo, String))
+    Public Sub RunDataCommit(registry As biocad_registry, metadata As MetaInfo(), uniref As Func(Of MetaInfo, String), Optional lazyMol As Boolean = True)
         Dim trans As CommitTransaction = registry.molecule.open_transaction.ignore
         Dim terms = registry.vocabulary_terms
 
@@ -20,9 +20,7 @@ Public Module MetaboliteImports
 
             If mol Is Nothing Then
                 Dim mass As Double = FormulaScanner.EvaluateExactMass(meta.formula)
-
-                ' add new 
-                Call trans.add(
+                Dim molData = {
                     field("xref_id") = uniref(meta),
                     field("name") = meta.name,
                     field("mass") = If(mass < 0, 0, mass),
@@ -31,7 +29,14 @@ Public Module MetaboliteImports
                     field("parent") = 0,
                     field("tax_id") = 0,
                     field("note") = meta.description
-                )
+                }
+
+                ' add new 
+                If lazyMol Then
+                    Call trans.add(molData)
+                Else
+                    Call registry.molecule.add(molData)
+                End If
             End If
         Next
 
