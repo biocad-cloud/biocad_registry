@@ -32,4 +32,4 @@ let mona = read.MoNA([
     "F:\datapool\mona\MoNA-export-FAHFA.msp"
 ], lazy = FALSE);
 
-biocad_registry |> imports_metab_repo(mona);
+biocad_registry |> imports_metab_repo(mona, lazy_molecule_ctor = FALSE);
