@@ -12,6 +12,9 @@ declare namespace data_imports {
    function genbank_repo(dir: string): object;
    /**
    */
+   function imports_chebi_repo(registry: object, chebi: object): ;
+   /**
+   */
    function imports_dbxrefs(registry: object, genbank: object): any;
    /**
    */
