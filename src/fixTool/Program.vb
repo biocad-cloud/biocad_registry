@@ -17,8 +17,30 @@ Module Program
     ReadOnly registry As New biocad_registry.biocad_registry(mysql)
 
     Sub Main(args As String())
+        Call removesInvalidNameChars()
         ' Console.WriteLine("Hello World!")
         ' Call removesDuplicatedMolecules()
+    End Sub
+
+    Sub removesInvalidNameChars()
+        For i As Integer = 0 To 100000
+            Dim q = registry.molecule _
+                .where((field("name").instr("""") = 1) Or (field("name").instr("'") = 1)) _
+                .limit(100) _
+                .select(Of biocad_registryModel.molecule)
+
+            If q.IsNullOrEmpty Then
+                Exit For
+            End If
+
+            For Each item In q
+                registry.molecule _
+                    .where(field("id") = item.id) _
+                    .save(field("name") = item.name.Trim(""""c, "'"c, " "c))
+            Next
+
+            Call Console.WriteLine("------------")
+        Next
     End Sub
 
     Sub removesDuplicatedSequence()

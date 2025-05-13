@@ -1485,6 +1485,17 @@ Microsoft.VisualBasic.DataMining.Framework
  <param name="edgeName"></param>
  <returns></returns>
 </member>
+<member name="M:Microsoft.VisualBasic.DataMining.DecisionTree.Algorithm.GetGainForAllAttributes(Microsoft.VisualBasic.DataMining.DecisionTree.Data.DataTable,System.Int32,System.Double)">
+ <summary>
+ information Gain
+ </summary>
+ <param name="data"></param>
+ <param name="colIndex"></param>
+ <param name="entropyOfDataset">
+ the total information entropy for entire dataset
+ </param>
+ <returns></returns>
+</member>
 <member name="T:Microsoft.VisualBasic.DataMining.DecisionTree.Attributes">
  <summary>
  Node attribute value
