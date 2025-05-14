@@ -1,8 +1,11 @@
 Imports biocad_registry
 Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar
 Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm
+Imports Microsoft.VisualBasic.Net.Http
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports Oracle.LinuxCompatibility.MySQL.Uri
+Imports SMRUCC.genomics.Model.MotifGraph.ProteinStructure
+Imports SMRUCC.genomics.Model.MotifGraph.ProteinStructure.Kmer
 
 Module Program
 
@@ -20,6 +23,22 @@ Module Program
         Call removesInvalidNameChars()
         ' Console.WriteLine("Hello World!")
         ' Call removesDuplicatedMolecules()
+    End Sub
+
+    Sub update_fingerprint()
+        Dim page_size = 10
+        Dim morgan As New MorganFingerprint(8192)
+
+        For i As Integer = 0 To Integer.MaxValue
+            Dim page = registry.genomics.limit(i * page_size, page_size).select(Of biocad_registryModel.genomics)
+
+            For Each seq In page
+                Dim graph = KMerGraph.FromSequence(seq.nt, k:=3)
+                Dim fingerprint = morgan.CalculateFingerprintCheckSum(graph)
+
+                Call registry.genomics.where(field("id") = seq.id).save(field("fingerprint") = fingerprint.GZipAsBase64)
+            Next
+        Next
     End Sub
 
     Sub removesInvalidNameChars()
