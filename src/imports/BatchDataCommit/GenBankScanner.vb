@@ -33,8 +33,10 @@ Public Class GenBankScanner
                 End Try
             End If
 
-            For Each genome As GBFF.File In GBFF.File.LoadDatabase(s)
-                Yield genome
+            For Each genome As GBFF.File In GBFF.File.LoadDatabase(s, defaultAccession:=file.BaseName, suppressError:=True)
+                If Not genome Is Nothing Then
+                    Yield genome
+                End If
             Next
 
             Call s.Dispose()
