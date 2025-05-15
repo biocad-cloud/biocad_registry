@@ -4,7 +4,7 @@ USE `cad_registry`;
 --
 -- Host: 192.168.3.15    Database: cad_registry
 -- ------------------------------------------------------
--- Server version	8.0.41-0ubuntu0.24.04.1
+-- Server version	8.0.42-0ubuntu0.24.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -60,7 +60,7 @@ CREATE TABLE `db_xrefs` (
   KEY `find_xrefs` (`type`,`xref`),
   KEY `dbid_index` (`xref`),
   KEY `search_dbxrefs` (`obj_id`,`db_key`,`xref`,`type`)
-) ENGINE=InnoDB AUTO_INCREMENT=9794 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=3216196 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -79,6 +79,8 @@ CREATE TABLE `genomics` (
   `length` int unsigned NOT NULL DEFAULT '0',
   `checksum` char(32) COLLATE utf8mb3_bin DEFAULT NULL,
   `nt` longtext CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'DNA sequence data',
+  `fingerprint` longtext COLLATE utf8mb3_bin COMMENT 'base64 encoded of the 8192 bytes morgan fingerprint of this genome nt sequence',
+  `embedding` tinytext COLLATE utf8mb3_bin COMMENT 'base64 encoded of the 9 dimension size umap embedding of the morgan fingerprint of this genome sequence data',
   `comment` longtext CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci,
   `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
@@ -153,7 +155,7 @@ CREATE TABLE `molecule` (
   KEY `mass_filter` (`mass`),
   KEY `find_index` (`xref_id`,`type`),
   KEY `taxonomy_info_idx` (`tax_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=969351 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='The molecular entity object inside a cell';
+) ENGINE=InnoDB AUTO_INCREMENT=23609479 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='The molecular entity object inside a cell';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -253,10 +255,10 @@ CREATE TABLE `odor` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
   `molecule_id` int unsigned NOT NULL COMMENT 'the metabolite molecule reference id',
   `category` int unsigned NOT NULL COMMENT 'odor category vocabulary term of this odor term',
-  `odor` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL COMMENT 'the odor term',
+  `odor` varchar(512) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT 'the odor term',
   `hashcode` varchar(32) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL COMMENT 'md5 hashcode index of the odor term',
   `value` double NOT NULL DEFAULT '0',
-  `unit` int unsigned NOT NULL,
+  `unit` int unsigned DEFAULT NULL,
   `text` text CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL COMMENT 'the raw text of the text mining of the odor term',
   `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
@@ -266,7 +268,7 @@ CREATE TABLE `odor` (
   KEY `mol_index` (`molecule_id`),
   KEY `check_odor` (`molecule_id`,`category`,`odor`),
   FULLTEXT KEY `search_text` (`text`)
-) ENGINE=InnoDB AUTO_INCREMENT=69396 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='odor information about the metabolite molecules';
+) ENGINE=InnoDB AUTO_INCREMENT=175324 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='odor information about the metabolite molecules';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -438,7 +440,7 @@ CREATE TABLE `sequence_graph` (
   KEY `molecules_idx` (`molecule_id`),
   KEY `search_sequence` (`hashcode`),
   KEY `index_mols_seqs` (`molecule_id`,`hashcode`)
-) ENGINE=InnoDB AUTO_INCREMENT=816213 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='the sequence composition data of the molecule';
+) ENGINE=InnoDB AUTO_INCREMENT=48642526 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='the sequence composition data of the molecule';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -494,9 +496,9 @@ CREATE TABLE `synonym` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
   `obj_id` int unsigned NOT NULL,
   `type_id` int unsigned NOT NULL COMMENT 'type reference of the target object, a vocabulary term reference to the vocabulary table',
-  `hashcode` varchar(32) COLLATE utf8mb3_bin NOT NULL COMMENT 'md5 hashcode of the synonym field lower case string ',
-  `synonym` varchar(4096) COLLATE utf8mb3_bin NOT NULL,
-  `lang` varchar(8) COLLATE utf8mb3_bin NOT NULL DEFAULT 'en',
+  `hashcode` varchar(32) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL COMMENT 'md5 hashcode of the synonym field lower case string ',
+  `synonym` varchar(4096) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL,
+  `lang` varchar(8) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL DEFAULT 'en',
   `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
@@ -504,7 +506,7 @@ CREATE TABLE `synonym` (
   KEY `filter_type` (`type_id`),
   KEY `filter_obj` (`obj_id`),
   KEY `search_name` (`obj_id`,`type_id`,`hashcode`)
-) ENGINE=InnoDB AUTO_INCREMENT=24273 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='synonym names of the biocad registry object, example as: molecules, genomes, taxonomys, reactions, pathways';
+) ENGINE=InnoDB AUTO_INCREMENT=3901404 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='synonym names of the biocad registry object, example as: molecules, genomes, taxonomys, reactions, pathways';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -543,7 +545,7 @@ CREATE TABLE `vocabulary` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `search_term` (`category`,`term`)
-) ENGINE=InnoDB AUTO_INCREMENT=287 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=292 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -563,4 +565,4 @@ CREATE TABLE `vocabulary` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-05-06  3:23:02
+-- Dump completed on 2025-05-15 21:52:44
