@@ -6,7 +6,7 @@
     <Platforms>AnyCPU;x64;x86</Platforms>
     <Configurations>Debug;Release;Rsharp_app_release;LipidSearch;PlantMAT;mzkit;NPSearch;mzkit_win32;gcmodeller_desktop</Configurations>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <OutputPath>../assembly/</OutputPath>
+    <OutputPath>../../assembly/</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>
@@ -19,16 +19,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\GCModeller\src\GCModeller\analysis\ProteinTools\ProteinMatrix\ProteinMatrix.vbproj" />
-    <ProjectReference Include="..\..\GCModeller\src\GCModeller\core\Bio.Assembly\biocore-netcore5.vbproj" />
-    <ProjectReference Include="..\..\GCModeller\src\R-sharp\R#\Rsharp-netcore5.vbproj" />
-    <ProjectReference Include="..\..\GCModeller\src\runtime\sciBASIC#\Data_science\Mathematica\Math\Math\Math.NET5.vbproj" />
-    <ProjectReference Include="..\..\GCModeller\src\runtime\sciBASIC#\Microsoft.VisualBasic.Core\src\Core.vbproj" />
-    <ProjectReference Include="..\..\graphQL\src\mysqli\LibMySQL\LibMySQL.vbproj" />
-    <ProjectReference Include="..\..\mzkit\src\metadb\Chemoinformatics\chemoinformatics-netcore5.vbproj" />
-    <ProjectReference Include="..\..\mzkit\src\metadb\Massbank\massbank.NET5.vbproj" />
-    <ProjectReference Include="..\..\mzkit\src\metadb\SMILES\SMILES.NET5.vbproj" />
-    <ProjectReference Include="..\..\mzkit\src\mzmath\ms2_math-core\mzmath-netcore5.vbproj" />
+    <ProjectReference Include="../..\..\GCModeller\src\GCModeller\analysis\ProteinTools\ProteinMatrix\ProteinMatrix.vbproj" />
+    <ProjectReference Include="../..\..\GCModeller\src\GCModeller\core\Bio.Assembly\biocore-netcore5.vbproj" />
+    <ProjectReference Include="../..\..\GCModeller\src\R-sharp\R#\Rsharp-netcore5.vbproj" />
+    <ProjectReference Include="../..\..\GCModeller\src\runtime\sciBASIC#\Data_science\Mathematica\Math\Math\Math.NET5.vbproj" />
+    <ProjectReference Include="../..\..\GCModeller\src\runtime\sciBASIC#\Microsoft.VisualBasic.Core\src\Core.vbproj" />
+    <ProjectReference Include="../..\..\graphQL\src\mysqli\LibMySQL\LibMySQL.vbproj" />
+    <ProjectReference Include="../..\..\mzkit\src\metadb\Chemoinformatics\chemoinformatics-netcore5.vbproj" />
+    <ProjectReference Include="../..\..\mzkit\src\metadb\Massbank\massbank.NET5.vbproj" />
+    <ProjectReference Include="../..\..\mzkit\src\metadb\SMILES\SMILES.NET5.vbproj" />
+    <ProjectReference Include="../..\..\mzkit\src\mzmath\ms2_math-core\mzmath-netcore5.vbproj" />
   </ItemGroup>
 
 </Project>
