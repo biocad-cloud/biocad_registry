@@ -2389,6 +2389,13 @@ BioNovoGene.Analytical.MassSpectrometry.Math
  an alingment details matrix between the sample query and reference spectrum.
  </returns>
 </member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml.AlignmentOutput.ParseAlignment(System.String)">
+ <summary>
+ Parse the alignment string and then returns the alignment details and the score values
+ </summary>
+ <param name="str"></param>
+ <returns></returns>
+</member>
 <member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml.Meta">
  <summary>
  [id, mz, rt, intensity]

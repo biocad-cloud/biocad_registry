@@ -23,6 +23,15 @@ biocad_storage
  has an internal cache of the vocabulary term data
  </remarks>
 </member>
+<member name="M:biocad_storage.Embedding.ExportGenomicsFingerprint(biocad_storage.biocad_registry)">
+ <summary>
+ export the genomics sequence fingerprint matrix
+ </summary>
+ <param name="registry"></param>
+ <returns>
+ only exports of the complete genomics sequence data
+ </returns>
+</member>
 <member name="T:biocad_storage.BatchDataCommit">
  <summary>
  Create database, make dataset batch imports in transaction mode
@@ -201,7 +210,7 @@ biocad_storage
    KEY `find_xrefs` (`type`,`xref`),
    KEY `dbid_index` (`xref`),
    KEY `search_dbxrefs` (`obj_id`,`db_key`,`xref`,`type`)
- ) ENGINE=InnoDB AUTO_INCREMENT=45504 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+ ) ENGINE=InnoDB AUTO_INCREMENT=3216196 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
  /*!40101 SET character_set_client = @saved_cs_client */;
  
  --
@@ -287,6 +296,8 @@ biocad_storage
    `length` int unsigned NOT NULL DEFAULT '0',
    `checksum` char(32) COLLATE utf8mb3_bin DEFAULT NULL,
    `nt` longtext CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'DNA sequence data',
+   `fingerprint` longtext COLLATE utf8mb3_bin COMMENT 'base64 encoded of the 8192 bytes morgan fingerprint of this genome nt sequence',
+   `embedding` tinytext COLLATE utf8mb3_bin COMMENT 'base64 encoded of the 9 dimension size umap embedding of the morgan fingerprint of this genome sequence data',
    `comment` longtext CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci,
    `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
    PRIMARY KEY (`id`),
@@ -338,6 +349,22 @@ biocad_storage
  <returns></returns>
  <remarks></remarks>
 </member>
+<member name="P:biocad_storage.biocad_registryModel.genomics.fingerprint">
+ <summary>
+ base64 encoded of the 8192 bytes morgan fingerprint of this genome nt sequence
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:biocad_storage.biocad_registryModel.genomics.embedding">
+ <summary>
+ base64 encoded of the 9 dimension size umap embedding of the morgan fingerprint of this genome sequence data
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
 <member name="M:biocad_storage.biocad_registryModel.genomics.GetDeleteSQL">
  <summary>
  ```SQL
@@ -348,14 +375,14 @@ biocad_storage
 <member name="M:biocad_storage.biocad_registryModel.genomics.GetInsertSQL">
  <summary>
  ```SQL
- INSERT INTO `genomics` (`id`, `db_xref`, `ncbi_taxid`, `biom_string`, `def`, `length`, `checksum`, `nt`, `comment`, `add_time`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}');
+ INSERT INTO `genomics` (`id`, `db_xref`, `ncbi_taxid`, `biom_string`, `def`, `length`, `checksum`, `nt`, `fingerprint`, `embedding`, `comment`, `add_time`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}');
  ```
  </summary>
 </member>
 <member name="M:biocad_storage.biocad_registryModel.genomics.GetInsertSQL(System.Boolean)">
  <summary>
  ```SQL
- INSERT INTO `genomics` (`id`, `db_xref`, `ncbi_taxid`, `biom_string`, `def`, `length`, `checksum`, `nt`, `comment`, `add_time`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}');
+ INSERT INTO `genomics` (`id`, `db_xref`, `ncbi_taxid`, `biom_string`, `def`, `length`, `checksum`, `nt`, `fingerprint`, `embedding`, `comment`, `add_time`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}');
  ```
  </summary>
 </member>
@@ -367,21 +394,21 @@ biocad_storage
 <member name="M:biocad_storage.biocad_registryModel.genomics.GetReplaceSQL">
  <summary>
  ```SQL
- REPLACE INTO `genomics` (`id`, `db_xref`, `ncbi_taxid`, `biom_string`, `def`, `length`, `checksum`, `nt`, `comment`, `add_time`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}');
+ REPLACE INTO `genomics` (`id`, `db_xref`, `ncbi_taxid`, `biom_string`, `def`, `length`, `checksum`, `nt`, `fingerprint`, `embedding`, `comment`, `add_time`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}');
  ```
  </summary>
 </member>
 <member name="M:biocad_storage.biocad_registryModel.genomics.GetReplaceSQL(System.Boolean)">
  <summary>
  ```SQL
- REPLACE INTO `genomics` (`id`, `db_xref`, `ncbi_taxid`, `biom_string`, `def`, `length`, `checksum`, `nt`, `comment`, `add_time`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}');
+ REPLACE INTO `genomics` (`id`, `db_xref`, `ncbi_taxid`, `biom_string`, `def`, `length`, `checksum`, `nt`, `fingerprint`, `embedding`, `comment`, `add_time`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}');
  ```
  </summary>
 </member>
 <member name="M:biocad_storage.biocad_registryModel.genomics.GetUpdateSQL">
  <summary>
  ```SQL
- UPDATE `genomics` SET `id`='{0}', `db_xref`='{1}', `ncbi_taxid`='{2}', `biom_string`='{3}', `def`='{4}', `length`='{5}', `checksum`='{6}', `nt`='{7}', `comment`='{8}', `add_time`='{9}' WHERE `id` = '{10}';
+ UPDATE `genomics` SET `id`='{0}', `db_xref`='{1}', `ncbi_taxid`='{2}', `biom_string`='{3}', `def`='{4}', `length`='{5}', `checksum`='{6}', `nt`='{7}', `fingerprint`='{8}', `embedding`='{9}', `comment`='{10}', `add_time`='{11}' WHERE `id` = '{12}';
  ```
  </summary>
 </member>
@@ -591,6 +618,7 @@ biocad_storage
    `note` longtext COLLATE utf8mb4_unicode_ci COMMENT 'description text about current entity object',
    PRIMARY KEY (`id`),
    UNIQUE KEY `id_UNIQUE` (`id`) /*!80000 INVISIBLE */,
+   UNIQUE KEY `unique_reference` (`xref_id`),
    KEY `data_type_idx` (`type`),
    KEY `parent_molecule_idx` (`parent`),
    KEY `name_index` (`name`),
@@ -598,7 +626,7 @@ biocad_storage
    KEY `mass_filter` (`mass`),
    KEY `find_index` (`xref_id`,`type`),
    KEY `taxonomy_info_idx` (`tax_id`)
- ) ENGINE=InnoDB AUTO_INCREMENT=19107805 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='The molecular entity object inside a cell';
+ ) ENGINE=InnoDB AUTO_INCREMENT=23609479 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='The molecular entity object inside a cell';
  /*!40101 SET character_set_client = @saved_cs_client */;
  
  --
@@ -844,7 +872,7 @@ biocad_storage
    UNIQUE KEY `id_UNIQUE` (`id`),
    KEY `molecule_obj_idx` (`molecule_id`),
    KEY `ontology_term_idx` (`ontology_id`)
- ) ENGINE=InnoDB AUTO_INCREMENT=111 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
  /*!40101 SET character_set_client = @saved_cs_client */;
  
  --
@@ -1105,10 +1133,10 @@ biocad_storage
    `id` int unsigned NOT NULL AUTO_INCREMENT,
    `molecule_id` int unsigned NOT NULL COMMENT 'the metabolite molecule reference id',
    `category` int unsigned NOT NULL COMMENT 'odor category vocabulary term of this odor term',
-   `odor` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL COMMENT 'the odor term',
+   `odor` varchar(512) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT 'the odor term',
    `hashcode` varchar(32) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL COMMENT 'md5 hashcode index of the odor term',
    `value` double NOT NULL DEFAULT '0',
-   `unit` int unsigned NOT NULL,
+   `unit` int unsigned DEFAULT NULL,
    `text` text CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL COMMENT 'the raw text of the text mining of the odor term',
    `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
    PRIMARY KEY (`id`),
@@ -1118,7 +1146,7 @@ biocad_storage
    KEY `mol_index` (`molecule_id`),
    KEY `check_odor` (`molecule_id`,`category`,`odor`),
    FULLTEXT KEY `search_text` (`text`)
- ) ENGINE=InnoDB AUTO_INCREMENT=69396 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='odor information about the metabolite molecules';
+ ) ENGINE=InnoDB AUTO_INCREMENT=175324 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='odor information about the metabolite molecules';
  /*!40101 SET character_set_client = @saved_cs_client */;
  
  --
@@ -1926,9 +1954,11 @@ biocad_storage
    `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
    PRIMARY KEY (`id`),
    UNIQUE KEY `id_UNIQUE` (`id`),
+   UNIQUE KEY `unique_mol_data` (`molecule_id`,`hashcode`),
    KEY `molecules_idx` (`molecule_id`),
-   KEY `search_sequence` (`hashcode`)
- ) ENGINE=InnoDB AUTO_INCREMENT=3329569 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='the sequence composition data of the molecule';
+   KEY `search_sequence` (`hashcode`),
+   KEY `index_mols_seqs` (`molecule_id`,`hashcode`)
+ ) ENGINE=InnoDB AUTO_INCREMENT=48642526 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='the sequence composition data of the molecule';
  /*!40101 SET character_set_client = @saved_cs_client */;
  
  --
@@ -2201,16 +2231,17 @@ biocad_storage
    `id` int unsigned NOT NULL AUTO_INCREMENT,
    `obj_id` int unsigned NOT NULL,
    `type_id` int unsigned NOT NULL COMMENT 'type reference of the target object, a vocabulary term reference to the vocabulary table',
-   `hashcode` varchar(32) COLLATE utf8mb3_bin NOT NULL COMMENT 'md5 hashcode of the synonym field lower case string ',
-   `synonym` varchar(4096) COLLATE utf8mb3_bin NOT NULL,
-   `lang` varchar(8) COLLATE utf8mb3_bin NOT NULL DEFAULT 'en',
+   `hashcode` varchar(32) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL COMMENT 'md5 hashcode of the synonym field lower case string ',
+   `synonym` varchar(4096) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL,
+   `lang` varchar(8) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL DEFAULT 'en',
    `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
    PRIMARY KEY (`id`),
    UNIQUE KEY `id_UNIQUE` (`id`),
+   UNIQUE KEY `unique_names` (`obj_id`,`type_id`,`hashcode`),
    KEY `filter_type` (`type_id`),
    KEY `filter_obj` (`obj_id`),
    KEY `search_name` (`obj_id`,`type_id`,`hashcode`)
- ) ENGINE=InnoDB AUTO_INCREMENT=52925 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='synonym names of the biocad registry object, example as: molecules, genomes, taxonomys, reactions, pathways';
+ ) ENGINE=InnoDB AUTO_INCREMENT=3901404 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='synonym names of the biocad registry object, example as: molecules, genomes, taxonomys, reactions, pathways';
  /*!40101 SET character_set_client = @saved_cs_client */;
  
  --
@@ -2383,7 +2414,7 @@ biocad_storage
    PRIMARY KEY (`id`),
    UNIQUE KEY `id_UNIQUE` (`id`),
    KEY `search_term` (`category`,`term`)
- ) ENGINE=InnoDB AUTO_INCREMENT=270 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+ ) ENGINE=InnoDB AUTO_INCREMENT=292 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
  /*!40101 SET character_set_client = @saved_cs_client */;
  
  --
@@ -2403,7 +2434,7 @@ biocad_storage
  /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
  /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
  
- -- Dump completed on 2025-04-29  2:05:25
+ -- Dump completed on 2025-05-15 21:52:44
  ```
  </summary>
  <remarks></remarks>
