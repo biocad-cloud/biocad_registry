@@ -45,6 +45,7 @@ Module Program
                 Dim graph = KMerGraph.FromSequence(seq.nt, k:=3)
                 Dim fingerprint = morgan.CalculateFingerprintCheckSum(graph)
 
+                Call Console.WriteLine(seq.def)
                 Call registry.genomics.where(field("id") = seq.id).save(field("fingerprint") = fingerprint.GZipAsBase64)
             Next
         Next
