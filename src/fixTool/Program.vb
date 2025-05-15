@@ -31,7 +31,11 @@ Module Program
         Dim morgan As New MorganFingerprint(8 ^ 5)
 
         For i As Integer = 0 To Integer.MaxValue
-            Dim page = registry.genomics.limit(i * page_size, page_size).select(Of biocad_registryModel.genomics)
+            Dim page = registry.genomics _
+                .where(match("def").against("+complete -plasmid", booleanMode:=True),
+                       field("fingerprint").is_nothing) _
+                .limit(i * page_size, page_size) _
+                .select(Of biocad_registryModel.genomics)
 
             If page.IsNullOrEmpty Then
                 Exit For
