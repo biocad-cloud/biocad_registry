@@ -1,5 +1,5 @@
 ﻿Imports System.IO
-Imports biocad_registry
+Imports biocad_storage
 Imports BioNovoGene.BioDeep.Chemistry.MetaLib
 Imports BioNovoGene.BioDeep.Chemistry.MetaLib.CrossReference
 Imports Microsoft.VisualBasic.Data.Framework.IO

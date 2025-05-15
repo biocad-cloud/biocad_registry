@@ -1,4 +1,5 @@
 ﻿Imports System.Runtime.CompilerServices
+Imports biocad_storage
 Imports Oracle.LinuxCompatibility.MySQL.Uri
 
 Namespace My
@@ -27,7 +28,7 @@ Namespace My
 
     Partial Friend Class MyApplication
 
-        Public Shared ReadOnly Property biocad_registry As biocad_registry.biocad_registry
+        Public Shared ReadOnly Property biocad_registry As biocad_registry
 
         Public Shared Function Load() As Boolean
             Dim config As Settings = Settings.Load
@@ -39,7 +40,7 @@ Namespace My
                 .User = config.user
             }
 
-            _biocad_registry = New biocad_registry.biocad_registry(mysqli)
+            _biocad_registry = New biocad_registry(mysqli)
 
             Return biocad_registry.getDriver.Ping >= 0
         End Function

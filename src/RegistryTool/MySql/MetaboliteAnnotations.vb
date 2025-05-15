@@ -1,4 +1,4 @@
-﻿Imports biocad_registry
+﻿Imports biocad_storage
 Imports BioNovoGene.BioDeep.Chemistry.MetaLib.CrossReference
 Imports Microsoft.VisualBasic.Linq
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder

@@ -1,4 +1,4 @@
-Imports biocad_registry
+Imports biocad_storage
 Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar
 Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm
 Imports Microsoft.VisualBasic.Net.Http
@@ -17,7 +17,7 @@ Module Program
         .Port = 3306,
         .User = "xieguigang"
     }
-    ReadOnly registry As New biocad_registry.biocad_registry(mysql)
+    ReadOnly registry As New biocad_registry(mysql)
 
     Sub Main(args As String())
         Call update_fingerprint()

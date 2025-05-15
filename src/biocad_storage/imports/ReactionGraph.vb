@@ -1,7 +1,7 @@
 ﻿Imports System.Runtime.CompilerServices
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 
-Module ReactionGraph
+Public Module ReactionGraph
 
     <Extension>
     Public Iterator Function FindReaction(biocad_registry As biocad_registry, metabolites As IEnumerable(Of String)) As IEnumerable(Of UInteger)
