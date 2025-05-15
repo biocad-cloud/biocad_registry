@@ -20,6 +20,7 @@ Module Program
     ReadOnly registry As New biocad_registry.biocad_registry(mysql)
 
     Sub Main(args As String())
+        Call update_fingerprint()
         Call removesInvalidNameChars()
         ' Console.WriteLine("Hello World!")
         ' Call removesDuplicatedMolecules()
@@ -27,10 +28,14 @@ Module Program
 
     Sub update_fingerprint()
         Dim page_size = 10
-        Dim morgan As New MorganFingerprint(8192)
+        Dim morgan As New MorganFingerprint(8 ^ 5)
 
         For i As Integer = 0 To Integer.MaxValue
             Dim page = registry.genomics.limit(i * page_size, page_size).select(Of biocad_registryModel.genomics)
+
+            If page.IsNullOrEmpty Then
+                Exit For
+            End If
 
             For Each seq In page
                 Dim graph = KMerGraph.FromSequence(seq.nt, k:=3)
