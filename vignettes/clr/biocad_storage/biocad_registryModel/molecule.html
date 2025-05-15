@@ -5,7 +5,7 @@
     <title>biocad_storage.biocad_registryModel.molecule</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-    <link rel="stylesheet" type="text/css" href="../../_assets/page.css">
+    <link rel="stylesheet" type="text/css" href="https://gcmodeller.org/lib/page.css">
 </head>
 
 <body>
@@ -42,6 +42,7 @@
    `note` longtext COLLATE utf8mb4<em>unicode</em>ci COMMENT 'description text about current entity object',
    PRIMARY KEY (`id`),
    UNIQUE KEY `id_UNIQUE` (`id`) /<em>!80000 INVISIBLE </em>/,
+   UNIQUE KEY `unique<em>reference` (`xref</em>id`),
    KEY `data<em>type</em>idx` (`type`),
    KEY `parent<em>molecule</em>idx` (`parent`),
    KEY `name_index` (`name`),
@@ -49,7 +50,7 @@
    KEY `mass_filter` (`mass`),
    KEY `find<em>index` (`xref</em>id`,`type`),
    KEY `taxonomy<em>info</em>idx` (`tax_id`)
- ) ENGINE=InnoDB AUTO<em>INCREMENT=19107805 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4</em>unicode_ci COMMENT='The molecular entity object inside a cell';
+ ) ENGINE=InnoDB AUTO<em>INCREMENT=23609479 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4</em>unicode_ci COMMENT='The molecular entity object inside a cell';
  /<em>!40101 SET character_set_client = @saved_cs_client </em>/;
  
  --
@@ -99,8 +100,8 @@ export class molecule extends <a href="/vignettes/clr/Oracle/LinuxCompatibility/
     </div>
 </body>
 
-<script type="text/javascript" src="../../_assets/R_syntax.js"></script>
-<script type="text/javascript" src="../../_assets/highlights.js"></script>
+<script type="text/javascript" src="https://gcmodeller.org/lib/R_syntax.js"></script>
+<script type="text/javascript" src="https://gcmodeller.org/lib/highlights.js"></script>
 <script type="text/javascript">r_highlights("clr_ts");</script>
 
 </html>

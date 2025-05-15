@@ -160,6 +160,7 @@ table caption {font-size:14px;font-weight:bolder;}
    `note` longtext COLLATE utf8mb4<em>unicode</em>ci COMMENT 'description text about current entity object',
    PRIMARY KEY (`id`),
    UNIQUE KEY `id_UNIQUE` (`id`) /<em>!80000 INVISIBLE </em>/,
+   UNIQUE KEY `unique<em>reference` (`xref</em>id`),
    KEY `data<em>type</em>idx` (`type`),
    KEY `parent<em>molecule</em>idx` (`parent`),
    KEY `name_index` (`name`),
@@ -167,7 +168,7 @@ table caption {font-size:14px;font-weight:bolder;}
    KEY `mass_filter` (`mass`),
    KEY `find<em>index` (`xref</em>id`,`type`),
    KEY `taxonomy<em>info</em>idx` (`tax_id`)
- ) ENGINE=InnoDB AUTO<em>INCREMENT=19107805 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4</em>unicode_ci COMMENT='The molecular entity object inside a cell';
+ ) ENGINE=InnoDB AUTO<em>INCREMENT=23609479 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4</em>unicode_ci COMMENT='The molecular entity object inside a cell';
  /<em>!40101 SET character_set_client = @saved_cs_client </em>/;
  
  --
@@ -200,7 +201,7 @@ table caption {font-size:14px;font-weight:bolder;}
    KEY `find_xrefs` (`type`,`xref`),
    KEY `dbid_index` (`xref`),
    KEY `search<em>dbxrefs` (`obj</em>id`,`db_key`,`xref`,`type`)
- ) ENGINE=InnoDB AUTO<em>INCREMENT=45504 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3</em>bin;
+ ) ENGINE=InnoDB AUTO<em>INCREMENT=3216196 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4</em>unicode_ci;
  /<em>!40101 SET character_set_client = @saved_cs_client </em>/;
  
  --
@@ -283,7 +284,7 @@ table caption {font-size:14px;font-weight:bolder;}
    PRIMARY KEY (`id`),
    UNIQUE KEY `id_UNIQUE` (`id`),
    KEY `search_term` (`category`,`term`)
- ) ENGINE=InnoDB AUTO<em>INCREMENT=270 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3</em>bin;
+ ) ENGINE=InnoDB AUTO<em>INCREMENT=292 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4</em>unicode_ci;
  /<em>!40101 SET character_set_client = @saved_cs_client </em>/;
  
  --
@@ -303,7 +304,7 @@ table caption {font-size:14px;font-weight:bolder;}
  /<em>!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION </em>/;
  /<em>!40111 SET SQL_NOTES=@OLD_SQL_NOTES </em>/;
  
- -- Dump completed on 2025-04-29  2:05:25
+ -- Dump completed on 2025-05-15 21:52:44
  ```</p></td>
 </tr>
 <tr>
