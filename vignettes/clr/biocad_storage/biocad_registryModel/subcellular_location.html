@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>biocad_storage.biocad_registryModel.subcellular_location</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <link rel="stylesheet" type="text/css" href="../../_assets/page.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <table style="width: 100%;">
+            <tr>
+                <td>subcellular_location {biocad_storage.biocad_registryModel}</td>
+                <td style="text-align: right;">.NET clr documentation</td>
+            </tr>
+        </table>
+
+        <h2>subcellular_location</h2>
+
+        <h3>Description</h3>
+
+        <p>```SQL
+ 
+ --
+ 
+ DROP TABLE IF EXISTS `subcellular_location`;
+ /<em>!40101 SET @saved_cs_client     = @@character_set_client </em>/;
+ /<em>!50503 SET character_set_client = utf8mb4 </em>/;
+ CREATE TABLE `subcellular_location` (
+   `id` int unsigned NOT NULL AUTO_INCREMENT,
+   `compartment_id` int unsigned NOT NULL,
+   `obj_id` int unsigned NOT NULL,
+   `entity` int unsigned NOT NULL COMMENT 'the vocabulary type id of the entity object, could be molecule, reaction or pathways',
+   `add<em>time` datetime NOT NULL DEFAULT CURRENT</em>TIMESTAMP,
+   `note` longtext CHARACTER SET utf8mb3 COLLATE utf8mb3_bin,
+   PRIMARY KEY (`id`),
+   UNIQUE KEY `id_UNIQUE` (`id`),
+   UNIQUE KEY `unique<em>reference` (`compartment</em>id`,`obj_id`,`entity`) /<em>!80000 INVISIBLE </em>/,
+   KEY `subcellular<em>compartments</em>idx` (`compartment_id`),
+   KEY `molecule<em>obj</em>idx` (`obj_id`),
+   KEY `link<em>entity</em>type_idx` (`entity`)
+ ) ENGINE=InnoDB AUTO<em>INCREMENT=507106 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3</em>bin COMMENT='associates the subcellular_compartments and the molecule objects';
+ /<em>!40101 SET character_set_client = @saved_cs_client </em>/;
+ 
+ --
+ ```</p>
+
+        <h3>Declare</h3>        
+
+        <pre>
+            <code id="clr_ts">
+# namespace biocad_storage.biocad_registryModel
+export class subcellular_location extends <a href="/vignettes/clr/Oracle/LinuxCompatibility/MySQL/MySQLTable.html">MySQLTable</a> {
+   add_time: <a href="/vignettes/clr/System/DateTime.html">DateTime</a>;
+   compartment_id: integer;
+   # the vocabulary type id of the entity object, could be molecule, reaction or pathways
+   entity: integer;
+   id: integer;
+   note: string;
+   obj_id: integer;
+}
+</code>
+        </pre>
+
+        <h3>.NET clr type reference tree</h3>
+
+        <ol>
+<li>this class extends from <a href="/vignettes/clr/Oracle/LinuxCompatibility/MySQL/MySQLTable.html">MySQLTable</a> class: <a href="/vignettes/clr/Oracle/LinuxCompatibility/MySQL/MySQLTable.html">MySQLTable</a></li>
+<li>use by <i>property</i> member <code>add_time</code>: <a href="/vignettes/clr/System/DateTime.html">DateTime</a></li>
+</ol>
+
+
+        <hr />
+        <div style="text-align: center;">[Package <em>{$package}</em> version {$version} <a
+                href="../{$package}.html">Index</a>]
+        </div>
+    </div>
+</body>
+
+<script type="text/javascript" src="../../_assets/R_syntax.js"></script>
+<script type="text/javascript" src="../../_assets/highlights.js"></script>
+<script type="text/javascript">r_highlights("clr_ts");</script>
+
+</html>

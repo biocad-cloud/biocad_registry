@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>biocad_storage.biocad_registryModel.reaction_graph</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <link rel="stylesheet" type="text/css" href="../../_assets/page.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <table style="width: 100%;">
+            <tr>
+                <td>reaction_graph {biocad_storage.biocad_registryModel}</td>
+                <td style="text-align: right;">.NET clr documentation</td>
+            </tr>
+        </table>
+
+        <h2>reaction_graph</h2>
+
+        <h3>Description</h3>
+
+        <p>```SQL
+ 
+ --
+ 
+ DROP TABLE IF EXISTS `reaction_graph`;
+ /<em>!40101 SET @saved_cs_client     = @@character_set_client </em>/;
+ /<em>!50503 SET character_set_client = utf8mb4 </em>/;
+ CREATE TABLE `reaction_graph` (
+   `id` int unsigned NOT NULL AUTO_INCREMENT,
+   `reaction` int unsigned NOT NULL COMMENT 'the id of the reaction',
+   `molecule_id` int unsigned NOT NULL COMMENT 'the id of the molecule entity',
+   `db<em>xref` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3</em>bin NOT NULL COMMENT 'the reaction source definition of the molecule to reference the molecule entity inside biocad registry, used for link the molecule entity with current relationship record ',
+   `role` int unsigned NOT NULL COMMENT 'the vocabulary term of the molecule role inside this reaction model, usually be the substrate or product',
+   `factor` double NOT NULL DEFAULT '1',
+   `add<em>time` datetime NOT NULL DEFAULT CURRENT</em>TIMESTAMP,
+   `note` longtext CHARACTER SET utf8mb3 COLLATE utf8mb3_bin,
+   PRIMARY KEY (`id`),
+   UNIQUE KEY `id_UNIQUE` (`id`) /<em>!80000 INVISIBLE </em>/,
+   KEY `reaction<em>info</em>idx` (`reaction`),
+   KEY `molecule<em>data</em>idx` (`molecule_id`),
+   KEY `role<em>term</em>idx` (`role`),
+   KEY `check<em>duplicated` (`reaction`,`db</em>xref`,`role`)
+ ) ENGINE=InnoDB AUTO<em>INCREMENT=227925 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3</em>bin COMMENT='the relationship between the reaction model and molecule objects';
+ /<em>!40101 SET character_set_client = @saved_cs_client </em>/;
+ 
+ --
+ ```</p>
+
+        <h3>Declare</h3>        
+
+        <pre>
+            <code id="clr_ts">
+# namespace biocad_storage.biocad_registryModel
+export class reaction_graph extends <a href="/vignettes/clr/Oracle/LinuxCompatibility/MySQL/MySQLTable.html">MySQLTable</a> {
+   add_time: <a href="/vignettes/clr/System/DateTime.html">DateTime</a>;
+   # the reaction source definition of the molecule to reference the molecule entity inside biocad registry, used for link the molecule entity with current relationship record
+   db_xref: string;
+   factor: double;
+   id: integer;
+   # the id of the molecule entity
+   molecule_id: integer;
+   note: string;
+   # the id of the reaction
+   reaction: integer;
+   # the vocabulary term of the molecule role inside this reaction model, usually be the substrate or product
+   role: integer;
+}
+</code>
+        </pre>
+
+        <h3>.NET clr type reference tree</h3>
+
+        <ol>
+<li>this class extends from <a href="/vignettes/clr/Oracle/LinuxCompatibility/MySQL/MySQLTable.html">MySQLTable</a> class: <a href="/vignettes/clr/Oracle/LinuxCompatibility/MySQL/MySQLTable.html">MySQLTable</a></li>
+<li>use by <i>property</i> member <code>add_time</code>: <a href="/vignettes/clr/System/DateTime.html">DateTime</a></li>
+</ol>
+
+
+        <hr />
+        <div style="text-align: center;">[Package <em>{$package}</em> version {$version} <a
+                href="../{$package}.html">Index</a>]
+        </div>
+    </div>
+</body>
+
+<script type="text/javascript" src="../../_assets/R_syntax.js"></script>
+<script type="text/javascript" src="../../_assets/highlights.js"></script>
+<script type="text/javascript">r_highlights("clr_ts");</script>
+
+</html>

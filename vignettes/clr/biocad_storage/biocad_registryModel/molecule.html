@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>biocad_storage.biocad_registryModel.molecule</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <link rel="stylesheet" type="text/css" href="../../_assets/page.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <table style="width: 100%;">
+            <tr>
+                <td>molecule {biocad_storage.biocad_registryModel}</td>
+                <td style="text-align: right;">.NET clr documentation</td>
+            </tr>
+        </table>
+
+        <h2>molecule</h2>
+
+        <h3>Description</h3>
+
+        <p>```SQL
+ 
+ --
+ 
+ DROP TABLE IF EXISTS `molecule`;
+ /<em>!40101 SET @saved_cs_client     = @@character_set_client </em>/;
+ /<em>!50503 SET character_set_client = utf8mb4 </em>/;
+ CREATE TABLE `molecule` (
+   `id` int unsigned NOT NULL AUTO_INCREMENT,
+   `xref<em>id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4</em>unicode<em>ci NOT NULL COMMENT 'the source external reference id of current molecule, for a gene should be a locus</em>tag, and protein should be a main uniprot accession id and for metabolite should be pubchem cid or chebi id(255 chars for long metacyc id)',
+   `name` varchar(512) COLLATE utf8mb4<em>unicode</em>ci NOT NULL COMMENT 'the name of the molecule',
+   `mass` double NOT NULL COMMENT 'the molecular exact mass',
+   `type` int unsigned NOT NULL COMMENT 'the molecule type, the id of the vocabulary term, value could be nucl(DNA), RNA, prot, metabolite, complex, dna<em>motif</em>sequence, protein<em>motif</em>sequence',
+   `formula` varchar(128) COLLATE utf8mb4<em>unicode</em>ci NOT NULL COMMENT 'metabolite formula or nucl/prot sequence',
+   `parent` int unsigned NOT NULL COMMENT 'the parent metabolite id, example as RNA is a parent of polypeptide, and gene is a parent of RNA sequence.',
+   `tax_id` int unsigned DEFAULT NULL COMMENT 'the ncbi taxonomy id of current molecule that belongs to, apply for the protein/gene. this relationship data is extract from the genbank/uniprot annotation source directly',
+   `add<em>time` datetime NOT NULL DEFAULT CURRENT</em>TIMESTAMP COMMENT 'add time of current molecular entity',
+   `note` longtext COLLATE utf8mb4<em>unicode</em>ci COMMENT 'description text about current entity object',
+   PRIMARY KEY (`id`),
+   UNIQUE KEY `id_UNIQUE` (`id`) /<em>!80000 INVISIBLE </em>/,
+   KEY `data<em>type</em>idx` (`type`),
+   KEY `parent<em>molecule</em>idx` (`parent`),
+   KEY `name_index` (`name`),
+   KEY `xref<em>index` (`xref</em>id`),
+   KEY `mass_filter` (`mass`),
+   KEY `find<em>index` (`xref</em>id`,`type`),
+   KEY `taxonomy<em>info</em>idx` (`tax_id`)
+ ) ENGINE=InnoDB AUTO<em>INCREMENT=19107805 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4</em>unicode_ci COMMENT='The molecular entity object inside a cell';
+ /<em>!40101 SET character_set_client = @saved_cs_client </em>/;
+ 
+ --
+ ```</p>
+
+        <h3>Declare</h3>        
+
+        <pre>
+            <code id="clr_ts">
+# namespace biocad_storage.biocad_registryModel
+export class molecule extends <a href="/vignettes/clr/Oracle/LinuxCompatibility/MySQL/MySQLTable.html">MySQLTable</a> {
+   # add time of current molecular entity
+   add_time: <a href="/vignettes/clr/System/DateTime.html">DateTime</a>;
+   # metabolite formula or nucl/prot sequence
+   formula: string;
+   id: integer;
+   # the molecular exact mass
+   mass: double;
+   # the name of the molecule
+   name: string;
+   # description text about current entity object
+   note: string;
+   # the parent metabolite id, example as RNA is a parent of polypeptide, and gene is a parent of RNA sequence.
+   parent: integer;
+   # the ncbi taxonomy id of current molecule that belongs to, apply for the protein/gene. this relationship data is extract from the genbank/uniprot annotation source directly
+   tax_id: integer;
+   # the molecule type, the id of the vocabulary term, value could be nucl(DNA), RNA, prot, metabolite, complex, dna<em>motif</em>sequence, protein<em>motif</em>sequence
+   type: integer;
+   # the source external reference id of current molecule, for a gene should be a locus_tag, and protein should be a main uniprot accession id and for metabolite should be pubchem cid or chebi id(255 chars for long metacyc id)
+   xref_id: string;
+}
+</code>
+        </pre>
+
+        <h3>.NET clr type reference tree</h3>
+
+        <ol>
+<li>this class extends from <a href="/vignettes/clr/Oracle/LinuxCompatibility/MySQL/MySQLTable.html">MySQLTable</a> class: <a href="/vignettes/clr/Oracle/LinuxCompatibility/MySQL/MySQLTable.html">MySQLTable</a></li>
+<li>use by <i>property</i> member <code>add_time</code>: <a href="/vignettes/clr/System/DateTime.html">DateTime</a></li>
+</ol>
+
+
+        <hr />
+        <div style="text-align: center;">[Package <em>{$package}</em> version {$version} <a
+                href="../{$package}.html">Index</a>]
+        </div>
+    </div>
+</body>
+
+<script type="text/javascript" src="../../_assets/R_syntax.js"></script>
+<script type="text/javascript" src="../../_assets/highlights.js"></script>
+<script type="text/javascript">r_highlights("clr_ts");</script>
+
+</html>

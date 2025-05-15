@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>biocad_storage.biocad_registryModel.complex</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <link rel="stylesheet" type="text/css" href="../../_assets/page.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <table style="width: 100%;">
+            <tr>
+                <td>complex {biocad_storage.biocad_registryModel}</td>
+                <td style="text-align: right;">.NET clr documentation</td>
+            </tr>
+        </table>
+
+        <h2>complex</h2>
+
+        <h3>Description</h3>
+
+        <p>```SQL
+ 
+ --
+ 
+ DROP TABLE IF EXISTS `complex`;
+ /<em>!40101 SET @saved_cs_client     = @@character_set_client </em>/;
+ /<em>!50503 SET character_set_client = utf8mb4 </em>/;
+ CREATE TABLE `complex` (
+   `id` int unsigned NOT NULL AUTO_INCREMENT,
+   `molecule_id` int unsigned NOT NULL COMMENT 'the complex molecule id',
+   `component_id` int unsigned NOT NULL COMMENT 'the component molecule id',
+   `add<em>time` datetime NOT NULL DEFAULT CURRENT</em>TIMESTAMP,
+   `note` longtext CHARACTER SET utf8mb3 COLLATE utf8mb3_bin,
+   PRIMARY KEY (`id`),
+   UNIQUE KEY `id_UNIQUE` (`id`),
+   KEY `molecule<em>info</em>idx` (`molecule_id`),
+   KEY `component<em>info</em>idx` (`component_id`)
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='the complex component composition graph data';
+ /<em>!40101 SET character_set_client = @saved_cs_client </em>/;
+ 
+ --
+ ```</p>
+
+        <h3>Declare</h3>        
+
+        <pre>
+            <code id="clr_ts">
+# namespace biocad_storage.biocad_registryModel
+export class complex extends <a href="/vignettes/clr/Oracle/LinuxCompatibility/MySQL/MySQLTable.html">MySQLTable</a> {
+   add_time: <a href="/vignettes/clr/System/DateTime.html">DateTime</a>;
+   # the component molecule id
+   component_id: integer;
+   id: integer;
+   # the complex molecule id
+   molecule_id: integer;
+   note: string;
+}
+</code>
+        </pre>
+
+        <h3>.NET clr type reference tree</h3>
+
+        <ol>
+<li>this class extends from <a href="/vignettes/clr/Oracle/LinuxCompatibility/MySQL/MySQLTable.html">MySQLTable</a> class: <a href="/vignettes/clr/Oracle/LinuxCompatibility/MySQL/MySQLTable.html">MySQLTable</a></li>
+<li>use by <i>property</i> member <code>add_time</code>: <a href="/vignettes/clr/System/DateTime.html">DateTime</a></li>
+</ol>
+
+
+        <hr />
+        <div style="text-align: center;">[Package <em>{$package}</em> version {$version} <a
+                href="../{$package}.html">Index</a>]
+        </div>
+    </div>
+</body>
+
+<script type="text/javascript" src="../../_assets/R_syntax.js"></script>
+<script type="text/javascript" src="../../_assets/highlights.js"></script>
+<script type="text/javascript">r_highlights("clr_ts");</script>
+
+</html>

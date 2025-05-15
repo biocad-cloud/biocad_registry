@@ -2,7 +2,7 @@
 //
 //    imports "data_imports" from "biocad_registry";
 //
-// ref=biocad_registry.imports_api@biocad_registry, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+// ref=biocadRegistry.imports_api@biocad_registry, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 
 /**
 */
