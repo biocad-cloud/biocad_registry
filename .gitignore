@@ -287,3 +287,4 @@ workspace/.kegg/show_organism/eco.html
 
 workspace/.kegg/
 test/biocad/taxonomy/Bacillales_genomics.fasta
+workspace/embedding/nt_fingerprints.csv
