@@ -76,7 +76,7 @@
 #' - Use [link_reaction_metabolites()] to resolve compound IDs after pushing reactions.
 #' - See the database schema documentation for table structures.
 #' 
-const push_reaction = function(biocad_registry, reaction) {
+const push_reaction = function(biocad_registry, reaction, source_db) {
     let reactions = biocad_registry |> table("reaction");
     let graph = biocad_registry |> table("regulation_graph");
     let metabolite_graph = biocad_registry |> table("reaction_graph");
@@ -86,10 +86,11 @@ const push_reaction = function(biocad_registry, reaction) {
     let rxn = reaction;
 
     # check reaction
-    let r = reactions |> where(db_xref = rxn$entry) |> find();
+    let r = reactions |> where(source_dbkey = source_db, db_xref = rxn$entry) |> find();
 
     if (is.null(r)) {
         reactions |> add(
+            source_dbkey = source_db,
             db_xref = rxn$entry,
             name = (rxn$name) || (rxn$definition),
             equation = rxn$definition,

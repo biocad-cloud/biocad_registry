@@ -115,9 +115,14 @@ const imports_kegg = function(biocad_registry, kegg) {
 }
 
 const imports_kegg_reaction = function(biocad_registry, kegg) {
+    let key = biocad_registry |> vocabulary_id("KEGG","External Database");
+
     for(let rxn in tqdm(kegg)) {
         try({
-            biocad_registry |> push_reaction(reaction = cast_kegg_reaction(rxn));
+            biocad_registry |> push_reaction(
+                reaction = cast_kegg_reaction(rxn), 
+                source_db = key
+            );
         });        
     }
 }

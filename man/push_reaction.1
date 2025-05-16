@@ -1,8 +1,8 @@
 ﻿.TH PUSH_REACTION 1 2025-May "" "Push a single reaction model into the biocad registry database"
 .SH NAME
-push_reaction \- push_reaction(biocad.registry, reaction)
+push_reaction \- push_reaction(biocad.registry, reaction, source.db)
 .SH SYNOPSIS
-\fIpush_reaction(biocad.registry, reaction)\fR
+\fIpush_reaction(biocad.registry, reaction, source.db)\fR
 .SH DESCRIPTION
 .PP
 This function adds or updates a reaction entry in the biocad registry database, including associated enzymes, database cross-references, and metabolite compounds.
@@ -13,6 +13,9 @@ This function adds or updates a reaction entry in the biocad registry database, 
 .PP
 .PP
 \fBreaction\fB \fR\- . A list containing the reaction data to be pushed into the database. See "Details" for the required structure.
+.PP
+.PP
+\fBsource.db\fB \fR\- . 
 .PP
 .SH VALUE
 .PP
