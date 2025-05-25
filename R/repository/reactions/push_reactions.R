@@ -7,6 +7,8 @@
 #' @param biocad_registry An object representing the connection to the biocad registry database.
 #' @param reaction A list containing the reaction data to be pushed into the database. 
 #'   See "Details" for the required structure.
+#' @param source_db integer key reference to the vocabulary term table for reference to
+#'   the name of the source data of current reaction model data
 #' 
 #' @details
 #' The `reaction` argument must be a list with the following structure:
