@@ -78,8 +78,9 @@ declare namespace biocad_registry {
    */
    function imports_pubchem(biocad_registry: any, pubchem: any): object;
    /**
+     * @param rhea default value Is ``./rhea.rdf``.
    */
-   function imports_rhea(biocad_registry: any, rhea: any): object;
+   function imports_rhea(biocad_registry: any, rhea?: any): object;
    /**
    */
    function imports_sabiork(biocad_registry: any, repo: any): object;
