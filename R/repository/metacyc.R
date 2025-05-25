@@ -8,7 +8,7 @@ const imports_metacyc = function(biocad_registry, metacyc) {
     # biocad_registry |> load_biocyc_genes(metacyc);
     biocad_registry |> load_biocyc_proteins(metacyc);
     # biocad_registry |> load_biocyc_reactions(metacyc);
-    # biocad_registry |> load_biocyc_compounds(metacyc);
+    biocad_registry |> load_biocyc_compounds(metacyc);
 }
 
 const load_biocyc_proteins = function(biocad_registry, metacyc) {
