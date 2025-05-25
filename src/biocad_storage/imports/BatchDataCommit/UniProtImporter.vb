@@ -1,6 +1,46 @@
-﻿Imports SMRUCC.genomics.Assembly.Uniprot.XML
+﻿Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
+Imports SMRUCC.genomics.Assembly.Uniprot.XML
+Imports SMRUCC.genomics.SequenceModel
 
 Public Class UniProtImporter
+
+    ReadOnly registry As biocad_registry
+
+    Sub New(registry As biocad_registry)
+        Me.registry = registry
+    End Sub
+
+    Public Sub importsData(pagedata As entry())
+        Dim trans As CommitTransaction = registry.molecule.open_transaction.ignore
+        Dim terms = registry.vocabulary_terms
+
+        For Each prot As entry In pagedata
+            Dim mol As biocad_registryModel.molecule = check_protein(prot)
+
+            If mol Is Nothing Then
+                Dim seq As String = prot.ProteinSequence
+                Dim formula = MolecularWeightCalculator.PolypeptideFormula(seq)
+                Dim mass = MolecularWeightCalculator.CalcMW_Polypeptide(seq)
+
+                Call trans.add(
+                    field("xref_id") = prot.accessions(0),
+                    field("name") = prot.name,
+                    field("mass") = mass,
+                    field("type") = terms.protein_term,
+                    field("formula") = formula,
+                    field("parent") = 0,
+                    field("tax_id") = Val(prot.NCBITaxonomyId),
+                    field("note") = ""
+                )
+            End If
+        Next
+
+        Call trans.commit()
+    End Sub
+
+    Private Function check_protein(prot As entry) As biocad_registryModel.molecule
+
+    End Function
 
 End Class
 
