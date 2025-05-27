@@ -6,14 +6,15 @@ Imports SMRUCC.genomics.SequenceModel
 Public Class UniProtImporter
 
     ReadOnly registry As biocad_registry
+    ReadOnly terms As BioCadVocabulary
 
     Sub New(registry As biocad_registry)
         Me.registry = registry
+        Me.terms = registry.vocabulary_terms
     End Sub
 
     Public Sub importsData(pagedata As entry())
         Dim trans As CommitTransaction = registry.molecule.open_transaction.ignore
-        Dim terms As BioCadVocabulary = registry.vocabulary_terms
 
         For Each prot As entry In pagedata
             Dim mol As biocad_registryModel.molecule = check_protein(prot)
@@ -115,8 +116,9 @@ Public Class UniProtImporter
         check = registry.db_xrefs _
             .left_join("molecule") _
             .on(field("molecule.id") = field("obj_id")) _
-            .where(field("db_key") = registry.vocabulary_terms.uniprot_term,
-                   field("xref").in(prot.accessions)) _
+            .where(field("db_key") = terms.uniprot_term,
+                   field("xref").in(prot.accessions),
+                   field("molecule.type") = terms.protein_term) _
             .find(Of biocad_registryModel.molecule)("`molecule`.*")
 
         If Not check Is Nothing Then
@@ -126,12 +128,14 @@ Public Class UniProtImporter
         Dim gene = prot.gene
 
         If gene IsNot Nothing AndAlso Not gene.ORF.IsNullOrEmpty Then
-            Dim xref_id As String() = gene.ORF _
+            Dim xref_id As String() = gene.Primary _
+                .JoinIterates(gene.ORF) _
                 .Select(Function(id) $"{tax_id}:{id}") _
                 .ToArray
 
             check = registry.molecule _
-                .where(field("xref_id").in(xref_id)) _
+                .where(field("xref_id").in(xref_id),
+                       field("type") = terms.protein_term) _
                 .find(Of biocad_registryModel.molecule)
 
             If Not check Is Nothing Then
