@@ -50,6 +50,12 @@ Public Class biocad_registry : Inherits biocad_registryModel.db_mysql
         End Get
     End Property
 
+    Public ReadOnly Property molecule_tags As TableModel(Of biocad_registryModel.molecule_tags)
+        Get
+            Return m_molecule_tags
+        End Get
+    End Property
+
     Public ReadOnly Property sequence_graph As TableModel(Of biocad_registryModel.sequence_graph)
         Get
             Return m_sequence_graph

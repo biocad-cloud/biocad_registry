@@ -37,6 +37,49 @@ Public Class UniProtImporter
         Next
 
         Call trans.commit()
+
+        trans = registry.sequence_graph.open_transaction.ignore
+
+        For Each prot As entry In pagedata
+            Dim mol As biocad_registryModel.molecule = check_protein(prot)
+
+            If mol Is Nothing Then
+                Continue For
+            End If
+
+            Dim seq As String = prot.ProteinSequence
+            Dim hashcode As String = BatchDataCommit.SequenceHashcode(seq)
+            Dim check = registry.sequence_graph _
+                .where(field("molecule_id") = mol.id,
+                       field("hashcode") = hashcode) _
+                .find(Of biocad_registryModel.sequence_graph)
+
+            If check IsNot Nothing Then
+                Continue For
+            End If
+
+            Call trans.add(
+                field("molecule_id") = mol.id,
+                field("sequence") = seq,
+                field("hashcode") = hashcode,
+                field("morgan") = ""
+            )
+        Next
+
+        Call trans.commit()
+
+        ' add keywords
+        trans = registry.molecule_tags.open_transaction.ignore
+
+        For Each prot As entry In pagedata
+            Dim mol As biocad_registryModel.molecule = check_protein(prot)
+
+            If mol Is Nothing Then
+                Continue For
+            End If
+
+
+        Next
     End Sub
 
     Private Function check_protein(prot As entry) As biocad_registryModel.molecule
