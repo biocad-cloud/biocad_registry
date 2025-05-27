@@ -1,4 +1,5 @@
-﻿Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
+﻿Imports Microsoft.VisualBasic.Linq
+Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports SMRUCC.genomics.Assembly.Uniprot.XML
 Imports SMRUCC.genomics.SequenceModel
 
@@ -128,6 +129,23 @@ Public Class UniProtImporter
 
         If Not check Is Nothing Then
             Return check
+        End If
+
+        Dim gene = prot.gene
+
+        If gene IsNot Nothing Then
+            Dim xref_id As String() = gene.Primary _
+                .JoinIterates(gene.ORF) _
+                .Select(Function(id) $"{tax_id}:{id}") _
+                .ToArray
+
+            check = registry.molecule _
+                .where(field("xref_id").in(xref_id)) _
+                .find(Of biocad_registryModel.molecule)
+
+            If Not check Is Nothing Then
+                Return check
+            End If
         End If
 
         Dim seq As String = prot.ProteinSequence
