@@ -49,6 +49,7 @@ Public Class UniProtImporter
         Dim topic_trans = registry.molecule_tags.open_transaction.ignore
         Dim xref_trans = registry.db_xrefs.open_transaction.ignore
         Dim name_trans = registry.synonym.open_transaction.ignore
+        Dim locs_trans = registry.subcellular_location.open_transaction.ignore
 
         For Each prot As entry In TqdmWrapper.Wrap(pagedata)
             Dim mol As biocad_registryModel.molecule = check_protein(prot)
@@ -73,7 +74,51 @@ Public Class UniProtImporter
                 )
             End If
 
-            Dim proteinData = prot.protein
+            Dim sublocs = prot.CommentList.TryGetValue("subcellular location")
+
+            If Not sublocs.IsNullOrEmpty Then
+                For Each comment As comment In sublocs
+                    Dim subloc = comment.subcellularLocations
+
+                    For Each loc As subcellularLocation In subloc.SafeQuery
+                        Dim top As String = If(loc.topology Is Nothing, "", loc.topology.value)
+
+                        For Each location In loc.locations.SafeQuery
+                            If registry.subcellular_compartments _
+                                .where(field("compartment_name") = location.value) _
+                                .find(Of biocad_registryModel.subcellular_compartments) Is Nothing Then
+
+                                registry.subcellular_compartments.add(
+                                    field("compartment_name") = location.value,
+                                    field("topology") = top
+                                )
+
+                                Dim check_loc = registry.subcellular_compartments _
+                                    .where(field("compartment_name") = location.value) _
+                                    .find(Of biocad_registryModel.subcellular_compartments)
+
+                                If Not check_loc Is Nothing Then
+                                    If registry.subcellular_location _
+                                        .where(field("compartment_id") = check_loc.id,
+                                               field("obj_id") = mol.id,
+                                               field("entity") = terms.molecule_entity) _
+                                        .find(Of biocad_registryModel.subcellular_location) Is Nothing Then
+
+                                        Call locs_trans.add(
+                                            field("compartment_id") = check_loc.id,
+                                            field("obj_id") = mol.id,
+                                            field("entity") = terms.molecule_entity,
+                                            field("note") = location.value
+                                        )
+                                    End If
+                                End If
+                            End If
+                        Next
+                    Next
+                Next
+            End If
+
+            Dim proteinData As protein = prot.protein
 
             ' add synonym name
             For Each name As String In prot.GetProteinNames.JoinIterates(prot.gene.Primary)
@@ -151,6 +196,7 @@ Public Class UniProtImporter
         Call topic_trans.commit()
         Call xref_trans.commit()
         Call name_trans.commit()
+        Call locs_trans.commit()
     End Sub
 
     Private Function check_protein(prot As entry) As biocad_registryModel.molecule

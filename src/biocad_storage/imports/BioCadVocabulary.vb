@@ -31,6 +31,8 @@ Public Class BioCadVocabulary
 
     ReadOnly registry As biocad_registry
 
+    Public ReadOnly Property molecule_entity As UInteger
+
     Sub New(registry As biocad_registry)
         Me.registry = registry
 
@@ -48,6 +50,8 @@ Public Class BioCadVocabulary
         uniprot_term = registry.getVocabulary("UniProtKB/Swiss-Prot", CategoryDatabase)
         biocad_term = registry.getVocabulary("BioCAD Registry", CategoryDatabase)
         pubchem_term = registry.getVocabulary("PubChem", CategoryDatabase)
+
+        molecule_entity = registry.getVocabulary("Molecule", "Entity Type")
     End Sub
 
     <MethodImpl(MethodImplOptions.AggressiveInlining)>
