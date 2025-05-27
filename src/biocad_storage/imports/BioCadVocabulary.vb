@@ -55,8 +55,14 @@ Public Class BioCadVocabulary
         Return registry.getVocabulary(key, CategoryDatabase)
     End Function
 
+    <MethodImpl(MethodImplOptions.AggressiveInlining)>
     Public Function GetVocabularyTerm(key As String, category As String) As UInteger
         Return registry.getVocabulary(key, category)
+    End Function
+
+    <MethodImpl(MethodImplOptions.AggressiveInlining)>
+    Public Function GetUniProtKeyword(id As String, name As String) As UInteger
+        Return registry.getVocabulary(name, "UniProt Keyword", id)
     End Function
 
     Public Function GetBioCadOntology(id As String, Optional name As String = Nothing) As biocad_registryModel.ontology
