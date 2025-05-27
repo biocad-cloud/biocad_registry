@@ -52,7 +52,11 @@ Public Class BioCadVocabulary
 
     <MethodImpl(MethodImplOptions.AggressiveInlining)>
     Public Function GetDatabaseKey(key As String) As UInteger
-        Return registry.getVocabulary(key, CategoryDatabase)
+        Static dbnameMap As New Dictionary(Of String, String) From {
+            {"", ""}
+        }
+
+        Return registry.getVocabulary(If(dbnameMap.ContainsKey(key), dbnameMap(key), key), CategoryDatabase)
     End Function
 
     <MethodImpl(MethodImplOptions.AggressiveInlining)>
