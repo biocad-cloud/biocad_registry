@@ -145,7 +145,7 @@ Public Class UniProtImporter
             Next
 
             ' add keywords
-            For Each keyword As value In prot.keywords
+            For Each keyword As value In prot.keywords.SafeQuery
                 If registry.molecule_tags _
                     .where(field("tag_id") = terms.GetUniProtKeyword(keyword.id, keyword.value),
                            field("molecule_id") = mol.id) _
@@ -174,7 +174,7 @@ Public Class UniProtImporter
                 End If
             Next
 
-            For Each dbref As dbReference In prot.dbReferences
+            For Each dbref As dbReference In prot.dbReferences.SafeQuery
                 If registry.db_xrefs.where(
                     field("obj_id") = mol.id,
                     field("db_key") = terms.GetDatabaseKey(dbref.type),
