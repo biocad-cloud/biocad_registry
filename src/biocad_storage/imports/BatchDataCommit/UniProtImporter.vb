@@ -1,4 +1,5 @@
-﻿Imports Microsoft.VisualBasic.Linq
+﻿Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm
+Imports Microsoft.VisualBasic.Linq
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports SMRUCC.genomics.Assembly.Uniprot.XML
 Imports SMRUCC.genomics.SequenceModel
@@ -16,7 +17,9 @@ Public Class UniProtImporter
     Public Sub importsData(pagedata As entry())
         Dim trans As CommitTransaction = registry.molecule.open_transaction.ignore
 
-        For Each prot As entry In pagedata
+        Call Console.WriteLine("create molecule models....")
+
+        For Each prot As entry In TqdmWrapper.Wrap(pagedata)
             Dim mol As biocad_registryModel.molecule = check_protein(prot)
 
             If mol Is Nothing Then
@@ -40,12 +43,14 @@ Public Class UniProtImporter
 
         Call trans.commit()
 
+        Call Console.WriteLine("imports molecule properties...")
+
         Dim seq_trans = registry.sequence_graph.open_transaction.ignore
         Dim topic_trans = registry.molecule_tags.open_transaction.ignore
         Dim xref_trans = registry.db_xrefs.open_transaction.ignore
         Dim name_trans = registry.synonym.open_transaction.ignore
 
-        For Each prot As entry In pagedata
+        For Each prot As entry In TqdmWrapper.Wrap(pagedata)
             Dim mol As biocad_registryModel.molecule = check_protein(prot)
 
             If mol Is Nothing Then
@@ -139,6 +144,8 @@ Public Class UniProtImporter
                 End If
             Next
         Next
+
+        Call Console.WriteLine("commit and save molecule data!")
 
         Call seq_trans.commit()
         Call topic_trans.commit()
