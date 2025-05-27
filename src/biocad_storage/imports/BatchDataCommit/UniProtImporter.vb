@@ -116,7 +116,7 @@ Public Class UniProtImporter
             .left_join("molecule") _
             .on(field("molecule.id") = field("obj_id")) _
             .where(field("db_key") = registry.vocabulary_terms.uniprot_term,
-                   field("xref") = prot.accessions(0)) _
+                   field("xref").in(prot.accessions)) _
             .find(Of biocad_registryModel.molecule)("`molecule`.*")
 
         If Not check Is Nothing Then
@@ -125,9 +125,8 @@ Public Class UniProtImporter
 
         Dim gene = prot.gene
 
-        If gene IsNot Nothing Then
-            Dim xref_id As String() = gene.Primary _
-                .JoinIterates(gene.ORF) _
+        If gene IsNot Nothing AndAlso Not gene.ORF.IsNullOrEmpty Then
+            Dim xref_id As String() = gene.ORF _
                 .Select(Function(id) $"{tax_id}:{id}") _
                 .ToArray
 
