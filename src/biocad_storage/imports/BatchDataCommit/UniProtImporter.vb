@@ -41,7 +41,9 @@ Public Class UniProtImporter
 
     Private Function check_protein(prot As entry) As biocad_registryModel.molecule
         Dim tax_id = CUInt(Val(prot.NCBITaxonomyId))
-        Dim check = registry.molecule.where(field("xref_id") = prot.accessions(0)).find(Of biocad_registryModel.molecule)
+        Dim check = registry.molecule _
+            .where(field("xref_id") = prot.accessions(0)) _
+            .find(Of biocad_registryModel.molecule)
 
         If Not check Is Nothing Then
             Return check
