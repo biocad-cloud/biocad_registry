@@ -68,8 +68,10 @@ Public Class UniProtImporter
                 )
             End If
 
+            Dim proteinData = prot.protein
+
             ' add synonym name
-            For Each name As String In {prot.protein.fullName}.JoinIterates(prot.gene.Primary)
+            For Each name As String In prot.GetProteinNames.JoinIterates(prot.gene.Primary)
                 If name.StringEmpty(, True) Then
                     Continue For
                 End If
