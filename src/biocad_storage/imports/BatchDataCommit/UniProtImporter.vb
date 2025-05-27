@@ -30,7 +30,7 @@ Public Class UniProtImporter
                     field("name") = prot.name,
                     field("mass") = mass,
                     field("type") = terms.protein_term,
-                    field("formula") = formula,
+                    field("formula") = formula.ToString,
                     field("parent") = 0,
                     field("tax_id") = Val(prot.NCBITaxonomyId),
                     field("note") = desc
@@ -78,6 +78,21 @@ Public Class UniProtImporter
                         field("tag_id") = terms.GetUniProtKeyword(keyword.id, keyword.value),
                         field("molecule_id") = mol.id,
                         field("description") = keyword.value
+                    )
+                End If
+            Next
+
+            For Each id As String In prot.accessions
+                If registry.db_xrefs.where(
+                    field("obj_id") = mol.id,
+                    field("db_key") = terms.uniprot_term,
+                    field("xref") = id
+                ).find(Of biocad_registryModel.db_xrefs) Is Nothing Then
+                    xref_trans.add(
+                        field("obj_id") = mol.id,
+                        field("db_key") = terms.uniprot_term,
+                        field("xref") = id,
+                        field("type") = terms.protein_term
                     )
                 End If
             Next
