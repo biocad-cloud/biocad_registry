@@ -39,7 +39,9 @@ Public Class UniProtImporter
 
         Call trans.commit()
 
-        trans = registry.sequence_graph.open_transaction.ignore
+        Dim seq_trans = registry.sequence_graph.open_transaction.ignore
+        Dim topic_trans = registry.molecule_tags.open_transaction.ignore
+        Dim xref_trans = registry.db_xrefs.open_transaction.ignore
 
         For Each prot As entry In pagedata
             Dim mol As biocad_registryModel.molecule = check_protein(prot)
@@ -55,59 +57,49 @@ Public Class UniProtImporter
                        field("hashcode") = hashcode) _
                 .find(Of biocad_registryModel.sequence_graph)
 
-            If check IsNot Nothing Then
-                Continue For
+            If check Is Nothing Then
+                Call seq_trans.add(
+                    field("molecule_id") = mol.id,
+                    field("sequence") = seq,
+                    field("hashcode") = hashcode,
+                    field("morgan") = ""
+                )
             End If
 
-            Call trans.add(
-                field("molecule_id") = mol.id,
-                field("sequence") = seq,
-                field("hashcode") = hashcode,
-                field("morgan") = ""
-            )
-        Next
-
-        Call trans.commit()
-
-        ' add keywords
-        trans = registry.molecule_tags.open_transaction.ignore
-
-        For Each prot As entry In pagedata
-            Dim mol As biocad_registryModel.molecule = check_protein(prot)
-
-            If mol Is Nothing Then
-                Continue For
-            End If
-
+            ' add keywords
             For Each keyword As value In prot.keywords
                 If registry.molecule_tags _
                     .where(field("tag_id") = terms.GetUniProtKeyword(keyword.id, keyword.value),
                            field("molecule_id") = mol.id) _
                     .find(Of biocad_registryModel.molecule_tags) Is Nothing Then
 
-                    Call trans.add(
+                    Call topic_trans.add(
                         field("tag_id") = terms.GetUniProtKeyword(keyword.id, keyword.value),
                         field("molecule_id") = mol.id,
                         field("description") = keyword.value
                     )
                 End If
             Next
+
+            For Each dbref As dbReference In prot.dbReferences
+                If registry.db_xrefs.where(
+                    field("obj_id") = mol.id,
+                    field("db_key") = terms.GetDatabaseKey(dbref.type),
+                    field("xref") = dbref.id
+                ).find(Of biocad_registryModel.db_xrefs) Is Nothing Then
+                    xref_trans.add(
+                        field("obj_id") = mol.id,
+                        field("db_key") = terms.GetDatabaseKey(dbref.type),
+                        field("xref") = dbref.id,
+                        field("type") = terms.protein_term
+                    )
+                End If
+            Next
         Next
 
-        Call trans.commit()
-
-        ' add xrefs
-        trans = registry.db_xrefs.open_transaction.ignore
-
-        For Each prot As entry In pagedata
-            Dim mol As biocad_registryModel.molecule = check_protein(prot)
-
-            If mol Is Nothing Then
-                Continue For
-            End If
-
-
-        Next
+        Call seq_trans.commit()
+        Call topic_trans.commit()
+        Call xref_trans.commit()
     End Sub
 
     Private Function check_protein(prot As entry) As biocad_registryModel.molecule
