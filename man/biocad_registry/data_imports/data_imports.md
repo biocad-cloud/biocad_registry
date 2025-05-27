@@ -13,3 +13,4 @@
 + [imports_genbank_proteins](data_imports/imports_genbank_proteins.1) 
 + [imports_dbxrefs](data_imports/imports_dbxrefs.1) 
 + [imports_taxonomy](data_imports/imports_taxonomy.1) 
++ [imports_uniprot](data_imports/imports_uniprot.1) 

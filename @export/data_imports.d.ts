@@ -41,5 +41,8 @@ declare namespace data_imports {
    function imports_taxonomy(registry: object, taxdump: object): any;
    /**
    */
+   function imports_uniprot(registry: object, uniprot: string): any;
+   /**
+   */
    function pubchem_repo(dir: string): object;
 }

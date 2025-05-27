@@ -1,0 +1,31 @@
+﻿.TH IMPORTS_UNIPROT_OBSOLETE 1 2025-May "" "Import UniProt proteins into biocad registry database This helper function imports protein data from UniProt into a biocad registry database, handling sequence embeddings, cross-references, subcellular locations, and keyword associations."
+.SH NAME
+imports_uniprot_obsolete \- imports_uniprot_obsolete(biocad.registry, uniprot,
+    <i>fast.check</i> = <span style='color: blue !important;'>FALSE</span>)
+.SH SYNOPSIS
+\fIimports_uniprot_obsolete(biocad.registry, uniprot,
+    <i>fast.check</i> = <span style='color: blue !important;'>FALSE</span>)\fR
+.SH OPTIONS
+.PP
+\fBbiocad.registry\fB \fR\- . 
+.PP
+.PP
+\fBuniprot\fB \fR\- . UniProt protein accession(s). Can be either: - A character vector of UniProt IDs - A pipeline enumerator for stream processing
+.PP
+.PP
+\fBfast.check\fB \fR\- FALSE. 
+.PP
+.SH VALUE
+.PP
+Invisibly returns NULL. Mainly used for its side effects of populating the biocad registry database.
+.PP
+.SH DETAILS
+.PP
+The function performs these main operations: 1. Initializes sequence embedding transformer (SGT) for protein sequences 2. Sets up database terminology references for proteins 3. Processes input proteins with progress tracking where possible 4. For each protein: - Retrieves sequence, descriptions, locations, and cross-references from UniProt - Checks existing records if fast_check is enabled - Creates new molecule entry if not existing - Adds keyword associations and cross-references (both UniProt and external databases) - Generates and stores sequence graph embeddings - Records subcellular localization information
+.PP
+.SH FILES
+.PP
+SMRUCC/R#.declare_function.imports_uniprot_obsolete at uniprot.R:line 54
+.PP
+.SH COPYRIGHT
+Copyright © xieguigang <xie.guigang@gcmodeller.org>, MIT License Licensed 2025

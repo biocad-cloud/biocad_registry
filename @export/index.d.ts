@@ -87,7 +87,7 @@ declare namespace biocad_registry {
    /**
      * @param fast_check default value Is ``false``.
    */
-   function imports_uniprot(biocad_registry: any, uniprot: any, fast_check?: any): object;
+   function imports_uniprot_obsolete(biocad_registry: any, uniprot: any, fast_check?: any): object;
    /**
    */
    function link_gene_proteins(biocad_registry: any): object;

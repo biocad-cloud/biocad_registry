@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Import UniProt proteins into biocad registry database This helper function imports protein data from UniProt into a biocad registry database, handling sequence embeddings, cross-references, subcellular locations, and keyword associations.</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <link rel="stylesheet" type="text/css" href="https://gcmodeller.org/lib/page.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <table style="width: 100%;">
+            <tr>
+                <td>imports_uniprot_obsolete {biocad_registry}</td>
+                <td style="text-align: right;">R Documentation</td>
+            </tr>
+        </table>
+
+        <h2>Import UniProt proteins into biocad registry database This helper function imports protein data from UniProt into a biocad registry database, handling sequence embeddings, cross-references, subcellular locations, and keyword associations.</h2>
+
+        <h3>Description</h3>
+
+        
+
+        <h3>Usage</h3>
+
+        <div style="width: 100%; padding-left: 3%; color: black;">
+            <pre><code class='language-R' style="color: black; font-weight:normal;"><strong>imports_uniprot_obsolete</strong>(<i>biocad.registry</i>, <i>uniprot</i>,
+    <i>fast.check</i> = <span style='color: blue !important;'>FALSE</span>);</code></pre>
+        </div>
+
+        <h3>Arguments</h3>
+
+        <table>
+            
+<dt>biocad.registry</dt>
+<dd><p><p>A biocad database registry connection object.</p></p></dd>
+
+
+<dt>uniprot</dt>
+<dd><p><p>UniProt protein accession(s). Can be either: - A character vector of UniProt IDs - A pipeline enumerator for stream processing</p></p></dd>
+
+
+<dt>fast.check</dt>
+<dd><p><p>Logical. If TRUE, skips proteins already existing in the database using quick verification. Default = FALSE.</p></p></dd>
+
+        </table>
+
+
+        <h3 style="display: block;">Details</h3>
+
+        <p>The function performs these main operations: 1. Initializes sequence embedding transformer (SGT) for protein sequences 2. Sets up database terminology references for proteins 3. Processes input proteins with progress tracking where possible 4. For each protein: - Retrieves sequence, descriptions, locations, and cross-references from UniProt - Checks existing records if fast_check is enabled - Creates new molecule entry if not existing - Adds keyword associations and cross-references (both UniProt and external databases) - Generates and stores sequence graph embeddings - Records subcellular localization information</p>
+
+        <h3 style="display: block">Authors</h3>
+
+        xieguigang &lt;xie.guigang@gcmodeller.org>
+
+        <h3>Value</h3>
+
+        <p>Invisibly returns NULL. Mainly used for its side effects of populating the biocad registry database.</p>
+
+        <h3 style="display: none;">Examples</h3>
+
+        
+
+        <hr />
+        <div style="text-align: center;">[Package <em>biocad_registry</em> version 1.0.148 <a
+                href="../biocad_registry.html">Index</a>]
+        </div>
+    </div>
+</body>
+
+<script type="text/javascript" src="https://gcmodeller.org/lib/R_syntax.js"></script>
+<script type="text/javascript" src="https://gcmodeller.org/lib/highlights.js"></script>
+<script type="text/javascript">r_highlights("example_r");</script>
+
+</html>
