@@ -254,7 +254,7 @@ Public Module BatchDataCommit
         End If
 
         Dim polyAASeq As String = Strings.Trim(cds.Query(FeatureQualifiers.translation)).ToUpper
-        Dim hashcode As String = LCase(polyAASeq).MD5
+        Dim hashcode As String = SequenceHashcode(polyAASeq)
 
         Call trans.add(
             field("molecule_id") = protein_mol.id,
@@ -262,6 +262,11 @@ Public Module BatchDataCommit
             field("hashcode") = hashcode
         )
     End Sub
+
+    <MethodImpl(MethodImplOptions.AggressiveInlining)>
+    Public Function SequenceHashcode(ByRef seq As String) As String
+        Return LCase(seq).MD5
+    End Function
 
     <Extension>
     Private Sub addSingleProtein(data As GenBankImports, gene As Feature, ByRef trans As CommitTransaction, vocabulary As BioCadVocabulary)

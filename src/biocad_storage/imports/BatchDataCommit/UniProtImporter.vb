@@ -21,6 +21,7 @@ Public Class UniProtImporter
                 Dim seq As String = prot.ProteinSequence
                 Dim formula = MolecularWeightCalculator.PolypeptideFormula(seq)
                 Dim mass = MolecularWeightCalculator.CalcMW_Polypeptide(seq)
+                Dim desc As String = prot.GetCommentText("function")
 
                 Call trans.add(
                     field("xref_id") = prot.accessions(0),
@@ -30,7 +31,7 @@ Public Class UniProtImporter
                     field("formula") = formula,
                     field("parent") = 0,
                     field("tax_id") = Val(prot.NCBITaxonomyId),
-                    field("note") = ""
+                    field("note") = desc
                 )
             End If
         Next
@@ -39,7 +40,39 @@ Public Class UniProtImporter
     End Sub
 
     Private Function check_protein(prot As entry) As biocad_registryModel.molecule
+        Dim tax_id = CUInt(Val(prot.NCBITaxonomyId))
+        Dim check = registry.molecule.where(field("xref_id") = prot.accessions(0)).find(Of biocad_registryModel.molecule)
 
+        If Not check Is Nothing Then
+            Return check
+        End If
+
+        check = registry.db_xrefs _
+            .left_join("molecule") _
+            .on(field("molecule.id") = field("obj_id")) _
+            .where(field("db_key") = registry.vocabulary_terms.uniprot_term,
+                   field("xref") = prot.accessions(0)) _
+            .find(Of biocad_registryModel.molecule)("`molecule`.*")
+
+        If Not check Is Nothing Then
+            Return check
+        End If
+
+        Dim seq As String = prot.ProteinSequence
+        Dim hashcode As String = BatchDataCommit.SequenceHashcode(seq)
+
+        check = registry.molecule _
+            .left_join("sequence_graph") _
+            .on(field("`sequence_graph`.molecule_id") = field("`molecule`.id")) _
+            .where(field("tax_id") = tax_id,
+                   field("`sequence_graph`.hashcode") = hashcode) _
+            .find(Of biocad_registryModel.molecule)("`molecule`.*")
+
+        If Not check Is Nothing Then
+            Return check
+        End If
+
+        Return Nothing
     End Function
 
 End Class
