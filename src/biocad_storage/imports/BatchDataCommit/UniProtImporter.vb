@@ -217,11 +217,15 @@ Public Class UniProtPageLoader
         For Each prot As entry In UniProtXML.EnumerateEntries({repo}, ignoreError:=True, tqdm:=True)
             Call tmp.Add(prot)
 
-            If tmp.Count > 3000 Then
+            If tmp.Count > 5000 Then
                 Yield tmp.ToArray
                 Call tmp.Clear()
             End If
         Next
+
+        If tmp.Any Then
+            Yield tmp.ToArray
+        End If
     End Function
 
 End Class
