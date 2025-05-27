@@ -92,25 +92,25 @@ Public Class UniProtImporter
                                     field("compartment_name") = location.value,
                                     field("topology") = top
                                 )
+                            End If
 
-                                Dim check_loc = registry.subcellular_compartments _
+                            Dim check_loc = registry.subcellular_compartments _
                                     .where(field("compartment_name") = location.value) _
                                     .find(Of biocad_registryModel.subcellular_compartments)
 
-                                If Not check_loc Is Nothing Then
-                                    If registry.subcellular_location _
-                                        .where(field("compartment_id") = check_loc.id,
-                                               field("obj_id") = mol.id,
-                                               field("entity") = terms.molecule_entity) _
-                                        .find(Of biocad_registryModel.subcellular_location) Is Nothing Then
+                            If Not check_loc Is Nothing Then
+                                If registry.subcellular_location _
+                                    .where(field("compartment_id") = check_loc.id,
+                                           field("obj_id") = mol.id,
+                                           field("entity") = terms.molecule_entity) _
+                                    .find(Of biocad_registryModel.subcellular_location) Is Nothing Then
 
-                                        Call locs_trans.add(
-                                            field("compartment_id") = check_loc.id,
-                                            field("obj_id") = mol.id,
-                                            field("entity") = terms.molecule_entity,
-                                            field("note") = location.value
-                                        )
-                                    End If
+                                    Call locs_trans.add(
+                                        field("compartment_id") = check_loc.id,
+                                        field("obj_id") = mol.id,
+                                        field("entity") = terms.molecule_entity,
+                                        field("note") = location.value
+                                    )
                                 End If
                             End If
                         Next
