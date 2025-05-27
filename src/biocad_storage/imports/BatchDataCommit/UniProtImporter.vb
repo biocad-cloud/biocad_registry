@@ -43,6 +43,7 @@ Public Class UniProtImporter
         Dim seq_trans = registry.sequence_graph.open_transaction.ignore
         Dim topic_trans = registry.molecule_tags.open_transaction.ignore
         Dim xref_trans = registry.db_xrefs.open_transaction.ignore
+        Dim name_trans = registry.synonym.open_transaction.ignore
 
         For Each prot As entry In pagedata
             Dim mol As biocad_registryModel.molecule = check_protein(prot)
@@ -66,6 +67,30 @@ Public Class UniProtImporter
                     field("morgan") = ""
                 )
             End If
+
+            ' add synonym name
+            For Each name As String In {prot.protein.fullName}.JoinIterates(prot.gene.Primary)
+                If name.StringEmpty(, True) Then
+                    Continue For
+                End If
+
+                Dim name_hash As String = name.ToLower.MD5
+
+                If registry.synonym _
+                    .where(field("obj_id") = mol.id,
+                           field("type_id") = terms.protein_term,
+                           field("hashcode") = name_hash) _
+                    .find(Of biocad_registryModel.synonym) Is Nothing Then
+
+                    Call name_trans.add(
+                        field("obj_id") = mol.id,
+                        field("type_id") = terms.protein_term,
+                        field("hashcode") = name_hash,
+                        field("synonym") = name,
+                        field("lang") = "en"
+                    )
+                End If
+            Next
 
             ' add keywords
             For Each keyword As value In prot.keywords
@@ -116,6 +141,7 @@ Public Class UniProtImporter
         Call seq_trans.commit()
         Call topic_trans.commit()
         Call xref_trans.commit()
+        Call name_trans.commit()
     End Sub
 
     Private Function check_protein(prot As entry) As biocad_registryModel.molecule
