@@ -13,9 +13,17 @@ SMRUCC.genomics.Model.MotifGraph.ProteinStructure
 </member>
 <member name="P:SMRUCC.genomics.Model.MotifGraph.ProteinStructure.CreateMatrix.dimension">
  <summary>
- get the dimension size of the generated protein matrix via the function <see cref="M:SMRUCC.genomics.Model.MotifGraph.ProteinStructure.CreateMatrix.ToMatrix(SMRUCC.genomics.SequenceModel.FASTA.FastaSeq)"/>
+ get the dimension size of the generated biological sequence 
+ matrix via the function <see cref="M:SMRUCC.genomics.Model.MotifGraph.ProteinStructure.CreateMatrix.ToMatrix(SMRUCC.genomics.SequenceModel.FASTA.FastaSeq)"/>
  </summary>
  <returns>The CNN input size</returns>
+</member>
+<member name="M:SMRUCC.genomics.Model.MotifGraph.ProteinStructure.CreateMatrix.ToVector(SMRUCC.genomics.SequenceModel.FASTA.FastaSeq)">
+ <summary>
+ make the given fasta sequence embedding as vector
+ </summary>
+ <param name="seq"></param>
+ <returns></returns>
 </member>
 <member name="T:SMRUCC.genomics.Model.MotifGraph.ProteinStructure.Kmer.KMerGraph">
  <summary>

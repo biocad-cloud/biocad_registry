@@ -9,6 +9,7 @@ Imports Microsoft.VisualBasic.Scripting.MetaData
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports SMRUCC.genomics.Assembly.NCBI.GenBank
 Imports SMRUCC.genomics.Assembly.NCBI.Taxonomy
+Imports SMRUCC.genomics.Assembly.Uniprot.XML
 Imports SMRUCC.genomics.foundation.OBO_Foundry.IO.Models
 Imports SMRUCC.Rsharp.Runtime
 Imports SMRUCC.Rsharp.Runtime.Internal.[Object]
@@ -146,6 +147,17 @@ Module imports_api
             Call transaction.commit()
 
             Call bar.SetLabel(taxlist(0).name)
+        Next
+
+        Return Nothing
+    End Function
+
+    <ExportAPI("imports_uniprot")>
+    Public Function imports_uniprot(registry As biocad_registry, uniprot As String)
+        Dim source As New UniProtPageLoader(uniprot)
+
+        For Each page As entry() In source.LoadPageData
+            Call New UniProtImporter(registry).importsData(page)
         Next
 
         Return Nothing

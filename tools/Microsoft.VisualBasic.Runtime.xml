@@ -7458,11 +7458,14 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  </summary>
  <returns></returns>
 </member>
-<member name="M:Microsoft.VisualBasic.Parallel.Threads.ThreadStart.execute(System.Collections.Generic.IEnumerable{Microsoft.VisualBasic.Parallel.Threads.ThreadStart})">
+<member name="M:Microsoft.VisualBasic.Parallel.Threads.ThreadStart.Execute(System.Collections.Generic.IEnumerable{Microsoft.VisualBasic.Parallel.Threads.ThreadStart})">
  <summary>
  Run parallel task
  </summary>
  <param name="tasks"></param>
+ <remarks>
+ run tasks in batch mode based on the <see cref="M:System.Threading.Tasks.Task.Run(System.Action)"/>
+ </remarks>
 </member>
 <member name="T:Microsoft.VisualBasic.Parallel.ThreadQueue">
  <summary>
@@ -7484,7 +7487,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  lock
  </summary>
 </member>
-<member name="F:Microsoft.VisualBasic.Parallel.ThreadQueue.myThread">
+<member name="F:Microsoft.VisualBasic.Parallel.ThreadQueue.xThread">
  <summary>
  Writer Thread ☺
  </summary>
@@ -7501,6 +7504,12 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  </summary>
  <returns></returns>
 </member>
+<member name="P:Microsoft.VisualBasic.Parallel.ThreadQueue.RunningTask">
+ <summary>
+ get the task that is running now.
+ </summary>
+ <returns></returns>
+</member>
 <member name="M:Microsoft.VisualBasic.Parallel.ThreadQueue.AddToQueue(System.Action)">
  <summary>
  Add an Action to the queue.
@@ -7512,9 +7521,14 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  Wait for all thread queue job done.(Needed if you are using multiThreaded queue)
  </summary>
 </member>
-<member name="M:Microsoft.VisualBasic.Parallel.ThreadQueue.exeQueue">
+<member name="M:Microsoft.VisualBasic.Parallel.ThreadQueue.ExecQueue">
  <summary>
  Execute the queue list
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Parallel.ThreadQueue.ThreadLoop">
+ <summary>
+ running all task inside current <see cref="F:Microsoft.VisualBasic.Parallel.ThreadQueue.queue"/>
  </summary>
 </member>
 <member name="T:Microsoft.VisualBasic.CommandLine.CLIMapper">
@@ -25594,6 +25608,22 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <remarks>
  (为了兼容Linux，这个函数会自动替换路径之中的\为/符号)
  </remarks>
+</member>
+<member name="F:Microsoft.VisualBasic.PathExtensions.UNCprefixRegexp">
+ <summary>
+ regexp pattern for matches the UNC path prefix string.
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.PathExtensions.CheckUNCNetworkPath(System.String)">
+ <summary>
+ Check of this given windows file path is in UNC full path style?
+ </summary>
+ <param name="path">
+ check of this given path is a UNC path or not? UNC full path is a kind of network path 
+ for smb network drive, example as \\192.168.3.1\XXX, the UNC path is prefixed with a 
+ server ip address.
+ </param>
+ <returns></returns>
 </member>
 <member name="M:Microsoft.VisualBasic.PathExtensions.GetDirectoryFullPath(System.String,System.String)">
  <summary>

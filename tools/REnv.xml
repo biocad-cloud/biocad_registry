@@ -1114,6 +1114,14 @@ to [rest of string was truncated]&quot;;.
  <param name="newName"></param>
  
 </member>
+<member name="M:SMRUCC.Rsharp.Interpreter.ExecuteEngine.ExpressionSymbols.Closure.DeclareNewFunction.getArguments">
+ <summary>
+ get the parameter arguments of current function object
+ </summary>
+ <returns>
+ this function will nenver returns nothing
+ </returns>
+</member>
 <member name="M:SMRUCC.Rsharp.Interpreter.ExecuteEngine.ExpressionSymbols.Closure.DeclareNewFunction.InitializeEnvironment(SMRUCC.Rsharp.Runtime.Environment,SMRUCC.Rsharp.Runtime.Components.InvokeParameter[],System.Boolean@)">
  <summary>
  set parameters
@@ -2148,6 +2156,10 @@ to [rest of string was truncated]&quot;;.
  Just set value, this function use for the package parser
  </summary>
  <param name="attrs"></param>
+ <remarks>
+ use the <see cref="M:SMRUCC.Rsharp.Interpreter.ExecuteEngine.SymbolExpression.AddCustomAttribute(System.String,System.String[])"/> if want to 
+ add a specific single attribute data
+ </remarks>
 </member>
 <member name="F:SMRUCC.Rsharp.Interpreter.Program.Rscript">
  <summary>
@@ -6432,6 +6444,13 @@ to take away yo [rest of string was truncated]&quot;;.
  <param name="env"></param>
  <returns></returns>
 </member>
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.env.docs(System.Object)">
+ <summary>
+ Get the help document of the target runtime function
+ </summary>
+ <param name="x"></param>
+ <returns></returns>
+</member>
 <member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.env.ls(System.String,SMRUCC.Rsharp.Runtime.Environment)">
  <summary>
  # List Objects
@@ -6447,11 +6466,20 @@ to take away yo [rest of string was truncated]&quot;;.
  listing the available objects. Defaults to the current environment. 
  Although called name for back compatibility, in fact this argument 
  can specify the environment in any form.</param>
- <param name="env">
+ <param name="envir">
  an alternative argument to name for specifying the environment. 
  Mostly there for back compatibility.
  </param>
  <returns></returns>
+ <remarks>
+ ``name`` input of the ls function:
+ 
+ + pattern like ``package:xxx`` means get all symbols inside the specific R# package
+ + ``REnv`` means get all symbols inside the R# internal runtime
+ + ``Activator`` means get all attached clr types full name
+ + ``/xxx/xxx`` a directory path on the file system, will list all files inside the specific directory
+ + ``Function`` means get all attached function objects from the runtime
+ </remarks>
 </member>
 <member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.env.objects(SMRUCC.Rsharp.Runtime.Environment)">
  <summary>
@@ -6588,6 +6616,14 @@ to take away yo [rest of string was truncated]&quot;;.
  removed the character vector. Use the list argument To specify objects 
  via a character vector.
  </remarks>
+</member>
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.env.relative_work(System.String,SMRUCC.Rsharp.Runtime.Environment)">
+ <summary>
+ get the absolute file path that relative to the current script folder
+ </summary>
+ <param name="file"></param>
+ <param name="env"></param>
+ <returns></returns>
 </member>
 <member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.etc.license(SMRUCC.Rsharp.Runtime.Environment)">
  <summary>
@@ -6812,7 +6848,7 @@ to take away yo [rest of string was truncated]&quot;;.
  them), so a trailing '/’ or ‘\’ is removed there.
  </remarks>
 </member>
-<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.file.fileinfo(System.Object,SMRUCC.Rsharp.Runtime.Environment)">
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.file.fileinfo(System.Object,System.Boolean,SMRUCC.Rsharp.Runtime.Environment)">
  <summary>
  Extract File Information
  
@@ -13884,9 +13920,21 @@ to take away yo [rest of string was truncated]&quot;;.
  </summary>
  <returns></returns>
 </member>
+<member name="P:SMRUCC.Rsharp.Runtime.Interop.RType.list">
+ <summary>
+ R tuple list/JSON object
+ </summary>
+ <returns></returns>
+</member>
 <member name="P:SMRUCC.Rsharp.Runtime.Interop.RType.any">
  <summary>
  mapping to the clr <see cref="T:System.Object"/> type.
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.Rsharp.Runtime.Interop.RType.closure">
+ <summary>
+ R runtime function
  </summary>
  <returns></returns>
 </member>
@@ -14145,8 +14193,6 @@ to take away yo [rest of string was truncated]&quot;;.
 <member name="M:SMRUCC.Rsharp.Runtime.RVectorExtensions.TryCastGenericArray(System.Array,SMRUCC.Rsharp.Runtime.Environment)">
  <summary>
  This function make sure the return array is not a generic type array
- 
- (返回错误消息或者结果向量)
  </summary>
  <param name="vec"></param>
  <param name="env"></param>
@@ -14156,6 +14202,9 @@ to take away yo [rest of string was truncated]&quot;;.
  Andalso this function will returns nothing if the input <paramref name="vec"/>
  is nothing.
  </returns>
+ <remarks>
+ 返回错误消息或者结果向量
+ </remarks>
 </member>
 <member name="M:SMRUCC.Rsharp.Runtime.RVectorExtensions.asVector``1(System.Object)">
  <summary>
@@ -14435,7 +14484,7 @@ to take away yo [rest of string was truncated]&quot;;.
  example as: name = $1, and the index must be 1
  </param>
  <param name="runtimeValue"></param>
- <param name="index"></param>
+ <param name="index">1-based offset of the invoke arguments</param>
  <remarks>
  combine <paramref name="name"/> and <paramref name="runtimeValue"/> for 
  create an expressin of <see cref="T:SMRUCC.Rsharp.Interpreter.ExecuteEngine.ExpressionSymbols.Operators.ValueAssignExpression"/>.

@@ -51,7 +51,7 @@ require(buffer);
 #' # Batch import with fast checking
 #' imports_uniprot(biocad_registry, c("P12345", "Q67890"), fast_check = TRUE)
 #' }
-const imports_uniprot = function(biocad_registry, uniprot, fast_check = FALSE) {
+const imports_uniprot_obsolete = function(biocad_registry, uniprot, fast_check = FALSE) {
     let sgt = SGT(alphabets = bioseq.fasta::chars("Protein"));
     let term_prot = biocad_registry::protein_term(biocad_registry);
     let entity_prot = biocad_registry::molecule_entity(biocad_registry);
