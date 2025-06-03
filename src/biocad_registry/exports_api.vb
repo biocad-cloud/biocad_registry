@@ -75,7 +75,7 @@ Module exports_api
             Dim bar As Tqdm.ProgressBar = Nothing
 
             For Each db_xref As biocad_registryModel.db_xrefs In TqdmWrapper.Wrap(pagedata, bar:=bar)
-                Dim cad_id As String = "BioCAD" & db_xref.obj_id.ToString.PadLeft(16, "0"c)
+                Dim cad_id As String = "BioCAD" & db_xref.obj_id.ToString.PadLeft(11, "0"c)
 
                 If Not list.hasName(cad_id) Then
                     Dim metabolite As biocad_registryModel.molecule = registry.molecule _
