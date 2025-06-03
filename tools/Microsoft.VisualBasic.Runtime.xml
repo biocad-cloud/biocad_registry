@@ -20001,9 +20001,11 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <typeparam name="TKey"></typeparam>
  <typeparam name="TValue"></typeparam>
  <param name="table"></param>
- <param name="keys"></param>
+ <param name="keys">
+ the synonym keys
+ </param>
  <param name="default"></param>
- <returns></returns>
+ <returns>returns the key-value which is matched with any input synonym <paramref name="keys"/>.</returns>
 </member>
 <member name="M:Microsoft.VisualBasic.CollectionValueGetter.TryGetValue``2(System.Collections.Generic.IDictionary{``0,``1},``0,``1,System.Boolean,System.String)">
  <summary>

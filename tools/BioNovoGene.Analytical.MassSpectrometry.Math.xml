@@ -963,7 +963,7 @@ BioNovoGene.Analytical.MassSpectrometry.Math
  <param name="precursor_type"></param>
  <returns></returns>
 </member>
-<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.PrecursorType.FindPrecursorType(System.Double,System.Double,System.Int32,System.String,BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Tolerance)">
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.PrecursorType.FindPrecursorType(System.Double,System.Double,System.Int32,System.String,BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Tolerance,System.Boolean)">
  <summary>
  计算出前体离子的加和模式
  </summary>
@@ -974,13 +974,13 @@ BioNovoGene.Analytical.MassSpectrometry.Math
  <param name="tolerance">所能够容忍的质量误差</param>
  <returns></returns>
 </member>
-<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.PrecursorType.FindPrecursorType(System.Collections.Generic.IEnumerable{BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.MzCalculator},System.Double,System.Double,BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Tolerance)">
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.PrecursorType.FindPrecursorType(System.Collections.Generic.IEnumerable{BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.MzCalculator},System.Double,System.Double,BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Tolerance,System.Boolean)">
  <summary>
  
  </summary>
  <param name="mass"></param>
- <param name="precursorMZ"></param>
- <param name="calculator">得到某一个离子模式下的计算程序</param>
+ <param name="precursor_mz"></param>
+ <param name="adducts">得到某一个离子模式下的计算程序</param>
  <param name="tolerance"></param>
  <returns></returns>
  
