@@ -1,6 +1,8 @@
 ﻿Imports biocad_storage
 Imports BioNovoGene.BioDeep.Chemistry.MetaLib.CrossReference
 Imports BioNovoGene.BioDeep.Chemistry.MetaLib.Models
+Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar
+Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm
 Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Linq
@@ -70,7 +72,9 @@ Module exports_api
                 Exit For
             End If
 
-            For Each db_xref As biocad_registryModel.db_xrefs In pagedata
+            Dim bar As Tqdm.ProgressBar = Nothing
+
+            For Each db_xref As biocad_registryModel.db_xrefs In TqdmWrapper.Wrap(pagedata, bar:=bar)
                 Dim cad_id As String = "BioCAD" & db_xref.obj_id.ToString.PadLeft(16, "0"c)
 
                 If Not list.hasName(cad_id) Then
@@ -79,6 +83,8 @@ Module exports_api
                     If metabolite Is Nothing Then
                         Call $"missing metabolite of db_xref mapping: {cad_id} -> {db_xref.ToString}".Warning
                         Continue For
+                    Else
+                        Call bar.SetLabel(cad_id & " -> " & db_xref.xref)
                     End If
 
                     Dim xrefs = registry.db_xrefs _
