@@ -10,4 +10,7 @@ declare namespace data_exports {
    /**
    */
    function export_fingerprints(registry: object): any;
+   /**
+   */
+   function export_mona_metabolites(registry: object): any;
 }
