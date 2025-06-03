@@ -78,7 +78,9 @@ Module exports_api
                 Dim cad_id As String = "BioCAD" & db_xref.obj_id.ToString.PadLeft(16, "0"c)
 
                 If Not list.hasName(cad_id) Then
-                    Dim metabolite As biocad_registryModel.molecule = registry.molecule.where(field("id") = db_xref.obj_id).find(Of biocad_registryModel.molecule)
+                    Dim metabolite As biocad_registryModel.molecule = registry.molecule _
+                        .where(field("id") = db_xref.obj_id) _
+                        .find(Of biocad_registryModel.molecule)
 
                     If metabolite Is Nothing Then
                         Call $"missing metabolite of db_xref mapping: {cad_id} -> {db_xref.ToString}".Warning
