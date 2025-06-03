@@ -51,6 +51,14 @@ Module exports_api
         Dim biocyc As UInteger = registry.vocabulary_terms.GetDatabaseKey("biocyc")
         Dim chebi As UInteger = registry.vocabulary_terms.GetDatabaseKey("chebi")
         Dim chembl As UInteger = registry.vocabulary_terms.GetDatabaseKey("ChEMBL")
+        Dim ChemIDplus As UInteger = registry.vocabulary_terms.GetDatabaseKey("ChemIDplus")
+        Dim chemspider As UInteger = registry.vocabulary_terms.GetDatabaseKey("chemspider")
+        Dim DrugBank As UInteger = registry.vocabulary_terms.GetDatabaseKey("DrugBank")
+        Dim foodb As UInteger = registry.vocabulary_terms.GetDatabaseKey("foodb")
+        Dim KNApSAcK As UInteger = registry.vocabulary_terms.GetDatabaseKey("KNApSAcK")
+        Dim Wikipedia As UInteger = registry.vocabulary_terms.GetDatabaseKey("Wikipedia")
+        Dim PubChem As UInteger = registry.vocabulary_terms.GetDatabaseKey("PubChem")
+        Dim metlin As UInteger = registry.vocabulary_terms.GetDatabaseKey("metlin")
 
         For i As Integer = 0 To Integer.MaxValue
             Dim pagedata = registry.db_xrefs _
@@ -95,9 +103,29 @@ Module exports_api
                         .xref = New xref With {
                             .CAS = xrefs.TryGetValue(cas),
                             .chebi = xrefs.TryGetValue(chebi).DefaultFirst,
-                            .ChEMBL = xrefs.TryGetValue()
+                            .ChEMBL = xrefs.TryGetValue(chembl).DefaultFirst,
+                            .ChemIDplus = xrefs.TryGetValue(ChemIDplus).DefaultFirst,
+                            .chemspider = xrefs.TryGetValue(chemspider).DefaultFirst,
+                            .DrugBank = xrefs.TryGetValue(DrugBank).DefaultFirst,
+                            .foodb = xrefs.TryGetValue(foodb).DefaultFirst,
+                            .HMDB = xrefs.TryGetValue(hmdb).DefaultFirst,
+                            .KEGG = xrefs.TryGetValue(kegg).DefaultFirst,
+                            .KEGGdrug = xrefs.TryGetValue(kegg_drug).DefaultFirst,
+                            .KNApSAcK = xrefs.TryGetValue(KNApSAcK).DefaultFirst,
+                            .lipidmaps = xrefs.TryGetValue(lipidmaps).DefaultFirst,
+                            .MeSH = xrefs.TryGetValue(mesh).DefaultFirst,
+                            .Wikipedia = xrefs.TryGetValue(Wikipedia).DefaultFirst,
+                            .pubchem = xrefs.TryGetValue(PubChem).DefaultFirst,
+                            .metlin = xrefs.TryGetValue(metlin).DefaultFirst,
+                            .MetaCyc = xrefs.TryGetValue(biocyc).DefaultFirst,
+                            .SMILES = registry.sequence_graph _
+                                .where(field("molecule_id") = db_xref.obj_id) _
+                                .find(Of biocad_registryModel.sequence_graph) _
+                               ?.sequence
                         }
                     }
+
+                    Call list.add(cad_id, metab)
                 End If
             Next
         Next
