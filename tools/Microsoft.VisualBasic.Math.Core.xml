@@ -3733,6 +3733,18 @@ Microsoft.VisualBasic.Math.Core
  宽度是自动计算的
  </remarks>
 </member>
+<member name="M:Microsoft.VisualBasic.Math.Distributions.BinBox.CutBins.FixedWidthBins(System.Collections.Generic.IEnumerable{System.Single},System.Int32)">
+ <summary>
+ ### 数据等宽分箱
+ 
+ 将变量的取值范围分为<paramref name="k"/>个等宽的区间，每个区间当作一个分箱。
+ </summary>
+ <param name="data"></param>
+ <returns></returns>
+ <remarks>
+ 宽度是自动计算的
+ </remarks>
+</member>
 <member name="M:Microsoft.VisualBasic.Math.Distributions.BinBox.CutBins.FixedWidthBins``1(System.Collections.Generic.IEnumerable{``0},System.Int32,Microsoft.VisualBasic.Math.Evaluate{``0},System.Double,Microsoft.VisualBasic.ComponentModel.Ranges.Model.DoubleRange,System.Boolean)">
  <summary>
  ### 数据等宽分箱
@@ -4354,6 +4366,7 @@ Microsoft.VisualBasic.Math.Core
  </summary>
  <param name="data">the raw data matrix column data</param>
  <param name="estimateQuantile"></param>
+ 
 </member>
 <member name="M:Microsoft.VisualBasic.Math.Distributions.SampleDistribution.#ctor(System.Double[],System.Boolean)">
  <summary>
