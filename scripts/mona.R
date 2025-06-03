@@ -6,7 +6,7 @@ imports "data_exports" from "biocad_registry";
 let mona_msp_repo = ?"--mona" || stop("A directory path that contains multiple mona database msp file must be provided!");
 let lib_output = ?"--output" || normalizePath(file.path(mona_msp_repo,"libs"));
 let list_repo_files = list.files(mona_msp_repo, pattern = "*.msp");
-let biocad_registry = open_registry("root", 123456, host ="localhost");
+let biocad_registry = open_registry("xieguigang", 123456, host ="192.168.3.15");
 let mona_metab = data_exports::export_mona_metabolites(biocad_registry);
 
 print("Start to build mona reference library:");
