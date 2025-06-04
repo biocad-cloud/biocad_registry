@@ -15,4 +15,9 @@ print(`  -> ${lib_output}`);
 print("library files:");
 print(basename(list_repo_files));
 
+attr(mona_metab, "mapping")
+|> JSON::json_encode()
+|> writeLines(con = file.path(lib_output,"mapping.json"))
+;
+
 Daisy::build_mona_lcms(list_repo_files, lib_output, metabolites = mona_metab);
