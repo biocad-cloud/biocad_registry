@@ -16510,6 +16510,14 @@ to take away yo [rest of string was truncated]&quot;;.
  </summary>
  <returns></returns>
 </member>
+<member name="M:SMRUCC.Rsharp.Development.Package.File.DESCRIPTION.Parse(System.String)">
+ <summary>
+ 
+ </summary>
+ <param name="file">the file path to the package document description file</param>
+ <returns></returns>
+ 
+</member>
 <member name="T:SMRUCC.Rsharp.Development.Package.File.Expressions.RBreakControls">
  <summary>
  break/next
@@ -16634,6 +16642,22 @@ to take away yo [rest of string was truncated]&quot;;.
  <returns></returns>
 </member>
 <member name="M:SMRUCC.Rsharp.Development.Package.File.PackageLoader2.Hotload(System.String,SMRUCC.Rsharp.Runtime.GlobalEnvironment,SMRUCC.Rsharp.Development.Package.File.DESCRIPTION@)">
+ <summary>
+ 程序包调试，测试用api
+ 
+ 在启动的时候对未进行编译的程序包进行热加载
+ </summary>
+ <param name="projDir">
+ the package source project directory, which is should be un-build...
+ for load the package directory which is installed into the R library
+ folder, use the method <see cref="M:SMRUCC.Rsharp.Development.Package.File.PackageLoader2.LoadPackage(Microsoft.VisualBasic.ApplicationServices.IFileSystemEnvironment,System.String,System.Boolean,SMRUCC.Rsharp.Runtime.GlobalEnvironment)"/>
+ instead.
+ </param>
+ <param name="env"></param>
+ <returns></returns>
+ 
+</member>
+<member name="M:SMRUCC.Rsharp.Development.Package.File.PackageLoader2.Hotload(Microsoft.VisualBasic.ApplicationServices.IFileSystemEnvironment,SMRUCC.Rsharp.Runtime.GlobalEnvironment,SMRUCC.Rsharp.Development.Package.File.DESCRIPTION@)">
  <summary>
  程序包调试，测试用api
  

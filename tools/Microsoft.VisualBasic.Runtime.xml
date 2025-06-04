@@ -2137,7 +2137,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <summary>
  Get a node by its key name in current tree node
  </summary>
- <param name="name"></param>
+ <param name="name">the file node name in current tree node</param>
  <returns>
  returns nothing if the file with given <paramref name="name"/> was could not be found
  </returns>
@@ -2153,7 +2153,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <summary>
  absolute full path
  </summary>
- <returns></returns>
+ <returns>the value of <see cref="P:Microsoft.VisualBasic.ApplicationServices.FileSystemTree.FullName"/> property data</returns>
 </member>
 <member name="M:Microsoft.VisualBasic.ApplicationServices.FileSystemTree.GetFile(Microsoft.VisualBasic.ApplicationServices.FileSystemTree,System.String)">
  <summary>
@@ -2250,6 +2250,22 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <remarks>
  be careful when running this on local filesystem object!
  </remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.ApplicationServices.IFileSystemEnvironment.GetFiles(System.String,System.String[])">
+ <summary>
+ get all files inside a specific subfolder recursivly
+ </summary>
+ <param name="subdir">relative path of the subfolder in current workspace</param>
+ <param name="exts">file extension type wildcard filters for the files, default is ``*.*``</param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.ApplicationServices.IFileSystemEnvironment.EnumerateFiles(System.String,System.String[])">
+ <summary>
+ get all files inside a specific subfolder, not recursivly
+ </summary>
+ <param name="subdir">relative path of the subfolder in current workspace</param>
+ <param name="exts">file extension type wildcard filters for the files, default is ``*.*``</param>
+ <returns></returns>
 </member>
 <member name="M:Microsoft.VisualBasic.ApplicationServices.IFileSystemEnvironment.Close">
  <summary>
@@ -17341,7 +17357,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  </summary>
  <remarks>http://stackoverflow.com/questions/13356486/convert-hex-color-string-to-rgb-color</remarks>
 </member>
-<member name="M:Microsoft.VisualBasic.Imaging.HexColor.ToHtmlColor(System.Drawing.Color)">
+<member name="M:Microsoft.VisualBasic.Imaging.HexColor.ToHtmlColor(System.Drawing.Color,System.Boolean)">
  <summary>
  To HTML color
  </summary>
@@ -24879,6 +24895,13 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  将当前的这个文件夹之中的内容拷贝到<paramref name="target"/>目标文件夹
  </summary>
  <param name="target">The directory path of target folder.</param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.FileIO.Directory.GetRelativePath(System.String)">
+ <summary>
+ get relative of the given <paramref name="file"/> path that relative to current workspace dir
+ </summary>
+ <param name="file"></param>
  <returns></returns>
 </member>
 <member name="M:Microsoft.VisualBasic.FileIO.Directory.CreateDirectory(System.String)">
