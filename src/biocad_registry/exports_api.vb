@@ -77,6 +77,8 @@ Module exports_api
             For Each db_xref As biocad_registryModel.db_xrefs In TqdmWrapper.Wrap(pagedata, bar:=bar)
                 Dim cad_id As String = "BioCAD" & db_xref.obj_id.ToString.PadLeft(11, "0"c)
 
+                mapping(db_xref.xref) = cad_id
+
                 If Not list.hasName(cad_id) Then
                     Dim metabolite As biocad_registryModel.molecule = registry.molecule _
                         .where(field("id") = db_xref.obj_id) _
