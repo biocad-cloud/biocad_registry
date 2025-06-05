@@ -96,7 +96,7 @@ Public Class FormMoleculeTable
         Dim edit As New FormMoleculeEditor With {.id = id}
 
         edit.MdiParent = MyApplication.host
-        edit.Text = $"{row.Cells(1).Value}"
+        edit.Text = $"BioCAD{id.PadLeft(11, "0"c)} - {row.Cells(2).Value}"
         edit.Show()
     End Sub
 End Class

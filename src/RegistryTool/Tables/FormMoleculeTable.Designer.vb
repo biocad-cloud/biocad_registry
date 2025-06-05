@@ -58,6 +58,7 @@ Partial Class FormMoleculeTable
         Me.DataGridView1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridView1.Location = New System.Drawing.Point(0, 25)
         Me.DataGridView1.Name = "DataGridView1"
+        Me.DataGridView1.ReadOnly = True
         Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.DataGridView1.Size = New System.Drawing.Size(800, 403)
         Me.DataGridView1.TabIndex = 0
@@ -78,27 +79,32 @@ Partial Class FormMoleculeTable
         '
         Me.Column3.HeaderText = "name"
         Me.Column3.Name = "Column3"
+        Me.Column3.ReadOnly = True
         '
         'Column4
         '
         Me.Column4.HeaderText = "formula"
         Me.Column4.Name = "Column4"
+        Me.Column4.ReadOnly = True
         '
         'Column5
         '
         Me.Column5.HeaderText = "mass"
         Me.Column5.Name = "Column5"
+        Me.Column5.ReadOnly = True
         '
         'Column6
         '
         Me.Column6.HeaderText = "sequence"
         Me.Column6.Name = "Column6"
+        Me.Column6.ReadOnly = True
         '
         'Column7
         '
         Me.Column7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
         Me.Column7.HeaderText = "note"
         Me.Column7.Name = "Column7"
+        Me.Column7.ReadOnly = True
         '
         'StatusStrip1
         '
