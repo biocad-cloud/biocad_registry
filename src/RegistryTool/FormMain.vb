@@ -13,6 +13,7 @@ Public Class FormMain
 
     Private Sub VocabularyToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles VocabularyToolStripMenuItem.Click
         Dim view As New FormDbView()
+        view.SetFilter("Vocabulary Category", NameOf(biocad_registryModel.vocabulary.category))
         view.LoadTableView(Function() MyApplication.biocad_registry.vocabulary.select(Of biocad_registryModel.vocabulary)("*"))
         view.MdiParent = Me
         view.Text = "`biocad_registry`.`vocabulary`"
