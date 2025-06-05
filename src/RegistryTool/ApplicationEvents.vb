@@ -40,7 +40,11 @@ Namespace My
                 .User = config.user
             }
 
-            _biocad_registry = New biocad_registry(mysqli)
+            Try
+                _biocad_registry = New biocad_registry(mysqli)
+            Catch ex As Exception
+                Return False
+            End Try
 
             Return biocad_registry.getDriver.Ping >= 0
         End Function
