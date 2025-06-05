@@ -34,7 +34,7 @@ Public Class FormDbView
     End Sub
 
     Private Sub LoadTable()
-        If ToolStripComboBox1.SelectedIndex > -1 Then
+        If ToolStripComboBox1.SelectedIndex <= -1 Then
             If _sourceProvider Is Nothing Then
                 Return
             End If
@@ -53,9 +53,8 @@ Public Class FormDbView
     End Sub
 
     Private Function loadTableFilter(Of T)(source As SourceProvider(Of T), schema As PropertyInfo()) As Func(Of DataTable)
-        Dim term As String = ToolStripComboBox1.SelectedItem.ToString
-
         Return Function()
+                   Dim term As String = ToolStripComboBox1.SelectedItem.ToString
                    Dim dt As New DataTable
                    Dim filter As PropertyInfo = Nothing
 
