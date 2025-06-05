@@ -43,6 +43,15 @@ Namespace My
             Try
                 _biocad_registry = New biocad_registry(mysqli)
             Catch ex As Exception
+                If MessageBox.Show("Invalid Mysql Connection information, please re-config your parameters!",
+                                   "Invalid Mysql Connection",
+                                   MessageBoxButtons.OKCancel,
+                                   MessageBoxIcon.Warning) = DialogResult.OK Then
+
+                    Call New FormSettings().ShowDialog()
+                    Return Load()
+                End If
+
                 Return False
             End Try
 
