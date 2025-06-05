@@ -81,6 +81,24 @@ Public Class FormMoleculeTable
     Private Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
         LoadPage()
     End Sub
+
+    Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
+
+    End Sub
+
+    Private Sub DataGridView1_CellContentDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentDoubleClick
+        If DataGridView1.SelectedRows.Count = 0 Then
+            Return
+        End If
+
+        Dim row As DataGridViewRow = DataGridView1.SelectedRows.Item(0)
+        Dim id As String = CStr(row.Cells(0).Value)
+        Dim edit As New FormMoleculeEditor With {.id = id}
+
+        edit.MdiParent = MyApplication.host
+        edit.Text = $"{row.Cells(1).Value}"
+        edit.Show()
+    End Sub
 End Class
 
 Public Class MoleculeData

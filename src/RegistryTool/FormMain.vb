@@ -28,6 +28,8 @@ Public Class FormMain
         If MyApplication.Load Then
 
         End If
+
+        Call MyApplication.SetHost(Me)
     End Sub
 
     Private Sub SubCellularCompartmentsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SubCellularCompartmentsToolStripMenuItem.Click
