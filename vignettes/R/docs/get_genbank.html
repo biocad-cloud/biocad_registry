@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Download GenBank Assembly File from NCBI FTP Server This helper function constructs the NCBI FTP path for a given assembly ID, retrieves the corresponding GenBank genomic file (*.gbff.gz), and downloads it to a local directory.</title>
+    <title>Download GenBank Assembly File from NCBI FTP Server</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
     <link rel="stylesheet" type="text/css" href="https://gcmodeller.org/lib/page.css">
@@ -18,7 +18,7 @@
             </tr>
         </table>
 
-        <h2>Download GenBank Assembly File from NCBI FTP Server This helper function constructs the NCBI FTP path for a given assembly ID, retrieves the corresponding GenBank genomic file (*.gbff.gz), and downloads it to a local directory.</h2>
+        <h2>Download GenBank Assembly File from NCBI FTP Server</h2>
 
         <h3>Description</h3>
 
@@ -57,9 +57,9 @@
 
         <p>Invisibly returns the full path to the downloaded file. Primarily called for its side effect of downloading the GenBank file to the specified directory.</p>
 
-        <h3 style="display: none;">Examples</h3>
+        <h3 style="display: block;">Examples</h3>
 
-        
+        <pre><code id="example_r">\dontrun{ # Download assembly GCF_123456789 to the current directory get_genbank("GCF_123456789") # Save to a custom directory get_genbank("GCA_987654321", repo_dir = "path/to/genbank_files") }</code></pre>
 
         <hr />
         <div style="text-align: center;">[Package <em>biocad_registry</em> version 1.0.148 <a

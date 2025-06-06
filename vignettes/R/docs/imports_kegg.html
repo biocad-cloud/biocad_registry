@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Import KEGG compound data into biocad registry This function imports chemical compound data from KEGG database into a biocad registry system, handling metabolite registration, cross-reference management, and compound metadata integration.</title>
+    <title>Import KEGG compound data into biocad registry</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
     <link rel="stylesheet" type="text/css" href="https://gcmodeller.org/lib/page.css">
@@ -18,7 +18,7 @@
             </tr>
         </table>
 
-        <h2>Import KEGG compound data into biocad registry This function imports chemical compound data from KEGG database into a biocad registry system, handling metabolite registration, cross-reference management, and compound metadata integration.</h2>
+        <h2>Import KEGG compound data into biocad registry</h2>
 
         <h3>Description</h3>
 
@@ -56,9 +56,9 @@
 
         <p>Invisibly returns NULL. Mainly used for populating the biocad registry with metabolite data and associated cross-references.</p>
 
-        <h3 style="display: none;">Examples</h3>
+        <h3 style="display: block;">Examples</h3>
 
-        
+        <pre><code id="example_r">\dontrun{ # Import from KEGG API response imports_kegg(biocad_registry, kegg_compounds) # Import from parsed file imports_kegg(biocad_registry, read_kegg("compound.xml")) }</code></pre>
 
         <hr />
         <div style="text-align: center;">[Package <em>biocad_registry</em> version 1.0.148 <a

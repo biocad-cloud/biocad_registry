@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Import enzymatic kinetics models from SABIO-RK This function imports enzyme kinetic data from SABIO-RK SBML files into a biocad registry database, handling model parsing, parameter extraction, and database relationship mapping.</title>
+    <title>Import enzymatic kinetics models from SABIO-RK</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
     <link rel="stylesheet" type="text/css" href="https://gcmodeller.org/lib/page.css">
@@ -18,7 +18,7 @@
             </tr>
         </table>
 
-        <h2>Import enzymatic kinetics models from SABIO-RK This function imports enzyme kinetic data from SABIO-RK SBML files into a biocad registry database, handling model parsing, parameter extraction, and database relationship mapping.</h2>
+        <h2>Import enzymatic kinetics models from SABIO-RK</h2>
 
         <h3>Description</h3>
 
@@ -56,9 +56,9 @@
 
         <p>Invisibly returns NULL. Mainly used for populating the biocad registry database with kinetic data.</p>
 
-        <h3 style="display: none;">Examples</h3>
+        <h3 style="display: block;">Examples</h3>
 
-        
+        <pre><code id="example_r">\dontrun{ # Import single SBML file imports_sabiork(biocad_registry, "path/to/kinetics.xml") # Batch import multiple files imports_sabiork(biocad_registry, c("file1.xml", "file2.xml")) }</code></pre>
 
         <hr />
         <div style="text-align: center;">[Package <em>biocad_registry</em> version 1.0.148 <a

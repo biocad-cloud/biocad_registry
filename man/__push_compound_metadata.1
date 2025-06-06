@@ -1,4 +1,4 @@
-﻿.TH __PUSH_COMPOUND_METADATA 1 2025-Jun "" "Save compound metadata to a biocad registry This function stores compound metadata into a biocad registry, updating several related tables including sequence_graph, db_xrefs, and synonyms."
+﻿.TH __PUSH_COMPOUND_METADATA 1 2025-Jun "" "Save compound metadata to a biocad registry"
 .SH NAME
 __push_compound_metadata \- __push_compound_metadata(biocad.registry, compound, mol)
 .SH SYNOPSIS
@@ -20,6 +20,10 @@ Invisibly returns `NULL`. This function is called for its side effects.
 .SH DETAILS
 .PP
 The `compound` parameter must be a structured list with the following fields: ```r list( ID = "unique-id",               # Required: Unique identifier (character) formula = "formula-string",     # Required: Chemical formula (character) exact_mass = 0,                 # Required: Exact mass (numeric) name = "name_string",           # Required: Common name (character) IUPACName = "name_string",      # Required: IUPAC name (character) description = "description_string",  # Optional: Description (character) synonym = c("synonyms", "names"),    # Optional: Character vector of synonyms xref = list(                    # Optional: Cross-references to external databases chebi = "",                 # Use "" or omit if unavailable KEGG = "", pubchem = "", HMDB = "", Wikipedia = "", lipidmaps = "", MeSH = "", MetaCyc = "", foodb = "", CAS = "", InChIkey = "",              # Note: InChIkey/InChI/SMILES are stripped from xref InChI = "",                 #   and processed separately SMILES = "" ) ) ``` ### Processing Logic: 1. ​**Structure Handling**: - SMILES strings are parsed (non-strictly) and stored in `sequence_graph` if valid. Invalid SMILES are skipped. - InChIkey, InChI, and SMILES fields are removed from `xref` to avoid duplication; SMILES is explicitly stored in `sequence_graph`. 2. ​**Cross-References**: - Valid `xref` entries (non-empty strings) are added to `db_xrefs`, linked to the molecule's `id`. Each entry is checked for duplicates before insertion. 3. ​**Synonyms**: - Synonyms are stored in the `synonym` table with MD5 hashes to prevent duplicates. Only English (`lang = 'en'`) synonyms are supported.
+.PP
+.SH EXAMPLES
+.PP
+\dontrun{ # Assume `registry` is a pre-configured biocad_registry compound <- list( ID = "C00001", formula = "H2O", exact_mass = 18.0106, name = "Water", IUPACName = "Oxidane", synonym = c("H2O", "Dihydrogen monoxide"), xref = list(pubchem = "962", KEGG = "C00001") ) mol <- list(id = "molecule_123")  # Pretend this is from biocad_registry __push_compound_metadata(registry, compound, mol) }
 .PP
 .SH FILES
 .PP

@@ -1,4 +1,4 @@
-﻿.TH IMPORTS_SABIORK 1 2025-Jun "" "Import enzymatic kinetics models from SABIO-RK This function imports enzyme kinetic data from SABIO-RK SBML files into a biocad registry database, handling model parsing, parameter extraction, and database relationship mapping."
+﻿.TH IMPORTS_SABIORK 1 2025-Jun "" "Import enzymatic kinetics models from SABIO-RK"
 .SH NAME
 imports_sabiork \- imports_sabiork(biocad.registry, repo)
 .SH SYNOPSIS
@@ -17,6 +17,10 @@ Invisibly returns NULL. Mainly used for populating the biocad registry database 
 .SH DETAILS
 .PP
 The function performs these key operations: 1. Processes SBML files from SABIO-RK database 2. For each biochemical reaction: - Extracts kinetic parameters and enzyme information - Links reactions to existing substrate references via database cross-references - Stores complete kinetic models with environmental conditions (pH, temperature) - Maintains traceability through SABIO-RK identifiers 3. Handles duplicate prevention using native database checks
+.PP
+.SH EXAMPLES
+.PP
+\dontrun{ # Import single SBML file imports_sabiork(biocad_registry, "path/to/kinetics.xml") # Batch import multiple files imports_sabiork(biocad_registry, c("file1.xml", "file2.xml")) }
 .PP
 .SH FILES
 .PP

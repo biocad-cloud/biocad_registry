@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Save compound metadata to a biocad registry This function stores compound metadata into a biocad registry, updating several related tables including sequence_graph, db_xrefs, and synonyms.</title>
+    <title>Save compound metadata to a biocad registry</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
     <link rel="stylesheet" type="text/css" href="https://gcmodeller.org/lib/page.css">
@@ -18,7 +18,7 @@
             </tr>
         </table>
 
-        <h2>Save compound metadata to a biocad registry This function stores compound metadata into a biocad registry, updating several related tables including sequence_graph, db_xrefs, and synonyms.</h2>
+        <h2>Save compound metadata to a biocad registry</h2>
 
         <h3>Description</h3>
 
@@ -60,9 +60,9 @@
 
         <p>Invisibly returns `NULL`. This function is called for its side effects.</p>
 
-        <h3 style="display: none;">Examples</h3>
+        <h3 style="display: block;">Examples</h3>
 
-        
+        <pre><code id="example_r">\dontrun{ # Assume `registry` is a pre-configured biocad_registry compound <- list( ID = "C00001", formula = "H2O", exact_mass = 18.0106, name = "Water", IUPACName = "Oxidane", synonym = c("H2O", "Dihydrogen monoxide"), xref = list(pubchem = "962", KEGG = "C00001") ) mol <- list(id = "molecule_123")  # Pretend this is from biocad_registry __push_compound_metadata(registry, compound, mol) }</code></pre>
 
         <hr />
         <div style="text-align: center;">[Package <em>biocad_registry</em> version 1.0.148 <a

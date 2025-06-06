@@ -1,4 +1,4 @@
-﻿.TH CHECK_METABOLITE 1 2025-Jun "" "Check if metabolite exists in database Searches for a metabolite in the BioCAD registry database by cross-references (xrefs) and exact mass. If no direct xref matches are found, falls back to checking common names and synonyms. Returns database ID if found."
+﻿.TH CHECK_METABOLITE 1 2025-Jun "" "Check if metabolite exists in database"
 .SH NAME
 check_metabolite \- check_metabolite(biocad.registry, compound)
 .SH SYNOPSIS
@@ -17,6 +17,10 @@ An integer representing the unique database ID of the matched compound. Returns 
 .SH DETAILS
 .PP
 The function performs the following steps: \enumerate{ \item Extracts and validates chemical formula (calculates exact mass) \item Queries database using cross-reference identifiers (xrefs) \item Performs mass tolerance search (±1 Da) \item If xref search fails, calls \code{check_metabolite_synonym} to check by name and synonyms }
+.PP
+.SH EXAMPLES
+.PP
+\dontrun{ # Assume biocad_registry is an established database connection compound <- list( name = "glucose", formula = "C6H12O6", xref = list(KEGG = "C00031", CHEBI = "CHEBI:4167"), synonym = c("dextrose", "blood sugar") ) check_metabolite(biocad_registry, compound) }
 .PP
 .SH FILES
 .PP
