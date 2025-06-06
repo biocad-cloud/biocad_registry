@@ -47,6 +47,8 @@ Partial Class FormMoleculeEditor
         Me.TextBox5 = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
+        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.WebView21, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
@@ -58,6 +60,7 @@ Partial Class FormMoleculeEditor
         'DataGridView1
         '
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2})
         Me.DataGridView1.Location = New System.Drawing.Point(15, 20)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.RowTemplate.Height = 23
@@ -298,6 +301,19 @@ Partial Class FormMoleculeEditor
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "Molecular Information"
         '
+        'Column1
+        '
+        Me.Column1.HeaderText = "Database"
+        Me.Column1.Name = "Column1"
+        Me.Column1.ReadOnly = True
+        '
+        'Column2
+        '
+        Me.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.Column2.HeaderText = "Xref ID"
+        Me.Column2.Name = "Column2"
+        Me.Column2.ReadOnly = True
+        '
         'FormMoleculeEditor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
@@ -348,4 +364,6 @@ Partial Class FormMoleculeEditor
     Friend WithEvents Label1 As Label
     Friend WithEvents GroupBox4 As GroupBox
     Friend WithEvents Button5 As Button
+    Friend WithEvents Column1 As DataGridViewTextBoxColumn
+    Friend WithEvents Column2 As DataGridViewTextBoxColumn
 End Class
