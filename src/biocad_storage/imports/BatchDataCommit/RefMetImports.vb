@@ -120,25 +120,31 @@ Public Class RefMetImports
                 Continue For
             End If
 
-            Dim l1 = registry.ontology _
-                .where(field("db_xref") = meta.super_class,
-                       field("db_source") = refmet_ontology) _
-                .find(Of biocad_registryModel.ontology)
+            Dim l1 = vocabulary.GetOntologyTerm(meta.super_class, "super_class", NameOf(BioNovoGene.BioDeep.Chemistry.MetaLib.RefMet), meta.super_class)
+            Dim l2 = vocabulary.GetOntologyTerm(meta.class, "class", NameOf(BioNovoGene.BioDeep.Chemistry.MetaLib.RefMet), meta.class)
+            Dim l3 = vocabulary.GetOntologyTerm(meta.sub_class, "sub_class", NameOf(BioNovoGene.BioDeep.Chemistry.MetaLib.RefMet), meta.sub_class)
 
-            If l1 Is Nothing Then
-                registry.ontology.add(
-                    field("db_xref") = meta.super_class,
-                    field("db_source") = refmet_ontology,
-                    field("name") = meta.super_class
+            ' build tree
+            If registry.ontology_tree.where(field("ontology_id") = l2.id, field("is_a") = l1.id).find(Of biocad_registryModel.ontology_tree) Is Nothing Then
+                trans_tree.add(
+                    field("ontology_id") = l2.id, field("is_a") = l1.id
                 )
-                l1 = registry.ontology _
-                    .where(field("db_xref") = meta.super_class,
-                           field("db_source") = refmet_ontology) _
-                    .order_by("id", desc:=True) _
-                    .find(Of biocad_registryModel.ontology)
+            End If
+            If registry.ontology_tree.where(field("ontology_id") = l3.id, field("is_a") = l2.id).find(Of biocad_registryModel.ontology_tree) Is Nothing Then
+                trans_tree.add(
+                   field("ontology_id") = l3.id, field("is_a") = l2.id
+               )
             End If
 
-            Dim l2 = registry.ontology
+            If registry.molecule_ontology.where(field("molecule_id") = mol.id, field("ontology_id") = l3.id).find(Of biocad_registryModel.molecule_ontology) Is Nothing Then
+                trans_links.add(
+                     field("molecule_id") = mol.id, field("ontology_id") = l3.id,
+                     field("evidence") = "RefMet:" & mol.id
+                )
+            End If
         Next
+
+        Call trans_tree.commit()
+        Call trans_links.commit()
     End Sub
 End Class
