@@ -94,4 +94,34 @@ Public Class BioCadVocabulary
                            Return find
                        End Function)
     End Function
+
+    Public Function GetOntologyTerm(id As String, rank As String, source_db As String, Optional name As String = Nothing) As biocad_registryModel.ontology
+        Dim unikey As String = $"{id}-{rank}-{source_db}"
+
+        Static cache As New Dictionary(Of String, biocad_registryModel.ontology)
+
+        Return cache.ComputeIfAbsent(unikey,
+             Function(null)
+                 Dim rank_id As UInteger = GetVocabularyTerm(rank, $"{source_db} Rank")
+                 Dim dbkey As UInteger = GetDatabaseKey(source_db)
+                 Dim find = registry.ontology.find_object(field("db_xref") = id,
+                                                          field("db_source") = dbkey,
+                                                          field("rank") = rank_id)
+
+                 If find Is Nothing Then
+                     registry.ontology.add(
+                        field("db_xref") = id,
+                        field("db_source") = dbkey,
+                        field("rank") = rank_id,
+                        field("name") = name
+                     )
+
+                     find = registry.ontology.find_object(field("db_xref") = id,
+                                                          field("db_source") = dbkey,
+                                                          field("rank") = rank_id)
+                 End If
+
+                 Return find
+             End Function)
+    End Function
 End Class
