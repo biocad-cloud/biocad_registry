@@ -108,5 +108,37 @@ Public Class RefMetImports
         Next
 
         Call trans.commit()
+
+        Dim trans_tree = registry.ontology_tree.open_transaction
+        Dim trans_links = registry.molecule_ontology.open_transaction
+        Dim refmet_ontology As UInteger = vocabulary.GetDatabaseKey(NameOf(BioNovoGene.BioDeep.Chemistry.MetaLib.RefMet))
+
+        For Each meta As MetaInfo In TqdmWrapper.Wrap(metadata)
+            Dim mol As biocad_registryModel.molecule = registry.findMolecule(meta, Function(a) a.ID)
+
+            If mol Is Nothing Then
+                Continue For
+            End If
+
+            Dim l1 = registry.ontology _
+                .where(field("db_xref") = meta.super_class,
+                       field("db_source") = refmet_ontology) _
+                .find(Of biocad_registryModel.ontology)
+
+            If l1 Is Nothing Then
+                registry.ontology.add(
+                    field("db_xref") = meta.super_class,
+                    field("db_source") = refmet_ontology,
+                    field("name") = meta.super_class
+                )
+                l1 = registry.ontology _
+                    .where(field("db_xref") = meta.super_class,
+                           field("db_source") = refmet_ontology) _
+                    .order_by("id", desc:=True) _
+                    .find(Of biocad_registryModel.ontology)
+            End If
+
+            Dim l2 = registry.ontology
+        Next
     End Sub
 End Class
