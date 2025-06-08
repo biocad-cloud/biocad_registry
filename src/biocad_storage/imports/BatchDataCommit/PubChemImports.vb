@@ -200,12 +200,12 @@ Public Module MetaboliteImports
     End Sub
 
     <Extension>
-    Private Function findMolecule(registry As biocad_registry, meta As MetaInfo, uniref As Func(Of MetaInfo, String)) As biocad_registryModel.molecule
+    Public Function findMolecule(registry As biocad_registry, meta As MetaInfo, uniref As Func(Of MetaInfo, String)) As biocad_registryModel.molecule
         Dim cid As String = uniref(meta)
 
         ' find molecule table via xref_id directly at first
         Dim q = registry.molecule _
-            .where(field("xref_id") = cid) _
+            .where(field("xref_id") = cid, field("type") = registry.vocabulary_terms.metabolite_term) _
             .find(Of biocad_registryModel.molecule)
 
         If Not q Is Nothing Then

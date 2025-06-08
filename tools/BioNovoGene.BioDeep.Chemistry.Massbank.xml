@@ -578,6 +578,15 @@ BioNovoGene.BioDeep.Chemistry.Massbank
  Some notes pertaining To different metabolite classes are outlined below.
  </remarks>
 </member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.MetaLib.RefMet.refmet_id">
+ <summary>
+ 
+ </summary>
+ <returns></returns>
+ <remarks>
+ there is a bug about the column name in the download csv file
+ </remarks>
+</member>
 <member name="T:BioNovoGene.BioDeep.Chemistry.CASDetails">
  <summary>
  The metabolite data model from the cas registry details
