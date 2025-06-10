@@ -25,7 +25,7 @@ Public Class RefMetImports
     End Sub
 
     Private Sub ImportsPageData(pagedata As RefMet())
-        Dim metadata As MetaLib() = pagedata.Select(Function(r) r.CastModel).ToArray
+        Dim metadata As MetaInfo() = pagedata.Select(Function(r) r.CastModel).ToArray
 
         For Each meta As MetaInfo In TqdmWrapper.Wrap(metadata)
             Dim mol As biocad_registryModel.molecule = registry.findMolecule(meta, Function(a) a.ID)
