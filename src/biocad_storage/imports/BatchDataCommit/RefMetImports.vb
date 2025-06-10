@@ -19,7 +19,7 @@ Public Class RefMetImports
     End Sub
 
     Public Sub [Imports]()
-        For Each pagedata As RefMet() In refmet.Split(5000)
+        For Each pagedata As RefMet() In refmet.Split(50)
             Call ImportsPageData(pagedata)
         Next
     End Sub
@@ -109,8 +109,8 @@ Public Class RefMetImports
 
         Call trans.commit()
 
-        Dim trans_tree = registry.ontology_tree.open_transaction
-        Dim trans_links = registry.molecule_ontology.open_transaction
+        Dim trans_tree = registry.ontology_tree.open_transaction.ignore
+        Dim trans_links = registry.molecule_ontology.open_transaction.ignore
         Dim refmet_ontology As UInteger = vocabulary.GetDatabaseKey(NameOf(BioNovoGene.BioDeep.Chemistry.MetaLib.RefMet))
 
         For Each meta As MetaInfo In TqdmWrapper.Wrap(metadata)
