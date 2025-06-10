@@ -48,6 +48,11 @@ Module imports_api
         Next
     End Sub
 
+    <ExportAPI("imports_refmet")>
+    Public Sub imports_refmet(registry As biocad_registry, file As String)
+        Call New RefMetImports(file, registry).Imports()
+    End Sub
+
     ''' <summary>
     ''' general function for make metabolite imports
     ''' </summary>
