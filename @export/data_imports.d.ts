@@ -38,6 +38,9 @@ declare namespace data_imports {
    function imports_pubchem_repo(registry: object, repo: object): ;
    /**
    */
+   function imports_refmet(registry: object, file: string): ;
+   /**
+   */
    function imports_taxonomy(registry: object, taxdump: object): any;
    /**
    */
