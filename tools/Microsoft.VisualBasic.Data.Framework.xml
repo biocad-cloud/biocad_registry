@@ -238,6 +238,13 @@ Microsoft.VisualBasic.Data.Framework
  <param name="df"></param>
  <returns></returns>
 </member>
+<member name="M:Microsoft.VisualBasic.Data.Framework.NumericDataSet.NumericMatrix(Microsoft.VisualBasic.Data.Framework.DataFrame)">
+ <summary>
+ returns a data matrix in row collections
+ </summary>
+ <param name="df"></param>
+ <returns></returns>
+</member>
 <member name="T:Microsoft.VisualBasic.Data.Framework.DATA.DataRows">
  <summary>
  提供了类似于R语言之中的``cbind``操作类似的按照列进行数据框合并的方法

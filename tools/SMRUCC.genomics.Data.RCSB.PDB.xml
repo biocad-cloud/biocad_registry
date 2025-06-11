@@ -90,6 +90,12 @@ SMRUCC.genomics.Data.RCSB.PDB
  A general base class of the keyword section inside the pdb file.
  </summary>
 </member>
+<member name="P:SMRUCC.genomics.Data.RCSB.PDB.Keywords.Keyword.Keyword">
+ <summary>
+ the keyword of current pdb section data
+ </summary>
+ <returns></returns>
+</member>
 <member name="M:SMRUCC.genomics.Data.RCSB.PDB.Parser.Load(System.IO.Stream)">
  <summary>
  Load multiple molecule pdb file
@@ -221,6 +227,12 @@ SMRUCC.genomics.Data.RCSB.PDB
  <summary>
  There are multiple model inside a pdb file, start with ``MODEL`` and end with ``ENDMDL``.
  </summary>
+</member>
+<member name="P:SMRUCC.genomics.Data.RCSB.PDB.PDB.SourceText">
+ <summary>
+ the input data text of this pdb object
+ </summary>
+ <returns></returns>
 </member>
 <member name="M:SMRUCC.genomics.Data.RCSB.PDB.PDB.Load(System.String)">
  <summary>
