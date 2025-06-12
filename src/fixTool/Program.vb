@@ -9,7 +9,7 @@ Imports SMRUCC.genomics.Model.MotifGraph.ProteinStructure.Kmer
 
 Module Program
 
-    ReadOnly mysql As New ConnectionUri() With {
+    Friend ReadOnly mysql As New ConnectionUri() With {
         .Database = "cad_registry",
         .error_log = "Z:/aaaa.log",
         .IPAddress = "192.168.3.15",
@@ -17,9 +17,10 @@ Module Program
         .Port = 3306,
         .User = "xieguigang"
     }
-    ReadOnly registry As New biocad_registry(mysql)
+    Friend ReadOnly registry As New biocad_registry(mysql)
 
     Sub Main(args As String())
+        Call RunBuilder()
         Call update_fingerprint()
         Call removesInvalidNameChars()
         ' Console.WriteLine("Hello World!")

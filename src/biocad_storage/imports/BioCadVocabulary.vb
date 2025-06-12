@@ -24,6 +24,7 @@ Public Class BioCadVocabulary
     Public ReadOnly Property uniprot_term As UInteger
     Public ReadOnly Property biocad_term As UInteger
     Public ReadOnly Property pubchem_term As UInteger
+    Public ReadOnly Property ecnumber_term As UInteger
 #End Region
 
     Public Const CategoryDatabase = "External Database"
@@ -50,6 +51,7 @@ Public Class BioCadVocabulary
         uniprot_term = registry.getVocabulary("UniProtKB/Swiss-Prot", CategoryDatabase)
         biocad_term = registry.getVocabulary("BioCAD Registry", CategoryDatabase)
         pubchem_term = registry.getVocabulary("PubChem", CategoryDatabase)
+        ecnumber_term = registry.getVocabulary("EC", CategoryDatabase)
 
         molecule_entity = registry.getVocabulary("Molecule", "Entity Type")
     End Sub
