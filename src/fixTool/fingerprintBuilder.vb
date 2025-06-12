@@ -48,7 +48,7 @@ Module fingerprintBuilder
         Dim page_data As EnzymeFingerprint()
         Dim terms = registry.vocabulary_terms
         Dim ec_id As UInteger = terms.ecnumber_term
-        Dim fingerprint As New List(Of ClusterEntity)
+        Dim fingerprint As New List(Of EntityClusterModel)
 
         For i As Integer = 0 To 8
             page_data = Program.registry.db_xrefs _
@@ -60,13 +60,17 @@ Module fingerprintBuilder
 
             For Each seq As EnzymeFingerprint In page_data
                 If Len(seq.morgan) > 0 Then
-                    fingerprint.Add(New ClusterEntity With {
-                        .uid = seq.molecule_id & " " & seq.ec_number,
-                        .entityVector = seq.morgan _
+                    fingerprint.Add(New EntityClusterModel With {
+                        .ID = seq.molecule_id & " [" & seq.ec_number & "]",
+                        .Cluster = seq.ec_number,
+                        .Properties = seq.morgan _
                             .UnGzipBase64 _
                             .ToArray _
-                            .Select(Function(b) CDbl(b)) _
-                            .ToArray
+                            .Select(Function(b, o) (o, CDbl(b))) _
+                            .ToDictionary(Function(o) "v" & (o.o + 1),
+                                          Function(o)
+                                              Return o.Item2
+                                          End Function)
                     })
                 End If
             Next
