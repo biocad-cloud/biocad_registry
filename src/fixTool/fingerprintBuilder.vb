@@ -50,7 +50,7 @@ Module fingerprintBuilder
         Dim ec_id As UInteger = terms.ecnumber_term
         Dim fingerprint As New List(Of EntityClusterModel)
 
-        For i As Integer = 0 To 10
+        For i As Integer = 0 To 50
             page_data = Program.registry.db_xrefs _
                 .left_join("sequence_graph") _
                 .on(field("sequence_graph.molecule_id") = field("db_xrefs.obj_id")) _
