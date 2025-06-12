@@ -545,6 +545,13 @@ Oracle.LinuxCompatibility.LibMySQL
  <param name="field">the field name to project as vector</param>
  <returns></returns>
 </member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.Model.save_sql(Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert[])">
+ <summary>
+ generates the update sql
+ </summary>
+ <param name="fields"></param>
+ <returns></returns>
+</member>
 <member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.Model.save(Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert[])">
  <summary>
  UPDATE
