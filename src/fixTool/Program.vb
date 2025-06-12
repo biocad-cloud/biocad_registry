@@ -20,6 +20,7 @@ Module Program
     Friend ReadOnly registry As New biocad_registry(mysql)
 
     Sub Main(args As String())
+        Call exportFingerprint()
         Call RunBuilder()
         Call update_fingerprint()
         Call removesInvalidNameChars()
