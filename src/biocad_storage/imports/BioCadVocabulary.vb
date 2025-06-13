@@ -26,6 +26,11 @@ Public Class BioCadVocabulary
     Public ReadOnly Property pubchem_term As UInteger
     Public ReadOnly Property ecnumber_term As UInteger
     Public ReadOnly Property chebi_term As UInteger
+    ''' <summary>
+    ''' gene ontology
+    ''' </summary>
+    ''' <returns></returns>
+    Public ReadOnly Property go_term As UInteger
 #End Region
 
     Public Const CategoryDatabase = "External Database"
@@ -54,6 +59,7 @@ Public Class BioCadVocabulary
         pubchem_term = registry.getVocabulary("PubChem", CategoryDatabase)
         ecnumber_term = registry.getVocabulary("EC", CategoryDatabase)
         chebi_term = registry.getVocabulary("chebi", CategoryDatabase)
+        go_term = registry.getVocabulary("GO", CategoryDatabase)
 
         molecule_entity = registry.getVocabulary("Molecule", "Entity Type")
     End Sub
