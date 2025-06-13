@@ -35,7 +35,7 @@ Public Class ChEBIOntologyImports
                     End Function) _
             .ToArray
 
-        For Each term As NamedValue(Of Dictionary(Of String, String())) In term_dataset
+        For Each term As NamedValue(Of Dictionary(Of String, String())) In TqdmWrapper.Wrap(term_dataset)
             Dim obo_data = term.Value
             Dim id As String = obo_data(RawTerm.Key_id).First
             Dim name As String = obo_data(RawTerm.Key_name).First
@@ -57,7 +57,7 @@ Public Class ChEBIOntologyImports
         trans = registry.ontology_tree.open_transaction.ignore
 
         ' build tree
-        For Each term As NamedValue(Of Dictionary(Of String, String())) In term_dataset
+        For Each term As NamedValue(Of Dictionary(Of String, String())) In TqdmWrapper.Wrap(term_dataset)
             Dim obo_data = term.Value
             Dim id As String = obo_data(RawTerm.Key_id).First
             Dim is_a As String() = obo_data.TryGetValue(RawTerm.Key_is_a)
@@ -87,7 +87,7 @@ Public Class ChEBIOntologyImports
         ' link metabolite with ontology
         trans = registry.molecule_ontology.open_transaction.ignore
 
-        For Each term As NamedValue(Of Dictionary(Of String, String())) In term_dataset
+        For Each term As NamedValue(Of Dictionary(Of String, String())) In TqdmWrapper.Wrap(term_dataset)
             Dim id As String = term.Name
             Dim term_id = registry.ontology.where(field("db_source") = ontology_id, field("db_xref") = id).find(Of biocad_registryModel.ontology)
 
