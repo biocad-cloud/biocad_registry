@@ -49,10 +49,14 @@ Module fingerprintBuilder
         Dim page_data As biocad_storage.biocad_registryModel.sequence_graph()
         Dim trans As CommitTransaction
         Dim bar As Tqdm.ProgressBar = Nothing
+        Dim terms = registry.vocabulary_terms
 
         For i As Integer = 0 To Integer.MaxValue
             trans = registry.sequence_graph.open_transaction
-            page_data = registry.sequence_graph.limit(i * page_size, page_size).select(Of biocad_storage.biocad_registryModel.sequence_graph)
+            page_data = registry.sequence_graph _
+                .where(field("type") <> terms.metabolite_term) _
+                .limit(i * page_size, page_size) _
+                .select(Of biocad_storage.biocad_registryModel.sequence_graph)
 
             For Each seq In TqdmWrapper.Wrap(page_data, bar:=bar)
                 Dim graph = KMerGraph.FromSequence(seq.sequence, k:=3)
