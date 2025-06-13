@@ -54,9 +54,10 @@ Module fingerprintBuilder
         For i As Integer = 0 To Integer.MaxValue
             trans = registry.sequence_graph.open_transaction
             page_data = registry.sequence_graph _
+                .left_join("molecule").on(field("molecule.id") = field("sequence_graph.molecule_id")) _
                 .where(field("type") <> terms.metabolite_term) _
                 .limit(i * page_size, page_size) _
-                .select(Of biocad_storage.biocad_registryModel.sequence_graph)
+                .select(Of biocad_storage.biocad_registryModel.sequence_graph)("sequence_graph.*")
 
             For Each seq In TqdmWrapper.Wrap(page_data, bar:=bar)
                 Dim graph = KMerGraph.FromSequence(seq.sequence, k:=3)
