@@ -4963,7 +4963,17 @@ Microsoft.VisualBasic.Math.Core
  <param name="seed">种子数。 31，33，37 。。。</param>
  <returns></returns>
 </member>
-<member name="M:Microsoft.VisualBasic.Math.HashMaps.HashMap.HashTimeMap(System.Byte[],System.UInt32)">
+<member name="M:Microsoft.VisualBasic.Math.HashMaps.HashMap.HashTimeMap(System.Byte[]@,System.UInt32)">
+ <summary>
+ 经典的Time算法。简单，高效。
+ Ngix使用的是 time31，Tokyo Cabinet使用的是 time37
+ 小写英文词汇适合33, 大小写混合使用65。time33比较适合的是英文词汇的hash.
+ </summary>
+ <param name="KeyByte"></param>
+ <param name="seed">种子质数。 31，33，37 。。。</param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Math.HashMaps.HashMap.HashTimeMapCheckSum(System.Byte[]@,System.UInt32)">
  <summary>
  经典的Time算法。简单，高效。
  Ngix使用的是 time31，Tokyo Cabinet使用的是 time37
