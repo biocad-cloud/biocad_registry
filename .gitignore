@@ -290,3 +290,5 @@ test/biocad/taxonomy/Bacillales_genomics.fasta
 workspace/embedding/nt_fingerprints.csv
 workspace/embedding/nt_embedding.csv
 workspace/embedding/enzyme_embedding.csv
+data/chebi.obo
+data/chebi_lite.obo
