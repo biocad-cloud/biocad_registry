@@ -187,6 +187,14 @@ Microsoft.VisualBasic.MachineLearning.Bootstrapping
  <param name="dimensions"></param>
  <param name="windowSize"></param>
  <returns>node mapping to a vector</returns>
+ <remarks>
+ implements of the graph embedding to vector via node2vec:
+ 
+ 1. random walk for get a collection node chains
+ 2. use the node chain as text, and node in chain as the words
+ 3. word2vec for make the node chains as vector
+ 4. get vector embedding result for each node
+ </remarks>
 </member>
 </members>
 </doc>
