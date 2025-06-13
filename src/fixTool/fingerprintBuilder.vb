@@ -12,7 +12,7 @@ Imports Oracle.LinuxCompatibility.MySQL.Reflection.DbAttributes
 Module fingerprintBuilder
 
     Sub RunBuilder()
-        Dim morgan As New MorganFingerprint(8 ^ 5)
+        ' Dim morgan As New MorganFingerprint(8 ^ 5)
         Dim page_size = 1000
         Dim page_data As biocad_storage.biocad_registryModel.sequence_graph()
         Dim terms = registry.vocabulary_terms
@@ -30,7 +30,7 @@ Module fingerprintBuilder
                 .select(Of biocad_storage.biocad_registryModel.sequence_graph)("sequence_graph.*")
 
             For Each seq In TqdmWrapper.Wrap(page_data, bar:=bar)
-                Dim graph = KMerGraph.FromSequence(seq.sequence, k:=4)
+                Dim graph As KMerGraph = KMerGraph.FromSequence(seq.sequence, k:=4)
                 Dim fingerprint = morgan.CalculateFingerprintCheckSum(graph, radius:=9)
 
                 Call bar.SetLabel(seq.hashcode)
