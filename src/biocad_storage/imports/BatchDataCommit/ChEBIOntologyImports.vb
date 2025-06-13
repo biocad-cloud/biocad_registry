@@ -31,7 +31,7 @@ Public Class ChEBIOntologyImports
     Public Sub RunImports()
         Dim metadata As MetaInfo() = ChEBIObo.ImportsMetabolites(chebi).ToArray
 
-        For Each page As MetaInfo() In metadata.Split(100)
+        For Each page As MetaInfo() In metadata.Split(10000)
             Call RunImports(page)
         Next
     End Sub
