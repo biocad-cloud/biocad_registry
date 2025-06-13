@@ -179,9 +179,9 @@ Microsoft.VisualBasic.MachineLearning.Bootstrapping
 </member>
 <member name="M:Microsoft.VisualBasic.MachineLearning.Bootstrapping.node2vec.Solver.CreateEmbedding(Microsoft.VisualBasic.MachineLearning.Bootstrapping.node2vec.Graph,System.Int32,System.Int32,System.Int32,System.Int32)">
  <summary>
- 
+ implements of node2vec embedding for the nodes in graph 
  </summary>
- <param name="graph"></param>
+ <param name="graph">could be generated from the <see cref="M:Microsoft.VisualBasic.MachineLearning.Bootstrapping.node2vec.Solver.CreateGraph(System.String[],System.String[],System.Double[])"/> function.</param>
  <param name="numWalks"></param>
  <param name="walkLength"></param>
  <param name="dimensions"></param>
