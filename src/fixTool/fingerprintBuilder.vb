@@ -1,13 +1,13 @@
-﻿Imports SMRUCC.genomics.Model.MotifGraph.ProteinStructure
-Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
+﻿Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar
 Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm
-Imports SMRUCC.genomics.Model.MotifGraph.ProteinStructure.Kmer
-Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar
-Imports Microsoft.VisualBasic.Net.Http
-Imports Microsoft.VisualBasic.Data.Framework.IO
-Imports Microsoft.VisualBasic.DataMining.KMeans
 Imports Microsoft.VisualBasic.Data.Framework
+Imports Microsoft.VisualBasic.DataMining.KMeans
+Imports Microsoft.VisualBasic.MachineLearning.Bootstrapping
+Imports Microsoft.VisualBasic.Net.Http
+Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports Oracle.LinuxCompatibility.MySQL.Reflection.DbAttributes
+Imports SMRUCC.genomics.Model.MotifGraph.ProteinStructure
+Imports SMRUCC.genomics.Model.MotifGraph.ProteinStructure.Kmer
 
 Module fingerprintBuilder
 
@@ -30,8 +30,9 @@ Module fingerprintBuilder
                 .select(Of biocad_storage.biocad_registryModel.sequence_graph)("sequence_graph.*")
 
             For Each seq In TqdmWrapper.Wrap(page_data, bar:=bar)
-                Dim graph As KMerGraph = KMerGraph.FromSequence(seq.sequence, k:=4)
-                Dim fingerprint = morgan.CalculateFingerprintCheckSum(graph, radius:=9)
+                Dim graph As node2vec.Graph = KMerGraph.FromSequence(seq.sequence, k:=4).GetVectorGraph
+                Dim walks = graph.simulateWalks(5, 5).ToArray
+                Dim fingerprint As Byte() ' = morgan.CalculateFingerprintCheckSum(graph, radius:=9)
 
                 Call bar.SetLabel(seq.hashcode)
                 Call trans.add(registry.sequence_graph _
