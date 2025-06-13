@@ -62,7 +62,7 @@ Public Class GeneOntologyImports
 
             For Each parent_id As String In is_a
                 Dim parent_term = parent_id.GetTagValue("!")
-                Dim parent = registry.ontology.where(field("db_source") = ontology_id, field("db_xref") = parent_term.Name).find(Of biocad_registryModel.ontology)
+                Dim parent = registry.ontology.where(field("db_source") = ontology_id, field("db_xref") = Strings.Trim(parent_term.Name)).find(Of biocad_registryModel.ontology)
 
                 If Not parent Is Nothing Then
                     Dim check = registry.ontology_tree.where(field("ontology_id") = term_id.id, field("is_a") = parent.id).find(Of biocad_registryModel.ontology_tree)
@@ -89,9 +89,9 @@ Public Class GeneOntologyImports
                 Continue For
             End If
 
-            Dim mol As biocad_registryModel.db_xrefs = registry.db_xrefs.where(field("db_key") = ontology_id, field("xref") = id).find(Of biocad_registryModel.db_xrefs)
+            Dim molList As biocad_registryModel.db_xrefs() = registry.db_xrefs.where(field("db_key") = ontology_id, field("xref") = id).select(Of biocad_registryModel.db_xrefs)
 
-            If Not mol Is Nothing Then
+            For Each mol As biocad_registryModel.db_xrefs In molList
                 If registry.molecule_ontology.where(field("molecule_id") = mol.obj_id, field("ontology_id") = term_id.id).find(Of biocad_registryModel.molecule_ontology) Is Nothing Then
                     Call trans.add(
                        field("molecule_id") = mol.obj_id,
@@ -99,7 +99,7 @@ Public Class GeneOntologyImports
                        field("evidence") = term.Name
                     )
                 End If
-            End If
+            Next
         Next
 
         Call trans.commit()
