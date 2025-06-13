@@ -1,0 +1,192 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+Microsoft.VisualBasic.MachineLearning.Bootstrapping
+</name>
+</assembly>
+<members>
+<member name="T:Microsoft.VisualBasic.MachineLearning.Bootstrapping.GraphEmbedding.Algorithm">
+ <summary>
+ "Improving Knowledge Graph Embedding Using Simple Constraints" (ACL-2018)
+ 
+ ### Parameters
+ 
+ You can changes parameter when training the model
+ 
+ ```
+ k = number of dimensions
+ lmbda = L2 regularization coffecient
+ neg = number of negative samples
+ mu = AER regularization coffecient
+ ```
+ 
+ ### Citation
+ 
+ ```
+ @inproceedings{boyang2018:aer,
+ 	author = {Ding, Boyang and Wang, Quan and Wang, Bin and Guo, Li},
+ 	booktitle = {56th Annual Meeting of the Association for Computational Linguistics},
+ 	title = {Improving Knowledge Graph Embedding Using Simple Constraints},
+ 	year = {2018}
+ }
+ ```
+ 
+ ### Contact
+ 
+ For all remarks or questions please contact Quan Wang: wangquan (at) iie (dot) ac (dot) cn .
+ </summary>
+ <remarks>
+ * [Improving Knowledge Graph Embedding Using Simple Constraints](https://arxiv.org/abs/1805.02408). Boyang Ding, Quan Wang, Bin Wang and Li Guo. ACL 2018.
+ * [Complex Embeddings for Simple Link Prediction](http://proceedings.mlr.press/v48/trouillon16.pdf). Théo Trouillon, Johannes Welbl, Sebastian Riedel, Éric Gaussier and Guillaume Bouchard. ICML 2016.
+ * [Regularizing Knowledge Graph Embeddings via Equivalence And Inversion Axioms](https://luca.costabello.info/docs/ECML_PKDD_2017_embeddings.pdf). Pasquale Minervini, Luca Costabello, Emir Muñoz, Vít Nováček And Pierre-Yves Vandenbussche. ECML 2017. 
+ </remarks>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.Bootstrapping.GraphEmbedding.complex.ComplEx">
+ <summary>
+ ComplEx (triple only)
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.Bootstrapping.GraphEmbedding.complex_NNE.ComplEx">
+ <summary>
+ ComplEx (nonnegative E)
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.Bootstrapping.GraphEmbedding.complex_NNE_AER.ComplEx">
+ <summary>
+ ComplEx (NNE+AER)
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.Bootstrapping.GraphEmbedding.complex_R.ComplEx">
+ <summary>
+ ComplEx (R)
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.Bootstrapping.GraphEmbedding.struct.Triple.#ctor(System.Int32,System.Int32,System.Int32)">
+ <summary>
+ 
+ </summary>
+ <param name="head"></param>
+ <param name="tail"></param>
+ <param name="relation"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.Bootstrapping.node2vec.AliasMethod.#ctor(System.Collections.Generic.IList{System.Double})">
+ <summary>
+ Constructs a new node2vec.AliasMethod to sample from a discrete distribution and
+ hand back outcomes based on the probability distribution.
+ <para>
+ Given as input a list of probabilities corresponding to outcomes 0, 1,
+ ..., n - 1, along with the random number generator that should be used
+ as the underlying generator, this constructor creates the probability
+ and alias tables needed to efficiently sample from this distribution.
+ 
+ </para>
+ </summary>
+ <param name="probabilities"> The list of probabilities. </param>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.Bootstrapping.node2vec.AliasMethod.next">
+ <summary>
+ Samples a value from the underlying distribution.
+ </summary>
+ <returns> A random value sampled from the underlying distribution. </returns>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.Bootstrapping.node2vec.Graph">
+ <summary>
+ Created by freemso on 17-3-14.
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.Bootstrapping.node2vec.Graph.preprocess">
+ <summary>
+ pre-processing of transition probabilities for guiding the random walks
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.Bootstrapping.node2vec.Graph.computeAliasEdge(Microsoft.VisualBasic.Data.GraphTheory.VertexEdge)">
+ <summary>
+ to compute the alias method for an edge </summary>
+ <param name="edge"> the edge to compute </param>
+ <returns> the node2vec.AliasMethod object that store distribution information </returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.Bootstrapping.node2vec.Graph.walk(System.Int32,Microsoft.VisualBasic.Data.GraphTheory.Vertex)">
+ <summary>
+ random walk in the graph starting from a node </summary>
+ <param name="walkLength"> the steps of this walk </param>
+ <param name="startNode"> the start node of this walk </param>
+ <returns> the path that we pass, expressed as a Node List </returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.Bootstrapping.node2vec.Graph.simulateWalks(System.Int32,System.Int32)">
+ <summary>
+ simulation of a bunch of walks </summary>
+ <param name="numWalks"> iteration times </param>
+ <param name="walkLength"> steps of every walk </param>
+ <returns> the list of paths that we've walked </returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.Bootstrapping.node2vec.Graph.sortedNeighborList(Microsoft.VisualBasic.Data.GraphTheory.Vertex)">
+ <summary>
+ get a node's neighbors in a sorted list
+ the set of the neighbors of node is defined as {x|node-->x}
+ sort the nodes according to its ids </summary>
+ <param name="node"> the node </param>
+ <returns> a sorted list of nodes </returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.Bootstrapping.node2vec.Graph.hasEdge(Microsoft.VisualBasic.Data.GraphTheory.Vertex,Microsoft.VisualBasic.Data.GraphTheory.Vertex)">
+ <summary>
+ check whether there is an edge between two nodes
+ note that all the edges in the graph are directive </summary>
+ <param name="src"> node1 </param>
+ <param name="dst"> node2 </param>
+ <returns> true is there is an edge </returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.Bootstrapping.node2vec.Graph.getEdge(Microsoft.VisualBasic.Data.GraphTheory.Vertex,Microsoft.VisualBasic.Data.GraphTheory.Vertex)">
+ <summary>
+ get the edge between two nodes </summary>
+ <param name="src"> node1 </param>
+ <param name="dst"> node2 </param>
+ <returns> the edge, null is not exist such an edge </returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.Bootstrapping.node2vec.Graph.addEdge(Microsoft.VisualBasic.Data.GraphTheory.Vertex,Microsoft.VisualBasic.Data.GraphTheory.Vertex,System.Double)">
+ <summary>
+ add a new edge to the graph
+ if such an edge already exists, update the weight
+ note that all the edges in the graph are directed
+ if the graph is not directed,
+ we just simply add two directed edges with the opposite directions
+ that connect two nodes </summary>
+ <param name="src"> first node of the edge </param>
+ <param name="dst"> second node of the edge </param>
+ <param name="weight"> of the edge </param>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.Bootstrapping.node2vec.Graph.addNode(System.Int32,System.String)">
+ <summary>
+ add a node with the id to the graph
+ if such a node already exists, return it and do nothing
+ if not, create a new node, add it to the graph and return it </summary>
+ <param name="id"> the id of the node </param>
+ <returns> the node found </returns>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.Bootstrapping.node2vec.Solver">
+ <summary>
+ Created by freemso on 17-3-14.
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.Bootstrapping.node2vec.Solver.CreateGraph(System.String[],System.String[],System.Double[])">
+ <summary>
+ create graph from a dataframe?
+ </summary>
+ <param name="u"></param>
+ <param name="v"></param>
+ <param name="w"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.Bootstrapping.node2vec.Solver.CreateEmbedding(Microsoft.VisualBasic.MachineLearning.Bootstrapping.node2vec.Graph,System.Int32,System.Int32,System.Int32,System.Int32)">
+ <summary>
+ 
+ </summary>
+ <param name="graph"></param>
+ <param name="numWalks"></param>
+ <param name="walkLength"></param>
+ <param name="dimensions"></param>
+ <param name="windowSize"></param>
+ <returns>node mapping to a vector</returns>
+</member>
+</members>
+</doc>

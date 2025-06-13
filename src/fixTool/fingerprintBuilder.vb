@@ -30,7 +30,7 @@ Module fingerprintBuilder
                 .select(Of biocad_storage.biocad_registryModel.sequence_graph)("sequence_graph.*")
 
             For Each seq In TqdmWrapper.Wrap(page_data, bar:=bar)
-                Dim graph As node2vec.Graph = KMerGraph.FromSequence(seq.sequence, k:=4).GetVectorGraph
+                Dim graph As node2vec.Graph = KMerGraph.FromSequence(seq.sequence, k:=3).GetVectorGraph
                 Dim walks = graph.simulateWalks(5, 5).ToArray
                 Dim fingerprint As Byte() ' = morgan.CalculateFingerprintCheckSum(graph, radius:=9)
 
