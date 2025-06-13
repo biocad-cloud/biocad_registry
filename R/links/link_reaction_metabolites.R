@@ -9,6 +9,7 @@ const link_reaction_metabolites = function(biocad_registry) {
         let start = (page - 1) * page_size;
         let graph_links = biocad_registry 
         |> table("reaction_graph") 
+        |> where(molecule_id = 0)
         |> limit(start, page_size) 
         |> select()
         ;
