@@ -3,6 +3,7 @@ Imports BioNovoGene.BioDeep.Chemistry.MetaLib.Models
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
+Imports Microsoft.VisualBasic.Linq
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports SMRUCC.genomics.foundation.OBO_Foundry.IO.Models
 
@@ -96,7 +97,7 @@ Public Class ChEBIOntologyImports
                 Continue For
             End If
 
-            Dim synonyms As String() = {meta.name}
+            Dim synonyms As String() = {meta.name}.JoinIterates(meta.synonym).Distinct.ToArray
 
             For Each name As String In synonyms
                 Dim hash As String = name.ToLower.MD5
