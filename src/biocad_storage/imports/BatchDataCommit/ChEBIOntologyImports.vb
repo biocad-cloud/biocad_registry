@@ -39,7 +39,7 @@ Public Class ChEBIOntologyImports
             Dim obo_data = term.Value
             Dim id As String = obo_data(RawTerm.Key_id).First
             Dim name As String = obo_data(RawTerm.Key_name).First
-            Dim def As String = obo_data(RawTerm.Key_def).JoinBy("; ")
+            Dim def As String = obo_data.TryGetValue(RawTerm.Key_def).JoinBy("; ")
 
             If registry.ontology.where(field("db_source") = ontology_id, field("db_xref") = id).find(Of biocad_registryModel.ontology) Is Nothing Then
                 Call trans.add(
