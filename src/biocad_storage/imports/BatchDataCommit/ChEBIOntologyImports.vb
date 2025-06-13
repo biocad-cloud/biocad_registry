@@ -27,7 +27,7 @@ Public Class ChEBIOntologyImports
         Dim trans As CommitTransaction = registry.ontology.open_transaction.ignore
         Dim term_dataset = chebi.GetRawTerms _
             .AsParallel _
-            .Where(Function(t) t.type = "Term") _
+            .Where(Function(t) t.type = "[Term]") _
             .Select(Function(t)
                         Dim obo_data = t.GetData
                         Dim id As String = obo_data(RawTerm.Key_id).First
