@@ -61,7 +61,8 @@ Public Class GeneOntologyImports
             End If
 
             For Each parent_id As String In is_a
-                Dim parent = registry.ontology.where(field("db_source") = ontology_id, field("db_xref") = parent_id).find(Of biocad_registryModel.ontology)
+                Dim parent_term = parent_id.GetTagValue("!")
+                Dim parent = registry.ontology.where(field("db_source") = ontology_id, field("db_xref") = parent_term.Name).find(Of biocad_registryModel.ontology)
 
                 If Not parent Is Nothing Then
                     Dim check = registry.ontology_tree.where(field("ontology_id") = term_id.id, field("is_a") = parent.id).find(Of biocad_registryModel.ontology_tree)
