@@ -21,7 +21,7 @@ Module Program
 
     Sub Main(args As String())
         '  Call exportFingerprint()
-        ' Call RunBuilder()
+        Call RunBuilder()
         Call BuildAll()
         Call update_fingerprint()
         Call removesInvalidNameChars()
