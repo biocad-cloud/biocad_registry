@@ -7,7 +7,7 @@ let mona_msp_repo = ?"--mona" || stop("A directory path that contains multiple m
 let lib_output = ?"--output" || normalizePath(file.path(mona_msp_repo,"libs"));
 let list_repo_files = list.files(mona_msp_repo, pattern = "*.msp");
 let biocad_registry = open_registry("xieguigang", 123456, host ="192.168.3.15");
-let mona_metab = data_exports::export_mona_metabolites(biocad_registry);
+let mona_metab = data_exports::export_metabolites(biocad_registry);
 
 print("Start to build mona reference library:");
 print(mona_msp_repo);
