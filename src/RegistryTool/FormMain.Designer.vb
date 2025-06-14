@@ -35,11 +35,13 @@ Partial Class FormMain
         Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripSeparator()
         Me.ExportMetabolitesDatabaseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExportEnzymeDatabaseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ExportKEGGIDMappingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ImportsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GenBankToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.ExportKEGGIDMappingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem3 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ExportBloodTagToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -79,7 +81,7 @@ Partial Class FormMain
         '
         'DataToolStripMenuItem
         '
-        Me.DataToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.VocabularyToolStripMenuItem, Me.MoleculesToolStripMenuItem, Me.SubCellularCompartmentsToolStripMenuItem, Me.FlavorOdorsToolStripMenuItem, Me.ToolStripMenuItem2, Me.ExportMetabolitesDatabaseToolStripMenuItem, Me.ExportEnzymeDatabaseToolStripMenuItem, Me.ExportKEGGIDMappingToolStripMenuItem})
+        Me.DataToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.VocabularyToolStripMenuItem, Me.MoleculesToolStripMenuItem, Me.SubCellularCompartmentsToolStripMenuItem, Me.FlavorOdorsToolStripMenuItem, Me.ToolStripMenuItem2, Me.ExportMetabolitesDatabaseToolStripMenuItem, Me.ExportEnzymeDatabaseToolStripMenuItem, Me.ExportKEGGIDMappingToolStripMenuItem, Me.ToolStripMenuItem3, Me.ExportBloodTagToolStripMenuItem})
         Me.DataToolStripMenuItem.Name = "DataToolStripMenuItem"
         Me.DataToolStripMenuItem.Size = New System.Drawing.Size(43, 20)
         Me.DataToolStripMenuItem.Text = "Data"
@@ -125,6 +127,12 @@ Partial Class FormMain
         Me.ExportEnzymeDatabaseToolStripMenuItem.Size = New System.Drawing.Size(224, 22)
         Me.ExportEnzymeDatabaseToolStripMenuItem.Text = "Export Enzyme Database"
         '
+        'ExportKEGGIDMappingToolStripMenuItem
+        '
+        Me.ExportKEGGIDMappingToolStripMenuItem.Name = "ExportKEGGIDMappingToolStripMenuItem"
+        Me.ExportKEGGIDMappingToolStripMenuItem.Size = New System.Drawing.Size(224, 22)
+        Me.ExportKEGGIDMappingToolStripMenuItem.Text = "Export KEGG IDMapping"
+        '
         'ImportsToolStripMenuItem
         '
         Me.ImportsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GenBankToolStripMenuItem})
@@ -153,11 +161,16 @@ Partial Class FormMain
         Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(42, 17)
         Me.ToolStripStatusLabel1.Text = "Ready!"
         '
-        'ExportKEGGIDMappingToolStripMenuItem
+        'ToolStripMenuItem3
         '
-        Me.ExportKEGGIDMappingToolStripMenuItem.Name = "ExportKEGGIDMappingToolStripMenuItem"
-        Me.ExportKEGGIDMappingToolStripMenuItem.Size = New System.Drawing.Size(224, 22)
-        Me.ExportKEGGIDMappingToolStripMenuItem.Text = "Export KEGG IDMapping"
+        Me.ToolStripMenuItem3.Name = "ToolStripMenuItem3"
+        Me.ToolStripMenuItem3.Size = New System.Drawing.Size(221, 6)
+        '
+        'ExportBloodTagToolStripMenuItem
+        '
+        Me.ExportBloodTagToolStripMenuItem.Name = "ExportBloodTagToolStripMenuItem"
+        Me.ExportBloodTagToolStripMenuItem.Size = New System.Drawing.Size(224, 22)
+        Me.ExportBloodTagToolStripMenuItem.Text = "Export Blood Tag"
         '
         'FormMain
         '
@@ -197,4 +210,6 @@ Partial Class FormMain
     Friend WithEvents GenBankToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ExportEnzymeDatabaseToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ExportKEGGIDMappingToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStripMenuItem3 As ToolStripSeparator
+    Friend WithEvents ExportBloodTagToolStripMenuItem As ToolStripMenuItem
 End Class

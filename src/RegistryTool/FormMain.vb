@@ -186,4 +186,12 @@ Public Class FormMain
             End If
         End Using
     End Sub
+
+    Private Sub ExportBloodTagToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportBloodTagToolStripMenuItem.Click
+        Using file As New SaveFileDialog With {.Filter = "id file(*.txt)|*.txt"}
+            If file.ShowDialog = DialogResult.OK Then
+                Call MyApplication.biocad_registry.ExportTagList("Blood").SaveTo(file.FileName)
+            End If
+        End Using
+    End Sub
 End Class
