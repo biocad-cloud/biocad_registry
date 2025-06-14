@@ -11,7 +11,7 @@ Public Module IDMapping
 
         For page As Integer = 1 To Integer.MaxValue
             Dim xrefs = registry.db_xrefs _
-                .where(field("db_key") = dbkey) _
+                .where(field("db_key") = dbkey, field("type") = registry.vocabulary_terms.metabolite_term) _
                 .limit((page - 1) * page_size, page_size) _
                 .select(Of biocad_registryModel.db_xrefs)
 
