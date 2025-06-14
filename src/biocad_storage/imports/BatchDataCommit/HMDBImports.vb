@@ -26,6 +26,10 @@ Public Class HMDBImports
     Private Sub [Imports](page As HMDB.metabolite())
         Dim metadata As MetaLib() = page.ConvertInternal.ToArray
 
+        Call MetaboliteCommit.CommitMetabolites(metadata, registry)
+        Call MetaboliteCommit.CommitDbXrefs(metadata, registry)
+        Call MetaboliteCommit.CommitSynonyms(metadata, registry)
+        Call MetaboliteCommit.CommitStructData(metadata, registry)
 
     End Sub
 
