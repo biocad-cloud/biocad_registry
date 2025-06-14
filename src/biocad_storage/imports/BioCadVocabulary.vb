@@ -26,6 +26,7 @@ Public Class BioCadVocabulary
     Public ReadOnly Property pubchem_term As UInteger
     Public ReadOnly Property ecnumber_term As UInteger
     Public ReadOnly Property chebi_term As UInteger
+    Public ReadOnly Property hmdb_term As UInteger
     ''' <summary>
     ''' gene ontology
     ''' </summary>
@@ -60,6 +61,7 @@ Public Class BioCadVocabulary
         ecnumber_term = registry.getVocabulary("EC", CategoryDatabase)
         chebi_term = registry.getVocabulary("chebi", CategoryDatabase)
         go_term = registry.getVocabulary("GO", CategoryDatabase)
+        hmdb_term = registry.getVocabulary("HMDB", CategoryDatabase)
 
         molecule_entity = registry.getVocabulary("Molecule", "Entity Type")
     End Sub
