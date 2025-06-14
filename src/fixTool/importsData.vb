@@ -12,4 +12,10 @@ Module importsData
 
         Pause()
     End Sub
+
+    Sub importsUniprot()
+
+
+        Pause()
+    End Sub
 End Module
