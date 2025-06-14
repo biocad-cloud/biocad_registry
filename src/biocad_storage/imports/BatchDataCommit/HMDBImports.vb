@@ -17,7 +17,7 @@ Public Class HMDBImports
     End Sub
 
     Public Sub [Imports]()
-        For Each page As HMDB.metabolite() In HMDB.metabolite.Load(hmdbfile).SplitIterator(100)
+        For Each page As HMDB.metabolite() In HMDB.metabolite.Load(hmdbfile).SplitIterator(5000)
             Call [Imports](page)
         Next
     End Sub
