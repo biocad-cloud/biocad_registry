@@ -12,7 +12,7 @@ Public Module ProtFasta
     ''' <returns></returns>
     <Extension>
     Public Iterator Function ExportEnzyme(registry As biocad_registry) As IEnumerable(Of FastaSeq)
-        Dim page_size As Integer = 1000
+        Dim page_size As Integer = 2000
         Dim ec_id As UInteger = registry.vocabulary_terms.ecnumber_term
 
         For page As Integer = 1 To Integer.MaxValue
@@ -20,6 +20,7 @@ Public Module ProtFasta
                 .left_join("sequence_graph") _
                 .on(field("sequence_graph.molecule_id") = field("obj_id")) _
                 .where(field("db_key") = ec_id) _
+                .limit((page - 1) * page_size, page_size) _
                 .select(Of EnzymeSequence)("obj_id as cad_id", "xref as ec_number", "sequence")
 
             If seqs.IsNullOrEmpty Then
