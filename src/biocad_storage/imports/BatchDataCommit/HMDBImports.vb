@@ -30,6 +30,8 @@ Public Class HMDBImports
         Call MetaboliteCommit.CommitDbXrefs(metadata, registry)
         Call MetaboliteCommit.CommitSynonyms(metadata, registry)
         Call MetaboliteCommit.CommitStructData(metadata, registry)
+        ' http://classyfire.wishartlab.com/
+        Call MetaboliteCommit.CommitStructClass(metadata, registry, "wishartlab_classyfire")
 
         Dim trans_tag_link = registry.molecule_tags.open_transaction.ignore
         Dim trans_loc_link = registry.subcellular_location.open_transaction.ignore
