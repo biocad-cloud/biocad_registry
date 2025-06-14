@@ -135,4 +135,71 @@ Module MetaboliteCommit
 
         Call trans.commit()
     End Sub
+
+    Public Sub CommitStructClass(Of T As MetaInfo)(metabolites As IEnumerable(Of T), registry As biocad_registry, ontology_name As String)
+        Dim trans_links = registry.molecule_ontology.open_transaction.ignore
+        Dim vocabulary = registry.vocabulary_terms
+
+        For Each meta As MetaInfo In TqdmWrapper.Wrap(metabolites.ToArray)
+            Dim mol As biocad_registryModel.molecule = registry.findMolecule(meta, Function(a) a.ID)
+
+            If mol Is Nothing Then
+                Continue For
+            End If
+
+            Dim l1 = (term:=vocabulary.GetOntologyTerm(meta.kingdom, "kingdom", ontology_name, meta.kingdom), tag:=meta.kingdom)
+            Dim l2 = (term:=vocabulary.GetOntologyTerm(meta.super_class, "super_class", ontology_name, meta.super_class), tag:=meta.super_class)
+            Dim l3 = (term:=vocabulary.GetOntologyTerm(meta.class, "class", ontology_name, meta.class), tag:=meta.class)
+            Dim l4 = (term:=vocabulary.GetOntologyTerm(meta.sub_class, "sub_class", ontology_name, meta.sub_class), tag:=meta.sub_class)
+            Dim l5 = (term:=vocabulary.GetOntologyTerm(meta.molecular_framework, "molecular_framework", ontology_name, meta.molecular_framework), tag:=meta.molecular_framework)
+
+            ' build tree
+
+            If Not (l1.tag.StringEmpty(, True) OrElse l2.tag.StringEmpty(, True)) Then
+                If registry.ontology_tree.where(field("ontology_id") = l2.term.id, field("is_a") = l1.term.id).find(Of biocad_registryModel.ontology_tree) Is Nothing Then
+                    registry.ontology_tree.add(
+                        field("ontology_id") = l2.term.id, field("is_a") = l1.term.id
+                    )
+                End If
+            End If
+            If Not (l2.tag.StringEmpty(, True) OrElse l3.tag.StringEmpty(, True)) Then
+                If registry.ontology_tree.where(field("ontology_id") = l3.term.id, field("is_a") = l2.term.id).find(Of biocad_registryModel.ontology_tree) Is Nothing Then
+                    registry.ontology_tree.add(
+                        field("ontology_id") = l3.term.id, field("is_a") = l2.term.id
+                    )
+                End If
+            End If
+            If Not (l3.tag.StringEmpty(, True) OrElse l4.tag.StringEmpty(, True)) Then
+                If registry.ontology_tree.where(field("ontology_id") = l4.term.id, field("is_a") = l3.term.id).find(Of biocad_registryModel.ontology_tree) Is Nothing Then
+                    registry.ontology_tree.add(
+                        field("ontology_id") = l4.term.id, field("is_a") = l3.term.id
+                    )
+                End If
+            End If
+            If Not (l4.tag.StringEmpty(, True) OrElse l5.tag.StringEmpty(, True)) Then
+                If registry.ontology_tree.where(field("ontology_id") = l5.term.id, field("is_a") = l4.term.id).find(Of biocad_registryModel.ontology_tree) Is Nothing Then
+                    registry.ontology_tree.add(
+                        field("ontology_id") = l5.term.id, field("is_a") = l4.term.id
+                    )
+                End If
+            End If
+
+            For Each rank In {l5, l4, l3, l2, l1}
+                If Not rank.tag.StringEmpty(, True) Then
+                    If registry.molecule_ontology _
+                        .where(field("molecule_id") = mol.id, field("ontology_id") = rank.term.id) _
+                        .find(Of biocad_registryModel.molecule_ontology) Is Nothing Then
+
+                        Call trans_links.add(
+                            field("molecule_id") = mol.id, field("ontology_id") = rank.term.id,
+                            field("evidence") = meta.ID
+                        )
+                        Exit For
+                    End If
+                End If
+            Next
+        Next
+
+        Call trans_links.commit()
+    End Sub
 End Module
