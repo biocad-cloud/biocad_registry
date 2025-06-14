@@ -38,7 +38,7 @@ Module exports_api
         Return df
     End Function
 
-    <ExportAPI("export_mona_metabolites")>
+    <ExportAPI("export_metabolites")>
     Public Function export_metabolites(registry As biocad_registry) As Object
         Dim mapping As New Dictionary(Of String, Object)
         Dim list As list = list.empty
@@ -63,10 +63,10 @@ Module exports_api
         Dim metlin As UInteger = registry.vocabulary_terms.GetDatabaseKey("metlin")
 
         For i As Integer = 0 To Integer.MaxValue
-            Dim pagedata = registry.db_xrefs _
-                .where(field("db_key") = mona) _
+            Dim pagedata = registry.molecule _
+                .where(field("type") = registry.vocabulary_terms.metabolite_term) _
                 .limit(i * page_size, page_size) _
-                .select(Of biocad_registryModel.db_xrefs)
+                .select(Of biocad_registryModel.molecule)
 
             If pagedata.IsNullOrEmpty Then
                 Exit For
@@ -74,69 +74,65 @@ Module exports_api
 
             Dim bar As Tqdm.ProgressBar = Nothing
 
-            For Each db_xref As biocad_registryModel.db_xrefs In TqdmWrapper.Wrap(pagedata, bar:=bar)
-                Dim cad_id As String = "BioCAD" & db_xref.obj_id.ToString.PadLeft(11, "0"c)
+            For Each metabolite As biocad_registryModel.molecule In TqdmWrapper.Wrap(pagedata, bar:=bar)
+                Dim cad_id As String = "BioCAD" & metabolite.id.ToString.PadLeft(11, "0"c)
+                Dim mona_xrefs As biocad_registryModel.db_xrefs() = registry.db_xrefs _
+                    .where(field("db_key") = mona,
+                           field("obj_id") = metabolite.id) _
+                    .select(Of biocad_registryModel.db_xrefs)
 
-                mapping(db_xref.xref) = cad_id
+                For Each id As biocad_registryModel.db_xrefs In mona_xrefs
+                    mapping(id.xref) = cad_id
+                Next
 
-                If Not list.hasName(cad_id) Then
-                    Dim metabolite As biocad_registryModel.molecule = registry.molecule _
-                        .where(field("id") = db_xref.obj_id) _
-                        .find(Of biocad_registryModel.molecule)
+                Call bar.SetLabel(cad_id & " -> " & metabolite.name)
 
-                    If metabolite Is Nothing Then
-                        Call $"missing metabolite of db_xref mapping: {cad_id} -> {db_xref.ToString}".Warning
-                        Continue For
-                    Else
-                        Call bar.SetLabel(cad_id & " -> " & db_xref.xref)
-                    End If
-
-                    Dim xrefs = registry.db_xrefs _
-                        .where(field("db_key") <> mona, field("obj_id") = db_xref.obj_id) _
-                        .select(Of biocad_registryModel.db_xrefs)() _
-                        .GroupBy(Function(a) a.db_key) _
-                        .ToDictionary(Function(a) a.Key,
-                                      Function(a)
-                                          Return a _
-                                              .Select(Function(x) x.xref) _
-                                              .Distinct _
-                                              .ToArray
-                                      End Function)
-                    Dim metab As New MetaInfo With {
-                        .ID = cad_id,
-                        .description = metabolite.note,
-                        .exact_mass = metabolite.mass,
-                        .formula = metabolite.formula,
-                        .IUPACName = metabolite.name,
-                        .name = metabolite.name,
-                        .synonym = registry.synonym.where(field("obj_id") = db_xref.obj_id).project(Of String)("synonym"),
-                        .xref = New xref With {
-                            .CAS = xrefs.TryGetValue(cas),
-                            .chebi = xrefs.TryGetValue(chebi).DefaultFirst,
-                            .ChEMBL = xrefs.TryGetValue(chembl).DefaultFirst,
-                            .ChemIDplus = xrefs.TryGetValue(ChemIDplus).DefaultFirst,
-                            .chemspider = xrefs.TryGetValue(chemspider).DefaultFirst,
-                            .DrugBank = xrefs.TryGetValue(DrugBank).DefaultFirst,
-                            .foodb = xrefs.TryGetValue(foodb).DefaultFirst,
-                            .HMDB = xrefs.TryGetValue(hmdb).DefaultFirst,
-                            .KEGG = xrefs.TryGetValue(kegg).DefaultFirst,
-                            .KEGGdrug = xrefs.TryGetValue(kegg_drug).DefaultFirst,
-                            .KNApSAcK = xrefs.TryGetValue(KNApSAcK).DefaultFirst,
-                            .lipidmaps = xrefs.TryGetValue(lipidmaps).DefaultFirst,
-                            .MeSH = xrefs.TryGetValue(mesh).DefaultFirst,
-                            .Wikipedia = xrefs.TryGetValue(Wikipedia).DefaultFirst,
-                            .pubchem = xrefs.TryGetValue(PubChem).DefaultFirst,
-                            .metlin = xrefs.TryGetValue(metlin).DefaultFirst,
-                            .MetaCyc = xrefs.TryGetValue(biocyc).DefaultFirst,
-                            .SMILES = registry.sequence_graph _
-                                .where(field("molecule_id") = db_xref.obj_id) _
-                                .find(Of biocad_registryModel.sequence_graph) _
-                               ?.sequence
-                        }
+                Dim xrefs = registry.db_xrefs _
+                    .where(field("db_key") <> mona,
+                           field("obj_id") = metabolite.id) _
+                    .select(Of biocad_registryModel.db_xrefs)() _
+                    .GroupBy(Function(a) a.db_key) _
+                    .ToDictionary(Function(a) a.Key,
+                                  Function(a)
+                                      Return a _
+                                          .Select(Function(x) x.xref) _
+                                          .Distinct _
+                                          .ToArray
+                                  End Function)
+                Dim metab As New MetaInfo With {
+                    .ID = cad_id,
+                    .description = metabolite.note,
+                    .exact_mass = metabolite.mass,
+                    .formula = metabolite.formula,
+                    .IUPACName = metabolite.name,
+                    .name = metabolite.name,
+                    .synonym = registry.synonym.where(field("obj_id") = metabolite.id).project(Of String)("synonym"),
+                    .xref = New xref With {
+                        .CAS = xrefs.TryGetValue(cas),
+                        .chebi = xrefs.TryGetValue(chebi).DefaultFirst,
+                        .ChEMBL = xrefs.TryGetValue(chembl).DefaultFirst,
+                        .ChemIDplus = xrefs.TryGetValue(ChemIDplus).DefaultFirst,
+                        .chemspider = xrefs.TryGetValue(chemspider).DefaultFirst,
+                        .DrugBank = xrefs.TryGetValue(DrugBank).DefaultFirst,
+                        .foodb = xrefs.TryGetValue(foodb).DefaultFirst,
+                        .HMDB = xrefs.TryGetValue(hmdb).DefaultFirst,
+                        .KEGG = xrefs.TryGetValue(kegg).DefaultFirst,
+                        .KEGGdrug = xrefs.TryGetValue(kegg_drug).DefaultFirst,
+                        .KNApSAcK = xrefs.TryGetValue(KNApSAcK).DefaultFirst,
+                        .lipidmaps = xrefs.TryGetValue(lipidmaps).DefaultFirst,
+                        .MeSH = xrefs.TryGetValue(mesh).DefaultFirst,
+                        .Wikipedia = xrefs.TryGetValue(Wikipedia).DefaultFirst,
+                        .pubchem = xrefs.TryGetValue(PubChem).DefaultFirst,
+                        .metlin = xrefs.TryGetValue(metlin).DefaultFirst,
+                        .MetaCyc = xrefs.TryGetValue(biocyc).DefaultFirst,
+                        .SMILES = registry.sequence_graph _
+                            .where(field("molecule_id") = metabolite.id) _
+                            .find(Of biocad_registryModel.sequence_graph) _
+                           ?.sequence
                     }
+                }
 
-                    Call list.add(cad_id, metab)
-                End If
+                Call list.add(cad_id, metab)
             Next
         Next
 
