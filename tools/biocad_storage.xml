@@ -56,6 +56,12 @@ biocad_storage
  A wrapper for the biocad registry vocabulary table
  </summary>
 </member>
+<member name="P:biocad_storage.BioCadVocabulary.go_term">
+ <summary>
+ gene ontology
+ </summary>
+ <returns></returns>
+</member>
 <member name="T:biocad_storage.GenBankImports">
  <summary>
  imports a single new genomics data model
