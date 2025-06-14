@@ -8,7 +8,6 @@ Imports Microsoft.VisualBasic.Net.Http
 Imports RegistryTool.My
 Imports SMRUCC.genomics
 Imports SMRUCC.genomics.Assembly.NCBI.GenBank
-Imports SMRUCC.genomics.SequenceModel.FASTA
 Imports Metadata = BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaLib
 
 Public Class FormMain
@@ -69,7 +68,7 @@ Public Class FormMain
         Dim block As i32 = 1
 
         If filename.ExtensionSuffix("csv") Then
-            Dim csv As New StreamWriter(filename.Open(FileMode.OpenOrCreate, doClear:=True))
+            Dim csv As New System.IO.StreamWriter(filename.Open(FileMode.OpenOrCreate, doClear:=True))
             Dim row As New RowObject From {"ID", "name", "formula", "exact_mass", "cas_id", "kegg_id", "hmdb_id", "chebi_id", "pubchem_cid", "lipidmaps_id", "smiles"}
             Dim db_xrefs As xref
 
