@@ -12,7 +12,7 @@ Public Module ProtFasta
     ''' <returns></returns>
     <Extension>
     Public Iterator Function ExportEnzyme(registry As biocad_registry) As IEnumerable(Of FastaSeq)
-        Dim page_size As Integer = 2000
+        Dim page_size As Integer = 100
         Dim ec_id As UInteger = registry.vocabulary_terms.ecnumber_term
 
         For page As Integer = 1 To Integer.MaxValue

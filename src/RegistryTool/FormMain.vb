@@ -5,6 +5,7 @@ Imports BioNovoGene.BioDeep.Chemistry.MetaLib.CrossReference
 Imports Microsoft.VisualBasic.Data.Framework.IO
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Net.Http
+Imports Microsoft.VisualBasic.Serialization.JSON
 Imports RegistryTool.My
 Imports SMRUCC.genomics
 Imports SMRUCC.genomics.Assembly.NCBI.GenBank
@@ -159,6 +160,26 @@ Public Class FormMain
                 Call str.Dispose()
                 Call s.Dispose()
                 Call MessageBox.Show("Export enzyme database to local annotation repository file success!",
+                                     "Task Finish",
+                                     MessageBoxButtons.OK,
+                                     MessageBoxIcon.Information)
+            End If
+        End Using
+    End Sub
+
+    Private Sub ExportKEGGIDMappingToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportKEGGIDMappingToolStripMenuItem.Click
+        Using file As New SaveFileDialog With {.Filter = "id mapping file(*.json)|*.json"}
+            If file.ShowDialog = DialogResult.OK Then
+                Call MyApplication.Loading(
+                    Function(println)
+                        Call MyApplication.biocad_registry _
+                            .ExportIdMapping("KEGG") _
+                            .GetJson _
+                            .SaveTo(file.FileName)
+
+                        Return True
+                    End Function)
+                Call MessageBox.Show("Export KEGG id mapping to local annotation repository file success!",
                                      "Task Finish",
                                      MessageBoxButtons.OK,
                                      MessageBoxIcon.Information)
