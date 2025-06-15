@@ -84,6 +84,12 @@ Microsoft.VisualBasic.MIME.application.json
  <param name="index"></param>
  <returns></returns>
 </member>
+<member name="M:Microsoft.VisualBasic.MIME.application.json.Javascript.JsonArray.AsObjects">
+ <summary>
+ directcast this json array as a collection of the json object
+ </summary>
+ <returns></returns>
+</member>
 <member name="T:Microsoft.VisualBasic.MIME.application.json.Javascript.JsonElement">
  <summary>
  The abstract javascript object model
