@@ -48,7 +48,7 @@ Public Class PubChemArticleImports
             For Each cid As UInteger In article.cids
                 Dim mol = registry.db_xrefs _
                     .where(field("db_key") = pubchem_id,
-                           field("xref") = cid,
+                           field("xref") = cid.ToString,
                            field("type") = terms.metabolite_term) _
                     .project(Of UInteger)("obj_id")
 
