@@ -46,7 +46,11 @@ Public Class PubChemArticleImports
             End If
 
             For Each cid As UInteger In article.cids
-                Dim mol = registry.db_xrefs.where(field("db_key") = pubchem_id, field("xref") = cid).project(Of UInteger)("obj_id")
+                Dim mol = registry.db_xrefs _
+                    .where(field("db_key") = pubchem_id,
+                           field("xref") = cid,
+                           field("type") = terms.metabolite_term) _
+                    .project(Of UInteger)("obj_id")
 
                 If mol.IsNullOrEmpty Then
                     Continue For
