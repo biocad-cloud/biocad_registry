@@ -58,7 +58,11 @@ Public Class PubChemArticleImports
                 Continue For
             End If
 
-            For Each cid As UInteger In article.cids
+            For Each cid As UInteger In article.cids.Select(Function(s) s.Trim(""""c, "'"c, " "c))
+                If Val(cid) = 0 Then
+                    Continue For
+                End If
+
                 Dim mol = registry.db_xrefs _
                     .where(field("db_key") = pubchem_id,
                            field("xref") = cid.ToString,
