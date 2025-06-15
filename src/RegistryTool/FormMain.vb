@@ -197,7 +197,7 @@ Public Class FormMain
     End Sub
 
     Private Sub PubMedKnowledgeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PubMedKnowledgeToolStripMenuItem.Click
-        Using file As New OpenFileDialog With {.Filter = "pubmed json(*.json)|*.json", .Multiselect = True}
+        Using file As New OpenFileDialog With {.Filter = "pubmed json(*.json)|*.json|pubmed table(*.csv)|*.csv", .Multiselect = True}
             If file.ShowDialog = DialogResult.OK Then
                 Dim Topic As String = InputBox("Set Topic Term of current set of the pubmed knowledge data:")
 
