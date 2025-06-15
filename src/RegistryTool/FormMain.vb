@@ -197,16 +197,20 @@ Public Class FormMain
     End Sub
 
     Private Sub PubMedKnowledgeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PubMedKnowledgeToolStripMenuItem.Click
-        Using file As New OpenFileDialog With {.Filter = "pubmed json(*.json)|*.json"}
+        Using file As New OpenFileDialog With {.Filter = "pubmed json(*.json)|*.json", .Multiselect = True}
             If file.ShowDialog = DialogResult.OK Then
                 Dim Topic As String = InputBox("Set Topic Term of current set of the pubmed knowledge data:")
 
                 If Not Topic.StringEmpty(, True) Then
-                    Dim articles As PubChemTextJSON() = PubChemTextJSON.ParseJSON(file.FileName)
-
                     Call MyApplication.Loading(
                         Function(println)
-                            Call New PubChemArticleImports(MyApplication.biocad_registry).MakeImports(articles, Topic)
+                            Dim kb As New PubChemArticleImports(MyApplication.biocad_registry)
+
+                            For Each jsonfile As String In file.FileNames
+                                Call println(" -> imports: " & jsonfile.BaseName)
+                                Call kb.MakeImports(PubChemTextJSON.ParseJSON(jsonfile), Topic)
+                            Next
+
                             Return True
                         End Function)
                 End If
