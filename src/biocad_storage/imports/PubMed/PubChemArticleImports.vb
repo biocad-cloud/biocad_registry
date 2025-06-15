@@ -58,7 +58,7 @@ Public Class PubChemArticleImports
                 Continue For
             End If
 
-            For Each cid As UInteger In article.cids.Select(Function(s) s.Trim(""""c, "'"c, " "c))
+            For Each cid As UInteger In article.cids.Select(Function(s) Strings.Trim(s).Trim(""""c, "'"c, " "c))
                 If Val(cid) = 0 Then
                     Continue For
                 End If
@@ -98,7 +98,11 @@ Public Class PubChemArticleImports
                 Continue For
             End If
 
-            For Each mesh_name As String In article.meshheadings
+            For Each mesh_name As String In article.meshheadings.Select(Function(s) Strings.Trim(s).Trim(""""c, "'"c, " "c))
+                If mesh_name = "" Then
+                    Continue For
+                End If
+
                 Dim term = registry.mesh.find_object(field("mesh_term") = mesh_name)
                 If term Is Nothing Then
                     registry.mesh.add(field("mesh_term") = mesh_name)
