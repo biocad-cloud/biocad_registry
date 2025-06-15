@@ -17,7 +17,7 @@ Public Class PubChemArticleImports
     Public Sub MakePageImports(articles As IEnumerable(Of PubMedTextTable), topic As String)
         Dim topic_id As UInteger = terms.GetVocabularyTerm(topic.ToLower, "Topic")
 
-        For Each pagedata As PubMedTextTable() In articles.SplitIterator(10000)
+        For Each pagedata As PubMedTextTable() In articles.Where(Function(a) a.pmid > 0).SplitIterator(10000)
             Call MakeImports(pagedata, topic_id)
         Next
     End Sub
@@ -38,7 +38,7 @@ Public Class PubChemArticleImports
                     field("authors") = article.articleauth,
                     field("title") = article.articletitle,
                     field("journal") = article.articlejourname,
-                    field("year") = Val(article.citation.StringSplit("[;,\s]").First),
+                    field("year") = CUInt(Val(article.citation.StringSplit("[;,\s]").FirstOrDefault)),
                     field("citation") = article.citation,
                     field("doi") = article.doi,
                     field("affil") = article.articleaffil,
