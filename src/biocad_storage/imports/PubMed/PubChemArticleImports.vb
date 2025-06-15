@@ -1,4 +1,5 @@
-﻿Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm
+﻿Imports System.Runtime.CompilerServices
+Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.PubMed
 
@@ -13,10 +14,22 @@ Public Class PubChemArticleImports
         Me.registry = registry
     End Sub
 
+    Public Sub MakePageImports(articles As IEnumerable(Of PubMedTextTable), topic As String)
+        Dim topic_id As UInteger = terms.GetVocabularyTerm(topic.ToLower, "Topic")
+
+        For Each pagedata As PubMedTextTable() In articles.SplitIterator(10000)
+            Call MakeImports(pagedata, topic_id)
+        Next
+    End Sub
+
+    <MethodImpl(MethodImplOptions.AggressiveInlining)>
     Public Sub MakeImports(articles As PubMedTextTable(), topic As String)
+        Call MakeImports(articles, topic_id:=terms.GetVocabularyTerm(topic.ToLower, "Topic"))
+    End Sub
+
+    Private Sub MakeImports(articles As PubMedTextTable(), topic_id As UInteger)
         Dim trans As CommitTransaction = registry.pubmed.open_transaction.ignore
         Dim pubchem_id As UInteger = terms.pubchem_term
-        Dim topic_id As UInteger = terms.GetVocabularyTerm(topic.ToLower, "Topic")
 
         For Each article As PubMedTextTable In TqdmWrapper.Wrap(articles, wrap_console:=wrap_tqdm)
             If registry.pubmed.find_object(field("id") = article.pmid) Is Nothing Then

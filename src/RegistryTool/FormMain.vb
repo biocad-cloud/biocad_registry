@@ -206,9 +206,14 @@ Public Class FormMain
                         Function(println)
                             Dim kb As New PubChemArticleImports(MyApplication.biocad_registry)
 
-                            For Each jsonfile As String In file.FileNames
-                                Call println(" -> imports: " & jsonfile.BaseName)
-                                Call kb.MakeImports(PubMedTextTable.ParseJSON(jsonfile), Topic)
+                            For Each filepath As String In file.FileNames
+                                Call println(" -> imports: " & filepath.BaseName)
+
+                                If filepath.ExtensionSuffix("json") Then
+                                    Call kb.MakeImports(PubMedTextTable.ParseJSON(filepath), Topic)
+                                Else
+                                    Call kb.MakePageImports(PubMedTextTable.LoadTable(filepath), Topic)
+                                End If
                             Next
 
                             Return True
