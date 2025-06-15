@@ -116,6 +116,30 @@ Public Class biocad_registry : Inherits biocad_registryModel.db_mysql
         End Get
     End Property
 
+    Public ReadOnly Property mesh As TableModel(Of biocad_registryModel.mesh)
+        Get
+            Return m_mesh
+        End Get
+    End Property
+
+    Public ReadOnly Property mesh_link As TableModel(Of biocad_registryModel.mesh_link)
+        Get
+            Return m_mesh_link
+        End Get
+    End Property
+
+    Public ReadOnly Property pubmed As TableModel(Of biocad_registryModel.pubmed)
+        Get
+            Return m_pubmed
+        End Get
+    End Property
+
+    Public ReadOnly Property pubmed_source As TableModel(Of biocad_registryModel.pubmed_source)
+        Get
+            Return m_pubmed_source
+        End Get
+    End Property
+
     Public ReadOnly Property vocabulary_terms As BioCadVocabulary
 
     Sub New(mysql As ConnectionUri)
