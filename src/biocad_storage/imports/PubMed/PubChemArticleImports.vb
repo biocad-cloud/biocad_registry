@@ -6,6 +6,7 @@ Public Class PubChemArticleImports
 
     ReadOnly registry As biocad_registry
     ReadOnly terms As BioCadVocabulary
+    ReadOnly wrap_tqdm As Boolean = False
 
     Sub New(registry As biocad_registry)
         Me.terms = registry.vocabulary_terms
@@ -17,7 +18,7 @@ Public Class PubChemArticleImports
         Dim pubchem_id As UInteger = terms.pubchem_term
         Dim topic_id As UInteger = terms.GetVocabularyTerm(topic.ToLower, "Topic")
 
-        For Each article As PubChemTextJSON In TqdmWrapper.Wrap(articles)
+        For Each article As PubChemTextJSON In TqdmWrapper.Wrap(articles, wrap_console:=wrap_tqdm)
             If registry.pubmed.find_object(field("id") = article.pmid) Is Nothing Then
                 Call trans.add(
                     field("id") = article.pmid,
@@ -39,7 +40,7 @@ Public Class PubChemArticleImports
 
         trans = registry.pubmed_source.open_transaction.ignore
 
-        For Each article As PubChemTextJSON In TqdmWrapper.Wrap(articles)
+        For Each article As PubChemTextJSON In TqdmWrapper.Wrap(articles, wrap_console:=wrap_tqdm)
             If article.cids.IsNullOrEmpty Then
                 Continue For
             End If
@@ -71,7 +72,7 @@ Public Class PubChemArticleImports
 
         trans = registry.mesh_link.open_transaction.ignore
 
-        For Each article As PubChemTextJSON In TqdmWrapper.Wrap(articles)
+        For Each article As PubChemTextJSON In TqdmWrapper.Wrap(articles, wrap_console:=wrap_tqdm)
             If article.meshheadings.IsNullOrEmpty Then
                 Continue For
             End If
