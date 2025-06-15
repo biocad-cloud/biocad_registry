@@ -272,26 +272,6 @@ SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI
  </summary>
  <returns></returns>
 </member>
-<member name="T:SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.PubMed.PubChemTextJSON">
- <summary>
- the json export of the pubchem literal search result
- </summary>
-</member>
-<member name="P:SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.PubMed.PubChemTextJSON.articleauth">
- <summary>
- authors names
- </summary>
- <returns></returns>
-</member>
-<member name="M:SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.PubMed.PubChemTextJSON.ParseJSON(System.String)">
- <summary>
- 
- </summary>
- <param name="json">
- could be a json file its file path or the json text content data.
- </param>
- <returns></returns>
-</member>
 <member name="T:SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.PubMed.PubmedArticle">
  <summary>
  PubMed® comprises more than 36 million citations for biomedical literature from MEDLINE, 
@@ -377,6 +357,47 @@ SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI
  + ``email`` should be the e-mail address Of the maintainer Of the tool, And should be a valid e-mail address.
  
  </summary>
+</member>
+<member name="T:SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.PubMed.PubMedTextTable">
+ <summary>
+ A publication record in pubmed database, export from pubchem database export in csv/json list format
+ </summary>
+ <remarks>
+ dump data from pubchem data that make associates from pubchem and pubmed
+ </remarks>
+</member>
+<member name="P:SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.PubMed.PubMedTextTable.pmid">
+ <summary>
+ the article pubmed id
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.PubMed.PubMedTextTable.meshheadings">
+ <summary>
+ keywords about this article
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.PubMed.PubMedTextTable.cids">
+ <summary>
+ the related compound list about this article
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.PubMed.PubMedTextTable.articleauth">
+ <summary>
+ authors names
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.PubMed.PubMedTextTable.ParseJSON(System.String)">
+ <summary>
+ 
+ </summary>
+ <param name="json">
+ could be a json file its file path or the json text content data.
+ </param>
+ <returns></returns>
 </member>
 </members>
 </doc>

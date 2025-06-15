@@ -1195,32 +1195,6 @@ BioNovoGene.BioDeep.Chemistry.Massbank
  Table export result of <see cref="T:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.JsonQuery"/>
  </summary>
 </member>
-<member name="T:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.PubMed">
- <summary>
- A publication record in pubmed database
- </summary>
- <remarks>
- dump data from pubchem data that make associates from pubchem and pubmed
- </remarks>
-</member>
-<member name="P:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.PubMed.pmid">
- <summary>
- the article pubmed id
- </summary>
- <returns></returns>
-</member>
-<member name="P:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.PubMed.meshheadings">
- <summary>
- keywords about this article
- </summary>
- <returns></returns>
-</member>
-<member name="P:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.PubMed.cids">
- <summary>
- the related compound list about this article
- </summary>
- <returns></returns>
-</member>
 <member name="M:BioNovoGene.BioDeep.Chemistry.PubChemDescriptorRepo.#ctor(System.String)">
  <summary>
  
