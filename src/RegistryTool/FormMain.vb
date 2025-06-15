@@ -9,6 +9,7 @@ Imports Microsoft.VisualBasic.Serialization.JSON
 Imports RegistryTool.My
 Imports SMRUCC.genomics
 Imports SMRUCC.genomics.Assembly.NCBI.GenBank
+Imports SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.PubMed
 Imports Metadata = BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaLib
 
 Public Class FormMain
@@ -191,6 +192,24 @@ Public Class FormMain
         Using file As New SaveFileDialog With {.Filter = "id file(*.txt)|*.txt"}
             If file.ShowDialog = DialogResult.OK Then
                 Call MyApplication.biocad_registry.ExportTagList("Blood").SaveTo(file.FileName)
+            End If
+        End Using
+    End Sub
+
+    Private Sub PubMedKnowledgeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PubMedKnowledgeToolStripMenuItem.Click
+        Using file As New OpenFileDialog With {.Filter = "pubmed json(*.json)|*.json"}
+            If file.ShowDialog = DialogResult.OK Then
+                Dim Topic As String = InputBox("Set Topic Term of current set of the pubmed knowledge data:")
+
+                If Not Topic.StringEmpty(, True) Then
+                    Dim articles As PubChemTextJSON() = PubChemTextJSON.ParseJSON(file.FileName)
+
+                    Call MyApplication.Loading(
+                        Function(println)
+                            Call New PubChemArticleImports(MyApplication.biocad_registry).MakeImports(articles, Topic)
+                            Return True
+                        End Function)
+                End If
             End If
         End Using
     End Sub

@@ -36,12 +36,13 @@ Partial Class FormMain
         Me.ExportMetabolitesDatabaseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExportEnzymeDatabaseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExportKEGGIDMappingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem3 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ExportBloodTagToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ImportsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GenBankToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.ToolStripMenuItem3 = New System.Windows.Forms.ToolStripSeparator()
-        Me.ExportBloodTagToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PubMedKnowledgeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -133,9 +134,20 @@ Partial Class FormMain
         Me.ExportKEGGIDMappingToolStripMenuItem.Size = New System.Drawing.Size(224, 22)
         Me.ExportKEGGIDMappingToolStripMenuItem.Text = "Export KEGG IDMapping"
         '
+        'ToolStripMenuItem3
+        '
+        Me.ToolStripMenuItem3.Name = "ToolStripMenuItem3"
+        Me.ToolStripMenuItem3.Size = New System.Drawing.Size(221, 6)
+        '
+        'ExportBloodTagToolStripMenuItem
+        '
+        Me.ExportBloodTagToolStripMenuItem.Name = "ExportBloodTagToolStripMenuItem"
+        Me.ExportBloodTagToolStripMenuItem.Size = New System.Drawing.Size(224, 22)
+        Me.ExportBloodTagToolStripMenuItem.Text = "Export Blood Tag"
+        '
         'ImportsToolStripMenuItem
         '
-        Me.ImportsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GenBankToolStripMenuItem})
+        Me.ImportsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GenBankToolStripMenuItem, Me.PubMedKnowledgeToolStripMenuItem})
         Me.ImportsToolStripMenuItem.Name = "ImportsToolStripMenuItem"
         Me.ImportsToolStripMenuItem.Size = New System.Drawing.Size(60, 20)
         Me.ImportsToolStripMenuItem.Text = "Imports"
@@ -143,7 +155,7 @@ Partial Class FormMain
         'GenBankToolStripMenuItem
         '
         Me.GenBankToolStripMenuItem.Name = "GenBankToolStripMenuItem"
-        Me.GenBankToolStripMenuItem.Size = New System.Drawing.Size(121, 22)
+        Me.GenBankToolStripMenuItem.Size = New System.Drawing.Size(181, 22)
         Me.GenBankToolStripMenuItem.Text = "GenBank"
         '
         'StatusStrip1
@@ -161,16 +173,11 @@ Partial Class FormMain
         Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(42, 17)
         Me.ToolStripStatusLabel1.Text = "Ready!"
         '
-        'ToolStripMenuItem3
+        'PubMedKnowledgeToolStripMenuItem
         '
-        Me.ToolStripMenuItem3.Name = "ToolStripMenuItem3"
-        Me.ToolStripMenuItem3.Size = New System.Drawing.Size(221, 6)
-        '
-        'ExportBloodTagToolStripMenuItem
-        '
-        Me.ExportBloodTagToolStripMenuItem.Name = "ExportBloodTagToolStripMenuItem"
-        Me.ExportBloodTagToolStripMenuItem.Size = New System.Drawing.Size(224, 22)
-        Me.ExportBloodTagToolStripMenuItem.Text = "Export Blood Tag"
+        Me.PubMedKnowledgeToolStripMenuItem.Name = "PubMedKnowledgeToolStripMenuItem"
+        Me.PubMedKnowledgeToolStripMenuItem.Size = New System.Drawing.Size(181, 22)
+        Me.PubMedKnowledgeToolStripMenuItem.Text = "PubMed Knowledge"
         '
         'FormMain
         '
@@ -212,4 +219,5 @@ Partial Class FormMain
     Friend WithEvents ExportKEGGIDMappingToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem3 As ToolStripSeparator
     Friend WithEvents ExportBloodTagToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents PubMedKnowledgeToolStripMenuItem As ToolStripMenuItem
 End Class
