@@ -228,7 +228,7 @@ biocad_storage
    KEY `find_xrefs` (`type`,`xref`),
    KEY `dbid_index` (`xref`),
    KEY `search_dbxrefs` (`obj_id`,`db_key`,`xref`,`type`)
- ) ENGINE=InnoDB AUTO_INCREMENT=3216196 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+ ) ENGINE=InnoDB AUTO_INCREMENT=22561938 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
  /*!40101 SET character_set_client = @saved_cs_client */;
  
  --
@@ -614,6 +614,161 @@ biocad_storage
  Memberwise clone of current table Object.
  </summary>
 </member>
+<member name="T:biocad_storage.biocad_registryModel.mesh">
+ <summary>
+ ```SQL
+ 
+ --
+ 
+ DROP TABLE IF EXISTS `mesh`;
+ /*!40101 SET @saved_cs_client     = @@character_set_client */;
+ /*!50503 SET character_set_client = utf8mb4 */;
+ CREATE TABLE `mesh` (
+   `id` int unsigned NOT NULL AUTO_INCREMENT,
+   `mesh_term` varchar(255) COLLATE utf8mb3_bin NOT NULL,
+   `molecule_id` int unsigned NOT NULL DEFAULT '0',
+   `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+   PRIMARY KEY (`id`),
+   UNIQUE KEY `id_UNIQUE` (`id`),
+   KEY `molecule_data_idx` (`molecule_id`)
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+ /*!40101 SET character_set_client = @saved_cs_client */;
+ 
+ --
+ ```
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="M:biocad_storage.biocad_registryModel.mesh.GetDeleteSQL">
+ <summary>
+ ```SQL
+ DELETE FROM `mesh` WHERE `id` = '{0}';
+ ```
+ </summary>
+</member>
+<member name="M:biocad_storage.biocad_registryModel.mesh.GetInsertSQL">
+ <summary>
+ ```SQL
+ INSERT INTO `mesh` (`id`, `mesh_term`, `molecule_id`, `add_time`) VALUES ('{0}', '{1}', '{2}', '{3}');
+ ```
+ </summary>
+</member>
+<member name="M:biocad_storage.biocad_registryModel.mesh.GetInsertSQL(System.Boolean)">
+ <summary>
+ ```SQL
+ INSERT INTO `mesh` (`id`, `mesh_term`, `molecule_id`, `add_time`) VALUES ('{0}', '{1}', '{2}', '{3}');
+ ```
+ </summary>
+</member>
+<member name="M:biocad_storage.biocad_registryModel.mesh.GetDumpInsertValue(System.Boolean)">
+ <summary>
+ <see cref="M:biocad_storage.biocad_registryModel.mesh.GetInsertSQL"/>
+ </summary>
+</member>
+<member name="M:biocad_storage.biocad_registryModel.mesh.GetReplaceSQL">
+ <summary>
+ ```SQL
+ REPLACE INTO `mesh` (`id`, `mesh_term`, `molecule_id`, `add_time`) VALUES ('{0}', '{1}', '{2}', '{3}');
+ ```
+ </summary>
+</member>
+<member name="M:biocad_storage.biocad_registryModel.mesh.GetReplaceSQL(System.Boolean)">
+ <summary>
+ ```SQL
+ REPLACE INTO `mesh` (`id`, `mesh_term`, `molecule_id`, `add_time`) VALUES ('{0}', '{1}', '{2}', '{3}');
+ ```
+ </summary>
+</member>
+<member name="M:biocad_storage.biocad_registryModel.mesh.GetUpdateSQL">
+ <summary>
+ ```SQL
+ UPDATE `mesh` SET `id`='{0}', `mesh_term`='{1}', `molecule_id`='{2}', `add_time`='{3}' WHERE `id` = '{4}';
+ ```
+ </summary>
+</member>
+<member name="M:biocad_storage.biocad_registryModel.mesh.Clone">
+ <summary>
+ Memberwise clone of current table Object.
+ </summary>
+</member>
+<member name="T:biocad_storage.biocad_registryModel.mesh_link">
+ <summary>
+ ```SQL
+ 
+ --
+ 
+ DROP TABLE IF EXISTS `mesh_link`;
+ /*!40101 SET @saved_cs_client     = @@character_set_client */;
+ /*!50503 SET character_set_client = utf8mb4 */;
+ CREATE TABLE `mesh_link` (
+   `id` int unsigned NOT NULL AUTO_INCREMENT,
+   `mesh_id` int unsigned NOT NULL,
+   `pubmed_id` int unsigned NOT NULL,
+   `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+   PRIMARY KEY (`id`),
+   UNIQUE KEY `id_UNIQUE` (`id`),
+   KEY `pubmed_data_idx` (`pubmed_id`),
+   KEY `mesh_name_idx` (`mesh_id`)
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+ /*!40101 SET character_set_client = @saved_cs_client */;
+ 
+ --
+ ```
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="M:biocad_storage.biocad_registryModel.mesh_link.GetDeleteSQL">
+ <summary>
+ ```SQL
+ DELETE FROM `mesh_link` WHERE `id` = '{0}';
+ ```
+ </summary>
+</member>
+<member name="M:biocad_storage.biocad_registryModel.mesh_link.GetInsertSQL">
+ <summary>
+ ```SQL
+ INSERT INTO `mesh_link` (`id`, `mesh_id`, `pubmed_id`, `add_time`) VALUES ('{0}', '{1}', '{2}', '{3}');
+ ```
+ </summary>
+</member>
+<member name="M:biocad_storage.biocad_registryModel.mesh_link.GetInsertSQL(System.Boolean)">
+ <summary>
+ ```SQL
+ INSERT INTO `mesh_link` (`id`, `mesh_id`, `pubmed_id`, `add_time`) VALUES ('{0}', '{1}', '{2}', '{3}');
+ ```
+ </summary>
+</member>
+<member name="M:biocad_storage.biocad_registryModel.mesh_link.GetDumpInsertValue(System.Boolean)">
+ <summary>
+ <see cref="M:biocad_storage.biocad_registryModel.mesh_link.GetInsertSQL"/>
+ </summary>
+</member>
+<member name="M:biocad_storage.biocad_registryModel.mesh_link.GetReplaceSQL">
+ <summary>
+ ```SQL
+ REPLACE INTO `mesh_link` (`id`, `mesh_id`, `pubmed_id`, `add_time`) VALUES ('{0}', '{1}', '{2}', '{3}');
+ ```
+ </summary>
+</member>
+<member name="M:biocad_storage.biocad_registryModel.mesh_link.GetReplaceSQL(System.Boolean)">
+ <summary>
+ ```SQL
+ REPLACE INTO `mesh_link` (`id`, `mesh_id`, `pubmed_id`, `add_time`) VALUES ('{0}', '{1}', '{2}', '{3}');
+ ```
+ </summary>
+</member>
+<member name="M:biocad_storage.biocad_registryModel.mesh_link.GetUpdateSQL">
+ <summary>
+ ```SQL
+ UPDATE `mesh_link` SET `id`='{0}', `mesh_id`='{1}', `pubmed_id`='{2}', `add_time`='{3}' WHERE `id` = '{4}';
+ ```
+ </summary>
+</member>
+<member name="M:biocad_storage.biocad_registryModel.mesh_link.Clone">
+ <summary>
+ Memberwise clone of current table Object.
+ </summary>
+</member>
 <member name="T:biocad_storage.biocad_registryModel.molecule">
  <summary>
  ```SQL
@@ -626,16 +781,16 @@ biocad_storage
  CREATE TABLE `molecule` (
    `id` int unsigned NOT NULL AUTO_INCREMENT,
    `xref_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'the source external reference id of current molecule, for a gene should be a locus_tag, and protein should be a main uniprot accession id and for metabolite should be pubchem cid or chebi id(255 chars for long metacyc id)',
-   `name` varchar(512) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'the name of the molecule',
+   `name` varchar(512) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'the name of the molecule',
    `mass` double NOT NULL COMMENT 'the molecular exact mass',
    `type` int unsigned NOT NULL COMMENT 'the molecule type, the id of the vocabulary term, value could be nucl(DNA), RNA, prot, metabolite, complex, dna_motif_sequence, protein_motif_sequence',
-   `formula` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'metabolite formula or nucl/prot sequence',
+   `formula` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'metabolite formula or nucl/prot sequence',
    `parent` int unsigned NOT NULL COMMENT 'the parent metabolite id, example as RNA is a parent of polypeptide, and gene is a parent of RNA sequence.',
    `tax_id` int unsigned DEFAULT NULL COMMENT 'the ncbi taxonomy id of current molecule that belongs to, apply for the protein/gene. this relationship data is extract from the genbank/uniprot annotation source directly',
    `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'add time of current molecular entity',
-   `note` longtext COLLATE utf8mb4_unicode_ci COMMENT 'description text about current entity object',
+   `note` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci COMMENT 'description text about current entity object',
    PRIMARY KEY (`id`),
-   UNIQUE KEY `id_UNIQUE` (`id`) /*!80000 INVISIBLE */,
+   UNIQUE KEY `id_UNIQUE` (`id`),
    UNIQUE KEY `unique_reference` (`xref_id`),
    KEY `data_type_idx` (`type`),
    KEY `parent_molecule_idx` (`parent`),
@@ -643,8 +798,9 @@ biocad_storage
    KEY `xref_index` (`xref_id`),
    KEY `mass_filter` (`mass`),
    KEY `find_index` (`xref_id`,`type`),
-   KEY `taxonomy_info_idx` (`tax_id`)
- ) ENGINE=InnoDB AUTO_INCREMENT=23609479 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='The molecular entity object inside a cell';
+   KEY `taxonomy_info_idx` (`tax_id`),
+   FULLTEXT KEY `search_text` (`name`,`note`)
+ ) ENGINE=InnoDB AUTO_INCREMENT=76695624 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='The molecular entity object inside a cell';
  /*!40101 SET character_set_client = @saved_cs_client */;
  
  --
@@ -890,7 +1046,7 @@ biocad_storage
    UNIQUE KEY `id_UNIQUE` (`id`),
    KEY `molecule_obj_idx` (`molecule_id`),
    KEY `ontology_term_idx` (`ontology_id`)
- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+ ) ENGINE=InnoDB AUTO_INCREMENT=2191556 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
  /*!40101 SET character_set_client = @saved_cs_client */;
  
  --
@@ -970,7 +1126,7 @@ biocad_storage
    KEY `check_label` (`tag_id`,`molecule_id`),
    KEY `filter_tag` (`tag_id`),
    KEY `filter_obj` (`molecule_id`)
- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='keywords, tags, labels of the molecule entity';
+ ) ENGINE=InnoDB AUTO_INCREMENT=3089060 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='keywords, tags, labels of the molecule entity';
  /*!40101 SET character_set_client = @saved_cs_client */;
  
  --
@@ -1164,7 +1320,7 @@ biocad_storage
    KEY `mol_index` (`molecule_id`),
    KEY `check_odor` (`molecule_id`,`category`,`odor`),
    FULLTEXT KEY `search_text` (`text`)
- ) ENGINE=InnoDB AUTO_INCREMENT=175324 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='odor information about the metabolite molecules';
+ ) ENGINE=InnoDB AUTO_INCREMENT=178128 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='odor information about the metabolite molecules';
  /*!40101 SET character_set_client = @saved_cs_client */;
  
  --
@@ -1277,13 +1433,14 @@ biocad_storage
    `id` int unsigned NOT NULL AUTO_INCREMENT,
    `db_xref` varchar(64) COLLATE utf8mb3_bin NOT NULL,
    `db_source` int unsigned NOT NULL,
+   `rank` int unsigned NOT NULL,
    `name` varchar(255) COLLATE utf8mb3_bin NOT NULL,
    `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
    `description` longtext COLLATE utf8mb3_bin,
    PRIMARY KEY (`id`),
    UNIQUE KEY `id_UNIQUE` (`id`),
    KEY `find_term` (`db_xref`,`db_source`)
- ) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='molecule ontology class';
+ ) ENGINE=InnoDB AUTO_INCREMENT=253991 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='molecule ontology class';
  /*!40101 SET character_set_client = @saved_cs_client */;
  
  --
@@ -1301,14 +1458,14 @@ biocad_storage
 <member name="M:biocad_storage.biocad_registryModel.ontology.GetInsertSQL">
  <summary>
  ```SQL
- INSERT INTO `ontology` (`id`, `db_xref`, `db_source`, `name`, `add_time`, `description`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}');
+ INSERT INTO `ontology` (`id`, `db_xref`, `db_source`, `rank`, `name`, `add_time`, `description`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}');
  ```
  </summary>
 </member>
 <member name="M:biocad_storage.biocad_registryModel.ontology.GetInsertSQL(System.Boolean)">
  <summary>
  ```SQL
- INSERT INTO `ontology` (`id`, `db_xref`, `db_source`, `name`, `add_time`, `description`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}');
+ INSERT INTO `ontology` (`id`, `db_xref`, `db_source`, `rank`, `name`, `add_time`, `description`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}');
  ```
  </summary>
 </member>
@@ -1320,21 +1477,21 @@ biocad_storage
 <member name="M:biocad_storage.biocad_registryModel.ontology.GetReplaceSQL">
  <summary>
  ```SQL
- REPLACE INTO `ontology` (`id`, `db_xref`, `db_source`, `name`, `add_time`, `description`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}');
+ REPLACE INTO `ontology` (`id`, `db_xref`, `db_source`, `rank`, `name`, `add_time`, `description`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}');
  ```
  </summary>
 </member>
 <member name="M:biocad_storage.biocad_registryModel.ontology.GetReplaceSQL(System.Boolean)">
  <summary>
  ```SQL
- REPLACE INTO `ontology` (`id`, `db_xref`, `db_source`, `name`, `add_time`, `description`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}');
+ REPLACE INTO `ontology` (`id`, `db_xref`, `db_source`, `rank`, `name`, `add_time`, `description`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}');
  ```
  </summary>
 </member>
 <member name="M:biocad_storage.biocad_registryModel.ontology.GetUpdateSQL">
  <summary>
  ```SQL
- UPDATE `ontology` SET `id`='{0}', `db_xref`='{1}', `db_source`='{2}', `name`='{3}', `add_time`='{4}', `description`='{5}' WHERE `id` = '{6}';
+ UPDATE `ontology` SET `id`='{0}', `db_xref`='{1}', `db_source`='{2}', `rank`='{3}', `name`='{4}', `add_time`='{5}', `description`='{6}' WHERE `id` = '{7}';
  ```
  </summary>
 </member>
@@ -1359,9 +1516,10 @@ biocad_storage
    `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
    PRIMARY KEY (`id`),
    UNIQUE KEY `id_UNIQUE` (`id`),
+   UNIQUE KEY `unique_link` (`ontology_id`,`is_a`),
    KEY `ontology_term_idx` (`ontology_id`),
    KEY `link_term_idx` (`is_a`)
- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+ ) ENGINE=InnoDB AUTO_INCREMENT=360249 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
  /*!40101 SET character_set_client = @saved_cs_client */;
  
  --
@@ -1620,6 +1778,179 @@ biocad_storage
  Memberwise clone of current table Object.
  </summary>
 </member>
+<member name="T:biocad_storage.biocad_registryModel.pubmed">
+ <summary>
+ ```SQL
+ 
+ --
+ 
+ DROP TABLE IF EXISTS `pubmed`;
+ /*!40101 SET @saved_cs_client     = @@character_set_client */;
+ /*!50503 SET character_set_client = utf8mb4 */;
+ CREATE TABLE `pubmed` (
+   `id` int unsigned NOT NULL COMMENT 'the pubmed id of the article',
+   `authors` mediumtext COLLATE utf8mb3_bin,
+   `title` mediumtext COLLATE utf8mb3_bin,
+   `journal` varchar(255) COLLATE utf8mb3_bin DEFAULT NULL,
+   `year` int unsigned NOT NULL DEFAULT '1900',
+   `citation` varchar(255) COLLATE utf8mb3_bin NOT NULL DEFAULT '-',
+   `doi` varchar(100) COLLATE utf8mb3_bin NOT NULL DEFAULT '-',
+   `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+   `affil` longtext COLLATE utf8mb3_bin,
+   `abstract` longtext COLLATE utf8mb3_bin,
+   PRIMARY KEY (`id`),
+   UNIQUE KEY `id_UNIQUE` (`id`),
+   KEY `index_journal` (`journal`) /*!80000 INVISIBLE */,
+   KEY `sort_year` (`year` DESC) /*!80000 INVISIBLE */,
+   KEY `index_doi` (`doi`) /*!80000 INVISIBLE */,
+   KEY `sort_time` (`add_time`),
+   FULLTEXT KEY `search_article_txt` (`title`,`abstract`) /*!80000 INVISIBLE */
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+ /*!40101 SET character_set_client = @saved_cs_client */;
+ 
+ --
+ ```
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="P:biocad_storage.biocad_registryModel.pubmed.id">
+ <summary>
+ the pubmed id of the article
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:biocad_storage.biocad_registryModel.pubmed.GetDeleteSQL">
+ <summary>
+ ```SQL
+ DELETE FROM `pubmed` WHERE `id` = '{0}';
+ ```
+ </summary>
+</member>
+<member name="M:biocad_storage.biocad_registryModel.pubmed.GetInsertSQL">
+ <summary>
+ ```SQL
+ INSERT INTO `pubmed` (`id`, `authors`, `title`, `journal`, `year`, `citation`, `doi`, `add_time`, `affil`, `abstract`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}');
+ ```
+ </summary>
+</member>
+<member name="M:biocad_storage.biocad_registryModel.pubmed.GetInsertSQL(System.Boolean)">
+ <summary>
+ ```SQL
+ INSERT INTO `pubmed` (`id`, `authors`, `title`, `journal`, `year`, `citation`, `doi`, `add_time`, `affil`, `abstract`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}');
+ ```
+ </summary>
+</member>
+<member name="M:biocad_storage.biocad_registryModel.pubmed.GetDumpInsertValue(System.Boolean)">
+ <summary>
+ <see cref="M:biocad_storage.biocad_registryModel.pubmed.GetInsertSQL"/>
+ </summary>
+</member>
+<member name="M:biocad_storage.biocad_registryModel.pubmed.GetReplaceSQL">
+ <summary>
+ ```SQL
+ REPLACE INTO `pubmed` (`id`, `authors`, `title`, `journal`, `year`, `citation`, `doi`, `add_time`, `affil`, `abstract`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}');
+ ```
+ </summary>
+</member>
+<member name="M:biocad_storage.biocad_registryModel.pubmed.GetReplaceSQL(System.Boolean)">
+ <summary>
+ ```SQL
+ REPLACE INTO `pubmed` (`id`, `authors`, `title`, `journal`, `year`, `citation`, `doi`, `add_time`, `affil`, `abstract`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}');
+ ```
+ </summary>
+</member>
+<member name="M:biocad_storage.biocad_registryModel.pubmed.GetUpdateSQL">
+ <summary>
+ ```SQL
+ UPDATE `pubmed` SET `id`='{0}', `authors`='{1}', `title`='{2}', `journal`='{3}', `year`='{4}', `citation`='{5}', `doi`='{6}', `add_time`='{7}', `affil`='{8}', `abstract`='{9}' WHERE `id` = '{10}';
+ ```
+ </summary>
+</member>
+<member name="M:biocad_storage.biocad_registryModel.pubmed.Clone">
+ <summary>
+ Memberwise clone of current table Object.
+ </summary>
+</member>
+<member name="T:biocad_storage.biocad_registryModel.pubmed_source">
+ <summary>
+ ```SQL
+ 
+ --
+ 
+ DROP TABLE IF EXISTS `pubmed_source`;
+ /*!40101 SET @saved_cs_client     = @@character_set_client */;
+ /*!50503 SET character_set_client = utf8mb4 */;
+ CREATE TABLE `pubmed_source` (
+   `id` int unsigned NOT NULL AUTO_INCREMENT,
+   `molecule_id` int unsigned NOT NULL,
+   `pubmed_id` int unsigned NOT NULL,
+   `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+   `note` mediumtext COLLATE utf8mb3_bin,
+   PRIMARY KEY (`id`),
+   KEY `pubmed_data_idx` (`pubmed_id`),
+   KEY `molecule_data_idx` (`molecule_id`)
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+ /*!40101 SET character_set_client = @saved_cs_client */;
+ 
+ --
+ ```
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="M:biocad_storage.biocad_registryModel.pubmed_source.GetDeleteSQL">
+ <summary>
+ ```SQL
+ DELETE FROM `pubmed_source` WHERE `id` = '{0}';
+ ```
+ </summary>
+</member>
+<member name="M:biocad_storage.biocad_registryModel.pubmed_source.GetInsertSQL">
+ <summary>
+ ```SQL
+ INSERT INTO `pubmed_source` (`id`, `molecule_id`, `pubmed_id`, `add_time`, `note`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}');
+ ```
+ </summary>
+</member>
+<member name="M:biocad_storage.biocad_registryModel.pubmed_source.GetInsertSQL(System.Boolean)">
+ <summary>
+ ```SQL
+ INSERT INTO `pubmed_source` (`id`, `molecule_id`, `pubmed_id`, `add_time`, `note`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}');
+ ```
+ </summary>
+</member>
+<member name="M:biocad_storage.biocad_registryModel.pubmed_source.GetDumpInsertValue(System.Boolean)">
+ <summary>
+ <see cref="M:biocad_storage.biocad_registryModel.pubmed_source.GetInsertSQL"/>
+ </summary>
+</member>
+<member name="M:biocad_storage.biocad_registryModel.pubmed_source.GetReplaceSQL">
+ <summary>
+ ```SQL
+ REPLACE INTO `pubmed_source` (`id`, `molecule_id`, `pubmed_id`, `add_time`, `note`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}');
+ ```
+ </summary>
+</member>
+<member name="M:biocad_storage.biocad_registryModel.pubmed_source.GetReplaceSQL(System.Boolean)">
+ <summary>
+ ```SQL
+ REPLACE INTO `pubmed_source` (`id`, `molecule_id`, `pubmed_id`, `add_time`, `note`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}');
+ ```
+ </summary>
+</member>
+<member name="M:biocad_storage.biocad_registryModel.pubmed_source.GetUpdateSQL">
+ <summary>
+ ```SQL
+ UPDATE `pubmed_source` SET `id`='{0}', `molecule_id`='{1}', `pubmed_id`='{2}', `add_time`='{3}', `note`='{4}' WHERE `id` = '{5}';
+ ```
+ </summary>
+</member>
+<member name="M:biocad_storage.biocad_registryModel.pubmed_source.Clone">
+ <summary>
+ Memberwise clone of current table Object.
+ </summary>
+</member>
 <member name="T:biocad_storage.biocad_registryModel.reaction">
  <summary>
  ```SQL
@@ -1633,6 +1964,7 @@ biocad_storage
    `id` int unsigned NOT NULL AUTO_INCREMENT,
    `db_xref` varchar(64) COLLATE utf8mb3_bin NOT NULL COMMENT 'the reference id of this reaction model from the external source database',
    `source_dbkey` int unsigned NOT NULL COMMENT 'the source database name reference vocabulary term index',
+   `hashcode` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL COMMENT 'the unique indexed hash code for the reaction, rule for evaluate this hashcode:  mapping metabolite to biocad registry internal id, build mapped equation string, then cal md5 hashcode of the left and right and combine the hashcode string into one',
    `name` varchar(1024) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL COMMENT 'name of current reaction model',
    `equation` mediumtext CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL COMMENT 'reaction equation of current reaction model',
    `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -1640,8 +1972,10 @@ biocad_storage
    PRIMARY KEY (`id`),
    UNIQUE KEY `id_UNIQUE` (`id`),
    UNIQUE KEY `db_xref_UNIQUE` (`db_xref`),
-   KEY `source_database_idx` (`source_dbkey`)
- ) ENGINE=InnoDB AUTO_INCREMENT=65720 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='the definition of the biological reaction process';
+   KEY `source_database_idx` (`source_dbkey`),
+   KEY `hashindex` (`hashcode`),
+   FULLTEXT KEY `search_text` (`name`,`note`)
+ ) ENGINE=InnoDB AUTO_INCREMENT=130649 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='the definition of the biological reaction process';
  /*!40101 SET character_set_client = @saved_cs_client */;
  
  --
@@ -1660,6 +1994,14 @@ biocad_storage
 <member name="P:biocad_storage.biocad_registryModel.reaction.source_dbkey">
  <summary>
  the source database name reference vocabulary term index
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:biocad_storage.biocad_registryModel.reaction.hashcode">
+ <summary>
+ the unique indexed hash code for the reaction, rule for evaluate this hashcode:  mapping metabolite to biocad registry internal id, build mapped equation string, then cal md5 hashcode of the left and right and combine the hashcode string into one
  </summary>
  <value></value>
  <returns></returns>
@@ -1691,14 +2033,14 @@ biocad_storage
 <member name="M:biocad_storage.biocad_registryModel.reaction.GetInsertSQL">
  <summary>
  ```SQL
- INSERT INTO `reaction` (`id`, `db_xref`, `source_dbkey`, `name`, `equation`, `add_time`, `note`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}');
+ INSERT INTO `reaction` (`id`, `db_xref`, `source_dbkey`, `hashcode`, `name`, `equation`, `add_time`, `note`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}');
  ```
  </summary>
 </member>
 <member name="M:biocad_storage.biocad_registryModel.reaction.GetInsertSQL(System.Boolean)">
  <summary>
  ```SQL
- INSERT INTO `reaction` (`id`, `db_xref`, `source_dbkey`, `name`, `equation`, `add_time`, `note`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}');
+ INSERT INTO `reaction` (`id`, `db_xref`, `source_dbkey`, `hashcode`, `name`, `equation`, `add_time`, `note`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}');
  ```
  </summary>
 </member>
@@ -1710,21 +2052,21 @@ biocad_storage
 <member name="M:biocad_storage.biocad_registryModel.reaction.GetReplaceSQL">
  <summary>
  ```SQL
- REPLACE INTO `reaction` (`id`, `db_xref`, `source_dbkey`, `name`, `equation`, `add_time`, `note`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}');
+ REPLACE INTO `reaction` (`id`, `db_xref`, `source_dbkey`, `hashcode`, `name`, `equation`, `add_time`, `note`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}');
  ```
  </summary>
 </member>
 <member name="M:biocad_storage.biocad_registryModel.reaction.GetReplaceSQL(System.Boolean)">
  <summary>
  ```SQL
- REPLACE INTO `reaction` (`id`, `db_xref`, `source_dbkey`, `name`, `equation`, `add_time`, `note`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}');
+ REPLACE INTO `reaction` (`id`, `db_xref`, `source_dbkey`, `hashcode`, `name`, `equation`, `add_time`, `note`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}');
  ```
  </summary>
 </member>
 <member name="M:biocad_storage.biocad_registryModel.reaction.GetUpdateSQL">
  <summary>
  ```SQL
- UPDATE `reaction` SET `id`='{0}', `db_xref`='{1}', `source_dbkey`='{2}', `name`='{3}', `equation`='{4}', `add_time`='{5}', `note`='{6}' WHERE `id` = '{7}';
+ UPDATE `reaction` SET `id`='{0}', `db_xref`='{1}', `source_dbkey`='{2}', `hashcode`='{3}', `name`='{4}', `equation`='{5}', `add_time`='{6}', `note`='{7}' WHERE `id` = '{8}';
  ```
  </summary>
 </member>
@@ -1757,7 +2099,7 @@ biocad_storage
    KEY `molecule_data_idx` (`molecule_id`),
    KEY `role_term_idx` (`role`),
    KEY `check_duplicated` (`reaction`,`db_xref`,`role`)
- ) ENGINE=InnoDB AUTO_INCREMENT=227925 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='the relationship between the reaction model and molecule objects';
+ ) ENGINE=InnoDB AUTO_INCREMENT=450964 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='the relationship between the reaction model and molecule objects';
  /*!40101 SET character_set_client = @saved_cs_client */;
  
  --
@@ -1870,7 +2212,7 @@ biocad_storage
    KEY `role_term_idx` (`role`),
    KEY `reaction_process_idx` (`reaction_id`),
    KEY `search_term` (`term`)
- ) ENGINE=InnoDB AUTO_INCREMENT=36533 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='the enzyme associates with the reactions';
+ ) ENGINE=InnoDB AUTO_INCREMENT=71724 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='the enzyme associates with the reactions';
  /*!40101 SET character_set_client = @saved_cs_client */;
  
  --
@@ -1976,7 +2318,7 @@ biocad_storage
    KEY `molecules_idx` (`molecule_id`),
    KEY `search_sequence` (`hashcode`),
    KEY `index_mols_seqs` (`molecule_id`,`hashcode`)
- ) ENGINE=InnoDB AUTO_INCREMENT=48642526 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='the sequence composition data of the molecule';
+ ) ENGINE=InnoDB AUTO_INCREMENT=162500331 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='the sequence composition data of the molecule';
  /*!40101 SET character_set_client = @saved_cs_client */;
  
  --
@@ -2085,8 +2427,9 @@ biocad_storage
    `note` longtext CHARACTER SET utf8mb3 COLLATE utf8mb3_bin,
    PRIMARY KEY (`id`),
    UNIQUE KEY `id_UNIQUE` (`id`),
-   UNIQUE KEY `compartment_name_UNIQUE` (`compartment_name`)
- ) ENGINE=InnoDB AUTO_INCREMENT=99 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='defines the subcellular compartments';
+   UNIQUE KEY `compartment_name_UNIQUE` (`compartment_name`),
+   KEY `name_index` (`compartment_name`)
+ ) ENGINE=InnoDB AUTO_INCREMENT=305 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='defines the subcellular compartments';
  /*!40101 SET character_set_client = @saved_cs_client */;
  
  --
@@ -2168,7 +2511,7 @@ biocad_storage
    KEY `subcellular_compartments_idx` (`compartment_id`),
    KEY `molecule_obj_idx` (`obj_id`),
    KEY `link_entity_type_idx` (`entity`)
- ) ENGINE=InnoDB AUTO_INCREMENT=507106 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='associates the subcellular_compartments and the molecule objects';
+ ) ENGINE=InnoDB AUTO_INCREMENT=861124 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='associates the subcellular_compartments and the molecule objects';
  /*!40101 SET character_set_client = @saved_cs_client */;
  
  --
@@ -2259,7 +2602,7 @@ biocad_storage
    KEY `filter_type` (`type_id`),
    KEY `filter_obj` (`obj_id`),
    KEY `search_name` (`obj_id`,`type_id`,`hashcode`)
- ) ENGINE=InnoDB AUTO_INCREMENT=3901404 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='synonym names of the biocad registry object, example as: molecules, genomes, taxonomys, reactions, pathways';
+ ) ENGINE=InnoDB AUTO_INCREMENT=6459199 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='synonym names of the biocad registry object, example as: molecules, genomes, taxonomys, reactions, pathways';
  /*!40101 SET character_set_client = @saved_cs_client */;
  
  --
@@ -2331,6 +2674,85 @@ biocad_storage
  </summary>
 </member>
 <member name="M:biocad_storage.biocad_registryModel.synonym.Clone">
+ <summary>
+ Memberwise clone of current table Object.
+ </summary>
+</member>
+<member name="T:biocad_storage.biocad_registryModel.taxonomy_source">
+ <summary>
+ ```SQL
+ 
+ --
+ 
+ DROP TABLE IF EXISTS `taxonomy_source`;
+ /*!40101 SET @saved_cs_client     = @@character_set_client */;
+ /*!50503 SET character_set_client = utf8mb4 */;
+ CREATE TABLE `taxonomy_source` (
+   `id` int unsigned NOT NULL AUTO_INCREMENT,
+   `molecule_id` int unsigned NOT NULL,
+   `ncbi_taxid` int unsigned NOT NULL,
+   `doi` varchar(128) COLLATE utf8mb3_bin NOT NULL DEFAULT '-',
+   `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+   PRIMARY KEY (`id`),
+   UNIQUE KEY `id_UNIQUE` (`id`),
+   KEY `molecule_data_idx` (`molecule_id`),
+   KEY `taxonomy_data_idx` (`ncbi_taxid`)
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+ /*!40101 SET character_set_client = @saved_cs_client */;
+ 
+ --
+ ```
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="M:biocad_storage.biocad_registryModel.taxonomy_source.GetDeleteSQL">
+ <summary>
+ ```SQL
+ DELETE FROM `taxonomy_source` WHERE `id` = '{0}';
+ ```
+ </summary>
+</member>
+<member name="M:biocad_storage.biocad_registryModel.taxonomy_source.GetInsertSQL">
+ <summary>
+ ```SQL
+ INSERT INTO `taxonomy_source` (`id`, `molecule_id`, `ncbi_taxid`, `doi`, `add_time`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}');
+ ```
+ </summary>
+</member>
+<member name="M:biocad_storage.biocad_registryModel.taxonomy_source.GetInsertSQL(System.Boolean)">
+ <summary>
+ ```SQL
+ INSERT INTO `taxonomy_source` (`id`, `molecule_id`, `ncbi_taxid`, `doi`, `add_time`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}');
+ ```
+ </summary>
+</member>
+<member name="M:biocad_storage.biocad_registryModel.taxonomy_source.GetDumpInsertValue(System.Boolean)">
+ <summary>
+ <see cref="M:biocad_storage.biocad_registryModel.taxonomy_source.GetInsertSQL"/>
+ </summary>
+</member>
+<member name="M:biocad_storage.biocad_registryModel.taxonomy_source.GetReplaceSQL">
+ <summary>
+ ```SQL
+ REPLACE INTO `taxonomy_source` (`id`, `molecule_id`, `ncbi_taxid`, `doi`, `add_time`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}');
+ ```
+ </summary>
+</member>
+<member name="M:biocad_storage.biocad_registryModel.taxonomy_source.GetReplaceSQL(System.Boolean)">
+ <summary>
+ ```SQL
+ REPLACE INTO `taxonomy_source` (`id`, `molecule_id`, `ncbi_taxid`, `doi`, `add_time`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}');
+ ```
+ </summary>
+</member>
+<member name="M:biocad_storage.biocad_registryModel.taxonomy_source.GetUpdateSQL">
+ <summary>
+ ```SQL
+ UPDATE `taxonomy_source` SET `id`='{0}', `molecule_id`='{1}', `ncbi_taxid`='{2}', `doi`='{3}', `add_time`='{4}' WHERE `id` = '{5}';
+ ```
+ </summary>
+</member>
+<member name="M:biocad_storage.biocad_registryModel.taxonomy_source.Clone">
  <summary>
  Memberwise clone of current table Object.
  </summary>
@@ -2432,7 +2854,7 @@ biocad_storage
    PRIMARY KEY (`id`),
    UNIQUE KEY `id_UNIQUE` (`id`),
    KEY `search_term` (`category`,`term`)
- ) ENGINE=InnoDB AUTO_INCREMENT=292 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+ ) ENGINE=InnoDB AUTO_INCREMENT=1104 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
  /*!40101 SET character_set_client = @saved_cs_client */;
  
  --
@@ -2452,7 +2874,7 @@ biocad_storage
  /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
  /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
  
- -- Dump completed on 2025-05-15 21:52:44
+ -- Dump completed on 2025-06-15 13:46:36
  ```
  </summary>
  <remarks></remarks>
