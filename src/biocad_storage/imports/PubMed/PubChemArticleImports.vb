@@ -1,4 +1,5 @@
 ﻿Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm
+Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.PubMed
 
 Public Class PubChemArticleImports
@@ -12,8 +13,86 @@ Public Class PubChemArticleImports
     End Sub
 
     Public Sub MakeImports(articles As PubChemTextJSON(), topic As String)
-        For Each article As PubChemTextJSON In TqdmWrapper.Wrap(articles)
+        Dim trans As CommitTransaction = registry.pubmed.open_transaction.ignore
+        Dim pubchem_id As UInteger = terms.pubchem_term
+        Dim topic_id As UInteger = terms.GetVocabularyTerm(topic.ToLower, "Topic")
 
+        For Each article As PubChemTextJSON In TqdmWrapper.Wrap(articles)
+            If registry.pubmed.find_object(field("id") = article.pmid) Is Nothing Then
+                Call trans.add(
+                    field("id") = article.pmid,
+                    field("authors") = article.articleauth,
+                    field("title") = article.articletitle,
+                    field("journal") = article.articlejourname,
+                    field("year") = Val(article.citation.StringSplit("[;,\s]").First),
+                    field("citation") = article.citation,
+                    field("doi") = article.doi,
+                    field("affil") = article.articleaffil,
+                    field("abstract") = article.articleabstract
+                )
+            End If
         Next
+
+        Call trans.commit()
+
+        Dim tag_trans = registry.molecule_tags.open_transaction.ignore
+
+        trans = registry.pubmed_source.open_transaction.ignore
+
+        For Each article As PubChemTextJSON In TqdmWrapper.Wrap(articles)
+            If article.cids.IsNullOrEmpty Then
+                Continue For
+            End If
+
+            For Each cid As UInteger In article.cids
+                Dim mol = registry.db_xrefs.where(field("db_key") = pubchem_id, field("xref") = cid).project(Of UInteger)("obj_id")
+
+                If mol.IsNullOrEmpty Then
+                    Continue For
+                End If
+
+                For Each mod_id As UInteger In mol
+                    Call trans.add(
+                        field("molecule_id") = mod_id,
+                        field("pubmed_id") = article.pmid,
+                        field("note") = article.articletitle
+                    )
+                    Call tag_trans.add(
+                        field("tag_id") = topic_id,
+                        field("molecule_id") = mod_id,
+                        field("description") = article.articletitle
+                    )
+                Next
+            Next
+        Next
+
+        Call tag_trans.commit()
+        Call trans.commit()
+
+        trans = registry.mesh_link.open_transaction.ignore
+
+        For Each article As PubChemTextJSON In TqdmWrapper.Wrap(articles)
+            If article.meshheadings.IsNullOrEmpty Then
+                Continue For
+            End If
+
+            For Each mesh_name As String In article.meshheadings
+                Dim term = registry.mesh.find_object(field("mesh_term") = mesh_name)
+                If term Is Nothing Then
+                    registry.mesh.add(field("mesh_term") = mesh_name)
+                    term = registry.mesh.find_object(field("mesh_term") = mesh_name)
+                End If
+                If term Is Nothing Then
+                    Continue For
+                End If
+
+                Call trans.add(
+                    field("mesh_id") = term.id,
+                    field("pubmed_id") = article.pmid
+                )
+            Next
+        Next
+
+        Call trans.commit()
     End Sub
 End Class
