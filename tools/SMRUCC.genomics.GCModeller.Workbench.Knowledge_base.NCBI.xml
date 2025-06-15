@@ -272,6 +272,26 @@ SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI
  </summary>
  <returns></returns>
 </member>
+<member name="T:SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.PubMed.PubChemTextJSON">
+ <summary>
+ the json export of the pubchem literal search result
+ </summary>
+</member>
+<member name="P:SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.PubMed.PubChemTextJSON.articleauth">
+ <summary>
+ authors names
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.PubMed.PubChemTextJSON.ParseJSON(System.String)">
+ <summary>
+ 
+ </summary>
+ <param name="json">
+ could be a json file its file path or the json text content data.
+ </param>
+ <returns></returns>
+</member>
 <member name="T:SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.PubMed.PubmedArticle">
  <summary>
  PubMed® comprises more than 36 million citations for biomedical literature from MEDLINE, 
