@@ -208,7 +208,7 @@ Public Class FormMain
 
                             For Each jsonfile As String In file.FileNames
                                 Call println(" -> imports: " & jsonfile.BaseName)
-                                Call kb.MakeImports(PubChemTextJSON.ParseJSON(jsonfile), Topic)
+                                Call kb.MakeImports(PubMedTextTable.ParseJSON(jsonfile), Topic)
                             Next
 
                             Return True

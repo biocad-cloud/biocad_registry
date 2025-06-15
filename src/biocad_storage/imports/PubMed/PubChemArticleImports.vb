@@ -13,12 +13,12 @@ Public Class PubChemArticleImports
         Me.registry = registry
     End Sub
 
-    Public Sub MakeImports(articles As PubChemTextJSON(), topic As String)
+    Public Sub MakeImports(articles As PubMedTextTable(), topic As String)
         Dim trans As CommitTransaction = registry.pubmed.open_transaction.ignore
         Dim pubchem_id As UInteger = terms.pubchem_term
         Dim topic_id As UInteger = terms.GetVocabularyTerm(topic.ToLower, "Topic")
 
-        For Each article As PubChemTextJSON In TqdmWrapper.Wrap(articles, wrap_console:=wrap_tqdm)
+        For Each article As PubMedTextTable In TqdmWrapper.Wrap(articles, wrap_console:=wrap_tqdm)
             If registry.pubmed.find_object(field("id") = article.pmid) Is Nothing Then
                 Call trans.add(
                     field("id") = article.pmid,
@@ -40,7 +40,7 @@ Public Class PubChemArticleImports
 
         trans = registry.pubmed_source.open_transaction.ignore
 
-        For Each article As PubChemTextJSON In TqdmWrapper.Wrap(articles, wrap_console:=wrap_tqdm)
+        For Each article As PubMedTextTable In TqdmWrapper.Wrap(articles, wrap_console:=wrap_tqdm)
             If article.cids.IsNullOrEmpty Then
                 Continue For
             End If
@@ -76,7 +76,7 @@ Public Class PubChemArticleImports
 
         trans = registry.mesh_link.open_transaction.ignore
 
-        For Each article As PubChemTextJSON In TqdmWrapper.Wrap(articles, wrap_console:=wrap_tqdm)
+        For Each article As PubMedTextTable In TqdmWrapper.Wrap(articles, wrap_console:=wrap_tqdm)
             If article.meshheadings.IsNullOrEmpty Then
                 Continue For
             End If
