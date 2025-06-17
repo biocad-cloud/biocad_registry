@@ -22461,6 +22461,13 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  </summary>
  <returns></returns>
 </member>
+<member name="M:Microsoft.VisualBasic.Text.Parser.CharPtr.op_Implicit(System.Text.StringBuilder)~Microsoft.VisualBasic.Text.Parser.CharPtr">
+ <summary>
+ construct an in-memory dataset
+ </summary>
+ <param name="str">the in-memory string data</param>
+ <returns></returns>
+</member>
 <member name="M:Microsoft.VisualBasic.Text.Parser.CharPtr.op_Equality(Microsoft.VisualBasic.Text.Parser.CharPtr,System.String)">
  <summary>
  check of the string equals?
@@ -28023,9 +28030,17 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
 </member>
 <member name="T:Microsoft.VisualBasic.Emit.Marshal.Pointer`1">
  <summary>
- <see cref="T:System.Array"/> index helper.(在数组的索引基础上封装了数组本身)
+ <see cref="T:System.Array"/> index helper.
  </summary>
  <typeparam name="T"></typeparam>
+ <remarks>
+ (在数组的索引基础上封装了数组本身)
+ </remarks>
+</member>
+<member name="F:Microsoft.VisualBasic.Emit.Marshal.Pointer`1.buffer">
+ <summary>
+ the in-memory dataset
+ </summary>
 </member>
 <member name="P:Microsoft.VisualBasic.Emit.Marshal.Pointer`1.Current">
  <summary>
@@ -28092,6 +28107,9 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  Create a collection wrapper from a <paramref name="source"/> buffer.
  </summary>
  <param name="source">The collection source buffer</param>
+ <remarks>
+ construct an in-memory dataset
+ </remarks>
 </member>
 <member name="M:Microsoft.VisualBasic.Emit.Marshal.Pointer`1.MoveNext">
  <summary>
