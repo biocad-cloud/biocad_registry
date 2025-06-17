@@ -33,6 +33,7 @@
    `id` int unsigned NOT NULL AUTO_INCREMENT,
    `db<em>xref` varchar(64) COLLATE utf8mb3</em>bin NOT NULL COMMENT 'the reference id of this reaction model from the external source database',
    `source_dbkey` int unsigned NOT NULL COMMENT 'the source database name reference vocabulary term index',
+   `hashcode` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL COMMENT 'the unique indexed hash code for the reaction, rule for evaluate this hashcode:  mapping metabolite to biocad registry internal id, build mapped equation string, then cal md5 hashcode of the left and right and combine the hashcode string into one',
    `name` varchar(1024) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL COMMENT 'name of current reaction model',
    `equation` mediumtext CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL COMMENT 'reaction equation of current reaction model',
    `add<em>time` datetime NOT NULL DEFAULT CURRENT</em>TIMESTAMP,
@@ -40,8 +41,10 @@
    PRIMARY KEY (`id`),
    UNIQUE KEY `id_UNIQUE` (`id`),
    UNIQUE KEY `db<em>xref</em>UNIQUE` (`db_xref`),
-   KEY `source<em>database</em>idx` (`source_dbkey`)
- ) ENGINE=InnoDB AUTO<em>INCREMENT=65720 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3</em>bin COMMENT='the definition of the biological reaction process';
+   KEY `source<em>database</em>idx` (`source_dbkey`),
+   KEY `hashindex` (`hashcode`),
+   FULLTEXT KEY `search_text` (`name`,`note`)
+ ) ENGINE=InnoDB AUTO<em>INCREMENT=130649 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3</em>bin COMMENT='the definition of the biological reaction process';
  /<em>!40101 SET character_set_client = @saved_cs_client </em>/;
  
  --
@@ -58,6 +61,8 @@ export class reaction extends <a href="/vignettes/clr/Oracle/LinuxCompatibility/
    db_xref: string;
    # reaction equation of current reaction model
    equation: string;
+   # the unique indexed hash code for the reaction, rule for evaluate this hashcode:  mapping metabolite to biocad registry internal id, build mapped equation string, then cal md5 hashcode of the left and right and combine the hashcode string into one
+   hashcode: string;
    id: integer;
    # name of current reaction model
    name: string;

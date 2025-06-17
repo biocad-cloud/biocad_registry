@@ -37,8 +37,9 @@
    `note` longtext CHARACTER SET utf8mb3 COLLATE utf8mb3_bin,
    PRIMARY KEY (`id`),
    UNIQUE KEY `id_UNIQUE` (`id`),
-   UNIQUE KEY `compartment<em>name</em>UNIQUE` (`compartment_name`)
- ) ENGINE=InnoDB AUTO<em>INCREMENT=99 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3</em>bin COMMENT='defines the subcellular compartments';
+   UNIQUE KEY `compartment<em>name</em>UNIQUE` (`compartment_name`),
+   KEY `name<em>index` (`compartment</em>name`)
+ ) ENGINE=InnoDB AUTO<em>INCREMENT=305 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3</em>bin COMMENT='defines the subcellular compartments';
  /<em>!40101 SET character_set_client = @saved_cs_client </em>/;
  
  --

@@ -90,6 +90,7 @@ table caption {font-size:14px;font-weight:bolder;}
    `id` int unsigned NOT NULL AUTO_INCREMENT,
    `db<em>xref` varchar(64) COLLATE utf8mb3</em>bin NOT NULL COMMENT 'the reference id of this reaction model from the external source database',
    `source_dbkey` int unsigned NOT NULL COMMENT 'the source database name reference vocabulary term index',
+   `hashcode` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL COMMENT 'the unique indexed hash code for the reaction, rule for evaluate this hashcode:  mapping metabolite to biocad registry internal id, build mapped equation string, then cal md5 hashcode of the left and right and combine the hashcode string into one',
    `name` varchar(1024) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL COMMENT 'name of current reaction model',
    `equation` mediumtext CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL COMMENT 'reaction equation of current reaction model',
    `add<em>time` datetime NOT NULL DEFAULT CURRENT</em>TIMESTAMP,
@@ -97,8 +98,10 @@ table caption {font-size:14px;font-weight:bolder;}
    PRIMARY KEY (`id`),
    UNIQUE KEY `id_UNIQUE` (`id`),
    UNIQUE KEY `db<em>xref</em>UNIQUE` (`db_xref`),
-   KEY `source<em>database</em>idx` (`source_dbkey`)
- ) ENGINE=InnoDB AUTO<em>INCREMENT=65720 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3</em>bin COMMENT='the definition of the biological reaction process';
+   KEY `source<em>database</em>idx` (`source_dbkey`),
+   KEY `hashindex` (`hashcode`),
+   FULLTEXT KEY `search_text` (`name`,`note`)
+ ) ENGINE=InnoDB AUTO<em>INCREMENT=130649 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3</em>bin COMMENT='the definition of the biological reaction process';
  /<em>!40101 SET character_set_client = @saved_cs_client </em>/;
  
  --
@@ -130,7 +133,7 @@ table caption {font-size:14px;font-weight:bolder;}
    KEY `molecule<em>data</em>idx` (`molecule_id`),
    KEY `role<em>term</em>idx` (`role`),
    KEY `check<em>duplicated` (`reaction`,`db</em>xref`,`role`)
- ) ENGINE=InnoDB AUTO<em>INCREMENT=227925 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3</em>bin COMMENT='the relationship between the reaction model and molecule objects';
+ ) ENGINE=InnoDB AUTO<em>INCREMENT=450964 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3</em>bin COMMENT='the relationship between the reaction model and molecule objects';
  /<em>!40101 SET character_set_client = @saved_cs_client </em>/;
  
  --
@@ -150,16 +153,16 @@ table caption {font-size:14px;font-weight:bolder;}
  CREATE TABLE `molecule` (
    `id` int unsigned NOT NULL AUTO_INCREMENT,
    `xref<em>id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4</em>unicode<em>ci NOT NULL COMMENT 'the source external reference id of current molecule, for a gene should be a locus</em>tag, and protein should be a main uniprot accession id and for metabolite should be pubchem cid or chebi id(255 chars for long metacyc id)',
-   `name` varchar(512) COLLATE utf8mb4<em>unicode</em>ci NOT NULL COMMENT 'the name of the molecule',
+   `name` varchar(512) CHARACTER SET utf8mb4 COLLATE utf8mb4<em>unicode</em>ci NOT NULL COMMENT 'the name of the molecule',
    `mass` double NOT NULL COMMENT 'the molecular exact mass',
    `type` int unsigned NOT NULL COMMENT 'the molecule type, the id of the vocabulary term, value could be nucl(DNA), RNA, prot, metabolite, complex, dna<em>motif</em>sequence, protein<em>motif</em>sequence',
-   `formula` varchar(128) COLLATE utf8mb4<em>unicode</em>ci NOT NULL COMMENT 'metabolite formula or nucl/prot sequence',
+   `formula` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4<em>unicode</em>ci NOT NULL COMMENT 'metabolite formula or nucl/prot sequence',
    `parent` int unsigned NOT NULL COMMENT 'the parent metabolite id, example as RNA is a parent of polypeptide, and gene is a parent of RNA sequence.',
    `tax_id` int unsigned DEFAULT NULL COMMENT 'the ncbi taxonomy id of current molecule that belongs to, apply for the protein/gene. this relationship data is extract from the genbank/uniprot annotation source directly',
    `add<em>time` datetime NOT NULL DEFAULT CURRENT</em>TIMESTAMP COMMENT 'add time of current molecular entity',
-   `note` longtext COLLATE utf8mb4<em>unicode</em>ci COMMENT 'description text about current entity object',
+   `note` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4<em>unicode</em>ci COMMENT 'description text about current entity object',
    PRIMARY KEY (`id`),
-   UNIQUE KEY `id_UNIQUE` (`id`) /<em>!80000 INVISIBLE </em>/,
+   UNIQUE KEY `id_UNIQUE` (`id`),
    UNIQUE KEY `unique<em>reference` (`xref</em>id`),
    KEY `data<em>type</em>idx` (`type`),
    KEY `parent<em>molecule</em>idx` (`parent`),
@@ -167,8 +170,9 @@ table caption {font-size:14px;font-weight:bolder;}
    KEY `xref<em>index` (`xref</em>id`),
    KEY `mass_filter` (`mass`),
    KEY `find<em>index` (`xref</em>id`,`type`),
-   KEY `taxonomy<em>info</em>idx` (`tax_id`)
- ) ENGINE=InnoDB AUTO<em>INCREMENT=23609479 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4</em>unicode_ci COMMENT='The molecular entity object inside a cell';
+   KEY `taxonomy<em>info</em>idx` (`tax_id`),
+   FULLTEXT KEY `search_text` (`name`,`note`)
+ ) ENGINE=InnoDB AUTO<em>INCREMENT=76695624 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4</em>general_ci COMMENT='The molecular entity object inside a cell';
  /<em>!40101 SET character_set_client = @saved_cs_client </em>/;
  
  --
@@ -201,7 +205,7 @@ table caption {font-size:14px;font-weight:bolder;}
    KEY `find_xrefs` (`type`,`xref`),
    KEY `dbid_index` (`xref`),
    KEY `search<em>dbxrefs` (`obj</em>id`,`db_key`,`xref`,`type`)
- ) ENGINE=InnoDB AUTO<em>INCREMENT=3216196 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4</em>unicode_ci;
+ ) ENGINE=InnoDB AUTO<em>INCREMENT=22561938 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4</em>general_ci;
  /<em>!40101 SET character_set_client = @saved_cs_client </em>/;
  
  --
@@ -226,8 +230,9 @@ table caption {font-size:14px;font-weight:bolder;}
    `note` longtext CHARACTER SET utf8mb3 COLLATE utf8mb3_bin,
    PRIMARY KEY (`id`),
    UNIQUE KEY `id_UNIQUE` (`id`),
-   UNIQUE KEY `compartment<em>name</em>UNIQUE` (`compartment_name`)
- ) ENGINE=InnoDB AUTO<em>INCREMENT=99 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3</em>bin COMMENT='defines the subcellular compartments';
+   UNIQUE KEY `compartment<em>name</em>UNIQUE` (`compartment_name`),
+   KEY `name<em>index` (`compartment</em>name`)
+ ) ENGINE=InnoDB AUTO<em>INCREMENT=305 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3</em>bin COMMENT='defines the subcellular compartments';
  /<em>!40101 SET character_set_client = @saved_cs_client </em>/;
  
  --
@@ -257,7 +262,7 @@ table caption {font-size:14px;font-weight:bolder;}
    KEY `subcellular<em>compartments</em>idx` (`compartment_id`),
    KEY `molecule<em>obj</em>idx` (`obj_id`),
    KEY `link<em>entity</em>type_idx` (`entity`)
- ) ENGINE=InnoDB AUTO<em>INCREMENT=507106 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3</em>bin COMMENT='associates the subcellular_compartments and the molecule objects';
+ ) ENGINE=InnoDB AUTO<em>INCREMENT=861124 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3</em>bin COMMENT='associates the subcellular_compartments and the molecule objects';
  /<em>!40101 SET character_set_client = @saved_cs_client </em>/;
  
  --
@@ -284,7 +289,7 @@ table caption {font-size:14px;font-weight:bolder;}
    PRIMARY KEY (`id`),
    UNIQUE KEY `id_UNIQUE` (`id`),
    KEY `search_term` (`category`,`term`)
- ) ENGINE=InnoDB AUTO<em>INCREMENT=292 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4</em>unicode_ci;
+ ) ENGINE=InnoDB AUTO<em>INCREMENT=1104 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4</em>general_ci;
  /<em>!40101 SET character_set_client = @saved_cs_client </em>/;
  
  --
@@ -304,7 +309,7 @@ table caption {font-size:14px;font-weight:bolder;}
  /<em>!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION </em>/;
  /<em>!40111 SET SQL_NOTES=@OLD_SQL_NOTES </em>/;
  
- -- Dump completed on 2025-05-15 21:52:44
+ -- Dump completed on 2025-06-15 13:46:36
  ```</p></td>
 </tr>
 <tr>

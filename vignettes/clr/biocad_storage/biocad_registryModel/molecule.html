@@ -32,16 +32,16 @@
  CREATE TABLE `molecule` (
    `id` int unsigned NOT NULL AUTO_INCREMENT,
    `xref<em>id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4</em>unicode<em>ci NOT NULL COMMENT 'the source external reference id of current molecule, for a gene should be a locus</em>tag, and protein should be a main uniprot accession id and for metabolite should be pubchem cid or chebi id(255 chars for long metacyc id)',
-   `name` varchar(512) COLLATE utf8mb4<em>unicode</em>ci NOT NULL COMMENT 'the name of the molecule',
+   `name` varchar(512) CHARACTER SET utf8mb4 COLLATE utf8mb4<em>unicode</em>ci NOT NULL COMMENT 'the name of the molecule',
    `mass` double NOT NULL COMMENT 'the molecular exact mass',
    `type` int unsigned NOT NULL COMMENT 'the molecule type, the id of the vocabulary term, value could be nucl(DNA), RNA, prot, metabolite, complex, dna<em>motif</em>sequence, protein<em>motif</em>sequence',
-   `formula` varchar(128) COLLATE utf8mb4<em>unicode</em>ci NOT NULL COMMENT 'metabolite formula or nucl/prot sequence',
+   `formula` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4<em>unicode</em>ci NOT NULL COMMENT 'metabolite formula or nucl/prot sequence',
    `parent` int unsigned NOT NULL COMMENT 'the parent metabolite id, example as RNA is a parent of polypeptide, and gene is a parent of RNA sequence.',
    `tax_id` int unsigned DEFAULT NULL COMMENT 'the ncbi taxonomy id of current molecule that belongs to, apply for the protein/gene. this relationship data is extract from the genbank/uniprot annotation source directly',
    `add<em>time` datetime NOT NULL DEFAULT CURRENT</em>TIMESTAMP COMMENT 'add time of current molecular entity',
-   `note` longtext COLLATE utf8mb4<em>unicode</em>ci COMMENT 'description text about current entity object',
+   `note` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4<em>unicode</em>ci COMMENT 'description text about current entity object',
    PRIMARY KEY (`id`),
-   UNIQUE KEY `id_UNIQUE` (`id`) /<em>!80000 INVISIBLE </em>/,
+   UNIQUE KEY `id_UNIQUE` (`id`),
    UNIQUE KEY `unique<em>reference` (`xref</em>id`),
    KEY `data<em>type</em>idx` (`type`),
    KEY `parent<em>molecule</em>idx` (`parent`),
@@ -49,8 +49,9 @@
    KEY `xref<em>index` (`xref</em>id`),
    KEY `mass_filter` (`mass`),
    KEY `find<em>index` (`xref</em>id`,`type`),
-   KEY `taxonomy<em>info</em>idx` (`tax_id`)
- ) ENGINE=InnoDB AUTO<em>INCREMENT=23609479 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4</em>unicode_ci COMMENT='The molecular entity object inside a cell';
+   KEY `taxonomy<em>info</em>idx` (`tax_id`),
+   FULLTEXT KEY `search_text` (`name`,`note`)
+ ) ENGINE=InnoDB AUTO<em>INCREMENT=76695624 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4</em>general_ci COMMENT='The molecular entity object inside a cell';
  /<em>!40101 SET character_set_client = @saved_cs_client </em>/;
  
  --
