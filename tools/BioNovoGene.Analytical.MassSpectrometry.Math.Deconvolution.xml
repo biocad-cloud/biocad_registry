@@ -722,9 +722,9 @@ BioNovoGene.Analytical.MassSpectrometry.Math.Deconvolution
  </summary>
  <returns></returns>
 </member>
-<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.xcms2.intensity">
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.xcms2.into">
  <summary>
- A value read only property
+ 
  </summary>
  <returns></returns>
 </member>
@@ -741,7 +741,7 @@ BioNovoGene.Analytical.MassSpectrometry.Math.Deconvolution
  <param name="peaktable"></param>
  <returns></returns>
 </member>
-<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.xcms2.Impute">
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.xcms2.Impute(BioNovoGene.Analytical.MassSpectrometry.Math.Imputation)">
  <summary>
  impute missing data with half of the min positive value
  </summary>

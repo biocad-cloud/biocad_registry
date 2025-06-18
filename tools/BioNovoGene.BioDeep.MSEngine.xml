@@ -272,6 +272,20 @@ BioNovoGene.BioDeep.MSEngine
  <param name="uniqueId"></param>
  <returns></returns>
 </member>
+<member name="M:BioNovoGene.BioDeep.MSEngine.MetalIons.IsMetalIon(System.String)">
+ <summary>
+ check of the given formula is metal ion or not?
+ </summary>
+ <param name="formula"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.MSEngine.MetalIons.HasMetalIon(System.String)">
+ <summary>
+ check of the given formula has metal ion or not?
+ </summary>
+ <param name="formula"></param>
+ <returns></returns>
+</member>
 <member name="T:BioNovoGene.BioDeep.MSEngine.Library`1">
  <summary>
  A reference spectrum and annotation data provider

@@ -210,7 +210,11 @@ Public Class FormMain
                                 Call println(" -> imports: " & filepath.BaseName)
 
                                 If filepath.ExtensionSuffix("json") Then
-                                    Call kb.MakeImports(PubMedTextTable.ParseJSON(filepath), Topic)
+                                    Try
+                                        Call kb.MakeImports(PubMedTextTable.ParseJSON(filepath), Topic)
+                                    Catch ex As Exception
+                                        Call MessageBox.Show(ex, "Data Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                                    End Try
                                 Else
                                     Call kb.MakePageImports(PubMedTextTable.LoadTable(filepath), Topic)
                                 End If
