@@ -6,23 +6,6 @@ biocad_storage
 </name>
 </assembly>
 <members>
-<member name="T:biocad_storage.biocad_registry">
- <summary>
- a wrapper of the biocad registry database
- </summary>
-</member>
-<member name="M:biocad_storage.biocad_registry.getVocabulary(System.String,System.String,System.String)">
- <summary>
- 
- </summary>
- <param name="term"></param>
- <param name="category"></param>
- <param name="description"></param>
- <returns></returns>
- <remarks>
- has an internal cache of the vocabulary term data
- </remarks>
-</member>
 <member name="M:biocad_storage.Embedding.ExportGenomicsFingerprint(biocad_storage.biocad_registry)">
  <summary>
  export the genomics sequence fingerprint matrix
@@ -107,6 +90,23 @@ biocad_storage
  <param name="ec_number">the ec number of the enzyme and the reaction</param>
  <param name="metabolites">a collection of the external database metabolite id</param>
  <returns></returns>
+</member>
+<member name="T:biocad_storage.biocad_registry">
+ <summary>
+ a wrapper of the biocad registry database
+ </summary>
+</member>
+<member name="M:biocad_storage.biocad_registry.getVocabulary(System.String,System.String,System.String)">
+ <summary>
+ 
+ </summary>
+ <param name="term"></param>
+ <param name="category"></param>
+ <param name="description"></param>
+ <returns></returns>
+ <remarks>
+ has an internal cache of the vocabulary term data
+ </remarks>
 </member>
 <member name="T:biocad_storage.biocad_registryModel.complex">
  <summary>
