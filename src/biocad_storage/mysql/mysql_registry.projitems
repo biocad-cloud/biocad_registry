@@ -9,6 +9,7 @@
     <Import_RootNamespace>mysql_registry</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)BioCadVocabulary.vb" />
     <Compile Include="$(MSBuildThisFileDirectory)biocad_registry.vb" />
     <Compile Include="$(MSBuildThisFileDirectory)mysql\complex.vb" />
     <Compile Include="$(MSBuildThisFileDirectory)mysql\db_mysql.vb" />

@@ -41,17 +41,6 @@ biocad_storage
  imports chebi metabolite and ontology information
  </summary>
 </member>
-<member name="T:biocad_storage.BioCadVocabulary">
- <summary>
- A wrapper for the biocad registry vocabulary table
- </summary>
-</member>
-<member name="P:biocad_storage.BioCadVocabulary.go_term">
- <summary>
- gene ontology
- </summary>
- <returns></returns>
-</member>
 <member name="T:biocad_storage.GenBankImports">
  <summary>
  imports a single new genomics data model
@@ -89,6 +78,17 @@ biocad_storage
  usually be the uniprot protein id.</param>
  <param name="ec_number">the ec number of the enzyme and the reaction</param>
  <param name="metabolites">a collection of the external database metabolite id</param>
+ <returns></returns>
+</member>
+<member name="T:biocad_storage.BioCadVocabulary">
+ <summary>
+ A wrapper for the biocad registry vocabulary table
+ </summary>
+</member>
+<member name="P:biocad_storage.BioCadVocabulary.go_term">
+ <summary>
+ gene ontology
+ </summary>
  <returns></returns>
 </member>
 <member name="T:biocad_storage.biocad_registry">
