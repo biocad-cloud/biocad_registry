@@ -3169,5 +3169,6 @@ Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		..\..\GCModeller\src\R-sharp\studio\Rstudio.common\Rstudio.common.projitems*{7a637033-8c62-41e9-82c7-d05086291611}*SharedItemsImports = 5
 		biocad_storage\mysql\mysql_registry.projitems*{bd58c2b6-4588-4be9-a8ab-9be85f023d12}*SharedItemsImports = 13
+		biocad_storage\mysql\mysql_registry.projitems*{dbbb4321-2f7f-413b-a150-2fd65d75d2c3}*SharedItemsImports = 5
 	EndGlobalSection
 EndGlobal
