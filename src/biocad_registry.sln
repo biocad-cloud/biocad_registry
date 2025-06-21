@@ -105,6 +105,8 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Bootstrapping", "..\..\GCMo
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "word2vec", "..\..\GCModeller\src\runtime\sciBASIC#\Data\word2vec\word2vec.vbproj", "{8E9BA3DF-3B18-8C14-D11D-BD48437ADC5A}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "mysql_registry", "biocad_storage\mysql\mysql_registry.shproj", "{BD58C2B6-4588-4BE9-A8AB-9BE85F023D12}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		CFD_win32|Any CPU = CFD_win32|Any CPU
@@ -3166,5 +3168,6 @@ Global
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		..\..\GCModeller\src\R-sharp\studio\Rstudio.common\Rstudio.common.projitems*{7a637033-8c62-41e9-82c7-d05086291611}*SharedItemsImports = 5
+		biocad_storage\mysql\mysql_registry.projitems*{bd58c2b6-4588-4be9-a8ab-9be85f023d12}*SharedItemsImports = 13
 	EndGlobalSection
 EndGlobal

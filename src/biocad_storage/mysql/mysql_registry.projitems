@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>bd58c2b6-4588-4be9-a8ab-9be85f023d12</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>mysql_registry</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)biocad_registry.vb" />
+    <Compile Include="$(MSBuildThisFileDirectory)mysql\complex.vb" />
+    <Compile Include="$(MSBuildThisFileDirectory)mysql\db_mysql.vb" />
+    <Compile Include="$(MSBuildThisFileDirectory)mysql\db_xrefs.vb" />
+    <Compile Include="$(MSBuildThisFileDirectory)mysql\genomics.vb" />
+    <Compile Include="$(MSBuildThisFileDirectory)mysql\kinetic_law.vb" />
+    <Compile Include="$(MSBuildThisFileDirectory)mysql\mesh.vb" />
+    <Compile Include="$(MSBuildThisFileDirectory)mysql\mesh_link.vb" />
+    <Compile Include="$(MSBuildThisFileDirectory)mysql\molecule.vb" />
+    <Compile Include="$(MSBuildThisFileDirectory)mysql\molecule_function.vb" />
+    <Compile Include="$(MSBuildThisFileDirectory)mysql\molecule_ontology.vb" />
+    <Compile Include="$(MSBuildThisFileDirectory)mysql\molecule_tags.vb" />
+    <Compile Include="$(MSBuildThisFileDirectory)mysql\ncbi_taxonomy.vb" />
+    <Compile Include="$(MSBuildThisFileDirectory)mysql\odor.vb" />
+    <Compile Include="$(MSBuildThisFileDirectory)mysql\ontology.vb" />
+    <Compile Include="$(MSBuildThisFileDirectory)mysql\ontology_tree.vb" />
+    <Compile Include="$(MSBuildThisFileDirectory)mysql\pathway.vb" />
+    <Compile Include="$(MSBuildThisFileDirectory)mysql\pathway_graph.vb" />
+    <Compile Include="$(MSBuildThisFileDirectory)mysql\pubmed.vb" />
+    <Compile Include="$(MSBuildThisFileDirectory)mysql\pubmed_source.vb" />
+    <Compile Include="$(MSBuildThisFileDirectory)mysql\reaction.vb" />
+    <Compile Include="$(MSBuildThisFileDirectory)mysql\reaction_graph.vb" />
+    <Compile Include="$(MSBuildThisFileDirectory)mysql\regulation_graph.vb" />
+    <Compile Include="$(MSBuildThisFileDirectory)mysql\sequence_graph.vb" />
+    <Compile Include="$(MSBuildThisFileDirectory)mysql\subcellular_compartments.vb" />
+    <Compile Include="$(MSBuildThisFileDirectory)mysql\subcellular_location.vb" />
+    <Compile Include="$(MSBuildThisFileDirectory)mysql\synonym.vb" />
+    <Compile Include="$(MSBuildThisFileDirectory)mysql\taxonomy_source.vb" />
+    <Compile Include="$(MSBuildThisFileDirectory)mysql\taxonomy_tree.vb" />
+    <Compile Include="$(MSBuildThisFileDirectory)mysql\vocabulary.vb" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)mysql\" />
+  </ItemGroup>
+</Project>
