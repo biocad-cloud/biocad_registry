@@ -16,6 +16,7 @@ Public Module TagDataExport
         End If
         Return registry.molecule_tags _
             .where(field("tag_id") = tag_id.id) _
+            .distinct() _
             .project(Of UInteger)("molecule_id") _
             .Select(Function(id) "BioCAD" & id.ToString.PadLeft(11, "0")) _
             .ToArray
@@ -33,6 +34,7 @@ Public Module TagDataExport
             .left_join("molecule") _
             .on(field("`molecule`.id") = field("`molecule_tags`.molecule_id")) _
             .where(field("tag_id") = tag_id.id) _
+            .distinct() _
             .select(Of MetaboliteAnnotation)("CONCAT('BioCAD', LPAD(`molecule`.id, 11, '0')) AS id",
                                              "name",
                                              "formula",
