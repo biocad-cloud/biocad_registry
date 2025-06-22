@@ -1,0 +1,196 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+BioNovoGene.Analytical.MassSpectrometry.Math.Formula.Extensions
+</name>
+</assembly>
+<members>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.AdductsRanking">
+ <summary>
+ A helper tools for make adducts ions ranking
+ </summary>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.AdductsRanking.Rank(System.String,System.String)">
+ <summary>
+ 
+ </summary>
+ <param name="formula_str"></param>
+ <param name="adduct"></param>
+ <returns>
+ a score value for the adducts ranking based on current formula composition.
+ zero or negative value means the current given adducts is not a valid adducts
+ mode, should not use this adducts mode for the annotation result.
+ </returns>
+ 
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.AdductsRanking.Rank(BioNovoGene.BioDeep.Chemoinformatics.Formula.Formula,System.String)">
+ <summary>
+ 
+ </summary>
+ <param name="formula"></param>
+ <param name="adduct_str"></param>
+ <returns>
+ a score value for the adducts ranking based on current formula composition.
+ zero or negative value means the current given adducts is not a valid adducts
+ mode, should not use this adducts mode for the annotation result.
+ </returns>
+ 
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.AdductsRanking.Rank(BioNovoGene.BioDeep.Chemoinformatics.Formula.Formula,BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.MzCalculator)">
+ <summary>
+ 
+ </summary>
+ <param name="formula"></param>
+ <param name="adduct"></param>
+ <returns>
+ a score value for the adducts ranking based on current formula composition.
+ zero or negative value means the current given adducts is not a valid adducts
+ mode, should not use this adducts mode for the annotation result.
+ </returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.AdductsRanking.RankAdducts(BioNovoGene.BioDeep.Chemoinformatics.Formula.Formula,System.Collections.Generic.IEnumerable{System.String})">
+ <summary>
+ 
+ </summary>
+ <param name="formula"></param>
+ <param name="adducts"></param>
+ <returns>
+ the function only populates the valid adducts object and
+ sort these adducts object in desc ranking order. top is better.
+ </returns>
+ 
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.AdductsRanking.RankAdducts(BioNovoGene.BioDeep.Chemoinformatics.Formula.Formula,System.Collections.Generic.IEnumerable{BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.MzCalculator})">
+ <summary>
+ 
+ </summary>
+ <param name="formula"></param>
+ <param name="adducts"></param>
+ <returns>
+ the function only populates the valid adducts object and
+ sort these adducts object in desc ranking order. top is better.
+ </returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.AdductsRanking.RankAdducts(System.String,System.Collections.Generic.IEnumerable{BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.MzCalculator})">
+ <summary>
+ 
+ </summary>
+ <param name="formula_str"></param>
+ <param name="adducts"></param>
+ <returns>
+ the function only populates the valid adducts object and
+ sort these adducts object in desc ranking order. top is better.
+ </returns>
+ 
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.AnthocyaninValidator.CalculateProbability(System.Collections.Generic.Dictionary{System.String,System.Int32})">
+ <summary>
+ 
+ </summary>
+ <param name="elements"></param>
+ <returns></returns>
+ <remarks>
+ cutoff is 30%
+ </remarks>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.AnthocyaninValidator.CheckRules(System.String)">
+ <summary>
+ 
+ </summary>
+ <param name="formula"></param>
+ <returns></returns>
+ <remarks>
+ cutoff is 40%
+ </remarks>
+ 
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.AnthocyaninValidator.CheckRules(System.Collections.Generic.Dictionary{System.String,System.Int32})">
+ <returns></returns>
+ <remarks>
+ cutoff is 40%
+ </remarks>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.AnthocyaninValidator.IsLikelyAnthocyanin(System.Collections.Generic.Dictionary{System.String,System.Int32})">
+ <summary>
+ 
+ </summary>
+ <returns></returns>
+ <remarks>
+ cutoff is 50%
+ </remarks>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.IsotopicAlignment.GetMS(BioNovoGene.BioDeep.Chemoinformatics.Formula.IsotopicPatterns.IsotopeDistribution)">
+ <summary>
+ convert <see cref="P:BioNovoGene.BioDeep.Chemoinformatics.Formula.IsotopicPatterns.IsotopeDistribution.data"/> as <see cref="T:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ms2"/> vector.
+ </summary>
+ <param name="isotopic"></param>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.PeakAnnotation">
+ <summary>
+ Do formula search and peak annotation result
+ </summary>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.PeakAnnotation.products">
+ <summary>
+ the product peak annotation result dataset, this array contains all spectrum peaks, includes
+ peak has been annotated or peaks has no annotation data.
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.PeakAnnotation.formula">
+ <summary>
+ the target metabolite formula source data, this could be parsed from
+ the database of the know metabolite or the de-novo formula prediction
+ result based on the algorithm 
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.PeakAnnotation.GetAnnotatedPeaks">
+ <summary>
+ Filter and get a peak list that with <see cref="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ms2.Annotation"/> not empty.
+ </summary>
+ <returns>
+ a collection of the peaks data with annotation data
+ </returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.PeakAnnotation.DoPeakAnnotation(BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.SplashID.ISpectrum,BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.MzCalculator,BioNovoGene.BioDeep.Chemoinformatics.Formula.Formula,System.Double)">
+ <summary>
+ do score evaluation of the spectrum associated with the assembled formula composition 
+ </summary>
+ <param name="peaks"></param>
+ <param name="adduct"></param>
+ <param name="formula"></param>
+ <param name="da">
+ the mass tolerance error for matches the ms2 spectrum peaks, 
+ usually be the tolerance error for make spectrum centroid 
+ process
+ </param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.PeakAnnotation.op_Explicit(BioNovoGene.Analytical.MassSpectrometry.Math.PeakAnnotation)~BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ms2[]">
+ <summary>
+ get the spectrum peak annotation result outputs
+ </summary>
+ <param name="pa"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.PrecursorIonSearch.SearchByPrecursorMz(System.Double,System.Double,System.Int32,Microsoft.VisualBasic.Language.Value{System.Boolean})">
+ <summary>
+ 
+ </summary>
+ <param name="mz"></param>
+ <param name="charge">abs charge value</param>
+ <param name="ionMode">[1, -1]</param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.SMILESGraph.AsGraph(BioNovoGene.BioDeep.Chemoinformatics.SMILES.ChemicalFormula)">
+ <summary>
+ convert the smiles chemical formula graph data to a network graph object
+ </summary>
+ <param name="f"></param>
+ <returns></returns>
+</member>
+</members>
+</doc>
