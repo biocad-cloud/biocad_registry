@@ -111,7 +111,7 @@ Public Class FormMain
             Call csv.Close()
             Call csv.Dispose()
         Else
-            Dim repo As New RepositoryWriter(filename.Open(IO.FileMode.OpenOrCreate, doClear:=True))
+            Dim repo As New RepositoryWriter(filename.Open(System.IO.FileMode.OpenOrCreate, doClear:=True))
 
             Call println("Export metabolite annotation into local repository...")
 
