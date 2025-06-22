@@ -3315,12 +3315,19 @@ Microsoft.VisualBasic.Data.Framework
 </member>
 <member name="M:Microsoft.VisualBasic.Data.Framework.StorageProvider.ComponentModels.SchemaProvider.CheckFieldConsistent(Microsoft.VisualBasic.Data.Framework.IO.RowObject)">
  <summary>
- 
+ Check of all the csv fields that could be mapped to the current clr object schema?
  </summary>
  <param name="headers">The csv header row.</param>
  <returns>
  这个函数会输出警告信息,如果没有问题,则返回空字符串
  </returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.Framework.StorageProvider.ComponentModels.SchemaProvider.CheckFieldMissing(Microsoft.VisualBasic.Data.Framework.IO.RowObject)">
+ <summary>
+ Check of does any field is missing from the input csv table headers?
+ </summary>
+ <param name="headers"></param>
+ <returns></returns>
 </member>
 <member name="M:Microsoft.VisualBasic.Data.Framework.StorageProvider.ComponentModels.SchemaProvider.ContainsProperty(System.Reflection.PropertyInfo)">
  <summary>

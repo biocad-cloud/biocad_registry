@@ -40,9 +40,9 @@ Partial Class FormMain
         Me.ExportBloodTagToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ImportsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GenBankToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PubMedKnowledgeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.PubMedKnowledgeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -143,7 +143,7 @@ Partial Class FormMain
         '
         Me.ExportBloodTagToolStripMenuItem.Name = "ExportBloodTagToolStripMenuItem"
         Me.ExportBloodTagToolStripMenuItem.Size = New System.Drawing.Size(224, 22)
-        Me.ExportBloodTagToolStripMenuItem.Text = "Export Blood Tag"
+        Me.ExportBloodTagToolStripMenuItem.Text = "Export Tag Data"
         '
         'ImportsToolStripMenuItem
         '
@@ -157,6 +157,12 @@ Partial Class FormMain
         Me.GenBankToolStripMenuItem.Name = "GenBankToolStripMenuItem"
         Me.GenBankToolStripMenuItem.Size = New System.Drawing.Size(181, 22)
         Me.GenBankToolStripMenuItem.Text = "GenBank"
+        '
+        'PubMedKnowledgeToolStripMenuItem
+        '
+        Me.PubMedKnowledgeToolStripMenuItem.Name = "PubMedKnowledgeToolStripMenuItem"
+        Me.PubMedKnowledgeToolStripMenuItem.Size = New System.Drawing.Size(181, 22)
+        Me.PubMedKnowledgeToolStripMenuItem.Text = "PubMed Knowledge"
         '
         'StatusStrip1
         '
@@ -172,12 +178,6 @@ Partial Class FormMain
         Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
         Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(42, 17)
         Me.ToolStripStatusLabel1.Text = "Ready!"
-        '
-        'PubMedKnowledgeToolStripMenuItem
-        '
-        Me.PubMedKnowledgeToolStripMenuItem.Name = "PubMedKnowledgeToolStripMenuItem"
-        Me.PubMedKnowledgeToolStripMenuItem.Size = New System.Drawing.Size(181, 22)
-        Me.PubMedKnowledgeToolStripMenuItem.Text = "PubMed Knowledge"
         '
         'FormMain
         '

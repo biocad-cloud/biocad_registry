@@ -2,10 +2,12 @@
 Imports biocad_storage
 Imports BioNovoGene.BioDeep.Chemistry.MetaLib
 Imports BioNovoGene.BioDeep.Chemistry.MetaLib.CrossReference
+Imports Microsoft.VisualBasic.Data.Framework
 Imports Microsoft.VisualBasic.Data.Framework.IO
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Net.Http
 Imports Microsoft.VisualBasic.Serialization.JSON
+Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports RegistryTool.My
 Imports SMRUCC.genomics
 Imports SMRUCC.genomics.Assembly.NCBI.GenBank
@@ -33,6 +35,19 @@ Public Class FormMain
         End If
 
         Call MyApplication.SetHost(Me)
+
+        Dim topics = MyApplication.biocad_registry.vocabulary _
+            .where(field("category") = "Topic") _
+            .project(Of String)("term")
+
+        ExportBloodTagToolStripMenuItem.DropDownItems.Clear()
+
+        For Each tag As String In topics
+            Dim item As New ToolStripMenuItem(tag)
+            item.Tag = tag
+            AddHandler item.Click, Sub() ExportTagToolStripMenuItem_Click(tag)
+            ExportBloodTagToolStripMenuItem.DropDownItems.Add(item)
+        Next
     End Sub
 
     Private Sub SubCellularCompartmentsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SubCellularCompartmentsToolStripMenuItem.Click
@@ -188,10 +203,14 @@ Public Class FormMain
         End Using
     End Sub
 
-    Private Sub ExportBloodTagToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportBloodTagToolStripMenuItem.Click
-        Using file As New SaveFileDialog With {.Filter = "id file(*.txt)|*.txt"}
+    Private Sub ExportTagToolStripMenuItem_Click(tag As String)
+        Using file As New SaveFileDialog With {.Filter = "id file(*.txt)|*.txt|Molecule table(*.csv)|*.csv"}
             If file.ShowDialog = DialogResult.OK Then
-                Call MyApplication.biocad_registry.ExportTagList("Blood").SaveTo(file.FileName)
+                If file.FileName.ExtensionSuffix("txt") Then
+                    Call MyApplication.biocad_registry.ExportTagList(tag).SaveTo(file.FileName)
+                Else
+                    Call MyApplication.biocad_registry.ExportTagData(tag).SaveTo(file.FileName)
+                End If
             End If
         End Using
     End Sub
