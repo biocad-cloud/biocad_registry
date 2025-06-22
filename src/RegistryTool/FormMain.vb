@@ -204,7 +204,10 @@ Public Class FormMain
     End Sub
 
     Private Sub ExportTagToolStripMenuItem_Click(tag As String)
-        Using file As New SaveFileDialog With {.Filter = "id file(*.txt)|*.txt|Molecule table(*.csv)|*.csv"}
+        Using file As New SaveFileDialog With {
+            .Filter = "id file(*.txt)|*.txt|Molecule table(*.csv)|*.csv",
+            .FileName = tag & ".txt"
+        }
             If file.ShowDialog = DialogResult.OK Then
                 If file.FileName.ExtensionSuffix("txt") Then
                     Call MyApplication.biocad_registry.ExportTagList(tag).SaveTo(file.FileName)
