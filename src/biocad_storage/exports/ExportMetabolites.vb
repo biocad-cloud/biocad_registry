@@ -74,11 +74,31 @@ Public Class ExportMetabolites
         Return list
     End Function
 
-    Public Function ExportByID(idset As String, Optional ByRef mona_libnames As Dictionary(Of String, String) = Nothing) As IEnumerable(Of MetaInfo)
+    Public Function ExportByID(idset As String(), Optional ByRef mona_libnames As Dictionary(Of String, String) = Nothing) As IEnumerable(Of MetaInfo)
+        Dim metadata As New List(Of biocad_registryModel.molecule)
 
+        mona_libnames = New Dictionary(Of String, String)
+
+        For Each page As String() In idset.SplitIterator(100)
+            Dim mol_id As UInteger() = page _
+                .Select(Function(s) UInteger.Parse(s.Match("\d+"))) _
+                .ToArray
+
+            If page.IsNullOrEmpty Then
+                Continue For
+            End If
+
+            Dim pagedata As biocad_registryModel.molecule() = registry.molecule _
+                .where(field("id").in(mol_id)) _
+                .select(Of biocad_registryModel.molecule)
+
+            Call metadata.AddRange(pagedata)
+        Next
+
+        Return ExportByID(metadata, mona_libnames)
     End Function
 
-    Private Iterator Function ExportByID(pagedata As biocad_registryModel.molecule(), mapping As Dictionary(Of String, String)) As IEnumerable(Of MetaInfo)
+    Private Iterator Function ExportByID(pagedata As ICollection(Of biocad_registryModel.molecule), mapping As Dictionary(Of String, String)) As IEnumerable(Of MetaInfo)
         Dim bar As Tqdm.ProgressBar = Nothing
 
         For Each metabolite As biocad_registryModel.molecule In TqdmWrapper.Wrap(pagedata, bar:=bar)
