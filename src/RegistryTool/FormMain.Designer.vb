@@ -43,6 +43,7 @@ Partial Class FormMain
         Me.PubMedKnowledgeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.ExportAnnotationTableToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -82,7 +83,7 @@ Partial Class FormMain
         '
         'DataToolStripMenuItem
         '
-        Me.DataToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.VocabularyToolStripMenuItem, Me.MoleculesToolStripMenuItem, Me.SubCellularCompartmentsToolStripMenuItem, Me.FlavorOdorsToolStripMenuItem, Me.ToolStripMenuItem2, Me.ExportMetabolitesDatabaseToolStripMenuItem, Me.ExportEnzymeDatabaseToolStripMenuItem, Me.ExportKEGGIDMappingToolStripMenuItem, Me.ToolStripMenuItem3, Me.ExportBloodTagToolStripMenuItem})
+        Me.DataToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.VocabularyToolStripMenuItem, Me.MoleculesToolStripMenuItem, Me.SubCellularCompartmentsToolStripMenuItem, Me.FlavorOdorsToolStripMenuItem, Me.ToolStripMenuItem2, Me.ExportMetabolitesDatabaseToolStripMenuItem, Me.ExportEnzymeDatabaseToolStripMenuItem, Me.ExportKEGGIDMappingToolStripMenuItem, Me.ToolStripMenuItem3, Me.ExportBloodTagToolStripMenuItem, Me.ExportAnnotationTableToolStripMenuItem})
         Me.DataToolStripMenuItem.Name = "DataToolStripMenuItem"
         Me.DataToolStripMenuItem.Size = New System.Drawing.Size(43, 20)
         Me.DataToolStripMenuItem.Text = "Data"
@@ -179,6 +180,12 @@ Partial Class FormMain
         Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(42, 17)
         Me.ToolStripStatusLabel1.Text = "Ready!"
         '
+        'ExportAnnotationTableToolStripMenuItem
+        '
+        Me.ExportAnnotationTableToolStripMenuItem.Name = "ExportAnnotationTableToolStripMenuItem"
+        Me.ExportAnnotationTableToolStripMenuItem.Size = New System.Drawing.Size(224, 22)
+        Me.ExportAnnotationTableToolStripMenuItem.Text = "Export Annotation Table"
+        '
         'FormMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
@@ -220,4 +227,5 @@ Partial Class FormMain
     Friend WithEvents ToolStripMenuItem3 As ToolStripSeparator
     Friend WithEvents ExportBloodTagToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents PubMedKnowledgeToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ExportAnnotationTableToolStripMenuItem As ToolStripMenuItem
 End Class

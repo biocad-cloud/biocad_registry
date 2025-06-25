@@ -248,4 +248,18 @@ Public Class FormMain
             End If
         End Using
     End Sub
+
+    Private Sub ExportAnnotationTableToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportAnnotationTableToolStripMenuItem.Click
+        Using idfile As New OpenFileDialog With {.Filter = "ID List(*.txt)|*.txt"}
+            If idfile.ShowDialog = DialogResult.OK Then
+                Dim ids As String() = idfile.FileName.ReadAllLines
+
+                Using file As New SaveFileDialog With {.Filter = "Annotation Table(*.csv)|*.csv"}
+                    If file.ShowDialog = DialogResult.OK Then
+
+                    End If
+                End Using
+            End If
+        End Using
+    End Sub
 End Class
