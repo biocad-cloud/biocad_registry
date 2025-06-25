@@ -279,16 +279,6 @@ Microsoft.VisualBasic.MIME.application.json
  A json text parser module
  </summary>
 </member>
-<member name="F:Microsoft.VisualBasic.MIME.application.json.JsonParser.json_str">
- <summary>
- a clean json string
- </summary>
-</member>
-<member name="F:Microsoft.VisualBasic.MIME.application.json.JsonParser.comment_escape">
- <summary>
- single line comment
- </summary>
-</member>
 <member name="F:Microsoft.VisualBasic.MIME.application.json.JsonParser.strictVectorSyntax">
  <summary>
  set this option to value false will enable syntax of array like: [1 2 3], 
@@ -341,12 +331,6 @@ Microsoft.VisualBasic.MIME.application.json
  </summary>
  <returns></returns>
 </member>
-<member name="M:Microsoft.VisualBasic.MIME.application.json.JsonParser.MeasureToken">
- <summary>
- the entire <see cref="F:Microsoft.VisualBasic.MIME.application.json.JsonParser.buffer"/> will be clear in this function
- </summary>
- <returns></returns>
-</member>
 <member name="M:Microsoft.VisualBasic.MIME.application.json.JsonParser.StripString(System.String@,System.Boolean)">
  <summary>
  do string unescape
@@ -363,6 +347,33 @@ Microsoft.VisualBasic.MIME.application.json
  just parse the hjson comment, this module will not save the
  comment data when do json serialization
  </remarks>
+</member>
+<member name="F:Microsoft.VisualBasic.MIME.application.json.TokenIcer.comment_escape">
+ <summary>
+ single line comment
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.MIME.application.json.TokenIcer.strictVectorSyntax">
+ <summary>
+ set this option to value false will enable syntax of array like: [1 2 3], 
+ without comma symbol as the element value delimiter!
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MIME.application.json.TokenIcer.MeasureToken">
+ <summary>
+ the entire <see cref="F:Microsoft.VisualBasic.MIME.application.json.TokenIcer.buffer"/> will be clear in this function
+ </summary>
+ <returns></returns>
+</member>
+<member name="F:Microsoft.VisualBasic.MIME.application.json.StringTokenIcer.json_str">
+ <summary>
+ a clean json string
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.MIME.application.json.StreamTokenIcer.json_str">
+ <summary>
+ a clean json string
+ </summary>
 </member>
 <member name="M:Microsoft.VisualBasic.MIME.application.json.ExtendedDictionary.getSpecificProperties(System.Type,Microsoft.VisualBasic.ComponentModel.DataSourceModel.PropertyAccess)">
  <summary>
