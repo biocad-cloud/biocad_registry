@@ -2,9 +2,11 @@
 Imports biocad_storage
 Imports BioNovoGene.BioDeep.Chemistry.MetaLib
 Imports BioNovoGene.BioDeep.Chemistry.MetaLib.CrossReference
+Imports BioNovoGene.BioDeep.Chemistry.MetaLib.Models
 Imports Microsoft.VisualBasic.Data.Framework
 Imports Microsoft.VisualBasic.Data.Framework.IO
 Imports Microsoft.VisualBasic.Language
+Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Net.Http
 Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
@@ -256,6 +258,8 @@ Public Class FormMain
 
                 Using file As New SaveFileDialog With {.Filter = "Annotation Table(*.csv)|*.csv"}
                     If file.ShowDialog = DialogResult.OK Then
+                        Dim exports As New ExportMetabolites(MyApplication.biocad_registry)
+                        Dim list As MetaInfo() = exports.ExportByID(ids).ToArray
 
                     End If
                 End Using
