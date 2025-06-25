@@ -259,7 +259,7 @@ Public Class FormMain
                 Using file As New SaveFileDialog With {.Filter = "Annotation Table(*.csv)|*.csv"}
                     If file.ShowDialog = DialogResult.OK Then
                         Dim exports As New ExportMetabolites(MyApplication.biocad_registry)
-                        Dim list As MetaInfo() = exports.ExportByID(ids).ToArray
+                        Dim list As MetaInfo() = exports.ExportByID(ids).ToArray(Of MetaInfo)
 
                     End If
                 End Using
