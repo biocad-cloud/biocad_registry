@@ -9,6 +9,9 @@
 declare namespace data_exports {
    /**
    */
+   function export_by_cids(registry: object, cid: any): object;
+   /**
+   */
    function export_fingerprints(registry: object): any;
    /**
      * @param page_size default value Is ``10000``.
