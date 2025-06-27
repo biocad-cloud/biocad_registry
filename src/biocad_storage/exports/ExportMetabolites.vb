@@ -65,7 +65,7 @@ Public Class ExportMetabolites
             If pagedata.IsNullOrEmpty Then
                 Exit For
             Else
-                Call list.AddRange(ExportByID(pagedata, mona_libnames))
+                Call list.AddRange(ExportByID(pagedata, mona_libnames, tqdm_wrap:=True))
             End If
         Next
 
@@ -78,7 +78,10 @@ Public Class ExportMetabolites
     ''' <param name="idset">the biocad registry id collection</param>
     ''' <param name="mona_libnames"></param>
     ''' <returns></returns>
-    Public Function ExportByID(idset As String(), Optional ByRef mona_libnames As Dictionary(Of String, String) = Nothing) As IEnumerable(Of BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaInfo)
+    Public Function ExportByID(idset As String(),
+                               Optional ByRef mona_libnames As Dictionary(Of String, String) = Nothing,
+                               Optional wrap_tqdm As Boolean = True) As IEnumerable(Of BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaInfo)
+
         Dim metadata As New List(Of biocad_registryModel.molecule)
 
         mona_libnames = New Dictionary(Of String, String)
@@ -99,13 +102,13 @@ Public Class ExportMetabolites
             Call metadata.AddRange(pagedata)
         Next
 
-        Return ExportByID(metadata, mona_libnames)
+        Return ExportByID(metadata, mona_libnames, wrap_tqdm)
     End Function
 
-    Private Iterator Function ExportByID(pagedata As ICollection(Of biocad_registryModel.molecule), mapping As Dictionary(Of String, String)) As IEnumerable(Of BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaInfo)
+    Private Iterator Function ExportByID(pagedata As ICollection(Of biocad_registryModel.molecule), mapping As Dictionary(Of String, String), tqdm_wrap As Boolean) As IEnumerable(Of BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaInfo)
         Dim bar As Tqdm.ProgressBar = Nothing
 
-        For Each metabolite As biocad_registryModel.molecule In TqdmWrapper.Wrap(pagedata, bar:=bar)
+        For Each metabolite As biocad_registryModel.molecule In TqdmWrapper.Wrap(pagedata, bar:=bar, wrap_console:=tqdm_wrap)
             Dim cad_id As String = "BioCAD" & metabolite.id.ToString.PadLeft(11, "0"c)
             Dim mona_xrefs As biocad_registryModel.db_xrefs() = registry.db_xrefs _
                 .where(field("db_key") = mona,

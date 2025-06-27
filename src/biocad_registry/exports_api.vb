@@ -62,15 +62,21 @@ Module exports_api
     ''' <returns></returns>
     <ExportAPI("export_by_cids")>
     <RApiReturn(GetType(MetaInfo))>
-    Public Function exportByCIDs(registry As biocad_registry, <RRawVectorArgument> cid As Object) As Object
-        Dim cidMaps = registry.db_xrefs _
+    Public Function exportByCIDs(registry As biocad_registry,
+                                 <RRawVectorArgument>
+                                 cid As Object,
+                                 Optional wrap_tqdm As Boolean = True) As Object
+
+        Dim cidMaps As String() = registry.db_xrefs _
             .where(field("db_key") = registry.vocabulary_terms.pubchem_term,
                    field("xref").in(CLRVector.asLong(cid))) _
             .distinct _
             .project(Of UInteger)("obj_id") _
             .AsCharacter _
             .ToArray
-        Dim exports = New ExportMetabolites(registry).ExportByID(cidMaps).ToArray
+        Dim exports As MetaInfo() = New ExportMetabolites(registry) _
+            .ExportByID(cidMaps, wrap_tqdm:=wrap_tqdm) _
+            .ToArray
 
         Return exports
     End Function
