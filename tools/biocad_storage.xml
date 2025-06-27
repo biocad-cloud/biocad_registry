@@ -15,6 +15,14 @@ biocad_storage
  only exports of the complete genomics sequence data
  </returns>
 </member>
+<member name="M:biocad_storage.ExportMetabolites.ExportByID(System.String[],System.Collections.Generic.Dictionary{System.String,System.String}@)">
+ <summary>
+ export by biocad registry id collection
+ </summary>
+ <param name="idset">the biocad registry id collection</param>
+ <param name="mona_libnames"></param>
+ <returns></returns>
+</member>
 <member name="M:biocad_storage.ProtFasta.ExportEnzyme(biocad_storage.biocad_registry)">
  <summary>
  export protein sequence of the enzyme

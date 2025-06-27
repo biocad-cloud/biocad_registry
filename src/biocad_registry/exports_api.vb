@@ -4,7 +4,11 @@ Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Scripting.MetaData
+Imports Microsoft.VisualBasic.Scripting.Runtime
+Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports SMRUCC.Rsharp.Runtime.Internal.Object
+Imports SMRUCC.Rsharp.Runtime.Interop
+Imports SMRUCC.Rsharp.Runtime.Vectorization
 Imports rdataframe = SMRUCC.Rsharp.Runtime.Internal.[Object].dataframe
 
 <Package("data_exports")>
@@ -48,5 +52,26 @@ Module exports_api
         Call list.setAttribute("mapping", New list(mapping))
 
         Return list
+    End Function
+
+    ''' <summary>
+    ''' export metabolite by pubchem cid query
+    ''' </summary>
+    ''' <param name="registry">a mysql connection ot the biocad registry database</param>
+    ''' <param name="cid">a vector of the pubchem cids</param>
+    ''' <returns></returns>
+    <ExportAPI("export_by_cids")>
+    <RApiReturn(GetType(MetaInfo))>
+    Public Function exportByCIDs(registry As biocad_registry, <RRawVectorArgument> cid As Object) As Object
+        Dim cidMaps = registry.db_xrefs _
+            .where(field("db_key") = registry.vocabulary_terms.pubchem_term,
+                   field("xref").in(CLRVector.asLong(cid))) _
+            .distinct _
+            .project(Of UInteger)("obj_id") _
+            .AsCharacter _
+            .ToArray
+        Dim exports = New ExportMetabolites(registry).ExportByID(cidMaps).ToArray
+
+        Return exports
     End Function
 End Module

@@ -72,6 +72,12 @@ Public Class ExportMetabolites
         Return list
     End Function
 
+    ''' <summary>
+    ''' export by biocad registry id collection
+    ''' </summary>
+    ''' <param name="idset">the biocad registry id collection</param>
+    ''' <param name="mona_libnames"></param>
+    ''' <returns></returns>
     Public Function ExportByID(idset As String(), Optional ByRef mona_libnames As Dictionary(Of String, String) = Nothing) As IEnumerable(Of BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaInfo)
         Dim metadata As New List(Of biocad_registryModel.molecule)
 
