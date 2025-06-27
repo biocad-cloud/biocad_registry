@@ -8,8 +8,9 @@
 */
 declare namespace data_exports {
    /**
+     * @param wrap_tqdm default value Is ``true``.
    */
-   function export_by_cids(registry: object, cid: any): object;
+   function export_by_cids(registry: object, cid: any, wrap_tqdm?: boolean): object;
    /**
    */
    function export_fingerprints(registry: object): any;

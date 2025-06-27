@@ -126,7 +126,9 @@ Public Class ExportMetabolites
                 mapping(id.xref) = cad_id
             Next
 
-            Call bar.SetLabel(cad_id & " -> " & metabolite.name)
+            If tqdm_wrap Then
+                Call bar.SetLabel(cad_id & " -> " & metabolite.name)
+            End If
 
             Dim xrefs = registry.db_xrefs _
                 .where(field("db_key") <> mona,
