@@ -206,24 +206,26 @@ Public Class ExportMetabolites
                    field("molecule_id") = id) _
             .find(Of biocad_registryModel.ontology)("`ontology`.*")
 
-        Call terms.Add(leaf)
+        If Not leaf Is Nothing Then
+            Call terms.Add(leaf)
 
-        For i As Integer = 0 To Integer.MaxValue
-            Dim parent = registry.ontology_tree _
-                .left_join("ontology") _
-                .on(field("`ontology`.id") = field("is_a")) _
-                .where(field("ontology_id") = leaf.id) _
-                .find(Of biocad_registryModel.ontology)("`ontology`.*")
+            For i As Integer = 0 To Integer.MaxValue
+                Dim parent = registry.ontology_tree _
+                    .left_join("ontology") _
+                    .on(field("`ontology`.id") = field("is_a")) _
+                    .where(field("ontology_id") = leaf.id) _
+                    .find(Of biocad_registryModel.ontology)("`ontology`.*")
 
-            If parent Is Nothing Then
-                Exit For
-            End If
+                If parent Is Nothing Then
+                    Exit For
+                End If
 
-            terms.Add(parent)
-            leaf = parent
-        Next
+                terms.Add(parent)
+                leaf = parent
+            Next
 
-        Call terms.Reverse()
+            Call terms.Reverse()
+        End If
 
         Return New CompoundClass With {
             .kingdom = terms.ElementAtOrDefault(0)?.name,
