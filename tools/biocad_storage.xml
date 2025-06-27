@@ -23,6 +23,15 @@ biocad_storage
  <param name="mona_libnames"></param>
  <returns></returns>
 </member>
+<member name="M:biocad_storage.ExportMetabolites.GetChemicalOntology(System.UInt32,System.UInt32)">
+ <summary>
+ 
+ </summary>
+ <param name="id">
+ the biocad registry id of the metabolite
+ </param>
+ <returns></returns>
+</member>
 <member name="M:biocad_storage.ProtFasta.ExportEnzyme(biocad_storage.biocad_registry)">
  <summary>
  export protein sequence of the enzyme

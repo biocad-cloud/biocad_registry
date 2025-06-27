@@ -1,4 +1,5 @@
 ﻿Imports BioNovoGene.BioDeep.Chemistry.MetaLib.CrossReference
+Imports BioNovoGene.BioDeep.Chemistry.MetaLib.Models
 Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar
 Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm
 Imports Microsoft.VisualBasic.Language
@@ -8,6 +9,7 @@ Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Public Class ExportMetabolites
 
     ReadOnly registry As biocad_registry
+    ReadOnly refmet As UInteger
 
     ReadOnly mona As UInteger
     ReadOnly cas As UInteger
@@ -49,6 +51,7 @@ Public Class ExportMetabolites
         Me.Wikipedia = registry.vocabulary_terms.GetDatabaseKey("Wikipedia")
         Me.PubChem = registry.vocabulary_terms.GetDatabaseKey("PubChem")
         Me.metlin = registry.vocabulary_terms.GetDatabaseKey("metlin")
+        Me.refmet = registry.vocabulary_terms.GetDatabaseKey("RefMet")
     End Sub
 
     Public Function ExportAll(Optional page_size As Integer = 10000, Optional ByRef mona_libnames As Dictionary(Of String, String) = Nothing) As IEnumerable(Of BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaInfo)
@@ -142,6 +145,7 @@ Public Class ExportMetabolites
                                       .Distinct _
                                       .ToArray
                               End Function)
+            Dim classinfo = GetChemicalOntology(metabolite.id, refmet)
             Dim metab As New BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaInfo With {
                 .ID = cad_id,
                 .description = metabolite.note,
@@ -172,7 +176,12 @@ Public Class ExportMetabolites
                         .where(field("molecule_id") = metabolite.id) _
                         .find(Of biocad_registryModel.sequence_graph) _
                        ?.sequence
-                }
+                },
+                .[class] = classinfo.class,
+                .kingdom = classinfo.kingdom,
+                .molecular_framework = classinfo.molecular_framework,
+                .sub_class = classinfo.sub_class,
+                .super_class = classinfo.super_class
             }
 
             cache(cad_id) = metab
@@ -181,4 +190,47 @@ Public Class ExportMetabolites
         Next
     End Function
 
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="id">
+    ''' the biocad registry id of the metabolite
+    ''' </param>
+    ''' <returns></returns>
+    Public Function GetChemicalOntology(id As UInteger, ontology_id As UInteger) As CompoundClass
+        Dim terms As New List(Of biocad_registryModel.ontology)
+        Dim leaf = registry.molecule_ontology _
+            .left_join("ontology") _
+            .on(field("`ontology`.id") = field("ontology_id")) _
+            .where(field("db_source") = ontology_id,
+                   field("molecule_id") = id) _
+            .find(Of biocad_registryModel.ontology)("`ontology`.*")
+
+        Call terms.Add(leaf)
+
+        For i As Integer = 0 To Integer.MaxValue
+            Dim parent = registry.ontology_tree _
+                .left_join("ontology") _
+                .on(field("`ontology`.id") = field("is_a")) _
+                .where(field("ontology_id") = leaf.id) _
+                .find(Of biocad_registryModel.ontology)("`ontology`.*")
+
+            If parent Is Nothing Then
+                Exit For
+            End If
+
+            terms.Add(parent)
+            leaf = parent
+        Next
+
+        Call terms.Reverse()
+
+        Return New CompoundClass With {
+            .kingdom = terms.ElementAtOrDefault(0)?.name,
+            .super_class = terms.ElementAtOrDefault(1)?.name,
+            .[class] = terms.ElementAtOrDefault(2)?.name,
+            .sub_class = terms.ElementAtOrDefault(3)?.name,
+            .molecular_framework = terms.ElementAtOrDefault(4)?.name
+        }
+    End Function
 End Class
