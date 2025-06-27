@@ -105,11 +105,18 @@ Public Class ExportMetabolites
         Return ExportByID(metadata, mona_libnames, wrap_tqdm)
     End Function
 
+    Shared ReadOnly cache As New Dictionary(Of String, BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaInfo)
+
     Private Iterator Function ExportByID(pagedata As ICollection(Of biocad_registryModel.molecule), mapping As Dictionary(Of String, String), tqdm_wrap As Boolean) As IEnumerable(Of BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaInfo)
         Dim bar As Tqdm.ProgressBar = Nothing
 
         For Each metabolite As biocad_registryModel.molecule In TqdmWrapper.Wrap(pagedata, bar:=bar, wrap_console:=tqdm_wrap)
             Dim cad_id As String = "BioCAD" & metabolite.id.ToString.PadLeft(11, "0"c)
+
+            If cache.ContainsKey(cad_id) Then
+                Yield cache(cad_id)
+            End If
+
             Dim mona_xrefs As biocad_registryModel.db_xrefs() = registry.db_xrefs _
                 .where(field("db_key") = mona,
                        field("obj_id") = metabolite.id) _
@@ -165,6 +172,8 @@ Public Class ExportMetabolites
                        ?.sequence
                 }
             }
+
+            cache(cad_id) = metab
 
             Yield metab
         Next
