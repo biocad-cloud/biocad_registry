@@ -11,6 +11,7 @@ declare namespace data_exports {
    */
    function export_fingerprints(registry: object): any;
    /**
+     * @param page_size default value Is ``10000``.
    */
-   function export_metabolites(registry: object): any;
+   function export_metabolites(registry: object, page_size?: object): any;
 }
