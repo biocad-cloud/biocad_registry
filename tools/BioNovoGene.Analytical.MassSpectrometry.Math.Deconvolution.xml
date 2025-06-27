@@ -219,6 +219,17 @@ BioNovoGene.Analytical.MassSpectrometry.Math.Deconvolution
  4. 输出peaktable结果，完成解卷积操作
  </summary>
 </member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Deconvolution.DeconvPeakGroups(System.Collections.Generic.IEnumerable{BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.ChromatogramTick},Microsoft.VisualBasic.ComponentModel.Ranges.Model.DoubleRange,System.Double,System.Double,System.Boolean)">
+ <summary>
+ Find the peak features from the given chromatogram data.
+ </summary>
+ <param name="TIC"></param>
+ <param name="peakwidth"></param>
+ <param name="quantile#"></param>
+ <param name="sn_threshold"></param>
+ <param name="joint"></param>
+ <returns></returns>
+</member>
 <member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Deconvolution.GetPeakGroups(BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.ChromatogramOverlapList,Microsoft.VisualBasic.ComponentModel.Ranges.Model.DoubleRange,System.Double,System.Double,System.Boolean,System.Boolean)">
  <summary>
  

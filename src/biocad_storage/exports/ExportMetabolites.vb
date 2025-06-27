@@ -53,8 +53,8 @@ Public Class ExportMetabolites
         Me.metlin = registry.vocabulary_terms.GetDatabaseKey("metlin")
     End Sub
 
-    Public Function ExportAll(Optional page_size As Integer = 10000, Optional ByRef mona_libnames As Dictionary(Of String, String) = Nothing) As IEnumerable(Of MetaInfo)
-        Dim list As New List(Of MetaInfo)
+    Public Function ExportAll(Optional page_size As Integer = 10000, Optional ByRef mona_libnames As Dictionary(Of String, String) = Nothing) As IEnumerable(Of BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaInfo)
+        Dim list As New List(Of BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaInfo)
 
         mona_libnames = New Dictionary(Of String, String)
 
@@ -74,7 +74,7 @@ Public Class ExportMetabolites
         Return list
     End Function
 
-    Public Function ExportByID(idset As String(), Optional ByRef mona_libnames As Dictionary(Of String, String) = Nothing) As IEnumerable(Of MetaInfo)
+    Public Function ExportByID(idset As String(), Optional ByRef mona_libnames As Dictionary(Of String, String) = Nothing) As IEnumerable(Of BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaInfo)
         Dim metadata As New List(Of biocad_registryModel.molecule)
 
         mona_libnames = New Dictionary(Of String, String)
@@ -98,7 +98,7 @@ Public Class ExportMetabolites
         Return ExportByID(metadata, mona_libnames)
     End Function
 
-    Private Iterator Function ExportByID(pagedata As ICollection(Of biocad_registryModel.molecule), mapping As Dictionary(Of String, String)) As IEnumerable(Of MetaInfo)
+    Private Iterator Function ExportByID(pagedata As ICollection(Of biocad_registryModel.molecule), mapping As Dictionary(Of String, String)) As IEnumerable(Of BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaInfo)
         Dim bar As Tqdm.ProgressBar = Nothing
 
         For Each metabolite As biocad_registryModel.molecule In TqdmWrapper.Wrap(pagedata, bar:=bar)
@@ -126,9 +126,9 @@ Public Class ExportMetabolites
                                       .Distinct _
                                       .ToArray
                               End Function)
-            Dim metab As New MetaInfo With {
+            Dim metab As New BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaInfo With {
                 .ID = cad_id,
-                .Description = metabolite.note,
+                .description = metabolite.note,
                 .exact_mass = metabolite.mass,
                 .formula = metabolite.formula,
                 .IUPACName = metabolite.name,

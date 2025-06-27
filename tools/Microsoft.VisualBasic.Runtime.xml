@@ -11260,6 +11260,19 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  Extensions for data query
  </summary>
 </member>
+<member name="M:Microsoft.VisualBasic.ComponentModel.DataSourceModel.Repository.SearchFramework.UniqueNames``1(System.Collections.Generic.IEnumerable{Microsoft.VisualBasic.ComponentModel.DataSourceModel.NamedValue{``0}},System.String[]@)">
+ <summary>
+ A general method for make the tuple name unique
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="list"></param>
+ <param name="duplicated"></param>
+ <returns></returns>
+ <remarks>
+ the name is uniqued via the <see cref="M:Microsoft.VisualBasic.ComponentModel.DataSourceModel.Repository.SearchFramework.UniqueNames(System.Collections.Generic.IEnumerable{System.String},System.String[]@)"/> method 
+ via add numeric suffix to the name key string.
+ </remarks>
+</member>
 <member name="M:Microsoft.VisualBasic.ComponentModel.DataSourceModel.Repository.SearchFramework.UniqueNames(System.Collections.Generic.IEnumerable{System.String},System.String[]@)">
  <summary>
  makes the name string unique by adding an additional numeric suffix

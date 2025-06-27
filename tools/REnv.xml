@@ -11732,6 +11732,12 @@ to take away yo [rest of string was truncated]&quot;;.
  </summary>
  <param name="list"></param>
 </member>
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Object.list.#ctor(System.Collections.IDictionary)">
+ <summary>
+ Create tuple list from a general dictionary set, dictionary value type could be anything
+ </summary>
+ <param name="table"></param>
+</member>
 <member name="M:SMRUCC.Rsharp.Runtime.Internal.Object.list.#ctor(System.Type)">
  <summary>
  
