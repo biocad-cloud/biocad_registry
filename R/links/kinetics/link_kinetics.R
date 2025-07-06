@@ -16,6 +16,7 @@ const link_kinetics = function(registry) {
     for(let page in 1:100000) {
         offset = (page - 1) * page_size;
         page_data = kinetic_law 
+            |> where(enzyme_mol = 0)
             |> limit(offset, page_size) 
             |> select()
             ;
