@@ -1462,13 +1462,13 @@ Microsoft.VisualBasic.Math.SignalProcessing
  <param name="baseline"></param>
  <returns></returns>
 </member>
-<member name="M:Microsoft.VisualBasic.Math.SignalProcessing.PeakFinding.Implement.SignalBaseline(Microsoft.VisualBasic.ComponentModel.TagData.ITimeSignal[],System.Double)">
+<member name="M:Microsoft.VisualBasic.Math.SignalProcessing.PeakFinding.Implement.SignalBaseline``1(System.Collections.Generic.IEnumerable{``0},System.Double)">
  <summary>
- 
+ Detection of the signal base line based on the quantile method.
  </summary>
  <param name="signals"></param>
  <param name="quantile">一般建议值为0.65</param>
- <returns></returns>
+ <returns>the intensity value cutoff for the noise/baseline</returns>
 </member>
 <member name="F:Microsoft.VisualBasic.Math.SignalProcessing.PeakFinding.SignalPeak.integration">
  <summary>
@@ -1480,11 +1480,19 @@ Microsoft.VisualBasic.Math.SignalProcessing
  signal data aggregate helper
  </summary>
 </member>
+<member name="P:Microsoft.VisualBasic.Math.SignalProcessing.BinSampler.Range">
+ <summary>
+ the signal x axis range
+ </summary>
+ <returns></returns>
+</member>
 <member name="M:Microsoft.VisualBasic.Math.SignalProcessing.BinSampler.AggregateSignal(System.Double,System.Func{System.Collections.Generic.IEnumerable{System.Double},System.Double})">
  <summary>
  
  </summary>
- <param name="dt"></param>
+ <param name="dt">
+ the signal x axis resolution
+ </param>
  <param name="aggregate">
  default is sum intensity data
  </param>
@@ -1554,6 +1562,11 @@ Microsoft.VisualBasic.Math.SignalProcessing
  make data copy
  </summary>
  <param name="clone"></param>
+</member>
+<member name="T:Microsoft.VisualBasic.Math.SignalProcessing.Interpolation">
+ <summary>
+ make the signal data interpolation
+ </summary>
 </member>
 <member name="T:Microsoft.VisualBasic.Math.SignalProcessing.Resampler">
  <summary>

@@ -2527,6 +2527,13 @@ Microsoft.VisualBasic.Math.Core
  </summary>
  <returns></returns>
 </member>
+<member name="M:Microsoft.VisualBasic.Math.LinearAlgebra.Polynomial.#ctor(System.Double,System.Double)">
+ <summary>
+ y = a + bx
+ </summary>
+ <param name="a"></param>
+ <param name="b"></param>
+</member>
 <member name="M:Microsoft.VisualBasic.Math.LinearAlgebra.Polynomial.Parse(System.String)">
  <summary>
  

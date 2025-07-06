@@ -531,14 +531,6 @@ BioNovoGene.Analytical.MassSpectrometry.Math.Deconvolution
  <param name="chromatogram"></param>
  <returns></returns>
 </member>
-<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.ChromatogramMath.Baseline(System.Collections.Generic.IEnumerable{BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.ChromatogramTick},System.Double)">
- <summary>
- Detection of the signal base line based on the quantile method.
- </summary>
- <param name="chromatogram"></param>
- <param name="quantile#"></param>
- <returns></returns>
-</member>
 <member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.ChromatogramMath.Summary(System.Collections.Generic.IEnumerable{BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.ChromatogramTick},System.Double)">
  <summary>
  Quantile summary of the chromatogram tick <see cref="P:BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.ChromatogramTick.Intensity"/>

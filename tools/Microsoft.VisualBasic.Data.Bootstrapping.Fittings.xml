@@ -527,6 +527,13 @@ Microsoft.VisualBasic.Data.Bootstrapping.Fittings
  <returns></returns>
  
 </member>
+<member name="M:Microsoft.VisualBasic.Data.Bootstrapping.Extensions.CorrelationCoefficient(Microsoft.VisualBasic.Data.Bootstrapping.IFitted)">
+ <summary>
+ Sqrt of R<sup>2</sup>
+ </summary>
+ <param name="lm"></param>
+ <returns></returns>
+</member>
 <member name="M:Microsoft.VisualBasic.Data.Bootstrapping.FeatureProjection.Project(System.Collections.Generic.IEnumerable{System.Drawing.PointF},System.Int32)">
  <summary>
  利用多项式线性拟合将不等长的向量投影为指定维度的向量

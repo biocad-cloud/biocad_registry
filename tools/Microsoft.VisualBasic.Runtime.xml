@@ -12333,6 +12333,19 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="skipFirstLine">The first line of the text document maybe is the title headers, skip this line?</param>
  <returns></returns>
 </member>
+<member name="M:Microsoft.VisualBasic.ComponentModel.DataSourceModel.TsvFileIO.ValidateSchemaNames(Microsoft.VisualBasic.ComponentModel.Collection.Index{System.String},System.String[])">
+ <summary>
+ Check of does all <paramref name="required"/> field names is inside current data index?
+ </summary>
+ <param name="headers">the data header names that read from the data file</param>
+ <param name="required">
+ a name vector of the required data fields
+ </param>
+ <returns>
+ true if all <paramref name="required"/> is presents inside the given <paramref name="headers"/>
+ </returns>
+ 
+</member>
 <member name="M:Microsoft.VisualBasic.ComponentModel.DataSourceModel.TypeCast.DataImports.SampleForType(System.Collections.Generic.IReadOnlyCollection{System.String},System.Boolean)">
  <summary>
  Sampling column data for test data type
