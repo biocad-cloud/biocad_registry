@@ -11,11 +11,14 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)BioCadVocabulary.vb" />
     <Compile Include="$(MSBuildThisFileDirectory)biocad_registry.vb" />
+    <Compile Include="$(MSBuildThisFileDirectory)mysql\cluster_link.vb" />
     <Compile Include="$(MSBuildThisFileDirectory)mysql\complex.vb" />
+    <Compile Include="$(MSBuildThisFileDirectory)mysql\conserved_cluster.vb" />
     <Compile Include="$(MSBuildThisFileDirectory)mysql\db_mysql.vb" />
     <Compile Include="$(MSBuildThisFileDirectory)mysql\db_xrefs.vb" />
     <Compile Include="$(MSBuildThisFileDirectory)mysql\genomics.vb" />
     <Compile Include="$(MSBuildThisFileDirectory)mysql\kinetic_law.vb" />
+    <Compile Include="$(MSBuildThisFileDirectory)mysql\kinetic_substrate.vb" />
     <Compile Include="$(MSBuildThisFileDirectory)mysql\mesh.vb" />
     <Compile Include="$(MSBuildThisFileDirectory)mysql\mesh_link.vb" />
     <Compile Include="$(MSBuildThisFileDirectory)mysql\molecule.vb" />
@@ -40,8 +43,5 @@
     <Compile Include="$(MSBuildThisFileDirectory)mysql\taxonomy_source.vb" />
     <Compile Include="$(MSBuildThisFileDirectory)mysql\taxonomy_tree.vb" />
     <Compile Include="$(MSBuildThisFileDirectory)mysql\vocabulary.vb" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)mysql\" />
   </ItemGroup>
 </Project>
