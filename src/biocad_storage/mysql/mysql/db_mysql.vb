@@ -5,10 +5,13 @@ Imports Oracle.LinuxCompatibility.MySQL.Uri
 Namespace biocad_registryModel
 
 Public MustInherit Class db_mysql : Inherits IDatabase
+Protected ReadOnly m_cluster_link As TableModel(Of cluster_link)
 Protected ReadOnly m_complex As TableModel(Of complex)
+Protected ReadOnly m_conserved_cluster As TableModel(Of conserved_cluster)
 Protected ReadOnly m_db_xrefs As TableModel(Of db_xrefs)
 Protected ReadOnly m_genomics As TableModel(Of genomics)
 Protected ReadOnly m_kinetic_law As TableModel(Of kinetic_law)
+Protected ReadOnly m_kinetic_substrate As TableModel(Of kinetic_substrate)
 Protected ReadOnly m_mesh As TableModel(Of mesh)
 Protected ReadOnly m_mesh_link As TableModel(Of mesh_link)
 Protected ReadOnly m_molecule As TableModel(Of molecule)
@@ -36,10 +39,13 @@ Protected ReadOnly m_vocabulary As TableModel(Of vocabulary)
 Protected Sub New(mysqli As ConnectionUri)
 Call MyBase.New(mysqli)
 
+Me.m_cluster_link = model(Of cluster_link)()
 Me.m_complex = model(Of complex)()
+Me.m_conserved_cluster = model(Of conserved_cluster)()
 Me.m_db_xrefs = model(Of db_xrefs)()
 Me.m_genomics = model(Of genomics)()
 Me.m_kinetic_law = model(Of kinetic_law)()
+Me.m_kinetic_substrate = model(Of kinetic_substrate)()
 Me.m_mesh = model(Of mesh)()
 Me.m_mesh_link = model(Of mesh_link)()
 Me.m_molecule = model(Of molecule)()
