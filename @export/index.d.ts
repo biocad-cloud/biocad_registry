@@ -93,6 +93,9 @@ declare namespace biocad_registry {
    function link_gene_proteins(biocad_registry: any): object;
    /**
    */
+   function link_kinetics(registry: any): object;
+   /**
+   */
    function link_reaction_enzymes(biocad_registry: any): object;
    /**
    */

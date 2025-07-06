@@ -10,11 +10,13 @@ const link_kinetics = function(registry) {
     let metab_key = registry |> vocabulary_id("Metabolite", "Molecule Type");
     let db_xrefs = registry |> table("db_xrefs");
     let links = registry |> table("kinetic_substrate");
+    let offset = 0;
 
     for(let page in 1:100000) {
+        offset = (page - 1) * page_size;
         page_data = registry 
             |> table("kinetic_law") 
-            |> limit((page-1)* page_size, page_size) 
+            |> limit(offset, page_size) 
             |> select()
             ;
         
@@ -36,7 +38,7 @@ const link_kinetics = function(registry) {
                 }
 
                 let params = JSON::json_decode(law$params);
-                let xrefs = JSON::json_decode(law$json_str)
+                let xrefs = JSON::json_decode(law$json_str);
                 
                 xrefs <- xrefs$xref;
 
