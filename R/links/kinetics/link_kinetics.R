@@ -11,26 +11,28 @@ const link_kinetics = function(registry) {
     let db_xrefs = registry |> table("db_xrefs");
     let links = registry |> table("kinetic_substrate");
     let offset = 0;
+    let kinetic_law = registry |> table("kinetic_law") ;
 
     for(let page in 1:100000) {
         offset = (page - 1) * page_size;
-        page_data = registry 
-            |> table("kinetic_law") 
+        page_data = kinetic_law 
             |> limit(offset, page_size) 
             |> select()
             ;
         
+        print(get_last_sql(kinetic_law ));
+        # print(page_data);
+
         if (length(page_data) == 0) {
             break;
         } else {
-            for(let law in tqdm(page_data)) {
+            for(let law in tqdm(as.list(page_data,byrow = TRUE))) {
                 if (nchar(law$uniprot) > 1) {
                     # link protein molecule
                     let prot = db_xrefs |> where(type = prot_key, db_key = uniprot_key, xref = law$uniprot) |> find();
 
                     if (!is.null(prot)) {
-                        registry 
-                        |> table("kinetic_law") 
+                        kinetic_law
                         |> where(id = law$id)
                         |> save(enzyme_mol = prot$obj_id)
                         ;
@@ -45,17 +47,23 @@ const link_kinetics = function(registry) {
                 for(let val in params) {
                     if (val in xrefs) {
                         let xref_ids = xrefs[[val]];
-                        let meta = db_xrefs |> where(type = metab_key, xref in xref_ids) |> select();
 
-                        for(let ref in meta) {
-                            let check = links |> where(kinetic_id = law$id, metabolite_id = ref$obj_id) |> find();
+                        if (length(xref_ids) > 0) {
+                            let meta = db_xrefs 
+                            |> where(type = metab_key, xref in xref_ids) 
+                            |> select()
+                            ;
 
-                            # fill missing links
-                            if (is.null(check)) {
-                                links |> add(
-                                    kinetic_id = law$id, 
-                                    metabolite_id = ref$obj_id
-                                );
+                            for(let ref in meta) {
+                                let check = links |> where(kinetic_id = law$id, metabolite_id = ref$obj_id) |> find();
+
+                                # fill missing links
+                                if (is.null(check)) {
+                                    links |> add(
+                                        kinetic_id = law$id, 
+                                        metabolite_id = ref$obj_id
+                                    );
+                                }
                             }
                         }
                     }
