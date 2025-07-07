@@ -20,7 +20,7 @@ Public Module reactions
                 Dim right = registry.reaction_graph.where(field("reaction") = rxn.id, field("role") = right_key).project(Of UInteger)("molecule_id")
                 Dim left_hash = left.OrderBy(Function(id) id).JoinBy("+").MD5
                 Dim right_hash = right.OrderBy(Function(id) id).JoinBy("+").MD5
-                Dim uniqecode = left_hash & right_hash
+                Dim uniqecode = {left_hash, right_hash}.OrderBy(Function(s) s).JoinBy("")
 
                 registry.reaction.where(field("id") = rxn.id).save(field("hashcode") = uniqecode)
             Next
