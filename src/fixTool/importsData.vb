@@ -1,4 +1,5 @@
 ﻿Imports biocad_storage
+Imports SMRUCC.genomics.Data.BioCyc
 
 Module importsData
 
@@ -11,6 +12,12 @@ Module importsData
         hmdb.Imports()
 
         Pause()
+    End Sub
+
+    Sub importsMetaCyc()
+        Dim biocyc As Workspace = Workspace.Open("M:\Escherichia_coli\ecoli\28.1")
+
+        Call New MetaCycImports(registry, biocyc).ImportsCompounds()
     End Sub
 
     Sub importsUniprot()
