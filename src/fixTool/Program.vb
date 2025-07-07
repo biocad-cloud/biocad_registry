@@ -20,7 +20,8 @@ Module Program
     Friend ReadOnly registry As New biocad_registry(mysql)
 
     Sub Main(args As String())
-        Call importsUniprot()
+        Call registry.BuildUniqeHashCode
+        ' Call importsUniprot()
         ' Call ImportsChebi()
 
         ' Call exportFingerprint()

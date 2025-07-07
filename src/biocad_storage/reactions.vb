@@ -1,8 +1,10 @@
-﻿Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm
+﻿Imports System.Runtime.CompilerServices
+Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 
 Public Module reactions
 
+    <Extension>
     Public Sub BuildUniqeHashCode(registry As biocad_registry, Optional page_size As Integer = 1000)
         Dim page_data As biocad_registryModel.reaction()
         Dim left_key = registry.getVocabulary("substrate", "Compound Role")
