@@ -44,6 +44,10 @@ Public Class MetaCycImports
                 .description = cpd.comment
             }
 
+            If Len(meta.xref.chebi) > 0 Then
+                meta.xref.chebi = "CHEBI:" & meta.xref.chebi
+            End If
+
             Call compoundSet.Add(meta)
         Next
 
