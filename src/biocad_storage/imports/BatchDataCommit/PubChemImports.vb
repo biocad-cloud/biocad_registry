@@ -247,13 +247,15 @@ Public Module MetaboliteImports
             .Select(Function(s) s.ToLower.MD5) _
             .ToArray
 
-        ' find molecule via the synonym
-        q = registry.molecule _
-            .left_join("synonym") _
-            .on(field("`synonym`.obj_id") = field("`molecule`.id")) _
-            .where(field("mass").between(mass - 1, mass + 1),
-                   field("hashcode").in(hashset)) _
-            .find(Of biocad_registryModel.molecule)("`molecule`.*")
+        If hashset.Any Then
+            ' find molecule via the synonym
+            q = registry.molecule _
+                .left_join("synonym") _
+                .on(field("`synonym`.obj_id") = field("`molecule`.id")) _
+                .where(field("mass").between(mass - 1, mass + 1),
+                       field("hashcode").in(hashset)) _
+                .find(Of biocad_registryModel.molecule)("`molecule`.*")
+        End If
 
         If Not q Is Nothing Then
             Return q
