@@ -20,18 +20,9 @@ Module Program
     Friend ReadOnly registry As New biocad_registry(mysql)
 
     Sub Main(args As String())
-        Call importsMetaCyc()
-        ' Call registry.BuildUniqeHashCode
-        ' Call importsUniprot()
-        ' Call ImportsChebi()
 
-        ' Call exportFingerprint()
-        'Call RunBuilder()
-        'Call BuildAll()
-        'Call update_fingerprint()
-        'Call removesInvalidNameChars()
-        ' Console.WriteLine("Hello World!")
-        ' Call removesDuplicatedMolecules()
+        Call registry.BuildUniqeHashCode
+
     End Sub
 
     Sub update_fingerprint()
