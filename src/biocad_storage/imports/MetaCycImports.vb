@@ -35,7 +35,7 @@ Public Class MetaCycImports
                         {"MetaboLights", {db_xrefs.TryGetValue("metabolights")}},
                         {"MetaNetX", {db_xrefs.TryGetValue("metanetx")}}
                     },
-                    .Wikipedia = db_xrefs.TryGetValue("wikipedia")
+                    .Wikipedia = db_xrefs.TryGetValue("|wikipedia|")
                 },
                 .synonym = cpd.synonyms,
                 .formula = compounds.FormulaString(cpd),

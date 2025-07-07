@@ -30,6 +30,8 @@ Module MetaboliteCommit
 
                 ' add new 
                 Call registry.molecule.add(molData)
+            ElseIf mol.note.StringEmpty(, True) Then
+                Call registry.molecule.where(field("id") = mol.id).save(field("note") = meta.description)
             End If
         Next
     End Sub
