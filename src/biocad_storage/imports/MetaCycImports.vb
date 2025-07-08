@@ -64,22 +64,34 @@ Public Class MetaCycImports
         Dim links = registry.cluster_link.open_transaction.ignore
         Dim metacyc_key As UInteger = registry.getVocabulary("BioCyc", "External Database")
         Dim gene_key = registry.vocabulary_terms.gene_term
+        Dim taxid = If(metacyc.species Is Nothing, "0", metacyc.species.NCBITaxonomyId)
 
         For Each unit As transunits In TqdmWrapper.Wrap(operons)
-            Dim check = registry.conserved_cluster.where(field("db_xref") = unit.uniqueId).find(Of biocad_registryModel.conserved_cluster)
+            Dim check = registry.conserved_cluster _
+                .where(field("db_xref") = unit.uniqueId, field("tax_id") = taxid) _
+                .find(Of biocad_registryModel.conserved_cluster)
 
             If check Is Nothing Then
                 registry.conserved_cluster.add(
                       field("db_xref") = unit.uniqueId,
                       field("name") = unit.commonName,
                       field("size") = unit.components.TryCount,
-                      field("description") = unit.comment
+                      field("description") = unit.comment,
+                      field("tax_id") = taxid
                 )
-                check = registry.conserved_cluster.where(field("db_xref") = unit.uniqueId).order_by("id", desc:=True).find(Of biocad_registryModel.conserved_cluster)
+                check = registry.conserved_cluster _
+                    .where(field("db_xref") = unit.uniqueId,
+                           field("tax_id") = taxid) _
+                    .order_by("id", desc:=True) _
+                    .find(Of biocad_registryModel.conserved_cluster)
             End If
 
             For Each id As String In unit.components.SafeQuery
-                Dim find_gene = registry.db_xrefs.where(field("db_key") = metacyc_key, field("xref") = id, field("type") = gene_key).find(Of biocad_registryModel.db_xrefs)
+                Dim find_gene = registry.db_xrefs _
+                    .where(field("db_key") = metacyc_key,
+                           field("xref") = id,
+                           field("type") = gene_key) _
+                    .find(Of biocad_registryModel.db_xrefs)
 
                 If Not find_gene Is Nothing Then
                     Call links.add(

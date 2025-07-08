@@ -9,7 +9,14 @@ SMRUCC.genomics.Data.BioCyc
 <member name="T:SMRUCC.genomics.Data.BioCyc.compounds">
  <summary>
  the compound metabolite data model from the metacyc/biocyc database
+
+ The Class Compounds describe small-molecular-weight chemical compounds — typically,
+ compounds that are substrates of metabolic reactions or compounds that activate or
+ inhibit metabolic enzymes.
  </summary>
+ <remarks>
+ One of the component in the Class ProtLigandCplxe (Protein-Small-Molecule-Complexes) with class protein
+ </remarks>
 </member>
 <member name="P:SMRUCC.genomics.Data.BioCyc.compounds.dbLinks">
  <summary>
@@ -17,17 +24,339 @@ SMRUCC.genomics.Data.BioCyc
  </summary>
  <returns></returns>
 </member>
+<member name="P:SMRUCC.genomics.Data.BioCyc.enzrxns.enzyme">
+ <summary>
+ This slot lists the enzyme whose activity is described in this frame. More specifically, 
+ the value of this slot is the key of a frame from the class [Protein-Complexes] or 
+ [Polypeptides].
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Data.BioCyc.enzrxns.reaction">
+ <summary>
+ The value of this slot is the key of a frame from the Reactions class -- the second half 
+ of the enzyme/reaction pair that the current frame describes. In fact, this slot can have 
+ multiple values, which encode the multiple reactions that one catalytic site of an enzyme 
+ catalyzes.
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks>
+ 这里表示的是一个多对多的关系
+ 即本对象表示的是Enzyme所指向的蛋白质分子可以催化本列表的所有反应，即某一个酶分子可以催化一系列反应
+ 而对于每一个Reaction对象而言，其EnzymaticReaction也为一个列表，即某一个反应可以被几个酶分子进行催化
+ </remarks>
+</member>
+<member name="P:SMRUCC.genomics.Data.BioCyc.enzrxns.reactionDirection">
+ <summary>
+ This slot specifies the directionality of a reaction. This slot is used in slightly different 
+ ways in class Reactions and Enzymatic-Reactions. In class Enzymatic-Reactions, the slot 
+ specifies information about the direction of the reaction associated with the enzymatic-reaction, 
+ by the associated enzyme. That is, the directionality information refers only to the case in 
+ which the reaction is catalyzed by that enzyme, and may be influenced by the regulation of 
+ that enzyme.
+ The slot is particularly important to fill for reactions that are not part of a pathway, because 
+ for such reactions, the direction cannot be determined automatically, whereas for reactions 
+ within a pathway, the direction can be inferred from the pathway context. This slot aids the user 
+ and software in inferring the direction in which the reaction typically occurs in physiological 
+ settings, relative to the direction in which the reaction is stored in the database.
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Data.BioCyc.enzrxns.Km">
+ <summary>
+ The Michaelis constant (KM) of an enzyme is equal to the substrate concentration at which
+ the rate of the reaction is at half of its maximum value. The Michaelis constant is an apparent
+ dissociation constant of the enzyme-substrate complex, and thereby is an indicator
+ of the affinity of an enzyme to a given substrate. Values of this slot are two-element lists
+ of the form (cpd-frame Km) where cpd-frame is the frame id for a substrate of the reaction
+ referred to by this enzymatic-reaction frame and Km is the Michaelis constant, a floating
+ point number.
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Data.BioCyc.enzrxns.regulatedBy">
+ <summary>
+ The values of this slot are members of the [Regulation] class, describing activator or 
+ inhibitor compounds for this enzymatic reaction.
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Data.BioCyc.genes.accession1">
+ <summary>
+ The unique identifier of this gene object in the NCBI genbak database.
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks>
+ (本基因对象在NCBI Genbak数据库之中的唯一标识符)
+ </remarks>
+</member>
 <member name="T:SMRUCC.genomics.Data.BioCyc.pathways">
  <summary>
  Pathways, including relationships among reactions
  </summary>
  
 </member>
+<member name="P:SMRUCC.genomics.Data.BioCyc.pathways.superPathways">
+ <summary>
+ This slot lists direct super-pathways of a pathway.
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Data.BioCyc.pathways.subPathways">
+ <summary>
+ This slot is the inverse of the Super-Pathways slot. It lists all the direct subpathways of a
+ pathway.
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Data.BioCyc.pathways.pathwayLinks">
+ <summary>
+ This slot indicates linkages among pathways in pathway drawings. Each value of this slot
+ is a list of the form (cpd other-pwy*). The Navigator draws an arrow from the specified
+ compound pointing to the names of the specified pathways, to note that the compound
+ is also a substrate in those other pathways. If no other pathways are specified, then links
+ are drawn to and from all other pathways that the compound is in (i.e., if the compound
+ is produced by the current pathway, then links are drawn to all other pathways that consume
+ it, and vice versa).
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Data.BioCyc.pathways.predecessors">
+ <summary>
+ This slot describes the linked reactions that compose the current pathway. Since pathways
+ have a variety of topologies — from linear to circular to tree structured — pathways
+ cannot be represented as simple sequences of reactions. A pathway is a list of reaction/
+ predecessor pairs.
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Data.BioCyc.pathways.primaries">
+ <summary>
+ When drawing a pathway, the Navigator software usually computes automatically which
+ compounds are primaries (mains) and which compounds are secondaries (sides). Occasionally,
+ the heuristics used are not sufficient to make the correct distinction, in which
+ case you can specify primary compounds explicitly. This slot can contain the list of primary
+ reactants, primary products, or both for a particular reaction in the pathway. Each
+ value for this slot is of the form (reaction-ID (primary-reactant-ID-1 ... primary-reactant-
+ ID-n) (primary-product-ID-1 ... primary-product-ID-n)), where an empty list in either
+ the reactant or product position means that that information is not supplied and should
+ be computed. An empty list in the product position can also be omitted completely.
+ For example, in the purine synthesis pathway, we want to specify that the primary product
+ for the final reaction in the pathway should be AMP and not fumarate. The primary
+ reactants are still computed. The corresponding slot value would be
+ primaries: (ampsyn-rxn () (amp))
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Data.BioCyc.pathways.reactionList">
+ <summary>
+ This slot lists all reactions in the current pathway, in no particular order.
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Data.BioCyc.pathways.enzymesNotUsed">
+ <summary>
+ Proteins or protein-RNA complexes listed in this slot are those which would otherwise
+ have been inferred to take part in the pathway or reaction, but which in reality do not.
+ The protein may catalyze a reaction of the pathway in other circumstances, but not as
+ part of the pathway (e.g. it may be not be in the same cellular compartment as the other
+ components of the pathway, or it may not be expressed in situations when the pathway
+ is active.).
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="T:SMRUCC.genomics.Data.BioCyc.proteins">
+ <summary>
+ The class of all proteins is divided into two subclasses: protein complexes and polypeptides.
+ A polypeptide is a single amino acid chain produced from a single gene. A protein
+ complex is a multimeric aggregation of more than one polypeptide subunit. A protein
+ complex may in some cases have another protein complex as a component. Many of the
+ slots that are applicable to Proteins are also applicable to members of the RNA class.
+ (本类型的对象会枚举所有的Component对象的UniqueID)
+ </summary>
+ <remarks>
+ Protein表对象和ProtLigandCplxe表对象相比较：
+ Protein表中包含有所有类型的蛋白质对象，而ProtLigandCplxe则仅包含有蛋白质和小分子化合物配合的之后所形成的复合物，
+ 所以基因的产物在ProtLigandCplxe表中是无法找到的
+ </remarks>
+</member>
 <member name="P:SMRUCC.genomics.Data.BioCyc.proteins.gene">
  <summary>
- the source gene id that make translation to this protein
+ the source gene id that make translation to this protein. 
+ The gene's UniqueId that indicated that which gene codes this polypeptide.
  </summary>
  <returns></returns>
+</member>
+<member name="T:SMRUCC.genomics.Data.BioCyc.reactions">
+ <summary>
+ Reactions are organized into two parallel ontologies. Most reaction frames will have one
+ or more parents in both ontologies. The first classifies reactions by the nature of their
+ substrates, for example, small-molecule reactions are reactions in which all substrates are
+ small molecules, whereas protein reactions are reactions in which at least one substrate
+ is a protein. The second ontology classifies reactions by conversion type. For example,
+ chemical reactions are those in which a chemical transformation takes place, transport
+ reactions are those in which a substrate is transported from one compartment to another
+ (some reactions may be both transport reactions and chemical reactions if the substrate is
+ chemically altered during transport), and binding reactions are those in which substrates
+ weakly bind to each other to form a complex.
+ Two novel features of our conceptualization with respect to previous metabolic databases
+ are to separate reactions from the enzymes that catalyze them, and to use the EC numbers
+ defined by the International Union of Biochemistry and Molecular Biology (IUBMB) to
+ uniquely identify reactions, not enzymes. (In database terms, the EC number is a key
+ for the Reaction class.) The reason for this separation is that the catalyzes relationship
+ between reactions and enzymes is many-to-many: a given enzyme might catalyze more
+ than one reaction, and the same reaction might be catalyzed by more than one enzyme.
+ Frames in the class Enzymatic-Reaction describe the association between an enzyme and
+ a reaction. The entire EC taxonomy can be found under the Chemical-Reactions class.
+ You should always write transport reactions in the predominate direction in which the
+ reaction occurs. Transport reactions are encoded by labeling substrates with their abstract
+ (in vs. out) compartment. For example, if a given substrate is transported from the
+ periplasm to the cytosol, it would be labeled with “out” as its compartment as a reactant,
+ and with “in” as its compartment as a product. Please see the detailed discussion for the
+ Rxn-Locations slot. The default compartment is the cytosol, so the cytosol label may be
+ omitted for regular reactions. These labels are implemented as annotations in Ocelot.
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Data.BioCyc.reactions.ec_number">
+ <summary>
+ This slot holds the EC (Enzyme Commission) number associated with the current reaction,
+ if such a number has been assigned by the IUBMB. This slot is single valued.
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Data.BioCyc.reactions.left">
+ <summary>
+ These slots hold the compounds from the left and right sides, respectively, of the reaction
+ equation. Each value is either the key of a compound frame, or a string that names a
+ compound (when the compound is not yet described within the DB as a frame). The terms
+ reactant and product are not used because these terms may falsely imply the physiological
+ direction of the reaction.
+ The coefficient of each substrate, when that coefficient is not equal to 1, is stored as an
+ annotation on the substrate value. The annotation label is COEFFICIENT.
+ The substrates of transport reactions are also described using the Left and Right slots.
+ However, the values of these slots are annotated to indicate their compartments. For
+ example, a transporter that moves succinate from the periplasm to the cytosol, accompanied
+ by hydrolysis of ATP in the cytosol, would be described with succinate and ATP as
+ the values of the Left slot, and with succinate, ADP, and Pi as the values of the Right
+ slot. The succinate in the Left slot would be annotated with CCO-OUT under the label
+ Compartment. The other substrates need to be annotated with CCO-IN. Additionally, a
+ location has to be stored in the Rxn-Locations slot. Please see the detailed comments of
+ that slot.
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Data.BioCyc.reactions.right">
+ <summary>
+ These slots hold the compounds from the left and right sides, respectively, of the reaction
+ equation. Each value is either the key of a compound frame, or a string that names a
+ compound (when the compound is not yet described within the DB as a frame). The terms
+ reactant and product are not used because these terms may falsely imply the physiological
+ direction of the reaction.
+ The coefficient of each substrate, when that coefficient is not equal to 1, is stored as an
+ annotation on the substrate value. The annotation label is COEFFICIENT.
+ The substrates of transport reactions are also described using the Left and Right slots.
+ However, the values of these slots are annotated to indicate their compartments. For
+ example, a transporter that moves succinate from the periplasm to the cytosol, accompanied
+ by hydrolysis of ATP in the cytosol, would be described with succinate and ATP as
+ the values of the Left slot, and with succinate, ADP, and Pi as the values of the Right
+ slot. The succinate in the Left slot would be annotated with CCO-OUT under the label
+ Compartment. The other substrates need to be annotated with CCO-IN. Additionally, a
+ location has to be stored in the Rxn-Locations slot. Please see the detailed comments of
+ that slot.
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Data.BioCyc.reactions.reactionLocations">
+ <summary>
+ This slot is used for storing information about the metabolite compartments of a reaction,
+ in the case where non-default compartments are involved. The default compartment is
+ defined as the frame CCO-CYTOSOL. There are two cases of reactions:
+ 
+    S: Reactions that have all of their metabolites in the same compartment.
+ 
+    T: Reactions that have metabolites in multiple compartments. This can only happen
+       at membranes, involving transport reactions or electron transfer reactions (ETRs).
+       These reactions may use only the generic directional compartments CCO-IN and
+       CCO-OUT for their metabolites, which need to be mapped to the actual compartments
+       in a given PGDB for certain operations.
+ 
+ The values of this slot differ between these cases.
+ 
+    S: If this reaction occurs in a non-default compartment, or in several compartments,
+       then this slot stores for every compartment the corresponding frame (a child of
+       CCO-SPACE). In cases where this slot contains a value, and the reaction also occurs
+       in the cytosol, then CCO-CYTOSOL must be included as a slot value.
+ 
+    T: This slot contains one or more frames that are children of CCO-MEMBRANE ,
+       or potentially symbols that have to be unique in this slot, for situations where the
+       metabolites are in spaces that are not directly adjacent to one membrane, or when 3
+       spaces are involved (such as if the transporter spans two membranes). If the reaction
+       was not assigned to any particular membrane, then no value is stored, which is the
+       default case.
+       Additionally, each slot value in this slot will have annotations with the labels 
+       CCOIN and CCO-OUT, and in the rare case of 3 compartments involved, also another
+       label called CCO-MIDDLE. The values of each of these annotations have to be one valid 
+       child of CCO-SPACE. These annotations define the mappings between the COMPARTMENT 
+       annotation values, which the metabolites have that are listed in the reaction’s Left 
+       and Right slots, and the final compartments in this PGDB.
+       Every metabolite in the reaction’s Left and Right slots needs to have a COMPARTMENT
+       annotation, the value of which needs to be one of CCO-IN, CCO-OUT, or possibly 
+       CCO-MIDDLE in complex situations.
+ 
+ If the reaction is catalyzed by more than one enzyme (i.e. it has more than one 
+ enzymaticreaction attached), then each value in the RXN-LOCATIONS slot has to have an 
+ annotation called ENZRXNS, which has as its values the frame IDs of the corresponding
+ enzymatic-reactions. This allows determining the precise compartment(s) in which the
+ catalyzed reaction is occurring.
+ Whenever a reaction is transferred between PGDBs (by import or schema upgrade operations),
+ all values in the RXN-LOCATIONS are filtered away (i.e. not copied). This
+ prevents inapplicable compartments from being introduced into other PGDBs.
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Data.BioCyc.reactions.species">
+ <summary>
+ This slot is used to indicate that a reaction is known to occur in an organism in the case
+ where the enzyme that catalyzes the reaction is unknown. In such cases, the value for this
+ slot in a given reaction would be the symbolic identifier of the species for the organism
+ for the current PGDB.
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
 </member>
 <member name="T:SMRUCC.genomics.Data.BioCyc.species">
  <summary>
@@ -40,6 +369,31 @@ SMRUCC.genomics.Data.BioCyc
  uint ncbi taxonomy id
  </summary>
  <returns></returns>
+</member>
+<member name="T:SMRUCC.genomics.Data.BioCyc.transunits">
+ <summary>
+ Frames in this class encode transcription units, which are defined as a set of genes and
+ associated control regions that produce a single transcript. Thus, there is a one-to-one
+ correspondence between transcription start sites and transcription units. If a set of genes
+ is controlled by multiple transcription start sites, then a PGDB should define multiple
+ transcription-unit frames, one for each transcription start site.
+ </summary>
+ <remarks>
+ (在本类型中所定义的对象编码一个转录单元，一个转录单元定义了一个基因及与其相关联的转录调控DNA片段
+ 的集合，故而，在本对象中有一个与转录单元相一一对应的转录起始位点。假若一个基因簇是由多个转录起始
+ 位点所控制的，那么将会在MetaCyc数据库之中分别定义与这些转录起始位点相对应的转录单元【即，每一个
+ 本类型的对象的属性之中，仅有一个转录起始位点属性】)
+ </remarks>
+</member>
+<member name="P:SMRUCC.genomics.Data.BioCyc.transunits.components">
+ <summary>
+ The Components slot of a transcription unit lists the DNA segments within the transcription
+ unit, including transcription start sites (Promoters), Terminators, DNA binding sites,
+ and genes.
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
 </member>
 <member name="T:SMRUCC.genomics.Data.BioCyc.Model">
  <summary>
