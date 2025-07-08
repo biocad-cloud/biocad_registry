@@ -61,9 +61,18 @@ Public Class MetaCycImports
 
     Public Sub ImportsGenes()
         Dim genes = metacyc.genes.features.ToArray
+        Dim taxid = If(metacyc.species Is Nothing, "0", metacyc.species.NCBITaxonomyId)
+        Dim gene_key = registry.vocabulary_terms.gene_term
+        Dim xrefs = registry.db_xrefs.open_transaction.ignore
+        Dim names = registry.synonym.open_transaction.ignore
 
         For Each gene As genes In genes
+            Dim mol_xref = {gene.accession1, gene.accession1}.Select(Function(id) $"{taxid}:{id}").ToArray
+            Dim mol = registry.molecule.where(field("xref").in(mol_xref), field("type") = gene_key).find(Of biocad_registryModel.molecule)
 
+            If Not mol Is Nothing Then
+
+            End If
         Next
     End Sub
 
