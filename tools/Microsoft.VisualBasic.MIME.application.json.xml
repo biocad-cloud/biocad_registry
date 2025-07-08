@@ -73,7 +73,7 @@ Microsoft.VisualBasic.MIME.application.json
 </member>
 <member name="P:Microsoft.VisualBasic.MIME.application.json.Javascript.JsonArray.UnderlyingType">
  <summary>
- the array base element type
+ try to measure of the array base element type
  </summary>
  <returns></returns>
 </member>
@@ -135,6 +135,12 @@ Microsoft.VisualBasic.MIME.application.json
  </summary>
  <returns></returns>
 </member>
+<member name="P:Microsoft.VisualBasic.MIME.application.json.Javascript.JsonObject.UnderlyingType">
+ <summary>
+ try to measure of the array base element type
+ </summary>
+ <returns></returns>
+</member>
 <member name="M:Microsoft.VisualBasic.MIME.application.json.Javascript.JsonObject.Add(System.String,System.Object)">
  <summary>
  
@@ -177,6 +183,12 @@ Microsoft.VisualBasic.MIME.application.json
  (请注意，假若是字符串的话，值是未经过处理的原始字符串，可能会含有转义字符，
  则这个时候还需要使用<see cref="M:Microsoft.VisualBasic.MIME.application.json.Javascript.JsonValue.GetStripString(System.Boolean,System.String)"/>得到最终的字符串)
  </remarks>
+</member>
+<member name="P:Microsoft.VisualBasic.MIME.application.json.Javascript.JsonValue.IsLiteralNull">
+ <summary>
+ the literal value is nothing?
+ </summary>
+ <returns></returns>
 </member>
 <member name="M:Microsoft.VisualBasic.MIME.application.json.Javascript.JsonValue.#ctor(System.Object)">
  <summary>
@@ -406,34 +418,29 @@ Microsoft.VisualBasic.MIME.application.json
  </param>
  <returns></returns>
 </member>
-<member name="F:Microsoft.VisualBasic.MIME.application.json.JSONSerializer.unescape">
+<member name="F:Microsoft.VisualBasic.MIME.application.json.JSONWriter.unescape">
  <summary>
  find two char
  </summary>
 </member>
-<member name="M:Microsoft.VisualBasic.MIME.application.json.JSONSerializer.jsonValueString(Microsoft.VisualBasic.MIME.application.json.Javascript.JsonValue,Microsoft.VisualBasic.MIME.application.json.JSONSerializerOptions)">
+<member name="M:Microsoft.VisualBasic.MIME.application.json.JSONWriter.jsonValueString(Microsoft.VisualBasic.MIME.application.json.Javascript.JsonValue)">
  <summary>
  "..."
  </summary>
  <param name="obj"></param>
- <param name="opt"></param>
  <returns></returns>
 </member>
-<member name="M:Microsoft.VisualBasic.MIME.application.json.JSONSerializer.jsonObjectString(Microsoft.VisualBasic.MIME.application.json.Javascript.JsonObject,Microsoft.VisualBasic.MIME.application.json.JSONSerializerOptions)">
+<member name="M:Microsoft.VisualBasic.MIME.application.json.JSONWriter.jsonObjectString(Microsoft.VisualBasic.MIME.application.json.Javascript.JsonObject,System.Int32)">
  <summary>
  {...}
  </summary>
  <param name="obj"></param>
- <param name="opt"></param>
- <returns></returns>
 </member>
-<member name="M:Microsoft.VisualBasic.MIME.application.json.JSONSerializer.jsonArrayString(Microsoft.VisualBasic.MIME.application.json.Javascript.JsonArray,Microsoft.VisualBasic.MIME.application.json.JSONSerializerOptions)">
+<member name="M:Microsoft.VisualBasic.MIME.application.json.JSONWriter.jsonArrayString(Microsoft.VisualBasic.MIME.application.json.Javascript.JsonArray,System.Int32)">
  <summary>
  [...]
  </summary>
  <param name="arr"></param>
- <param name="opt"></param>
- <returns></returns>
 </member>
 <member name="T:Microsoft.VisualBasic.MIME.application.json.Deserializer">
  <summary>
