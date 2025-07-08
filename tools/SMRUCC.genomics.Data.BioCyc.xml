@@ -17,18 +17,6 @@ SMRUCC.genomics.Data.BioCyc
  </summary>
  <returns></returns>
 </member>
-<member name="T:SMRUCC.genomics.Data.BioCyc.Model">
- <summary>
- the abstract biocyc element model
- </summary>
-</member>
-<member name="P:SMRUCC.genomics.Data.BioCyc.Model.uniqueId">
- <summary>
- the unique reference id of current feature 
- element object.
- </summary>
- <returns></returns>
-</member>
 <member name="T:SMRUCC.genomics.Data.BioCyc.pathways">
  <summary>
  Pathways, including relationships among reactions
@@ -38,6 +26,30 @@ SMRUCC.genomics.Data.BioCyc
 <member name="P:SMRUCC.genomics.Data.BioCyc.proteins.gene">
  <summary>
  the source gene id that make translation to this protein
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:SMRUCC.genomics.Data.BioCyc.species">
+ <summary>
+ the organism taxonomy species information
+ </summary>
+ 
+</member>
+<member name="P:SMRUCC.genomics.Data.BioCyc.species.NCBITaxonomyId">
+ <summary>
+ uint ncbi taxonomy id
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:SMRUCC.genomics.Data.BioCyc.Model">
+ <summary>
+ the abstract biocyc element model
+ </summary>
+</member>
+<member name="P:SMRUCC.genomics.Data.BioCyc.Model.uniqueId">
+ <summary>
+ the unique reference id of current feature 
+ element object.
  </summary>
  <returns></returns>
 </member>
@@ -175,6 +187,12 @@ SMRUCC.genomics.Data.BioCyc
  <summary>
  A work directory object for read the biocyc database
  </summary>
+</member>
+<member name="P:SMRUCC.genomics.Data.BioCyc.Workspace.species">
+ <summary>
+ the organism taxonomy species information
+ </summary>
+ <returns></returns>
 </member>
 </members>
 </doc>

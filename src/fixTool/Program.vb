@@ -21,8 +21,8 @@ Module Program
 
     Sub Main(args As String())
 
-        Call registry.BuildUniqeHashCode
-
+        ' Call registry.BuildUniqeHashCode
+        Call importsMetaCyc()
     End Sub
 
     Sub update_fingerprint()
