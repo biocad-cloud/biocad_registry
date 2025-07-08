@@ -14,6 +14,12 @@ Public Class biocad_registry : Inherits biocad_registryModel.db_mysql
         End Get
     End Property
 
+    Public ReadOnly Property hashcode As TableModel(Of biocad_registryModel.hashcode)
+        Get
+            Return m_hashcode
+        End Get
+    End Property
+
     Public ReadOnly Property conserved_cluster As TableModel(Of biocad_registryModel.conserved_cluster)
         Get
             Return m_conserved_cluster

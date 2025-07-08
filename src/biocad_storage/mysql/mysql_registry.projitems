@@ -17,6 +17,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)mysql\db_mysql.vb" />
     <Compile Include="$(MSBuildThisFileDirectory)mysql\db_xrefs.vb" />
     <Compile Include="$(MSBuildThisFileDirectory)mysql\genomics.vb" />
+    <Compile Include="$(MSBuildThisFileDirectory)mysql\hashcode.vb" />
     <Compile Include="$(MSBuildThisFileDirectory)mysql\kinetic_law.vb" />
     <Compile Include="$(MSBuildThisFileDirectory)mysql\kinetic_substrate.vb" />
     <Compile Include="$(MSBuildThisFileDirectory)mysql\mesh.vb" />
