@@ -65,15 +65,47 @@ Public Class MetaCycImports
         Dim gene_key = registry.vocabulary_terms.gene_term
         Dim xrefs = registry.db_xrefs.open_transaction.ignore
         Dim names = registry.synonym.open_transaction.ignore
+        Dim metacyc_key As UInteger = registry.getVocabulary("BioCyc", "External Database")
+        Dim prot_key = registry.vocabulary_terms.protein_term
 
         For Each gene As genes In genes
             Dim mol_xref = {gene.accession1, gene.accession1}.Select(Function(id) $"{taxid}:{id}").ToArray
-            Dim mol = registry.molecule.where(field("xref").in(mol_xref), field("type") = gene_key).find(Of biocad_registryModel.molecule)
+            Dim mol = registry.molecule _
+                .where(field("xref").in(mol_xref),
+                       field("type") = gene_key) _
+                .find(Of biocad_registryModel.molecule)
 
             If Not mol Is Nothing Then
+                Call xrefs.add(field("obj_id") = mol.id,
+                               field("db_key") = metacyc_key,
+                               field("xref") = gene.uniqueId,
+                               field("type") = gene_key)
 
+                For Each name As String In {gene.commonName}.JoinIterates(gene.synonyms)
+                    If Not name.StringEmpty(, True) Then
+                        Call names.add(field("obj_id") = mol.id,
+                                       field("type_id") = gene_key,
+                                       field("synonym") = name,
+                                       field("lang") = "en",
+                                       field("hashcode") = name.ToLower.MD5)
+                    End If
+                Next
+            End If
+
+            If Not gene.product.StringEmpty(, True) Then
+                Dim prot_mol = registry.molecule.where(field("parent") = mol.id).find(Of biocad_registryModel.molecule)
+
+                If Not prot_mol Is Nothing Then
+                    Call xrefs.add(field("obj_id") = prot_mol.id,
+                                   field("db_key") = metacyc_key,
+                                   field("xref") = gene.product,
+                                   field("type") = prot_key)
+                End If
             End If
         Next
+
+        Call xrefs.commit()
+        Call names.commit()
     End Sub
 
     Public Sub ImportsReactions()
