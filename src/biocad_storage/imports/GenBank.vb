@@ -123,28 +123,28 @@ Public Class GenBankImports
             )
 
             gene_mol = registry.molecule.find_object(field("xref_id") = ncbi_taxid & ":" & locus_tag)
-
-            ' add db_xrefs
-            batch_db_xrefs.add(
-                field("obj_id") = gene_mol.id,
-                field("db_key") = vocabulary.genbank_term,
-                field("xref") = locus_tag,
-                field("type") = vocabulary.gene_term
-            )
-
-            If Not gene_name.StringEmpty(, True) Then
-                ' add synonym name
-                registry.synonym.delayed.add(
-                    field("obj_id") = gene_mol.id,
-                    field("type_id") = vocabulary.gene_term,
-                    field("hashcode") = LCase(gene_name).MD5,
-                    field("synonym") = gene_name,
-                    field("lang") = "en"
-                )
-            End If
         End If
 
         Dim xrefs = gene.QueryDuplicated("db_xref")
+
+        ' add db_xrefs
+        batch_db_xrefs.add(
+            field("obj_id") = gene_mol.id,
+            field("db_key") = vocabulary.genbank_term,
+            field("xref") = locus_tag,
+            field("type") = vocabulary.gene_term
+        )
+
+        If Not gene_name.StringEmpty(, True) Then
+            ' add synonym name
+            registry.synonym.delayed.add(
+                field("obj_id") = gene_mol.id,
+                field("type_id") = vocabulary.gene_term,
+                field("hashcode") = LCase(gene_name).MD5,
+                field("synonym") = gene_name,
+                field("lang") = "en"
+            )
+        End If
 
         For Each db_xref As NamedValue(Of String) In xrefs.Select(Function(tag) tag.GetTagValue(":"))
             Call batch_db_xrefs.add(
