@@ -69,9 +69,9 @@ Public Class MetaCycImports
         Dim prot_key = registry.vocabulary_terms.protein_term
 
         For Each gene As genes In genes
-            Dim mol_xref = {gene.accession1, gene.accession1}.Select(Function(id) $"{taxid}:{id}").ToArray
+            Dim mol_xref = {gene.accession1, gene.accession2}.Select(Function(id) $"{taxid}:{id}").ToArray
             Dim mol = registry.molecule _
-                .where(field("xref").in(mol_xref),
+                .where(field("xref_id").in(mol_xref),
                        field("type") = gene_key) _
                 .find(Of biocad_registryModel.molecule)
 
