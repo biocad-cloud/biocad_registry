@@ -59,6 +59,14 @@ Public Class MetaCycImports
         Call MetaboliteCommit.CommitSynonyms(compoundSet, registry)
     End Sub
 
+    Public Sub ImportsGenes()
+        Dim genes = metacyc.genes.features.ToArray
+
+        For Each gene As genes In genes
+
+        Next
+    End Sub
+
     Public Sub ImportsReactions()
         Dim reactionList = metacyc.reactions.features.ToArray
         Dim leftKey = registry.getVocabulary("substrate", "Compound Role")
