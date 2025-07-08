@@ -68,7 +68,7 @@ Public Class MetaCycImports
         Dim metacyc_key As UInteger = registry.getVocabulary("BioCyc", "External Database")
         Dim prot_key = registry.vocabulary_terms.protein_term
 
-        For Each gene As genes In genes
+        For Each gene As genes In TqdmWrapper.Wrap(genes)
             Dim mol_xref = {gene.accession1, gene.accession2}.Select(Function(id) $"{taxid}:{id}").ToArray
             Dim mol = registry.molecule _
                 .where(field("xref_id").in(mol_xref),
@@ -90,16 +90,16 @@ Public Class MetaCycImports
                                        field("hashcode") = name.ToLower.MD5)
                     End If
                 Next
-            End If
 
-            If Not gene.product.StringEmpty(, True) Then
-                Dim prot_mol = registry.molecule.where(field("parent") = mol.id).find(Of biocad_registryModel.molecule)
+                If Not gene.product.StringEmpty(, True) Then
+                    Dim prot_mol = registry.molecule.where(field("parent") = mol.id).find(Of biocad_registryModel.molecule)
 
-                If Not prot_mol Is Nothing Then
-                    Call xrefs.add(field("obj_id") = prot_mol.id,
-                                   field("db_key") = metacyc_key,
-                                   field("xref") = gene.product,
-                                   field("type") = prot_key)
+                    If Not prot_mol Is Nothing Then
+                        Call xrefs.add(field("obj_id") = prot_mol.id,
+                                       field("db_key") = metacyc_key,
+                                       field("xref") = gene.product,
+                                       field("type") = prot_key)
+                    End If
                 End If
             End If
         Next
