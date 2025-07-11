@@ -20351,7 +20351,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
 <member name="M:Microsoft.VisualBasic.Linq.JoinExtensions.IteratesALL``1(System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{``0}})">
  <summary>
  Iterates all of the elements in a two dimension collection as the data source 
- for the linq expression or ForEach statement.
+ for the linq expression or ForEach statement.<br />
  (适用于二维的集合做为linq的数据源，不像<see cref="M:Microsoft.VisualBasic.Extensions.Unlist``1(System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{``0}})"/>是进行转换，
  这个是返回迭代器的，推荐使用这个函数)
  </summary>
@@ -22806,6 +22806,16 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  Get number of the input sample names
  </summary>
  <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Text.Patterns.CommonTagParser.RemoveLeadingNumbersAndSymbols(System.String)">
+ <summary>
+ removes leading number and symbols
+ </summary>
+ <param name="input"></param>
+ <returns>
+ 1-B11 to B11
+ B2 remains B2
+ </returns>
 </member>
 <member name="T:Microsoft.VisualBasic.Text.Patterns.NamespaceDoc">
  <summary>
