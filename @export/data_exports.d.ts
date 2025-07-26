@@ -18,4 +18,7 @@ declare namespace data_exports {
      * @param page_size default value Is ``10000``.
    */
    function export_metabolites(registry: object, page_size?: object): any;
+   /**
+   */
+   function export_topic_structdata(registry: object, tag_name: string): object;
 }
