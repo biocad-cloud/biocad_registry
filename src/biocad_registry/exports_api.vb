@@ -6,6 +6,7 @@ Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Scripting.MetaData
 Imports Microsoft.VisualBasic.Scripting.Runtime
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
+Imports SMRUCC.Rsharp.Runtime.Components
 Imports SMRUCC.Rsharp.Runtime.Internal.Object
 Imports SMRUCC.Rsharp.Runtime.Interop
 Imports SMRUCC.Rsharp.Runtime.Vectorization
@@ -38,7 +39,19 @@ Module exports_api
         Return df
     End Function
 
+    ''' <summary>
+    ''' Export the metabolite information from the biocad registry database
+    ''' 
+    ''' This function will export all the metabolite information including the
+    ''' metabolite ID, name, formula, exact mass, and other related information.
+    ''' </summary>
+    ''' <param name="registry"></param>
+    ''' <param name="page_size"></param>
+    ''' <returns>
+    ''' a tuple list of the <see cref="MetaInfo"/> clr object
+    ''' </returns>
     <ExportAPI("export_metabolites")>
+    <RApiReturn(TypeCodes.list)>
     Public Function export_metabolites(registry As biocad_registry, Optional page_size As Integer = 10000) As Object
         Dim mapping As New Dictionary(Of String, String)
         Dim list As list = list.empty
@@ -52,6 +65,18 @@ Module exports_api
         Call list.setAttribute("mapping", New list(mapping))
 
         Return list
+    End Function
+
+    ''' <summary>
+    ''' export struct data for run cfm-id workflow
+    ''' </summary>
+    ''' <param name="registry"></param>
+    ''' <param name="tag_name"></param>
+    ''' <returns></returns>
+    <ExportAPI("export_topic_structdata")>
+    <RApiReturn(GetType(MetaboliteStructData))>
+    Public Function export_topic_structdata(registry As biocad_registry, tag_name As String) As Object
+        Return registry.ExportTopicMetabolites(tag_name).IteratesALL.ToArray
     End Function
 
     ''' <summary>
