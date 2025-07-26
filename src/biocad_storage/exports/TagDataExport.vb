@@ -2,6 +2,7 @@
 Imports System.Runtime.CompilerServices
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Annotations
 Imports BioNovoGene.BioDeep.Chemoinformatics
+Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports Oracle.LinuxCompatibility.MySQL.Reflection.DbAttributes
@@ -64,6 +65,10 @@ Public Module TagDataExport
             If page_data.IsNullOrEmpty Then
                 Exit For
             End If
+
+            For i As Integer = 0 To page_data.Length - 1
+                page_data(i).exact_mass = FormulaScanner.EvaluateExactMass(page_data(i).exact_mass)
+            Next
 
             Yield page_data
         Next
