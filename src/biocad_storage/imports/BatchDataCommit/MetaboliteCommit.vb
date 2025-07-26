@@ -107,6 +107,10 @@ Module MetaboliteCommit
         Call trans.commit()
     End Sub
 
+    Public Sub CommitTaxLink(Of T As MetaInfo)(metabolites As IEnumerable(Of T), registry As biocad_registry)
+
+    End Sub
+
     Public Sub CommitStructData(Of T As MetaInfo)(metabolites As IEnumerable(Of T), registry As biocad_registry)
         Dim trans = registry.sequence_graph.open_transaction.ignore
 
