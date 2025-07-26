@@ -21,6 +21,18 @@ Module importsData
         Call New MetaCycImports(registry, biocyc).ImportsCompounds(topic:="bacteria")
     End Sub
 
+    Sub imports_all_plantcyc()
+        For Each dir As String In "D:\datapool\plants".ListDirectory
+            For Each subdir As String In dir.ListDirectory
+                Dim biocyc As New Workspace(subdir)
+
+                If biocyc.checkValid Then
+                    Call New MetaCycImports(registry, biocyc).ImportsCompounds(topic:="plant")
+                End If
+            Next
+        Next
+    End Sub
+
     Sub importsUniprot()
 
 

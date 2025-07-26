@@ -22,7 +22,8 @@ Module Program
     Sub Main(args As String())
 
         ' Call registry.BuildUniqeHashCode
-        Call importsMetaCyc()
+        ' Call importsMetaCyc()
+        Call imports_all_plantcyc()
 
         Pause()
     End Sub
