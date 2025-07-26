@@ -40,7 +40,42 @@ Public Module TagDataExport
                                              "formula",
                                              "mass AS exact_mass")
     End Function
+
+    <Extension>
+    Public Iterator Function ExportTopicMetabolites(registry As biocad_registry, tagName As String) As IEnumerable(Of MetaboliteStructData())
+        Dim page_size As Integer = 1000
+        Dim tag_id As UInteger = registry.getVocabulary(tagName, "Topic")
+
+        For page As Integer = 0 To Integer.MaxValue
+            Dim page_data As MetaboliteStructData() = registry.molecule_tags _
+                .left_join("molecule").on(field("`molecule`.id") = field("molecule_id")) _
+                .left_join("sequence_graph").on(field("`sequence_graph`.molecule_id") = field("`molecule`.id")) _
+                .where(field("tag_id") = tag_id,
+                       field("formula").char_length > 0,
+                       field("sequence").char_length > 0) _
+                .limit(page * page_size, page_size) _
+                .select(Of MetaboliteStructData)(
+                    "CAST(molecule.id AS CHARACTER) AS id",
+                    "xref_id",
+                    "name",
+                    "formula",
+                    "sequence AS smiles")
+
+            If page_data.IsNullOrEmpty Then
+                Exit For
+            End If
+
+            Yield page_data
+        Next
+    End Function
 End Module
+
+Public Class MetaboliteStructData : Inherits MetaboliteAnnotation
+
+    <DatabaseField> Public Property xref_id As String
+    <DatabaseField> Public Property smiles As String
+
+End Class
 
 Public Class MetaboliteAnnotation
     Implements GenericCompound

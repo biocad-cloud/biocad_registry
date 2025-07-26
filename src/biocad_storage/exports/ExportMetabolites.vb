@@ -110,7 +110,10 @@ Public Class ExportMetabolites
 
     Shared ReadOnly cache As New Dictionary(Of String, BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaInfo)
 
-    Private Iterator Function ExportByID(pagedata As ICollection(Of biocad_registryModel.molecule), mapping As Dictionary(Of String, String), tqdm_wrap As Boolean) As IEnumerable(Of BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaInfo)
+    Private Iterator Function ExportByID(pagedata As ICollection(Of biocad_registryModel.molecule),
+                                         mapping As Dictionary(Of String, String),
+                                         tqdm_wrap As Boolean) As IEnumerable(Of BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaInfo)
+
         Dim bar As Tqdm.ProgressBar = Nothing
 
         For Each metabolite As biocad_registryModel.molecule In TqdmWrapper.Wrap(pagedata, bar:=bar, wrap_console:=tqdm_wrap)
