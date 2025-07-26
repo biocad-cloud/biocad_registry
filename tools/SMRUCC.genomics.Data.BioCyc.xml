@@ -449,7 +449,9 @@ SMRUCC.genomics.Data.BioCyc
  <summary>
  uint ncbi taxonomy id
  </summary>
- <returns></returns>
+ <returns>
+ the ncbi taxonomy id of the species in integer format, example as 9606
+ </returns>
 </member>
 <member name="T:SMRUCC.genomics.Data.BioCyc.transunits">
  <summary>
