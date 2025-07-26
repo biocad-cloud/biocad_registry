@@ -107,8 +107,30 @@ Module MetaboliteCommit
         Call trans.commit()
     End Sub
 
-    Public Sub CommitTaxLink(Of T As MetaInfo)(metabolites As IEnumerable(Of T), registry As biocad_registry)
+    Public Sub CommitTaxLink(Of T As MetaInfo)(metabolites As IEnumerable(Of T), registry As biocad_registry, ncbi_taxid As UInteger, Optional doi As String = "-")
+        Dim links = registry.taxonomy_source.open_transaction.ignore
 
+        For Each meta As MetaInfo In TqdmWrapper.Wrap(metabolites.ToArray)
+            Dim mol As biocad_registryModel.molecule = registry.findMolecule(meta, Function(a) a.ID)
+
+            If mol Is Nothing Then
+                Continue For
+            End If
+
+            If registry.taxonomy_source _
+                .where(field("molecule_id") = mol.id,
+                       field("ncbi_taxid") = ncbi_taxid) _
+                .find(Of biocad_registryModel.taxonomy_source) Is Nothing Then
+
+                Call links.add(
+                    field("molecule_id") = mol.id,
+                    field("ncbi_taxid") = ncbi_taxid,
+                    field("doi") = doi
+                )
+            End If
+        Next
+
+        Call links.commit()
     End Sub
 
     Public Sub CommitStructData(Of T As MetaInfo)(metabolites As IEnumerable(Of T), registry As biocad_registry)

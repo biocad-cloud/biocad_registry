@@ -57,6 +57,12 @@ Public Class MetaCycImports
         Call MetaboliteCommit.CommitDbXrefs(compoundSet, registry)
         Call MetaboliteCommit.CommitStructData(compoundSet, registry)
         Call MetaboliteCommit.CommitSynonyms(compoundSet, registry)
+
+        Dim taxid = If(metacyc.species Is Nothing, "0", metacyc.species.NCBITaxonomyId)
+
+        If Val(taxid) > 0 Then
+            Call MetaboliteCommit.CommitTaxLink(compoundSet, registry, taxid, doi:=$"MetaCyc - {metacyc.species.uniqueId}")
+        End If
     End Sub
 
     Public Sub ImportsTranscriptUnits()
