@@ -164,7 +164,11 @@ Public Class MetaCycImports
         Dim catalysis = registry.regulation_graph.open_transaction.ignore
 
         For Each reaction In TqdmWrapper.Wrap(reactionList)
-            Dim check = registry.reaction.where(field("db_xref") = reaction.uniqueId, field("source_dbkey") = db_key).find(Of biocad_registryModel.reaction)
+            Dim check = registry.reaction _
+                .where(field("db_xref") = reaction.uniqueId,
+                       field("source_dbkey") = db_key) _
+                .find(Of biocad_registryModel.reaction)
+
             If check Is Nothing Then
                 registry.reaction.add(
                     field("db_xref") = reaction.uniqueId, field("source_dbkey") = db_key,
@@ -172,11 +176,18 @@ Public Class MetaCycImports
                     field("equation") = reaction.equation.ToString,
                     field("note") = reaction.comment
                 )
-                check = registry.reaction.where(field("db_xref") = reaction.uniqueId, field("source_dbkey") = db_key).order_by("id", desc:=True).find(Of biocad_registryModel.reaction)
+                check = registry.reaction _
+                    .where(field("db_xref") = reaction.uniqueId,
+                           field("source_dbkey") = db_key) _
+                    .order_by("id", desc:=True) _
+                    .find(Of biocad_registryModel.reaction)
             End If
 
             For Each item In reaction.left.SafeQuery
-                Dim check_mol = registry.db_xrefs.where(field("db_key") = db_key, field("xref") = item.ID).find(Of biocad_registryModel.db_xrefs)
+                Dim check_mol = registry.db_xrefs _
+                    .where(field("db_key") = db_key,
+                           field("xref") = item.ID) _
+                    .find(Of biocad_registryModel.db_xrefs)
 
                 Call substrates.add(
                     field("reaction") = check.id,

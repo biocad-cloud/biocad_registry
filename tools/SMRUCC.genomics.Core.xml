@@ -7365,12 +7365,6 @@ ATT I Ile      ACT T Thr      AAT N As [rest of string was truncated]&quot;;.
  <returns></returns>
  <remarks></remarks>
 </member>
-<member name="P:SMRUCC.genomics.Assembly.MetaCyc.File.FileSystem.FastaObjects.FastaCollection.Origin">
- <summary>
- The complete genome sequence of the target species.(目标对象的全基因组序列)
- </summary>
- <remarks></remarks>
-</member>
 <member name="T:SMRUCC.genomics.Assembly.MetaCyc.File.FileSystem.PGDB">
  <summary>
  The MetaCyc database file reader object.
@@ -10804,14 +10798,6 @@ Get feature site data by nucleotide location.
  <param name="data">Target fasta source collection which its elements base type is <see cref="T:SMRUCC.genomics.SequenceModel.FASTA.FastaSeq"/></param>
  <returns></returns>
 </member>
-<member name="M:SMRUCC.genomics.BioAssemblyExtensions.GetBriefCode(SMRUCC.genomics.ComponentModel.Loci.Strands)">
- <summary>
- Convert the nucleotide sequence strand direction enumeration as character brief code. [<see cref="T:SMRUCC.genomics.ComponentModel.Loci.Strands"/> => +, -, ?]
- </summary>
- <param name="strand"></param>
- <returns></returns>
- 
-</member>
 <member name="M:SMRUCC.genomics.BioAssemblyExtensions.GetBriefStrandCode(System.String)">
  <summary>
  Convert the nucleotide seuqnece strand description word as character brief code.
@@ -10864,19 +10850,25 @@ Get feature site data by nucleotide location.
  <summary>
  该大类之下的亚分类
  </summary>
- <remarks></remarks>
+ <remarks>nothing means -</remarks>
 </member>
 <member name="P:SMRUCC.genomics.ComponentModel.Annotation.ECNumber.subCategory">
  <summary>
  该亚类之下的小分类
  </summary>
- <remarks></remarks>
+ <remarks>nothing means -</remarks>
 </member>
 <member name="P:SMRUCC.genomics.ComponentModel.Annotation.ECNumber.serialNumber">
  <summary>
  该小分类之下的序号
  </summary>
- <remarks></remarks>
+ <remarks>nothing means -</remarks>
+</member>
+<member name="P:SMRUCC.genomics.ComponentModel.Annotation.ECNumber.ECNumberString">
+ <summary>
+ generates the EC number in format like: x.x.x.x
+ </summary>
+ <returns></returns>
 </member>
 <member name="M:SMRUCC.genomics.ComponentModel.Annotation.ECNumber.Contains(SMRUCC.genomics.ComponentModel.Annotation.ECNumber)">
  <summary>
@@ -15546,7 +15538,7 @@ to take away yo [rest of string was truncated]&quot;;.
  <summary>
  Get the composition vector of this polypeptide sequence.
  </summary>
- <param name="Seq">全部必须为大写字母</param>
+ <param name="seq">全部必须为大写字母</param>
  <returns></returns>
  <remarks></remarks>
 </member>

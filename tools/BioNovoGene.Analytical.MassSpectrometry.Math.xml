@@ -1975,7 +1975,7 @@ BioNovoGene.Analytical.MassSpectrometry.Math
  </summary>
  <returns></returns>
 </member>
-<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ms2.#ctor(System.Double,System.Double)">
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ms2.#ctor(System.Double,System.Double,System.String)">
  <summary>
  Create a spectrum fragment data model
  </summary>
@@ -1988,11 +1988,14 @@ BioNovoGene.Analytical.MassSpectrometry.Math
  </summary>
  <param name="peak"></param>
 </member>
-<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ms2.#ctor(BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ms2)">
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ms2.#ctor(BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ms2,System.String)">
  <summary>
  make value copy
  </summary>
  <param name="data"></param>
+ <param name="anno">
+ overrides of the <see cref="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ms2.Annotation"/> string inside the source <paramref name="data"/> object.
+ </param>
 </member>
 <member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ms2.CompareTo(System.Object)">
  <summary>

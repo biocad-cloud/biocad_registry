@@ -2944,6 +2944,14 @@ Microsoft.VisualBasic.Math.Core
  <param name="destination">The array to receive a copy of the vector values.</param>
  <param name="startIndex">The starting index in destination at which to begin the copy operation.</param>
 </member>
+<member name="M:Microsoft.VisualBasic.Math.LinearAlgebra.Vector.CopyFrom(System.Double[]@,System.Int32,System.Int32)">
+ <summary>
+ Make data copy from the given <paramref name="source"/> to current vector object
+ </summary>
+ <param name="source">the source vector data for copy data to current vector</param>
+ <param name="startIndex">the start index of the data in current vector</param>
+ <param name="count">the number of the data elements copy from the source data</param>
+</member>
 <member name="M:Microsoft.VisualBasic.Math.LinearAlgebra.Vector.op_Addition(Microsoft.VisualBasic.Math.LinearAlgebra.Vector,Microsoft.VisualBasic.Math.LinearAlgebra.Vector)">
  <summary>
  两个向量加法算符重载，分量分别相加

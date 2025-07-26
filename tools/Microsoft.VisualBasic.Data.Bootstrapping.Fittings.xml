@@ -478,7 +478,16 @@ Microsoft.VisualBasic.Data.Bootstrapping.Fittings
                          matrix </param>
  <returns> Hessian matrix of the error function </returns>
 </member>
-<member name="M:Microsoft.VisualBasic.Data.Bootstrapping.DoubleLinear.AutoPointDeletion(System.Collections.Generic.IEnumerable{System.Drawing.PointF},Microsoft.VisualBasic.Data.Bootstrapping.Weights,System.Int32,Microsoft.VisualBasic.Language.List{System.Drawing.PointF}@,System.Boolean,System.Boolean)">
+<member name="M:Microsoft.VisualBasic.Data.Bootstrapping.DoubleLinear.doFilterInternal(System.Drawing.PointF[],Microsoft.VisualBasic.Language.List{System.Drawing.PointF}@,System.Boolean,Microsoft.VisualBasic.ComponentModel.Ranges.Model.DoubleRange)">
+ <summary>
+ removes NAN points
+ </summary>
+ <param name="pointVec"></param>
+ <param name="removed"></param>
+ <param name="removesZeroY"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.Bootstrapping.DoubleLinear.AutoPointDeletion(System.Collections.Generic.IEnumerable{System.Drawing.PointF},Microsoft.VisualBasic.Data.Bootstrapping.Weights,System.Int32,Microsoft.VisualBasic.Language.List{System.Drawing.PointF}@,System.Boolean,System.Boolean,Microsoft.VisualBasic.ComponentModel.Ranges.Model.DoubleRange)">
  <summary>
  
  </summary>
