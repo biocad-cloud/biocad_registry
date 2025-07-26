@@ -201,11 +201,13 @@ Public Class MetaCycImports
             Next
 
             If reaction.ec_number IsNot Nothing Then
-                Call catalysis.add(
-                    field("term") = reaction.ec_number.ECNumberString,
-                    field("role") = enzyme,
-                    field("reaction_id") = check.id
-                )
+                For Each ec_id In reaction.ec_number
+                    Call catalysis.add(
+                        field("term") = ec_id.ECNumberString,
+                        field("role") = enzyme,
+                        field("reaction_id") = check.id
+                    )
+                Next
             End If
         Next
 

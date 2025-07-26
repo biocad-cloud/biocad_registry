@@ -21,8 +21,8 @@ Module Program
 
     Sub Main(args As String())
 
-        Call registry.BuildUniqeHashCode
-        ' Call importsMetaCyc()
+        ' Call registry.BuildUniqeHashCode
+        Call importsMetaCyc()
 
         Pause()
     End Sub

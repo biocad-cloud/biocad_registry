@@ -17,7 +17,8 @@ Module importsData
     Sub importsMetaCyc()
         Dim biocyc As Workspace = Workspace.Open("M:\Escherichia_coli\ecoli\28.1")
 
-        Call New MetaCycImports(registry, biocyc).ImportsTranscriptUnits()
+        ' Call New MetaCycImports(registry, biocyc).ImportsTranscriptUnits()
+        Call New MetaCycImports(registry, biocyc).ImportsCompounds()
     End Sub
 
     Sub importsUniprot()
