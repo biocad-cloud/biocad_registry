@@ -1,6 +1,7 @@
 require(biocad_registry);
 
 imports ["massbank", "annotation"] from "mzkit";
+imports "data_imports" from "biocad_registry";
 
 let data = read.csv("D:\datapool\plants\planthub\metabolite_id.csv", row.names = NULL);
 let metabo = as.list(data,byrow = TRUE)
@@ -26,4 +27,9 @@ let metabo = as.list(data,byrow = TRUE)
         );
     })
     ;
+let biocad_registry = open_registry("xieguigang", 123456, host ="192.168.3.15");
 
+str(metabo);
+
+biocad_registry |> imports_metab_repo(metab = metabo,
+                        topic = "plant");
