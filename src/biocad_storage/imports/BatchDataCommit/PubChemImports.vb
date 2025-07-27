@@ -61,13 +61,19 @@ Public Module MetaboliteImports
                 Continue For
             End If
 
+            Dim odors As NamedValue(Of String)() = DirectCast(meta, MetaLib).chemical _
+                .EnumerateOdorTerms _
+                .ToArray
+
+            If odors.IsNullOrEmpty Then
+                Continue For
+            End If
+
             Dim mol As biocad_registryModel.molecule = registry.findMolecule(meta, uniref)
 
             If mol Is Nothing Then
                 Continue For
             End If
-
-            Dim odors As NamedValue(Of String)() = DirectCast(meta, MetaLib).chemical.EnumerateOdorTerms.ToArray
 
             For Each group As IGrouping(Of String, NamedValue(Of String)) In odors.GroupBy(Function(a) a.Name)
                 Dim term_id As UInteger
