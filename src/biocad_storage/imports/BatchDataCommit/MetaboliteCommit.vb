@@ -1,4 +1,5 @@
 ﻿Imports System.Runtime.CompilerServices
+Imports BioNovoGene.BioDeep.Chemistry.MetaLib
 Imports BioNovoGene.BioDeep.Chemistry.MetaLib.Models
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm
@@ -34,6 +35,70 @@ Module MetaboliteCommit
                 Call registry.molecule.where(field("id") = mol.id).save(field("note") = meta.description)
             End If
         Next
+    End Sub
+
+    Public Sub CommitOdors(Of T As MetaInfo)(metabolites As IEnumerable(Of T), registry As biocad_registry)
+        Dim trans = registry.odor.open_transaction.ignore
+        Dim terms As BioCadVocabulary = registry.vocabulary_terms
+        Dim odor_term As UInteger = terms.GetVocabularyTerm("Odor", "Odor Category")
+        Dim taste_term As UInteger = terms.GetVocabularyTerm("Taste", "Odor Category")
+        Dim color_term As UInteger = terms.GetVocabularyTerm("Color", "Odor Category")
+
+        For Each meta As MetaInfo In TqdmWrapper.Wrap(metabolites.ToArray)
+            If Not TypeOf meta Is MetaLib Then
+                Continue For
+            ElseIf DirectCast(meta, MetaLib).chemical Is Nothing Then
+                Continue For
+            End If
+
+            Dim odors As NamedValue(Of String)() = DirectCast(meta, MetaLib).chemical _
+                .EnumerateOdorTerms _
+                .ToArray
+
+            If odors.IsNullOrEmpty Then
+                Continue For
+            End If
+
+            Dim mol As biocad_registryModel.molecule = registry.findMolecule(meta, Function(a) a.ID)
+
+            If mol Is Nothing Then
+                Continue For
+            End If
+
+            For Each group As IGrouping(Of String, NamedValue(Of String)) In odors.GroupBy(Function(a) a.Name)
+                Dim term_id As UInteger
+
+                Select Case group.Key
+                    Case "odor" : term_id = odor_term
+                    Case "taste" : term_id = taste_term
+                    Case "color" : term_id = color_term
+                    Case Else
+                        Throw New NotImplementedException(group.Key)
+                End Select
+
+                For Each odor As NamedValue(Of String) In group
+                    Dim check = registry.odor _
+                        .where(field("molecule_id") = mol.id,
+                               field("category") = term_id,
+                               field("odor") = odor.Value) _
+                        .find(Of biocad_registryModel.odor)
+
+                    If check Is Nothing Then
+                        Call trans.add(
+                            field("molecule_id") = mol.id,
+                            field("category") = term_id,
+                            field("odor") = odor.Value,
+                            field("hashcode") = odor.Value.ToLower.MD5,
+                            field("value") = 0,
+                            field("unit") = 0,
+                            field("text") = odor.Description
+                        )
+                    End If
+                Next
+            Next
+        Next
+
+        Call trans.commit()
     End Sub
 
     Public Sub CommitDbXrefs(Of T As MetaInfo)(metabolites As IEnumerable(Of T), registry As biocad_registry)
