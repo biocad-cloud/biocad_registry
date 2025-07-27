@@ -65,30 +65,7 @@ Public Class MetaCycImports
         End If
 
         If Not topic.StringEmpty(, True) Then
-            Dim topic_id As String = registry.getVocabulary(topic, "Topic")
-            Dim links = registry.molecule_tags.open_transaction.ignore
-
-            For Each meta As MetaInfo In TqdmWrapper.Wrap(compoundSet)
-                Dim mol As biocad_registryModel.molecule = registry.findMolecule(meta, Function(a) a.ID)
-
-                If mol Is Nothing Then
-                    Continue For
-                End If
-
-                If registry.molecule_tags _
-                    .where(field("molecule_id") = mol.id,
-                           field("tag_id") = topic_id) _
-                    .find(Of biocad_registryModel.molecule_tags) Is Nothing Then
-
-                    Call links.add(
-                        field("molecule_id") = mol.id,
-                        field("tag_id") = topic_id,
-                        field("description") = meta.name
-                    )
-                End If
-            Next
-
-            Call links.commit()
+            Call CommitTags(registry, compoundSet, topic)
         End If
     End Sub
 
