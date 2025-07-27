@@ -29,10 +29,11 @@ declare namespace data_imports {
    */
    function imports_genomics(registry: object, genbank: object): any;
    /**
-     * @param lazy_molecule_ctor default value Is ``true``.
+     * @param lazy_molecule_ctor default value Is ``false``.
+     * @param topic default value Is ``null``.
      * @param env default value Is ``null``.
    */
-   function imports_metab_repo(registry: object, metab: any, lazy_molecule_ctor?: boolean, env?: object): any;
+   function imports_metab_repo(registry: object, metab: any, lazy_molecule_ctor?: boolean, topic?: string, env?: object): any;
    /**
    */
    function imports_pubchem_repo(registry: object, repo: object): ;
