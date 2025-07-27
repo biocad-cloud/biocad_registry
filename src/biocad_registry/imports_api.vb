@@ -62,7 +62,8 @@ Module imports_api
     ''' <returns></returns>
     <ExportAPI("imports_metab_repo")>
     Public Function imports_metabolites(registry As biocad_registry, <RRawVectorArgument> metab As Object,
-                                        Optional lazy_molecule_ctor As Boolean = True,
+                                        Optional lazy_molecule_ctor As Boolean = False,
+                                        Optional topic As String = Nothing,
                                         Optional env As Environment = Nothing)
 
         Dim pull As pipeline = pipeline.TryCreatePipeline(Of MetaInfo)(metab, env)
@@ -73,6 +74,10 @@ Module imports_api
 
         For Each page As MetaInfo() In pull.populates(Of MetaInfo)(env).SplitIterator(3000)
             Call MetaboliteImports.RunDataCommit(registry, page, uniref:=Function(m) m.ID, lazy_molecule_ctor)
+
+            If Not topic.StringEmpty(, True) Then
+                Call MetaboliteCommit.CommitTags(registry, page, topic)
+            End If
         Next
 
         Return Nothing

@@ -7,7 +7,7 @@ Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Linq
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 
-Module MetaboliteCommit
+Public Module MetaboliteCommit
 
     <Extension>
     Public Sub CommitMetabolites(Of T As MetaInfo)(metabolites As IEnumerable(Of T), registry As biocad_registry)
