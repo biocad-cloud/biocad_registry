@@ -15,6 +15,10 @@ declare namespace registry {
    */
    function find_taxinfo(registry: object, tax: string): object;
    /**
+     * @param dbname default value Is ``null``.
+   */
+   function get_by_xref(registry: object, id: string, dbname?: string): any;
+   /**
    */
    function get_taxinfo(registry: object, tax: string): object;
    /**

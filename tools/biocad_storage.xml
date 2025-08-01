@@ -113,7 +113,7 @@ biocad_storage
  a wrapper of the biocad registry database
  </summary>
 </member>
-<member name="M:biocad_storage.biocad_registry.getVocabulary(System.String,System.String,System.String)">
+<member name="M:biocad_storage.biocad_registry.getVocabulary(System.String,System.String,System.String,System.Boolean)">
  <summary>
  
  </summary>

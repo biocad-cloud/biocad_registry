@@ -292,3 +292,4 @@ workspace/embedding/nt_embedding.csv
 workspace/embedding/enzyme_embedding.csv
 data/chebi.obo
 data/chebi_lite.obo
+scripts/metadata.dat
