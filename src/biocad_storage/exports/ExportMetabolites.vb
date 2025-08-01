@@ -108,6 +108,16 @@ Public Class ExportMetabolites
         Return ExportByID(metadata, mona_libnames, wrap_tqdm)
     End Function
 
+    Public Function GetByBioCADId(id As UInteger) As BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaInfo
+        Dim mol = registry.molecule.where(field("id") = id).find(Of biocad_registryModel.molecule)
+
+        If mol Is Nothing Then
+            Return Nothing
+        Else
+            Return ExportByID({mol}, New Dictionary(Of String, String), tqdm_wrap:=False).First
+        End If
+    End Function
+
     Shared ReadOnly cache As New Dictionary(Of String, BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaInfo)
 
     Private Iterator Function ExportByID(pagedata As ICollection(Of biocad_registryModel.molecule),

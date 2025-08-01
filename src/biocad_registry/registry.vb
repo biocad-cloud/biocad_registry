@@ -137,5 +137,45 @@ Module registry
         Return list.Select(Function(t) t.child_tax).Distinct.ToArray
     End Function
 
+    ''' <summary>
+    ''' get molecule information by its reference id
+    ''' </summary>
+    ''' <param name="registry"></param>
+    ''' <param name="id">default is the biocad id, this parameter could also be other xref in external database if the <paramref name="dbname"/> has been specific</param>
+    ''' <param name="dbname"></param>
+    ''' <returns></returns>
+    <ExportAPI("get_by_xref")>
+    Public Function get_by_xref(registry As biocad_registry, id As String, Optional dbname As String = Nothing) As Object
+        If Not dbname Is Nothing Then
+            Dim dbkey = registry.getVocabulary(dbname, category:="External Database", [readonly]:=True)
+            Dim db_xrefs = registry.db_xrefs _
+                .where(field("db_key") = dbkey,
+                       field("xref") = id) _
+                .select(Of biocad_registryModel.db_xrefs)
+            Dim uniq As UInteger() = db_xrefs _
+                .Select(Function(r) r.obj_id) _
+                .Distinct _
+                .ToArray
+
+            If uniq.IsNullOrEmpty Then
+                Return Nothing
+            ElseIf uniq.Length = 1 Then
+                Return New ExportMetabolites(registry).GetByBioCADId(db_xrefs(0).obj_id)
+            Else
+                Dim result As list = list.empty
+                Dim export As New ExportMetabolites(registry)
+                Dim mol As BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaInfo
+
+                For Each uid As UInteger In uniq
+                    mol = export.GetByBioCADId(uid)
+                    result.slots(mol.ID) = mol
+                Next
+
+                Return result
+            End If
+        Else
+            Return New ExportMetabolites(registry).GetByBioCADId(UInteger.Parse(id.Match("\d+")))
+        End If
+    End Function
 End Module
 

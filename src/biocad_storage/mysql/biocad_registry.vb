@@ -200,23 +200,26 @@ Public Class biocad_registry : Inherits biocad_registryModel.db_mysql
     ''' <remarks>
     ''' has an internal cache of the vocabulary term data
     ''' </remarks>
-    Public Function getVocabulary(term As String, category As String, Optional description As String = "") As UInteger
+    Public Function getVocabulary(term As String, category As String,
+                                  Optional description As String = "",
+                                  Optional [readonly] As Boolean = False) As UInteger
+
         Static cache As New Dictionary(Of String, UInteger)
         SyncLock cache
             Return cache.ComputeIfAbsent($"{Strings.LCase(category)}:{Strings.LCase(term)}",
                 lazyValue:=Function()
-                               Return queryVocabulary(term, category, description)
+                               Return queryVocabulary(term, category, description, [readonly])
                            End Function)
         End SyncLock
     End Function
 
-    Private Function queryVocabulary(term As String, category As String, description As String) As UInteger
+    Private Function queryVocabulary(term As String, category As String, description As String, [readonly] As Boolean) As UInteger
         Dim check = m_vocabulary.where(
             field("category") = category,
             field("term") = term
         ).find(Of biocad_registryModel.vocabulary)
 
-        If check Is Nothing Then
+        If check Is Nothing AndAlso Not [readonly] Then
             Call m_vocabulary.add(
                 field("category") = category,
                 field("term") = term,
