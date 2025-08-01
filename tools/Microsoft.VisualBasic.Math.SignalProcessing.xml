@@ -1401,6 +1401,11 @@ Microsoft.VisualBasic.Math.SignalProcessing
  f(x) = x - mean
  </summary>
 </member>
+<member name="T:Microsoft.VisualBasic.Math.SignalProcessing.NDtw.Preprocessing.IPreprocessor">
+ <summary>
+ signal processor for scale the signal intensity value
+ </summary>
+</member>
 <member name="P:Microsoft.VisualBasic.Math.SignalProcessing.NDtw.Preprocessing.IPreprocessor.Function(System.Double[])">
  <summary>
  apply of the data processor function

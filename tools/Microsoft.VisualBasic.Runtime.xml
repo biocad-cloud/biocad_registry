@@ -16184,6 +16184,55 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  </summary>
  <typeparam name="T"></typeparam>
 </member>
+<member name="T:Microsoft.VisualBasic.ComponentModel.TagData.ITimeSignal">
+ <summary>
+ Interface representing the time series data
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.ComponentModel.TagData.ITimeSignal.time">
+ <summary>
+ the time point data
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.ComponentModel.TagData.ITimeSignal.intensity">
+ <summary>
+ the signal intensity value of current time point
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.ComponentModel.TagData.TimeSignalDataExtensions.Time``1(System.Collections.Generic.IEnumerable{``0})">
+ <summary>
+ get time signal time point as vector
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="x"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.ComponentModel.TagData.TimeSignalDataExtensions.Intensity``1(System.Collections.Generic.IEnumerable{``0})">
+ <summary>
+ get signal intensity value as vector
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="x"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.ComponentModel.TagData.TimeSignalDataExtensions.X``1(System.Collections.Generic.IEnumerable{``0})">
+ <summary>
+ get time signal time point as vector
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="data"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.ComponentModel.TagData.TimeSignalDataExtensions.Y``1(System.Collections.Generic.IEnumerable{``0})">
+ <summary>
+ get signal intensity value as vector
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="data"></param>
+ <returns></returns>
+</member>
 <member name="T:Microsoft.VisualBasic.Data.NamespaceDoc">
  <summary>
  The sciBASIC.NET data handling module

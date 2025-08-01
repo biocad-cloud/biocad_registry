@@ -147,7 +147,7 @@ Public Class MetaCycImports
                     End If
                 Next
 
-                If Not gene.product.StringEmpty(, True) Then
+                If Not gene.product.IsNullOrEmpty Then
                     Dim prot_mol = registry.molecule.where(field("parent") = mol.id).find(Of biocad_registryModel.molecule)
 
                     If Not prot_mol Is Nothing Then

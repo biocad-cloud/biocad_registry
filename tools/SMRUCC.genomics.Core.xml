@@ -15498,9 +15498,9 @@ to take away yo [rest of string was truncated]&quot;;.
 </member>
 <member name="T:SMRUCC.genomics.SequenceModel.Polypeptides.Polypeptide">
  <summary>
- Protein polypeptide sequence.(蛋白质多肽链的一些相关操作)
+ Protein polypeptide sequence.
  </summary>
- <remarks></remarks>
+ <remarks>(蛋白质多肽链的一些相关操作)</remarks>
 </member>
 <member name="M:SMRUCC.genomics.SequenceModel.Polypeptides.Polypeptide.ConstructVector(System.String)">
  <summary>

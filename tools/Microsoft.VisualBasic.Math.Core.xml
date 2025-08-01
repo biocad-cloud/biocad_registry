@@ -4477,6 +4477,205 @@ Microsoft.VisualBasic.Math.Core
  ```
  </remarks>
 </member>
+<member name="T:Microsoft.VisualBasic.Math.DownSampling.Bucket">
+ <summary>
+ A bucket holds a subset of events and select significant events from it
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.Math.DownSampling.BucketBasedAlgorithm`2">
+ <summary>
+ General algorithm using buckets to downsample events:<br />
+ <ul>
+ <li>Prepare data.</li>
+ <li>Split events into buckets.</li>
+ <li>Calculate weight of events.</li>
+ <li>Select significant events from each bucket.</li>
+ </ul>
+ </summary>
+ <typeparam name="B"> Bucket class </typeparam>
+ <typeparam name="E"> Event class </typeparam>
+</member>
+<member name="M:Microsoft.VisualBasic.Math.DownSampling.BucketBasedAlgorithm`2.prepare(System.Collections.Generic.IList{Microsoft.VisualBasic.ComponentModel.TagData.ITimeSignal})">
+ <summary>
+ initialize data for down sampling
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Math.DownSampling.BucketBasedAlgorithm`2.beforeSelect(System.Collections.Generic.IList{`0},System.Int32)">
+ <summary>
+ calculating weight or something else
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.Math.DownSampling.BucketSplitter`2">
+ <summary>
+ Split up events into buckets
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.Math.DownSampling.DownSamplingAlgorithm">
+ <summary>
+ Interface for downSampling algorithms
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Math.DownSampling.DownSamplingAlgorithm.process(System.Collections.Generic.IList{Microsoft.VisualBasic.ComponentModel.TagData.ITimeSignal},System.Int32)">
+ 
+ <param name="data"> The original data </param>
+ <param name="threshold"> Number of data points to be returned </param>
+ <returns> the downsampled data </returns>
+</member>
+<member name="T:Microsoft.VisualBasic.Math.DownSampling.DSAlgorithms">
+ <summary>
+ Downsampling algorithms for time series data（LTOB, LTTB, LTD, OSI-PI Plot）
+ </summary>
+ <remarks>
+ https://github.com/avina/downsampling
+ </remarks>
+</member>
+<member name="F:Microsoft.VisualBasic.Math.DownSampling.DSAlgorithms.PIPLOT">
+ <summary>
+ OSIsoft PI PlotValues </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Math.DownSampling.DSAlgorithms.LTTB">
+ <summary>
+ Largest Triangle Three Bucket </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Math.DownSampling.DSAlgorithms.LTOB">
+ <summary>
+ Largest Triangle One Bucket </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Math.DownSampling.DSAlgorithms.LTD">
+ <summary>
+ Largest Triangle Dynamic </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Math.DownSampling.DSAlgorithms.MAXMIN">
+ <summary>
+ Maximum and minimum value </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.Math.DownSampling.FixedNumBucketSplitter`2">
+ <summary>
+ Assign the first event to the first bucket, the last event to the last bucket.<br />
+ Split the rest events into the rest (threshold - 2) buckets each containing approximately equal number of events
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.Math.DownSampling.FixedTimeBucketSplitter`2">
+ <summary>
+ Split data into buckets with equal time span
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.Math.DownSampling.LargestTriangleBucket.LinkedBucketNode">
+ <summary>
+ Tow-way linked list to perform bucket split and merge.
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Math.DownSampling.LargestTriangleBucket.LinkedBucketNode.split">
+ <summary>
+ split this node into 2 new nodes,each contains a new bucket with half events.
+ </summary>
+ <returns> if bucket contains more than 2 events, return the last node, else return this. </returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Math.DownSampling.LargestTriangleBucket.LinkedBucketNode.merge">
+ <summary>
+ merge this node and the next node into one.
+ </summary>
+ <returns> the merged node; </returns>
+</member>
+<member name="T:Microsoft.VisualBasic.Math.DownSampling.LargestTriangleBucket.LTABuilder">
+ <summary>
+ A builder class for LT Algorithms.
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.Math.DownSampling.LargestTriangleBucket.LTAlgorithm">
+ <summary>
+ Largest Triangle Bucket Algorithm family.
+ <ul>
+ <li>LTOB: Largest Triangle One Bucket</li>
+ <li>LTTB: Largest Triangle Three Bucket</li>
+ <li>LTD: Largest Triangle Dynamic (three bucket)</li>
+ </ul>
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.Math.DownSampling.LargestTriangleBucket.LTDynamicBucketSplitter">
+ <summary>
+ <para>
+ A bucket-splitter dynamically resize bucket according to their SSE(Sum of Square Errors).
+ </para>
+ <para>
+ In each iteration, the bucket with the highest SSE is split into two new buckets, two buckets with the lowest SSE
+ are merged into a new one.
+ </para>
+ <para>
+ LTD recommended number of iterations is DataSize / threshold * 10 but it depends. For a plot whit one highly
+ fluctuating area and several small peaks, big number of iterations causes small peaks to be lost. So I change the
+ formula to DataSize / threshold / 10 and limit the number to 500.
+ </para>
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.Math.DownSampling.LargestTriangleBucket.LTOneBucketWeightCalculator">
+ <summary>
+ Weight = Area of triangle (point A: the previous event, point B: this event; point C: the next event)
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.Math.DownSampling.LargestTriangleBucket.LTThreeBucketWeightCalculator">
+ <summary>
+ Weight = Area of triangle (point A: the previous selected event, point B: this event; point C: average event int the next bucket)
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Math.DownSampling.LargestTriangleBucket.LTWeightedBucket.m_average">
+ <summary>
+ a virtual event represents the average value in next bucket
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Math.DownSampling.LargestTriangleBucket.LTWeightedBucket.average">
+ <summary>
+ a virtual event represents the average value in next bucket
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Math.DownSampling.LargestTriangleBucket.LTWeightedBucket.sse">
+ <summary>
+ -1 means SSE not calculated yet
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Math.DownSampling.LargestTriangleBucket.LTWeightedBucket.calcSSE(Microsoft.VisualBasic.Math.DownSampling.LargestTriangleBucket.LTWeightedBucket,Microsoft.VisualBasic.Math.DownSampling.LargestTriangleBucket.LTWeightedBucket)">
+ <summary>
+ Calculate sum of squared errors, with one event in adjacent buckets overlapping
+ 
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.Math.DownSampling.LargestTriangleBucket.Triangle">
+ <summary>
+ Calculate a triangle's area
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.Math.DownSampling.MaxMin.MMAlgorithm">
+ <summary>
+ Select events with maximum or minimum value in bucket
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.Math.DownSampling.MaxMin.MMBucket">
+ <summary>
+ Bucket that selects events with maximum or minimum value
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.Math.DownSampling.MaxMin.PIPlotAlgorithm">
+ <summary>
+ OSISoft PI PlotValues algorithm. (without interpolation on boundary)
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.Math.DownSampling.MaxMin.PIPlotBucket">
+ <summary>
+ Bucket that selects the first, the last event and events with maximum or minimum value
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.Math.DownSampling.Mixed.MixedAlgorithm">
+ <summary>
+ Merge other algorithms' results into a new result, then deduplicate and sort it.
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.Math.DownSampling.TimeGap.TimeGapAlgorithm">
+ <summary>
+ Find out big gaps between events and select events at both ends of those gaps.
+ </summary>
+</member>
 <member name="T:Microsoft.VisualBasic.Math.Extensions">
  <summary>
  向量以及统计函数拓展
