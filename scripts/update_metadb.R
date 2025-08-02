@@ -9,3 +9,4 @@ let metadata = open_repository( relative_work ("metadata.dat"), mode = "write");
 let metadb_libs = data_exports::export_metabolites(biocad_registry);
 
 write_metadata(metadata, meta = metadb_libs);
+close(metadata);
