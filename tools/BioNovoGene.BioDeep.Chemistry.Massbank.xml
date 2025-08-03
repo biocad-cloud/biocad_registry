@@ -1086,7 +1086,7 @@ BioNovoGene.BioDeep.Chemistry.Massbank
 </member>
 <member name="T:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.Web.QueryXml">
  <summary>
- result data set for pubchem query summary
+ result data set for pubchem query summary, download in xml format
  </summary>
  <remarks>
  [Download]
