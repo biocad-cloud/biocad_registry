@@ -48,6 +48,11 @@ Public Class FormMoleculeEditor
 
         DataGridView1.CommitEdit(DataGridViewDataErrorContexts.Commit)
     End Sub
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        Dim name As String = Strings.Trim(TextBox2.Text)
+        MyApplication.biocad_registry.molecule.where(field("id") = UInteger.Parse(id.Match("\d+"))).save(field("name") = name)
+    End Sub
 End Class
 
 Public Class XrefID
