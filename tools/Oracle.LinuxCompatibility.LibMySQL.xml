@@ -483,6 +483,12 @@ Oracle.LinuxCompatibility.LibMySQL
  <param name="q"></param>
  <returns></returns>
 </member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.Model.where(System.Collections.Generic.IEnumerable{Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert})">
+ <summary>
+ WHERE
+ </summary>
+ <returns></returns>
+</member>
 <member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.Model.where(Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert[])">
  <summary>
  WHERE
