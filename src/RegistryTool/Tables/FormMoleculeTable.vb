@@ -99,6 +99,21 @@ Public Class FormMoleculeTable
         edit.Text = $"BioCAD{id.PadLeft(11, "0"c)} - {row.Cells(2).Value}"
         edit.Show()
     End Sub
+
+    Private Sub ViewOnTheWebToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewOnTheWebToolStripMenuItem.Click
+        If DataGridView1.SelectedRows.Count = 0 Then
+            Return
+        End If
+
+        Dim row = DataGridView1.SelectedRows(0)
+        Dim id As String = CStr(row.Cells(0).Value)
+
+        id = $"BioCAD{id.PadLeft(11, "0"c)}"
+
+        Dim url As String = $"http://biocad.innovation.ac.cn/molecule/{id}/"
+
+        Call Tools.OpenUrlWithDefaultBrowser(url)
+    End Sub
 End Class
 
 Public Class MoleculeData
