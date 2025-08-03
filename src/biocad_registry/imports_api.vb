@@ -80,7 +80,7 @@ Module imports_api
                 Call MetaboliteCommit.CommitTags(registry, page, topic)
             End If
             If Not exclude_topic.StringEmpty(, True) Then
-                Call MetaboliteCommit.RemoveTags(registry, page, topic)
+                Call MetaboliteCommit.RemoveTags(registry, page, exclude_topic)
             End If
         Next
 
