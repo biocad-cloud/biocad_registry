@@ -22,6 +22,7 @@ Partial Class FormMoleculeTable
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormMoleculeTable))
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -44,9 +45,12 @@ Partial Class FormMoleculeTable
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewOnTheWebToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
+        Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'DataGridView1
@@ -55,6 +59,7 @@ Partial Class FormMoleculeTable
         Me.DataGridView1.AllowUserToDeleteRows = False
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2, Me.Column3, Me.Column4, Me.Column5, Me.Column6, Me.Column7})
+        Me.DataGridView1.ContextMenuStrip = Me.ContextMenuStrip1
         Me.DataGridView1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridView1.Location = New System.Drawing.Point(0, 25)
         Me.DataGridView1.Name = "DataGridView1"
@@ -118,8 +123,8 @@ Partial Class FormMoleculeTable
         'ToolStripStatusLabel1
         '
         Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
-        Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(119, 17)
-        Me.ToolStripStatusLabel1.Text = "ToolStripStatusLabel1"
+        Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(69, 17)
+        Me.ToolStripStatusLabel1.Text = "Data Ready!"
         '
         'ToolStripProgressBar1
         '
@@ -200,6 +205,19 @@ Partial Class FormMoleculeTable
         Me.ToolStripButton2.Size = New System.Drawing.Size(23, 22)
         Me.ToolStripButton2.Text = "Export"
         '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewOnTheWebToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(181, 48)
+        '
+        'ViewOnTheWebToolStripMenuItem
+        '
+        Me.ViewOnTheWebToolStripMenuItem.Image = CType(resources.GetObject("ViewOnTheWebToolStripMenuItem.Image"), System.Drawing.Image)
+        Me.ViewOnTheWebToolStripMenuItem.Name = "ViewOnTheWebToolStripMenuItem"
+        Me.ViewOnTheWebToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ViewOnTheWebToolStripMenuItem.Text = "View on the Web"
+        '
         'FormMoleculeTable
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
@@ -215,6 +233,7 @@ Partial Class FormMoleculeTable
         Me.StatusStrip1.PerformLayout()
         Me.ToolStrip1.ResumeLayout(False)
         Me.ToolStrip1.PerformLayout()
+        Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -241,4 +260,6 @@ Partial Class FormMoleculeTable
     Friend WithEvents Column5 As DataGridViewTextBoxColumn
     Friend WithEvents Column6 As DataGridViewTextBoxColumn
     Friend WithEvents Column7 As DataGridViewTextBoxColumn
+    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents ViewOnTheWebToolStripMenuItem As ToolStripMenuItem
 End Class
