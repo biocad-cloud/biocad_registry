@@ -31,9 +31,10 @@ declare namespace data_imports {
    /**
      * @param lazy_molecule_ctor default value Is ``false``.
      * @param topic default value Is ``null``.
+     * @param exclude_topic default value Is ``null``.
      * @param env default value Is ``null``.
    */
-   function imports_metab_repo(registry: object, metab: any, lazy_molecule_ctor?: boolean, topic?: string, env?: object): any;
+   function imports_metab_repo(registry: object, metab: any, lazy_molecule_ctor?: boolean, topic?: string, exclude_topic?: string, env?: object): any;
    /**
    */
    function imports_pubchem_repo(registry: object, repo: object): ;
