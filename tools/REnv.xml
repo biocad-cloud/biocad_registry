@@ -489,6 +489,9 @@ to [rest of string was truncated]&quot;;.
  <summary>
  the literal value expression in R# 
  </summary>
+ <remarks>
+ the number/boolean/character/integer/byte
+ </remarks>
 </member>
 <member name="P:SMRUCC.Rsharp.Interpreter.ExecuteEngine.ExpressionSymbols.DataSets.Literal.isNull">
  <summary>
@@ -573,6 +576,12 @@ to [rest of string was truncated]&quot;;.
  <remarks>
  this object model implements the interface of a collection of the value <see cref="T:SMRUCC.Rsharp.Interpreter.ExecuteEngine.Expression"/>.
  </remarks>
+</member>
+<member name="P:SMRUCC.Rsharp.Interpreter.ExecuteEngine.ExpressionSymbols.DataSets.VectorLiteral.isLiteral">
+ <summary>
+ check all elements inside this vector is literal value or not?
+ </summary>
+ <returns></returns>
 </member>
 <member name="T:SMRUCC.Rsharp.Interpreter.ExecuteEngine.ExpressionSymbols.DataSets.NamespaceFunctionSymbolReference">
  <summary>
@@ -661,6 +670,16 @@ to [rest of string was truncated]&quot;;.
  <summary>
  get/set elements by index 
  (X$name或者X[[name]])
+ </summary>
+</member>
+<member name="F:SMRUCC.Rsharp.Interpreter.ExecuteEngine.ExpressionSymbols.DataSets.SymbolIndexer.index">
+ <summary>
+ index value for get subset from symbol <see cref="!:x"/>
+ </summary>
+</member>
+<member name="F:SMRUCC.Rsharp.Interpreter.ExecuteEngine.ExpressionSymbols.DataSets.SymbolIndexer.symbol">
+ <summary>
+ target symbol x
  </summary>
 </member>
 <member name="F:SMRUCC.Rsharp.Interpreter.ExecuteEngine.ExpressionSymbols.DataSets.SymbolIndexer.indexType">
@@ -11492,13 +11511,19 @@ to take away yo [rest of string was truncated]&quot;;.
  </summary>
  <returns></returns>
 </member>
-<member name="M:SMRUCC.Rsharp.Runtime.Internal.Object.dataframe.projectByColumn(System.Array,SMRUCC.Rsharp.Runtime.Environment,System.Boolean,System.Boolean)">
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Object.dataframe.projectByColumn(System.Array,SMRUCC.Rsharp.Runtime.Environment,System.Boolean,System.Boolean,System.Boolean)">
  <summary>
  ``data[, selector]``
  </summary>
  <param name="selector"></param>
  <param name="reverse">
  only works for the character index
+ </param>
+ <param name="strict">
+ the strict option for the dataframe column projection, this option has different behaviours for deal with the missing data column:
+ 
+ for strict mode, an error exception will generates for break the program executation
+ for non-strict mode, the missing column will be added with all element vector is NULL
  </param>
  <returns>dataframe</returns>
 </member>
