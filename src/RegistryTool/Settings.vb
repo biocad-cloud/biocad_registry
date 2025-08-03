@@ -8,13 +8,20 @@ Public Class Settings
     Public Property port As UInteger
     Public Property user As String
 
+    Public Property model As String = "qwen3:30b"
+    Public Property ollama_server As String = "127.0.0.1"
+    Public Property ollama_service As Integer = 11434
+
     Public Shared Function GetDefault() As Settings
         Return New Settings With {
             .dbname = "cad_registry",
             .host = "127.0.0.1",
             .password = 123456,
             .port = 3306,
-            .user = "root"
+            .user = "root",
+            .model = "qwen3:30b",
+            .ollama_server = "127.0.0.1",
+            .ollama_service = 11434
         }
     End Function
 

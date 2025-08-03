@@ -155,6 +155,10 @@ Public Class FormMoleculeTable
 
         Await ResetPage()
     End Sub
+
+    Private Sub EditToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EditToolStripMenuItem.Click
+        Call DataGridView1_CellContentDoubleClick(Nothing, Nothing)
+    End Sub
 End Class
 
 Public Class TopicName

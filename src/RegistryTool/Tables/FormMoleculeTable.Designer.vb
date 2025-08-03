@@ -49,6 +49,7 @@ Partial Class FormMoleculeTable
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
+        Me.EditToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
@@ -115,15 +116,15 @@ Partial Class FormMoleculeTable
         '
         'ContextMenuStrip1
         '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewOnTheWebToolStripMenuItem})
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewOnTheWebToolStripMenuItem, Me.EditToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(164, 26)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(181, 70)
         '
         'ViewOnTheWebToolStripMenuItem
         '
         Me.ViewOnTheWebToolStripMenuItem.Image = CType(resources.GetObject("ViewOnTheWebToolStripMenuItem.Image"), System.Drawing.Image)
         Me.ViewOnTheWebToolStripMenuItem.Name = "ViewOnTheWebToolStripMenuItem"
-        Me.ViewOnTheWebToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
+        Me.ViewOnTheWebToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.ViewOnTheWebToolStripMenuItem.Text = "View on the Web"
         '
         'StatusStrip1
@@ -232,6 +233,12 @@ Partial Class FormMoleculeTable
         Me.ToolStripButton2.Size = New System.Drawing.Size(23, 22)
         Me.ToolStripButton2.Text = "Export"
         '
+        'EditToolStripMenuItem
+        '
+        Me.EditToolStripMenuItem.Name = "EditToolStripMenuItem"
+        Me.EditToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.EditToolStripMenuItem.Text = "Edit"
+        '
         'FormMoleculeTable
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
@@ -278,4 +285,5 @@ Partial Class FormMoleculeTable
     Friend WithEvents ViewOnTheWebToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToolStripLabel3 As ToolStripLabel
     Friend WithEvents ToolStripComboBox2 As ToolStripComboBox
+    Friend WithEvents EditToolStripMenuItem As ToolStripMenuItem
 End Class
