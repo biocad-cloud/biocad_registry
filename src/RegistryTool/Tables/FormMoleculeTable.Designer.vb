@@ -32,6 +32,8 @@ Partial Class FormMoleculeTable
         Me.Column5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewOnTheWebToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ToolStripProgressBar1 = New System.Windows.Forms.ToolStripProgressBar()
@@ -42,15 +44,15 @@ Partial Class FormMoleculeTable
         Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripLabel1 = New System.Windows.Forms.ToolStripLabel()
         Me.ToolStripComboBox1 = New System.Windows.Forms.ToolStripComboBox()
+        Me.ToolStripLabel3 = New System.Windows.Forms.ToolStripLabel()
+        Me.ToolStripComboBox2 = New System.Windows.Forms.ToolStripComboBox()
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
-        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.ViewOnTheWebToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
-        Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'DataGridView1
@@ -65,7 +67,7 @@ Partial Class FormMoleculeTable
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.ReadOnly = True
         Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DataGridView1.Size = New System.Drawing.Size(800, 403)
+        Me.DataGridView1.Size = New System.Drawing.Size(1328, 722)
         Me.DataGridView1.TabIndex = 0
         '
         'Column1
@@ -111,12 +113,25 @@ Partial Class FormMoleculeTable
         Me.Column7.Name = "Column7"
         Me.Column7.ReadOnly = True
         '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewOnTheWebToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(164, 26)
+        '
+        'ViewOnTheWebToolStripMenuItem
+        '
+        Me.ViewOnTheWebToolStripMenuItem.Image = CType(resources.GetObject("ViewOnTheWebToolStripMenuItem.Image"), System.Drawing.Image)
+        Me.ViewOnTheWebToolStripMenuItem.Name = "ViewOnTheWebToolStripMenuItem"
+        Me.ViewOnTheWebToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
+        Me.ViewOnTheWebToolStripMenuItem.Text = "View on the Web"
+        '
         'StatusStrip1
         '
         Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel1, Me.ToolStripProgressBar1})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 428)
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 747)
         Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Size = New System.Drawing.Size(800, 22)
+        Me.StatusStrip1.Size = New System.Drawing.Size(1328, 22)
         Me.StatusStrip1.TabIndex = 1
         Me.StatusStrip1.Text = "StatusStrip1"
         '
@@ -133,10 +148,10 @@ Partial Class FormMoleculeTable
         '
         'ToolStrip1
         '
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton3, Me.ToolStripLabel2, Me.ToolStripButton4, Me.ToolStripSeparator2, Me.ToolStripLabel1, Me.ToolStripComboBox1, Me.ToolStripButton1, Me.ToolStripSeparator1, Me.ToolStripButton2})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton3, Me.ToolStripLabel2, Me.ToolStripButton4, Me.ToolStripSeparator2, Me.ToolStripLabel1, Me.ToolStripComboBox1, Me.ToolStripLabel3, Me.ToolStripComboBox2, Me.ToolStripButton1, Me.ToolStripSeparator1, Me.ToolStripButton2})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(800, 25)
+        Me.ToolStrip1.Size = New System.Drawing.Size(1328, 25)
         Me.ToolStrip1.TabIndex = 2
         Me.ToolStrip1.Text = "ToolStrip1"
         '
@@ -182,6 +197,18 @@ Partial Class FormMoleculeTable
         Me.ToolStripComboBox1.Name = "ToolStripComboBox1"
         Me.ToolStripComboBox1.Size = New System.Drawing.Size(150, 25)
         '
+        'ToolStripLabel3
+        '
+        Me.ToolStripLabel3.Name = "ToolStripLabel3"
+        Me.ToolStripLabel3.Size = New System.Drawing.Size(91, 22)
+        Me.ToolStripLabel3.Text = "Topic/Category:"
+        '
+        'ToolStripComboBox2
+        '
+        Me.ToolStripComboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ToolStripComboBox2.Name = "ToolStripComboBox2"
+        Me.ToolStripComboBox2.Size = New System.Drawing.Size(150, 25)
+        '
         'ToolStripButton1
         '
         Me.ToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
@@ -205,35 +232,22 @@ Partial Class FormMoleculeTable
         Me.ToolStripButton2.Size = New System.Drawing.Size(23, 22)
         Me.ToolStripButton2.Text = "Export"
         '
-        'ContextMenuStrip1
-        '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewOnTheWebToolStripMenuItem})
-        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(181, 48)
-        '
-        'ViewOnTheWebToolStripMenuItem
-        '
-        Me.ViewOnTheWebToolStripMenuItem.Image = CType(resources.GetObject("ViewOnTheWebToolStripMenuItem.Image"), System.Drawing.Image)
-        Me.ViewOnTheWebToolStripMenuItem.Name = "ViewOnTheWebToolStripMenuItem"
-        Me.ViewOnTheWebToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.ViewOnTheWebToolStripMenuItem.Text = "View on the Web"
-        '
         'FormMoleculeTable
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.ClientSize = New System.Drawing.Size(1328, 769)
         Me.Controls.Add(Me.DataGridView1)
         Me.Controls.Add(Me.ToolStrip1)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Name = "FormMoleculeTable"
         Me.Text = "Molecules"
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip1.ResumeLayout(False)
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
         Me.ToolStrip1.ResumeLayout(False)
         Me.ToolStrip1.PerformLayout()
-        Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -262,4 +276,6 @@ Partial Class FormMoleculeTable
     Friend WithEvents Column7 As DataGridViewTextBoxColumn
     Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
     Friend WithEvents ViewOnTheWebToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStripLabel3 As ToolStripLabel
+    Friend WithEvents ToolStripComboBox2 As ToolStripComboBox
 End Class

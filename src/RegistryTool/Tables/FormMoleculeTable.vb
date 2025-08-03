@@ -1,6 +1,7 @@
-﻿Imports RegistryTool.My
+﻿Imports Microsoft.VisualBasic.Linq
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports Oracle.LinuxCompatibility.MySQL.Reflection.DbAttributes
+Imports RegistryTool.My
 
 Public Class FormMoleculeTable
 
@@ -18,17 +19,21 @@ Public Class FormMoleculeTable
         End Select
     End Function
 
-    Private Sub ToolStripComboBox1_Click(sender As Object, e As EventArgs) Handles ToolStripComboBox1.Click
+    Private Async Sub ShowMolbyType() Handles ToolStripComboBox1.Click
+        Await ResetPage()
+    End Sub
+
+    Private Async Function ResetPage() As Task
         page = 1
-        LoadPage()
-    End Sub
+        Await LoadPage()
+    End Function
 
-    Private Sub ToolStripButton4_Click(sender As Object, e As EventArgs) Handles ToolStripButton4.Click
+    Private Async Sub ToolStripButton4_Click(sender As Object, e As EventArgs) Handles ToolStripButton4.Click
         page += 1
-        LoadPage()
+        Await LoadPage()
     End Sub
 
-    Private Sub LoadPage()
+    Private Async Function LoadPage() As Task
         Dim type As Integer = GetVocabulary()
         Dim offset As UInteger = (page - 1) * page_size
 
@@ -37,22 +42,33 @@ Public Class FormMoleculeTable
         Dim q = MyApplication.biocad_registry.molecule _
             .left_join("sequence_graph") _
             .on(field("sequence_graph.molecule_id") = field("molecule.id"))
+        Dim qwhere As New List(Of FieldAssert)
 
         If type > -1 Then
-            q = q.where(field("molecule.type") = type)
+            qwhere.Add(field("molecule.type") = type)
+        End If
+        If topic IsNot Nothing Then
+            qwhere.Add(field("tag_id") = topic.id)
+            q = q _
+                .left_join("molecule_tags") _
+                .on(field("molecule_tags.molecule_id") = field("molecule.id"))
         End If
 
-        Dim data = q.limit(offset, page_size).select(Of MoleculeData)("molecule.id AS molecule_id",
+        If qwhere.Any Then
+            q = q.where(qwhere)
+        End If
+
+        Dim data = Await Task.Run(Function() q.limit(offset, page_size).select(Of MoleculeData)("molecule.id AS molecule_id",
     "xref_id",
     "name",
     "formula",
     "mass",
     "sequence",
-    "note")
+    "note"))
 
         Call DataGridView1.Rows.Clear()
 
-        For Each mol In data
+        For Each mol As MoleculeData In data
             Dim i = DataGridView1.Rows.Add(mol.molecule_id, mol.xref_id, mol.name, mol.formula, mol.mass, mol.sequence, mol.note)
             Dim r = DataGridView1.Rows(i)
 
@@ -60,26 +76,35 @@ Public Class FormMoleculeTable
         Next
 
         Call DataGridView1.CommitEdit(DataGridViewDataErrorContexts.Commit)
-    End Sub
+    End Function
 
-    Private Sub ToolStripButton3_Click(sender As Object, e As EventArgs) Handles ToolStripButton3.Click
+    Private Async Sub ToolStripButton3_Click(sender As Object, e As EventArgs) Handles ToolStripButton3.Click
         page -= 1
 
         If page < 1 Then
             page = 1
             Return
         Else
-            LoadPage()
+            Await LoadPage()
         End If
     End Sub
 
-    Private Sub FormMoleculeTable_Load(sender As Object, e As EventArgs) Handles Me.Load
+    Private Async Sub FormMoleculeTable_Load(sender As Object, e As EventArgs) Handles Me.Load
+        Dim topics = MyApplication.biocad_registry.vocabulary.where(field("category") = "Topic").select(Of TopicName)("id", "term")
+
+        Call ToolStripComboBox2.Items.Add("*")
+
+        For Each topic As TopicName In topics.SafeQuery
+            Call ToolStripComboBox2.Items.Add(topic)
+        Next
+
         ToolStripComboBox1.SelectedIndex = 0
-        LoadPage()
+
+        Await LoadPage()
     End Sub
 
-    Private Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
-        LoadPage()
+    Private Async Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
+        Await LoadPage()
     End Sub
 
     Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
@@ -114,6 +139,33 @@ Public Class FormMoleculeTable
 
         Call Tools.OpenUrlWithDefaultBrowser(url)
     End Sub
+
+    Dim topic As TopicName
+
+    Private Sub ToolStripComboBox2_Click(sender As Object, e As EventArgs) Handles ToolStripComboBox2.Click
+
+    End Sub
+
+    Private Async Sub ToolStripComboBox2_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ToolStripComboBox2.SelectedIndexChanged
+        If ToolStripComboBox2.SelectedIndex <= 0 Then
+            topic = Nothing
+        Else
+            topic = DirectCast(ToolStripComboBox2.Items(ToolStripComboBox2.SelectedIndex), TopicName)
+        End If
+
+        Await ResetPage()
+    End Sub
+End Class
+
+Public Class TopicName
+
+    <DatabaseField> Public Property id As UInteger
+    <DatabaseField> Public Property term As String
+
+    Public Overrides Function ToString() As String
+        Return term
+    End Function
+
 End Class
 
 Public Class MoleculeData
