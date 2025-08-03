@@ -11,15 +11,15 @@ Public Class FormMoleculeTable
     Private Function GetVocabulary() As Integer
         Select Case ToolStripComboBox1.SelectedItem.ToString
             Case "*" : Return -1
-            Case "Gene" : Return 1
-            Case "Protein" : Return 3
-            Case "Metabolite" : Return 4
+            Case "Gene" : Return MyApplication.biocad_registry.getVocabulary("Nucleic Acid", "Molecule Type")
+            Case "Protein" : Return MyApplication.biocad_registry.getVocabulary("Polypeptide", "Molecule Type")
+            Case "Metabolite" : Return MyApplication.biocad_registry.getVocabulary("Metabolite", "Molecule Type")
             Case Else
                 Return -1
         End Select
     End Function
 
-    Private Async Sub ShowMolbyType() Handles ToolStripComboBox1.Click
+    Private Async Sub ShowMolbyType() Handles ToolStripComboBox1.SelectedIndexChanged
         Await ResetPage()
     End Sub
 
