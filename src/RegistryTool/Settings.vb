@@ -1,16 +1,17 @@
-﻿Imports Microsoft.VisualBasic.Serialization.JSON
+﻿Imports System.ComponentModel
+Imports Microsoft.VisualBasic.Serialization.JSON
 
 Public Class Settings
 
-    Public Property dbname As String
-    Public Property host As String
-    Public Property password As String
-    Public Property port As UInteger
-    Public Property user As String
+    <Category("MySQL")> Public Property dbname As String
+    <Category("MySQL")> Public Property host As String
+    <Category("MySQL")> Public Property password As String
+    <Category("MySQL")> Public Property port As UInteger
+    <Category("MySQL")> Public Property user As String
 
-    Public Property model As String = "qwen3:30b"
-    Public Property ollama_server As String = "127.0.0.1"
-    Public Property ollama_service As Integer = 11434
+    <Category("LLMs")> Public Property model As String = "qwen3:30b"
+    <Category("LLMs")> Public Property ollama_server As String = "127.0.0.1"
+    <Category("LLMs")> Public Property ollama_service As Integer = 11434
 
     Public Shared Function GetDefault() As Settings
         Return New Settings With {
