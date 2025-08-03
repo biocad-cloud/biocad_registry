@@ -64,6 +64,27 @@ Public Module MetaboliteCommit
         Call links.commit()
     End Sub
 
+    Public Sub RemoveTags(Of T As MetaInfo)(registry As biocad_registry, metabolites As IEnumerable(Of T), topic As String)
+        Dim topic_id As String = registry.getVocabulary(topic, "Topic")
+
+        For Each meta As MetaInfo In TqdmWrapper.Wrap(metabolites.ToArray)
+            Dim mol As biocad_registryModel.molecule = registry.findMolecule(meta, Function(a) a.ID)
+
+            If mol Is Nothing Then
+                Continue For
+            End If
+
+            Dim links = registry.molecule_tags _
+                .where(field("tag_id") = topic_id,
+                       field("molecule_id") = mol.id) _
+                .select(Of biocad_registryModel.molecule_tags)
+
+            For Each link In links.SafeQuery
+                Call registry.molecule_tags.where(field("id") = link.id).delete()
+            Next
+        Next
+    End Sub
+
     Public Sub CommitOdors(Of T As MetaInfo)(metabolites As IEnumerable(Of T), registry As biocad_registry)
         Dim trans = registry.odor.open_transaction.ignore
         Dim terms As BioCadVocabulary = registry.vocabulary_terms

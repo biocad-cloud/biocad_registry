@@ -64,6 +64,7 @@ Module imports_api
     Public Function imports_metabolites(registry As biocad_registry, <RRawVectorArgument> metab As Object,
                                         Optional lazy_molecule_ctor As Boolean = False,
                                         Optional topic As String = Nothing,
+                                        Optional exclude_topic As String = Nothing,
                                         Optional env As Environment = Nothing)
 
         Dim pull As pipeline = pipeline.TryCreatePipeline(Of MetaInfo)(metab, env)
@@ -77,6 +78,9 @@ Module imports_api
 
             If Not topic.StringEmpty(, True) Then
                 Call MetaboliteCommit.CommitTags(registry, page, topic)
+            End If
+            If Not exclude_topic.StringEmpty(, True) Then
+                Call MetaboliteCommit.RemoveTags(registry, page, topic)
             End If
         Next
 
