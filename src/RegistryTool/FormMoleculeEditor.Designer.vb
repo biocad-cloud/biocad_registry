@@ -71,7 +71,7 @@ Partial Class FormMoleculeEditor
         Me.DataGridView1.RowTemplate.Height = 23
         Me.DataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DataGridView1.Size = New System.Drawing.Size(396, 553)
+        Me.DataGridView1.Size = New System.Drawing.Size(396, 494)
         Me.DataGridView1.TabIndex = 0
         '
         'Column1
@@ -90,7 +90,7 @@ Partial Class FormMoleculeEditor
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(16, 272)
+        Me.Label2.Location = New System.Drawing.Point(16, 359)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(47, 12)
         Me.Label2.TabIndex = 2
@@ -98,14 +98,14 @@ Partial Class FormMoleculeEditor
         '
         'TextBox1
         '
-        Me.TextBox1.Location = New System.Drawing.Point(18, 292)
+        Me.TextBox1.Location = New System.Drawing.Point(18, 379)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(441, 21)
         Me.TextBox1.TabIndex = 3
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(465, 292)
+        Me.Button1.Location = New System.Drawing.Point(465, 379)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(75, 23)
         Me.Button1.TabIndex = 4
@@ -119,7 +119,7 @@ Partial Class FormMoleculeEditor
         Me.WebView21.DefaultBackgroundColor = System.Drawing.Color.White
         Me.WebView21.Location = New System.Drawing.Point(18, 20)
         Me.WebView21.Name = "WebView21"
-        Me.WebView21.Size = New System.Drawing.Size(522, 238)
+        Me.WebView21.Size = New System.Drawing.Size(522, 331)
         Me.WebView21.TabIndex = 5
         Me.WebView21.ZoomFactor = 1.0R
         '
@@ -131,7 +131,7 @@ Partial Class FormMoleculeEditor
         Me.ListBox1.ItemHeight = 12
         Me.ListBox1.Location = New System.Drawing.Point(18, 59)
         Me.ListBox1.Name = "ListBox1"
-        Me.ListBox1.Size = New System.Drawing.Size(522, 508)
+        Me.ListBox1.Size = New System.Drawing.Size(522, 448)
         Me.ListBox1.TabIndex = 7
         '
         'Label4
@@ -217,7 +217,7 @@ Partial Class FormMoleculeEditor
         Me.TextBox4.Multiline = True
         Me.TextBox4.Name = "TextBox4"
         Me.TextBox4.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.TextBox4.Size = New System.Drawing.Size(396, 289)
+        Me.TextBox4.Size = New System.Drawing.Size(396, 358)
         Me.TextBox4.TabIndex = 17
         '
         'Button3
@@ -245,9 +245,9 @@ Partial Class FormMoleculeEditor
         Me.GroupBox1.Controls.Add(Me.ListBox1)
         Me.GroupBox1.Controls.Add(Me.Label4)
         Me.GroupBox1.Controls.Add(Me.ComboBox1)
-        Me.GroupBox1.Location = New System.Drawing.Point(540, 456)
+        Me.GroupBox1.Location = New System.Drawing.Point(540, 515)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(552, 587)
+        Me.GroupBox1.Size = New System.Drawing.Size(552, 528)
         Me.GroupBox1.TabIndex = 20
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Synonym Names"
@@ -258,9 +258,9 @@ Partial Class FormMoleculeEditor
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.GroupBox2.Controls.Add(Me.Button5)
         Me.GroupBox2.Controls.Add(Me.DataGridView1)
-        Me.GroupBox2.Location = New System.Drawing.Point(12, 456)
+        Me.GroupBox2.Location = New System.Drawing.Point(12, 515)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(510, 588)
+        Me.GroupBox2.Size = New System.Drawing.Size(510, 529)
         Me.GroupBox2.TabIndex = 21
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Database CrossReference"
@@ -284,24 +284,24 @@ Partial Class FormMoleculeEditor
         Me.GroupBox3.Controls.Add(Me.Button1)
         Me.GroupBox3.Location = New System.Drawing.Point(540, 13)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(552, 437)
+        Me.GroupBox3.Size = New System.Drawing.Size(552, 496)
         Me.GroupBox3.TabIndex = 22
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Molecular Structure Data"
         '
         'TextBox5
         '
-        Me.TextBox5.Location = New System.Drawing.Point(18, 345)
+        Me.TextBox5.Location = New System.Drawing.Point(18, 421)
         Me.TextBox5.Multiline = True
         Me.TextBox5.Name = "TextBox5"
         Me.TextBox5.ReadOnly = True
-        Me.TextBox5.Size = New System.Drawing.Size(522, 76)
+        Me.TextBox5.Size = New System.Drawing.Size(522, 60)
         Me.TextBox5.TabIndex = 7
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(16, 324)
+        Me.Label1.Location = New System.Drawing.Point(16, 406)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(83, 12)
         Me.Label1.TabIndex = 6
@@ -321,7 +321,7 @@ Partial Class FormMoleculeEditor
         Me.GroupBox4.Controls.Add(Me.Label8)
         Me.GroupBox4.Location = New System.Drawing.Point(12, 12)
         Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Size = New System.Drawing.Size(510, 438)
+        Me.GroupBox4.Size = New System.Drawing.Size(510, 497)
         Me.GroupBox4.TabIndex = 23
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "Molecular Information"

@@ -13,7 +13,7 @@ Public Class FormMoleculeEditor
 <html xmlns=""http://www.w3.org/1999/xhtml"" lang=""en"" xml:lang=""en"">
 
 <head>    
-    <script type=""text/javascript"" src=""/resources/vendor/smiles-drawer.min.js""></script>
+    <script type=""text/javascript"" src=""http://biocad.innovation.ac.cn/resources/vendor/smiles-drawer.min.js""></script>
     <script id=""struct-data"" type=""plain/text"">{$struct_data}</script>
 </head>
 
