@@ -1,5 +1,6 @@
 ﻿Imports biocad_storage
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
+Imports Microsoft.Web.WebView2.Core
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports Oracle.LinuxCompatibility.MySQL.Reflection.DbAttributes
 Imports RegistryTool.My
@@ -7,6 +8,42 @@ Imports RegistryTool.My
 Public Class FormMoleculeEditor
 
     Public id As String
+
+    Public Const viewer As String = "<!DOCTYPE html SYSTEM ""about:legacy-compat"">
+<html xmlns=""http://www.w3.org/1999/xhtml"" lang=""en"" xml:lang=""en"">
+
+<head>    
+    <script type=""text/javascript"" src=""/resources/vendor/smiles-drawer.min.js""></script>
+    <script id=""struct-data"" type=""plain/text"">{$struct_data}</script>
+</head>
+
+<body>
+<canvas id=""smiles-canvas"" width=""450px"" height=""300px"" role=""img"" focusable=""false""
+                            style=""padding: 5px;""></canvas>
+</body>
+
+<script type=""text/javascript"">
+let options = { width: 450, height: 300 };
+    // Initialize the drawer to draw to canvas
+    let smilesDrawer = new SmilesDrawer.Drawer(options);
+    // Alternatively, initialize the SVG drawer:
+    // let svgDrawer = new SmilesDrawer.SvgDrawer(options);
+
+    function rendering(input_value) {
+        // Clean the input (remove unrecognized characters, such as spaces and tabs) and parse it
+        SmilesDrawer.parse(input_value, function (tree) {
+            // Draw to the canvas
+            smilesDrawer.draw(tree, ""smiles-canvas"", ""light"", false);
+            // Alternatively, draw to SVG:
+            // svgDrawer.draw(tree, 'output-svg', 'dark', false);
+        });
+    }
+
+    rendering(document.getElementById(""struct-data"").innerText);
+</script>
+</html>"
+
+    Dim struct As biocad_registryModel.sequence_graph
 
     Private Sub FormMoleculeEditor_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim mol = MyApplication.biocad_registry.molecule _
@@ -24,7 +61,7 @@ Public Class FormMoleculeEditor
         Label7.Text = FormulaScanner.EvaluateExactMass(mol.formula).ToString("F4")
         TextBox4.Text = mol.note
 
-        Dim struct = MyApplication.biocad_registry.sequence_graph _
+        struct = MyApplication.biocad_registry.sequence_graph _
             .where(field("molecule_id") = mol.id) _
             .find(Of biocad_registryModel.sequence_graph)
 
@@ -47,11 +84,19 @@ Public Class FormMoleculeEditor
         Next
 
         DataGridView1.CommitEdit(DataGridViewDataErrorContexts.Commit)
+
+        Call WebKit.Init(WebView21)
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         Dim name As String = Strings.Trim(TextBox2.Text)
         MyApplication.biocad_registry.molecule.where(field("id") = UInteger.Parse(id.Match("\d+"))).save(field("name") = name)
+    End Sub
+
+    Private Sub WebView21_CoreWebView2InitializationCompleted(sender As Object, e As CoreWebView2InitializationCompletedEventArgs) Handles WebView21.CoreWebView2InitializationCompleted
+        If Not struct Is Nothing Then
+            Call WebView21.NavigateToString(viewer.Replace("{$struct_data}", struct.sequence))
+        End If
     End Sub
 End Class
 
