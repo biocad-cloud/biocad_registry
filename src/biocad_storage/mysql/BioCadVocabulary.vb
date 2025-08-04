@@ -108,7 +108,7 @@ Public Class BioCadVocabulary
     End Function
 
     Public Function GetOntologyTerm(id As String, rank As String, source_db As String, Optional name As String = Nothing) As biocad_registryModel.ontology
-        If id Is Nothing Then
+        If id.StringEmpty(, True) Then
             Return Nothing
         End If
 
