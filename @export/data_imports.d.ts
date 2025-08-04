@@ -29,6 +29,10 @@ declare namespace data_imports {
    */
    function imports_genomics(registry: object, genbank: object): any;
    /**
+     * @param env default value Is ``null``.
+   */
+   function imports_lotus_np(registry: object, lotus: any, env?: object): any;
+   /**
      * @param lazy_molecule_ctor default value Is ``false``.
      * @param topic default value Is ``null``.
      * @param exclude_topic default value Is ``null``.

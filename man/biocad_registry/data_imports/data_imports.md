@@ -5,6 +5,7 @@
 + [imports_genbank](data_imports/imports_genbank.1) 
 + [genbank_repo](data_imports/genbank_repo.1) 
 + [pubchem_repo](data_imports/pubchem_repo.1) 
++ [imports_lotus_np](data_imports/imports_lotus_np.1) 
 + [imports_pubchem_repo](data_imports/imports_pubchem_repo.1) 
 + [imports_chebi_repo](data_imports/imports_chebi_repo.1) 
 + [imports_refmet](data_imports/imports_refmet.1) 
