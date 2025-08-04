@@ -108,6 +108,10 @@ Public Class BioCadVocabulary
     End Function
 
     Public Function GetOntologyTerm(id As String, rank As String, source_db As String, Optional name As String = Nothing) As biocad_registryModel.ontology
+        If id Is Nothing Then
+            Return Nothing
+        End If
+
         Dim unikey As String = $"{id}-{rank}-{source_db}"
 
         Static cache As New Dictionary(Of String, biocad_registryModel.ontology)
