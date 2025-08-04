@@ -1,5 +1,6 @@
 ﻿Imports biocad_storage
 Imports BioNovoGene.BioDeep.Chemistry.ChEBI
+Imports BioNovoGene.BioDeep.Chemistry.LOTUS
 Imports BioNovoGene.BioDeep.Chemistry.MetaLib.Models
 Imports BioNovoGene.BioDeep.Chemistry.NCBI.PubChem
 Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm
@@ -32,6 +33,19 @@ Module imports_api
     <ExportAPI("pubchem_repo")>
     Public Function pubchem_repo(dir As String) As PubChemScanner
         Return New PubChemScanner(dir)
+    End Function
+
+    <ExportAPI("imports_lotus_np")>
+    Public Function imports_lotus(registry As biocad_registry, <RRawVectorArgument> lotus As Object, Optional env As Environment = Nothing) As Object
+        Dim np As pipeline = pipeline.TryCreatePipeline(Of NaturalProduct)(lotus, env)
+
+        If np.isError Then
+            Return np.getError
+        End If
+
+        Call New LotusNPImports(registry).ImportsNP(np.populates(Of NaturalProduct)(env))
+
+        Return Nothing
     End Function
 
     <ExportAPI("imports_pubchem_repo")>
