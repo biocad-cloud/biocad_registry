@@ -13,7 +13,7 @@ Public Class LotusNPImports
     End Sub
 
     Public Sub ImportsNP(np As IEnumerable(Of NaturalProduct))
-        For Each page As NaturalProduct() In np.SplitIterator(100)
+        For Each page As NaturalProduct() In np.SplitIterator(2500)
             Call importsPage(page)
         Next
     End Sub
