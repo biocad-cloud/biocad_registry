@@ -296,28 +296,28 @@ Public Module MetaboliteCommit
 
             ' build tree
 
-            If Not (l1.tag.StringEmpty(, True) OrElse l2.tag.StringEmpty(, True)) Then
+            If Not (l1.tag.StringEmpty(, True) OrElse l2.tag.StringEmpty(, True) OrElse l1.term Is Nothing OrElse l2.term Is Nothing) Then
                 If registry.ontology_tree.where(field("ontology_id") = l2.term.id, field("is_a") = l1.term.id).find(Of biocad_registryModel.ontology_tree) Is Nothing Then
                     registry.ontology_tree.add(
                         field("ontology_id") = l2.term.id, field("is_a") = l1.term.id
                     )
                 End If
             End If
-            If Not (l2.tag.StringEmpty(, True) OrElse l3.tag.StringEmpty(, True)) Then
+            If Not (l2.tag.StringEmpty(, True) OrElse l3.tag.StringEmpty(, True) OrElse l3.term Is Nothing OrElse l2.term Is Nothing) Then
                 If registry.ontology_tree.where(field("ontology_id") = l3.term.id, field("is_a") = l2.term.id).find(Of biocad_registryModel.ontology_tree) Is Nothing Then
                     registry.ontology_tree.add(
                         field("ontology_id") = l3.term.id, field("is_a") = l2.term.id
                     )
                 End If
             End If
-            If Not (l3.tag.StringEmpty(, True) OrElse l4.tag.StringEmpty(, True)) Then
+            If Not (l3.tag.StringEmpty(, True) OrElse l4.tag.StringEmpty(, True) OrElse l3.term Is Nothing OrElse l4.term Is Nothing) Then
                 If registry.ontology_tree.where(field("ontology_id") = l4.term.id, field("is_a") = l3.term.id).find(Of biocad_registryModel.ontology_tree) Is Nothing Then
                     registry.ontology_tree.add(
                         field("ontology_id") = l4.term.id, field("is_a") = l3.term.id
                     )
                 End If
             End If
-            If Not (l4.tag.StringEmpty(, True) OrElse l5.tag.StringEmpty(, True)) Then
+            If Not (l4.tag.StringEmpty(, True) OrElse l5.tag.StringEmpty(, True) OrElse l4.term Is Nothing OrElse l5.term Is Nothing) Then
                 If registry.ontology_tree.where(field("ontology_id") = l5.term.id, field("is_a") = l4.term.id).find(Of biocad_registryModel.ontology_tree) Is Nothing Then
                     registry.ontology_tree.add(
                         field("ontology_id") = l5.term.id, field("is_a") = l4.term.id
@@ -326,7 +326,7 @@ Public Module MetaboliteCommit
             End If
 
             For Each rank In {l5, l4, l3, l2, l1}
-                If Not rank.tag.StringEmpty(, True) Then
+                If Not (rank.tag.StringEmpty(, True) OrElse rank.term Is Nothing) Then
                     If registry.molecule_ontology _
                         .where(field("molecule_id") = mol.id, field("ontology_id") = rank.term.id) _
                         .find(Of biocad_registryModel.molecule_ontology) Is Nothing Then
