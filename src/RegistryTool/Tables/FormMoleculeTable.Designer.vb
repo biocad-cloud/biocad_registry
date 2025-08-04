@@ -34,6 +34,7 @@ Partial Class FormMoleculeTable
         Me.Column7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ViewOnTheWebToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EditToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ToolStripProgressBar1 = New System.Windows.Forms.ToolStripProgressBar()
@@ -49,7 +50,8 @@ Partial Class FormMoleculeTable
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
-        Me.EditToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.RemovesFromCurrentTopicToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
@@ -116,16 +118,23 @@ Partial Class FormMoleculeTable
         '
         'ContextMenuStrip1
         '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewOnTheWebToolStripMenuItem, Me.EditToolStripMenuItem})
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewOnTheWebToolStripMenuItem, Me.ToolStripMenuItem1, Me.EditToolStripMenuItem, Me.RemovesFromCurrentTopicToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(181, 70)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(228, 98)
         '
         'ViewOnTheWebToolStripMenuItem
         '
         Me.ViewOnTheWebToolStripMenuItem.Image = CType(resources.GetObject("ViewOnTheWebToolStripMenuItem.Image"), System.Drawing.Image)
         Me.ViewOnTheWebToolStripMenuItem.Name = "ViewOnTheWebToolStripMenuItem"
-        Me.ViewOnTheWebToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ViewOnTheWebToolStripMenuItem.Size = New System.Drawing.Size(227, 22)
         Me.ViewOnTheWebToolStripMenuItem.Text = "View on the Web"
+        '
+        'EditToolStripMenuItem
+        '
+        Me.EditToolStripMenuItem.Image = CType(resources.GetObject("EditToolStripMenuItem.Image"), System.Drawing.Image)
+        Me.EditToolStripMenuItem.Name = "EditToolStripMenuItem"
+        Me.EditToolStripMenuItem.Size = New System.Drawing.Size(227, 22)
+        Me.EditToolStripMenuItem.Text = "Edit"
         '
         'StatusStrip1
         '
@@ -233,11 +242,17 @@ Partial Class FormMoleculeTable
         Me.ToolStripButton2.Size = New System.Drawing.Size(23, 22)
         Me.ToolStripButton2.Text = "Export"
         '
-        'EditToolStripMenuItem
+        'RemovesFromCurrentTopicToolStripMenuItem
         '
-        Me.EditToolStripMenuItem.Name = "EditToolStripMenuItem"
-        Me.EditToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.EditToolStripMenuItem.Text = "Edit"
+        Me.RemovesFromCurrentTopicToolStripMenuItem.Image = CType(resources.GetObject("RemovesFromCurrentTopicToolStripMenuItem.Image"), System.Drawing.Image)
+        Me.RemovesFromCurrentTopicToolStripMenuItem.Name = "RemovesFromCurrentTopicToolStripMenuItem"
+        Me.RemovesFromCurrentTopicToolStripMenuItem.Size = New System.Drawing.Size(227, 22)
+        Me.RemovesFromCurrentTopicToolStripMenuItem.Text = "Removes From Current Topic"
+        '
+        'ToolStripMenuItem1
+        '
+        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(224, 6)
         '
         'FormMoleculeTable
         '
@@ -286,4 +301,6 @@ Partial Class FormMoleculeTable
     Friend WithEvents ToolStripLabel3 As ToolStripLabel
     Friend WithEvents ToolStripComboBox2 As ToolStripComboBox
     Friend WithEvents EditToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStripMenuItem1 As ToolStripSeparator
+    Friend WithEvents RemovesFromCurrentTopicToolStripMenuItem As ToolStripMenuItem
 End Class

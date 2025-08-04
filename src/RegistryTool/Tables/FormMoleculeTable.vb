@@ -159,6 +159,20 @@ Public Class FormMoleculeTable
     Private Sub EditToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EditToolStripMenuItem.Click
         Call DataGridView1_CellContentDoubleClick(Nothing, Nothing)
     End Sub
+
+    Private Sub RemovesFromCurrentTopicToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RemovesFromCurrentTopicToolStripMenuItem.Click
+        If topic Is Nothing OrElse topic.id <= 0 Then
+            Return
+        End If
+        If DataGridView1.SelectedRows.Count = 0 Then
+            Return
+        End If
+
+        Dim row = DataGridView1.SelectedRows(0)
+        Dim id As String = CStr(row.Cells(0).Value)
+
+        MyApplication.biocad_registry.molecule_tags.where(field("tag_id") = topic.id, field("molecule_id") = id).delete()
+    End Sub
 End Class
 
 Public Class TopicName
