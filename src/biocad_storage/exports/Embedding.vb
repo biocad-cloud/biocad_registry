@@ -3,7 +3,7 @@ Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar
 Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.DataMining.KMeans
-Imports Microsoft.VisualBasic.Math
+Imports Microsoft.VisualBasic.Math.SIMD
 Imports Microsoft.VisualBasic.Net.Http
 Imports Microsoft.VisualBasic.Serialization.BinaryDumping
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
@@ -38,8 +38,8 @@ Public Module Embedding
                 last_id = page_data.Select(Function(s) s.id).Max
             End If
 
-            For Each seq In TqdmWrapper.Wrap(page_data, bar:=bar)
-                Dim graph = KMerGraph.FromSequence(seq.Sequence, k:=3)
+            For Each seq As biocad_registryModel.sequence_graph In TqdmWrapper.Wrap(page_data, bar:=bar)
+                Dim graph = KMerGraph.FromSequence(seq.sequence, k:=3)
                 Dim fingerprint As Byte() = morgan.CalculateFingerprintCheckSum(graph, radius:=3)
 
                 Call bar.SetLabel(seq.hashcode)
@@ -82,7 +82,7 @@ Public Module Embedding
                     Dim v As Double() = decoder.decode(checksum)
                     Dim vec As New Dictionary(Of String, Double)
 
-                    v = SIMD.Divide.f64_op_divide_f64_scalar(v, v.Max)
+                    v = Divide.f64_op_divide_f64_scalar(v, v.Max)
 
                     For offset As Integer = 0 To v.Length - 1
                         Call vec.Add("v" & (offset + 1), v(offset))
@@ -190,8 +190,8 @@ Public Module Embedding
                 Exit For
             End If
 
-            For Each seq In TqdmWrapper.Wrap(page_data, bar:=bar)
-                Dim graph = KMerGraph.FromSequence(seq.Sequence, k:=3)
+            For Each seq As biocad_registryModel.sequence_graph In TqdmWrapper.Wrap(page_data, bar:=bar)
+                Dim graph = KMerGraph.FromSequence(seq.sequence, k:=3)
                 Dim fingerprint = morgan.CalculateFingerprintCheckSum(graph, radius:=3)
 
                 Call bar.SetLabel(seq.hashcode)
