@@ -20,18 +20,21 @@ Public Module Embedding
         Dim ec_id As UInteger = terms.ecnumber_term
         Dim trans As CommitTransaction
         Dim bar As Tqdm.ProgressBar = Nothing
+        Dim last_id As UInteger = 0
 
         For i As Integer = 0 To Integer.MaxValue
             trans = registry.sequence_graph.open_transaction
             page_data = registry.db_xrefs _
                 .left_join("sequence_graph") _
                 .on(field("sequence_graph.molecule_id") = field("db_xrefs.obj_id")) _
-                .where(field("db_key") = ec_id) _
-                .limit(i * page_size, page_size) _
+                .where(field("db_key") = ec_id, field("`sequence_graph`.id") > last_id) _
+                .limit(page_size) _
                 .select(Of biocad_storage.biocad_registryModel.sequence_graph)("sequence_graph.*")
 
             If page_data.IsNullOrEmpty Then
                 Exit For
+            Else
+                last_id = page_data.Select(Function(s) s.id).Max
             End If
 
             For Each seq In TqdmWrapper.Wrap(page_data, bar:=bar)
@@ -44,18 +47,19 @@ Public Module Embedding
                     .save_sql(field("morgan") = fingerprint.GZipAsBase64))
             Next
 
+            Call VBDebugger.EchoLine($"next page id: {last_id}")
             Call trans.commit()
         Next
     End Sub
 
-    Public Iterator Function ExportEnzymeFingerprint(registry As biocad_registry) As IEnumerable(Of EntityClusterModel)
+    Public Iterator Function ExportEnzymeFingerprint(registry As biocad_registry, Optional max_page As Integer = 100) As IEnumerable(Of EntityClusterModel)
         Dim page_size = 1000
         Dim page_data As EnzymeFingerprint()
         Dim terms = registry.vocabulary_terms
         Dim ec_id As UInteger = terms.ecnumber_term
         Dim decoder As New NetworkByteOrderBuffer
 
-        For i As Integer = 0 To Integer.MaxValue
+        For i As Integer = 0 To max_page
             page_data = registry.db_xrefs _
                 .left_join("sequence_graph") _
                 .on(field("sequence_graph.molecule_id") = field("db_xrefs.obj_id")) _
