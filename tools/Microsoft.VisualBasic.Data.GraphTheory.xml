@@ -1791,6 +1791,11 @@ Microsoft.VisualBasic.Data.GraphTheory
  </summary>
  <typeparam name="T"></typeparam>
 </member>
+<member name="T:Microsoft.VisualBasic.Data.GraphTheory.Network.IndexEdge">
+ <summary>
+ an edge link: [u, v]
+ </summary>
+</member>
 <member name="P:Microsoft.VisualBasic.Data.GraphTheory.Network.IndexEdge.U">
  <summary>
  index of the vertex u source
