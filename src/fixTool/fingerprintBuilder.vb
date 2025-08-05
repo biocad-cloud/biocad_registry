@@ -44,36 +44,6 @@ Module fingerprintBuilder
         Next
     End Sub
 
-    Sub BuildAll()
-        Dim morgan As New MorganFingerprint(8 ^ 5)
-        Dim page_size = 10000
-        Dim page_data As biocad_storage.biocad_registryModel.sequence_graph()
-        Dim trans As CommitTransaction
-        Dim bar As Tqdm.ProgressBar = Nothing
-        Dim terms = registry.vocabulary_terms
-
-        For i As Integer = 0 To Integer.MaxValue
-            trans = registry.sequence_graph.open_transaction
-            page_data = registry.sequence_graph _
-                .left_join("molecule").on(field("molecule.id") = field("sequence_graph.molecule_id")) _
-                .where(field("type") <> terms.metabolite_term) _
-                .limit(i * page_size, page_size) _
-                .select(Of biocad_storage.biocad_registryModel.sequence_graph)("sequence_graph.*")
-
-            For Each seq In TqdmWrapper.Wrap(page_data, bar:=bar)
-                Dim graph = KMerGraph.FromSequence(seq.sequence, k:=4)
-                Dim fingerprint = morgan.CalculateFingerprintCheckSum(graph, radius:=9)
-
-                Call bar.SetLabel(seq.hashcode)
-                Call trans.add(registry.sequence_graph _
-                    .where(field("id") = seq.id) _
-                    .save_sql(field("morgan") = fingerprint.GZipAsBase64))
-            Next
-
-            Call trans.commit()
-        Next
-    End Sub
-
     Sub exportFingerprint()
         Dim page_size = 1000
         Dim page_data As EnzymeFingerprint()

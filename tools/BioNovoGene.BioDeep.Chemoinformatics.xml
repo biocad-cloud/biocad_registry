@@ -1640,6 +1640,12 @@ BioNovoGene.BioDeep.Chemoinformatics
  structural features.
  </summary>
 </member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.MorganFingerprint.MorganFingerprint.FingerprintLength">
+ <summary>
+ default size is 4096
+ </summary>
+ <returns></returns>
+</member>
 <member name="M:BioNovoGene.BioDeep.Chemoinformatics.NaturalProduct.GlycosylNameSolver.GlycosylNameParser(System.String)">
  <summary>
  

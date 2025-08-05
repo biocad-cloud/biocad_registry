@@ -103,8 +103,6 @@ let options = { width: 450, height: 300 };
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Static encoder As New NetworkByteOrderBuffer
-
         Dim smiles As String = Strings.Trim(TextBox1.Text)
         Dim checksum = MolecularFingerprint.ConvertToMorganFingerprint(smiles)
         Dim fingerprint = checksum.GZipAsBase64
