@@ -1,5 +1,7 @@
 ﻿Imports biocad_storage
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
+Imports BioNovoGene.BioDeep.Chemoinformatics.SMILES
+Imports Microsoft.VisualBasic.Serialization.BinaryDumping
 Imports Microsoft.Web.WebView2.Core
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports Oracle.LinuxCompatibility.MySQL.Reflection.DbAttributes
@@ -97,6 +99,16 @@ let options = { width: 450, height: 300 };
         If Not struct Is Nothing Then
             Call WebView21.NavigateToString(viewer.Replace("{$struct_data}", struct.sequence))
         End If
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Static encoder As New NetworkByteOrderBuffer
+
+        Dim smiles As String = Strings.Trim(TextBox1.Text)
+        Dim checksum = MolecularFingerprint.ConvertToMorganFingerprint(smiles)
+        Dim fingerprint = encoder.Base64String(checksum, gzip:=True)
+
+
     End Sub
 End Class
 
