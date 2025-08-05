@@ -81,10 +81,7 @@ Public Module Embedding
                     Dim checksum = seq.morgan.UnGzipBase64.ToArray
                     Dim vec As New Dictionary(Of String, Double)
                     Dim v As Double() = checksum _
-                        .SplitIterator(4) _
-                        .Select(Function(c)
-                                    Return CDbl(BitConverter.ToUInt32(c, Scan0))
-                                End Function) _
+                        .Select(Function(c) CDbl(c)) _
                         .ToArray
 
                     v = Divide.f64_op_divide_f64_scalar(v, v.Max)

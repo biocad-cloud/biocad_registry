@@ -2,7 +2,7 @@ require(umap);
 
 setwd(@dir);
 
-let fingerprint = read.csv("Z:\fingerprint.csv", row.names = "Cluster", check.names = FALSE);
+let fingerprint = read.csv("Z:\\enzyme.csv", row.names = "Cluster", check.names = FALSE);
 fingerprint[,"ID"] = NULL;
 str(fingerprint);
 let embedding = umap(fingerprint, dimension = 9, numberOfNeighbors = 32);
