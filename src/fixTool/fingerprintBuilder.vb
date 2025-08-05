@@ -13,6 +13,13 @@ Imports SMRUCC.genomics.Model.MotifGraph.ProteinStructure.Kmer
 Module fingerprintBuilder
 
     Sub run()
-        Call Embedding.RunEnzymeFingerprintBuilder(Program.registry)
+        Try
+            Call Embedding.RunEnzymeFingerprintBuilder(Program.registry)
+        Catch ex As Exception
+            Call App.LogException(ex)
+            Call ex.PrintException
+
+            Pause()
+        End Try
     End Sub
 End Module
