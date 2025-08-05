@@ -2,12 +2,61 @@
 Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar
 Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
+Imports Microsoft.VisualBasic.DataMining.KMeans
 Imports Microsoft.VisualBasic.Net.Http
+Imports Microsoft.VisualBasic.Serialization.BinaryDumping
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
+Imports Oracle.LinuxCompatibility.MySQL.Reflection.DbAttributes
 Imports SMRUCC.genomics.Model.MotifGraph.ProteinStructure
 Imports SMRUCC.genomics.Model.MotifGraph.ProteinStructure.Kmer
 
 Public Module Embedding
+
+    Public Iterator Function ExportEnzymeFingerprint(registry As biocad_registry) As IEnumerable
+        Dim page_size = 1000
+        Dim page_data As EnzymeFingerprint()
+        Dim terms = registry.vocabulary_terms
+        Dim ec_id As UInteger = terms.ecnumber_term
+        Dim decoder As New NetworkByteOrderBuffer
+
+        For i As Integer = 0 To Integer.MaxValue
+            page_data = registry.db_xrefs _
+                .left_join("sequence_graph") _
+                .on(field("sequence_graph.molecule_id") = field("db_xrefs.obj_id")) _
+                .where(field("db_key") = ec_id) _
+                .limit(i * page_size, page_size) _
+                .select(Of EnzymeFingerprint)("xref as ec_number", "molecule_id", "morgan")
+
+            If page_data.IsNullOrEmpty Then
+                Exit For
+            End If
+
+            For Each seq As EnzymeFingerprint In page_data
+                If Len(seq.morgan) > 0 Then
+                    Dim checksum = seq.morgan.UnGzipBase64.ToArray
+                    Dim v = decoder.decode(checksum).Select(Function(b, o) (o, b)).ToArray
+
+                    Yield New EntityClusterModel With {
+                        .ID = seq.molecule_id & " [" & seq.ec_number & "]",
+                        .Cluster = seq.ec_number,
+                        .Properties = v _
+                            .ToDictionary(Function(o) "v" & (o.o + 1),
+                                          Function(o)
+                                              Return o.Item2
+                                          End Function)
+                    }
+                End If
+            Next
+        Next
+    End Function
+
+    Public Class EnzymeFingerprint
+
+        <DatabaseField> Public Property ec_number As String
+        <DatabaseField> Public Property molecule_id As UInteger
+        <DatabaseField> Public Property morgan As String
+
+    End Class
 
     ''' <summary>
     ''' export the genomics sequence fingerprint matrix
