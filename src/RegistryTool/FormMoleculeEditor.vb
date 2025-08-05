@@ -1,6 +1,7 @@
 ﻿Imports biocad_storage
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports BioNovoGene.BioDeep.Chemoinformatics.SMILES
+Imports Microsoft.VisualBasic.Net.Http
 Imports Microsoft.VisualBasic.Serialization.BinaryDumping
 Imports Microsoft.Web.WebView2.Core
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
@@ -106,9 +107,31 @@ let options = { width: 450, height: 300 };
 
         Dim smiles As String = Strings.Trim(TextBox1.Text)
         Dim checksum = MolecularFingerprint.ConvertToMorganFingerprint(smiles)
-        Dim fingerprint = encoder.Base64String(checksum, gzip:=True)
+        Dim fingerprint = checksum.GZipAsBase64
 
+        TextBox5.Text = fingerprint
 
+        If struct Is Nothing Then
+            MyApplication.biocad_registry.sequence_graph.add(
+                field("sequence") = smiles,
+                     field("morgan") = fingerprint,
+                     field("hashcode") = smiles.MD5,
+                     field("molecule_id") = UInteger.Parse(id.Match("\d+"))
+            )
+
+            struct = MyApplication.biocad_registry.sequence_graph _
+               .where(field("molecule_id") = UInteger.Parse(id.Match("\d+"))) _
+               .order_by("id", desc:=True) _
+               .find(Of biocad_registryModel.sequence_graph)
+
+            WebView21_CoreWebView2InitializationCompleted(Nothing, Nothing)
+        Else
+            MyApplication.biocad_registry.sequence_graph _
+               .where(field("id") = struct.id) _
+               .save(field("sequence") = smiles,
+                     field("morgan") = fingerprint,
+                     field("hashcode") = smiles.MD5)
+        End If
     End Sub
 End Class
 
