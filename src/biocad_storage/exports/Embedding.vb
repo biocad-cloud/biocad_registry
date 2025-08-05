@@ -79,8 +79,13 @@ Public Module Embedding
             For Each seq As EnzymeFingerprint In page_data
                 If Len(seq.morgan) > 0 Then
                     Dim checksum = seq.morgan.UnGzipBase64.ToArray
-                    Dim v As Double() = decoder.decode(checksum)
                     Dim vec As New Dictionary(Of String, Double)
+                    Dim v As Double() = checksum _
+                        .SplitIterator(4) _
+                        .Select(Function(c)
+                                    Return CDbl(BitConverter.ToUInt32(c, Scan0))
+                                End Function) _
+                        .ToArray
 
                     v = Divide.f64_op_divide_f64_scalar(v, v.Max)
 
