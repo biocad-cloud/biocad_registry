@@ -48,7 +48,7 @@ Public Module Embedding
         Next
     End Sub
 
-    Public Iterator Function ExportEnzymeFingerprint(registry As biocad_registry) As IEnumerable
+    Public Iterator Function ExportEnzymeFingerprint(registry As biocad_registry) As IEnumerable(Of EntityClusterModel)
         Dim page_size = 1000
         Dim page_data As EnzymeFingerprint()
         Dim terms = registry.vocabulary_terms
