@@ -20,10 +20,11 @@ Module Program
     Friend ReadOnly registry As New biocad_registry(mysql)
 
     Sub Main(args As String())
+        Call fingerprintBuilder.run()
 
         ' Call registry.BuildUniqeHashCode
         ' Call importsMetaCyc()
-        Call imports_all_plantcyc()
+        ' Call imports_all_plantcyc()
 
         Pause()
     End Sub

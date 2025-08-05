@@ -12084,6 +12084,12 @@ Get feature site data by nucleotide location.
  The formula composition data model
  </summary>
 </member>
+<member name="M:SMRUCC.genomics.ComponentModel.FormulaData.ToString">
+ <summary>
+ return formula string
+ </summary>
+ <returns></returns>
+</member>
 <member name="T:SMRUCC.genomics.ComponentModel.PeriodicTable">
  <summary>
  元素周期表
@@ -14227,6 +14233,13 @@ to take away yo [rest of string was truncated]&quot;;.
  <returns></returns>
  
 </member>
+<member name="M:SMRUCC.genomics.SequenceModel.MolecularWeightCalculator.CalcMW_Polypeptide(System.String)">
+ <summary>
+ evaluate the exact mass of the given polypeptide <paramref name="seq"/>
+ </summary>
+ <param name="seq"></param>
+ <returns></returns>
+</member>
 <member name="M:SMRUCC.genomics.SequenceModel.MolecularWeightCalculator.PolypeptideFormula(System.String)">
  <summary>
  Create formula for protein polypeptide sequence
@@ -15514,6 +15527,13 @@ to take away yo [rest of string was truncated]&quot;;.
  Convert <see cref="T:SMRUCC.genomics.SequenceModel.Polypeptides.AminoAcid"/> enum values to character string
  </summary>
  <param name="aa"></param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.SequenceModel.Polypeptides.Polypeptide.Generate(System.Int32)">
+ <summary>
+ Generate all polypeptide sequence with given length
+ </summary>
+ <param name="len"></param>
  <returns></returns>
 </member>
 <member name="P:SMRUCC.genomics.SequenceModel.Polypeptides.Polypeptide.ToChar">

@@ -14947,6 +14947,13 @@ to take away yo [rest of string was truncated]&quot;;.
  Data cast type helper for the primitive array in CLR function code
  </summary>
 </member>
+<member name="M:SMRUCC.Rsharp.Runtime.Vectorization.CLRVector.asLong(System.Object)">
+ <summary>
+ cast any to int(64 bit)
+ </summary>
+ <param name="x"></param>
+ <returns></returns>
+</member>
 <member name="M:SMRUCC.Rsharp.Runtime.Vectorization.CLRVector.safeCharacters(System.Object)">
  <summary>
  
