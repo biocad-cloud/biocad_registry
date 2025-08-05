@@ -3,6 +3,7 @@ Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar
 Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.DataMining.KMeans
+Imports Microsoft.VisualBasic.Math
 Imports Microsoft.VisualBasic.Net.Http
 Imports Microsoft.VisualBasic.Serialization.BinaryDumping
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
@@ -38,7 +39,7 @@ Public Module Embedding
             End If
 
             For Each seq In TqdmWrapper.Wrap(page_data, bar:=bar)
-                Dim graph = KMerGraph.FromSequence(seq.sequence, k:=3)
+                Dim graph = KMerGraph.FromSequence(seq.Sequence, k:=3)
                 Dim fingerprint As Byte() = morgan.CalculateFingerprintCheckSum(graph, radius:=3)
 
                 Call bar.SetLabel(seq.hashcode)
@@ -78,16 +79,19 @@ Public Module Embedding
             For Each seq As EnzymeFingerprint In page_data
                 If Len(seq.morgan) > 0 Then
                     Dim checksum = seq.morgan.UnGzipBase64.ToArray
-                    Dim v = decoder.decode(checksum).Select(Function(b, o) (o, b)).ToArray
+                    Dim v As Double() = decoder.decode(checksum)
+                    Dim vec As New Dictionary(Of String, Double)
+
+                    v = SIMD.Divide.f64_op_divide_f64_scalar(v, v.Max)
+
+                    For offset As Integer = 0 To v.Length - 1
+                        Call vec.Add("v" & (offset + 1), v(offset))
+                    Next
 
                     Yield New EntityClusterModel With {
                         .ID = seq.molecule_id & " [" & seq.ec_number & "]",
                         .Cluster = seq.ec_number,
-                        .Properties = v _
-                            .ToDictionary(Function(o) "v" & (o.o + 1),
-                                          Function(o)
-                                              Return o.Item2
-                                          End Function)
+                        .Properties = vec
                     }
                 End If
             Next
@@ -121,7 +125,7 @@ Public Module Embedding
         For page As Integer = 1 To Integer.MaxValue
             offset = (page - 1) * page_size
             page_data = registry.genomics _
-                .where(match("def").against("+complete -plasmid", booleanMode:=True), Not field("fingerprint").is_nothing) _
+                .where(Match("def").against("+complete -plasmid", booleanMode:=True), Not field("fingerprint").is_nothing) _
                 .limit(offset, page_size) _
                 .select(Of biocad_registryModel.genomics)
 
@@ -147,7 +151,7 @@ Public Module Embedding
 
         For i As Integer = 0 To Integer.MaxValue
             Dim page = registry.genomics _
-                .where(match("def").against("+complete -plasmid", booleanMode:=True),
+                .where(Match("def").against("+complete -plasmid", booleanMode:=True),
                        field("fingerprint").is_nothing) _
                 .limit(i * page_size, page_size) _
                 .select(Of biocad_registryModel.genomics)
@@ -187,7 +191,7 @@ Public Module Embedding
             End If
 
             For Each seq In TqdmWrapper.Wrap(page_data, bar:=bar)
-                Dim graph = KMerGraph.FromSequence(seq.sequence, k:=3)
+                Dim graph = KMerGraph.FromSequence(seq.Sequence, k:=3)
                 Dim fingerprint = morgan.CalculateFingerprintCheckSum(graph, radius:=3)
 
                 Call bar.SetLabel(seq.hashcode)
