@@ -52,23 +52,27 @@ Public Module Embedding
         Next
     End Sub
 
-    Public Iterator Function ExportEnzymeFingerprint(registry As biocad_registry, Optional max_page As Integer = 100) As IEnumerable(Of EntityClusterModel)
+    Public Iterator Function ExportEnzymeFingerprint(registry As biocad_registry, Optional max_page As Integer = 1000) As IEnumerable(Of EntityClusterModel)
         Dim page_size = 1000
         Dim page_data As EnzymeFingerprint()
         Dim terms = registry.vocabulary_terms
         Dim ec_id As UInteger = terms.ecnumber_term
         Dim decoder As New NetworkByteOrderBuffer
+        Dim last_id As UInteger = 0
 
         For i As Integer = 0 To max_page
             page_data = registry.db_xrefs _
                 .left_join("sequence_graph") _
                 .on(field("sequence_graph.molecule_id") = field("db_xrefs.obj_id")) _
-                .where(field("db_key") = ec_id) _
-                .limit(i * page_size, page_size) _
-                .select(Of EnzymeFingerprint)("xref as ec_number", "molecule_id", "morgan")
+                .where(field("db_key") = ec_id,
+                       field("`sequence_graph`.id") > last_id) _
+                .limit(page_size) _
+                .select(Of EnzymeFingerprint)("`sequence_graph`.id", "xref as ec_number", "molecule_id", "morgan")
 
             If page_data.IsNullOrEmpty Then
                 Exit For
+            Else
+                last_id = page_data.Select(Function(s) s.id).Max
             End If
 
             For Each seq As EnzymeFingerprint In page_data
@@ -87,11 +91,14 @@ Public Module Embedding
                     }
                 End If
             Next
+
+            Call VBDebugger.EchoLine($"fetch next page from: {last_id}")
         Next
     End Function
 
     Public Class EnzymeFingerprint
 
+        <DatabaseField> Public Property id As UInteger
         <DatabaseField> Public Property ec_number As String
         <DatabaseField> Public Property molecule_id As UInteger
         <DatabaseField> Public Property morgan As String

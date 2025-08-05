@@ -14,7 +14,8 @@ Module fingerprintBuilder
 
     Sub run()
         ' Try
-        Call Embedding.RunEnzymeFingerprintBuilder(Program.registry)
+        ' Call Embedding.RunEnzymeFingerprintBuilder(Program.registry)
+        Call Embedding.ExportEnzymeFingerprint(Program.registry,).SaveTo("Z:/enzyme.csv")
         'Catch ex As Exception
         '    Call App.LogException(ex)
         '    Call ex.PrintException
