@@ -40,8 +40,17 @@ declare namespace data_imports {
    */
    function imports_metab_repo(registry: object, metab: any, lazy_molecule_ctor?: boolean, topic?: string, exclude_topic?: string, env?: object): any;
    /**
+     * @param topic default value Is ``null``.
+     * @param env default value Is ``null``.
+   */
+   function imports_pubchem_pathway(registry: object, pathways: any, topic?: string, env?: object): any;
+   /**
    */
    function imports_pubchem_repo(registry: object, repo: object): ;
+   /**
+     * @param env default value Is ``null``.
+   */
+   function imports_pubmed_kb(registry: object, pubmed: any, topic: string, env?: object): any;
    /**
    */
    function imports_refmet(registry: object, file: string): ;

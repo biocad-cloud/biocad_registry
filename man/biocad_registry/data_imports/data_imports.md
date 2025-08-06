@@ -7,6 +7,8 @@
 + [pubchem_repo](data_imports/pubchem_repo.1) 
 + [imports_lotus_np](data_imports/imports_lotus_np.1) 
 + [imports_pubchem_repo](data_imports/imports_pubchem_repo.1) 
++ [imports_pubchem_pathway](data_imports/imports_pubchem_pathway.1) 
++ [imports_pubmed_kb](data_imports/imports_pubmed_kb.1) 
 + [imports_chebi_repo](data_imports/imports_chebi_repo.1) 
 + [imports_refmet](data_imports/imports_refmet.1) 
 + [imports_metab_repo](data_imports/imports_metab_repo.1) 
