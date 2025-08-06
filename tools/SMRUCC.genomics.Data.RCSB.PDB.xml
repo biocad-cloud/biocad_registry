@@ -96,7 +96,7 @@ SMRUCC.genomics.Data.RCSB.PDB
  </summary>
  <returns></returns>
 </member>
-<member name="M:SMRUCC.genomics.Data.RCSB.PDB.Parser.Load(System.IO.Stream)">
+<member name="M:SMRUCC.genomics.Data.RCSB.PDB.Parser.Load(System.IO.Stream,System.Boolean)">
  <summary>
  Load multiple molecule pdb file
  </summary>
@@ -243,7 +243,7 @@ SMRUCC.genomics.Data.RCSB.PDB
  <remarks></remarks>
  
 </member>
-<member name="M:SMRUCC.genomics.Data.RCSB.PDB.PDB.Parse(System.String)">
+<member name="M:SMRUCC.genomics.Data.RCSB.PDB.PDB.Parse(System.String,System.Boolean)">
  <summary>
  Parse the given text content as pdb data
  </summary>
