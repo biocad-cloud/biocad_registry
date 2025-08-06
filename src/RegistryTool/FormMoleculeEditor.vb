@@ -88,10 +88,19 @@ let options = { width: 450, height: 300 };
 
         DataGridView1.CommitEdit(DataGridViewDataErrorContexts.Commit)
 
+        Dim names = MyApplication.biocad_registry.synonym _
+            .where(field("obj_id") = mol.id,
+                   field("type_id") = mol.type) _
+            .select(Of biocad_registryModel.synonym)
+
+        For Each name As biocad_registryModel.synonym In names
+            Call ListBox1.Items.Add(name.synonym)
+        Next
+
         Call WebKit.Init(WebView21)
     End Sub
 
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+    Private Sub SaveCommonName() Handles Button2.Click
         Dim name As String = Strings.Trim(TextBox2.Text)
         MyApplication.biocad_registry.molecule.where(field("id") = UInteger.Parse(id.Match("\d+"))).save(field("name") = name)
     End Sub
@@ -130,6 +139,16 @@ let options = { width: 450, height: 300 };
                      field("morgan") = fingerprint,
                      field("hashcode") = smiles.MD5)
         End If
+    End Sub
+
+    Private Sub SetAsDisplayNameToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SetAsDisplayNameToolStripMenuItem.Click
+        If ListBox1.SelectedIndex < 0 Then
+            Return
+        End If
+
+        Dim name = ListBox1.Items(ListBox1.SelectedIndex).ToString
+        TextBox2.Text = name
+        Call SaveCommonName()
     End Sub
 End Class
 

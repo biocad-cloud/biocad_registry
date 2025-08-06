@@ -118,11 +118,8 @@ Public Class FormMoleculeTable
 
         Dim row As DataGridViewRow = DataGridView1.SelectedRows.Item(0)
         Dim id As String = CStr(row.Cells(0).Value)
-        Dim edit As New FormMoleculeEditor With {.id = id}
 
-        edit.MdiParent = MyApplication.host
-        edit.Text = $"BioCAD{id.PadLeft(11, "0"c)} - {row.Cells(2).Value}"
-        edit.Show()
+        Call Workbench.OpenMoleculeEditor(id, row.Cells(2).Value)
     End Sub
 
     Private Sub ViewOnTheWebToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewOnTheWebToolStripMenuItem.Click

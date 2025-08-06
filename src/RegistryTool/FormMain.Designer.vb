@@ -38,12 +38,15 @@ Partial Class FormMain
         Me.ExportKEGGIDMappingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem3 = New System.Windows.Forms.ToolStripSeparator()
         Me.ExportBloodTagToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ExportAnnotationTableToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ImportsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GenBankToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PubMedKnowledgeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.ExportAnnotationTableToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.OpenMoleculeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem4 = New System.Windows.Forms.ToolStripSeparator()
+        Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -53,13 +56,13 @@ Partial Class FormMain
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.DataToolStripMenuItem, Me.ImportsToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(800, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(986, 24)
         Me.MenuStrip1.TabIndex = 1
         Me.MenuStrip1.Text = "MenuStrip1"
         '
         'FileToolStripMenuItem
         '
-        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SettingsToolStripMenuItem, Me.ToolStripMenuItem1, Me.ExitToolStripMenuItem})
+        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OpenMoleculeToolStripMenuItem, Me.ToolStripMenuItem4, Me.SettingsToolStripMenuItem, Me.AboutToolStripMenuItem, Me.ToolStripMenuItem1, Me.ExitToolStripMenuItem})
         Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
         Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 20)
         Me.FileToolStripMenuItem.Text = "File"
@@ -146,6 +149,12 @@ Partial Class FormMain
         Me.ExportBloodTagToolStripMenuItem.Size = New System.Drawing.Size(224, 22)
         Me.ExportBloodTagToolStripMenuItem.Text = "Export Tag Data"
         '
+        'ExportAnnotationTableToolStripMenuItem
+        '
+        Me.ExportAnnotationTableToolStripMenuItem.Name = "ExportAnnotationTableToolStripMenuItem"
+        Me.ExportAnnotationTableToolStripMenuItem.Size = New System.Drawing.Size(224, 22)
+        Me.ExportAnnotationTableToolStripMenuItem.Text = "Export Annotation Table"
+        '
         'ImportsToolStripMenuItem
         '
         Me.ImportsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GenBankToolStripMenuItem, Me.PubMedKnowledgeToolStripMenuItem})
@@ -168,9 +177,9 @@ Partial Class FormMain
         'StatusStrip1
         '
         Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel1})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 374)
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 697)
         Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Size = New System.Drawing.Size(800, 22)
+        Me.StatusStrip1.Size = New System.Drawing.Size(986, 22)
         Me.StatusStrip1.TabIndex = 3
         Me.StatusStrip1.Text = "StatusStrip1"
         '
@@ -180,17 +189,28 @@ Partial Class FormMain
         Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(42, 17)
         Me.ToolStripStatusLabel1.Text = "Ready!"
         '
-        'ExportAnnotationTableToolStripMenuItem
+        'OpenMoleculeToolStripMenuItem
         '
-        Me.ExportAnnotationTableToolStripMenuItem.Name = "ExportAnnotationTableToolStripMenuItem"
-        Me.ExportAnnotationTableToolStripMenuItem.Size = New System.Drawing.Size(224, 22)
-        Me.ExportAnnotationTableToolStripMenuItem.Text = "Export Annotation Table"
+        Me.OpenMoleculeToolStripMenuItem.Name = "OpenMoleculeToolStripMenuItem"
+        Me.OpenMoleculeToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.OpenMoleculeToolStripMenuItem.Text = "Open Molecule"
+        '
+        'ToolStripMenuItem4
+        '
+        Me.ToolStripMenuItem4.Name = "ToolStripMenuItem4"
+        Me.ToolStripMenuItem4.Size = New System.Drawing.Size(177, 6)
+        '
+        'AboutToolStripMenuItem
+        '
+        Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.AboutToolStripMenuItem.Text = "About"
         '
         'FormMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 396)
+        Me.ClientSize = New System.Drawing.Size(986, 719)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.MenuStrip1)
         Me.IsMdiContainer = True
@@ -228,4 +248,7 @@ Partial Class FormMain
     Friend WithEvents ExportBloodTagToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents PubMedKnowledgeToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ExportAnnotationTableToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents OpenMoleculeToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStripMenuItem4 As ToolStripSeparator
+    Friend WithEvents AboutToolStripMenuItem As ToolStripMenuItem
 End Class

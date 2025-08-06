@@ -266,4 +266,12 @@ Public Class FormMain
             End If
         End Using
     End Sub
+
+    Private Sub OpenMoleculeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenMoleculeToolStripMenuItem.Click
+        Dim id = InputBox("Enter a molecule id to open data editor:")
+
+        If Not id.StringEmpty(, True) Then
+            Call Workbench.OpenMoleculeEditor(id, "")
+        End If
+    End Sub
 End Class
