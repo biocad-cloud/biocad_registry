@@ -73,7 +73,7 @@ Public Class PubChemArticleImports
                     Continue For
                 End If
 
-                Dim mol = registry.db_xrefs _
+                Dim mol As UInteger() = registry.db_xrefs _
                     .where(field("db_key") = pubchem_id,
                            field("xref") = cid,
                            field("type") = terms.metabolite_term) _
