@@ -713,6 +713,13 @@ BioNovoGene.BioDeep.Chemistry.Massbank
  <param name="file"></param>
  <returns></returns>
 </member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.LipidMaps.MetaTable.ReadRepository(System.IO.Stream)">
+ <summary>
+ read the msgpack file that contains the lipidmaps annotation data
+ </summary>
+ <param name="file"></param>
+ <returns></returns>
+</member>
 <member name="T:BioNovoGene.BioDeep.Chemistry.LipidMaps.MetaData">
  <summary>
  lipidmaps annotation data model, which is original extract from the SDF data objects.
