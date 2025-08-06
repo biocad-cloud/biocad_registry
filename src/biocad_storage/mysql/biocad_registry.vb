@@ -216,6 +216,10 @@ Public Class biocad_registry : Inherits biocad_registryModel.db_mysql
                                   Optional description As String = "",
                                   Optional [readonly] As Boolean = False) As UInteger
 
+        If term.StringEmpty(, True) Then
+            Return 0
+        End If
+
         Static cache As New Dictionary(Of String, UInteger)
         SyncLock cache
             Return cache.ComputeIfAbsent($"{Strings.LCase(category)}:{Strings.LCase(term)}",

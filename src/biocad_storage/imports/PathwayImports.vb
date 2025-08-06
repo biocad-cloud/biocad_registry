@@ -4,9 +4,14 @@ Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 
 Public Module PathwayImports
 
-    Public Sub ImportsPubChemPathway(registry As biocad_registry, pathways As PathwayGraph(), source As String)
+    Public Sub ImportsPubChemPathway(registry As biocad_registry, pathways As PathwayGraph(), source As String, Optional topic As String = Nothing)
         Dim db_key As UInteger = registry.getVocabulary(source, "External Database")
         Dim cid As UInteger = registry.vocabulary_terms.pubchem_term
+        Dim topic_id As UInteger
+
+        If topic.StringEmpty(, True) Then
+            topic_id = registry.getVocabulary(topic, "Topic")
+        End If
 
         For Each pathway As PathwayGraph In TqdmWrapper.Wrap(pathways)
             Dim ref = registry.pathway _
@@ -39,6 +44,7 @@ Public Module PathwayImports
                        field("xref").in(pathway.cids)) _
                 .select(Of biocad_registryModel.db_xrefs)
             Dim link_pathways = registry.pathway_graph.open_transaction.ignore
+            Dim link_topic = registry.molecule_tags.open_transaction.ignore
 
             For Each mol As biocad_registryModel.db_xrefs In link_cids
                 Call link_pathways.add(
@@ -46,8 +52,17 @@ Public Module PathwayImports
                     field("entity_id") = mol.obj_id,
                     field("note") = pathway.name
                 )
+
+                If topic_id > 0 Then
+                    Call link_topic.add(
+                        field("tag_id") = topic_id,
+                        field("molecule_id") = mol.obj_id,
+                        field("description") = pathway.pwacc
+                    )
+                End If
             Next
 
+            Call link_topic.commit()
             Call link_pathways.commit()
         Next
     End Sub
