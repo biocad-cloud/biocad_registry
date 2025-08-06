@@ -15,8 +15,13 @@ Public Class PubChemArticleImports
         Me.wrap_tqdm = wrap_tqdm
     End Sub
 
-    Public Sub MakePageImports(articles As IEnumerable(Of PubMedTextTable), topic As String)
-        Dim topic_id As UInteger = terms.GetVocabularyTerm(topic.ToLower, "Topic")
+    Public Sub MakePageImports(articles As IEnumerable(Of PubMedTextTable), topic As String())
+        Dim topic_id As UInteger() = topic _
+            .Where(Function(t) Not t.StringEmpty(, True)) _
+            .Select(Function(t)
+                        Return terms.GetVocabularyTerm(t.ToLower, "Topic")
+                    End Function) _
+            .ToArray
 
         For Each pagedata As PubMedTextTable() In articles.Where(Function(a) a.pmid > 0).SplitIterator(10000)
             Call MakeImports(pagedata, topic_id)
@@ -24,11 +29,15 @@ Public Class PubChemArticleImports
     End Sub
 
     <MethodImpl(MethodImplOptions.AggressiveInlining)>
-    Public Sub MakeImports(articles As PubMedTextTable(), topic As String)
-        Call MakeImports(articles, topic_id:=terms.GetVocabularyTerm(topic.ToLower, "Topic"))
+    Public Sub MakeImports(articles As PubMedTextTable(), topic As String())
+        Call MakeImports(articles, topic_id:=topic.Where(Function(t) Not t.StringEmpty(, True)) _
+            .Select(Function(t)
+                        Return terms.GetVocabularyTerm(t.ToLower, "Topic")
+                    End Function) _
+            .ToArray)
     End Sub
 
-    Private Sub MakeImports(articles As PubMedTextTable(), topic_id As UInteger)
+    Private Sub MakeImports(articles As PubMedTextTable(), topic_id As UInteger())
         Dim trans As CommitTransaction = registry.pubmed.open_transaction.ignore
         Dim pubchem_id As UInteger = terms.pubchem_term
 
@@ -80,11 +89,14 @@ Public Class PubChemArticleImports
                         field("pubmed_id") = article.pmid,
                         field("note") = article.articletitle
                     )
-                    Call tag_trans.add(
-                        field("tag_id") = topic_id,
-                        field("molecule_id") = mod_id,
-                        field("description") = article.articletitle
-                    )
+
+                    For Each tid As UInteger In topic_id
+                        Call tag_trans.add(
+                            field("tag_id") = tid,
+                            field("molecule_id") = mod_id,
+                            field("description") = article.articletitle
+                        )
+                    Next
                 Next
             Next
         Next

@@ -76,7 +76,7 @@ Module imports_api
     End Function
 
     <ExportAPI("imports_pubmed_kb")>
-    Public Function imports_pubmed_kb(registry As biocad_registry, <RRawVectorArgument> pubmed As Object, topic As String, Optional env As Environment = Nothing)
+    Public Function imports_pubmed_kb(registry As biocad_registry, <RRawVectorArgument> pubmed As Object, topic As String(), Optional env As Environment = Nothing)
         Dim repo As pipeline = pipeline.TryCreatePipeline(Of PubMedTextTable)(pubmed, env)
 
         If repo.isError Then
