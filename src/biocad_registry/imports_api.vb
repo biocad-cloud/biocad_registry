@@ -77,7 +77,7 @@ Module imports_api
     <ExportAPI("imports_metab_repo")>
     Public Function imports_metabolites(registry As biocad_registry, <RRawVectorArgument> metab As Object,
                                         Optional lazy_molecule_ctor As Boolean = False,
-                                        Optional topic As String = Nothing,
+                                        Optional topic As String() = Nothing,
                                         Optional exclude_topic As String = Nothing,
                                         Optional env As Environment = Nothing)
 
@@ -90,8 +90,10 @@ Module imports_api
         For Each page As MetaInfo() In pull.populates(Of MetaInfo)(env).SplitIterator(3000)
             Call MetaboliteImports.RunDataCommit(registry, page, uniref:=Function(m) m.ID, lazy_molecule_ctor)
 
-            If Not topic.StringEmpty(, True) Then
-                Call MetaboliteCommit.CommitTags(registry, page, topic)
+            If Not topic.IsNullOrEmpty Then
+                For Each name As String In topic
+                    Call MetaboliteCommit.CommitTags(registry, page, name)
+                Next
             End If
             If Not exclude_topic.StringEmpty(, True) Then
                 Call MetaboliteCommit.RemoveTags(registry, page, exclude_topic)
