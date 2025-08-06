@@ -13,6 +13,7 @@ Imports SMRUCC.genomics.Assembly.NCBI.GenBank
 Imports SMRUCC.genomics.Assembly.NCBI.Taxonomy
 Imports SMRUCC.genomics.Assembly.Uniprot.XML
 Imports SMRUCC.genomics.foundation.OBO_Foundry.IO.Models
+Imports SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.PubMed
 Imports SMRUCC.Rsharp.Runtime
 Imports SMRUCC.Rsharp.Runtime.Internal.[Object]
 Imports SMRUCC.Rsharp.Runtime.Interop
@@ -71,6 +72,19 @@ Module imports_api
 
         Call registry.ImportsPubChemPathway(repo.populates(Of PathwayGraph)(env).ToArray, topic)
 
+        Return Nothing
+    End Function
+
+    <ExportAPI("imports_pubmed_kb")>
+    Public Function imports_pubmed_kb(registry As biocad_registry, <RRawVectorArgument> pubmed As Object, topic As String, Optional env As Environment = Nothing)
+        Dim repo As pipeline = pipeline.TryCreatePipeline(Of PubMedTextTable)(pubmed, env)
+
+        If repo.isError Then
+            Return repo.getError
+        End If
+
+        Dim kb As New PubChemArticleImports(registry, wrap_tqdm:=True)
+        Call kb.MakeImports(repo.populates(Of PubMedTextTable)(env).ToArray, topic)
         Return Nothing
     End Function
 

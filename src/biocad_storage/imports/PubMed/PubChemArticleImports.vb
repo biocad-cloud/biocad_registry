@@ -9,9 +9,10 @@ Public Class PubChemArticleImports
     ReadOnly terms As BioCadVocabulary
     ReadOnly wrap_tqdm As Boolean = False
 
-    Sub New(registry As biocad_registry)
+    Sub New(registry As biocad_registry, Optional wrap_tqdm As Boolean = False)
         Me.terms = registry.vocabulary_terms
         Me.registry = registry
+        Me.wrap_tqdm = wrap_tqdm
     End Sub
 
     Public Sub MakePageImports(articles As IEnumerable(Of PubMedTextTable), topic As String)
