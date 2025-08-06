@@ -3,6 +3,7 @@ Imports BioNovoGene.BioDeep.Chemistry.ChEBI
 Imports BioNovoGene.BioDeep.Chemistry.LOTUS
 Imports BioNovoGene.BioDeep.Chemistry.MetaLib.Models
 Imports BioNovoGene.BioDeep.Chemistry.NCBI.PubChem
+Imports BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.ExtensionModels
 Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm
 Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.Linq
@@ -54,6 +55,24 @@ Module imports_api
             Call PubChemImports.RunDataCommit(registry, page)
         Next
     End Sub
+
+    <ExportAPI("imports_pubchem_pathway")>
+    Public Function imports_pubchem_pathway(registry As biocad_registry,
+                                            <RRawVectorArgument>
+                                            pathways As Object,
+                                            Optional topic As String = Nothing,
+                                            Optional env As Environment = Nothing) As Object
+
+        Dim repo As pipeline = pipeline.TryCreatePipeline(Of PathwayGraph)(pathways, env)
+
+        If repo.isError Then
+            Return repo.getError
+        End If
+
+        Call registry.ImportsPubChemPathway(repo.populates(Of PathwayGraph)(env).ToArray, topic)
+
+        Return Nothing
+    End Function
 
     <ExportAPI("imports_chebi_repo")>
     Public Sub imports_chebi(registry As biocad_registry, chebi As OBOFile)

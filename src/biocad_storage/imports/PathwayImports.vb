@@ -1,11 +1,12 @@
-﻿Imports BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.ExtensionModels
+﻿Imports System.Runtime.CompilerServices
+Imports BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.ExtensionModels
 Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 
 Public Module PathwayImports
 
-    Public Sub ImportsPubChemPathway(registry As biocad_registry, pathways As PathwayGraph(), source As String, Optional topic As String = Nothing)
-        Dim db_key As UInteger = registry.getVocabulary(source, "External Database")
+    <Extension>
+    Public Sub ImportsPubChemPathway(registry As biocad_registry, pathways As PathwayGraph(), Optional topic As String = Nothing)
         Dim cid As UInteger = registry.vocabulary_terms.pubchem_term
         Dim topic_id As UInteger
 
@@ -14,6 +15,7 @@ Public Module PathwayImports
         End If
 
         For Each pathway As PathwayGraph In TqdmWrapper.Wrap(pathways)
+            Dim db_key As UInteger = registry.getVocabulary(pathway.source, "External Database")
             Dim ref = registry.pathway _
                 .where(field("xref_id") = pathway.pwacc,
                        field("source_dbkey") = db_key) _
