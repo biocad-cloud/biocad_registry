@@ -150,6 +150,26 @@ let options = { width: 450, height: 300 };
         TextBox2.Text = name
         Call SaveCommonName()
     End Sub
+
+    Private Sub DataGridView1_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellDoubleClick
+        If DataGridView1.SelectedRows.Count = 0 Then
+            Return
+        End If
+
+        Dim row = DataGridView1.SelectedRows(0)
+        Dim db As String = CStr(row.Cells(0).Value)
+        Dim xref As String = CStr(row.Cells(1).Value)
+        Dim url As String
+
+        Select Case LCase(db)
+            Case "pubchem" : url = $"https://pubchem.ncbi.nlm.nih.gov/compound/{db}"
+            Case Else
+                Call Workbench.StatusMessage($"Unkonw url builder for db xref {db}:{xref}")
+                Return
+        End Select
+
+        Call Tools.OpenUrlWithDefaultBrowser(url)
+    End Sub
 End Class
 
 Public Class XrefID

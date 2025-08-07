@@ -31,6 +31,8 @@ Partial Class FormMoleculeEditor
         Me.Button1 = New System.Windows.Forms.Button()
         Me.WebView21 = New Microsoft.Web.WebView2.WinForms.WebView2()
         Me.ListBox1 = New System.Windows.Forms.ListBox()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.SetAsDisplayNameToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.ComboBox1 = New System.Windows.Forms.ComboBox()
         Me.Button2 = New System.Windows.Forms.Button()
@@ -50,15 +52,13 @@ Partial Class FormMoleculeEditor
         Me.TextBox5 = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
-        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.SetAsDisplayNameToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.WebView21, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
-        Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'DataGridView1
@@ -138,6 +138,18 @@ Partial Class FormMoleculeEditor
         Me.ListBox1.Name = "ListBox1"
         Me.ListBox1.Size = New System.Drawing.Size(522, 472)
         Me.ListBox1.TabIndex = 7
+        '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SetAsDisplayNameToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(183, 26)
+        '
+        'SetAsDisplayNameToolStripMenuItem
+        '
+        Me.SetAsDisplayNameToolStripMenuItem.Name = "SetAsDisplayNameToolStripMenuItem"
+        Me.SetAsDisplayNameToolStripMenuItem.Size = New System.Drawing.Size(182, 22)
+        Me.SetAsDisplayNameToolStripMenuItem.Text = "Set As Display Name"
         '
         'Label4
         '
@@ -332,18 +344,6 @@ Partial Class FormMoleculeEditor
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "Molecular Information"
         '
-        'ContextMenuStrip1
-        '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SetAsDisplayNameToolStripMenuItem})
-        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(183, 48)
-        '
-        'SetAsDisplayNameToolStripMenuItem
-        '
-        Me.SetAsDisplayNameToolStripMenuItem.Name = "SetAsDisplayNameToolStripMenuItem"
-        Me.SetAsDisplayNameToolStripMenuItem.Size = New System.Drawing.Size(182, 22)
-        Me.SetAsDisplayNameToolStripMenuItem.Text = "Set As Display Name"
-        '
         'FormMoleculeEditor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
@@ -358,6 +358,7 @@ Partial Class FormMoleculeEditor
         Me.Text = "Molecule Editor"
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.WebView21, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip1.ResumeLayout(False)
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
@@ -365,7 +366,6 @@ Partial Class FormMoleculeEditor
         Me.GroupBox3.PerformLayout()
         Me.GroupBox4.ResumeLayout(False)
         Me.GroupBox4.PerformLayout()
-        Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
