@@ -9,18 +9,26 @@ Imports Oracle.LinuxCompatibility.MySQL.Reflection.DbAttributes
 
 Public Module TagDataExport
 
+    ''' <summary>
+    ''' export a set of the molecule id which is associated with a specific topic
+    ''' </summary>
+    ''' <param name="registry"></param>
+    ''' <param name="tagName">the topic name</param>
+    ''' <returns></returns>
     <Extension>
-    Public Function ExportTagList(registry As biocad_registry, tagName As String) As String()
+    Public Function ExportTagList(registry As biocad_registry, tagName As String) As IEnumerable(Of String)
         Dim tag_id = registry.vocabulary.where(field("term") = tagName).find(Of biocad_registryModel.vocabulary)
+
         If tag_id Is Nothing Then
-            Throw New InvalidDataException
+            Throw New InvalidDataException($"missing  topic vocabulary term '{tagName}' inside registry.")
+        Else
+            Return From id As UInteger
+                   In registry.molecule_tags _
+                       .where(field("tag_id") = tag_id.id) _
+                       .distinct() _
+                       .project(Of UInteger)("molecule_id")
+                   Select "BioCAD" & id.ToString.PadLeft(11, "0")
         End If
-        Return registry.molecule_tags _
-            .where(field("tag_id") = tag_id.id) _
-            .distinct() _
-            .project(Of UInteger)("molecule_id") _
-            .Select(Function(id) "BioCAD" & id.ToString.PadLeft(11, "0")) _
-            .ToArray
     End Function
 
     <Extension>

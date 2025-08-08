@@ -1,11 +1,8 @@
 Imports biocad_storage
 Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar
 Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm
-Imports Microsoft.VisualBasic.Net.Http
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports Oracle.LinuxCompatibility.MySQL.Uri
-Imports SMRUCC.genomics.Model.MotifGraph.ProteinStructure
-Imports SMRUCC.genomics.Model.MotifGraph.ProteinStructure.Kmer
 
 Module Program
 
@@ -20,7 +17,8 @@ Module Program
     Friend ReadOnly registry As New biocad_registry(mysql)
 
     Sub Main(args As String())
-        Call fingerprintBuilder.run()
+        Call export_plantid()
+        ' Call fingerprintBuilder.run()
 
         ' Call registry.BuildUniqeHashCode
         ' Call importsMetaCyc()
