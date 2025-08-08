@@ -38,6 +38,9 @@ Module exportData
                    End Function) _
             .Where(Function(a) Not a.First.id.name.IsPattern("CID \d+")) _
             .Where(Function(a) Not a.First.id.name.IsPattern("CHEMBL\d+")) _
+            .Where(Function(a) a.First.id.name.Length < 64) _
+            .Where(Function(a) Not LCase(a.First.id.name).StartsWith("zinc ")) _
+            .Where(Function(a) LCase(a.First.id.name).InStrAny("potassium", "sodium") <= 0) _
             .Select(Function(r)
                         Dim name = r.First.id.name
                         Dim id = r.First.id.id

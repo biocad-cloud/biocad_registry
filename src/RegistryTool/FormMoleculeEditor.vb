@@ -176,6 +176,13 @@ let options = { width: 450, height: 300 };
 
         MyApplication.biocad_registry.molecule.where(field("id") = UInteger.Parse(id.Match("\d+"))).save(field("note") = desc)
     End Sub
+
+    Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked
+        Dim int = UInteger.Parse(id.Match("\d+"))
+        Dim url = $"http://biocad.innovation.ac.cn/molecule/BioCAD{int.ToString.PadLeft(11, "0"c)}/"
+
+        Call Tools.OpenUrlWithDefaultBrowser(url)
+    End Sub
 End Class
 
 Public Class XrefID

@@ -52,6 +52,8 @@ Partial Class FormMoleculeEditor
         Me.TextBox5 = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
+        Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
+        Me.Label3 = New System.Windows.Forms.Label()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.WebView21, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
@@ -75,7 +77,7 @@ Partial Class FormMoleculeEditor
         Me.DataGridView1.RowTemplate.Height = 23
         Me.DataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DataGridView1.Size = New System.Drawing.Size(396, 494)
+        Me.DataGridView1.Size = New System.Drawing.Size(396, 362)
         Me.DataGridView1.TabIndex = 0
         '
         'Column1
@@ -136,7 +138,7 @@ Partial Class FormMoleculeEditor
         Me.ListBox1.ItemHeight = 12
         Me.ListBox1.Location = New System.Drawing.Point(18, 47)
         Me.ListBox1.Name = "ListBox1"
-        Me.ListBox1.Size = New System.Drawing.Size(522, 472)
+        Me.ListBox1.Size = New System.Drawing.Size(522, 340)
         Me.ListBox1.TabIndex = 7
         '
         'ContextMenuStrip1
@@ -263,9 +265,9 @@ Partial Class FormMoleculeEditor
         Me.GroupBox1.Controls.Add(Me.ListBox1)
         Me.GroupBox1.Controls.Add(Me.Label4)
         Me.GroupBox1.Controls.Add(Me.ComboBox1)
-        Me.GroupBox1.Location = New System.Drawing.Point(540, 515)
+        Me.GroupBox1.Location = New System.Drawing.Point(540, 551)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(552, 528)
+        Me.GroupBox1.Size = New System.Drawing.Size(552, 397)
         Me.GroupBox1.TabIndex = 20
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Synonym Names"
@@ -276,9 +278,9 @@ Partial Class FormMoleculeEditor
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.GroupBox2.Controls.Add(Me.Button5)
         Me.GroupBox2.Controls.Add(Me.DataGridView1)
-        Me.GroupBox2.Location = New System.Drawing.Point(12, 515)
+        Me.GroupBox2.Location = New System.Drawing.Point(12, 551)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(510, 529)
+        Me.GroupBox2.Size = New System.Drawing.Size(510, 397)
         Me.GroupBox2.TabIndex = 21
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Database CrossReference"
@@ -300,7 +302,7 @@ Partial Class FormMoleculeEditor
         Me.GroupBox3.Controls.Add(Me.Label2)
         Me.GroupBox3.Controls.Add(Me.TextBox1)
         Me.GroupBox3.Controls.Add(Me.Button1)
-        Me.GroupBox3.Location = New System.Drawing.Point(540, 13)
+        Me.GroupBox3.Location = New System.Drawing.Point(540, 49)
         Me.GroupBox3.Name = "GroupBox3"
         Me.GroupBox3.Size = New System.Drawing.Size(552, 496)
         Me.GroupBox3.TabIndex = 22
@@ -337,18 +339,40 @@ Partial Class FormMoleculeEditor
         Me.GroupBox4.Controls.Add(Me.TextBox3)
         Me.GroupBox4.Controls.Add(Me.Label7)
         Me.GroupBox4.Controls.Add(Me.Label8)
-        Me.GroupBox4.Location = New System.Drawing.Point(12, 12)
+        Me.GroupBox4.Location = New System.Drawing.Point(12, 48)
         Me.GroupBox4.Name = "GroupBox4"
         Me.GroupBox4.Size = New System.Drawing.Size(510, 497)
         Me.GroupBox4.TabIndex = 23
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "Molecular Information"
         '
+        'LinkLabel1
+        '
+        Me.LinkLabel1.AutoSize = True
+        Me.LinkLabel1.Font = New System.Drawing.Font("Microsoft YaHei", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
+        Me.LinkLabel1.Location = New System.Drawing.Point(126, 9)
+        Me.LinkLabel1.Name = "LinkLabel1"
+        Me.LinkLabel1.Size = New System.Drawing.Size(429, 19)
+        Me.LinkLabel1.TabIndex = 24
+        Me.LinkLabel1.TabStop = True
+        Me.LinkLabel1.Text = "http://biocad.innovation.ac.cn/molecule/BioCAD00000000000/"
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(19, 13)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(101, 12)
+        Me.Label3.TabIndex = 25
+        Me.Label3.Text = "Visit Site Page:"
+        '
         'FormMoleculeEditor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1101, 1055)
+        Me.ClientSize = New System.Drawing.Size(1101, 960)
+        Me.Controls.Add(Me.Label3)
+        Me.Controls.Add(Me.LinkLabel1)
         Me.Controls.Add(Me.GroupBox4)
         Me.Controls.Add(Me.GroupBox3)
         Me.Controls.Add(Me.GroupBox2)
@@ -367,6 +391,7 @@ Partial Class FormMoleculeEditor
         Me.GroupBox4.ResumeLayout(False)
         Me.GroupBox4.PerformLayout()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
@@ -399,4 +424,6 @@ Partial Class FormMoleculeEditor
     Friend WithEvents Column2 As DataGridViewTextBoxColumn
     Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
     Friend WithEvents SetAsDisplayNameToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents LinkLabel1 As LinkLabel
+    Friend WithEvents Label3 As Label
 End Class
