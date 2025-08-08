@@ -4,7 +4,7 @@ Imports Microsoft.VisualBasic.Linq
 Module exportData
 
     Sub export_plantid()
-        Dim topics_plant = {"wheat",
+        Dim topics_plant = {"wheat", "barley", "rice",
 "flavonoid",
 "glutathione",
 "lignin biosynthesis",
@@ -18,11 +18,8 @@ Module exportData
 
         Dim plant = topics_plant.Select(Function(tag)
                                             Return Program.registry.ExportTagData(tag).Select(Function(id) (id, tag, "plant"))
-                                        End Function).IteratesALL.ToArray
-        Dim excludeList = excludes.Select(Function(tag)
-                                              Return Program.registry.ExportTagData(tag).Select(Function(id) (id, tag, "not plant"))
-                                          End Function).IteratesALL.ToArray
-        Dim all = plant.JoinIterates(excludeList).GroupBy(Function(r) r.id.id) _
+                                        End Function).IteratesALL.Where(Function(a) a.id.exact_mass > 50 AndAlso a.id.exact_mass < 1200).ToArray
+        Dim all = plant.GroupBy(Function(r) r.id.id) _
             .Select(Function(r)
                         Dim name = r.First.id.name
                         Dim id = r.First.id.id
@@ -32,8 +29,9 @@ Module exportData
                         Return (id, name, plants, not_plants)
                     End Function) _
             .OrderByDescending(Function(a)
-                                   Return a.not_plants.TryCount
+                                   Return a.plants.TryCount
                                End Function) _
+            .Take(20000) _
             .ToArray
 
         Pause()

@@ -274,4 +274,10 @@ Public Class FormMain
             Call Workbench.OpenMoleculeEditor(id, "")
         End If
     End Sub
+
+    Private Sub CloseAllToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CloseAllToolStripMenuItem.Click
+        For Each form As Form In Me.MdiChildren
+            Call form.Close()
+        Next
+    End Sub
 End Class

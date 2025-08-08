@@ -162,13 +162,19 @@ let options = { width: 450, height: 300 };
         Dim url As String
 
         Select Case LCase(db)
-            Case "pubchem" : url = $"https://pubchem.ncbi.nlm.nih.gov/compound/{db}"
+            Case "pubchem" : url = $"https://pubchem.ncbi.nlm.nih.gov/compound/{xref}"
             Case Else
                 Call Workbench.StatusMessage($"Unkonw url builder for db xref {db}:{xref}")
                 Return
         End Select
 
         Call Tools.OpenUrlWithDefaultBrowser(url)
+    End Sub
+
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+        Dim desc = Strings.Trim(TextBox4.Text)
+
+        MyApplication.biocad_registry.molecule.where(field("id") = UInteger.Parse(id.Match("\d+"))).save(field("note") = desc)
     End Sub
 End Class
 
