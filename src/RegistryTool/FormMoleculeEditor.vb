@@ -63,6 +63,7 @@ let options = { width: 450, height: 300 };
         TextBox3.Text = mol.formula
         Label7.Text = FormulaScanner.EvaluateExactMass(mol.formula).ToString("F4")
         TextBox4.Text = mol.note
+        LinkLabel1.Text = $"http://biocad.innovation.ac.cn/molecule/BioCAD{mol.id.ToString.PadLeft(11, "0"c)}/"
 
         struct = MyApplication.biocad_registry.sequence_graph _
             .where(field("molecule_id") = mol.id) _
