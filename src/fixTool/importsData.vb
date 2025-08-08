@@ -1,8 +1,8 @@
-﻿Imports System.Security.Cryptography
-Imports biocad_storage
+﻿Imports biocad_storage
 Imports BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.DataSources
 Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm
 Imports Microsoft.VisualBasic.Linq
+Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports SMRUCC.genomics.Data.BioCyc
 
 Module importsData
@@ -46,14 +46,56 @@ Module importsData
     Sub imports_drugdata()
         Dim sources = "U:\pubchem\drugs".EnumerateFiles("*.json").ToArray
         Dim annotations = AnnotationJSON.GetAnnotations(sources).ToArray
+        Dim pubchem_key = registry.vocabulary_terms.pubchem_term
+        Dim excludes As UInteger() = {"acetic acid metabolism",
+"bacteria",
+"banana",
+"barley",
+"chinese baijiu",
+"cooking",
+"flavonoid",
+"fragrance",
+"fruit",
+"glutathione",
+"lignin biosynthesis",
+"natural products",
+"perfume",
+"phenylpropanoid",
+"phytochemicals",
+"phytohormone",
+"phytosterols",
+"plant",
+"plant hormone",
+"plant natural products",
+"rice",
+"rotten odor",
+"stripe rust resistance",
+"tea",
+"wheat",
+"wine"}.Select(Function(name) registry.getVocabulary(name, "Topic", [readonly]:=True)).ToArray
+
+        Dim drug_id = registry.getVocabulary("drug", "Topic")
+        Dim drug_link = registry.molecule_tags.open_transaction.ignore
 
         For Each annotation As Annotation In TqdmWrapper.Wrap(annotations)
             If annotation.LinkedRecords IsNot Nothing Then
                 For Each cid As String In annotation.LinkedRecords.CID.SafeQuery
+                    Dim mols = registry.db_xrefs.where(field("db_key") = pubchem_key, field("xref") = cid).select(Of biocad_registryModel.db_xrefs)
 
+                    For Each mol In mols
+                        For Each eid As UInteger In excludes
+                            registry.molecule_tags.where(field("molecule_id") = mol.obj_id, field("tag_id") = eid).delete()
+                        Next
+
+                        drug_link.add(field("molecule_id") = mol.obj_id,
+                                      field("tag_id") = drug_id,
+                                      field("description") = annotation.Name)
+                    Next
                 Next
             End If
         Next
+
+        Call drug_link.commit()
 
         Pause()
     End Sub
