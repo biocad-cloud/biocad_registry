@@ -1,4 +1,8 @@
-﻿Imports biocad_storage
+﻿Imports System.Security.Cryptography
+Imports biocad_storage
+Imports BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.DataSources
+Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm
+Imports Microsoft.VisualBasic.Linq
 Imports SMRUCC.genomics.Data.BioCyc
 
 Module importsData
@@ -35,6 +39,21 @@ Module importsData
 
     Sub importsUniprot()
 
+
+        Pause()
+    End Sub
+
+    Sub imports_drugdata()
+        Dim sources = "U:\pubchem\drugs".EnumerateFiles("*.json").ToArray
+        Dim annotations = AnnotationJSON.GetAnnotations(sources).ToArray
+
+        For Each annotation As Annotation In TqdmWrapper.Wrap(annotations)
+            If annotation.LinkedRecords IsNot Nothing Then
+                For Each cid As String In annotation.LinkedRecords.CID.SafeQuery
+
+                Next
+            End If
+        Next
 
         Pause()
     End Sub

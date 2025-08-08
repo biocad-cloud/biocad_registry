@@ -944,6 +944,13 @@ BioNovoGene.BioDeep.Chemistry.Massbank
  </param>
  <returns></returns>
 </member>
+<member name="T:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.DataSources.Extensions">
+ <summary>
+ data reader for 
+ 
+ https://pubchem.ncbi.nlm.nih.gov/source/
+ </summary>
+</member>
 <member name="M:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.Extensions.castStrings(System.Object)">
  <summary>
  cast a given object value as string array
@@ -1035,6 +1042,11 @@ BioNovoGene.BioDeep.Chemistry.Massbank
  </summary>
  <returns></returns>
  
+</member>
+<member name="T:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.Value">
+ <summary>
+ A common value model between the json/xml file
+ </summary>
 </member>
 <member name="P:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.Information.InfoType">
  <summary>
