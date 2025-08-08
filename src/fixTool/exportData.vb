@@ -1,4 +1,5 @@
 ﻿Imports biocad_storage
+Imports BioNovoGene.BioDeep.MSEngine
 Imports Microsoft.VisualBasic.Linq
 
 Module exportData
@@ -32,6 +33,9 @@ Module exportData
             .ToArray
         Dim all = plant.JoinIterates(notplant) _
             .GroupBy(Function(r) r.id.id) _
+            .Where(Function(a)
+                       Return (Not MetalIons.IsMetalIon(a.First.id.formula)) AndAlso MetalIons.IsOrganic(a.First.id.formula)
+                   End Function) _
             .Select(Function(r)
                         Dim name = r.First.id.name
                         Dim id = r.First.id.id
