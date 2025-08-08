@@ -36,7 +36,7 @@ Public Module TagDataExport
         Dim tag_id = registry.vocabulary.where(field("term") = tagName).find(Of biocad_registryModel.vocabulary)
 
         If tag_id Is Nothing Then
-            Throw New InvalidDataException
+            Throw New InvalidDataException($"missing  topic vocabulary term '{tagName}' inside registry.")
         End If
 
         Return registry.molecule_tags _

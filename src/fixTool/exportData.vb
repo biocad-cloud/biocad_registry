@@ -17,17 +17,22 @@ Module exportData
         }
 
         Dim plant = topics_plant.Select(Function(tag)
-                                            Return Program.registry.ExportTagList(tag).Select(Function(id) (id, tag, "plant"))
+                                            Return Program.registry.ExportTagData(tag).Select(Function(id) (id, tag, "plant"))
                                         End Function).IteratesALL.ToArray
         Dim excludeList = excludes.Select(Function(tag)
-                                              Return Program.registry.ExportTagList(tag).Select(Function(id) (id, tag, "not plant"))
+                                              Return Program.registry.ExportTagData(tag).Select(Function(id) (id, tag, "not plant"))
                                           End Function).IteratesALL.ToArray
-        Dim all = plant.JoinIterates(excludeList).GroupBy(Function(r) r.id) _
+        Dim all = plant.JoinIterates(excludeList).GroupBy(Function(r) r.id.id) _
             .Select(Function(r)
-                        Return (r.Key, r.GroupBy(Function(a) a.Item3).ToDictionary(Function(a) a.Key, Function(a) a.Select(Function(i) i.tag).Distinct.ToArray))
+                        Dim name = r.First.id.name
+                        Dim id = r.First.id.id
+                        Dim plants = r.Where(Function(a) a.Item3 = "plant").Select(Function(a) a.tag).Distinct.ToArray
+                        Dim not_plants = r.Where(Function(a) a.Item3 <> "plant").Select(Function(a) a.tag).Distinct.ToArray
+
+                        Return (id, name, plants, not_plants)
                     End Function) _
             .OrderByDescending(Function(a)
-                                   Return a.Item2.TryGetValue("not plant").TryCount
+                                   Return a.not_plants.TryCount
                                End Function) _
             .ToArray
 
