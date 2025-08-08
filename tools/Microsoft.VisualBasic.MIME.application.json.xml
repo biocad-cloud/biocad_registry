@@ -28,6 +28,15 @@ Microsoft.VisualBasic.MIME.application.json
  <param name="obj"></param>
  <returns></returns>
 </member>
+<member name="M:Microsoft.VisualBasic.MIME.application.json.BSON.BSONFormat.SafeWriteBuffer(Microsoft.VisualBasic.MIME.application.json.Javascript.JsonElement,System.IO.Stream)">
+ <summary>
+ save json element in bson format
+ </summary>
+ <param name="obj">
+ json object or json array
+ </param>
+ <param name="ms"></param>
+</member>
 <member name="M:Microsoft.VisualBasic.MIME.application.json.BSON.BSONValue.#ctor(Microsoft.VisualBasic.MIME.application.json.BSON.ValueType)">
 
 </member>
@@ -43,6 +52,20 @@ Microsoft.VisualBasic.MIME.application.json
  Decode a ZERO terminated C-string.
  </summary>
  <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MIME.application.json.BSON.Encoder.encodeDocument(System.IO.Stream,Microsoft.VisualBasic.MIME.application.json.Javascript.JsonObject)">
+ <summary>
+ save json object
+ </summary>
+ <param name="ms"></param>
+ <param name="obj"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.MIME.application.json.BSON.Encoder.encodeArray(System.IO.Stream,Microsoft.VisualBasic.MIME.application.json.Javascript.JsonArray)">
+ <summary>
+ save json array as json object
+ </summary>
+ <param name="ms"></param>
+ <param name="lst"></param>
 </member>
 <member name="F:Microsoft.VisualBasic.MIME.application.json.BSON.ValueType.Undefined">
  <summary>
