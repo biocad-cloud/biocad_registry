@@ -3,6 +3,7 @@ Imports System.Runtime.CompilerServices
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Annotations
 Imports BioNovoGene.BioDeep.Chemoinformatics
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
+Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm
 Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports Oracle.LinuxCompatibility.MySQL.Reflection.DbAttributes
@@ -63,6 +64,35 @@ Public Module TagDataExport
                        field("formula").char_length > 0,
                        field("sequence").char_length > 0) _
                 .limit(page * page_size, page_size) _
+                .select(Of MetaboliteStructData)(
+                    "CAST(molecule.id AS CHARACTER) AS id",
+                    "xref_id",
+                    "name",
+                    "formula",
+                    "sequence AS smiles")
+
+            If page_data.IsNullOrEmpty Then
+                Exit For
+            End If
+
+            For i As Integer = 0 To page_data.Length - 1
+                page_data(i).exact_mass = FormulaScanner.EvaluateExactMass(page_data(i).exact_mass)
+            Next
+
+            Yield page_data
+        Next
+    End Function
+
+    <Extension>
+    Public Iterator Function ExportSmiles(registry As biocad_registry, id As IEnumerable(Of String)) As IEnumerable(Of MetaboliteStructData())
+        Dim page_size As Integer = 100
+
+        For Each page As UInteger() In TqdmWrapper.Wrap(id.Select(Function(s) UInteger.Parse(s.Match("\d+"))).SplitIterator(page_size).ToArray)
+            Dim page_data As MetaboliteStructData() = registry.molecule _
+                .left_join("sequence_graph").on(field("`sequence_graph`.molecule_id") = field("`molecule`.id")) _
+                .where(field("`molecule`.id").in(page),
+                       field("formula").char_length > 0,
+                       field("sequence").char_length > 0) _
                 .select(Of MetaboliteStructData)(
                     "CAST(molecule.id AS CHARACTER) AS id",
                     "xref_id",

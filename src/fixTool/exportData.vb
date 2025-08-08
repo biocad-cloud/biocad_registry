@@ -1,5 +1,6 @@
 ﻿Imports biocad_storage
 Imports BioNovoGene.BioDeep.MSEngine
+Imports Microsoft.VisualBasic.Data.Framework
 Imports Microsoft.VisualBasic.Linq
 
 Module exportData
@@ -39,8 +40,8 @@ Module exportData
             .Where(Function(a) Not a.First.id.name.IsPattern("CID \d+")) _
             .Where(Function(a) Not a.First.id.name.IsPattern("CHEMBL\d+")) _
             .Where(Function(a) a.First.id.name.Length < 64) _
-            .Where(Function(a) Not LCase(a.First.id.name).StartsWith("zinc ")) _
-            .Where(Function(a) LCase(a.First.id.name).InStrAny("potassium", "sodium") <= 0) _
+            .Where(Function(a) Not (LCase(a.First.id.name).StartsWith("zinc ") OrElse LCase(a.First.id.name).StartsWith("silver "))) _
+            .Where(Function(a) LCase(a.First.id.name).InStrAny("potassium", "sodium", "calcium", "example") <= 0) _
             .Select(Function(r)
                         Dim name = r.First.id.name
                         Dim id = r.First.id.id
@@ -54,6 +55,10 @@ Module exportData
                                End Function) _
             .Take(20000) _
             .ToArray
+
+        Dim smiles = Program.registry.ExportSmiles(all.Select(Function(a) a.id)).IteratesALL.ToArray
+
+        Call smiles.SaveTo("./plant_smiles.csv")
 
         Pause()
     End Sub
