@@ -37,6 +37,7 @@ Module exportData
                        Return (Not MetalIons.IsMetalIon(a.First.id.formula)) AndAlso MetalIons.IsOrganic(a.First.id.formula)
                    End Function) _
             .Where(Function(a) Not a.First.id.name.IsPattern("CID \d+")) _
+            .Where(Function(a) Not a.First.id.name.IsPattern("CHEMBL\d+")) _
             .Select(Function(r)
                         Dim name = r.First.id.name
                         Dim id = r.First.id.id
