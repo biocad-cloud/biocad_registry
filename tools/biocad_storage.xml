@@ -39,6 +39,14 @@ biocad_storage
  <param name="registry"></param>
  <returns></returns>
 </member>
+<member name="M:biocad_storage.TagDataExport.ExportTagList(biocad_storage.biocad_registry,System.String)">
+ <summary>
+ export a set of the molecule id which is associated with a specific topic
+ </summary>
+ <param name="registry"></param>
+ <param name="tagName">the topic name</param>
+ <returns></returns>
+</member>
 <member name="T:biocad_storage.BatchDataCommit">
  <summary>
  Create database, make dataset batch imports in transaction mode
