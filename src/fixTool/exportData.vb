@@ -1,4 +1,5 @@
 ﻿Imports biocad_storage
+Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports BioNovoGene.BioDeep.MSEngine
 Imports Microsoft.VisualBasic.Data.Framework
 Imports Microsoft.VisualBasic.Linq
@@ -15,8 +16,10 @@ Module exportData
 "phytosterols",
 "stripe rust resistance"}
         Dim excludes = {
-            "Synthetic steroids", "antibiotic", "carcinogen", "industrial pollutants", "Drug metabolites"
+            "Synthetic steroids", "antibiotic", "carcinogen", "industrial pollutants", "Drug metabolites", "drug"
         }
+
+        Dim checks_atom = {"Br", "Li", "Ge", "Ba", "Cu", "F", "Se", "Si", "Na", "As", "I", "Pb", "B", "Hg", "Ag", "Sn", "Zn", "Co", "Rh", "Al", "Cd", "Mn", "Ti", "Pt", "Ni"}
 
         Dim plant = topics_plant _
             .Select(Function(tag)
@@ -40,6 +43,21 @@ Module exportData
             .Where(Function(a) Not a.First.id.name.IsPattern("CID \d+")) _
             .Where(Function(a) Not a.First.id.name.IsPattern("CHEMBL\d+")) _
             .Where(Function(a) a.First.id.name.Length < 64) _
+            .Where(Function(a)
+                       Dim formula = FormulaScanner.ScanFormula(a.First.id.formula)
+
+                       If formula Is Nothing Then
+                           Return False
+                       End If
+
+                       For Each atom In checks_atom
+                           If formula(atom) > 0 Then
+                               Return False
+                           End If
+                       Next
+
+                       Return True
+                   End Function) _
             .Where(Function(a) Not (LCase(a.First.id.name).StartsWith("zinc ") OrElse LCase(a.First.id.name).StartsWith("silver "))) _
             .Where(Function(a) LCase(a.First.id.name).InStrAny("potassium", "sodium", "calcium", "example") <= 0) _
             .Select(Function(r)
