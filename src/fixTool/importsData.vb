@@ -1,5 +1,6 @@
 ﻿Imports biocad_storage
 Imports BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.DataSources
+Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar
 Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm
 Imports Microsoft.VisualBasic.Linq
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
@@ -76,15 +77,18 @@ Module importsData
 
         Dim drug_id = registry.getVocabulary("drug", "Topic")
         Dim drug_link = registry.molecule_tags.open_transaction.ignore
+        Dim bar As Tqdm.ProgressBar = Nothing
 
-        For Each annotation As Annotation In TqdmWrapper.Wrap(annotations)
+        For Each annotation As Annotation In TqdmWrapper.Wrap(annotations, bar:=bar)
             If annotation.LinkedRecords IsNot Nothing Then
+                Call bar.SetLabel(annotation.Name)
+
                 For Each cid As String In annotation.LinkedRecords.CID.SafeQuery
                     Dim mols = registry.db_xrefs.where(field("db_key") = pubchem_key, field("xref") = cid).select(Of biocad_registryModel.db_xrefs)
 
                     For Each mol In mols
                         For Each eid As UInteger In excludes
-                            registry.molecule_tags.where(field("molecule_id") = mol.obj_id, field("tag_id") = eid).delete()
+                            drug_link.add(registry.molecule_tags.where(field("molecule_id") = mol.obj_id, field("tag_id") = eid).delete_sql)
                         Next
 
                         drug_link.add(field("molecule_id") = mol.obj_id,
