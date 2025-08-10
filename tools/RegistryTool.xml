@@ -22,5 +22,19 @@ RegistryTool
   使用此强类型资源类的所有资源查找执行重写。
 </summary>
 </member>
+<member name="M:RegistryTool.FormBatchEditor.Button1_Click(System.Object,System.EventArgs)">
+ <summary>
+ add
+ </summary>
+ <param name="sender"></param>
+ <param name="e"></param>
+</member>
+<member name="M:RegistryTool.FormBatchEditor.Button2_Click(System.Object,System.EventArgs)">
+ <summary>
+ remove
+ </summary>
+ <param name="sender"></param>
+ <param name="e"></param>
+</member>
 </members>
 </doc>
