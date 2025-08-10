@@ -209,12 +209,22 @@ let options = { width: 450, height: 300 };
         Call MyApplication.biocad_registry.molecule_tags.where(field("tag_id") = sel.tag_id, field("molecule_id") = sel.molecule_id).delete()
         Call refreshTags()
     End Sub
-End Class
 
-Public Class XrefID
+    Private Sub EditToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EditToolStripMenuItem.Click
+        Dim sel = DataGridView1.SelectedRows
 
-    <DatabaseField> Public Property xref_id As UInteger
-    <DatabaseField> Public Property dbname As String
-    <DatabaseField> Public Property xref As String
+        If sel.Count = 0 Then
+            Return
+        End If
 
+        Dim db As XrefID = sel(0).Tag
+        Dim all_xrefs = MyApplication.biocad_registry.db_xrefs _
+            .where(field("db_key") = db.db_key,
+                   field("obj_id") = mol.id) _
+            .project(Of String)("xref")
+        Dim edit As New FormTextEditor
+
+        edit.SetText(all_xrefs)
+        edit.ShowDialog()
+    End Sub
 End Class
