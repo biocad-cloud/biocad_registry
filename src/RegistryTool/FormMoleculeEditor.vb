@@ -76,18 +76,24 @@ let options = { width: 450, height: 300 };
             TextBox5.Text = struct.morgan
         End If
 
+        Call refreshNames()
+        Call refreshXrefs()
+        Call refreshTags()
+        Call WebKit.Init(WebView21)
+    End Sub
+
+    Private Sub refreshNames()
         Dim names = MyApplication.biocad_registry.synonym _
             .where(field("obj_id") = mol.id,
                    field("type_id") = mol.type) _
+            .order_by("synonym") _
             .select(Of biocad_registryModel.synonym)
+
+        Call ListBox1.Items.Clear()
 
         For Each name As biocad_registryModel.synonym In names
             Call ListBox1.Items.Add(name.synonym)
         Next
-
-        Call refreshXrefs()
-        Call refreshTags()
-        Call WebKit.Init(WebView21)
     End Sub
 
     Private Sub refreshXrefs()
@@ -95,6 +101,7 @@ let options = { width: 450, height: 300 };
             .left_join("vocabulary") _
             .on(field("`vocabulary`.id") = field("db_key")) _
             .where(field("obj_id") = mol.id) _
+            .order_by("dbname") _
             .select(Of XrefID)("db_xrefs.id as xref_id", "term as dbname", "xref", "db_key")
 
         DataGridView1.Rows.Clear()
