@@ -3,10 +3,8 @@ Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports BioNovoGene.BioDeep.Chemoinformatics.SMILES
 Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.Net.Http
-Imports Microsoft.VisualBasic.Serialization.BinaryDumping
 Imports Microsoft.Web.WebView2.Core
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
-Imports Oracle.LinuxCompatibility.MySQL.Reflection.DbAttributes
 Imports RegistryTool.My
 
 Public Class FormMoleculeEditor
@@ -75,6 +73,10 @@ let options = { width: 450, height: 300 };
             TextBox1.Text = struct.sequence
             TextBox5.Text = struct.morgan
         End If
+
+        For Each term As TopicTerm In TopicTerm.GetTopics
+            Call ComboBox2.Items.Add(term)
+        Next
 
         Call refreshNames()
         Call refreshXrefs()
@@ -269,5 +271,26 @@ let options = { width: 450, height: 300 };
         Next
 
         Call refreshXrefs()
+    End Sub
+
+    Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
+        If ComboBox2.SelectedIndex < 0 Then
+            Return
+        End If
+
+        Dim term As TopicTerm = ComboBox2.SelectedItem
+
+        If MyApplication.biocad_registry.molecule_tags _
+            .where(field("tag_id") = term.id,
+                   field("molecule_id") = mol.id) _
+            .find(Of biocad_registryModel.molecule_tags) Is Nothing Then
+
+            Call MyApplication.biocad_registry.molecule_tags.add(
+                field("tag_id") = term.id,
+                field("molecule_id") = mol.id,
+                field("description") = "Molecule Editor"
+            )
+            Call refreshTags()
+        End If
     End Sub
 End Class

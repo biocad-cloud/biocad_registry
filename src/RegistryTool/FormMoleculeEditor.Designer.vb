@@ -26,6 +26,8 @@ Partial Class FormMoleculeEditor
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ContextMenuStrip3 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.EditToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.Button1 = New System.Windows.Forms.Button()
@@ -58,9 +60,10 @@ Partial Class FormMoleculeEditor
         Me.ListBox2 = New System.Windows.Forms.ListBox()
         Me.ContextMenuStrip2 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ClearThisTagToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ContextMenuStrip3 = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.EditToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Button6 = New System.Windows.Forms.Button()
+        Me.ComboBox2 = New System.Windows.Forms.ComboBox()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip3.SuspendLayout()
         CType(Me.WebView21, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -69,7 +72,6 @@ Partial Class FormMoleculeEditor
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
         Me.ContextMenuStrip2.SuspendLayout()
-        Me.ContextMenuStrip3.SuspendLayout()
         Me.SuspendLayout()
         '
         'DataGridView1
@@ -102,6 +104,18 @@ Partial Class FormMoleculeEditor
         Me.Column2.HeaderText = "Xref ID"
         Me.Column2.Name = "Column2"
         Me.Column2.ReadOnly = True
+        '
+        'ContextMenuStrip3
+        '
+        Me.ContextMenuStrip3.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EditToolStripMenuItem})
+        Me.ContextMenuStrip3.Name = "ContextMenuStrip3"
+        Me.ContextMenuStrip3.Size = New System.Drawing.Size(95, 26)
+        '
+        'EditToolStripMenuItem
+        '
+        Me.EditToolStripMenuItem.Name = "EditToolStripMenuItem"
+        Me.EditToolStripMenuItem.Size = New System.Drawing.Size(94, 22)
+        Me.EditToolStripMenuItem.Text = "Edit"
         '
         'Label2
         '
@@ -378,6 +392,8 @@ Partial Class FormMoleculeEditor
         '
         'GroupBox5
         '
+        Me.GroupBox5.Controls.Add(Me.ComboBox2)
+        Me.GroupBox5.Controls.Add(Me.Button6)
         Me.GroupBox5.Controls.Add(Me.ListBox2)
         Me.GroupBox5.Location = New System.Drawing.Point(1098, 49)
         Me.GroupBox5.Name = "GroupBox5"
@@ -393,7 +409,7 @@ Partial Class FormMoleculeEditor
         Me.ListBox2.ItemHeight = 12
         Me.ListBox2.Location = New System.Drawing.Point(6, 20)
         Me.ListBox2.Name = "ListBox2"
-        Me.ListBox2.Size = New System.Drawing.Size(355, 472)
+        Me.ListBox2.Size = New System.Drawing.Size(355, 436)
         Me.ListBox2.TabIndex = 0
         '
         'ContextMenuStrip2
@@ -405,20 +421,26 @@ Partial Class FormMoleculeEditor
         'ClearThisTagToolStripMenuItem
         '
         Me.ClearThisTagToolStripMenuItem.Name = "ClearThisTagToolStripMenuItem"
-        Me.ClearThisTagToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ClearThisTagToolStripMenuItem.Size = New System.Drawing.Size(146, 22)
         Me.ClearThisTagToolStripMenuItem.Text = "Clear This Tag"
         '
-        'ContextMenuStrip3
+        'Button6
         '
-        Me.ContextMenuStrip3.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EditToolStripMenuItem})
-        Me.ContextMenuStrip3.Name = "ContextMenuStrip3"
-        Me.ContextMenuStrip3.Size = New System.Drawing.Size(181, 48)
+        Me.Button6.Location = New System.Drawing.Point(286, 462)
+        Me.Button6.Name = "Button6"
+        Me.Button6.Size = New System.Drawing.Size(75, 23)
+        Me.Button6.TabIndex = 1
+        Me.Button6.Text = "Add"
+        Me.Button6.UseVisualStyleBackColor = True
         '
-        'EditToolStripMenuItem
+        'ComboBox2
         '
-        Me.EditToolStripMenuItem.Name = "EditToolStripMenuItem"
-        Me.EditToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.EditToolStripMenuItem.Text = "Edit"
+        Me.ComboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ComboBox2.FormattingEnabled = True
+        Me.ComboBox2.Location = New System.Drawing.Point(6, 464)
+        Me.ComboBox2.Name = "ComboBox2"
+        Me.ComboBox2.Size = New System.Drawing.Size(274, 20)
+        Me.ComboBox2.TabIndex = 2
         '
         'FormMoleculeEditor
         '
@@ -436,6 +458,7 @@ Partial Class FormMoleculeEditor
         Me.Name = "FormMoleculeEditor"
         Me.Text = "Molecule Editor"
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip3.ResumeLayout(False)
         CType(Me.WebView21, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ContextMenuStrip1.ResumeLayout(False)
         Me.GroupBox1.ResumeLayout(False)
@@ -447,7 +470,6 @@ Partial Class FormMoleculeEditor
         Me.GroupBox4.PerformLayout()
         Me.GroupBox5.ResumeLayout(False)
         Me.ContextMenuStrip2.ResumeLayout(False)
-        Me.ContextMenuStrip3.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -490,4 +512,6 @@ Partial Class FormMoleculeEditor
     Friend WithEvents ClearThisTagToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ContextMenuStrip3 As ContextMenuStrip
     Friend WithEvents EditToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ComboBox2 As ComboBox
+    Friend WithEvents Button6 As Button
 End Class
