@@ -1,6 +1,7 @@
 ﻿Imports RegistryTool.My
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports biocad_storage
+Imports Microsoft.VisualBasic.Linq
 
 Public Class FormBatchEditor
 
@@ -21,7 +22,10 @@ Public Class FormBatchEditor
     End Sub
 
     Private Sub refreshUI()
-        Call LoadFromIDSet(From mol In list Select mol.id)
+        Call LoadFromIDSet(From mol As MoleculeBatchView
+                           In list.SafeQuery
+                           Let str_id = mol.id.ToString
+                           Select str_id)
     End Sub
 
     Private Sub OpenInEditorToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenInEditorToolStripMenuItem.Click
