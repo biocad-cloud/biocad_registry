@@ -2,6 +2,7 @@
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports BioNovoGene.BioDeep.Chemoinformatics.SMILES
 Imports Microsoft.VisualBasic.ComponentModel.Collection
+Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Net.Http
 Imports Microsoft.Web.WebView2.Core
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
@@ -84,10 +85,20 @@ let options = { width: 450, height: 300 };
         Call WebKit.Init(WebView21)
     End Sub
 
-    Private Sub refreshNames()
+    Private Sub refreshNames(Optional lang As String = Nothing)
+        Dim q As FieldAssert() = {
+            field("obj_id") = mol.id,
+            field("type_id") = mol.type
+        }
+
+        If Not lang.StringEmpty(, True) Then
+            q = q _
+                .JoinIterates(field("lang") = lang) _
+                .ToArray
+        End If
+
         Dim names = MyApplication.biocad_registry.synonym _
-            .where(field("obj_id") = mol.id,
-                   field("type_id") = mol.type) _
+            .where(q) _
             .order_by("synonym") _
             .select(Of biocad_registryModel.synonym)
 
@@ -292,6 +303,15 @@ let options = { width: 450, height: 300 };
                 field("description") = "Molecule Editor"
             )
             Call refreshTags()
+        End If
+    End Sub
+
+    Private Sub ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox1.SelectedIndexChanged
+        If ComboBox1.SelectedIndex <= 0 Then
+            ' show all
+            Call refreshNames()
+        Else
+            Call refreshNames(lang:=CStr(ComboBox1.SelectedItem))
         End If
     End Sub
 End Class
