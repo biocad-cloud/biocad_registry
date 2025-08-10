@@ -1,6 +1,7 @@
 ﻿Imports biocad_storage
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports BioNovoGene.BioDeep.Chemoinformatics.SMILES
+Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.Net.Http
 Imports Microsoft.VisualBasic.Serialization.BinaryDumping
 Imports Microsoft.Web.WebView2.Core
@@ -109,7 +110,7 @@ let options = { width: 450, height: 300 };
     Private Sub refreshTags()
         Call ListBox2.Items.Clear()
 
-        For Each tag As Tag In tag.GetTags(mol.id)
+        For Each tag As Tag In Tag.GetTags(mol.id)
             Call ListBox2.Items.Add(tag)
         Next
     End Sub
@@ -224,10 +225,42 @@ let options = { width: 450, height: 300 };
         Dim all_xrefs = MyApplication.biocad_registry.db_xrefs _
             .where(field("db_key") = db.db_key,
                    field("obj_id") = mol.id) _
-            .project(Of String)("xref")
+            .select(Of biocad_registryModel.db_xrefs)
         Dim edit As New FormTextEditor
 
-        edit.SetText(all_xrefs)
+        edit.SetText(all_xrefs.Select(Function(a) a.xref))
         edit.ShowDialog()
+
+        Dim current = all_xrefs.GroupBy(Function(a) a.xref).ToDictionary(Function(a) a.Key, Function(a) a.ToArray)
+
+        For Each id As String In edit.TextLines
+            If current.ContainsKey(id) Then
+                ' no changed
+            Else
+                ' add new
+                Call MyApplication.biocad_registry.db_xrefs.add(
+                    field("db_key") = db.db_key,
+                    field("obj_id") = mol.id,
+                    field("xref") = id,
+                    field("type") = mol.type
+                )
+            End If
+        Next
+
+        Dim modified As Index(Of String) = edit.TextLines.Indexing
+
+        For Each key As String In current.Keys
+            If key Like modified Then
+                ' no changed
+            Else
+                ' deleted
+                Call MyApplication.biocad_registry.db_xrefs.where(field("db_key") = db.db_key,
+                    field("obj_id") = mol.id,
+                    field("xref") = key,
+                    field("type") = mol.type).delete()
+            End If
+        Next
+
+        Call refreshXrefs()
     End Sub
 End Class
