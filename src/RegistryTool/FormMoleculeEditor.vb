@@ -238,6 +238,7 @@ let options = { width: 450, height: 300 };
         Dim edit As New FormTextEditor
 
         edit.SetText(all_xrefs.Select(Function(a) a.xref))
+        edit.SetPromptText("Edit the database xref id(delete text for removes id from database, add text for add new id into database)")
         edit.ShowDialog()
 
         Dim current = all_xrefs.GroupBy(Function(a) a.xref).ToDictionary(Function(a) a.Key, Function(a) a.ToArray)

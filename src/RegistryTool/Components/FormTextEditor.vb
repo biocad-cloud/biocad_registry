@@ -23,4 +23,8 @@
         TextBox1.Text = lines.JoinBy(vbCrLf)
     End Sub
 
+    Public Sub SetPromptText(str As String)
+        ToolStripLabel1.Text = str.LineTokens.JoinBy(" ").Trim
+    End Sub
+
 End Class

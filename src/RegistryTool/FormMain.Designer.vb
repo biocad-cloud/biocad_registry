@@ -25,6 +25,7 @@ Partial Class FormMain
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OpenMoleculeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SearchNamesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem4 = New System.Windows.Forms.ToolStripSeparator()
         Me.SettingsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -49,7 +50,7 @@ Partial Class FormMain
         Me.CloseAllToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.SearchNamesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.BatchOperationToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -65,7 +66,7 @@ Partial Class FormMain
         '
         'FileToolStripMenuItem
         '
-        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OpenMoleculeToolStripMenuItem, Me.SearchNamesToolStripMenuItem, Me.ToolStripMenuItem4, Me.SettingsToolStripMenuItem, Me.AboutToolStripMenuItem, Me.ToolStripMenuItem1, Me.ExitToolStripMenuItem})
+        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OpenMoleculeToolStripMenuItem, Me.BatchOperationToolStripMenuItem, Me.SearchNamesToolStripMenuItem, Me.ToolStripMenuItem4, Me.SettingsToolStripMenuItem, Me.AboutToolStripMenuItem, Me.ToolStripMenuItem1, Me.ExitToolStripMenuItem})
         Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
         Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 20)
         Me.FileToolStripMenuItem.Text = "File"
@@ -75,6 +76,12 @@ Partial Class FormMain
         Me.OpenMoleculeToolStripMenuItem.Name = "OpenMoleculeToolStripMenuItem"
         Me.OpenMoleculeToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.OpenMoleculeToolStripMenuItem.Text = "Open Molecule"
+        '
+        'SearchNamesToolStripMenuItem
+        '
+        Me.SearchNamesToolStripMenuItem.Name = "SearchNamesToolStripMenuItem"
+        Me.SearchNamesToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.SearchNamesToolStripMenuItem.Text = "Search Names"
         '
         'ToolStripMenuItem4
         '
@@ -204,7 +211,7 @@ Partial Class FormMain
         'CloseAllToolStripMenuItem
         '
         Me.CloseAllToolStripMenuItem.Name = "CloseAllToolStripMenuItem"
-        Me.CloseAllToolStripMenuItem.Size = New System.Drawing.Size(120, 22)
+        Me.CloseAllToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.CloseAllToolStripMenuItem.Text = "Close All"
         '
         'StatusStrip1
@@ -222,11 +229,11 @@ Partial Class FormMain
         Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(42, 17)
         Me.ToolStripStatusLabel1.Text = "Ready!"
         '
-        'SearchNamesToolStripMenuItem
+        'BatchOperationToolStripMenuItem
         '
-        Me.SearchNamesToolStripMenuItem.Name = "SearchNamesToolStripMenuItem"
-        Me.SearchNamesToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.SearchNamesToolStripMenuItem.Text = "Search Names"
+        Me.BatchOperationToolStripMenuItem.Name = "BatchOperationToolStripMenuItem"
+        Me.BatchOperationToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.BatchOperationToolStripMenuItem.Text = "Batch Operation"
         '
         'FormMain
         '
@@ -276,4 +283,5 @@ Partial Class FormMain
     Friend WithEvents WindowsToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents CloseAllToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents SearchNamesToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents BatchOperationToolStripMenuItem As ToolStripMenuItem
 End Class

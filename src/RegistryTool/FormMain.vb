@@ -284,9 +284,27 @@ Public Class FormMain
     Private Sub SearchNamesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SearchNamesToolStripMenuItem.Click
         Dim edit As New FormTextEditor
 
+        edit.SetPromptText("Input the molecule name at here line by line:")
         edit.ShowDialog()
 
         Dim names = edit.TextLines
+        Dim editor As New FormBatchEditor
 
+        editor.MdiParent = Me
+        editor.Show()
+    End Sub
+
+    Private Sub BatchOperationToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BatchOperationToolStripMenuItem.Click
+        Dim edit As New FormTextEditor
+
+        edit.SetPromptText("Input the molecule registry id at here line by line:")
+        edit.ShowDialog()
+
+        Dim idset = edit.TextLines
+        Dim editor As New FormBatchEditor
+
+        editor.MdiParent = Me
+        editor.LoadFromIDSet(idset)
+        editor.Show()
     End Sub
 End Class
