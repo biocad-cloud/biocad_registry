@@ -75,21 +75,6 @@ let options = { width: 450, height: 300 };
             TextBox5.Text = struct.morgan
         End If
 
-        Dim xrefs = MyApplication.biocad_registry.db_xrefs _
-            .left_join("vocabulary") _
-            .on(field("`vocabulary`.id") = field("db_key")) _
-            .where(field("obj_id") = mol.id) _
-            .select(Of XrefID)("db_xrefs.id as xref_id", "term as dbname", "xref")
-
-        DataGridView1.Rows.Clear()
-
-        For Each id As XrefID In xrefs
-            Dim offset = DataGridView1.Rows.Add(id.dbname, id.xref)
-            DataGridView1.Rows(offset).Tag = id
-        Next
-
-        DataGridView1.CommitEdit(DataGridViewDataErrorContexts.Commit)
-
         Dim names = MyApplication.biocad_registry.synonym _
             .where(field("obj_id") = mol.id,
                    field("type_id") = mol.type) _
@@ -99,8 +84,26 @@ let options = { width: 450, height: 300 };
             Call ListBox1.Items.Add(name.synonym)
         Next
 
+        Call refreshXrefs()
         Call refreshTags()
         Call WebKit.Init(WebView21)
+    End Sub
+
+    Private Sub refreshXrefs()
+        Dim xrefs = MyApplication.biocad_registry.db_xrefs _
+            .left_join("vocabulary") _
+            .on(field("`vocabulary`.id") = field("db_key")) _
+            .where(field("obj_id") = mol.id) _
+            .select(Of XrefID)("db_xrefs.id as xref_id", "term as dbname", "xref", "db_key")
+
+        DataGridView1.Rows.Clear()
+
+        For Each id As XrefID In xrefs
+            Dim offset = DataGridView1.Rows.Add(id.dbname, id.xref)
+            DataGridView1.Rows(offset).Tag = id
+        Next
+
+        DataGridView1.CommitEdit(DataGridViewDataErrorContexts.Commit)
     End Sub
 
     Private Sub refreshTags()
