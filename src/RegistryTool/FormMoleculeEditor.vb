@@ -98,6 +98,10 @@ let options = { width: 450, height: 300 };
             Call ListBox1.Items.Add(name.synonym)
         Next
 
+        For Each tag As Tag In Tag.GetTags(mol.id)
+            Call ListBox2.Items.Add(tag)
+        Next
+
         Call WebKit.Init(WebView21)
     End Sub
 

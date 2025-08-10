@@ -54,6 +54,8 @@ Partial Class FormMoleculeEditor
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
         Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
         Me.Label3 = New System.Windows.Forms.Label()
+        Me.GroupBox5 = New System.Windows.Forms.GroupBox()
+        Me.ListBox2 = New System.Windows.Forms.ListBox()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.WebView21, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
@@ -61,6 +63,7 @@ Partial Class FormMoleculeEditor
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
+        Me.GroupBox5.SuspendLayout()
         Me.SuspendLayout()
         '
         'DataGridView1
@@ -366,11 +369,31 @@ Partial Class FormMoleculeEditor
         Me.Label3.TabIndex = 25
         Me.Label3.Text = "Visit Site Page:"
         '
+        'GroupBox5
+        '
+        Me.GroupBox5.Controls.Add(Me.ListBox2)
+        Me.GroupBox5.Location = New System.Drawing.Point(1098, 49)
+        Me.GroupBox5.Name = "GroupBox5"
+        Me.GroupBox5.Size = New System.Drawing.Size(367, 496)
+        Me.GroupBox5.TabIndex = 26
+        Me.GroupBox5.TabStop = False
+        Me.GroupBox5.Text = "Topic Tags"
+        '
+        'ListBox2
+        '
+        Me.ListBox2.FormattingEnabled = True
+        Me.ListBox2.ItemHeight = 12
+        Me.ListBox2.Location = New System.Drawing.Point(6, 20)
+        Me.ListBox2.Name = "ListBox2"
+        Me.ListBox2.Size = New System.Drawing.Size(355, 472)
+        Me.ListBox2.TabIndex = 0
+        '
         'FormMoleculeEditor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1101, 960)
+        Me.ClientSize = New System.Drawing.Size(1710, 960)
+        Me.Controls.Add(Me.GroupBox5)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.LinkLabel1)
         Me.Controls.Add(Me.GroupBox4)
@@ -390,6 +413,7 @@ Partial Class FormMoleculeEditor
         Me.GroupBox3.PerformLayout()
         Me.GroupBox4.ResumeLayout(False)
         Me.GroupBox4.PerformLayout()
+        Me.GroupBox5.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -426,4 +450,6 @@ Partial Class FormMoleculeEditor
     Friend WithEvents SetAsDisplayNameToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents LinkLabel1 As LinkLabel
     Friend WithEvents Label3 As Label
+    Friend WithEvents GroupBox5 As GroupBox
+    Friend WithEvents ListBox2 As ListBox
 End Class
