@@ -280,4 +280,13 @@ Public Class FormMain
             Call form.Close()
         Next
     End Sub
+
+    Private Sub SearchNamesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SearchNamesToolStripMenuItem.Click
+        Dim edit As New FormTextEditor
+
+        edit.ShowDialog()
+
+        Dim names = edit.TextLines
+
+    End Sub
 End Class
