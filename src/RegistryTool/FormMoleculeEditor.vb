@@ -47,9 +47,10 @@ let options = { width: 450, height: 300 };
 </html>"
 
     Dim struct As biocad_registryModel.sequence_graph
+    Dim mol As biocad_registryModel.molecule
 
     Private Sub FormMoleculeEditor_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Dim mol = MyApplication.biocad_registry.molecule _
+        mol = MyApplication.biocad_registry.molecule _
             .where(field("id") = UInteger.Parse(id.Match("\d+"))) _
             .find(Of biocad_registryModel.molecule)
 
@@ -98,11 +99,16 @@ let options = { width: 450, height: 300 };
             Call ListBox1.Items.Add(name.synonym)
         Next
 
-        For Each tag As Tag In Tag.GetTags(mol.id)
+        Call refreshTags()
+        Call WebKit.Init(WebView21)
+    End Sub
+
+    Private Sub refreshTags()
+        Call ListBox2.Items.Clear()
+
+        For Each tag As Tag In tag.GetTags(mol.id)
             Call ListBox2.Items.Add(tag)
         Next
-
-        Call WebKit.Init(WebView21)
     End Sub
 
     Private Sub SaveCommonName() Handles Button2.Click
@@ -187,6 +193,21 @@ let options = { width: 450, height: 300 };
         Dim url = $"http://biocad.innovation.ac.cn/molecule/BioCAD{int.ToString.PadLeft(11, "0"c)}/"
 
         Call Tools.OpenUrlWithDefaultBrowser(url)
+    End Sub
+
+    Private Sub ContextMenuStrip2_Opening(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles ContextMenuStrip2.Opening
+
+    End Sub
+
+    Private Sub ClearThisTagToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ClearThisTagToolStripMenuItem.Click
+        Dim sel As Tag = ListBox2.SelectedItem
+
+        If sel Is Nothing Then
+            Return
+        End If
+
+        Call MyApplication.biocad_registry.molecule_tags.where(field("tag_id") = sel.tag_id, field("molecule_id") = sel.molecule_id).delete()
+        Call refreshTags()
     End Sub
 End Class
 

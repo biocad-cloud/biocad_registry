@@ -1,11 +1,12 @@
 ﻿Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
+Imports Oracle.LinuxCompatibility.MySQL.Reflection.DbAttributes
 Imports RegistryTool.My
 
 Public Class Tag
 
-    Public Property term As String
-    Public Property tag_id As UInteger
-    Public Property molecule_id As UInteger
+    <DatabaseField> Public Property term As String
+    <DatabaseField> Public Property tag_id As UInteger
+    <DatabaseField> Public Property molecule_id As UInteger
 
     Public Overrides Function ToString() As String
         Return term
