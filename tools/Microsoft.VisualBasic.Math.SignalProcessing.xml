@@ -1480,6 +1480,20 @@ Microsoft.VisualBasic.Math.SignalProcessing
  the integration area percentage, value [0,100]
  </summary>
 </member>
+<member name="M:Microsoft.VisualBasic.Math.SignalProcessing.PIDController.Calculate(System.Double,System.Double,System.Double)">
+ <summary>
+ 核心计算函数（带抗饱和和噪声抑制）
+ </summary>
+ <param name="setpoint"></param>
+ <param name="measurement"></param>
+ <param name="deltaTime"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Math.SignalProcessing.PIDController.Reset">
+ <summary>
+ 重置控制器状态
+ </summary>
+</member>
 <member name="T:Microsoft.VisualBasic.Math.SignalProcessing.BinSampler">
  <summary>
  signal data aggregate helper
