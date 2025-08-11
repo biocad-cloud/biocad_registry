@@ -68,11 +68,16 @@ Public Class FormMoleculeTable
 
         Call DataGridView1.Rows.Clear()
 
+        ToolStripProgressBar1.Value = 0
+        ToolStripProgressBar1.Maximum = data.Length
+        ToolStripProgressBar1.Minimum = 0
+
         For Each mol As MoleculeData In data
             Dim i = DataGridView1.Rows.Add(mol.molecule_id, mol.xref_id, mol.name, mol.formula, mol.mass, mol.sequence, mol.note)
             Dim r = DataGridView1.Rows(i)
 
             r.Tag = mol
+            ToolStripProgressBar1.Value += 1
         Next
 
         Call DataGridView1.CommitEdit(DataGridViewDataErrorContexts.Commit)
