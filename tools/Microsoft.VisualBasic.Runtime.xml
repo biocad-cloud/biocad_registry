@@ -16806,6 +16806,18 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="y"></param>
  <param name="val"></param>
 </member>
+<member name="M:Microsoft.VisualBasic.Imaging.BitmapImage.BitmapBuffer.Save(System.String)">
+ <summary>
+ save in-memory data as local bitmap file
+ </summary>
+ <param name="file"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.Imaging.BitmapImage.BitmapBuffer.Save(System.IO.Stream)">
+ <summary>
+ save in-memory data as bitmap file
+ </summary>
+ <param name="s"></param>
+</member>
 <member name="M:Microsoft.VisualBasic.Imaging.BitmapImage.BitmapBuffer.FromImage(System.Drawing.Image)">
  <summary>
  这个函数会自动复制原始图片数据里面的东西的
@@ -16988,16 +17000,6 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  </summary>
  <param name="buffer"></param>
  <returns></returns>
-</member>
-<member name="M:Microsoft.VisualBasic.Imaging.BitmapImage.FileStream.BinarySerializationExtensions.Serialize``1(``0)">
- <summary>
- Convert struct to byte[]
- </summary>
-</member>
-<member name="M:Microsoft.VisualBasic.Imaging.BitmapImage.FileStream.BinarySerializationExtensions.Deserialize``1(System.Byte[])">
- <summary>
- Convert byte[] to struct
- </summary>
 </member>
 <member name="T:Microsoft.VisualBasic.Imaging.BitmapImage.FileStream.Bitmap">
  <summary>
@@ -17993,6 +17995,20 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  返回整个图像的区域
  </summary>
  <param name="img"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Imaging.GraphicsExtensions.X(System.Collections.Generic.IEnumerable{System.Drawing.Point})">
+ <summary>
+ get x axis of the input geometry data
+ </summary>
+ <param name="pts"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Imaging.GraphicsExtensions.Y(System.Collections.Generic.IEnumerable{System.Drawing.Point})">
+ <summary>
+ get y axis of the input geometry data
+ </summary>
+ <param name="pts"></param>
  <returns></returns>
 </member>
 <member name="M:Microsoft.VisualBasic.Imaging.GraphicsExtensions.LoadImage(System.String,System.Boolean,System.Boolean)">

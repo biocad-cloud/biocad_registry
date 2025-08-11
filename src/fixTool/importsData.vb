@@ -1,4 +1,5 @@
 ﻿Imports biocad_storage
+Imports BioNovoGene.BioDeep.Chemistry.Coconut
 Imports BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.DataSources
 Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar
 Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm
@@ -24,6 +25,12 @@ Module importsData
 
         ' Call New MetaCycImports(registry, biocyc).ImportsTranscriptUnits()
         Call New MetaCycImports(registry, biocyc).ImportsCompounds(topic:="bacteria")
+    End Sub
+
+    Sub imports_CoconutNP()
+        Dim table As CoconutNPTable() = CoconutNPTable.ParseTable("D:\datapool\coconut\coconut_csv-08-2025.csv".Open(IO.FileMode.Open, doClear:=False, [readOnly]:=True)).ToArray
+
+        Call New CoconutNPImports(Program.registry).ImportsNP(table)
     End Sub
 
     Sub imports_all_plantcyc()
