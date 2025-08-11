@@ -1,0 +1,89 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+Microsoft.VisualBasic.MIME.text.markdown
+</name>
+</assembly>
+<members>
+<member name="M:Microsoft.VisualBasic.MIME.text.markdown.MarkdownRender.#ctor">
+ <summary>
+ default rendering to html by <see cref="T:Microsoft.VisualBasic.MIME.text.markdown.HtmlRender"/>
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MIME.text.markdown.MarkdownRender.Transform(System.String)">
+ <summary>
+ transform markdown document text to another document format
+ </summary>
+ <param name="markdown"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MIME.text.markdown.MarkdownRender.hideImage">
+ <summary>
+ due to the reason of some image file name pattern may be mis-interpretered as
+ the markdown syntax, this will case the in-correct url, example as: 
+ ``/images/file_name_data.png`` may be interpreted as ``/images/file&lt;em>name&lt;/em>data.png``. 
+ so we needs hide the image span at first.
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MIME.text.markdown.MarkdownRender.RunAutoLink">
+ <summary>
+ Create url and hide it
+ </summary>
+ <remarks>
+ for avoid some un-expected markdown format bug, example as /?q=__a__ maybe transform as /?q=&lt;em>a&lt;/em>
+ </remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.MIME.text.markdown.HtmlRender.Paragraph(System.String,System.Boolean)">
+ <summary>
+ 
+ </summary>
+ <param name="text"></param>
+ <param name="CreateParagraphs">
+ add html paragraph tag automatically?
+ </param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MIME.text.markdown.HtmlRender.HorizontalLine">
+ <summary>
+ &lt;hr />
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.MIME.text.markdown.TextRender">
+ <summary>
+ plain text document
+ </summary>
+ <remarks>
+ not only the markdown format tag will be removed from this render, and also 
+ the additional html tag inside the given markdown document will be removed.
+ </remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.MIME.text.markdown.TextRender.Document(System.String)">
+ <summary>
+ additional html tag inside the document will be removed
+ </summary>
+ <param name="text"></param>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.MIME.text.markdown.TOC">
+ <summary>
+ TOC generator for markdown
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MIME.text.markdown.TOC.AddToc(System.Text.StringBuilder,System.Boolean,System.Boolean)">
+ <summary>
+ 为makrdown文本添加目录
+ </summary>
+ <param name="md$"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MIME.text.markdown.TOC.GetHeaders(System.String)">
+ <summary>
+ 按header在markdown文档之中出现的顺序进行返回
+ </summary>
+ <param name="md$"></param>
+ <returns></returns>
+</member>
+</members>
+</doc>

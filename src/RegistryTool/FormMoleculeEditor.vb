@@ -3,8 +3,10 @@ Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports BioNovoGene.BioDeep.Chemoinformatics.SMILES
 Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.Linq
+Imports Microsoft.VisualBasic.MIME.text.markdown
 Imports Microsoft.VisualBasic.Net.Http
 Imports Microsoft.Web.WebView2.Core
+Imports Ollama
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports RegistryTool.My
 
@@ -178,6 +180,13 @@ let options = { width: 450, height: 300 };
 
     Private Sub SetAsDisplayNameToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SetAsDisplayNameToolStripMenuItem.Click
         If ListBox1.SelectedIndex < 0 Then
+            Return
+        End If
+
+        Dim lang As String = CStr(ComboBox1.SelectedItem)
+
+        If lang <> "en" Then
+            MessageBox.Show("Only allows synonym names in english language to be set as display name.", "Invalid Language", MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
             Return
         End If
 
@@ -362,5 +371,19 @@ let options = { width: 450, height: 300 };
         Next
 
         Call refreshNames(lang)
+    End Sub
+
+    Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
+        Dim prompt As String = $"please talk me about the biological function of the compound: '{TextBox2.Text}' in english."
+        Dim msg As DeepSeekResponse = MyApplication.ollama.Chat(prompt)
+        Dim markdown As New MarkdownRender
+
+        If Not msg Is Nothing Then
+            Try
+                TextBox4.Text = markdown.Transform(msg.output)
+            Catch ex As Exception
+                TextBox4.Text = msg.output
+            End Try
+        End If
     End Sub
 End Class

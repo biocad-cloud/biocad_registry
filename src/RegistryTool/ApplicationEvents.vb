@@ -31,6 +31,14 @@ Namespace My
         Public Shared ReadOnly Property biocad_registry As biocad_registry
         Public Shared ReadOnly Property host As FormMain
 
+        Public Shared ReadOnly Property ollama As Ollama.Ollama
+            Get
+                With Settings.Load
+                    Return New Ollama.Ollama(.model, $"{ .ollama_server}:{ .ollama_service}")
+                End With
+            End Get
+        End Property
+
         Public Shared Sub SetHost(host As FormMain)
             _host = host
         End Sub
