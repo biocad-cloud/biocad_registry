@@ -56,6 +56,7 @@ Partial Class FormMoleculeEditor
         Me.TextBox5 = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
+        Me.Button7 = New System.Windows.Forms.Button()
         Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
@@ -64,7 +65,7 @@ Partial Class FormMoleculeEditor
         Me.ListBox2 = New System.Windows.Forms.ListBox()
         Me.ContextMenuStrip2 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ClearThisTagToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.Button7 = New System.Windows.Forms.Button()
+        Me.ChineseNameTranslationToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip3.SuspendLayout()
         CType(Me.WebView21, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -170,25 +171,25 @@ Partial Class FormMoleculeEditor
         '
         'ContextMenuStrip1
         '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EditToolStripMenuItem1, Me.ToolStripMenuItem1, Me.SetAsDisplayNameToolStripMenuItem})
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EditToolStripMenuItem1, Me.ToolStripMenuItem1, Me.SetAsDisplayNameToolStripMenuItem, Me.ChineseNameTranslationToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(183, 54)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(212, 98)
         '
         'EditToolStripMenuItem1
         '
         Me.EditToolStripMenuItem1.Name = "EditToolStripMenuItem1"
-        Me.EditToolStripMenuItem1.Size = New System.Drawing.Size(182, 22)
+        Me.EditToolStripMenuItem1.Size = New System.Drawing.Size(211, 22)
         Me.EditToolStripMenuItem1.Text = "Edit"
         '
         'ToolStripMenuItem1
         '
         Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(179, 6)
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(208, 6)
         '
         'SetAsDisplayNameToolStripMenuItem
         '
         Me.SetAsDisplayNameToolStripMenuItem.Name = "SetAsDisplayNameToolStripMenuItem"
-        Me.SetAsDisplayNameToolStripMenuItem.Size = New System.Drawing.Size(182, 22)
+        Me.SetAsDisplayNameToolStripMenuItem.Size = New System.Drawing.Size(211, 22)
         Me.SetAsDisplayNameToolStripMenuItem.Text = "Set As Display Name"
         '
         'Label4
@@ -385,6 +386,15 @@ Partial Class FormMoleculeEditor
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "Molecular Information"
         '
+        'Button7
+        '
+        Me.Button7.Location = New System.Drawing.Point(422, 170)
+        Me.Button7.Name = "Button7"
+        Me.Button7.Size = New System.Drawing.Size(75, 23)
+        Me.Button7.TabIndex = 20
+        Me.Button7.Text = "LLMs Talk"
+        Me.Button7.UseVisualStyleBackColor = True
+        '
         'LinkLabel1
         '
         Me.LinkLabel1.AutoSize = True
@@ -457,14 +467,11 @@ Partial Class FormMoleculeEditor
         Me.ClearThisTagToolStripMenuItem.Size = New System.Drawing.Size(146, 22)
         Me.ClearThisTagToolStripMenuItem.Text = "Clear This Tag"
         '
-        'Button7
+        'ChineseNameTranslationToolStripMenuItem
         '
-        Me.Button7.Location = New System.Drawing.Point(422, 170)
-        Me.Button7.Name = "Button7"
-        Me.Button7.Size = New System.Drawing.Size(75, 23)
-        Me.Button7.TabIndex = 20
-        Me.Button7.Text = "LLMs Talk"
-        Me.Button7.UseVisualStyleBackColor = True
+        Me.ChineseNameTranslationToolStripMenuItem.Name = "ChineseNameTranslationToolStripMenuItem"
+        Me.ChineseNameTranslationToolStripMenuItem.Size = New System.Drawing.Size(211, 22)
+        Me.ChineseNameTranslationToolStripMenuItem.Text = "Chinese Name Translation"
         '
         'FormMoleculeEditor
         '
@@ -541,4 +548,5 @@ Partial Class FormMoleculeEditor
     Friend WithEvents EditToolStripMenuItem1 As ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem1 As ToolStripSeparator
     Friend WithEvents Button7 As Button
+    Friend WithEvents ChineseNameTranslationToolStripMenuItem As ToolStripMenuItem
 End Class

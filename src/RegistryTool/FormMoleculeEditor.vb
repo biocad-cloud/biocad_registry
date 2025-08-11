@@ -5,6 +5,7 @@ Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.MIME.text.markdown
 Imports Microsoft.VisualBasic.Net.Http
+Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Microsoft.Web.WebView2.Core
 Imports Ollama
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
@@ -386,4 +387,54 @@ let options = { width: 450, height: 300 };
             End Try
         End If
     End Sub
+
+    Private Sub ChineseNameTranslationToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ChineseNameTranslationToolStripMenuItem.Click
+        If ListBox1.SelectedIndex < 0 Then
+            Return
+        End If
+
+        Dim lang As String = CStr(ComboBox1.SelectedItem)
+
+        If lang <> "en" Then
+            MessageBox.Show("Only allows synonym names in english language to be translated into chinese name.", "Invalid Language", MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
+            Return
+        End If
+
+        Dim name = ListBox1.Items(ListBox1.SelectedIndex).ToString
+        Dim prompt As String = $"将下面的这个化合物名称翻译为中文：'{name}'，如果没有正式的翻译，请进行音译。使用下面的json格式返回结果给我以方便我进行数据解析：{{""zh_name"": ""translated_name""}}"
+        Dim msg As DeepSeekResponse = FormBuzyLoader.Loading(Function(println) MyApplication.ollama.Chat(prompt))
+
+        If Not msg Is Nothing Then
+            Try
+                Dim json As String = msg.output.Match("[{].+[}]")
+                Dim zh_name = json.LoadJSON(Of TranslatedName)
+
+                If MyApplication.biocad_registry.synonym.where(field("type_id") = mol.type,
+                    field("obj_id") = mol.id,
+                    field("synonym") = zh_name.ToString,
+                    field("lang") = "zh").find(Of biocad_registryModel.synonym) Is Nothing Then
+
+                    Call MyApplication.biocad_registry.synonym.add(
+                        field("type_id") = mol.type,
+                        field("obj_id") = mol.id,
+                        field("synonym") = zh_name.ToString,
+                        field("lang") = "zh",
+                        field("hashcode") = zh_name.ToString.ToLower.MD5
+                    )
+                End If
+            Catch ex As Exception
+                Call Workbench.StatusMessage(ex.Message)
+            End Try
+        End If
+    End Sub
+
+    Private Class TranslatedName
+
+        Public Property zh_name As String
+
+        Public Overrides Function ToString() As String
+            Return zh_name
+        End Function
+
+    End Class
 End Class
