@@ -427,14 +427,4 @@ let options = { width: 450, height: 300 };
             End Try
         End If
     End Sub
-
-    Private Class TranslatedName
-
-        Public Property zh_name As String
-
-        Public Overrides Function ToString() As String
-            Return zh_name
-        End Function
-
-    End Class
 End Class
