@@ -62,6 +62,7 @@ Partial Class FormMoleculeEditor
         Me.ListBox2 = New System.Windows.Forms.ListBox()
         Me.ContextMenuStrip2 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ClearThisTagToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EditToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip3.SuspendLayout()
         CType(Me.WebView21, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -167,9 +168,9 @@ Partial Class FormMoleculeEditor
         '
         'ContextMenuStrip1
         '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SetAsDisplayNameToolStripMenuItem})
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SetAsDisplayNameToolStripMenuItem, Me.EditToolStripMenuItem1})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(183, 26)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(183, 70)
         '
         'SetAsDisplayNameToolStripMenuItem
         '
@@ -442,6 +443,12 @@ Partial Class FormMoleculeEditor
         Me.ClearThisTagToolStripMenuItem.Size = New System.Drawing.Size(146, 22)
         Me.ClearThisTagToolStripMenuItem.Text = "Clear This Tag"
         '
+        'EditToolStripMenuItem1
+        '
+        Me.EditToolStripMenuItem1.Name = "EditToolStripMenuItem1"
+        Me.EditToolStripMenuItem1.Size = New System.Drawing.Size(182, 22)
+        Me.EditToolStripMenuItem1.Text = "Edit"
+        '
         'FormMoleculeEditor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
@@ -514,4 +521,5 @@ Partial Class FormMoleculeEditor
     Friend WithEvents EditToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ComboBox2 As ComboBox
     Friend WithEvents Button6 As Button
+    Friend WithEvents EditToolStripMenuItem1 As ToolStripMenuItem
 End Class

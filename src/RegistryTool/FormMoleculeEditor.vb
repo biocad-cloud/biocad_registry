@@ -314,4 +314,53 @@ let options = { width: 450, height: 300 };
             Call refreshNames(lang:=CStr(ComboBox1.SelectedItem))
         End If
     End Sub
+
+    Private Sub EditToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles EditToolStripMenuItem1.Click
+        If ComboBox1.SelectedIndex <= 0 Then
+            Call MessageBox.Show("A language for the synonym name must be selected!", "Invalid Language", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        End If
+
+        Dim lang As String = CStr(ComboBox1.SelectedItem)
+        Dim edit As New FormTextEditor
+        Dim names = MyApplication.biocad_registry.synonym.where(field("lang") = lang, field("obj_id") = mol.id).project(Of String)("synonym")
+
+        Call edit.SetText(names)
+        Call edit.SetPromptText($"edit the synonym names({lang}):")
+        Call edit.ShowDialog()
+
+        Dim current = names.Indexing
+
+        For Each name As String In edit.TextLines
+            If name Like current Then
+                ' no changed
+            Else
+                ' add new
+                Call MyApplication.biocad_registry.synonym.add(
+                    field("type_id") = mol.type,
+                    field("obj_id") = mol.id,
+                    field("synonym") = name,
+                    field("lang") = lang,
+                    field("hashcode") = name.ToLower.MD5
+                )
+            End If
+        Next
+
+        Dim modified As Index(Of String) = edit.TextLines.Indexing
+
+        For Each key As String In current.Objects
+            If key Like modified Then
+                ' no changed
+            Else
+                ' deleted
+                Call MyApplication.biocad_registry.synonym.where(
+                    field("obj_id") = mol.id,
+                    field("lang") = lang,
+                    field("type_id") = mol.type,
+                    field("synonym") = key).delete()
+            End If
+        Next
+
+        Call refreshNames(lang)
+    End Sub
 End Class
