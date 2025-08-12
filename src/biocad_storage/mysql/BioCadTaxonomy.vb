@@ -21,13 +21,14 @@ Public Class BioCadTaxonomy
             .id
     End Sub
 
-    Public Function taxid(name As String) As biocad_registryModel.ncbi_taxonomy
+    Public Function taxid(name As String, Optional find_new As Boolean = False) As biocad_registryModel.ncbi_taxonomy
         If cache.ContainsKey(name) Then
             Return cache(name)
         End If
 
         Dim find As biocad_registryModel.ncbi_taxonomy = registry.ncbi_taxonomy _
-            .where(field("taxname").lower = LCase(name)) _
+            .where(field("taxname") = name) _
+            .order_by("id", desc:=find_new) _
             .find(Of biocad_registryModel.ncbi_taxonomy)
 
         If find IsNot Nothing Then
@@ -55,7 +56,7 @@ Public Class BioCadTaxonomy
             .where(field("id") = unknown_taxonomy) _
             .save(field("nsize") = nsize + 1)
 
-        Dim unknown_id = taxid(name)
+        Dim unknown_id = taxid(name, find_new:=True)
 
         Call registry.taxonomy_tree.add(
             field("tax_id") = unknown_taxonomy,
