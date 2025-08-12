@@ -24314,7 +24314,8 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  any text data
  </param>
  <returns>
- a 32 bit md5 string in lower case
+ a 32 bit md5 string in lower case, this function may returns empty hashcode string 
+ if the given input string <paramref name="s"/> is empty.
  </returns>
 </member>
 <member name="M:Microsoft.VisualBasic.Extensions.Second``1(System.Collections.Generic.IEnumerable{``0},System.Boolean,``0)">
@@ -28765,7 +28766,9 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  Calculate md5 hash value for the input string.
  </summary>
  <param name="input"></param>
- <returns></returns>
+ <returns>
+ this function may returns empty hashcode string if the given <paramref name="input"/> string is empty.
+ </returns>
  
 </member>
 <member name="M:Microsoft.VisualBasic.SecurityString.MD5Hash.GetHashCode(System.String)">
@@ -28898,6 +28901,15 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  并行化的需求
  </summary>
  <remarks></remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.SecurityString.Md5HashProvider.GetMd5Hash(System.String)">
+ <summary>
+ calculate string md5 hashcode
+ </summary>
+ <param name="input"></param>
+ <returns>
+ this function may returns empty hashcode string if the given <paramref name="input"/> string is empty.
+ </returns>
 </member>
 <member name="M:Microsoft.VisualBasic.SecurityString.Md5HashProvider.GetMd5hashLong(System.Byte[])">
  <summary>

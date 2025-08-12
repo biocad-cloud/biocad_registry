@@ -116,6 +116,16 @@ biocad_storage
  </summary>
  <returns></returns>
 </member>
+<member name="M:biocad_storage.BioCadVocabulary.GetOntologyTerm(System.String,System.String,System.String,System.String)">
+ <summary>
+ this function will returns nothing if the given ontology id is empty
+ </summary>
+ <param name="id"></param>
+ <param name="rank"></param>
+ <param name="source_db"></param>
+ <param name="name"></param>
+ <returns></returns>
+</member>
 <member name="T:biocad_storage.biocad_registry">
  <summary>
  a wrapper of the biocad registry database

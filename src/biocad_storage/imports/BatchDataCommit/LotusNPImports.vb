@@ -67,7 +67,7 @@ Public Class CoconutNPImports
     End Sub
 
     Public Sub ImportsNP(np As IEnumerable(Of CoconutNPTable))
-        For Each page As CoconutNPTable() In np.SplitIterator(2500)
+        For Each page As CoconutNPTable() In np.SplitIterator(25)
             Call importsPage(page)
         Next
     End Sub
