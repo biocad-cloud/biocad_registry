@@ -264,6 +264,12 @@ Public Class FormMain
                             .rownames = list.Select(Function(a) a.ID).ToArray
                         }
 
+                        For Each m As MetaInfo In list
+                            If m.name.StringEmpty(, True) AndAlso Not m.super_class.StringEmpty(, True) Then
+                                m.name = m.super_class & " NP" & m.formula
+                            End If
+                        Next
+
                         Call df.add("name", From m As MetaInfo In list Select m.name)
                         Call df.add("formula", From m As MetaInfo In list Select m.formula)
                         Call df.add("exact_mass", From m As MetaInfo In list Select m.exact_mass)
