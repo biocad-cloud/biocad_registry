@@ -308,6 +308,10 @@ Public Class FormMain
         Dim names = edit.TextLines
         Dim editor As New FormBatchEditor
 
+        If names.IsNullOrEmpty Then
+            Return
+        End If
+
         editor.MdiParent = Me
         editor.Show()
     End Sub
@@ -320,6 +324,10 @@ Public Class FormMain
 
         Dim idset = edit.TextLines
         Dim editor As New FormBatchEditor
+
+        If idset.IsNullOrEmpty Then
+            Return
+        End If
 
         editor.MdiParent = Me
         editor.LoadFromIDSet(idset)
