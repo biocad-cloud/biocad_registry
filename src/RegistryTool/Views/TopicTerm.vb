@@ -12,11 +12,19 @@ Public Class TopicTerm
     End Function
 
     Public Shared Function GetTopics() As TopicTerm()
-        Return MyApplication.biocad_registry.vocabulary.where(field("category") = "Topic").select(Of TopicTerm)
+        Return MyApplication.biocad_registry.vocabulary _
+            .where(field("category") = "Topic") _
+            .select(Of TopicTerm) _
+            .OrderBy(Function(t) t.term.ToLower) _
+            .ToArray
     End Function
 
     Public Shared Function GetDatabaseTerm() As TopicTerm()
-        Return MyApplication.biocad_registry.vocabulary.where(field("category") = "External Database").select(Of TopicTerm)
+        Return MyApplication.biocad_registry.vocabulary _
+            .where(field("category") = "External Database") _
+            .select(Of TopicTerm) _
+            .OrderBy(Function(t) t.term.ToLower) _
+            .ToArray
     End Function
 
 End Class
