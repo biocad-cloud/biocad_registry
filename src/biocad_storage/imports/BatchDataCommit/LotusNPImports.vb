@@ -59,9 +59,11 @@ End Class
 Public Class CoconutNPImports
 
     ReadOnly registry As biocad_registry
+    ReadOnly taxonomy As BioCadTaxonomy
 
     Sub New(registry As biocad_registry)
         Me.registry = registry
+        Me.taxonomy = New BioCadTaxonomy(registry)
     End Sub
 
     Public Sub ImportsNP(np As IEnumerable(Of CoconutNPTable))
@@ -78,7 +80,6 @@ Public Class CoconutNPImports
         Call MetaboliteCommit.CommitStructClass(meta, registry, "Coconut NPclass")
 
         Dim links = registry.taxonomy_source.open_transaction.ignore
-        Dim tag_links = registry.molecule_tags.open_transaction.ignore
 
         For i As Integer = 0 To page.Length - 1
             Dim mol = registry.findMolecule(meta(i), Function(a) a.ID)
@@ -88,39 +89,31 @@ Public Class CoconutNPImports
             End If
 
             For Each tax As String In page(i).organisms
-                Dim ncbi_tax = registry.ncbi_taxonomy.where(field("taxname") = tax).find(Of biocad_registryModel.ncbi_taxonomy)
+                Dim ncbi_tax = taxonomy.taxid(tax)
 
                 If ncbi_tax Is Nothing Then
-                    ' use molecule tags
-                    Dim tag_id = registry.getVocabulary($"tax:{tax}".ToLower, "Topic")
+                    taxonomy.addUnknownTaxonomy(tax)
+                    ncbi_tax = taxonomy.taxid(tax)
+                End If
+                If ncbi_tax Is Nothing Then
+                    Continue For
+                End If
 
-                    Call tag_links.add(
-                        field("tag_id") = tag_id,
-                        field("molecule_id") = mol.id,
-                        field("description") = tax
-                    )
-                Else
-                    If registry.taxonomy_source _
+                If registry.taxonomy_source _
                         .where(field("molecule_id") = mol.id,
-                               field("ncbi_taxid") = ncbi_tax.id,
-                               field("doi") = $"Coconut-{page(i).identifier}") _
+                                field("ncbi_taxid") = ncbi_tax.id,
+                                field("doi") = $"Coconut-{page(i).identifier}") _
                         .find(Of biocad_registryModel.taxonomy_source) Is Nothing Then
 
-                        Call links.add(
-                              field("molecule_id") = mol.id,
-                               field("ncbi_taxid") = ncbi_tax.id,
-                               field("doi") = $"Coconut-{page(i).identifier}"
+                    Call links.add(
+                                field("molecule_id") = mol.id,
+                                field("ncbi_taxid") = ncbi_tax.id,
+                                field("doi") = $"Coconut-{page(i).identifier}"
                         )
-                    End If
                 End If
             Next
         Next
 
         Call links.commit()
-        Call tag_links.commit()
     End Sub
-
-    Private Function CreateUnknownTaxonomy()
-
-    End Function
 End Class
