@@ -458,4 +458,12 @@ let options = { width: 450, height: 300 };
 
         Call refreshXrefs()
     End Sub
+
+    Private Sub ComboBox3_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox3.SelectedIndexChanged
+        If ComboBox3.SelectedIndex < 0 Then
+            Return
+        End If
+
+        Dim dbname As TopicTerm = ComboBox3.SelectedItem
+    End Sub
 End Class

@@ -481,6 +481,7 @@ Partial Class FormMoleculeEditor
         '
         'ComboBox3
         '
+        Me.ComboBox3.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.ComboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.ComboBox3.FormattingEnabled = True
         Me.ComboBox3.Location = New System.Drawing.Point(15, 366)
@@ -490,6 +491,7 @@ Partial Class FormMoleculeEditor
         '
         'TextBox6
         '
+        Me.TextBox6.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.TextBox6.Location = New System.Drawing.Point(114, 366)
         Me.TextBox6.Name = "TextBox6"
         Me.TextBox6.Size = New System.Drawing.Size(218, 21)
@@ -497,6 +499,7 @@ Partial Class FormMoleculeEditor
         '
         'Button8
         '
+        Me.Button8.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Button8.Location = New System.Drawing.Point(338, 365)
         Me.Button8.Name = "Button8"
         Me.Button8.Size = New System.Drawing.Size(73, 23)
