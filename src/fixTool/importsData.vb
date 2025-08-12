@@ -30,6 +30,7 @@ Module importsData
     Sub imports_CoconutNP()
         Dim table As CoconutNPTable() = CoconutNPTable.ParseTable("D:\datapool\coconut\coconut_csv-08-2025.csv".Open(IO.FileMode.Open, doClear:=False, [readOnly]:=True)).ToArray
 
+        Call Console.WriteLine("imports CoconutNP...")
         Call New CoconutNPImports(Program.registry).ImportsNP(table)
     End Sub
 

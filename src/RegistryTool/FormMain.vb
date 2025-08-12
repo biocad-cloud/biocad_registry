@@ -44,7 +44,7 @@ Public Class FormMain
 
         ExportBloodTagToolStripMenuItem.DropDownItems.Clear()
 
-        For Each tag As String In topics
+        For Each tag As String In topics.OrderBy(Function(s) s.ToLower)
             Dim item As New ToolStripMenuItem(tag)
             item.Tag = tag
             AddHandler item.Click, Sub() ExportTagToolStripMenuItem_Click(tag)
