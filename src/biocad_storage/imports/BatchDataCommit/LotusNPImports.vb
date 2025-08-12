@@ -77,7 +77,7 @@ Public Class CoconutNPImports
 
         Call MetaboliteImports.RunDataCommit(registry, meta, uniref:=Function(m) m.ID, lazyMol:=False)
         Call MetaboliteCommit.CommitTags(registry, meta, "natural products")
-        Call MetaboliteCommit.CommitStructClass(meta, registry, "Coconut NPclass")
+        Call MetaboliteCommit.CommitStructClass(meta, registry, "Coconut NPclass", hashFramework:=True)
 
         Dim links = registry.taxonomy_source.open_transaction.ignore
 

@@ -107,6 +107,14 @@ Public Class BioCadVocabulary
                        End Function)
     End Function
 
+    ''' <summary>
+    ''' this function will returns nothing if the given ontology id is empty
+    ''' </summary>
+    ''' <param name="id"></param>
+    ''' <param name="rank"></param>
+    ''' <param name="source_db"></param>
+    ''' <param name="name"></param>
+    ''' <returns></returns>
     Public Function GetOntologyTerm(id As String, rank As String, source_db As String, Optional name As String = Nothing) As biocad_registryModel.ontology
         If id.StringEmpty(, True) Then
             Return Nothing

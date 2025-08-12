@@ -277,7 +277,7 @@ Public Module MetaboliteCommit
         Call trans.commit()
     End Sub
 
-    Public Sub CommitStructClass(Of T As MetaInfo)(metabolites As IEnumerable(Of T), registry As biocad_registry, ontology_name As String)
+    Public Sub CommitStructClass(Of T As MetaInfo)(metabolites As IEnumerable(Of T), registry As biocad_registry, ontology_name As String, Optional hashFramework As Boolean = False)
         Dim trans_links = registry.molecule_ontology.open_transaction.ignore
         Dim vocabulary = registry.vocabulary_terms
 
@@ -292,7 +292,11 @@ Public Module MetaboliteCommit
             Dim l2 = (term:=vocabulary.GetOntologyTerm(meta.super_class, "super_class", ontology_name, meta.super_class), tag:=meta.super_class)
             Dim l3 = (term:=vocabulary.GetOntologyTerm(meta.class, "class", ontology_name, meta.class), tag:=meta.class)
             Dim l4 = (term:=vocabulary.GetOntologyTerm(meta.sub_class, "sub_class", ontology_name, meta.sub_class), tag:=meta.sub_class)
-            Dim l5 = (term:=vocabulary.GetOntologyTerm(meta.molecular_framework, "molecular_framework", ontology_name, meta.molecular_framework), tag:=meta.molecular_framework)
+            Dim l5 = (term:=vocabulary.GetOntologyTerm(
+                If(hashFramework, meta.molecular_framework.MD5, meta.molecular_framework),
+                "molecular_framework",
+                ontology_name,
+                meta.molecular_framework), tag:=meta.molecular_framework)
 
             ' build tree
 
