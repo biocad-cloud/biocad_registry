@@ -259,8 +259,26 @@ Public Class FormMain
                 Using file As New SaveFileDialog With {.Filter = "Annotation Table(*.csv)|*.csv"}
                     If file.ShowDialog = DialogResult.OK Then
                         Dim exports As New ExportMetabolites(MyApplication.biocad_registry)
-                        Dim list As MetaInfo() = exports.ExportByID(ids).ToArray(Of MetaInfo)
+                        Dim list As MetaInfo() = exports.setOntology("Coconut NPclass").ExportByID(ids, wrap_tqdm:=False).ToArray(Of MetaInfo)
+                        Dim df As New DataFrame With {
+                            .rownames = list.Select(Function(a) a.ID).ToArray
+                        }
 
+                        Call df.add("name", From m As MetaInfo In list Select m.name)
+                        Call df.add("formula", From m As MetaInfo In list Select m.formula)
+                        Call df.add("exact_mass", From m As MetaInfo In list Select m.exact_mass)
+                        Call df.add("cas", From m As MetaInfo In list Select m.xref.CAS.FirstOrDefault)
+                        Call df.add("kegg", From m As MetaInfo In list Select m.xref.KEGG)
+                        Call df.add("hmdb", From m As MetaInfo In list Select m.xref.HMDB)
+                        Call df.add("lipidmaps", From m As MetaInfo In list Select m.xref.lipidmaps)
+                        Call df.add("mesh", From m As MetaInfo In list Select m.xref.MeSH)
+                        Call df.add("wikipedia", From m As MetaInfo In list Select m.xref.Wikipedia)
+                        Call df.add("smiles", From m As MetaInfo In list Select m.xref.SMILES)
+                        Call df.add("super_class", From m As MetaInfo In list Select m.super_class)
+                        Call df.add("class", From m As MetaInfo In list Select m.class)
+                        Call df.add("sub_class", From m As MetaInfo In list Select m.sub_class)
+
+                        Call df.WriteCsv(file.FileName)
                     End If
                 End Using
             End If

@@ -30,6 +30,8 @@ Public Class ExportMetabolites
     ReadOnly PubChem As UInteger
     ReadOnly metlin As UInteger
 
+    Dim ontology_id As UInteger
+
     Sub New(registry As biocad_registry)
         Me.registry = registry
 
@@ -52,7 +54,15 @@ Public Class ExportMetabolites
         Me.PubChem = registry.vocabulary_terms.GetDatabaseKey("PubChem")
         Me.metlin = registry.vocabulary_terms.GetDatabaseKey("metlin")
         Me.refmet = registry.vocabulary_terms.GetDatabaseKey("RefMet")
+
+        Me.ontology_id = refmet
     End Sub
+
+    Public Function setOntology(name As String) As ExportMetabolites
+        Dim ont = registry.vocabulary.where(field("term") = name).find(Of biocad_registryModel.vocabulary)
+        ontology_id = ont.id
+        Return Me
+    End Function
 
     Public Function ExportAll(Optional page_size As Integer = 10000, Optional ByRef mona_libnames As Dictionary(Of String, String) = Nothing) As IEnumerable(Of BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaInfo)
         Dim list As New List(Of BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaInfo)
@@ -158,7 +168,7 @@ Public Class ExportMetabolites
                                       .Distinct _
                                       .ToArray
                               End Function)
-            Dim classinfo = GetChemicalOntology(metabolite.id, refmet)
+            Dim classinfo = GetChemicalOntology(metabolite.id, ontology_id)
             Dim metab As New BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaInfo With {
                 .ID = cad_id,
                 .description = metabolite.note,
