@@ -267,7 +267,7 @@ Public Class FormMain
                         Call df.add("name", From m As MetaInfo In list Select m.name)
                         Call df.add("formula", From m As MetaInfo In list Select m.formula)
                         Call df.add("exact_mass", From m As MetaInfo In list Select m.exact_mass)
-                        Call df.add("cas", From m As MetaInfo In list Select m.xref.CAS.FirstOrDefault)
+                        Call df.add("cas", From m As MetaInfo In list Select m.xref.CAS.DefaultFirst)
                         Call df.add("kegg", From m As MetaInfo In list Select m.xref.KEGG)
                         Call df.add("hmdb", From m As MetaInfo In list Select m.xref.HMDB)
                         Call df.add("lipidmaps", From m As MetaInfo In list Select m.xref.lipidmaps)
