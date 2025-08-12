@@ -119,4 +119,8 @@ Public Class CoconutNPImports
         Call links.commit()
         Call tag_links.commit()
     End Sub
+
+    Private Function CreateUnknownTaxonomy()
+
+    End Function
 End Class
