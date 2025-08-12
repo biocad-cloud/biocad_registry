@@ -278,7 +278,7 @@ Public Class FormMain
                         Call df.add("class", From m As MetaInfo In list Select m.class)
                         Call df.add("sub_class", From m As MetaInfo In list Select m.sub_class)
 
-                        Call df.WriteCsv(file.FileName)
+                        Call df.WriteCsv(file.FileName, blank:="NULL")
                     End If
                 End Using
             End If
