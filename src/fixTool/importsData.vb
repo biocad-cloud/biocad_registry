@@ -31,14 +31,14 @@ Module importsData
         Dim table As CoconutNPTable() = CoconutNPTable.ParseTable("D:\datapool\coconut\coconut_csv-08-2025.csv".Open(IO.FileMode.Open, doClear:=False, [readOnly]:=True)).ToArray
         Dim filter_parts = {"ginseng", "ophiopogon", "schisandra"}
 
-        table = table.AsParallel _
-            .Where(Function(c)
-                       Return c.organisms.SafeQuery _
-                           .Any(Function(a)
-                                    Return filter_parts.Any(Function(name) Strings.InStr(a, name, CompareMethod.Text) > 0)
-                                End Function)
-                   End Function) _
-            .ToArray
+        'table = table.AsParallel _
+        '    .Where(Function(c)
+        '               Return c.organisms.SafeQuery _
+        '                   .Any(Function(a)
+        '                            Return filter_parts.Any(Function(name) Strings.InStr(a, name, CompareMethod.Text) > 0)
+        '                        End Function)
+        '           End Function) _
+        '    .ToArray
 
         Call Console.WriteLine("imports CoconutNP...")
         Call New CoconutNPImports(Program.registry).ImportsNP(table)
