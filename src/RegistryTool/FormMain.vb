@@ -259,7 +259,7 @@ Public Class FormMain
                 Using file As New SaveFileDialog With {.Filter = "Annotation Table(*.csv)|*.csv"}
                     If file.ShowDialog = DialogResult.OK Then
                         Dim exports As New ExportMetabolites(MyApplication.biocad_registry)
-                        Dim list As MetaInfo() = exports.setOntology("Coconut NPclass").ExportByID(ids, wrap_tqdm:=False).ToArray(Of MetaInfo)
+                        Dim list As MetaInfo() = FormBuzyLoader.Loading(Function(println) exports.setOntology("Coconut NPclass").ExportByID(ids, wrap_tqdm:=False).ToArray(Of MetaInfo))
                         Dim df As New DataFrame With {
                             .rownames = list.Select(Function(a) a.ID).ToArray
                         }
