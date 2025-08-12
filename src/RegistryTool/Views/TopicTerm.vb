@@ -15,4 +15,8 @@ Public Class TopicTerm
         Return MyApplication.biocad_registry.vocabulary.where(field("category") = "Topic").select(Of TopicTerm)
     End Function
 
+    Public Shared Function GetDatabaseTerm() As TopicTerm()
+        Return MyApplication.biocad_registry.vocabulary.where(field("category") = "External Database").select(Of TopicTerm)
+    End Function
+
 End Class

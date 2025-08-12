@@ -82,6 +82,10 @@ let options = { width: 450, height: 300 };
             Call ComboBox2.Items.Add(term)
         Next
 
+        For Each term As TopicTerm In TopicTerm.GetDatabaseTerm
+            Call ComboBox3.Items.Add(term)
+        Next
+
         Call refreshNames()
         Call refreshXrefs()
         Call refreshTags()
@@ -426,5 +430,32 @@ let options = { width: 450, height: 300 };
                 Call Workbench.StatusMessage(ex.Message)
             End Try
         End If
+    End Sub
+
+    Private Sub Button8_Click(sender As Object, e As EventArgs) Handles Button8.Click
+        If ComboBox3.SelectedIndex < 0 Then
+            Return
+        End If
+        Dim new_id As String = Strings.Trim(TextBox6.Text)
+        Dim dbname As TopicTerm = ComboBox3.SelectedItem
+
+        If new_id.StringEmpty(, True) Then
+            Return
+        End If
+
+        If MyApplication.biocad_registry.db_xrefs.where(field("db_key") = dbname.id,
+            field("obj_id") = mol.id,
+            field("xref") = new_id,
+            field("type") = mol.type).find(Of biocad_registryModel.db_xrefs) Is Nothing Then
+
+            Call MyApplication.biocad_registry.db_xrefs.add(
+                field("db_key") = dbname.id,
+                field("obj_id") = mol.id,
+                field("xref") = new_id,
+                field("type") = mol.type
+            )
+        End If
+
+        Call refreshXrefs()
     End Sub
 End Class
