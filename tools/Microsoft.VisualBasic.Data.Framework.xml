@@ -223,6 +223,22 @@ Microsoft.VisualBasic.Data.Framework
  <param name="i"></param>
  <returns></returns>
 </member>
+<member name="M:Microsoft.VisualBasic.Data.Framework.FileWriter.WriteCsv(Microsoft.VisualBasic.Data.Framework.DataFrame,System.String,System.String)">
+ <summary>
+ save dataframe object as csv file
+ </summary>
+ <param name="df">dataframe should contains the row names values</param>
+ <param name="file"></param>
+ <param name="blank"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.Framework.FileWriter.WriteCsv(Microsoft.VisualBasic.Data.Framework.DataFrame,System.IO.Stream,System.String)">
+ <summary>
+ save dataframe object as csv file
+ </summary>
+ <param name="df">dataframe should contains the row names values</param>
+ <param name="file"></param>
+ <param name="blank"></param>
+</member>
 <member name="M:Microsoft.VisualBasic.Data.Framework.NumericDataSet.NumericGetter(Microsoft.VisualBasic.Data.Framework.FeatureVector)">
  <summary>
  a getter delegate helper for number type
