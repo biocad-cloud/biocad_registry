@@ -1,6 +1,7 @@
 ﻿Imports BioNovoGene.BioDeep.Chemistry.Coconut
 Imports BioNovoGene.BioDeep.Chemistry.LOTUS
 Imports BioNovoGene.BioDeep.Chemistry.MetaLib.Models
+Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Linq
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
@@ -81,7 +82,7 @@ Public Class CoconutNPImports
 
         Dim links = registry.taxonomy_source.open_transaction.ignore
 
-        For i As Integer = 0 To page.Length - 1
+        For Each i As Integer In TqdmWrapper.Range(0, page.Length)
             Dim mol = registry.findMolecule(meta(i), Function(a) a.ID)
 
             If mol Is Nothing Then
