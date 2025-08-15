@@ -339,4 +339,50 @@ Public Class FormMain
         editor.LoadFromIDSet(idset)
         editor.Show()
     End Sub
+
+    Private Sub SearchToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SearchToolStripMenuItem.Click
+        Dim getName As String = InputBox("Input the molecule name to make search:")
+
+        If getName.StringEmpty(, True) Then
+            Return
+        End If
+
+        Dim text As String = getName.Replace("'", " ").Replace("-", " ").Replace("+", " ")
+        Dim sql = $"SELECT 
+    t1.id, t1.name, formula, mass, term AS type, t1.note
+FROM
+    ((SELECT 
+        *
+    FROM
+        cad_registry.molecule
+    WHERE
+        MATCH (name , note) AGAINST ('{text}' IN BOOLEAN MODE)) UNION (SELECT 
+        molecule.*
+    FROM
+        synonym
+    LEFT JOIN molecule ON molecule.id = synonym.obj_id
+    WHERE
+        MATCH (synonym) AGAINST ('{text}' IN BOOLEAN MODE))) t1
+        LEFT JOIN
+    vocabulary ON vocabulary.id = t1.type"
+
+        Dim molecules As MoleculeSearch() = FormBuzyLoader.Loading(Function(println) MyApplication.biocad_registry.molecule.getDriver.Query(Of MoleculeSearch)(sql, throwExp:=False))
+
+        If molecules.IsNullOrEmpty Then
+            Call MessageBox.Show("Sorry, no search result.", "No result", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Return
+        End If
+
+        Dim view As New FormDbView()
+        view.LoadTableView(Function() molecules)
+        view.SetViewer(Sub(row)
+                           Dim id As String = row.Cells(0).Value.ToString
+                           Dim name As String = row.Cells(1).Value.ToString
+
+                           Call Workbench.OpenMoleculeEditor(id, name)
+                       End Sub)
+        view.MdiParent = Me
+        view.Text = $"Search Result of '{text}'"
+        view.Show()
+    End Sub
 End Class

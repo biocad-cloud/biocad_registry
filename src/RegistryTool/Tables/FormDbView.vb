@@ -9,6 +9,11 @@ Public Class FormDbView
     Dim _sourceFilter As Func(Of DataTable)
     Dim _binding As New BindingSource
     Dim _filter As String = Nothing
+    Dim _view As Action(Of DataGridViewRow)
+
+    Public Sub SetViewer(view As Action(Of DataGridViewRow))
+        _view = view
+    End Sub
 
     Public Sub DisableFilter()
         ToolStripComboBox1.Visible = False
@@ -121,6 +126,20 @@ Public Class FormDbView
     Private Sub ToolStripComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ToolStripComboBox1.SelectedIndexChanged
         If ToolStripComboBox1.SelectedIndex > -1 Then
             Call LoadTable()
+        End If
+    End Sub
+
+    Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
+
+    End Sub
+
+    Private Sub ViewToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewToolStripMenuItem.Click
+        If DataGridView1.SelectedRows.Count = 0 Then
+            Return
+        End If
+
+        If Not _view Is Nothing Then
+            Call _view(DataGridView1.SelectedRows(0))
         End If
     End Sub
 End Class
