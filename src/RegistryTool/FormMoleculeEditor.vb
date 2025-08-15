@@ -343,37 +343,44 @@ let options = { width: 450, height: 300 };
         Call edit.SetPromptText($"edit the synonym names({lang}):")
         Call edit.ShowDialog()
 
-        Dim current = names.Indexing
+        Dim editData As String() = edit.TextLines
 
-        For Each name As String In edit.TextLines
-            If name Like current Then
-                ' no changed
-            Else
-                ' add new
-                Call MyApplication.biocad_registry.synonym.add(
-                    field("type_id") = mol.type,
-                    field("obj_id") = mol.id,
-                    field("synonym") = name,
-                    field("lang") = lang,
-                    field("hashcode") = name.ToLower.MD5
-                )
-            End If
-        Next
+        Call FormBuzyLoader.Loading(
+            Sub(println)
+                Dim current = names.Indexing
 
-        Dim modified As Index(Of String) = edit.TextLines.Indexing
+                Call println("Commit modified data to database...")
 
-        For Each key As String In current.Objects
-            If key Like modified Then
-                ' no changed
-            Else
-                ' deleted
-                Call MyApplication.biocad_registry.synonym.where(
-                    field("obj_id") = mol.id,
-                    field("lang") = lang,
-                    field("type_id") = mol.type,
-                    field("synonym") = key).delete()
-            End If
-        Next
+                For Each name As String In edit.TextLines
+                    If name Like current Then
+                        ' no changed
+                    Else
+                        ' add new
+                        Call MyApplication.biocad_registry.synonym.add(
+                            field("type_id") = mol.type,
+                            field("obj_id") = mol.id,
+                            field("synonym") = name,
+                            field("lang") = lang,
+                            field("hashcode") = name.ToLower.MD5
+                        )
+                    End If
+                Next
+
+                Dim modified As Index(Of String) = edit.TextLines.Indexing
+
+                For Each key As String In current.Objects
+                    If key Like modified Then
+                        ' no changed
+                    Else
+                        ' deleted
+                        Call MyApplication.biocad_registry.synonym _
+                            .where(field("obj_id") = mol.id,
+                                   field("lang") = lang,
+                                   field("type_id") = mol.type,
+                                   field("synonym") = key).delete()
+                    End If
+                Next
+            End Sub)
 
         Call refreshNames(lang)
     End Sub

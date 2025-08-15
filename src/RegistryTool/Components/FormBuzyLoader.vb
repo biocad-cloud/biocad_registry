@@ -37,4 +37,17 @@ Public Class FormBuzyLoader
         Return loader.result
     End Function
 
+    Public Shared Sub Loading(task As Action(Of Action(Of String)))
+        Dim getter As Func(Of Action(Of String), Boolean) =
+            Function(println) As Boolean
+                Call task(println)
+                Return True
+            End Function
+        Dim loader As New BuzyTask(Of Boolean) With {.task = getter}
+        Dim runner As New Thread(AddressOf loader.Run)
+
+        Call runner.Start()
+        Call loader.ShowDialog()
+    End Sub
+
 End Class
