@@ -110,6 +110,15 @@ SMRUCC.genomics.Analysis.HTS.GSEA.Fisher.Core
  </summary>
  <returns></returns>
 </member>
+<member name="M:SMRUCC.genomics.Analysis.HTS.GSEA.Background.SubsetOf(System.Func{SMRUCC.genomics.Analysis.HTS.GSEA.Cluster,System.Boolean})">
+ <summary>
+ take subset of the clusters
+ </summary>
+ <param name="predicate">
+ condition test for take clusters subset
+ </param>
+ <returns></returns>
+</member>
 <member name="M:SMRUCC.genomics.Analysis.HTS.GSEA.Background.GetBackgroundGene(System.String)">
  <summary>
  

@@ -19,8 +19,8 @@ Module Program
     Sub Main(args As String())
         ' Call imports_drugdata()
         ' Call export_plantid()
-        ' Call fingerprintBuilder.run()
-        Call imports_CoconutNP()
+        Call fingerprintBuilder.run()
+        '  Call imports_CoconutNP()
 
         ' Call registry.BuildUniqeHashCode
         ' Call importsMetaCyc()

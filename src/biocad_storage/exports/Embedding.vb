@@ -18,7 +18,7 @@ Public Module Embedding
     ''' </summary>
     ''' <param name="registry"></param>
     Public Sub RunEnzymeFingerprintBuilder(registry As biocad_registry)
-        Dim morgan As New MorganFingerprint(8 ^ 5)
+        Dim morgan As New MorganFingerprint(1024)
         Dim page_size = 1000
         Dim page_data As biocad_storage.biocad_registryModel.sequence_graph()
         Dim terms = registry.vocabulary_terms
