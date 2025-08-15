@@ -52,6 +52,9 @@ Partial Class FormMoleculeEditor
         Me.Button4 = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.Button8 = New System.Windows.Forms.Button()
+        Me.TextBox6 = New System.Windows.Forms.TextBox()
+        Me.ComboBox3 = New System.Windows.Forms.ComboBox()
         Me.Button5 = New System.Windows.Forms.Button()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.TextBox5 = New System.Windows.Forms.TextBox()
@@ -66,9 +69,7 @@ Partial Class FormMoleculeEditor
         Me.ListBox2 = New System.Windows.Forms.ListBox()
         Me.ContextMenuStrip2 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ClearThisTagToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ComboBox3 = New System.Windows.Forms.ComboBox()
-        Me.TextBox6 = New System.Windows.Forms.TextBox()
-        Me.Button8 = New System.Windows.Forms.Button()
+        Me.CopyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip3.SuspendLayout()
         CType(Me.WebView21, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -174,9 +175,9 @@ Partial Class FormMoleculeEditor
         '
         'ContextMenuStrip1
         '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EditToolStripMenuItem1, Me.ToolStripMenuItem1, Me.SetAsDisplayNameToolStripMenuItem, Me.ChineseNameTranslationToolStripMenuItem})
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EditToolStripMenuItem1, Me.CopyToolStripMenuItem, Me.ToolStripMenuItem1, Me.SetAsDisplayNameToolStripMenuItem, Me.ChineseNameTranslationToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(212, 76)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(212, 120)
         '
         'EditToolStripMenuItem1
         '
@@ -336,6 +337,34 @@ Partial Class FormMoleculeEditor
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Database CrossReference"
         '
+        'Button8
+        '
+        Me.Button8.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.Button8.Location = New System.Drawing.Point(338, 365)
+        Me.Button8.Name = "Button8"
+        Me.Button8.Size = New System.Drawing.Size(73, 23)
+        Me.Button8.TabIndex = 24
+        Me.Button8.Text = "Add"
+        Me.Button8.UseVisualStyleBackColor = True
+        '
+        'TextBox6
+        '
+        Me.TextBox6.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.TextBox6.Location = New System.Drawing.Point(114, 366)
+        Me.TextBox6.Name = "TextBox6"
+        Me.TextBox6.Size = New System.Drawing.Size(218, 21)
+        Me.TextBox6.TabIndex = 23
+        '
+        'ComboBox3
+        '
+        Me.ComboBox3.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.ComboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ComboBox3.FormattingEnabled = True
+        Me.ComboBox3.Location = New System.Drawing.Point(15, 366)
+        Me.ComboBox3.Name = "ComboBox3"
+        Me.ComboBox3.Size = New System.Drawing.Size(93, 20)
+        Me.ComboBox3.TabIndex = 21
+        '
         'Button5
         '
         Me.Button5.Location = New System.Drawing.Point(422, 20)
@@ -479,33 +508,11 @@ Partial Class FormMoleculeEditor
         Me.ClearThisTagToolStripMenuItem.Size = New System.Drawing.Size(146, 22)
         Me.ClearThisTagToolStripMenuItem.Text = "Clear This Tag"
         '
-        'ComboBox3
+        'CopyToolStripMenuItem
         '
-        Me.ComboBox3.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.ComboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.ComboBox3.FormattingEnabled = True
-        Me.ComboBox3.Location = New System.Drawing.Point(15, 366)
-        Me.ComboBox3.Name = "ComboBox3"
-        Me.ComboBox3.Size = New System.Drawing.Size(93, 20)
-        Me.ComboBox3.TabIndex = 21
-        '
-        'TextBox6
-        '
-        Me.TextBox6.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.TextBox6.Location = New System.Drawing.Point(114, 366)
-        Me.TextBox6.Name = "TextBox6"
-        Me.TextBox6.Size = New System.Drawing.Size(218, 21)
-        Me.TextBox6.TabIndex = 23
-        '
-        'Button8
-        '
-        Me.Button8.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.Button8.Location = New System.Drawing.Point(338, 365)
-        Me.Button8.Name = "Button8"
-        Me.Button8.Size = New System.Drawing.Size(73, 23)
-        Me.Button8.TabIndex = 24
-        Me.Button8.Text = "Add"
-        Me.Button8.UseVisualStyleBackColor = True
+        Me.CopyToolStripMenuItem.Name = "CopyToolStripMenuItem"
+        Me.CopyToolStripMenuItem.Size = New System.Drawing.Size(211, 22)
+        Me.CopyToolStripMenuItem.Text = "Copy"
         '
         'FormMoleculeEditor
         '
@@ -587,4 +594,5 @@ Partial Class FormMoleculeEditor
     Friend WithEvents Button8 As Button
     Friend WithEvents TextBox6 As TextBox
     Friend WithEvents ComboBox3 As ComboBox
+    Friend WithEvents CopyToolStripMenuItem As ToolStripMenuItem
 End Class

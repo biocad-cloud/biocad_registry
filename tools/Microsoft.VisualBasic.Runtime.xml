@@ -19315,6 +19315,18 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  https://github.com/mcooper/moranfast/blob/master/src/calc_moran.cpp
  </remarks>
 </member>
+<member name="M:Microsoft.VisualBasic.Imaging.Math2D.Moran.calc_moran(System.Double[],System.Double[],System.Double[],System.Boolean)">
+ <summary>
+ 
+ </summary>
+ <param name="x">intensity value</param>
+ <param name="c1">spatial x</param>
+ <param name="c2">spatial y</param>
+ <param name="parallel"></param>
+ <returns>
+ observed is the calculated moran-I value
+ </returns>
+</member>
 <member name="T:Microsoft.VisualBasic.Imaging.Math2D.Line2D">
  <summary>
  This <code>Line2D</code> represents a line segment in {@code (x,y)}
@@ -19784,6 +19796,12 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  </summary>
  <returns></returns>
 </member>
+<member name="M:Microsoft.VisualBasic.Imaging.Math2D.Polygon2D.GenericEnumerator">
+ <summary>
+ just populate all input points data
+ </summary>
+ <returns></returns>
+</member>
 <member name="M:Microsoft.VisualBasic.Imaging.Math2D.Polygon2D.op_Addition(Microsoft.VisualBasic.Imaging.Math2D.Polygon2D,System.Drawing.PointF)">
  <summary>
  move current polygon object by a given offset
@@ -19791,6 +19809,13 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="p"></param>
  <param name="offset"></param>
  <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Imaging.Math2D.PolygonFiller.FillPolygon(System.Collections.Generic.List{System.Drawing.Point})">
+ <summary>
+ 填充多边形并返回内部所有点的集合
+ </summary>
+ <param name="vertices">多边形顶点（按顺时针或逆时针顺序）</param>
+ <returns>填充点的集合（List(Of Point)）</returns>
 </member>
 <member name="T:Microsoft.VisualBasic.Imaging.Math2D.QuadrantRegions">
  <summary>

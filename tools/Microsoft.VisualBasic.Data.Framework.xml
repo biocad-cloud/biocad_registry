@@ -111,6 +111,15 @@ Microsoft.VisualBasic.Data.Framework
  a data field column data in double numeric type
  </param>
 </member>
+<member name="M:Microsoft.VisualBasic.Data.Framework.DataFrame.add(System.String,System.Collections.Generic.IEnumerable{System.Single})">
+ <summary>
+ add a new feature column into current dataframe object
+ </summary>
+ <param name="featureName"></param>
+ <param name="v">
+ a data field column data in double numeric type
+ </param>
+</member>
 <member name="M:Microsoft.VisualBasic.Data.Framework.DataFrame.add(System.String,System.Collections.Generic.IEnumerable{System.Int32})">
  <summary>
  add a new feature column into current dataframe object

@@ -479,4 +479,10 @@ let options = { width: 450, height: 300 };
             Workbench.StatusMessage(ListBox1.SelectedItem.ToString)
         End If
     End Sub
+
+    Private Sub CopyToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CopyToolStripMenuItem.Click
+        If ListBox1.SelectedIndex > -1 Then
+            Call Clipboard.SetText(ListBox1.SelectedItem.ToString)
+        End If
+    End Sub
 End Class
