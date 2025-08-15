@@ -1,4 +1,5 @@
 ﻿Imports biocad_storage
+Imports BioNovoGene.BioDeep.Chemoinformatics
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports BioNovoGene.BioDeep.Chemoinformatics.SMILES
 Imports Microsoft.VisualBasic.ComponentModel.Collection
@@ -10,6 +11,8 @@ Imports Microsoft.Web.WebView2.Core
 Imports Ollama
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports RegistryTool.My
+Imports SMRUCC.genomics.Model.MotifGraph
+Imports SMRUCC.genomics.Model.MotifGraph.ProteinStructure.Kmer
 
 Public Class FormMoleculeEditor
 
@@ -51,11 +54,15 @@ let options = { width: 450, height: 300 };
 
     Dim struct As biocad_registryModel.sequence_graph
     Dim mol As biocad_registryModel.molecule
+    Dim morgan As ProteinStructure.MorganFingerprint
 
     Private Sub FormMoleculeEditor_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         mol = MyApplication.biocad_registry.molecule _
             .where(field("id") = UInteger.Parse(id.Match("\d+"))) _
             .find(Of biocad_registryModel.molecule)
+
+        SMILES.MolecularFingerprint.Length = 1024
+        morgan = New ProteinStructure.MorganFingerprint(SMILES.MolecularFingerprint.Length)
 
         If mol Is Nothing Then
             MessageBox.Show($"There is no molecule object that associated with the given unique id: {id}", "Missing Object", MessageBoxButtons.OK, MessageBoxIcon.Warning)
@@ -154,17 +161,25 @@ let options = { width: 450, height: 300 };
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Dim smiles As String = Strings.Trim(TextBox1.Text)
-        Dim checksum = MolecularFingerprint.ConvertToMorganFingerprint(smiles)
+        Dim smilesOrSeq As String = Strings.Trim(TextBox1.Text)
+        Dim checksum As Byte()
+
+        If mol.type = MyApplication.biocad_registry.vocabulary_terms.metabolite_term Then
+            checksum = MolecularFingerprint.ConvertToMorganFingerprint(smilesOrSeq, radius:=3)
+        Else
+            Dim graph = KMerGraph.FromSequence(smilesOrSeq, k:=3)
+            checksum = morgan.CalculateFingerprintCheckSum(graph, radius:=3)
+        End If
+
         Dim fingerprint = checksum.GZipAsBase64
 
         TextBox5.Text = fingerprint
 
         If struct Is Nothing Then
             MyApplication.biocad_registry.sequence_graph.add(
-                field("sequence") = smiles,
+                field("sequence") = smilesOrSeq,
                      field("morgan") = fingerprint,
-                     field("hashcode") = smiles.MD5,
+                     field("hashcode") = smilesOrSeq.MD5,
                      field("molecule_id") = UInteger.Parse(id.Match("\d+"))
             )
 
@@ -177,9 +192,9 @@ let options = { width: 450, height: 300 };
         Else
             MyApplication.biocad_registry.sequence_graph _
                .where(field("id") = struct.id) _
-               .save(field("sequence") = smiles,
+               .save(field("sequence") = smilesOrSeq,
                      field("morgan") = fingerprint,
-                     field("hashcode") = smiles.MD5)
+                     field("hashcode") = smilesOrSeq.MD5)
         End If
     End Sub
 
