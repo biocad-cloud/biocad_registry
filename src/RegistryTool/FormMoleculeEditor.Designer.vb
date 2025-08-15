@@ -35,6 +35,7 @@ Partial Class FormMoleculeEditor
         Me.ListBox1 = New System.Windows.Forms.ListBox()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.EditToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CopyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
         Me.SetAsDisplayNameToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ChineseNameTranslationToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -69,7 +70,6 @@ Partial Class FormMoleculeEditor
         Me.ListBox2 = New System.Windows.Forms.ListBox()
         Me.ContextMenuStrip2 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ClearThisTagToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.CopyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip3.SuspendLayout()
         CType(Me.WebView21, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -177,13 +177,19 @@ Partial Class FormMoleculeEditor
         '
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EditToolStripMenuItem1, Me.CopyToolStripMenuItem, Me.ToolStripMenuItem1, Me.SetAsDisplayNameToolStripMenuItem, Me.ChineseNameTranslationToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(212, 120)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(212, 98)
         '
         'EditToolStripMenuItem1
         '
         Me.EditToolStripMenuItem1.Name = "EditToolStripMenuItem1"
         Me.EditToolStripMenuItem1.Size = New System.Drawing.Size(211, 22)
         Me.EditToolStripMenuItem1.Text = "Edit"
+        '
+        'CopyToolStripMenuItem
+        '
+        Me.CopyToolStripMenuItem.Name = "CopyToolStripMenuItem"
+        Me.CopyToolStripMenuItem.Size = New System.Drawing.Size(211, 22)
+        Me.CopyToolStripMenuItem.Text = "Copy"
         '
         'ToolStripMenuItem1
         '
@@ -507,12 +513,6 @@ Partial Class FormMoleculeEditor
         Me.ClearThisTagToolStripMenuItem.Name = "ClearThisTagToolStripMenuItem"
         Me.ClearThisTagToolStripMenuItem.Size = New System.Drawing.Size(146, 22)
         Me.ClearThisTagToolStripMenuItem.Text = "Clear This Tag"
-        '
-        'CopyToolStripMenuItem
-        '
-        Me.CopyToolStripMenuItem.Name = "CopyToolStripMenuItem"
-        Me.CopyToolStripMenuItem.Size = New System.Drawing.Size(211, 22)
-        Me.CopyToolStripMenuItem.Text = "Copy"
         '
         'FormMoleculeEditor
         '

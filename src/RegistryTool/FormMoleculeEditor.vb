@@ -283,33 +283,38 @@ let options = { width: 450, height: 300 };
 
         Dim current = all_xrefs.GroupBy(Function(a) a.xref).ToDictionary(Function(a) a.Key, Function(a) a.ToArray)
 
-        For Each id As String In edit.TextLines
-            If current.ContainsKey(id) Then
-                ' no changed
-            Else
-                ' add new
-                Call MyApplication.biocad_registry.db_xrefs.add(
-                    field("db_key") = db.db_key,
-                    field("obj_id") = mol.id,
-                    field("xref") = id,
-                    field("type") = mol.type
-                )
-            End If
-        Next
+        Call FormBuzyLoader.Loading(
+            Sub(println)
+                Call println("Commit data changes into the database...")
 
-        Dim modified As Index(Of String) = edit.TextLines.Indexing
+                For Each id As String In edit.TextLines
+                    If current.ContainsKey(id) Then
+                        ' no changed
+                    Else
+                        ' add new
+                        Call MyApplication.biocad_registry.db_xrefs.add(
+                            field("db_key") = db.db_key,
+                            field("obj_id") = mol.id,
+                            field("xref") = id,
+                            field("type") = mol.type
+                        )
+                    End If
+                Next
 
-        For Each key As String In current.Keys
-            If key Like modified Then
-                ' no changed
-            Else
-                ' deleted
-                Call MyApplication.biocad_registry.db_xrefs.where(field("db_key") = db.db_key,
-                    field("obj_id") = mol.id,
-                    field("xref") = key,
-                    field("type") = mol.type).delete()
-            End If
-        Next
+                Dim modified As Index(Of String) = edit.TextLines.Indexing
+
+                For Each key As String In current.Keys
+                    If key Like modified Then
+                        ' no changed
+                    Else
+                        ' deleted
+                        Call MyApplication.biocad_registry.db_xrefs.where(field("db_key") = db.db_key,
+                            field("obj_id") = mol.id,
+                            field("xref") = key,
+                            field("type") = mol.type).delete()
+                    End If
+                Next
+            End Sub)
 
         Call refreshXrefs()
     End Sub
@@ -499,5 +504,22 @@ let options = { width: 450, height: 300 };
         If ListBox1.SelectedIndex > -1 Then
             Call Clipboard.SetText(ListBox1.SelectedItem.ToString)
         End If
+    End Sub
+
+    Private Sub TextBox3_TextChanged(sender As Object, e As EventArgs) Handles TextBox3.TextChanged
+        Dim formula As String = Strings.Trim(TextBox3.Text)
+        Dim exact_mass As Double = FormulaScanner.EvaluateExactMass(formula)
+
+        Label7.Text = exact_mass.ToString("F4")
+    End Sub
+
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        Dim formula As String = Strings.Trim(TextBox3.Text)
+        Dim exact_mass As Double = FormulaScanner.EvaluateExactMass(formula)
+
+        Call MyApplication.biocad_registry.molecule.where(field("id") = mol.id).save(
+            field("formula") = formula,
+            field("mass") = exact_mass
+        )
     End Sub
 End Class
