@@ -13,6 +13,10 @@ Imports SMRUCC.genomics.Model.MotifGraph.ProteinStructure.Kmer
 
 Public Module Embedding
 
+    ''' <summary>
+    ''' build morgan fingerprint for all enzyme protein sequence
+    ''' </summary>
+    ''' <param name="registry"></param>
     Public Sub RunEnzymeFingerprintBuilder(registry As biocad_registry)
         Dim morgan As New MorganFingerprint(8 ^ 5)
         Dim page_size = 1000
