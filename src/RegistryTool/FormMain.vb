@@ -50,6 +50,15 @@ Public Class FormMain
             AddHandler item.Click, Sub() ExportTagToolStripMenuItem_Click(tag)
             ExportBloodTagToolStripMenuItem.DropDownItems.Add(item)
         Next
+
+        OpenMoleculeToolStripMenuItem.DropDownItems.Clear()
+
+        For Each entry As MoleculeEditHistory In MyApplication.settings.molecule_history.SafeQuery
+            Dim item As New ToolStripMenuItem(entry.ToString)
+            item.Tag = entry
+            AddHandler item.Click, Sub() Call Workbench.OpenMoleculeEditor(entry.id, entry.name)
+            OpenMoleculeToolStripMenuItem.DropDownItems.Add(item)
+        Next
     End Sub
 
     Private Sub SubCellularCompartmentsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SubCellularCompartmentsToolStripMenuItem.Click

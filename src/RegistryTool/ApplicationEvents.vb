@@ -30,6 +30,7 @@ Namespace My
 
         Public Shared ReadOnly Property biocad_registry As biocad_registry
         Public Shared ReadOnly Property host As FormMain
+        Public Shared ReadOnly Property settings As Settings
 
         Public Shared ReadOnly Property ollama As Ollama.Ollama
             Get
@@ -55,6 +56,7 @@ Namespace My
 
             Try
                 _biocad_registry = New biocad_registry(mysqli)
+                _settings = config
             Catch ex As Exception
                 If MessageBox.Show("Invalid Mysql Connection information, please re-config your parameters!",
                                    "Invalid Mysql Connection",

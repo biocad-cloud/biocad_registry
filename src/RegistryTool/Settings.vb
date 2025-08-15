@@ -13,6 +13,9 @@ Public Class Settings
     <Category("LLMs")> Public Property ollama_server As String = "127.0.0.1"
     <Category("LLMs")> Public Property ollama_service As Integer = 11434
 
+    <Browsable(False)>
+    Public Property molecule_history As MoleculeEditHistory()
+
     Public Shared Function GetDefault() As Settings
         Return New Settings With {
             .dbname = "cad_registry",
@@ -40,6 +43,17 @@ Public Class Settings
         End If
 
         Return config
+    End Function
+
+End Class
+
+Public Class MoleculeEditHistory
+
+    Public Property id As String
+    Public Property name As String
+
+    Public Overrides Function ToString() As String
+        Return $"{id} - {name}"
     End Function
 
 End Class

@@ -68,6 +68,12 @@ let options = { width: 450, height: 300 };
             MessageBox.Show($"There is no molecule object that associated with the given unique id: {id}", "Missing Object", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Me.Close()
             Return
+        Else
+            MyApplication.settings.molecule_history = MyApplication.settings.molecule_history _
+                .JoinIterates(New MoleculeEditHistory With {.id = mol.id, .name = mol.name}) _
+                .Take(50) _
+                .ToArray
+            MyApplication.settings.Save()
         End If
 
         TextBox2.Text = mol.name

@@ -35,6 +35,7 @@ Partial Class FormMain
         Me.DataToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.VocabularyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MoleculesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SearchToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SubCellularCompartmentsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.FlavorOdorsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripSeparator()
@@ -51,7 +52,6 @@ Partial Class FormMain
         Me.CloseAllToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.SearchToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -75,47 +75,47 @@ Partial Class FormMain
         'OpenMoleculeToolStripMenuItem
         '
         Me.OpenMoleculeToolStripMenuItem.Name = "OpenMoleculeToolStripMenuItem"
-        Me.OpenMoleculeToolStripMenuItem.Size = New System.Drawing.Size(160, 22)
+        Me.OpenMoleculeToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.OpenMoleculeToolStripMenuItem.Text = "Open Molecule"
         '
         'BatchOperationToolStripMenuItem
         '
         Me.BatchOperationToolStripMenuItem.Name = "BatchOperationToolStripMenuItem"
-        Me.BatchOperationToolStripMenuItem.Size = New System.Drawing.Size(160, 22)
+        Me.BatchOperationToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.BatchOperationToolStripMenuItem.Text = "Batch Operation"
         '
         'SearchNamesToolStripMenuItem
         '
         Me.SearchNamesToolStripMenuItem.Name = "SearchNamesToolStripMenuItem"
-        Me.SearchNamesToolStripMenuItem.Size = New System.Drawing.Size(160, 22)
+        Me.SearchNamesToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.SearchNamesToolStripMenuItem.Text = "Search Names"
         '
         'ToolStripMenuItem4
         '
         Me.ToolStripMenuItem4.Name = "ToolStripMenuItem4"
-        Me.ToolStripMenuItem4.Size = New System.Drawing.Size(157, 6)
+        Me.ToolStripMenuItem4.Size = New System.Drawing.Size(177, 6)
         '
         'SettingsToolStripMenuItem
         '
         Me.SettingsToolStripMenuItem.Name = "SettingsToolStripMenuItem"
-        Me.SettingsToolStripMenuItem.Size = New System.Drawing.Size(160, 22)
+        Me.SettingsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.SettingsToolStripMenuItem.Text = "Settings"
         '
         'AboutToolStripMenuItem
         '
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(160, 22)
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.AboutToolStripMenuItem.Text = "About"
         '
         'ToolStripMenuItem1
         '
         Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(157, 6)
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(177, 6)
         '
         'ExitToolStripMenuItem
         '
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(160, 22)
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.ExitToolStripMenuItem.Text = "Exit"
         '
         'DataToolStripMenuItem
@@ -137,6 +137,12 @@ Partial Class FormMain
         Me.MoleculesToolStripMenuItem.Name = "MoleculesToolStripMenuItem"
         Me.MoleculesToolStripMenuItem.Size = New System.Drawing.Size(224, 22)
         Me.MoleculesToolStripMenuItem.Text = "Molecules"
+        '
+        'SearchToolStripMenuItem
+        '
+        Me.SearchToolStripMenuItem.Name = "SearchToolStripMenuItem"
+        Me.SearchToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.SearchToolStripMenuItem.Text = "Search"
         '
         'SubCellularCompartmentsToolStripMenuItem
         '
@@ -236,12 +242,6 @@ Partial Class FormMain
         Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
         Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(42, 17)
         Me.ToolStripStatusLabel1.Text = "Ready!"
-        '
-        'SearchToolStripMenuItem
-        '
-        Me.SearchToolStripMenuItem.Name = "SearchToolStripMenuItem"
-        Me.SearchToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.SearchToolStripMenuItem.Text = "Search"
         '
         'FormMain
         '
