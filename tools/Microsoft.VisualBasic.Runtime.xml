@@ -3653,6 +3653,11 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  </param>
  <param name="indent">the prefix space indent number.</param>
 </member>
+<member name="T:Microsoft.VisualBasic.ApplicationServices.Terminal.TextSpan">
+ <summary>
+ console print text with a specific styles
+ </summary>
+</member>
 <member name="P:Microsoft.VisualBasic.ApplicationServices.Terminal.TextSpan.style">
  <summary>
  print the pnain text if the style is nothing

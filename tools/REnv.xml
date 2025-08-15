@@ -5778,7 +5778,7 @@ to take away yo [rest of string was truncated]&quot;;.
  will be ignored, With a warning.
  </remarks>
 </member>
-<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.base.warning(System.Object,SMRUCC.Rsharp.Runtime.Environment)">
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.base.warning(System.Object,System.Boolean,SMRUCC.Rsharp.Runtime.Environment)">
  <summary>
  ### Warning Messages
  
@@ -5790,6 +5790,10 @@ to take away yo [rest of string was truncated]&quot;;.
  zero Or more objects which can be coerced to 
  character (And which are pasted together with 
  no separator) Or a single condition object.
+ </param>
+ <param name="immediate_">
+ logical, indicating if the warning should be output immediately, 
+ even if getOption("warn") &lt;= 0. NB: this is not respected for condition objects.
  </param>
  <param name="envir"></param>
  <returns>
