@@ -473,4 +473,10 @@ let options = { width: 450, height: 300 };
 
         Dim dbname As TopicTerm = ComboBox3.SelectedItem
     End Sub
+
+    Private Sub ListBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBox1.SelectedIndexChanged
+        If ListBox1.SelectedIndex > -1 Then
+            Workbench.StatusMessage(ListBox1.SelectedItem.ToString)
+        End If
+    End Sub
 End Class
