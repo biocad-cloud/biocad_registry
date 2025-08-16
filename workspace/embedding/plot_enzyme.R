@@ -25,7 +25,7 @@ bitmap(file = `${@dir}/UMAP3d.png`, size = [4800, 3600]) {
 	print(unique(data[, "class"]));
 	
 	# create ggplot layers and tweaks via ggplot style options
-	ggplot(data, aes(x = "dimension_1", y = "dimension_2"#, z = "dimension_3"
+	ggplot(data, aes(x = "dimension_1", y = "dimension_2", z = "dimension_3"
 	), padding = "padding:250px 500px 100px 100px;")
 	+ geom_point(aes(color = "class"), color = "paper", shape = "circle", size = 20)
 	# + view_camera(angle = [31.5,65,125], fov = 10000)
