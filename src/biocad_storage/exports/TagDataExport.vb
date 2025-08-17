@@ -56,6 +56,7 @@ Public Module TagDataExport
             .left_join("molecule").on(field("`molecule`.id") = field("`db_xrefs`.obj_id")) _
             .left_join("sequence_graph").on(field("`sequence_graph`.molecule_id") = field("`molecule`.id")) _
             .where(field("db_key") = registry.vocabulary_terms.kegg_term,
+                   field("`molecule`.type") = registry.vocabulary_terms.metabolite_term,
                    field("sequence").char_length > 0) _
             .select(Of MetaboliteStructData)(
                 "CAST(molecule.id AS CHARACTER) AS id",
