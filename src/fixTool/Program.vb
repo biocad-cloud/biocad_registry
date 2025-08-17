@@ -1,6 +1,7 @@
 Imports biocad_storage
 Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar
 Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm
+Imports Microsoft.VisualBasic.Data.Framework
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports Oracle.LinuxCompatibility.MySQL.Uri
 
@@ -17,9 +18,10 @@ Module Program
     Friend ReadOnly registry As New biocad_registry(mysql)
 
     Sub Main(args As String())
+        Call TagDataExport.ExportKEGGMetabolites(registry).SaveTo("Z:/kegg.csv")
         ' Call imports_drugdata()
         ' Call export_plantid()
-        Call fingerprintBuilder.run()
+        ' Call fingerprintBuilder.run()
         '  Call imports_CoconutNP()
 
         ' Call registry.BuildUniqeHashCode
