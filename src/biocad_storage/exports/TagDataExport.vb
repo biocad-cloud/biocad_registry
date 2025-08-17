@@ -51,6 +51,21 @@ Public Module TagDataExport
                                              "mass AS exact_mass")
     End Function
 
+    Public Function ExportKEGGMetabolites(registry As biocad_registry) As IEnumerable(Of MetaboliteStructData)
+        Return registry.db_xrefs _
+            .left_join("molecule").on(field("`molecule`.id") = field("`db_xrefs`.obj_id")) _
+            .left_join("sequence_graph").on(field("`sequence_graph`.molecule_id") = field("`molecule`.id")) _
+            .where(field("db_key") = registry.vocabulary_terms.kegg_term,
+                   field("sequence").char_length > 0) _
+            .select(Of MetaboliteStructData)(
+                "molecule.id",
+                "molecule.name",
+                "formula",
+                "mass AS exact_mass",
+                "db_xrefs.xref AS xref_id",
+                "sequence AS smiles")
+    End Function
+
     <Extension>
     Public Iterator Function ExportTopicMetabolites(registry As biocad_registry, tagName As String) As IEnumerable(Of MetaboliteStructData())
         Dim page_size As Integer = 1000
