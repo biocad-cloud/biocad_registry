@@ -58,7 +58,7 @@ Public Module TagDataExport
             .where(field("db_key") = registry.vocabulary_terms.kegg_term,
                    field("sequence").char_length > 0) _
             .select(Of MetaboliteStructData)(
-                "molecule.id",
+                "CAST(molecule.id AS CHARACTER) AS id",
                 "molecule.name",
                 "formula",
                 "mass AS exact_mass",
