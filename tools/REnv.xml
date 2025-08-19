@@ -11793,6 +11793,12 @@ to take away yo [rest of string was truncated]&quot;;.
  </summary>
  <returns></returns>
 </member>
+<member name="P:SMRUCC.Rsharp.Runtime.Internal.Object.list.is_empty">
+ <summary>
+ check of the data <see cref="P:SMRUCC.Rsharp.Runtime.Internal.Object.list.slots"/> is null or empty or not?
+ </summary>
+ <returns></returns>
+</member>
 <member name="P:SMRUCC.Rsharp.Runtime.Internal.Object.list.SlotValue(System.String)">
  <summary>
  Get slot value by name

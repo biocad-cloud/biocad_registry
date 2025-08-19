@@ -32,6 +32,7 @@ Public Class BioCadVocabulary
     ''' </summary>
     ''' <returns></returns>
     Public ReadOnly Property go_term As UInteger
+    Public ReadOnly Property lipidmaps As UInteger
 #End Region
 
     Public Const CategoryDatabase = "External Database"
@@ -62,6 +63,7 @@ Public Class BioCadVocabulary
         chebi_term = registry.getVocabulary("chebi", CategoryDatabase)
         go_term = registry.getVocabulary("GO", CategoryDatabase)
         hmdb_term = registry.getVocabulary("HMDB", CategoryDatabase)
+        lipidmaps = registry.getVocabulary("lipidmaps", CategoryDatabase)
 
         molecule_entity = registry.getVocabulary("Molecule", "Entity Type")
     End Sub

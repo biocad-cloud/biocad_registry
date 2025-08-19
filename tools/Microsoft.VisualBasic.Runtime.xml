@@ -16655,7 +16655,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
 </member>
 <member name="T:Microsoft.VisualBasic.Imaging.BitmapImage.BitmapBuffer">
  <summary>
- Unsafe memory pointer of the <see cref="T:System.Drawing.Bitmap"/> data buffer.
+ Unsafe memory pointer of the <see cref="T:System.Drawing.Bitmap"/> data buffer. buffer image object in java
  </summary>
  <remarks>
  (线程不安全的图片数据对象)

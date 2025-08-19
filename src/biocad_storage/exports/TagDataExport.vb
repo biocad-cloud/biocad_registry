@@ -52,10 +52,15 @@ Public Module TagDataExport
     End Function
 
     Public Function ExportKEGGMetabolites(registry As biocad_registry) As IEnumerable(Of MetaboliteStructData)
+        Return registry.ExportDatabaseMetabolites(registry.vocabulary_terms.kegg_term)
+    End Function
+
+    <Extension>
+    Public Function ExportDatabaseMetabolites(registry As biocad_registry, db_key As UInteger) As IEnumerable(Of MetaboliteStructData)
         Return registry.db_xrefs _
             .left_join("molecule").on(field("`molecule`.id") = field("`db_xrefs`.obj_id")) _
             .left_join("sequence_graph").on(field("`sequence_graph`.molecule_id") = field("`molecule`.id")) _
-            .where(field("db_key") = registry.vocabulary_terms.kegg_term,
+            .where(field("db_key") = db_key,
                    field("`molecule`.type") = registry.vocabulary_terms.metabolite_term,
                    field("sequence").char_length > 0) _
             .select(Of MetaboliteStructData)(
@@ -65,6 +70,10 @@ Public Module TagDataExport
                 "mass AS exact_mass",
                 "db_xrefs.xref AS xref_id",
                 "sequence AS smiles")
+    End Function
+
+    Public Function ExportLipidmapsMetabolites(registry As biocad_registry) As IEnumerable(Of MetaboliteStructData)
+        Return registry.ExportDatabaseMetabolites(registry.vocabulary_terms.lipidmaps)
     End Function
 
     <Extension>
