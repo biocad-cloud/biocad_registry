@@ -133,7 +133,9 @@ let options = { width: 450, height: 300 };
         Dim names = MyApplication.biocad_registry.synonym _
             .where(q) _
             .order_by("synonym") _
-            .select(Of biocad_registryModel.synonym)
+            .select(Of biocad_registryModel.synonym) _
+            .OrderBy(Function(a) a.synonym) _
+            .ToArray
 
         Call ListBox1.Items.Clear()
 
