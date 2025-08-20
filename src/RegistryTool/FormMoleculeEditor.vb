@@ -108,7 +108,7 @@ let options = { width: 450, height: 300 };
 
         Call ListBox3.Items.Clear()
 
-        For Each link As OrganismSource In taxonomy
+        For Each link As OrganismSource In taxonomy.OrderBy(Function(a) a.taxname)
             If Not link.taxname.StringEmpty(, True) Then
                 Call ListBox3.Items.Add(link)
             End If

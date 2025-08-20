@@ -48,6 +48,8 @@ Partial Class FormOdors
         Me.ContextMenuStrip2 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.DeleteTermRecordsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DeleteRecordsSkipConfirmToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ViewMoleculeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStrip1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
@@ -169,20 +171,20 @@ Partial Class FormOdors
         '
         'ContextMenuStrip1
         '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DeleteToolStripMenuItem, Me.DeleteSimilarToolStripMenuItem})
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DeleteToolStripMenuItem, Me.DeleteSimilarToolStripMenuItem, Me.ToolStripMenuItem1, Me.ViewMoleculeToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(147, 48)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(181, 98)
         '
         'DeleteToolStripMenuItem
         '
         Me.DeleteToolStripMenuItem.Name = "DeleteToolStripMenuItem"
-        Me.DeleteToolStripMenuItem.Size = New System.Drawing.Size(146, 22)
+        Me.DeleteToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.DeleteToolStripMenuItem.Text = "Delete"
         '
         'DeleteSimilarToolStripMenuItem
         '
         Me.DeleteSimilarToolStripMenuItem.Name = "DeleteSimilarToolStripMenuItem"
-        Me.DeleteSimilarToolStripMenuItem.Size = New System.Drawing.Size(146, 22)
+        Me.DeleteSimilarToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.DeleteSimilarToolStripMenuItem.Text = "Delete Similar"
         '
         'DataGridView2
@@ -222,7 +224,7 @@ Partial Class FormOdors
         '
         Me.ContextMenuStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DeleteTermRecordsToolStripMenuItem, Me.DeleteRecordsSkipConfirmToolStripMenuItem})
         Me.ContextMenuStrip2.Name = "ContextMenuStrip2"
-        Me.ContextMenuStrip2.Size = New System.Drawing.Size(225, 70)
+        Me.ContextMenuStrip2.Size = New System.Drawing.Size(225, 48)
         '
         'DeleteTermRecordsToolStripMenuItem
         '
@@ -235,6 +237,17 @@ Partial Class FormOdors
         Me.DeleteRecordsSkipConfirmToolStripMenuItem.Name = "DeleteRecordsSkipConfirmToolStripMenuItem"
         Me.DeleteRecordsSkipConfirmToolStripMenuItem.Size = New System.Drawing.Size(224, 22)
         Me.DeleteRecordsSkipConfirmToolStripMenuItem.Text = "Delete Records Skip Confirm"
+        '
+        'ToolStripMenuItem1
+        '
+        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(177, 6)
+        '
+        'ViewMoleculeToolStripMenuItem
+        '
+        Me.ViewMoleculeToolStripMenuItem.Name = "ViewMoleculeToolStripMenuItem"
+        Me.ViewMoleculeToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ViewMoleculeToolStripMenuItem.Text = "View Molecule"
         '
         'FormOdors
         '
@@ -282,4 +295,6 @@ Partial Class FormOdors
     Friend WithEvents ContextMenuStrip2 As ContextMenuStrip
     Friend WithEvents DeleteTermRecordsToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents DeleteRecordsSkipConfirmToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStripMenuItem1 As ToolStripSeparator
+    Friend WithEvents ViewMoleculeToolStripMenuItem As ToolStripMenuItem
 End Class

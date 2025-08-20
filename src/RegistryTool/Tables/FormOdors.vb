@@ -174,6 +174,20 @@ Public Class FormOdors
             ToolStripButton4_Click()
         End If
     End Sub
+
+    Private Sub DataGridView1_CellContentDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentDoubleClick
+        Dim meta As OdorData = getSelected()
+
+        If meta Is Nothing Then
+            Return
+        End If
+
+        Call Workbench.OpenMoleculeEditor(meta.molecule_id, meta.name)
+    End Sub
+
+    Private Sub ViewMoleculeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewMoleculeToolStripMenuItem.Click
+        Call DataGridView1_CellContentDoubleClick(Nothing, Nothing)
+    End Sub
 End Class
 
 Public Class OdorTerm
