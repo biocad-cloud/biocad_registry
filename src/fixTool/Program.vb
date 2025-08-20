@@ -18,7 +18,7 @@ Module Program
     Friend ReadOnly registry As New biocad_registry(mysql)
 
     Sub Main(args As String())
-        Call TagDataExport.ExportKEGGMetabolites(registry).SaveTo("Z:/kegg.csv")
+        Call TagDataExport.ExportLipidmapsMetabolites(registry).SaveTo("Z:/lipidmaps.csv")
         ' Call imports_drugdata()
         ' Call export_plantid()
         ' Call fingerprintBuilder.run()
