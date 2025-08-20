@@ -99,6 +99,19 @@ let options = { width: 450, height: 300 };
             Call ComboBox3.Items.Add(term)
         Next
 
+        Dim taxonomy As OrganismSource() = MyApplication.biocad_registry.taxonomy_source _
+            .left_join("ncbi_taxonomy") _
+            .on(field("`ncbi_taxonomy`.id") = field("ncbi_taxid")) _
+            .where(field("molecule_id") = mol.id) _
+            .distinct _
+            .select(Of OrganismSource)("ncbi_taxid", "taxname")
+
+        Call ListBox3.Items.Clear()
+
+        For Each link As OrganismSource In taxonomy
+            Call ListBox3.Items.Add(link)
+        Next
+
         Call refreshNames()
         Call refreshXrefs()
         Call refreshTags()
@@ -527,5 +540,38 @@ let options = { width: 450, height: 300 };
             field("formula") = formula,
             field("mass") = exact_mass
         )
+    End Sub
+
+    Private Sub ListSourceToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ListSourceToolStripMenuItem.Click
+        If ListBox3.SelectedIndex < 0 Then
+            Return
+        End If
+
+        Dim source As OrganismSource = DirectCast(ListBox3.SelectedItem, OrganismSource)
+        Dim molecules As MoleculeSearch() = FormBuzyLoader _
+            .Loading(Function(println)
+                         Return MyApplication.biocad_registry.taxonomy_source _
+                            .left_join("molecule").on(field("`molecule`.id") = field("molecule_id")) _
+                            .left_join("vocabulary").on(field("`vocabulary`.id") = field("`molecule`.type")) _
+                            .where(field("ncbi_taxid") = source.ncbi_taxid) _
+                            .distinct _
+                            .select(Of MoleculeSearch)("`molecule`.id",
+    "`molecule`.name",
+    "formula",
+    "mass",
+    "term AS type",
+    "`molecule`.note")
+                     End Function)
+        Dim view As New FormDbView()
+        view.LoadTableView(Function() molecules)
+        view.SetViewer(Sub(row)
+                           Dim id As String = row.Cells(0).Value.ToString
+                           Dim name As String = row.Cells(1).Value.ToString
+
+                           Call Workbench.OpenMoleculeEditor(id, name)
+                       End Sub)
+        view.MdiParent = Me
+        view.Text = $"Metabolite From Taxonomy '{source}'"
+        view.Show()
     End Sub
 End Class

@@ -70,6 +70,10 @@ Partial Class FormMoleculeEditor
         Me.ListBox2 = New System.Windows.Forms.ListBox()
         Me.ContextMenuStrip2 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ClearThisTagToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GroupBox6 = New System.Windows.Forms.GroupBox()
+        Me.ListBox3 = New System.Windows.Forms.ListBox()
+        Me.ContextMenuStrip4 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ListSourceToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip3.SuspendLayout()
         CType(Me.WebView21, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -80,6 +84,8 @@ Partial Class FormMoleculeEditor
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
         Me.ContextMenuStrip2.SuspendLayout()
+        Me.GroupBox6.SuspendLayout()
+        Me.ContextMenuStrip4.SuspendLayout()
         Me.SuspendLayout()
         '
         'DataGridView1
@@ -514,11 +520,49 @@ Partial Class FormMoleculeEditor
         Me.ClearThisTagToolStripMenuItem.Size = New System.Drawing.Size(146, 22)
         Me.ClearThisTagToolStripMenuItem.Text = "Clear This Tag"
         '
+        'GroupBox6
+        '
+        Me.GroupBox6.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox6.Controls.Add(Me.ListBox3)
+        Me.GroupBox6.Location = New System.Drawing.Point(1098, 551)
+        Me.GroupBox6.Name = "GroupBox6"
+        Me.GroupBox6.Size = New System.Drawing.Size(367, 397)
+        Me.GroupBox6.TabIndex = 27
+        Me.GroupBox6.TabStop = False
+        Me.GroupBox6.Text = "Organism Source"
+        '
+        'ListBox3
+        '
+        Me.ListBox3.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.ListBox3.ContextMenuStrip = Me.ContextMenuStrip4
+        Me.ListBox3.FormattingEnabled = True
+        Me.ListBox3.ItemHeight = 12
+        Me.ListBox3.Location = New System.Drawing.Point(6, 22)
+        Me.ListBox3.Name = "ListBox3"
+        Me.ListBox3.Size = New System.Drawing.Size(355, 364)
+        Me.ListBox3.TabIndex = 0
+        '
+        'ContextMenuStrip4
+        '
+        Me.ContextMenuStrip4.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ListSourceToolStripMenuItem})
+        Me.ContextMenuStrip4.Name = "ContextMenuStrip4"
+        Me.ContextMenuStrip4.Size = New System.Drawing.Size(181, 48)
+        '
+        'ListSourceToolStripMenuItem
+        '
+        Me.ListSourceToolStripMenuItem.Name = "ListSourceToolStripMenuItem"
+        Me.ListSourceToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ListSourceToolStripMenuItem.Text = "List Source"
+        '
         'FormMoleculeEditor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1710, 960)
+        Me.Controls.Add(Me.GroupBox6)
         Me.Controls.Add(Me.GroupBox5)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.LinkLabel1)
@@ -543,6 +587,8 @@ Partial Class FormMoleculeEditor
         Me.GroupBox4.PerformLayout()
         Me.GroupBox5.ResumeLayout(False)
         Me.ContextMenuStrip2.ResumeLayout(False)
+        Me.GroupBox6.ResumeLayout(False)
+        Me.ContextMenuStrip4.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -595,4 +641,8 @@ Partial Class FormMoleculeEditor
     Friend WithEvents TextBox6 As TextBox
     Friend WithEvents ComboBox3 As ComboBox
     Friend WithEvents CopyToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents GroupBox6 As GroupBox
+    Friend WithEvents ListBox3 As ListBox
+    Friend WithEvents ContextMenuStrip4 As ContextMenuStrip
+    Friend WithEvents ListSourceToolStripMenuItem As ToolStripMenuItem
 End Class

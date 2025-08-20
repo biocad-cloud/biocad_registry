@@ -9,4 +9,8 @@ Public Class MoleculeSearch
     <DatabaseField> Public Property type As String
     <DatabaseField> Public Property note As String
 
+    Public Overrides Function ToString() As String
+        Return name
+    End Function
+
 End Class
