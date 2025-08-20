@@ -24060,7 +24060,9 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="encoding">
  Parameter value is set to <see cref="P:Microsoft.VisualBasic.Text.TextEncodings.DefaultEncoding"/> if this parameter is not specific.
  </param>
- <returns></returns>
+ <returns>
+ this function may returns empty string if the file is empty or not exists
+ </returns>
 </member>
 <member name="M:Microsoft.VisualBasic.TextDoc.SolveStream(System.String,Microsoft.VisualBasic.Text.Encodings,System.String)">
  <summary>

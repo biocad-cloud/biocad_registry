@@ -76,6 +76,10 @@ Public Module TagDataExport
         Return registry.ExportDatabaseMetabolites(registry.vocabulary_terms.lipidmaps)
     End Function
 
+    Public Function ExportHMDBMetabolites(registry As biocad_registry) As IEnumerable(Of MetaboliteStructData)
+        Return registry.ExportDatabaseMetabolites(registry.vocabulary_terms.hmdb_term)
+    End Function
+
     <Extension>
     Public Iterator Function ExportTopicMetabolites(registry As biocad_registry, tagName As String) As IEnumerable(Of MetaboliteStructData())
         Dim page_size As Integer = 1000
