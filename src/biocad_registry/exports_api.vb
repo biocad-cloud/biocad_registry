@@ -11,7 +11,13 @@ Imports SMRUCC.Rsharp.Runtime.Internal.Object
 Imports SMRUCC.Rsharp.Runtime.Interop
 Imports SMRUCC.Rsharp.Runtime.Vectorization
 Imports rdataframe = SMRUCC.Rsharp.Runtime.Internal.[Object].dataframe
+Imports SMRUCC.Rsharp.Runtime
+Imports System.IO
+Imports Microsoft.VisualBasic.Text.Xml.Linq
 
+''' <summary>
+''' biocad registry database export api
+''' </summary>
 <Package("data_exports")>
 Module exports_api
 
@@ -52,19 +58,47 @@ Module exports_api
     ''' </returns>
     <ExportAPI("export_metabolites")>
     <RApiReturn(TypeCodes.list)>
-    Public Function export_metabolites(registry As biocad_registry, Optional page_size As Integer = 10000) As Object
-        Dim mapping As New Dictionary(Of String, String)
-        Dim list As list = list.empty
+    Public Function export_metabolites(registry As biocad_registry,
+                                       Optional file As Object = Nothing,
+                                       Optional page_size As Integer = 10000,
+                                       Optional env As Environment = Nothing) As Object
+
         Dim export As New ExportMetabolites(registry)
 
-        For Each meta As MetaInfo In export.ExportAll(page_size, mapping)
-            Call list.add(meta.ID, meta)
-        Next
+        If Not file Is Nothing Then
+            Dim auto_close As Boolean = False
+            Dim s = SMRUCC.Rsharp.GetFileStream(file, IO.FileAccess.Write, env, is_filepath:=auto_close)
 
-        ' mapping the spectrum reference id to the metabolite reference id
-        Call list.setAttribute("mapping", New list(mapping))
+            If s Like GetType(Message) Then
+                Return s.TryCast(Of Message)
+            End If
 
-        Return list
+            Using xml As New DataSetWriter(Of MetaLib)(New StreamWriter(s.TryCast(Of Stream)))
+                For Each meta As MetaInfo In export.ExportAll(page_size)
+                    Call xml.Write(meta)
+                Next
+            End Using
+
+            If auto_close Then
+                Call s.TryCast(Of Stream).Flush()
+                Call s.TryCast(Of Stream).Close()
+                Call s.TryCast(Of Stream).Dispose()
+            End If
+
+            Return True
+        Else
+            Dim list As list = list.empty
+            Dim mapping As New Dictionary(Of String, String)
+
+            For Each meta As MetaInfo In export.ExportAll(page_size, mapping)
+                Call list.add(meta.ID, meta)
+            Next
+
+            ' mapping the spectrum reference id to the metabolite reference id
+            Call list.setAttribute("mapping", New list(mapping))
+
+            Return list
+        End If
     End Function
 
     ''' <summary>
