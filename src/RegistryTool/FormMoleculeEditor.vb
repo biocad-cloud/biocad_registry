@@ -109,7 +109,9 @@ let options = { width: 450, height: 300 };
         Call ListBox3.Items.Clear()
 
         For Each link As OrganismSource In taxonomy
-            Call ListBox3.Items.Add(link)
+            If Not link.taxname.StringEmpty(, True) Then
+                Call ListBox3.Items.Add(link)
+            End If
         Next
 
         Call refreshNames()
