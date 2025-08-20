@@ -570,8 +570,46 @@ let options = { width: 450, height: 300 };
 
                            Call Workbench.OpenMoleculeEditor(id, name)
                        End Sub)
-        view.MdiParent = Me
+        view.MdiParent = MyApplication.host
         view.Text = $"Metabolite From Taxonomy '{source}'"
+        view.Show()
+    End Sub
+
+    Private Sub SearchByThisDbXrefToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SearchByThisDbXrefToolStripMenuItem.Click
+        If DataGridView1.SelectedRows.Count = 0 Then
+            Return
+        End If
+
+        Dim link As XrefID = DataGridView1.SelectedRows(0).Tag
+
+        If link Is Nothing Then
+            Return
+        End If
+
+        Dim molecules As MoleculeSearch() = FormBuzyLoader _
+            .Loading(Function(println)
+                         Return MyApplication.biocad_registry.db_xrefs _
+                            .left_join("molecule").on(field("`molecule`.id") = field("obj_id")) _
+                            .left_join("vocabulary").on(field("`vocabulary`.id") = field("`molecule`.type")) _
+                            .where(field("db_key") = link.db_key, field("xref") = link.xref) _
+                            .distinct _
+                            .select(Of MoleculeSearch)("`molecule`.id",
+    "`molecule`.name",
+    "formula",
+    "mass",
+    "term AS type",
+    "`molecule`.note")
+                     End Function)
+        Dim view As New FormDbView()
+        view.LoadTableView(Function() molecules)
+        view.SetViewer(Sub(row)
+                           Dim id As String = row.Cells(0).Value.ToString
+                           Dim name As String = row.Cells(1).Value.ToString
+
+                           Call Workbench.OpenMoleculeEditor(id, name)
+                       End Sub)
+        view.MdiParent = MyApplication.host
+        view.Text = $"Metabolite with Xref '{link}'"
         view.Show()
     End Sub
 End Class

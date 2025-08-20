@@ -74,6 +74,7 @@ Partial Class FormMoleculeEditor
         Me.ListBox3 = New System.Windows.Forms.ListBox()
         Me.ContextMenuStrip4 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ListSourceToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SearchByThisDbXrefToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip3.SuspendLayout()
         CType(Me.WebView21, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -121,14 +122,14 @@ Partial Class FormMoleculeEditor
         '
         'ContextMenuStrip3
         '
-        Me.ContextMenuStrip3.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EditToolStripMenuItem})
+        Me.ContextMenuStrip3.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EditToolStripMenuItem, Me.SearchByThisDbXrefToolStripMenuItem})
         Me.ContextMenuStrip3.Name = "ContextMenuStrip3"
-        Me.ContextMenuStrip3.Size = New System.Drawing.Size(95, 26)
+        Me.ContextMenuStrip3.Size = New System.Drawing.Size(208, 70)
         '
         'EditToolStripMenuItem
         '
         Me.EditToolStripMenuItem.Name = "EditToolStripMenuItem"
-        Me.EditToolStripMenuItem.Size = New System.Drawing.Size(94, 22)
+        Me.EditToolStripMenuItem.Size = New System.Drawing.Size(207, 22)
         Me.EditToolStripMenuItem.Text = "Edit"
         '
         'Label2
@@ -549,13 +550,19 @@ Partial Class FormMoleculeEditor
         '
         Me.ContextMenuStrip4.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ListSourceToolStripMenuItem})
         Me.ContextMenuStrip4.Name = "ContextMenuStrip4"
-        Me.ContextMenuStrip4.Size = New System.Drawing.Size(181, 48)
+        Me.ContextMenuStrip4.Size = New System.Drawing.Size(132, 26)
         '
         'ListSourceToolStripMenuItem
         '
         Me.ListSourceToolStripMenuItem.Name = "ListSourceToolStripMenuItem"
-        Me.ListSourceToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ListSourceToolStripMenuItem.Size = New System.Drawing.Size(131, 22)
         Me.ListSourceToolStripMenuItem.Text = "List Source"
+        '
+        'SearchByThisDbXrefToolStripMenuItem
+        '
+        Me.SearchByThisDbXrefToolStripMenuItem.Name = "SearchByThisDbXrefToolStripMenuItem"
+        Me.SearchByThisDbXrefToolStripMenuItem.Size = New System.Drawing.Size(207, 22)
+        Me.SearchByThisDbXrefToolStripMenuItem.Text = "Search By This Db_Xref ID"
         '
         'FormMoleculeEditor
         '
@@ -645,4 +652,5 @@ Partial Class FormMoleculeEditor
     Friend WithEvents ListBox3 As ListBox
     Friend WithEvents ContextMenuStrip4 As ContextMenuStrip
     Friend WithEvents ListSourceToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents SearchByThisDbXrefToolStripMenuItem As ToolStripMenuItem
 End Class
