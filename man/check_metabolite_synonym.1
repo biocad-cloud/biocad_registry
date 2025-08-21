@@ -3,6 +3,12 @@
 check_metabolite_synonym \- check_metabolite_synonym(biocad.registry, compound)
 .SH SYNOPSIS
 \fIcheck_metabolite_synonym(biocad.registry, compound)\fR
+.SH DESCRIPTION
+.PP
+Helper function that searches for metabolites by name and synonyms when
+direct xref matching fails. Uses exact mass and MD5 hashing of synonyms
+for efficient lookup.
+.PP
 .SH OPTIONS
 .PP
 \fBbiocad.registry\fB \fR\- . 
@@ -12,11 +18,16 @@ check_metabolite_synonym \- check_metabolite_synonym(biocad.registry, compound)
 .PP
 .SH VALUE
 .PP
-An integer database ID if match found by name/synonym, otherwise \code{NULL}.
+An integer database ID if match found by name/synonym, otherwise
+\code{NULL}.
 .PP
 .SH DETAILS
 .PP
-Operates in two phases: \enumerate{ \item Direct name match with mass tolerance \item MD5 hash-based synonym search if name match fails }
+Operates in two phases:
+\enumerate{
+\item Direct name match with mass tolerance
+\item MD5 hash-based synonym search if name match fails
+}
 .PP
 .SH FILES
 .PP

@@ -22,7 +22,8 @@
 
         <h3>Description</h3>
 
-        
+        <p>This function stores compound metadata into a biocad registry, updating
+several related tables including sequence<em>graph, db</em>xrefs, and synonyms.</p>
 
         <h3>Usage</h3>
 
@@ -35,22 +36,91 @@
         <table>
             
 <dt>biocad.registry</dt>
-<dd><p><p>An object representing the biocad registry database where metadata will be stored. Must provide access to tables "sequence<em>graph", "db</em>xrefs", and "synonym".</p></p></dd>
+<dd><p><p>An object representing the biocad registry database
+where metadata will be stored. Must provide access to tables
+"sequence<em>graph", "db</em>xrefs", and "synonym".</p></p></dd>
 
 
 <dt>compound</dt>
-<dd><p><p>A list containing the compound's metadata. Must follow the structure specified in the Details section.</p></p></dd>
+<dd><p><p>A list containing the compound's metadata. Must follow the
+structure specified in the Details section.</p></p></dd>
 
 
 <dt>mol</dt>
-<dd><p><p>A molecule record from the current `biocad_registry`. Must contain a character `id` property to associate metadata with this molecule.</p></p></dd>
+<dd><p><p>A molecule record from the current `biocad_registry`. Must contain
+a character `id` property to associate metadata with this molecule.</p></p></dd>
 
         </table>
 
 
         <h3 style="display: block;">Details</h3>
 
-        <p>The `compound` parameter must be a structured list with the following fields: <code>r list( ID = "unique-id",               # Required: Unique identifier (character) formula = "formula-string",     # Required: Chemical formula (character) exact_mass = 0,                 # Required: Exact mass (numeric) name = "name_string",           # Required: Common name (character) IUPACName = "name_string",      # Required: IUPAC name (character) description = "description_string",  # Optional: Description (character) synonym = c("synonyms", "names"),    # Optional: Character vector of synonyms xref = list(                    # Optional: Cross-references to external databases chebi = "",                 # Use "" or omit if unavailable KEGG = "", pubchem = "", HMDB = "", Wikipedia = "", lipidmaps = "", MeSH = "", MetaCyc = "", foodb = "", CAS = "", InChIkey = "",              # Note: InChIkey/InChI/SMILES are stripped from xref InChI = "",                 #   and processed separately SMILES = "" ) ) </code>` ### Processing Logic: 1. ​<strong>Structure Handling<em></em>: - SMILES strings are parsed (non-strictly) and stored in `sequence<em>graph` if valid. Invalid SMILES are skipped. - InChIkey, InChI, and SMILES fields are removed from `xref` to avoid duplication; SMILES is explicitly stored in `sequence</em>graph`. 2. ​<em></em>Cross-References<em></em>: - Valid `xref` entries (non-empty strings) are added to `db_xrefs`, linked to the molecule's `id`. Each entry is checked for duplicates before insertion. 3. ​<em></em>Synonyms</strong>: - Synonyms are stored in the `synonym` table with MD5 hashes to prevent duplicates. Only English (`lang = 'en'`) synonyms are supported.</p>
+        <p>The `compound` parameter must be a structured list with the following fields:
+
+<pre><code class="r">list(
+ID = "unique-id",               # Required: Unique identifier (character)
+formula = "formula-string",     # Required: Chemical formula (character)
+exact_mass = 0,                 # Required: Exact mass (numeric)
+name = "name_string",           # Required: Common name (character)
+IUPACName = "name_string",      # Required: IUPAC name (character)
+description = "description_string",  # Optional: Description (character)
+synonym = c("synonyms", "names"),    # Optional: Character vector of synonyms
+xref = list(                    # Optional: Cross-references to external databases
+chebi = "",                 # Use "" or omit if unavailable
+KEGG = "",
+pubchem = "",
+HMDB = "",
+Wikipedia = "",
+lipidmaps = "",
+MeSH = "",
+MetaCyc = "",
+foodb = "",
+CAS = "",
+InChIkey = "",              # Note: InChIkey/InChI/SMILES are stripped from xref
+InChI = "",                 #   and processed separately
+SMILES = ""
+)
+)
+</code></pre>
+
+</p>
+
+<h3>Processing Logic:</h3>
+
+
+<ol>
+<li>​<strong>Structure Handling</strong>:</li>
+</ol>
+
+<ul>
+<li>SMILES strings are parsed (non-strictly) and stored in `sequence_graph`</li>
+</ul>
+
+<p>if valid. Invalid SMILES are skipped.
+<ul>
+<li>InChIkey, InChI, and SMILES fields are removed from `xref` to avoid</li>
+</ul></p>
+
+<p>duplication; SMILES is explicitly stored in `sequence_graph`.
+<ol>
+<li>​<strong>Cross-References</strong>:</li>
+</ol></p>
+
+<ul>
+<li>Valid `xref` entries (non-empty strings) are added to `db_xrefs`,</li>
+</ul>
+
+<p>linked to the molecule's `id`. Each entry is checked for duplicates
+before insertion.
+<ol>
+<li>​<strong>Synonyms</strong>:</li>
+</ol></p>
+
+<ul>
+<li>Synonyms are stored in the `synonym` table with MD5 hashes to prevent</li>
+</ul>
+
+<p>duplicates. Only English (`lang = 'en'`) synonyms are supported.</p>
 
         <h3 style="display: block">Authors</h3>
 
@@ -62,7 +132,22 @@
 
         <h3 style="display: block;">Examples</h3>
 
-        <pre><code id="example_r">\dontrun{ # Assume `registry` is a pre-configured biocad_registry compound <- list( ID = "C00001", formula = "H2O", exact_mass = 18.0106, name = "Water", IUPACName = "Oxidane", synonym = c("H2O", "Dihydrogen monoxide"), xref = list(pubchem = "962", KEGG = "C00001") ) mol <- list(id = "molecule_123")  # Pretend this is from biocad_registry __push_compound_metadata(registry, compound, mol) }</code></pre>
+        <pre><code id="example_r">#\dontrun{
+
+# Assume `registry` is a pre-configured biocad_registry
+compound <- list(
+ID = "C00001",
+formula = "H2O",
+exact_mass = 18.0106,
+name = "Water",
+IUPACName = "Oxidane",
+synonym = c("H2O", "Dihydrogen monoxide"),
+xref = list(pubchem = "962", KEGG = "C00001")
+)
+mol <- list(id = "molecule_123")  # Pretend this is from biocad_registry
+__push_compound_metadata(registry, compound, mol)
+
+#}</code></pre>
 
         <hr />
         <div style="text-align: center;">[Package <em>biocad_registry</em> version 1.0.148 <a

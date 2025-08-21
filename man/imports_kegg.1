@@ -3,24 +3,52 @@
 imports_kegg \- imports_kegg(biocad.registry, kegg)
 .SH SYNOPSIS
 \fIimports_kegg(biocad.registry, kegg)\fR
+.SH DESCRIPTION
+.PP
+This function imports chemical compound data from KEGG database into a biocad
+registry system, handling metabolite registration, cross-reference management,
+and compound metadata integration.
+.PP
 .SH OPTIONS
 .PP
 \fBbiocad.registry\fB \fR\- . 
 .PP
 .PP
-\fBkegg\fB \fR\- . KEGG compound data input. Can be either: - KEGG Compound object collection - List of parsed KEGG entries - Pipeline enumerator for stream processing
+\fBkegg\fB \fR\- . KEGG compound data input. Can be either:
+- KEGG Compound object collection
+- List of parsed KEGG entries
+- Pipeline enumerator for stream processing
 .PP
 .SH VALUE
 .PP
-Invisibly returns NULL. Mainly used for populating the biocad registry with metabolite data and associated cross-references.
+Invisibly returns NULL. Mainly used for populating the biocad registry
+with metabolite data and associated cross-references.
 .PP
 .SH DETAILS
 .PP
-The function performs these key operations: 1. Initializes database terminology for metabolite entities 2. Processes KEGG compound entries with progress tracking 3. For each compound: - Extracts database cross-references (ChEBI, PubChem, CAS) - Builds standardized compound metadata structure - Checks for existing registry entries - Updates database with new compounds and related information 4. Maintains cross-database consistency through: - KEGG-to-external database identifier mapping - Synonym management - Structural data preservation
+The function performs these key operations:
+1. Initializes database terminology for metabolite entities
+2. Processes KEGG compound entries with progress tracking
+3. For each compound:
+- Extracts database cross-references (ChEBI, PubChem, CAS)
+- Builds standardized compound metadata structure
+- Checks for existing registry entries
+- Updates database with new compounds and related information
+4. Maintains cross-database consistency through:
+- KEGG-to-external database identifier mapping
+- Synonym management
+- Structural data preservation
 .PP
 .SH EXAMPLES
 .PP
-\dontrun{ # Import from KEGG API response imports_kegg(biocad_registry, kegg_compounds) # Import from parsed file imports_kegg(biocad_registry, read_kegg("compound.xml")) }
+#\dontrun{
+
+# Import from KEGG API response
+imports_kegg(biocad_registry, kegg_compounds)
+# Import from parsed file
+imports_kegg(biocad_registry, read_kegg("compound.xml"))
+
+#}
 .PP
 .SH FILES
 .PP

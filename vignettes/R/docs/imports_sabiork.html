@@ -22,7 +22,9 @@
 
         <h3>Description</h3>
 
-        
+        <p>This function imports enzyme kinetic data from SABIO-RK SBML files into a biocad
+registry database, handling model parsing, parameter extraction, and database
+relationship mapping.</p>
 
         <h3>Usage</h3>
 
@@ -39,14 +41,33 @@
 
 
 <dt>repo</dt>
-<dd><p><p>Input specification for kinetic data. Can be either: - Character vector of SBML file paths - Pipeline enumerator for stream processing</p></p></dd>
+<dd><p><p>Input specification for kinetic data. Can be either:
+<ul>
+<li>Character vector of SBML file paths</li>
+<li>Pipeline enumerator for stream processing</li>
+</ul></p></p></dd>
 
         </table>
 
 
         <h3 style="display: block;">Details</h3>
 
-        <p>The function performs these key operations: 1. Processes SBML files from SABIO-RK database 2. For each biochemical reaction: - Extracts kinetic parameters and enzyme information - Links reactions to existing substrate references via database cross-references - Stores complete kinetic models with environmental conditions (pH, temperature) - Maintains traceability through SABIO-RK identifiers 3. Handles duplicate prevention using native database checks</p>
+        <p>The function performs these key operations:
+<ol>
+<li>Processes SBML files from SABIO-RK database</li>
+<li>For each biochemical reaction:</li>
+</ol></p>
+
+<ul>
+<li>Extracts kinetic parameters and enzyme information</li>
+<li>Links reactions to existing substrate references via database cross-references</li>
+<li>Stores complete kinetic models with environmental conditions (pH, temperature)</li>
+<li>Maintains traceability through SABIO-RK identifiers</li>
+</ul>
+
+<ol>
+<li>Handles duplicate prevention using native database checks</li>
+</ol>
 
         <h3 style="display: block">Authors</h3>
 
@@ -54,11 +75,19 @@
 
         <h3>Value</h3>
 
-        <p>Invisibly returns NULL. Mainly used for populating the biocad registry database with kinetic data.</p>
+        <p>Invisibly returns NULL. Mainly used for populating the biocad registry
+database with kinetic data.</p>
 
         <h3 style="display: block;">Examples</h3>
 
-        <pre><code id="example_r">\dontrun{ # Import single SBML file imports_sabiork(biocad_registry, "path/to/kinetics.xml") # Batch import multiple files imports_sabiork(biocad_registry, c("file1.xml", "file2.xml")) }</code></pre>
+        <pre><code id="example_r">#\dontrun{
+
+# Import single SBML file
+imports_sabiork(biocad_registry, "path/to/kinetics.xml")
+# Batch import multiple files
+imports_sabiork(biocad_registry, c("file1.xml", "file2.xml"))
+
+#}</code></pre>
 
         <hr />
         <div style="text-align: center;">[Package <em>biocad_registry</em> version 1.0.148 <a

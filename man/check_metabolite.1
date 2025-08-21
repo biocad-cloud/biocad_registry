@@ -3,24 +3,57 @@
 check_metabolite \- check_metabolite(biocad.registry, compound)
 .SH SYNOPSIS
 \fIcheck_metabolite(biocad.registry, compound)\fR
+.SH DESCRIPTION
+.PP
+Searches for a metabolite in the BioCAD registry database by cross-references
+(xrefs) and exact mass. If no direct xref matches are found, falls back to
+checking common names and synonyms. Returns database ID if found.
+.PP
 .SH OPTIONS
 .PP
 \fBbiocad.registry\fB \fR\- . 
 .PP
 .PP
-\fBcompound\fB \fR\- . A list containing metabolite information with the following elements: \itemize{ \item{xref - List of cross-references (database identifiers)} \item{formula - Chemical formula string} \item{name - Common name of the compound} \item{synonym - Vector of alternative names/synonyms} }
+\fBcompound\fB \fR\- . A list containing metabolite information with the following
+elements:
+\itemize{
+\item{xref - List of cross-references (database identifiers)}
+\item{formula - Chemical formula string}
+\item{name - Common name of the compound}
+\item{synonym - Vector of alternative names/synonyms}
+}
 .PP
 .SH VALUE
 .PP
-An integer representing the unique database ID of the matched compound. Returns \code{NULL} if no matching metabolite is found in the database.
+An integer representing the unique database ID of the matched
+compound. Returns \code{NULL} if no matching metabolite is found
+in the database.
 .PP
 .SH DETAILS
 .PP
-The function performs the following steps: \enumerate{ \item Extracts and validates chemical formula (calculates exact mass) \item Queries database using cross-reference identifiers (xrefs) \item Performs mass tolerance search (±1 Da) \item If xref search fails, calls \code{check_metabolite_synonym} to check by name and synonyms }
+The function performs the following steps:
+\enumerate{
+\item Extracts and validates chemical formula (calculates exact mass)
+\item Queries database using cross-reference identifiers (xrefs)
+\item Performs mass tolerance search (±1 Da)
+\item If xref search fails, calls \code{check_metabolite_synonym} to check
+by name and synonyms
+}
 .PP
 .SH EXAMPLES
 .PP
-\dontrun{ # Assume biocad_registry is an established database connection compound <- list( name = "glucose", formula = "C6H12O6", xref = list(KEGG = "C00031", CHEBI = "CHEBI:4167"), synonym = c("dextrose", "blood sugar") ) check_metabolite(biocad_registry, compound) }
+#\dontrun{
+
+# Assume biocad_registry is an established database connection
+compound <- list(
+name = "glucose",
+formula = "C6H12O6",
+xref = list(KEGG = "C00031", CHEBI = "CHEBI:4167"),
+synonym = c("dextrose", "blood sugar")
+)
+check_metabolite(biocad_registry, compound)
+
+#}
 .PP
 .SH FILES
 .PP

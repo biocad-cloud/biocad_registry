@@ -5,6 +5,11 @@ get_genbank \- get_genbank(asm.id,
 .SH SYNOPSIS
 \fIget_genbank(asm.id,
     <i>repo.dir</i> = <span style='color: brown;'><strong>'./'</strong></span>)\fR
+.SH DESCRIPTION
+.PP
+This helper function constructs the NCBI FTP path for a given assembly ID, retrieves
+the corresponding GenBank genomic file (*.gbff.gz), and downloads it to a local directory.
+.PP
 .SH OPTIONS
 .PP
 \fBasm.id\fB \fR\- . 
@@ -14,15 +19,29 @@ get_genbank \- get_genbank(asm.id,
 .PP
 .SH VALUE
 .PP
-Invisibly returns the full path to the downloaded file. Primarily called for its side effect of downloading the GenBank file to the specified directory.
+Invisibly returns the full path to the downloaded file. Primarily called for
+its side effect of downloading the GenBank file to the specified directory.
 .PP
 .SH DETAILS
 .PP
-The function: \enumerate{ \item Parses the assembly ID into prefix and numeric components \item Constructs the NCBI FTP directory path using the ID structure \item Retrieves the compressed GenBank file (*_genomic.gbff.gz) \item Downloads the file to the specified local directory }
+The function:
+\enumerate{
+\item Parses the assembly ID into prefix and numeric components
+\item Constructs the NCBI FTP directory path using the ID structure
+\item Retrieves the compressed GenBank file (*_genomic.gbff.gz)
+\item Downloads the file to the specified local directory
+}
 .PP
 .SH EXAMPLES
 .PP
-\dontrun{ # Download assembly GCF_123456789 to the current directory get_genbank("GCF_123456789") # Save to a custom directory get_genbank("GCA_987654321", repo_dir = "path/to/genbank_files") }
+#\dontrun{
+
+# Download assembly GCF_123456789 to the current directory
+get_genbank("GCF_123456789")
+# Save to a custom directory
+get_genbank("GCA_987654321", repo_dir = "path/to/genbank_files")
+
+#}
 .PP
 .SH FILES
 .PP

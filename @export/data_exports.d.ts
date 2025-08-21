@@ -15,9 +15,11 @@ declare namespace data_exports {
    */
    function export_fingerprints(registry: object): any;
    /**
+     * @param file default value Is ``null``.
      * @param page_size default value Is ``10000``.
+     * @param env default value Is ``null``.
    */
-   function export_metabolites(registry: object, page_size?: object): any;
+   function export_metabolites(registry: object, file?: any, page_size?: object, env?: object): any;
    /**
    */
    function export_topic_structdata(registry: object, tag_name: string): object;
