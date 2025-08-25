@@ -23,6 +23,7 @@ Partial Class FormBuzyLoader
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.ProgressBar1 = New System.Windows.Forms.ProgressBar()
         Me.SuspendLayout()
         '
         'TextBox1
@@ -34,16 +35,26 @@ Partial Class FormBuzyLoader
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.ReadOnly = True
         Me.TextBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.TextBox1.Size = New System.Drawing.Size(438, 115)
+        Me.TextBox1.Size = New System.Drawing.Size(438, 120)
         Me.TextBox1.TabIndex = 0
+        '
+        'ProgressBar1
+        '
+        Me.ProgressBar1.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.ProgressBar1.Location = New System.Drawing.Point(0, 120)
+        Me.ProgressBar1.Name = "ProgressBar1"
+        Me.ProgressBar1.Size = New System.Drawing.Size(438, 57)
+        Me.ProgressBar1.Style = System.Windows.Forms.ProgressBarStyle.Marquee
+        Me.ProgressBar1.TabIndex = 1
         '
         'FormBuzyLoader
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(438, 115)
+        Me.ClientSize = New System.Drawing.Size(438, 177)
         Me.ControlBox = False
         Me.Controls.Add(Me.TextBox1)
+        Me.Controls.Add(Me.ProgressBar1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
         Me.Name = "FormBuzyLoader"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
@@ -54,4 +65,5 @@ Partial Class FormBuzyLoader
     End Sub
 
     Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents ProgressBar1 As ProgressBar
 End Class
