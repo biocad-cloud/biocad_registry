@@ -55,8 +55,13 @@ Namespace My
             }
 
             Try
-                _biocad_registry = New biocad_registry(mysqli)
-                _settings = config
+                Call FormBuzyLoader.Loading(
+                    Sub(println)
+                        Call println("Checking registry database connection...")
+
+                        _biocad_registry = New biocad_registry(mysqli)
+                        _settings = config
+                    End Sub)
             Catch ex As Exception
                 If MessageBox.Show("Invalid Mysql Connection information, please re-config your parameters!",
                                    "Invalid Mysql Connection",
