@@ -32,8 +32,8 @@ Public Class FormMain
     End Sub
 
     Private Sub FormMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        If MyApplication.Load Then
-
+        If Not MyApplication.Load Then
+            Call MessageBox.Show("Application initialization error!", "Application Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End If
 
         Call MyApplication.SetHost(Me)
