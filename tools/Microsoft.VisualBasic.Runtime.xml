@@ -12541,6 +12541,86 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="capacity">The initial number of elements that the System.Collections.Generic.Queue`1 can
  contain.</param>
 </member>
+<member name="T:Microsoft.VisualBasic.ComponentModel.Collection.CircularBuffer`1">
+ <summary>
+ Represents a fixed-capacity circular buffer (or ring list).
+ When the buffer is full, adding a new element overwrites the oldest element.
+ </summary>
+ <typeparam name="T">The type of elements in the buffer.</typeparam>
+</member>
+<member name="F:Microsoft.VisualBasic.ComponentModel.Collection.CircularBuffer`1._ends">
+ <summary>
+ Points to the next position to write (tail)
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.ComponentModel.Collection.CircularBuffer`1.Count">
+ <summary>
+ Gets the number of elements currently stored in the buffer.
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.ComponentModel.Collection.CircularBuffer`1.Capacity">
+ <summary>
+ Gets the total capacity of the buffer.
+ </summary>
+ <remarks>
+ if this property value is equals to the <see cref="P:Microsoft.VisualBasic.ComponentModel.Collection.CircularBuffer`1.Count"/> then it
+ means current array buffer is full of data
+ </remarks>
+</member>
+<member name="P:Microsoft.VisualBasic.ComponentModel.Collection.CircularBuffer`1.Item(System.Int32)">
+ <summary>
+ Gets or sets the element at the specified logical index.
+ Index 0 is the oldest element, index Count-1 is the newest.
+ </summary>
+ <param name="index">The logical index of the element.</param>
+ <exception cref="T:System.IndexOutOfRangeException">Thrown when the index is out of range.</exception>
+</member>
+<member name="P:Microsoft.VisualBasic.ComponentModel.Collection.CircularBuffer`1.First">
+ <summary>
+ Gets the first (oldest) element in the buffer.
+ </summary>
+ <exception cref="T:System.InvalidOperationException">Thrown when the buffer is empty.</exception>
+</member>
+<member name="P:Microsoft.VisualBasic.ComponentModel.Collection.CircularBuffer`1.Last">
+ <summary>
+ Gets the last (newest) element in the buffer.
+ </summary>
+ <exception cref="T:System.InvalidOperationException">Thrown when the buffer is empty.</exception>
+</member>
+<member name="P:Microsoft.VisualBasic.ComponentModel.Collection.CircularBuffer`1.HeadIndex">
+ <summary>
+ Calculates and gets the index of the first element (head) in the internal array.
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.ComponentModel.Collection.CircularBuffer`1.#ctor(System.Int32)">
+ <summary>
+ Initializes a new instance of the CircularBuffer class.
+ </summary>
+ <param name="capacity">The buffer capacity. Must be a positive number.</param>
+ <exception cref="T:System.ArgumentException">Thrown when capacity is ≤ 0.</exception>
+</member>
+<member name="M:Microsoft.VisualBasic.ComponentModel.Collection.CircularBuffer`1.Add(`0)">
+ <summary>
+ Adds a new element to the tail of the buffer.
+ If the buffer is full, this operation overwrites the oldest element.
+ </summary>
+ <param name="item">The element to add.</param>
+</member>
+<member name="M:Microsoft.VisualBasic.ComponentModel.Collection.CircularBuffer`1.Clear">
+ <summary>
+ Clears all elements in the buffer.
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.ComponentModel.Collection.CircularBuffer`1.GetEnumerator">
+ <summary>
+ Returns an enumerator that iterates through the collection.
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.ComponentModel.Collection.CircularBuffer`1.IEnumerable_GetEnumerator">
+ <summary>
+ Returns an enumerator that iterates through the collection.
+ </summary>
+</member>
 <member name="T:Microsoft.VisualBasic.ComponentModel.Collection.Deque.Data`1">
  <summary>
  contains actuall data od deque, Deque(Of T) provides abstraction above this data
@@ -14364,6 +14444,18 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <returns>A new <see cref="T:Microsoft.VisualBasic.ComponentModel.DataStructures.Set">Set</see> object that contains the members
  that were common to both of the input sets.</returns>
  
+</member>
+<member name="M:Microsoft.VisualBasic.ComponentModel.DataStructures.SetAPI.VennExclusiveSet(System.Collections.Generic.Dictionary{System.String,System.String[]},System.String[]@)">
+ <summary>
+ 
+ </summary>
+ <param name="groups"></param>
+ <param name="commonIds">
+ common ids in all groups, if you do not need this parameter, you can set it to <c>Nothing</c>.
+ </param>
+ <returns>
+ exclusive ids in each groups
+ </returns>
 </member>
 <member name="M:Microsoft.VisualBasic.ComponentModel.DataStructures.SetsExtension.ToArray``1(Microsoft.VisualBasic.ComponentModel.DataStructures.Set)">
  <summary>
@@ -24051,7 +24143,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="encoding"></param>
  <returns></returns>
 </member>
-<member name="M:Microsoft.VisualBasic.TextDoc.IterateAllLines(System.String,Microsoft.VisualBasic.Text.Encodings,System.Boolean,System.Boolean)">
+<member name="M:Microsoft.VisualBasic.TextDoc.IterateAllLines(System.String,Microsoft.VisualBasic.Text.Encodings,System.Boolean,System.Boolean,System.Boolean)">
  <summary>
  Reading a super large size text file through stream method.
  </summary>
@@ -24061,11 +24153,14 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  (通过具有缓存的流对象读取文本数据，使用迭代器来读取文件之中的所有的行，大文件推荐使用这个方法进行读取操作)
  </remarks>
 </member>
-<member name="M:Microsoft.VisualBasic.TextDoc.IterateAllLines(System.String,System.Text.Encoding,System.Boolean,System.Boolean)">
+<member name="M:Microsoft.VisualBasic.TextDoc.IterateAllLines(System.String,System.Text.Encoding,System.Boolean,System.Boolean,System.Boolean)">
  <summary>
  Reading a super large size text file through stream method.
  </summary>
  <param name="path"></param>
+ <param name="tqdm_wrap">
+ show tqdm progress bar for the file reading process when deal with a large file?
+ </param>
  <returns>不存在的文件会返回空集合</returns>
  <remarks>
  (通过具有缓存的流对象读取文本数据，使用迭代器来读取文件之中的所有的行，大文件推荐使用这个方法进行读取操作)
@@ -27685,6 +27780,18 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  将一维的数据按照一定的偏移量分组输出
  </summary>
  <param name="source"></param>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.Math.Statistics.IStatPvalue">
+ <summary>
+ a general abstract object model for statistics result which 
+ contains p value information
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.Math.Statistics.IStatPvalue.pValue">
+ <summary>
+ p value of current sample statistics result
+ </summary>
  <returns></returns>
 </member>
 <member name="T:Microsoft.VisualBasic.Math.Statistics.Linq.CPOLLicense">

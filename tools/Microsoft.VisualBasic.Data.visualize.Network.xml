@@ -173,6 +173,22 @@ Microsoft.VisualBasic.Data.visualize.Network
  source to me
  </summary>
 </member>
+<member name="P:Microsoft.VisualBasic.Data.visualize.Network.Analysis.Model.DirectedVertex.connectivity">
+ <summary>
+ summ all connected edge weights as weighted degree connectivity
+ </summary>
+ <returns></returns>
+ <remarks>
+ the edge weight data should be not missing!
+ </remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Analysis.Model.DirectedVertex.#ctor(System.String)">
+ <summary>
+ create a new node edge connection collection object
+ </summary>
+ <param name="label">the node unique id</param>
+ <exception cref="T:System.ArgumentNullException"></exception>
+</member>
 <member name="M:Microsoft.VisualBasic.Data.visualize.Network.Analysis.Model.DirectedVertex.addOutgoingEdge(Microsoft.VisualBasic.Data.visualize.Network.Graph.Edge)">
  <summary>
  unsafe add outgoing edge

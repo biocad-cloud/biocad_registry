@@ -1660,12 +1660,12 @@ Microsoft.VisualBasic.Data.Framework
 </member>
 <member name="M:Microsoft.VisualBasic.Data.Framework.IO.File.Load(System.String,System.Text.Encoding,System.Boolean,Microsoft.VisualBasic.ComponentModel.DataSourceModel.NamedValue{System.Func{System.String,System.Boolean}},System.Boolean,System.Boolean,System.Boolean)">
  <summary>
- Load the csv data document from a given path.(从指定的文件路径之中加载一个CSV格式的数据文件)
+ Load the csv data document from a given path.
  </summary>
  <param name="Path"></param>
  <param name="encoding"></param>
  <returns></returns>
- <remarks></remarks>
+ <remarks>(从指定的文件路径之中加载一个CSV格式的数据文件)</remarks>
 </member>
 <member name="M:Microsoft.VisualBasic.Data.Framework.IO.File.loads(System.String,System.Text.Encoding,System.Boolean,System.Boolean,Microsoft.VisualBasic.ComponentModel.DataSourceModel.NamedValue{System.Func{System.String,System.Boolean}},System.Boolean,System.Boolean)">
  <summary>
