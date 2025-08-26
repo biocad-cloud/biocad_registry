@@ -6148,6 +6148,11 @@ Microsoft.VisualBasic.Math.Core
  Index reference, mutable
  </summary>		
 </member>
+<member name="T:Microsoft.VisualBasic.Math.Framework.Optimization.LBFGSB.Debugger">
+ <summary>
+ internal logger wrapper for echo debug message
+ </summary>
+</member>
 <member name="M:Microsoft.VisualBasic.Math.Framework.Optimization.LBFGSB.IGradFunction.gradient(System.Double[]@,System.Double[]@,System.Double)">
  <summary>
  finite difference, symmetrical gradient, stores result in grad[]
@@ -6659,7 +6664,7 @@ Microsoft.VisualBasic.Math.Core
      Dim actual As Long = Shuffle.actually(q)
      Dim out As String = String.Format("Estimated {0:F2} quantile as {1:D} (actually {2:D})", q, estimate, actual)
 
-     Call out.__DEBUG_ECHO
+     Call out.debug
  Next
  ```
  </summary>

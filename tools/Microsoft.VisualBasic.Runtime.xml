@@ -958,7 +958,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  The distance of time that this application running from start and to current time.
  (当前距离应用程序启动所逝去的时间)
  </summary>
- <returns></returns>
+ <returns>ms timespan</returns>
  <remarks>
  通过<see cref="P:Microsoft.VisualBasic.App.UnixTimeStamp"/>以及<see cref="P:Microsoft.VisualBasic.App.StartTime"/>得到的时间都是带小数的秒数
  所以在这里计算出当前时间点与启动时间点之间的差值之后，还需要乘以1000才可以得到毫秒数
@@ -5742,13 +5742,6 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  </param>
  <returns>Returns the total executation time of the target <paramref name="work"/>. ms</returns>
 </member>
-<member name="M:Microsoft.VisualBasic.ApplicationServices.Utils.FormatTicks(System.Int64)">
- <summary>
- Format ``ms`` for content print.
- </summary>
- <param name="ms"></param>
- <returns></returns>
-</member>
 <member name="M:Microsoft.VisualBasic.ApplicationServices.Utils.Wait(System.Func{System.Boolean})">
  <summary>
  假若条件判断<paramref name="handle"/>不为真的话，函数会一直阻塞线程，直到条件判断<paramref name="handle"/>为真
@@ -6242,7 +6235,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  </summary>
  <returns></returns>
 </member>
-<member name="M:Microsoft.VisualBasic.VBDebugger.BENCHMARK(System.Action,System.String)">
+<member name="M:Microsoft.VisualBasic.VBDebugger.benchmark(System.Action,System.String)">
  <summary>
  Test how long this <paramref name="test"/> will takes.
  </summary>
@@ -6250,20 +6243,12 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="trace$"></param>
  <returns></returns>
 </member>
-<member name="M:Microsoft.VisualBasic.VBDebugger.__DEBUG_ECHO(System.String,System.Int32,System.Boolean,System.Boolean)">
+<member name="M:Microsoft.VisualBasic.VBDebugger.warning(System.String,System.Boolean)">
  <summary>
- Output the full debug information while the project is debugging in debug mode.
- (向标准终端和调试终端输出一些带有时间戳的调试信息)
+ Display the wraning level(YELLOW color) message on the console.
  </summary>
- <param name="msg">
- The message fro output to the debugger console, this function will add a time 
- stamp automaticly To the leading position Of the message.
- </param>
- <param name="indent"></param>
- <param name="waitOutput">
- 等待调试器输出工作线程将内部的消息队列输出完毕
- </param>
- <returns>其实这个函数是不会返回任何东西的，只是因为为了Linq调试输出的需要，所以在这里是返回Nothing的</returns>
+ <param name="msg"></param>
+ <param name="mute"></param>
 </member>
 <member name="M:Microsoft.VisualBasic.VBDebugger.AttachLoggingDriver(Microsoft.VisualBasic.VBDebugger.LoggingDriver)">
  <summary>
@@ -6273,7 +6258,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
 </member>
 <member name="M:Microsoft.VisualBasic.VBDebugger.PrintException``1(``0,System.String,System.Boolean)">
  <summary>
- The function will print the exception details information on the standard <see cref="T:System.Console"/>, <see cref="T:System.Diagnostics.Debug"/> console, and system <see cref="T:System.Diagnostics.Trace"/> console.
+ The function will print the exception details information on the standard <see cref="T:System.Console"/>, <see cref="M:Microsoft.VisualBasic.VBDebugger.debug(System.String,System.Boolean)"/> console, and system <see cref="T:System.Diagnostics.Trace"/> console.
  (分别在标准终端，调试终端，系统调试终端之中打印出错误信息，请注意，函数会直接返回False可以用于指定调用者函数的执行状态，这个函数仅仅是在终端上面打印出错误，不会保存为日志文件)
  </summary>
  <typeparam name="ex"></typeparam>
@@ -6323,14 +6308,6 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  works based on <see cref="F:Microsoft.VisualBasic.My.Log4VB.redirectInfo"/>
  </remarks>
 </member>
-<member name="M:Microsoft.VisualBasic.VBDebugger.Warning(System.String,System.String)">
- <summary>
- Display the wraning level(YELLOW color) message on the console.
- </summary>
- <param name="msg"></param>
- <param name="calls"></param>
- <returns></returns>
-</member>
 <member name="M:Microsoft.VisualBasic.VBDebugger.Assertion(System.Boolean,System.String,Microsoft.VisualBasic.ApplicationServices.Debugging.Logging.MSG_TYPES,System.String)">
  <summary>
  If <paramref name="test"/> boolean value is False, then the assertion test failure. If the test is failure the specific message will be output on the console.
@@ -6356,12 +6333,12 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="test"></param>
  <param name="msg"></param>
 </member>
-<member name="M:Microsoft.VisualBasic.VBDebugger.__DEBUG_ECHO(System.Text.StringBuilder,System.Int32)">
+<member name="M:Microsoft.VisualBasic.VBDebugger.debug(System.Text.StringBuilder,System.Int32)">
  <summary>
  Output the full debug information while the project is debugging in debug mode.
  (向标准终端和调试终端输出一些带有时间戳的调试信息)
  </summary>
- <param name="MSG">The message fro output to the debugger console, this function will add a time stamp automaticly To the leading position Of the message.</param>
+ <param name="msg">The message fro output to the debugger console, this function will add a time stamp automaticly To the leading position Of the message.</param>
  <param name="Indent"></param>
 </member>
 <member name="M:Microsoft.VisualBasic.VBDebugger.EchoLine(System.String)">
@@ -6373,7 +6350,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  works based on <see cref="F:Microsoft.VisualBasic.My.Log4VB.redirectInfo"/>
  </remarks>
 </member>
-<member name="M:Microsoft.VisualBasic.VBDebugger.Echo(System.Char)">
+<member name="M:Microsoft.VisualBasic.VBDebugger.echo(System.Char)">
  <summary>
  Alias for <see cref="M:System.Console.Write(System.Boolean)"/>
  </summary>
