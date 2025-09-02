@@ -3495,61 +3495,6 @@ Microsoft.VisualBasic.Math.Core
  <param name="v"></param>
  <returns></returns>
 </member>
-<member name="T:Microsoft.VisualBasic.Math.BasicR.Helpers.MatrixMathArithmetic">
- <summary>
- The basics arithmetic operators' definition of matrix object in mathematics.
- (数学意义上的基本的四则运算符号的定义)  
- </summary>
- <remarks></remarks>
-</member>
-<member name="F:Microsoft.VisualBasic.Math.BasicR.Helpers.MatrixMathArithmetic.Arithmetic">
- <summary>
- +-*/\%^!
- </summary>
- <remarks></remarks>
-</member>
-<member name="F:Microsoft.VisualBasic.Math.BasicR.Helpers.MatrixMathArithmetic.OPERATORS">
- <summary>
- A string constant that enumerate all of the arithmetic operators.
- (一个枚举所有的基本运算符的字符串常数) 
- </summary>
- <remarks></remarks>
-</member>
-<member name="F:Microsoft.VisualBasic.Math.BasicR.Helpers.MatrixMathArithmetic.DOUBLE_NUMBER_REGX">
- <summary>
- A string constant RegularExpressions that stands a double type number.
- (一个用于表示一个双精度类型的实数的正则表达式)
- </summary>
- <remarks></remarks>
-</member>
-<member name="M:Microsoft.VisualBasic.Math.BasicR.Helpers.MatrixMathArithmetic.Evaluate(System.Double,System.Double,System.Char)">
- <summary>
- Do a basically arithmetic calculation.
- (进行一次简单的四则运算) 
- </summary>
- <param name="a"></param>
- <param name="b"></param>
- <param name="o">Arithmetic operator(运算符)</param>
- <returns></returns>
- <remarks></remarks>
-</member>
-<member name="M:Microsoft.VisualBasic.Math.BasicR.Helpers.MatrixMathArithmetic.Factorial(System.Double,System.Double)">
- <summary>
- Calculate the factorial value of a number, as this function is the part of the arithmetic operation 
- delegate type of 'System.Func(Of Double, Double, Double)', so it must keep the form of two double 
- parameter, well, the parameter 'b As Double' is useless.
- (计算某一个数的阶乘值，由于这个函数是四则运算操作委托'System.Func(Of Double, Double, Double)'中的一部分，
- 故而本函数保持着两个双精度浮点型数的函数参数的输入形式，也就是说本函数的第二个参数'b'是没有任何用途的)  
- </summary>
- <param name="a">The number that will be calculated(将要被计算的数字)</param>
- <param name="b">Useless parameter 'b'(无用的参数'b')</param>
- <returns>
- Return the factorial value of the number 'a', if 'a' is a negative number then this function 
- return value 1.
- (函数返回参数'a'的阶乘计算值，假若'a'是一个负数的话，则会返回1)
- </returns>
- <remarks></remarks>
-</member>
 <member name="M:Microsoft.VisualBasic.Math.Distributions.Abundance.RelativeAbundances``1(System.Collections.Generic.IEnumerable{``0})">
  <summary>
  x除以最大的值就是相对丰度
@@ -6198,6 +6143,16 @@ Microsoft.VisualBasic.Math.Core
  https://github.com/genmeblog/LBFGSBJava
  </remarks>
 </member>
+<member name="M:Microsoft.VisualBasic.Math.Framework.Optimization.LBFGSB.LBFGSB.minimize(Microsoft.VisualBasic.Math.Framework.Optimization.LBFGSB.IGradFunction,System.Double[],System.Double[],System.Double[])">
+ <summary>
+ 
+ </summary>
+ <param name="f">function</param>
+ <param name="[in]">initial and final value</param>
+ <param name="lb">lower bounds</param>
+ <param name="ub">upper bounds</param>
+ <returns></returns>
+</member>
 <member name="F:Microsoft.VisualBasic.Math.Framework.Optimization.LBFGSB.LineSearches.LewisOverton.PhiDPhi.drt">
  <summary>
  search direction (cauchy point - x)
@@ -6226,6 +6181,11 @@ Microsoft.VisualBasic.Math.Core
 <member name="T:Microsoft.VisualBasic.Math.Framework.Optimization.LBFGSB.LineSearches.LineSearch">
  <summary>
  Line search methods for optimization and root-finding
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Math.Framework.Optimization.LBFGSB.Parameters.xtol">
+ <summary>
+ More Thuente
  </summary>
 </member>
 <member name="T:Microsoft.VisualBasic.Math.Scripting.Rscript.GenericVector`1">

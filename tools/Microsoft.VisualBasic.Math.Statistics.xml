@@ -1139,6 +1139,271 @@ Microsoft.VisualBasic.Math.Statistics
  probability of choosing an inlier from the set of data
  </param>
 </member>
+<member name="T:Microsoft.VisualBasic.Math.Statistics.ShapleyValue.CharacteristicFunction">
+ <summary>
+ represent the following function often written by v
+ 2^N to R
+ for each subset of the set {1.. N} is associated a value
+ per convention v(empty set) = 0
+ 
+ @author Franck Benault
+ 
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.Math.Statistics.ShapleyValue.CoalitionStrategy">
+ 
+ <summary>
+ @author Franck Benault
+ 
+ @version	0.0.2
+ @since 0.0.2
+ 
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.Math.Statistics.ShapleyValue.ShapleyApplication">
+ <summary>
+ facade of Shapley application
+ 
+ @author Franck Benault
+ 
+ @version	0.0.2
+ @since 0.0.2
+ 
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Math.Statistics.ShapleyValue.ShapleyApplication.calculate">
+ <summary>
+ full calculation of the Shapley value
+ </summary>
+ <returns> partial result of the Shapley value </returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Math.Statistics.ShapleyValue.ShapleyApplication.calculate(System.Int64)">
+ <summary>
+ complete the calculation of the Shapley value 
+ with the next set of coalitions choosen sequentially 
+ </summary>
+ <param name="nbCoalitions"> number of coalition taken in account for this calculation
+ </param>
+ <returns> partial result of the Shapley value
+ </returns>
+ <exception cref="T:System.Exception"> when different strategy are mixed
+  </exception>
+</member>
+<member name="M:Microsoft.VisualBasic.Math.Statistics.ShapleyValue.ShapleyApplication.calculate(System.Int64,Microsoft.VisualBasic.Math.Statistics.ShapleyValue.CoalitionStrategy)">
+ <summary>
+ complete the calculation of the Shapley value 
+ with the next set of coalitions which may be choosen randomly
+ </summary>
+ <param name="nbCoalitions"> number of coalition taken in account for this calculation </param>
+ <param name="strategy"> way to choose the next coalitions (sequential or random)  
+ </param>
+ <returns> partial result of the Shapley value
+ </returns>
+ <exception cref="T:System.Exception"> when different strategy are mixed
+  </exception>
+</member>
+<member name="P:Microsoft.VisualBasic.Math.Statistics.ShapleyValue.ShapleyApplication.LastCoalitionReached">
+ <summary>
+ check in the case of sequential strategy if the last coalition possible is reached
+ 
+ @return </summary>
+ <exception cref="T:System.Exception"> in the cas of non sequential strategy </exception>
+</member>
+<member name="T:Microsoft.VisualBasic.Math.Statistics.ShapleyValue.TreeShape.PathElement">
+ <summary>
+ Path element for use in <seealso cref="T:Microsoft.VisualBasic.Math.Statistics.ShapleyValue.TreeShape.ShapAlgo2"/>
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Math.Statistics.ShapleyValue.TreeShape.PathElement.featureIndex">
+ <summary>
+ (m.d)
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Math.Statistics.ShapleyValue.TreeShape.PathElement.zeroFraction">
+ <summary>
+ (m.z)
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Math.Statistics.ShapleyValue.TreeShape.PathElement.oneFraction">
+ <summary>
+ (m.o)
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Math.Statistics.ShapleyValue.TreeShape.PathElement.weight">
+ <summary>
+ (m.w)
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Math.Statistics.ShapleyValue.TreeShape.PkNode.leafValue">
+ <summary>
+ (v) Leaf value. If not leaf, contains NAN.
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Math.Statistics.ShapleyValue.TreeShape.PkNode.splitValue">
+ <summary>
+ (t) Split value (threshold). If not split node, contains NAN.
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Math.Statistics.ShapleyValue.TreeShape.PkNode.yes">
+ <summary>
+ (a) left node
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Math.Statistics.ShapleyValue.TreeShape.PkNode.no">
+ <summary>
+ (b) right node
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Math.Statistics.ShapleyValue.TreeShape.PkNode.splitFeatureIndex">
+ <summary>
+ (d) index of feature used to split
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Math.Statistics.ShapleyValue.TreeShape.PkNode.dataCount">
+ <summary>
+ (r) cover
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Math.Statistics.ShapleyValue.TreeShape.PkTree.printTree(System.IO.TextWriter)">
+ <summary>
+ Prints the decision tree using java "if" tree as its notation, for convenient reading
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Math.Statistics.ShapleyValue.TreeShape.PkTree.printTreeConstructor(System.IO.TextWriter)">
+ <summary>
+ Prints the tree in form of java builder - useful for importing more test trees from other formats
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.Math.Statistics.ShapleyValue.TreeShape.ShapAlgo1">
+ <summary>
+ See https://arxiv.org/pdf/1802.03888.pdf - Chapter 3.1, Algorithm 1.
+ 
+ v - vector of node values; = "internal" for internal nodes
+ a,b - left and right node indexes for each internal node
+ t - thresholds for each internal node
+ d - indexes of the features used for splitting in internal nodes
+ r - cover of each node (ie. how many data samples fall in that sub-tree)
+ w - weight, measures the proportion of the training samples matching the conditioning set S fall into each leaf
+ s - set of non-zero indexes in z', ie. known features
+ z' - for each feature, 0 if unknown, 1 if known
+ x - feature values
+ </summary>
+ <remarks>
+ https://github.com/pkozelka/treeshap
+ </remarks>
+</member>
+<member name="F:Microsoft.VisualBasic.Math.Statistics.ShapleyValue.TreeShape.ShapAlgo1.x">
+ <summary>
+ feature values
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Math.Statistics.ShapleyValue.TreeShape.ShapAlgo1.v">
+ <summary>
+ vector of node values; = "internal" for internal nodes
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Math.Statistics.ShapleyValue.TreeShape.ShapAlgo1.t">
+ <summary>
+ thresholds for each internal node
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Math.Statistics.ShapleyValue.TreeShape.ShapAlgo1.r">
+ <summary>
+ cover of each node (ie. how many data samples fall in that sub-tree)
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Math.Statistics.ShapleyValue.TreeShape.ShapAlgo1.a">
+ <summary>
+ left and right node indexes for each internal node
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Math.Statistics.ShapleyValue.TreeShape.ShapAlgo1.b">
+ <summary>
+ left and right node indexes for each internal node
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Math.Statistics.ShapleyValue.TreeShape.ShapAlgo1.d">
+ <summary>
+ indexes of the features used for splitting in internal nodes
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Math.Statistics.ShapleyValue.TreeShape.ShapAlgo1.expValue">
+ <summary>
+ sincerely, I have no idea what this thing computes; I expected one computed contribution
+ weight per feature, and instead, this computes just one number.
+ Probably needs to be called repeatedly; more study of the paper needed here.
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.Math.Statistics.ShapleyValue.TreeShape.ShapAlgo2">
+ <summary>
+ Rewrite of the Algorithm 2 from [1].
+ 
+ The main goal here is to get "fanatically faithful" transcript of the algo into java.
+ Therefore, performance and memory optimizations are neither done nor planned here.
+ 
+ Deviations from original notation:
+ - java list/arrays are zero-based
+ - tree is represented by recursive structure of nodes, each is either a leaf or a split node with yes, no, and other props
+ - the path (stored in variable "m") has long-named properties to make the thing more readable
+ 
+ Bugfixes:
+ - [bugfix1] in EXTEND, iteration misses newly added element, causing wrong computation - see [2]
+ - [bugfix2] in UNWIND, iteration exceeds into removed element, causing exception
+ 
+ Resources:
+ - [1] Consistent Individualized Feature Attribution for Tree Ensembles - https://arxiv.org/pdf/1802.03888.pdf
+ - [2] From local explanations to global understanding with explainable AI for trees, pages 65,66 - https://www.nature.com/articles/s42256-019-0138-9.epdf?shared_access_token=RCYPTVkiECUmc0CccSMgXtRgN0jAjWel9jnR3ZoTv0O81kV8DqPb2VXSseRmof0Pl8YSOZy4FHz5vMc3xsxcX6uT10EzEoWo7B-nZQAHJJvBYhQJTT1LnJmpsa48nlgUWrMkThFrEIvZstjQ7Xdc5g%3D%3D
+ </summary>
+ <remarks>
+ https://github.com/pkozelka/treeshap
+ </remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.Math.Statistics.ShapleyValue.TreeShape.ShapAlgo2.unwind(System.Collections.Generic.IList{Microsoft.VisualBasic.Math.Statistics.ShapleyValue.TreeShape.PathElement},System.Int32)">
+ <summary>
+ Removes i-th element of the path, and redistributes all weights </summary>
+ <param name="origM"> elements of decision path </param>
+ <param name="i">  zero-based index to be removed </param>
+ <returns> transformed decision path </returns>
+</member>
+<member name="F:Microsoft.VisualBasic.Math.Statistics.ShapleyValue.TreeShape.ShapOptimized.pathArray">
+ <summary>
+ temporary variables, for use inside recursion - minimizing number of passed parameters
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Math.Statistics.ShapleyValue.TreeShape.ShapOptimized.stdcopy(System.Int32,System.Int32,System.Int32)">
+ <summary>
+ Ala C++ std::copy - see http://www.cplusplus.com/reference/algorithm/copy/
+ (Copies the elements in the range [first,last) into the range beginning at result.)
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Math.Statistics.ShapleyValue.TreeShape.ShapOptimized.extendPath(System.Int32,System.Int32,System.Double,System.Double,System.Int32)">
+ <summary>
+ extend our decision path with a fraction of one and zero extensions
+ </summary>
+ <param name="uniquePathPtr"></param>
+ <param name="uniqueDepth"></param>
+ <param name="zeroFraction"></param>
+ <param name="oneFraction"></param>
+ <param name="featureIndex"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.Math.Statistics.ShapleyValue.TreeShape.ShapOptimized.unwindPath(System.Int32,System.Int32,System.Int32)">
+ <summary>
+ undo a previous extension of the decision path
+ </summary>
+ <param name="uniquePathPtr"></param>
+ <param name="uniqueDepth"></param>
+ <param name="pathIndex"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.Math.Statistics.ShapleyValue.TreeShape.ShapOptimized.unwoundPathSum(System.Int32,System.Int32,System.Int32)">
+ <summary>
+ determine what the total permutation weight would be if
+ we unwound a previous extension in the decision path
+ </summary>
+ <param name="uniquePathPtr"></param>
+ <param name="uniqueDepth"></param>
+ <param name="pathIndex"></param>
+ <returns></returns>
+</member>
 <member name="T:Microsoft.VisualBasic.Math.Statistics.SpecialFunctions">
  <summary>
  @author Will_and_Sara

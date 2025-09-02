@@ -463,6 +463,70 @@ Microsoft.VisualBasic.Data.BinaryData
  Handles refer to a resource that has been loaded into memory.
  </summary>
 </member>
+<member name="T:Microsoft.VisualBasic.Data.IO.LZW.LZW">
+ <summary>
+ LZW Based Decompressor - basic algorithm used as described on Mark Nelson's website  http://marknelson.us
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Data.IO.LZW.LZW.MAX_BITS">
+ <summary>
+ maimxum bits allowed to read
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Data.IO.LZW.LZW.HASH_BIT">
+ <summary>
+ hash bit to use with the hasing algorithm to find correct index
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Data.IO.LZW.LZW.MAX_VALUE">
+ <summary>
+ max value allowed based on max bits
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Data.IO.LZW.LZW.MAX_CODE">
+ <summary>
+ max code possible
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Data.IO.LZW.LZW.TABLE_SIZE">
+ <summary>
+ must be bigger than the maximum allowed by maxbits and prime
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Data.IO.LZW.LZW.codeTable">
+ <summary>
+ code table
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Data.IO.LZW.LZW.prefixTable">
+ <summary>
+ prefix table
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Data.IO.LZW.LZW.charTable">
+ <summary>
+ character table
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Data.IO.LZW.LZW.bitBuffer">
+ <summary>
+ bit buffer to temporarily store bytes read from the files
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Data.IO.LZW.LZW.bitCounter">
+ <summary>
+ counter for knowing how many bits are in the bit buffer
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.IO.LZW.Encoder.FindMatch(System.Int32,System.Int32)">
+ <summary>
+ hasing function, tries to find index of prefix+char, 
+ if not found returns -1 to signify space available
+ </summary>
+ <param name="pPrefix"></param>
+ <param name="pChar"></param>
+ <returns></returns>
+</member>
 <member name="T:Microsoft.VisualBasic.Data.IO.BinaryDataReader">
  <summary>
  Represents an extended <see cref="T:System.IO.BinaryReader"/> supporting special file format data types.

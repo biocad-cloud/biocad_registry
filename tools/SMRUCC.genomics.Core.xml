@@ -13374,15 +13374,21 @@ to take away yo [rest of string was truncated]&quot;;.
 </member>
 <member name="P:SMRUCC.genomics.SequenceModel.ISequenceBuilder.Length">
  <summary>
- <see cref="M:SMRUCC.genomics.SequenceModel.ISequenceBuilder.GetSequenceData"/> length.(序列的长度)
+ <see cref="M:SMRUCC.genomics.SequenceModel.ISequenceBuilder.GetSequenceData"/> length.
  </summary>
  <returns></returns>
+ <remarks>
+ (序列的长度)
+ </remarks>
 </member>
 <member name="P:SMRUCC.genomics.SequenceModel.ISequenceBuilder.Name">
  <summary>
- This property is using for generates the fasta sequence title.(用于进行序列标识的标题摘要)
+ This property is using for generates the fasta sequence title.
  </summary>
  <returns></returns>
+ <remarks>
+ (用于进行序列标识的标题摘要)
+ </remarks>
 </member>
 <member name="M:SMRUCC.genomics.SequenceModel.ISequenceBuilder.GetSequenceData">
  <summary>
@@ -13979,7 +13985,7 @@ to take away yo [rest of string was truncated]&quot;;.
 </member>
 <member name="T:SMRUCC.genomics.SequenceModel.FASTA.KSeq">
  <summary>
- 
+ k-mer sequence model
  </summary>
 </member>
 <member name="T:SMRUCC.genomics.SequenceModel.FASTA.StreamIterator">

@@ -1,0 +1,1967 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+Microsoft.VisualBasic.DeepLearning
+</name>
+</assembly>
+<members>
+<member name="T:Microsoft.VisualBasic.MachineLearning.Convolutional.CeNiN">
+ <summary>
+ CeNiN (means "fetus" in Turkish) is a minimal implementation of feed-forward 
+ phase of deep Convolutional Neural Networks
+ </summary>
+ <remarks>
+ https://github.com/atasoyhus/CeNiN
+ </remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.Convolutional.CeNiN.#ctor(System.String)">
+ <summary>
+ read file and construct a CNN model
+ </summary>
+ <param name="path"></param>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.Convolutional.Input">
+ <summary>
+ the layer for image inputs
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.Convolutional.Input.layerFeedNext">
+ <summary>
+ do nothing in the image input layer
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.Convolutional.Input.feedNext">
+ <summary>
+ load test bitmap image data
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.Convolutional.Layer.layerFeedNext">
+ <summary>
+ <see cref="M:Microsoft.VisualBasic.MachineLearning.Convolutional.Layer.outputTensorMemAlloc"/> has been called in 
+ caller function <see cref="M:Microsoft.VisualBasic.MachineLearning.Convolutional.Layer.feedNext"/>.
+ </summary>
+ <returns>
+ this function should be returns itself
+ </returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.Convolutional.Layer.disposeInputTensor">
+ <summary>
+ release the tensor memory
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.Convolutional.Output.getDecision">
+ <summary>
+ get a class label which its probability is the highest value.
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.Convolutional.NamespaceDoc">
+ <summary>
+ feed-forward phase of deep Convolutional Neural Networks
+ 
+ > https://github.com/atasoyhus/CeNiN
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.CNN.ConvolutionalNN">
+ <summary>
+ A network class holding the layers and some helper functions
+ for training and validation.
+ 
+ Convolutional neural network (CNN) is a regularized type of feed-forward 
+ neural network that learns feature engineering by itself via filters
+ (or kernel) optimization. Vanishing gradients and exploding gradients, 
+ seen during backpropagation in earlier neural networks, are prevented by 
+ using regularized weights over fewer connections.
+ 
+ @author Daniel Persson (mailto.woden@gmail.com) and s.chekanov 
+ </summary>
+ <remarks>
+ + https://github.com/kalaspuffar/JavaCNN
+ + https://github.com/karpathy/convnetjs
+ </remarks>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.CNN.ConvolutionalNN.LayerNum">
+ <summary>
+ get number of layers
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.CNN.ConvolutionalNN.input">
+ <summary>
+ get the input layer of the network
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.CNN.ConvolutionalNN.output">
+ <summary>
+ get the output layer of the network
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.CNN.ConvolutionalNN.BackPropagationResult">
+ <summary>
+ Accumulate parameters and gradients for the entire network
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.CNN.ConvolutionalNN.Prediction">
+ <summary>
+ This is a convenience function for returning the argmax
+ prediction, assuming the last layer of the net is a softmax
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.CNN.ConvolutionalNN.take(System.Int32)">
+ <summary>
+ a helper function for VAE method implements
+ </summary>
+ <param name="n"></param>
+ <returns>
+ the last layer is the embedding layer for make outputs
+ </returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.CNN.ConvolutionalNN.forward(Microsoft.VisualBasic.MachineLearning.CNN.data.DataBlock,Microsoft.VisualBasic.ApplicationServices.PerformanceCounter)">
+ <summary>
+ Forward prop the network.
+ The trainer class passes is_training = true, but when this function is
+ called from outside (not from the trainer), it defaults to prediction mode
+ </summary>
+ <param name="db"></param>
+ <param name="training"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.CNN.ConvolutionalNN.backward(System.Double[],Microsoft.VisualBasic.ApplicationServices.PerformanceCounter)">
+ <summary>
+ Backprop: compute gradients wrt all parameters
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.CNN.ConvolutionalNN.backward(System.Int32,Microsoft.VisualBasic.ApplicationServices.PerformanceCounter)">
+ <summary>
+ Backprop: compute gradients wrt all parameters
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.MachineLearning.CNN.DataLink.in_act">
+ <summary>
+ the input and output
+ </summary>
+ <remarks>
+ data object at here for link the current layer and the next layer
+ no needs for save into the model file
+ </remarks>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.CNN.data.BackPropResult">
+ <summary>
+ When we have done a back propagation of the network we will receive a
+ result of weight adjustments required to learn. This result set will
+ contain the data used by the trainer.
+ 
+ @author Daniel Persson (mailto.woden@gmail.com)
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.CNN.data.DataBlock">
+ <summary>
+ Holding all the data handled by the network. So a layer will receive
+ this class and return a similar block as a output that will be used
+ by the next layer in the chain.
+ 
+ @author Daniel Persson (mailto.woden@gmail.com)
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.CNN.data.DataBlock.Weights">
+ <summary>
+ the multiple class classify probability weight
+ (or the prediction result) 
+ </summary>
+ <returns></returns>
+ <remarks>get <see cref="F:Microsoft.VisualBasic.MachineLearning.CNN.data.DataBlock.w"/></remarks>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.CNN.data.DataBlock.Gradients">
+ <summary>
+ 
+ </summary>
+ <returns></returns>
+ <remarks>get <see cref="F:Microsoft.VisualBasic.MachineLearning.CNN.data.DataBlock.dw"/></remarks>
+</member>
+<member name="F:Microsoft.VisualBasic.MachineLearning.CNN.data.DataBlock.w">
+ <summary>
+ backend of <see cref="P:Microsoft.VisualBasic.MachineLearning.CNN.data.DataBlock.Weights"/>
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.MachineLearning.CNN.data.DataBlock.dw">
+ <summary>
+ backend of <see cref="P:Microsoft.VisualBasic.MachineLearning.CNN.data.DataBlock.Gradients"/>
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.CNN.data.DataBlock.#ctor(System.Int32,System.Int32,System.Int32,System.Double)">
+ <summary>
+ 
+ </summary>
+ <param name="sx"></param>
+ <param name="sy"></param>
+ <param name="depth"></param>
+ <param name="c">use for initialize the weight vector: 
+ weight vector will be filled with the value of this parameter.
+ </param>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.CNN.data.DataBlock.addImageData(System.Byte[],System.Byte)">
+ <summary>
+ prepare the input: get pixels and normalize them
+ </summary>
+ <param name="imgData"></param>
+ <param name="maxvalue"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.CNN.data.DataBlock.addImageData(System.Double[],System.Double)">
+ <summary>
+ prepare the input: get pixels and normalize them
+ </summary>
+ <param name="imgData"></param>
+ <param name="maxvalue"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.CNN.data.DataBlock.addImageData(System.Int32[],System.Int32)">
+ <summary>
+ prepare the input: get pixels and normalize them
+ </summary>
+ <param name="imgData"></param>
+ <param name="maxvalue"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.CNN.data.DataBlock.getWeight(System.Int32)">
+ <summary>
+ set <see cref="F:Microsoft.VisualBasic.MachineLearning.CNN.data.DataBlock.w"/>
+ </summary>
+ <param name="ix"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.CNN.data.DataBlock.setWeight(System.Int32,System.Double)">
+ <summary>
+ get <see cref="F:Microsoft.VisualBasic.MachineLearning.CNN.data.DataBlock.w"/>
+ </summary>
+ <param name="ix"></param>
+ <param name="val"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.CNN.data.DataBlock.getGradient(System.Int32)">
+ <summary>
+ get <see cref="P:Microsoft.VisualBasic.MachineLearning.CNN.data.DataBlock.Gradients"/>
+ </summary>
+ <param name="ix"></param>
+ <returns></returns>
+ <remarks>
+ get element value from <see cref="F:Microsoft.VisualBasic.MachineLearning.CNN.data.DataBlock.dw"/>
+ </remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.CNN.data.DataBlock.setGradient(System.Int32,System.Double)">
+ <summary>
+ set element value to <see cref="P:Microsoft.VisualBasic.MachineLearning.CNN.data.DataBlock.Gradients"/>
+ </summary>
+ <param name="ix"></param>
+ <param name="val"></param>
+ <remarks>
+ set value to <see cref="F:Microsoft.VisualBasic.MachineLearning.CNN.data.DataBlock.dw"/>
+ </remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.CNN.data.DataBlock.mulGradient(System.Double)">
+ <summary>
+ <paramref name="val"/> * <see cref="P:Microsoft.VisualBasic.MachineLearning.CNN.data.DataBlock.Gradients"/>
+ </summary>
+ <param name="val"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.CNN.data.DataBlock.clone">
+ <summary>
+ make a copy of <see cref="F:Microsoft.VisualBasic.MachineLearning.CNN.data.DataBlock.w"/> or <see cref="P:Microsoft.VisualBasic.MachineLearning.CNN.data.DataBlock.Weights"/>
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.CNN.data.DataBlock.clearGradient">
+ <summary>
+ just set <see cref="F:Microsoft.VisualBasic.MachineLearning.CNN.data.DataBlock.dw"/> vector to zero
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.CNN.data.OutputDefinition">
+ <summary>
+ This class will hold the definitions that bridge two layers.
+ So you can set values in one layer and use them in the next layer.
+ 
+ @author Daniel Persson (mailto.woden@gmail.com)
+ </summary>
+ <remarks>
+ width, height and depth
+ </remarks>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.CNN.data.OutputDefinition.outX">
+ <summary>
+ the image width
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.CNN.data.OutputDefinition.outY">
+ <summary>
+ the image height
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.CNN.data.OutputDefinition.depth">
+ <summary>
+ the data depth channel, example as 3 probably stands for rgb channels
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.CNN.data.TrainResult">
+ <summary>
+ Created by danielp on 1/27/17.
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.CNN.Dimension">
+ <summary>
+ The layer dimension data
+ </summary>
+ <remarks>
+ width and height
+ </remarks>
+</member>
+<member name="F:Microsoft.VisualBasic.MachineLearning.CNN.Dimension.x">
+ <summary>
+ the image dimension width
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.MachineLearning.CNN.Dimension.y">
+ <summary>
+ the image dimension height
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.CNN.LayerBuilder.Initialized">
+ <summary>
+ the layers object in this builder is already been initialized?
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.CNN.LayerBuilder.buildLocalResponseNormalizationLayer(System.Int32)">
+ <summary>
+ LRN
+ </summary>
+ <param name="n"></param>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.CNN.layers.Conv2DTransposeLayer">
+ <summary>
+ 
+ </summary>
+ <remarks>
+ https://github.com/TrevorBlythe/MentisJS/blob/main/src/layers/DeconvLayer.js
+ </remarks>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.CNN.layers.ConvolutionLayer">
+ <summary>
+ This layer uses different filters to find attributes of the data that
+ affects the result. As an example there could be a filter to find
+ horizontal edges in an image.
+ 
+ @author Daniel Persson (mailto.woden@gmail.com)
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.CNN.layers.DropoutLayer">
+ <summary>
+ This layer will remove some random activations in order to
+ defeat over-fitting.
+ 
+ @author Daniel Persson (mailto.woden@gmail.com)
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.CNN.layers.FourierFeatureLayer">
+ <summary>
+ Based on the paper "Fourier Features Let Networks Learn
+ High Frequency Functions in Low Dimensional Domains" (2020) presented 
+ at NeurIPS (https://bmild.github.io/fourfeat/index.html) 
+ by Matthew Tancik, Pratul P. Srinivasan, Ben Mildenhall, Sara Fridovich-Keil,
+ Nithin Raghavan, Utkarsh Singhal, Ravi Ramamoorthi, Jonathan T. Barron and Ren Ng.
+ 
+ Please see the Python implementation to see examples of the concept in action:
+ https://github.com/tancik/fourier-feature-networks/blob/master/Demo.ipynb. 
+ </summary>
+ <remarks>
+ https://github.com/karpathy/convnetjs/blob/5a6136314877d75be5b2228e55d1431f9a74626f/src/convnet_layers_fourier_feature.js
+ </remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.CNN.layers.FourierFeatureLayer.#ctor(Microsoft.VisualBasic.MachineLearning.CNN.data.OutputDefinition,System.Double)">
+ <summary>
+ 
+ </summary>
+ <param name="def"></param>
+ <param name="gaussian_mapping_scale">
+ optional - whether to factor in a random number (sampled from a Gaussian)
+ in the mapping or not (defaults to -1, which signifies not to include it)
+ </param>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.CNN.layers.FullyConnectedLayer">
+ <summary>
+ Neurons in a fully connected layer have full connections to all
+ activations in the previous layer, as seen in regular Neural Networks.
+ Their activations can hence be computed with a matrix multiplication
+ followed by a bias offset.
+ 
+ @author Daniel Persson (mailto.woden@gmail.com)
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.CNN.layers.InputLayer">
+ <summary>
+ The input layer is a simple layer that will pass the data though and
+ create a window into the full training data set. So for instance if
+ we have an image of size 28x28x1 which means that we have 28 pixels
+ in the x axle and 28 pixels in the y axle and one color (gray scale),
+ then this layer might give you a window of another size example 24x24x1
+ that is randomly chosen in order to create some distortion into the
+ dataset so the algorithm don't over-fit the training.
+ 
+ @author Daniel Persson (mailto.woden@gmail.com)
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.CNN.layers.InputLayer.dims">
+ <summary>
+ the image data size dimension [width, height]
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.CNN.layers.InputLayer.out_depth">
+ <summary>
+ the image data channels, example as color rgb channels, brightness, etc
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.CNN.layers.InputLayer.#ctor(Microsoft.VisualBasic.MachineLearning.CNN.data.OutputDefinition,System.Int32,System.Int32,System.Int32)">
+ <summary>
+ 
+ </summary>
+ <param name="def"></param>
+ <param name="out_sx">image width</param>
+ <param name="out_sy">image height</param>
+ <param name="out_depth">
+ usually be one channel, color brightness, this parameter value could 
+ be greater than 1, example value 3 probabilty for rgb channels
+ </param>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.CNN.layers.Layer">
+ <summary>
+ A convolution neural network is built of layers that the data traverses
+ back and forth in order to predict what the network sees in the data.
+ 
+ @author Daniel Persson (mailto.woden@gmail.com)
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.CNN.layers.Layer.BackPropagationResult">
+ <summary>
+ adjust the weight at here in the trainer module
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.CNN.layers.Layer.backward">
+ <summary>
+ compute and accumulate gradient wrt weights and bias of this layer
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.CNN.layers.LocalResponseNormalizationLayer">
+ <summary>
+ This layer is useful when we are dealing with ReLU neurons. Why is that?
+ Because ReLU neurons have unbounded activations and we need LRN to normalize
+ that. We want to detect high frequency features with a large response. If we
+ normalize around the local neighborhood of the excited neuron, it becomes even
+ more sensitive as compared to its neighbors.
+ 
+ At the same time, it will dampen the responses that are uniformly large in any
+ given local neighborhood. If all the values are large, then normalizing those
+ values will diminish all of them. So basically we want to encourage some kind
+ of inhibition and boost the neurons with relatively larger activations. This
+ has been discussed nicely in Section 3.3 of the original paper by Krizhevsky et al.
+ 
+ @author Daniel Persson (mailto.woden@gmail.com)
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.CNN.layers.MaxoutLayer">
+ <summary>
+ Implements Maxout nonlinearity that computes x to max(x)
+ where x is a vector of size group_size. Ideally of course,
+ the input size should be exactly divisible by group_size
+ 
+ @author Daniel Persson (mailto.woden@gmail.com)
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.CNN.layers.PoolingLayer">
+ <summary>
+ This layer will reduce the dataset by creating a smaller zoomed out
+ version. In essence you take a cluster of pixels take the sum of them
+ and put the result in the reduced position of the new image.
+ 
+ @author Daniel Persson (mailto.woden@gmail.com)
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.MachineLearning.CNN.layers.PoolingLayer.switchMaps">
+ <summary>
+ [ax,ay] map to [x,y]
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.CNN.layers.RectifiedLinearUnitsLayer">
+ <summary>
+ This is a layer of neurons that applies the non-saturating activation
+ function f(x)=max(0,x). It increases the nonlinear properties of the
+ decision function and of the overall network without affecting the
+ receptive fields of the convolution layer.
+ 
+ @author Daniel Persson (mailto.woden@gmail.com)
+ </summary>
+ <remarks>
+ ReLU
+ </remarks>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.CNN.layers.SigmoidLayer">
+ <summary>
+ Implements Sigmoid nonlinearity elementwise x to 1/(1+e^(-x))
+ so the output is between 0 and 1.
+ 
+ @author Daniel Persson (mailto.woden@gmail.com)
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.CNN.layers.TanhLayer">
+ <summary>
+ Implements Tanh nonlinearity elementwise x to tanh(x)
+ so the output is between -1 and 1.
+ 
+ @author Daniel Persson (mailto.woden@gmail.com)
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.CNN.losslayers.LossLayer">
+ <summary>
+ Created by danielp on 1/25/17.
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.CNN.losslayers.LossLayer.backward">
+ <summary>
+ compute and accumulate gradient wrt weights and bias of this layer
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.CNN.losslayers.LossLayer.backward(System.Int32)">
+ <summary>
+ compute and accumulate gradient wrt weights and bias of this layer
+ </summary>
+ <param name="y"></param>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.CNN.losslayers.RegressionLayer">
+ <summary>
+ Regression layer is used when your output is an area of data.
+ When you don't have a single class that is the correct activation
+ but you try to find a result set near to your training area.
+ 
+ @author Daniel Persson (mailto.woden@gmail.com)
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.CNN.losslayers.SoftMaxLayer">
+ <summary>
+ This layer will squash the result of the activations in the fully
+ connected layer and give you a value of 0 to 1 for all output activations.
+ 
+ @author Daniel Persson (mailto.woden@gmail.com)
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.CNN.losslayers.SoftMaxLayer.backward(System.Int32)">
+ <summary>
+ compute and accumulate gradient wrt weights and bias of this layer
+ </summary>
+ <param name="y"></param>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.CNN.losslayers.SVMLayer">
+ <summary>
+ This layer uses the input area trying to find a line to
+ separate the correct activation from the incorrect ones.
+ 
+ @author Daniel Persson (mailto.woden@gmail.com)
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.MachineLearning.CNN.LayerTypes.Convolution">
+ <summary>
+ conv
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.MachineLearning.CNN.LayerTypes.Input">
+ <summary>
+ input
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.MachineLearning.CNN.LayerTypes.Output">
+ <summary>
+ output
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.CNN.Trainer.train(Microsoft.VisualBasic.MachineLearning.ComponentModel.StoreProcedure.SampleData[],System.Int32)">
+ <summary>
+ Run CNN trainer
+ </summary>
+ <param name="trainset"></param>
+ <param name="max_loops"></param>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.CNN.trainers.AdaDeltaTrainer">
+ <summary>
+ Adaptive delta will look at the differences between the expected result and the current result to train the network.
+ 
+ @author Daniel Persson (mailto.woden@gmail.com)
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.CNN.trainers.AdaGradTrainer">
+ <summary>
+ The adaptive gradient trainer will over time sum up the square of
+ the gradient and use it to change the weights.
+ 
+ @author Daniel Persson (mailto.woden@gmail.com)
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.CNN.trainers.AdamTrainer">
+ <summary>
+ Adaptive Moment Estimation is an update to RMSProp optimizer. In this running average of both the
+ gradients and their magnitudes are used.
+ 
+ @author Daniel Persson (mailto.woden@gmail.com)
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.CNN.trainers.NesterovTrainer">
+ <summary>
+ Another extension of gradient descent is due to Yurii Nesterov from 1983,[7] and has been subsequently generalized
+ 
+ @author Daniel Persson (mailto.woden@gmail.com)
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.CNN.trainers.SGDTrainer">
+ <summary>
+ Stochastic gradient descent (often shortened in SGD), also known as incremental gradient descent, is a
+ stochastic approximation of the gradient descent optimization method for minimizing an objective function
+ that is written as a sum of differentiable functions. In other words, SGD tries to find minimums or
+ maximums by iteration.
+ 
+ @author Daniel Persson (mailto.woden@gmail.com)
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.CNN.trainers.TrainerAlgorithm">
+ <summary>
+ Trainers take the generated output of activations and gradients in
+ order to modify the weights in the network to make a better prediction
+ the next time the network runs with a data block.
+ 
+ @author Daniel Persson (mailto.woden@gmail.com)
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.CNN.trainers.TrainerAlgorithm.learning_rate">
+ <summary>
+ alpha
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.MachineLearning.CNN.trainers.TrainerAlgorithm.k">
+ <summary>
+ iteration counter
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.CNN.trainers.WindowGradTrainer">
+ <summary>
+ This is AdaGrad but with a moving window weighted average
+ so the gradient is not accumulated over the entire history of the run.
+ it's also referred to as Idea #1 in Zeiler paper on AdaDelta.
+ 
+ @author Daniel Persson (mailto.woden@gmail.com)
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.CNN.Util.randomPerm(System.Int32,System.Int32)">
+ <summary>
+ the batch epochs helper
+ </summary>
+ <param name="size"></param>
+ <param name="batchSize"></param>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.Math.Linear">
+ <summary>
+ implements torch.nn.Linear
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Helpers.Importance(Microsoft.VisualBasic.MachineLearning.NeuralNetwork.StoreProcedure.NeuralNetwork,System.Double)">
+ <summary>
+ 计算输入节点的重要性
+ </summary>
+ <param name="model"></param>
+ <returns></returns>
+ <remarks>
+ 1. 首先将突触链接的权重的绝对值进行quantile计算
+ 2. 然后删除20% quantile以下的所有节点连接
+ 3. 从input开始添加权重直到某一个输出节点
+ 4. 某一个input的权重除以最大的权重,得到归一化的相对值
+ </remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Helpers.SumWeight(Microsoft.VisualBasic.MachineLearning.NeuralNetwork.StoreProcedure.NeuralNetwork,System.String[])">
+ <summary>
+ 只计算输入节点和第一层隐藏层的节点之间的权重的和
+ 
+ > https://stats.stackexchange.com/questions/261008/deep-learning-how-do-i-know-which-variables-are-important
+ </summary>
+ <param name="model"></param>
+ <returns>得到的是最原始的权重的和,可以除上最大的权重和来得到相对权重</returns>
+</member>
+<member name="F:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Helpers.defaultActivation">
+ <summary>
+ <see cref="T:Microsoft.VisualBasic.MachineLearning.ComponentModel.Activations.Sigmoid"/> as default
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Helpers.GetRandom">
+ <summary>
+ 通过这个帮助函数生成``[-1, 1]``之间的随机数
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.HiddenLayers">
+ <summary>
+ 隐藏层,由多个神经元层所构成的
+ 
+ ##### 20181212
+ 
+ 请注意,这个隐藏层的大小虽然可以是任意规模的,但是并不是越大越好的
+ 当隐藏层越大的话,会导致训练的效率降低,并且预测能力也会下降
+ 如果问题比较简单的话,三层隐藏层已经足够了
+ 
+ 一般来说,隐藏层之中每一层的神经元的数量应该要大于输入和输出的节点数的最大值.
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.HiddenLayers.Output">
+ <summary>
+ 使用最后一层作为输出层
+ </summary>
+ <returns></returns>
+</member>
+<member name="F:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.HiddenLayers.reverseLayers">
+ <summary>
+ 在反向传播的过程中,layer之间的计算顺序是反过来的
+ 在这里构建这样子的一个颠倒顺序的缓存,可以减少一些不必要的操作
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.HiddenLayers.#ctor(Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Layer,System.Int32[],System.Func{System.Double},Microsoft.VisualBasic.MachineLearning.ComponentModel.Activations.IActivationFunction,Microsoft.VisualBasic.Language.i32)">
+ <summary>
+ 
+ </summary>
+ <param name="input">s神经网络的输入层会作为隐藏层的输入</param>
+ <param name="size%"></param>
+ <param name="active"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.HiddenLayers.ForwardPropagate(System.Boolean,System.Double)">
+ <summary>
+ 前向传播
+ </summary>
+ <remarks>
+ 因为输入的样本信息在网络之中的传播是有方向性的
+ 所以这个函数的layer之间不可以出现并行关系
+ </remarks>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Layer">
+ <summary>
+ 输入层和输出层对象,神经元节点的数量应该和实际的问题保持一致
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Layer.softmaxNormalization">
+ <summary>
+ 通过<see cref="T:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.SoftmaxLayer"/>将当前层之中的所有的神经元的值都归一化为[0,1]这个区间内
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Layer.doDropOutMode">
+ <summary>
+ 是否处于DropOut模式
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Layer.#ctor(Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Neuron[])">
+ <summary>
+ 用于XML模型的加载操作
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Layer.#ctor(System.Int32,Microsoft.VisualBasic.MachineLearning.ComponentModel.Activations.IActivationFunction,System.Func{System.Double},Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Layer,Microsoft.VisualBasic.Language.i32)">
+ <summary>
+ 
+ </summary>
+ <param name="size"></param>
+ <param name="active">
+ the activate function for the input layer could be nothing
+ </param>
+ <param name="weight"></param>
+ <param name="input"></param>
+ <param name="guid"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Layer.Input(System.Double[])">
+ <summary>
+ 将外界的测试数据赋值到每一个神经元的<see cref="P:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Neuron.Value"/>之上,在这里只是进行简单的属性赋值操作
+ </summary>
+ <param name="data"></param>
+ <remarks>
+ 没有并行的必要
+ </remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Layer.UpdateWeights(System.Double,System.Double,System.Double,System.Boolean)">
+ <summary>
+ 调用这个函数将会修改突触链接的权重值，这个函数只会在训练的时候被调用
+ </summary>
+ <param name="learnRate#"></param>
+ <param name="momentum#"></param>
+ <param name="parallel"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Layer.CalculateValue(System.Boolean,System.Double)">
+ <summary>
+ 计算输出层的结果值,即通过这个函数的调用计算出分类的结果值,结果值为``[0,1]``之间的小数
+ </summary>
+ <remarks>
+ 因为输出层的节点数量比较少,所以这里应该也没有并行的必要?
+ 
+ 在这个函数之中完成<see cref="M:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Neuron.CalculateValue(System.Boolean,System.Double)"/>函数的调用之后
+ 将会更新<see cref="P:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Neuron.Value"/>属性值
+ </remarks>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Activations.LayerActives">
+ <summary>
+ 每一层神经元都设立单独的激活函数
+ </summary>
+ <remarks>
+ 推荐的激活函数配置为:
+ 
+ + input: ``<see cref="T:Microsoft.VisualBasic.MachineLearning.ComponentModel.Activations.Sigmoid"/>``
+ + hidden: ``<see cref="T:Microsoft.VisualBasic.MachineLearning.ComponentModel.Activations.SigmoidFunction"/>``
+ + output: ``<see cref="T:Microsoft.VisualBasic.MachineLearning.ComponentModel.Activations.Sigmoid"/>``
+ </remarks>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Activations.LayerActives.hiddens">
+ <summary>
+ 隐藏层都公用同一种激活函数?
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Activations.LayerActives.GetDefaultConfig">
+ <summary>
+ 默认是都使用<see cref="T:Microsoft.VisualBasic.MachineLearning.ComponentModel.Activations.Sigmoid"/>激活函数
+ </summary>
+ <returns></returns>
+ 
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Network">
+ <summary>
+ 人工神经网络计算用的对象模型
+ 
+ > https://github.com/trentsartain/Neural-Network
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Network.InputLayer">
+ <summary>
+ 通过这个属性可以枚举出所有的输入层的神经元节点
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Network.HiddenLayer">
+ <summary>
+ 通过这个属性可以枚举出所有的隐藏层，然后对每一层隐藏层可以枚举出该隐藏层之中的所有的神经元节点
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Network.OutputLayer">
+ <summary>
+ 通过这个属性可以枚举出所有的输出层的神经元节点
+ </summary>
+ <returns></returns>
+</member>
+<member name="F:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Network.remains">
+ <summary>
+ 1 - <see cref="P:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Network.LearnRateDecay"/>
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Network.LearnRateDecay">
+ <summary>
+ 学习率的衰减速率
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Network.Activations">
+ <summary>
+ 激活函数
+ </summary>
+ <returns></returns>
+ <remarks>
+ 这个属性在这里只是起着存储到XML模型之中的作用,并没有实际的计算功能
+ </remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Network.#ctor(Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Activations.LayerActives)">
+ <summary>
+ 这个构造函数是给XML模型加载操作所使用的
+ </summary>
+ <param name="activations"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Network.#ctor(System.Int32,System.Int32[],System.Int32,System.Double,System.Double,Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Activations.LayerActives,System.Func{System.Double})">
+ <summary>
+ 
+ </summary>
+ <param name="inputSize">``>=2``</param>
+ <param name="hiddenSize">``>=2``</param>
+ <param name="outputSize">``>=1``</param>
+ <param name="learnRate"></param>
+ <param name="momentum"></param>
+ <remarks>
+ 会在创建的时候赋值一个guid
+ </remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Network.ForwardPropagate(System.Double[],System.Boolean)">
+ <summary>
+ 这个函数会返回<see cref="P:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Network.OutputLayer"/>
+ </summary>
+ <param name="inputs">
+ 神经网路的输入层的输入数据,应该都是被归一化为[0,1]或者[-1,1]这两个区间内了的
+ </param>
+ <returns></returns>
+ <remarks>
+ this function just calculate the network value
+ </remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Network.BackPropagate(System.Double[],System.Boolean)">
+ <summary>
+ adjust neuron weight based on the error.(反向传播)
+ </summary>
+ <param name="targets"></param>
+ <remarks>
+ 在反向传播之后,网络只会修改节点之间的突触边链接的权重值以及节点
+ 的<see cref="P:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Neuron.Gradient"/>值,没有修改节点的<see cref="P:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Neuron.Value"/>值.
+ </remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Network.Compute(System.Double[])">
+ <summary>
+ Compute result output for the neuron network <paramref name="inputs"/>.
+ (请注意ANN的输出值是在0-1之间的，所以还需要进行额外的编码和解码)
+ </summary>
+ <param name="inputs"></param>
+ <returns></returns>
+ 
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Neuron">
+ <summary>
+ 神经元对象模型
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Neuron.InputSynapses">
+ <summary>
+ 这个神经元对象和上一层神经元之间的突触链接列表
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Neuron.OutputSynapses">
+ <summary>
+ 这个神经元对象和下一层神经元之间的突触链接列表
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Neuron.Value">
+ <summary>
+ 神经元之间传递的值，即预测的输出结果
+ </summary>
+ <returns></returns>
+ <remarks>
+ 在进行计算的时候，value会被替换为样本的输入值，所以value不需要被存储到Xml之中
+ 在进行加速计算的时候也不需要被考虑到
+ </remarks>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Neuron.isDroppedOut">
+ <summary>
+ 当前的这个神经元节点是否是被随机失活的一个节点?
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Neuron.Guid">
+ <summary>
+ 当前的这个神经元对象的唯一标识符
+ </summary>
+ <returns></returns>
+</member>
+<member name="F:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Neuron.activation">
+ <summary>
+ The active function
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Neuron.#ctor(System.Func{System.Double},Microsoft.VisualBasic.MachineLearning.ComponentModel.Activations.IActivationFunction,Microsoft.VisualBasic.Language.i32)">
+ <summary>
+ 创建的神经链接是空的
+ </summary>
+ <param name="active"><see cref="T:Microsoft.VisualBasic.MachineLearning.ComponentModel.Activations.Sigmoid"/> as default</param>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Neuron.#ctor(System.Func{System.Double},Microsoft.VisualBasic.MachineLearning.ComponentModel.Activations.IActivationFunction,System.String)">
+ <summary>
+ 创建的神经链接是空的
+ </summary>
+ <param name="active"><see cref="T:Microsoft.VisualBasic.MachineLearning.ComponentModel.Activations.Sigmoid"/> as default</param>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Neuron.#ctor(System.Collections.Generic.IEnumerable{Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Neuron},System.Func{System.Double},Microsoft.VisualBasic.MachineLearning.ComponentModel.Activations.IActivationFunction,Microsoft.VisualBasic.Language.i32)">
+ <summary>
+ 
+ </summary>
+ <param name="inputNeurons"></param>
+ <param name="active"><see cref="T:Microsoft.VisualBasic.MachineLearning.ComponentModel.Activations.Sigmoid"/> as default</param>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Neuron.CalculateValue(System.Boolean,System.Double)">
+ <summary>
+ 计算分类预测结果
+ </summary>
+ <returns></returns>
+ <remarks>
+ 赋值给<see cref="P:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Neuron.Value"/>,然后返回<see cref="P:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Neuron.Value"/>
+ </remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Neuron.InputSynapsesValueSum(System.Boolean,System.Double)">
+ <summary>
+ 这个函数主要是为了应用softmax输出所编写的
+ </summary>
+ <param name="doDropOut"></param>
+ <param name="truncate"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Neuron.CalculateError(System.Double)">
+ <summary>
+ 计算当前的结果和测试结果数据之间的误差大小
+ </summary>
+ <param name="target"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Neuron.CalculateGradient(System.Double,System.Double)">
+ <summary>
+ 
+ </summary>
+ <param name="target"></param>
+ <param name="truncate">大于零的时候，如果计算出来的<see cref="P:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Neuron.Gradient"/>大于这个阈值，将会被剪裁</param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Neuron.CalculateGradient(System.Double,System.Boolean)">
+ <summary>
+ 
+ </summary>
+ <param name="truncate">小于零表示不进行梯度剪裁</param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Neuron.UpdateWeights(System.Double,System.Double,System.Double,System.Boolean)">
+ <summary>
+ 调用这个函数会修改突触链接权重，dias误差值等
+ </summary>
+ <param name="learnRate"></param>
+ <param name="momentum"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Protocols.Dropout.DoDropOut(Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Network,System.Double)">
+ <summary>
+ 只针对隐藏层进行随机删除操作
+ </summary>
+ <param name="model"></param>
+ <param name="percentage">
+ [0,1]之间,建议设置一个[0.3,0.6]之间的值, 这个参数表示被随机删除的节点的数量百分比,值越高,则剩下的神经元节点越少
+ </param>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.SoftmaxLayer">
+ <summary>
+ softmax output layer of the classify result.
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Synapse">
+ <summary>
+ （神经元的）突触 a connection between two nerve cells
+ </summary>
+ <remarks>
+ 可以将这个对象看作为网络节点之间的边链接
+ </remarks>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Synapse.Weight">
+ <summary>
+ 两个神经元之间的连接强度
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Synapse.Value">
+ <summary>
+ ``a.Weight * a.InputNeuron.Value``
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Synapse.Gradient">
+ <summary>
+ ``a.OutputNeuron.Gradient * a.Weight``
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Synapse.#ctor(Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Neuron,Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Neuron)">
+ <summary>
+ Create from xml model
+ </summary>
+ <param name="inputNeuron"></param>
+ <param name="outputNeuron"></param>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Netz">
+ <summary>
+ Neural Network for regression analysis
+ </summary>
+ <remarks>
+ https://github.com/brokkoli71/NeuralNetwork
+ </remarks>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.StoreProcedure.CreateSnapshot">
+ <summary>
+ 
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.StoreProcedure.CreateSnapshot.TakeSnapshot(Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Network,System.Double[])">
+ <summary>
+ Dump the given Neuron <see cref="T:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Network"/> as xml model data
+ </summary>
+ <param name="instance"></param>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.StoreProcedure.IntegralLoader">
+ <summary>
+ 与<see cref="T:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.StoreProcedure.CreateSnapshot"/>之中的快照生成函数执行相反的操作,从模型数据文件之中创建计算用的对象模型
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.StoreProcedure.IntegralLoader.neuronLoader">
+ <summary>
+ 
+ </summary>
+ <remarks>
+ 在人工神经网络之中, 神经元节点并不是太多, 数量上产生影响的是神经元之间的链接对象
+ </remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.StoreProcedure.IntegralLoader.LoadModel(Microsoft.VisualBasic.MachineLearning.NeuralNetwork.StoreProcedure.NeuralNetwork,System.Boolean)">
+ <summary>
+ 将保存在Xml文件之中的已经训练好的模型加载为人工神经网络对象用来进行后续的分析操作
+ </summary>
+ <param name="model"></param>
+ <returns></returns>
+ <remarks>
+ 这个加载器函数主要是针对小文件使用的
+ </remarks>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.StoreProcedure.Scattered">
+ <summary>
+ 将模型快照数据分散为多个文件进行保存和读取的存储过程
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.StoreProcedure.Scattered.ScatteredLoader(Microsoft.VisualBasic.ApplicationServices.IFileSystemEnvironment,System.Boolean)">
+ <summary>
+ 
+ </summary>
+ <param name="store">
+ 模型文件所存储的文件夹的路径
+ </param>
+ <returns>
+ 返回来的完整的结果可以通过<see cref="M:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.StoreProcedure.IntegralLoader.LoadModel(Microsoft.VisualBasic.MachineLearning.NeuralNetwork.StoreProcedure.NeuralNetwork,System.Boolean)"/>
+ 函数将数据模型来加载为计算模型
+ </returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.StoreProcedure.Scattered.ScatteredStore(Microsoft.VisualBasic.MachineLearning.NeuralNetwork.StoreProcedure.NeuralNetwork,Microsoft.VisualBasic.ApplicationServices.IFileSystemEnvironment)">
+ <summary>
+ 将一个超大的网络快照以分散文件的形式保存在一个给定的文件夹之中
+ </summary>
+ <param name="snapshot"></param>
+ <param name="store">A directory path for save the network snapshot.</param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.StoreProcedure.Scattered.writeCsv(System.IO.StreamWriter,System.String[])">
+ <summary>
+ 为了减少模块间的引用,并且由于神经元节点和突触链接对象的结构都非常简单,所以在这里就直接以这个拓展函数来写文件了
+ </summary>
+ <param name="csv"></param>
+ <param name="columns"></param>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.StoreProcedure.NeuronLayer">
+ <summary>
+ Layer对象之中只放置神经元节点的引用唯一编号
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.StoreProcedure.NeuralNetwork">
+ <summary>
+ Xml/json文件存储格式
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.StoreProcedure.NeuralNetwork.errors">
+ <summary>
+ 当前的这个模型快照在训练数据集上的预测误差
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.StoreProcedure.NeuralNetwork.GetPredictLambda(Microsoft.VisualBasic.MachineLearning.ComponentModel.StoreProcedure.NormalizeMatrix,Microsoft.VisualBasic.DataMining.ComponentModel.Normalizer.Methods)">
+ <summary>
+ 输入一个样本信息然后输出分类结果预测
+ 
+ 这个函数假设目标样本输入是在当前的这个<paramref name="normalize"/>矩阵的范围之中的
+ 目标输入的样本会在这个函数返回的预测函数之中自动归一化
+ </summary>
+ <param name="normalize">进行所输入的样本数据的归一化的矩阵</param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.StoreProcedure.NeuralNetwork.Snapshot(Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Network,System.Double[])">
+ <summary>
+ Dump the given Neuron <see cref="T:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Network"/> as xml model data
+ </summary>
+ <param name="instance"></param>
+ <returns></returns>
+ 
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.StoreProcedure.NeuralNetwork.LoadModel(System.String)">
+ <summary>
+ 这个函数自动兼容XML文档模型或者超大型的文件夹模型数据
+ </summary>
+ <param name="handle"></param>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.StoreProcedure.Synapse.w">
+ <summary>
+ 两个神经元之间的连接强度
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.StoreProcedure.Synapse.ToString">
+ <summary>
+ 
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.StoreProcedure.NeuronNode">
+ <summary>
+ 一个神经元节点的数据模型
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.StoreProcedure.NeuronNode.id">
+ <summary>
+ 当前的这个神经元的唯一标记
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.StoreProcedure.NamespaceDoc">
+ <summary>
+ 拥有两种类型的数据快照文件:
+ 
+ 1. 针对小网络模型的,所有的对象都被保存在同一个Xml/json文件之中
+ 2. 但是对于大型的网络而言,由于执行序列化的<see cref="T:System.Text.StringBuilder"/>或者<see cref="T:System.IO.MemoryStream"/>对象
+    具有自己的容量上限限制,所以大型网路是将部件分别保存在若干个文件之中完成的
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.StoreProcedure.Snapshot">
+ <summary>
+ 对于大型的神经网络而言，反复的构建XML数据模型将会额外的消耗掉大量的时间，导致训练的时间过长
+ 在这里通过这个持久性的快照对象来减少这种反复创建XML数据快照的问题
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.StoreProcedure.Snapshot.neuronLinks">
+ <summary>
+ 节点的数量较少
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.StoreProcedure.Snapshot.synapseLinks">
+ <summary>
+ 因为链接的数量非常多，可能会超过了一个数组的元素数量上限，
+ 所以在这里使用多个分组来避免这个问题
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.StoreProcedure.Snapshot.UpdateSnapshot(System.Double[])">
+ <summary>
+ 
+ </summary>
+ <param name="error">
+ The calculation errors of current snapshot.
+ </param>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.ANNTrainer">
+ <summary>
+ 
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.ANNTrainer.Truncate">
+ <summary>
+ 对<see cref="P:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Neuron.Gradient"/>的剪裁限制阈值，小于等于零表示不进行剪裁，默认不剪裁
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.ANNTrainer.Selective">
+ <summary>
+ 是否对训练样本数据集进行选择性的训练，假若目标样本在当前所训练的模型上面
+ 所计算得到的预测结果和其真实结果的误差足够小的话，目标样本将不会再进行训练
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.ANNTrainer.dropOutRate">
+ <summary>
+ [0,1]之间,建议设置一个[0.3,0.6]之间的值, 这个参数表示被随机删除的节点的数量百分比,值越高,则剩下的神经元节点越少
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.ANNTrainer.NeuronNetwork">
+ <summary>
+ 最终得到的训练结果神经网络
+ </summary>
+ <returns></returns>
+</member>
+<member name="F:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.ANNTrainer.errors">
+ <summary>
+ current errors on each classify dimension.
+ 
+ (模型当前的训练误差)
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.ANNTrainer.XP">
+ <summary>
+ 训练所使用到的经验数量,即数据集的大小size
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.ANNTrainer.#ctor(System.Int32,System.Int32[],System.Int32,System.Double,System.Double,Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Activations.LayerActives,System.Func{System.Double})">
+ <summary>
+ 以指定的网络规模参数进行人工神经网络模型的构建
+ </summary>
+ <param name="inputSize"></param>
+ <param name="hiddenSize"></param>
+ <param name="outputSize"></param>
+ <param name="learnRate"></param>
+ <param name="momentum"></param>
+ <param name="active"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.ANNTrainer.SetSnapshotLocation(System.String)">
+ <summary>
+ set a directory path for save the model xml files
+ </summary>
+ <param name="save">
+ a directory path for save model file
+ </param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.ANNTrainer.SetDropOut(System.Double)">
+ <summary>
+ set percentage for random drop out of the nodes in each layer
+ </summary>
+ <param name="percentage"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.ANNTrainer.SetLayerNormalize(System.Boolean)">
+ <summary>
+ apply softmax normalization for each layer?
+ </summary>
+ <param name="opt"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.ANNTrainer.Add(System.Double[],System.Double[])">
+ <summary>
+ 在这里添加训练使用的数据集
+ (请注意,因为ANN的output结果向量只输出``[0,1]``之间的结果,所以在训练的时候,output应该是被编码为0或者1的;
+ input可以接受任意实数的向量,但是这个要求所有属性都应该在同一个scale区间内,所以最好也归一化编码为0到1之间的小数)
+ </summary>
+ <param name="input"></param>
+ <param name="output"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.ANNTrainer.Train(System.Boolean)">
+ <summary>
+ 开始进行训练
+ </summary>
+ <param name="parallel">
+ 小型的人工神经网络的训练,并不建议使用并行化
+ </param>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.ANNTrainer.trainingImpl(Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Network,Microsoft.VisualBasic.MachineLearning.NeuralNetwork.TrainingSample[],System.Boolean,System.Boolean,System.Double,System.Boolean)">
+ <summary>
+ 在这个函数之中实现一次训练循环过程
+ </summary>
+ <param name="dataSets"></param>
+ <param name="parallel"></param>
+ <param name="selective"></param>
+ <returns>函数返回每一个output的误差值</returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.ANNTrainer.CalculateError(Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Network,System.Double[])">
+ <summary>
+ 预测值与目标值之间的误差的绝对值之和
+ </summary>
+ <param name="neuronNetwork"></param>
+ <param name="targets"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.ANNTrainer.Corrects(System.Double[],System.Double[],System.Double[],System.Boolean,System.Boolean)">
+ <summary>
+ 
+ </summary>
+ <param name="input">The inputs data</param>
+ <param name="convertedResults">The error outputs</param>
+ <param name="expectedResults">The corrects output</param>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.DarwinismHybrid.Accelerator">
+ <summary>
+ not working as expected?
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.DarwinismHybrid.NetworkIndividual.Crossover(Microsoft.VisualBasic.MachineLearning.NeuralNetwork.DarwinismHybrid.NetworkIndividual)">
+ <summary>
+ 进行若干连接的权重值的交换
+ </summary>
+ <param name="another"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.DarwinismHybrid.NetworkIndividual.Mutate">
+ <summary>
+ 进行若干连接阶段权重值的修改
+ </summary>
+ <returns></returns>
+</member>
+<member name="F:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.TrainingType.Epoch">
+ <summary>
+ 以给定的迭代次数的方式进行训练. <see cref="P:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Helpers.MaxEpochs"/>
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.TrainingType.MinimumError">
+ <summary>
+ 以小于目标误差的方式进行训练. <see cref="P:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Helpers.MinimumError"/>
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.Reporter">
+ <summary>
+ some console api is not working well on unix platform,
+ the helper is used for solve such problem
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.TrainingSample.classify">
+ <summary>
+ The output result.
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.TrainingUtils">
+ <summary>
+ Tools for training the neuron network
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.NeuralNetwork.TrainingUtils.TakeSnapshot">
+ <summary>
+ 将训练的成果状态进行快照,转换为可以保存的XML文件对象
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.RNN.CharRNN">
+ <summary>
+ 
+ </summary>
+ <remarks>
+ https://github.com/garstka/char-rnn-java
+ </remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.RNN.CharRNN.initialize(Microsoft.VisualBasic.MachineLearning.RNN.Options)">
+ <summary>
+ 01. Initialize a network for training.
+ </summary>
+ <param name="options"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.RNN.CharRNN.train(Microsoft.VisualBasic.MachineLearning.RNN.Options,Microsoft.VisualBasic.MachineLearning.RNN.CharLevelRNN,System.String)">
+ <summary>
+ Trains the network.
+ </summary>
+ <param name="options"></param>
+ <param name="net"></param>
+ <param name="snapshotName"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.RNN.CharRNN.saveASnapshot(System.String,Microsoft.VisualBasic.MachineLearning.RNN.CharLevelRNN)">
+ <summary>
+ Saves a network snapshot with this name to file.
+ </summary>
+ <param name="name"></param>
+ <param name="net"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.RNN.CharRNN.loadASnapshot(System.String)">
+ <summary>
+ 02. Loads a network snapshot with this name from file.
+ </summary>
+ <param name="name"></param>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.RNN.Math">
+ <summary>
+ Math helper functions
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.RNN.Math.close(System.Double,System.Double)">
+ <summary>
+ Double epsilon compare 
+ </summary>
+ <param name="a"></param>
+ <param name="b"></param>
+ <returns></returns>
+ 
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.RNN.Matrix.M">
+ <summary>
+ Returns the row count.
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.RNN.Matrix.N">
+ <summary>
+ Returns the column count.
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.RNN.Random">
+ <summary>
+ Helper functions for randomness.
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.RNN.Alphabet">
+ <summary>
+ Immutable set of symbols mapped indices.
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.RNN.Alphabet.#ctor(System.String)">
+ <summary>
+ Constructs an alphabet containing symbols extracted from the string.
+ Treats null as an empty string.
+ </summary>
+ <param name="data"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.RNN.Alphabet.fromString(System.String)">
+ <summary>
+ Returns alphabet containing symbols extracted from the string.
+ Treats null as an empty string.
+ </summary>
+ <param name="data"></param>
+ <returns></returns>
+ 
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.RNN.Alphabet.size">
+ <summary>
+ Returns the alphabet size.
+ </summary>
+ <returns></returns>
+ 
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.RNN.Alphabet.charToIndex(System.Char)">
+ <summary>
+ Converts a character to the corresponding index.
+ </summary>
+ <param name="c"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.RNN.Alphabet.indexToChar(System.Int32)">
+ <summary>
+ Converts an index to the corresponding character.
+ Index must be an index returned by charToIndex.
+ </summary>
+ <param name="index"></param>
+ <returns></returns>
+ 
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.RNN.Alphabet.indicesToChars(System.Int32[])">
+ <summary>
+ Converts all indices to chars using indexToChar.
+ </summary>
+ <param name="indices"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.RNN.Alphabet.charsToIndices(System.String)">
+ <summary>
+ Converts the string to indices using charToIndex.
+ </summary>
+ <param name="chars"></param>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.RNN.BasicRNN">
+ <summary>
+ RNN that uses integer indices as inputs and outputs.
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.RNN.CharLevelRNN">
+ <summary>
+ RNN that can use both indices, and characters as inputs/outputs.
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.RNN.CharLevelRNN.initialize(Microsoft.VisualBasic.MachineLearning.RNN.Alphabet)">
+ <summary>
+ Initializes the net. Requires that alphabet != null.
+ </summary>
+ <param name="alphabet"></param>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.RNN.CharLevelRNN.Alphabet">
+ <summary>
+ Returns the alphabet, if initialized.
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.RNN.CharLevelRNN.sampleString(System.Int32,System.String,System.Double)">
+ <summary>
+ * Sample ** </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.RNN.Trainable">
+ <summary>
+ Trainable neural network.
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.RNN.MultiLayerCharLevelRNN">
+ <summary>
+ Single layer character level RNN.
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.MachineLearning.RNN.MultiLayerCharLevelRNN.m_alphabet">
+ <summary>
+ The alphabet for sampling.
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.MachineLearning.RNN.MultiLayerCharLevelRNN.internal">
+ <summary>
+ Basic network.
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.RNN.MultiLayerCharLevelRNN.#ctor">
+ <summary>
+ Constructs without initialization.
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.RNN.MultiLayerCharLevelRNN.sampleIndices(System.Int32,System.Int32[],System.Double)">
+ <summary>
+ Samples n indices, sequence seed, advance the state.
+ </summary>
+ <param name="n"></param>
+ <param name="seed"></param>
+ <param name="temp"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.RNN.MultiLayerCharLevelRNN.sampleIndices(System.Int32,System.Int32[],System.Double,System.Boolean)">
+ <summary>
+ Samples n indices, sequence seed, choose whether to advance the state.
+ </summary>
+ <param name="n"></param>
+ <param name="seed"></param>
+ <param name="temp"></param>
+ <param name="advance"></param>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.RNN.MultiLayerCharLevelRNN.Alphabet">
+ <summary>
+ Returns the alphabet, if initialized.
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.RNN.MultiLayerCharLevelRNN.Initialized">
+ <summary>
+ Returns true if the net was initialized.
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.RNN.MultiLayerCharLevelRNN.VocabularySize">
+ <summary>
+ Returns the vocabulary size (the alphabet size), if initialized.
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.RNN.MultiLayerRNN.#ctor">
+ <summary>
+ Creates a net with default parameters.
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.RNN.MultiLayerRNN.#ctor(System.Int32)">
+ <summary>
+ Creates a net with default parameters and initializes immediately.
+ </summary>
+ <param name="vocabularySize"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.RNN.MultiLayerRNN.sampleIndices(System.Int32,System.Int32[],System.Double)">
+ <summary>
+ * Sample ** </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.RNN.MultiLayerRNN.Initialized">
+ <summary>
+ Returns true if the net was initialized.
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.RNN.MultiLayerRNN.VocabularySize">
+ <summary>
+ Returns the vocabulary size - max index + 1.
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.RNN.RNN">
+ <summary>
+ A recurrent neural network.
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.RNN.RNN.Initialized">
+ <summary>
+ Returns true if the net was initialized.
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.RNN.RNN.VocabularySize">
+ <summary>
+ Returns the vocabulary size (max index + 1), if initialized.
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.RNN.RNNLayer">
+ <summary>
+ An RNN Layer with support for multi-layer networks.
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.RNN.RNNLayer.#ctor">
+ <summary>
+ Init: Creates a net with default parameters.
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.RNN.RNNLayer.#ctor(System.Int32,System.Int32,System.Int32,System.Double)">
+ <summary>
+ Creates a net with custom parameters
+ </summary>
+ <param name="inputSize"></param>
+ <param name="hiddenSize"></param>
+ <param name="outputSize"></param>
+ <param name="learningRate"></param>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.RNN.RNNLayer.InputSize">
+ <summary>
+ Set the input size.
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.RNN.RNNLayer.HiddenSize">
+ <summary>
+ Set the hidden size.
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.RNN.RNNLayer.OutputSize">
+ <summary>
+ Set the output size.
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.RNN.RNNLayer.LearningRate">
+ <summary>
+ Backpropagation parameter.
+ </summary>
+ <returns></returns>
+ <remarks>
+ Hyperparameters
+ </remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.RNN.RNNLayer.initialize">
+ <summary>
+ Initialize the net with random weights.
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.RNN.RNNLayer.ixTox(System.Int32)">
+ <summary>
+ Like ixTox, but a single index instead of an array
+ </summary>
+ <param name="ix"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.RNN.RNNLayer.forward(Microsoft.VisualBasic.MachineLearning.RNN.Matrix)">
+ <summary>
+ Forward pass for a single seed.
+ </summary>
+ <param name="x"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.RNN.RNNLayer.getdx">
+ <summary>
+ Returns dx: the gradients to be used as input to the previous layer's
+ backward pass.
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.RNN.RNNLayer.saveHiddenState">
+ <summary>
+ Save the hidden state before sampling.
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.RNN.RNNLayer.restoreHiddenState(Microsoft.VisualBasic.MachineLearning.RNN.Matrix)">
+ <summary>
+ Restore the hidden state after sampling.
+ </summary>
+ <param name="h"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.RNN.RNNTrainer.#ctor">
+ <summary>
+ Constructs without initializing
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.RNN.RNNTrainer.#ctor(Microsoft.VisualBasic.MachineLearning.RNN.Trainable,Microsoft.VisualBasic.MachineLearning.RNN.TrainingSet)">
+ <summary>
+ Constructs and initializes.
+ </summary>
+ <param name="net"></param>
+ <param name="data"></param>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.RNN.RNNTrainer.SequenceLength">
+ <summary>
+ Set a different sequence length.
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.RNN.RNNTrainer.initialize(Microsoft.VisualBasic.MachineLearning.RNN.Trainable,Microsoft.VisualBasic.MachineLearning.RNN.TrainingSet)">
+ <summary>
+ Initializes training. Requires trainingSet != null.
+ </summary>
+ <param name="net"></param>
+ <param name="trainingSet"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.RNN.RNNTrainer.train">
+ <summary>
+ Trains the network until there's no more data.
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.RNN.RNNTrainer.train(System.Int32)">
+ <summary>
+ Trains the net for a few steps. Requires steps >= 0.
+ </summary>
+ <param name="steps"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.RNN.RNNTrainer.loopAround">
+ <summary>
+ Reset the data pointer to the beginning.
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.RNN.RNNTrainer.TotalSteps">
+ <summary>
+ Returns the step count.
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.RNN.RNNTrainer.SmoothLoss">
+ <summary>
+ Returns the smooth cross-entropy loss.
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.RNN.RNNTrainer.printDebug(System.Boolean)">
+ <summary>
+ Print debug messages.
+ </summary>
+ <param name="[on]"></param>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.RNN.SingleLayerCharLevelRNN">
+ <summary>
+ Single layer character level RNN.
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.RNN.SingleLayerCharLevelRNN.SetHiddenSize(System.Int32)">
+ <summary>
+ Sets the hidden layer size. Network must be initialized again.
+ </summary>
+ <param name="value"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.RNN.SingleLayerCharLevelRNN.initialize(Microsoft.VisualBasic.MachineLearning.RNN.Alphabet)">
+ <summary>
+ Initializes the net. alphabet != null.
+ </summary>
+ <param name="alphabet"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.RNN.SingleLayerCharLevelRNN.sampleIndices(System.Int32,System.Int32[],System.Double)">
+ <summary>
+ Samples n indices, sequence seed, advance the state.
+ </summary>
+ <param name="n"></param>
+ <param name="seed"></param>
+ <param name="temp"></param>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.RNN.SingleLayerRNN">
+ <summary>
+ Single layer RNN.
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.MachineLearning.RNN.SingleLayerRNN.layer">
+ <summary>
+ The single RNN layer
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.RNN.Options">
+ <summary>
+ Application options.
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.Transformer.Embedding">
+ <summary>
+ Use a learned embedding layer to reduce the size of the word embedding space.
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.MachineLearning.Transformer.Embedding.embeddingLayer">
+ <summary>
+ Learned linear embedding layer
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.Transformer.Embedding.#ctor(System.Int32,System.Int32,System.Collections.Generic.List{System.Collections.Generic.List{System.String}})">
+ <summary>
+ Constructor
+ </summary>
+ <param name="embeddingSize"></param>
+ <param name="sequenceLength"></param>
+ <param name="sentences"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.Transformer.Embedding.Embed(System.Collections.Generic.List{System.Collections.Generic.List{System.String}},System.Boolean)">
+ <summary>
+ Multiply the one-hot embeddings with the embedding layer to project onto a smaller space
+ </summary>
+ <param name="sentences"></param>
+ <param name="isTraining"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.Transformer.Embedding.CalculateLossFunction(Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor,System.Collections.Generic.List{System.Collections.Generic.List{System.String}},System.Int32,Microsoft.VisualBasic.MachineLearning.TensorFlow.Rev@)">
+ <summary>
+ Cross entropy loss function between the correct word in a sentence and the decoder output word.
+ For a batch of several sentences the loss is accumulated.
+ </summary>
+ <param name="filteredOutout"></param>
+ <param name="correctSpanishSentences"></param>
+ <param name="w"></param>
+ <param name="loss"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.Transformer.Embedding.GetWords(System.Int32[])">
+ <summary>
+ Get a word based on its index in the dictionary
+ </summary>
+ <param name="indexes"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.Transformer.Embedding.GetWordIndex(System.String)">
+ <summary>
+ Get the index of a specific word in a dictionary
+ </summary>
+ <param name="word"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.Transformer.Embedding.OneHotEmbedding(System.Collections.Generic.List{System.Collections.Generic.List{System.String}})">
+ <summary>
+ Encode all words in a dictionary with one-hot embedding
+ </summary>
+ <param name="sentences"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.Transformer.Embedding.AddPositionalEncoding(Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor,System.Int32,System.Int32)">
+ <summary>
+ Add positional encoding to embedded words according to "Attention is all you need"
+ </summary>
+ <param name="wordEmbeddings"></param>
+ <param name="s"></param>
+ <param name="sentenceLength"></param>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.Transformer.Optimizer">
+ <summary>
+ Implements the Adam optimizer
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.Transformer.OutputLayer">
+ <summary>
+ Produce a flat array with the same dimension as the number of words in the dictionary
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.Transformer.TransformerModel">
+ <summary>
+ Transformer architecture as described in "Attention is all you need"
+ </summary>
+ <remarks>
+ https://github.com/jaksc00p/Transformer/tree/master
+ </remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.Transformer.TransformerModel.Translate(System.Int32,System.Boolean,System.Collections.Generic.List{System.Collections.Generic.List{System.String}},System.Collections.Generic.List{System.Collections.Generic.List{System.String}},System.Collections.Generic.List{System.Collections.Generic.List{System.String}}@)">
+ <summary>
+ Translate a batch of sentenses by generating one word at a time for each sentence with the decoder until max 
+ length or stopping character.
+ </summary>
+</member>
+</members>
+</doc>

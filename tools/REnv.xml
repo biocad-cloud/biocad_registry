@@ -6693,9 +6693,14 @@ to take away yo [rest of string was truncated]&quot;;.
  <summary>
  get the absolute file path that relative to the current script folder
  </summary>
- <param name="file"></param>
+ <param name="file">
+ this function will returns current script folder if this parameter is missing
+ </param>
  <param name="env"></param>
- <returns></returns>
+ <returns>
+ returns the given <paramref name="file"/> its full path which is 
+ relative to the folder of current running script file.
+ </returns>
 </member>
 <member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.etc.license(SMRUCC.Rsharp.Runtime.Environment)">
  <summary>
@@ -8715,6 +8720,20 @@ to take away yo [rest of string was truncated]&quot;;.
  a positive or complex number: the base with respect to which logarithms are computed. 
  Defaults to ``e=exp(1)``.
  </param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.math.log1p(System.Object)">
+ <summary>
+ Computes log(1+x) without losing precision for small values of x.
+ </summary>
+ <param name="x"></param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.math.log1m(System.Object)">
+ <summary>
+ Computes log(1-x) without losing precision for small values of x.
+ </summary>
+ <param name="x"></param>
  <returns></returns>
 </member>
 <member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.math.log2(System.Object)">
