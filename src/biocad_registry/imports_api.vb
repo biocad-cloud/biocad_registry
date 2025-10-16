@@ -14,6 +14,7 @@ Imports SMRUCC.genomics.Assembly.NCBI.Taxonomy
 Imports SMRUCC.genomics.Assembly.Uniprot.XML
 Imports SMRUCC.genomics.foundation.OBO_Foundry.IO.Models
 Imports SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.PubMed
+Imports SMRUCC.genomics.Model.OperonMapper
 Imports SMRUCC.Rsharp.Runtime
 Imports SMRUCC.Rsharp.Runtime.Internal.[Object]
 Imports SMRUCC.Rsharp.Runtime.Interop
@@ -224,6 +225,11 @@ Module imports_api
         Next
 
         Return Nothing
+    End Function
+
+    <ExportAPI("imports_operon")>
+    Public Function imports_operon(registry As biocad_registry, operon As OperonRow())
+        Call CommitOperonCluster.CommitOperonSet(registry, operon)
     End Function
 
 End Module
