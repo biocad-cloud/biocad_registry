@@ -794,6 +794,36 @@ Microsoft.VisualBasic.Data.Bootstrapping.Fittings
  <param name="x"></param>
  <returns></returns>
 </member>
+<member name="T:Microsoft.VisualBasic.Data.Bootstrapping.NonNegativeLeastSquares">
+ <summary>
+ NNLS Non-Negative Least-Squares algorithm
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.Bootstrapping.NonNegativeLeastSquares.Solve(System.Double[0:,0:],System.Double[],System.Int32,System.Double)">
+ <summary>
+ 求解非负最小二乘问题：最小化 ||Ax - b||^2，满足 x >= 0
+ </summary>
+ <param name="A">设计矩阵 (m x n)</param>
+ <param name="b">观测向量 (m)</param>
+ <param name="maxIterations">最大迭代次数</param>
+ <param name="tolerance">收敛容差</param>
+ <returns>非负解向量 x (n)</returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.Bootstrapping.NonNegativeLeastSquares.SolveUnconstrainedLS(System.Double[0:,0:],System.Double[])">
+ <summary>
+ 求解无约束最小二乘问题（使用正规方程法，可考虑扩展为SVD以提升稳定性）
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.Bootstrapping.NonNegativeLeastSquares.SolveLinearSystem(System.Double[0:,0:],System.Double[])">
+ <summary>
+ 使用部分主元高斯消元法求解线性方程组，提升数值稳定性
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.Bootstrapping.NonNegativeLeastSquares.UpdateResidual(System.Double[0:,0:],System.Double[],System.Double[],System.Double[])">
+ <summary>
+ 更新残差向量 r = b - A*x
+ </summary>
+</member>
 <member name="T:Microsoft.VisualBasic.Data.Bootstrapping.WeightedFit">
  <summary>
  加权拟合的结果
@@ -897,24 +927,24 @@ Microsoft.VisualBasic.Data.Bootstrapping.Fittings
  The non-linear function result output 
  </summary>
 </member>
-<member name="T:Microsoft.VisualBasic.Data.Bootstrapping.Instance">
+<member name="T:Microsoft.VisualBasic.Data.Bootstrapping.Logistic.Instance">
  <summary>
  classify training model
  </summary>
 </member>
-<member name="P:Microsoft.VisualBasic.Data.Bootstrapping.Instance.label">
+<member name="P:Microsoft.VisualBasic.Data.Bootstrapping.Logistic.Instance.label">
  <summary>
  the real label data
  </summary>
  <returns></returns>
 </member>
-<member name="P:Microsoft.VisualBasic.Data.Bootstrapping.Instance.x">
+<member name="P:Microsoft.VisualBasic.Data.Bootstrapping.Logistic.Instance.x">
  <summary>
  the object properties vector
  </summary>
  <returns></returns>
 </member>
-<member name="M:Microsoft.VisualBasic.Data.Bootstrapping.Instance.Load``1(System.Collections.Generic.IEnumerable{``0},System.String[],System.String)">
+<member name="M:Microsoft.VisualBasic.Data.Bootstrapping.Logistic.Instance.Load``1(System.Collections.Generic.IEnumerable{``0},System.String[],System.String)">
  <summary>
  load raw dataset helper function
  </summary>
@@ -924,7 +954,7 @@ Microsoft.VisualBasic.Data.Bootstrapping.Fittings
  <param name="label"></param>
  <returns></returns>
 </member>
-<member name="T:Microsoft.VisualBasic.Data.Bootstrapping.Logistic">
+<member name="T:Microsoft.VisualBasic.Data.Bootstrapping.Logistic.Logistic">
  <summary>
  This method uses Gradient descent algorithm. It uses number of small
  steps (iterations) And with each step use New theta values which
@@ -932,22 +962,22 @@ Microsoft.VisualBasic.Data.Bootstrapping.Fittings
  local minima (minimum cost function).
  </summary>
 </member>
-<member name="P:Microsoft.VisualBasic.Data.Bootstrapping.Logistic.ALPHA">
+<member name="P:Microsoft.VisualBasic.Data.Bootstrapping.Logistic.Logistic.ALPHA">
  <summary>
  the learning rate 
  </summary>
 </member>
-<member name="P:Microsoft.VisualBasic.Data.Bootstrapping.Logistic.ITERATIONS">
+<member name="P:Microsoft.VisualBasic.Data.Bootstrapping.Logistic.Logistic.ITERATIONS">
  <summary>
  the number of iterations 
  </summary>
 </member>
-<member name="F:Microsoft.VisualBasic.Data.Bootstrapping.Logistic.theta">
+<member name="F:Microsoft.VisualBasic.Data.Bootstrapping.Logistic.Logistic.theta">
  <summary>
  the weight to learn 
  </summary>
 </member>
-<member name="M:Microsoft.VisualBasic.Data.Bootstrapping.Logistic.sigmoid(Microsoft.VisualBasic.Math.LinearAlgebra.Matrix.NumericMatrix)">
+<member name="M:Microsoft.VisualBasic.Data.Bootstrapping.Logistic.Logistic.sigmoid(Microsoft.VisualBasic.Math.LinearAlgebra.Matrix.NumericMatrix)">
  <summary>
  Sigmoid function. Formula: g = 1 ./ (1 + (exp(-1 .* z)));
  </summary>

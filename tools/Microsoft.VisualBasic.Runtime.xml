@@ -4631,6 +4631,13 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="current">The current progress.</param>
  <param name="total">The total number of iterations expected. This will update the internal total counter given in the constructor.</param>
 </member>
+<member name="M:Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm.ProgressBar.Progress(System.Int32,System.String)">
+ <summary>
+ adapter interface for <see cref="T:Microsoft.VisualBasic.CommandLine.InteropService.Pipeline.RunSlavePipeline.SetProgressEventHandler"/>
+ </summary>
+ <param name="current"></param>
+ <param name="message"></param>
+</member>
 <member name="M:Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm.ProgressBar.Progress(System.Int32)">
  <summary>
  Updates the progress bar with the current progress.
@@ -11029,6 +11036,13 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  just used for tagged on the <see cref="P:Microsoft.VisualBasic.ComponentModel.DataSourceModel.DynamicPropertyBase`1.Properties"/> property
  </summary>
 </member>
+<member name="M:Microsoft.VisualBasic.ComponentModel.DataSourceModel.DynamicMetadataAttribute.GetMetadata(System.Collections.Generic.IEnumerable{System.Reflection.PropertyInfo})">
+ <summary>
+ find the first <see cref="T:System.Reflection.PropertyInfo"/> which is tagged with <see cref="T:Microsoft.VisualBasic.ComponentModel.DataSourceModel.DynamicMetadataAttribute"/>
+ </summary>
+ <param name="properties"></param>
+ <returns></returns>
+</member>
 <member name="M:Microsoft.VisualBasic.ComponentModel.DataSourceModel.DynamicMetadataAttribute.GetMetadata(System.Type)">
  <summary>
  get the target <see cref="P:Microsoft.VisualBasic.ComponentModel.DataSourceModel.DynamicPropertyBase`1.Properties"/> its <see cref="T:System.Reflection.PropertyInfo"/>
@@ -15116,11 +15130,13 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <summary>
  Transform a numeric value in this <see cref="T:Microsoft.VisualBasic.ComponentModel.Ranges.Model.DoubleRange"/> into 
  target numeric range: ``<paramref name="valueRange"/>``.
- (将当前的范围内的一个实数映射到另外的一个范围内的实数区间之中)
  </summary>
- <param name="x#">A numeric value in this <see cref="T:Microsoft.VisualBasic.ComponentModel.Ranges.Model.DoubleRange"/></param>
+ <param name="x">A numeric value in this <see cref="T:Microsoft.VisualBasic.ComponentModel.Ranges.Model.DoubleRange"/></param>
  <param name="valueRange"></param>
  <returns></returns>
+ <remarks>
+ (将当前的范围内的一个实数映射到另外的一个范围内的实数区间之中)
+ </remarks>
 </member>
 <member name="M:Microsoft.VisualBasic.ComponentModel.Ranges.Model.DoubleRange.ScaleMapping(System.Double,Microsoft.VisualBasic.ComponentModel.Ranges.Model.IntRange)">
  <summary>
@@ -16730,6 +16746,11 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  (线程不安全的图片数据对象)
  </remarks>
 </member>
+<member name="F:Microsoft.VisualBasic.Imaging.BitmapImage.BitmapBuffer.handle">
+ <summary>
+ BitmapData
+ </summary>
+</member>
 <member name="F:Microsoft.VisualBasic.Imaging.BitmapImage.BitmapBuffer.memoryBuffer">
  <summary>
  current bitmap data is construct from a pixel data array, not read from memory via pointer.
@@ -16740,6 +16761,16 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  图片可能是 BGRA 4通道
  也可能是 BGR 3通道的
  </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Imaging.BitmapImage.BitmapBuffer.#ctor(System.IntPtr,System.Int32,System.Drawing.Bitmap,System.Drawing.Imaging.BitmapData,System.Int32)">
+ <summary>
+ constructor for gdi+ image data object
+ </summary>
+ <param name="ptr"></param>
+ <param name="byts"></param>
+ <param name="raw"></param>
+ <param name="handle"></param>
+ <param name="channel"></param>
 </member>
 <member name="M:Microsoft.VisualBasic.Imaging.BitmapImage.BitmapBuffer.#ctor(System.IntPtr,System.Int32,System.Int32)">
  <summary>
@@ -16838,6 +16869,14 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  helper function for hqx algorithm module
  </remarks>
 </member>
+<member name="M:Microsoft.VisualBasic.Imaging.BitmapImage.BitmapBuffer.Unpack(System.Drawing.Color[0:,0:],System.Drawing.Size)">
+ <summary>
+ argb channels=4
+ </summary>
+ <param name="pixels"></param>
+ <param name="size"></param>
+ <returns></returns>
+</member>
 <member name="M:Microsoft.VisualBasic.Imaging.BitmapImage.BitmapBuffer.WriteARGBStream(System.UInt32[])">
  <summary>
  helper function for hqx algorithm module
@@ -16925,6 +16964,13 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="offset%"></param>
  <returns></returns>
  
+</member>
+<member name="M:Microsoft.VisualBasic.Imaging.BitmapImage.BitmapChannels.RGB(Microsoft.VisualBasic.Imaging.BitmapImage.BitmapBuffer,System.Boolean)">
+ <summary>
+ split the bitmap into rgb channels
+ </summary>
+ <param name="bitmap"></param>
+ <returns></returns>
 </member>
 <member name="T:Microsoft.VisualBasic.Imaging.BitmapImage.BitmapReader">
  <summary>
@@ -17028,9 +17074,29 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  https://stackoverflow.com/questions/3115076/adjust-the-contrast-of-an-image-in-c-sharp-efficiently
  </remarks>
 </member>
+<member name="M:Microsoft.VisualBasic.Imaging.BitmapImage.BitmapScale.AdjustContrast(Microsoft.VisualBasic.Imaging.BitmapImage.BitmapBuffer@,System.Double)">
+ <summary>
+ Adjust the contrast of an image.
+ (调整图像的对比度)
+ </summary>
+ <param name="destPixels">target bitmap data buffer for make contrast processing.</param>
+ <param name="contrast">
+ Used to set the contrast (-100 to 100)
+ </param>
+ <remarks>
+ https://stackoverflow.com/questions/3115076/adjust-the-contrast-of-an-image-in-c-sharp-efficiently
+ </remarks>
+</member>
 <member name="M:Microsoft.VisualBasic.Imaging.BitmapImage.BitmapScale.Grayscale(System.Drawing.Image)">
  <summary>
  convert color bitmaps to grayscale.(灰度图)
+ </summary>
+ <param name="source"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Imaging.BitmapImage.BitmapScale.Grayscale(Microsoft.VisualBasic.Imaging.BitmapImage.BitmapBuffer@,System.Single,System.Single,System.Single)">
+ <summary>
+ 将彩色图转换为灰度图
  </summary>
  <param name="source"></param>
  <returns></returns>
@@ -17327,6 +17393,30 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <remarks>
  All color channel in this color class should be in value range of ``[0,1]``.
  </remarks>
+</member>
+<member name="P:Microsoft.VisualBasic.Imaging.CMYKColor.C">
+ <summary>
+ cyan
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Imaging.CMYKColor.M">
+ <summary>
+ magenta
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Imaging.CMYKColor.Y">
+ <summary>
+ yellow
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Imaging.CMYKColor.K">
+ <summary>
+ key (black)
+ </summary>
+ <returns></returns>
 </member>
 <member name="M:Microsoft.VisualBasic.Imaging.CMYKColor.ToString">
  <summary>
@@ -19360,6 +19450,26 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="frameSize"></param>
  <returns></returns>
 </member>
+<member name="M:Microsoft.VisualBasic.Imaging.Math2D.GeomTransform.Rotate(System.Double[]@,System.Double[]@,System.Double)">
+ <summary>
+ 绕多边形自身中心旋转指定弧度
+ </summary>
+ <param name="theta">旋转角度（弧度），逆时针为正</param>
+</member>
+<member name="M:Microsoft.VisualBasic.Imaging.Math2D.GeomTransform.Translate(System.Double[]@,System.Double[]@,System.Double,System.Double)">
+ <summary>
+ 平移多边形
+ </summary>
+ <param name="tx">X轴平移量</param>
+ <param name="ty">Y轴平移量</param>
+</member>
+<member name="M:Microsoft.VisualBasic.Imaging.Math2D.GeomTransform.Scale(System.Double[]@,System.Double[]@,System.Double,System.Double)">
+ <summary>
+ 缩放多边形
+ </summary>
+ <param name="sx">X轴缩放因子</param>
+ <param name="sy">Y轴缩放因子</param>
+</member>
 <member name="T:Microsoft.VisualBasic.Imaging.Math2D.Intersections">
  <summary>
  几何体之间的关系类型
@@ -19400,6 +19510,36 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <returns>
  observed is the calculated moran-I value
  </returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Imaging.Math2D.Transform.theta">
+ <summary>
+ angle for rotation
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Imaging.Math2D.Transform.tx">
+ <summary>
+ translate x
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Imaging.Math2D.Transform.ty">
+ <summary>
+ translate y
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Imaging.Math2D.Transform.scalex">
+ <summary>
+ scale x
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Imaging.Math2D.Transform.scaley">
+ <summary>
+ scale y
+ </summary>
+ <returns></returns>
 </member>
 <member name="T:Microsoft.VisualBasic.Imaging.Math2D.Line2D">
  <summary>
@@ -19808,7 +19948,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  </summary>
  <param name="points"></param>
 </member>
-<member name="M:Microsoft.VisualBasic.Imaging.Math2D.Polygon2D.#ctor(System.Drawing.RectangleF)">
+<member name="M:Microsoft.VisualBasic.Imaging.Math2D.Polygon2D.#ctor(System.Drawing.RectangleF[])">
  <summary>
  
  </summary>
@@ -22457,6 +22597,35 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <returns></returns>
  <remarks></remarks>
 </member>
+<member name="T:Microsoft.VisualBasic.Text.UnbufferedStreamReader">
+ <summary>
+ 提供无缓冲的按行读取文本流的功能。
+ 用于避免 StreamReader 内部缓冲区导致流位置超出实际内容末尾的问题。
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Text.UnbufferedStreamReader.#ctor(System.IO.Stream,System.Text.Encoding,System.Boolean)">
+ <summary>
+ 初始化 UnbufferedStreamReader 类的新实例。
+ </summary>
+ <param name="stream">要读取的流。</param>
+ <param name="encoding">要使用的字符编码。默认为 UTF-8。</param>
+ <param name="leaveOpen">在释放 Reader 后是否保持流打开。默认为 False。</param>
+ <exception cref="T:System.ArgumentNullException">stream 为 Nothing。</exception>
+ <exception cref="T:System.ArgumentException">流不支持读取。</exception>
+</member>
+<member name="M:Microsoft.VisualBasic.Text.UnbufferedStreamReader.ReadLine">
+ <summary>
+ 从当前流中读取一行字符。
+ </summary>
+ <returns>当前行内容；如果已到达流末尾，则为 Nothing。</returns>
+ <exception cref="T:System.ObjectDisposedException">方法在流被释放后调用。</exception>
+</member>
+<member name="M:Microsoft.VisualBasic.Text.UnbufferedStreamReader.Dispose(System.Boolean)">
+ <summary>
+ 释放由 UnbufferedStreamReader 使用的所有资源。
+ </summary>
+ <param name="disposing">为 True 则释放托管资源和非托管资源；为 False 则仅释放非托管资源。</param>
+</member>
 <member name="T:Microsoft.VisualBasic.Text.UnbufferedStringReader">
  <summary>
  Represents a reader that can read a sequential series of characters.
@@ -22961,6 +23130,91 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  </summary>
  <typeparam name="T"></typeparam>
  <remarks>这个对象的用途和<see cref="T:Microsoft.VisualBasic.ComponentModel.DataSourceModel.NamedValue`1"/>对象的用途是一致的，只不过差异在于所想要表达的寓意上面</remarks>
+</member>
+<member name="T:Microsoft.VisualBasic.Text.Parser.Scanner">
+ <summary>
+ 模拟Java Scanner类功能的VB.NET类。
+ 注意：此类未实现Java Scanner的所有方法，仅提供核心功能。
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Text.Parser.Scanner.#ctor(System.IO.TextReader)">
+ <summary>
+ 构造函数，基于TextReader创建VBNetScanner。
+ </summary>
+ <param name="reader">输入的TextReader对象</param>
+</member>
+<member name="M:Microsoft.VisualBasic.Text.Parser.Scanner.#ctor">
+ <summary>
+ 从控制台标准输入创建VBNetScanner。
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Text.Parser.Scanner.#ctor(System.String)">
+ <summary>
+ 从字符串创建VBNetScanner。
+ </summary>
+ <param name="input">输入的字符串</param>
+</member>
+<member name="M:Microsoft.VisualBasic.Text.Parser.Scanner.UseDelimiter(System.String)">
+ <summary>
+ 设置分隔符（支持正则表达式）。
+ </summary>
+ <param name="pattern">分隔符的正则表达式模式</param>
+ <returns>返回当前VBNetScanner实例，支持链式调用</returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Text.Parser.Scanner.HasNext">
+ <summary>
+ 检查是否还有下一个令牌（使用当前分隔符）。
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Text.Parser.Scanner.Next">
+ <summary>
+ 读取下一个令牌（字符串）。
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Text.Parser.Scanner.HasNextLine">
+ <summary>
+ 检查是否还有下一行。
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Text.Parser.Scanner.NextLine">
+ <summary>
+ 读取下一行内容。
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Text.Parser.Scanner.NextInt">
+ <summary>
+ 读取下一个整数。
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Text.Parser.Scanner.HasNextInt">
+ <summary>
+ 检查是否还有下一个整数。
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Text.Parser.Scanner.NextDouble">
+ <summary>
+ 读取下一个双精度浮点数。
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Text.Parser.Scanner.HasNextDouble">
+ <summary>
+ 检查是否还有下一个双精度浮点数。
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Text.Parser.Scanner.Close">
+ <summary>
+ 关闭扫描器并释放资源。
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Text.Parser.Scanner.Dispose">
+ <summary>
+ 释放资源。
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Text.Parser.Scanner.ReadNextLine">
+ <summary>
+ 尝试读取下一行并按分隔符拆分。
+ </summary>
 </member>
 <member name="F:Microsoft.VisualBasic.Text.Parser.TryParseOptions.Empty">
  <summary>
@@ -25086,6 +25340,48 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="url"></param>
  <returns></returns>
  
+</member>
+<member name="T:Microsoft.VisualBasic.FileIO.FileModeDescriptor">
+ <summary>
+ Specifies how the operating system should open a file.
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.FileIO.FileModeDescriptor.Open">
+ <summary>
+ (r) Specifies that the operating system should open an existing file. The ability
+     to open the file is dependent on the value specified by the System.IO.FileAccess
+     enumeration. A System.IO.FileNotFoundException exception is thrown if the file
+     does not exist.
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.FileIO.FileModeDescriptor.OpenOrCreate">
+ <summary>
+ (w) Specifies that the operating system should open a file if it exists; otherwise,
+     a new file should be created. If the file is opened with FileAccess.Read, System.Security.Permissions.FileIOPermissionAccess.Read
+     permission is required. If the file access is FileAccess.Write, System.Security.Permissions.FileIOPermissionAccess.Write
+     permission is required. If the file is opened with FileAccess.ReadWrite, both
+     System.Security.Permissions.FileIOPermissionAccess.Read and System.Security.Permissions.FileIOPermissionAccess.Write
+     permissions are required.
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.FileIO.FileModeDescriptor.Truncate">
+ <summary>
+ (w+) Specifies that the operating system should open an existing file. When the file
+     is opened, it should be truncated so that its size is zero bytes. This requires
+     System.Security.Permissions.FileIOPermissionAccess.Write permission. Attempts
+     to read from a file opened with FileMode.Truncate cause an System.ArgumentException
+     exception.
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.FileIO.FileModeDescriptor.Append">
+ <summary>
+ (a+) Opens the file if it exists and seeks to the end of the file, or creates a new
+     file. This requires System.Security.Permissions.FileIOPermissionAccess.Append
+     permission. FileMode.Append can be used only in conjunction with FileAccess.Write.
+     Trying to seek to a position before the end of the file throws an System.IO.IOException
+     exception, and any attempt to read fails and throws a System.NotSupportedException
+     exception.
+ </summary>
 </member>
 <member name="M:Microsoft.VisualBasic.FileIO.CopyDirectoryAction.Copy(System.String,System.String,System.Boolean)">
  <summary>
@@ -28557,13 +28853,19 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
 </member>
 <member name="P:Microsoft.VisualBasic.Emit.Marshal.Span`1.Length">
  <summary>
- the span size
+ current span view size
  </summary>
  <returns></returns>
 </member>
 <member name="P:Microsoft.VisualBasic.Emit.Marshal.Span`1.ArrayLength">
  <summary>
  the length of the entire array
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Emit.Marshal.Span`1.OffsetEnds">
+ <summary>
+ the offset ends in the raw input buffer
  </summary>
  <returns></returns>
 </member>
@@ -28678,7 +28980,13 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="deli">
  a delimiter string for join multiple flag enumeration value theirs enum string
  </param>
- <returns></returns>
+ <returns>
+ this function always returns a non-null string value:
+ 
+ for thoese enum member which it has been tagged with <see cref="T:System.ComponentModel.DescriptionAttribute"/>, 
+ the description data string will returns from this function;
+ otherwise the string value from the enum member its toString() function will be returned.
+ </returns>
  <remarks>
  this extension function has an internal cache table for get the description
  text of a given enum value
@@ -33081,7 +33389,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  @author  Josh Bloch
  @author  Neal Gafter </summary>
 </member>
-<member name="M:Microsoft.VisualBasic.Language.Java.Collections.binarySearch``1(Microsoft.VisualBasic.Language.List{``0},``0)">
+<member name="M:Microsoft.VisualBasic.Language.Java.Collections.binarySearch``1(``0[],``0)">
  <summary>
  Searches the specified list for the specified object using the binary
  search algorithm.  The list must be sorted into ascending order
@@ -33116,7 +33424,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  list listIterator.
  </summary>
 </member>
-<member name="M:Microsoft.VisualBasic.Language.Java.Collections.binarySearch``1(Microsoft.VisualBasic.Language.List{``0},``0,System.Collections.Generic.IComparer{``0})">
+<member name="M:Microsoft.VisualBasic.Language.Java.Collections.binarySearch``1(``0[],``0,System.Collections.Generic.IComparer{``0})">
  <summary>
  Searches the specified list for the specified object using the binary
  search algorithm.  The list must be sorted into ascending order
@@ -36310,10 +36618,9 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
 <member name="M:Microsoft.VisualBasic.Language.i32.op_UnaryPlus(Microsoft.VisualBasic.Language.i32)">
  <summary>
  Auto increment value with step 1 and then returns the previous value.
- (自增1然后返回之前的值)
  </summary>
  <param name="x"></param>
- <returns></returns>
+ <returns>自增1然后返回之前的值</returns>
 </member>
 <member name="M:Microsoft.VisualBasic.Language.i32.op_Addition(Microsoft.VisualBasic.Language.i32,System.Int32)">
  <summary>

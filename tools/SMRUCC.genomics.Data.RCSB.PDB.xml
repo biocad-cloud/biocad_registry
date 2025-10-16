@@ -6,6 +6,56 @@ SMRUCC.genomics.Data.RCSB.PDB
 </name>
 </assembly>
 <members>
+<member name="F:SMRUCC.genomics.Data.RCSB.PDB.CovalentRadii.Covalent_Radii_Table">
+ <summary>
+ https://chem.libretexts.org/Ancillary_Materials/Reference/Reference_Tables/Atomic_and_Molecular_Properties/A3%3A_Covalent_Radii
+ </summary>
+ <remarks>
+ pm
+ </remarks>
+</member>
+<member name="M:SMRUCC.genomics.Data.RCSB.PDB.CovalentRadii.MeasureBonds(SMRUCC.genomics.Data.RCSB.PDB.Keywords.HETATM.HETATMRecord[],System.Double)">
+ <summary>
+ 
+ </summary>
+ <param name="ligand"></param>
+ <param name="toleranceFactor">
+ 容忍度系数，用于判断实际距离是否在共价半径理论和的范围内
+ </param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Data.RCSB.PDB.CovalentRadii.MeasureBonds(SMRUCC.genomics.Data.RCSB.PDB.Keywords.HETATM.HETATMRecord[],System.Collections.Generic.Dictionary{System.String,SMRUCC.genomics.Data.RCSB.PDB.CovalentRadii},System.Double)">
+ <summary>
+ 
+ </summary>
+ <param name="ligand"></param>
+ <param name="table"></param>
+ <param name="toleranceFactor">
+ 容忍度系数，用于判断实际距离是否在共价半径理论和的范围内
+ </param>
+ <returns></returns>
+</member>
+<member name="T:SMRUCC.genomics.Data.RCSB.PDB.ComplexGenerator">
+ <summary>
+ Helper module for generate protein complex from the autodock vina docking result
+ </summary>
+</member>
+<member name="M:SMRUCC.genomics.Data.RCSB.PDB.ComplexGenerator.#ctor(System.String,System.String)">
+ <summary>
+ 
+ </summary>
+ <param name="prot_id">the docking source protein pdb object input</param>
+ <param name="ligand">the docking source ligand pdb object input</param>
+</member>
+<member name="M:SMRUCC.genomics.Data.RCSB.PDB.ComplexGenerator.CreateComplexList(System.String,System.String)">
+ <summary>
+ split the vina docking result and combine with the source protein to generate the complex pdb file list
+ </summary>
+ <param name="dock_result"></param>
+ <returns>
+ a collection of the pdb content text data of the generated complex in different docking conformations
+ </returns>
+</member>
 <member name="T:SMRUCC.genomics.Data.RCSB.PDB.AminoAcid">
  <summary>
  氨基酸残基
@@ -30,6 +80,11 @@ SMRUCC.genomics.Data.RCSB.PDB
  the model id
  </summary>
  <returns></returns>
+</member>
+<member name="T:SMRUCC.genomics.Data.RCSB.PDB.Keywords.Terminator">
+ <summary>
+ The chain model terminator flag
+ </summary>
 </member>
 <member name="T:SMRUCC.genomics.Data.RCSB.PDB.Keywords.AtomUnit">
  <summary>
@@ -68,9 +123,101 @@ SMRUCC.genomics.Data.RCSB.PDB
  Axis information
  </summary>
 </member>
+<member name="T:SMRUCC.genomics.Data.RCSB.PDB.Keywords.Header">
+ <summary>
+ the pdb file header description information
+ </summary>
+</member>
+<member name="M:SMRUCC.genomics.Data.RCSB.PDB.Keywords.Header.ToPdbString">
+ <summary>
+ 生成符合PDB格式的HEADER行字符串
+ </summary>
+ <returns>格式化的HEADER行字符串</returns>
+</member>
+<member name="T:SMRUCC.genomics.Data.RCSB.PDB.Keywords.Title">
+ <summary>
+ pdb file title description information
+ </summary>
+</member>
+<member name="M:SMRUCC.genomics.Data.RCSB.PDB.Keywords.Title.GeneratePdbTitleLines(SMRUCC.genomics.Data.RCSB.PDB.Keywords.Title,System.Int32)">
+ <summary>
+ 生成 PDB 文件格式的 TITLE 部分内容
+ </summary>
+ <param name="titleObj">Title 类对象，包含标题文本</param>
+ <param name="maxLineLength">单行最大长度（默认为标准的80字符，PDB记录行通常为80字符）</param>
+ <returns>格式化后的 PDB TITLE 行列表，每行都是一个字符串</returns>
+</member>
+<member name="T:SMRUCC.genomics.Data.RCSB.PDB.Keywords.Author">
+ <summary>
+ the author list of the pdb file
+ </summary>
+</member>
+<member name="M:SMRUCC.genomics.Data.RCSB.PDB.Keywords.Author.ToPDBAuthorFieldText">
+ <summary>
+ 生成符合PDB文件格式的AUTHOR字段文本。
+ </summary>
+ <returns>格式化后的AUTHOR字段文本，每行以"AUTHOR"关键字开头</returns>
+</member>
 <member name="T:SMRUCC.genomics.Data.RCSB.PDB.Keywords.Het">
  <summary>
  非标准残基注释
+ </summary>
+</member>
+<member name="P:SMRUCC.genomics.Data.RCSB.PDB.Keywords.Het.HETRecord.ResidueType">
+ <summary>
+ 残基类型 (FMN, MPD等)
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Data.RCSB.PDB.Keywords.Het.HETRecord.ChainID">
+ <summary>
+ 链标识符 (A, B等)
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Data.RCSB.PDB.Keywords.Het.HETRecord.SequenceNumber">
+ <summary>
+ 序列号
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Data.RCSB.PDB.Keywords.Het.HETRecord.AtomCount">
+ <summary>
+ 原子数量
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Data.RCSB.PDB.Keywords.Het.HETRecord.ToPdbHETLine">
+ <summary>
+ 生成PDB格式的HET记录行
+ </summary>
+ <returns>符合PDB格式的HET记录字符串</returns>
+</member>
+<member name="T:SMRUCC.genomics.Data.RCSB.PDB.Keywords.HETATM.HETATMRecord">
+ <summary>
+ 表示解析后的HETATM记录信息
+ </summary>
+</member>
+<member name="M:SMRUCC.genomics.Data.RCSB.PDB.Keywords.HETATM.HETATMRecord.#ctor(SMRUCC.genomics.Data.RCSB.PDB.Keywords.AtomUnit)">
+ <summary>
+ copy valye from atom model data
+ </summary>
+ <param name="atom"></param>
+</member>
+<member name="M:SMRUCC.genomics.Data.RCSB.PDB.Keywords.HetName.Append(SMRUCC.genomics.Data.RCSB.PDB.Keywords.HetName@,System.String)">
+ <summary>
+ append a new line of hetname record to the current hetname object
+ </summary>
+ <param name="hetname"></param>
+ <param name="line"></param>
+ <returns></returns>
+</member>
+<member name="T:SMRUCC.genomics.Data.RCSB.PDB.Keywords.CONECT">
+ <summary>
+ ### PDB文件中的CONECT字段用于明确指定原子间的特殊连接关系
+ 
+ CONECT记录提供了原子之间除标准共价键以外的特定连接信息，例如二硫键、配位键、氢键（在某些情况下）、盐桥，
+ 以及非标准残基（如辅因子、抑制剂）内部的键合关系或它们与蛋白质/核酸之间的连接。
  </summary>
 </member>
 <member name="P:SMRUCC.genomics.Data.RCSB.PDB.Keywords.Source.GeneId(System.String)">
@@ -79,6 +226,29 @@ SMRUCC.genomics.Data.RCSB.PDB
  </summary>
  <param name="mol"></param>
  <returns></returns>
+</member>
+<member name="T:SMRUCC.genomics.Data.RCSB.PDB.Keywords.Remark">
+ <summary>
+ the pdb remark keyword data
+ </summary>
+</member>
+<member name="P:SMRUCC.genomics.Data.RCSB.PDB.Keywords.Remark.RemarkText">
+ <summary>
+ the pdb remark text data with different categories labels
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Data.RCSB.PDB.Keywords.Remark.GenerateRemarkText(SMRUCC.genomics.Data.RCSB.PDB.Keywords.Remark)">
+ <summary>
+ 生成PDB格式的REMARK部分文本内容
+ </summary>
+ <param name="remarkObj">Remark对象实例</param>
+ <returns>格式化后的REMARK文本</returns>
+</member>
+<member name="M:SMRUCC.genomics.Data.RCSB.PDB.Keywords.Remark.FormatRemarkLine(System.Int32,System.String)">
+ <summary>
+ 格式化单个REMARK行（符合PDB文件格式规范）
+ </summary>
 </member>
 <member name="T:SMRUCC.genomics.Data.RCSB.PDB.Keywords.SEQADV">
  <summary>

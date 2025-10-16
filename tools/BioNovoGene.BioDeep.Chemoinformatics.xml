@@ -6,22 +6,6 @@ BioNovoGene.BioDeep.Chemoinformatics
 </name>
 </assembly>
 <members>
-<member name="T:BioNovoGene.BioDeep.Chemoinformatics.My.Resources.Resources">
-<summary>
-  A strongly-typed resource class, for looking up localized strings, etc.
-</summary>
-</member>
-<member name="P:BioNovoGene.BioDeep.Chemoinformatics.My.Resources.Resources.ResourceManager">
-<summary>
-  Returns the cached ResourceManager instance used by this class.
-</summary>
-</member>
-<member name="P:BioNovoGene.BioDeep.Chemoinformatics.My.Resources.Resources.Culture">
-<summary>
-  Overrides the current thread's CurrentUICulture property for all
-  resource lookups using this strongly typed resource class.
-</summary>
-</member>
 <member name="T:BioNovoGene.BioDeep.Chemoinformatics.CASNumber">
  <summary>
  Chemical Abstracts Service Number of a specific metabolite

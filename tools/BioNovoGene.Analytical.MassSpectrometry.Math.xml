@@ -820,7 +820,7 @@ BioNovoGene.Analytical.MassSpectrometry.Math
 </member>
 <member name="F:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.IonModes.Unknown">
  <summary>
- Unknown Ion Mode
+ Unknown Ion Mode or Raw data file contains both positive data and negative data
  </summary>
 </member>
 <member name="F:BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.IonModes.Positive">
@@ -1612,6 +1612,45 @@ BioNovoGene.Analytical.MassSpectrometry.Math
  </param>
  <returns></returns>
 </member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Centroids.CentroidMode(BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LibraryMatrix,BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Tolerance,BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LowAbundanceTrimming,System.Func{System.Collections.Generic.IEnumerable{System.Double},System.Double})">
+ <summary>
+ Convert profile matrix to centroid matrix
+ </summary>
+ <param name="[lib]"></param>
+ <returns></returns>
+ 
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Centroids.Centroid(BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ms2[],BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Tolerance,BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LowAbundanceTrimming)">
+ <summary>
+ Convert profile matrix to centroid matrix
+ 
+ the intensity value in a mzbin group is aggregate by the max intensity value 
+ </summary>
+ <param name="peaks"></param>
+ <param name="cutoff"></param>
+ <returns></returns>
+ <remarks>
+ order of data processing:
+ 
+ ``intensity_cutoff -> centroid``
+ 
+ this function will always keeps the fragment peak annotation data.
+ </remarks>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Centroids.Centroid(BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ms2[],BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Tolerance,BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LowAbundanceTrimming,System.Func{System.Collections.Generic.IEnumerable{System.Double},System.Double})">
+ <summary>
+ Convert profile matrix to centroid matrix
+ 
+ the intensity value in a mzbin group is aggregate by the sum intensity value 
+ </summary>
+ <param name="peaks"></param>
+ <param name="tolerance"></param>
+ <param name="cutoff"></param>
+ <returns></returns>
+ <remarks>
+ this function will keeps the annotation metadata for the peaks.
+ </remarks>
+</member>
 <member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.CheckInSourceFragments">
  <summary>
  module for check LC-MS in-source fragment result
@@ -1728,6 +1767,14 @@ BioNovoGene.Analytical.MassSpectrometry.Math
  </summary>
  
 </member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LibraryMatrixExtensions.Normalize(System.Collections.Generic.IEnumerable{BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ms2},System.Nullable{System.Double})">
+ <summary>
+ make spectrum intensity normalized with max intensity
+ </summary>
+ <param name="ms"></param>
+ <param name="scale"></param>
+ <returns></returns>
+</member>
 <member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LibraryMatrixExtensions.SumMs(BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LibraryMatrix)">
  <summary>
  SUM(<see cref="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ms2.intensity"/>)
@@ -1752,51 +1799,39 @@ BioNovoGene.Analytical.MassSpectrometry.Math
  <param name="normalize">matrix will be normalized to [0, 1]</param>
  <returns></returns>
 </member>
-<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LibraryMatrixExtensions.CentroidMode(BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LibraryMatrix,BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Tolerance,BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LowAbundanceTrimming,System.Func{System.Collections.Generic.IEnumerable{System.Double},System.Double})">
- <summary>
- Convert profile matrix to centroid matrix
- </summary>
- <param name="[lib]"></param>
- <returns></returns>
- 
-</member>
-<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LibraryMatrixExtensions.Centroid(BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ms2[],BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Tolerance,BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LowAbundanceTrimming)">
- <summary>
- Convert profile matrix to centroid matrix
- 
- the intensity value in a mzbin group is aggregate by the max intensity value 
- </summary>
- <param name="peaks"></param>
- <param name="cutoff"></param>
- <returns></returns>
- <remarks>
- order of data processing:
- 
- ``intensity_cutoff -> centroid``
- 
- this function will always keeps the fragment peak annotation data.
- </remarks>
-</member>
-<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LibraryMatrixExtensions.Centroid(BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ms2[],BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Tolerance,BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LowAbundanceTrimming,System.Func{System.Collections.Generic.IEnumerable{System.Double},System.Double})">
- <summary>
- Convert profile matrix to centroid matrix
- 
- the intensity value in a mzbin group is aggregate by the sum intensity value 
- </summary>
- <param name="peaks"></param>
- <param name="tolerance"></param>
- <param name="cutoff"></param>
- <returns></returns>
- <remarks>
- this function will keeps the annotation metadata for the peaks.
- </remarks>
-</member>
 <member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.LibraryMatrixExtensions.AbSciexBaselineHandling(System.Collections.Generic.IEnumerable{BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ms2},System.Int32)">
  <summary>
  removes noise peak of the ab5600 raw data file
  </summary>
  <param name="msData"></param>
  <param name="cut"></param>
+ <returns></returns>
+</member>
+<member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Matches">
+ <summary>
+ the spectrum fragment matches method 
+ </summary>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Matches.BinarySearch(BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ms2[],System.Double,BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.Tolerance)">
+ <summary>
+ 
+ </summary>
+ <param name="sortMz">
+ data must be sorted by the <see cref="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ms2.mz"/> fragment mass value in asc order.
+ </param>
+ <param name="mz"></param>
+ <param name="tolerance"></param>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Matches.BinarySearch(BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ms2[],System.Double,BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ComparesMz)">
+ <summary>
+ 
+ </summary>
+ <param name="sortMz">
+ data must be sorted by the <see cref="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ms2.mz"/> fragment mass value in asc order.
+ </param>
+ <param name="mz"></param>
+ <param name="tolerance"></param>
  <returns></returns>
 </member>
 <member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Library">
@@ -1999,7 +2034,7 @@ BioNovoGene.Analytical.MassSpectrometry.Math
 </member>
 <member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.ms2.CompareTo(System.Object)">
  <summary>
- compares by mz value
+ compares by fragment intensity and mz value
  </summary>
  <param name="other"></param>
  <returns></returns>

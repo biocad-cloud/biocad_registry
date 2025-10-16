@@ -6,22 +6,6 @@ BioNovoGene.BioDeep.Chemistry.XrefEngine
 </name>
 </assembly>
 <members>
-<member name="T:BioNovoGene.BioDeep.Chemistry.MetaLib.My.Resources.Resources">
-<summary>
-  A strongly-typed resource class, for looking up localized strings, etc.
-</summary>
-</member>
-<member name="P:BioNovoGene.BioDeep.Chemistry.MetaLib.My.Resources.Resources.ResourceManager">
-<summary>
-  Returns the cached ResourceManager instance used by this class.
-</summary>
-</member>
-<member name="P:BioNovoGene.BioDeep.Chemistry.MetaLib.My.Resources.Resources.Culture">
-<summary>
-  Overrides the current thread's CurrentUICulture property for all
-  resource lookups using this strongly typed resource class.
-</summary>
-</member>
 <member name="T:BioNovoGene.BioDeep.Chemistry.MetaLib.AnnotationWorkspace">
  <summary>
  The temp workspace file of the biodeep annotation pipeline
@@ -41,9 +25,9 @@ BioNovoGene.BioDeep.Chemistry.XrefEngine
  file path value could be nothing when the data pack is in readonly mode.
  </remarks>
 </member>
-<member name="M:BioNovoGene.BioDeep.Chemistry.MetaLib.AnnotationWorkspace.#ctor(System.IO.Stream,System.String,System.Int64)">
+<member name="M:BioNovoGene.BioDeep.Chemistry.MetaLib.AnnotationWorkspace.#ctor(System.IO.Stream,System.String,System.Int64,System.Nullable{System.Boolean})">
  <summary>
- construct of the workspace file reader/writer
+ construct of the <see cref="T:BioNovoGene.BioDeep.MSEngine.AnnotationPack"/> file reader/writer
  </summary>
  <param name="file"></param>
  <param name="source_file"></param>
@@ -71,6 +55,15 @@ BioNovoGene.BioDeep.Chemistry.XrefEngine
  <param name="rt_win">
  the rt window size for extract the XIC peak data for the peak ion
  </param>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemistry.MetaLib.AnnotationWorkspace.CacheXicTable``1(``0,System.Double,System.Double)">
+ <summary>
+ Make cache xic data from a given raw data file
+ </summary>
+ <typeparam name="mzPack"></typeparam>
+ <param name="file"></param>
+ <param name="mass_da"></param>
+ <param name="rt_win"></param>
 </member>
 <member name="M:BioNovoGene.BioDeep.Chemistry.MetaLib.AnnotationWorkspace.CheckXicCache">
  <summary>

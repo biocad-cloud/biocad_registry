@@ -511,6 +511,12 @@ to [rest of string was truncated]&quot;;.
  </summary>
  <returns></returns>
 </member>
+<member name="M:SMRUCC.Rsharp.Interpreter.ExecuteEngine.ExpressionSymbols.DataSets.Literal.#ctor(SMRUCC.Rsharp.Language.TokenIcer.Token)">
+ <summary>
+ create literal from a language token
+ </summary>
+ <param name="token"></param>
+</member>
 <member name="M:SMRUCC.Rsharp.Interpreter.ExecuteEngine.ExpressionSymbols.DataSets.Literal.#ctor(System.String)">
  <summary>
  create a string literal
@@ -674,7 +680,7 @@ to [rest of string was truncated]&quot;;.
 </member>
 <member name="F:SMRUCC.Rsharp.Interpreter.ExecuteEngine.ExpressionSymbols.DataSets.SymbolIndexer.index">
  <summary>
- index value for get subset from symbol <see cref="!:x"/>
+ index value for get subset from <see cref="F:SMRUCC.Rsharp.Interpreter.ExecuteEngine.ExpressionSymbols.DataSets.SymbolIndexer.symbol"/>. 
  </summary>
 </member>
 <member name="F:SMRUCC.Rsharp.Interpreter.ExecuteEngine.ExpressionSymbols.DataSets.SymbolIndexer.symbol">
@@ -2180,6 +2186,11 @@ to [rest of string was truncated]&quot;;.
  add a specific single attribute data
  </remarks>
 </member>
+<member name="T:SMRUCC.Rsharp.Interpreter.Program">
+ <summary>
+ is a collection of the expresion object, represents the parser result of a R script file
+ </summary>
+</member>
 <member name="F:SMRUCC.Rsharp.Interpreter.Program.Rscript">
  <summary>
  the raw Rscript data
@@ -2481,6 +2492,16 @@ to [rest of string was truncated]&quot;;.
  returns true means the stack is opened
  </returns>
 </member>
+<member name="T:SMRUCC.Rsharp.Language.Syntax.SyntaxParser.SyntaxBuilderOptions">
+ <summary>
+ Syntax tree parser configuration
+ </summary>
+</member>
+<member name="F:SMRUCC.Rsharp.Language.Syntax.SyntaxParser.SyntaxBuilderOptions.source">
+ <summary>
+ the source script text
+ </summary>
+</member>
 <member name="F:SMRUCC.Rsharp.Language.Syntax.SyntaxParser.SyntaxBuilderOptions.keepsCommentLines">
  <summary>
  是否保留下来所有的单行注释信息
@@ -2670,10 +2691,23 @@ to [rest of string was truncated]&quot;;.
  object. 
  </summary>
 </member>
+<member name="F:SMRUCC.Rsharp.Language.Syntax.SyntaxParser.SyntaxResult.expression">
+ <summary>
+ the successful parsed expression model.
+ </summary>
+</member>
 <member name="F:SMRUCC.Rsharp.Language.Syntax.SyntaxParser.SyntaxResult.stackTrace">
  <summary>
  the .NET stacktrace in R# interpreter
  </summary>
+</member>
+<member name="M:SMRUCC.Rsharp.Language.Syntax.SyntaxParser.SyntaxResult.CreateError(System.String,SMRUCC.Rsharp.Language.Syntax.SyntaxParser.SyntaxBuilderOptions)">
+ <summary>
+ Create syntax error on current script file code span
+ </summary>
+ <param name="err"></param>
+ <param name="opts"></param>
+ <returns></returns>
 </member>
 <member name="M:SMRUCC.Rsharp.Language.Syntax.SyntaxParser.SyntaxResult.CreateError(SMRUCC.Rsharp.Language.Syntax.SyntaxParser.SyntaxBuilderOptions,System.Exception,Microsoft.VisualBasic.Scripting.TokenIcer.CodeSpan,Microsoft.VisualBasic.Scripting.TokenIcer.CodeSpan)">
  <summary>
@@ -2719,7 +2753,7 @@ to [rest of string was truncated]&quot;;.
  <param name="opts"></param>
  <returns></returns>
 </member>
-<member name="M:SMRUCC.Rsharp.Language.Syntax.SyntaxParser.BinaryExpressionTree.processOperators(Microsoft.VisualBasic.Language.List{Microsoft.VisualBasic.Language.Variant{SMRUCC.Rsharp.Language.Syntax.SyntaxParser.SyntaxResult,System.String}},Microsoft.VisualBasic.Language.List{System.String},System.String[],System.Func{System.String,System.String,System.Boolean},SMRUCC.Rsharp.Language.Syntax.SyntaxParser.SyntaxBuilderOptions)">
+<member name="M:SMRUCC.Rsharp.Language.Syntax.SyntaxParser.BinaryExpressionTree.ProcessOperators(Microsoft.VisualBasic.Language.List{Microsoft.VisualBasic.Language.Variant{SMRUCC.Rsharp.Language.Syntax.SyntaxParser.SyntaxResult,System.String}},Microsoft.VisualBasic.Language.List{System.String},System.String[],System.Func{System.String,System.String,System.Boolean},SMRUCC.Rsharp.Language.Syntax.SyntaxParser.SyntaxBuilderOptions)">
  <summary>
  
  </summary>
@@ -2737,6 +2771,16 @@ to [rest of string was truncated]&quot;;.
  <remarks>
  the expression change is generated via the <paramref name="buf"/> parameter
  </remarks>
+</member>
+<member name="M:SMRUCC.Rsharp.Language.Syntax.SyntaxParser.BinaryExpressionTree.CreateBinary(SMRUCC.Rsharp.Interpreter.ExecuteEngine.Expression,SMRUCC.Rsharp.Interpreter.ExecuteEngine.Expression,System.String,SMRUCC.Rsharp.Language.Syntax.SyntaxParser.SyntaxBuilderOptions)">
+ <summary>
+ 
+ </summary>
+ <param name="a">the left</param>
+ <param name="b">the right</param>
+ <param name="opToken">the operator</param>
+ <param name="opts"></param>
+ <returns></returns>
 </member>
 <member name="M:SMRUCC.Rsharp.Language.Syntax.SyntaxParser.ExpressionBuilder.parseInvoke(Microsoft.VisualBasic.Language.List{SMRUCC.Rsharp.Language.TokenIcer.Token[]},SMRUCC.Rsharp.Language.Syntax.SyntaxParser.SyntaxBuilderOptions)">
  <summary>
@@ -2850,6 +2894,40 @@ to [rest of string was truncated]&quot;;.
  </summary>
  <param name="tokens"></param>
  <param name="operators"></param>
+ <returns></returns>
+</member>
+<member name="T:SMRUCC.Rsharp.Language.TokenIcer.Escapes">
+ <summary>
+ common language escape model between multiple language syntax parser
+ </summary>
+</member>
+<member name="F:SMRUCC.Rsharp.Language.TokenIcer.Escapes.isBlockComment">
+ <summary>
+ apply for the block comment in other language parser, example as:
+ 
+ 1. javascript/typescript 
+ 
+ /**
+  *
+  *
+ */
+ 
+ 2. matlab/octave language
+ 
+ %{
+ ...
+ %}
+ </summary>
+</member>
+<member name="T:SMRUCC.Rsharp.Language.TokenIcer.IScanner">
+ <summary>
+ An abstract script text tokenlicer
+ </summary>
+</member>
+<member name="M:SMRUCC.Rsharp.Language.TokenIcer.IScanner.GetTokens">
+ <summary>
+ parse the given script text as language tokens
+ </summary>
  <returns></returns>
 </member>
 <member name="T:SMRUCC.Rsharp.Language.TokenIcer.Scanner">
@@ -3024,6 +3102,11 @@ to [rest of string was truncated]&quot;;.
 <member name="F:SMRUCC.Rsharp.Language.TokenType.close">
  <summary>
  右边的括号与大括号
+ </summary>
+</member>
+<member name="F:SMRUCC.Rsharp.Language.TokenType.lineContinue">
+ <summary>
+ ... line continue token for matlab/octave language
  </summary>
 </member>
 <member name="T:SMRUCC.Rsharp.LICENSE">
@@ -4880,11 +4963,55 @@ to take away yo [rest of string was truncated]&quot;;.
  
  Functions to construct, coerce and check for both kinds of ``R#`` lists.
  </summary>
- <param name="slots">objects, possibly named.</param>
+ <param name="slots">objects, possibly named.
+ ``.symbol_names`` options could be used in this parameter list for indicated
+ that the list function should use the symbol name as the tuple slot name if
+ the given slot value is not a value assigned expression but it is a symbol
+ reference expression.
+ </param>
  <param name="envir"></param>
  <returns>
  
  </returns>
+ <remarks>
+ Almost all lists in R internally are Generic Vectors, whereas traditional dotted pair lists (as in LISP)
+ remain available but rarely seen by users (except as formals of functions).
+ 
+ The arguments to list or pairlist are of the form value or tag = value. The functions return a list or 
+ dotted pair list composed of its arguments with each value either tagged or untagged, depending on how 
+ the argument was specified.
+ 
+ alist handles its arguments as if they described function arguments. So the values are not evaluated, 
+ and tagged arguments with no value are allowed whereas list simply ignores them. alist is most often 
+ used in conjunction with formals.
+ 
+ as.list attempts to coerce its argument to a list. For functions, this returns the concatenation of the 
+ list of formal arguments and the function body. For expressions, the list of constituent elements is 
+ returned. as.list is generic, and as the default method calls as.vector(mode = "list") for a non-list, 
+ methods for as.vector may be invoked. as.list turns a factor into a list of one-element factors, keeping
+ names. Other attributes may be dropped unless the argument already is a list or expression. (This is 
+ inconsistent with functions such as as.character which always drop attributes, and is for efficiency since
+ lists can be expensive to copy.)
+ 
+ is.list returns TRUE if and only if its argument is a list or a pairlist of length > 0. is.pairlist returns
+ TRUE if and only if the argument is a pairlist (or NULL which is a pairlist, see below).
+ 
+ The "environment" method for as.list copies the name-value pairs (for names not beginning with a dot) from
+ an environment to a named list. The user can request that all named objects are copied. Unless sorted = TRUE,
+ the list is in no particular order (the order depends on the order of creation of objects and whether the 
+ environment is hashed). No enclosing environments are searched. (Objects copied are duplicated so this 
+ can be an expensive operation.) Note that there is an inverse operation, the as.environment() method for 
+ list objects.
+ 
+ An empty pairlist, pairlist() is the same as NULL. This is different from list(): some but not all operations 
+ will promote an empty pairlist to an empty list.
+ 
+ as.pairlist is implemented as as.vector(x, "pairlist"), and hence will dispatch methods for the generic 
+ function as.vector. Lists are copied element-by-element into a pairlist and the names of the list used as 
+ tags for the pairlist: the return value for other types of argument is undocumented.
+ 
+ list, is.list and is.pairlist are primitive functions.
+ </remarks>
 </member>
 <member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.base.summary(System.Object,System.Object,SMRUCC.Rsharp.Runtime.Environment)">
  <summary>
@@ -6064,6 +6191,38 @@ to take away yo [rest of string was truncated]&quot;;.
  <param name="zip">the file path to the zip package</param>
  <returns></returns>
 </member>
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.base.on_exit(SMRUCC.Rsharp.Interpreter.ExecuteEngine.Expression,System.Boolean,System.Boolean,SMRUCC.Rsharp.Runtime.Environment)">
+ <summary>
+ ### Function Exit Code
+ 
+ ``on.exit`` records the expression given as its argument as needing to be executed when the 
+ current function exits (either naturally or as the result of an error). This is useful for 
+ resetting graphical parameters or performing other cleanup actions.
+ 
+ If no expression Is provided, i.e., the Call Is on.exit(), Then the current on.exit code Is 
+ removed.
+ </summary>
+ <param name="expr">an expression to be executed.</param>
+ <param name="add">if TRUE, add expr to be executed after any previously set expressions 
+ (or before if after is FALSE); otherwise (the default) expr will overwrite any previously 
+ set expressions.</param>
+ <param name="after">if add is TRUE and after is FALSE, then expr will be added on top of 
+ the expressions that were already registered. The resulting last in first out order is 
+ useful for freeing or closing resources in reverse order.</param>
+ <returns>Invisible NULL.</returns>
+ <remarks>
+ The expr argument passed to on.exit is recorded without evaluation. If it is not subsequently 
+ removed/replaced by another on.exit call in the same function, it is evaluated in the evaluation 
+ frame of the function when it exits (including during standard error handling). Thus any 
+ functions or variables in the expression will be looked for in the function and its environment 
+ at the time of exit: to capture the current value in expr use substitute or similar.
+
+ If multiple On.Exit expressions are Set Using add = True Then all expressions will be run 
+ even If one signals an Error.
+
+ This Is a 'special’ primitive function: it only evaluates the arguments add and after.
+ </remarks>
+</member>
 <member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.base.load(System.String,SMRUCC.Rsharp.Runtime.GlobalEnvironment,System.Boolean)">
  <summary>
  ### Reload Saved Datasets
@@ -6689,7 +6848,7 @@ to take away yo [rest of string was truncated]&quot;;.
  via a character vector.
  </remarks>
 </member>
-<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.env.relative_work(System.String,SMRUCC.Rsharp.Runtime.Environment)">
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.env.relative_work(System.String,System.Nullable{System.Boolean},SMRUCC.Rsharp.Runtime.Environment)">
  <summary>
  get the absolute file path that relative to the current script folder
  </summary>
@@ -6989,13 +7148,16 @@ to take away yo [rest of string was truncated]&quot;;.
  <param name="env"></param>
  <returns></returns>
 </member>
-<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.file.openDir(System.String,SMRUCC.Rsharp.Runtime.Environment)">
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.file.openDir(System.String,Microsoft.VisualBasic.ApplicationServices.IFileSystemEnvironment,SMRUCC.Rsharp.Runtime.Environment)">
  <summary>
  Open an interface to a specific local filesystem location
  </summary>
  <param name="dir"></param>
+ <param name="fs">
+ the logical filesystem view
+ </param>
  <param name="env"></param>
- <returns></returns>
+ <returns>a directory model</returns>
 </member>
 <member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.file.normalizePath(System.String[],SMRUCC.Rsharp.Runtime.Environment)">
  <summary>
@@ -7050,7 +7212,7 @@ to take away yo [rest of string was truncated]&quot;;.
  </param>
  <returns></returns>
 </member>
-<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.file.listDirs(System.String,System.Boolean,System.Boolean)">
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.file.listDirs(System.String,System.Boolean,System.Boolean,Microsoft.VisualBasic.ApplicationServices.IFileSystemEnvironment)">
  <summary>
  List the Files in a Directory/Folder
  </summary>
@@ -7166,9 +7328,9 @@ to take away yo [rest of string was truncated]&quot;;.
  </param>
  <returns></returns>
 </member>
-<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.file.readLines(System.Object,Microsoft.VisualBasic.Text.Encodings,System.Boolean,System.Nullable{System.Boolean},SMRUCC.Rsharp.Runtime.Environment)">
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.file.readLines(System.Object,System.Int32,Microsoft.VisualBasic.Text.Encodings,System.Boolean,System.Nullable{System.Boolean},SMRUCC.Rsharp.Runtime.Environment)">
  <summary>
- Read Text Lines from a Connection
+ ### Read Text Lines from a Connection
  
  Read some or all text lines from a connection.
  </summary>
@@ -7275,7 +7437,46 @@ to take away yo [rest of string was truncated]&quot;;.
  true for no error in gzfile, false means the given gz file is corrupted
  </returns>
 </member>
-<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.file.file(System.String,System.IO.FileMode,System.Boolean,Microsoft.VisualBasic.ApplicationServices.IFileSystemEnvironment)">
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.file.stdin_dev">
+ <summary>
+ 
+ </summary>
+ <returns>
+ stdin(), stdout() and stderr() return connection objects.
+ </returns>
+ <remarks>
+ stdin(), stdout() and stderr() are standard connections corresponding to input, output and error on the console 
+ respectively (and not necessarily to file streams). They are text-mode connections of class "terminal" which 
+ cannot be opened or closed, and are read-only, write-only and write-only respectively. The stdout() and stderr() 
+ connections can be re-directed by sink (and in some circumstances the output from stdout() can be split: see the 
+ help page).
+ 
+ The encoding For stdin() When redirected can be Set by the command-line flag --encoding.
+ 
+ nullfile() returns filename of the null device ("/dev/null" on Unix, "nul:" on Windows).
+ 
+ showConnections returns a matrix Of information. If a connection Object has been lost Or forgotten, getConnection 
+ will take a row number from the table And Return a connection Object For that connection, which can be used To 
+ close the connection, For example. However, If there Is no R level Object referring To the connection it will be 
+ closed automatically at the Next garbage collection (except For gzcon connections).
+ 
+ closeAllConnections closes(And destroys) all user connections, restoring all sink diversions As it does so.
+ 
+ isatty returns True If the connection Is one Of the Class "terminal" connections And it Is apparently connected To 
+ a terminal, otherwise False. This may Not be reliable In embedded applications, including GUI consoles.
+ 
+ getAllConnections returns a sequence Of Integer connection descriptors For use With getConnection, corresponding 
+ To the row names Of the table returned by showConnections(all = True).
+ 
+ stdin() refers to the ‘console’ and not to the C-level ‘stdin’ of the process. The distinction matters in GUI 
+ consoles (which may not have an active ‘stdin’, and if they do it may not be connected to console input), and also 
+ in embedded applications. If you want access to the C-level file stream ‘stdin’, use file("stdin").
+ 
+ When R Is reading a script from a file, the file Is the 'console’: this is traditional usage to allow in-line 
+ data (see ‘An Introduction to R’ for an example).
+ </remarks>
+</member>
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.file.file(System.String,Microsoft.VisualBasic.FileIO.FileModeDescriptor,System.Boolean,Microsoft.VisualBasic.ApplicationServices.IFileSystemEnvironment)">
  <summary>
  Functions to create, open and close connections, i.e., 
  "generalized files", such as possibly compressed files, 
@@ -10688,7 +10889,23 @@ to take away yo [rest of string was truncated]&quot;;.
  <param name="env"></param>
  <returns></returns>
 </member>
-<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.utils.system2(System.String,System.Object,System.String,System.String,System.String,System.Object,System.Boolean,System.Boolean,System.Boolean,System.Single,System.Boolean,SMRUCC.Rsharp.Runtime.Environment)">
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.utils.createArgumentString(SMRUCC.Rsharp.Runtime.Internal.Object.list,SMRUCC.Rsharp.Runtime.Environment)">
+ <summary>
+ build commandline argument string from a tuple list object
+ </summary>
+ <param name="argv"></param>
+ <param name="env"></param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.utils.createArgumentString(System.Object,SMRUCC.Rsharp.Runtime.Environment)">
+ <summary>
+ generates commandline arguments string from different types of input data
+ </summary>
+ <param name="args"></param>
+ <param name="env"></param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.utils.system2(System.String,System.Object,System.String,System.String,System.String,System.Object,System.Boolean,System.Boolean,System.Boolean,System.Single,System.Boolean,System.Boolean,System.Nullable{System.Boolean},SMRUCC.Rsharp.Runtime.Environment)">
  <summary>
  ### Invoke a System Command
  
@@ -10771,6 +10988,47 @@ to take away yo [rest of string was truncated]&quot;;.
  There is no guarantee that if stdout and stderr are both TRUE or the same file that 
  the two streams will be interleaved in order. This depends on both the buffering 
  used by the command and the OS.
+ </remarks>
+</member>
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.utils.shQuote(System.Object,System.Object)">
+ <summary>
+ ### Quote Strings for Use in OS Shells
+ 
+ Quote a string to be passed to an operating system shell.
+ </summary>
+ <param name="string">a character vector, usually of length one.</param>
+ <param name="type">character: the type of shell quoting. Partial matching is supported. 
+ "cmd" and "cmd2" refer to the Windows shell. "cmd" is the default under Windows.
+ </param>
+ <returns>A character vector of the same length as string.</returns>
+ <remarks>
+ The default type of quoting supported under Unix-alikes is that for the Bourne shell sh. 
+ If the string does not contain single quotes, we can just surround it with single quotes.
+ Otherwise, the string is surrounded in double quotes, which suppresses all special 
+ meanings of metacharacters except dollar, backquote and backslash, so these (and of course
+ double quote) are preceded by backslash. This type of quoting is also appropriate for 
+ bash, ksh and zsh.
+ 
+ The other type of quoting is for the C-shell (csh and tcsh). Once again, if the string 
+ does not contain single quotes, we can just surround it with single quotes. If it does 
+ contain single quotes, we can use double quotes provided it does not contain dollar or 
+ backquote (and we need to escape backslash, exclamation mark and double quote). As a last
+ resort, we need to split the string into pieces not containing single quotes (some may 
+ be empty) and surround each with single quotes, and the single quotes with double quotes.
+ 
+ In Windows, command line interpretation is done by the application as well as the shell.
+ It may depend on the compiler used: Microsoft's rules for the C run-time are given at
+ https://learn.microsoft.com/en-us/cpp/c-language/parsing-c-command-line-arguments?view=msvc-160. 
+ It may depend on the whim of the programmer of the application: check its documentation. 
+ The type = "cmd" prepares the string for parsing as an argument by the Microsoft's rules 
+ and makes shQuote safe for use with many applications when used with system or system2. 
+ It surrounds the string by double quotes and escapes internal double quotes by a 
+ backslash. Any trailing backslashes and backslashes that were originally before double 
+ quotes are doubled.
+ 
+ The Windows cmd.exe shell (used by default with shell) uses type = "cmd2" quoting: 
+ special characters are prefixed with "^". In some cases, two types of quoting should 
+ be used: first for the application, and then type = "cmd2" for cmd.exe. 
  </remarks>
 </member>
 <member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.utils.system(System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Object,System.Boolean,System.Boolean,System.Boolean,System.Double,System.Boolean,SMRUCC.Rsharp.Runtime.Environment)">
@@ -13151,6 +13409,21 @@ to take away yo [rest of string was truncated]&quot;;.
  <summary>
  VB.NET enum type wrapper in R#
  </summary>
+</member>
+<member name="P:SMRUCC.Rsharp.Runtime.Interop.REnum.raw">
+ <summary>
+ the source clr type of current enum object
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.Rsharp.Runtime.Interop.REnum.GetByName(System.String)">
+ <summary>
+ get enum value by enum name or enum description text
+ </summary>
+ <param name="name">
+ case ignored enum name or enum description text
+ </param>
+ <returns></returns>
 </member>
 <member name="T:SMRUCC.Rsharp.Runtime.Interop.RApiReturnAttribute">
  <summary>

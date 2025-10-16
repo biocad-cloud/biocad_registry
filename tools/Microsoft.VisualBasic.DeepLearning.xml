@@ -1959,8 +1959,8 @@ Microsoft.VisualBasic.DeepLearning
 </member>
 <member name="M:Microsoft.VisualBasic.MachineLearning.Transformer.TransformerModel.Translate(System.Int32,System.Boolean,System.Collections.Generic.List{System.Collections.Generic.List{System.String}},System.Collections.Generic.List{System.Collections.Generic.List{System.String}},System.Collections.Generic.List{System.Collections.Generic.List{System.String}}@)">
  <summary>
- Translate a batch of sentenses by generating one word at a time for each sentence with the decoder until max 
- length or stopping character.
+ Translate a batch of sentenses by generating one word at a time for each 
+ sentence with the decoder until max length or stopping character.
  </summary>
 </member>
 </members>

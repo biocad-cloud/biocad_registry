@@ -62,6 +62,42 @@ BioNovoGene.BioDeep.MSEngine
  the annotation result of a specific peak
  </summary>
 </member>
+<member name="P:BioNovoGene.BioDeep.MSEngine.AlignmentHit.mz">
+ <summary>
+ mz value that read from the sample raw data file
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.MSEngine.AlignmentHit.RI">
+ <summary>
+ the reference RI value
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.MSEngine.AlignmentHit.theoretical_mz">
+ <summary>
+ theoretical m/z that calculated from the formula data
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.MSEngine.AlignmentHit.adducts">
+ <summary>
+ the adducts precursor type that combined with the formula data for calculate the theoretical m/z value
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.MSEngine.AlignmentHit.samplesRI">
+ <summary>
+ the RI value in each sample data files
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.MSEngine.AlignmentHit.samplesRT">
+ <summary>
+ the RT value in each sample data files
+ </summary>
+ <returns></returns>
+</member>
 <member name="P:BioNovoGene.BioDeep.MSEngine.AlignmentHit.samplefiles">
  <summary>
  sample hits of current library reference
@@ -70,6 +106,13 @@ BioNovoGene.BioDeep.MSEngine
  <remarks>
  null or empty means annotation in ms1 level
  </remarks>
+</member>
+<member name="P:BioNovoGene.BioDeep.MSEngine.AlignmentHit.SampleAlignment(System.String)">
+ <summary>
+ get/set the ms2 alignment details for a specific data sample
+ </summary>
+ <param name="sampleName">the data sample name</param>
+ <returns></returns>
 </member>
 <member name="M:BioNovoGene.BioDeep.MSEngine.AlignmentHit.#ctor(BioNovoGene.BioDeep.MSEngine.AlignmentHit)">
  <summary>
@@ -184,6 +227,11 @@ BioNovoGene.BioDeep.MSEngine
  <returns>
  iterates the html table text, the first element is always the table header title row.
  </returns>
+</member>
+<member name="T:BioNovoGene.BioDeep.MSEngine.SavePack">
+ <summary>
+ helper function for save the ms2 alignment data
+ </summary>
 </member>
 <member name="T:BioNovoGene.BioDeep.MSEngine.LibraryWorkspace">
  <summary>
@@ -327,7 +375,7 @@ BioNovoGene.BioDeep.MSEngine
  A simple implements of exact mass search index
  </summary>
 </member>
-<member name="F:BioNovoGene.BioDeep.MSEngine.MassSearchIndex`1.tolerance">
+<member name="P:BioNovoGene.BioDeep.MSEngine.MassSearchIndex`1.tolerance">
  <summary>
  mass tolerance value for match sample mz and threocal mz
  </summary>

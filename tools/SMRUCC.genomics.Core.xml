@@ -2412,7 +2412,9 @@ ATT I Ile      ACT T Thr      AAT N As [rest of string was truncated]&quot;;.
  获取蛋白质的功能结构信息
  </summary>
  <param name="prot"></param>
- <returns></returns>
+ <returns>
+ get domain type feature information
+ </returns>
 </member>
 <member name="M:SMRUCC.genomics.Assembly.Uniprot.XML.Extensions.Term2Gene(SMRUCC.genomics.Assembly.Uniprot.XML.UniProtXML,System.String,SMRUCC.genomics.Assembly.Uniprot.XML.GetIDs.IDTypes)">
  <summary>
@@ -13442,6 +13444,16 @@ to take away yo [rest of string was truncated]&quot;;.
  <param name="left">
  下标是从1开始的
  </param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.SequenceModel.CutSequence.CutSequenceByLength(SMRUCC.genomics.SequenceModel.IPolymerSequenceModel,System.Int32,System.Int32,System.String)">
+ <summary>
+ Cut sequence by given left loci and segment length.
+ </summary>
+ <param name="seq"></param>
+ <param name="left"></param>
+ <param name="length"></param>
+ <param name="tag$">the tag information about this sequence segment.</param>
  <returns></returns>
 </member>
 <member name="M:SMRUCC.genomics.SequenceModel.CutSequence.ReadComplement(SMRUCC.genomics.SequenceModel.IPolymerSequenceModel,System.Int32,System.Int32,System.String)">
