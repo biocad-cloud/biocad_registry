@@ -40,6 +40,9 @@ declare namespace data_imports {
    */
    function imports_metab_repo(registry: object, metab: any, lazy_molecule_ctor?: boolean, topic?: string, exclude_topic?: string, env?: object): any;
    /**
+   */
+   function imports_operon(registry: object, operon: object): any;
+   /**
      * @param topic default value Is ``null``.
      * @param env default value Is ``null``.
    */
