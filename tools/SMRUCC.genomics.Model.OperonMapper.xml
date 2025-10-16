@@ -32,6 +32,27 @@ KO00004	62977	benABCDE	ACIAD_RS06635,ACIAD_RS06640,ACIAD_RS06645,ACIAD_RS06650,A
 KO00005	62977	catBCIJFD	ACIAD_RS06680,ACIAD_RS06685,ACIAD_RS06690,ACIAD_RS06695,ACIAD_RS06700,ACIAD_RS06705	benzoate  [rest of string was truncated]&quot;;.
 </summary>
 </member>
+<member name="T:SMRUCC.genomics.Model.OperonMapper.My.Resources.Data">
+<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member>
+<member name="P:SMRUCC.genomics.Model.OperonMapper.My.Resources.Data.ResourceManager">
+<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member>
+<member name="P:SMRUCC.genomics.Model.OperonMapper.My.Resources.Data.Culture">
+<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member>
+<member name="P:SMRUCC.genomics.Model.OperonMapper.My.Resources.Data.known_operon_download">
+<summary>
+  Looks up a localized resource of type System.Byte[].
+</summary>
+</member>
 <member name="T:SMRUCC.genomics.Model.OperonMapper.ContextModel.Operon.OperonPredictionFeatures">
  <summary>
  To evaluate the contribution of selected features in operon prediction, we have calculated 
