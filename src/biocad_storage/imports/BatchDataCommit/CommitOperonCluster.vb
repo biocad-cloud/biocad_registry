@@ -25,7 +25,7 @@ Public Module CommitOperonCluster
                 clusters.add(
                     field("db_xref") = tu.koid,
                     field("tax_id") = tu.org,
-                    field("name") = tu.name,
+                    field("name") = If(tu.name.StringEmpty(), tu.op.JoinBy(","), tu.name),
                     field("size") = tu.op.TryCount,
                     field("description") = tu.definition
                 )
@@ -33,6 +33,8 @@ Public Module CommitOperonCluster
                     .where(field("db_xref") = tu.koid,
                            field("tax_id") = tu.org) _
                     .find(Of biocad_registryModel.conserved_cluster)
+            ElseIf check.name.StringEmpty Then
+                clusters.where(field("id") = check.id).save(field("name") = tu.op.JoinBy(","))
             End If
             If check Is Nothing Then
                 Continue For
