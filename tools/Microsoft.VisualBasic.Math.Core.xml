@@ -7033,7 +7033,7 @@ Microsoft.VisualBasic.Math.Core
  <returns></returns>
  <remarks>先对数据进行采样，然后插值，最后返回插值后的平滑曲线数据以用于下一步分析</remarks>
 </member>
-<member name="M:Microsoft.VisualBasic.Math.Interpolation.BezierExtensions.doInterpolation(System.Double[],System.Int32)">
+<member name="M:Microsoft.VisualBasic.Math.Interpolation.BezierExtensions.Interpolation(System.Double[],System.Int32)">
  <summary>
  
  </summary>
@@ -7041,6 +7041,11 @@ Microsoft.VisualBasic.Math.Core
  <param name="iteration"></param>
  <returns></returns>
  <remarks></remarks>
+</member>
+<member name="T:Microsoft.VisualBasic.Math.Interpolation.BSpline">
+ <summary>
+ B-spline arguments
+ </summary>
 </member>
 <member name="T:Microsoft.VisualBasic.Math.Interpolation.B_Spline">
  <summary>
