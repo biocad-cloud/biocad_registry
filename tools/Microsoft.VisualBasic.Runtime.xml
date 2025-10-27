@@ -30120,6 +30120,14 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="value"></param>
  <returns></returns>
 </member>
+<member name="M:Microsoft.VisualBasic.StringFormats.Format(System.Collections.Generic.IEnumerable{System.Double},System.String)">
+ <summary>
+ Format the given number collection with a given <paramref name="numberFormat"/> string.
+ </summary>
+ <param name="x"></param>
+ <param name="numberFormat"></param>
+ <returns></returns>
+</member>
 <member name="M:Microsoft.VisualBasic.StringFormats.Lanudry(System.Double)">
  <summary>
  对bytes数值进行格式自动优化显示
