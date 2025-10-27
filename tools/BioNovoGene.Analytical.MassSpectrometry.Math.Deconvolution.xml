@@ -33,6 +33,12 @@ BioNovoGene.Analytical.MassSpectrometry.Math.Deconvolution
  </summary>
  <returns></returns>
 </member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.MzGroup.RI">
+ <summary>
+ the retention index of each tick points in <see cref="P:BioNovoGene.Analytical.MassSpectrometry.Math.MzGroup.XIC"/>.
+ </summary>
+ <returns></returns>
+</member>
 <member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.MzGroup.size">
  <summary>
  get point counts of <see cref="P:BioNovoGene.Analytical.MassSpectrometry.Math.MzGroup.XIC"/>.
@@ -409,6 +415,21 @@ BioNovoGene.Analytical.MassSpectrometry.Math.Deconvolution
  <param name="rt_win"></param>
  <returns></returns>
 </member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.RICalibrate.ConvertRI(BioNovoGene.Analytical.MassSpectrometry.Math.PeakFeature[],Microsoft.VisualBasic.Language.List{BioNovoGene.Analytical.MassSpectrometry.Math.PeakFeature},System.Collections.Generic.Dictionary{System.String,System.Int32},System.Collections.Generic.Dictionary{System.String,System.String},System.String)">
+ <summary>
+ 
+ </summary>
+ <param name="peakdata">should be a collection of the peak data from a single sample file.</param>
+ <param name="refer_points"></param>
+ <param name="C_atoms">
+ the number of carbon atoms for kovats retention index
+ </param>
+ <param name="map_RI_id">
+ metabolite name map to xcms_id
+ </param>
+ <param name="rawfile"></param>
+ <returns></returns>
+</member>
 <member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.SampleFiles">
  <summary>
  the sample file types
@@ -478,6 +499,20 @@ BioNovoGene.Analytical.MassSpectrometry.Math.Deconvolution
  <param name="file"></param>
  <returns></returns>
  
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.SaveXIC.DumpSample(System.Collections.Generic.IEnumerable{BioNovoGene.Analytical.MassSpectrometry.Math.MzGroup},System.IO.Stream)">
+ <summary>
+ Save multiple ROI XIC data into a binary file
+ </summary>
+ <param name="sample"></param>
+ <param name="file"></param>
+</member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.SaveXIC.ReadSample(System.IO.Stream)">
+ <summary>
+ Read multiple ROI XIC data from a binary data file
+ </summary>
+ <param name="file"></param>
+ <returns></returns>
 </member>
 <member name="T:BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.AccumulateROI">
  <summary>

@@ -1309,7 +1309,7 @@ Microsoft.VisualBasic.Math.SignalProcessing
  is the column of the task assigned to agent <em>i</em>.</returns>
  <exception cref="T:System.ArgumentNullException"><paramref name="costs"/> is null.</exception>
 </member>
-<member name="M:Microsoft.VisualBasic.Math.SignalProcessing.HungarianAlgorithm.HungarianAlgorithm.FindAssignments(System.Double[0:,0:])">
+<member name="M:Microsoft.VisualBasic.Math.SignalProcessing.HungarianAlgorithm.HungarianAlgorithm.FindAssignments(System.Double[][])">
  <summary>
  Finds the optimal assignments for a given matrix of agents and 
  costed tasks such that the total cost is minimized.

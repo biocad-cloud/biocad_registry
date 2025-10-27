@@ -46,7 +46,8 @@ BioNovoGene.BioDeep.Chemistry.XrefEngine
 </member>
 <member name="M:BioNovoGene.BioDeep.Chemistry.MetaLib.AnnotationWorkspace.CacheXicTable``1(System.Collections.Generic.IEnumerable{``0},System.Double,System.Double)">
  <summary>
- Extract the XIC cache data from a given set of rawdata objects based on the peaktable information inside the workspace file
+ Extract the XIC cache data from a given set of rawdata objects based on 
+ the peaktable information inside the workspace file
  </summary>
  <param name="files"></param>
  <param name="mass_da">

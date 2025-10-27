@@ -9304,6 +9304,9 @@ ATT I Ile      ACT T Thr      AAT N As [rest of string was truncated]&quot;;.
  <returns>
  this function returns nothing if the given key is not found in current feature.
  </returns>
+ <remarks>
+ query by a <see cref="T:SMRUCC.genomics.Assembly.NCBI.GenBank.GBFF.Keywords.FEATURES.FeatureQualifiers"/> key string name
+ </remarks>
 </member>
 <member name="M:SMRUCC.genomics.Assembly.NCBI.GenBank.GBFF.Keywords.FEATURES.Feature.Query(SMRUCC.genomics.Assembly.NCBI.GenBank.GBFF.Keywords.FEATURES.FeatureQualifiers)">
  <summary>
@@ -12503,7 +12506,7 @@ Get feature site data by nucleotide location.
  <param name="length%"></param>
  <returns></returns>
 </member>
-<member name="M:SMRUCC.genomics.ContextModel.Promoter.Extensions.GetUpstreamSeq(SMRUCC.genomics.Assembly.NCBI.GenBank.TabularFormat.ComponentModels.GeneBrief,SMRUCC.genomics.SequenceModel.IPolymerSequenceModel,System.Int32)">
+<member name="M:SMRUCC.genomics.ContextModel.Promoter.Extensions.GetUpstreamSeq(SMRUCC.genomics.ComponentModel.Annotation.IGeneBrief,SMRUCC.genomics.SequenceModel.IPolymerSequenceModel,System.Int32)">
  <summary>
  Get upstream nt sequence in a specific length for target gene.
  (在这个函数之中，位点的计算的时候会有一个碱基的偏移量是因为为了不将起始密码子ATG之中的A包含在结果序列之中)
@@ -13614,7 +13617,7 @@ to take away yo [rest of string was truncated]&quot;;.
  <returns></returns>
  <remarks></remarks>
 </member>
-<member name="M:SMRUCC.genomics.SequenceModel.FASTA.FastaFile.DocParser(System.String[],System.String)">
+<member name="M:SMRUCC.genomics.SequenceModel.FASTA.FastaFile.DocParser(System.Collections.Generic.IEnumerable{System.String},System.String)">
  <summary>
  当<paramref name="lines"/>参数为空的时候，会返回一个空集合而非返回空值
  </summary>

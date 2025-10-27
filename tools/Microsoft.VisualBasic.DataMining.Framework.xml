@@ -689,6 +689,11 @@ Microsoft.VisualBasic.DataMining.Framework
  the larger of the result value, the higher density value it is
  </returns>
 </member>
+<member name="T:Microsoft.VisualBasic.DataMining.Clustering.KNN">
+ <summary>
+ KNN classifier
+ </summary>
+</member>
 <member name="F:Microsoft.VisualBasic.DataMining.Clustering.KNN.trainingSet">
  <summary>
  this holds the values of the training data
@@ -758,6 +763,12 @@ Microsoft.VisualBasic.DataMining.Framework
  </param>
  <returns>sets of clusters, renew the parameter</returns>
  
+</member>
+<member name="P:Microsoft.VisualBasic.DataMining.DBSCAN.DbscanPoint`1.ID">
+ <summary>
+ the raw data unique reference id
+ </summary>
+ <returns></returns>
 </member>
 <member name="F:Microsoft.VisualBasic.DataMining.DBSCAN.DbscanSession`1.allPoints">
  <summary>

@@ -26,6 +26,12 @@ BioNovoGene.BioDeep.MSEngine
  </summary>
  <returns></returns>
 </member>
+<member name="P:BioNovoGene.BioDeep.MSEngine.AnnotationPack.RI">
+ <summary>
+ RI reference point 
+ </summary>
+ <returns></returns>
+</member>
 <member name="P:BioNovoGene.BioDeep.MSEngine.AnnotationPack.peaks">
  <summary>
  the ms1 peaktable

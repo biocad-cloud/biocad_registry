@@ -9413,56 +9413,55 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
 </member>
 <member name="T:Microsoft.VisualBasic.CommandLine.Reflection.ExportAPIAttribute">
  <summary>
- A command object that with a specific name.(一个具有特定名称命令执行对象)
+ A command object that with a specific name.
  </summary>
- <remarks></remarks>
+ <remarks>(一个具有特定名称命令执行对象)</remarks>
 </member>
 <member name="P:Microsoft.VisualBasic.CommandLine.Reflection.ExportAPIAttribute.Name">
  <summary>
- The name of the commandline object.(这个命令的名称)
+ The name of the commandline object.
  </summary>
  <value></value>
  <returns></returns>
- <remarks></remarks>
+ <remarks>(这个命令的名称)</remarks>
 </member>
 <member name="P:Microsoft.VisualBasic.CommandLine.Reflection.ExportAPIAttribute.Info">
  <summary>
- Something detail of help information.(详细的帮助信息)
+ Something detail of help information.
  </summary>
  <value></value>
  <returns></returns>
- <remarks></remarks>
+ <remarks>(详细的帮助信息)</remarks>
 </member>
 <member name="P:Microsoft.VisualBasic.CommandLine.Reflection.ExportAPIAttribute.Usage">
  <summary>
- The usage of this command.(这个命令的用法，本属性仅仅是一个助记符，当用户没有编写任何的使用方法信息的时候才会使用本属性的值)
+ The usage of this command.
  </summary>
  <value></value>
  <returns></returns>
- <remarks></remarks>
+ <remarks>(这个命令的用法，本属性仅仅是一个助记符，当用户没有编写任何的使用方法信息的时候才会使用本属性的值)</remarks>
 </member>
 <member name="P:Microsoft.VisualBasic.CommandLine.Reflection.ExportAPIAttribute.Example">
  <summary>
  A example that to useing this command.
- (对这个命令的使用示例，本属性仅仅是一个助记符，当用户没有编写任何示例信息的时候才会使用本属性的值，
- 在编写帮助示例的时候，需要编写出包括命令开关名称的完整的例子)
  </summary>
  <value></value>
  <returns></returns>
- <remarks></remarks>
+ <remarks>(对这个命令的使用示例，本属性仅仅是一个助记符，当用户没有编写任何示例信息的时候才会使用本属性的值，
+ 在编写帮助示例的时候，需要编写出包括命令开关名称的完整的例子)</remarks>
 </member>
 <member name="M:Microsoft.VisualBasic.CommandLine.Reflection.ExportAPIAttribute.#ctor(System.String)">
  <summary>
  You are going to define a available export api 
  for you application to another language or 
  scripting program environment.
- (定义一个命令行程序之中可以使用的命令)
+ 
  </summary>
  <param name="Name">
  The name of the commandline object or you define 
- the exported API name here.(这个命令的名称)
+ the exported API name here.
  </param>
- <remarks></remarks>
+ <remarks>(定义一个命令行程序之中可以使用的命令)</remarks>
  
 </member>
 <member name="F:Microsoft.VisualBasic.CommandLine.Reflection.PipelineTypes.std_in">
@@ -9999,6 +9998,23 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <typeparam name="T"></typeparam>
  <param name="source"></param>
  <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.ComponentModel.Algorithm.base.DistanceMap`1.#ctor(System.Collections.Generic.IEnumerable{`0},System.Func{`0,`0,System.Double})">
+ <summary>
+ NxN distance matrix
+ </summary>
+ <param name="points"></param>
+ <param name="metric">
+ 具有对称性的距离计算公式，通常为欧几里得距离
+ </param>
+</member>
+<member name="M:Microsoft.VisualBasic.ComponentModel.Algorithm.base.DistanceMap`1.#ctor(System.Collections.Generic.IEnumerable{`0},System.Collections.Generic.IEnumerable{`0},System.Func{`0,`0,System.Double})">
+ <summary>
+ MxN distance matrix
+ </summary>
+ <param name="pts1"></param>
+ <param name="pts2"></param>
+ <param name="metric">具有对称性的距离计算公式，通常为欧几里得距离</param>
 </member>
 <member name="T:Microsoft.VisualBasic.ComponentModel.Algorithm.base.SlideWindowExtensions">
  <summary>
@@ -12508,15 +12524,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  </summary>
  <remarks>(这个对象具有一个用于指明该对象在列表对象中的位置的对象句柄值)</remarks>
 </member>
-<member name="T:Microsoft.VisualBasic.ComponentModel.IAddress`1">
- <summary>
- This object gets a object handle value to indicated that the position this object exists 
- in the list collection structure. 
- (这个对象具有一个用于指明该对象在列表对象中的位置的对象句柄值)
- </summary>
- <remarks></remarks>
-</member>
-<member name="P:Microsoft.VisualBasic.ComponentModel.IAddress`1.Address">
+<member name="P:Microsoft.VisualBasic.ComponentModel.IIndexOf`1.Address">
  <summary>
  The ID that this object in a list instance.
  (本对象在一个列表对象中的位置索引号) 
@@ -12524,6 +12532,14 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <value></value>
  <returns></returns>
  <remarks>因为索引号在赋值之后是不可以被修改了的，所以这个属性使用ReadOnly</remarks>
+</member>
+<member name="T:Microsoft.VisualBasic.ComponentModel.IAddress`1">
+ <summary>
+ This object gets a object handle value to indicated that the position this object exists 
+ in the list collection structure. 
+ (这个对象具有一个用于指明该对象在列表对象中的位置的对象句柄值)
+ </summary>
+ <remarks></remarks>
 </member>
 <member name="M:Microsoft.VisualBasic.ComponentModel.Collection.CapacityQueue`1.#ctor(System.Int32)">
  <summary>
@@ -16809,6 +16825,14 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  may be not matched with width * pixel_size on .net 4.8 runtime
  </returns>
 </member>
+<member name="M:Microsoft.VisualBasic.Imaging.BitmapImage.BitmapBuffer.White(System.Int32,System.Int32)">
+ <summary>
+ Create a new blank bitmap data with all pixel fill with color white
+ </summary>
+ <param name="width"></param>
+ <param name="height"></param>
+ <returns></returns>
+</member>
 <member name="M:Microsoft.VisualBasic.Imaging.BitmapImage.BitmapBuffer.GetPixelChannels">
  <summary>
  get the pixel channels in memory buffer
@@ -19088,6 +19112,60 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  postscript
  </summary>
 </member>
+<member name="T:Microsoft.VisualBasic.Imaging.Math2D.AffineTransform">
+ <summary>
+ 2D Affine Transformation parameters.
+ This represents a more general transform than similarity, allowing for non-uniform scaling and shearing.
+ x' = ax + by + c
+ y' = dx + ey + f
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.Imaging.Math2D.AffineTransform.a">
+ <summary>
+ The ‘a’ parameter in x’ = ax + by + c
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Imaging.Math2D.AffineTransform.b">
+ <summary>
+ The ‘b’ parameter in x’ = ax + by + c
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Imaging.Math2D.AffineTransform.c">
+ <summary>
+ The ‘c’ parameter (translation x) in x’ = ax + by + c
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Imaging.Math2D.AffineTransform.d">
+ <summary>
+ The ‘d’ parameter in y’ = dx + ey + f
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Imaging.Math2D.AffineTransform.e">
+ <summary>
+ The ‘e’ parameter in y’ = dx + ey + f
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Imaging.Math2D.AffineTransform.f">
+ <summary>
+ The ‘f’ parameter (translation y) in y’ = dx + ey + f
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Imaging.Math2D.AffineTransform.#ctor">
+ <summary>
+ Creates an identity (no-op) transform.
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Imaging.Math2D.AffineTransform.ApplyToPoint(System.Drawing.PointF)">
+ <summary>
+ Applies this transform to a point.
+ </summary>
+</member>
 <member name="T:Microsoft.VisualBasic.Imaging.Math2D.GeometryMath">
  <summary>
  https://stackoverflow.com/questions/30080/how-to-know-if-a-line-intersects-a-plane-in-c-basic-2d-geometry
@@ -19307,6 +19385,15 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="y2#"></param>
  <returns></returns>
 </member>
+<member name="M:Microsoft.VisualBasic.Imaging.Math2D.GeomTransform.DistanceTo``1(``0,``0)">
+ <summary>
+ Euclidean distance
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="a"></param>
+ <param name="b"></param>
+ <returns></returns>
+</member>
 <member name="M:Microsoft.VisualBasic.Imaging.Math2D.GeomTransform.Distance(System.Decimal,System.Decimal,System.Decimal,System.Decimal)">
  <summary>
  计算两个二维坐标的欧几里得距离
@@ -19511,6 +19598,23 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  observed is the calculated moran-I value
  </returns>
 </member>
+<member name="T:Microsoft.VisualBasic.Imaging.Math2D.GeometryTransform">
+ <summary>
+ make geometry transform of a given <see cref="T:Microsoft.VisualBasic.Imaging.Math2D.Polygon2D"/> with given <see cref="T:Microsoft.VisualBasic.Imaging.Math2D.Transform"/> or <see cref="T:Microsoft.VisualBasic.Imaging.Math2D.AffineTransform"/> parameters.
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Imaging.Math2D.GeometryTransform.ApplyTo(Microsoft.VisualBasic.Imaging.Math2D.Polygon2D)">
+ <summary>
+ Apply the current transformation parameters to the target polygon object.
+ </summary>
+ <param name="polygon"></param>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.Imaging.Math2D.Transform">
+ <summary>
+ 2D transformation parameters
+ </summary>
+</member>
 <member name="P:Microsoft.VisualBasic.Imaging.Math2D.Transform.theta">
  <summary>
  angle for rotation
@@ -19531,14 +19635,21 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
 </member>
 <member name="P:Microsoft.VisualBasic.Imaging.Math2D.Transform.scalex">
  <summary>
- scale x
+ scale x [1 means no scale]
  </summary>
  <returns></returns>
 </member>
 <member name="P:Microsoft.VisualBasic.Imaging.Math2D.Transform.scaley">
  <summary>
- scale y
+ scale y [1 means no scale]
  </summary>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Imaging.Math2D.Transform.ApplyTo(Microsoft.VisualBasic.Imaging.Math2D.Polygon2D)">
+ <summary>
+ Apply the current transformation parameters to the target polygon object.
+ </summary>
+ <param name="polygon"></param>
  <returns></returns>
 </member>
 <member name="T:Microsoft.VisualBasic.Imaging.Math2D.Line2D">
@@ -19907,9 +20018,16 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  this object is a vector of x and y or a collection of the 2d points.
  </remarks>
 </member>
-<member name="P:Microsoft.VisualBasic.Imaging.Math2D.Polygon2D.length">
+<member name="P:Microsoft.VisualBasic.Imaging.Math2D.Polygon2D.Item(System.Int32)">
  <summary>
- the size of the polygon points collection
+ get/set the point data by a given index
+ </summary>
+ <param name="index"></param>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Imaging.Math2D.Polygon2D.centroid">
+ <summary>
+ get centroid point of this 2d polygon shape
  </summary>
  <returns></returns>
 </member>
@@ -19922,6 +20040,12 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <summary>
  [right, bottom]
  </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.Imaging.Math2D.Polygon2D.length">
+ <summary>
+ the size of the polygon points collection
+ </summary>
+ <returns></returns>
 </member>
 <member name="P:Microsoft.VisualBasic.Imaging.Math2D.Polygon2D.height">
  <summary>
@@ -20030,6 +20154,12 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  </summary>
  <returns></returns>
 </member>
+<member name="M:Microsoft.VisualBasic.Imaging.Math2D.Polygon2D.GetFillPoints">
+ <summary>
+ Get scan line result for fill the space inside of this polygon object
+ </summary>
+ <returns></returns>
+</member>
 <member name="M:Microsoft.VisualBasic.Imaging.Math2D.Polygon2D.GenericEnumerator">
  <summary>
  just populate all input points data
@@ -20080,6 +20210,26 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <summary>
  quadrant 4 = 270,360 ~ -270, -360 ~ 0, 90
  </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.Imaging.Math2D.RasterData">
+ <summary>
+ 栅格化结果容器：每个栅格存储该区域内点的列表
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Imaging.Math2D.Rasterizer.Rasterize(Microsoft.VisualBasic.Imaging.Math2D.Polygon2D,System.Double)">
+ <summary>
+ 对Polygon2D点云进行栅格化
+ </summary>
+ <param name="pointCloud">输入点云数据</param>
+ <param name="resolution">栅格分辨率（每个栅格的边长）</param>
+ <returns>栅格化结果，包含每个栅格内的点集</returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Imaging.Math2D.Rasterizer.EstimateResolution(Microsoft.VisualBasic.Imaging.Math2D.Polygon2D,System.Int32)">
+ <summary>
+ 计算点云的平均最近邻距离，作为分辨率估算的基础
+ </summary>
+ <param name="pointCloud">输入的点云数据</param>
+ <returns>估算出的平均点间距（分辨率）</returns>
 </member>
 <member name="T:Microsoft.VisualBasic.Imaging.Math2D.VectorMath2D">
  <summary>
@@ -28272,6 +28422,22 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="p"></param>
  <returns></returns>
  
+</member>
+<member name="M:Microsoft.VisualBasic.Math.Trigonometric.Distance(System.Drawing.Point,System.Drawing.Point)">
+ <summary>
+ Calculate the Euclidean distance between two points.
+ </summary>
+ <param name="a"></param>
+ <param name="b"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Math.Trigonometric.Distance(System.Drawing.PointF,System.Drawing.PointF)">
+ <summary>
+ Calculate the Euclidean distance between two points.
+ </summary>
+ <param name="a"></param>
+ <param name="b"></param>
+ <returns></returns>
 </member>
 <member name="M:Microsoft.VisualBasic.Math.Trigonometric.GetAngle(System.Drawing.Point,System.Drawing.Point)">
  <summary>
