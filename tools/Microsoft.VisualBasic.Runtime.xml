@@ -10035,7 +10035,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
 </member>
 <member name="M:Microsoft.VisualBasic.ComponentModel.Algorithm.base.SlideWindowExtensions.SlideWindows``1(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Int32,System.Boolean)">
  <summary>
- Create a collection of slide Windows data for the target collection object.(创建一个滑窗集合)
+ Create a collection of slide Windows data for the target collection object.
  </summary>
  <typeparam name="T"></typeparam>
  <param name="data"></param>
@@ -10043,7 +10043,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="offset">在序列之上移动的步长</param>
  <returns></returns>
  <param name="extTails">引用类型不建议打开这个参数</param>
- <remarks></remarks>
+ <remarks>(创建一个滑窗集合)</remarks>
 </member>
 <member name="T:Microsoft.VisualBasic.ComponentModel.Algorithm.base.SlideWindow`1">
  <summary>
@@ -13022,6 +13022,12 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
 <member name="M:Microsoft.VisualBasic.ComponentModel.Collection.Deque.ReverseQueue`1.Reverse">
  <summary>
  returns 
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.ComponentModel.Collection.Generic.BucketSet`1.ForEachBucket">
+ <summary>
+ populate each pack data from the bucket data
  </summary>
  <returns></returns>
 </member>
@@ -26758,6 +26764,13 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="v"></param>
  <returns></returns>
 </member>
+<member name="M:Microsoft.VisualBasic.Math.Correlations.DistanceMethods.SquareDistance(System.Double[],System.Double[])">
+ <summary>
+ SUM((a - v) ^ 2)
+ </summary>
+ <param name="v"></param>
+ <returns></returns>
+</member>
 <member name="M:Microsoft.VisualBasic.Math.Correlations.DistanceMethods.SquareDistance(Microsoft.VisualBasic.Math.IVector,System.Double[])">
  <summary>
  SUM((a - v) ^ 2)
@@ -26767,6 +26780,14 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <returns></returns>
 </member>
 <member name="M:Microsoft.VisualBasic.Math.Correlations.DistanceMethods.SquareDistance(Microsoft.VisualBasic.Emit.Marshal.Span{System.Double},Microsoft.VisualBasic.Emit.Marshal.Span{System.Double})">
+ <summary>
+ Reduced Euclidean distance
+ </summary>
+ <remarks>
+ SUM((x - y) ^ 2)
+ </remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.Math.Correlations.DistanceMethods.SquareDistance(Microsoft.VisualBasic.Imaging.Layout2D,Microsoft.VisualBasic.Imaging.Layout2D)">
  <summary>
  Reduced Euclidean distance
  </summary>

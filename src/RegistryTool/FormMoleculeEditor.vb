@@ -374,7 +374,10 @@ let options = { width: 450, height: 300 };
 
     Private Sub EditToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles EditToolStripMenuItem1.Click
         If ComboBox1.SelectedIndex <= 0 Then
-            Call MessageBox.Show("A language for the synonym name must be selected!", "Invalid Language", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Call MessageBox.Show("A language for the synonym name must be selected!",
+                                 "Invalid Language",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Warning)
             Return
         End If
 

@@ -1,4 +1,6 @@
-﻿Public Class FormTextEditor
+﻿Imports Microsoft.VisualBasic.Linq
+
+Public Class FormTextEditor
 
     Public ReadOnly Property TextData As String
         Get
@@ -20,7 +22,10 @@
     End Sub
 
     Public Sub SetText(lines As IEnumerable(Of String))
-        TextBox1.Text = lines.JoinBy(vbCrLf)
+        TextBox1.Text = lines _
+            .SafeQuery _
+            .OrderBy(Function(line) line) _
+            .JoinBy(vbCrLf)
     End Sub
 
     Public Sub SetPromptText(str As String)
