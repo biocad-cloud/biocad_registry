@@ -17,6 +17,7 @@ Imports RegistryTool.My
 Imports SMRUCC.genomics
 Imports SMRUCC.genomics.Assembly.NCBI.GenBank
 Imports SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.PubMed
+Imports SMRUCC.genomics.SequenceModel.FASTA
 Imports Metadata = BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaLib
 
 Public Class FormMain : Implements AppHost
@@ -478,7 +479,19 @@ FROM
     Private Sub ExportConservedOperonDatabaseToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportConservedOperonDatabaseToolStripMenuItem.Click
         Using file As New SaveFileDialog With {.Filter = "Fasta Database File(*.fasta)|*.fasta"}
             If file.ShowDialog = DialogResult.OK Then
+                Using s As Stream = file.FileName.Open(FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False),
+                    fasta As New SequenceModel.FASTA.StreamWriter(s)
 
+                    Call TaskProgress.RunAction(
+                        Sub()
+                            For Each seq As views.OperonGene In MyApplication.biocad_registry.ExportOperonGeneFasta
+                                Call fasta.Add(New FastaSeq With {
+                                    .Headers = {seq.gene_id, seq.cluster_id, seq.name},
+                                    .SequenceData = seq.sequence
+                                })
+                            Next
+                        End Sub, "Export Data", "Fetch sequence data and write into a fasta sequence data file...")
+                End Using
             End If
         End Using
     End Sub
