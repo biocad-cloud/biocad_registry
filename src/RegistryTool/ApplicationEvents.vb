@@ -57,11 +57,8 @@ Namespace My
             }
 
             Try
-                Call ProgressSpinner.DoLoading(
-                    Sub()
-                        _biocad_registry = New biocad_registry(mysqli)
-                        _settings = config
-                    End Sub)
+                _biocad_registry = New biocad_registry(mysqli)
+                _settings = config
             Catch ex As Exception
                 If MessageBox.Show("Invalid Mysql Connection information, please re-config your parameters!" & vbCrLf & vbCrLf & ex.Message,
                                    "Invalid Mysql Connection",

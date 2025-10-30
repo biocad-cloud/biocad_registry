@@ -46,8 +46,11 @@ Public Class FormMain : Implements AppHost
     End Sub
 
     Private Async Sub FormMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Call CommonRuntime.Hook(Me)
+        CommonRuntime.Hook(Me)
+        Await IntializeMainWindow()
+    End Sub
 
+    Private Async Function IntializeMainWindow() As Task
         If Not MyApplication.Load Then
             Call MessageBox.Show("Application initialization error!", "Application Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End If
@@ -73,7 +76,7 @@ Public Class FormMain : Implements AppHost
             AddHandler item.Click, Sub() Call Workbench.OpenMoleculeEditor(entry.id, entry.name)
             OpenMoleculeToolStripMenuItem.DropDownItems.Add(item)
         Next
-    End Sub
+    End Function
 
     Private Sub SubCellularCompartmentsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SubCellularCompartmentsToolStripMenuItem.Click
         Dim view As New FormDbView()
