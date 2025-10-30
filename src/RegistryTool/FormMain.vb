@@ -45,16 +45,16 @@ Public Class FormMain : Implements AppHost
         App.Exit(0)
     End Sub
 
-    Private Sub FormMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Async Sub FormMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Call CommonRuntime.Hook(Me)
 
         If Not MyApplication.Load Then
             Call MessageBox.Show("Application initialization error!", "Application Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End If
 
-        Dim topics = MyApplication.biocad_registry.vocabulary _
+        Dim topics = Await Task.Run(Function() MyApplication.biocad_registry.vocabulary _
             .where(field("category") = "Topic") _
-            .project(Of String)("term")
+            .project(Of String)("term"))
 
         ExportBloodTagToolStripMenuItem.DropDownItems.Clear()
 
