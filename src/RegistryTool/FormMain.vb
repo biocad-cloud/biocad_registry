@@ -12,6 +12,7 @@ Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Net.Http
 Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
+Imports RegistryTool.Configs
 Imports RegistryTool.My
 Imports SMRUCC.genomics
 Imports SMRUCC.genomics.Assembly.NCBI.GenBank

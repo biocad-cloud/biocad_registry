@@ -1,4 +1,5 @@
 ﻿Imports System.ComponentModel
+Imports RegistryTool.Configs
 Imports RegistryTool.My
 
 Public Class FormSettings

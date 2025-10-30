@@ -1,59 +1,62 @@
 ﻿Imports System.ComponentModel
 Imports Microsoft.VisualBasic.Serialization.JSON
 
-Public Class Settings
+Namespace Configs
 
-    <Category("MySQL")> Public Property dbname As String
-    <Category("MySQL")> Public Property host As String
-    <Category("MySQL")> Public Property password As String
-    <Category("MySQL")> Public Property port As UInteger
-    <Category("MySQL")> Public Property user As String
+    Public Class Settings
 
-    <Category("LLMs")> Public Property model As String = "qwen3:30b"
-    <Category("LLMs")> Public Property ollama_server As String = "127.0.0.1"
-    <Category("LLMs")> Public Property ollama_service As Integer = 11434
+        <Category("MySQL")> Public Property dbname As String
+        <Category("MySQL")> Public Property host As String
+        <Category("MySQL")> Public Property password As String
+        <Category("MySQL")> Public Property port As UInteger
+        <Category("MySQL")> Public Property user As String
 
-    <Browsable(False)>
-    Public Property molecule_history As MoleculeEditHistory()
+        <Category("LLMs")> Public Property model As String = "qwen3:30b"
+        <Category("LLMs")> Public Property ollama_server As String = "127.0.0.1"
+        <Category("LLMs")> Public Property ollama_service As Integer = 11434
 
-    Public Shared Function GetDefault() As Settings
-        Return New Settings With {
-            .dbname = "cad_registry",
-            .host = "127.0.0.1",
-            .password = 123456,
-            .port = 3306,
-            .user = "root",
-            .model = "qwen3:30b",
-            .ollama_server = "127.0.0.1",
-            .ollama_service = 11434
-        }
-    End Function
+        <Browsable(False)>
+        Public Property molecule_history As MoleculeEditHistory()
 
-    Public Sub Save()
-        Call Me.GetJson.SaveTo(defaultConfig)
-    End Sub
+        Public Shared Function GetDefault() As Settings
+            Return New Settings With {
+                .dbname = "cad_registry",
+                .host = "127.0.0.1",
+                .password = 123456,
+                .port = 3306,
+                .user = "root",
+                .model = "qwen3:30b",
+                .ollama_server = "127.0.0.1",
+                .ollama_service = 11434
+            }
+        End Function
 
-    Shared ReadOnly defaultConfig As String = App.ProductProgramData & "/settings.json"
+        Public Sub Save()
+            Call Me.GetJson.SaveTo(defaultConfig)
+        End Sub
 
-    Public Shared Function Load() As Settings
-        Dim config As Settings = defaultConfig.LoadJsonFile(Of Settings)(throwEx:=False)
+        Shared ReadOnly defaultConfig As String = App.ProductProgramData & "/settings.json"
 
-        If config Is Nothing Then
-            config = GetDefault()
-        End If
+        Public Shared Function Load() As Settings
+            Dim config As Settings = defaultConfig.LoadJsonFile(Of Settings)(throwEx:=False)
 
-        Return config
-    End Function
+            If config Is Nothing Then
+                config = GetDefault()
+            End If
 
-End Class
+            Return config
+        End Function
 
-Public Class MoleculeEditHistory
+    End Class
 
-    Public Property id As String
-    Public Property name As String
+    Public Class MoleculeEditHistory
 
-    Public Overrides Function ToString() As String
-        Return $"{id} - {name}"
-    End Function
+        Public Property id As String
+        Public Property name As String
 
-End Class
+        Public Overrides Function ToString() As String
+            Return $"{id} - {name}"
+        End Function
+
+    End Class
+End Namespace

@@ -11,6 +11,7 @@ Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Microsoft.Web.WebView2.Core
 Imports Ollama
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
+Imports RegistryTool.Configs
 Imports RegistryTool.My
 Imports SMRUCC.genomics.Model.MotifGraph
 Imports SMRUCC.genomics.Model.MotifGraph.ProteinStructure.Kmer

@@ -2,6 +2,7 @@
 Imports biocad_storage
 Imports Galaxy.Workbench
 Imports Oracle.LinuxCompatibility.MySQL.Uri
+Imports RegistryTool.Configs
 
 Namespace My
 
@@ -36,11 +37,11 @@ Namespace My
             End Get
         End Property
 
-        Public Shared ReadOnly Property settings As Settings
+        Public Shared ReadOnly Property settings As Configs.Settings
 
         Public Shared ReadOnly Property ollama As Ollama.Ollama
             Get
-                With Settings.Load
+                With Configs.Settings.Load
                     Return New Ollama.Ollama(.model, $"{ .ollama_server}:{ .ollama_service}")
                 End With
             End Get
