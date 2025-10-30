@@ -1,5 +1,6 @@
 ﻿Imports System.Runtime.CompilerServices
 Imports biocad_storage
+Imports Galaxy.Workbench
 Imports Oracle.LinuxCompatibility.MySQL.Uri
 
 Namespace My
@@ -55,10 +56,9 @@ Namespace My
             }
 
             Try
-                Call FormBuzyLoader.Loading(
-                    Sub(println)
-                        Call println("Checking registry database connection...")
-
+                Call TaskProgress.RunAction(
+                    Sub(println As ITaskProgress)
+                        Call println.SetInfo("Checking registry database connection...")
                         _biocad_registry = New biocad_registry(mysqli)
                         _settings = config
                     End Sub)
@@ -80,7 +80,7 @@ Namespace My
 
         <MethodImpl(MethodImplOptions.AggressiveInlining)>
         Public Shared Function Loading(Of T)(getter As Func(Of Action(Of String), T)) As T
-            Return FormBuzyLoader.Loading(getter)
+            Return TaskProgress.LoadData(getter, info:="Loading data, this may takes for a long time, please wait for a while...")
         End Function
 
     End Class

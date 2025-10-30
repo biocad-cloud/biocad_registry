@@ -308,9 +308,9 @@ let options = { width: 450, height: 300 };
 
         Dim current = all_xrefs.GroupBy(Function(a) a.xref).ToDictionary(Function(a) a.Key, Function(a) a.ToArray)
 
-        Call FormBuzyLoader.Loading(
-            Sub(println)
-                Call println("Commit data changes into the database...")
+        Call TaskProgress.RunAction(
+            Sub(println As ITaskProgress)
+                Call println.SetInfo("Commit data changes into the database...")
 
                 For Each id As String In edit.TextLines
                     If current.ContainsKey(id) Then
@@ -393,11 +393,11 @@ let options = { width: 450, height: 300 };
 
         Dim editData As String() = edit.TextLines
 
-        Call FormBuzyLoader.Loading(
-            Sub(println)
+        Call TaskProgress.RunAction(
+            Sub(println As ITaskProgress)
                 Dim current = names.Indexing
 
-                Call println("Commit modified data to database...")
+                Call println.SetInfo("Commit modified data to database...")
 
                 For Each name As String In edit.TextLines
                     If name Like current Then
@@ -435,7 +435,7 @@ let options = { width: 450, height: 300 };
 
     Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
         Dim prompt As String = $"please talk me about the biological function of the compound: '{TextBox2.Text}' in a short conclusion abstract text"
-        Dim msg As DeepSeekResponse = FormBuzyLoader.Loading(Function(println) MyApplication.ollama.Chat(prompt))
+        Dim msg As DeepSeekResponse = TaskProgress.LoadData(Function(println As Action(Of String)) MyApplication.ollama.Chat(prompt))
         Dim markdown As New MarkdownRender
 
         If Not msg Is Nothing Then
@@ -461,7 +461,7 @@ let options = { width: 450, height: 300 };
 
         Dim name = ListBox1.Items(ListBox1.SelectedIndex).ToString
         Dim prompt As String = $"将下面的这个化合物名称翻译为中文：'{name}'，如果没有正式的翻译，请进行音译。使用下面的json格式返回结果给我以方便我进行数据解析：{{""zh_name"": ""translated_name""}}"
-        Dim msg As DeepSeekResponse = FormBuzyLoader.Loading(Function(println) MyApplication.ollama.Chat(prompt))
+        Dim msg As DeepSeekResponse = TaskProgress.LoadData(Function(println As Action(Of String)) MyApplication.ollama.Chat(prompt))
 
         If Not msg Is Nothing Then
             Try
@@ -557,9 +557,9 @@ let options = { width: 450, height: 300 };
         End If
 
         Dim source As OrganismSource = DirectCast(ListBox3.SelectedItem, OrganismSource)
-        Dim molecules As MoleculeSearch() = FormBuzyLoader _
-            .Loading(Function(println)
-                         Return MyApplication.biocad_registry.taxonomy_source _
+        Dim molecules As MoleculeSearch() = TaskProgress _
+            .LoadData(Function(println As Action(Of String))
+                          Return MyApplication.biocad_registry.taxonomy_source _
                             .left_join("molecule").on(field("`molecule`.id") = field("molecule_id")) _
                             .left_join("vocabulary").on(field("`vocabulary`.id") = field("`molecule`.type")) _
                             .where(field("ncbi_taxid") = source.ncbi_taxid) _
@@ -570,7 +570,7 @@ let options = { width: 450, height: 300 };
     "mass",
     "term AS type",
     "`molecule`.note")
-                     End Function)
+                      End Function)
         Dim view As New FormDbView()
         view.LoadTableView(Function() molecules)
         view.SetViewer(Sub(row)
@@ -595,9 +595,9 @@ let options = { width: 450, height: 300 };
             Return
         End If
 
-        Dim molecules As MoleculeSearch() = FormBuzyLoader _
-            .Loading(Function(println)
-                         Return MyApplication.biocad_registry.db_xrefs _
+        Dim molecules As MoleculeSearch() = TaskProgress _
+            .LoadData(Function(println As Action(Of String))
+                          Return MyApplication.biocad_registry.db_xrefs _
                             .left_join("molecule").on(field("`molecule`.id") = field("obj_id")) _
                             .left_join("vocabulary").on(field("`vocabulary`.id") = field("`molecule`.type")) _
                             .where(field("db_key") = link.db_key, field("xref") = link.xref) _
@@ -608,7 +608,7 @@ let options = { width: 450, height: 300 };
     "mass",
     "term AS type",
     "`molecule`.note")
-                     End Function)
+                      End Function)
         Dim view As New FormDbView()
         view.LoadTableView(Function() molecules)
         view.SetViewer(Sub(row)

@@ -1,8 +1,10 @@
-﻿Imports System.IO
+﻿Imports System.ComponentModel
+Imports System.IO
 Imports biocad_storage
 Imports BioNovoGene.BioDeep.Chemistry.MetaLib
 Imports BioNovoGene.BioDeep.Chemistry.MetaLib.CrossReference
 Imports BioNovoGene.BioDeep.Chemistry.MetaLib.Models
+Imports Galaxy.Workbench
 Imports Microsoft.VisualBasic.Data.Framework
 Imports Microsoft.VisualBasic.Data.Framework.IO
 Imports Microsoft.VisualBasic.Language
@@ -16,7 +18,19 @@ Imports SMRUCC.genomics.Assembly.NCBI.GenBank
 Imports SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.PubMed
 Imports Metadata = BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaLib
 
-Public Class FormMain
+Public Class FormMain : Implements AppHost
+
+    Private ReadOnly Property AppHost_ClientRectangle As Rectangle Implements AppHost.ClientRectangle
+        Get
+            Return New Rectangle(Location, Size)
+        End Get
+    End Property
+
+    Public ReadOnly Property ActiveDocument As Form Implements AppHost.ActiveDocument
+        Get
+            Return Nothing
+        End Get
+    End Property
 
     Private Sub VocabularyToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles VocabularyToolStripMenuItem.Click
         Dim view As New FormDbView()
@@ -268,7 +282,7 @@ Public Class FormMain
                 Using file As New SaveFileDialog With {.Filter = "Annotation Table(*.csv)|*.csv"}
                     If file.ShowDialog = DialogResult.OK Then
                         Dim exports As New ExportMetabolites(MyApplication.biocad_registry)
-                        Dim list As MetaInfo() = FormBuzyLoader.Loading(Function(println) exports.setOntology("Coconut NPclass").ExportByID(ids, wrap_tqdm:=False).ToArray(Of MetaInfo))
+                        Dim list As MetaInfo() = TaskProgress.LoadData(Function(println As Action(Of String)) exports.setOntology("Coconut NPclass").ExportByID(ids, wrap_tqdm:=False).ToArray(Of MetaInfo))
                         Dim df As New DataFrame With {
                             .rownames = list.Select(Function(a) a.ID).ToArray
                         }
@@ -349,6 +363,9 @@ Public Class FormMain
         editor.Show()
     End Sub
 
+    Public Event ResizeForm As AppHost.ResizeFormEventHandler Implements AppHost.ResizeForm
+    Public Event CloseWorkbench As AppHost.CloseWorkbenchEventHandler Implements AppHost.CloseWorkbench
+
     Private Sub SearchToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SearchToolStripMenuItem.Click
         Dim getName As String = InputBox("Input the molecule name to make search:")
 
@@ -375,7 +392,7 @@ FROM
         LEFT JOIN
     vocabulary ON vocabulary.id = t1.type"
 
-        Dim molecules As MoleculeSearch() = FormBuzyLoader.Loading(Function(println) MyApplication.biocad_registry.molecule.getDriver.Query(Of MoleculeSearch)(sql, throwExp:=False))
+        Dim molecules As MoleculeSearch() = TaskProgress.LoadData(Function(println As Action(Of String)) MyApplication.biocad_registry.molecule.getDriver.Query(Of MoleculeSearch)(sql, throwExp:=False))
 
         If molecules.IsNullOrEmpty Then
             Call MessageBox.Show("Sorry, no search result.", "No result", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -393,5 +410,62 @@ FROM
         view.MdiParent = Me
         view.Text = $"Search Result of '{text}'"
         view.Show()
+    End Sub
+
+    Public Sub SetWorkbenchVisible(visible As Boolean) Implements AppHost.SetWorkbenchVisible
+
+    End Sub
+
+    Public Sub SetWindowState(stat As FormWindowState) Implements AppHost.SetWindowState
+        WindowState = stat
+    End Sub
+
+    Public Function GetDesktopLocation() As Point Implements AppHost.GetDesktopLocation
+        Return Location
+    End Function
+
+    Public Function GetClientSize() As Size Implements AppHost.GetClientSize
+        Return Size
+    End Function
+
+    Public Iterator Function GetDocuments() As IEnumerable(Of Form) Implements AppHost.GetDocuments
+
+    End Function
+
+    Public Function GetDockPanel() As Control Implements AppHost.GetDockPanel
+        Return Nothing
+    End Function
+
+    Public Function GetWindowState() As FormWindowState Implements AppHost.GetWindowState
+        Return WindowState
+    End Function
+
+    Public Sub SetTitle(title As String) Implements AppHost.SetTitle
+        Text = title
+    End Sub
+
+    Public Sub StatusMessage(msg As String, Optional icon As Image = Nothing) Implements AppHost.StatusMessage
+        ToolStripStatusLabel1.Text = msg
+        ToolStripStatusLabel1.Image = icon
+    End Sub
+
+    Public Sub Warning(msg As String) Implements AppHost.Warning
+        ToolStripStatusLabel1.Text = msg
+    End Sub
+
+    Public Sub LogText(text As String) Implements AppHost.LogText
+
+    End Sub
+
+    Public Sub ShowProperties(obj As Object) Implements AppHost.ShowProperties
+
+    End Sub
+
+    Private Sub FormMain_Resize(sender As Object, e As EventArgs) Handles Me.Resize
+        RaiseEvent ResizeForm(Location, Size)
+    End Sub
+
+    Private Sub FormMain_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+        RaiseEvent CloseWorkbench(e)
     End Sub
 End Class
