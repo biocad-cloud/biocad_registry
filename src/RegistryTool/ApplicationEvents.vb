@@ -64,7 +64,7 @@ Namespace My
                         _settings = config
                     End Sub)
             Catch ex As Exception
-                If MessageBox.Show("Invalid Mysql Connection information, please re-config your parameters!",
+                If MessageBox.Show("Invalid Mysql Connection information, please re-config your parameters!" & vbCrLf & vbCrLf & ex.Message,
                                    "Invalid Mysql Connection",
                                    MessageBoxButtons.OKCancel,
                                    MessageBoxIcon.Warning) = DialogResult.OK Then
