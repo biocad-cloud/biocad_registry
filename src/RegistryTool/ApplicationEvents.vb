@@ -57,9 +57,8 @@ Namespace My
             }
 
             Try
-                Call TaskProgress.RunAction(
-                    Sub(println As ITaskProgress)
-                        Call println.SetInfo("Checking registry database connection...")
+                Call ProgressSpinner.DoLoading(
+                    Sub()
                         _biocad_registry = New biocad_registry(mysqli)
                         _settings = config
                     End Sub)
