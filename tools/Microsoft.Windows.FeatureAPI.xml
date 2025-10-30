@@ -24917,15 +24917,6 @@ Gets the metadata for the <b>UserPinned</b> folder.
  <param name="stockIconIdentifier">Unique identifier for the requested stock icon</param>
  <returns>Stock Icon based on the identifier given (either from the cache or created new)</returns>
 </member>
-<member name="M:Microsoft.Windows.InlineExtensions.DirectCopy``1(``0@,``0@)">
- <summary>
- 
- </summary>
- <typeparam name="T"></typeparam>
- <param name="copyTo"></param>
- <param name="source">This copy's data source.</param>
- <returns></returns>
-</member>
 <member name="T:Microsoft.Windows.LocalizedMessages">
 <summary>
   A strongly-typed resource class, for looking up localized strings, etc.
