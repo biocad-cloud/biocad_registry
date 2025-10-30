@@ -293,7 +293,7 @@ Galaxy.Workbench
  <summary>
  set value to the <see cref="P:Galaxy.Workbench.CommonRuntime.AppHost"/> in current common workbench runtime.
  </summary>
- <param name="apphost"></param>
+ <param name="apphost">should be the main window of the current process application</param>
  <remarks>
  this method andalso apply of the <see cref="P:Galaxy.Workbench.CommonRuntime.UISettings"/> to the <see cref="P:Galaxy.Workbench.CommonRuntime.AppHost"/> object 
  if the given <paramref name="apphost"/> is a winform object.
