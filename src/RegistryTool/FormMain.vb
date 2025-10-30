@@ -470,5 +470,7 @@ FROM
 
     Private Sub FormMain_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
         RaiseEvent CloseWorkbench(e)
+
+        Call CommonRuntime.SaveUISettings()
     End Sub
 End Class
