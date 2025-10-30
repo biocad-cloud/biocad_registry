@@ -46,11 +46,11 @@ Public Class FormMain : Implements AppHost
     End Sub
 
     Private Sub FormMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Call CommonRuntime.Hook(Me)
+
         If Not MyApplication.Load Then
             Call MessageBox.Show("Application initialization error!", "Application Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End If
-
-        Call MyApplication.SetHost(Me)
 
         Dim topics = MyApplication.biocad_registry.vocabulary _
             .where(field("category") = "Topic") _

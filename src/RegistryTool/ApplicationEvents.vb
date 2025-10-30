@@ -31,6 +31,11 @@ Namespace My
 
         Public Shared ReadOnly Property biocad_registry As biocad_registry
         Public Shared ReadOnly Property host As FormMain
+            Get
+                Return DirectCast(CommonRuntime.AppHost, FormMain)
+            End Get
+        End Property
+
         Public Shared ReadOnly Property settings As Settings
 
         Public Shared ReadOnly Property ollama As Ollama.Ollama
@@ -40,10 +45,6 @@ Namespace My
                 End With
             End Get
         End Property
-
-        Public Shared Sub SetHost(host As FormMain)
-            _host = host
-        End Sub
 
         Public Shared Function Load() As Boolean
             Dim config As Settings = Settings.Load
