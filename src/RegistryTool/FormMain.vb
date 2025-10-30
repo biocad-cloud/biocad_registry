@@ -474,4 +474,12 @@ FROM
 
         Call CommonRuntime.SaveUISettings()
     End Sub
+
+    Private Sub ExportConservedOperonDatabaseToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportConservedOperonDatabaseToolStripMenuItem.Click
+        Using file As New SaveFileDialog With {.Filter = "Fasta Database File(*.fasta)|*.fasta"}
+            If file.ShowDialog = DialogResult.OK Then
+
+            End If
+        End Using
+    End Sub
 End Class

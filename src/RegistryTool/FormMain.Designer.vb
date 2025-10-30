@@ -52,6 +52,7 @@ Partial Class FormMain
         Me.CloseAllToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.ExportConservedOperonDatabaseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -75,52 +76,52 @@ Partial Class FormMain
         'OpenMoleculeToolStripMenuItem
         '
         Me.OpenMoleculeToolStripMenuItem.Name = "OpenMoleculeToolStripMenuItem"
-        Me.OpenMoleculeToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.OpenMoleculeToolStripMenuItem.Size = New System.Drawing.Size(160, 22)
         Me.OpenMoleculeToolStripMenuItem.Text = "Open Molecule"
         '
         'BatchOperationToolStripMenuItem
         '
         Me.BatchOperationToolStripMenuItem.Name = "BatchOperationToolStripMenuItem"
-        Me.BatchOperationToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.BatchOperationToolStripMenuItem.Size = New System.Drawing.Size(160, 22)
         Me.BatchOperationToolStripMenuItem.Text = "Batch Operation"
         '
         'SearchNamesToolStripMenuItem
         '
         Me.SearchNamesToolStripMenuItem.Name = "SearchNamesToolStripMenuItem"
-        Me.SearchNamesToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.SearchNamesToolStripMenuItem.Size = New System.Drawing.Size(160, 22)
         Me.SearchNamesToolStripMenuItem.Text = "Search Names"
         '
         'ToolStripMenuItem4
         '
         Me.ToolStripMenuItem4.Name = "ToolStripMenuItem4"
-        Me.ToolStripMenuItem4.Size = New System.Drawing.Size(177, 6)
+        Me.ToolStripMenuItem4.Size = New System.Drawing.Size(157, 6)
         '
         'SettingsToolStripMenuItem
         '
         Me.SettingsToolStripMenuItem.Name = "SettingsToolStripMenuItem"
-        Me.SettingsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.SettingsToolStripMenuItem.Size = New System.Drawing.Size(160, 22)
         Me.SettingsToolStripMenuItem.Text = "Settings"
         '
         'AboutToolStripMenuItem
         '
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(160, 22)
         Me.AboutToolStripMenuItem.Text = "About"
         '
         'ToolStripMenuItem1
         '
         Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(177, 6)
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(157, 6)
         '
         'ExitToolStripMenuItem
         '
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(160, 22)
         Me.ExitToolStripMenuItem.Text = "Exit"
         '
         'DataToolStripMenuItem
         '
-        Me.DataToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.VocabularyToolStripMenuItem, Me.MoleculesToolStripMenuItem, Me.SubCellularCompartmentsToolStripMenuItem, Me.FlavorOdorsToolStripMenuItem, Me.ToolStripMenuItem2, Me.ExportMetabolitesDatabaseToolStripMenuItem, Me.ExportEnzymeDatabaseToolStripMenuItem, Me.ExportKEGGIDMappingToolStripMenuItem, Me.ToolStripMenuItem3, Me.ExportBloodTagToolStripMenuItem, Me.ExportAnnotationTableToolStripMenuItem})
+        Me.DataToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.VocabularyToolStripMenuItem, Me.MoleculesToolStripMenuItem, Me.SubCellularCompartmentsToolStripMenuItem, Me.FlavorOdorsToolStripMenuItem, Me.ToolStripMenuItem2, Me.ExportMetabolitesDatabaseToolStripMenuItem, Me.ExportEnzymeDatabaseToolStripMenuItem, Me.ExportConservedOperonDatabaseToolStripMenuItem, Me.ExportKEGGIDMappingToolStripMenuItem, Me.ToolStripMenuItem3, Me.ExportBloodTagToolStripMenuItem, Me.ExportAnnotationTableToolStripMenuItem})
         Me.DataToolStripMenuItem.Name = "DataToolStripMenuItem"
         Me.DataToolStripMenuItem.Size = New System.Drawing.Size(43, 20)
         Me.DataToolStripMenuItem.Text = "Data"
@@ -128,72 +129,72 @@ Partial Class FormMain
         'VocabularyToolStripMenuItem
         '
         Me.VocabularyToolStripMenuItem.Name = "VocabularyToolStripMenuItem"
-        Me.VocabularyToolStripMenuItem.Size = New System.Drawing.Size(224, 22)
+        Me.VocabularyToolStripMenuItem.Size = New System.Drawing.Size(261, 22)
         Me.VocabularyToolStripMenuItem.Text = "Vocabulary"
         '
         'MoleculesToolStripMenuItem
         '
         Me.MoleculesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SearchToolStripMenuItem})
         Me.MoleculesToolStripMenuItem.Name = "MoleculesToolStripMenuItem"
-        Me.MoleculesToolStripMenuItem.Size = New System.Drawing.Size(224, 22)
+        Me.MoleculesToolStripMenuItem.Size = New System.Drawing.Size(261, 22)
         Me.MoleculesToolStripMenuItem.Text = "Molecules"
         '
         'SearchToolStripMenuItem
         '
         Me.SearchToolStripMenuItem.Name = "SearchToolStripMenuItem"
-        Me.SearchToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.SearchToolStripMenuItem.Size = New System.Drawing.Size(109, 22)
         Me.SearchToolStripMenuItem.Text = "Search"
         '
         'SubCellularCompartmentsToolStripMenuItem
         '
         Me.SubCellularCompartmentsToolStripMenuItem.Name = "SubCellularCompartmentsToolStripMenuItem"
-        Me.SubCellularCompartmentsToolStripMenuItem.Size = New System.Drawing.Size(224, 22)
+        Me.SubCellularCompartmentsToolStripMenuItem.Size = New System.Drawing.Size(261, 22)
         Me.SubCellularCompartmentsToolStripMenuItem.Text = "SubCellular Compartments"
         '
         'FlavorOdorsToolStripMenuItem
         '
         Me.FlavorOdorsToolStripMenuItem.Name = "FlavorOdorsToolStripMenuItem"
-        Me.FlavorOdorsToolStripMenuItem.Size = New System.Drawing.Size(224, 22)
+        Me.FlavorOdorsToolStripMenuItem.Size = New System.Drawing.Size(261, 22)
         Me.FlavorOdorsToolStripMenuItem.Text = "Flavor Odors"
         '
         'ToolStripMenuItem2
         '
         Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
-        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(221, 6)
+        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(258, 6)
         '
         'ExportMetabolitesDatabaseToolStripMenuItem
         '
         Me.ExportMetabolitesDatabaseToolStripMenuItem.Name = "ExportMetabolitesDatabaseToolStripMenuItem"
-        Me.ExportMetabolitesDatabaseToolStripMenuItem.Size = New System.Drawing.Size(224, 22)
+        Me.ExportMetabolitesDatabaseToolStripMenuItem.Size = New System.Drawing.Size(261, 22)
         Me.ExportMetabolitesDatabaseToolStripMenuItem.Text = "Export Metabolites Database"
         '
         'ExportEnzymeDatabaseToolStripMenuItem
         '
         Me.ExportEnzymeDatabaseToolStripMenuItem.Name = "ExportEnzymeDatabaseToolStripMenuItem"
-        Me.ExportEnzymeDatabaseToolStripMenuItem.Size = New System.Drawing.Size(224, 22)
+        Me.ExportEnzymeDatabaseToolStripMenuItem.Size = New System.Drawing.Size(261, 22)
         Me.ExportEnzymeDatabaseToolStripMenuItem.Text = "Export Enzyme Database"
         '
         'ExportKEGGIDMappingToolStripMenuItem
         '
         Me.ExportKEGGIDMappingToolStripMenuItem.Name = "ExportKEGGIDMappingToolStripMenuItem"
-        Me.ExportKEGGIDMappingToolStripMenuItem.Size = New System.Drawing.Size(224, 22)
+        Me.ExportKEGGIDMappingToolStripMenuItem.Size = New System.Drawing.Size(261, 22)
         Me.ExportKEGGIDMappingToolStripMenuItem.Text = "Export KEGG IDMapping"
         '
         'ToolStripMenuItem3
         '
         Me.ToolStripMenuItem3.Name = "ToolStripMenuItem3"
-        Me.ToolStripMenuItem3.Size = New System.Drawing.Size(221, 6)
+        Me.ToolStripMenuItem3.Size = New System.Drawing.Size(258, 6)
         '
         'ExportBloodTagToolStripMenuItem
         '
         Me.ExportBloodTagToolStripMenuItem.Name = "ExportBloodTagToolStripMenuItem"
-        Me.ExportBloodTagToolStripMenuItem.Size = New System.Drawing.Size(224, 22)
+        Me.ExportBloodTagToolStripMenuItem.Size = New System.Drawing.Size(261, 22)
         Me.ExportBloodTagToolStripMenuItem.Text = "Export Tag Data"
         '
         'ExportAnnotationTableToolStripMenuItem
         '
         Me.ExportAnnotationTableToolStripMenuItem.Name = "ExportAnnotationTableToolStripMenuItem"
-        Me.ExportAnnotationTableToolStripMenuItem.Size = New System.Drawing.Size(224, 22)
+        Me.ExportAnnotationTableToolStripMenuItem.Size = New System.Drawing.Size(261, 22)
         Me.ExportAnnotationTableToolStripMenuItem.Text = "Export Annotation Table"
         '
         'ImportsToolStripMenuItem
@@ -242,6 +243,12 @@ Partial Class FormMain
         Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
         Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(42, 17)
         Me.ToolStripStatusLabel1.Text = "Ready!"
+        '
+        'ExportConservedOperonDatabaseToolStripMenuItem
+        '
+        Me.ExportConservedOperonDatabaseToolStripMenuItem.Name = "ExportConservedOperonDatabaseToolStripMenuItem"
+        Me.ExportConservedOperonDatabaseToolStripMenuItem.Size = New System.Drawing.Size(261, 22)
+        Me.ExportConservedOperonDatabaseToolStripMenuItem.Text = "Export Conserved Operon Database"
         '
         'FormMain
         '
@@ -293,4 +300,5 @@ Partial Class FormMain
     Friend WithEvents SearchNamesToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents BatchOperationToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents SearchToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ExportConservedOperonDatabaseToolStripMenuItem As ToolStripMenuItem
 End Class
