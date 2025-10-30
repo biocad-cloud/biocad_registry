@@ -14003,6 +14003,22 @@ to take away yo [rest of string was truncated]&quot;;.
  k-mer sequence model
  </summary>
 </member>
+<member name="M:SMRUCC.genomics.SequenceModel.FASTA.KSeq.CalculateDirectQuaternaryHashCode(System.String)">
+ <summary>
+ 计算DNA k-mer的直接四进制哈希值。
+ </summary>
+ <param name="kmer">输入的k-mer字符串（例如 "ATCG"）。</param>
+ <returns>计算出的哈希值（一个Long整数）。如果输入无效，则抛出异常。</returns>
+ <remarks>
+ 算法原理：
+ 1. 将k-mer的每个碱基映射为一个数字 (A=0, C=1, G=2, T=3)。
+ 2. 将整个k-mer串视为一个k位的四进制数。
+ 3. 通过迭代方式计算其十进制值：hash = (hash * 4) + current_value。
+ 例如，对于 k-mer "ACGT" (k=4):
+  A(0) C(1) G(2) T(3)
+  哈希值 = (((0 * 4 + 1) * 4 + 2) * 4 + 3) = 27
+ </remarks>
+</member>
 <member name="T:SMRUCC.genomics.SequenceModel.FASTA.StreamIterator">
  <summary>
  读取超大型的fasta文件所需要的一个数据对象

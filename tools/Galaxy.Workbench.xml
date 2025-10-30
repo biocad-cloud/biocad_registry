@@ -1,0 +1,510 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+Galaxy.Workbench
+</name>
+</assembly>
+<members>
+<member name="T:Galaxy.Workbench.My.Resources.Resources">
+<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member>
+<member name="P:Galaxy.Workbench.My.Resources.Resources.ResourceManager">
+<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member>
+<member name="P:Galaxy.Workbench.My.Resources.Resources.Culture">
+<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member>
+<member name="P:Galaxy.Workbench.My.Resources.Resources.icons8_chat_message_sent_96">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:Galaxy.Workbench.My.Resources.Resources.icons8_done_144">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:Galaxy.Workbench.My.Resources.Resources.icons8_information_96">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:Galaxy.Workbench.My.Resources.Resources.icons8_warning_96">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:Galaxy.Workbench.My.Resources.Resources.missing_action">
+<summary>
+  Looks up a localized string similar to Missing the action command &apos;{0}&apos;!.
+</summary>
+</member>
+<member name="P:Galaxy.Workbench.My.Resources.Resources.missing_action_zh">
+<summary>
+  Looks up a localized string similar to 没有找到目标操作命令 &apos;{0}&apos;！.
+</summary>
+</member>
+<member name="P:Galaxy.Workbench.My.Resources.Resources.progress_bar">
+<summary>
+  Looks up a localized string similar to &lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot; /&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge,chrome=1&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;Pure CSS Animated Progress Bar Example&lt;/title&gt;
+
+    &lt;meta name=&quot;author&quot; content=&quot;Codeconvey&quot; /&gt;
+
+    &lt;!-- Progress bar CSS --&gt;
+    &lt;style type=&quot;text/css&quot;&gt;
+        .bg {
+            background-color: #fff;
+            width: 400px;
+            height: 30px;
+            mar [rest of string was truncated]&quot;;.
+</summary>
+</member>
+<member name="P:Galaxy.Workbench.My.Resources.Resources.property_window">
+<summary>
+  Looks up a localized string similar to View Object Properties Metadata.
+</summary>
+</member>
+<member name="P:Galaxy.Workbench.My.Resources.Resources.property_window_zh">
+<summary>
+  Looks up a localized string similar to 查看目标属性元数据.
+</summary>
+</member>
+<member name="P:Galaxy.Workbench.My.Resources.Resources.spinner">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="T:Galaxy.Workbench.Actions.ActionBase">
+ <summary>
+ run a specific action on a data table
+ </summary>
+</member>
+<member name="M:Galaxy.Workbench.Actions.ActionBase.RunAction(System.String,System.Array,System.Data.DataTable)">
+ <summary>
+ 
+ </summary>
+ <param name="fieldName">
+ the main data field name in <paramref name="table"/>
+ </param>
+ <param name="data">the corresponding column value of the data field <paramref name="fieldName"/></param>
+ <param name="table">the data table for get additional field values.</param>
+</member>
+<member name="T:Galaxy.Workbench.AppHost">
+ <summary>
+ the main framework of the workbench desktop application and the plugin system base
+ </summary>
+</member>
+<member name="P:Galaxy.Workbench.AppHost.ActiveDocument">
+ <summary>
+ get/set current actived mdi document
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Galaxy.Workbench.ITaskProgress.SetProgress(System.Int32)">
+ <summary>
+ progress value between [0,100]
+ </summary>
+ <param name="p">[0,100]</param>
+</member>
+<member name="M:Galaxy.Workbench.ITaskProgress.SetProgress(System.Int32,System.String)">
+ <summary>
+ progress value between [0,100]
+ </summary>
+ <param name="p">[0,100]</param>
+ <param name="msg"></param>
+</member>
+<member name="M:Galaxy.Workbench.ProgressSpinner.DoLoading(System.Action,System.Windows.Forms.Form,System.Exception@)">
+ <summary>
+ run task and then close the spinner dialog
+ </summary>
+ <param name="loading"></param>
+ <remarks>
+ 这个函数会阻塞线程
+ </remarks>
+</member>
+<member name="M:Galaxy.Workbench.TaskProgress.SetProgress(System.Int32)">
+ <summary>
+ 
+ </summary>
+ <param name="p">[0,100]</param>
+</member>
+<member name="M:Galaxy.Workbench.TaskProgress.SetProgress(System.Int32,System.String)">
+ <summary>
+ 
+ </summary>
+ <param name="p">[0,100]</param>
+ <param name="message"></param>
+</member>
+<member name="M:Galaxy.Workbench.TaskProgress.LoadData``1(System.Func{System.Action{System.String},``0},System.String,System.String,System.Threading.Thread@,System.Boolean,System.Windows.Forms.Control)">
+ <summary>
+ 
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="streamLoad"></param>
+ <param name="title"></param>
+ <param name="info"></param>
+ <param name="taskAssign"></param>
+ <param name="canbeCancel"></param>
+ <param name="host">
+ run the <paramref name="streamLoad"/> function pointer via <see cref="M:System.Windows.Forms.Control.Invoke(System.Delegate)"/>
+ if the host form is found, due to the reason of run <paramref name="streamLoad"/> from a new 
+ thread. 
+ </param>
+ <returns></returns>
+</member>
+<member name="M:Galaxy.Workbench.TaskProgress.LoadData``1(System.Func{Galaxy.Workbench.ITaskProgress,``0},System.String,System.String,System.Threading.Thread@,System.Boolean,System.Windows.Forms.Control)">
+ <summary>
+ 
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="streamLoad">
+ the method we call from is from a new thread, so if the actions
+ in this function pointer contains the UI update code, it should
+ be call via the <see cref="M:System.Windows.Forms.Control.Invoke(System.Delegate)"/> method.
+ </param>
+ <param name="title"></param>
+ <param name="info"></param>
+ <param name="taskAssign"></param>
+ <param name="canbeCancel"></param>
+ <param name="host">
+ run the <paramref name="streamLoad"/> function pointer via <see cref="M:System.Windows.Forms.Control.Invoke(System.Delegate)"/>
+ if the host form is found, due to the reason of run <paramref name="streamLoad"/> from a new 
+ thread. 
+ </param>
+ <returns>
+ this function will always returns nothing if the task has been canceled
+ </returns>
+</member>
+<member name="M:Galaxy.Workbench.TaskProgress.RunAction(System.Action{Galaxy.Workbench.ITaskProgress},System.String,System.String,System.Action,System.Windows.Forms.Control)">
+ <summary>
+ 
+ </summary>
+ <param name="run"></param>
+ <param name="title"></param>
+ <param name="info"></param>
+ <param name="cancel"></param>
+ <param name="host">
+ run the <paramref name="run"/> function pointer via <see cref="M:System.Windows.Forms.Control.Invoke(System.Delegate)"/>
+ if the host form is found, due to the reason of run <paramref name="run"/> action from 
+ a new thread. 
+ </param>
+</member>
+<member name="T:Galaxy.Workbench.Container.AppEnvironment">
+ <summary>
+ A shared model for test application environment
+ </summary>
+</member>
+<member name="F:Galaxy.Workbench.DockDocument.Presets.PropertyWindow.components">
+ <summary>
+ Required designer variable.
+ </summary>
+</member>
+<member name="M:Galaxy.Workbench.DockDocument.Presets.PropertyWindow.Dispose(System.Boolean)">
+ <summary>
+ Clean up any resources being used.
+ </summary>
+ <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+</member>
+<member name="M:Galaxy.Workbench.DockDocument.Presets.PropertyWindow.InitializeComponent">
+ <summary>
+ Required method for Designer support - do not modify
+ the contents of this method with the code editor.
+ </summary>
+</member>
+<member name="M:Galaxy.Workbench.DockDocument.Presets.PropertyWindow.SetObject(System.Object)">
+ <summary>
+ set selected object and then refresh the <see cref="F:Galaxy.Workbench.DockDocument.Presets.PropertyWindow.propertyGrid"/>
+ </summary>
+ <param name="obj"></param>
+</member>
+<member name="T:Galaxy.Workbench.DockDocument.ToolStripWindow">
+ <summary>
+ A method of <see cref="M:Galaxy.Workbench.DockDocument.ToolStripWindow.GetMainToolStrip"/> must be overrides
+ and implemented for get the toolstrip for the external 3rd 
+ plugin
+ </summary>
+</member>
+<member name="M:Galaxy.Workbench.DockDocument.ToolWindow.option1ToolStripMenuItem_Click(System.Object,System.EventArgs)">
+ <summary>
+ float
+ </summary>
+ <param name="sender"></param>
+ <param name="e"></param>
+</member>
+<member name="M:Galaxy.Workbench.DockDocument.ToolWindow.option2ToolStripMenuItem_Click(System.Object,System.EventArgs)">
+ <summary>
+ dock
+ </summary>
+ <param name="sender"></param>
+ <param name="e"></param>
+</member>
+<member name="M:Galaxy.Workbench.DockDocument.ToolWindow.option3ToolStripMenuItem_Click(System.Object,System.EventArgs)">
+ <summary>
+ auto hide
+ </summary>
+ <param name="sender"></param>
+ <param name="e"></param>
+</member>
+<member name="M:Galaxy.Workbench.DockDocument.ToolWindow.option4ToolStripMenuItem_Click(System.Object,System.EventArgs)">
+ <summary>
+ close
+ </summary>
+ <param name="sender"></param>
+ <param name="e"></param>
+</member>
+<member name="T:Galaxy.Workbench.Icons8">
+ <summary>
+ Common icons image from https://icons8.com/ website
+ </summary>
+</member>
+<member name="P:Galaxy.Workbench.Icons8.JobDone">
+ <summary>
+ icons for job done and success
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:Galaxy.Workbench.CommonRuntime">
+ <summary>
+ Common workbench runtime
+ </summary>
+</member>
+<member name="P:Galaxy.Workbench.CommonRuntime.MaskOpacity">
+ <summary>
+ set the opacity of the <see cref="T:Galaxy.Workbench.CommonDialogs.MaskForm"/> when show the input dialog via <see cref="M:Galaxy.Workbench.CommonDialogs.InputDialog.Input(System.Action{Galaxy.Workbench.CommonDialogs.InputDialog},System.Action)"/>
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Galaxy.Workbench.CommonRuntime.Hook(Galaxy.Workbench.AppHost)">
+ <summary>
+ set value to the <see cref="P:Galaxy.Workbench.CommonRuntime.AppHost"/> in current common workbench runtime.
+ </summary>
+ <param name="apphost"></param>
+ <remarks>
+ this method andalso apply of the <see cref="P:Galaxy.Workbench.CommonRuntime.UISettings"/> to the <see cref="P:Galaxy.Workbench.CommonRuntime.AppHost"/> object 
+ if the given <paramref name="apphost"/> is a winform object.
+ </remarks>
+</member>
+<member name="M:Galaxy.Workbench.CommonRuntime.SaveCurrentDocument">
+ <summary>
+ Save current active document as file if it supported to be saved
+ </summary>
+</member>
+<member name="M:Galaxy.Workbench.CommonRuntime.ShowSingleDocument``1(System.Action)">
+ <summary>
+ 
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="showExplorer">
+ do specific callback from this parameter delegate if the pointer value is nothing nothing
+ </param>
+</member>
+<member name="M:Galaxy.Workbench.CommonRuntime.ShowDocument``1(Microsoft.VisualStudio.WinForms.Docking.DockState,System.String)">
+ <summary>
+ create a new document tab page
+ </summary>
+ <typeparam name="T"></typeparam>
+ <returns></returns>
+ 
+</member>
+<member name="M:Galaxy.Workbench.DialogPromise.OpenDialog``1">
+ <summary>
+ 启动链式调用的入口方法
+ </summary>
+ <typeparam name="T"></typeparam>
+ <returns></returns>
+</member>
+<member name="M:Galaxy.Workbench.DialogPromise.OpenDialog``1(System.Object)">
+ <summary>
+ 
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="data">
+ this parameter required the target <typeparamref name="T"/> implements of the interface <see cref="T:Galaxy.Workbench.IDataContainer"/>
+ </param>
+ <returns></returns>
+</member>
+<member name="M:Galaxy.Workbench.DialogPromise.ThenDialog``1">
+ <summary>
+ 链式调用下一个对话框
+ </summary>
+ <typeparam name="T"></typeparam>
+ <returns></returns>
+</member>
+<member name="M:Galaxy.Workbench.DialogPromise.ThenDialog``1(System.Func{Galaxy.Workbench.CommonDialogs.InputDialog,System.Boolean},System.Object)">
+ <summary>
+ 
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="condition"></param>
+ <param name="data">
+ this parameter required the target <typeparamref name="T"/> implements of the interface <see cref="T:Galaxy.Workbench.IDataContainer"/>
+ </param>
+ <returns></returns>
+</member>
+<member name="M:Galaxy.Workbench.DialogPromise.Finally(System.Action{System.Windows.Forms.DialogResult,Galaxy.Workbench.CommonDialogs.InputDialog})">
+ <summary>
+ 处理最终结果
+ </summary>
+ <param name="action"></param>
+</member>
+<member name="M:Galaxy.Workbench.DialogPromise.OnSuccess(System.Action)">
+ <summary>
+ 只有当所有对话框都成功时才执行
+ </summary>
+ <param name="action"></param>
+</member>
+<member name="M:Galaxy.Workbench.DialogPromise.OnCancel(System.Action)">
+ <summary>
+ 当任何对话框取消时执行
+ </summary>
+ <param name="action"></param>
+</member>
+<member name="M:Galaxy.Workbench.DialogPromise.SetFormData(Galaxy.Workbench.CommonDialogs.InputDialog,System.Object)">
+ <summary>
+ 辅助方法：设置表单数据
+ </summary>
+ <param name="form"></param>
+ <param name="data"></param>
+</member>
+<member name="M:Galaxy.Workbench.CommonDialogs.InputDialog.Input``1(System.Action{``0},System.Action,``0)">
+ <summary>
+ 
+ </summary>
+ <typeparam name="Form"></typeparam>
+ <param name="setConfig">
+ Just needs for display the information, then 
+ this delegate function could be nothing.
+ </param>
+ <param name="cancel"></param>
+ <param name="config"></param>
+</member>
+<member name="M:Galaxy.Workbench.CommonDialogs.InputDialog.ShowDialog``1(``0)">
+ <summary>
+ just used this method for display some information
+ </summary>
+ <typeparam name="Form"></typeparam>
+ <param name="config"></param>
+ 
+</member>
+<member name="T:Galaxy.Workbench.IDataContainer">
+ <summary>
+ <see cref="T:Galaxy.Workbench.DialogPromise"/>中可选的数据传递接口
+ </summary>
+</member>
+<member name="M:Galaxy.Workbench.IDataContainer.SetData(System.Object)">
+ <summary>
+ set a general data to form
+ </summary>
+ <param name="data"></param>
+</member>
+<member name="M:Galaxy.Workbench.IDataContainer.GetData">
+ <summary>
+ get the general data from the form
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:Galaxy.Workbench.CommonStrings">
+ <summary>
+ Common string resource in different culture and language
+ </summary>
+</member>
+<member name="M:Galaxy.Workbench.CommonStrings.GetString(System.String,System.Resources.ResourceManager)">
+ <summary>
+ get string from resource data with culture and language configuration.
+ </summary>
+ <param name="key"></param>
+ <returns></returns>
+</member>
+<member name="M:Galaxy.Workbench.CommonStrings.GetString(System.String,System.Object[])">
+ <summary>
+ Get string with <see cref="M:System.String.Format(System.IFormatProvider,System.String,System.Object)"/> applied
+ </summary>
+ <param name="key"></param>
+ <param name="args"></param>
+ <returns></returns>
+</member>
+<member name="F:Galaxy.Workbench.Languages.Default">
+ <summary>
+ follow system
+ </summary>
+</member>
+<member name="T:Galaxy.Workbench.Plugin.MZKitPlugin">
+ <summary>
+ this dll assembly file is a mzkit plugin 
+ package, sevral plugin module may be 
+ contains in this project assembly file.
+ </summary>
+</member>
+<member name="P:Galaxy.Workbench.Plugin.MZKitPlugin.InMemoryLoaderRegistry">
+ <summary>
+ [<see cref="P:Galaxy.Workbench.Plugin.Repository.PluginMetadata.id"/> => <see cref="T:Galaxy.Workbench.Plugin.Plugin"/>]
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:Galaxy.Workbench.Plugin.Plugin">
+ <summary>
+ the mzkit plugin model abstract
+ </summary>
+</member>
+<member name="M:Galaxy.Workbench.Plugin.Plugin.Init(System.Action{System.String})">
+ <summary>
+ run this plugin
+ </summary>
+</member>
+<member name="P:Galaxy.Workbench.Plugin.Repository.PluginMetadata.status">
+ <summary>
+ "active" | "disable" | "incompatible"
+ </summary>
+ <returns></returns>
+</member>
+<member name="F:Galaxy.Workbench.TaskbarStatus.windowsTaskbar">
+ <summary>
+ Keep a reference to the Taskbar instance
+ </summary>
+</member>
+<member name="M:Galaxy.Workbench.TaskBarWindow.UpdatePreviewBitmap(System.Windows.Forms.Form)">
+ <summary>
+ Helper method to update the thumbnail preview for a given tab page.
+ </summary>
+ <param name="tabPage"></param>
+</member>
+<member name="M:Galaxy.Workbench.WebViewLoader.Init(Microsoft.Web.WebView2.WinForms.WebView2,System.Boolean)">
+ <summary>
+ just call this function in form load event
+ </summary>
+ <param name="WebView21"></param>
+ <param name="enableDevTool"></param>
+</member>
+<member name="M:Galaxy.Workbench.WorkStudio.LogCommandLine(System.String,System.String,System.String)">
+ <summary>
+ 
+ </summary>
+ <param name="host">the commandline application</param>
+ <param name="commandline">the commandline argument string</param>
+ <param name="workdir">the workdir of the application</param>
+</member>
+<member name="M:Galaxy.Workbench.WorkStudio.launch_cmd(Microsoft.VisualBasic.ApplicationServices.Debugging.Logging.LogEntry)">
+ <summary>
+ 
+ </summary>
+ <param name="cmdlog">
+ log value parsed from the <see cref="M:Microsoft.VisualBasic.ApplicationServices.Debugging.Logging.LogReader.Parse(System.String)"/>
+ </param>
+</member>
+</members>
+</doc>

@@ -2,6 +2,7 @@
 Imports BioNovoGene.BioDeep.Chemoinformatics
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports BioNovoGene.BioDeep.Chemoinformatics.SMILES
+Imports Galaxy.Workbench
 Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.MIME.text.markdown
@@ -56,7 +57,7 @@ let options = { width: 450, height: 300 };
     Dim mol As biocad_registryModel.molecule
     Dim morgan As ProteinStructure.MorganFingerprint
 
-    Private Sub FormMoleculeEditor_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Async Sub FormMoleculeEditor_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         mol = MyApplication.biocad_registry.molecule _
             .where(field("id") = UInteger.Parse(id.Match("\d+"))) _
             .find(Of biocad_registryModel.molecule)
@@ -117,7 +118,8 @@ let options = { width: 450, height: 300 };
         Call refreshNames()
         Call refreshXrefs()
         Call refreshTags()
-        Call WebKit.Init(WebView21)
+
+        Await WebViewLoader.Init(WebView21)
     End Sub
 
     Private Sub refreshNames(Optional lang As String = Nothing)
