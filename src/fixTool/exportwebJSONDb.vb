@@ -56,7 +56,7 @@ Module exportwebJSONDb
                                                                    Else
                                                                        Return 0
                                                                    End If
-                                                               End Function).ToArray)
+                                                               End Function).Distinct.ToArray)
             Dim mol = registry.molecule.where(field("id") = id).find(Of biocad_registryModel.molecule)
 
             If Not mol Is Nothing Then
