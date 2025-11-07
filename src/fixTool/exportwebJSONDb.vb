@@ -104,7 +104,7 @@ Module exportwebJSONDb
                                 .AsCharacter _
                                 .ToArray
 
-                            idset = idset.Intersect(mol_list).ToArray
+                            idset = idset.Intersect(mol_list.AsCharacter).ToArray
 
                             If idset.IsNullOrEmpty Then
                                 missing = True
