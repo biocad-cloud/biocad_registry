@@ -65,6 +65,9 @@ Module exportwebJSONDb
             If left.IsNullOrEmpty OrElse right.IsNullOrEmpty Then
                 Continue For
             End If
+            If left.JoinIterates(right).Any(Function(a) a.molecule_id = 0) Then
+                Continue For
+            End If
 
             Dim mol_list = left.JoinIterates(right).Select(Function(a) a.molecule_id).ToArray
             Dim args = registry.kinetic_law _
