@@ -20,6 +20,58 @@ Module exportwebJSONDb
     Dim right_term As biocad_registryModel.vocabulary
 
     Sub runlocalDbCache()
+        ' Call exportOperonDb()
+        ' Call exportReactions()
+        Call exportMolecules()
+
+        Pause()
+    End Sub
+
+    Sub exportMolecules()
+        Dim reactions = JsonContract.LoadJsonFile(Of Dictionary(Of String, WebJSON.Reaction()))($"{db_cache}/enzyme_reactions.json")
+        Dim all As String() = reactions.Values _
+            .IteratesALL _
+            .Select(Function(r)
+                        Return r.left _
+                            .JoinIterates(r.right) _
+                            .Select(Function(a) a.molecule_id.ToString) _
+                            .JoinIterates(r.law.SafeQuery.Select(Iterator Function(a) As IEnumerable(Of String)
+                                                                     Yield a.metabolite_id
+
+                                                                     For Each val As String In a.params.Values
+                                                                         Yield val
+                                                                     Next
+                                                                 End Function).IteratesALL)
+                    End Function) _
+            .IteratesALL _
+            .Where(Function(id) id.IsPattern("\d+") OrElse id.IsPattern("BioCAD\d+")) _
+            .ToArray
+        Dim metabolites As New List(Of WebJSON.Molecule)
+
+        For Each id As UInteger In all.Select(Function(str) UInteger.Parse(str.Match("\d+")))
+            Dim mol = registry.molecule.where(field("id") = id).find(Of biocad_registryModel.molecule)
+
+            If Not mol Is Nothing Then
+                Dim moldata As New WebJSON.Molecule With {.id = mol.id, .formula = mol.formula, .name = mol.name}
+                moldata.db_xrefs = registry.db_xrefs _
+                    .left_join("vocabulary") _
+                    .on(field("`vocabulary`.id") = field("`db_xrefs`.db_key")) _
+                    .where(field("obj_id") = id) _
+                    .distinct _
+                    .order_by("dbname") _
+                    .select(Of localcacheViews.xref_query)("term AS dbname", "xref AS xref_id") _
+                    .SafeQuery _
+                    .Select(Function(a) New WebJSON.DBXref With {.dbname = a.dbname, .xref_id = a.xref_id}) _
+                    .ToArray
+
+                metabolites.Add(moldata)
+            End If
+        Next
+
+        Call JsonContract.GetJson(metabolites.ToArray).SaveTo($"{db_cache}/molecules.json")
+    End Sub
+
+    Sub exportReactions()
         Dim all_ec_number As String() = registry.regulation_graph.where(field("role") = 292).distinct.project(Of String)("term")
 
         term = registry.vocabulary.where(field("category") = "Regulation Type", field("term") = "Enzymatic Catalysis").find(Of biocad_registryModel.vocabulary)
@@ -29,8 +81,6 @@ Module exportwebJSONDb
         left_term = registry.vocabulary.where(field("category") = "Compound Role", field("term") = "substrate").find(Of biocad_registryModel.vocabulary)
         right_term = registry.vocabulary.where(field("category") = "Compound Role", field("term") = "product").find(Of biocad_registryModel.vocabulary)
 
-        Call exportOperonDb()
-
         Dim reactions As New Dictionary(Of String, WebJSON.Reaction())
 
         For Each ec_num As String In TqdmWrapper.Wrap(all_ec_number)
@@ -38,8 +88,6 @@ Module exportwebJSONDb
         Next
 
         Call JsonContract.GetJson(reactions).SaveTo($"{db_cache}/enzyme_reactions.json")
-
-        Pause()
     End Sub
 
     Public Function export_reactionByID(ec_number As String) As WebJSON.Reaction()
@@ -165,6 +213,11 @@ Module exportwebJSONDb
 End Module
 
 Namespace localcacheViews
+
+    Public Class xref_query
+        <DatabaseField> Public Property dbname As String
+        <DatabaseField> Public Property xref_id As String
+    End Class
 
     Public Class kinetics_args
 
