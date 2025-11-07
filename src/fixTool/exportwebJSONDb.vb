@@ -101,7 +101,8 @@ Module exportwebJSONDb
                                 .where(field("type") = metab_term.id, field("xref").in(idset)) _
                                 .distinct _
                                 .project(Of UInteger)("obj_id") _
-                                .AsCharacter
+                                .AsCharacter _
+                                .ToArray
 
                             idset = idset.Intersect(mol_list).ToArray
 
