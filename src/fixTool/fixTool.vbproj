@@ -36,4 +36,6 @@
     <ProjectReference Include="..\biocad_storage\biocad_storage.vbproj" />
   </ItemGroup>
 
+  <Import Project="..\..\..\BlueprintCAD\src\CADRegistry\WebJSON\WebJSON.projitems" Label="Shared" />
+
 </Project>

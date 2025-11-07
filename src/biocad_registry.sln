@@ -143,6 +143,8 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "RegulonDatabase.NET5", "..\
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "localblast.NET5", "..\..\GCModeller\src\interops\localblast\LocalBLAST\localblast.NET5.vbproj", "{5F529B5B-0BAB-8441-6040-A62AB8C870FD}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "WebJSON", "..\..\BlueprintCAD\src\CADRegistry\WebJSON\WebJSON.shproj", "{6AC0FBF1-BA5B-4E8C-BD5A-65B3F04FEA46}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		CFD_win32|Any CPU = CFD_win32|Any CPU
@@ -4276,6 +4278,8 @@ Global
 		SolutionGuid = {B2DC59BC-1804-428A-A362-B6F758E35F5F}
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		..\..\BlueprintCAD\src\CADRegistry\WebJSON\WebJSON.projitems*{12774876-d992-4d22-ad6d-15b7793963ad}*SharedItemsImports = 5
+		..\..\BlueprintCAD\src\CADRegistry\WebJSON\WebJSON.projitems*{6ac0fbf1-ba5b-4e8c-bd5a-65b3f04fea46}*SharedItemsImports = 13
 		..\..\GCModeller\src\R-sharp\studio\Rstudio.common\Rstudio.common.projitems*{7a637033-8c62-41e9-82c7-d05086291611}*SharedItemsImports = 5
 		biocad_storage\mysql\mysql_registry.projitems*{bd58c2b6-4588-4be9-a8ab-9be85f023d12}*SharedItemsImports = 13
 		biocad_storage\mysql\mysql_registry.projitems*{dbbb4321-2f7f-413b-a150-2fd65d75d2c3}*SharedItemsImports = 5

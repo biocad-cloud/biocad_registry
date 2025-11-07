@@ -18,6 +18,7 @@ Module Program
     Friend ReadOnly registry As New biocad_registry(mysql)
 
     Sub Main(args As String())
+        Call exportwebJSONDb.runlocalDbCache()
         Call TagDataExport.ExportHMDBMetabolites(registry).SaveTo("Z:/hmdb.csv")
         ' Call imports_drugdata()
         ' Call export_plantid()
