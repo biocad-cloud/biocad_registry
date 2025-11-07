@@ -1,4 +1,7 @@
-﻿Imports Microsoft.VisualBasic.MIME.application.json
+﻿Imports biocad_storage
+Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm
+Imports Microsoft.VisualBasic.Linq
+Imports Microsoft.VisualBasic.MIME.application.json
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports Oracle.LinuxCompatibility.MySQL.Reflection.DbAttributes
 
@@ -6,12 +9,67 @@ Module exportwebJSONDb
 
     Const db_cache As String = "G:\BlueprintCAD\App\net8.0-windows\data\local"
 
+    Dim term As biocad_registryModel.vocabulary
+    Dim reaction_term As biocad_registryModel.vocabulary
+    Dim metab_term As biocad_registryModel.vocabulary
+
+    Dim left_term As biocad_registryModel.vocabulary
+    Dim right_term As biocad_registryModel.vocabulary
+
     Sub runlocalDbCache()
+        Dim all_ec_number As String() = registry.regulation_graph.where(field("role") = 292).distinct.project(Of String)("term")
+
+        term = registry.vocabulary.where(field("category") = "Regulation Type", field("term") = "Enzymatic Catalysis").find(Of biocad_registryModel.vocabulary)
+        reaction_term = registry.vocabulary.where(field("category") = "Entity Type", field("term") = "Reaction").find(Of biocad_registryModel.vocabulary)
+        metab_term = registry.vocabulary.where(field("category") = "Molecule Type", field("term") = "Metabolite").find(Of biocad_registryModel.vocabulary)
+
+        left_term = registry.vocabulary.where(field("category") = "Compound Role", field("term") = "substrate").find(Of biocad_registryModel.vocabulary)
+        right_term = registry.vocabulary.where(field("category") = "Compound Role", field("term") = "product").find(Of biocad_registryModel.vocabulary)
+
         Call exportOperonDb()
 
+        Dim reactions As New Dictionary(Of String, WebJSON.Reaction())
+
+        For Each ec_num As String In TqdmWrapper.Wrap(all_ec_number)
+            Call reactions.Add(ec_num, export_reactionByID(ec_num))
+        Next
 
         Pause()
     End Sub
+
+    Public Function export_reactionByID(ec_number As String) As WebJSON.Reaction()
+        Dim cats = registry.regulation_graph.where(field("term") = ec_number, field("role") = term.id).project(Of UInteger)("reaction_id")
+
+        If cats.IsNullOrEmpty Then
+            Return {}
+        End If
+
+        Dim unique_hash = registry.hashcode _
+            .where(field("type_id") = reaction_term.id, field("obj_id").in(cats), field("hashcode") <> "") _
+            .group_by("hashcode") _
+            .select(Of localcacheViews.reaction_group)("hashcode", "GROUP_CONCAT(DISTINCT obj_id) AS reactions")
+        Dim list As New List(Of WebJSON.Reaction)
+
+        For Each hash As localcacheViews.reaction_group In unique_hash
+            Dim first_id = hash.reactions.Split(","c).FirstOrDefault
+
+            If first_id.StringEmpty Then
+                Continue For
+            End If
+
+            Dim rxn = registry.reaction.where(field("id") = first_id).find(Of biocad_registryModel.reaction)
+            Dim left = registry.reaction_graph.where(field("reaction") = first_id, field("role") = left_term.id).select(Of biocad_registryModel.regulation_graph)
+            Dim right = registry.regulation_graph.where(field("reaction") = first_id, field("role") = right_term.id).select(Of biocad_registryModel.regulation_graph)
+
+            If left.IsNullOrEmpty OrElse right.IsNullOrEmpty Then
+                Continue For
+            End If
+
+            Dim mol_list = left.JoinIterates(right).Select(Function(a) a.molecule_id).toarray
+        Next
+
+        Return list.ToArray
+    End Function
 
     Sub exportOperonDb()
         Dim list = registry.conserved_cluster _
@@ -35,6 +93,13 @@ Module exportwebJSONDb
 End Module
 
 Namespace localcacheViews
+
+    Public Class reaction_group
+
+        <DatabaseField> Public Property hashcode As String
+        <DatabaseField> Public Property reactions As String
+
+    End Class
 
     Public Class operonData
 
