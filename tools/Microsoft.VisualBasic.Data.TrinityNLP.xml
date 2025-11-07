@@ -338,8 +338,8 @@ Microsoft.VisualBasic.Data.TrinityNLP
  <summary>
  Using for generate article's <see cref="M:Microsoft.VisualBasic.Data.NLP.NLPExtensions.Abstract(Microsoft.VisualBasic.Data.GraphTheory.Analysis.PageRank.WeightedPRGraph,System.Int32,System.Double)"/>
  </summary>
- <param name="text$"></param>
- <param name="similarityCut#"></param>
+ <param name="text"></param>
+ <param name="similarityCut"></param>
  <returns></returns>
 </member>
 <member name="M:Microsoft.VisualBasic.Data.NLP.TextRank.Similarity(System.String[],System.String[])">

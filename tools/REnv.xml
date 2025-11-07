@@ -3547,6 +3547,16 @@ to take away yo [rest of string was truncated]&quot;;.
  </summary>
  <param name="globalEnv"></param>
 </member>
+<member name="M:SMRUCC.Rsharp.Runtime.GlobalEnvironment.GetResourceFile(System.String,System.String)">
+ <summary>
+ ``system.file`` export to clr function for get the package data file
+ </summary>
+ <param name="resource"></param>
+ <param name="package"></param>
+ <returns>
+ the full file path of the package internal resource data file
+ </returns>
+</member>
 <member name="M:SMRUCC.Rsharp.Runtime.GlobalEnvironment.doCall(System.String,Microsoft.VisualBasic.ComponentModel.DataSourceModel.NamedValue{System.Object}[])">
  <summary>
  invoke a R function by name

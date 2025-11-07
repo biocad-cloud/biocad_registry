@@ -10839,6 +10839,42 @@ Get feature site data by nucleotide location.
  <param name="offsets"></param>
  <returns></returns>
 </member>
+<member name="T:SMRUCC.genomics.ComponentModel.Annotation.IBlastHit">
+ <summary>
+ A simple alignment annotation result model
+ </summary>
+</member>
+<member name="P:SMRUCC.genomics.ComponentModel.Annotation.IBlastHit.queryName">
+ <summary>
+ the target molecule to be annotated
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.ComponentModel.Annotation.IBlastHit.hitName">
+ <summary>
+ the id of the subject reference molecule data
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.ComponentModel.Annotation.IBlastHit.description">
+ <summary>
+ the description of the subject hit reference object, will be used as 
+ the annotation text result of the corresponding <see cref="P:SMRUCC.genomics.ComponentModel.Annotation.IBlastHit.queryName"/> 
+ target.
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:SMRUCC.genomics.ComponentModel.Annotation.IQueryHits">
+ <summary>
+ the annotation alignment result model with score value
+ </summary>
+</member>
+<member name="P:SMRUCC.genomics.ComponentModel.Annotation.IQueryHits.identities">
+ <summary>
+ the alignment silimarity score
+ </summary>
+ <returns></returns>
+</member>
 <member name="T:SMRUCC.genomics.ComponentModel.Annotation.ECNumber">
  <summary>
  Enzyme Commission Number
@@ -11818,9 +11854,9 @@ Get feature site data by nucleotide location.
 <member name="T:SMRUCC.genomics.ComponentModel.Loci.NucleotideLocation">
  <summary>
  Loci segment location information on an nucleotide sequence, this object added an <see cref="P:SMRUCC.genomics.ComponentModel.Loci.NucleotideLocation.Strand"></see> 
- information on <see cref="T:SMRUCC.genomics.ComponentModel.Loci.Location"></see> data.(会自动根据LEFT和RIGHT的值来修正属性值)
+ information on <see cref="T:SMRUCC.genomics.ComponentModel.Loci.Location"></see> data.
  </summary>
- <remarks></remarks>
+ <remarks>(会自动根据LEFT和RIGHT的值来修正属性值)</remarks>
 </member>
 <member name="P:SMRUCC.genomics.ComponentModel.Loci.NucleotideLocation.Strand">
  <summary>
@@ -14499,6 +14535,57 @@ to take away yo [rest of string was truncated]&quot;;.
  <remarks></remarks>
  
 </member>
+<member name="T:SMRUCC.genomics.SequenceModel.NucleotideModels.ChunkedNtFasta">
+ <summary>
+ 分块存储的FASTA序列对象，用于处理大型基因组序列，例如植物基因组，动物基因组这些序列长度超过了2GB的基因组序列
+ </summary>
+</member>
+<member name="P:SMRUCC.genomics.SequenceModel.NucleotideModels.ChunkedNtFasta.title">
+ <summary>
+ 序列的标题/描述
+ </summary>
+</member>
+<member name="P:SMRUCC.genomics.SequenceModel.NucleotideModels.ChunkedNtFasta.Length">
+ <summary>
+ 序列的总长度（碱基数）
+ </summary>
+</member>
+<member name="M:SMRUCC.genomics.SequenceModel.NucleotideModels.ChunkedNtFasta.LoadDocument(System.IO.Stream,System.Int32)">
+ <summary>
+ 从文件流中加载FASTA文档
+ </summary>
+ <param name="s">输入文件流</param>
+ <param name="chunkSize">分块大小，默认32MB</param>
+ <returns>FASTA序列对象的枚举</returns>
+</member>
+<member name="M:SMRUCC.genomics.SequenceModel.NucleotideModels.ChunkedNtFasta.GetRegion(System.Int64,System.Int64)">
+ <summary>
+ 获取指定区域的序列字符串
+ </summary>
+ <param name="left">起始位置（从1开始）</param>
+ <param name="right">结束位置（从1开始）</param>
+ <returns>指定区域的序列字符串</returns>
+</member>
+<member name="M:SMRUCC.genomics.SequenceModel.NucleotideModels.ChunkedNtFasta.CharToDNA(System.Char)">
+ <summary>
+ 将字符转换为DNA枚举值
+ </summary>
+ <param name="c">字符</param>
+ <returns>对应的DNA碱基</returns>
+</member>
+<member name="M:SMRUCC.genomics.SequenceModel.NucleotideModels.ChunkedNtFasta.DNAToChar(SMRUCC.genomics.SequenceModel.NucleotideModels.DNA)">
+ <summary>
+ 将DNA枚举值转换为字符
+ </summary>
+ <param name="base">DNA碱基</param>
+ <returns>对应的字符</returns>
+</member>
+<member name="M:SMRUCC.genomics.SequenceModel.NucleotideModels.ChunkedNtFasta.ToString">
+ <summary>
+ 获取序列的字符串表示（用于调试，可能不返回完整序列）
+ </summary>
+ <returns>序列的字符串表示</returns>
+</member>
 <member name="T:SMRUCC.genomics.SequenceModel.NucleotideModels.Contig">
  <summary>
  这个基础的模型对象只有在基因组上面的位置信息
@@ -14595,9 +14682,8 @@ to take away yo [rest of string was truncated]&quot;;.
 <member name="T:SMRUCC.genomics.SequenceModel.NucleotideModels.DNA">
  <summary>
  Deoxyribonucleotides NT base which consist of the DNA sequence.
- (枚举所有的脱氧核糖核苷酸)
  </summary>
- <remarks></remarks>
+ <remarks>(枚举所有的脱氧核糖核苷酸)</remarks>
 </member>
 <member name="F:SMRUCC.genomics.SequenceModel.NucleotideModels.DNA.NA">
  <summary>

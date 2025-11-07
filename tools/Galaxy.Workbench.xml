@@ -472,6 +472,12 @@ Galaxy.Workbench
  </summary>
  <returns></returns>
 </member>
+<member name="M:Galaxy.Workbench.TableValueCopy.LoadTable(System.Data.DataTable)">
+ <summary>
+ make value copy from the <see cref="T:System.Windows.Forms.DataGridView"/> control to a given <see cref="T:System.Data.DataTable"/>.
+ </summary>
+ <param name="grid"></param>
+</member>
 <member name="F:Galaxy.Workbench.TaskbarStatus.windowsTaskbar">
  <summary>
  Keep a reference to the Taskbar instance
