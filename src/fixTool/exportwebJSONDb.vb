@@ -2,6 +2,7 @@
 Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.MIME.application.json
+Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports Oracle.LinuxCompatibility.MySQL.Reflection.DbAttributes
 
@@ -58,14 +59,38 @@ Module exportwebJSONDb
             End If
 
             Dim rxn = registry.reaction.where(field("id") = first_id).find(Of biocad_registryModel.reaction)
-            Dim left = registry.reaction_graph.where(field("reaction") = first_id, field("role") = left_term.id).select(Of biocad_registryModel.regulation_graph)
-            Dim right = registry.regulation_graph.where(field("reaction") = first_id, field("role") = right_term.id).select(Of biocad_registryModel.regulation_graph)
+            Dim left = registry.reaction_graph.where(field("reaction") = first_id, field("role") = left_term.id).select(Of biocad_registryModel.reaction_graph)
+            Dim right = registry.reaction_graph.where(field("reaction") = first_id, field("role") = right_term.id).select(Of biocad_registryModel.reaction_graph)
 
             If left.IsNullOrEmpty OrElse right.IsNullOrEmpty Then
                 Continue For
             End If
 
-            Dim mol_list = left.JoinIterates(right).Select(Function(a) a.molecule_id).toarray
+            Dim mol_list = left.JoinIterates(right).Select(Function(a) a.molecule_id).ToArray
+            Dim args = registry.kinetic_law _
+                .left_join("kinetic_substrate") _
+                .on(field("kinetic_law") = "id", field("kinetic_substrate") = "kinetic_id") _
+                .where(field("ec_number") = ec_number,
+                       field("metabolite_id").in(mol_list),
+                       field("temperature").between(25, 40)) _
+                .select(Of localcacheViews.kinetics_args)("params", "lambda", "metabolite_id", "json_str")
+
+            For i As Integer = 0 To args.Length - 1
+                Dim pars = args(i).params.LoadJSON(Of Dictionary(Of String, String))
+                Dim pack_json = args(i).json_str.LoadJSON(Of Dictionary(Of String, Dictionary(Of String, String())))
+                Dim json = pack_json.TryGetValue("xref")
+
+                For Each tuple In pars
+                    Dim name = tuple.Key
+                    Dim val = tuple.Value
+
+                    If json.ContainsKey(val) Then
+                        Dim idset = json(val)
+
+
+                    End If
+                Next
+            Next
         Next
 
         Return list.ToArray
@@ -93,6 +118,15 @@ Module exportwebJSONDb
 End Module
 
 Namespace localcacheViews
+
+    Public Class kinetics_args
+
+        <DatabaseField> Public Property params As String
+        <DatabaseField> Public Property lambda As String
+        <DatabaseField> Public Property metabolite_id As UInteger
+        <DatabaseField> Public Property json_str As String
+
+    End Class
 
     Public Class reaction_group
 
