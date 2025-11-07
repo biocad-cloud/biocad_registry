@@ -37,6 +37,8 @@ Module exportwebJSONDb
             Call reactions.Add(ec_num, export_reactionByID(ec_num))
         Next
 
+        Call JsonContract.GetJson(reactions).SaveTo($"{db_cache}/enzyme_reactions.json")
+
         Pause()
     End Sub
 
