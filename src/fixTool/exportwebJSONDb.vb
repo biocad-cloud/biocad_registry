@@ -19,7 +19,7 @@ Module exportwebJSONDb
             .on(field("`cluster_link`.`cluster_id`") = field("`conserved_cluster`.`id`")) _
             .where("NOT cluster_id IS NULL") _
             .group_by("cluster_id") _
-            .select(Of localcacheViews.operonData)
+            .select(Of localcacheViews.operonData)("cluster_id", "MIN(name) AS name", "GROUP_CONCAT(DISTINCT gene_id) AS members")
         Dim operons = list _
             .Select(Function(a)
                         Return New WebJSON.Operon With {
