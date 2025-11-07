@@ -2,6 +2,8 @@
 Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.MIME.application.json
+Imports Microsoft.VisualBasic.MIME.application.json.Javascript
+Imports Microsoft.VisualBasic.Scripting.Runtime
 Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports Oracle.LinuxCompatibility.MySQL.Reflection.DbAttributes
@@ -49,7 +51,7 @@ Module exportwebJSONDb
             .where(field("type_id") = reaction_term.id, field("obj_id").in(cats), field("hashcode") <> "") _
             .group_by("hashcode") _
             .select(Of localcacheViews.reaction_group)("hashcode", "GROUP_CONCAT(DISTINCT obj_id) AS reactions")
-        Dim list As New List(Of WebJSON.Reaction)
+        Dim list As New Dictionary(Of String, WebJSON.Reaction)
 
         For Each hash As localcacheViews.reaction_group In unique_hash
             Dim first_id = hash.reactions.Split(","c).FirstOrDefault
@@ -72,7 +74,7 @@ Module exportwebJSONDb
             Dim mol_list = left.JoinIterates(right).Select(Function(a) a.molecule_id).ToArray
             Dim args = registry.kinetic_law _
                 .left_join("kinetic_substrate") _
-                .on(field("kinetic_law") = "id", field("kinetic_substrate") = "kinetic_id") _
+                .on(field("`kinetic_law`.id") = field("`kinetic_substrate`.kinetic_id")) _
                 .where(field("ec_number") = ec_number,
                        field("metabolite_id").in(mol_list),
                        field("temperature").between(25, 40)) _
@@ -80,23 +82,62 @@ Module exportwebJSONDb
 
             For i As Integer = 0 To args.Length - 1
                 Dim pars = args(i).params.LoadJSON(Of Dictionary(Of String, String))
-                Dim pack_json = args(i).json_str.LoadJSON(Of Dictionary(Of String, Dictionary(Of String, String())))
-                Dim json = pack_json.TryGetValue("xref")
+                Dim pack_json As JsonObject = JsonParser.Parse(args(i).json_str)
+                Dim json As JsonObject = pack_json("xref")
+                Dim missing As Boolean = False
+                Dim parsData As New Dictionary(Of String, String)
 
                 For Each tuple In pars
                     Dim name = tuple.Key
                     Dim val = tuple.Value
 
-                    If json.ContainsKey(val) Then
-                        Dim idset = json(val)
+                    If json.HasObjectKey(val) Then
+                        Dim idset = json(val).As(Of JsonArray).AsStringVector(False)
 
+                        If idset.IsNullOrEmpty Then
+                            missing = True
+                        Else
+                            idset = registry.db_xrefs _
+                                .where(field("type") = metab_term.id, field("xref").in(idset)) _
+                                .distinct _
+                                .project(Of UInteger)("obj_id") _
+                                .AsCharacter
 
+                            idset = idset.Intersect(mol_list).ToArray
+
+                            If idset.IsNullOrEmpty Then
+                                missing = True
+                            Else
+                                val = "BioCAD" & idset.First.PadLeft(11, "0"c)
+                            End If
+                        End If
                     End If
+
+                    parsData(name) = val
                 Next
+
+                If Not missing Then
+                    args(i).params = parsData.GetJson(enumToStr:=True)
+                Else
+                    args(i) = Nothing
+                End If
             Next
+
+            list(hash.hashcode) = New WebJSON.Reaction With {
+                .guid = hash.hashcode,
+                .name = rxn.name,
+                .reaction = rxn.equation,
+                .left = left.Select(Function(a) New WebJSON.Substrate With {.factor = a.factor, .molecule_id = a.molecule_id}).ToArray,
+                .right = right.Select(Function(a) New WebJSON.Substrate With {.factor = a.factor, .molecule_id = a.molecule_id}).ToArray,
+                .law = args.Where(Function(a) Not a Is Nothing).Select(Function(a) New WebJSON.LawData With {
+                .lambda = a.lambda,
+                .metabolite_id = a.metabolite_id,
+                .params = a.params.LoadJSON(Of Dictionary(Of String, String))
+            }).ToArray
+            }
         Next
 
-        Return list.ToArray
+        Return list.Values.ToArray
     End Function
 
     Sub exportOperonDb()
