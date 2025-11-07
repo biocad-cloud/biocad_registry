@@ -113,7 +113,7 @@ Module exportwebJSONDb
                     End Function) _
             .ToArray
 
-        Call operons.GetJson.SaveTo($"{db_cache}/all_operons.json")
+        Call operons.GetJson(enumToStr:=True).SaveTo($"{db_cache}/all_operons.json")
     End Sub
 End Module
 

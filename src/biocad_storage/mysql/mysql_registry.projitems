@@ -27,6 +27,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)mysql\molecule_function.vb" />
     <Compile Include="$(MSBuildThisFileDirectory)mysql\molecule_ontology.vb" />
     <Compile Include="$(MSBuildThisFileDirectory)mysql\molecule_tags.vb" />
+    <Compile Include="$(MSBuildThisFileDirectory)mysql\motif.vb" />
     <Compile Include="$(MSBuildThisFileDirectory)mysql\ncbi_taxonomy.vb" />
     <Compile Include="$(MSBuildThisFileDirectory)mysql\odor.vb" />
     <Compile Include="$(MSBuildThisFileDirectory)mysql\ontology.vb" />
