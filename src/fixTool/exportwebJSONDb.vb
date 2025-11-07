@@ -48,7 +48,15 @@ Module exportwebJSONDb
             .ToArray
         Dim metabolites As New List(Of WebJSON.Molecule)
 
-        For Each id As UInteger In all.Select(Function(str) UInteger.Parse(str.Match("\d+")))
+        For Each id As UInteger In TqdmWrapper.Wrap(all.Select(Function(str)
+                                                                   Dim a As UInteger
+
+                                                                   If UInteger.TryParse(str.Match("\d+"), a) Then
+                                                                       Return a
+                                                                   Else
+                                                                       Return 0
+                                                                   End If
+                                                               End Function).ToArray)
             Dim mol = registry.molecule.where(field("id") = id).find(Of biocad_registryModel.molecule)
 
             If Not mol Is Nothing Then
