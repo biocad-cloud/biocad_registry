@@ -100,7 +100,8 @@ table caption {font-size:14px;font-weight:bolder;}
    UNIQUE KEY `db<em>xref</em>UNIQUE` (`db_xref`),
    KEY `source<em>database</em>idx` (`source_dbkey`),
    KEY `hashindex` (`hashcode`),
-   FULLTEXT KEY `search_text` (`name`,`note`)
+   FULLTEXT KEY `search_text` (`name`,`note`),
+   FULLTEXT KEY `search<em>all</em>text` (`name`,`equation`,`note`)
  ) ENGINE=InnoDB AUTO<em>INCREMENT=133887 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3</em>bin COMMENT='the definition of the biological reaction process';
  /<em>!40101 SET character_set_client = @saved_cs_client </em>/;
  
@@ -172,7 +173,7 @@ table caption {font-size:14px;font-weight:bolder;}
    KEY `find<em>index` (`xref</em>id`,`type`),
    KEY `taxonomy<em>info</em>idx` (`tax_id`),
    FULLTEXT KEY `search_text` (`name`,`note`)
- ) ENGINE=InnoDB AUTO<em>INCREMENT=76720536 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4</em>general_ci COMMENT='The molecular entity object inside a cell';
+ ) ENGINE=InnoDB AUTO<em>INCREMENT=77291817 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4</em>general_ci COMMENT='The molecular entity object inside a cell';
  /<em>!40101 SET character_set_client = @saved_cs_client </em>/;
  
  --
@@ -205,7 +206,7 @@ table caption {font-size:14px;font-weight:bolder;}
    KEY `find_xrefs` (`type`,`xref`),
    KEY `dbid_index` (`xref`),
    KEY `search<em>dbxrefs` (`obj</em>id`,`db_key`,`xref`,`type`)
- ) ENGINE=InnoDB AUTO<em>INCREMENT=23235678 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4</em>general_ci;
+ ) ENGINE=InnoDB AUTO<em>INCREMENT=24998147 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4</em>general_ci;
  /<em>!40101 SET character_set_client = @saved_cs_client </em>/;
  
  --
@@ -291,7 +292,7 @@ table caption {font-size:14px;font-weight:bolder;}
    KEY `search_term` (`category`,`term`),
    KEY `unique_result` (`term`,`color`),
    FULLTEXT KEY `search_text` (`note`)
- ) ENGINE=InnoDB AUTO<em>INCREMENT=1122 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4</em>general_ci;
+ ) ENGINE=InnoDB AUTO<em>INCREMENT=15033 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4</em>general_ci COMMENT='vocabulary term of the entity in registry database';
  /<em>!40101 SET character_set_client = @saved_cs_client </em>/;
  
  --
@@ -311,7 +312,7 @@ table caption {font-size:14px;font-weight:bolder;}
  /<em>!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION </em>/;
  /<em>!40111 SET SQL_NOTES=@OLD_SQL_NOTES </em>/;
  
- -- Dump completed on 2025-07-26 21:15:39
+ -- Dump completed on 2025-11-07 21:28:19
  ```</p></td>
 </tr>
 <tr>
@@ -330,11 +331,12 @@ table caption {font-size:14px;font-weight:bolder;}
    `xref<em>id` varchar(45) COLLATE utf8mb3</em>bin DEFAULT NULL COMMENT 'the external reference id of the pathway',
    `source_dbkey` int unsigned NOT NULL COMMENT 'the vocabulary term reference id to the external database name of this pathway object where is comes from',
    `name` varchar(1024) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL COMMENT 'the pathway name',
+   `ncbi_taxid` int unsigned NOT NULL,
    `add<em>time` datetime NOT NULL DEFAULT CURRENT</em>TIMESTAMP,
    `note` longtext CHARACTER SET utf8mb3 COLLATE utf8mb3_bin,
    PRIMARY KEY (`id`),
    UNIQUE KEY `id_UNIQUE` (`id`),
-   UNIQUE KEY `name_UNIQUE` (`name`),
+   UNIQUE KEY `name<em>UNIQUE` (`source</em>dbkey`,`xref_id`),
    KEY `source<em>name</em>idx` (`source_dbkey`)
  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
  /<em>!40101 SET character_set_client = @saved_cs_client </em>/;

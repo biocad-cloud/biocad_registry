@@ -46,6 +46,9 @@ const get_genbank = function(asm_id, repo_dir = "./") {
     path   <- paste(path, sep = "/");
     asm_id <- list.ftp_dirs(ncbi, dir = path);
 
+    print("list version dir of:");
+    print(path);
+
     # create genbank file url reference on the ftp server
     # may contains multiple version assembly file
     #
@@ -55,24 +58,28 @@ const get_genbank = function(asm_id, repo_dir = "./") {
     print(genbank_url);
 
     for(let url in genbank_url) {
-        let local_file = file.path(repo_dir, basename(url, TRUE));
-        let check = file.exists(local_file);
+        ncbi |> get_genbank_ftp(url, repo_dir);
+    }
+}
 
-        if (check) {
-            check = gz_check(local_file);
-        }
+const get_genbank_ftp = function(ncbi, url, repo_dir = "./") {
+    let local_file = file.path(repo_dir, basename(url, TRUE));
+    let check = file.exists(local_file);
 
-        cat(`${url} => ${local_file} ... `);
+    if (check) {
+        check = gz_check(local_file);
+    }
 
-        # download all version assembly file at here?
-        if (!check) {
-            # make ftp download of the archive file to
-            # local dir.
-            ncbi |> ftp.get(file = genbank_url, save = local_file);
-            
-            cat("done!\n");
-        } else {
-            cat("skip!\n");
-        }
+    cat(`${url} => ${local_file} ... `);
+
+    # download all version assembly file at here?
+    if (!check) {
+        # make ftp download of the archive file to
+        # local dir.
+        ncbi |> ftp.get(file = url, save = local_file);
+        
+        cat("done!\n");
+    } else {
+        cat("skip!\n");
     }
 }

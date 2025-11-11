@@ -43,7 +43,8 @@
    UNIQUE KEY `db<em>xref</em>UNIQUE` (`db_xref`),
    KEY `source<em>database</em>idx` (`source_dbkey`),
    KEY `hashindex` (`hashcode`),
-   FULLTEXT KEY `search_text` (`name`,`note`)
+   FULLTEXT KEY `search_text` (`name`,`note`),
+   FULLTEXT KEY `search<em>all</em>text` (`name`,`equation`,`note`)
  ) ENGINE=InnoDB AUTO<em>INCREMENT=133887 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3</em>bin COMMENT='the definition of the biological reaction process';
  /<em>!40101 SET character_set_client = @saved_cs_client </em>/;
  

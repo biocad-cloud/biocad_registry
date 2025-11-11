@@ -34,11 +34,12 @@
    `xref<em>id` varchar(45) COLLATE utf8mb3</em>bin DEFAULT NULL COMMENT 'the external reference id of the pathway',
    `source_dbkey` int unsigned NOT NULL COMMENT 'the vocabulary term reference id to the external database name of this pathway object where is comes from',
    `name` varchar(1024) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL COMMENT 'the pathway name',
+   `ncbi_taxid` int unsigned NOT NULL,
    `add<em>time` datetime NOT NULL DEFAULT CURRENT</em>TIMESTAMP,
    `note` longtext CHARACTER SET utf8mb3 COLLATE utf8mb3_bin,
    PRIMARY KEY (`id`),
    UNIQUE KEY `id_UNIQUE` (`id`),
-   UNIQUE KEY `name_UNIQUE` (`name`),
+   UNIQUE KEY `name<em>UNIQUE` (`source</em>dbkey`,`xref_id`),
    KEY `source<em>name</em>idx` (`source_dbkey`)
  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
  /<em>!40101 SET character_set_client = @saved_cs_client </em>/;
@@ -56,6 +57,7 @@ export class pathway extends <a href="/vignettes/clr/Oracle/LinuxCompatibility/M
    id: integer;
    # the pathway name
    name: string;
+   ncbi_taxid: integer;
    note: string;
    # the vocabulary term reference id to the external database name of this pathway object where is comes from
    source_dbkey: integer;
