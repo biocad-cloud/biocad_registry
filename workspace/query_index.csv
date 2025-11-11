@@ -1,0 +1,602 @@
+﻿text,similarity,levenshtein,index
+Acidothermus cellulolyticus 11B,1,0,523
+Acidovorax sp. JS42,1,0,548
+Acinetobacter baumannii AB0057,1,0,801
+Actinobacillus pleuropneumoniae serovar 7 str. AP76,1,0,762
+Actinobacillus succinogenes 130Z,1,0,620
+Actinosynnema mirum DSM 43827,1,0,896
+Aeromonas hydrophila subsp. hydrophila ATCC 7966,1,0,514
+Aeromonas salmonicida subsp. salmonicida A449,1,0,3644
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,31398
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,31399
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,32965
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,38383
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,66155
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,70854
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,73046
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,73047
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,73049
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,73050
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,85435
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,85436
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,85437
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,85438
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,85439
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,85440
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,85441
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,85442
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,85443
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,85445
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,95713
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,130449
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,196540
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,261913
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,405947
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,479585
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,479586
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,629497
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,821129
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,826532
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,1014846
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,1135723
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,1379537
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,1379538
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,1590374
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,1590376
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,1590377
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,1590385
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,1590387
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,1590391
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,1610633
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,1610635
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,1610638
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,1610642
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,1610656
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,1610657
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,2458245
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,2458247
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,2458251
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,2458253
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,2458254
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,2458257
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,2458258
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,2458259
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,2458260
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,2458261
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,2459725
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,2459726
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,2459728
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,2459731
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,2459737
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,2459738
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,2459740
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,2459741
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,2459742
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,2459748
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,2459752
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,2459755
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,2459758
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,2459763
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,2459766
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,2459767
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,2459768
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,2459777
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,2460166
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,2460168
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,2460170
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,2460176
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,2460185
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,2460186
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,2460189
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,2460223
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,2460227
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,2460243
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,2460245
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,2460246
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,2460247
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,2460252
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,2460267
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,2460268
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,2460270
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,2507252
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,2507253
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,2674166
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,2674167
+Aeromonas salmonicida subsp. salmonicida,0.9230769230769231,3.5,2674168
+Aggregatibacter aphrophilus NJ8700,1,0,883
+Aggregatibacter aphrophilus NJ8700,1,0,50830
+Alcanivorax borkumensis SK2,1,0,251
+Anoxybacillus flavithermus WK1,1,0,701
+Archaeoglobus fulgidus DSM 4304,1,0,222
+Archaeoglobus profundus DSM 5631,1,0,988
+Arthrobacter sp. FB24,1,0,3637
+Azorhizobium caulinodans ORS 571,1,0,309
+Azospirillum sp. B510,1,0,319
+Bacillus cereus ATCC 14579,1,0,181
+Bacillus cereus ATCC 14579,1,0,292711
+Bacillus cereus ATCC 14579,1,0,2305897
+Bacillus cereus ATCC 14579,1,0,2370944
+Bacillus cereus ATCC 14579,1,0,2856533
+Bacillus subtilis subsp. subtilis str. 168,1,0,236
+Bacillus subtilis subsp. subtilis str. 168,1,0,1748
+Bacillus subtilis subsp. subtilis str. 168,1,0,27122
+Bacillus subtilis subsp. subtilis str. 168,1,0,31520
+Bacillus subtilis subsp. subtilis str. 168,1,0,90702
+Bacillus subtilis subsp. subtilis str. 168,1,0,90704
+Bacillus subtilis subsp. subtilis str. 168,1,0,629412
+Bacillus subtilis subsp. subtilis str. 168,1,0,634155
+Bacillus subtilis subsp. subtilis str. 168,1,0,1226020
+Bacillus subtilis subsp. subtilis str. 168,1,0,1619886
+Bacillus subtilis subsp. subtilis str. 168,1,0,1856789
+Bacillus subtilis subsp. subtilis str. 168,1,0,3085246
+Bacteroides cellulosilyticus DSM 14838,1,0,1882
+Bacteroides cellulosilyticus DSM 14838,1,0,1408855
+Bacteroides cellulosilyticus DSM 14838,1,0,3107460
+Bacteroides eggerthii DSM 20697,1,0,1772
+Bacteroides eggerthii DSM 20697,1,0,3107672
+Bacteroides eggerthii DSM 20697,1,0,3108850
+Bacteroides fragilis NCTC 9343,1,0,1021
+Bacteroides fragilis NCTC 9343,1,0,2751494
+Bacteroides ovatus ATCC 8483,1,0,1689
+Bacteroides stercoris ATCC 43183,1,0,1709
+Bacteroides stercoris ATCC 43183,1,0,1237550
+Bacteroides stercoris ATCC 43183,1,0,2763875
+Bacteroides stercoris ATCC 43183,1,0,2763881
+Bacteroides stercoris ATCC 43183,1,0,3107120
+Bacteroides uniformis ATCC 8492,1,0,1693
+Bacteroides uniformis ATCC 8492,1,0,2763869
+Bacteroides uniformis ATCC 8492,1,0,2767630
+Bartonella quintana str. Toulouse,1,0,1079
+Beutenbergia cavernae DSM 12333,1,0,889
+Bifidobacterium adolescentis ATCC 15703,1,0,304
+Bifidobacterium adolescentis ATCC 15703,1,0,3106699
+Bifidobacterium adolescentis ATCC 15703,1,0,3106787
+Bifidobacterium adolescentis ATCC 15703,1,0,3108721
+Bifidobacterium adolescentis ATCC 15703,1,0,3108722
+Bifidobacterium adolescentis ATCC 15703,1,0,3108724
+Bifidobacterium adolescentis ATCC 15703,1,0,3108730
+Bifidobacterium adolescentis ATCC 15703,1,0,3108733
+Bifidobacterium adolescentis ATCC 15703,1,0,3108738
+Bifidobacterium adolescentis ATCC 15703,1,0,3108743
+Bifidobacterium adolescentis ATCC 15703,1,0,3108744
+Bifidobacterium adolescentis ATCC 15703,1,0,3108749
+Bifidobacterium adolescentis ATCC 15703,1,0,3108758
+Bifidobacterium adolescentis ATCC 15703,1,0,3108759
+Bifidobacterium adolescentis ATCC 15703,1,0,3108772
+Bifidobacterium adolescentis ATCC 15703,1,0,3108777
+Bifidobacterium adolescentis ATCC 15703,1,0,3108783
+Bifidobacterium adolescentis ATCC 15703,1,0,3108860
+Bifidobacterium adolescentis ATCC 15703,1,0,3108866
+Bifidobacterium adolescentis ATCC 15703,1,0,3111319
+Bifidobacterium animalis subsp. lactis AD011,1,0,809
+Bifidobacterium bifidum NCIMB 41171,1,0,1751
+Bifidobacterium bifidum NCIMB 41171,1,0,6859
+Bifidobacterium dentium Bd1,1,0,948
+Bifidobacterium longum NCC2705,1,0,166
+Blastopirellula marina DSM 3645,1,0,1638
+Blautia hansenii DSM 20583,1,0,1814
+Blautia hansenii DSM 20583,1,0,101191
+Blautia hansenii DSM 20583,1,0,1237567
+Bordetella avium 197N,1,0,1118
+Bordetella bronchiseptica RB50,1,0,3611
+Brachybacterium faecium DSM 4810,1,0,902
+Bradyrhizobium sp. BTAi1,1,0,530
+Burkholderia glumae BGR1,1,0,866
+Burkholderia mallei ATCC 23344,1,0,368
+Burkholderia pseudomallei K96243,1,0,360
+Burkholderia pseudomallei K96243,1,0,39545
+Burkholderia vietnamiensis G4,1,0,578
+Caldicellulosiruptor saccharolyticus DSM 8903,1,0,592
+Campylobacter coli RM2228,1,0,2316
+Campylobacter jejuni subsp. jejuni NCTC 11168-Kf1,0.9090909090909091,2.8,33479
+Campylobacter jejuni subsp. jejuni NCTC 11168-GSv,0.9090909090909091,2.8,33482
+Campylobacter lari RM2100,1,0,708
+Campylobacter upsaliensis RM3195,1,0,2315
+Caulobacter segnis ATCC 21756,1,0,1171
+Cellvibrio japonicus Ueda107,1,0,709
+Chitinophaga pinensis DSM 2588,1,0,927
+Chlorobaculum parvum NCIB 8327,1,0,767
+Chlorobium ferrooxidans DSM 13031,1,0,2377
+Chlorobium limicola DSM 245,1,0,765
+Chlorobium phaeobacteroides DSM 266,1,0,528
+Chloroflexus aggregans DSM 9485,1,0,834
+Chloroherpeton thalassium ATCC 35110,1,0,768
+Chromobacterium violaceum ATCC 12472,1,0,175
+Clavibacter michiganensis subsp. michiganensis NCPPB 382,1,0,1097
+Clostridium acetobutylicum ATCC 824,1,0,226
+Clostridium botulinum A str. ATCC 3502,1,0,1101
+Clostridium butyricum 5521,1,0,2495
+Clostridium kluyveri DSM 555,1,0,590
+Clostridium novyi NT,1,0,483
+Clostridium perfringens ATCC 13124,1,0,442
+Clostridium perfringens ATCC 13124,1,0,3110630
+Clostridium perfringens ATCC 13124,1,0,3111128
+Clostridium tetani E88,1,0,171
+Colwellia psychrerythraea 34H,1,0,398
+Corynebacterium amycolatum SK46,1,0,2618
+Corynebacterium aurimucosum ATCC 700975,1,0,879
+Corynebacterium aurimucosum ATCC 700975,1,0,2669
+Corynebacterium aurimucosum ATCC 700975,1,0,371335
+Corynebacterium aurimucosum ATCC 700975,1,0,371336
+Corynebacterium aurimucosum ATCC 700975,1,0,371338
+Corynebacterium diphtheriae NCTC 13129,1,0,3618
+Corynebacterium glutamicum ATCC 13032,1,0,349
+Corynebacterium glutamicum ATCC 13032,1,0,3642
+Corynebacterium jeikeium K411,1,0,121
+Corynebacterium kroppenstedtii DSM 44385,1,0,891
+Corynebacterium urealyticum DSM 7109,1,0,1116
+Croceibacter atlanticus HTCC2559,1,0,3641
+Cupriavidus taiwanensis,1,0,649527
+Cupriavidus taiwanensis,1,0,1100752
+Cupriavidus taiwanensis,1,0,1490986
+Cupriavidus taiwanensis,1,0,1956242
+Cupriavidus taiwanensis,1,0,2016179
+Cupriavidus taiwanensis,1,0,2418662
+Cupriavidus taiwanensis,1,0,2749315
+Cupriavidus taiwanensis,1,0,2749316
+Cupriavidus taiwanensis,1,0,2749318
+Cupriavidus taiwanensis,1,0,2749320
+Cupriavidus taiwanensis,1,0,2749321
+Cupriavidus taiwanensis,1,0,2749322
+Cupriavidus taiwanensis,1,0,2749323
+Cupriavidus taiwanensis,1,0,2749324
+Cupriavidus taiwanensis,1,0,2749325
+Cupriavidus taiwanensis,1,0,2749326
+Cupriavidus taiwanensis,1,0,2749327
+Cupriavidus taiwanensis,1,0,2749328
+Cupriavidus taiwanensis,1,0,2749329
+Cupriavidus taiwanensis,1,0,2749330
+Cupriavidus taiwanensis,1,0,2749331
+Cupriavidus taiwanensis,1,0,2749333
+Cupriavidus taiwanensis,1,0,2749334
+Cupriavidus taiwanensis,1,0,2749335
+Cupriavidus taiwanensis,1,0,2749336
+Cupriavidus taiwanensis,1,0,2749337
+Cupriavidus taiwanensis,1,0,2749338
+Cupriavidus taiwanensis,1,0,2749339
+Cupriavidus taiwanensis,1,0,2749340
+Cupriavidus taiwanensis,1,0,2749341
+Cupriavidus taiwanensis,1,0,2749342
+Cupriavidus taiwanensis,1,0,2749343
+Cupriavidus taiwanensis,1,0,2749344
+Cupriavidus taiwanensis,1,0,2749345
+Cupriavidus taiwanensis,1,0,2749346
+Cupriavidus taiwanensis,1,0,2749347
+Cupriavidus taiwanensis,1,0,2749348
+Cupriavidus taiwanensis,1,0,2749349
+Cupriavidus taiwanensis,1,0,2749350
+Cupriavidus taiwanensis,1,0,2749351
+Cupriavidus taiwanensis,1,0,2749352
+Cupriavidus taiwanensis,1,0,2749353
+Cupriavidus taiwanensis,1,0,2749354
+Cupriavidus taiwanensis,1,0,2749355
+Cupriavidus taiwanensis,1,0,3150349
+Cytophaga hutchinsonii ATCC 33406,1,0,484
+Cytophaga hutchinsonii ATCC 33406,1,0,2740677
+Deinococcus deserti VCD115,1,0,775
+Deinococcus geothermalis DSM 11300,1,0,3639
+Desulfohalobium retbaense DSM 5692,1,0,942
+Desulfomicrobium baculatum DSM 4028,1,0,895
+Desulfovibrio piger ATCC 29098,1,0,1799
+Desulfuromonas acetoxidans DSM 684,1,0,2314
+Dorea formicigenerans ATCC 27755,1,0,2402
+Dorea formicigenerans ATCC 27755,1,0,3106753
+Dorea formicigenerans ATCC 27755,1,0,3106974
+Dorea longicatena DSM 13814,1,0,1686
+Dyadobacter fermentans DSM 18053,1,0,890
+Enterobacter sp. 638,1,0,583
+Enterobacter sp. 63,0.9333333333333333,0.7,2498696
+Enterococcus faecalis V583,1,0,179
+Enterococcus faecalis V583,1,0,13151
+Enterococcus faecalis V583,1,0,13164
+Enterococcus faecalis V583,1,0,1100735
+Enterococcus faecium DO,1,0,2290
+Enterococcus faecium DO,1,0,2654
+Erwinia amylovora ATCC 49946,1,0,1071
+Erythrobacter litoralis HTCC2594,1,0,429
+Erythrobacter sp. NAP1,1,0,1626
+Ferroglobus placidus DSM 10642,1,0,998
+Ferroplasma acidarmanus Fer1,1,0.7,1596
+Flavobacteria bacterium BAL38,1,0,2408
+Flavobacteria bacterium BBFL7,1,0,1652
+Flavobacterium johnsoniae UW101,1,0,595
+Flavobacterium johnsoniae UW101,1,0,101160
+Flavobacterium johnsoniae UW101,1,0,1709325
+Francisella philomiragia subsp. philomiragia ATCC 25015,0.9607843137254902,0.7,1816
+Francisella philomiragia subsp. philomiragia ATCC 25015,0.9607843137254902,0.7,33603
+Francisella tularensis subsp. tularensis SCHU S4,1,0,233
+Francisella tularensis subsp. tularensis SCHU S4,1,0,33607
+Francisella tularensis subsp. tularensis,0.9024390243902439,5.6000000000000005,33604
+Francisella tularensis subsp. tularensis,0.9024390243902439,5.6000000000000005,33608
+Francisella tularensis subsp. tularensis,0.9024390243902439,5.6000000000000005,54477
+Francisella tularensis subsp. tularensis,0.9024390243902439,5.6000000000000005,810853
+Francisella tularensis subsp. tularensis,0.9024390243902439,5.6000000000000005,810860
+Francisella tularensis subsp. tularensis,0.9024390243902439,5.6000000000000005,810861
+Francisella tularensis subsp. tularensis,0.9024390243902439,5.6000000000000005,810863
+Francisella tularensis subsp. tularensis,0.9024390243902439,5.6000000000000005,810864
+Francisella tularensis subsp. tularensis,0.9024390243902439,5.6000000000000005,811060
+Francisella tularensis subsp. tularensis,0.9024390243902439,5.6000000000000005,811066
+Francisella tularensis subsp. tularensis,0.9024390243902439,5.6000000000000005,811067
+Francisella tularensis subsp. tularensis,0.9024390243902439,5.6000000000000005,811075
+Francisella tularensis subsp. tularensis,0.9024390243902439,5.6000000000000005,811111
+Francisella tularensis subsp. tularensis,0.9024390243902439,5.6000000000000005,811112
+Francisella tularensis subsp. tularensis,0.9024390243902439,5.6000000000000005,811114
+Francisella tularensis subsp. tularensis,0.9024390243902439,5.6000000000000005,811117
+Francisella tularensis subsp. tularensis,0.9024390243902439,5.6000000000000005,811118
+Francisella tularensis subsp. tularensis,0.9024390243902439,5.6000000000000005,811123
+Francisella tularensis subsp. tularensis,0.9024390243902439,5.6000000000000005,954200
+Gemmata obscuriglobus UQM 2246,1,0,2528
+Gemmata obscuriglobus UQM 2246,1,0,2783145
+Geobacillus kaustophilus HTA426,1,0,272
+Geobacter sulfurreducens PCA,1,0,188
+Glaciecola sp. HTCC2999,1,0,1770
+Glaciecola sp. HTCC2999,1,0,3009062
+Gloeobacter violaceus PCC 7421,1,0,352
+Gluconobacter oxydans 621H,1,0,367
+Gluconobacter oxydans 621H,1,0,2745781
+Granulibacter bethesdensis CGDNIH1,1,0,489
+Granulibacter bethesdensis CGDNIH4,0.9333333333333333,0.7,21191
+Haemophilus influenzae Rd KW20,1,0,1074
+Hahella chejuensis KCTC 2396,1,0,428
+Haloarcula marismortui ATCC 43049,1,0,337
+Haloarcula marismortui ATCC 43049,1,0,253660
+Halobacterium salinarum R1,1,0,1109
+Haloferax volcanii DS2,1,0,1006
+Haloferax volcanii DS2,1,0,9888
+Halomicrobium mukohataei DSM 12286,1,0,925
+Haloquadratum walsbyi DSM 16790,1,0,243
+Halorhabdus utahensis DSM 12940,1,0,924
+Halorubrum lacusprofundi ATCC 49239,1,0,844
+Haloterrigena turkmenica DSM 5511,1,0,990
+Helicobacter acinonychis str. Sheeba,1,0,248
+Helicobacter mustelae 12198,1,0,1159
+Helicobacter pylori J99,1,0,227
+Helicobacter pylori J99,1,0,40636
+Hyphomonas neptunium ATCC 15444,1,0,430
+Idiomarina baltica OS145,1,0,1627
+Idiomarina loihiensis L2TR,1,0,212
+Janibacter sp. HTCC2649,1,0,1618
+Jannaschia sp. CCS1,1,0,456
+Jonesia denitrificans DSM 20603,1,0,929
+Klebsiella pneumoniae subsp. pneumoniae MGH 78578,1,0,582
+Kocuria rhizophila DC2201,1,0,297
+Kocuria rhizophila DC2201,1,0,371583
+Kytococcus sedentarius DSM 20547,1,0,923
+Lactobacillus acidophilus NCFM,1,0,381
+Lactobacillus helveticus DPC 4571,1,0,541
+Lactobacillus johnsonii NCC 533,1,0,192
+Lactococcus lactis subsp. lactis Il1403,1,0,133
+Laribacter hongkongensis HLHK9,1,0,792
+Leeuwenhoekiella blandensis MED217,1,0,1632
+Leifsonia xyli subsp. xyli str. CTCB07,1,0,173
+Leuconostoc mesenteroides subsp. mesenteroides ATCC 8293,1,0,497
+Listeria innocua Clip11262,1,0,3617
+Listeria monocytogenes EGD,0.9130434782608695,1.4,21521
+Listeria welshimeri serovar 6b str. SLCC5334,1,0,1092
+Marinobacter sp. ELB17,1,0,2409
+Metallosphaera sedula DSM 5348,1,0,593
+Metallosphaera sedula DSM 5348,1,0,1765919
+Methanobrevibacter ruminantium M1,1,0,935
+Methanobrevibacter smithii ATCC 35061,1,0,591
+Methanobrevibacter smithii ATCC 35061,1,0,1418936
+Methanobrevibacter smithii DSM 2375,1,0,1562
+Methanobrevibacter smithii DSM 2374,0.9354838709677419,0.7,1561
+Methanococcoides burtonii DSM 6242,1,0,464
+Methanocorpusculum labreanum Z,1,0,559
+Methanocorpusculum labreanum,0.92,1.4,152635
+Methanoculleus marisnigri JR1,1,0,562
+Methanohalophilus mahii DSM 5219,1,0,1015
+Methanosarcina acetivorans C2A,1,0,157
+Methanosphaera stadtmanae DSM 3091,1,0,408
+Methanothermobacter thermautotrophicus str. Delta H,1,0,221
+Methylibium petroleiphilum PM1,1,0,557
+Methylobacillus flagellatus KT,1,0,463
+Methylophilales bacterium HTCC2181,1,0,2391
+Methylotenera mobilis JLW8,1,0,912
+Microscilla marina ATCC 23134,1,0,2400
+Moritella sp. PE36,1,0,2483
+Mycobacterium avium 104,1,0,521
+Mycobacterium leprae TN,1,0,3620
+Mycobacterium marinum M,1,0,667
+Mycobacterium tuberculosis H37Rv,1,0,3624
+Mycobacterium tuberculosis H37Rv,1,0,7061
+Mycobacterium tuberculosis H37Rv,1,0,25704
+Mycobacterium tuberculosis H37Rv,1,0,153417
+Mycobacterium tuberculosis H37RvCO,0.9310344827586207,1.4,6371
+Mycobacterium tuberculosis H37RvAE,0.9310344827586207,1.4,29528
+Mycobacterium tuberculosis H37RvLP,0.9310344827586207,1.4,29740
+Mycobacterium tuberculosis H37RvMA,0.9310344827586207,1.4,29747
+Mycobacterium tuberculosis H37Ra,0.9285714285714286,0.7,575
+Mycobacterium tuberculosis H37Ra,0.9285714285714286,0.7,2416
+Mycobacterium tuberculosis H37Ra,0.9285714285714286,0.7,87256
+Mycobacterium ulcerans Agy99,1,0,474
+Nakamurella multipartita DSM 44233,1,0,944
+Natrialba magadii ATCC 43099,1,0,1003
+Natrialba magadii ATCC 43099,1,0,9916
+Natronomonas pharaonis DSM 2160,1,0,1024
+Neisseria meningitidis MC58,1,0,228
+Nitrosomonas europaea ATCC 19718,1,0,241
+Nitrosospira multiformis ATCC 25196,1,0,3643
+Nitrosospira multiformis ATCC 25196,1,0,2739598
+Nocardia farcinica IFM 10152,1,0,273
+Nocardioides sp. JS614,1,0,535
+Novosphingobium aromaticivorans DSM 12444,1,0,444
+Oceanicola granulosus HTCC2516,1,0,1648
+Oceanobacillus iheyensis HTE831,1,0,345
+Paracoccus denitrificans PD1222,1,0,3689
+Pasteurella multocida subsp. multocida str. Pm70,1,0,131
+Pasteurella multocida subsp. multocida str. PMTB,0.9111111111111111,2.0999999999999996,16076
+Pediococcus pentosaceus ATCC 25745,1,0,500
+Pedobacter heparinus DSM 2366,1,0,918
+Pedobacter heparinus DSM 2366,1,0,13333
+Pedobacter sp. BAL39,1,0,2480
+Pelobacter propionicus DSM 2379,1,0,524
+Pelodictyon luteolum DSM 273,1,0,405
+Petrotoga mobilis SJ95,1,0,679
+Phenylobacterium zucineum HLK1,1,0,621
+Photobacterium profundum SS9,1,0,3638
+Pirellula staleyi DSM 6068,1,0,983
+Pirellula staleyi DSM 6068,1,0,2885591
+Pirellula staleyi DSM 6068,1,0,2886246
+Pirellula staleyi DSM 6068,1,0,2886758
+Pirellula staleyi DSM 6068,1,0,2887485
+Polaromonas naphthalenivorans CJ2,1,0,546
+Polaromonas sp. JS666,1,0,471
+Polaromonas sp. JS666,1,0,2739139
+Prochlorococcus marinus str. MIT 9313,1,0,357
+Prochlorococcus marinus str. MIT 9313,1,0,3010341
+Prochlorococcus marinus str. MIT 9312,0.9393939393939394,0.7,411
+Prochlorococcus marinus str. MIT 9311,0.9393939393939394,0.7,30142
+Prochlorococcus marinus str. MIT 9314,0.9393939393939394,0.7,30143
+Prosthecochloris aestuarii DSM 271,1,0,772
+Proteus mirabilis HI4320,1,0,1117
+Proteus mirabilis HI4320,1,0,3070642
+Pseudoalteromonas tunicata D2,1,0,1645
+Pseudomonas aeruginosa PAO1,1,0,128
+Pseudomonas aeruginosa PAO1,1,0,13496
+Pseudomonas aeruginosa PAO1,1,0,186913
+Pseudomonas aeruginosa PAO1,1,0,186914
+Pseudomonas aeruginosa PAO1,1,0,186915
+Pseudomonas aeruginosa PAO1,1,0,186916
+Pseudomonas aeruginosa PAO1,1,0,186917
+Pseudomonas aeruginosa PAO1,1,0,186918
+Pseudomonas aeruginosa PAO1,1,0,186919
+Pseudomonas aeruginosa PAO1,1,0,186920
+Pseudomonas aeruginosa PAO1,1,0,186921
+Pseudomonas aeruginosa PAO1,1,0,633736
+Pseudomonas aeruginosa PAO1,1,0,714079
+Pseudomonas aeruginosa PAO1,1,0,714080
+Pseudomonas aeruginosa PAO1,1,0,1494054
+Pseudomonas aeruginosa PAO1,1,0,1494055
+Pseudomonas aeruginosa PAO1,1,0,1494059
+Pseudomonas aeruginosa PAO1,1,0,1504652
+Pseudomonas aeruginosa PAO1,1,0,1504654
+Pseudomonas aeruginosa PAO1,1,0,2547462
+Pseudomonas aeruginosa PAO1,1,0,2566077
+Pseudomonas aeruginosa PAO1,1,0,2577717
+Pseudomonas aeruginosa PAO1,1,0,2684607
+Pseudomonas entomophila L48,1,0,1027
+Pseudomonas putida KT2440,1,0,168
+Pseudomonas putida KT2440,1,0,2147819
+Pseudomonas syringae pv. tomato str. DC3000,1,0,180
+Psychroflexus torquis ATCC 700755,1,0,1657
+Psychromonas ingrahamii 37,1,0,536
+Psychromonas sp. CNPT3,1,0,1653
+Pyrobaculum aerophilum str. IM2,1,0,151
+Pyrobaculum arsenaticum DSM 13514,1,0,585
+Pyrobaculum calidifontis JCM 11548,1,0,561
+Pyrobaculum islandicum DSM 4184,1,0,532
+Pyrococcus abyssi GE5,1,0,3623
+Pyrococcus furiosus DSM 3638,1,0,155
+Pyrococcus furiosus DSM 3638,1,0,399695
+Pyrococcus horikoshii OT3,1,0,338
+Renibacterium salmoninarum ATCC 33209,1,0,693
+Rhizobium etli CFN 42,1,0,1161
+Rhodococcus erythropolis PR4,1,0,288
+Rhodococcus opacus B4,1,0,323
+Rhodopseudomonas palustris CGA009,1,0,3616
+Rhodospirillum centenum SW,1,0,577
+Rhodospirillum rubrum ATCC 11170,1,0,433
+Roseiflexus castenholzii DSM 13941,1,0,644
+Roseobacter sp. MED193,1,0,1631
+Roseovarius nubinhibens ISM,1,0,1614
+Roseovarius sp. 217,1,0,1625
+Saccharomonospora viridis DSM 43017,1,0,920
+Saccharopolyspora erythraea NRRL 2338,1,0,1095
+Saccharopolyspora erythraea NRRL 2338,1,0,2521
+Saccharopolyspora erythraea NRRL 2338,1,0,118202
+Shewanella amazonensis SB2B,1,0,534
+Shewanella baltica OS155,1,0,563
+Shewanella denitrificans OS217,1,0,466
+Shewanella frigidimarina NCIMB 400,1,0,509
+Shewanella pealeana ATCC 700345,1,0,664
+Shewanella piezotolerans WP3,1,0,517
+Shewanella woodyi ATCC 51908,1,0,721
+Sinorhizobium meliloti 1021,1,0,138
+Sphingopyxis alaskensis RB2256,1,0,477
+Staphylococcus aureus subsp. aureus N315,1,0,265
+Staphylococcus capitis SK14,1,0,2641
+Staphylococcus carnosus subsp. carnosus TM300,1,0,253
+Staphylococcus epidermidis ATCC 12228,1,0,172
+Staphylococcus epidermidis ATCC 12228,1,0,371031
+Staphylococcus epidermidis ATCC 12228,1,0,430498
+Staphylococcus haemolyticus JCSC1435,1,0,276
+Stenotrophomonas maltophilia K279a,1,0,1120
+Streptococcus dysgalactiae subsp. equisimilis GGS_124,1,0,318
+Streptococcus equi subsp. zooepidemicus MGCS10565,1,0,779
+Streptococcus gallolyticus UCN34,1,0,1070
+Streptococcus gordonii str. Challis substr. CH1,1,0,610
+Streptococcus mitis B6,1,0,1069
+Streptococcus mutans UA159,1,0,163
+Streptococcus pneumoniae TIGR4,1,0,134
+Streptococcus pneumoniae TIGR4,1,0,2325
+Streptococcus pneumoniae TIGR4,1,0,6682
+Streptococcus pneumoniae TIGR4,1,0,6857
+Streptococcus pneumoniae TIGR4,1,0,1184555
+Streptococcus pneumoniae TIGR4,1,0,2071964
+Streptococcus pyogenes M1 GAS,1,0,129
+Streptococcus pyogenes M1 GAS,1,0,2202307
+Streptococcus sanguinis SK36,1,0,486
+Streptococcus sanguinis SK36,1,0,3107678
+Streptococcus suis 05ZYH33,1,0,490
+Streptococcus thermophilus CNRZ1066,1,0,374
+Streptococcus uberis 0140J,1,0,260
+Streptomyces griseus subsp. griseus NBRC 13350,1,0,313
+Streptomyces scabiei 87.22,1,0,1145
+Sulfolobus acidocaldarius DSM 639,1,0,396
+Sulfolobus acidocaldarius DSM 639,1,0,1405507
+Synechococcus elongatus PCC 7943,0.9285714285714286,0.7,1129649
+Synechococcus sp. WH 8109,0.9047619047619048,0.7,2070
+Synechococcus sp. WH 8103,0.9047619047619048,0.7,50547
+Synechococcus sp. WH 8101,0.9047619047619048,0.7,199448
+Synechococcus sp. WH 8101,0.9047619047619048,0.7,697424
+Synechocystis sp. PCC 6803,1,0,269
+Synechocystis sp. PCC 6803,1,0,6711
+Synechocystis sp. PCC 6803,1,0,10046
+Synechocystis sp. PCC 6803,1,0,57202
+Synechocystis sp. PCC 6803,1,0,552455
+Synechocystis sp. PCC 6803,1,0,922919
+Synechocystis sp. PCC 6803,1,0,1123859
+Synechocystis sp. PCC 6803,1,0,1287364
+Synechocystis sp. PCC 6803,1,0,2573121
+Teredinibacter turnerae T7901,1,0,885
+Teredinibacter turnerae T7902,0.92,0.7,11840
+Thermoanaerobacter italicus Ab9,1,0,1004
+Thermococcus gammatolerans EJ3,1,0,852
+Thermococcus onnurineus NA1,1,0,668
+Thermococcus sibiricus MM 739,1,0,861
+Thermoplasma acidophilum DSM 1728,1,0,3622
+Thermoplasma volcanium GSS1,1,0,342
+Thermosipho africanus TCF52B,1,0,803
+Thermosipho melanesiensis BI429,1,0,605
+Thermotoga maritima MSB8,1,0,216
+Thermotoga maritima MSB8,1,0,4860
+Thermotoga maritima MSB8,1,0,12353
+Thermotoga maritima MSB8,1,0,40437
+Thermotoga neapolitana DSM 4359,1,0,696
+Thermotoga neapolitana DSM 4359,1,0,2512201
+Thermotoga sp. RQ2,1,0,726
+Thermus aquaticus Y51MC23,1,0,61266
+Thermus thermophilus HB27,1,0,195
+Thermus thermophilus HB27,1,0,1549731
+Thiobacillus denitrificans,1,0,67610
+Thiobacillus denitrificans,1,0,106420
+Thiobacillus denitrificans,1,0,107198
+Thiobacillus denitrificans,1,0,110176
+Thiobacillus denitrificans,1,0,111247
+Thiobacillus denitrificans,1,0,1011833
+Thiobacillus denitrificans,1,0,1016839
+Thiobacillus denitrificans,1,0,1016919
+Thiobacillus denitrificans,1,0,2472812
+Tolumonas auensis DSM 9187,1,0,887
+Trichodesmium erythraeum IMS101,1,0,488
+Tropheryma whipplei str. Twist,1,0,164
+Vibrio parahaemolyticus RIMD 2210633,1,0,3631
+Vibrio vulnificus CMCP6,1,0,1077
+Vibrio vulnificus CMCP6,1,0,3070638
+Xanthomonas campestris pv. campestris str. ATCC 33913,1,0,147
+Xylella fastidiosa 9a5c,1,0,126
+Zymomonas mobilis subsp. mobilis,0.9333333333333333,2.8,98060
+Zymomonas mobilis subsp. mobilis,0.9333333333333333,2.8,142880
+Zymomonas mobilis subsp. mobilis,0.9333333333333333,2.8,142881
+Zymomonas mobilis subsp. mobilis,0.9333333333333333,2.8,314859
