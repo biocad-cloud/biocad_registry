@@ -106,6 +106,59 @@ CREATE TABLE `db_xrefs` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `genbank_source`
+--
+
+DROP TABLE IF EXISTS `genbank_source`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `genbank_source` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `assembly_accession` varchar(45) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL,
+  `bioproject` varchar(45) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL DEFAULT 'na',
+  `biosample` varchar(45) COLLATE utf8mb3_bin DEFAULT NULL,
+  `wgs_master` varchar(45) COLLATE utf8mb3_bin DEFAULT NULL,
+  `refseq_category` varchar(45) COLLATE utf8mb3_bin DEFAULT NULL,
+  `taxid` int unsigned NOT NULL,
+  `species_taxid` int unsigned NOT NULL,
+  `organism_name` varchar(45) COLLATE utf8mb3_bin DEFAULT NULL,
+  `infraspecific_name` varchar(45) COLLATE utf8mb3_bin DEFAULT NULL,
+  `isolate` varchar(45) COLLATE utf8mb3_bin DEFAULT NULL,
+  `version_status` varchar(45) COLLATE utf8mb3_bin DEFAULT NULL,
+  `assembly_level` varchar(45) COLLATE utf8mb3_bin DEFAULT NULL,
+  `release_type` varchar(45) COLLATE utf8mb3_bin DEFAULT NULL,
+  `genome_rep` varchar(45) COLLATE utf8mb3_bin DEFAULT NULL,
+  `seq_rel_date` varchar(32) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `asm_name` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `asm_submitter` tinytext CHARACTER SET utf8mb3 COLLATE utf8mb3_bin,
+  `gbrs_paired_asm` varchar(45) COLLATE utf8mb3_bin DEFAULT NULL,
+  `paired_asm_comp` varchar(45) COLLATE utf8mb3_bin DEFAULT NULL,
+  `ftp_path` mediumtext CHARACTER SET utf8mb3 COLLATE utf8mb3_bin,
+  `excluded_from_refseq` varchar(45) COLLATE utf8mb3_bin DEFAULT NULL,
+  `relation_to_type_material` varchar(45) COLLATE utf8mb3_bin DEFAULT NULL,
+  `asm_not_live_date` varchar(45) COLLATE utf8mb3_bin DEFAULT NULL,
+  `assembly_type` varchar(45) COLLATE utf8mb3_bin DEFAULT NULL,
+  `group` varchar(45) COLLATE utf8mb3_bin DEFAULT NULL,
+  `genome_size` int unsigned NOT NULL DEFAULT '0',
+  `genome_size_ungapped` int unsigned NOT NULL DEFAULT '0',
+  `gc_percent` double unsigned NOT NULL DEFAULT '0',
+  `replicon_count` int unsigned NOT NULL DEFAULT '0',
+  `scaffold_count` int unsigned NOT NULL DEFAULT '0',
+  `contig_count` int unsigned NOT NULL DEFAULT '0',
+  `annotation_provider` varchar(32) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `annotation_name` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `annotation_date` varchar(32) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `total_gene_count` int unsigned NOT NULL DEFAULT '0',
+  `protein_coding_gene_count` int unsigned NOT NULL DEFAULT '0',
+  `non_coding_gene_count` int unsigned NOT NULL DEFAULT '0',
+  `pubmed_id` json DEFAULT NULL,
+  `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='table for assembly_summary_genbank.txt\n\n##  See ftp://ftp.ncbi.nlm.nih.gov/genomes/README_assembly_summary.txt for a description of the columns in this file.';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `genomics`
 --
 
@@ -276,7 +329,7 @@ CREATE TABLE `molecule` (
   KEY `find_index` (`xref_id`,`type`),
   KEY `taxonomy_info_idx` (`tax_id`),
   FULLTEXT KEY `search_text` (`name`,`note`)
-) ENGINE=InnoDB AUTO_INCREMENT=77291817 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='The molecular entity object inside a cell';
+) ENGINE=InnoDB AUTO_INCREMENT=81826064 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='The molecular entity object inside a cell';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -638,7 +691,7 @@ CREATE TABLE `sequence_graph` (
   KEY `molecules_idx` (`molecule_id`),
   KEY `search_sequence` (`hashcode`),
   KEY `index_mols_seqs` (`molecule_id`,`hashcode`)
-) ENGINE=InnoDB AUTO_INCREMENT=163058908 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='the sequence composition data of the molecule';
+) ENGINE=InnoDB AUTO_INCREMENT=215290363 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='the sequence composition data of the molecule';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -788,4 +841,4 @@ CREATE TABLE `vocabulary` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-11-07 21:28:19
+-- Dump completed on 2025-11-11 11:37:23
