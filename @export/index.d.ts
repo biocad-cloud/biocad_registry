@@ -47,6 +47,10 @@ declare namespace biocad_registry {
    */
    function get_genbank(asm_id: any, repo_dir?: any): object;
    /**
+     * @param repo_dir default value Is ``./``.
+   */
+   function get_genbank_ftp(ncbi: any, url: any, repo_dir?: any): object;
+   /**
      * @param dbname default value Is ``null``.
    */
    function get_molecule_by_dbxref(registry: any, db_xref: any, dbname?: any): object;
