@@ -399,5 +399,19 @@ SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI
  </param>
  <returns></returns>
 </member>
+<member name="T:SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.PlainTextParser">
+ <summary>
+ parse the pubmed database file in plaintext format
+ </summary>
+</member>
+<member name="M:SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.PlainTextParser.TryParseAID(System.String,System.String@,System.String@)">
+ <summary>
+ 解析字符串，提取标识符和类型部分。
+ </summary>
+ <param name="input">输入的字符串（例如 "ijms24010457 [pii]"）</param>
+ <param name="identifier">输出解析后的标识符</param>
+ <param name="type">输出解析后的类型</param>
+ <returns>解析成功返回 True，失败返回 False</returns>
+</member>
 </members>
 </doc>
