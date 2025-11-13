@@ -18,8 +18,9 @@ Module Program
     Friend ReadOnly registry As New biocad_registry(mysql)
 
     Sub Main(args As String())
-        Call exportwebJSONDb.runlocalDbCache()
-        Call TagDataExport.ExportHMDBMetabolites(registry).SaveTo("Z:/hmdb.csv")
+        Call regpreciseMotifs.extractTF()
+        ' Call exportwebJSONDb.runlocalDbCache()
+        ' Call TagDataExport.ExportHMDBMetabolites(registry).SaveTo("Z:/hmdb.csv")
         ' Call imports_drugdata()
         ' Call export_plantid()
         ' Call fingerprintBuilder.run()
@@ -29,7 +30,7 @@ Module Program
         ' Call importsMetaCyc()
         ' Call imports_all_plantcyc()
 
-        Pause()
+        ' Pause()
     End Sub
 
     Sub removesInvalidNameChars()

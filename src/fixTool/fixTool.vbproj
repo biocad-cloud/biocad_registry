@@ -31,6 +31,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\GCModeller\src\GCModeller\data\RegulonDatabase\RegulonDatabase.NET5.vbproj" />
     <ProjectReference Include="..\..\..\GCModeller\src\runtime\sciBASIC#\Microsoft.VisualBasic.Core\src\Core.vbproj" />
     <ProjectReference Include="..\..\..\graphQL\src\mysqli\LibMySQL\LibMySQL.vbproj" />
     <ProjectReference Include="..\biocad_storage\biocad_storage.vbproj" />
