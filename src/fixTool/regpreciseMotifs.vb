@@ -37,4 +37,16 @@ Public Module regpreciseMotifs
 
         Pause()
     End Sub
+
+    Sub extractMotifs()
+        Dim db = "F:\ecoli\regprecise.xml".LoadXml(Of TranscriptionFactors)
+        Dim tfs = db.AsEnumerable.Select(Function(g) g.regulome.AsEnumerable).IteratesALL.GroupBy(Function(r) r.family).Select(Function(a)
+                                                                                                                                   Dim familySites = a.Select(Function(tf) tf.ExportMotifs).IteratesALL.ToArray
+                                                                                                                                   Return (a.Key, New FastaFile(familySites))
+                                                                                                                               End Function).ToArray
+
+        For Each group In tfs
+            Call group.Item2.Save($"./{group.Key}.fasta")
+        Next
+    End Sub
 End Module
