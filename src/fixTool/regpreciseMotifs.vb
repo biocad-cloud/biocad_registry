@@ -24,7 +24,7 @@ Public Module regpreciseMotifs
                 Continue For
             End If
 
-            Dim protsIndex = prots.ToDictionary(Function(a) a.Headers(0).Split.First, Function(a) a.SequenceData)
+            Dim protsIndex = prots.GroupBy(Function(a) a.Headers(0).Split.First).ToDictionary(Function(a) a.Key, Function(a) a.First.SequenceData)
             Dim regulators = genome.regulome.AsEnumerable _
                 .Where(Function(r) r.type = Types.TF) _
                 .Select(Iterator Function(a) As IEnumerable(Of FastaSeq)
