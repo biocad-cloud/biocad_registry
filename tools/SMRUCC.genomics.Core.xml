@@ -8919,16 +8919,19 @@ ATT I Ile      ACT T Thr      AAT N As [rest of string was truncated]&quot;;.
  <param name="gbk"></param>
  <returns></returns>
 </member>
-<member name="M:SMRUCC.genomics.Assembly.NCBI.GenBank.Extensions.ExportProteins_Short(SMRUCC.genomics.Assembly.NCBI.GenBank.GBFF.File,System.Boolean)">
+<member name="M:SMRUCC.genomics.Assembly.NCBI.GenBank.Extensions.ExportProteins_Short(SMRUCC.genomics.Assembly.NCBI.GenBank.GBFF.File,System.Boolean,System.Boolean)">
  <summary>
- Locus_tag Product_Description
+ fasta sequence title header in format: locus_tag product_description
  </summary>
  <param name="gb"></param>
+ <param name="duplicateOldLocusTag">
+ andalso populate an duplicated sequence data if ``old_locus_tag`` is existed inside thse CDS feature.
+ </param>
  <returns></returns>
  <remarks></remarks>
 
 </member>
-<member name="M:SMRUCC.genomics.Assembly.NCBI.GenBank.Extensions.__protShort(SMRUCC.genomics.Assembly.NCBI.GenBank.GBFF.Keywords.FEATURES.Feature,System.Boolean)">
+<member name="M:SMRUCC.genomics.Assembly.NCBI.GenBank.Extensions.makeProtSeqShort(SMRUCC.genomics.Assembly.NCBI.GenBank.GBFF.Keywords.FEATURES.Feature,System.Boolean,System.Boolean)">
  <summary>
  假若是新注释的基因组还没有基因号，则默认使用位置来做唯一标示
  </summary>
@@ -8946,6 +8949,13 @@ ATT I Ile      ACT T Thr      AAT N As [rest of string was truncated]&quot;;.
  <returns>{locus_tag, gene}</returns>
  <remarks></remarks>
 
+</member>
+<member name="M:SMRUCC.genomics.Assembly.NCBI.GenBank.Extensions._16SribosomalRNA(SMRUCC.genomics.Assembly.NCBI.GenBank.GBFF.File)">
+ <summary>
+ make export of the annotated 16s RNA from the given genbank assembly
+ </summary>
+ <param name="Gbk"></param>
+ <returns></returns>
 </member>
 <member name="T:SMRUCC.genomics.Assembly.NCBI.GenBank.GBFF.IgbComponent">
  <summary>
