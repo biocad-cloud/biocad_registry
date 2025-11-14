@@ -1,4 +1,5 @@
 ﻿Imports Microsoft.VisualBasic.Linq
+Imports Microsoft.VisualBasic.Text
 Imports Microsoft.VisualBasic.Text.Xml.Models
 Imports SMRUCC.genomics.Assembly.NCBI.GenBank
 Imports SMRUCC.genomics.Data.Regprecise
@@ -55,7 +56,7 @@ Public Module regpreciseMotifs
             Call TF.AddRange(regulators)
         Next
 
-        Call New FastaFile(TF).Save("./TF.fasta")
+        Call New FastaFile(TF).Save(-1, "./TF.fasta", deli:=" ", Encodings.ASCII)
 
         Pause()
     End Sub
@@ -68,7 +69,7 @@ Public Module regpreciseMotifs
                                                                                                                                End Function).ToArray
 
         For Each group In tfs
-            Call group.Item2.Save($"./motifs/{group.Key.Replace("/", "-")}.fasta")
+            Call group.Item2.Save(-1, $"./motifs/{group.Key.Replace("/", "-")}.fasta", deli:=" ", Encodings.ASCII)
         Next
     End Sub
 End Module
