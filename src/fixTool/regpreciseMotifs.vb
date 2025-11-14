@@ -19,7 +19,7 @@ Public Module regpreciseMotifs
             Dim id As String = genome.genome.genomeId.Split().First
             Dim genbank = $"D:\datapool\regprecise_genbank\genomes\{id}_genomic.gbff"
             Dim asm = GBFF.File.LoadDatabase(genbank).ToArray
-            Dim prots = asm.Select(Function(gb) gb.ExportProteins_Short).IteratesALL.ToArray
+            Dim prots = asm.Select(Function(gb) gb.ExportProteins_Short(duplicateOldLocusTag:=True)).IteratesALL.ToArray
 
             If prots.IsNullOrEmpty Then
                 Continue For
@@ -57,8 +57,6 @@ Public Module regpreciseMotifs
         Next
 
         Call New FastaFile(TF).Save(-1, "./TF.fasta", deli:=" ", Encodings.ASCII)
-
-        Pause()
     End Sub
 
     Sub extractMotifs()
