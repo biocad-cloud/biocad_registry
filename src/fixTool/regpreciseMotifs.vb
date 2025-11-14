@@ -29,6 +29,10 @@ Public Module regpreciseMotifs
                 .Where(Function(r) r.type = Types.TF) _
                 .Select(Iterator Function(a) As IEnumerable(Of FastaSeq)
                             For Each prot As NamedValue In a.locus_tags
+                                If Not protsIndex.ContainsKey(prot.name) Then
+                                    Continue For
+                                End If
+
                                 Dim seq = protsIndex(prot.name)
                                 Dim family = a.family
                                 Dim fa As New FastaSeq With {
