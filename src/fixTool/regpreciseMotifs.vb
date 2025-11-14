@@ -1,4 +1,5 @@
 ﻿Imports Microsoft.VisualBasic.Linq
+Imports Microsoft.VisualBasic.Text.Xml.Models
 Imports SMRUCC.genomics.Assembly.NCBI.GenBank
 Imports SMRUCC.genomics.Data.Regprecise
 Imports SMRUCC.genomics.SequenceModel.FASTA
@@ -26,16 +27,19 @@ Public Module regpreciseMotifs
             Dim protsIndex = prots.ToDictionary(Function(a) a.Headers(0).Split.First, Function(a) a.SequenceData)
             Dim regulators = genome.regulome.AsEnumerable _
                 .Where(Function(r) r.type = Types.TF) _
-                .Select(Function(a)
-                            Dim seq = protsIndex(a.locus_tag.name)
-                            Dim family = a.family
-                            Dim fa As New FastaSeq With {
-                                .Headers = {a.locus_tag.name, family},
-                                .SequenceData = seq
-                            }
+                .Select(Iterator Function(a) As IEnumerable(Of FastaSeq)
+                            For Each prot As NamedValue In a.locus_tags
+                                Dim seq = protsIndex(prot.name)
+                                Dim family = a.family
+                                Dim fa As New FastaSeq With {
+                                    .Headers = {prot.name, family},
+                                    .SequenceData = seq
+                                }
 
-                            Return fa
+                                Yield fa
+                            Next
                         End Function) _
+                .IteratesALL _
                 .ToArray
 
             Call TF.AddRange(regulators)
