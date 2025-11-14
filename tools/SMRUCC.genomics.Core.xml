@@ -13726,7 +13726,7 @@ to take away yo [rest of string was truncated]&quot;;.
  </param>
  <remarks>this function will split sequence data by 60 chars per line</remarks>
 </member>
-<member name="M:SMRUCC.genomics.SequenceModel.FASTA.FastaFile.Save(System.Int32,System.String,Microsoft.VisualBasic.Text.Encodings)">
+<member name="M:SMRUCC.genomics.SequenceModel.FASTA.FastaFile.Save(System.Int32,System.String,System.String,Microsoft.VisualBasic.Text.Encodings)">
  <summary>
  Save the fasta file into the local filesystem.
  </summary>
@@ -13739,15 +13739,15 @@ to take away yo [rest of string was truncated]&quot;;.
  </param>
  <remarks></remarks>
 </member>
-<member name="M:SMRUCC.genomics.SequenceModel.FASTA.FastaFile.Save(System.Int32,System.String,System.Text.Encoding)">
+<member name="M:SMRUCC.genomics.SequenceModel.FASTA.FastaFile.Save(System.Int32,System.String,System.String,System.Text.Encoding)">
  <summary>
  Save the fasta file into the local filesystem.
  </summary>
- <param name="Path"></param>
+ <param name="path">the file path for save the fasta sequence data</param>
  <param name="encoding">不同的程序会对这个由要求，例如meme程序在linux系统之中要求序列文件为unicode编码格式而windows版本的meme程序则要求ascii格式</param>
  <remarks></remarks>
 </member>
-<member name="M:SMRUCC.genomics.SequenceModel.FASTA.FastaFile.Generate">
+<member name="M:SMRUCC.genomics.SequenceModel.FASTA.FastaFile.Generate(System.Int32,System.String)">
  <summary>
  在写入数据到文本文件之前需要将目标对象转换为文本字符串
  </summary>
@@ -13762,12 +13762,13 @@ to take away yo [rest of string was truncated]&quot;;.
  The target FASTA file that to append this FASTA sequences.(将要拓展这些FASTA序列的目标FASTA文件)
  </param>
  <remarks></remarks>
+ 
 </member>
 <member name="M:SMRUCC.genomics.SequenceModel.FASTA.FastaFile.Match(System.String,System.Text.RegularExpressions.RegexOptions)">
  <summary>
  使用正则表达式来搜索在序列中含有特定模式的序列对象
  </summary>
- <param name="regxText"></param>
+ <param name="regxText">the regular expression pattern for matches of the fasta sequence data</param>
  <returns></returns>
  <remarks></remarks>
 </member>
@@ -15340,7 +15341,13 @@ to take away yo [rest of string was truncated]&quot;;.
  Fasta格式的多序列比对的结果
  </summary>
 </member>
-<member name="M:SMRUCC.genomics.SequenceModel.Patterns.Clustal.Clustal.__initCommon">
+<member name="M:SMRUCC.genomics.SequenceModel.Patterns.Clustal.Clustal.#ctor(System.String)">
+ <summary>
+ read the alignment result file.
+ </summary>
+ <param name="path"></param>
+</member>
+<member name="M:SMRUCC.genomics.SequenceModel.Patterns.Clustal.Clustal.Initialize">
  <summary>
  计算每一个位点上面的保守性
  </summary>
