@@ -18,9 +18,14 @@ Public Module regpreciseMotifs
             Dim genbank = $"D:\datapool\regprecise_genbank\genomes\{id}_genomic.gbff"
             Dim asm = GBFF.File.LoadDatabase(genbank).ToArray
             Dim prots = asm.Select(Function(gb) gb.ExportProteins_Short).IteratesALL.ToArray
+
+            If prots.IsNullOrEmpty Then
+                Continue For
+            End If
+
             Dim protsIndex = prots.ToDictionary(Function(a) a.Headers(0), Function(a) a.SequenceData)
             Dim regulators = genome.regulome.AsEnumerable _
-                .Where(Function(r) r.type = "TF") _
+                .Where(Function(r) r.type = Types.TF) _
                 .Select(Function(a)
                             Dim seq = protsIndex(a.regulator.name)
                             Dim family = a.family

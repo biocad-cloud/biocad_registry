@@ -612,9 +612,9 @@ Microsoft.VisualBasic.MIME.Html
  </summary>
  <returns></returns>
 </member>
-<member name="P:Microsoft.VisualBasic.MIME.Html.Document.HtmlElement.Attribute(System.String)">
+<member name="P:Microsoft.VisualBasic.MIME.Html.Document.HtmlElement.Element(System.String)">
  <summary>
- 
+ get attribute value by attribute name
  </summary>
  <param name="name">case insensitive</param>
  <returns>
