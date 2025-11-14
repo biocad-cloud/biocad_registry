@@ -28,7 +28,13 @@ Public Module regpreciseMotifs
             Dim regulators = genome.regulome.AsEnumerable _
                 .Where(Function(r) r.type = Types.TF) _
                 .Select(Iterator Function(a) As IEnumerable(Of FastaSeq)
+                            If a.locus_tags Is Nothing Then
+                                Return
+                            End If
                             For Each prot As NamedValue In a.locus_tags
+                                If prot Is Nothing Then
+                                    Continue For
+                                End If
                                 If Not protsIndex.ContainsKey(prot.name) Then
                                     Continue For
                                 End If
