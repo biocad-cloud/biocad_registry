@@ -68,7 +68,7 @@ Public Module regpreciseMotifs
                                                                                                                                End Function).ToArray
 
         For Each group In tfs
-            Call group.Item2.Save($"./{group.Key}.fasta")
+            Call group.Item2.Save($"./motifs/{group.Key.Replace("/", "-")}.fasta")
         Next
     End Sub
 End Module
