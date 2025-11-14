@@ -23,13 +23,16 @@ Public Module regpreciseMotifs
                 Continue For
             End If
 
-            Dim protsIndex = prots.ToDictionary(Function(a) a.Headers(0), Function(a) a.SequenceData)
+            Dim protsIndex = prots.ToDictionary(Function(a) a.Headers(0).Split.First, Function(a) a.SequenceData)
             Dim regulators = genome.regulome.AsEnumerable _
                 .Where(Function(r) r.type = Types.TF) _
                 .Select(Function(a)
-                            Dim seq = protsIndex(a.regulator.name)
+                            Dim seq = protsIndex(a.locus_tag.name)
                             Dim family = a.family
-                            Dim fa As New FastaSeq With {.Headers = {a.regulator.name, family}, .SequenceData = seq}
+                            Dim fa As New FastaSeq With {
+                                .Headers = {a.locus_tag.name, family},
+                                .SequenceData = seq
+                            }
 
                             Return fa
                         End Function) _
