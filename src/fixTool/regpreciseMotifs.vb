@@ -43,7 +43,7 @@ Public Module regpreciseMotifs
                                 Dim seq = protsIndex(prot.name)
                                 Dim family = a.family
                                 Dim fa As New FastaSeq With {
-                                    .Headers = {prot.name, family},
+                                    .Headers = {family, prot.name},
                                     .SequenceData = seq
                                 }
 
@@ -56,7 +56,7 @@ Public Module regpreciseMotifs
             Call TF.AddRange(regulators)
         Next
 
-        Call New FastaFile(TF).Save(-1, "./TF.fasta", deli:=" ", Encodings.ASCII)
+        Call New FastaFile(TF).Save(-1, "./TF.fasta", deli:="|", Encodings.ASCII)
     End Sub
 
     Sub extractMotifs()
