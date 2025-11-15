@@ -15428,6 +15428,18 @@ to take away yo [rest of string was truncated]&quot;;.
  <param name="width"></param>
  <returns></returns>
 </member>
+<member name="M:SMRUCC.genomics.SequenceModel.Patterns.IPatternSite.EnumerateKeys">
+ <summary>
+ get alphabets of current site
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.SequenceModel.Patterns.IPatternSite.EnumerateValues">
+ <summary>
+ get the pwm data column
+ </summary>
+ <returns></returns>
+</member>
 <member name="P:SMRUCC.genomics.SequenceModel.Patterns.SimpleSite.IsConserved">
  <summary>
  Is this residue conserved in this motif?

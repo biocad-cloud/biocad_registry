@@ -147,15 +147,6 @@ Microsoft.VisualBasic.Drawing.Windows
  and the original <see cref="P:System.Drawing.Image.Size"/> 
  </remarks>
 </member>
-<member name="M:Microsoft.VisualBasic.Drawing.Imaging.BitmapImage.Imager.ImageCrop(System.Drawing.Image,System.Drawing.Rectangle)">
- <summary>
- Crop an image 
- </summary>
- <param name="img">image to crop</param>
- <param name="cropArea">rectangle to crop</param>
- <returns>resulting image</returns>
- 
-</member>
 <member name="T:Microsoft.VisualBasic.Drawing.Imaging.BitmapImage.Utils">
  <summary>
  Tools function for processing on <see cref="T:System.Drawing.Image"/>/<see cref="T:System.Drawing.Bitmap"/>
@@ -169,15 +160,6 @@ Microsoft.VisualBasic.Drawing.Windows
  <param name="OutSize"></param>
  <returns></returns>
  <remarks></remarks>
-</member>
-<member name="M:Microsoft.VisualBasic.Drawing.Imaging.BitmapImage.Utils.CorpBlank(System.Drawing.Image,System.Int32,System.Drawing.Color,System.String)">
- <summary>
- 将图像的多余的空白处给剪裁掉，确定边界，然后进行剪裁，使用这个函数需要注意下设置空白色，默认使用的空白色为<see cref="P:System.Drawing.Color.White"/>
- </summary>
- <param name="res"></param>
- <param name="margin"></param>
- <param name="blankColor">默认白色为空白色</param>
- <returns></returns>
 </member>
 <member name="M:Microsoft.VisualBasic.Drawing.Extensions.CreateCanvas2D(System.Drawing.Image,System.Boolean,System.String,System.String)">
  <summary>

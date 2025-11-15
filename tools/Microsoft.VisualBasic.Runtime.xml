@@ -17590,6 +17590,19 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="buffer"></param>
  <returns></returns>
 </member>
+<member name="M:Microsoft.VisualBasic.Imaging.BitmapImage.BitmapTools.CropBitmapBuffer(Microsoft.VisualBasic.Imaging.BitmapImage.BitmapBuffer,System.Drawing.Rectangle)">
+ <summary>
+ 裁剪BitmapBuffer的指定区域
+ </summary>
+ <param name="sourceBuffer">源BitmapBuffer</param>
+ <param name="cropRect">裁剪区域</param>
+ <returns>裁剪后的新BitmapBuffer</returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Imaging.BitmapImage.BitmapTools.GetValidCropRectangle(System.Drawing.Rectangle,System.Int32,System.Int32)">
+ <summary>
+ 确保裁剪矩形在图像有效范围内
+ </summary>
+</member>
 <member name="T:Microsoft.VisualBasic.Imaging.BitmapImage.FileStream.Bitmap">
  <summary>
  A in-memory bitmap image model
@@ -18697,6 +18710,51 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  both width and height in current size object must be greater than zero
  </summary>
  <param name="size"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Imaging.ImageTools.ImageCrop(System.Drawing.Image,System.Drawing.Rectangle)">
+ <summary>
+ Crop an image 
+ </summary>
+ <param name="img">image to crop</param>
+ <param name="cropArea">rectangle to crop</param>
+ <returns>resulting image</returns>
+ 
+</member>
+<member name="M:Microsoft.VisualBasic.Imaging.ImageTools.ImageCrop(System.Drawing.Bitmap,System.Drawing.Rectangle)">
+ <summary>
+ Crop region on an bitmap image 
+ </summary>
+ <param name="bmpImage">bitmap image to crop</param>
+ <param name="cropArea">rectangle to crop</param>
+ <returns>resulting bitmap image object</returns>
+ 
+</member>
+<member name="M:Microsoft.VisualBasic.Imaging.ImageTools.CorpBlank(System.Drawing.Image,System.Int32,System.Drawing.Color,System.String)">
+ <summary>
+ 将图像的多余的空白处给剪裁掉，确定边界，然后进行剪裁，使用这个函数需要注意下设置空白色，默认使用的空白色为<see cref="P:System.Drawing.Color.White"/>
+ </summary>
+ <param name="res"></param>
+ <param name="margin"></param>
+ <param name="blankColor">默认白色为空白色</param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Imaging.ImageTools.CorpBlank(System.Drawing.Bitmap,System.Int32,System.Drawing.Color,System.String)">
+ <summary>
+ 将图像的多余的空白处给剪裁掉，确定边界，然后进行剪裁，使用这个函数需要注意下设置空白色，默认使用的空白色为<see cref="P:System.Drawing.Color.White"/>
+ </summary>
+ <param name="res"></param>
+ <param name="margin"></param>
+ <param name="blankColor">默认白色为空白色</param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Imaging.ImageTools.CorpBlankInternal(System.Drawing.Bitmap,System.Int32,System.Drawing.Color,System.Boolean,System.String)">
+ <summary>
+ 将图像的多余的空白处给剪裁掉，确定边界，然后进行剪裁，使用这个函数需要注意下设置空白色，默认使用的空白色为<see cref="P:System.Drawing.Color.White"/>
+ </summary>
+ <param name="res"></param>
+ <param name="margin"></param>
+ <param name="blankColor">默认白色为空白色</param>
  <returns></returns>
 </member>
 <member name="T:Microsoft.VisualBasic.Imaging.IGraphics">
@@ -24941,6 +24999,11 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  The vector length for counting the elements in <see cref="P:Microsoft.VisualBasic.Text.Xml.Models.NumericVector.vector"/> property.
  </summary>
  <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.Text.Xml.Models.TermsVector">
+ <summary>
+ a collection of the string terms 
+ </summary>
 </member>
 <member name="T:Microsoft.VisualBasic.Text.Xml.Models.XmlBuilder">
  <summary>
