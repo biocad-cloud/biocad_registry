@@ -103,14 +103,14 @@ Public Class FormMain : Implements AppHost
             If file.ShowDialog = DialogResult.OK Then
                 Call MyApplication.Loading(
                     Function(println)
-                        Return ExportLocal(println, file.FileName)
+                        Return ExportLocal(println, file.FileName, Nothing)
                     End Function)
                 Call MessageBox.Show("Export metabolite local annotation repository database success!", "Task Finish", MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If
         End Using
     End Sub
 
-    Private Shared Function ExportLocal(println As Action(Of String), filename As String) As Boolean
+    Private Shared Function ExportLocal(println As Action(Of String), filename As String, subset$) As Boolean
         Dim i As Integer = 0
         Dim block As i32 = 1
 
@@ -123,7 +123,7 @@ Public Class FormMain : Implements AppHost
             Call row.Clear()
             Call println("Export metabolite annotation into table sheet...")
 
-            For Each mol As Metadata In MetaboliteAnnotations.ExportAnnotation
+            For Each mol As Metadata In MetaboliteAnnotations.ExportAnnotation(subset)
                 db_xrefs = mol.xref
                 row.AddRange({mol.ID, mol.name, mol.formula, mol.exact_mass, db_xrefs.CAS.FirstOrDefault, db_xrefs.KEGG, db_xrefs.HMDB, db_xrefs.chebi, db_xrefs.pubchem, db_xrefs.lipidmaps, db_xrefs.SMILES})
                 csv.WriteLine(row.AsLine)
@@ -492,6 +492,18 @@ FROM
                             Next
                         End Sub, "Export Data", "Fetch sequence data and write into a fasta sequence data file...")
                 End Using
+            End If
+        End Using
+    End Sub
+
+    Private Sub ExportKEGGMetaboliteTableToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportKEGGMetaboliteTableToolStripMenuItem.Click
+        Using file As New SaveFileDialog With {.Filter = "Metabolite Table(*.csv)|*.csv"}
+            If file.ShowDialog = DialogResult.OK Then
+                Call MyApplication.Loading(
+                    Function(println)
+                        Return ExportLocal(println, file.FileName, "KEGG")
+                    End Function)
+                Call MessageBox.Show("Export metabolite local annotation repository database success!", "Task Finish", MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If
         End Using
     End Sub

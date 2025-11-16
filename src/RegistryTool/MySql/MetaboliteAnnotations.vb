@@ -8,19 +8,32 @@ Imports Metadata = BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaLib
 
 Module MetaboliteAnnotations
 
-    Public Iterator Function ExportAnnotation() As IEnumerable(Of Metadata)
+    Public Iterator Function ExportAnnotation(Optional db_subset As String = Nothing) As IEnumerable(Of Metadata)
         Dim page_size As Integer = 2000
         Dim page As Integer = 1
         Dim offset As UInteger
         Dim pagedata As biocad_registryModel.molecule()
+        Dim key As UInteger
+
+        If Not db_subset.StringEmpty Then
+            key = MyApplication.biocad_registry.vocabulary.where(field("category") = "External Database", field("term") = db_subset).find(Of biocad_registryModel.vocabulary).id
+        End If
 
         Do While True
             offset = (page - 1) * page_size
             page += 1
-            pagedata = MyApplication.biocad_registry.molecule _
-                .where(field("type") = 4) _
-                .limit(offset, page_size) _
-                .select(Of biocad_registryModel.molecule)
+
+            If db_subset.StringEmpty Then
+                pagedata = MyApplication.biocad_registry.molecule _
+                    .where(field("type") = 213) _
+                    .limit(offset, page_size) _
+                    .select(Of biocad_registryModel.molecule)
+            Else
+                pagedata = MyApplication.biocad_registry.molecule _
+                    .where(field("type") = 213, field("id").in($"SELECT obj_id FROM db_xrefs WHERE db_key = {key} AND type = 213")) _
+                    .limit(offset, page_size) _
+                    .select(Of biocad_registryModel.molecule)
+            End If
 
             If pagedata.IsNullOrEmpty Then
                 Exit Do
