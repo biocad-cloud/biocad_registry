@@ -507,4 +507,52 @@ FROM
             End If
         End Using
     End Sub
+
+    Private Sub ExportMembraneTransporterToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportMembraneTransporterToolStripMenuItem.Click
+        Dim sql As String = "SELECT 
+    t1.id, compartment_name, name, sequence
+FROM
+    (SELECT 
+        compartment_name, molecule.id, name
+    FROM
+        cad_registry.subcellular_location
+    LEFT JOIN molecule ON molecule.id = obj_id
+    LEFT JOIN subcellular_compartments ON subcellular_compartments.id = compartment_id
+    WHERE
+        compartment_id IN (99 , 102, 106)
+            AND obj_id IN (SELECT 
+                obj_id
+            FROM
+                cad_registry.db_xrefs
+            WHERE
+                type = 212 AND db_key = 354)) t1
+        LEFT JOIN
+    sequence_graph ON t1.id = molecule_id
+WHERE
+    CHAR_LENGTH(sequence) > 0
+"
+        Using file As New SaveFileDialog With {.Filter = "Sequence Database(*.fasta)|*.fasta"}
+            If file.ShowDialog = DialogResult.OK Then
+                Dim proteins As MembraneProtein() = Nothing
+
+                Call ProgressSpinner.DoLoading(Sub() proteins = MyApplication.biocad_registry.getDriver.Query(Of MembraneProtein)(sql))
+
+                Using s As Stream = file.FileName.Open(FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False)
+                    Using fasta As New SequenceModel.FASTA.StreamWriter(s)
+                        Call TaskProgress.RunAction(
+                            run:=Sub(p As ITaskProgress)
+                                     For Each protein As MembraneProtein In proteins.SafeQuery
+                                         Call fasta.Add(New FastaSeq With {
+                                            .Headers = {protein.compartment_name, protein.id, protein.name},
+                                            .SequenceData = protein.sequence
+                                         })
+                                     Next
+                                 End Sub,
+                            title:="Save data",
+                            info:="Export fasta sequnece database...")
+                    End Using
+                End Using
+            End If
+        End Using
+    End Sub
 End Class

@@ -14232,9 +14232,9 @@ to take away yo [rest of string was truncated]&quot;;.
 </member>
 <member name="T:SMRUCC.genomics.SequenceModel.ISequenceModel">
  <summary>
- The biological sequence molecular model.(蛋白质序列，核酸序列都可以使用本对象来表示)
+ The biological sequence molecular model.
  </summary>
- <remarks></remarks>
+ <remarks>(蛋白质序列，核酸序列都可以使用本对象来表示)</remarks>
 </member>
 <member name="P:SMRUCC.genomics.SequenceModel.ISequenceModel.SequenceData">
  <summary>
@@ -14621,8 +14621,11 @@ to take away yo [rest of string was truncated]&quot;;.
 </member>
 <member name="T:SMRUCC.genomics.SequenceModel.NucleotideModels.Contig">
  <summary>
- 这个基础的模型对象只有在基因组上面的位置信息
+ a model for nucleotide sequence region on genomics sequence
  </summary>
+ <remarks>
+ 这个基础的模型对象只有在基因组上面的位置信息
+ </remarks>
 </member>
 <member name="P:SMRUCC.genomics.SequenceModel.NucleotideModels.Contig.MappingLocation(System.Boolean)">
  <summary>
