@@ -141,7 +141,7 @@ Module exportwebJSONDb
 
             cache(mol_id.ToString) = exported
 
-            Call $"{mol_id} => {exported.Select(Function(r) r.guid).ToArray.GetJson(unixTimestamp:=True)}".debug
+            Call $"[{pending.Count}] {mol_id} => {exported.Select(Function(r) r.guid).ToArray.GetJson(unixTimestamp:=True)}".debug
 
             For Each rxn In exported
                 For Each c In rxn.left.JoinIterates(rxn.right)

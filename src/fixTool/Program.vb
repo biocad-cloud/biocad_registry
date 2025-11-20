@@ -19,7 +19,7 @@ Module Program
 
     Sub Main(args As String())
         ' Call idSplit.splitJointID()
-        Call exportwebJSONDb.exportReactions()
+        ' Call exportwebJSONDb.exportReactions()
         Call exportwebJSONDb.makeNetworkExpansion()
         ' Call regpreciseMotifs.extractTF()
         ' Call regpreciseMotifs.extractMotifs()
