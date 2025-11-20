@@ -5,6 +5,8 @@ const link_reaction_metabolites = function(biocad_registry) {
     let molecule = biocad_registry |> table("molecule");
     let term_metabolite = metabolite_term(biocad_registry); 
 
+    message("start workflow...");
+
     for(page in 1:20000) {
         let start = (page - 1) * page_size;
         let graph_links = biocad_registry 
@@ -37,6 +39,8 @@ const link_reaction_metabolites = function(biocad_registry) {
                         |> save(molecule_id = mol$id)
                         ;
                     }
+
+                    tqdm_label(biocad_registry |> get_last_sql());
                 }
             }
         }
