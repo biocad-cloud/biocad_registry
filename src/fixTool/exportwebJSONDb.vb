@@ -98,6 +98,11 @@ Module exportwebJSONDb
         Call JsonContract.GetJson(reactions).SaveTo($"{db_cache}/enzyme_reactions.json")
     End Sub
 
+    Sub makeNetworkExpansion()
+        Dim core As Dictionary(Of String, WebJSON.Reaction()) = $"{db_cache}/enzyme_reactions.json".LoadJsonFile(Of Dictionary(Of String, WebJSON.Reaction()))
+
+    End Sub
+
     Public Function export_reactionByID(ec_number As String) As WebJSON.Reaction()
         Dim cats = registry.regulation_graph.where(field("term") = ec_number, field("role") = term.id).project(Of UInteger)("reaction_id")
 
