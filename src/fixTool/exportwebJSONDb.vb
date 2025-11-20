@@ -1,4 +1,5 @@
 ﻿Imports biocad_storage
+Imports fixTool.localcacheViews
 Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.MIME.application.json
@@ -7,6 +8,7 @@ Imports Microsoft.VisualBasic.Scripting.Runtime
 Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports Oracle.LinuxCompatibility.MySQL.Reflection.DbAttributes
+Imports SMRUCC.genomics.ComponentModel.Annotation
 
 Module exportwebJSONDb
 
@@ -100,20 +102,58 @@ Module exportwebJSONDb
 
     Sub makeNetworkExpansion()
         Dim core As Dictionary(Of String, WebJSON.Reaction()) = $"{db_cache}/enzyme_reactions.json".LoadJsonFile(Of Dictionary(Of String, WebJSON.Reaction()))
+        Dim pending As New Queue(Of UInteger)
 
+        For Each rxn In core.Values.IteratesALL
+            For Each c In rxn.left.JoinIterates(rxn.right)
+                Call pending.Enqueue(c.molecule_id)
+            Next
+        Next
+
+        Dim cache As New Dictionary(Of String, WebJSON.Reaction())
+
+        Do While pending.Count > 0
+            Dim mol_id As UInteger = pending.Dequeue()
+
+            If cache.ContainsKey(mol_id.ToString) Then
+                Continue Do
+            End If
+
+            Dim sql As String = $"SELECT 
+                    hashcode, GROUP_CONCAT(DISTINCT obj_id) AS reactions
+                FROM
+                    hashcode
+                WHERE
+                    obj_id IN (SELECT DISTINCT
+                            reaction
+                        FROM
+                            cad_registry.reaction_graph
+                                LEFT JOIN
+                            regulation_graph ON regulation_graph.reaction_id = reaction
+                                AND regulation_graph.role = 292
+                        WHERE
+                            molecule_id = {mol_id} AND term IS NULL)
+                        AND hashcode <> ''
+                        AND type_id = 1121
+                GROUP BY hashcode"
+            Dim unique_hash = registry.hashcode.getDriver.Query(Of localcacheViews.reaction_group)(sql)
+            Dim exported = export_reactions(unique_hash, Nothing)
+
+            cache(mol_id.ToString) = exported
+
+            Call $"{mol_id} => {exported.Select(Function(r) r.guid).ToArray.GetJson(unixTimestamp:=True)}".debug
+
+            For Each rxn In exported
+                For Each c In rxn.left.JoinIterates(rxn.right)
+                    Call pending.Enqueue(c.molecule_id)
+                Next
+            Next
+        Loop
+
+        Call JsonContract.GetJson(cache).SaveTo($"{db_cache}/network_expansions.json")
     End Sub
 
-    Public Function export_reactionByID(ec_number As String) As WebJSON.Reaction()
-        Dim cats = registry.regulation_graph.where(field("term") = ec_number, field("role") = term.id).project(Of UInteger)("reaction_id")
-
-        If cats.IsNullOrEmpty Then
-            Return {}
-        End If
-
-        Dim unique_hash = registry.hashcode _
-            .where(field("type_id") = reaction_term.id, field("obj_id").in(cats), field("hashcode") <> "") _
-            .group_by("hashcode") _
-            .select(Of localcacheViews.reaction_group)("hashcode", "GROUP_CONCAT(DISTINCT obj_id) AS reactions")
+    Public Function export_reactions(unique_hash As reaction_group(), ec_number As String) As WebJSON.Reaction()
         Dim list As New Dictionary(Of String, WebJSON.Reaction)
 
         For Each hash As localcacheViews.reaction_group In unique_hash
@@ -135,13 +175,19 @@ Module exportwebJSONDb
             End If
 
             Dim mol_list = left.JoinIterates(right).Select(Function(a) a.molecule_id).ToArray
-            Dim args = registry.kinetic_law _
-                .left_join("kinetic_substrate") _
-                .on(field("`kinetic_law`.id") = field("`kinetic_substrate`.kinetic_id")) _
-                .where(field("ec_number") = ec_number,
-                       field("metabolite_id").in(mol_list),
-                       field("temperature").between(25, 40)) _
-                .select(Of localcacheViews.kinetics_args)("params", "lambda", "metabolite_id", "json_str")
+            Dim args As kinetics_args()
+
+            If ec_number.StringEmpty Then
+                args = {}
+            Else
+                args = registry.kinetic_law _
+                    .left_join("kinetic_substrate") _
+                    .on(field("`kinetic_law`.id") = field("`kinetic_substrate`.kinetic_id")) _
+                    .where(field("ec_number") = ec_number,
+                            field("metabolite_id").in(mol_list),
+                            field("temperature").between(25, 40)) _
+                    .select(Of localcacheViews.kinetics_args)("params", "lambda", "metabolite_id", "json_str")
+            End If
 
             For i As Integer = 0 To args.Length - 1
                 Dim pars = args(i).params.LoadJSON(Of Dictionary(Of String, String))
@@ -188,20 +234,35 @@ Module exportwebJSONDb
             Next
 
             list(hash.hashcode) = New WebJSON.Reaction With {
-                .guid = hash.hashcode,
-                .name = rxn.name,
-                .reaction = rxn.equation,
-                .left = left.Select(Function(a) New WebJSON.Substrate With {.factor = a.factor, .molecule_id = a.molecule_id}).ToArray,
-                .right = right.Select(Function(a) New WebJSON.Substrate With {.factor = a.factor, .molecule_id = a.molecule_id}).ToArray,
-                .law = args.Where(Function(a) Not a Is Nothing).Select(Function(a) New WebJSON.LawData With {
-                .lambda = a.lambda,
-                .metabolite_id = a.metabolite_id,
-                .params = a.params.LoadJSON(Of Dictionary(Of String, String))
-            }).ToArray
+                    .guid = hash.hashcode,
+                    .name = rxn.name,
+                    .reaction = rxn.equation,
+                    .left = left.Select(Function(a) New WebJSON.Substrate With {.factor = a.factor, .molecule_id = a.molecule_id}).ToArray,
+                    .right = right.Select(Function(a) New WebJSON.Substrate With {.factor = a.factor, .molecule_id = a.molecule_id}).ToArray,
+                    .law = args.Where(Function(a) Not a Is Nothing).Select(Function(a) New WebJSON.LawData With {
+                    .lambda = a.lambda,
+                    .metabolite_id = a.metabolite_id,
+                    .params = a.params.LoadJSON(Of Dictionary(Of String, String))
+                }).ToArray
             }
         Next
 
         Return list.Values.ToArray
+    End Function
+
+    Public Function export_reactionByID(ec_number As String) As WebJSON.Reaction()
+        Dim cats = registry.regulation_graph.where(field("term") = ec_number, field("role") = term.id).project(Of UInteger)("reaction_id")
+
+        If cats.IsNullOrEmpty Then
+            Return {}
+        End If
+
+        Dim unique_hash = registry.hashcode _
+            .where(field("type_id") = reaction_term.id, field("obj_id").in(cats), field("hashcode") <> "") _
+            .group_by("hashcode") _
+            .select(Of localcacheViews.reaction_group)("hashcode", "GROUP_CONCAT(DISTINCT obj_id) AS reactions")
+
+        Return export_reactions(unique_hash, ec_number)
     End Function
 
     Sub exportOperonDb()
