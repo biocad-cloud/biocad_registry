@@ -21,7 +21,9 @@ Public Module idSplit
                 Dim newIds = invalid.xref.StringSplit("\s*,\s*")
 
                 For Each newId In newIds.Select(AddressOf Strings.Trim)
-                    Dim exists = registry.db_xrefs.where(field("db_key") = db, field("xref") = newId).find(Of biocad_registryModel.db_xrefs)
+                    Dim exists = registry.db_xrefs.where(field("obj_id") = invalid.obj_id,
+                                                         field("db_key") = db,
+                                                         field("xref") = newId).find(Of biocad_registryModel.db_xrefs)
 
                     If exists Is Nothing Then
                         id_trans.add(
