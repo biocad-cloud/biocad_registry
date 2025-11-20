@@ -104,6 +104,9 @@ Module exportwebJSONDb
         Dim core As Dictionary(Of String, WebJSON.Reaction()) = $"{db_cache}/enzyme_reactions.json".LoadJsonFile(Of Dictionary(Of String, WebJSON.Reaction()))
         Dim pending As New Queue(Of UInteger)
 
+        left_term = registry.vocabulary.where(field("category") = "Compound Role", field("term") = "substrate").find(Of biocad_registryModel.vocabulary)
+        right_term = registry.vocabulary.where(field("category") = "Compound Role", field("term") = "product").find(Of biocad_registryModel.vocabulary)
+
         For Each rxn In core.Values.IteratesALL
             For Each c In rxn.left.JoinIterates(rxn.right)
                 Call pending.Enqueue(c.molecule_id)
