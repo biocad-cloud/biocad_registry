@@ -18,7 +18,9 @@ Module Program
     Friend ReadOnly registry As New biocad_registry(mysql)
 
     Sub Main(args As String())
-        Call idSplit.splitJointID()
+        ' Call idSplit.splitJointID()
+        Call exportwebJSONDb.exportReactions()
+        Call exportwebJSONDb.makeNetworkExpansion()
         ' Call regpreciseMotifs.extractTF()
         ' Call regpreciseMotifs.extractMotifs()
         ' Call exportwebJSONDb.runlocalDbCache()
