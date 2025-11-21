@@ -11,6 +11,7 @@ Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Microsoft.Web.WebView2.Core
 Imports Ollama
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
+Imports Oracle.LinuxCompatibility.MySQL.Reflection.DbAttributes
 Imports RegistryTool.Configs
 Imports RegistryTool.My
 Imports SMRUCC.genomics.Model.MotifGraph
@@ -120,8 +121,26 @@ let options = { width: 450, height: 300 };
         Call refreshXrefs()
         Call refreshTags()
 
+        Await LoadReactions()
         Await WebViewLoader.Init(WebView21)
     End Sub
+
+    Private Async Function LoadReactions() As Task
+        Dim reaction_ids As UInteger() = Await Task.Run(Function() MyApplication.biocad_registry.reaction_graph.where(field("molecule") = mol.id).distinct.project(Of UInteger)("reaction"))
+
+        If reaction_ids.IsNullOrEmpty Then
+            Return
+        End If
+
+        Dim reactions As biocad_registryModel.reaction() = Await Task.Run(Function() MyApplication.biocad_registry.reaction.where(field("id").in(reaction_ids)).select(Of biocad_registryModel.reaction)())
+
+        For Each rxn In reactions
+            Dim offset = DataGridView2.Rows.Add(rxn.name, rxn.equation, rxn.note)
+            DataGridView2.Rows(offset).HeaderCell.Value = rxn.id
+        Next
+
+        Call DataGridView2.CommitEdit(DataGridViewDataErrorContexts.Commit)
+    End Function
 
     Private Sub refreshNames(Optional lang As String = Nothing)
         Dim q As FieldAssert() = {
@@ -622,4 +641,61 @@ let options = { width: 450, height: 300 };
         view.Text = $"Metabolite with Xref '{link}'"
         view.Show()
     End Sub
+
+    Private Sub OpenMoleculeDataToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenMoleculeDataToolStripMenuItem.Click
+        If DataGridView3.SelectedRows.Count = 0 Then
+            Return
+        End If
+
+        Dim meta = DataGridView3.SelectedRows(0)
+        Dim registry_id As String = CStr(meta.Cells(0).Value)
+        Dim name As String = CStr(meta.Cells(1).Value)
+
+        If registry_id <> "" Then
+            Call Workbench.OpenMoleculeEditor(registry_id, name)
+        End If
+    End Sub
+
+    Private Async Sub DataGridView2_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView2.CellContentClick
+        If DataGridView2.SelectedRows.Count = 0 Then
+            Return
+        End If
+
+        Dim rxn = DataGridView2.SelectedRows(0)
+        Dim rxn_id As String = CStr(rxn.HeaderCell.Value)
+        Dim graph = Await Task.Run(
+            Function()
+                Return MyApplication.biocad_registry.reaction_graph _
+                    .left_join("molecule") _
+                    .on(field("molecule_id") = field("molecule.id")) _
+                    .left_join("vocabulary") _
+                    .on(field("vocabulary.id") = field("role")) _
+                    .where(field("reaction") = UInteger.Parse(rxn_id)) _
+                    .select(Of reaction_graphdata)("molecule.*", "db_xref", "term AS role")
+            End Function)
+
+        DataGridView3.Rows.Clear()
+
+        For Each compound In graph
+            Call DataGridView3.Rows.Add(
+                compound.id,
+                compound.db_xref,
+                compound.name,
+                compound.formula,
+                compound.mass,
+                compound.role
+            )
+        Next
+    End Sub
+End Class
+
+Public Class reaction_graphdata
+
+    <DatabaseField> Public Property id As UInteger
+    <DatabaseField> Public Property name As String
+    <DatabaseField> Public Property mass As Double
+    <DatabaseField> Public Property formula As String
+    <DatabaseField> Public Property db_xref As String
+    <DatabaseField> Public Property role As String
+
 End Class

@@ -28,6 +28,7 @@ Partial Class FormMoleculeEditor
         Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ContextMenuStrip3 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.EditToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SearchByThisDbXrefToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.Button1 = New System.Windows.Forms.Button()
@@ -74,7 +75,21 @@ Partial Class FormMoleculeEditor
         Me.ListBox3 = New System.Windows.Forms.ListBox()
         Me.ContextMenuStrip4 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ListSourceToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.SearchByThisDbXrefToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DataGridView2 = New System.Windows.Forms.DataGridView()
+        Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GroupBox7 = New System.Windows.Forms.GroupBox()
+        Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
+        Me.DataGridView3 = New System.Windows.Forms.DataGridView()
+        Me.ContextMenuStrip5 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.OpenMoleculeDataToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Column6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip3.SuspendLayout()
         CType(Me.WebView21, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -87,6 +102,14 @@ Partial Class FormMoleculeEditor
         Me.ContextMenuStrip2.SuspendLayout()
         Me.GroupBox6.SuspendLayout()
         Me.ContextMenuStrip4.SuspendLayout()
+        CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox7.SuspendLayout()
+        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SplitContainer1.Panel1.SuspendLayout()
+        Me.SplitContainer1.Panel2.SuspendLayout()
+        Me.SplitContainer1.SuspendLayout()
+        CType(Me.DataGridView3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip5.SuspendLayout()
         Me.SuspendLayout()
         '
         'DataGridView1
@@ -124,13 +147,19 @@ Partial Class FormMoleculeEditor
         '
         Me.ContextMenuStrip3.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EditToolStripMenuItem, Me.SearchByThisDbXrefToolStripMenuItem})
         Me.ContextMenuStrip3.Name = "ContextMenuStrip3"
-        Me.ContextMenuStrip3.Size = New System.Drawing.Size(208, 70)
+        Me.ContextMenuStrip3.Size = New System.Drawing.Size(208, 48)
         '
         'EditToolStripMenuItem
         '
         Me.EditToolStripMenuItem.Name = "EditToolStripMenuItem"
         Me.EditToolStripMenuItem.Size = New System.Drawing.Size(207, 22)
         Me.EditToolStripMenuItem.Text = "Edit"
+        '
+        'SearchByThisDbXrefToolStripMenuItem
+        '
+        Me.SearchByThisDbXrefToolStripMenuItem.Name = "SearchByThisDbXrefToolStripMenuItem"
+        Me.SearchByThisDbXrefToolStripMenuItem.Size = New System.Drawing.Size(207, 22)
+        Me.SearchByThisDbXrefToolStripMenuItem.Text = "Search By This Db_Xref ID"
         '
         'Label2
         '
@@ -327,7 +356,7 @@ Partial Class FormMoleculeEditor
         Me.GroupBox1.Controls.Add(Me.ListBox1)
         Me.GroupBox1.Controls.Add(Me.Label4)
         Me.GroupBox1.Controls.Add(Me.ComboBox1)
-        Me.GroupBox1.Location = New System.Drawing.Point(540, 551)
+        Me.GroupBox1.Location = New System.Drawing.Point(534, 551)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(552, 397)
         Me.GroupBox1.TabIndex = 20
@@ -395,7 +424,7 @@ Partial Class FormMoleculeEditor
         Me.GroupBox3.Controls.Add(Me.Label2)
         Me.GroupBox3.Controls.Add(Me.TextBox1)
         Me.GroupBox3.Controls.Add(Me.Button1)
-        Me.GroupBox3.Location = New System.Drawing.Point(540, 49)
+        Me.GroupBox3.Location = New System.Drawing.Point(535, 49)
         Me.GroupBox3.Name = "GroupBox3"
         Me.GroupBox3.Size = New System.Drawing.Size(552, 496)
         Me.GroupBox3.TabIndex = 22
@@ -558,17 +587,134 @@ Partial Class FormMoleculeEditor
         Me.ListSourceToolStripMenuItem.Size = New System.Drawing.Size(131, 22)
         Me.ListSourceToolStripMenuItem.Text = "List Source"
         '
-        'SearchByThisDbXrefToolStripMenuItem
+        'DataGridView2
         '
-        Me.SearchByThisDbXrefToolStripMenuItem.Name = "SearchByThisDbXrefToolStripMenuItem"
-        Me.SearchByThisDbXrefToolStripMenuItem.Size = New System.Drawing.Size(207, 22)
-        Me.SearchByThisDbXrefToolStripMenuItem.Text = "Search By This Db_Xref ID"
+        Me.DataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView2.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column3, Me.Column4, Me.Column5})
+        Me.DataGridView2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.DataGridView2.Location = New System.Drawing.Point(0, 0)
+        Me.DataGridView2.Name = "DataGridView2"
+        Me.DataGridView2.RowTemplate.Height = 23
+        Me.DataGridView2.Size = New System.Drawing.Size(848, 482)
+        Me.DataGridView2.TabIndex = 28
+        '
+        'Column3
+        '
+        Me.Column3.HeaderText = "name"
+        Me.Column3.Name = "Column3"
+        Me.Column3.ReadOnly = True
+        '
+        'Column4
+        '
+        Me.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.Column4.HeaderText = "equation"
+        Me.Column4.Name = "Column4"
+        Me.Column4.ReadOnly = True
+        '
+        'Column5
+        '
+        Me.Column5.HeaderText = "note"
+        Me.Column5.Name = "Column5"
+        Me.Column5.ReadOnly = True
+        '
+        'GroupBox7
+        '
+        Me.GroupBox7.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox7.Controls.Add(Me.SplitContainer1)
+        Me.GroupBox7.Location = New System.Drawing.Point(1471, 48)
+        Me.GroupBox7.Name = "GroupBox7"
+        Me.GroupBox7.Size = New System.Drawing.Size(854, 900)
+        Me.GroupBox7.TabIndex = 29
+        Me.GroupBox7.TabStop = False
+        Me.GroupBox7.Text = "Related Metabolic Network"
+        '
+        'SplitContainer1
+        '
+        Me.SplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SplitContainer1.Location = New System.Drawing.Point(3, 17)
+        Me.SplitContainer1.Name = "SplitContainer1"
+        Me.SplitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal
+        '
+        'SplitContainer1.Panel1
+        '
+        Me.SplitContainer1.Panel1.Controls.Add(Me.DataGridView2)
+        '
+        'SplitContainer1.Panel2
+        '
+        Me.SplitContainer1.Panel2.Controls.Add(Me.DataGridView3)
+        Me.SplitContainer1.Size = New System.Drawing.Size(848, 880)
+        Me.SplitContainer1.SplitterDistance = 482
+        Me.SplitContainer1.TabIndex = 30
+        '
+        'DataGridView3
+        '
+        Me.DataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView3.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column6, Me.Column11, Me.Column7, Me.Column8, Me.Column9, Me.Column10})
+        Me.DataGridView3.ContextMenuStrip = Me.ContextMenuStrip5
+        Me.DataGridView3.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.DataGridView3.Location = New System.Drawing.Point(0, 0)
+        Me.DataGridView3.Name = "DataGridView3"
+        Me.DataGridView3.RowTemplate.Height = 23
+        Me.DataGridView3.Size = New System.Drawing.Size(848, 394)
+        Me.DataGridView3.TabIndex = 29
+        '
+        'ContextMenuStrip5
+        '
+        Me.ContextMenuStrip5.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OpenMoleculeDataToolStripMenuItem})
+        Me.ContextMenuStrip5.Name = "ContextMenuStrip5"
+        Me.ContextMenuStrip5.Size = New System.Drawing.Size(183, 26)
+        '
+        'OpenMoleculeDataToolStripMenuItem
+        '
+        Me.OpenMoleculeDataToolStripMenuItem.Name = "OpenMoleculeDataToolStripMenuItem"
+        Me.OpenMoleculeDataToolStripMenuItem.Size = New System.Drawing.Size(182, 22)
+        Me.OpenMoleculeDataToolStripMenuItem.Text = "Open Molecule Data"
+        '
+        'Column6
+        '
+        Me.Column6.HeaderText = "registry_id"
+        Me.Column6.Name = "Column6"
+        Me.Column6.ReadOnly = True
+        '
+        'Column11
+        '
+        Me.Column11.HeaderText = "db_xref"
+        Me.Column11.Name = "Column11"
+        Me.Column11.ReadOnly = True
+        '
+        'Column7
+        '
+        Me.Column7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.Column7.HeaderText = "name"
+        Me.Column7.Name = "Column7"
+        Me.Column7.ReadOnly = True
+        '
+        'Column8
+        '
+        Me.Column8.HeaderText = "formula"
+        Me.Column8.Name = "Column8"
+        Me.Column8.ReadOnly = True
+        '
+        'Column9
+        '
+        Me.Column9.HeaderText = "exact_mass"
+        Me.Column9.Name = "Column9"
+        Me.Column9.ReadOnly = True
+        '
+        'Column10
+        '
+        Me.Column10.HeaderText = "side"
+        Me.Column10.Name = "Column10"
+        Me.Column10.ReadOnly = True
         '
         'FormMoleculeEditor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1710, 960)
+        Me.ClientSize = New System.Drawing.Size(2337, 960)
+        Me.Controls.Add(Me.GroupBox7)
         Me.Controls.Add(Me.GroupBox6)
         Me.Controls.Add(Me.GroupBox5)
         Me.Controls.Add(Me.Label3)
@@ -596,6 +742,14 @@ Partial Class FormMoleculeEditor
         Me.ContextMenuStrip2.ResumeLayout(False)
         Me.GroupBox6.ResumeLayout(False)
         Me.ContextMenuStrip4.ResumeLayout(False)
+        CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox7.ResumeLayout(False)
+        Me.SplitContainer1.Panel1.ResumeLayout(False)
+        Me.SplitContainer1.Panel2.ResumeLayout(False)
+        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SplitContainer1.ResumeLayout(False)
+        CType(Me.DataGridView3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip5.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -653,4 +807,19 @@ Partial Class FormMoleculeEditor
     Friend WithEvents ContextMenuStrip4 As ContextMenuStrip
     Friend WithEvents ListSourceToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents SearchByThisDbXrefToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents DataGridView2 As DataGridView
+    Friend WithEvents GroupBox7 As GroupBox
+    Friend WithEvents Column3 As DataGridViewTextBoxColumn
+    Friend WithEvents Column4 As DataGridViewTextBoxColumn
+    Friend WithEvents Column5 As DataGridViewTextBoxColumn
+    Friend WithEvents SplitContainer1 As SplitContainer
+    Friend WithEvents DataGridView3 As DataGridView
+    Friend WithEvents ContextMenuStrip5 As ContextMenuStrip
+    Friend WithEvents OpenMoleculeDataToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents Column6 As DataGridViewTextBoxColumn
+    Friend WithEvents Column11 As DataGridViewTextBoxColumn
+    Friend WithEvents Column7 As DataGridViewTextBoxColumn
+    Friend WithEvents Column8 As DataGridViewTextBoxColumn
+    Friend WithEvents Column9 As DataGridViewTextBoxColumn
+    Friend WithEvents Column10 As DataGridViewTextBoxColumn
 End Class
