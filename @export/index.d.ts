@@ -102,8 +102,9 @@ declare namespace biocad_registry {
    */
    function link_reaction_enzymes(biocad_registry: any): object;
    /**
+     * @param refresh default value Is ``false``.
    */
-   function link_reaction_metabolites(biocad_registry: any): object;
+   function link_reaction_metabolites(biocad_registry: any, refresh?: any): object;
    /**
    */
    function load_biocyc_compounds(biocad_registry: any, metacyc: any): object;

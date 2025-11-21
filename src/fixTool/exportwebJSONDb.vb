@@ -31,8 +31,10 @@ Module exportwebJSONDb
 
     Sub exportMolecules()
         Dim reactions = JsonContract.LoadJsonFile(Of Dictionary(Of String, WebJSON.Reaction()))($"{db_cache}/enzyme_reactions.json")
+        Dim reaction2 = JsonContract.LoadJsonFile(Of Dictionary(Of String, WebJSON.Reaction()))($"{db_cache}/network_expansions.json")
         Dim all As String() = reactions.Values _
             .IteratesALL _
+            .JoinIterates(reaction2.Values.IteratesALL) _
             .Select(Function(r)
                         Return r.left _
                             .JoinIterates(r.right) _

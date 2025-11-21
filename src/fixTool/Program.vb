@@ -19,8 +19,9 @@ Module Program
 
     Sub Main(args As String())
         ' Call idSplit.splitJointID()
-        ' Call exportwebJSONDb.exportReactions()
+        Call exportwebJSONDb.exportReactions()
         Call exportwebJSONDb.makeNetworkExpansion()
+        Call exportwebJSONDb.exportMolecules()
         ' Call regpreciseMotifs.extractTF()
         ' Call regpreciseMotifs.extractMotifs()
         ' Call exportwebJSONDb.runlocalDbCache()

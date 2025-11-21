@@ -1,20 +1,34 @@
 #' Set molecule id link
 #' 
-const link_reaction_metabolites = function(biocad_registry) {
+const link_reaction_metabolites = function(biocad_registry,refresh=FALSE) {
     let page_size = 20000;
     let molecule = biocad_registry |> table("molecule");
     let term_metabolite = metabolite_term(biocad_registry); 
 
     message("start workflow...");
 
+    if (refresh) {
+        message("all molecule id link will be refresh!");
+    }
+
     for(page in 1:20000) {
         let start = (page - 1) * page_size;
-        let graph_links = biocad_registry 
-        |> table("reaction_graph") 
-        |> where(molecule_id = 0)
-        |> limit(start, page_size) 
-        |> select()
-        ;
+        let graph_links = {
+            if (refresh) {
+                graph_links = biocad_registry 
+                |> table("reaction_graph")             
+                |> limit(start, page_size) 
+                |> select()
+                ;
+            } else {
+                graph_links = biocad_registry 
+                |> table("reaction_graph") 
+                |> where(molecule_id = 0)
+                |> limit(start, page_size) 
+                |> select()
+                ;
+            }
+        }
 
         print(biocad_registry |> get_last_sql());
 
