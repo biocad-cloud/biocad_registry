@@ -126,7 +126,7 @@ let options = { width: 450, height: 300 };
     End Sub
 
     Private Async Function LoadReactions() As Task
-        Dim reaction_ids As UInteger() = Await Task.Run(Function() MyApplication.biocad_registry.reaction_graph.where(field("molecule") = mol.id).distinct.project(Of UInteger)("reaction"))
+        Dim reaction_ids As UInteger() = Await Task.Run(Function() MyApplication.biocad_registry.reaction_graph.where(field("molecule_id") = mol.id).distinct.project(Of UInteger)("reaction"))
 
         If reaction_ids.IsNullOrEmpty Then
             Return
