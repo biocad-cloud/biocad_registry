@@ -30,6 +30,8 @@ Module exportwebJSONDb
     End Sub
 
     Sub exportMolecules()
+        Call "start to export of the molecules data!".info
+
         Dim reactions = JsonContract.LoadJsonFile(Of Dictionary(Of String, WebJSON.Reaction()))($"{db_cache}/enzyme_reactions.json")
         Dim reaction2 = JsonContract.LoadJsonFile(Of Dictionary(Of String, WebJSON.Reaction()))($"{db_cache}/network_expansions.json")
         Dim all As String() = reactions.Values _
@@ -81,10 +83,13 @@ Module exportwebJSONDb
         Next
 
         Call JsonContract.GetJson(metabolites.ToArray).SaveTo($"{db_cache}/molecules.json")
+        Call "done!".info
     End Sub
 
     Sub exportReactions()
         Dim all_ec_number As String() = registry.regulation_graph.where(field("role") = 292).distinct.project(Of String)("term")
+
+        Call "export enzymatic reaction data".info
 
         term = registry.vocabulary.where(field("category") = "Regulation Type", field("term") = "Enzymatic Catalysis").find(Of biocad_registryModel.vocabulary)
         reaction_term = registry.vocabulary.where(field("category") = "Entity Type", field("term") = "Reaction").find(Of biocad_registryModel.vocabulary)
@@ -100,11 +105,14 @@ Module exportwebJSONDb
         Next
 
         Call JsonContract.GetJson(reactions).SaveTo($"{db_cache}/enzyme_reactions.json")
+        Call "done!".info
     End Sub
 
     Sub makeNetworkExpansion()
         Dim core As Dictionary(Of String, WebJSON.Reaction()) = $"{db_cache}/enzyme_reactions.json".LoadJsonFile(Of Dictionary(Of String, WebJSON.Reaction()))
         Dim pending As New Queue(Of UInteger)
+
+        Call "make non-enzymatic reaction network expansion".info
 
         left_term = registry.vocabulary.where(field("category") = "Compound Role", field("term") = "substrate").find(Of biocad_registryModel.vocabulary)
         right_term = registry.vocabulary.where(field("category") = "Compound Role", field("term") = "product").find(Of biocad_registryModel.vocabulary)
@@ -156,6 +164,7 @@ Module exportwebJSONDb
         Loop
 
         Call JsonContract.GetJson(cache).SaveTo($"{db_cache}/network_expansions.json")
+        Call "done!".info
     End Sub
 
     Public Function export_reactions(unique_hash As reaction_group(), ec_number As String) As WebJSON.Reaction()
