@@ -23,6 +23,7 @@ Partial Class FormMoleculeEditor
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -82,14 +83,14 @@ Partial Class FormMoleculeEditor
         Me.GroupBox7 = New System.Windows.Forms.GroupBox()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.DataGridView3 = New System.Windows.Forms.DataGridView()
-        Me.ContextMenuStrip5 = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.OpenMoleculeDataToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Column6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ContextMenuStrip5 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.OpenMoleculeDataToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip3.SuspendLayout()
         CType(Me.WebView21, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -589,12 +590,22 @@ Partial Class FormMoleculeEditor
         '
         'DataGridView2
         '
+        Me.DataGridView2.AllowUserToAddRows = False
         Me.DataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView2.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column3, Me.Column4, Me.Column5})
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Cambria", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DataGridView2.DefaultCellStyle = DataGridViewCellStyle1
         Me.DataGridView2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridView2.Location = New System.Drawing.Point(0, 0)
         Me.DataGridView2.Name = "DataGridView2"
         Me.DataGridView2.RowTemplate.Height = 23
+        Me.DataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.DataGridView2.Size = New System.Drawing.Size(848, 482)
         Me.DataGridView2.TabIndex = 28
         '
@@ -650,6 +661,7 @@ Partial Class FormMoleculeEditor
         '
         'DataGridView3
         '
+        Me.DataGridView3.AllowUserToAddRows = False
         Me.DataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView3.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column6, Me.Column11, Me.Column7, Me.Column8, Me.Column9, Me.Column10})
         Me.DataGridView3.ContextMenuStrip = Me.ContextMenuStrip5
@@ -657,20 +669,9 @@ Partial Class FormMoleculeEditor
         Me.DataGridView3.Location = New System.Drawing.Point(0, 0)
         Me.DataGridView3.Name = "DataGridView3"
         Me.DataGridView3.RowTemplate.Height = 23
+        Me.DataGridView3.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.DataGridView3.Size = New System.Drawing.Size(848, 394)
         Me.DataGridView3.TabIndex = 29
-        '
-        'ContextMenuStrip5
-        '
-        Me.ContextMenuStrip5.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OpenMoleculeDataToolStripMenuItem})
-        Me.ContextMenuStrip5.Name = "ContextMenuStrip5"
-        Me.ContextMenuStrip5.Size = New System.Drawing.Size(183, 26)
-        '
-        'OpenMoleculeDataToolStripMenuItem
-        '
-        Me.OpenMoleculeDataToolStripMenuItem.Name = "OpenMoleculeDataToolStripMenuItem"
-        Me.OpenMoleculeDataToolStripMenuItem.Size = New System.Drawing.Size(182, 22)
-        Me.OpenMoleculeDataToolStripMenuItem.Text = "Open Molecule Data"
         '
         'Column6
         '
@@ -708,6 +709,18 @@ Partial Class FormMoleculeEditor
         Me.Column10.HeaderText = "side"
         Me.Column10.Name = "Column10"
         Me.Column10.ReadOnly = True
+        '
+        'ContextMenuStrip5
+        '
+        Me.ContextMenuStrip5.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OpenMoleculeDataToolStripMenuItem})
+        Me.ContextMenuStrip5.Name = "ContextMenuStrip5"
+        Me.ContextMenuStrip5.Size = New System.Drawing.Size(183, 26)
+        '
+        'OpenMoleculeDataToolStripMenuItem
+        '
+        Me.OpenMoleculeDataToolStripMenuItem.Name = "OpenMoleculeDataToolStripMenuItem"
+        Me.OpenMoleculeDataToolStripMenuItem.Size = New System.Drawing.Size(182, 22)
+        Me.OpenMoleculeDataToolStripMenuItem.Text = "Open Molecule Data"
         '
         'FormMoleculeEditor
         '
