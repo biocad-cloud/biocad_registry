@@ -18,7 +18,7 @@ Module Program
     Friend ReadOnly registry As New biocad_registry(mysql)
 
     Sub Main(args As String())
-        ' Call idSplit.splitJointID()
+        ' Call HMDBfixTool.RunFix()
         Call exportwebJSONDb.exportReactions()
         Call exportwebJSONDb.makeNetworkExpansion()
         Call exportwebJSONDb.exportMolecules()
