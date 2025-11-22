@@ -88,6 +88,7 @@ Public Class FormMain : Implements AppHost
 
     Private Sub EnableVSRenderer(version As VisualStudioToolStripExtender.VsVersion, theme As ThemeBase)
         VisualStudioToolStripExtender1.SetStyle(StatusStrip1, version, theme)
+        VisualStudioToolStripExtender1.SetStyle(MenuStrip1, version, theme)
     End Sub
 
     Private Async Function IntializeMainWindow() As Task

@@ -419,7 +419,7 @@ Microsoft.VisualBasic.Data.visualize.Network
 </member>
 <member name="P:Microsoft.VisualBasic.Data.visualize.Network.Graph.NodeData.color">
  <summary>
- 颜色<see cref="T:System.Drawing.SolidBrush"/>或者绘图<see cref="T:System.Drawing.TextureBrush"/>
+ 颜色<see cref="T:Microsoft.VisualBasic.Imaging.SolidBrush"/>或者绘图<see cref="T:Microsoft.VisualBasic.Imaging.TextureBrush"/>
  </summary>
  <returns></returns>
 </member>

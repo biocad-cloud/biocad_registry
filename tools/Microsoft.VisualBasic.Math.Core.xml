@@ -4356,7 +4356,7 @@ Microsoft.VisualBasic.Math.Core
  </summary>
  <returns><c>true</c> if is inputs valid; otherwise, <c>false</c>.</returns>
 </member>
-<member name="M:Microsoft.VisualBasic.Math.Distributions.PoissonDiskGenerator.Generate(System.Single,System.Single,System.Int32,System.Drawing.Bitmap)">
+<member name="M:Microsoft.VisualBasic.Math.Distributions.PoissonDiskGenerator.Generate(System.Single,System.Single,System.Int32,Microsoft.VisualBasic.Imaging.Bitmap)">
  <summary>
  Generate samples. Based on minDist / k / sampleRange.
  </summary>

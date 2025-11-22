@@ -5783,6 +5783,13 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <returns></returns>
  
 </member>
+<member name="M:Microsoft.VisualBasic.ApplicationServices.TarGzFileSystem.GetFullPath(System.String)">
+ <summary>
+ 
+ </summary>
+ <param name="filename">the relative file path of the target file/folder</param>
+ <returns></returns>
+</member>
 <member name="T:Microsoft.VisualBasic.ApplicationServices.Zip.Overwrite">
  <summary>
  Used to specify what our overwrite policy
@@ -16645,6 +16652,13 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  </summary>
  <returns></returns>
 </member>
+<member name="M:Microsoft.VisualBasic.ComponentModel.TagData.FactorValue`2.op_Implicit(System.ValueTuple{`0,`1})~Microsoft.VisualBasic.ComponentModel.TagData.FactorValue{`0,`1}">
+ <summary>
+ Make conversion from a tuple object
+ </summary>
+ <param name="value"></param>
+ <returns></returns>
+</member>
 <member name="T:Microsoft.VisualBasic.ComponentModel.TagData.FactorString`1">
  <summary>
  target string label tagged with a numeric factor
@@ -17202,7 +17216,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
 </member>
 <member name="T:Microsoft.VisualBasic.Imaging.BitmapImage.BitmapBuffer">
  <summary>
- Unsafe memory pointer of the <see cref="T:System.Drawing.Bitmap"/> data buffer. buffer image object in java
+ Unsafe memory pointer of the <see cref="T:Microsoft.VisualBasic.Imaging.Bitmap"/> data buffer. buffer image object in java
  </summary>
  <remarks>
  (线程不安全的图片数据对象)
@@ -17223,16 +17237,6 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  图片可能是 BGRA 4通道
  也可能是 BGR 3通道的
  </summary>
-</member>
-<member name="M:Microsoft.VisualBasic.Imaging.BitmapImage.BitmapBuffer.#ctor(System.IntPtr,System.Int32,System.Drawing.Bitmap,System.Drawing.Imaging.BitmapData,System.Int32)">
- <summary>
- constructor for gdi+ image data object
- </summary>
- <param name="ptr"></param>
- <param name="byts"></param>
- <param name="raw"></param>
- <param name="handle"></param>
- <param name="channel"></param>
 </member>
 <member name="M:Microsoft.VisualBasic.Imaging.BitmapImage.BitmapBuffer.#ctor(System.IntPtr,System.Int32,System.Int32)">
  <summary>
@@ -17316,7 +17320,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
 </member>
 <member name="M:Microsoft.VisualBasic.Imaging.BitmapImage.BitmapBuffer.GetPixel(System.Int32,System.Int32)">
  <summary>
- Gets the color of the specified pixel in this <see cref="T:System.Drawing.Bitmap"/>.
+ Gets the color of the specified pixel in this <see cref="T:Microsoft.VisualBasic.Imaging.Bitmap"/>.
  (<paramref name="x"/>和<paramref name="y"/>都是以零为底的)
  </summary>
  <param name="x">The x-coordinate of the pixel to retrieve.</param>
@@ -17385,7 +17389,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
 </member>
 <member name="M:Microsoft.VisualBasic.Imaging.BitmapImage.BitmapBuffer.SetPixel(System.Int32,System.Int32,System.Drawing.Color)">
  <summary>
- Sets the color of the specified pixel in this <see cref="T:System.Drawing.Bitmap"/>.(这个函数线程不安全)
+ Sets the color of the specified pixel in this <see cref="T:Microsoft.VisualBasic.Imaging.Bitmap"/>.(这个函数线程不安全)
  </summary>
  <param name="x">The x-coordinate of the pixel to set. [0, width-1]</param>
  <param name="y">The y-coordinate of the pixel to set. [0, height-1]</param>
@@ -17415,7 +17419,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  </summary>
  <param name="s"></param>
 </member>
-<member name="M:Microsoft.VisualBasic.Imaging.BitmapImage.BitmapBuffer.FromImage(System.Drawing.Image)">
+<member name="M:Microsoft.VisualBasic.Imaging.BitmapImage.BitmapBuffer.FromImage(Microsoft.VisualBasic.Imaging.Image)">
  <summary>
  这个函数会自动复制原始图片数据里面的东西的
  </summary>
@@ -17423,22 +17427,14 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <returns></returns>
  
 </member>
-<member name="M:Microsoft.VisualBasic.Imaging.BitmapImage.BitmapBuffer.FromBitmap(System.Drawing.Bitmap)">
+<member name="M:Microsoft.VisualBasic.Imaging.BitmapImage.BitmapBuffer.FromBitmap(Microsoft.VisualBasic.Imaging.Bitmap)">
  <summary>
  
  </summary>
  <param name="curBitmap"></param>
  <returns>
- get the reference of the <see cref="!:Bitmap.MemoryBuffer"/> data directly
+ get the reference of the <see cref="P:Microsoft.VisualBasic.Imaging.Bitmap.MemoryBuffer"/> data directly
  </returns>
-</member>
-<member name="M:Microsoft.VisualBasic.Imaging.BitmapImage.BitmapBuffer.FromBitmap(System.Drawing.Bitmap,System.Drawing.Imaging.ImageLockMode)">
- <summary>
- 使用这个函数进行写数据的话，会修改到原图
- </summary>
- <param name="curBitmap"></param>
- <param name="mode"></param>
- <returns></returns>
 </member>
 <member name="M:Microsoft.VisualBasic.Imaging.BitmapImage.BitmapBuffer.op_Addition(Microsoft.VisualBasic.Imaging.BitmapImage.BitmapBuffer,System.Int32)">
  <summary>
@@ -17459,7 +17455,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
 <member name="T:Microsoft.VisualBasic.Imaging.BitmapImage.BitmapReader">
  <summary>
  a bitmap image data reader for help huge scientific image data processing.
- (more than the 2GB limitation of gdi+ <see cref="T:System.Drawing.Bitmap"/>.)
+ (more than the 2GB limitation of gdi+ <see cref="T:Microsoft.VisualBasic.Imaging.Bitmap"/>.)
  </summary>
 </member>
 <member name="M:Microsoft.VisualBasic.Imaging.BitmapImage.BitmapReader.#ctor(System.String)">
@@ -17516,14 +17512,14 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  </summary>
  <param name="byts">Unmanaged memory pointer that point to the bitmap data buffer.</param>
 </member>
-<member name="M:Microsoft.VisualBasic.Imaging.BitmapImage.BitmapScale.BitmapPixelScans(System.Drawing.Bitmap@,Microsoft.VisualBasic.Imaging.BitmapImage.BitmapScale.PixelScanPointer)">
+<member name="M:Microsoft.VisualBasic.Imaging.BitmapImage.BitmapScale.BitmapPixelScans(Microsoft.VisualBasic.Imaging.Bitmap@,Microsoft.VisualBasic.Imaging.BitmapImage.BitmapScale.PixelScanPointer)">
  <summary>
  A generic bitmap pixel scan framework that using memory pointer
  </summary>
  <param name="curBitmap"></param>
  <param name="scan"></param>
 </member>
-<member name="M:Microsoft.VisualBasic.Imaging.BitmapImage.BitmapScale.Binarization(System.Drawing.Bitmap@,Microsoft.VisualBasic.Imaging.BitmapImage.BitmapScale.BinarizationStyles)">
+<member name="M:Microsoft.VisualBasic.Imaging.BitmapImage.BitmapScale.Binarization(Microsoft.VisualBasic.Imaging.Bitmap@,Microsoft.VisualBasic.Imaging.BitmapImage.BitmapScale.BinarizationStyles)">
  <summary>
  
  </summary>
@@ -17532,7 +17528,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  http://www.codeproject.com/Articles/1094534/Image-Binarization-Using-Program-Languages
  
  The .net Bitmap object keeps a reference to HBITMAP handle, Not to the underlying bitmap itself.
- So, single pixel access call to <see cref="M:System.Drawing.Bitmap.SetPixel(System.Int32,System.Int32,System.Drawing.Color)"/>/<see cref="M:System.Drawing.Bitmap.GetPixel(System.Int32,System.Int32)"/> Or 
+ So, single pixel access call to <see cref="M:Microsoft.VisualBasic.Imaging.Bitmap.SetPixel(System.Int32,System.Int32,System.Drawing.Color)"/>/<see cref="M:Microsoft.VisualBasic.Imaging.Bitmap.GetPixel(System.Int32,System.Int32)"/> Or 
  even retrieve Width/Height properties does something Like: 
  lock handle In place-Get/Set value/unlock handle. It Is the most inefficient way To manipulate bitmaps In .NET. 
  The author should read about ``Bitmap.LockBits`` first.
@@ -17545,7 +17541,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="byts"></param>
  <param name="style"></param>
 </member>
-<member name="M:Microsoft.VisualBasic.Imaging.BitmapImage.BitmapScale.AdjustContrast(System.Drawing.Bitmap@,System.Double)">
+<member name="M:Microsoft.VisualBasic.Imaging.BitmapImage.BitmapScale.AdjustContrast(Microsoft.VisualBasic.Imaging.Bitmap@,System.Double)">
  <summary>
  Adjust the contrast of an image.
  (调整图像的对比度)
@@ -17571,7 +17567,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  https://stackoverflow.com/questions/3115076/adjust-the-contrast-of-an-image-in-c-sharp-efficiently
  </remarks>
 </member>
-<member name="M:Microsoft.VisualBasic.Imaging.BitmapImage.BitmapScale.Grayscale(System.Drawing.Image)">
+<member name="M:Microsoft.VisualBasic.Imaging.BitmapImage.BitmapScale.Grayscale(Microsoft.VisualBasic.Imaging.Image)">
  <summary>
  convert color bitmaps to grayscale.(灰度图)
  </summary>
@@ -17867,7 +17863,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="sigma"></param>
  <returns></returns>
 </member>
-<member name="M:Microsoft.VisualBasic.Imaging.BitmapImage.RTCP.RTCPGray(System.Drawing.Bitmap,System.Single)">
+<member name="M:Microsoft.VisualBasic.Imaging.BitmapImage.RTCP.RTCPGray(Microsoft.VisualBasic.Imaging.Bitmap,System.Single)">
  <summary>
  .NET Implement of Real-time Contrast Preserving Decolorization
  </summary>
@@ -17877,7 +17873,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
 </member>
 <member name="M:Microsoft.VisualBasic.Imaging.BitmapImage.SaveGdiBitmap.Save(System.IO.Stream,Microsoft.VisualBasic.Imaging.ImageFormats)">
  <summary>
- <see cref="M:System.Drawing.Image.Save(System.IO.Stream,System.Drawing.Imaging.ImageCodecInfo,System.Drawing.Imaging.EncoderParameters)"/>
+ <see cref="M:Microsoft.VisualBasic.Imaging.Image.Save(System.IO.Stream,Microsoft.VisualBasic.Imaging.ImageFormats)"/>
  </summary>
  <param name="stream"></param>
  <param name="format"></param>
@@ -18394,7 +18390,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  </remarks>
  
 </member>
-<member name="M:Microsoft.VisualBasic.Imaging.Driver.DeviceInterop.CreateCanvas2D(System.Drawing.Bitmap,System.Boolean)">
+<member name="M:Microsoft.VisualBasic.Imaging.Driver.DeviceInterop.CreateCanvas2D(Microsoft.VisualBasic.Imaging.Bitmap,System.Boolean)">
  <summary>
  
  </summary>
@@ -18422,7 +18418,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="s"></param>
  <returns></returns>
 </member>
-<member name="M:Microsoft.VisualBasic.Imaging.Driver.DriverLoad.MeasureTextSize(System.String,System.Drawing.Font)">
+<member name="M:Microsoft.VisualBasic.Imaging.Driver.DriverLoad.MeasureTextSize(System.String,Microsoft.VisualBasic.Imaging.Font)">
  <summary>
  A helper function for measure string size
  </summary>
@@ -18515,7 +18511,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <summary>
  The graphics engine driver type indicator, 
  
- + for <see cref="F:Microsoft.VisualBasic.Imaging.Driver.Drivers.GDI"/> -> ImageData(<see cref="T:System.Drawing.Image"/>, <see cref="T:System.Drawing.Bitmap"/>)
+ + for <see cref="F:Microsoft.VisualBasic.Imaging.Driver.Drivers.GDI"/> -> ImageData(<see cref="T:Microsoft.VisualBasic.Imaging.Image"/>, <see cref="T:Microsoft.VisualBasic.Imaging.Bitmap"/>)
  + for <see cref="F:Microsoft.VisualBasic.Imaging.Driver.Drivers.SVG"/> -> SVGData(SVGDocument)
  
  (驱动程序的类型)
@@ -18578,7 +18574,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="default">默认使用Windows10的默认字体</param>
  <returns></returns>
 </member>
-<member name="M:Microsoft.VisualBasic.Imaging.FontFace.MeasureString(System.String,System.Drawing.Font)">
+<member name="M:Microsoft.VisualBasic.Imaging.FontFace.MeasureString(System.String,Microsoft.VisualBasic.Imaging.Font)">
  <summary>
  A common shared method for measure text drawing size in gdi+ environment.
  </summary>
@@ -18606,6 +18602,21 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <returns></returns>
  
 </member>
+<member name="M:Microsoft.VisualBasic.Imaging.GraphicsExtensions.SaveAs(Microsoft.VisualBasic.Imaging.Image,System.String,Microsoft.VisualBasic.Imaging.ImageFormats,System.Boolean)">
+ <summary>
+ Saves this <see cref="T:Microsoft.VisualBasic.Imaging.Image"/> to the specified file in the specified format.
+ (这个函数可以很容易的将图像对象保存为tiff文件)
+ </summary>
+ <param name="res">
+ The image resource data that will be saved to the disk.
+ (因为这个函数可能会被<see cref="P:Microsoft.VisualBasic.Imaging.Driver.GdiRasterGraphics.ImageResource"/>所调用，
+ 由于该属性的Set方法是不公开可见的，所以将会不兼容这个方法，如果这个
+ 参数被设置为ByRef的话)
+ </param>
+ <param name="path">path string</param>
+ <param name="format">Image formats enumeration.</param>
+ <returns></returns>
+</member>
 <member name="M:Microsoft.VisualBasic.Imaging.GraphicsExtensions.PointF(System.Collections.Generic.IEnumerable{System.Drawing.Point})">
  <summary>
  Make batch convert of <see cref="T:System.Drawing.Point"/> to <see cref="T:System.Drawing.PointF"/> object
@@ -18621,13 +18632,13 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="val">a value in range ``[0, 1]``</param>
  <returns></returns>
 </member>
-<member name="M:Microsoft.VisualBasic.Imaging.GraphicsExtensions.Opacity(System.Drawing.Brush,System.Double)">
+<member name="M:Microsoft.VisualBasic.Imaging.GraphicsExtensions.Opacity(Microsoft.VisualBasic.Imaging.Brush,System.Double)">
  <summary>
- adjust the color opacity value of the <see cref="T:System.Drawing.SolidBrush"/>
+ adjust the color opacity value of the <see cref="T:Microsoft.VisualBasic.Imaging.SolidBrush"/>
  </summary>
  <param name="fill"></param>
  <param name="val">
- the alpha value for <see cref="M:Microsoft.VisualBasic.Imaging.GraphicsExtensions.Opacity(System.Drawing.Brush,System.Double)"/>, value in range ``[0, 1]``.
+ the alpha value for <see cref="M:Microsoft.VisualBasic.Imaging.GraphicsExtensions.Opacity(Microsoft.VisualBasic.Imaging.Brush,System.Double)"/>, value in range ``[0, 1]``.
  </param>
  <returns></returns>
 </member>
@@ -18646,7 +18657,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <returns></returns>
  
 </member>
-<member name="M:Microsoft.VisualBasic.Imaging.GraphicsExtensions.DrawCircle(Microsoft.VisualBasic.Imaging.IGraphics@,System.Drawing.Pen,System.Single,System.Single,System.Single,System.Boolean)">
+<member name="M:Microsoft.VisualBasic.Imaging.GraphicsExtensions.DrawCircle(Microsoft.VisualBasic.Imaging.IGraphics@,Microsoft.VisualBasic.Imaging.Pen,System.Single,System.Single,System.Single,System.Boolean)">
  <summary>
  模仿Java之中的``DrawCircle``方法
  </summary>
@@ -18658,7 +18669,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="fill"></param>
  
 </member>
-<member name="M:Microsoft.VisualBasic.Imaging.GraphicsExtensions.DrawCircle(Microsoft.VisualBasic.Imaging.IGraphics@,System.Drawing.PointF,System.Single,System.Drawing.Brush)">
+<member name="M:Microsoft.VisualBasic.Imaging.GraphicsExtensions.DrawCircle(Microsoft.VisualBasic.Imaging.IGraphics@,System.Drawing.PointF,System.Single,Microsoft.VisualBasic.Imaging.Brush)">
  <summary>
  a helper method for fill pie
  </summary>
@@ -18667,7 +18678,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="r!"></param>
  <param name="color"></param>
 </member>
-<member name="M:Microsoft.VisualBasic.Imaging.GraphicsExtensions.DrawCircle(Microsoft.VisualBasic.Imaging.IGraphics@,System.Drawing.PointF,System.Single,System.Drawing.Pen,System.Boolean)">
+<member name="M:Microsoft.VisualBasic.Imaging.GraphicsExtensions.DrawCircle(Microsoft.VisualBasic.Imaging.IGraphics@,System.Drawing.PointF,System.Single,Microsoft.VisualBasic.Imaging.Pen,System.Boolean)">
  <summary>
  进行圆的绘制
  </summary>
@@ -18677,7 +18688,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="color">线条的颜色</param>
  <param name="fill">是否进行填充？</param>
 </member>
-<member name="M:Microsoft.VisualBasic.Imaging.GraphicsExtensions.EntireImage(System.Drawing.Image)">
+<member name="M:Microsoft.VisualBasic.Imaging.GraphicsExtensions.EntireImage(Microsoft.VisualBasic.Imaging.Image)">
  <summary>
  返回整个图像的区域
  </summary>
@@ -18701,7 +18712,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
 <member name="M:Microsoft.VisualBasic.Imaging.GraphicsExtensions.LoadImage(System.String,System.Boolean,System.Boolean)">
  <summary>
  Load image from a file and then close the file handle.
- (使用<see cref="M:System.Drawing.Image.FromStream(System.IO.Stream)"/>函数在加载完成图像到Dispose这段之间内都不会释放文件句柄，
+ (使用<see cref="M:Microsoft.VisualBasic.Imaging.Image.FromStream(System.IO.Stream)"/>函数在加载完成图像到Dispose这段之间内都不会释放文件句柄，
  则使用这个函数则没有这个问题，在图片加载之后会立即释放掉文件句柄)
  </summary>
  <param name="path"></param>
@@ -18718,14 +18729,14 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="throwEx"></param>
  <returns></returns>
 </member>
-<member name="M:Microsoft.VisualBasic.Imaging.GraphicsExtensions.GetStreamBuffer(System.Drawing.Image)">
+<member name="M:Microsoft.VisualBasic.Imaging.GraphicsExtensions.GetStreamBuffer(Microsoft.VisualBasic.Imaging.Image)">
  <summary>
  将图片对象转换为原始的字节流
  </summary>
  <param name="image"></param>
  <returns></returns>
 </member>
-<member name="M:Microsoft.VisualBasic.Imaging.GraphicsExtensions.ColorReplace(System.Drawing.Bitmap,System.Drawing.Color,System.Drawing.Color,System.Int32)">
+<member name="M:Microsoft.VisualBasic.Imaging.GraphicsExtensions.ColorReplace(Microsoft.VisualBasic.Imaging.Bitmap,System.Drawing.Color,System.Drawing.Color,System.Int32)">
  <summary>
  Color replace using memory pointer
  </summary>
@@ -18734,7 +18745,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="replaceAs"></param>
  <returns></returns>
 </member>
-<member name="M:Microsoft.VisualBasic.Imaging.GraphicsExtensions.ImageAddFrame(Microsoft.VisualBasic.Imaging.IGraphics,System.Drawing.Pen,System.Int32)">
+<member name="M:Microsoft.VisualBasic.Imaging.GraphicsExtensions.ImageAddFrame(Microsoft.VisualBasic.Imaging.IGraphics,Microsoft.VisualBasic.Imaging.Pen,System.Int32)">
  <summary>
  Adding a frame box to the target image source.(为图像添加边框)
  </summary>
@@ -18750,7 +18761,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="size"></param>
  <returns></returns>
 </member>
-<member name="M:Microsoft.VisualBasic.Imaging.ImageTools.ImageCrop(System.Drawing.Image,System.Drawing.Rectangle)">
+<member name="M:Microsoft.VisualBasic.Imaging.ImageTools.ImageCrop(Microsoft.VisualBasic.Imaging.Image,System.Drawing.Rectangle)">
  <summary>
  Crop an image 
  </summary>
@@ -18759,7 +18770,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <returns>resulting image</returns>
  
 </member>
-<member name="M:Microsoft.VisualBasic.Imaging.ImageTools.ImageCrop(System.Drawing.Bitmap,System.Drawing.Rectangle)">
+<member name="M:Microsoft.VisualBasic.Imaging.ImageTools.ImageCrop(Microsoft.VisualBasic.Imaging.Bitmap,System.Drawing.Rectangle)">
  <summary>
  Crop region on an bitmap image 
  </summary>
@@ -18768,7 +18779,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <returns>resulting bitmap image object</returns>
  
 </member>
-<member name="M:Microsoft.VisualBasic.Imaging.ImageTools.CorpBlank(System.Drawing.Image,System.Int32,System.Drawing.Color,System.String)">
+<member name="M:Microsoft.VisualBasic.Imaging.ImageTools.CorpBlank(Microsoft.VisualBasic.Imaging.Image,System.Int32,System.Drawing.Color,System.String)">
  <summary>
  将图像的多余的空白处给剪裁掉，确定边界，然后进行剪裁，使用这个函数需要注意下设置空白色，默认使用的空白色为<see cref="P:System.Drawing.Color.White"/>
  </summary>
@@ -18777,7 +18788,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="blankColor">默认白色为空白色</param>
  <returns></returns>
 </member>
-<member name="M:Microsoft.VisualBasic.Imaging.ImageTools.CorpBlank(System.Drawing.Bitmap,System.Int32,System.Drawing.Color,System.String)">
+<member name="M:Microsoft.VisualBasic.Imaging.ImageTools.CorpBlank(Microsoft.VisualBasic.Imaging.Bitmap,System.Int32,System.Drawing.Color,System.String)">
  <summary>
  将图像的多余的空白处给剪裁掉，确定边界，然后进行剪裁，使用这个函数需要注意下设置空白色，默认使用的空白色为<see cref="P:System.Drawing.Color.White"/>
  </summary>
@@ -18786,7 +18797,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="blankColor">默认白色为空白色</param>
  <returns></returns>
 </member>
-<member name="M:Microsoft.VisualBasic.Imaging.ImageTools.CorpBlankInternal(System.Drawing.Bitmap,System.Int32,System.Drawing.Color,System.Boolean,System.String)">
+<member name="M:Microsoft.VisualBasic.Imaging.ImageTools.CorpBlankInternal(Microsoft.VisualBasic.Imaging.Bitmap,System.Int32,System.Drawing.Color,System.Boolean,System.String)">
  <summary>
  将图像的多余的空白处给剪裁掉，确定边界，然后进行剪裁，使用这个函数需要注意下设置空白色，默认使用的空白色为<see cref="P:System.Drawing.Color.White"/>
  </summary>
@@ -18829,7 +18840,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
 </member>
 <member name="P:Microsoft.VisualBasic.Imaging.IGraphics.Background">
  <summary>
- set background via <see cref="M:Microsoft.VisualBasic.Imaging.IGraphics.Clear(System.Drawing.Brush)"/> method.
+ set background via <see cref="M:Microsoft.VisualBasic.Imaging.IGraphics.Clear(Microsoft.VisualBasic.Imaging.Brush)"/> method.
  </summary>
  <returns></returns>
 </member>
@@ -18917,7 +18928,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  Releases all resources used by this System.Drawing.Graphics.    
  </summary>
 </member>
-<member name="M:Microsoft.VisualBasic.Imaging.IGraphics.DrawArc(System.Drawing.Pen,System.Drawing.RectangleF,System.Single,System.Single)">
+<member name="M:Microsoft.VisualBasic.Imaging.IGraphics.DrawArc(Microsoft.VisualBasic.Imaging.Pen,System.Drawing.RectangleF,System.Single,System.Single)">
  <summary>
  Draws an arc representing a portion of an ellipse specified by a System.Drawing.RectangleF
  structure.
@@ -18929,7 +18940,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="sweepAngle">Angle in degrees measured clockwise from the startAngle parameter to ending point
  of the arc.</param>
 </member>
-<member name="M:Microsoft.VisualBasic.Imaging.IGraphics.DrawArc(System.Drawing.Pen,System.Drawing.Rectangle,System.Single,System.Single)">
+<member name="M:Microsoft.VisualBasic.Imaging.IGraphics.DrawArc(Microsoft.VisualBasic.Imaging.Pen,System.Drawing.Rectangle,System.Single,System.Single)">
  <summary>
  Draws an arc representing a portion of an ellipse specified by a System.Drawing.Rectangle
  structure.
@@ -18941,25 +18952,25 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="sweepAngle">Angle in degrees measured clockwise from the startAngle parameter to ending point
  of the arc.</param>
 </member>
-<member name="M:Microsoft.VisualBasic.Imaging.IGraphics.DrawImage(System.Drawing.Image,System.Drawing.Rectangle)">
+<member name="M:Microsoft.VisualBasic.Imaging.IGraphics.DrawImage(Microsoft.VisualBasic.Imaging.Image,System.Drawing.Rectangle)">
  <summary>
- Draws the specified <see cref="T:System.Drawing.Image"/> at the specified location and with the
+ Draws the specified <see cref="T:Microsoft.VisualBasic.Imaging.Image"/> at the specified location and with the
  specified size.
  </summary>
  <param name="image">Image to draw.</param>
  <param name="rect">Rectangle structure that specifies the location and size of the
  drawn image.</param>
 </member>
-<member name="M:Microsoft.VisualBasic.Imaging.IGraphics.DrawImage(System.Drawing.Image,System.Drawing.PointF)">
+<member name="M:Microsoft.VisualBasic.Imaging.IGraphics.DrawImage(Microsoft.VisualBasic.Imaging.Image,System.Drawing.PointF)">
  <summary>
- Draws the specified <see cref="T:System.Drawing.Image"/>, using its original physical size, at
+ Draws the specified <see cref="T:Microsoft.VisualBasic.Imaging.Image"/>, using its original physical size, at
  the specified location.
  </summary>
- <param name="image"><see cref="T:System.Drawing.Image"/> to draw.</param>
+ <param name="image"><see cref="T:Microsoft.VisualBasic.Imaging.Image"/> to draw.</param>
  <param name="point"><see cref="T:System.Drawing.PointF"/> structure that represents the upper-left corner of the
  drawn image.</param>
 </member>
-<member name="M:Microsoft.VisualBasic.Imaging.IGraphics.DrawImage(System.Drawing.Image,System.Drawing.RectangleF)">
+<member name="M:Microsoft.VisualBasic.Imaging.IGraphics.DrawImage(Microsoft.VisualBasic.Imaging.Image,System.Drawing.RectangleF)">
  <summary>
  Draws the specified System.Drawing.Image at the specified location and with the
  specified size.
@@ -18968,15 +18979,15 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="rect">RectangleF structure that specifies the location and size of the
  drawn image.</param>
 </member>
-<member name="M:Microsoft.VisualBasic.Imaging.IGraphics.DrawLine(System.Drawing.Pen,System.Drawing.PointF,System.Drawing.PointF)">
+<member name="M:Microsoft.VisualBasic.Imaging.IGraphics.DrawLine(Microsoft.VisualBasic.Imaging.Pen,System.Drawing.PointF,System.Drawing.PointF)">
  <summary>
  Draws a line connecting two System.Drawing.PointF structures.
  </summary>
- <param name="pen"><see cref="T:System.Drawing.Pen"/> that determines the color, width, and style of the line.</param>
+ <param name="pen"><see cref="T:Microsoft.VisualBasic.Imaging.Pen"/> that determines the color, width, and style of the line.</param>
  <param name="pt1"><see cref="T:System.Drawing.PointF"/> structure that represents the first point to connect.</param>
  <param name="pt2"><see cref="T:System.Drawing.PointF"/> structure that represents the second point to connect.</param>
 </member>
-<member name="M:Microsoft.VisualBasic.Imaging.IGraphics.DrawLine(System.Drawing.Pen,System.Drawing.Point,System.Drawing.Point)">
+<member name="M:Microsoft.VisualBasic.Imaging.IGraphics.DrawLine(Microsoft.VisualBasic.Imaging.Pen,System.Drawing.Point,System.Drawing.Point)">
  <summary>
  Draws a line connecting two System.Drawing.Point structures.
  </summary>
@@ -18984,7 +18995,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="pt1">System.Drawing.Point structure that represents the first point to connect.</param>
  <param name="pt2">System.Drawing.Point structure that represents the second point to connect.</param>
 </member>
-<member name="M:Microsoft.VisualBasic.Imaging.IGraphics.DrawLine(System.Drawing.Pen,System.Int32,System.Int32,System.Int32,System.Int32)">
+<member name="M:Microsoft.VisualBasic.Imaging.IGraphics.DrawLine(Microsoft.VisualBasic.Imaging.Pen,System.Int32,System.Int32,System.Int32,System.Int32)">
  <summary>
  Draws a line connecting the two points specified by the coordinate pairs.
  </summary>
@@ -18994,7 +19005,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="x2">The x-coordinate of the second point.</param>
  <param name="y2">The y-coordinate of the second point.</param>
 </member>
-<member name="M:Microsoft.VisualBasic.Imaging.IGraphics.DrawLine(System.Drawing.Pen,System.Single,System.Single,System.Single,System.Single)">
+<member name="M:Microsoft.VisualBasic.Imaging.IGraphics.DrawLine(Microsoft.VisualBasic.Imaging.Pen,System.Single,System.Single,System.Single,System.Single)">
  <summary>
  Draws a line connecting the two points specified by the coordinate pairs.
  </summary>
@@ -19004,14 +19015,14 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="x2">The x-coordinate of the second point.</param>
  <param name="y2">The y-coordinate of the second point.</param>
 </member>
-<member name="M:Microsoft.VisualBasic.Imaging.IGraphics.DrawRectangle(System.Drawing.Pen,System.Drawing.Rectangle)">
+<member name="M:Microsoft.VisualBasic.Imaging.IGraphics.DrawRectangle(Microsoft.VisualBasic.Imaging.Pen,System.Drawing.Rectangle)">
  <summary>
  Draws a rectangle specified by a System.Drawing.Rectangle structure.
  </summary>
  <param name="pen">A System.Drawing.Pen that determines the color, width, and style of the rectangle.</param>
  <param name="rect">A System.Drawing.Rectangle structure that represents the rectangle to draw.</param>
 </member>
-<member name="M:Microsoft.VisualBasic.Imaging.IGraphics.DrawRectangle(System.Drawing.Pen,System.Single,System.Single,System.Single,System.Single)">
+<member name="M:Microsoft.VisualBasic.Imaging.IGraphics.DrawRectangle(Microsoft.VisualBasic.Imaging.Pen,System.Single,System.Single,System.Single,System.Single)">
  <summary>
  Draws a rectangle specified by a coordinate pair, a width, and a height.
  </summary>
@@ -19021,7 +19032,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="width">The width of the rectangle to draw.</param>
  <param name="height">The height of the rectangle to draw.</param>
 </member>
-<member name="M:Microsoft.VisualBasic.Imaging.IGraphics.DrawRectangle(System.Drawing.Pen,System.Int32,System.Int32,System.Int32,System.Int32)">
+<member name="M:Microsoft.VisualBasic.Imaging.IGraphics.DrawRectangle(Microsoft.VisualBasic.Imaging.Pen,System.Int32,System.Int32,System.Int32,System.Int32)">
  <summary>
  Draws a rectangle specified by a coordinate pair, a width, and a height.
  </summary>
@@ -19031,7 +19042,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="width">Width of the rectangle to draw.</param>
  <param name="height">Height of the rectangle to draw.</param>
 </member>
-<member name="M:Microsoft.VisualBasic.Imaging.IGraphics.DrawRectangles(System.Drawing.Pen,System.Drawing.RectangleF[])">
+<member name="M:Microsoft.VisualBasic.Imaging.IGraphics.DrawRectangles(Microsoft.VisualBasic.Imaging.Pen,System.Drawing.RectangleF[])">
  <summary>
  Draws a series of rectangles specified by System.Drawing.RectangleF structures.
  </summary>
@@ -19040,7 +19051,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="rects">Array of System.Drawing.RectangleF structures that represent the rectangles to
  draw.</param>
 </member>
-<member name="M:Microsoft.VisualBasic.Imaging.IGraphics.DrawRectangles(System.Drawing.Pen,System.Drawing.Rectangle[])">
+<member name="M:Microsoft.VisualBasic.Imaging.IGraphics.DrawRectangles(Microsoft.VisualBasic.Imaging.Pen,System.Drawing.Rectangle[])">
  <summary>
  Draws a series of rectangles specified by System.Drawing.Rectangle structures.
  </summary>
@@ -19049,10 +19060,10 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="rects">Array of System.Drawing.Rectangle structures that represent the rectangles to
  draw.</param>
 </member>
-<member name="M:Microsoft.VisualBasic.Imaging.IGraphics.DrawString(System.String,System.Drawing.Font,System.Drawing.Brush,System.Drawing.PointF@)">
+<member name="M:Microsoft.VisualBasic.Imaging.IGraphics.DrawString(System.String,Microsoft.VisualBasic.Imaging.Font,Microsoft.VisualBasic.Imaging.Brush,System.Drawing.PointF@)">
  <summary>
  Draws the specified text string at the specified location with the specified
- <see cref="T:System.Drawing.Brush"/> and <see cref="P:Microsoft.VisualBasic.Imaging.IGraphics.Font"/> objects.
+ <see cref="T:Microsoft.VisualBasic.Imaging.Brush"/> and <see cref="P:Microsoft.VisualBasic.Imaging.IGraphics.Font"/> objects.
  </summary>
  <param name="s">String to draw.</param>
  <param name="font">System.Drawing.Font that defines the text format of the string.</param>
@@ -19060,7 +19071,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="point">System.Drawing.PointF structure that specifies the upper-left corner of the drawn
  text.</param>
 </member>
-<member name="M:Microsoft.VisualBasic.Imaging.IGraphics.DrawString(System.String,System.Drawing.Font,System.Drawing.Brush,System.Single,System.Single)">
+<member name="M:Microsoft.VisualBasic.Imaging.IGraphics.DrawString(System.String,Microsoft.VisualBasic.Imaging.Font,Microsoft.VisualBasic.Imaging.Brush,System.Single,System.Single)">
  <summary>
  Draws the specified text string at the specified location with the specified
  System.Drawing.Brush and System.Drawing.Font objects.
@@ -19071,7 +19082,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="x">The x-coordinate of the upper-left corner of the drawn text.</param>
  <param name="y">The y-coordinate of the upper-left corner of the drawn text.</param>
 </member>
-<member name="M:Microsoft.VisualBasic.Imaging.IGraphics.FillEllipse(System.Drawing.Brush,System.Drawing.RectangleF)">
+<member name="M:Microsoft.VisualBasic.Imaging.IGraphics.FillEllipse(Microsoft.VisualBasic.Imaging.Brush,System.Drawing.RectangleF)">
  <summary>
  Fills the interior of an ellipse defined by a bounding rectangle specified by
  a System.Drawing.RectangleF structure.
@@ -19080,14 +19091,14 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="rect">System.Drawing.RectangleF structure that represents the bounding rectangle that
  defines the ellipse.</param>
 </member>
-<member name="M:Microsoft.VisualBasic.Imaging.IGraphics.FillPath(System.Drawing.Brush,System.Drawing.Drawing2D.GraphicsPath)">
+<member name="M:Microsoft.VisualBasic.Imaging.IGraphics.FillPath(Microsoft.VisualBasic.Imaging.Brush,Microsoft.VisualBasic.Imaging.GraphicsPath)">
  <summary>
  Fills the interior of a System.Drawing.Drawing2D.GraphicsPath.
  </summary>
  <param name="brush">System.Drawing.Brush that determines the characteristics of the fill.</param>
  <param name="path">System.Drawing.Drawing2D.GraphicsPath that represents the path to fill.</param>
 </member>
-<member name="M:Microsoft.VisualBasic.Imaging.IGraphics.FillPie(System.Drawing.Brush,System.Drawing.RectangleF,System.Single,System.Single)">
+<member name="M:Microsoft.VisualBasic.Imaging.IGraphics.FillPie(Microsoft.VisualBasic.Imaging.Brush,System.Drawing.RectangleF,System.Single,System.Single)">
  <summary>
  Fills the interior of a pie section defined by an ellipse specified by a System.Drawing.RectangleF
  structure and two radial lines.
@@ -19100,7 +19111,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="sweepAngle">Angle in degrees measured clockwise from the startAngle parameter to the second
  side of the pie section.</param>
 </member>
-<member name="M:Microsoft.VisualBasic.Imaging.IGraphics.FillPie(System.Drawing.Brush,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+<member name="M:Microsoft.VisualBasic.Imaging.IGraphics.FillPie(Microsoft.VisualBasic.Imaging.Brush,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
  <summary>
  Fills the interior of a pie section defined by an ellipse specified by a pair
  of coordinates, a width, a height, and two radial lines.
@@ -19119,7 +19130,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="sweepAngle">Angle in degrees measured clockwise from the startAngle parameter to the second
  side of the pie section.</param>
 </member>
-<member name="M:Microsoft.VisualBasic.Imaging.IGraphics.FillPie(System.Drawing.Brush,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single)">
+<member name="M:Microsoft.VisualBasic.Imaging.IGraphics.FillPie(Microsoft.VisualBasic.Imaging.Brush,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single)">
  <summary>
  Fills the interior of a pie section defined by an ellipse specified by a pair
  of coordinates, a width, a height, and two radial lines.
@@ -19138,7 +19149,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="sweepAngle">Angle in degrees measured clockwise from the startAngle parameter to the second
  side of the pie section.</param>
 </member>
-<member name="M:Microsoft.VisualBasic.Imaging.IGraphics.FillPolygon(System.Drawing.Brush,System.Drawing.Point[])">
+<member name="M:Microsoft.VisualBasic.Imaging.IGraphics.FillPolygon(Microsoft.VisualBasic.Imaging.Brush,System.Drawing.Point[])">
  <summary>
  Fills the interior of a polygon defined by an array of points specified by System.Drawing.Point
  structures.
@@ -19147,7 +19158,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="points">Array of System.Drawing.Point structures that represent the vertices of the polygon
  to fill.</param>
 </member>
-<member name="M:Microsoft.VisualBasic.Imaging.IGraphics.FillPolygon(System.Drawing.Brush,System.Drawing.PointF[])">
+<member name="M:Microsoft.VisualBasic.Imaging.IGraphics.FillPolygon(Microsoft.VisualBasic.Imaging.Brush,System.Drawing.PointF[])">
  <summary>
  Fills the interior of a polygon defined by an array of points specified by System.Drawing.PointF
  structures.
@@ -19156,34 +19167,34 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="points">Array of System.Drawing.PointF structures that represent the vertices of the
  polygon to fill.</param>
 </member>
-<member name="M:Microsoft.VisualBasic.Imaging.IGraphics.FillRectangle(System.Drawing.Brush,System.Drawing.Rectangle)">
+<member name="M:Microsoft.VisualBasic.Imaging.IGraphics.FillRectangle(Microsoft.VisualBasic.Imaging.Brush,System.Drawing.Rectangle)">
  <summary>
  Fills the interior of a rectangle specified by a <see cref="T:System.Drawing.Rectangle"/> structure.
  </summary>
  <param name="brush">System.Drawing.Brush that determines the characteristics of the fill.</param>
  <param name="rect">System.Drawing.Rectangle structure that represents the rectangle to fill.</param>
 </member>
-<member name="M:Microsoft.VisualBasic.Imaging.IGraphics.FillRectangle(System.Drawing.Brush,System.Single,System.Single,System.Drawing.SizeF)">
+<member name="M:Microsoft.VisualBasic.Imaging.IGraphics.FillRectangle(Microsoft.VisualBasic.Imaging.Brush,System.Single,System.Single,System.Drawing.SizeF)">
  <summary>
- <see cref="M:Microsoft.VisualBasic.Imaging.IGraphics.FillRectangle(System.Drawing.Brush,System.Drawing.RectangleF)"/> extensions
+ <see cref="M:Microsoft.VisualBasic.Imaging.IGraphics.FillRectangle(Microsoft.VisualBasic.Imaging.Brush,System.Drawing.RectangleF)"/> extensions
  </summary>
  <param name="brush"></param>
  <param name="x!"></param>
  <param name="y!"></param>
  <param name="size"></param>
 </member>
-<member name="M:Microsoft.VisualBasic.Imaging.IGraphics.FillRectangle(System.Drawing.Brush,System.Drawing.RectangleF)">
+<member name="M:Microsoft.VisualBasic.Imaging.IGraphics.FillRectangle(Microsoft.VisualBasic.Imaging.Brush,System.Drawing.RectangleF)">
  <summary>
  Fills the interior of a rectangle specified by a <see cref="T:System.Drawing.RectangleF"/> structure.
  </summary>
  <param name="brush">
- <see cref="T:System.Drawing.Brush"/> that determines the characteristics of the fill.
+ <see cref="T:Microsoft.VisualBasic.Imaging.Brush"/> that determines the characteristics of the fill.
  </param>
  <param name="rect">
  <see cref="T:System.Drawing.RectangleF"/> structure that represents the rectangle to fill.
  </param>
 </member>
-<member name="M:Microsoft.VisualBasic.Imaging.IGraphics.FillRectangle(System.Drawing.Brush,System.Int32,System.Int32,System.Int32,System.Int32)">
+<member name="M:Microsoft.VisualBasic.Imaging.IGraphics.FillRectangle(Microsoft.VisualBasic.Imaging.Brush,System.Int32,System.Int32,System.Int32,System.Int32)">
  <summary>
  Fills the interior of a rectangle specified by a pair of coordinates, a width,
  and a height.
@@ -19194,7 +19205,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="width">Width of the rectangle to fill.</param>
  <param name="height">Height of the rectangle to fill.</param>
 </member>
-<member name="M:Microsoft.VisualBasic.Imaging.IGraphics.FillRectangle(System.Drawing.Brush,System.Single,System.Single,System.Single,System.Single)">
+<member name="M:Microsoft.VisualBasic.Imaging.IGraphics.FillRectangle(Microsoft.VisualBasic.Imaging.Brush,System.Single,System.Single,System.Single,System.Single)">
  <summary>
  Fills the interior of a rectangle specified by a pair of coordinates, a width,
  and a height.
@@ -19205,7 +19216,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="width">Width of the rectangle to fill.</param>
  <param name="height">Height of the rectangle to fill.</param>
 </member>
-<member name="M:Microsoft.VisualBasic.Imaging.IGraphics.FillRectangles(System.Drawing.Brush,System.Drawing.RectangleF[])">
+<member name="M:Microsoft.VisualBasic.Imaging.IGraphics.FillRectangles(Microsoft.VisualBasic.Imaging.Brush,System.Drawing.RectangleF[])">
  <summary>
  Fills the interiors of a series of rectangles specified by System.Drawing.Rectangle
  structures.
@@ -19214,7 +19225,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="rects">Array of System.Drawing.Rectangle structures that represent the rectangles to
  fill.</param>
 </member>
-<member name="M:Microsoft.VisualBasic.Imaging.IGraphics.FillRectangles(System.Drawing.Brush,System.Drawing.Rectangle[])">
+<member name="M:Microsoft.VisualBasic.Imaging.IGraphics.FillRectangles(Microsoft.VisualBasic.Imaging.Brush,System.Drawing.Rectangle[])">
  <summary>
  Fills the interiors of a series of rectangles specified by System.Drawing.Rectangle
  structures.
@@ -19297,7 +19308,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <returns>true if the rectangle defined by the x, y, width, and height parameters is contained
  within the visible clip region of this System.Drawing.Graphics; otherwise, false.</returns>
 </member>
-<member name="M:Microsoft.VisualBasic.Imaging.IGraphics.MeasureString(System.String,System.Drawing.Font)">
+<member name="M:Microsoft.VisualBasic.Imaging.IGraphics.MeasureString(System.String,Microsoft.VisualBasic.Imaging.Font)">
  <summary>
  Measures the specified string when drawn with the specified <see cref="P:Microsoft.VisualBasic.Imaging.IGraphics.Font"/>.
  </summary>
@@ -19308,7 +19319,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  string specified by the text parameter as drawn with the font parameter.
  </returns>
 </member>
-<member name="M:Microsoft.VisualBasic.Imaging.IGraphics.MeasureString(System.String,System.Drawing.Font,System.Int32)">
+<member name="M:Microsoft.VisualBasic.Imaging.IGraphics.MeasureString(System.String,Microsoft.VisualBasic.Imaging.Font,System.Int32)">
  <summary>
  Measures the specified string when drawn with the specified System.Drawing.Font.
  </summary>
@@ -19319,7 +19330,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  in the units specified by the System.Drawing.Graphics.PageUnit property, of the
  string specified in the text parameter as drawn with the font parameter.</returns>
 </member>
-<member name="M:Microsoft.VisualBasic.Imaging.IGraphics.MeasureString(System.String,System.Drawing.Font,System.Drawing.SizeF)">
+<member name="M:Microsoft.VisualBasic.Imaging.IGraphics.MeasureString(System.String,Microsoft.VisualBasic.Imaging.Font,System.Drawing.SizeF)">
  <summary>
  Measures the specified string when drawn with the specified System.Drawing.Font
  within the specified layout area.
@@ -20044,7 +20055,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
 </member>
 <member name="M:Microsoft.VisualBasic.Imaging.Math2D.GeomTransform.CircleRectangle(System.Drawing.PointF,System.Single)">
  <summary>
- <see cref="M:Microsoft.VisualBasic.Imaging.IGraphics.DrawEllipse(System.Drawing.Pen,System.Drawing.RectangleF)"/>
+ <see cref="M:Microsoft.VisualBasic.Imaging.IGraphics.DrawEllipse(Microsoft.VisualBasic.Imaging.Pen,System.Drawing.RectangleF)"/>
  </summary>
  <param name="center"></param>
  <param name="r!"></param>
@@ -20914,6 +20925,110 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
 <member name="T:Microsoft.VisualBasic.Imaging.Math2D.VectorMath2D">
  <summary>
  
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.Imaging.Image">
+ <summary>
+ the abstract image data model, example as gdi+ raster image bitmap, svg image, pdf image, etc
+ </summary>
+ <remarks>
+ the image model implements the interface <see cref="T:Microsoft.VisualBasic.Imaging.IRasterMemory"/>
+ </remarks>
+</member>
+<member name="P:Microsoft.VisualBasic.Imaging.Image.Size">
+ <summary>
+ the size of the image
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Imaging.Image.Width">
+ <summary>
+ the width of the image <see cref="P:Microsoft.VisualBasic.Imaging.Image.Size"/>
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Imaging.Image.Height">
+ <summary>
+ the height of the image <see cref="P:Microsoft.VisualBasic.Imaging.Image.Size"/>
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Imaging.Image.ConvertToBitmapStream">
+ <summary>
+ Convert current image object as bitmap file data
+ </summary>
+ <returns></returns>
+ <remarks>
+ function for make bitmap object constructor
+ </remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.Imaging.Image.FromStream(System.IO.Stream)">
+ <summary>
+ Load bitmap image from file stream
+ </summary>
+ <param name="s">only works for bitmap image file stream</param>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.Imaging.Bitmap">
+ <summary>
+ the gdi+ raster image data in memory
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Imaging.Bitmap.#ctor(Microsoft.VisualBasic.Imaging.Image)">
+ <summary>
+ make memory data copy
+ </summary>
+ <param name="copy"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.Imaging.Bitmap.Save(System.IO.Stream,Microsoft.VisualBasic.Imaging.ImageFormats)">
+ <summary>
+ Save current bitmap object into a specific file
+ </summary>
+ <param name="s"></param>
+ <param name="format"></param>
+</member>
+<member name="T:Microsoft.VisualBasic.Imaging.PixelFormat">
+ <summary>
+ Specifies the format of the color data for each pixel in the image.
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Imaging.PixelFormat.Format32bppArgb">
+ <summary>
+ Specifies that the format Is 32 bits per pixel; 8 bits each are used for the
+ alpha, red, green, And blue components.
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.Imaging.Pen">
+ <summary>
+ The stroke pen wrapper for .net 8.0
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.Imaging.LineJoin">
+ <summary>
+ Specifies how to join consecutive line Or curve segments in a figure (subpath)
+ contained in a System.Drawing.Drawing2D.GraphicsPath object.
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Imaging.LineJoin.Miter">
+ <summary>
+ Specifies a mitered join. This produces a sharp corner Or a clipped corner, depending
+ on whether the length of the miter exceeds the miter limit.
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Imaging.LineJoin.Bevel">
+ <summary>
+ Specifies a beveled join. This produces a diagonal corner.    
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Imaging.LineJoin.Round">
+ <summary>
+ Specifies a circular join. This produces a smooth, circular arc between the lines.    
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Imaging.LineJoin.MiterClipped">
+ <summary>
+ Specifies a mitered join. This produces a sharp corner Or a beveled corner, depending
+ on whether the length of the miter exceeds the miter limit.
  </summary>
 </member>
 <member name="T:Microsoft.VisualBasic.Imaging.PointF3D">
@@ -25677,7 +25792,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  then whistle function will returns a empty string instead of throw 
  exception.
  
- (a safe wrapper of <see cref="M:System.String.Join(System.String,System.Collections.Generic.IEnumerable{System.String})"/>)
+ (a safe wrapper of <see cref="M:System.String.Join(System.Char,System.Object[])"/>)
  </returns>
  <remarks>
  这是一个安全的函数，当数组为空的时候回返回空字符串
@@ -30975,7 +31090,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
 </member>
 <member name="M:Microsoft.VisualBasic.StringHelpers.MaxLengthString(System.Collections.Generic.IEnumerable{System.String},System.Boolean)">
  <summary>
- 常用于gdi+绘图操作，和<see cref="M:Microsoft.VisualBasic.Imaging.IGraphics.MeasureString(System.String,System.Drawing.Font)"/>共同使用
+ 常用于gdi+绘图操作，和<see cref="M:Microsoft.VisualBasic.Imaging.IGraphics.MeasureString(System.String,Microsoft.VisualBasic.Imaging.Font)"/>共同使用
  </summary>
  <param name="source"></param>
  <returns>
@@ -31037,7 +31152,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <returns></returns>
  <remarks>
  Converts the object collection to string collection at first, 
- and then do <see cref="M:System.String.Join(System.String,System.Collections.Generic.IEnumerable{System.String})"/>
+ and then do <see cref="M:System.String.Join(System.Char,System.Object[])"/>
  </remarks>
 </member>
 <member name="M:Microsoft.VisualBasic.StringHelpers.GetTagValue(System.String,System.String,System.Boolean,System.Boolean)">
@@ -31334,7 +31449,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
 </member>
 <member name="M:Microsoft.VisualBasic.StringHelpers.StringSplit(System.String,System.String,System.Boolean,System.Text.RegularExpressions.RegexOptions)">
  <summary>
- This method is used to replace most calls to the Java <see cref="M:System.String.Split(System.Char[])"/> method.
+ This method is used to replace most calls to the Java <see cref="M:System.String.Split(System.Char,System.Int32,System.StringSplitOptions)"/> method.
  </summary>
  <param name="source"></param>
  <param name="pattern"><see cref="T:System.Text.RegularExpressions.Regex"/> patterns</param>
@@ -31347,7 +31462,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
 </member>
 <member name="M:Microsoft.VisualBasic.StringHelpers.StringSplit(System.String,System.Text.RegularExpressions.Regex,System.Boolean)">
  <summary>
- This method is used to replace most calls to the Java <see cref="M:System.String.Split(System.Char[])"/> method.
+ This method is used to replace most calls to the Java <see cref="M:System.String.Split(System.Char,System.Int32,System.StringSplitOptions)"/> method.
  </summary>
  <param name="source"></param>
  <param name="pattern"><see cref="T:System.Text.RegularExpressions.Regex"/> patterns</param>
@@ -32663,7 +32778,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <returns></returns>
  
 </member>
-<member name="M:Microsoft.VisualBasic.Net.Http.Base64Codec.ToBase64String(System.Drawing.Image,Microsoft.VisualBasic.Imaging.ImageFormats)">
+<member name="M:Microsoft.VisualBasic.Net.Http.Base64Codec.ToBase64String(Microsoft.VisualBasic.Imaging.Image,Microsoft.VisualBasic.Imaging.ImageFormats)">
  <summary>
  Convert the Image from Input to Base64 Encoded String
  </summary>
@@ -32672,7 +32787,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  this function will returns empty string if the error happends
  </returns>
 </member>
-<member name="M:Microsoft.VisualBasic.Net.Http.Base64Codec.ToBase64String(System.Drawing.Bitmap,Microsoft.VisualBasic.Imaging.ImageFormats)">
+<member name="M:Microsoft.VisualBasic.Net.Http.Base64Codec.ToBase64String(Microsoft.VisualBasic.Imaging.Bitmap,Microsoft.VisualBasic.Imaging.ImageFormats)">
  <summary>
  Convert the Image from Input to Base64 Encoded String
  </summary>

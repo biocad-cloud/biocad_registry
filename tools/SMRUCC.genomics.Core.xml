@@ -4688,7 +4688,7 @@ ATT I Ile      ACT T Thr      AAT N As [rest of string was truncated]&quot;;.
  <param name="threshold%"></param>
  <returns></returns>
 </member>
-<member name="M:SMRUCC.genomics.Assembly.KEGG.WebServices.LocalRender.Rendering(System.String,System.Drawing.Font,System.String,System.String)">
+<member name="M:SMRUCC.genomics.Assembly.KEGG.WebServices.LocalRender.Rendering(System.String,Microsoft.VisualBasic.Imaging.Font,System.String,System.String)">
  <summary>
  解析url之中的数据，将指定的基因按照给定的颜色进行高亮显示
  </summary>
@@ -4698,7 +4698,7 @@ ATT I Ile      ACT T Thr      AAT N As [rest of string was truncated]&quot;;.
  <param name="scale$"></param>
  <returns></returns>
 </member>
-<member name="M:SMRUCC.genomics.Assembly.KEGG.WebServices.LocalRender.Rendering(System.String,SMRUCC.genomics.Assembly.KEGG.WebServices.MapHighlights,System.Drawing.Font,System.String,System.String)">
+<member name="M:SMRUCC.genomics.Assembly.KEGG.WebServices.LocalRender.Rendering(System.String,SMRUCC.genomics.Assembly.KEGG.WebServices.MapHighlights,Microsoft.VisualBasic.Imaging.Font,System.String,System.String)">
  <summary>
  
  </summary>
@@ -4709,7 +4709,7 @@ ATT I Ile      ACT T Thr      AAT N As [rest of string was truncated]&quot;;.
  <param name="scale$"></param>
  <returns></returns>
 </member>
-<member name="M:SMRUCC.genomics.Assembly.KEGG.WebServices.LocalRender.renderGenes(Microsoft.VisualBasic.Imaging.IGraphics@,System.Drawing.Font,System.Drawing.Brush,SMRUCC.genomics.Assembly.KEGG.WebServices.XML.Map,System.Drawing.SizeF,SMRUCC.genomics.Assembly.KEGG.WebServices.MapHighlights)">
+<member name="M:SMRUCC.genomics.Assembly.KEGG.WebServices.LocalRender.renderGenes(Microsoft.VisualBasic.Imaging.IGraphics@,Microsoft.VisualBasic.Imaging.Font,Microsoft.VisualBasic.Imaging.Brush,SMRUCC.genomics.Assembly.KEGG.WebServices.XML.Map,System.Drawing.SizeF,SMRUCC.genomics.Assembly.KEGG.WebServices.MapHighlights)">
  <summary>
  rect
  </summary>
@@ -4717,7 +4717,7 @@ ATT I Ile      ACT T Thr      AAT N As [rest of string was truncated]&quot;;.
  <param name="map"></param>
  <param name="list"></param>
 </member>
-<member name="M:SMRUCC.genomics.Assembly.KEGG.WebServices.LocalRender.renderCompound(Microsoft.VisualBasic.Imaging.IGraphics@,System.Drawing.Font,SMRUCC.genomics.Assembly.KEGG.WebServices.XML.Map,System.Drawing.SizeF,Microsoft.VisualBasic.ComponentModel.DataSourceModel.NamedValue{System.String}[])">
+<member name="M:SMRUCC.genomics.Assembly.KEGG.WebServices.LocalRender.renderCompound(Microsoft.VisualBasic.Imaging.IGraphics@,Microsoft.VisualBasic.Imaging.Font,SMRUCC.genomics.Assembly.KEGG.WebServices.XML.Map,System.Drawing.SizeF,Microsoft.VisualBasic.ComponentModel.DataSourceModel.NamedValue{System.String}[])">
  <summary>
  circle
  </summary>
@@ -4725,7 +4725,7 @@ ATT I Ile      ACT T Thr      AAT N As [rest of string was truncated]&quot;;.
  <param name="map"></param>
  <param name="list"></param>
 </member>
-<member name="M:SMRUCC.genomics.Assembly.KEGG.WebServices.LocalRender.CompoundShapeDrawing(Microsoft.VisualBasic.ComponentModel.DataSourceModel.NamedValue{System.String},System.Collections.Generic.Dictionary{System.String,Microsoft.VisualBasic.ComponentModel.DataSourceModel.NamedValue{SMRUCC.genomics.Assembly.KEGG.WebServices.XML.Area[]}},System.Drawing.Font,Microsoft.VisualBasic.Imaging.IGraphics,System.Drawing.SizeF,System.Drawing.SizeF)">
+<member name="M:SMRUCC.genomics.Assembly.KEGG.WebServices.LocalRender.CompoundShapeDrawing(Microsoft.VisualBasic.ComponentModel.DataSourceModel.NamedValue{System.String},System.Collections.Generic.Dictionary{System.String,Microsoft.VisualBasic.ComponentModel.DataSourceModel.NamedValue{SMRUCC.genomics.Assembly.KEGG.WebServices.XML.Area[]}},Microsoft.VisualBasic.Imaging.Font,Microsoft.VisualBasic.Imaging.IGraphics,System.Drawing.SizeF,System.Drawing.SizeF)">
  <summary>
  
  </summary>

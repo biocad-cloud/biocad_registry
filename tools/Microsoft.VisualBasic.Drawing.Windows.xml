@@ -6,7 +6,7 @@ Microsoft.VisualBasic.Drawing.Windows
 </name>
 </assembly>
 <members>
-<member name="M:Microsoft.VisualBasic.Drawing.Imaging.BitmapImage.Effects.DropdownShadows(Microsoft.VisualBasic.Imaging.IGraphics,System.Drawing.Drawing2D.GraphicsPath,System.String,System.String,System.String)">
+<member name="M:Microsoft.VisualBasic.Drawing.Imaging.BitmapImage.Effects.DropdownShadows(Microsoft.VisualBasic.Imaging.IGraphics,Microsoft.VisualBasic.Imaging.GraphicsPath,System.String,System.String,System.String)">
  <summary>
  Draw shadow of a specifc <paramref name="polygon"/>
  </summary>
@@ -242,7 +242,7 @@ Microsoft.VisualBasic.Drawing.Windows
  </summary>
  <returns></returns>
 </member>
-<member name="M:Microsoft.VisualBasic.Drawing.Drawing2D.Text.FontMetrics.GetStringBounds(System.String,System.Drawing.Font,System.Drawing.Graphics)">
+<member name="M:Microsoft.VisualBasic.Drawing.Drawing2D.Text.FontMetrics.GetStringBounds(System.String,Microsoft.VisualBasic.Imaging.Font,System.Drawing.Graphics)">
  <summary>
  Using another graphics context
  </summary>
@@ -337,6 +337,53 @@ Microsoft.VisualBasic.Drawing.Windows
  .NET clr gdi+ component convert to css model
  </summary>
 </member>
+<member name="T:Microsoft.VisualBasic.Drawing.DrawingInterop">
+ <summary>
+ helper for make gdi+ graphics component conversion
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Drawing.DrawingInterop.CTypeFontObject(Microsoft.VisualBasic.Imaging.Font)">
+ <summary>
+ Convert of the .NET 8.0 visualbasic graphics component as .NET clr windows gdi+ object
+ </summary>
+ <param name="font"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Drawing.DrawingInterop.CTypePenObject(Microsoft.VisualBasic.Imaging.Pen)">
+ <summary>
+ Convert of the .NET 8.0 visualbasic graphics component as .NET clr windows gdi+ object
+ </summary>
+ <param name="stroke"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Drawing.DrawingInterop.CTypeBrushObject(Microsoft.VisualBasic.Imaging.SolidBrush)">
+ <summary>
+ Convert of the .NET 8.0 visualbasic graphics component as .NET clr windows gdi+ object
+ </summary>
+ <param name="paint"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Drawing.DrawingInterop.CTypeBrushObject(Microsoft.VisualBasic.Imaging.TextureBrush)">
+ <summary>
+ Convert of the .NET 8.0 visualbasic graphics component as .NET clr windows gdi+ object
+ </summary>
+ <param name="paint"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Drawing.DrawingInterop.CTypeBrushObject(Microsoft.VisualBasic.Imaging.Brush)">
+ <summary>
+ Convert of the .NET 8.0 visualbasic graphics component as .NET clr windows gdi+ object
+ </summary>
+ <param name="paint"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Drawing.DrawingInterop.CTypeGraphicsPath(Microsoft.VisualBasic.Imaging.GraphicsPath)">
+ <summary>
+ Convert of the .NET 8.0 visualbasic graphics component as .NET clr windows gdi+ object
+ </summary>
+ <param name="path"></param>
+ <returns></returns>
+</member>
 <member name="T:Microsoft.VisualBasic.Drawing.GDICanvas">
  <summary>
  这个对象是<see cref="T:Microsoft.VisualBasic.Drawing.Graphics2D"/>以及<see cref="T:Microsoft.VisualBasic.Drawing.Wmf"/>公用的基础类型
@@ -349,7 +396,7 @@ Microsoft.VisualBasic.Drawing.Windows
  </summary>
  <remarks></remarks>
 </member>
-<member name="M:Microsoft.VisualBasic.Drawing.GDICanvas.DrawBézier(System.Drawing.Pen,System.Drawing.Point,System.Drawing.Point,System.Drawing.Point,System.Drawing.Point)">
+<member name="M:Microsoft.VisualBasic.Drawing.GDICanvas.DrawBézier(Microsoft.VisualBasic.Imaging.Pen,System.Drawing.Point,System.Drawing.Point,System.Drawing.Point,System.Drawing.Point)">
  <summary>
  Draws a Bézier spline defined by four System.Drawing.Point structures.
  </summary>
@@ -362,7 +409,7 @@ Microsoft.VisualBasic.Drawing.Windows
  curve.</param>
  <param name="pt4">System.Drawing.Point structure that represents the ending point of the curve.</param>
 </member>
-<member name="M:Microsoft.VisualBasic.Drawing.GDICanvas.DrawEllipse(System.Drawing.Pen,System.Single,System.Single,System.Single,System.Single)">
+<member name="M:Microsoft.VisualBasic.Drawing.GDICanvas.DrawEllipse(Microsoft.VisualBasic.Imaging.Pen,System.Single,System.Single,System.Single,System.Single)">
  <summary>
  Draws an ellipse defined by a bounding rectangle specified by a pair of coordinates,
  a height, and a width.
@@ -375,7 +422,7 @@ Microsoft.VisualBasic.Drawing.Windows
  <param name="width">Width of the bounding rectangle that defines the ellipse.</param>
  <param name="height">Height of the bounding rectangle that defines the ellipse.</param>
 </member>
-<member name="M:Microsoft.VisualBasic.Drawing.GDICanvas.DrawImage(System.Drawing.Image,System.Drawing.Point)">
+<member name="M:Microsoft.VisualBasic.Drawing.GDICanvas.DrawImage(Microsoft.VisualBasic.Imaging.Image,System.Drawing.Point)">
  <summary>
  Draws the specified System.Drawing.Image, using its original physical size, at
  the specified location.
@@ -384,9 +431,9 @@ Microsoft.VisualBasic.Drawing.Windows
  <param name="point">System.Drawing.Point structure that represents the location of the upper-left
  corner of the drawn image.</param>
 </member>
-<member name="M:Microsoft.VisualBasic.Drawing.GDICanvas.DrawImage(System.Drawing.Image,System.Int32,System.Int32,System.Int32,System.Int32)">
+<member name="M:Microsoft.VisualBasic.Drawing.GDICanvas.DrawImage(Microsoft.VisualBasic.Imaging.Image,System.Int32,System.Int32,System.Int32,System.Int32)">
  <summary>
- Draws the specified <see cref="T:System.Drawing.Image"/> at the specified location and with the
+ Draws the specified <see cref="T:Microsoft.VisualBasic.Imaging.Image"/> at the specified location and with the
  specified size.
  </summary>
  <param name="image">System.Drawing.Image to draw.</param>
@@ -395,16 +442,27 @@ Microsoft.VisualBasic.Drawing.Windows
  <param name="width">Width of the drawn image.</param>
  <param name="height">Height of the drawn image.</param>
 </member>
-<member name="M:Microsoft.VisualBasic.Drawing.GDICanvas.DrawImageUnscaled(System.Drawing.Image,System.Drawing.Point)">
+<member name="M:Microsoft.VisualBasic.Drawing.GDICanvas.DrawImage(System.Drawing.Image,System.Int32,System.Int32,System.Int32,System.Int32)">
+ <summary>
+ Draws the specified <see cref="T:Microsoft.VisualBasic.Imaging.Image"/> at the specified location and with the
+ specified size.
+ </summary>
+ <param name="image">System.Drawing.Image to draw.</param>
+ <param name="x">The x-coordinate of the upper-left corner of the drawn image.</param>
+ <param name="y">The y-coordinate of the upper-left corner of the drawn image.</param>
+ <param name="width">Width of the drawn image.</param>
+ <param name="height">Height of the drawn image.</param>
+</member>
+<member name="M:Microsoft.VisualBasic.Drawing.GDICanvas.DrawImageUnscaled(Microsoft.VisualBasic.Imaging.Image,System.Drawing.Point)">
  <summary>
  Draws a specified image using its original physical size at a specified location.
  </summary>
- <param name="image"><see cref="T:System.Drawing.Image"/> to draw.</param>
+ <param name="image"><see cref="T:Microsoft.VisualBasic.Imaging.Image"/> to draw.</param>
  <param name="point"><see cref="T:System.Drawing.Point"/> structure that specifies the upper-left corner of the drawn
  image.</param>
  
 </member>
-<member name="M:Microsoft.VisualBasic.Drawing.GDICanvas.DrawImageUnscaled(System.Drawing.Image,System.Int32,System.Int32)">
+<member name="M:Microsoft.VisualBasic.Drawing.GDICanvas.DrawImageUnscaled(Microsoft.VisualBasic.Imaging.Image,System.Int32,System.Int32)">
  <summary>
  Draws the specified image using its original physical size at the location specified
  by a coordinate pair.
@@ -413,33 +471,33 @@ Microsoft.VisualBasic.Drawing.Windows
  <param name="x">The x-coordinate of the upper-left corner of the drawn image.</param>
  <param name="y">The y-coordinate of the upper-left corner of the drawn image.</param>
 </member>
-<member name="M:Microsoft.VisualBasic.Drawing.GDICanvas.DrawImageUnscaled(System.Drawing.Image,System.Int32,System.Int32,System.Int32,System.Int32)">
+<member name="M:Microsoft.VisualBasic.Drawing.GDICanvas.DrawImageUnscaled(Microsoft.VisualBasic.Imaging.Image,System.Int32,System.Int32,System.Int32,System.Int32)">
  <summary>
  Draws a specified image using its original physical size at a specified location.
  </summary>
- <param name="image"><see cref="T:System.Drawing.Image"/> to draw.</param>
+ <param name="image"><see cref="T:Microsoft.VisualBasic.Imaging.Image"/> to draw.</param>
  <param name="x">The x-coordinate of the upper-left corner of the drawn image.</param>
  <param name="y">The y-coordinate of the upper-left corner of the drawn image.</param>
  <param name="width"></param>
  <param name="height"></param>
 </member>
-<member name="M:Microsoft.VisualBasic.Drawing.GDICanvas.DrawImageUnscaledAndClipped(System.Drawing.Image,System.Drawing.Rectangle)">
+<member name="M:Microsoft.VisualBasic.Drawing.GDICanvas.DrawImageUnscaledAndClipped(Microsoft.VisualBasic.Imaging.Image,System.Drawing.Rectangle)">
  <summary>
  Draws the specified image without scaling and clips it, if necessary, to fit
  in the specified rectangle.
  </summary>
- <param name="image">The <see cref="T:System.Drawing.Image"/> to draw.</param>
+ <param name="image">The <see cref="T:Microsoft.VisualBasic.Imaging.Image"/> to draw.</param>
  <param name="rect">The <see cref="T:System.Drawing.Rectangle"/> in which to draw the image.</param>
 </member>
-<member name="M:Microsoft.VisualBasic.Drawing.GDICanvas.DrawLine(System.Drawing.Pen,System.Drawing.Point,System.Drawing.Point)">
+<member name="M:Microsoft.VisualBasic.Drawing.GDICanvas.DrawLine(Microsoft.VisualBasic.Imaging.Pen,System.Drawing.Point,System.Drawing.Point)">
  <summary>
  Draws a line connecting two <see cref="T:System.Drawing.Point"/> structures.
  </summary>
- <param name="pen"><see cref="T:System.Drawing.Pen"/> that determines the color, width, and style of the line.</param>
+ <param name="pen"><see cref="T:Microsoft.VisualBasic.Imaging.Pen"/> that determines the color, width, and style of the line.</param>
  <param name="pt1"><see cref="T:System.Drawing.Point"/> structure that represents the first point to connect.</param>
  <param name="pt2"><see cref="T:System.Drawing.Point"/> structure that represents the second point to connect.</param>
 </member>
-<member name="M:Microsoft.VisualBasic.Drawing.GDICanvas.DrawLine(System.Drawing.Pen,System.Drawing.PointF,System.Drawing.PointF)">
+<member name="M:Microsoft.VisualBasic.Drawing.GDICanvas.DrawLine(Microsoft.VisualBasic.Imaging.Pen,System.Drawing.PointF,System.Drawing.PointF)">
  <summary>
  Draws a line connecting two System.Drawing.PointF structures.
  </summary>
@@ -447,7 +505,7 @@ Microsoft.VisualBasic.Drawing.Windows
  <param name="pt1">System.Drawing.PointF structure that represents the first point to connect.</param>
  <param name="pt2">System.Drawing.PointF structure that represents the second point to connect.</param>
 </member>
-<member name="M:Microsoft.VisualBasic.Drawing.GDICanvas.DrawPolygon(System.Drawing.Pen,System.Drawing.PointF[])">
+<member name="M:Microsoft.VisualBasic.Drawing.GDICanvas.DrawPolygon(Microsoft.VisualBasic.Imaging.Pen,System.Drawing.PointF[])">
  <summary>
  Draws a polygon defined by an array of System.Drawing.PointF structures.
  </summary>
@@ -456,7 +514,7 @@ Microsoft.VisualBasic.Drawing.Windows
  polygon.</param>
  
 </member>
-<member name="M:Microsoft.VisualBasic.Drawing.GDICanvas.DrawRectangle(System.Drawing.Pen,System.Drawing.Rectangle)">
+<member name="M:Microsoft.VisualBasic.Drawing.GDICanvas.DrawRectangle(Microsoft.VisualBasic.Imaging.Pen,System.Drawing.Rectangle)">
  <summary>
  Draws a rectangle specified by a System.Drawing.Rectangle structure.
  </summary>
@@ -464,7 +522,7 @@ Microsoft.VisualBasic.Drawing.Windows
  <param name="rect">A System.Drawing.Rectangle structure that represents the rectangle to draw.</param>
  
 </member>
-<member name="M:Microsoft.VisualBasic.Drawing.GDICanvas.DrawString(System.String,System.Drawing.Font,System.Drawing.Brush,System.Drawing.RectangleF)">
+<member name="M:Microsoft.VisualBasic.Drawing.GDICanvas.DrawString(System.String,Microsoft.VisualBasic.Imaging.Font,Microsoft.VisualBasic.Imaging.Brush,System.Drawing.RectangleF)">
  <summary>
  Draws the specified text string in the specified rectangle with the specified
  System.Drawing.Brush and System.Drawing.Font objects.
@@ -475,7 +533,7 @@ Microsoft.VisualBasic.Drawing.Windows
  <param name="layoutRectangle">System.Drawing.RectangleF structure that specifies the location of the drawn
  text.</param>
 </member>
-<member name="M:Microsoft.VisualBasic.Drawing.GDICanvas.DrawString(System.String,System.Drawing.Font,System.Drawing.Brush,System.Drawing.PointF@)">
+<member name="M:Microsoft.VisualBasic.Drawing.GDICanvas.DrawString(System.String,Microsoft.VisualBasic.Imaging.Font,Microsoft.VisualBasic.Imaging.Brush,System.Drawing.PointF@)">
  <summary>
  Draws the specified text string at the specified location with the specified
  <see cref="T:System.Drawing.Brush"/> and <see cref="T:System.Drawing.Font"/> objects.
@@ -486,7 +544,7 @@ Microsoft.VisualBasic.Drawing.Windows
  <param name="point">System.Drawing.PointF structure that specifies the upper-left corner of the drawn
  text.</param>
 </member>
-<member name="M:Microsoft.VisualBasic.Drawing.GDICanvas.FillEllipse(System.Drawing.Brush,System.Drawing.RectangleF)">
+<member name="M:Microsoft.VisualBasic.Drawing.GDICanvas.FillEllipse(Microsoft.VisualBasic.Imaging.Brush,System.Drawing.RectangleF)">
  <summary>
  Fills the interior of an ellipse defined by a bounding rectangle specified by
  a System.Drawing.RectangleF structure.
@@ -495,7 +553,7 @@ Microsoft.VisualBasic.Drawing.Windows
  <param name="rect">System.Drawing.RectangleF structure that represents the bounding rectangle that
  defines the ellipse.</param>
 </member>
-<member name="M:Microsoft.VisualBasic.Drawing.GDICanvas.FillEllipse(System.Drawing.Brush,System.Single,System.Single,System.Single,System.Single)">
+<member name="M:Microsoft.VisualBasic.Drawing.GDICanvas.FillEllipse(Microsoft.VisualBasic.Imaging.Brush,System.Single,System.Single,System.Single,System.Single)">
  <summary>
  Fills the interior of an ellipse defined by a bounding rectangle specified by
  a pair of coordinates, a width, and a height.
@@ -508,14 +566,14 @@ Microsoft.VisualBasic.Drawing.Windows
  <param name="width">Width of the bounding rectangle that defines the ellipse.</param>
  <param name="height">Height of the bounding rectangle that defines the ellipse.</param>
 </member>
-<member name="M:Microsoft.VisualBasic.Drawing.GDICanvas.FillPath(System.Drawing.Brush,System.Drawing.Drawing2D.GraphicsPath)">
+<member name="M:Microsoft.VisualBasic.Drawing.GDICanvas.FillPath(Microsoft.VisualBasic.Imaging.Brush,Microsoft.VisualBasic.Imaging.GraphicsPath)">
  <summary>
  Fills the interior of a System.Drawing.Drawing2D.GraphicsPath.
  </summary>
  <param name="brush">System.Drawing.Brush that determines the characteristics of the fill.</param>
  <param name="path">System.Drawing.Drawing2D.GraphicsPath that represents the path to fill.</param>
 </member>
-<member name="M:Microsoft.VisualBasic.Drawing.GDICanvas.FillPie(System.Drawing.Brush,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single)">
+<member name="M:Microsoft.VisualBasic.Drawing.GDICanvas.FillPie(Microsoft.VisualBasic.Imaging.Brush,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single)">
  <summary>
  Fills the interior of a pie section defined by an ellipse specified by a pair
  of coordinates, a width, a height, and two radial lines.
@@ -534,7 +592,7 @@ Microsoft.VisualBasic.Drawing.Windows
  <param name="sweepAngle">Angle in degrees measured clockwise from the startAngle parameter to the second
  side of the pie section.</param>
 </member>
-<member name="M:Microsoft.VisualBasic.Drawing.GDICanvas.FillRectangle(System.Drawing.Brush,System.Drawing.Rectangle)">
+<member name="M:Microsoft.VisualBasic.Drawing.GDICanvas.FillRectangle(Microsoft.VisualBasic.Imaging.Brush,System.Drawing.Rectangle)">
  <summary>
  Fills the interior of a rectangle specified by a System.Drawing.Rectangle structure.
  </summary>
@@ -584,7 +642,7 @@ Microsoft.VisualBasic.Drawing.Windows
  <param name="dx">The x-coordinate of the translation.</param>
  <param name="dy">The y-coordinate of the translation.</param>
 </member>
-<member name="M:Microsoft.VisualBasic.Drawing.GDICanvas.MeasureString(System.String,System.Drawing.Font)">
+<member name="M:Microsoft.VisualBasic.Drawing.GDICanvas.MeasureString(System.String,Microsoft.VisualBasic.Imaging.Font)">
  <summary>
  Measures the specified string when drawn with the specified <see cref="P:Microsoft.VisualBasic.Imaging.IGraphics.Font"/>.
  </summary>
@@ -670,13 +728,13 @@ Microsoft.VisualBasic.Drawing.Windows
 </member>
 <member name="M:Microsoft.VisualBasic.Drawing.Graphics2D.Open(System.Drawing.Image)">
  <summary>
- Creates a new <see cref="T:System.Drawing.Graphics"/> from the specified <see cref="T:System.Drawing.Image"/>.
+ Creates a new <see cref="T:System.Drawing.Graphics"/> from the specified <see cref="T:Microsoft.VisualBasic.Imaging.Image"/>.
  </summary>
  <param name="image">
- <see cref="T:System.Drawing.Image"/> from which to create the new System.Drawing.Graphics.
+ <see cref="T:Microsoft.VisualBasic.Imaging.Image"/> from which to create the new System.Drawing.Graphics.
  </param>
  <returns>
- This method returns a new <see cref="T:System.Drawing.Graphics"/> for the specified <see cref="T:System.Drawing.Image"/>.
+ This method returns a new <see cref="T:System.Drawing.Graphics"/> for the specified <see cref="T:Microsoft.VisualBasic.Imaging.Image"/>.
  </returns>
  
 </member>
