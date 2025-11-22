@@ -8,6 +8,7 @@ Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.MIME.text.markdown
 Imports Microsoft.VisualBasic.Net.Http
 Imports Microsoft.VisualBasic.Serialization.JSON
+Imports Microsoft.VisualStudio.WinForms.Docking
 Imports Microsoft.Web.WebView2.Core
 Imports Ollama
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
@@ -273,7 +274,7 @@ let options = { width: 450, height: 300 };
         Select Case LCase(db)
             Case "pubchem" : url = $"https://pubchem.ncbi.nlm.nih.gov/compound/{xref}"
             Case Else
-                Call Workbench.StatusMessage($"Unkonw url builder for db xref {db}:{xref}")
+                Call CommonRuntime.StatusMessage($"Unkonw url builder for db xref {db}:{xref}")
                 Return
         End Select
 
@@ -502,7 +503,7 @@ let options = { width: 450, height: 300 };
                     )
                 End If
             Catch ex As Exception
-                Call Workbench.StatusMessage(ex.Message)
+                Call CommonRuntime.Warning(ex.Message)
             End Try
         End If
     End Sub
@@ -544,7 +545,7 @@ let options = { width: 450, height: 300 };
 
     Private Sub ListBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBox1.SelectedIndexChanged
         If ListBox1.SelectedIndex > -1 Then
-            Workbench.StatusMessage(ListBox1.SelectedItem.ToString)
+            CommonRuntime.StatusMessage(ListBox1.SelectedItem.ToString)
         End If
     End Sub
 
