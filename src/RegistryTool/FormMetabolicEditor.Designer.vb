@@ -34,13 +34,6 @@ Partial Class FormMetabolicEditor
         Column3 = New DataGridViewTextBoxColumn()
         SplitContainer2 = New SplitContainer()
         DataGridView2 = New DataGridView()
-        ToolStrip1 = New ToolStrip()
-        ToolStripLabel1 = New ToolStripLabel()
-        ToolStripButton1 = New ToolStripButton()
-        ToolStripLabel2 = New ToolStripLabel()
-        ToolStripTextBox1 = New ToolStripTextBox()
-        ToolStripButton2 = New ToolStripButton()
-        ToolStripButton3 = New ToolStripButton()
         Column4 = New DataGridViewTextBoxColumn()
         Column5 = New DataGridViewTextBoxColumn()
         Column6 = New DataGridViewTextBoxColumn()
@@ -49,6 +42,14 @@ Partial Class FormMetabolicEditor
         Column9 = New DataGridViewTextBoxColumn()
         ContextMenuStrip1 = New ContextMenuStrip(components)
         OpenToolStripMenuItem = New ToolStripMenuItem()
+        ToolStrip1 = New ToolStrip()
+        ToolStripLabel1 = New ToolStripLabel()
+        ToolStripButton1 = New ToolStripButton()
+        ToolStripLabel2 = New ToolStripLabel()
+        ToolStripTextBox1 = New ToolStripTextBox()
+        ToolStripButton2 = New ToolStripButton()
+        ToolStripButton3 = New ToolStripButton()
+        GroupBox1 = New GroupBox()
         CType(SplitContainer1, ISupportInitialize).BeginInit()
         SplitContainer1.Panel1.SuspendLayout()
         SplitContainer1.Panel2.SuspendLayout()
@@ -56,10 +57,11 @@ Partial Class FormMetabolicEditor
         CType(DataGridView1, ISupportInitialize).BeginInit()
         CType(SplitContainer2, ISupportInitialize).BeginInit()
         SplitContainer2.Panel1.SuspendLayout()
+        SplitContainer2.Panel2.SuspendLayout()
         SplitContainer2.SuspendLayout()
         CType(DataGridView2, ISupportInitialize).BeginInit()
-        ToolStrip1.SuspendLayout()
         ContextMenuStrip1.SuspendLayout()
+        ToolStrip1.SuspendLayout()
         SuspendLayout()
         ' 
         ' SplitContainer1
@@ -118,8 +120,12 @@ Partial Class FormMetabolicEditor
         ' SplitContainer2.Panel1
         ' 
         SplitContainer2.Panel1.Controls.Add(DataGridView2)
+        ' 
+        ' SplitContainer2.Panel2
+        ' 
+        SplitContainer2.Panel2.Controls.Add(GroupBox1)
         SplitContainer2.Size = New Size(1394, 247)
-        SplitContainer2.SplitterDistance = 912
+        SplitContainer2.SplitterDistance = 751
         SplitContainer2.TabIndex = 1
         ' 
         ' DataGridView2
@@ -130,8 +136,57 @@ Partial Class FormMetabolicEditor
         DataGridView2.Dock = DockStyle.Fill
         DataGridView2.Location = New Point(0, 0)
         DataGridView2.Name = "DataGridView2"
-        DataGridView2.Size = New Size(912, 247)
+        DataGridView2.Size = New Size(751, 247)
         DataGridView2.TabIndex = 0
+        ' 
+        ' Column4
+        ' 
+        Column4.HeaderText = "id"
+        Column4.Name = "Column4"
+        Column4.ReadOnly = True
+        ' 
+        ' Column5
+        ' 
+        Column5.HeaderText = "db_xref"
+        Column5.Name = "Column5"
+        Column5.ReadOnly = True
+        ' 
+        ' Column6
+        ' 
+        Column6.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+        Column6.HeaderText = "name"
+        Column6.Name = "Column6"
+        Column6.ReadOnly = True
+        ' 
+        ' Column7
+        ' 
+        Column7.HeaderText = "formula"
+        Column7.Name = "Column7"
+        Column7.ReadOnly = True
+        ' 
+        ' Column8
+        ' 
+        Column8.HeaderText = "mass"
+        Column8.Name = "Column8"
+        Column8.ReadOnly = True
+        ' 
+        ' Column9
+        ' 
+        Column9.HeaderText = "role"
+        Column9.Name = "Column9"
+        Column9.ReadOnly = True
+        ' 
+        ' ContextMenuStrip1
+        ' 
+        ContextMenuStrip1.Items.AddRange(New ToolStripItem() {OpenToolStripMenuItem})
+        ContextMenuStrip1.Name = "ContextMenuStrip1"
+        ContextMenuStrip1.Size = New Size(104, 26)
+        ' 
+        ' OpenToolStripMenuItem
+        ' 
+        OpenToolStripMenuItem.Name = "OpenToolStripMenuItem"
+        OpenToolStripMenuItem.Size = New Size(103, 22)
+        OpenToolStripMenuItem.Text = "Open"
         ' 
         ' ToolStrip1
         ' 
@@ -187,54 +242,15 @@ Partial Class FormMetabolicEditor
         ToolStripButton3.Size = New Size(23, 22)
         ToolStripButton3.Text = "Next"
         ' 
-        ' Column4
+        ' GroupBox1
         ' 
-        Column4.HeaderText = "id"
-        Column4.Name = "Column4"
-        Column4.ReadOnly = True
-        ' 
-        ' Column5
-        ' 
-        Column5.HeaderText = "db_xref"
-        Column5.Name = "Column5"
-        Column5.ReadOnly = True
-        ' 
-        ' Column6
-        ' 
-        Column6.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
-        Column6.HeaderText = "name"
-        Column6.Name = "Column6"
-        Column6.ReadOnly = True
-        ' 
-        ' Column7
-        ' 
-        Column7.HeaderText = "formula"
-        Column7.Name = "Column7"
-        Column7.ReadOnly = True
-        ' 
-        ' Column8
-        ' 
-        Column8.HeaderText = "mass"
-        Column8.Name = "Column8"
-        Column8.ReadOnly = True
-        ' 
-        ' Column9
-        ' 
-        Column9.HeaderText = "role"
-        Column9.Name = "Column9"
-        Column9.ReadOnly = True
-        ' 
-        ' ContextMenuStrip1
-        ' 
-        ContextMenuStrip1.Items.AddRange(New ToolStripItem() {OpenToolStripMenuItem})
-        ContextMenuStrip1.Name = "ContextMenuStrip1"
-        ContextMenuStrip1.Size = New Size(181, 48)
-        ' 
-        ' OpenToolStripMenuItem
-        ' 
-        OpenToolStripMenuItem.Name = "OpenToolStripMenuItem"
-        OpenToolStripMenuItem.Size = New Size(180, 22)
-        OpenToolStripMenuItem.Text = "Open"
+        GroupBox1.Dock = DockStyle.Fill
+        GroupBox1.Location = New Point(0, 0)
+        GroupBox1.Name = "GroupBox1"
+        GroupBox1.Size = New Size(639, 247)
+        GroupBox1.TabIndex = 0
+        GroupBox1.TabStop = False
+        GroupBox1.Text = "Edit Reaction Data"
         ' 
         ' FormMetabolicEditor
         ' 
@@ -255,12 +271,13 @@ Partial Class FormMetabolicEditor
         SplitContainer1.ResumeLayout(False)
         CType(DataGridView1, ISupportInitialize).EndInit()
         SplitContainer2.Panel1.ResumeLayout(False)
+        SplitContainer2.Panel2.ResumeLayout(False)
         CType(SplitContainer2, ISupportInitialize).EndInit()
         SplitContainer2.ResumeLayout(False)
         CType(DataGridView2, ISupportInitialize).EndInit()
+        ContextMenuStrip1.ResumeLayout(False)
         ToolStrip1.ResumeLayout(False)
         ToolStrip1.PerformLayout()
-        ContextMenuStrip1.ResumeLayout(False)
         ResumeLayout(False)
         PerformLayout()
 
@@ -288,4 +305,5 @@ Partial Class FormMetabolicEditor
     Friend WithEvents Column9 As DataGridViewTextBoxColumn
     Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
     Friend WithEvents OpenToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents GroupBox1 As GroupBox
 End Class
