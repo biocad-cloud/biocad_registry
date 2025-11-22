@@ -24,749 +24,744 @@ Partial Class FormMoleculeEditor
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ContextMenuStrip3 = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.EditToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.SearchByThisDbXrefToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.WebView21 = New Microsoft.Web.WebView2.WinForms.WebView2()
-        Me.ListBox1 = New System.Windows.Forms.ListBox()
-        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.EditToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.CopyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
-        Me.SetAsDisplayNameToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ChineseNameTranslationToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
-        Me.Button2 = New System.Windows.Forms.Button()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.TextBox3 = New System.Windows.Forms.TextBox()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.Label8 = New System.Windows.Forms.Label()
-        Me.TextBox4 = New System.Windows.Forms.TextBox()
-        Me.Button3 = New System.Windows.Forms.Button()
-        Me.Button4 = New System.Windows.Forms.Button()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.Button8 = New System.Windows.Forms.Button()
-        Me.TextBox6 = New System.Windows.Forms.TextBox()
-        Me.ComboBox3 = New System.Windows.Forms.ComboBox()
-        Me.Button5 = New System.Windows.Forms.Button()
-        Me.GroupBox3 = New System.Windows.Forms.GroupBox()
-        Me.TextBox5 = New System.Windows.Forms.TextBox()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.GroupBox4 = New System.Windows.Forms.GroupBox()
-        Me.Button7 = New System.Windows.Forms.Button()
-        Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.GroupBox5 = New System.Windows.Forms.GroupBox()
-        Me.ComboBox2 = New System.Windows.Forms.ComboBox()
-        Me.Button6 = New System.Windows.Forms.Button()
-        Me.ListBox2 = New System.Windows.Forms.ListBox()
-        Me.ContextMenuStrip2 = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.ClearThisTagToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GroupBox6 = New System.Windows.Forms.GroupBox()
-        Me.ListBox3 = New System.Windows.Forms.ListBox()
-        Me.ContextMenuStrip4 = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.ListSourceToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.DataGridView2 = New System.Windows.Forms.DataGridView()
-        Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GroupBox7 = New System.Windows.Forms.GroupBox()
-        Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
-        Me.DataGridView3 = New System.Windows.Forms.DataGridView()
-        Me.Column6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ContextMenuStrip5 = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.OpenMoleculeDataToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.ContextMenuStrip3.SuspendLayout()
-        CType(Me.WebView21, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.ContextMenuStrip1.SuspendLayout()
-        Me.GroupBox1.SuspendLayout()
-        Me.GroupBox2.SuspendLayout()
-        Me.GroupBox3.SuspendLayout()
-        Me.GroupBox4.SuspendLayout()
-        Me.GroupBox5.SuspendLayout()
-        Me.ContextMenuStrip2.SuspendLayout()
-        Me.GroupBox6.SuspendLayout()
-        Me.ContextMenuStrip4.SuspendLayout()
-        CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupBox7.SuspendLayout()
-        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.SplitContainer1.Panel1.SuspendLayout()
-        Me.SplitContainer1.Panel2.SuspendLayout()
-        Me.SplitContainer1.SuspendLayout()
-        CType(Me.DataGridView3, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.ContextMenuStrip5.SuspendLayout()
-        Me.SuspendLayout()
-        '
-        'DataGridView1
-        '
-        Me.DataGridView1.AllowUserToAddRows = False
-        Me.DataGridView1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.DataGridView1.BackgroundColor = System.Drawing.Color.LightGray
-        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2})
-        Me.DataGridView1.ContextMenuStrip = Me.ContextMenuStrip3
-        Me.DataGridView1.Location = New System.Drawing.Point(15, 20)
-        Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.ReadOnly = True
-        Me.DataGridView1.RowTemplate.Height = 23
-        Me.DataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DataGridView1.Size = New System.Drawing.Size(396, 338)
-        Me.DataGridView1.TabIndex = 0
-        '
-        'Column1
-        '
-        Me.Column1.HeaderText = "Database"
-        Me.Column1.Name = "Column1"
-        Me.Column1.ReadOnly = True
-        '
-        'Column2
-        '
-        Me.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.Column2.HeaderText = "Xref ID"
-        Me.Column2.Name = "Column2"
-        Me.Column2.ReadOnly = True
-        '
-        'ContextMenuStrip3
-        '
-        Me.ContextMenuStrip3.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EditToolStripMenuItem, Me.SearchByThisDbXrefToolStripMenuItem})
-        Me.ContextMenuStrip3.Name = "ContextMenuStrip3"
-        Me.ContextMenuStrip3.Size = New System.Drawing.Size(208, 48)
-        '
-        'EditToolStripMenuItem
-        '
-        Me.EditToolStripMenuItem.Name = "EditToolStripMenuItem"
-        Me.EditToolStripMenuItem.Size = New System.Drawing.Size(207, 22)
-        Me.EditToolStripMenuItem.Text = "Edit"
-        '
-        'SearchByThisDbXrefToolStripMenuItem
-        '
-        Me.SearchByThisDbXrefToolStripMenuItem.Name = "SearchByThisDbXrefToolStripMenuItem"
-        Me.SearchByThisDbXrefToolStripMenuItem.Size = New System.Drawing.Size(207, 22)
-        Me.SearchByThisDbXrefToolStripMenuItem.Text = "Search By This Db_Xref ID"
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(16, 359)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(47, 12)
-        Me.Label2.TabIndex = 2
-        Me.Label2.Text = "SMILES:"
-        '
-        'TextBox1
-        '
-        Me.TextBox1.Location = New System.Drawing.Point(18, 379)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(441, 21)
-        Me.TextBox1.TabIndex = 3
-        '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(465, 379)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
-        Me.Button1.TabIndex = 4
-        Me.Button1.Text = "Save"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
-        'WebView21
-        '
-        Me.WebView21.AllowExternalDrop = True
-        Me.WebView21.CreationProperties = Nothing
-        Me.WebView21.DefaultBackgroundColor = System.Drawing.Color.White
-        Me.WebView21.Location = New System.Drawing.Point(18, 20)
-        Me.WebView21.Name = "WebView21"
-        Me.WebView21.Size = New System.Drawing.Size(522, 331)
-        Me.WebView21.TabIndex = 5
-        Me.WebView21.ZoomFactor = 1.0R
-        '
-        'ListBox1
-        '
-        Me.ListBox1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.ListBox1.ContextMenuStrip = Me.ContextMenuStrip1
-        Me.ListBox1.FormattingEnabled = True
-        Me.ListBox1.ItemHeight = 12
-        Me.ListBox1.Location = New System.Drawing.Point(18, 47)
-        Me.ListBox1.Name = "ListBox1"
-        Me.ListBox1.Size = New System.Drawing.Size(522, 340)
-        Me.ListBox1.TabIndex = 7
-        '
-        'ContextMenuStrip1
-        '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EditToolStripMenuItem1, Me.CopyToolStripMenuItem, Me.ToolStripMenuItem1, Me.SetAsDisplayNameToolStripMenuItem, Me.ChineseNameTranslationToolStripMenuItem})
-        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(212, 98)
-        '
-        'EditToolStripMenuItem1
-        '
-        Me.EditToolStripMenuItem1.Name = "EditToolStripMenuItem1"
-        Me.EditToolStripMenuItem1.Size = New System.Drawing.Size(211, 22)
-        Me.EditToolStripMenuItem1.Text = "Edit"
-        '
-        'CopyToolStripMenuItem
-        '
-        Me.CopyToolStripMenuItem.Name = "CopyToolStripMenuItem"
-        Me.CopyToolStripMenuItem.Size = New System.Drawing.Size(211, 22)
-        Me.CopyToolStripMenuItem.Text = "Copy"
-        '
-        'ToolStripMenuItem1
-        '
-        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(208, 6)
-        '
-        'SetAsDisplayNameToolStripMenuItem
-        '
-        Me.SetAsDisplayNameToolStripMenuItem.Name = "SetAsDisplayNameToolStripMenuItem"
-        Me.SetAsDisplayNameToolStripMenuItem.Size = New System.Drawing.Size(211, 22)
-        Me.SetAsDisplayNameToolStripMenuItem.Text = "Set As Display Name"
-        '
-        'ChineseNameTranslationToolStripMenuItem
-        '
-        Me.ChineseNameTranslationToolStripMenuItem.Name = "ChineseNameTranslationToolStripMenuItem"
-        Me.ChineseNameTranslationToolStripMenuItem.Size = New System.Drawing.Size(211, 22)
-        Me.ChineseNameTranslationToolStripMenuItem.Text = "Chinese Name Translation"
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(16, 22)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(107, 12)
-        Me.Label4.TabIndex = 8
-        Me.Label4.Text = "Filter Languages:"
-        '
-        'ComboBox1
-        '
-        Me.ComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Items.AddRange(New Object() {"*", "en", "zh"})
-        Me.ComboBox1.Location = New System.Drawing.Point(138, 19)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(152, 20)
-        Me.ComboBox1.TabIndex = 9
-        '
-        'Button2
-        '
-        Me.Button2.Location = New System.Drawing.Point(419, 30)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(75, 23)
-        Me.Button2.TabIndex = 10
-        Me.Button2.Text = "Save"
-        Me.Button2.UseVisualStyleBackColor = True
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(13, 35)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(35, 12)
-        Me.Label5.TabIndex = 11
-        Me.Label5.Text = "Name:"
-        '
-        'TextBox2
-        '
-        Me.TextBox2.Location = New System.Drawing.Point(72, 30)
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(339, 21)
-        Me.TextBox2.TabIndex = 12
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(13, 68)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(53, 12)
-        Me.Label6.TabIndex = 13
-        Me.Label6.Text = "Formula:"
-        '
-        'TextBox3
-        '
-        Me.TextBox3.Location = New System.Drawing.Point(72, 63)
-        Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(103, 21)
-        Me.TextBox3.TabIndex = 14
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(191, 68)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(65, 12)
-        Me.Label7.TabIndex = 15
-        Me.Label7.Text = "Exact Mass"
-        '
-        'Label8
-        '
-        Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(13, 104)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(107, 12)
-        Me.Label8.TabIndex = 16
-        Me.Label8.Text = "Description Note:"
-        '
-        'TextBox4
-        '
-        Me.TextBox4.Location = New System.Drawing.Point(15, 133)
-        Me.TextBox4.Multiline = True
-        Me.TextBox4.Name = "TextBox4"
-        Me.TextBox4.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.TextBox4.Size = New System.Drawing.Size(396, 358)
-        Me.TextBox4.TabIndex = 17
-        '
-        'Button3
-        '
-        Me.Button3.Location = New System.Drawing.Point(419, 63)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(75, 23)
-        Me.Button3.TabIndex = 18
-        Me.Button3.Text = "Save"
-        Me.Button3.UseVisualStyleBackColor = True
-        '
-        'Button4
-        '
-        Me.Button4.Location = New System.Drawing.Point(422, 131)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(75, 23)
-        Me.Button4.TabIndex = 19
-        Me.Button4.Text = "Save"
-        Me.Button4.UseVisualStyleBackColor = True
-        '
-        'GroupBox1
-        '
-        Me.GroupBox1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.GroupBox1.Controls.Add(Me.ListBox1)
-        Me.GroupBox1.Controls.Add(Me.Label4)
-        Me.GroupBox1.Controls.Add(Me.ComboBox1)
-        Me.GroupBox1.Location = New System.Drawing.Point(534, 551)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(552, 397)
-        Me.GroupBox1.TabIndex = 20
-        Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "Synonym Names"
-        '
-        'GroupBox2
-        '
-        Me.GroupBox2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.GroupBox2.Controls.Add(Me.Button8)
-        Me.GroupBox2.Controls.Add(Me.TextBox6)
-        Me.GroupBox2.Controls.Add(Me.ComboBox3)
-        Me.GroupBox2.Controls.Add(Me.Button5)
-        Me.GroupBox2.Controls.Add(Me.DataGridView1)
-        Me.GroupBox2.Location = New System.Drawing.Point(12, 551)
-        Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(510, 397)
-        Me.GroupBox2.TabIndex = 21
-        Me.GroupBox2.TabStop = False
-        Me.GroupBox2.Text = "Database CrossReference"
-        '
-        'Button8
-        '
-        Me.Button8.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.Button8.Location = New System.Drawing.Point(338, 365)
-        Me.Button8.Name = "Button8"
-        Me.Button8.Size = New System.Drawing.Size(73, 23)
-        Me.Button8.TabIndex = 24
-        Me.Button8.Text = "Add"
-        Me.Button8.UseVisualStyleBackColor = True
-        '
-        'TextBox6
-        '
-        Me.TextBox6.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.TextBox6.Location = New System.Drawing.Point(114, 366)
-        Me.TextBox6.Name = "TextBox6"
-        Me.TextBox6.Size = New System.Drawing.Size(218, 21)
-        Me.TextBox6.TabIndex = 23
-        '
-        'ComboBox3
-        '
-        Me.ComboBox3.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.ComboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.ComboBox3.FormattingEnabled = True
-        Me.ComboBox3.Location = New System.Drawing.Point(15, 366)
-        Me.ComboBox3.Name = "ComboBox3"
-        Me.ComboBox3.Size = New System.Drawing.Size(93, 20)
-        Me.ComboBox3.TabIndex = 21
-        '
-        'Button5
-        '
-        Me.Button5.Location = New System.Drawing.Point(422, 20)
-        Me.Button5.Name = "Button5"
-        Me.Button5.Size = New System.Drawing.Size(75, 23)
-        Me.Button5.TabIndex = 20
-        Me.Button5.Text = "Save"
-        Me.Button5.UseVisualStyleBackColor = True
-        '
-        'GroupBox3
-        '
-        Me.GroupBox3.Controls.Add(Me.TextBox5)
-        Me.GroupBox3.Controls.Add(Me.Label1)
-        Me.GroupBox3.Controls.Add(Me.WebView21)
-        Me.GroupBox3.Controls.Add(Me.Label2)
-        Me.GroupBox3.Controls.Add(Me.TextBox1)
-        Me.GroupBox3.Controls.Add(Me.Button1)
-        Me.GroupBox3.Location = New System.Drawing.Point(535, 49)
-        Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(552, 496)
-        Me.GroupBox3.TabIndex = 22
-        Me.GroupBox3.TabStop = False
-        Me.GroupBox3.Text = "Molecular Structure Data"
-        '
-        'TextBox5
-        '
-        Me.TextBox5.Location = New System.Drawing.Point(18, 421)
-        Me.TextBox5.Multiline = True
-        Me.TextBox5.Name = "TextBox5"
-        Me.TextBox5.ReadOnly = True
-        Me.TextBox5.Size = New System.Drawing.Size(522, 60)
-        Me.TextBox5.TabIndex = 7
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(16, 406)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(83, 12)
-        Me.Label1.TabIndex = 6
-        Me.Label1.Text = "Fingerprints:"
-        '
-        'GroupBox4
-        '
-        Me.GroupBox4.Controls.Add(Me.Button7)
-        Me.GroupBox4.Controls.Add(Me.TextBox4)
-        Me.GroupBox4.Controls.Add(Me.Button2)
-        Me.GroupBox4.Controls.Add(Me.Label5)
-        Me.GroupBox4.Controls.Add(Me.TextBox2)
-        Me.GroupBox4.Controls.Add(Me.Button4)
-        Me.GroupBox4.Controls.Add(Me.Label6)
-        Me.GroupBox4.Controls.Add(Me.Button3)
-        Me.GroupBox4.Controls.Add(Me.TextBox3)
-        Me.GroupBox4.Controls.Add(Me.Label7)
-        Me.GroupBox4.Controls.Add(Me.Label8)
-        Me.GroupBox4.Location = New System.Drawing.Point(12, 48)
-        Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Size = New System.Drawing.Size(510, 497)
-        Me.GroupBox4.TabIndex = 23
-        Me.GroupBox4.TabStop = False
-        Me.GroupBox4.Text = "Molecular Information"
-        '
-        'Button7
-        '
-        Me.Button7.Location = New System.Drawing.Point(422, 170)
-        Me.Button7.Name = "Button7"
-        Me.Button7.Size = New System.Drawing.Size(75, 23)
-        Me.Button7.TabIndex = 20
-        Me.Button7.Text = "LLMs Talk"
-        Me.Button7.UseVisualStyleBackColor = True
-        '
-        'LinkLabel1
-        '
-        Me.LinkLabel1.AutoSize = True
-        Me.LinkLabel1.Font = New System.Drawing.Font("Microsoft YaHei", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
-        Me.LinkLabel1.Location = New System.Drawing.Point(126, 9)
-        Me.LinkLabel1.Name = "LinkLabel1"
-        Me.LinkLabel1.Size = New System.Drawing.Size(429, 19)
-        Me.LinkLabel1.TabIndex = 24
-        Me.LinkLabel1.TabStop = True
-        Me.LinkLabel1.Text = "http://biocad.innovation.ac.cn/molecule/BioCAD00000000000/"
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(19, 13)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(101, 12)
-        Me.Label3.TabIndex = 25
-        Me.Label3.Text = "Visit Site Page:"
-        '
-        'GroupBox5
-        '
-        Me.GroupBox5.Controls.Add(Me.ComboBox2)
-        Me.GroupBox5.Controls.Add(Me.Button6)
-        Me.GroupBox5.Controls.Add(Me.ListBox2)
-        Me.GroupBox5.Location = New System.Drawing.Point(1098, 49)
-        Me.GroupBox5.Name = "GroupBox5"
-        Me.GroupBox5.Size = New System.Drawing.Size(367, 496)
-        Me.GroupBox5.TabIndex = 26
-        Me.GroupBox5.TabStop = False
-        Me.GroupBox5.Text = "Topic Tags"
-        '
-        'ComboBox2
-        '
-        Me.ComboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.ComboBox2.FormattingEnabled = True
-        Me.ComboBox2.Location = New System.Drawing.Point(6, 464)
-        Me.ComboBox2.Name = "ComboBox2"
-        Me.ComboBox2.Size = New System.Drawing.Size(274, 20)
-        Me.ComboBox2.TabIndex = 2
-        '
-        'Button6
-        '
-        Me.Button6.Location = New System.Drawing.Point(286, 462)
-        Me.Button6.Name = "Button6"
-        Me.Button6.Size = New System.Drawing.Size(75, 23)
-        Me.Button6.TabIndex = 1
-        Me.Button6.Text = "Add"
-        Me.Button6.UseVisualStyleBackColor = True
-        '
-        'ListBox2
-        '
-        Me.ListBox2.ContextMenuStrip = Me.ContextMenuStrip2
-        Me.ListBox2.FormattingEnabled = True
-        Me.ListBox2.ItemHeight = 12
-        Me.ListBox2.Location = New System.Drawing.Point(6, 20)
-        Me.ListBox2.Name = "ListBox2"
-        Me.ListBox2.Size = New System.Drawing.Size(355, 436)
-        Me.ListBox2.TabIndex = 0
-        '
-        'ContextMenuStrip2
-        '
-        Me.ContextMenuStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ClearThisTagToolStripMenuItem})
-        Me.ContextMenuStrip2.Name = "ContextMenuStrip2"
-        Me.ContextMenuStrip2.Size = New System.Drawing.Size(147, 26)
-        '
-        'ClearThisTagToolStripMenuItem
-        '
-        Me.ClearThisTagToolStripMenuItem.Name = "ClearThisTagToolStripMenuItem"
-        Me.ClearThisTagToolStripMenuItem.Size = New System.Drawing.Size(146, 22)
-        Me.ClearThisTagToolStripMenuItem.Text = "Clear This Tag"
-        '
-        'GroupBox6
-        '
-        Me.GroupBox6.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.GroupBox6.Controls.Add(Me.ListBox3)
-        Me.GroupBox6.Location = New System.Drawing.Point(1098, 551)
-        Me.GroupBox6.Name = "GroupBox6"
-        Me.GroupBox6.Size = New System.Drawing.Size(367, 397)
-        Me.GroupBox6.TabIndex = 27
-        Me.GroupBox6.TabStop = False
-        Me.GroupBox6.Text = "Organism Source"
-        '
-        'ListBox3
-        '
-        Me.ListBox3.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.ListBox3.ContextMenuStrip = Me.ContextMenuStrip4
-        Me.ListBox3.FormattingEnabled = True
-        Me.ListBox3.ItemHeight = 12
-        Me.ListBox3.Location = New System.Drawing.Point(6, 22)
-        Me.ListBox3.Name = "ListBox3"
-        Me.ListBox3.Size = New System.Drawing.Size(355, 364)
-        Me.ListBox3.TabIndex = 0
-        '
-        'ContextMenuStrip4
-        '
-        Me.ContextMenuStrip4.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ListSourceToolStripMenuItem})
-        Me.ContextMenuStrip4.Name = "ContextMenuStrip4"
-        Me.ContextMenuStrip4.Size = New System.Drawing.Size(132, 26)
-        '
-        'ListSourceToolStripMenuItem
-        '
-        Me.ListSourceToolStripMenuItem.Name = "ListSourceToolStripMenuItem"
-        Me.ListSourceToolStripMenuItem.Size = New System.Drawing.Size(131, 22)
-        Me.ListSourceToolStripMenuItem.Text = "List Source"
-        '
-        'DataGridView2
-        '
-        Me.DataGridView2.AllowUserToAddRows = False
-        Me.DataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView2.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column3, Me.Column4, Me.Column5})
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Cambria", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DataGridView2.DefaultCellStyle = DataGridViewCellStyle1
-        Me.DataGridView2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.DataGridView2.Location = New System.Drawing.Point(0, 0)
-        Me.DataGridView2.Name = "DataGridView2"
-        Me.DataGridView2.RowTemplate.Height = 23
-        Me.DataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DataGridView2.Size = New System.Drawing.Size(848, 482)
-        Me.DataGridView2.TabIndex = 28
-        '
-        'Column3
-        '
-        Me.Column3.HeaderText = "name"
-        Me.Column3.Name = "Column3"
-        Me.Column3.ReadOnly = True
-        '
-        'Column4
-        '
-        Me.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.Column4.HeaderText = "equation"
-        Me.Column4.Name = "Column4"
-        Me.Column4.ReadOnly = True
-        '
-        'Column5
-        '
-        Me.Column5.HeaderText = "note"
-        Me.Column5.Name = "Column5"
-        Me.Column5.ReadOnly = True
-        '
-        'GroupBox7
-        '
-        Me.GroupBox7.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GroupBox7.Controls.Add(Me.SplitContainer1)
-        Me.GroupBox7.Location = New System.Drawing.Point(1471, 48)
-        Me.GroupBox7.Name = "GroupBox7"
-        Me.GroupBox7.Size = New System.Drawing.Size(854, 900)
-        Me.GroupBox7.TabIndex = 29
-        Me.GroupBox7.TabStop = False
-        Me.GroupBox7.Text = "Related Metabolic Network"
-        '
-        'SplitContainer1
-        '
-        Me.SplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.SplitContainer1.Location = New System.Drawing.Point(3, 17)
-        Me.SplitContainer1.Name = "SplitContainer1"
-        Me.SplitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal
-        '
-        'SplitContainer1.Panel1
-        '
-        Me.SplitContainer1.Panel1.Controls.Add(Me.DataGridView2)
-        '
-        'SplitContainer1.Panel2
-        '
-        Me.SplitContainer1.Panel2.Controls.Add(Me.DataGridView3)
-        Me.SplitContainer1.Size = New System.Drawing.Size(848, 880)
-        Me.SplitContainer1.SplitterDistance = 482
-        Me.SplitContainer1.TabIndex = 30
-        '
-        'DataGridView3
-        '
-        Me.DataGridView3.AllowUserToAddRows = False
-        Me.DataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView3.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column6, Me.Column11, Me.Column7, Me.Column8, Me.Column9, Me.Column10})
-        Me.DataGridView3.ContextMenuStrip = Me.ContextMenuStrip5
-        Me.DataGridView3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.DataGridView3.Location = New System.Drawing.Point(0, 0)
-        Me.DataGridView3.Name = "DataGridView3"
-        Me.DataGridView3.RowTemplate.Height = 23
-        Me.DataGridView3.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DataGridView3.Size = New System.Drawing.Size(848, 394)
-        Me.DataGridView3.TabIndex = 29
-        '
-        'Column6
-        '
-        Me.Column6.HeaderText = "registry_id"
-        Me.Column6.Name = "Column6"
-        Me.Column6.ReadOnly = True
-        '
-        'Column11
-        '
-        Me.Column11.HeaderText = "db_xref"
-        Me.Column11.Name = "Column11"
-        Me.Column11.ReadOnly = True
-        '
-        'Column7
-        '
-        Me.Column7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.Column7.HeaderText = "name"
-        Me.Column7.Name = "Column7"
-        Me.Column7.ReadOnly = True
-        '
-        'Column8
-        '
-        Me.Column8.HeaderText = "formula"
-        Me.Column8.Name = "Column8"
-        Me.Column8.ReadOnly = True
-        '
-        'Column9
-        '
-        Me.Column9.HeaderText = "exact_mass"
-        Me.Column9.Name = "Column9"
-        Me.Column9.ReadOnly = True
-        '
-        'Column10
-        '
-        Me.Column10.HeaderText = "side"
-        Me.Column10.Name = "Column10"
-        Me.Column10.ReadOnly = True
-        '
-        'ContextMenuStrip5
-        '
-        Me.ContextMenuStrip5.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OpenMoleculeDataToolStripMenuItem})
-        Me.ContextMenuStrip5.Name = "ContextMenuStrip5"
-        Me.ContextMenuStrip5.Size = New System.Drawing.Size(183, 26)
-        '
-        'OpenMoleculeDataToolStripMenuItem
-        '
-        Me.OpenMoleculeDataToolStripMenuItem.Name = "OpenMoleculeDataToolStripMenuItem"
-        Me.OpenMoleculeDataToolStripMenuItem.Size = New System.Drawing.Size(182, 22)
-        Me.OpenMoleculeDataToolStripMenuItem.Text = "Open Molecule Data"
-        '
-        'FormMoleculeEditor
-        '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
-        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(2337, 960)
-        Me.Controls.Add(Me.GroupBox7)
-        Me.Controls.Add(Me.GroupBox6)
-        Me.Controls.Add(Me.GroupBox5)
-        Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.LinkLabel1)
-        Me.Controls.Add(Me.GroupBox4)
-        Me.Controls.Add(Me.GroupBox3)
-        Me.Controls.Add(Me.GroupBox2)
-        Me.Controls.Add(Me.GroupBox1)
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
-        Me.Name = "FormMoleculeEditor"
-        Me.Text = "Molecule Editor"
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ContextMenuStrip3.ResumeLayout(False)
-        CType(Me.WebView21, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ContextMenuStrip1.ResumeLayout(False)
-        Me.GroupBox1.ResumeLayout(False)
-        Me.GroupBox1.PerformLayout()
-        Me.GroupBox2.ResumeLayout(False)
-        Me.GroupBox2.PerformLayout()
-        Me.GroupBox3.ResumeLayout(False)
-        Me.GroupBox3.PerformLayout()
-        Me.GroupBox4.ResumeLayout(False)
-        Me.GroupBox4.PerformLayout()
-        Me.GroupBox5.ResumeLayout(False)
-        Me.ContextMenuStrip2.ResumeLayout(False)
-        Me.GroupBox6.ResumeLayout(False)
-        Me.ContextMenuStrip4.ResumeLayout(False)
-        CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupBox7.ResumeLayout(False)
-        Me.SplitContainer1.Panel1.ResumeLayout(False)
-        Me.SplitContainer1.Panel2.ResumeLayout(False)
-        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.SplitContainer1.ResumeLayout(False)
-        CType(Me.DataGridView3, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ContextMenuStrip5.ResumeLayout(False)
-        Me.ResumeLayout(False)
-        Me.PerformLayout()
+        components = New ComponentModel.Container()
+        Dim DataGridViewCellStyle1 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        DataGridView1 = New DataGridView()
+        Column1 = New DataGridViewTextBoxColumn()
+        Column2 = New DataGridViewTextBoxColumn()
+        ContextMenuStrip3 = New ContextMenuStrip(components)
+        EditToolStripMenuItem = New ToolStripMenuItem()
+        SearchByThisDbXrefToolStripMenuItem = New ToolStripMenuItem()
+        Label2 = New Label()
+        TextBox1 = New TextBox()
+        Button1 = New Button()
+        WebView21 = New Microsoft.Web.WebView2.WinForms.WebView2()
+        ListBox1 = New ListBox()
+        ContextMenuStrip1 = New ContextMenuStrip(components)
+        EditToolStripMenuItem1 = New ToolStripMenuItem()
+        CopyToolStripMenuItem = New ToolStripMenuItem()
+        ToolStripMenuItem1 = New ToolStripSeparator()
+        SetAsDisplayNameToolStripMenuItem = New ToolStripMenuItem()
+        ChineseNameTranslationToolStripMenuItem = New ToolStripMenuItem()
+        Label4 = New Label()
+        ComboBox1 = New ComboBox()
+        Button2 = New Button()
+        Label5 = New Label()
+        TextBox2 = New TextBox()
+        Label6 = New Label()
+        TextBox3 = New TextBox()
+        Label7 = New Label()
+        Label8 = New Label()
+        TextBox4 = New TextBox()
+        Button3 = New Button()
+        Button4 = New Button()
+        GroupBox1 = New GroupBox()
+        GroupBox2 = New GroupBox()
+        Button8 = New Button()
+        TextBox6 = New TextBox()
+        ComboBox3 = New ComboBox()
+        Button5 = New Button()
+        GroupBox3 = New GroupBox()
+        TextBox5 = New TextBox()
+        Label1 = New Label()
+        GroupBox4 = New GroupBox()
+        Button7 = New Button()
+        LinkLabel1 = New LinkLabel()
+        Label3 = New Label()
+        GroupBox5 = New GroupBox()
+        ComboBox2 = New ComboBox()
+        Button6 = New Button()
+        ListBox2 = New ListBox()
+        ContextMenuStrip2 = New ContextMenuStrip(components)
+        ClearThisTagToolStripMenuItem = New ToolStripMenuItem()
+        GroupBox6 = New GroupBox()
+        ListBox3 = New ListBox()
+        ContextMenuStrip4 = New ContextMenuStrip(components)
+        ListSourceToolStripMenuItem = New ToolStripMenuItem()
+        DataGridView2 = New DataGridView()
+        Column3 = New DataGridViewTextBoxColumn()
+        Column4 = New DataGridViewTextBoxColumn()
+        Column5 = New DataGridViewTextBoxColumn()
+        GroupBox7 = New GroupBox()
+        SplitContainer1 = New SplitContainer()
+        DataGridView3 = New DataGridView()
+        Column6 = New DataGridViewTextBoxColumn()
+        Column11 = New DataGridViewTextBoxColumn()
+        Column7 = New DataGridViewTextBoxColumn()
+        Column8 = New DataGridViewTextBoxColumn()
+        Column9 = New DataGridViewTextBoxColumn()
+        Column10 = New DataGridViewTextBoxColumn()
+        ContextMenuStrip5 = New ContextMenuStrip(components)
+        OpenMoleculeDataToolStripMenuItem = New ToolStripMenuItem()
+        CType(DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
+        ContextMenuStrip3.SuspendLayout()
+        CType(WebView21, ComponentModel.ISupportInitialize).BeginInit()
+        ContextMenuStrip1.SuspendLayout()
+        GroupBox1.SuspendLayout()
+        GroupBox2.SuspendLayout()
+        GroupBox3.SuspendLayout()
+        GroupBox4.SuspendLayout()
+        GroupBox5.SuspendLayout()
+        ContextMenuStrip2.SuspendLayout()
+        GroupBox6.SuspendLayout()
+        ContextMenuStrip4.SuspendLayout()
+        CType(DataGridView2, ComponentModel.ISupportInitialize).BeginInit()
+        GroupBox7.SuspendLayout()
+        CType(SplitContainer1, ComponentModel.ISupportInitialize).BeginInit()
+        SplitContainer1.Panel1.SuspendLayout()
+        SplitContainer1.Panel2.SuspendLayout()
+        SplitContainer1.SuspendLayout()
+        CType(DataGridView3, ComponentModel.ISupportInitialize).BeginInit()
+        ContextMenuStrip5.SuspendLayout()
+        SuspendLayout()
+        ' 
+        ' DataGridView1
+        ' 
+        DataGridView1.AllowUserToAddRows = False
+        DataGridView1.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left
+        DataGridView1.BackgroundColor = Color.LightGray
+        DataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        DataGridView1.Columns.AddRange(New DataGridViewColumn() {Column1, Column2})
+        DataGridView1.ContextMenuStrip = ContextMenuStrip3
+        DataGridView1.Location = New Point(15, 20)
+        DataGridView1.Name = "DataGridView1"
+        DataGridView1.ReadOnly = True
+        DataGridView1.RowTemplate.Height = 23
+        DataGridView1.ScrollBars = ScrollBars.Vertical
+        DataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect
+        DataGridView1.Size = New Size(396, 338)
+        DataGridView1.TabIndex = 0
+        ' 
+        ' Column1
+        ' 
+        Column1.HeaderText = "Database"
+        Column1.Name = "Column1"
+        Column1.ReadOnly = True
+        ' 
+        ' Column2
+        ' 
+        Column2.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+        Column2.HeaderText = "Xref ID"
+        Column2.Name = "Column2"
+        Column2.ReadOnly = True
+        ' 
+        ' ContextMenuStrip3
+        ' 
+        ContextMenuStrip3.Items.AddRange(New ToolStripItem() {EditToolStripMenuItem, SearchByThisDbXrefToolStripMenuItem})
+        ContextMenuStrip3.Name = "ContextMenuStrip3"
+        ContextMenuStrip3.Size = New Size(208, 48)
+        ' 
+        ' EditToolStripMenuItem
+        ' 
+        EditToolStripMenuItem.Name = "EditToolStripMenuItem"
+        EditToolStripMenuItem.Size = New Size(207, 22)
+        EditToolStripMenuItem.Text = "Edit"
+        ' 
+        ' SearchByThisDbXrefToolStripMenuItem
+        ' 
+        SearchByThisDbXrefToolStripMenuItem.Name = "SearchByThisDbXrefToolStripMenuItem"
+        SearchByThisDbXrefToolStripMenuItem.Size = New Size(207, 22)
+        SearchByThisDbXrefToolStripMenuItem.Text = "Search By This Db_Xref ID"
+        ' 
+        ' Label2
+        ' 
+        Label2.AutoSize = True
+        Label2.Location = New Point(16, 359)
+        Label2.Name = "Label2"
+        Label2.Size = New Size(48, 15)
+        Label2.TabIndex = 2
+        Label2.Text = "SMILES:"
+        ' 
+        ' TextBox1
+        ' 
+        TextBox1.Location = New Point(18, 379)
+        TextBox1.Name = "TextBox1"
+        TextBox1.Size = New Size(441, 23)
+        TextBox1.TabIndex = 3
+        ' 
+        ' Button1
+        ' 
+        Button1.Location = New Point(465, 379)
+        Button1.Name = "Button1"
+        Button1.Size = New Size(75, 23)
+        Button1.TabIndex = 4
+        Button1.Text = "Save"
+        Button1.UseVisualStyleBackColor = True
+        ' 
+        ' WebView21
+        ' 
+        WebView21.AllowExternalDrop = True
+        WebView21.CreationProperties = Nothing
+        WebView21.DefaultBackgroundColor = Color.White
+        WebView21.Location = New Point(18, 20)
+        WebView21.Name = "WebView21"
+        WebView21.Size = New Size(522, 331)
+        WebView21.TabIndex = 5
+        WebView21.ZoomFactor = 1R
+        ' 
+        ' ListBox1
+        ' 
+        ListBox1.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left
+        ListBox1.ContextMenuStrip = ContextMenuStrip1
+        ListBox1.FormattingEnabled = True
+        ListBox1.ItemHeight = 15
+        ListBox1.Location = New Point(18, 47)
+        ListBox1.Name = "ListBox1"
+        ListBox1.Size = New Size(522, 334)
+        ListBox1.TabIndex = 7
+        ' 
+        ' ContextMenuStrip1
+        ' 
+        ContextMenuStrip1.Items.AddRange(New ToolStripItem() {EditToolStripMenuItem1, CopyToolStripMenuItem, ToolStripMenuItem1, SetAsDisplayNameToolStripMenuItem, ChineseNameTranslationToolStripMenuItem})
+        ContextMenuStrip1.Name = "ContextMenuStrip1"
+        ContextMenuStrip1.Size = New Size(212, 98)
+        ' 
+        ' EditToolStripMenuItem1
+        ' 
+        EditToolStripMenuItem1.Name = "EditToolStripMenuItem1"
+        EditToolStripMenuItem1.Size = New Size(211, 22)
+        EditToolStripMenuItem1.Text = "Edit"
+        ' 
+        ' CopyToolStripMenuItem
+        ' 
+        CopyToolStripMenuItem.Name = "CopyToolStripMenuItem"
+        CopyToolStripMenuItem.Size = New Size(211, 22)
+        CopyToolStripMenuItem.Text = "Copy"
+        ' 
+        ' ToolStripMenuItem1
+        ' 
+        ToolStripMenuItem1.Name = "ToolStripMenuItem1"
+        ToolStripMenuItem1.Size = New Size(208, 6)
+        ' 
+        ' SetAsDisplayNameToolStripMenuItem
+        ' 
+        SetAsDisplayNameToolStripMenuItem.Name = "SetAsDisplayNameToolStripMenuItem"
+        SetAsDisplayNameToolStripMenuItem.Size = New Size(211, 22)
+        SetAsDisplayNameToolStripMenuItem.Text = "Set As Display Name"
+        ' 
+        ' ChineseNameTranslationToolStripMenuItem
+        ' 
+        ChineseNameTranslationToolStripMenuItem.Name = "ChineseNameTranslationToolStripMenuItem"
+        ChineseNameTranslationToolStripMenuItem.Size = New Size(211, 22)
+        ChineseNameTranslationToolStripMenuItem.Text = "Chinese Name Translation"
+        ' 
+        ' Label4
+        ' 
+        Label4.AutoSize = True
+        Label4.Location = New Point(16, 22)
+        Label4.Name = "Label4"
+        Label4.Size = New Size(96, 15)
+        Label4.TabIndex = 8
+        Label4.Text = "Filter Languages:"
+        ' 
+        ' ComboBox1
+        ' 
+        ComboBox1.DropDownStyle = ComboBoxStyle.DropDownList
+        ComboBox1.FormattingEnabled = True
+        ComboBox1.Items.AddRange(New Object() {"*", "en", "zh"})
+        ComboBox1.Location = New Point(138, 19)
+        ComboBox1.Name = "ComboBox1"
+        ComboBox1.Size = New Size(152, 23)
+        ComboBox1.TabIndex = 9
+        ' 
+        ' Button2
+        ' 
+        Button2.Location = New Point(419, 30)
+        Button2.Name = "Button2"
+        Button2.Size = New Size(75, 23)
+        Button2.TabIndex = 10
+        Button2.Text = "Save"
+        Button2.UseVisualStyleBackColor = True
+        ' 
+        ' Label5
+        ' 
+        Label5.AutoSize = True
+        Label5.Location = New Point(13, 35)
+        Label5.Name = "Label5"
+        Label5.Size = New Size(42, 15)
+        Label5.TabIndex = 11
+        Label5.Text = "Name:"
+        ' 
+        ' TextBox2
+        ' 
+        TextBox2.Location = New Point(72, 30)
+        TextBox2.Name = "TextBox2"
+        TextBox2.Size = New Size(339, 23)
+        TextBox2.TabIndex = 12
+        ' 
+        ' Label6
+        ' 
+        Label6.AutoSize = True
+        Label6.Location = New Point(13, 68)
+        Label6.Name = "Label6"
+        Label6.Size = New Size(54, 15)
+        Label6.TabIndex = 13
+        Label6.Text = "Formula:"
+        ' 
+        ' TextBox3
+        ' 
+        TextBox3.Location = New Point(72, 63)
+        TextBox3.Name = "TextBox3"
+        TextBox3.Size = New Size(103, 23)
+        TextBox3.TabIndex = 14
+        ' 
+        ' Label7
+        ' 
+        Label7.AutoSize = True
+        Label7.Location = New Point(191, 68)
+        Label7.Name = "Label7"
+        Label7.Size = New Size(65, 15)
+        Label7.TabIndex = 15
+        Label7.Text = "Exact Mass"
+        ' 
+        ' Label8
+        ' 
+        Label8.AutoSize = True
+        Label8.Location = New Point(13, 104)
+        Label8.Name = "Label8"
+        Label8.Size = New Size(99, 15)
+        Label8.TabIndex = 16
+        Label8.Text = "Description Note:"
+        ' 
+        ' TextBox4
+        ' 
+        TextBox4.Location = New Point(15, 133)
+        TextBox4.Multiline = True
+        TextBox4.Name = "TextBox4"
+        TextBox4.ScrollBars = ScrollBars.Vertical
+        TextBox4.Size = New Size(396, 358)
+        TextBox4.TabIndex = 17
+        ' 
+        ' Button3
+        ' 
+        Button3.Location = New Point(419, 63)
+        Button3.Name = "Button3"
+        Button3.Size = New Size(75, 23)
+        Button3.TabIndex = 18
+        Button3.Text = "Save"
+        Button3.UseVisualStyleBackColor = True
+        ' 
+        ' Button4
+        ' 
+        Button4.Location = New Point(422, 131)
+        Button4.Name = "Button4"
+        Button4.Size = New Size(75, 23)
+        Button4.TabIndex = 19
+        Button4.Text = "Save"
+        Button4.UseVisualStyleBackColor = True
+        ' 
+        ' GroupBox1
+        ' 
+        GroupBox1.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left
+        GroupBox1.Controls.Add(ListBox1)
+        GroupBox1.Controls.Add(Label4)
+        GroupBox1.Controls.Add(ComboBox1)
+        GroupBox1.Location = New Point(534, 551)
+        GroupBox1.Name = "GroupBox1"
+        GroupBox1.Size = New Size(552, 397)
+        GroupBox1.TabIndex = 20
+        GroupBox1.TabStop = False
+        GroupBox1.Text = "Synonym Names"
+        ' 
+        ' GroupBox2
+        ' 
+        GroupBox2.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left
+        GroupBox2.Controls.Add(Button8)
+        GroupBox2.Controls.Add(TextBox6)
+        GroupBox2.Controls.Add(ComboBox3)
+        GroupBox2.Controls.Add(Button5)
+        GroupBox2.Controls.Add(DataGridView1)
+        GroupBox2.Location = New Point(12, 551)
+        GroupBox2.Name = "GroupBox2"
+        GroupBox2.Size = New Size(510, 397)
+        GroupBox2.TabIndex = 21
+        GroupBox2.TabStop = False
+        GroupBox2.Text = "Database CrossReference"
+        ' 
+        ' Button8
+        ' 
+        Button8.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
+        Button8.Location = New Point(338, 365)
+        Button8.Name = "Button8"
+        Button8.Size = New Size(73, 23)
+        Button8.TabIndex = 24
+        Button8.Text = "Add"
+        Button8.UseVisualStyleBackColor = True
+        ' 
+        ' TextBox6
+        ' 
+        TextBox6.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
+        TextBox6.Location = New Point(114, 366)
+        TextBox6.Name = "TextBox6"
+        TextBox6.Size = New Size(218, 23)
+        TextBox6.TabIndex = 23
+        ' 
+        ' ComboBox3
+        ' 
+        ComboBox3.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
+        ComboBox3.DropDownStyle = ComboBoxStyle.DropDownList
+        ComboBox3.FormattingEnabled = True
+        ComboBox3.Location = New Point(15, 366)
+        ComboBox3.Name = "ComboBox3"
+        ComboBox3.Size = New Size(93, 23)
+        ComboBox3.TabIndex = 21
+        ' 
+        ' Button5
+        ' 
+        Button5.Location = New Point(422, 20)
+        Button5.Name = "Button5"
+        Button5.Size = New Size(75, 23)
+        Button5.TabIndex = 20
+        Button5.Text = "Save"
+        Button5.UseVisualStyleBackColor = True
+        ' 
+        ' GroupBox3
+        ' 
+        GroupBox3.Controls.Add(TextBox5)
+        GroupBox3.Controls.Add(Label1)
+        GroupBox3.Controls.Add(WebView21)
+        GroupBox3.Controls.Add(Label2)
+        GroupBox3.Controls.Add(TextBox1)
+        GroupBox3.Controls.Add(Button1)
+        GroupBox3.Location = New Point(535, 49)
+        GroupBox3.Name = "GroupBox3"
+        GroupBox3.Size = New Size(552, 496)
+        GroupBox3.TabIndex = 22
+        GroupBox3.TabStop = False
+        GroupBox3.Text = "Molecular Structure Data"
+        ' 
+        ' TextBox5
+        ' 
+        TextBox5.Location = New Point(18, 421)
+        TextBox5.Multiline = True
+        TextBox5.Name = "TextBox5"
+        TextBox5.ReadOnly = True
+        TextBox5.Size = New Size(522, 60)
+        TextBox5.TabIndex = 7
+        ' 
+        ' Label1
+        ' 
+        Label1.AutoSize = True
+        Label1.Location = New Point(16, 406)
+        Label1.Name = "Label1"
+        Label1.Size = New Size(73, 15)
+        Label1.TabIndex = 6
+        Label1.Text = "Fingerprints:"
+        ' 
+        ' GroupBox4
+        ' 
+        GroupBox4.Controls.Add(Button7)
+        GroupBox4.Controls.Add(TextBox4)
+        GroupBox4.Controls.Add(Button2)
+        GroupBox4.Controls.Add(Label5)
+        GroupBox4.Controls.Add(TextBox2)
+        GroupBox4.Controls.Add(Button4)
+        GroupBox4.Controls.Add(Label6)
+        GroupBox4.Controls.Add(Button3)
+        GroupBox4.Controls.Add(TextBox3)
+        GroupBox4.Controls.Add(Label7)
+        GroupBox4.Controls.Add(Label8)
+        GroupBox4.Location = New Point(12, 48)
+        GroupBox4.Name = "GroupBox4"
+        GroupBox4.Size = New Size(510, 497)
+        GroupBox4.TabIndex = 23
+        GroupBox4.TabStop = False
+        GroupBox4.Text = "Molecular Information"
+        ' 
+        ' Button7
+        ' 
+        Button7.Location = New Point(422, 170)
+        Button7.Name = "Button7"
+        Button7.Size = New Size(75, 23)
+        Button7.TabIndex = 20
+        Button7.Text = "LLMs Talk"
+        Button7.UseVisualStyleBackColor = True
+        ' 
+        ' LinkLabel1
+        ' 
+        LinkLabel1.AutoSize = True
+        LinkLabel1.Font = New Font("Microsoft YaHei", 9.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(134))
+        LinkLabel1.Location = New Point(126, 9)
+        LinkLabel1.Name = "LinkLabel1"
+        LinkLabel1.Size = New Size(429, 19)
+        LinkLabel1.TabIndex = 24
+        LinkLabel1.TabStop = True
+        LinkLabel1.Text = "http://biocad.innovation.ac.cn/molecule/BioCAD00000000000/"
+        ' 
+        ' Label3
+        ' 
+        Label3.AutoSize = True
+        Label3.Location = New Point(19, 13)
+        Label3.Name = "Label3"
+        Label3.Size = New Size(83, 15)
+        Label3.TabIndex = 25
+        Label3.Text = "Visit Site Page:"
+        ' 
+        ' GroupBox5
+        ' 
+        GroupBox5.Controls.Add(ComboBox2)
+        GroupBox5.Controls.Add(Button6)
+        GroupBox5.Controls.Add(ListBox2)
+        GroupBox5.Location = New Point(1098, 49)
+        GroupBox5.Name = "GroupBox5"
+        GroupBox5.Size = New Size(367, 496)
+        GroupBox5.TabIndex = 26
+        GroupBox5.TabStop = False
+        GroupBox5.Text = "Topic Tags"
+        ' 
+        ' ComboBox2
+        ' 
+        ComboBox2.DropDownStyle = ComboBoxStyle.DropDownList
+        ComboBox2.FormattingEnabled = True
+        ComboBox2.Location = New Point(6, 464)
+        ComboBox2.Name = "ComboBox2"
+        ComboBox2.Size = New Size(274, 23)
+        ComboBox2.TabIndex = 2
+        ' 
+        ' Button6
+        ' 
+        Button6.Location = New Point(286, 462)
+        Button6.Name = "Button6"
+        Button6.Size = New Size(75, 23)
+        Button6.TabIndex = 1
+        Button6.Text = "Add"
+        Button6.UseVisualStyleBackColor = True
+        ' 
+        ' ListBox2
+        ' 
+        ListBox2.ContextMenuStrip = ContextMenuStrip2
+        ListBox2.FormattingEnabled = True
+        ListBox2.ItemHeight = 15
+        ListBox2.Location = New Point(6, 20)
+        ListBox2.Name = "ListBox2"
+        ListBox2.Size = New Size(355, 424)
+        ListBox2.TabIndex = 0
+        ' 
+        ' ContextMenuStrip2
+        ' 
+        ContextMenuStrip2.Items.AddRange(New ToolStripItem() {ClearThisTagToolStripMenuItem})
+        ContextMenuStrip2.Name = "ContextMenuStrip2"
+        ContextMenuStrip2.Size = New Size(147, 26)
+        ' 
+        ' ClearThisTagToolStripMenuItem
+        ' 
+        ClearThisTagToolStripMenuItem.Name = "ClearThisTagToolStripMenuItem"
+        ClearThisTagToolStripMenuItem.Size = New Size(146, 22)
+        ClearThisTagToolStripMenuItem.Text = "Clear This Tag"
+        ' 
+        ' GroupBox6
+        ' 
+        GroupBox6.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left
+        GroupBox6.Controls.Add(ListBox3)
+        GroupBox6.Location = New Point(1098, 551)
+        GroupBox6.Name = "GroupBox6"
+        GroupBox6.Size = New Size(367, 397)
+        GroupBox6.TabIndex = 27
+        GroupBox6.TabStop = False
+        GroupBox6.Text = "Organism Source"
+        ' 
+        ' ListBox3
+        ' 
+        ListBox3.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
+        ListBox3.ContextMenuStrip = ContextMenuStrip4
+        ListBox3.FormattingEnabled = True
+        ListBox3.ItemHeight = 15
+        ListBox3.Location = New Point(6, 22)
+        ListBox3.Name = "ListBox3"
+        ListBox3.Size = New Size(355, 364)
+        ListBox3.TabIndex = 0
+        ' 
+        ' ContextMenuStrip4
+        ' 
+        ContextMenuStrip4.Items.AddRange(New ToolStripItem() {ListSourceToolStripMenuItem})
+        ContextMenuStrip4.Name = "ContextMenuStrip4"
+        ContextMenuStrip4.Size = New Size(132, 26)
+        ' 
+        ' ListSourceToolStripMenuItem
+        ' 
+        ListSourceToolStripMenuItem.Name = "ListSourceToolStripMenuItem"
+        ListSourceToolStripMenuItem.Size = New Size(131, 22)
+        ListSourceToolStripMenuItem.Text = "List Source"
+        ' 
+        ' DataGridView2
+        ' 
+        DataGridView2.AllowUserToAddRows = False
+        DataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        DataGridView2.Columns.AddRange(New DataGridViewColumn() {Column3, Column4, Column5})
+        DataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle1.BackColor = SystemColors.Window
+        DataGridViewCellStyle1.Font = New Font("Cambria", 8.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle1.ForeColor = SystemColors.ControlText
+        DataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = DataGridViewTriState.False
+        DataGridView2.DefaultCellStyle = DataGridViewCellStyle1
+        DataGridView2.Dock = DockStyle.Fill
+        DataGridView2.Location = New Point(0, 0)
+        DataGridView2.Name = "DataGridView2"
+        DataGridView2.RowTemplate.Height = 23
+        DataGridView2.SelectionMode = DataGridViewSelectionMode.FullRowSelect
+        DataGridView2.Size = New Size(848, 480)
+        DataGridView2.TabIndex = 28
+        ' 
+        ' Column3
+        ' 
+        Column3.HeaderText = "name"
+        Column3.Name = "Column3"
+        Column3.ReadOnly = True
+        ' 
+        ' Column4
+        ' 
+        Column4.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+        Column4.HeaderText = "equation"
+        Column4.Name = "Column4"
+        Column4.ReadOnly = True
+        ' 
+        ' Column5
+        ' 
+        Column5.HeaderText = "note"
+        Column5.Name = "Column5"
+        Column5.ReadOnly = True
+        ' 
+        ' GroupBox7
+        ' 
+        GroupBox7.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
+        GroupBox7.Controls.Add(SplitContainer1)
+        GroupBox7.Location = New Point(1471, 48)
+        GroupBox7.Name = "GroupBox7"
+        GroupBox7.Size = New Size(854, 900)
+        GroupBox7.TabIndex = 29
+        GroupBox7.TabStop = False
+        GroupBox7.Text = "Related Metabolic Network"
+        ' 
+        ' SplitContainer1
+        ' 
+        SplitContainer1.Dock = DockStyle.Fill
+        SplitContainer1.Location = New Point(3, 19)
+        SplitContainer1.Name = "SplitContainer1"
+        SplitContainer1.Orientation = Orientation.Horizontal
+        ' 
+        ' SplitContainer1.Panel1
+        ' 
+        SplitContainer1.Panel1.Controls.Add(DataGridView2)
+        ' 
+        ' SplitContainer1.Panel2
+        ' 
+        SplitContainer1.Panel2.Controls.Add(DataGridView3)
+        SplitContainer1.Size = New Size(848, 878)
+        SplitContainer1.SplitterDistance = 480
+        SplitContainer1.TabIndex = 30
+        ' 
+        ' DataGridView3
+        ' 
+        DataGridView3.AllowUserToAddRows = False
+        DataGridView3.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        DataGridView3.Columns.AddRange(New DataGridViewColumn() {Column6, Column11, Column7, Column8, Column9, Column10})
+        DataGridView3.ContextMenuStrip = ContextMenuStrip5
+        DataGridView3.Dock = DockStyle.Fill
+        DataGridView3.Location = New Point(0, 0)
+        DataGridView3.Name = "DataGridView3"
+        DataGridView3.RowTemplate.Height = 23
+        DataGridView3.SelectionMode = DataGridViewSelectionMode.FullRowSelect
+        DataGridView3.Size = New Size(848, 394)
+        DataGridView3.TabIndex = 29
+        ' 
+        ' Column6
+        ' 
+        Column6.HeaderText = "registry_id"
+        Column6.Name = "Column6"
+        Column6.ReadOnly = True
+        ' 
+        ' Column11
+        ' 
+        Column11.HeaderText = "db_xref"
+        Column11.Name = "Column11"
+        Column11.ReadOnly = True
+        ' 
+        ' Column7
+        ' 
+        Column7.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+        Column7.HeaderText = "name"
+        Column7.Name = "Column7"
+        Column7.ReadOnly = True
+        ' 
+        ' Column8
+        ' 
+        Column8.HeaderText = "formula"
+        Column8.Name = "Column8"
+        Column8.ReadOnly = True
+        ' 
+        ' Column9
+        ' 
+        Column9.HeaderText = "exact_mass"
+        Column9.Name = "Column9"
+        Column9.ReadOnly = True
+        ' 
+        ' Column10
+        ' 
+        Column10.HeaderText = "side"
+        Column10.Name = "Column10"
+        Column10.ReadOnly = True
+        ' 
+        ' ContextMenuStrip5
+        ' 
+        ContextMenuStrip5.Items.AddRange(New ToolStripItem() {OpenMoleculeDataToolStripMenuItem})
+        ContextMenuStrip5.Name = "ContextMenuStrip5"
+        ContextMenuStrip5.Size = New Size(183, 26)
+        ' 
+        ' OpenMoleculeDataToolStripMenuItem
+        ' 
+        OpenMoleculeDataToolStripMenuItem.Name = "OpenMoleculeDataToolStripMenuItem"
+        OpenMoleculeDataToolStripMenuItem.Size = New Size(182, 22)
+        OpenMoleculeDataToolStripMenuItem.Text = "Open Molecule Data"
+        ' 
+        ' FormMoleculeEditor
+        ' 
+        AutoScaleDimensions = New SizeF(7F, 15F)
+        AutoScaleMode = AutoScaleMode.Font
+        ClientSize = New Size(2337, 960)
+        Controls.Add(GroupBox7)
+        Controls.Add(GroupBox6)
+        Controls.Add(GroupBox5)
+        Controls.Add(Label3)
+        Controls.Add(LinkLabel1)
+        Controls.Add(GroupBox4)
+        Controls.Add(GroupBox3)
+        Controls.Add(GroupBox2)
+        Controls.Add(GroupBox1)
+        DockAreas = Microsoft.VisualStudio.WinForms.Docking.DockAreas.Float Or Microsoft.VisualStudio.WinForms.Docking.DockAreas.DockLeft Or Microsoft.VisualStudio.WinForms.Docking.DockAreas.DockRight Or Microsoft.VisualStudio.WinForms.Docking.DockAreas.DockTop Or Microsoft.VisualStudio.WinForms.Docking.DockAreas.DockBottom Or Microsoft.VisualStudio.WinForms.Docking.DockAreas.Document
+        DoubleBuffered = True
+        FormBorderStyle = FormBorderStyle.FixedSingle
+        Name = "FormMoleculeEditor"
+        ShowHint = Microsoft.VisualStudio.WinForms.Docking.DockState.Unknown
+        TabPageContextMenuStrip = DockContextMenuStrip1
+        Text = "Molecule Editor"
+        CType(DataGridView1, ComponentModel.ISupportInitialize).EndInit()
+        ContextMenuStrip3.ResumeLayout(False)
+        CType(WebView21, ComponentModel.ISupportInitialize).EndInit()
+        ContextMenuStrip1.ResumeLayout(False)
+        GroupBox1.ResumeLayout(False)
+        GroupBox1.PerformLayout()
+        GroupBox2.ResumeLayout(False)
+        GroupBox2.PerformLayout()
+        GroupBox3.ResumeLayout(False)
+        GroupBox3.PerformLayout()
+        GroupBox4.ResumeLayout(False)
+        GroupBox4.PerformLayout()
+        GroupBox5.ResumeLayout(False)
+        ContextMenuStrip2.ResumeLayout(False)
+        GroupBox6.ResumeLayout(False)
+        ContextMenuStrip4.ResumeLayout(False)
+        CType(DataGridView2, ComponentModel.ISupportInitialize).EndInit()
+        GroupBox7.ResumeLayout(False)
+        SplitContainer1.Panel1.ResumeLayout(False)
+        SplitContainer1.Panel2.ResumeLayout(False)
+        CType(SplitContainer1, ComponentModel.ISupportInitialize).EndInit()
+        SplitContainer1.ResumeLayout(False)
+        CType(DataGridView3, ComponentModel.ISupportInitialize).EndInit()
+        ContextMenuStrip5.ResumeLayout(False)
+        ResumeLayout(False)
+        PerformLayout()
 
     End Sub
 

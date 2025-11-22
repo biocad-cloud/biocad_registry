@@ -10,8 +10,9 @@ Public Class FormMetabolicEditor
         End Get
     End Property
 
-    Private Sub FormMetabolicEditor_Load(sender As Object, e As EventArgs) Handles Me.Load
+    Private Async Sub FormMetabolicEditor_Load(sender As Object, e As EventArgs) Handles Me.Load
         Call ApplyVsTheme(ToolStrip1)
+        Await GotoPageData()
     End Sub
 
     Private Async Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles ToolStripButton1.Click

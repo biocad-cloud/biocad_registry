@@ -195,9 +195,9 @@ let options = { width: 450, height: 300 };
         Next
     End Sub
 
-    Private Sub SaveCommonName() Handles Button2.Click
+    Private Async Sub SaveCommonName() Handles Button2.Click
         Dim name As String = Strings.Trim(TextBox2.Text)
-        MyApplication.biocad_registry.molecule.where(field("id") = UInteger.Parse(id.Match("\d+"))).save(field("name") = name)
+        Await Task.Run(Sub() MyApplication.biocad_registry.molecule.where(field("id") = UInteger.Parse(id.Match("\d+"))).save(field("name") = name))
     End Sub
 
     Private Sub WebView21_CoreWebView2InitializationCompleted(sender As Object, e As CoreWebView2InitializationCompletedEventArgs) Handles WebView21.CoreWebView2InitializationCompleted
@@ -206,41 +206,48 @@ let options = { width: 450, height: 300 };
         End If
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Async Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Dim smilesOrSeq As String = Strings.Trim(TextBox1.Text)
         Dim checksum As Byte()
+        Dim fingerprint As String = Nothing
 
-        If mol.type = MyApplication.biocad_registry.vocabulary_terms.metabolite_term Then
-            checksum = MolecularFingerprint.ConvertToMorganFingerprint(smilesOrSeq, radius:=3)
-        Else
-            Dim graph = KMerGraph.FromSequence(smilesOrSeq, k:=3)
-            checksum = morgan.CalculateFingerprintCheckSum(graph, radius:=3)
-        End If
+        Await Task.Run(Sub()
+                           If mol.type = MyApplication.biocad_registry.vocabulary_terms.metabolite_term Then
+                               checksum = MolecularFingerprint.ConvertToMorganFingerprint(smilesOrSeq, radius:=3)
+                           Else
+                               Dim graph = KMerGraph.FromSequence(smilesOrSeq, k:=3)
+                               checksum = morgan.CalculateFingerprintCheckSum(graph, radius:=3)
+                           End If
 
-        Dim fingerprint = checksum.GZipAsBase64
+                           fingerprint = checksum.GZipAsBase64
+                       End Sub)
 
         TextBox5.Text = fingerprint
 
         If struct Is Nothing Then
-            MyApplication.biocad_registry.sequence_graph.add(
-                field("sequence") = smilesOrSeq,
-                     field("morgan") = fingerprint,
-                     field("hashcode") = smilesOrSeq.MD5,
-                     field("molecule_id") = UInteger.Parse(id.Match("\d+"))
-            )
+            Await Task.Run(Sub()
+                               MyApplication.biocad_registry.sequence_graph.add(
+                                   field("sequence") = smilesOrSeq,
+                                        field("morgan") = fingerprint,
+                                        field("hashcode") = smilesOrSeq.MD5,
+                                        field("molecule_id") = UInteger.Parse(id.Match("\d+"))
+                               )
 
-            struct = MyApplication.biocad_registry.sequence_graph _
-               .where(field("molecule_id") = UInteger.Parse(id.Match("\d+"))) _
-               .order_by("id", desc:=True) _
-               .find(Of biocad_registryModel.sequence_graph)
+                               struct = MyApplication.biocad_registry.sequence_graph _
+                                  .where(field("molecule_id") = UInteger.Parse(id.Match("\d+"))) _
+                                  .order_by("id", desc:=True) _
+                                  .find(Of biocad_registryModel.sequence_graph)
+                           End Sub)
 
             WebView21_CoreWebView2InitializationCompleted(Nothing, Nothing)
         Else
-            MyApplication.biocad_registry.sequence_graph _
-               .where(field("id") = struct.id) _
-               .save(field("sequence") = smilesOrSeq,
-                     field("morgan") = fingerprint,
-                     field("hashcode") = smilesOrSeq.MD5)
+            Await Task.Run(Sub()
+                               MyApplication.biocad_registry.sequence_graph _
+                                   .where(field("id") = struct.id) _
+                                   .save(field("sequence") = smilesOrSeq,
+                                         field("morgan") = fingerprint,
+                                         field("hashcode") = smilesOrSeq.MD5)
+                           End Sub)
         End If
     End Sub
 
@@ -281,10 +288,10 @@ let options = { width: 450, height: 300 };
         Call Tools.OpenUrlWithDefaultBrowser(url)
     End Sub
 
-    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+    Private Async Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
         Dim desc = Strings.Trim(TextBox4.Text)
 
-        MyApplication.biocad_registry.molecule.where(field("id") = UInteger.Parse(id.Match("\d+"))).save(field("note") = desc)
+        Await Task.Run(Sub() MyApplication.biocad_registry.molecule.where(field("id") = UInteger.Parse(id.Match("\d+"))).save(field("note") = desc))
     End Sub
 
     Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked
@@ -298,14 +305,14 @@ let options = { width: 450, height: 300 };
 
     End Sub
 
-    Private Sub ClearThisTagToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ClearThisTagToolStripMenuItem.Click
+    Private Async Sub ClearThisTagToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ClearThisTagToolStripMenuItem.Click
         Dim sel As Tag = ListBox2.SelectedItem
 
         If sel Is Nothing Then
             Return
         End If
 
-        Call MyApplication.biocad_registry.molecule_tags.where(field("tag_id") = sel.tag_id, field("molecule_id") = sel.molecule_id).delete()
+        Await Task.Run(Sub() MyApplication.biocad_registry.molecule_tags.where(field("tag_id") = sel.tag_id, field("molecule_id") = sel.molecule_id).delete())
         Call refreshTags()
     End Sub
 
@@ -562,14 +569,14 @@ let options = { width: 450, height: 300 };
         Label7.Text = exact_mass.ToString("F4")
     End Sub
 
-    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+    Private Async Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
         Dim formula As String = Strings.Trim(TextBox3.Text)
         Dim exact_mass As Double = FormulaScanner.EvaluateExactMass(formula)
 
-        Call MyApplication.biocad_registry.molecule.where(field("id") = mol.id).save(
+        Await Task.Run(Sub() MyApplication.biocad_registry.molecule.where(field("id") = mol.id).save(
             field("formula") = formula,
             field("mass") = exact_mass
-        )
+        ))
     End Sub
 
     Private Sub ListSourceToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ListSourceToolStripMenuItem.Click
