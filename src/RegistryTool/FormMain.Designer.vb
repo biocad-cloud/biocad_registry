@@ -36,6 +36,7 @@ Partial Class FormMain
         Me.VocabularyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MoleculesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SearchToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SearchNameToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SubCellularCompartmentsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.FlavorOdorsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripSeparator()
@@ -55,7 +56,7 @@ Partial Class FormMain
         Me.CloseAllToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.SearchNameToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ReactionEditorToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -124,7 +125,7 @@ Partial Class FormMain
         '
         'DataToolStripMenuItem
         '
-        Me.DataToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.VocabularyToolStripMenuItem, Me.MoleculesToolStripMenuItem, Me.SubCellularCompartmentsToolStripMenuItem, Me.FlavorOdorsToolStripMenuItem, Me.ToolStripMenuItem2, Me.ExportMetabolitesDatabaseToolStripMenuItem, Me.ExportEnzymeDatabaseToolStripMenuItem, Me.ExportConservedOperonDatabaseToolStripMenuItem, Me.ExportKEGGIDMappingToolStripMenuItem, Me.ToolStripMenuItem3, Me.ExportBloodTagToolStripMenuItem, Me.ExportAnnotationTableToolStripMenuItem})
+        Me.DataToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.VocabularyToolStripMenuItem, Me.MoleculesToolStripMenuItem, Me.SubCellularCompartmentsToolStripMenuItem, Me.FlavorOdorsToolStripMenuItem, Me.ReactionEditorToolStripMenuItem, Me.ToolStripMenuItem2, Me.ExportMetabolitesDatabaseToolStripMenuItem, Me.ExportEnzymeDatabaseToolStripMenuItem, Me.ExportConservedOperonDatabaseToolStripMenuItem, Me.ExportKEGGIDMappingToolStripMenuItem, Me.ToolStripMenuItem3, Me.ExportBloodTagToolStripMenuItem, Me.ExportAnnotationTableToolStripMenuItem})
         Me.DataToolStripMenuItem.Name = "DataToolStripMenuItem"
         Me.DataToolStripMenuItem.Size = New System.Drawing.Size(43, 20)
         Me.DataToolStripMenuItem.Text = "Data"
@@ -147,6 +148,12 @@ Partial Class FormMain
         Me.SearchToolStripMenuItem.Name = "SearchToolStripMenuItem"
         Me.SearchToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.SearchToolStripMenuItem.Text = "Search Text"
+        '
+        'SearchNameToolStripMenuItem
+        '
+        Me.SearchNameToolStripMenuItem.Name = "SearchNameToolStripMenuItem"
+        Me.SearchNameToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.SearchNameToolStripMenuItem.Text = "Search Name"
         '
         'SubCellularCompartmentsToolStripMenuItem
         '
@@ -267,11 +274,11 @@ Partial Class FormMain
         Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(42, 17)
         Me.ToolStripStatusLabel1.Text = "Ready!"
         '
-        'SearchNameToolStripMenuItem
+        'ReactionEditorToolStripMenuItem
         '
-        Me.SearchNameToolStripMenuItem.Name = "SearchNameToolStripMenuItem"
-        Me.SearchNameToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.SearchNameToolStripMenuItem.Text = "Search Name"
+        Me.ReactionEditorToolStripMenuItem.Name = "ReactionEditorToolStripMenuItem"
+        Me.ReactionEditorToolStripMenuItem.Size = New System.Drawing.Size(261, 22)
+        Me.ReactionEditorToolStripMenuItem.Text = "Reaction Editor"
         '
         'FormMain
         '
@@ -327,4 +334,5 @@ Partial Class FormMain
     Friend WithEvents ExportKEGGMetaboliteTableToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ExportMembraneTransporterToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents SearchNameToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ReactionEditorToolStripMenuItem As ToolStripMenuItem
 End Class

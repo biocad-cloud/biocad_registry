@@ -587,4 +587,8 @@ WHERE
         view.Text = $"Search Result of '{Text}'"
         view.Show()
     End Sub
+
+    Private Sub ReactionEditorToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ReactionEditorToolStripMenuItem.Click
+
+    End Sub
 End Class
