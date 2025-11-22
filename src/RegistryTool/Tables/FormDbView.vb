@@ -142,4 +142,8 @@ Public Class FormDbView
             Call _view(DataGridView1.SelectedRows(0))
         End If
     End Sub
+
+    Private Sub FormDbView_Load(sender As Object, e As EventArgs) Handles Me.Load
+        Call ApplyVsTheme(ToolStrip1, ContextMenuStrip1)
+    End Sub
 End Class

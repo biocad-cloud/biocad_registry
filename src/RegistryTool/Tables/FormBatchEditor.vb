@@ -63,10 +63,12 @@ Public Class FormBatchEditor
         Text = $"Batch Editor [{list.Length} molecules]"
     End Sub
 
-    Private Sub FormBatchEditor_Load(sender As Object, e As EventArgs) Handles Me.Load
-        For Each term As TopicTerm In TopicTerm.GetTopics
+    Private Async Sub FormBatchEditor_Load(sender As Object, e As EventArgs) Handles Me.Load
+        For Each term As TopicTerm In Await Task.Run(Function() TopicTerm.GetTopics)
             Call ComboBox1.Items.Add(term)
         Next
+
+        Call ApplyVsTheme(ContextMenuStrip1)
     End Sub
 
     ''' <summary>

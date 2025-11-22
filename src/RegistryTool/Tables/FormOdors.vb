@@ -9,6 +9,8 @@ Public Class FormOdors
 
     Private Async Sub FormOdors_Load(sender As Object, e As EventArgs) Handles Me.Load
         Await loadPage()
+
+        Call ApplyVsTheme(StatusStrip1, ToolStrip1, ContextMenuStrip1, ContextMenuStrip2)
     End Sub
 
     Private Async Function loadPage() As Task

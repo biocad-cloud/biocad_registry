@@ -106,6 +106,8 @@ Public Class FormMoleculeTable
 
         ToolStripComboBox1.SelectedIndex = 0
 
+        Call ApplyVsTheme(ToolStrip1, StatusStrip1, ContextMenuStrip1)
+
         Await LoadPage()
     End Sub
 

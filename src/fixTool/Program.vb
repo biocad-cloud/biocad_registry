@@ -1,7 +1,6 @@
 Imports biocad_storage
 Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar
 Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm
-Imports Microsoft.VisualBasic.Data.Framework
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports Oracle.LinuxCompatibility.MySQL.Uri
 
@@ -18,11 +17,11 @@ Module Program
     Friend ReadOnly registry As New biocad_registry(mysql)
 
     Sub Main(args As String())
-        Call idSplit.splitJointID()
+        ' Call idSplit.splitJointID()
         ' Call HMDBfixTool.RunFix()
-        ' Call exportwebJSONDb.exportReactions()
-        ' Call exportwebJSONDb.makeNetworkExpansion()
-        ' Call exportwebJSONDb.exportMolecules()
+        Call exportwebJSONDb.exportReactions()
+        Call exportwebJSONDb.makeNetworkExpansion()
+        Call exportwebJSONDb.exportMolecules()
         ' Call regpreciseMotifs.extractTF()
         ' Call regpreciseMotifs.extractMotifs()
         ' Call exportwebJSONDb.runlocalDbCache()
