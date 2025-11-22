@@ -127,17 +127,17 @@
           "runtimes/win-arm64/native/WebView2Loader.dll": {
             "rid": "win-arm64",
             "assetType": "native",
-            "fileVersion": "1.0.3537.50"
+            "fileVersion": "1.0.3595.46"
           },
           "runtimes/win-x64/native/WebView2Loader.dll": {
             "rid": "win-x64",
             "assetType": "native",
-            "fileVersion": "1.0.3537.50"
+            "fileVersion": "1.0.3595.46"
           },
           "runtimes/win-x86/native/WebView2Loader.dll": {
             "rid": "win-x86",
             "assetType": "native",
-            "fileVersion": "1.0.3537.50"
+            "fileVersion": "1.0.3595.46"
           }
         }
       },
