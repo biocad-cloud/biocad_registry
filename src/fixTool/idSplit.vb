@@ -6,11 +6,11 @@ Public Module idSplit
 
     Public Sub splitJointID()
         Dim page_size As Integer = 1000
-        Dim db = 282
+        Dim db = 283
 
         Do While True
             Dim list = registry.db_xrefs _
-                .where(field("db_key") = db, field("xref").instr(",")) _
+                .where(field("db_key") = db, field("xref").instr(" ")) _
                 .limit(page_size) _
                 .select(Of biocad_registryModel.db_xrefs)
 
@@ -21,7 +21,7 @@ Public Module idSplit
             Dim id_trans = registry.db_xrefs.open_transaction.ignore
 
             For Each invalid In TqdmWrapper.Wrap(list)
-                Dim newIds = invalid.xref.StringSplit("\s*,\s*") ' \s*,\s*
+                Dim newIds = invalid.xref.StringSplit("\s+") ' \s*,\s*
 
                 For Each newId In newIds.Select(AddressOf Strings.Trim)
                     Dim exists = registry.db_xrefs.where(field("obj_id") = invalid.obj_id,
