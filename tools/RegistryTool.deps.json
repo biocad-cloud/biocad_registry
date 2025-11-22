@@ -16,7 +16,7 @@
           "GalaxyWorkbench": "1.0.0",
           "Microsoft.VisualBasic.MIME.text.markdown": "1.0.0",
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
-          "Microsoft.Web.WebView2": "1.0.3537.50",
+          "Microsoft.Web.WebView2": "1.0.3595.46",
           "Ollama": "1.0.0",
           "Oracle.LinuxCompatibility.LibMySQL": "1.0.0",
           "REnv": "5.1.3.5558",
@@ -59,9 +59,9 @@
           "Microsoft.VisualBasic.MIME.text.markdown.Reference": "1.0.0.0",
           "Microsoft.VisualBasic.Runtime.Reference": "5.33.69.2558",
           "Microsoft.VisualStudio.Windows.Form": "1.0.0.0",
-          "Microsoft.Web.WebView2.Core": "1.0.3537.50",
-          "Microsoft.Web.WebView2.WinForms": "1.0.3537.50",
-          "Microsoft.Web.WebView2.Wpf": "1.0.3537.50",
+          "Microsoft.Web.WebView2.Core": "1.0.3595.46",
+          "Microsoft.Web.WebView2.WinForms": "1.0.3595.46",
+          "Microsoft.Web.WebView2.Wpf": "1.0.3595.46",
           "Oracle.LinuxCompatibility.LibMySQL.Reference": "1.0.0.0",
           "REnv.Reference": "2.33.856.6961",
           "SMRUCC.genomics.Analysis.HTS.GSEA.Fisher.Core.Reference": "1.0.0.0",
@@ -77,32 +77,40 @@
           "RegistryTool.dll": {}
         }
       },
-      "Google.Protobuf/3.28.3": {
+      "BouncyCastle.Cryptography/2.6.2": {
+        "runtime": {
+          "lib/net6.0/BouncyCastle.Cryptography.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.6.2.46322"
+          }
+        }
+      },
+      "Google.Protobuf/3.33.1": {
         "runtime": {
           "lib/net5.0/Google.Protobuf.dll": {
-            "assemblyVersion": "3.28.3.0",
-            "fileVersion": "3.28.3.0"
+            "assemblyVersion": "3.33.1.0",
+            "fileVersion": "3.33.1.0"
           }
         }
       },
-      "K4os.Compression.LZ4/1.3.5": {
+      "K4os.Compression.LZ4/1.3.8": {
         "runtime": {
           "lib/net6.0/K4os.Compression.LZ4.dll": {
-            "assemblyVersion": "1.3.5.0",
-            "fileVersion": "1.3.5.0"
+            "assemblyVersion": "1.3.8.0",
+            "fileVersion": "1.3.8.0"
           }
         }
       },
-      "K4os.Compression.LZ4.Streams/1.3.5": {
+      "K4os.Compression.LZ4.Streams/1.3.8": {
         "dependencies": {
-          "K4os.Compression.LZ4": "1.3.5",
+          "K4os.Compression.LZ4": "1.3.8",
           "K4os.Hash.xxHash": "1.0.8",
-          "System.IO.Pipelines": "6.0.3"
+          "System.IO.Pipelines": "10.0.0"
         },
         "runtime": {
           "lib/net6.0/K4os.Compression.LZ4.Streams.dll": {
-            "assemblyVersion": "1.3.5.0",
-            "fileVersion": "1.3.5.0"
+            "assemblyVersion": "1.3.8.0",
+            "fileVersion": "1.3.8.0"
           }
         }
       },
@@ -114,7 +122,7 @@
           }
         }
       },
-      "Microsoft.Web.WebView2/1.0.3537.50": {
+      "Microsoft.Web.WebView2/1.0.3595.46": {
         "runtimeTargets": {
           "runtimes/win-arm64/native/WebView2Loader.dll": {
             "rid": "win-arm64",
@@ -133,163 +141,327 @@
           }
         }
       },
-      "MySql.Data/8.0.33": {
+      "Microsoft.Win32.SystemEvents/10.0.0": {
+        "runtime": {
+          "lib/net8.0/Microsoft.Win32.SystemEvents.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.25.52411"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/win/lib/net8.0/Microsoft.Win32.SystemEvents.dll": {
+            "rid": "win",
+            "assetType": "runtime",
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.25.52411"
+          }
+        }
+      },
+      "MySql.Data/9.5.0": {
         "dependencies": {
-          "Google.Protobuf": "3.28.3",
-          "K4os.Compression.LZ4.Streams": "1.3.5",
-          "Portable.BouncyCastle": "1.9.0",
-          "System.Configuration.ConfigurationManager": "8.0.1"
+          "BouncyCastle.Cryptography": "2.6.2",
+          "Google.Protobuf": "3.33.1",
+          "K4os.Compression.LZ4.Streams": "1.3.8",
+          "System.Configuration.ConfigurationManager": "10.0.0",
+          "System.Security.Permissions": "10.0.0",
+          "ZstdSharp.Port": "0.8.6"
         },
         "runtime": {
-          "lib/net7.0/MySql.Data.dll": {
-            "assemblyVersion": "8.0.33.0",
-            "fileVersion": "8.0.33.0"
+          "lib/net8.0/MySql.Data.dll": {
+            "assemblyVersion": "9.5.0.0",
+            "fileVersion": "9.5.0.0"
           }
         },
         "runtimeTargets": {
           "runtimes/win-x64/native/comerr64.dll": {
             "rid": "win-x64",
             "assetType": "native",
-            "fileVersion": "4.1.0.0"
+            "fileVersion": "4.3.0.1"
           },
           "runtimes/win-x64/native/gssapi64.dll": {
             "rid": "win-x64",
             "assetType": "native",
-            "fileVersion": "4.1.0.0"
+            "fileVersion": "4.3.0.1"
           },
           "runtimes/win-x64/native/k5sprt64.dll": {
             "rid": "win-x64",
             "assetType": "native",
-            "fileVersion": "4.1.0.0"
+            "fileVersion": "4.3.0.1"
           },
           "runtimes/win-x64/native/krb5_64.dll": {
             "rid": "win-x64",
             "assetType": "native",
-            "fileVersion": "4.1.0.0"
+            "fileVersion": "4.3.0.1"
           },
           "runtimes/win-x64/native/krbcc64.dll": {
             "rid": "win-x64",
             "assetType": "native",
-            "fileVersion": "4.1.0.0"
+            "fileVersion": "4.3.0.1"
           }
         }
       },
-      "Portable.BouncyCastle/1.9.0": {
+      "System.Collections.Immutable/10.0.0": {
         "runtime": {
-          "lib/netstandard2.0/BouncyCastle.Crypto.dll": {
-            "assemblyVersion": "1.9.0.0",
-            "fileVersion": "1.9.0.1"
+          "lib/net8.0/System.Collections.Immutable.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.25.52411"
           }
         }
       },
-      "System.Composition/8.0.0": {
+      "System.Composition/10.0.0": {
         "dependencies": {
-          "System.Composition.AttributedModel": "8.0.0",
-          "System.Composition.Convention": "8.0.0",
-          "System.Composition.Hosting": "8.0.0",
-          "System.Composition.Runtime": "8.0.0",
-          "System.Composition.TypedParts": "8.0.0"
+          "System.Composition.AttributedModel": "10.0.0",
+          "System.Composition.Convention": "10.0.0",
+          "System.Composition.Hosting": "10.0.0",
+          "System.Composition.Runtime": "10.0.0",
+          "System.Composition.TypedParts": "10.0.0"
         }
       },
-      "System.Composition.AttributedModel/8.0.0": {
+      "System.Composition.AttributedModel/10.0.0": {
         "runtime": {
           "lib/net8.0/System.Composition.AttributedModel.dll": {
-            "assemblyVersion": "8.0.0.0",
-            "fileVersion": "8.0.23.53103"
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.25.52411"
           }
         }
       },
-      "System.Composition.Convention/8.0.0": {
+      "System.Composition.Convention/10.0.0": {
         "dependencies": {
-          "System.Composition.AttributedModel": "8.0.0"
+          "System.Composition.AttributedModel": "10.0.0"
         },
         "runtime": {
           "lib/net8.0/System.Composition.Convention.dll": {
-            "assemblyVersion": "8.0.0.0",
-            "fileVersion": "8.0.23.53103"
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.25.52411"
           }
         }
       },
-      "System.Composition.Hosting/8.0.0": {
+      "System.Composition.Hosting/10.0.0": {
         "dependencies": {
-          "System.Composition.Runtime": "8.0.0"
+          "System.Composition.Runtime": "10.0.0"
         },
         "runtime": {
           "lib/net8.0/System.Composition.Hosting.dll": {
-            "assemblyVersion": "8.0.0.0",
-            "fileVersion": "8.0.23.53103"
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.25.52411"
           }
         }
       },
-      "System.Composition.Runtime/8.0.0": {
+      "System.Composition.Runtime/10.0.0": {
         "runtime": {
           "lib/net8.0/System.Composition.Runtime.dll": {
-            "assemblyVersion": "8.0.0.0",
-            "fileVersion": "8.0.23.53103"
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.25.52411"
           }
         }
       },
-      "System.Composition.TypedParts/8.0.0": {
+      "System.Composition.TypedParts/10.0.0": {
         "dependencies": {
-          "System.Composition.AttributedModel": "8.0.0",
-          "System.Composition.Hosting": "8.0.0",
-          "System.Composition.Runtime": "8.0.0"
+          "System.Composition.AttributedModel": "10.0.0",
+          "System.Composition.Hosting": "10.0.0",
+          "System.Composition.Runtime": "10.0.0"
         },
         "runtime": {
           "lib/net8.0/System.Composition.TypedParts.dll": {
-            "assemblyVersion": "8.0.0.0",
-            "fileVersion": "8.0.23.53103"
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.25.52411"
           }
         }
       },
-      "System.Configuration.ConfigurationManager/8.0.1": {
+      "System.Configuration.ConfigurationManager/10.0.0": {
         "dependencies": {
-          "System.Diagnostics.EventLog": "8.0.1"
+          "System.Diagnostics.EventLog": "10.0.0",
+          "System.Security.Cryptography.ProtectedData": "10.0.0"
         },
         "runtime": {
           "lib/net8.0/System.Configuration.ConfigurationManager.dll": {
-            "assemblyVersion": "8.0.0.0",
-            "fileVersion": "8.0.1024.46610"
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.25.52411"
           }
         }
       },
-      "System.Diagnostics.EventLog/8.0.1": {
+      "System.Diagnostics.DiagnosticSource/10.0.0": {
+        "runtime": {
+          "lib/net8.0/System.Diagnostics.DiagnosticSource.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.25.52411"
+          }
+        }
+      },
+      "System.Diagnostics.EventLog/10.0.0": {
         "runtime": {
           "lib/net8.0/System.Diagnostics.EventLog.dll": {
-            "assemblyVersion": "8.0.0.0",
-            "fileVersion": "8.0.1024.46610"
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.25.52411"
           }
         },
         "runtimeTargets": {
+          "runtimes/win/lib/net8.0/System.Diagnostics.EventLog.Messages.dll": {
+            "rid": "win",
+            "assetType": "runtime",
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "0.0.0.0"
+          },
           "runtimes/win/lib/net8.0/System.Diagnostics.EventLog.dll": {
             "rid": "win",
             "assetType": "runtime",
-            "assemblyVersion": "8.0.0.0",
-            "fileVersion": "8.0.1024.46610"
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.25.52411"
           }
         }
       },
-      "System.Drawing.Common/8.0.10": {
+      "System.Drawing.Common/10.0.0": {
+        "dependencies": {
+          "Microsoft.Win32.SystemEvents": "10.0.0"
+        },
         "runtime": {
           "lib/net8.0/System.Drawing.Common.dll": {
-            "assemblyVersion": "8.0.0.0",
-            "fileVersion": "8.0.1024.46803"
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.25.52411"
+          },
+          "lib/net8.0/System.Private.Windows.Core.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.25.52411"
+          },
+          "lib/net8.0/System.Private.Windows.GdiPlus.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.25.52411"
           }
         }
       },
-      "System.IO.Pipelines/6.0.3": {
+      "System.Formats.Nrbf/10.0.0": {
+        "dependencies": {
+          "System.Reflection.Metadata": "10.0.0"
+        },
         "runtime": {
-          "lib/net6.0/System.IO.Pipelines.dll": {
-            "assemblyVersion": "6.0.0.0",
-            "fileVersion": "6.0.522.21309"
+          "lib/net8.0/System.Formats.Nrbf.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.25.52411"
           }
         }
       },
-      "System.Numerics.Tensors/8.0.0": {
+      "System.IO.Pipelines/10.0.0": {
+        "runtime": {
+          "lib/net8.0/System.IO.Pipelines.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.25.52411"
+          }
+        }
+      },
+      "System.Numerics.Tensors/10.0.0": {
         "runtime": {
           "lib/net8.0/System.Numerics.Tensors.dll": {
-            "assemblyVersion": "8.0.0.0",
-            "fileVersion": "8.0.23.53103"
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.25.52411"
+          }
+        }
+      },
+      "System.Reflection.Metadata/10.0.0": {
+        "dependencies": {
+          "System.Collections.Immutable": "10.0.0"
+        },
+        "runtime": {
+          "lib/net8.0/System.Reflection.Metadata.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.25.52411"
+          }
+        }
+      },
+      "System.Resources.Extensions/10.0.0": {
+        "dependencies": {
+          "System.Formats.Nrbf": "10.0.0"
+        },
+        "runtime": {
+          "lib/net8.0/System.Resources.Extensions.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.25.52411"
+          }
+        }
+      },
+      "System.Security.Cryptography.ProtectedData/10.0.0": {
+        "runtime": {
+          "lib/net8.0/System.Security.Cryptography.ProtectedData.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.25.52411"
+          }
+        }
+      },
+      "System.Security.Permissions/10.0.0": {
+        "dependencies": {
+          "System.Windows.Extensions": "10.0.0"
+        },
+        "runtime": {
+          "lib/net8.0/System.Security.Permissions.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.25.52411"
+          }
+        }
+      },
+      "System.Text.Encoding.CodePages/10.0.0": {
+        "runtime": {
+          "lib/net8.0/System.Text.Encoding.CodePages.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.25.52411"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/win/lib/net8.0/System.Text.Encoding.CodePages.dll": {
+            "rid": "win",
+            "assetType": "runtime",
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.25.52411"
+          }
+        }
+      },
+      "System.Text.Encodings.Web/10.0.0": {
+        "runtime": {
+          "lib/net8.0/System.Text.Encodings.Web.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.25.52411"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/browser/lib/net8.0/System.Text.Encodings.Web.dll": {
+            "rid": "browser",
+            "assetType": "runtime",
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.25.52411"
+          }
+        }
+      },
+      "System.Text.Json/10.0.0": {
+        "dependencies": {
+          "System.IO.Pipelines": "10.0.0",
+          "System.Text.Encodings.Web": "10.0.0"
+        },
+        "runtime": {
+          "lib/net8.0/System.Text.Json.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.25.52411"
+          }
+        }
+      },
+      "System.Windows.Extensions/10.0.0": {
+        "runtime": {
+          "lib/net8.0/System.Windows.Extensions.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.25.52411"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/win/lib/net8.0/System.Windows.Extensions.dll": {
+            "rid": "win",
+            "assetType": "runtime",
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.25.52411"
+          }
+        }
+      },
+      "ZstdSharp.Port/0.8.6": {
+        "runtime": {
+          "lib/net8.0/ZstdSharp.dll": {
+            "assemblyVersion": "0.8.6.0",
+            "fileVersion": "0.8.6.0"
           }
         }
       },
@@ -322,7 +494,8 @@
         "dependencies": {
           "Microsoft.VisualBasic.Math.Core": "5.0.1.2389",
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
-          "System.Composition": "8.0.0"
+          "System.Composition": "10.0.0",
+          "System.Resources.Extensions": "10.0.0"
         },
         "runtime": {
           "BioNovoGene.Analytical.MassSpectrometry.Math.dll": {
@@ -337,7 +510,8 @@
           "Microsoft.VisualBasic.Math.Core": "5.0.1.2389",
           "Microsoft.VisualBasic.Math.SignalProcessing": "1.0.0",
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
-          "System.Composition": "8.0.0"
+          "System.Composition": "10.0.0",
+          "System.Resources.Extensions": "10.0.0"
         },
         "runtime": {
           "BioNovoGene.Analytical.MassSpectrometry.Math.Deconvolution.dll": {
@@ -381,7 +555,8 @@
           "SMRUCC.genomics.Core": "6.3.256.3655",
           "SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI": "3.0.0",
           "SMRUCC.genomics.foundation.OBO_Foundry": "1.0.0",
-          "System.Composition": "8.0.0"
+          "System.Composition": "10.0.0",
+          "System.Resources.Extensions": "10.0.0"
         },
         "runtime": {
           "BioNovoGene.BioDeep.Chemistry.Massbank.dll": {
@@ -415,7 +590,8 @@
           "Microsoft.VisualBasic.Math.Core": "5.0.1.2389",
           "Microsoft.VisualBasic.Math.Statistics": "1.0.0",
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
-          "System.Composition": "8.0.0"
+          "System.Composition": "10.0.0",
+          "System.Resources.Extensions": "10.0.0"
         },
         "runtime": {
           "BioNovoGene.BioDeep.Chemoinformatics.dll": {
@@ -447,7 +623,8 @@
           "Microsoft.VisualBasic.Math.Statistics": "1.0.0",
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
           "SMRUCC.genomics.Core": "6.3.256.3655",
-          "System.Composition": "8.0.0"
+          "System.Composition": "10.0.0",
+          "System.Resources.Extensions": "10.0.0"
         },
         "runtime": {
           "BioNovoGene.BioDeep.MSEngine.dll": {
@@ -460,7 +637,8 @@
           "BioNovoGene.Analytical.MassSpectrometry.Math": "1.0.0",
           "BioNovoGene.BioDeep.Chemoinformatics": "1.0.0",
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
-          "System.Composition": "8.0.0"
+          "System.Composition": "10.0.0",
+          "System.Resources.Extensions": "10.0.0"
         },
         "runtime": {
           "BioNovoGene.BioDeep.MSFinder.dll": {
@@ -517,7 +695,9 @@
       "Microsoft.VisualBasic.Data.BinaryData/1.0.0": {
         "dependencies": {
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
-          "System.Composition": "8.0.0"
+          "System.Composition": "10.0.0",
+          "System.Diagnostics.DiagnosticSource": "10.0.0",
+          "System.Resources.Extensions": "10.0.0"
         },
         "runtime": {
           "Microsoft.VisualBasic.Data.BinaryData.dll": {
@@ -529,7 +709,8 @@
         "dependencies": {
           "Microsoft.VisualBasic.Math.Core": "5.0.1.2389",
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
-          "System.Composition": "8.0.0"
+          "System.Composition": "10.0.0",
+          "System.Resources.Extensions": "10.0.0"
         },
         "runtime": {
           "Microsoft.VisualBasic.Data.Bootstrapping.Fittings.dll": {
@@ -540,7 +721,9 @@
       "Microsoft.VisualBasic.Data.Framework/5.0.123": {
         "dependencies": {
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
-          "System.Composition": "8.0.0"
+          "System.Composition": "10.0.0",
+          "System.Diagnostics.DiagnosticSource": "10.0.0",
+          "System.Resources.Extensions": "10.0.0"
         },
         "runtime": {
           "Microsoft.VisualBasic.Data.Framework.dll": {
@@ -552,7 +735,8 @@
         "dependencies": {
           "Microsoft.VisualBasic.Math.Core": "5.0.1.2389",
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
-          "System.Composition": "8.0.0"
+          "System.Composition": "10.0.0",
+          "System.Resources.Extensions": "10.0.0"
         },
         "runtime": {
           "Microsoft.VisualBasic.Data.GraphTheory.dll": {
@@ -564,7 +748,8 @@
         "dependencies": {
           "Microsoft.VisualBasic.Data.BinaryData": "1.0.0",
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
-          "System.Composition": "8.0.0"
+          "System.Composition": "10.0.0",
+          "System.Resources.Extensions": "10.0.0"
         },
         "runtime": {
           "Microsoft.VisualBasic.Data.IO.MessagePack.dll": {
@@ -602,7 +787,8 @@
           "Microsoft.VisualBasic.Data.GraphTheory": "1.0.0",
           "Microsoft.VisualBasic.Math.Core": "5.0.1.2389",
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
-          "System.Composition": "8.0.0"
+          "System.Composition": "10.0.0",
+          "System.Resources.Extensions": "10.0.0"
         },
         "runtime": {
           "Microsoft.VisualBasic.Data.visualize.Network.dll": {
@@ -618,7 +804,8 @@
           "Microsoft.VisualBasic.Math.Matrix": "1.0.0",
           "Microsoft.VisualBasic.Math.Statistics": "1.0.0",
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
-          "System.Composition": "8.0.0"
+          "System.Composition": "10.0.0",
+          "System.Resources.Extensions": "10.0.0"
         },
         "runtime": {
           "Microsoft.VisualBasic.DataMining.BinaryTreeClustering.dll": {
@@ -630,7 +817,8 @@
         "dependencies": {
           "Microsoft.VisualBasic.Math.Core": "5.0.1.2389",
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
-          "System.Composition": "8.0.0"
+          "System.Composition": "10.0.0",
+          "System.Resources.Extensions": "10.0.0"
         },
         "runtime": {
           "Microsoft.VisualBasic.DataMining.Framework.dll": {
@@ -643,7 +831,8 @@
           "Microsoft.VisualBasic.Data.BinaryData": "1.0.0",
           "Microsoft.VisualBasic.Data.IO.MessagePack": "1.0.0",
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
-          "System.Composition": "8.0.0"
+          "System.Composition": "10.0.0",
+          "System.Resources.Extensions": "10.0.0"
         },
         "runtime": {
           "Microsoft.VisualBasic.DataStorage.HDSPack.dll": {
@@ -670,7 +859,7 @@
           "Microsoft.VisualBasic.MIME.Html": "1.0.0",
           "Microsoft.VisualBasic.Math.Core": "5.0.1.2389",
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
-          "System.Drawing.Common": "8.0.10"
+          "System.Drawing.Common": "10.0.0"
         },
         "runtime": {
           "Microsoft.VisualBasic.Drawing.Windows.dll": {
@@ -683,7 +872,8 @@
           "Microsoft.VisualBasic.DataMining.Framework": "1.0.0",
           "Microsoft.VisualBasic.Math.Core": "5.0.1.2389",
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
-          "System.Composition": "8.0.0"
+          "System.Composition": "10.0.0",
+          "System.Resources.Extensions": "10.0.0"
         },
         "runtime": {
           "Microsoft.VisualBasic.MachineLearning.dll": {
@@ -720,7 +910,9 @@
       "Microsoft.VisualBasic.Math.Core/5.0.1.2389": {
         "dependencies": {
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
-          "System.Composition": "8.0.0"
+          "System.Composition": "10.0.0",
+          "System.Diagnostics.DiagnosticSource": "10.0.0",
+          "System.Resources.Extensions": "10.0.0"
         },
         "runtime": {
           "Microsoft.VisualBasic.Math.Core.dll": {
@@ -734,7 +926,9 @@
           "Microsoft.VisualBasic.Math.Core": "5.0.1.2389",
           "Microsoft.VisualBasic.Math.Statistics": "1.0.0",
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
-          "System.Composition": "8.0.0"
+          "System.Composition": "10.0.0",
+          "System.Diagnostics.DiagnosticSource": "10.0.0",
+          "System.Resources.Extensions": "10.0.0"
         },
         "runtime": {
           "Microsoft.VisualBasic.Math.Matrix.dll": {
@@ -747,7 +941,8 @@
           "Microsoft.VisualBasic.Data.Bootstrapping.Fittings": "5.0.1.2389",
           "Microsoft.VisualBasic.Math.Core": "5.0.1.2389",
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
-          "System.Composition": "8.0.0"
+          "System.Composition": "10.0.0",
+          "System.Resources.Extensions": "10.0.0"
         },
         "runtime": {
           "Microsoft.VisualBasic.Math.SignalProcessing.dll": {
@@ -759,7 +954,9 @@
         "dependencies": {
           "Microsoft.VisualBasic.Math.Core": "5.0.1.2389",
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
-          "System.Composition": "8.0.0"
+          "System.Composition": "10.0.0",
+          "System.Diagnostics.DiagnosticSource": "10.0.0",
+          "System.Resources.Extensions": "10.0.0"
         },
         "runtime": {
           "Microsoft.VisualBasic.Math.Statistics.dll": {
@@ -770,7 +967,8 @@
       "Microsoft.VisualBasic.MIME.application.json/1.0.0": {
         "dependencies": {
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
-          "System.Composition": "8.0.0"
+          "System.Composition": "10.0.0",
+          "System.Resources.Extensions": "10.0.0"
         },
         "runtime": {
           "Microsoft.VisualBasic.MIME.application.json.dll": {
@@ -781,7 +979,9 @@
       "Microsoft.VisualBasic.MIME.application.rdf_xml/1.0.0": {
         "dependencies": {
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
-          "System.Composition": "8.0.0"
+          "System.Composition": "10.0.0",
+          "System.Diagnostics.DiagnosticSource": "10.0.0",
+          "System.Resources.Extensions": "10.0.0"
         },
         "runtime": {
           "Microsoft.VisualBasic.MIME.application.rdf_xml.dll": {
@@ -792,7 +992,9 @@
       "Microsoft.VisualBasic.MIME.application.xml/1.0.0": {
         "dependencies": {
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
-          "System.Composition": "8.0.0"
+          "System.Composition": "10.0.0",
+          "System.Diagnostics.DiagnosticSource": "10.0.0",
+          "System.Resources.Extensions": "10.0.0"
         },
         "runtime": {
           "Microsoft.VisualBasic.MIME.application.xml.dll": {
@@ -803,8 +1005,9 @@
       "Microsoft.VisualBasic.MIME.Html/1.0.0": {
         "dependencies": {
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
-          "System.Composition": "8.0.0",
-          "System.Configuration.ConfigurationManager": "8.0.1"
+          "System.Composition": "10.0.0",
+          "System.Configuration.ConfigurationManager": "10.0.0",
+          "System.Resources.Extensions": "10.0.0"
         },
         "runtime": {
           "Microsoft.VisualBasic.MIME.Html.dll": {
@@ -825,7 +1028,11 @@
       },
       "Microsoft.VisualBasic.Runtime/5.0.1.2389": {
         "dependencies": {
-          "System.Composition": "8.0.0"
+          "System.Composition": "10.0.0",
+          "System.Diagnostics.DiagnosticSource": "10.0.0",
+          "System.Resources.Extensions": "10.0.0",
+          "System.Text.Encoding.CodePages": "10.0.0",
+          "System.Text.Encodings.Web": "10.0.0"
         },
         "runtime": {
           "Microsoft.VisualBasic.Runtime.dll": {
@@ -836,7 +1043,7 @@
       "Microsoft.Windows.FeatureAPI/1.0.0": {
         "runtime": {
           "Microsoft.Windows.FeatureAPI.dll": {
-            "assemblyVersion": "10.0.9456.32685",
+            "assemblyVersion": "10.0.9458.1410",
             "fileVersion": "1.0.10.8963"
           }
         }
@@ -854,12 +1061,16 @@
       },
       "Oracle.LinuxCompatibility.LibMySQL/1.0.0": {
         "dependencies": {
-          "Google.Protobuf": "3.28.3",
+          "Google.Protobuf": "3.33.1",
           "Microsoft.VisualBasic.Math.Core": "5.0.1.2389",
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
-          "MySql.Data": "8.0.33",
-          "System.Composition": "8.0.0",
-          "System.Configuration.ConfigurationManager": "8.0.1"
+          "MySql.Data": "9.5.0",
+          "System.Composition": "10.0.0",
+          "System.Configuration.ConfigurationManager": "10.0.0",
+          "System.Diagnostics.DiagnosticSource": "10.0.0",
+          "System.Resources.Extensions": "10.0.0",
+          "System.Security.Permissions": "10.0.0",
+          "System.Text.Json": "10.0.0"
         },
         "runtime": {
           "Oracle.LinuxCompatibility.LibMySQL.dll": {
@@ -870,8 +1081,11 @@
       "REnv/5.1.3.5558": {
         "dependencies": {
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
-          "System.Composition": "8.0.0",
-          "System.Numerics.Tensors": "8.0.0"
+          "System.Composition": "10.0.0",
+          "System.Diagnostics.DiagnosticSource": "10.0.0",
+          "System.Numerics.Tensors": "10.0.0",
+          "System.Resources.Extensions": "10.0.0",
+          "System.Security.Permissions": "10.0.0"
         },
         "runtime": {
           "REnv.dll": {
@@ -886,7 +1100,8 @@
           "Microsoft.VisualBasic.Math.Statistics": "1.0.0",
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
           "SMRUCC.genomics.Core": "6.3.256.3655",
-          "System.Composition": "8.0.0"
+          "System.Composition": "10.0.0",
+          "System.Resources.Extensions": "10.0.0"
         },
         "runtime": {
           "SMRUCC.genomics.Analysis.HTS.GSEA.Fisher.Core.dll": {
@@ -897,7 +1112,9 @@
       "SMRUCC.genomics.Core/6.3.256.3655": {
         "dependencies": {
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
-          "System.Composition": "8.0.0"
+          "System.Composition": "10.0.0",
+          "System.Diagnostics.DiagnosticSource": "10.0.0",
+          "System.Resources.Extensions": "10.0.0"
         },
         "runtime": {
           "SMRUCC.genomics.Core.dll": {
@@ -932,7 +1149,8 @@
         "dependencies": {
           "Microsoft.VisualBasic.MIME.application.rdf_xml": "1.0.0",
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
-          "System.Composition": "8.0.0"
+          "System.Composition": "10.0.0",
+          "System.Resources.Extensions": "10.0.0"
         },
         "runtime": {
           "SMRUCC.genomics.foundation.OBO_Foundry.dll": {
@@ -947,7 +1165,8 @@
           "Microsoft.VisualBasic.MIME.application.json": "1.0.0",
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
           "SMRUCC.genomics.Core": "6.3.256.3655",
-          "System.Composition": "8.0.0"
+          "System.Composition": "10.0.0",
+          "System.Resources.Extensions": "10.0.0"
         },
         "runtime": {
           "SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll": {
@@ -1289,27 +1508,27 @@
           }
         }
       },
-      "Microsoft.Web.WebView2.Core/1.0.3537.50": {
+      "Microsoft.Web.WebView2.Core/1.0.3595.46": {
         "runtime": {
           "Microsoft.Web.WebView2.Core.dll": {
-            "assemblyVersion": "1.0.3537.50",
-            "fileVersion": "1.0.3537.50"
+            "assemblyVersion": "1.0.3595.46",
+            "fileVersion": "1.0.3595.46"
           }
         }
       },
-      "Microsoft.Web.WebView2.WinForms/1.0.3537.50": {
+      "Microsoft.Web.WebView2.WinForms/1.0.3595.46": {
         "runtime": {
           "Microsoft.Web.WebView2.WinForms.dll": {
-            "assemblyVersion": "1.0.3537.50",
-            "fileVersion": "1.0.3537.50"
+            "assemblyVersion": "1.0.3595.46",
+            "fileVersion": "1.0.3595.46"
           }
         }
       },
-      "Microsoft.Web.WebView2.Wpf/1.0.3537.50": {
+      "Microsoft.Web.WebView2.Wpf/1.0.3595.46": {
         "runtime": {
           "Microsoft.Web.WebView2.Wpf.dll": {
-            "assemblyVersion": "1.0.3537.50",
-            "fileVersion": "1.0.3537.50"
+            "assemblyVersion": "1.0.3595.46",
+            "fileVersion": "1.0.3595.46"
           }
         }
       },
@@ -1401,26 +1620,33 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Google.Protobuf/3.28.3": {
+    "BouncyCastle.Cryptography/2.6.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-OewySX3aQCdKfMJsj2DzBMXQJPI+lm0CBzamU9ViFu3CU9tXYrQWqJ1CZ+/UWtkwOjUeIzbXmoOjRc7B8pbMrA==",
-      "path": "google.protobuf/3.28.3",
-      "hashPath": "google.protobuf.3.28.3.nupkg.sha512"
+      "sha512": "sha512-7oWOcvnntmMKNzDLsdxAYqApt+AjpRpP2CShjMfIa3umZ42UQMvH0tl1qAliYPNYO6vTdcGMqnRrCPmsfzTI1w==",
+      "path": "bouncycastle.cryptography/2.6.2",
+      "hashPath": "bouncycastle.cryptography.2.6.2.nupkg.sha512"
     },
-    "K4os.Compression.LZ4/1.3.5": {
+    "Google.Protobuf/3.33.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-TS4mqlT0X1OlnvOGNfl02QdVUhuqgWuCnn7UxupIa7C9Pb6qlQ5yZA2sPhRh0OSmVULaQU64KV4wJuu//UyVQQ==",
-      "path": "k4os.compression.lz4/1.3.5",
-      "hashPath": "k4os.compression.lz4.1.3.5.nupkg.sha512"
+      "sha512": "sha512-RztiFmX9aOWDwfhxFzx/nS4fjs4DX7ZC7/XBEBl56k15lPGBftvbSwZkeo1mMCJHrNp1kK5iQYrFXB4MqCmBCA==",
+      "path": "google.protobuf/3.33.1",
+      "hashPath": "google.protobuf.3.33.1.nupkg.sha512"
     },
-    "K4os.Compression.LZ4.Streams/1.3.5": {
+    "K4os.Compression.LZ4/1.3.8": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-M0NufZI8ym3mm6F6HMSPz1jw7TJGdY74fjAtbIXATmnAva/8xLz50eQZJI9tf9mMeHUaFDg76N1BmEh8GR5zeA==",
-      "path": "k4os.compression.lz4.streams/1.3.5",
-      "hashPath": "k4os.compression.lz4.streams.1.3.5.nupkg.sha512"
+      "sha512": "sha512-LhwlPa7c1zs1OV2XadMtAWdImjLIsqFJPoRcIWAadSRn0Ri1DepK65UbWLPmt4riLqx2d40xjXRk0ogpqNtK7g==",
+      "path": "k4os.compression.lz4/1.3.8",
+      "hashPath": "k4os.compression.lz4.1.3.8.nupkg.sha512"
+    },
+    "K4os.Compression.LZ4.Streams/1.3.8": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-P15qr8dZAeo9GvYbUIPEYFQ0MEJ0i5iqr37wsYeRC3la2uCldOoeCa6to0CZ1taiwxIV+Mk8NGuZi+4iWivK9w==",
+      "path": "k4os.compression.lz4.streams/1.3.8",
+      "hashPath": "k4os.compression.lz4.streams.1.3.8.nupkg.sha512"
     },
     "K4os.Hash.xxHash/1.0.8": {
       "type": "package",
@@ -1429,103 +1655,187 @@
       "path": "k4os.hash.xxhash/1.0.8",
       "hashPath": "k4os.hash.xxhash.1.0.8.nupkg.sha512"
     },
-    "Microsoft.Web.WebView2/1.0.3537.50": {
+    "Microsoft.Web.WebView2/1.0.3595.46": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-6RQRMIcc/xnhDCdBmyc+YoPxPlYHjmg/mfVpQb4iYWr+K/cs28dTxCyOYFZjUFtiwupXN9nCqxOSMumn2ZKAIg==",
-      "path": "microsoft.web.webview2/1.0.3537.50",
-      "hashPath": "microsoft.web.webview2.1.0.3537.50.nupkg.sha512"
+      "sha512": "sha512-j+yzqAKwC8Zn+3FL5XJxm6N0Rh5iDqTANBfFaYvnjyRpbpqt3qkpFcqMWLjqEBGiWEClh3zLCkJINwRUcr1KxQ==",
+      "path": "microsoft.web.webview2/1.0.3595.46",
+      "hashPath": "microsoft.web.webview2.1.0.3595.46.nupkg.sha512"
     },
-    "MySql.Data/8.0.33": {
+    "Microsoft.Win32.SystemEvents/10.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-mW+A9tc0s+3E3+XYe80aJmr/AvZoKBZG44w13AdVf4+1iRDwgdL6eLMPZgHyQFGwdLwNvQNPKegcOE4rRDuv8Q==",
-      "path": "mysql.data/8.0.33",
-      "hashPath": "mysql.data.8.0.33.nupkg.sha512"
+      "sha512": "sha512-bYdnhuD0XxcVTrxc8RyBjXo+AXYWJPnda3clhGz2Kakleyun1PyrzYV8RezT7ZYmR9OBSOgvpFQcvHo/K8Y90w==",
+      "path": "microsoft.win32.systemevents/10.0.0",
+      "hashPath": "microsoft.win32.systemevents.10.0.0.nupkg.sha512"
     },
-    "Portable.BouncyCastle/1.9.0": {
+    "MySql.Data/9.5.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-eZZBCABzVOek+id9Xy04HhmgykF0wZg9wpByzrWN7q8qEI0Qen9b7tfd7w8VA3dOeesumMG7C5ZPy0jk7PSRHw==",
-      "path": "portable.bouncycastle/1.9.0",
-      "hashPath": "portable.bouncycastle.1.9.0.nupkg.sha512"
+      "sha512": "sha512-pbIrDv7vuvMlok6ldjliFOeb5fpGofAInUhG/8LraQBqT2a2xZTcAVjm/GyfZ9ZyjZeHJLWuMRbe0uI98sCoWg==",
+      "path": "mysql.data/9.5.0",
+      "hashPath": "mysql.data.9.5.0.nupkg.sha512"
     },
-    "System.Composition/8.0.0": {
+    "System.Collections.Immutable/10.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-E9oO9olNNxA39J8CxQwf7ceIPm+j/B/PhYpyK9M4LhN/OLLRw6u5fNInkhVqaWueMB9iXxYqnwqwgz+W91loIA==",
-      "path": "system.composition/8.0.0",
-      "hashPath": "system.composition.8.0.0.nupkg.sha512"
+      "sha512": "sha512-BHo23kBFvTFQa0tuDFXcb3Q8QInjm1Xrq+If/xuV8iMlxOOsylsa6sgRK25n5dlcMk8G2f0O/t5AdjZrdVBOXA==",
+      "path": "system.collections.immutable/10.0.0",
+      "hashPath": "system.collections.immutable.10.0.0.nupkg.sha512"
     },
-    "System.Composition.AttributedModel/8.0.0": {
+    "System.Composition/10.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-NyElSuvmBMYdn2iPG0n29i7Igu0bq99izOP3MAtEwskY3OP9jqsavvVmPn9lesVaj/KT/o/QkNjA43dOJTsDQw==",
-      "path": "system.composition.attributedmodel/8.0.0",
-      "hashPath": "system.composition.attributedmodel.8.0.0.nupkg.sha512"
+      "sha512": "sha512-7FQcd0fX5rwz8LpPcIoNwPtIEHoZAszdGFedY99aJzyxi13pvEXzhMbYzFrvW0dv9XwLB08PsyNxR8XPgvvI7w==",
+      "path": "system.composition/10.0.0",
+      "hashPath": "system.composition.10.0.0.nupkg.sha512"
     },
-    "System.Composition.Convention/8.0.0": {
+    "System.Composition.AttributedModel/10.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-UuVkc1B3vQU/LzEbWLMZ1aYVssv4rpShzf8wPEyrUqoGNqdYKREmB8bXR73heOMKkwS6ZnPz3PjGODT2MenukQ==",
-      "path": "system.composition.convention/8.0.0",
-      "hashPath": "system.composition.convention.8.0.0.nupkg.sha512"
+      "sha512": "sha512-XtrMhpq4okRAt+wRhzgZrcZ+SNuQFnOkxb8T/fJiIVymnAou5EnxHMQ5zSMIvreujdPtnFXbQbcKUowWB6tZqw==",
+      "path": "system.composition.attributedmodel/10.0.0",
+      "hashPath": "system.composition.attributedmodel.10.0.0.nupkg.sha512"
     },
-    "System.Composition.Hosting/8.0.0": {
+    "System.Composition.Convention/10.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-qwbONqoxlazxcbiohvb3t1JWZgKIKcRdXS5uEeLbo5wtuBupIbAvdC3PYTAeBCZrZeERvrtAbhYHuuS43Zr1bQ==",
-      "path": "system.composition.hosting/8.0.0",
-      "hashPath": "system.composition.hosting.8.0.0.nupkg.sha512"
+      "sha512": "sha512-R9UOcOgV+R2YTlVnwka2/xiALZvK0Gk/HBMmX6xBSMyN+6PN4rQ/OxsDLRxzcDyLy/3u4u97KR8SV4Z6d1sXdQ==",
+      "path": "system.composition.convention/10.0.0",
+      "hashPath": "system.composition.convention.10.0.0.nupkg.sha512"
     },
-    "System.Composition.Runtime/8.0.0": {
+    "System.Composition.Hosting/10.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-G+kRyB5/6+3ucRRQz+DF4uSHGqpkK8Q4ilVdbt4zvxpmvLVZNmSkyFAQpJLcbOyVF85aomJx0m+TGMDVlwx7ZQ==",
-      "path": "system.composition.runtime/8.0.0",
-      "hashPath": "system.composition.runtime.8.0.0.nupkg.sha512"
+      "sha512": "sha512-OELc78JfFu94HCazNSqiymDZw+byTy3GE+s/W6wCyGO5KYLzr9LaWpFIBA8lskJpu/9NqEEtx1HBTtpEjqBnGQ==",
+      "path": "system.composition.hosting/10.0.0",
+      "hashPath": "system.composition.hosting.10.0.0.nupkg.sha512"
     },
-    "System.Composition.TypedParts/8.0.0": {
+    "System.Composition.Runtime/10.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-DsSklhuA+Dsgo3ZZrar8hjBFvq1wa1grrkNCTt+6SoX3vq0Vy+HXJnVXrU/nNH1BjlGH684A7h4hJQHZd/u5mA==",
-      "path": "system.composition.typedparts/8.0.0",
-      "hashPath": "system.composition.typedparts.8.0.0.nupkg.sha512"
+      "sha512": "sha512-dD7GgLxd0KoV9mvOl6GRDw64fopRs1jf35oNJMojD4DdKDw8EfmvmNZ5KYm5P7O8mTREVHV3iAgSBTC6tYsUHw==",
+      "path": "system.composition.runtime/10.0.0",
+      "hashPath": "system.composition.runtime.10.0.0.nupkg.sha512"
     },
-    "System.Configuration.ConfigurationManager/8.0.1": {
+    "System.Composition.TypedParts/10.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-gPYFPDyohW2gXNhdQRSjtmeS6FymL2crg4Sral1wtvEJ7DUqFCDWDVbbLobASbzxfic8U1hQEdC7hmg9LHncMw==",
-      "path": "system.configuration.configurationmanager/8.0.1",
-      "hashPath": "system.configuration.configurationmanager.8.0.1.nupkg.sha512"
+      "sha512": "sha512-7O9PzdLwEB889SEtEUi46HUkNWurF9KbIUGN/+aUly5HNTPCFhah5NdAD0bd4xBqajvQ4g+AVv9iQGK3C4+pZw==",
+      "path": "system.composition.typedparts/10.0.0",
+      "hashPath": "system.composition.typedparts.10.0.0.nupkg.sha512"
     },
-    "System.Diagnostics.EventLog/8.0.1": {
+    "System.Configuration.ConfigurationManager/10.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-n1ZP7NM2Gkn/MgD8+eOT5MulMj6wfeQMNS2Pizvq5GHCZfjlFMXV2irQlQmJhwA2VABC57M0auudO89Iu2uRLg==",
-      "path": "system.diagnostics.eventlog/8.0.1",
-      "hashPath": "system.diagnostics.eventlog.8.0.1.nupkg.sha512"
+      "sha512": "sha512-0B+BzJ6pPMrRzJrVsttKf9MfDj6Syw9xoY+agcS9VssYQali1446+jTf5v1K94AMFUBxLXqDZlaTjO5edaI3jA==",
+      "path": "system.configuration.configurationmanager/10.0.0",
+      "hashPath": "system.configuration.configurationmanager.10.0.0.nupkg.sha512"
     },
-    "System.Drawing.Common/8.0.10": {
+    "System.Diagnostics.DiagnosticSource/10.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-MdajRp3P+FOlThgY6FBjAqnmLiVl5t2yWEC/2AsDMqx1zYbJG3G5TnscFBQ4obqcaGqvN5UnhQHSFaJFG2HftQ==",
-      "path": "system.drawing.common/8.0.10",
-      "hashPath": "system.drawing.common.8.0.10.nupkg.sha512"
+      "sha512": "sha512-0KdBK+h7G13PuOSC2R/DalAoFMvdYMznvGRuICtkdcUMXgl/gYXsG6z4yUvTxHSMACorWgHCU1Faq0KUHU6yAQ==",
+      "path": "system.diagnostics.diagnosticsource/10.0.0",
+      "hashPath": "system.diagnostics.diagnosticsource.10.0.0.nupkg.sha512"
     },
-    "System.IO.Pipelines/6.0.3": {
+    "System.Diagnostics.EventLog/10.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-ryTgF+iFkpGZY1vRQhfCzX0xTdlV3pyaTTqRu2ETbEv+HlV7O6y7hyQURnghNIXvctl5DuZ//Dpks6HdL/Txgw==",
-      "path": "system.io.pipelines/6.0.3",
-      "hashPath": "system.io.pipelines.6.0.3.nupkg.sha512"
+      "sha512": "sha512-uaFRda9NjtbJRkdx311eXlAA3n2em7223c1A8d1VWyl+4FL9vkG7y2lpPfBU9HYdj/9KgdRNdn1vFK8ZYCYT/A==",
+      "path": "system.diagnostics.eventlog/10.0.0",
+      "hashPath": "system.diagnostics.eventlog.10.0.0.nupkg.sha512"
     },
-    "System.Numerics.Tensors/8.0.0": {
+    "System.Drawing.Common/10.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-fhODzTe9ON9IzmRfyVeA6L8yXOciMtpq1YufkRVBliggcVKZE+XDxqIn46+yF4PWR6wNPuDpXtPpuY86VcKxUA==",
-      "path": "system.numerics.tensors/8.0.0",
-      "hashPath": "system.numerics.tensors.8.0.0.nupkg.sha512"
+      "sha512": "sha512-kohT9ZZlkB5R5ifihCBnPJLdIUQGiTj1ZI6z4LKatr+F4MmIJJu7qQpBkqt9280ivtnSvlTx9qZEY+CpJ0zMkA==",
+      "path": "system.drawing.common/10.0.0",
+      "hashPath": "system.drawing.common.10.0.0.nupkg.sha512"
+    },
+    "System.Formats.Nrbf/10.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-WdNPqwn+uhmjZQUpFzfM89yJ43uknaVnAO31xUcKPVGYViXt+/PST2gnebbX/csnjp/d/JWPvUwCRKNO75tjoQ==",
+      "path": "system.formats.nrbf/10.0.0",
+      "hashPath": "system.formats.nrbf.10.0.0.nupkg.sha512"
+    },
+    "System.IO.Pipelines/10.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-M1eb3nfXntaRJPrrMVM9EFS8I1bDTnt0uvUS6QP/SicZf/ZZjydMD5NiXxfmwW/uQwaMDP/yX2P+zQN1NBHChg==",
+      "path": "system.io.pipelines/10.0.0",
+      "hashPath": "system.io.pipelines.10.0.0.nupkg.sha512"
+    },
+    "System.Numerics.Tensors/10.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-PxZKFx8ACAt7gRnTSDgtZFA06cimls5XL1Olv63bWF8qKL5+EQdqq3K02etW4LNut4xDoREPe9z7QYATLMkBPA==",
+      "path": "system.numerics.tensors/10.0.0",
+      "hashPath": "system.numerics.tensors.10.0.0.nupkg.sha512"
+    },
+    "System.Reflection.Metadata/10.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-sMORylY+HmERA41BDGyi5fq1FjUFwwOTgCjcWhkkdb7c9jVLgFQP6xBWdbF2vRpjs0Igy5kvMAkvN9ml3QPS1g==",
+      "path": "system.reflection.metadata/10.0.0",
+      "hashPath": "system.reflection.metadata.10.0.0.nupkg.sha512"
+    },
+    "System.Resources.Extensions/10.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-2jdjQdZUZY7ITExuXecXrV+MQm3Pyk/4RB3zu0jAg8s8fBLN7Fco0VlhXo5LRPmwwvP65zZnD6HUJ0mmif8m0w==",
+      "path": "system.resources.extensions/10.0.0",
+      "hashPath": "system.resources.extensions.10.0.0.nupkg.sha512"
+    },
+    "System.Security.Cryptography.ProtectedData/10.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-qy6C3gQRTrfhFfuiIYU1jNwWfFdJpBVo1BARW7jgMm1zTEm3LRzLLyOLJGaAuKE+nZCGkEP71y4rj9NWjqLGdQ==",
+      "path": "system.security.cryptography.protecteddata/10.0.0",
+      "hashPath": "system.security.cryptography.protecteddata.10.0.0.nupkg.sha512"
+    },
+    "System.Security.Permissions/10.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-phfAYbiBkzdAF9ps7rJ8PQ3h52uY4xOnBs6Wern+ljdz3Fq3YIUezZDQIXl6+p8sbotkzltvESq+7PglxlEyuw==",
+      "path": "system.security.permissions/10.0.0",
+      "hashPath": "system.security.permissions.10.0.0.nupkg.sha512"
+    },
+    "System.Text.Encoding.CodePages/10.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-QLP54mIATaBpjGlsZIxga38VPk1G9js0Kw651B+bvrXi2kSgGZYrxJSpM3whhTZCBK4HEBHX3fzfDQMw7CXHGQ==",
+      "path": "system.text.encoding.codepages/10.0.0",
+      "hashPath": "system.text.encoding.codepages.10.0.0.nupkg.sha512"
+    },
+    "System.Text.Encodings.Web/10.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-257hh1ep1Gqm1Lm0ulxf7vVBVMJuGN6EL4xSWjpi46DffXzm1058IiWsfSC06zSm7SniN+Tb5160UnXsSa8rRg==",
+      "path": "system.text.encodings.web/10.0.0",
+      "hashPath": "system.text.encodings.web.10.0.0.nupkg.sha512"
+    },
+    "System.Text.Json/10.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-1Dpjwq9peG/Wt5BNbrzIhTpclfOSqBWZsUO28vVr59yQlkvL5jLBWfpfzRmJ1OY+6DciaY0DUcltyzs4fuZHjw==",
+      "path": "system.text.json/10.0.0",
+      "hashPath": "system.text.json.10.0.0.nupkg.sha512"
+    },
+    "System.Windows.Extensions/10.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-W2xPfgCUO83kPEtfkSsXpHT9KX4YiajDgtuJhjfOY18u58vMGyoBG44QIQCs2nTugmzsm506S/ur29k1WpE9+w==",
+      "path": "system.windows.extensions/10.0.0",
+      "hashPath": "system.windows.extensions.10.0.0.nupkg.sha512"
+    },
+    "ZstdSharp.Port/0.8.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-iP4jVLQoQmUjMU88g1WObiNr6YKZGvh4aOXn3yOJsHqZsflwRsxZPcIBvNXgjXO3vQKSLctXGLTpcBPLnWPS8A==",
+      "path": "zstdsharp.port/0.8.6",
+      "hashPath": "zstdsharp.port.0.8.6.nupkg.sha512"
     },
     "biocad_storage/1.0.0": {
       "type": "project",
@@ -1967,17 +2277,17 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Microsoft.Web.WebView2.Core/1.0.3537.50": {
+    "Microsoft.Web.WebView2.Core/1.0.3595.46": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
     },
-    "Microsoft.Web.WebView2.WinForms/1.0.3537.50": {
+    "Microsoft.Web.WebView2.WinForms/1.0.3595.46": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
     },
-    "Microsoft.Web.WebView2.Wpf/1.0.3537.50": {
+    "Microsoft.Web.WebView2.Wpf/1.0.3595.46": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

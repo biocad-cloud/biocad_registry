@@ -621,6 +621,6 @@ WHERE
     End Sub
 
     Private Sub ReactionEditorToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ReactionEditorToolStripMenuItem.Click
-
+        Call CommonRuntime.ShowDocument(Of FormMetabolicEditor)()
     End Sub
 End Class
