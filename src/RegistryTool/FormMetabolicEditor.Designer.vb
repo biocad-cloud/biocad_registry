@@ -1,4 +1,5 @@
-﻿Imports Galaxy.Workbench.DockDocument
+﻿Imports System.ComponentModel
+Imports Galaxy.Workbench.DockDocument
 
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormMetabolicEditor

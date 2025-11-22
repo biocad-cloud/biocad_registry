@@ -245,7 +245,7 @@
     </Project>
   </Folder>
   <Folder Name="/galaxy/">
-    <Project Path="../../galaxy/src/dockpanelsuite/Themes/ThemeVS2015.vbproj">
+    <Project Path="../../galaxy/src/dockpanelsuite/Themes/ThemeVS2015.vbproj" Id="900306bb-63ba-4f02-a09a-b8d5929255e0">
       <BuildType Solution="CFD_win32|*" Project="MEMI-Desktop" />
       <BuildType Solution="Desktop|*" Project="MEMI-Desktop" />
       <BuildType Solution="gcmodeller_desktop|*" Project="Release" />
@@ -269,7 +269,7 @@
       <BuildType Solution="Rsharp_app_release|*" Project="MEMI-Desktop" />
       <Platform Solution="*|x64" Project="x64" />
     </Project>
-    <Project Path="../../galaxy/src/GalaxyWorkbench/GalaxyWorkbench.vbproj">
+    <Project Path="../../galaxy/src/GalaxyWorkbench/GalaxyWorkbench.vbproj" Id="ec84cbb4-8e2d-48ea-9e6c-3d7cf0bbb452">
       <BuildType Solution="CFD_win32|*" Project="MEMI-Desktop" />
       <BuildType Solution="Desktop|*" Project="MEMI-Desktop" />
       <BuildType Solution="gcmodeller_desktop|*" Project="Release" />
@@ -281,7 +281,7 @@
       <BuildType Solution="Rsharp_app_release|*" Project="MEMI-Desktop" />
       <Platform Solution="*|x64" Project="x64" />
     </Project>
-    <Project Path="../../galaxy/src/Microsoft.Windows.FeatureAPI/Microsoft.Windows.FeatureAPI.vbproj">
+    <Project Path="../../galaxy/src/Microsoft.Windows.FeatureAPI/Microsoft.Windows.FeatureAPI.vbproj" Id="3d61f3a9-a8e0-4195-9133-6fd8e4b82d54">
       <BuildType Solution="CFD_win32|*" Project="MEMI-Desktop" />
       <BuildType Solution="Desktop|*" Project="Publish" />
       <BuildType Solution="gcmodeller_desktop|*" Project="Release" />
