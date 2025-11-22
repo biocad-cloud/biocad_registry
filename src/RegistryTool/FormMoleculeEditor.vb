@@ -599,9 +599,8 @@ let options = { width: 450, height: 300 };
 
                            Call Workbench.OpenMoleculeEditor(id, name)
                        End Sub)
-        view.MdiParent = MyApplication.host
         view.Text = $"Metabolite From Taxonomy '{source}'"
-        view.Show()
+        view.Show(CommonRuntime.AppHost.GetDockPanel, DockState.Document)
     End Sub
 
     Private Sub SearchByThisDbXrefToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SearchByThisDbXrefToolStripMenuItem.Click
@@ -637,9 +636,8 @@ let options = { width: 450, height: 300 };
 
                            Call Workbench.OpenMoleculeEditor(id, name)
                        End Sub)
-        view.MdiParent = MyApplication.host
         view.Text = $"Metabolite with Xref '{link}'"
-        view.Show()
+        view.Show(CommonRuntime.AppHost.GetDockPanel, DockState.Document)
     End Sub
 
     Private Sub OpenMoleculeDataToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenMoleculeDataToolStripMenuItem.Click

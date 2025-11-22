@@ -11,6 +11,7 @@ Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Net.Http
 Imports Microsoft.VisualBasic.Serialization.JSON
+Imports Microsoft.VisualStudio.WinForms.Docking
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports RegistryTool.Configs
 Imports RegistryTool.My
@@ -18,6 +19,7 @@ Imports SMRUCC.genomics
 Imports SMRUCC.genomics.Assembly.NCBI.GenBank
 Imports SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.PubMed
 Imports SMRUCC.genomics.SequenceModel.FASTA
+Imports ThemeVS2015
 Imports Metadata = BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaLib
 
 Public Class FormMain : Implements AppHost
@@ -30,7 +32,7 @@ Public Class FormMain : Implements AppHost
 
     Public ReadOnly Property ActiveDocument As Form Implements AppHost.ActiveDocument
         Get
-            Return Nothing
+            Return m_dockPanel.ActiveDocument
         End Get
     End Property
 
@@ -38,18 +40,54 @@ Public Class FormMain : Implements AppHost
         Dim view As New FormDbView()
         view.SetFilter("Vocabulary Category", NameOf(biocad_registryModel.vocabulary.category))
         view.LoadTableView(Function() MyApplication.biocad_registry.vocabulary.select(Of biocad_registryModel.vocabulary)("*"))
-        view.MdiParent = Me
         view.Text = "`biocad_registry`.`vocabulary`"
-        view.Show()
+        view.Show(CommonRuntime.AppHost.GetDockPanel, DockState.Document)
     End Sub
 
     Private Sub ExitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExitToolStripMenuItem.Click
         App.Exit(0)
     End Sub
 
+    Dim vS2015LightTheme1 As New VS2015LightTheme
+
     Private Async Sub FormMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         CommonRuntime.Hook(Me)
+        initializeVSPanel()
+
         Await IntializeMainWindow()
+    End Sub
+
+    Private Sub initializeVSPanel()
+        Me.m_dockPanel.ShowDocumentIcon = True
+
+        Me.m_dockPanel.Dock = DockStyle.Fill
+        Me.m_dockPanel.DockBackColor = Color.FromArgb(CType(CType(41, Byte), Integer), CType(CType(57, Byte), Integer), CType(CType(85, Byte), Integer))
+        Me.m_dockPanel.DockBottomPortion = 150.0R
+        Me.m_dockPanel.DockLeftPortion = 200.0R
+        Me.m_dockPanel.DockRightPortion = 200.0R
+        Me.m_dockPanel.DockTopPortion = 150.0R
+        Me.m_dockPanel.Font = New Font("Tahoma", 11.0!, FontStyle.Regular, GraphicsUnit.World, CType(0, Byte))
+
+        Me.m_dockPanel.Name = "dockPanel"
+        Me.m_dockPanel.RightToLeftLayout = True
+        Me.m_dockPanel.ShowAutoHideContentOnHover = False
+
+        Me.m_dockPanel.TabIndex = 0
+
+        Call SetSchema(Nothing, Nothing)
+    End Sub
+
+    Private Sub SetSchema(sender As Object, e As EventArgs)
+        m_dockPanel.Theme = vS2015LightTheme1
+        EnableVSRenderer(VisualStudioToolStripExtender.VsVersion.Vs2015, vS2015LightTheme1)
+
+        If m_dockPanel.Theme.ColorPalette IsNot Nothing Then
+            StatusStrip1.BackColor = m_dockPanel.Theme.ColorPalette.MainWindowStatusBarDefault.Background
+        End If
+    End Sub
+
+    Private Sub EnableVSRenderer(version As VisualStudioToolStripExtender.VsVersion, theme As ThemeBase)
+        VisualStudioToolStripExtender1.SetStyle(StatusStrip1, version, theme)
     End Sub
 
     Private Async Function IntializeMainWindow() As Task
@@ -83,9 +121,8 @@ Public Class FormMain : Implements AppHost
     Private Sub SubCellularCompartmentsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SubCellularCompartmentsToolStripMenuItem.Click
         Dim view As New FormDbView()
         view.LoadTableView(Function() MyApplication.biocad_registry.subcellular_compartments.select(Of biocad_registryModel.subcellular_compartments)("*"))
-        view.MdiParent = Me
         view.Text = "`biocad_registry`.`subcellular_compartments`"
-        view.Show()
+        view.Show(CommonRuntime.AppHost.GetDockPanel, DockState.Document)
     End Sub
 
     Private Sub SettingsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SettingsToolStripMenuItem.Click
@@ -94,8 +131,7 @@ Public Class FormMain : Implements AppHost
 
     Private Sub MoleculesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MoleculesToolStripMenuItem.Click
         Dim view As New FormMoleculeTable
-        view.MdiParent = Me
-        view.Show()
+        view.Show(CommonRuntime.AppHost.GetDockPanel, DockState.Document)
     End Sub
 
     Private Sub ExportMetabolitesDatabaseToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportMetabolitesDatabaseToolStripMenuItem.Click
@@ -164,8 +200,7 @@ Public Class FormMain : Implements AppHost
 
     Private Sub FlavorOdorsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FlavorOdorsToolStripMenuItem.Click
         Dim viewer As New FormOdors
-        viewer.MdiParent = Me
-        viewer.Show()
+        viewer.Show(CommonRuntime.AppHost.GetDockPanel, DockState.Document)
     End Sub
 
     Private Sub ImportsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ImportsToolStripMenuItem.Click
@@ -346,8 +381,7 @@ Public Class FormMain : Implements AppHost
             Return
         End If
 
-        editor.MdiParent = Me
-        editor.Show()
+        editor.Show(CommonRuntime.AppHost.GetDockPanel, DockState.Document)
     End Sub
 
     Private Sub BatchOperationToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BatchOperationToolStripMenuItem.Click
@@ -363,9 +397,8 @@ Public Class FormMain : Implements AppHost
             Return
         End If
 
-        editor.MdiParent = Me
         editor.LoadFromIDSet(idset)
-        editor.Show()
+        editor.Show(CommonRuntime.AppHost.GetDockPanel, DockState.Document)
     End Sub
 
     Public Event ResizeForm As AppHost.ResizeFormEventHandler Implements AppHost.ResizeForm
@@ -412,13 +445,12 @@ FROM
 
                            Call Workbench.OpenMoleculeEditor(id, name)
                        End Sub)
-        view.MdiParent = Me
         view.Text = $"Search Result of '{text}'"
-        view.Show()
+        view.Show(CommonRuntime.AppHost.GetDockPanel, DockState.Document)
     End Sub
 
     Public Sub SetWorkbenchVisible(visible As Boolean) Implements AppHost.SetWorkbenchVisible
-
+        Me.Visible = visible
     End Sub
 
     Public Sub SetWindowState(stat As FormWindowState) Implements AppHost.SetWindowState
@@ -433,12 +465,12 @@ FROM
         Return Size
     End Function
 
-    Public Iterator Function GetDocuments() As IEnumerable(Of Form) Implements AppHost.GetDocuments
-
+    Public Function GetDocuments() As IEnumerable(Of Form) Implements AppHost.GetDocuments
+        Return m_dockPanel.Documents.OfType(Of Form)
     End Function
 
     Public Function GetDockPanel() As Control Implements AppHost.GetDockPanel
-        Return Nothing
+        Return m_dockPanel
     End Function
 
     Public Function GetWindowState() As FormWindowState Implements AppHost.GetWindowState
@@ -459,11 +491,11 @@ FROM
     End Sub
 
     Public Sub LogText(text As String) Implements AppHost.LogText
-
+        Call CommonRuntime.GetOutputWindow.AppendLine(text)
     End Sub
 
     Public Sub ShowProperties(obj As Object) Implements AppHost.ShowProperties
-
+        Call CommonRuntime.GetPropertyWindow.SetObject(obj)
     End Sub
 
     Private Sub FormMain_Resize(sender As Object, e As EventArgs) Handles Me.Resize
@@ -583,9 +615,8 @@ WHERE
 
                            Call Workbench.OpenMoleculeEditor(id, name)
                        End Sub)
-        view.MdiParent = Me
         view.Text = $"Search Result of '{Text}'"
-        view.Show()
+        view.Show(CommonRuntime.AppHost.GetDockPanel, DockState.Document)
     End Sub
 
     Private Sub ReactionEditorToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ReactionEditorToolStripMenuItem.Click

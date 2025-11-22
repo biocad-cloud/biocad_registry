@@ -22,6 +22,7 @@ Partial Class FormMain
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OpenMoleculeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -39,6 +40,7 @@ Partial Class FormMain
         Me.SearchNameToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SubCellularCompartmentsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.FlavorOdorsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ReactionEditorToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripSeparator()
         Me.ExportMetabolitesDatabaseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExportKEGGMetaboliteTableToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -56,7 +58,8 @@ Partial Class FormMain
         Me.CloseAllToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.ReactionEditorToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.m_dockPanel = New Microsoft.VisualStudio.WinForms.Docking.DockPanel()
+        Me.VisualStudioToolStripExtender1 = New Microsoft.VisualStudio.WinForms.Docking.VisualStudioToolStripExtender(Me.components)
         Me.MenuStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -146,13 +149,13 @@ Partial Class FormMain
         'SearchToolStripMenuItem
         '
         Me.SearchToolStripMenuItem.Name = "SearchToolStripMenuItem"
-        Me.SearchToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.SearchToolStripMenuItem.Size = New System.Drawing.Size(144, 22)
         Me.SearchToolStripMenuItem.Text = "Search Text"
         '
         'SearchNameToolStripMenuItem
         '
         Me.SearchNameToolStripMenuItem.Name = "SearchNameToolStripMenuItem"
-        Me.SearchNameToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.SearchNameToolStripMenuItem.Size = New System.Drawing.Size(144, 22)
         Me.SearchNameToolStripMenuItem.Text = "Search Name"
         '
         'SubCellularCompartmentsToolStripMenuItem
@@ -166,6 +169,12 @@ Partial Class FormMain
         Me.FlavorOdorsToolStripMenuItem.Name = "FlavorOdorsToolStripMenuItem"
         Me.FlavorOdorsToolStripMenuItem.Size = New System.Drawing.Size(261, 22)
         Me.FlavorOdorsToolStripMenuItem.Text = "Flavor Odors"
+        '
+        'ReactionEditorToolStripMenuItem
+        '
+        Me.ReactionEditorToolStripMenuItem.Name = "ReactionEditorToolStripMenuItem"
+        Me.ReactionEditorToolStripMenuItem.Size = New System.Drawing.Size(261, 22)
+        Me.ReactionEditorToolStripMenuItem.Text = "Reaction Editor"
         '
         'ToolStripMenuItem2
         '
@@ -274,20 +283,26 @@ Partial Class FormMain
         Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(42, 17)
         Me.ToolStripStatusLabel1.Text = "Ready!"
         '
-        'ReactionEditorToolStripMenuItem
+        'DockPanel1
         '
-        Me.ReactionEditorToolStripMenuItem.Name = "ReactionEditorToolStripMenuItem"
-        Me.ReactionEditorToolStripMenuItem.Size = New System.Drawing.Size(261, 22)
-        Me.ReactionEditorToolStripMenuItem.Text = "Reaction Editor"
+        Me.m_dockPanel.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.m_dockPanel.Location = New System.Drawing.Point(0, 24)
+        Me.m_dockPanel.Name = "DockPanel1"
+        Me.m_dockPanel.Size = New System.Drawing.Size(1535, 868)
+        Me.m_dockPanel.TabIndex = 4
+        '
+        'VisualStudioToolStripExtender1
+        '
+        Me.VisualStudioToolStripExtender1.DefaultRenderer = Nothing
         '
         'FormMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1535, 914)
+        Me.Controls.Add(Me.m_dockPanel)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.MenuStrip1)
-        Me.IsMdiContainer = True
         Me.MainMenuStrip = Me.MenuStrip1
         Me.Name = "FormMain"
         Me.Text = "Registry Tool"
@@ -335,4 +350,6 @@ Partial Class FormMain
     Friend WithEvents ExportMembraneTransporterToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents SearchNameToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ReactionEditorToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents m_dockPanel As Microsoft.VisualStudio.WinForms.Docking.DockPanel
+    Friend WithEvents VisualStudioToolStripExtender1 As Microsoft.VisualStudio.WinForms.Docking.VisualStudioToolStripExtender
 End Class
