@@ -24,16 +24,34 @@ Partial Class FormMetabolicEditor
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.SuspendLayout()
-        '
-        'FormMetabolicEditor
-        '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
-        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1394, 821)
-        Me.Name = "FormMetabolicEditor"
-        Me.Text = "Form1"
-        Me.ResumeLayout(False)
+        DataGridView1 = New DataGridView()
+        CType(DataGridView1, ISupportInitialize).BeginInit()
+        SuspendLayout()
+        ' 
+        ' DataGridView1
+        ' 
+        DataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        DataGridView1.Location = New Point(272, 320)
+        DataGridView1.Name = "DataGridView1"
+        DataGridView1.Size = New Size(240, 150)
+        DataGridView1.TabIndex = 1
+        ' 
+        ' FormMetabolicEditor
+        ' 
+        AutoScaleDimensions = New SizeF(7.0F, 15.0F)
+        AutoScaleMode = AutoScaleMode.Font
+        ClientSize = New Size(1394, 821)
+        Controls.Add(DataGridView1)
+        DockAreas = Microsoft.VisualStudio.WinForms.Docking.DockAreas.Float Or Microsoft.VisualStudio.WinForms.Docking.DockAreas.DockLeft Or Microsoft.VisualStudio.WinForms.Docking.DockAreas.DockRight Or Microsoft.VisualStudio.WinForms.Docking.DockAreas.DockTop Or Microsoft.VisualStudio.WinForms.Docking.DockAreas.DockBottom Or Microsoft.VisualStudio.WinForms.Docking.DockAreas.Document
+        DoubleBuffered = True
+        Name = "FormMetabolicEditor"
+        ShowHint = Microsoft.VisualStudio.WinForms.Docking.DockState.Unknown
+        TabPageContextMenuStrip = DockContextMenuStrip1
+        Text = "Edit Metabolic Network"
+        CType(DataGridView1, ISupportInitialize).EndInit()
+        ResumeLayout(False)
 
     End Sub
+
+    Friend WithEvents DataGridView1 As DataGridView
 End Class
