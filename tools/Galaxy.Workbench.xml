@@ -6,6 +6,57 @@ Galaxy.Workbench
 </name>
 </assembly>
 <members>
+<member name="T:Galaxy.Workbench.My.Resources.Icons8">
+<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member>
+<member name="P:Galaxy.Workbench.My.Resources.Icons8.ResourceManager">
+<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member>
+<member name="P:Galaxy.Workbench.My.Resources.Icons8.Culture">
+<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member>
+<member name="P:Galaxy.Workbench.My.Resources.Icons8.icons8_chat_message_sent_96">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:Galaxy.Workbench.My.Resources.Icons8.icons8_debug_96">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:Galaxy.Workbench.My.Resources.Icons8.icons8_done_144">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:Galaxy.Workbench.My.Resources.Icons8.icons8_error_96">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:Galaxy.Workbench.My.Resources.Icons8.icons8_information_96">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:Galaxy.Workbench.My.Resources.Icons8.icons8_information_message_96">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:Galaxy.Workbench.My.Resources.Icons8.icons8_warning_96">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
 <member name="T:Galaxy.Workbench.My.Resources.Resources">
 <summary>
   A strongly-typed resource class, for looking up localized strings, etc.
@@ -208,6 +259,21 @@ Galaxy.Workbench
  <summary>
  A shared model for test application environment
  </summary>
+</member>
+<member name="M:Galaxy.Workbench.DockDocument.Presets.OutputWindow.AppendLine(System.String)">
+ <summary>
+ thread-safe append log text
+ </summary>
+ <param name="text"></param>
+</member>
+<member name="M:Galaxy.Workbench.DockDocument.Presets.OutputWindow.AddLog(System.DateTime,System.String,System.String,Microsoft.VisualBasic.ApplicationServices.Debugging.Logging.MSG_TYPES)">
+ <summary>
+ thread-safe add log entry
+ </summary>
+ <param name="time"></param>
+ <param name="action"></param>
+ <param name="message"></param>
+ <param name="level"></param>
 </member>
 <member name="F:Galaxy.Workbench.DockDocument.Presets.PropertyWindow.components">
  <summary>
