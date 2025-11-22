@@ -29,9 +29,6 @@ Partial Class FormMetabolicEditor
         Dim resources As ComponentResourceManager = New ComponentResourceManager(GetType(FormMetabolicEditor))
         SplitContainer1 = New SplitContainer()
         DataGridView1 = New DataGridView()
-        Column1 = New DataGridViewTextBoxColumn()
-        Column2 = New DataGridViewTextBoxColumn()
-        Column3 = New DataGridViewTextBoxColumn()
         SplitContainer2 = New SplitContainer()
         DataGridView2 = New DataGridView()
         Column4 = New DataGridViewTextBoxColumn()
@@ -42,6 +39,7 @@ Partial Class FormMetabolicEditor
         Column9 = New DataGridViewTextBoxColumn()
         ContextMenuStrip1 = New ContextMenuStrip(components)
         OpenToolStripMenuItem = New ToolStripMenuItem()
+        GroupBox1 = New GroupBox()
         ToolStrip1 = New ToolStrip()
         ToolStripLabel1 = New ToolStripLabel()
         ToolStripButton1 = New ToolStripButton()
@@ -49,7 +47,9 @@ Partial Class FormMetabolicEditor
         ToolStripTextBox1 = New ToolStripTextBox()
         ToolStripButton2 = New ToolStripButton()
         ToolStripButton3 = New ToolStripButton()
-        GroupBox1 = New GroupBox()
+        Column1 = New DataGridViewTextBoxColumn()
+        Column2 = New DataGridViewTextBoxColumn()
+        Column3 = New DataGridViewTextBoxColumn()
         CType(SplitContainer1, ISupportInitialize).BeginInit()
         SplitContainer1.Panel1.SuspendLayout()
         SplitContainer1.Panel2.SuspendLayout()
@@ -84,32 +84,15 @@ Partial Class FormMetabolicEditor
         ' 
         ' DataGridView1
         ' 
+        DataGridView1.AllowUserToAddRows = False
         DataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
         DataGridView1.Columns.AddRange(New DataGridViewColumn() {Column1, Column2, Column3})
         DataGridView1.Dock = DockStyle.Fill
         DataGridView1.Location = New Point(0, 0)
         DataGridView1.Name = "DataGridView1"
+        DataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect
         DataGridView1.Size = New Size(1394, 545)
         DataGridView1.TabIndex = 0
-        ' 
-        ' Column1
-        ' 
-        Column1.HeaderText = "name"
-        Column1.Name = "Column1"
-        Column1.ReadOnly = True
-        ' 
-        ' Column2
-        ' 
-        Column2.HeaderText = "equation"
-        Column2.Name = "Column2"
-        Column2.ReadOnly = True
-        ' 
-        ' Column3
-        ' 
-        Column3.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
-        Column3.HeaderText = "note"
-        Column3.Name = "Column3"
-        Column3.ReadOnly = True
         ' 
         ' SplitContainer2
         ' 
@@ -130,12 +113,14 @@ Partial Class FormMetabolicEditor
         ' 
         ' DataGridView2
         ' 
+        DataGridView2.AllowUserToAddRows = False
         DataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
         DataGridView2.Columns.AddRange(New DataGridViewColumn() {Column4, Column5, Column6, Column7, Column8, Column9})
         DataGridView2.ContextMenuStrip = ContextMenuStrip1
         DataGridView2.Dock = DockStyle.Fill
         DataGridView2.Location = New Point(0, 0)
         DataGridView2.Name = "DataGridView2"
+        DataGridView2.SelectionMode = DataGridViewSelectionMode.FullRowSelect
         DataGridView2.Size = New Size(751, 247)
         DataGridView2.TabIndex = 0
         ' 
@@ -187,6 +172,16 @@ Partial Class FormMetabolicEditor
         OpenToolStripMenuItem.Name = "OpenToolStripMenuItem"
         OpenToolStripMenuItem.Size = New Size(103, 22)
         OpenToolStripMenuItem.Text = "Open"
+        ' 
+        ' GroupBox1
+        ' 
+        GroupBox1.Dock = DockStyle.Fill
+        GroupBox1.Location = New Point(0, 0)
+        GroupBox1.Name = "GroupBox1"
+        GroupBox1.Size = New Size(639, 247)
+        GroupBox1.TabIndex = 0
+        GroupBox1.TabStop = False
+        GroupBox1.Text = "Edit Reaction Data"
         ' 
         ' ToolStrip1
         ' 
@@ -242,15 +237,26 @@ Partial Class FormMetabolicEditor
         ToolStripButton3.Size = New Size(23, 22)
         ToolStripButton3.Text = "Next"
         ' 
-        ' GroupBox1
+        ' Column1
         ' 
-        GroupBox1.Dock = DockStyle.Fill
-        GroupBox1.Location = New Point(0, 0)
-        GroupBox1.Name = "GroupBox1"
-        GroupBox1.Size = New Size(639, 247)
-        GroupBox1.TabIndex = 0
-        GroupBox1.TabStop = False
-        GroupBox1.Text = "Edit Reaction Data"
+        Column1.HeaderText = "name"
+        Column1.Name = "Column1"
+        Column1.ReadOnly = True
+        Column1.Width = 200
+        ' 
+        ' Column2
+        ' 
+        Column2.HeaderText = "equation"
+        Column2.Name = "Column2"
+        Column2.ReadOnly = True
+        Column2.Width = 400
+        ' 
+        ' Column3
+        ' 
+        Column3.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+        Column3.HeaderText = "note"
+        Column3.Name = "Column3"
+        Column3.ReadOnly = True
         ' 
         ' FormMetabolicEditor
         ' 
@@ -294,9 +300,6 @@ Partial Class FormMetabolicEditor
     Friend WithEvents ToolStripTextBox1 As ToolStripTextBox
     Friend WithEvents ToolStripButton2 As ToolStripButton
     Friend WithEvents ToolStripButton3 As ToolStripButton
-    Friend WithEvents Column1 As DataGridViewTextBoxColumn
-    Friend WithEvents Column2 As DataGridViewTextBoxColumn
-    Friend WithEvents Column3 As DataGridViewTextBoxColumn
     Friend WithEvents Column4 As DataGridViewTextBoxColumn
     Friend WithEvents Column5 As DataGridViewTextBoxColumn
     Friend WithEvents Column6 As DataGridViewTextBoxColumn
@@ -306,4 +309,7 @@ Partial Class FormMetabolicEditor
     Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
     Friend WithEvents OpenToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents Column1 As DataGridViewTextBoxColumn
+    Friend WithEvents Column2 As DataGridViewTextBoxColumn
+    Friend WithEvents Column3 As DataGridViewTextBoxColumn
 End Class
