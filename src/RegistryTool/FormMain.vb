@@ -557,6 +557,34 @@ WHERE
     End Sub
 
     Private Sub SearchNameToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SearchNameToolStripMenuItem.Click
+        Dim getName As String = InputBox("Input the molecule name to make search:")
 
+        If getName.StringEmpty(, True) Then
+            Return
+        End If
+
+        Dim idset As UInteger() = TaskProgress.LoadData(Function(p As ITaskProgress)
+                                                            Dim set1 = MyApplication.biocad_registry.molecule.where(field("name") = getName).project(Of UInteger)("id")
+                                                            Dim set2 = MyApplication.biocad_registry.db_xrefs.where(field("xref") = getName).project(Of UInteger)("obj_id")
+
+                                                            Return set1.JoinIterates(set2).ToArray
+                                                        End Function)
+        If idset.IsNullOrEmpty Then
+            Call MessageBox.Show("Sorry, no search result.", "No result", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Return
+        End If
+
+        Dim molecules = MyApplication.biocad_registry.molecule.where(field("id").in(idset)).select(Of biocad_registryModel.molecule)
+        Dim view As New FormDbView()
+        view.LoadTableView(Function() molecules)
+        view.SetViewer(Sub(row)
+                           Dim id As String = row.Cells(0).Value.ToString
+                           Dim name As String = row.Cells(2).Value.ToString
+
+                           Call Workbench.OpenMoleculeEditor(id, name)
+                       End Sub)
+        view.MdiParent = Me
+        view.Text = $"Search Result of '{Text}'"
+        view.Show()
     End Sub
 End Class
