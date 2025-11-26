@@ -122,6 +122,8 @@ let options = { width: 450, height: 300 };
         Call refreshXrefs()
         Call refreshTags()
 
+        Call ApplyVsTheme(ToolStrip1)
+
         Await LoadReactions()
         Await WebViewLoader.Init(WebView21)
     End Sub
@@ -136,8 +138,9 @@ let options = { width: 450, height: 300 };
         Dim reactions As biocad_registryModel.reaction() = Await Task.Run(Function() MyApplication.biocad_registry.reaction.where(field("id").in(reaction_ids)).select(Of biocad_registryModel.reaction)())
 
         For Each rxn In reactions
-            Dim offset = DataGridView2.Rows.Add(rxn.name, rxn.equation, rxn.note)
+            Dim offset = DataGridView2.Rows.Add(rxn.name, rxn.equation)
             DataGridView2.Rows(offset).HeaderCell.Value = rxn.id
+            DataGridView2.Rows(offset).Tag = rxn.note
         Next
 
         Call DataGridView2.CommitEdit(DataGridViewDataErrorContexts.Commit)
@@ -294,15 +297,11 @@ let options = { width: 450, height: 300 };
         Await Task.Run(Sub() MyApplication.biocad_registry.molecule.where(field("id") = UInteger.Parse(id.Match("\d+"))).save(field("note") = desc))
     End Sub
 
-    Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked
+    Private Sub LinkLabel1_LinkClicked() Handles LinkLabel1.Click
         Dim int = UInteger.Parse(id.Match("\d+"))
         Dim url = $"http://biocad.innovation.ac.cn/molecule/BioCAD{int.ToString.PadLeft(11, "0"c)}/"
 
-        Call Tools.OpenUrlWithDefaultBrowser(url)
-    End Sub
-
-    Private Sub ContextMenuStrip2_Opening(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles ContextMenuStrip2.Opening
-
+        OpenUrlWithDefaultBrowser(url)
     End Sub
 
     Private Async Sub ClearThisTagToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ClearThisTagToolStripMenuItem.Click
@@ -680,6 +679,7 @@ let options = { width: 450, height: 300 };
                     .select(Of reaction_graphdata)("molecule.*", "db_xref", "term AS role")
             End Function)
 
+        TextBox7.Text = rxn.Tag
         DataGridView3.Rows.Clear()
 
         For Each compound In graph
