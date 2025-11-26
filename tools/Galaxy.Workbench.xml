@@ -6,57 +6,6 @@ Galaxy.Workbench
 </name>
 </assembly>
 <members>
-<member name="T:Galaxy.Workbench.My.Resources.Icons8">
-<summary>
-  A strongly-typed resource class, for looking up localized strings, etc.
-</summary>
-</member>
-<member name="P:Galaxy.Workbench.My.Resources.Icons8.ResourceManager">
-<summary>
-  Returns the cached ResourceManager instance used by this class.
-</summary>
-</member>
-<member name="P:Galaxy.Workbench.My.Resources.Icons8.Culture">
-<summary>
-  Overrides the current thread's CurrentUICulture property for all
-  resource lookups using this strongly typed resource class.
-</summary>
-</member>
-<member name="P:Galaxy.Workbench.My.Resources.Icons8.icons8_chat_message_sent_96">
-<summary>
-  Looks up a localized resource of type System.Drawing.Bitmap.
-</summary>
-</member>
-<member name="P:Galaxy.Workbench.My.Resources.Icons8.icons8_debug_96">
-<summary>
-  Looks up a localized resource of type System.Drawing.Bitmap.
-</summary>
-</member>
-<member name="P:Galaxy.Workbench.My.Resources.Icons8.icons8_done_144">
-<summary>
-  Looks up a localized resource of type System.Drawing.Bitmap.
-</summary>
-</member>
-<member name="P:Galaxy.Workbench.My.Resources.Icons8.icons8_error_96">
-<summary>
-  Looks up a localized resource of type System.Drawing.Bitmap.
-</summary>
-</member>
-<member name="P:Galaxy.Workbench.My.Resources.Icons8.icons8_information_96">
-<summary>
-  Looks up a localized resource of type System.Drawing.Bitmap.
-</summary>
-</member>
-<member name="P:Galaxy.Workbench.My.Resources.Icons8.icons8_information_message_96">
-<summary>
-  Looks up a localized resource of type System.Drawing.Bitmap.
-</summary>
-</member>
-<member name="P:Galaxy.Workbench.My.Resources.Icons8.icons8_warning_96">
-<summary>
-  Looks up a localized resource of type System.Drawing.Bitmap.
-</summary>
-</member>
 <member name="T:Galaxy.Workbench.My.Resources.Resources">
 <summary>
   A strongly-typed resource class, for looking up localized strings, etc.
@@ -136,6 +85,57 @@ Galaxy.Workbench
 </summary>
 </member>
 <member name="P:Galaxy.Workbench.My.Resources.Resources.spinner">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="T:Galaxy.Workbench.My.Resources.Icons8">
+<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member>
+<member name="P:Galaxy.Workbench.My.Resources.Icons8.ResourceManager">
+<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member>
+<member name="P:Galaxy.Workbench.My.Resources.Icons8.Culture">
+<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member>
+<member name="P:Galaxy.Workbench.My.Resources.Icons8.icons8_chat_message_sent_96">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:Galaxy.Workbench.My.Resources.Icons8.icons8_debug_96">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:Galaxy.Workbench.My.Resources.Icons8.icons8_done_144">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:Galaxy.Workbench.My.Resources.Icons8.icons8_error_96">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:Galaxy.Workbench.My.Resources.Icons8.icons8_information_96">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:Galaxy.Workbench.My.Resources.Icons8.icons8_information_message_96">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:Galaxy.Workbench.My.Resources.Icons8.icons8_warning_96">
 <summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
@@ -255,10 +255,184 @@ Galaxy.Workbench
  a new thread. 
  </param>
 </member>
+<member name="T:Galaxy.Workbench.CommonRuntime">
+ <summary>
+ Common workbench runtime
+ </summary>
+</member>
+<member name="P:Galaxy.Workbench.CommonRuntime.MaskOpacity">
+ <summary>
+ set the opacity of the <see cref="T:Galaxy.Workbench.CommonDialogs.MaskForm"/> when show the input dialog via <see cref="M:Galaxy.Workbench.CommonDialogs.InputDialog.Input(System.Action{Galaxy.Workbench.CommonDialogs.InputDialog},System.Action)"/>
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Galaxy.Workbench.CommonRuntime.Hook(Galaxy.Workbench.AppHost)">
+ <summary>
+ set value to the <see cref="P:Galaxy.Workbench.CommonRuntime.AppHost"/> in current common workbench runtime.
+ </summary>
+ <param name="apphost">should be the main window of the current process application</param>
+ <remarks>
+ this method andalso apply of the <see cref="P:Galaxy.Workbench.CommonRuntime.UISettings"/> to the <see cref="P:Galaxy.Workbench.CommonRuntime.AppHost"/> object 
+ if the given <paramref name="apphost"/> is a winform object.
+ </remarks>
+</member>
+<member name="M:Galaxy.Workbench.CommonRuntime.SaveCurrentDocument">
+ <summary>
+ Save current active document as file if it supported to be saved
+ </summary>
+</member>
+<member name="M:Galaxy.Workbench.CommonRuntime.ShowSingleDocument``1(System.Action)">
+ <summary>
+ 
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="showExplorer">
+ do specific callback from this parameter delegate if the pointer value is nothing nothing
+ </param>
+</member>
+<member name="M:Galaxy.Workbench.CommonRuntime.ShowDocument``1(Microsoft.VisualStudio.WinForms.Docking.DockState,System.String)">
+ <summary>
+ create a new document tab page
+ </summary>
+ <typeparam name="T"></typeparam>
+ <returns></returns>
+ 
+</member>
+<member name="T:Galaxy.Workbench.CommonStrings">
+ <summary>
+ Common string resource in different culture and language
+ </summary>
+</member>
+<member name="M:Galaxy.Workbench.CommonStrings.GetString(System.String,System.Resources.ResourceManager)">
+ <summary>
+ get string from resource data with culture and language configuration.
+ </summary>
+ <param name="key"></param>
+ <returns></returns>
+</member>
+<member name="M:Galaxy.Workbench.CommonStrings.GetString(System.String,System.Object[])">
+ <summary>
+ Get string with <see cref="M:System.String.Format(System.IFormatProvider,System.String,System.Object)"/> applied
+ </summary>
+ <param name="key"></param>
+ <param name="args"></param>
+ <returns></returns>
+</member>
 <member name="T:Galaxy.Workbench.Container.AppEnvironment">
  <summary>
  A shared model for test application environment
  </summary>
+</member>
+<member name="M:Galaxy.Workbench.DialogPromise.OpenDialog``1">
+ <summary>
+ 启动链式调用的入口方法
+ </summary>
+ <typeparam name="T"></typeparam>
+ <returns></returns>
+</member>
+<member name="M:Galaxy.Workbench.DialogPromise.OpenDialog``1(System.Object)">
+ <summary>
+ 
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="data">
+ this parameter required the target <typeparamref name="T"/> implements of the interface <see cref="T:Galaxy.Workbench.IDataContainer"/>
+ </param>
+ <returns></returns>
+</member>
+<member name="M:Galaxy.Workbench.DialogPromise.ThenDialog``1">
+ <summary>
+ 链式调用下一个对话框
+ </summary>
+ <typeparam name="T"></typeparam>
+ <returns></returns>
+</member>
+<member name="M:Galaxy.Workbench.DialogPromise.ThenDialog``1(System.Func{Galaxy.Workbench.CommonDialogs.InputDialog,System.Boolean},System.Object)">
+ <summary>
+ 
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="condition"></param>
+ <param name="data">
+ this parameter required the target <typeparamref name="T"/> implements of the interface <see cref="T:Galaxy.Workbench.IDataContainer"/>
+ </param>
+ <returns></returns>
+</member>
+<member name="M:Galaxy.Workbench.DialogPromise.Finally(System.Action{System.Windows.Forms.DialogResult,Galaxy.Workbench.CommonDialogs.InputDialog})">
+ <summary>
+ 处理最终结果
+ </summary>
+ <param name="action"></param>
+</member>
+<member name="M:Galaxy.Workbench.DialogPromise.OnSuccess(System.Action)">
+ <summary>
+ 只有当所有对话框都成功时才执行
+ </summary>
+ <param name="action"></param>
+</member>
+<member name="M:Galaxy.Workbench.DialogPromise.OnCancel(System.Action)">
+ <summary>
+ 当任何对话框取消时执行
+ </summary>
+ <param name="action"></param>
+</member>
+<member name="M:Galaxy.Workbench.DialogPromise.SetFormData(Galaxy.Workbench.CommonDialogs.InputDialog,System.Object)">
+ <summary>
+ 辅助方法：设置表单数据
+ </summary>
+ <param name="form"></param>
+ <param name="data"></param>
+</member>
+<member name="T:Galaxy.Workbench.IDataContainer">
+ <summary>
+ <see cref="T:Galaxy.Workbench.DialogPromise"/>中可选的数据传递接口
+ </summary>
+</member>
+<member name="M:Galaxy.Workbench.IDataContainer.SetData(System.Object)">
+ <summary>
+ set a general data to form
+ </summary>
+ <param name="data"></param>
+</member>
+<member name="M:Galaxy.Workbench.IDataContainer.GetData">
+ <summary>
+ get the general data from the form
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Galaxy.Workbench.CommonDialogs.InputDialog.Input``1(System.Action{``0},System.Action,``0)">
+ <summary>
+ 
+ </summary>
+ <typeparam name="Form"></typeparam>
+ <param name="setConfig">
+ Just needs for display the information, then 
+ this delegate function could be nothing.
+ </param>
+ <param name="cancel"></param>
+ <param name="config"></param>
+</member>
+<member name="M:Galaxy.Workbench.CommonDialogs.InputDialog.ShowDialog``1(``0)">
+ <summary>
+ just used this method for display some information
+ </summary>
+ <typeparam name="Form"></typeparam>
+ <param name="config"></param>
+ 
+</member>
+<member name="M:Galaxy.Workbench.TaskWizard.Button1_Click(System.Object,System.EventArgs)">
+ <summary>
+ ok
+ </summary>
+ <param name="sender"></param>
+ <param name="e"></param>
+</member>
+<member name="M:Galaxy.Workbench.TaskWizard.Button2_Click(System.Object,System.EventArgs)">
+ <summary>
+ cancel
+ </summary>
+ <param name="sender"></param>
+ <param name="e"></param>
 </member>
 <member name="M:Galaxy.Workbench.DockDocument.Presets.OutputWindow.AppendLine(System.String)">
  <summary>
@@ -342,166 +516,6 @@ Galaxy.Workbench
  <summary>
  icons for job done and success
  </summary>
- <returns></returns>
-</member>
-<member name="T:Galaxy.Workbench.CommonRuntime">
- <summary>
- Common workbench runtime
- </summary>
-</member>
-<member name="P:Galaxy.Workbench.CommonRuntime.MaskOpacity">
- <summary>
- set the opacity of the <see cref="T:Galaxy.Workbench.CommonDialogs.MaskForm"/> when show the input dialog via <see cref="M:Galaxy.Workbench.CommonDialogs.InputDialog.Input(System.Action{Galaxy.Workbench.CommonDialogs.InputDialog},System.Action)"/>
- </summary>
- <returns></returns>
-</member>
-<member name="M:Galaxy.Workbench.CommonRuntime.Hook(Galaxy.Workbench.AppHost)">
- <summary>
- set value to the <see cref="P:Galaxy.Workbench.CommonRuntime.AppHost"/> in current common workbench runtime.
- </summary>
- <param name="apphost">should be the main window of the current process application</param>
- <remarks>
- this method andalso apply of the <see cref="P:Galaxy.Workbench.CommonRuntime.UISettings"/> to the <see cref="P:Galaxy.Workbench.CommonRuntime.AppHost"/> object 
- if the given <paramref name="apphost"/> is a winform object.
- </remarks>
-</member>
-<member name="M:Galaxy.Workbench.CommonRuntime.SaveCurrentDocument">
- <summary>
- Save current active document as file if it supported to be saved
- </summary>
-</member>
-<member name="M:Galaxy.Workbench.CommonRuntime.ShowSingleDocument``1(System.Action)">
- <summary>
- 
- </summary>
- <typeparam name="T"></typeparam>
- <param name="showExplorer">
- do specific callback from this parameter delegate if the pointer value is nothing nothing
- </param>
-</member>
-<member name="M:Galaxy.Workbench.CommonRuntime.ShowDocument``1(Microsoft.VisualStudio.WinForms.Docking.DockState,System.String)">
- <summary>
- create a new document tab page
- </summary>
- <typeparam name="T"></typeparam>
- <returns></returns>
- 
-</member>
-<member name="M:Galaxy.Workbench.DialogPromise.OpenDialog``1">
- <summary>
- 启动链式调用的入口方法
- </summary>
- <typeparam name="T"></typeparam>
- <returns></returns>
-</member>
-<member name="M:Galaxy.Workbench.DialogPromise.OpenDialog``1(System.Object)">
- <summary>
- 
- </summary>
- <typeparam name="T"></typeparam>
- <param name="data">
- this parameter required the target <typeparamref name="T"/> implements of the interface <see cref="T:Galaxy.Workbench.IDataContainer"/>
- </param>
- <returns></returns>
-</member>
-<member name="M:Galaxy.Workbench.DialogPromise.ThenDialog``1">
- <summary>
- 链式调用下一个对话框
- </summary>
- <typeparam name="T"></typeparam>
- <returns></returns>
-</member>
-<member name="M:Galaxy.Workbench.DialogPromise.ThenDialog``1(System.Func{Galaxy.Workbench.CommonDialogs.InputDialog,System.Boolean},System.Object)">
- <summary>
- 
- </summary>
- <typeparam name="T"></typeparam>
- <param name="condition"></param>
- <param name="data">
- this parameter required the target <typeparamref name="T"/> implements of the interface <see cref="T:Galaxy.Workbench.IDataContainer"/>
- </param>
- <returns></returns>
-</member>
-<member name="M:Galaxy.Workbench.DialogPromise.Finally(System.Action{System.Windows.Forms.DialogResult,Galaxy.Workbench.CommonDialogs.InputDialog})">
- <summary>
- 处理最终结果
- </summary>
- <param name="action"></param>
-</member>
-<member name="M:Galaxy.Workbench.DialogPromise.OnSuccess(System.Action)">
- <summary>
- 只有当所有对话框都成功时才执行
- </summary>
- <param name="action"></param>
-</member>
-<member name="M:Galaxy.Workbench.DialogPromise.OnCancel(System.Action)">
- <summary>
- 当任何对话框取消时执行
- </summary>
- <param name="action"></param>
-</member>
-<member name="M:Galaxy.Workbench.DialogPromise.SetFormData(Galaxy.Workbench.CommonDialogs.InputDialog,System.Object)">
- <summary>
- 辅助方法：设置表单数据
- </summary>
- <param name="form"></param>
- <param name="data"></param>
-</member>
-<member name="M:Galaxy.Workbench.CommonDialogs.InputDialog.Input``1(System.Action{``0},System.Action,``0)">
- <summary>
- 
- </summary>
- <typeparam name="Form"></typeparam>
- <param name="setConfig">
- Just needs for display the information, then 
- this delegate function could be nothing.
- </param>
- <param name="cancel"></param>
- <param name="config"></param>
-</member>
-<member name="M:Galaxy.Workbench.CommonDialogs.InputDialog.ShowDialog``1(``0)">
- <summary>
- just used this method for display some information
- </summary>
- <typeparam name="Form"></typeparam>
- <param name="config"></param>
- 
-</member>
-<member name="T:Galaxy.Workbench.IDataContainer">
- <summary>
- <see cref="T:Galaxy.Workbench.DialogPromise"/>中可选的数据传递接口
- </summary>
-</member>
-<member name="M:Galaxy.Workbench.IDataContainer.SetData(System.Object)">
- <summary>
- set a general data to form
- </summary>
- <param name="data"></param>
-</member>
-<member name="M:Galaxy.Workbench.IDataContainer.GetData">
- <summary>
- get the general data from the form
- </summary>
- <returns></returns>
-</member>
-<member name="T:Galaxy.Workbench.CommonStrings">
- <summary>
- Common string resource in different culture and language
- </summary>
-</member>
-<member name="M:Galaxy.Workbench.CommonStrings.GetString(System.String,System.Resources.ResourceManager)">
- <summary>
- get string from resource data with culture and language configuration.
- </summary>
- <param name="key"></param>
- <returns></returns>
-</member>
-<member name="M:Galaxy.Workbench.CommonStrings.GetString(System.String,System.Object[])">
- <summary>
- Get string with <see cref="M:System.String.Format(System.IFormatProvider,System.String,System.Object)"/> applied
- </summary>
- <param name="key"></param>
- <param name="args"></param>
  <returns></returns>
 </member>
 <member name="F:Galaxy.Workbench.Languages.Default">

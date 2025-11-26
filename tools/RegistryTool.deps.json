@@ -13,7 +13,7 @@
           "BioNovoGene.BioDeep.Chemoinformatics": "1.0.0",
           "BioNovoGene.BioDeep.MSEngine": "1.0.0",
           "DockPanelSuite": "3.1.1",
-          "GalaxyWorkbench": "1.0.0",
+          "Galaxy.Workbench": "1.0.0",
           "Microsoft.VisualBasic.MIME.text.markdown": "1.0.0",
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
           "Microsoft.Web.WebView2": "1.0.3595.46",
@@ -32,6 +32,7 @@
           "BioNovoGene.BioDeep.Chemoinformatics.SMILES.Reference": "1.0.0.0",
           "BioNovoGene.BioDeep.MSEngine.Reference": "1.0.0.0",
           "BioNovoGene.BioDeep.MSFinder.Reference": "1.0.0.0",
+          "Galaxy.Workbench.Reference": "1.0.0.0",
           "Microsoft.VisualBasic.Data.BinaryData.Reference": "1.0.0.0",
           "Microsoft.VisualBasic.Data.Bootstrapping.Fittings.Reference": "5.0.1.2389",
           "Microsoft.VisualBasic.Data.Framework.Reference": "5.0.123.0",
@@ -657,9 +658,11 @@
           }
         }
       },
-      "GalaxyWorkbench/1.0.0": {
+      "Galaxy.Workbench/1.0.0": {
         "dependencies": {
           "DockPanelSuite": "3.1.1",
+          "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
+          "Microsoft.Web.WebView2": "1.0.3595.46",
           "Microsoft.Windows.FeatureAPI": "1.0.0",
           "ThemeVS2015": "1.0.0"
         },
@@ -1043,7 +1046,7 @@
       "Microsoft.Windows.FeatureAPI/1.0.0": {
         "runtime": {
           "Microsoft.Windows.FeatureAPI.dll": {
-            "assemblyVersion": "10.0.9458.1410",
+            "assemblyVersion": "10.0.9461.32073",
             "fileVersion": "1.0.10.8963"
           }
         }
@@ -1289,6 +1292,25 @@
           "BioNovoGene.BioDeep.MSFinder.dll": {
             "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Galaxy.Workbench.Reference/1.0.0.0": {
+        "runtime": {
+          "Galaxy.Workbench.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        },
+        "resources": {
+          "en-US/Galaxy.Workbench.resources.dll": {
+            "locale": "en-US"
+          },
+          "zh-Hans/Galaxy.Workbench.resources.dll": {
+            "locale": "zh-Hans"
+          },
+          "zh-HK/Galaxy.Workbench.resources.dll": {
+            "locale": "zh-HK"
           }
         }
       },
@@ -1892,7 +1914,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "GalaxyWorkbench/1.0.0": {
+    "Galaxy.Workbench/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -2138,6 +2160,11 @@
       "sha512": ""
     },
     "BioNovoGene.BioDeep.MSFinder.Reference/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Galaxy.Workbench.Reference/1.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
