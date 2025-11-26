@@ -25,7 +25,7 @@ Partial Class FormMoleculeEditor
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         components = New ComponentModel.Container()
-        Dim DataGridViewCellStyle1 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As DataGridViewCellStyle = New DataGridViewCellStyle()
         DataGridView1 = New DataGridView()
         Column1 = New DataGridViewTextBoxColumn()
         Column2 = New DataGridViewTextBoxColumn()
@@ -77,6 +77,8 @@ Partial Class FormMoleculeEditor
         ContextMenuStrip4 = New ContextMenuStrip(components)
         ListSourceToolStripMenuItem = New ToolStripMenuItem()
         DataGridView2 = New DataGridView()
+        Column3 = New DataGridViewTextBoxColumn()
+        Column4 = New DataGridViewTextBoxColumn()
         SplitContainer1 = New SplitContainer()
         TextBox7 = New TextBox()
         DataGridView3 = New DataGridView()
@@ -93,11 +95,10 @@ Partial Class FormMoleculeEditor
         LinkLabel1 = New ToolStripLabel()
         Panel1 = New Panel()
         Panel2 = New Panel()
+        Panel3 = New Panel()
         TabControl1 = New TabControl()
         TabPage1 = New TabPage()
         TabPage2 = New TabPage()
-        Column3 = New DataGridViewTextBoxColumn()
-        Column4 = New DataGridViewTextBoxColumn()
         CType(DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
         ContextMenuStrip3.SuspendLayout()
         CType(WebView21, ComponentModel.ISupportInitialize).BeginInit()
@@ -120,6 +121,7 @@ Partial Class FormMoleculeEditor
         ToolStrip1.SuspendLayout()
         Panel1.SuspendLayout()
         Panel2.SuspendLayout()
+        Panel3.SuspendLayout()
         TabControl1.SuspendLayout()
         TabPage1.SuspendLayout()
         TabPage2.SuspendLayout()
@@ -139,7 +141,7 @@ Partial Class FormMoleculeEditor
         DataGridView1.RowTemplate.Height = 23
         DataGridView1.ScrollBars = ScrollBars.Vertical
         DataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect
-        DataGridView1.Size = New Size(396, 293)
+        DataGridView1.Size = New Size(396, 351)
         DataGridView1.TabIndex = 0
         ' 
         ' Column1
@@ -176,7 +178,7 @@ Partial Class FormMoleculeEditor
         ' Label2
         ' 
         Label2.AutoSize = True
-        Label2.Location = New Point(16, 359)
+        Label2.Location = New Point(4, 392)
         Label2.Name = "Label2"
         Label2.Size = New Size(48, 15)
         Label2.TabIndex = 2
@@ -184,14 +186,14 @@ Partial Class FormMoleculeEditor
         ' 
         ' TextBox1
         ' 
-        TextBox1.Location = New Point(18, 379)
+        TextBox1.Location = New Point(6, 412)
         TextBox1.Name = "TextBox1"
         TextBox1.Size = New Size(441, 23)
         TextBox1.TabIndex = 3
         ' 
         ' Button1
         ' 
-        Button1.Location = New Point(465, 379)
+        Button1.Location = New Point(453, 412)
         Button1.Name = "Button1"
         Button1.Size = New Size(75, 23)
         Button1.TabIndex = 4
@@ -203,21 +205,21 @@ Partial Class FormMoleculeEditor
         WebView21.AllowExternalDrop = True
         WebView21.CreationProperties = Nothing
         WebView21.DefaultBackgroundColor = Color.White
-        WebView21.Location = New Point(18, 20)
+        WebView21.Location = New Point(6, 19)
         WebView21.Name = "WebView21"
-        WebView21.Size = New Size(522, 331)
+        WebView21.Size = New Size(540, 370)
         WebView21.TabIndex = 5
-        WebView21.ZoomFactor = 1.0R
+        WebView21.ZoomFactor = 1R
         ' 
         ' ListBox1
         ' 
-        ListBox1.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left
         ListBox1.ContextMenuStrip = ContextMenuStrip1
+        ListBox1.Dock = DockStyle.Fill
         ListBox1.FormattingEnabled = True
         ListBox1.ItemHeight = 15
-        ListBox1.Location = New Point(18, 47)
+        ListBox1.Location = New Point(3, 55)
         ListBox1.Name = "ListBox1"
-        ListBox1.Size = New Size(522, 289)
+        ListBox1.Size = New Size(1666, 352)
         ListBox1.TabIndex = 7
         ' 
         ' ContextMenuStrip1
@@ -258,7 +260,7 @@ Partial Class FormMoleculeEditor
         ' Label4
         ' 
         Label4.AutoSize = True
-        Label4.Location = New Point(16, 22)
+        Label4.Location = New Point(7, 9)
         Label4.Name = "Label4"
         Label4.Size = New Size(96, 15)
         Label4.TabIndex = 8
@@ -269,7 +271,7 @@ Partial Class FormMoleculeEditor
         ComboBox1.DropDownStyle = ComboBoxStyle.DropDownList
         ComboBox1.FormattingEnabled = True
         ComboBox1.Items.AddRange(New Object() {"*", "en", "zh"})
-        ComboBox1.Location = New Point(138, 19)
+        ComboBox1.Location = New Point(109, 6)
         ComboBox1.Name = "ComboBox1"
         ComboBox1.Size = New Size(152, 23)
         ComboBox1.TabIndex = 9
@@ -335,11 +337,11 @@ Partial Class FormMoleculeEditor
         ' 
         ' TextBox4
         ' 
-        TextBox4.Location = New Point(15, 133)
+        TextBox4.Location = New Point(15, 124)
         TextBox4.Multiline = True
         TextBox4.Name = "TextBox4"
         TextBox4.ScrollBars = ScrollBars.Vertical
-        TextBox4.Size = New Size(396, 358)
+        TextBox4.Size = New Size(396, 390)
         TextBox4.TabIndex = 17
         ' 
         ' Button3
@@ -363,11 +365,11 @@ Partial Class FormMoleculeEditor
         ' GroupBox1
         ' 
         GroupBox1.Controls.Add(ListBox1)
-        GroupBox1.Controls.Add(Label4)
-        GroupBox1.Controls.Add(ComboBox1)
-        GroupBox1.Location = New Point(544, 25)
+        GroupBox1.Controls.Add(Panel3)
+        GroupBox1.Dock = DockStyle.Fill
+        GroupBox1.Location = New Point(510, 0)
         GroupBox1.Name = "GroupBox1"
-        GroupBox1.Size = New Size(552, 352)
+        GroupBox1.Size = New Size(1672, 410)
         GroupBox1.TabIndex = 20
         GroupBox1.TabStop = False
         GroupBox1.Text = "Synonym Names"
@@ -379,9 +381,10 @@ Partial Class FormMoleculeEditor
         GroupBox2.Controls.Add(ComboBox3)
         GroupBox2.Controls.Add(Button5)
         GroupBox2.Controls.Add(DataGridView1)
-        GroupBox2.Location = New Point(14, 25)
+        GroupBox2.Dock = DockStyle.Left
+        GroupBox2.Location = New Point(0, 0)
         GroupBox2.Name = "GroupBox2"
-        GroupBox2.Size = New Size(510, 352)
+        GroupBox2.Size = New Size(510, 410)
         GroupBox2.TabIndex = 21
         GroupBox2.TabStop = False
         GroupBox2.Text = "Database CrossReference"
@@ -389,7 +392,7 @@ Partial Class FormMoleculeEditor
         ' Button8
         ' 
         Button8.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
-        Button8.Location = New Point(338, 320)
+        Button8.Location = New Point(338, 378)
         Button8.Name = "Button8"
         Button8.Size = New Size(73, 23)
         Button8.TabIndex = 24
@@ -399,7 +402,7 @@ Partial Class FormMoleculeEditor
         ' TextBox6
         ' 
         TextBox6.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
-        TextBox6.Location = New Point(114, 321)
+        TextBox6.Location = New Point(114, 379)
         TextBox6.Name = "TextBox6"
         TextBox6.Size = New Size(218, 23)
         TextBox6.TabIndex = 23
@@ -409,7 +412,7 @@ Partial Class FormMoleculeEditor
         ComboBox3.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
         ComboBox3.DropDownStyle = ComboBoxStyle.DropDownList
         ComboBox3.FormattingEnabled = True
-        ComboBox3.Location = New Point(15, 321)
+        ComboBox3.Location = New Point(15, 379)
         ComboBox3.Name = "ComboBox3"
         ComboBox3.Size = New Size(93, 23)
         ComboBox3.TabIndex = 21
@@ -431,16 +434,16 @@ Partial Class FormMoleculeEditor
         GroupBox3.Controls.Add(Label2)
         GroupBox3.Controls.Add(TextBox1)
         GroupBox3.Controls.Add(Button1)
-        GroupBox3.Location = New Point(544, 25)
+        GroupBox3.Location = New Point(521, 9)
         GroupBox3.Name = "GroupBox3"
-        GroupBox3.Size = New Size(552, 496)
+        GroupBox3.Size = New Size(552, 527)
         GroupBox3.TabIndex = 22
         GroupBox3.TabStop = False
         GroupBox3.Text = "Molecular Structure Data"
         ' 
         ' TextBox5
         ' 
-        TextBox5.Location = New Point(18, 421)
+        TextBox5.Location = New Point(6, 454)
         TextBox5.Multiline = True
         TextBox5.Name = "TextBox5"
         TextBox5.ReadOnly = True
@@ -450,7 +453,7 @@ Partial Class FormMoleculeEditor
         ' Label1
         ' 
         Label1.AutoSize = True
-        Label1.Location = New Point(16, 406)
+        Label1.Location = New Point(4, 439)
         Label1.Name = "Label1"
         Label1.Size = New Size(73, 15)
         Label1.TabIndex = 6
@@ -469,9 +472,9 @@ Partial Class FormMoleculeEditor
         GroupBox4.Controls.Add(TextBox3)
         GroupBox4.Controls.Add(Label7)
         GroupBox4.Controls.Add(Label8)
-        GroupBox4.Location = New Point(19, 17)
+        GroupBox4.Location = New Point(5, 9)
         GroupBox4.Name = "GroupBox4"
-        GroupBox4.Size = New Size(510, 497)
+        GroupBox4.Size = New Size(510, 527)
         GroupBox4.TabIndex = 23
         GroupBox4.TabStop = False
         GroupBox4.Text = "Molecular Information"
@@ -490,9 +493,9 @@ Partial Class FormMoleculeEditor
         GroupBox5.Controls.Add(ComboBox2)
         GroupBox5.Controls.Add(Button6)
         GroupBox5.Controls.Add(ListBox2)
-        GroupBox5.Location = New Point(1111, 18)
+        GroupBox5.Location = New Point(1079, 9)
         GroupBox5.Name = "GroupBox5"
-        GroupBox5.Size = New Size(367, 496)
+        GroupBox5.Size = New Size(367, 521)
         GroupBox5.TabIndex = 26
         GroupBox5.TabStop = False
         GroupBox5.Text = "Topic Tags"
@@ -501,14 +504,14 @@ Partial Class FormMoleculeEditor
         ' 
         ComboBox2.DropDownStyle = ComboBoxStyle.DropDownList
         ComboBox2.FormattingEnabled = True
-        ComboBox2.Location = New Point(6, 464)
+        ComboBox2.Location = New Point(6, 485)
         ComboBox2.Name = "ComboBox2"
         ComboBox2.Size = New Size(274, 23)
         ComboBox2.TabIndex = 2
         ' 
         ' Button6
         ' 
-        Button6.Location = New Point(286, 462)
+        Button6.Location = New Point(286, 483)
         Button6.Name = "Button6"
         Button6.Size = New Size(75, 23)
         Button6.TabIndex = 1
@@ -522,7 +525,7 @@ Partial Class FormMoleculeEditor
         ListBox2.ItemHeight = 15
         ListBox2.Location = New Point(6, 20)
         ListBox2.Name = "ListBox2"
-        ListBox2.Size = New Size(355, 424)
+        ListBox2.Size = New Size(355, 454)
         ListBox2.TabIndex = 0
         ' 
         ' ContextMenuStrip2
@@ -540,22 +543,22 @@ Partial Class FormMoleculeEditor
         ' GroupBox6
         ' 
         GroupBox6.Controls.Add(ListBox3)
-        GroupBox6.Location = New Point(1130, 25)
+        GroupBox6.Location = New Point(1452, 9)
         GroupBox6.Name = "GroupBox6"
-        GroupBox6.Size = New Size(367, 352)
+        GroupBox6.Size = New Size(367, 521)
         GroupBox6.TabIndex = 27
         GroupBox6.TabStop = False
         GroupBox6.Text = "Organism Source"
         ' 
         ' ListBox3
         ' 
-        ListBox3.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
         ListBox3.ContextMenuStrip = ContextMenuStrip4
+        ListBox3.Dock = DockStyle.Fill
         ListBox3.FormattingEnabled = True
         ListBox3.ItemHeight = 15
-        ListBox3.Location = New Point(6, 22)
+        ListBox3.Location = New Point(3, 19)
         ListBox3.Name = "ListBox3"
-        ListBox3.Size = New Size(355, 319)
+        ListBox3.Size = New Size(361, 499)
         ListBox3.TabIndex = 0
         ' 
         ' ContextMenuStrip4
@@ -575,21 +578,35 @@ Partial Class FormMoleculeEditor
         DataGridView2.AllowUserToAddRows = False
         DataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
         DataGridView2.Columns.AddRange(New DataGridViewColumn() {Column3, Column4})
-        DataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle1.BackColor = SystemColors.Window
-        DataGridViewCellStyle1.Font = New Font("Cambria", 8.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle1.ForeColor = SystemColors.ControlText
-        DataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight
-        DataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText
-        DataGridViewCellStyle1.WrapMode = DataGridViewTriState.False
-        DataGridView2.DefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle4.BackColor = SystemColors.Window
+        DataGridViewCellStyle4.Font = New Font("Cambria", 8.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle4.ForeColor = SystemColors.ControlText
+        DataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText
+        DataGridViewCellStyle4.WrapMode = DataGridViewTriState.False
+        DataGridView2.DefaultCellStyle = DataGridViewCellStyle4
         DataGridView2.Dock = DockStyle.Fill
         DataGridView2.Location = New Point(0, 0)
         DataGridView2.Name = "DataGridView2"
         DataGridView2.RowTemplate.Height = 23
         DataGridView2.SelectionMode = DataGridViewSelectionMode.FullRowSelect
-        DataGridView2.Size = New Size(1311, 518)
+        DataGridView2.Size = New Size(1668, 518)
         DataGridView2.TabIndex = 28
+        ' 
+        ' Column3
+        ' 
+        Column3.HeaderText = "name"
+        Column3.Name = "Column3"
+        Column3.ReadOnly = True
+        Column3.Width = 300
+        ' 
+        ' Column4
+        ' 
+        Column4.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+        Column4.HeaderText = "equation"
+        Column4.Name = "Column4"
+        Column4.ReadOnly = True
         ' 
         ' SplitContainer1
         ' 
@@ -606,7 +623,7 @@ Partial Class FormMoleculeEditor
         ' 
         SplitContainer1.Panel2.Controls.Add(TextBox7)
         SplitContainer1.Panel2.Controls.Add(DataGridView3)
-        SplitContainer1.Size = New Size(1311, 949)
+        SplitContainer1.Size = New Size(1668, 949)
         SplitContainer1.SplitterDistance = 518
         SplitContainer1.TabIndex = 30
         ' 
@@ -618,7 +635,7 @@ Partial Class FormMoleculeEditor
         TextBox7.Multiline = True
         TextBox7.Name = "TextBox7"
         TextBox7.ReadOnly = True
-        TextBox7.Size = New Size(1311, 90)
+        TextBox7.Size = New Size(1668, 90)
         TextBox7.TabIndex = 30
         ' 
         ' DataGridView3
@@ -632,7 +649,7 @@ Partial Class FormMoleculeEditor
         DataGridView3.Name = "DataGridView3"
         DataGridView3.RowTemplate.Height = 23
         DataGridView3.SelectionMode = DataGridViewSelectionMode.FullRowSelect
-        DataGridView3.Size = New Size(1311, 427)
+        DataGridView3.Size = New Size(1668, 427)
         DataGridView3.TabIndex = 29
         ' 
         ' Column6
@@ -689,7 +706,7 @@ Partial Class FormMoleculeEditor
         ToolStrip1.Items.AddRange(New ToolStripItem() {ToolStripLabel1, LinkLabel1})
         ToolStrip1.Location = New Point(0, 0)
         ToolStrip1.Name = "ToolStrip1"
-        ToolStrip1.Size = New Size(1325, 25)
+        ToolStrip1.Size = New Size(2196, 25)
         ToolStrip1.TabIndex = 30
         ToolStrip1.Text = "ToolStrip1"
         ' 
@@ -711,20 +728,32 @@ Partial Class FormMoleculeEditor
         Panel1.Controls.Add(GroupBox4)
         Panel1.Controls.Add(GroupBox3)
         Panel1.Controls.Add(GroupBox5)
-        Panel1.Location = New Point(18, 6)
+        Panel1.Controls.Add(GroupBox6)
+        Panel1.Dock = DockStyle.Top
+        Panel1.Location = New Point(3, 3)
         Panel1.Name = "Panel1"
-        Panel1.Size = New Size(1281, 391)
+        Panel1.Size = New Size(2182, 539)
         Panel1.TabIndex = 31
         ' 
         ' Panel2
         ' 
-        Panel2.Controls.Add(GroupBox2)
         Panel2.Controls.Add(GroupBox1)
-        Panel2.Controls.Add(GroupBox6)
-        Panel2.Location = New Point(18, 410)
+        Panel2.Controls.Add(GroupBox2)
+        Panel2.Dock = DockStyle.Fill
+        Panel2.Location = New Point(3, 542)
         Panel2.Name = "Panel2"
-        Panel2.Size = New Size(1349, 284)
+        Panel2.Size = New Size(2182, 410)
         Panel2.TabIndex = 32
+        ' 
+        ' Panel3
+        ' 
+        Panel3.Controls.Add(ComboBox1)
+        Panel3.Controls.Add(Label4)
+        Panel3.Dock = DockStyle.Top
+        Panel3.Location = New Point(3, 19)
+        Panel3.Name = "Panel3"
+        Panel3.Size = New Size(1666, 36)
+        Panel3.TabIndex = 28
         ' 
         ' TabControl1
         ' 
@@ -734,17 +763,17 @@ Partial Class FormMoleculeEditor
         TabControl1.Location = New Point(0, 25)
         TabControl1.Name = "TabControl1"
         TabControl1.SelectedIndex = 0
-        TabControl1.Size = New Size(1325, 983)
+        TabControl1.Size = New Size(2196, 983)
         TabControl1.TabIndex = 33
         ' 
         ' TabPage1
         ' 
-        TabPage1.Controls.Add(Panel1)
         TabPage1.Controls.Add(Panel2)
+        TabPage1.Controls.Add(Panel1)
         TabPage1.Location = New Point(4, 24)
         TabPage1.Name = "TabPage1"
         TabPage1.Padding = New Padding(3)
-        TabPage1.Size = New Size(1317, 955)
+        TabPage1.Size = New Size(2188, 955)
         TabPage1.TabIndex = 0
         TabPage1.Text = "Molecule Information"
         TabPage1.UseVisualStyleBackColor = True
@@ -755,30 +784,16 @@ Partial Class FormMoleculeEditor
         TabPage2.Location = New Point(4, 24)
         TabPage2.Name = "TabPage2"
         TabPage2.Padding = New Padding(3)
-        TabPage2.Size = New Size(1317, 955)
+        TabPage2.Size = New Size(1674, 955)
         TabPage2.TabIndex = 1
         TabPage2.Text = "Related Metabolic Network"
         TabPage2.UseVisualStyleBackColor = True
         ' 
-        ' Column3
-        ' 
-        Column3.HeaderText = "name"
-        Column3.Name = "Column3"
-        Column3.ReadOnly = True
-        Column3.Width = 300
-        ' 
-        ' Column4
-        ' 
-        Column4.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
-        Column4.HeaderText = "equation"
-        Column4.Name = "Column4"
-        Column4.ReadOnly = True
-        ' 
         ' FormMoleculeEditor
         ' 
-        AutoScaleDimensions = New SizeF(7.0F, 15.0F)
+        AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(1325, 1008)
+        ClientSize = New Size(2196, 1008)
         Controls.Add(TabControl1)
         Controls.Add(ToolStrip1)
         DockAreas = Microsoft.VisualStudio.WinForms.Docking.DockAreas.Float Or Microsoft.VisualStudio.WinForms.Docking.DockAreas.DockLeft Or Microsoft.VisualStudio.WinForms.Docking.DockAreas.DockRight Or Microsoft.VisualStudio.WinForms.Docking.DockAreas.DockTop Or Microsoft.VisualStudio.WinForms.Docking.DockAreas.DockBottom Or Microsoft.VisualStudio.WinForms.Docking.DockAreas.Document
@@ -793,7 +808,6 @@ Partial Class FormMoleculeEditor
         CType(WebView21, ComponentModel.ISupportInitialize).EndInit()
         ContextMenuStrip1.ResumeLayout(False)
         GroupBox1.ResumeLayout(False)
-        GroupBox1.PerformLayout()
         GroupBox2.ResumeLayout(False)
         GroupBox2.PerformLayout()
         GroupBox3.ResumeLayout(False)
@@ -816,6 +830,8 @@ Partial Class FormMoleculeEditor
         ToolStrip1.PerformLayout()
         Panel1.ResumeLayout(False)
         Panel2.ResumeLayout(False)
+        Panel3.ResumeLayout(False)
+        Panel3.PerformLayout()
         TabControl1.ResumeLayout(False)
         TabPage1.ResumeLayout(False)
         TabPage2.ResumeLayout(False)
@@ -896,4 +912,5 @@ Partial Class FormMoleculeEditor
     Friend WithEvents TextBox7 As TextBox
     Friend WithEvents Column3 As DataGridViewTextBoxColumn
     Friend WithEvents Column4 As DataGridViewTextBoxColumn
+    Friend WithEvents Panel3 As Panel
 End Class
