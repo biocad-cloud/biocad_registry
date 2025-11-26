@@ -254,7 +254,8 @@
       <BuildType Solution="mzkit|*" Project="Debug" />
       <BuildType Solution="NPSearch|*" Project="MEMI-Desktop" />
       <BuildType Solution="PlantMAT|*" Project="MEMI-Desktop" />
-      <BuildType Solution="Rsharp_app_release|*" Project="MEMI-Desktop" />
+      <BuildType Solution="Rsharp_app_release|Any CPU" Project="MEMI-Desktop" />
+      <BuildType Solution="Rsharp_app_release|x86" Project="MEMI-Desktop" />
       <Platform Solution="*|x64" Project="x64" />
     </Project>
     <Project Path="../../galaxy/src/dockpanelsuite/VSDockPanel/VSDockPanel.vbproj">
@@ -278,7 +279,9 @@
       <BuildType Solution="mzkit|*" Project="Debug" />
       <BuildType Solution="NPSearch|*" Project="MEMI-Desktop" />
       <BuildType Solution="PlantMAT|*" Project="MEMI-Desktop" />
-      <BuildType Solution="Rsharp_app_release|*" Project="MEMI-Desktop" />
+      <BuildType Solution="Rsharp_app_release|Any CPU" Project="MEMI-Desktop" />
+      <BuildType Solution="Rsharp_app_release|x64" Project="mzkit_win32" />
+      <BuildType Solution="Rsharp_app_release|x86" Project="MEMI-Desktop" />
       <Platform Solution="*|x64" Project="x64" />
     </Project>
     <Project Path="../../galaxy/src/Microsoft.Windows.FeatureAPI/Microsoft.Windows.FeatureAPI.vbproj" Id="3d61f3a9-a8e0-4195-9133-6fd8e4b82d54">
@@ -523,7 +526,9 @@
     <BuildType Solution="mzkit|*" Project="Debug" />
     <BuildType Solution="NPSearch|*" Project="Debug" />
     <BuildType Solution="PlantMAT|*" Project="Debug" />
-    <BuildType Solution="Rsharp_app_release|*" Project="Release" />
+    <BuildType Solution="Rsharp_app_release|Any CPU" Project="Release" />
+    <BuildType Solution="Rsharp_app_release|x64" Project="gcmodeller_desktop" />
+    <BuildType Solution="Rsharp_app_release|x86" Project="Release" />
     <Platform Solution="CFD_win32|x64" Project="x64" />
     <Platform Solution="Debug|x64" Project="x64" />
     <Platform Solution="gcmodeller_desktop|x64" Project="x64" />
