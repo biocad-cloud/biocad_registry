@@ -14105,7 +14105,7 @@ to take away yo [rest of string was truncated]&quot;;.
  </summary>
  <returns></returns>
 </member>
-<member name="M:SMRUCC.genomics.SequenceModel.FASTA.StreamIterator.__loops(System.Collections.Generic.List{System.String})">
+<member name="M:SMRUCC.genomics.SequenceModel.FASTA.StreamIterator.Loops(System.Collections.Generic.List{System.String})">
  <summary>
  Loops on each block of data
  </summary>

@@ -1046,13 +1046,14 @@
       "Microsoft.Windows.FeatureAPI/1.0.0": {
         "runtime": {
           "Microsoft.Windows.FeatureAPI.dll": {
-            "assemblyVersion": "10.0.9461.32073",
+            "assemblyVersion": "10.0.9464.32655",
             "fileVersion": "1.0.10.8963"
           }
         }
       },
       "Ollama/1.0.0": {
         "dependencies": {
+          "Microsoft.VisualBasic.MIME.application.json": "1.0.0",
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389"
         },
         "runtime": {

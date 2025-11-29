@@ -466,11 +466,21 @@ Galaxy.Workbench
  the contents of this method with the code editor.
  </summary>
 </member>
-<member name="M:Galaxy.Workbench.DockDocument.Presets.PropertyWindow.SetObject(System.Object)">
+<member name="M:Galaxy.Workbench.DockDocument.Presets.PropertyWindow.SetObject(System.Object,System.String[])">
  <summary>
  set selected object and then refresh the <see cref="F:Galaxy.Workbench.DockDocument.Presets.PropertyWindow.propertyGrid"/>
  </summary>
  <param name="obj"></param>
+ <param name="expands">
+ a list of the property name that should be in expaned status by default.
+ </param>
+</member>
+<member name="M:Galaxy.Workbench.DockDocument.Presets.PropertyWindow.ExpandPropertyInGrid(System.Windows.Forms.PropertyGrid,System.String)">
+ <summary>
+ 使用反射展开 PropertyGrid 中的指定属性。
+ </summary>
+ <param name="grid">目标 PropertyGrid 控件。</param>
+ <param name="propertyName">要展开的属性的名称（不区分大小写）。</param>
 </member>
 <member name="T:Galaxy.Workbench.DockDocument.ToolStripWindow">
  <summary>

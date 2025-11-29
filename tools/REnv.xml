@@ -5993,14 +5993,14 @@ to take away yo [rest of string was truncated]&quot;;.
  to character (and which are pasted together with no separator) 
  or (for message only) a single condition object.</param>
 </member>
-<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.base.cat(System.Object,System.String,System.String,SMRUCC.Rsharp.Runtime.Environment)">
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.base.cat(System.Object,System.Object,System.String,System.Boolean,SMRUCC.Rsharp.Runtime.Environment)">
  <summary>
  # Concatenate and Print
  
  Outputs the objects, concatenating the representations. 
  ``cat`` performs much less conversion than ``print``.
  </summary>
- <param name="values">R objects (see ‘Details’ for the types of objects allowed).</param>
+ <param name="x">R objects (see ‘Details’ for the types of objects allowed).</param>
  <param name="file">A connection, or a character string naming the file to print to. 
  If "" (the default), cat prints to the standard output connection, the console 
  unless redirected by ``sink``.</param>
@@ -6376,6 +6376,98 @@ to take away yo [rest of string was truncated]&quot;;.
  preserves an existing workspace file if the save fails, but at the cost of using 
  extra disk space during the save.</param>
  <param name="envir">environment to search for objects to be saved.</param>
+</member>
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.conditions.tryCatch(System.Object,System.Object,SMRUCC.Rsharp.Runtime.Internal.Object.list,SMRUCC.Rsharp.Runtime.Environment)">
+ <summary>
+ ### Condition Handling and Recovery
+ 
+ These functions provide a mechanism for handling unusual conditions, including errors and warnings.
+ </summary>
+ <param name="expr">expression to be evaluated.</param>
+ <param name="finally">expression to be evaluated before returning or exiting.</param>
+ <param name="args">additional arguments; see details below.</param>
+ <param name="env"></param>
+ <returns></returns>
+ <remarks>
+ The condition system provides a mechanism for signaling and handling unusual conditions, including 
+ errors and warnings. Conditions are represented as objects that contain information about the condition 
+ that occurred, such as a message and the call in which the condition occurred. Currently conditions 
+ are S3-style objects, though this may eventually change.
+ Conditions are objects inheriting from the abstract class condition. Errors and warnings are objects 
+ inheriting from the abstract subclasses error and warning. The class simpleError is the class used
+ by stop and all internal error signals. Similarly, simpleWarning is used by warning, and simpleMessage
+ is used by message. The constructors by the same names take a string describing the condition as 
+ argument and an optional call. The functions conditionMessage and conditionCall are generic functions
+ that return the message and call of a condition.
+ The function errorCondition can be used to construct error conditions of a particular class with 
+ additional fields specified as the ... argument. warningCondition is analogous for warnings.
+ Conditions are signaled by signalCondition. In addition, the stop and warning functions have been 
+ modified to also accept condition arguments.
+ The function tryCatch evaluates its expression argument in a context where the handlers provided in 
+ the ... argument are available. The finally expression is then evaluated in the context in which tryCatch 
+ was called; that is, the handlers supplied to the current tryCatch call are not active when the finally 
+ expression is evaluated.
+ Handlers provided in the ... argument to tryCatch are established for the duration of the evaluation of expr.
+ If no condition is signaled when evaluating expr then tryCatch returns the value of the expression.
+ If a condition is signaled while evaluating expr then established handlers are checked, starting with the
+ most recently established ones, for one matching the class of the condition. When several handlers are 
+ supplied in a single tryCatch then the first one is considered more recent than the second. If a handler
+ is found then control is transferred to the tryCatch call that established the handler, the handler found 
+ and all more recent handlers are disestablished, the handler is called with the condition as its argument,
+ and the result returned by the handler is returned as the value of the tryCatch call.
+ Calling handlers are established by withCallingHandlers. If a condition is signaled and the applicable 
+ handler is a calling handler, then the handler is called by signalCondition in the context where the 
+ condition was signaled but with the available handlers restricted to those below the handler called in 
+ the handler stack. If the handler returns, then the next handler is tried; once the last handler has been tried,
+ signalCondition returns NULL.
+ globalCallingHandlers establishes calling handlers globally. These handlers are only called as a last resort,
+ after the other handlers dynamically registered with withCallingHandlers have been invoked. They are 
+ called before the error global option (which is the legacy interface for global handling of errors).
+ Registering the same handler multiple times moves that handler on top of the stack, which ensures that 
+ it is called first. Global handlers are a good place to define a general purpose logger (for instance 
+ saving the last error object in the global workspace) or a general recovery strategy (e.g. installing 
+ missing packages via the retry_loadNamespace restart).
+ Like withCallingHandlers and tryCatch, globalCallingHandlers takes named handlers. Unlike these functions,
+ it also has an options-like interface: you can establish handlers by passing a single list of named handlers.
+ To unregister all global handlers, supply a single 'NULL'. The list of deleted handlers is returned invisibly.
+ Finally, calling globalCallingHandlers without arguments returns the list of currently established handlers,
+ visibly.
+ User interrupts signal a condition of class interrupt that inherits directly from class condition before 
+ executing the default interrupt action.
+ Restarts are used for establishing recovery protocols. They can be established using withRestarts. One 
+ pre-established restart is an abort restart that represents a jump to top level.
+ findRestart and computeRestarts find the available restarts. findRestart returns the most recently established
+ restart of the specified name. computeRestarts returns a list of all restarts. Both can be given a 
+ condition argument and will then ignore restarts that do not apply to the condition.
+ invokeRestart transfers control to the point where the specified restart was established and calls the 
+ restart's handler with the arguments, if any, given as additional arguments to invokeRestart. The restart 
+ argument to invokeRestart can be a character string, in which case findRestart is used to find the restart. 
+ If no restart is found, an error is thrown.
+ tryInvokeRestart is a variant of invokeRestart that returns silently when the restart cannot be found with
+ findRestart. Because a condition of a given class might be signalled with arbitrary protocols (error, warning,
+ etc), it is recommended to use this permissive variant whenever you are handling conditions signalled 
+ from a foreign context. For instance, invocation of a "muffleWarning" restart should be optional because
+ the warning might have been signalled by the user or from a different package with the stop or message 
+ protocols. Only use invokeRestart when you have control of the signalling context, or when it is a logical
+ error if the restart is not available.
+ New restarts for withRestarts can be specified in several ways. The simplest is in name = function form 
+ where the function is the handler to call when the restart is invoked. Another simple variant is as name = string
+ where the string is stored in the description field of the restart object returned by findRestart; 
+ in this case the handler ignores its arguments and returns NULL. The most flexible form of a restart 
+ specification is as a list that can include several fields, including handler, description, and test. 
+ The test field should contain a function of one argument, a condition, that returns TRUE if the restart 
+ applies to the condition and FALSE if it does not; the default function returns TRUE for all conditions.
+ One additional field that can be specified for a restart is interactive. This should be a function of no 
+ arguments that returns a list of arguments to pass to the restart handler. The list could be obtained by 
+ interacting with the user if necessary. The function invokeRestartInteractively calls this function to 
+ obtain the arguments to use when invoking the restart. The default interactive method queries the user 
+ for values for the formal arguments of the handler function.
+ Interrupts can be suspended while evaluating an expression using suspendInterrupts. Subexpression can be
+ evaluated with interrupts enabled using allowInterrupts. These functions can be used to make sure cleanup
+ handlers cannot be interrupted.
+ .signalSimpleWarning, .handleSimpleError, and .tryResumeInterrupt are used internally and should not be
+ called directly.
+ </remarks>
 </member>
 <member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.bitView.magicNumber(System.Object,System.Int32,SMRUCC.Rsharp.Runtime.Environment)">
  <summary>
@@ -7204,7 +7296,7 @@ to take away yo [rest of string was truncated]&quot;;.
  + ``language`` always "R".
  </returns>
 </member>
-<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.etc.CultureInfo(System.String)">
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.etc.CultureInfo_ctor(System.String)">
  <summary>
  Initializes a new instance of the System.Globalization.CultureInfo class based
  on the culture specified by name.
@@ -7511,6 +7603,78 @@ to take away yo [rest of string was truncated]&quot;;.
  this function returns FALSE if the given files value is NULL
  </returns>
 </member>
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.file.file_create(System.Object,System.Boolean,SMRUCC.Rsharp.Runtime.Environment)">
+ <summary>
+ ### File Manipulation
+ 
+ These functions provide a low-level interface to the computer's file system.
+ </summary>
+ <param name="x">character vectors, containing file names or paths.</param>
+ <param name="showWarnings">logical; should the warnings on failure be shown?</param>
+ <returns>These functions return a logical vector indicating which operation succeeded for each of the files attempted. 
+ Using a missing value for a file or path name will always be regarded as a failure.
+ If showWarnings = True, file.create will give a warning For an unexpected failure.</returns>
+ <remarks>
+ The ... arguments are concatenated to form one character string: you can specify the files separately or 
+ as one vector. All of these functions expand path names: see path.expand. (file.exists silently reports
+ false for paths that would be too long after expansion: the rest will give a warning.)
+ 
+ file.create creates files with the given names if they do Not already exist And truncates them if they do.
+ They are created with the maximal read/write permissions allowed by the 'umask’ setting (where relevant).
+ By default a warning is given (with the reason) if the operation fails.
+ 
+ #### Case-insensitive file systems
+ 
+ Case-insensitive file systems are the norm on Windows and macOS, but can be found on all OSes 
+ (for example a FAT-formatted USB drive is probably case-insensitive).
+ 
+ These functions will most likely match existing files regardless of case on such file systems: 
+ however this is an OS function and it is possible that file names might be mapped to upper or 
+ lower case.
+ 
+ #### Symbolic links on Windows
+ 
+ Symbolic links in the sense of POSIX file systems do not exist on Windows: however, 
+ NTFS file systems support two similar concepts.
+ 
+ There are ‘junctions’ (or ‘junction points’), unfortunately without a public API: 
+ a Windows version of the Unix concept of mounting one directory on another. A junction 
+ can link directories located on the same or different local volumes of the same computer,
+ but cannot link to a network drive. Function Sys.junction creates one or more junctions: 
+ to should either specify a single existing directory or a set of non-existent file paths 
+ of the same length as from. (Command mklink /J can also be used to create junctions.)
+ 
+ A version of symbolic linking to files/directories was implemented more recently, and 
+ file.symlink makes use of that interface. However, it has restrictions which are crippling. 
+ First, the user needs permission to make symbolic links, and that permission is not 
+ normally granted except to Administrator accounts (note: not users with Administrator rights): 
+ further many users report that whereas the Policy Editor appears to be able to grant such rights, 
+ the API still reports insufficient permissions. Second, the interface needs to know if from 
+ is a file or a directory (and it need not yet exist): we have implemented this to allow linking 
+ from a directory only if it currently exists.
+ 
+ Care is needed with removing a junction (and most likely also a symbolic link): many tools 
+ will remove the target and its contents.
+ 
+ #### Warning
+ 
+ Always check the return value of these functions when used in package code. This is especially 
+ important for file.rename, which has OS-specific restrictions (and note that the session temporary
+ directory is commonly on a different file system from the working directory): it is only portable
+ to use file.rename to change file name(s) within a single directory.
+ 
+ #### Note
+ 
+ There is no guarantee that these functions will handle Windows relative paths of the form 
+ ‘d:path’: try ‘d:./path’ instead. In particular, ‘d:’ is not recognized as a directory. 
+ Nor are ‘⁠\\?\⁠’ prefixes (and similar) supported.
+ 
+ Most of these functions accept UTF-8 filepaths not valid in the current locale.
+ 
+ User error in supplying invalid file names (and note that ‘foo/’ and ‘foo\’ are invalid on Windows) 
+ has undefined consequences.
+ </remarks>
+</member>
 <member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.file.dirCreate(System.String,System.Boolean,System.Boolean,System.String)">
  <summary>
  dir.create creates the last element of the path, unless recursive = TRUE. 
@@ -7664,45 +7828,6 @@ to take away yo [rest of string was truncated]&quot;;.
  <returns>
  true for no error in gzfile, false means the given gz file is corrupted
  </returns>
-</member>
-<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.file.stdin_dev">
- <summary>
- 
- </summary>
- <returns>
- stdin(), stdout() and stderr() return connection objects.
- </returns>
- <remarks>
- stdin(), stdout() and stderr() are standard connections corresponding to input, output and error on the console 
- respectively (and not necessarily to file streams). They are text-mode connections of class "terminal" which 
- cannot be opened or closed, and are read-only, write-only and write-only respectively. The stdout() and stderr() 
- connections can be re-directed by sink (and in some circumstances the output from stdout() can be split: see the 
- help page).
- 
- The encoding For stdin() When redirected can be Set by the command-line flag --encoding.
- 
- nullfile() returns filename of the null device ("/dev/null" on Unix, "nul:" on Windows).
- 
- showConnections returns a matrix Of information. If a connection Object has been lost Or forgotten, getConnection 
- will take a row number from the table And Return a connection Object For that connection, which can be used To 
- close the connection, For example. However, If there Is no R level Object referring To the connection it will be 
- closed automatically at the Next garbage collection (except For gzcon connections).
- 
- closeAllConnections closes(And destroys) all user connections, restoring all sink diversions As it does so.
- 
- isatty returns True If the connection Is one Of the Class "terminal" connections And it Is apparently connected To 
- a terminal, otherwise False. This may Not be reliable In embedded applications, including GUI consoles.
- 
- getAllConnections returns a sequence Of Integer connection descriptors For use With getConnection, corresponding 
- To the row names Of the table returned by showConnections(all = True).
- 
- stdin() refers to the ‘console’ and not to the C-level ‘stdin’ of the process. The distinction matters in GUI 
- consoles (which may not have an active ‘stdin’, and if they do it may not be connected to console input), and also 
- in embedded applications. If you want access to the C-level file stream ‘stdin’, use file("stdin").
- 
- When R Is reading a script from a file, the file Is the 'console’: this is traditional usage to allow in-line 
- data (see ‘An Introduction to R’ for an example).
- </remarks>
 </member>
 <member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.file.file(System.String,Microsoft.VisualBasic.FileIO.FileModeDescriptor,System.Boolean,Microsoft.VisualBasic.ApplicationServices.IFileSystemEnvironment)">
  <summary>
@@ -7933,6 +8058,132 @@ to take away yo [rest of string was truncated]&quot;;.
  <param name="byts"></param>
  <param name="env"></param>
  <returns></returns>
+</member>
+<member name="T:SMRUCC.Rsharp.Runtime.Internal.Invokes.NullStream">
+ <summary>
+ 提供一个不存储任何数据的 Stream。所有写入的数据都被丢弃，所有读取操作都返回0。
+ 这是对类 Unix 系统上的 /dev/null 或 Windows 上的 NUL 设备的 .NET 模拟。
+ </summary>
+</member>
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.stddev.stderr">
+ <summary>
+ ### Display Connections
+ 
+ Display aspects of connections.
+ </summary>
+ <returns>
+ stdin(), stdout() and stderr() return connection objects.
+ showConnections returns a character matrix of information with a row for each connection,
+ by default only for open non-standard connections.
+ getConnection returns a connection object, or NULL.
+ </returns>
+ <remarks>
+ stdin(), stdout() and stderr() are standard connections corresponding to input, output and 
+ error on the console respectively (and not necessarily to file streams). They are text-mode 
+ connections of class "terminal" which cannot be opened or closed, and are read-only, write-only 
+ and write-only respectively. The stdout() and stderr() connections can be re-directed by sink 
+ (and in some circumstances the output from stdout() can be split: see the help page).
+ The encoding for stdin() when redirected can be set by the command-line flag --encoding.
+ nullfile() returns filename of the null device ("/dev/null" on Unix, "nul:" on Windows).
+ showConnections returns a matrix of information. If a connection object has been lost or forgotten,
+ getConnection will take a row number from the table and return a connection object for that connection,
+ which can be used to close the connection, for example. However, if there is no R level object 
+ referring to the connection it will be closed automatically at the next garbage collection 
+ (except for gzcon connections).
+ closeAllConnections closes (and destroys) all user connections, restoring all sink diversions as it does so.
+ isatty returns true if the connection is one of the class "terminal" connections and it is apparently 
+ connected to a terminal, otherwise false. This may not be reliable in embedded applications, 
+ including GUI consoles.
+ getAllConnections returns a sequence of integer connection descriptors for use with getConnection,
+ corresponding to the row names of the table returned by showConnections(all = TRUE).
+ 
+ stdin() refers to the ‘console’ and not to the C-level ‘stdin’ of the process. The distinction matters 
+ in GUI consoles (which may not have an active ‘stdin’, and if they do it may not be connected to 
+ console input), and also in embedded applications. If you want access to the C-level file stream 
+ ‘stdin’, use file("stdin").
+ When R is reading a script from a file, the file is the ‘console’: this is traditional usage to allow 
+ in-line data (see ‘An Introduction to R’ for an example).
+ </remarks>
+</member>
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.stddev.stdout">
+ <summary>
+ ### Display Connections
+ 
+ Display aspects of connections.
+ </summary>
+ <returns>
+ stdin(), stdout() and stderr() return connection objects.
+ showConnections returns a character matrix of information with a row for each connection,
+ by default only for open non-standard connections.
+ getConnection returns a connection object, or NULL.
+ </returns>
+ <remarks>
+ stdin(), stdout() and stderr() are standard connections corresponding to input, output and 
+ error on the console respectively (and not necessarily to file streams). They are text-mode 
+ connections of class "terminal" which cannot be opened or closed, and are read-only, write-only 
+ and write-only respectively. The stdout() and stderr() connections can be re-directed by sink 
+ (and in some circumstances the output from stdout() can be split: see the help page).
+ The encoding for stdin() when redirected can be set by the command-line flag --encoding.
+ nullfile() returns filename of the null device ("/dev/null" on Unix, "nul:" on Windows).
+ showConnections returns a matrix of information. If a connection object has been lost or forgotten,
+ getConnection will take a row number from the table and return a connection object for that connection,
+ which can be used to close the connection, for example. However, if there is no R level object 
+ referring to the connection it will be closed automatically at the next garbage collection 
+ (except for gzcon connections).
+ closeAllConnections closes (and destroys) all user connections, restoring all sink diversions as it does so.
+ isatty returns true if the connection is one of the class "terminal" connections and it is apparently 
+ connected to a terminal, otherwise false. This may not be reliable in embedded applications, 
+ including GUI consoles.
+ getAllConnections returns a sequence of integer connection descriptors for use with getConnection,
+ corresponding to the row names of the table returned by showConnections(all = TRUE).
+ 
+ stdin() refers to the ‘console’ and not to the C-level ‘stdin’ of the process. The distinction matters 
+ in GUI consoles (which may not have an active ‘stdin’, and if they do it may not be connected to 
+ console input), and also in embedded applications. If you want access to the C-level file stream 
+ ‘stdin’, use file("stdin").
+ When R is reading a script from a file, the file is the ‘console’: this is traditional usage to allow 
+ in-line data (see ‘An Introduction to R’ for an example).
+ </remarks>
+</member>
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.stddev.stdin">
+ <summary>
+ ### Display Connections
+ 
+ Display aspects of connections.
+ </summary>
+ <returns>
+ stdin(), stdout() and stderr() return connection objects.
+ showConnections returns a character matrix of information with a row for each connection,
+ by default only for open non-standard connections.
+ getConnection returns a connection object, or NULL.
+ </returns>
+ <remarks>
+ stdin(), stdout() and stderr() are standard connections corresponding to input, output and 
+ error on the console respectively (and not necessarily to file streams). They are text-mode 
+ connections of class "terminal" which cannot be opened or closed, and are read-only, write-only 
+ and write-only respectively. The stdout() and stderr() connections can be re-directed by sink 
+ (and in some circumstances the output from stdout() can be split: see the help page).
+ The encoding for stdin() when redirected can be set by the command-line flag --encoding.
+ nullfile() returns filename of the null device ("/dev/null" on Unix, "nul:" on Windows).
+ showConnections returns a matrix of information. If a connection object has been lost or forgotten,
+ getConnection will take a row number from the table and return a connection object for that connection,
+ which can be used to close the connection, for example. However, if there is no R level object 
+ referring to the connection it will be closed automatically at the next garbage collection 
+ (except for gzcon connections).
+ closeAllConnections closes (and destroys) all user connections, restoring all sink diversions as it does so.
+ isatty returns true if the connection is one of the class "terminal" connections and it is apparently 
+ connected to a terminal, otherwise false. This may not be reliable in embedded applications, 
+ including GUI consoles.
+ getAllConnections returns a sequence of integer connection descriptors for use with getConnection,
+ corresponding to the row names of the table returned by showConnections(all = TRUE).
+ 
+ stdin() refers to the ‘console’ and not to the C-level ‘stdin’ of the process. The distinction matters 
+ in GUI consoles (which may not have an active ‘stdin’, and if they do it may not be connected to 
+ console input), and also in embedded applications. If you want access to the C-level file stream 
+ ‘stdin’, use file("stdin").
+ When R is reading a script from a file, the file is the ‘console’: this is traditional usage to allow 
+ in-line data (see ‘An Introduction to R’ for an example).
+ </remarks>
 </member>
 <member name="T:SMRUCC.Rsharp.Runtime.Internal.Invokes.LinqPipeline.dataframe_methods">
  <summary>
@@ -10267,6 +10518,79 @@ to take away yo [rest of string was truncated]&quot;;.
  <param name="len"></param>
  <returns></returns>
 </member>
+<member name="T:SMRUCC.Rsharp.Runtime.Internal.Invokes.RFormat">
+ <summary>
+ 提供与 R 语言 base::format 函数功能相似的格式化方法。
+ </summary>
+</member>
+<member name="T:SMRUCC.Rsharp.Runtime.Internal.Invokes.RFormat.Justification">
+ <summary>
+ 指定字符串的对齐方式，模仿 R 的 justify 参数。
+ </summary>
+</member>
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.RFormat.FormatValue(System.Object,System.String,System.Boolean,System.Nullable{System.Int32},System.Int32,SMRUCC.Rsharp.Runtime.Internal.Invokes.RFormat.Justification,System.Nullable{System.Int32},System.Boolean,System.Nullable{System.Boolean},System.String,System.Int32,System.String,System.Int32,System.String,System.String,System.Boolean)">
+ <summary>
+ 格式化一个对象（数字、日期或字符串），模仿 R 的 format 函数。
+ </summary>
+ <param name="x">要格式化的对象 (数字, 日期, 字符串)。</param>
+ <param name="trim">对于字符串，是否移除前导和尾随空白。默认为 False。</param>
+ <param name="digits">数字的有效数字位数。如果为 Nothing，则不指定。默认为 Nothing。</param>
+ <param name="nsmall">数字小数点后的最小位数。默认为 0。</param>
+ <param name="justify">字符串的对齐方式。默认为 Left。</param>
+ <param name="width">格式化后字符串的目标宽度。如果为 Nothing，则不填充。默认为 Nothing。</param>
+ <param name="na_encode">如果 x 为 Nothing 或 DBNull，是否将其编码为 "NA"。默认为 True。</param>
+ <param name="scientific">是否强制使用科学计数法。Nothing 表示自动决定。默认为 Nothing。</param>
+ <param name="big_mark">用于分隔大数整数部分的千位分隔符。默认为 ""。</param>
+ <param name="big_interval">千位分隔符的间隔位数。默认为 3。</param>
+ <param name="small_mark">用于分隔小数部分的标记。默认为 ""。</param>
+ <param name="small_interval">小数部分分隔标记的间隔位数。默认为 5。</param>
+ <param name="decimal_mark">用作小数点的字符。默认为当前系统设置。</param>
+ <param name="zero_print">用于表示零值的字符串。如果为 Nothing，则正常显示。默认为 Nothing。</param>
+ <param name="drop0trailing">是否移除小数点后的尾随零。默认为 False。</param>
+ <returns>格式化后的字符串。</returns>
+</member>
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.RFormat.FormatNumber(System.Double,System.Boolean,System.Nullable{System.Int32},System.Int32,SMRUCC.Rsharp.Runtime.Internal.Invokes.RFormat.Justification,System.Nullable{System.Int32},System.Nullable{System.Boolean},System.String,System.Int32,System.String,System.Int32,System.String,System.String,System.Boolean)">
+ <summary>
+ 格式化数字。
+ </summary>
+</member>
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.RFormat.FormatToSignificantDigits(System.Double,System.Int32,System.Globalization.NumberFormatInfo)">
+ <summary>
+ 将数字格式化为指定的有效数字位数。
+ </summary>
+</member>
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.RFormat.ApplySmallMark(System.String,System.String,System.String,System.Int32)">
+ <summary>
+ 在小数部分应用 small.mark 标记。
+ </summary>
+</member>
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.RFormat.FormatDate(System.DateTime,System.String,System.Boolean,SMRUCC.Rsharp.Runtime.Internal.Invokes.RFormat.Justification,System.Nullable{System.Int32})">
+ <summary>
+ 格式化日期。
+ </summary>
+</member>
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.RFormat.ConvertRDateFormatToDotNet(System.String)">
+ <summary>
+ 将 R 语言的日期时间格式字符串转换为等价的 .NET 自定义日期时间格式字符串。
+ </summary>
+ <param name="rFormat">一个有效的 R 日期时间格式字符串，例如 "%Y-%m-%d %H:%M:%S"。</param>
+ <returns>一个等价的 .NET 自定义日期时间格式字符串，例如 "yyyy-MM-dd HH:mm:ss"。</returns>
+ <remarks>
+ 此函数支持大多数常用的 R 格式化占位符。
+ 对于一些在 .NET 中没有直接等价物的复杂占位符（如一年中的第几天 %j，或周数 %U/%W），
+ 函数会保留原始占位符，并可能需要在转换后进行手动处理。
+ </remarks>
+</member>
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.RFormat.FormatString(System.String,System.Boolean,SMRUCC.Rsharp.Runtime.Internal.Invokes.RFormat.Justification,System.Nullable{System.Int32})">
+ <summary>
+ 格式化字符串。
+ </summary>
+</member>
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.RFormat.ApplyJustificationAndWidth(System.String,SMRUCC.Rsharp.Runtime.Internal.Invokes.RFormat.Justification,System.Nullable{System.Int32})">
+ <summary>
+ 对字符串应用对齐和宽度填充。
+ </summary>
+</member>
 <member name="T:SMRUCC.Rsharp.Runtime.Internal.Invokes.stringr">
  <summary>
  the R text data helper
@@ -10279,6 +10603,73 @@ to take away yo [rest of string was truncated]&quot;;.
  <param name="x"></param>
  <param name="env"></param>
  <returns></returns>
+</member>
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.stringr.format_str(System.Object,System.String,System.Boolean,System.Nullable{System.Int32},System.Int32,SMRUCC.Rsharp.Runtime.Internal.Invokes.RFormat.Justification,System.Nullable{System.Int32},System.Boolean,System.Nullable{System.Boolean},System.String,System.Int64,System.String,System.Int64,System.Object,System.String,System.Boolean,SMRUCC.Rsharp.Runtime.Internal.Object.list,SMRUCC.Rsharp.Runtime.Environment)">
+ <summary>
+ ### Encode in a Common Format
+ 
+ Format an R object for pretty printing, notably encoding vector or column elements into a common format.
+ </summary>
+ <param name="x">any R object (conceptually); typically numeric.</param>
+ <param name="trim">logical; if FALSE, logical, numeric And complex values are right-justified to a common width 
+ If True the leading blanks For justification are suppressed.</param>
+ <param name="digits">a positive Integer indicating how many significant digits are To be used For numeric And complex x.
+ The Default, NULL, uses getOption("digits"). This Is a suggestion: enough decimal places will be used so that the 
+ smallest (in magnitude) number has this many significant digits, And also to satisfy nsmall. (For more, notably the 
+ interpretation for complex numbers see signif.)</param>
+ <param name="nsmall">the minimum number of digits to the right of the decimal point in formatting real/complex numbers 
+ in non-scientific formats. Allowed values are 0 &lt;= nsmall &lt;= 20.</param>
+ <param name="justify">should a character vector be left-justified (the Default), right-justified, centred Or left alone. Can be abbreviated.</param>
+ <param name="width">Default method: the minimum field width Or NULL Or 0 For no restriction.
+ AsIs method: the maximum field width For non-character objects. NULL corresponds To the Default 12.</param>
+ <param name="na_encode">logical: should NA strings be encoded? Note this only applies To elements Of character vectors, 
+ Not To numerical, complex nor logical NAs, which are always encoded As "NA".</param>
+ <param name="scientific">either a logical specifying whether elements of a real or complex vector should be encoded in scientific format, 
+ or an integer penalty (see options("scipen")). Missing values correspond to the current default penalty.</param>
+ <param name="big_mark">used for prettying (longish) numerical and complex sequences. Passed to prettyNum: that help page explains the details.</param>
+ <param name="big_interval">used for prettying (longish) numerical and complex sequences. Passed to prettyNum: that help page explains the details.</param>
+ <param name="small_mark">used for prettying (longish) numerical and complex sequences. Passed to prettyNum: that help page explains the details.</param>
+ <param name="small_interval">used for prettying (longish) numerical and complex sequences. Passed to prettyNum: that help page explains the details.</param>
+ <param name="decimal_mark">used for prettying (longish) numerical and complex sequences. Passed to prettyNum: that help page explains the details.</param>
+ <param name="zero_print">used for prettying (longish) numerical and complex sequences. Passed to prettyNum: that help page explains the details.</param>
+ <param name="drop0trailing">used for prettying (longish) numerical and complex sequences. Passed to prettyNum: that help page explains the details.</param>
+ <param name="args">further arguments passed To Or from other methods.</param>
+ <param name="env"></param>
+ <returns>
+ An object of similar structure to x containing character representations of the elements of the first argument x in a common format,
+ and in the current locale's encoding.
+ 
+ For character, numeric, complex or factor x, dims and dimnames are preserved on matrices/arrays and names on vectors: no other attributes are copied.
+ 
+ If x is a list, the result is a character vector obtained by applying format.default(x, ...) to each element of the list (after 
+ unlisting elements which are themselves lists), and then collapsing the result for each element with paste(collapse = ", "). 
+ The defaults in this case are trim = TRUE, justify = "none" since one does not usually want alignment in the collapsed strings.
+ </returns>
+ <remarks>
+ format is a generic function. Apart from the methods described here there are methods for dates (see format.Date), date-times 
+ (see format.POSIXct) and for other classes such as format.octmode and format.dist.
+ 
+ format.data.frame formats the data frame column by column, applying the appropriate method of format for each column. 
+ Methods for columns are often similar to as.character but offer more control. Matrix and data-frame columns will be 
+ converted to separate columns in the result, and character columns (normally all) will be given class "AsIs".
+ format.factor converts the factor to a character vector and then calls the default method (and so justify applies).
+ format.AsIs deals with columns of complicated objects that have been extracted from a data frame. Character objects and 
+ (atomic) matrices are passed to the default method (and so width does not apply). Otherwise it calls toString to 
+ convert the object to character (if a vector or list, element by element) and then right-justifies the result.
+ Justification for character vectors (and objects converted to character vectors by their methods) is done on display width (see nchar), 
+ taking double-width characters and the rendering of special characters (as escape sequences, including escaping backslash 
+ but not double quote: see print.default) into account. Thus the width is as displayed by print(quote = FALSE) and not as displayed by cat. 
+ Character strings are padded with blanks to the display width of the widest. (If na.encode = FALSE missing character strings are 
+ not included in the width computations and are not encoded.)
+ Numeric vectors are encoded with the minimum number of decimal places needed to display all the elements to at least 
+ the digits significant digits. However, if all the elements then have trailing zeroes, the number of decimal places 
+ is reduced until at least one element has a non-zero final digit; see also the argument documentation for big.*, small.* etc, above. 
+ See the note in print.default about digits >= 16.
+ Raw vectors are converted to their 2-digit hexadecimal representation by as.character.
+ format.default(x) now provides a “minimal” string when isS4(x) is true.
+ While the internal code respects the option getOption("OutDec") for the ‘decimal mark’ in general, decimal.mark takes 
+ precedence over that option. Similarly, scientific takes precedence over getOption("scipen").
+ </remarks>
 </member>
 <member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.stringr.objToString(System.Object,System.String,System.Globalization.CultureInfo,SMRUCC.Rsharp.Runtime.Internal.Object.list,SMRUCC.Rsharp.Runtime.Environment)">
  <summary>
@@ -11196,7 +11587,7 @@ to take away yo [rest of string was truncated]&quot;;.
  <param name="env"></param>
  <returns></returns>
 </member>
-<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.utils.system2(System.String,System.Object,System.String,System.String,System.String,System.Object,System.Boolean,System.Boolean,System.Boolean,System.Single,System.Boolean,System.Boolean,System.Nullable{System.Boolean},SMRUCC.Rsharp.Runtime.Environment)">
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.utils.system2(System.String,System.Object,System.Object,System.Object,System.String,System.Object,System.Boolean,System.Boolean,System.Boolean,System.Single,System.Boolean,System.Boolean,System.Nullable{System.Boolean},SMRUCC.Rsharp.Runtime.Environment)">
  <summary>
  ### Invoke a System Command
  
@@ -11337,6 +11728,23 @@ to take away yo [rest of string was truncated]&quot;;.
  On a Unix-alike the full path to which (usually ‘/usr/bin/which’) is found when R is installed.
  
  Except on Windows this calls the system command which: since that is not part of e.g. the POSIX standards, exactly what it does is OS-dependent. It will usually do tilde-expansion and it may make use of csh aliases.
+ </remarks>
+</member>
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.utils.Sys_chmod(System.Object,System.String,System.Boolean,System.Boolean)">
+ <summary>
+ ### Manipulation of Directories and File Permissions
+ 
+ These functions provide a low-level interface to the computer's file system.
+ </summary>
+ <param name="paths">character vectors containing file or directory paths. Tilde expansion (see path.expand) is done.</param>
+ <param name="mode">the mode to be used on Unix-alikes: it will be coerced by as.octmode. For Sys.chmod it is recycled along paths.</param>
+ <param name="use_umask">logical: should the mode be restricted by the umask setting?</param>
+ <returns></returns>
+ <remarks>Sys.chmod sets the file permissions of one or more files.
+ The interpretation of mode in the Windows system functions is non-POSIX and only supports setting the 
+ read-only attribute of the file. So R interprets mode to mean set read-only if and only if 
+ (mode &amp; 0200) == 0 (interpreted in octal). Windows has a much more extensive system of file 
+ permissions on some file systems (e.g., versions of NTFS) which are unrelated to this system call.
  </remarks>
 </member>
 <member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.utils.system(System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Object,System.Boolean,System.Boolean,System.Boolean,System.Double,System.Boolean,SMRUCC.Rsharp.Runtime.Environment)">
@@ -15255,6 +15663,12 @@ to take away yo [rest of string was truncated]&quot;;.
  get value part
  </summary>
  <param name="envir"></param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.Rsharp.Runtime.Components.InvokeParameter.ToString">
+ <summary>
+ previews of the argument
+ </summary>
  <returns></returns>
 </member>
 <member name="M:SMRUCC.Rsharp.Runtime.Components.InvokeParameter.Create(System.Collections.Generic.IEnumerable{SMRUCC.Rsharp.Interpreter.ExecuteEngine.Expression})">
