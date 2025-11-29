@@ -62,7 +62,10 @@ Public Class FormMetabolicEditor
             Return
         End If
 
-        Dim rxn As biocad_registryModel.reaction = DirectCast(row.Tag, biocad_registryModel.reaction)
+        Await ShowReaction(DirectCast(row.Tag, biocad_registryModel.reaction))
+    End Sub
+
+    Private Async Function ShowReaction(rxn As biocad_registryModel.reaction) As Task
         Dim graph = Await Task.Run(
             Function()
                 Return MyApplication.biocad_registry.reaction_graph _
@@ -86,7 +89,7 @@ Public Class FormMetabolicEditor
                 compound.role
             )
         Next
-    End Sub
+    End Function
 
     Private Sub OpenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenToolStripMenuItem.Click
         If DataGridView2.SelectedRows.Count = 0 Then
@@ -100,5 +103,12 @@ Public Class FormMetabolicEditor
         If registry_id <> "" Then
             Call Workbench.OpenMoleculeEditor(registry_id, name)
         End If
+    End Sub
+
+    Private Async Sub ToolStripButton4_Click(sender As Object, e As EventArgs) Handles ToolStripButton4.Click
+        Dim id As String = Strings.Trim(ToolStripTextBox2.Text)
+        Dim rxn = Await Task.Run(Function() MyApplication.biocad_registry.reaction.where(field("id") = id).find(Of biocad_registryModel.reaction))
+
+        Await ShowReaction(rxn)
     End Sub
 End Class

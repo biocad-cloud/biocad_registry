@@ -29,6 +29,9 @@ Partial Class FormMetabolicEditor
         Dim resources As ComponentResourceManager = New ComponentResourceManager(GetType(FormMetabolicEditor))
         SplitContainer1 = New SplitContainer()
         DataGridView1 = New DataGridView()
+        Column1 = New DataGridViewTextBoxColumn()
+        Column2 = New DataGridViewTextBoxColumn()
+        Column3 = New DataGridViewTextBoxColumn()
         SplitContainer2 = New SplitContainer()
         DataGridView2 = New DataGridView()
         Column4 = New DataGridViewTextBoxColumn()
@@ -47,9 +50,10 @@ Partial Class FormMetabolicEditor
         ToolStripTextBox1 = New ToolStripTextBox()
         ToolStripButton2 = New ToolStripButton()
         ToolStripButton3 = New ToolStripButton()
-        Column1 = New DataGridViewTextBoxColumn()
-        Column2 = New DataGridViewTextBoxColumn()
-        Column3 = New DataGridViewTextBoxColumn()
+        ToolStripSeparator1 = New ToolStripSeparator()
+        ToolStripLabel3 = New ToolStripLabel()
+        ToolStripTextBox2 = New ToolStripTextBox()
+        ToolStripButton4 = New ToolStripButton()
         CType(SplitContainer1, ISupportInitialize).BeginInit()
         SplitContainer1.Panel1.SuspendLayout()
         SplitContainer1.Panel2.SuspendLayout()
@@ -93,6 +97,27 @@ Partial Class FormMetabolicEditor
         DataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect
         DataGridView1.Size = New Size(1394, 545)
         DataGridView1.TabIndex = 0
+        ' 
+        ' Column1
+        ' 
+        Column1.HeaderText = "name"
+        Column1.Name = "Column1"
+        Column1.ReadOnly = True
+        Column1.Width = 200
+        ' 
+        ' Column2
+        ' 
+        Column2.HeaderText = "equation"
+        Column2.Name = "Column2"
+        Column2.ReadOnly = True
+        Column2.Width = 400
+        ' 
+        ' Column3
+        ' 
+        Column3.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+        Column3.HeaderText = "note"
+        Column3.Name = "Column3"
+        Column3.ReadOnly = True
         ' 
         ' SplitContainer2
         ' 
@@ -185,7 +210,7 @@ Partial Class FormMetabolicEditor
         ' 
         ' ToolStrip1
         ' 
-        ToolStrip1.Items.AddRange(New ToolStripItem() {ToolStripLabel1, ToolStripButton1, ToolStripLabel2, ToolStripTextBox1, ToolStripButton2, ToolStripButton3})
+        ToolStrip1.Items.AddRange(New ToolStripItem() {ToolStripLabel1, ToolStripButton1, ToolStripLabel2, ToolStripTextBox1, ToolStripButton2, ToolStripButton3, ToolStripSeparator1, ToolStripLabel3, ToolStripTextBox2, ToolStripButton4})
         ToolStrip1.Location = New Point(0, 0)
         ToolStrip1.Name = "ToolStrip1"
         ToolStrip1.Size = New Size(1394, 25)
@@ -237,26 +262,30 @@ Partial Class FormMetabolicEditor
         ToolStripButton3.Size = New Size(23, 22)
         ToolStripButton3.Text = "Next"
         ' 
-        ' Column1
+        ' ToolStripSeparator1
         ' 
-        Column1.HeaderText = "name"
-        Column1.Name = "Column1"
-        Column1.ReadOnly = True
-        Column1.Width = 200
+        ToolStripSeparator1.Name = "ToolStripSeparator1"
+        ToolStripSeparator1.Size = New Size(6, 25)
         ' 
-        ' Column2
+        ' ToolStripLabel3
         ' 
-        Column2.HeaderText = "equation"
-        Column2.Name = "Column2"
-        Column2.ReadOnly = True
-        Column2.Width = 400
+        ToolStripLabel3.Name = "ToolStripLabel3"
+        ToolStripLabel3.Size = New Size(118, 22)
+        ToolStripLabel3.Text = "Open Reaction By ID:"
         ' 
-        ' Column3
+        ' ToolStripTextBox2
         ' 
-        Column3.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
-        Column3.HeaderText = "note"
-        Column3.Name = "Column3"
-        Column3.ReadOnly = True
+        ToolStripTextBox2.Name = "ToolStripTextBox2"
+        ToolStripTextBox2.Size = New Size(100, 25)
+        ' 
+        ' ToolStripButton4
+        ' 
+        ToolStripButton4.DisplayStyle = ToolStripItemDisplayStyle.Image
+        ToolStripButton4.Image = CType(resources.GetObject("ToolStripButton4.Image"), Image)
+        ToolStripButton4.ImageTransparentColor = Color.Magenta
+        ToolStripButton4.Name = "ToolStripButton4"
+        ToolStripButton4.Size = New Size(23, 22)
+        ToolStripButton4.Text = "ToolStripButton4"
         ' 
         ' FormMetabolicEditor
         ' 
@@ -312,4 +341,8 @@ Partial Class FormMetabolicEditor
     Friend WithEvents Column1 As DataGridViewTextBoxColumn
     Friend WithEvents Column2 As DataGridViewTextBoxColumn
     Friend WithEvents Column3 As DataGridViewTextBoxColumn
+    Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
+    Friend WithEvents ToolStripLabel3 As ToolStripLabel
+    Friend WithEvents ToolStripTextBox2 As ToolStripTextBox
+    Friend WithEvents ToolStripButton4 As ToolStripButton
 End Class
