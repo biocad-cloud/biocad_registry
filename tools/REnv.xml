@@ -1374,6 +1374,11 @@ to [rest of string was truncated]&quot;;.
  ```
  </summary>
 </member>
+<member name="T:SMRUCC.Rsharp.Interpreter.ExecuteEngine.ExpressionSymbols.Operators.BinaryExpression">
+ <summary>
+ a basic binary expression, example as math expression
+ </summary>
+</member>
 <member name="T:SMRUCC.Rsharp.Interpreter.ExecuteEngine.ExpressionSymbols.Operators.BinaryInExpression">
  <summary>
  operator for test of left in right?
@@ -12298,6 +12303,64 @@ to take away yo [rest of string was truncated]&quot;;.
  this function will check for the column name matches
  </remarks>
 </member>
+<member name="T:SMRUCC.Rsharp.Runtime.Internal.Object.baseOp.s4Reflector">
+ <summary>
+ S4 type system
+ </summary>
+</member>
+<member name="P:SMRUCC.Rsharp.Runtime.Internal.Object.baseOp.s4Reflector.elementType">
+ <summary>
+ R# type wrapper of the type data for <see cref="T:Microsoft.VisualBasic.ApplicationServices.Development.NetCoreApp.target"/>
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Object.baseOp.s4Reflector.#ctor">
+ <summary>
+ processing of myself
+ </summary>
+</member>
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Object.baseOp.s4Reflector.getByName(System.String)">
+ <summary>
+ Get property value/method reference by name
+ </summary>
+ <param name="name"></param>
+ <returns>
+ Function will returns nothing when target not found, but 
+ property value read getter result may be nothing, please 
+ check member exists or not by method <see cref="M:SMRUCC.Rsharp.Runtime.Internal.Object.baseOp.s4Reflector.existsName(System.String)"/> 
+ if the result value is nothing of this function.
+ </returns>
+ <remarks>
+ this method is strict in s4object, this function will throw error if not found by name
+ </remarks>
+</member>
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Object.baseOp.s4Reflector.getByName(System.String[])">
+ <summary>
+ Get properties value collection by a given name list
+ </summary>
+ <param name="names"></param>
+ <returns></returns>
+ 
+</member>
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Object.baseOp.s4Reflector.setByName(System.String,System.Object,SMRUCC.Rsharp.Runtime.Environment)">
+ <summary>
+ set property value by name
+ </summary>
+ <param name="name"></param>
+ <param name="value"></param>
+ <param name="envir"></param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Object.baseOp.s4Reflector.setByName(System.String[],System.Array,SMRUCC.Rsharp.Runtime.Environment)">
+ <summary>
+ set properties values by given name list
+ </summary>
+ <param name="names"></param>
+ <param name="value"></param>
+ <param name="envir"></param>
+ <returns></returns>
+ 
+</member>
 <member name="T:SMRUCC.Rsharp.Runtime.Internal.Object.IdataframeReader">
  <summary>
  syntax helper for a readonly dataframe liked clr object
@@ -13049,6 +13112,19 @@ to take away yo [rest of string was truncated]&quot;;.
  NULL <paramref name="value"/> will remove the target slot by <paramref name="name"/>
  </remarks>
 </member>
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Object.list.empty">
+ <summary>
+ Create a tuple list object that contains no data.
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Object.list.scalar(System.Object)">
+ <summary>
+ Create a tuple list object that just contains one scalar value
+ </summary>
+ <param name="x"></param>
+ <returns></returns>
+</member>
 <member name="M:SMRUCC.Rsharp.Runtime.Internal.Object.list.empty(SMRUCC.Rsharp.Runtime.Internal.Object.list)">
  <summary>
  check of the given tuple list object is null or empty?
@@ -13152,7 +13228,7 @@ to take away yo [rest of string was truncated]&quot;;.
 </member>
 <member name="M:SMRUCC.Rsharp.Runtime.Internal.Object.pipeline.CreateFromPopulator``1(System.Collections.Generic.IEnumerable{``0},System.Action)">
  <summary>
- Create pipeline object from the given upstream data
+ Create CLR object iterator from the given upstream data
  </summary>
  <typeparam name="T"></typeparam>
  <param name="upstream">the upstream data</param>
@@ -13162,6 +13238,15 @@ to take away yo [rest of string was truncated]&quot;;.
  <remarks>
  just a simple wrapper to the <see cref="F:SMRUCC.Rsharp.Runtime.Internal.Object.pipeline.pipeline"/> object constructor function.
  </remarks>
+</member>
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Object.pipeline.CreateFromPopulator``1(System.Func{System.Collections.Generic.IEnumerable{``0}},System.Action)">
+ <summary>
+ Create CLR object iterator from the given upstream data
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="pull"></param>
+ <param name="finalize"></param>
+ <returns></returns>
 </member>
 <member name="M:SMRUCC.Rsharp.Runtime.Internal.Object.pipeline.TryCreatePipeline``1(System.Object,SMRUCC.Rsharp.Runtime.Environment,System.Boolean,System.String)">
  <summary>
@@ -13181,6 +13266,11 @@ to take away yo [rest of string was truncated]&quot;;.
  message if the given <paramref name="upstream"/> data is
  ``Nothing``.
  </returns>
+</member>
+<member name="T:SMRUCC.Rsharp.Runtime.Internal.Object.S4Object">
+ <summary>
+ class definition of the dynamics runtime clr object
+ </summary>
 </member>
 <member name="P:SMRUCC.Rsharp.Runtime.Internal.Object.S4Object.slots">
  <summary>
@@ -13231,12 +13321,6 @@ to take away yo [rest of string was truncated]&quot;;.
  </summary>
  <returns></returns>
 </member>
-<member name="P:SMRUCC.Rsharp.Runtime.Internal.Object.vbObject.elementType">
- <summary>
- R# type wrapper of the type data for <see cref="P:SMRUCC.Rsharp.Runtime.Internal.Object.vbObject.target"/>
- </summary>
- <returns></returns>
-</member>
 <member name="M:SMRUCC.Rsharp.Runtime.Internal.Object.vbObject.getByName(System.String)">
  <summary>
  Get property value/method reference by name
@@ -13249,14 +13333,6 @@ to take away yo [rest of string was truncated]&quot;;.
  if the result value is nothing of this function.
  </returns>
 </member>
-<member name="M:SMRUCC.Rsharp.Runtime.Internal.Object.vbObject.getByName(System.String[])">
- <summary>
- Get properties value collection by a given name list
- </summary>
- <param name="names"></param>
- <returns></returns>
- 
-</member>
 <member name="M:SMRUCC.Rsharp.Runtime.Internal.Object.vbObject.setByName(System.String,System.Object,SMRUCC.Rsharp.Runtime.Environment)">
  <summary>
  set property value by name
@@ -13265,16 +13341,6 @@ to take away yo [rest of string was truncated]&quot;;.
  <param name="value"></param>
  <param name="envir"></param>
  <returns></returns>
-</member>
-<member name="M:SMRUCC.Rsharp.Runtime.Internal.Object.vbObject.setByName(System.String[],System.Array,SMRUCC.Rsharp.Runtime.Environment)">
- <summary>
- set properties values by given name list
- </summary>
- <param name="names"></param>
- <param name="value"></param>
- <param name="envir"></param>
- <returns></returns>
- 
 </member>
 <member name="P:SMRUCC.Rsharp.Runtime.Internal.Object.vector.unit">
  <summary>
@@ -13455,7 +13521,7 @@ to take away yo [rest of string was truncated]&quot;;.
 </member>
 <member name="M:SMRUCC.Rsharp.Runtime.Internal.Object.Converts.RConversion.asObject(System.Object)">
  <summary>
- Cast .NET object to R# object
+ Cast any .NET clr object to R# s4 class system object
  </summary>
  <param name="obj"></param>
  <returns></returns>
@@ -14365,6 +14431,11 @@ to take away yo [rest of string was truncated]&quot;;.
  </summary>
  <param name="name">the type alias name in R# runtime environment</param>
  <param name="target"></param>
+</member>
+<member name="T:SMRUCC.Rsharp.Runtime.Interop.RLazyExpressionAttribute">
+ <summary>
+ Tells the script host: dot not evaluate this parameter its source expression, it should pass the raw expression object to this parameter
+ </summary>
 </member>
 <member name="T:SMRUCC.Rsharp.Runtime.Interop.RListObjectArgumentAttribute">
  <summary>
@@ -17559,7 +17630,7 @@ to take away yo [rest of string was truncated]&quot;;.
  </summary>
  <returns>dll file file path in full name</returns>
 </member>
-<member name="M:SMRUCC.Rsharp.Development.Package.File.CreatePackage.getAssemblyList(System.String,Microsoft.VisualBasic.ComponentModel.Collection.Index{System.String})">
+<member name="M:SMRUCC.Rsharp.Development.Package.File.CreatePackage.getAssemblyList(System.String,Microsoft.VisualBasic.ComponentModel.Collection.Index{System.String},System.Boolean)">
  <summary>
  scan for all dll files from the given package source <paramref name="dir"/>
  </summary>
@@ -17570,7 +17641,7 @@ to take away yo [rest of string was truncated]&quot;;.
  </param>
  <returns></returns>
 </member>
-<member name="M:SMRUCC.Rsharp.Development.Package.File.CreatePackage.Build(SMRUCC.Rsharp.Development.Package.File.DESCRIPTION,System.String,System.IO.Stream,Microsoft.VisualBasic.ComponentModel.Collection.Index{System.String},System.Boolean)">
+<member name="M:SMRUCC.Rsharp.Development.Package.File.CreatePackage.Build(SMRUCC.Rsharp.Development.Package.File.DESCRIPTION,System.String,System.IO.Stream,Microsoft.VisualBasic.ComponentModel.Collection.Index{System.String},System.Boolean,System.Boolean)">
  <summary>
  build a R# package file
  </summary>
@@ -17578,6 +17649,9 @@ to take away yo [rest of string was truncated]&quot;;.
  the target directory that contains the necessary 
  files for create a R# package file.</param>
  <param name="outfile">the output zip file stream</param>
+ <param name="enableDebugSymbols">
+ enable add debug symbol pdb files into assembly package?
+ </param>
  <returns></returns>
  
 </member>
@@ -17731,6 +17805,11 @@ to take away yo [rest of string was truncated]&quot;;.
  expression: [ExpressionTypes, i32][dataSize, i32][TypeCodes, byte][expressionData, bytes]
               4                     4              1                ...
  </remarks>
+</member>
+<member name="T:SMRUCC.Rsharp.Development.Package.File.Expressions.RIf">
+ <summary>
+ if and else if
+ </summary>
 </member>
 <member name="T:SMRUCC.Rsharp.Development.Package.File.Expressions.RJSON">
  <summary>
@@ -18063,11 +18142,14 @@ to take away yo [rest of string was truncated]&quot;;.
 </member>
 <member name="M:SMRUCC.Rsharp.Development.Package.PackageLoader.ParsePackage(System.Type,System.Boolean)">
  <summary>
- 这个函数会将包信息缓存下来
+ parse the data which is tagged with <see cref="T:Microsoft.VisualBasic.Scripting.MetaData.PackageAttribute"/>
  </summary>
  <param name="type"></param>
- <param name="strict"></param>
+ <param name="strict">this function will wrap a new <see cref="T:Microsoft.VisualBasic.Scripting.MetaData.PackageAttribute"/> object with type name as package name if not strict</param>
  <returns></returns>
+ <remarks>
+ 这个函数会将包信息缓存下来
+ </remarks>
 </member>
 <member name="M:SMRUCC.Rsharp.Development.Package.PackageLoader.ScanDllFiles(System.String,System.Boolean)">
  <summary>

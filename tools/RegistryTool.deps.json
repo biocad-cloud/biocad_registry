@@ -1046,7 +1046,7 @@
       "Microsoft.Windows.FeatureAPI/1.0.0": {
         "runtime": {
           "Microsoft.Windows.FeatureAPI.dll": {
-            "assemblyVersion": "10.0.9464.32655",
+            "assemblyVersion": "10.0.9479.43171",
             "fileVersion": "1.0.10.8963"
           }
         }
