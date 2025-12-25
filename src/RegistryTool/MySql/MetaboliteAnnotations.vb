@@ -79,7 +79,7 @@ Module MetaboliteAnnotations
                 End If
 
                 Yield New Metadata With {
-                    .ID = mol.id,
+                    .ID = "BioCAD" & mol.id.ToString().PadLeft(11, "0"c),
                     .description = mol.note,
                     .exact_mass = mol.mass,
                     .formula = mol.formula,
