@@ -70,7 +70,7 @@ SMRUCC.genomics.Analysis.HTS.GSEA.Fisher.Core
  Only apply for evluates of the enrichment for a vs b comparision
  </summary>
 </member>
-<member name="M:SMRUCC.genomics.Analysis.HTS.GSEA.GSEACalculate.Enrich(Microsoft.VisualBasic.ComponentModel.DataSourceModel.NamedValue{System.Double}[],Microsoft.VisualBasic.ComponentModel.Collection.Index{System.String},System.Int32)">
+<member name="M:SMRUCC.genomics.Analysis.HTS.GSEA.GSEACalculate.Enrich(SMRUCC.genomics.Analysis.HTS.GSEA.GeneExpressionRank[],Microsoft.VisualBasic.ComponentModel.Collection.Index{System.String},System.Int32)">
  <summary>
  Enrichment for one specific pathway
  </summary>
@@ -81,6 +81,20 @@ SMRUCC.genomics.Analysis.HTS.GSEA.Fisher.Core
  gene set in current pathway
  </param>
  <param name="permutations"></param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Analysis.HTS.GSEA.GSEACalculate.enrich_score(SMRUCC.genomics.Analysis.HTS.GSEA.GeneExpressionRank[],Microsoft.VisualBasic.ComponentModel.Collection.Index{System.String})">
+ <summary>
+ 
+ </summary>
+ <param name="geneExpression"></param>
+ <param name="geneSet"></param>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Analysis.HTS.GSEA.GeneExpressionRank.rank">
+ <summary>
+ gene id tagged with the expression ranking value, example as -log10 of t-test pvalue
+ </summary>
  <returns></returns>
 </member>
 <member name="T:SMRUCC.genomics.Analysis.HTS.GSEA.Background">
