@@ -204,7 +204,7 @@ BioNovoGene.BioDeep.Chemistry.XrefEngine
  
  </summary>
  <param name="uniqueId"></param>
- <returns>the metabolite annotation data model <see cref="T:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaLib"/>.</returns>
+ <returns>the metabolite annotation data model <see cref="T:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaLib"/>. this function will returns nothing if the id is not hit in the library.</returns>
 </member>
 <member name="T:BioNovoGene.BioDeep.Chemistry.MetaLib.RepositoryWriter">
  <summary>

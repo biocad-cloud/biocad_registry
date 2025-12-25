@@ -1,0 +1,246 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+Microsoft.VisualBasic.MachineLearning.TensorFlow
+</name>
+</assembly>
+<members>
+<member name="T:Microsoft.VisualBasic.MachineLearning.TensorFlow.Differentiation">
+ <summary>
+ dy
+ </summary>
+ <param name="dx"></param>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.TensorFlow.Checkpoints">
+ <summary>
+ Increases performence by saving states that the backtracking 
+ derivative calculations can be performed between.
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Checkpoints.CalculateCheckpointGradients">
+ <summary>
+ Perform derivative calculations for all elements in a tensor with input values from 
+ the derivatives of another tensor with the same shape
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Parallel.SIMDMatMul.Solve(Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor,Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor)">
+ <summary>
+ Matrix multiplication over the last two dimensions of two tensors
+ </summary>
+ <param name="A"></param>
+ <param name="B"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Parallel.MultiplyScale.Scale(Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor,System.Double)">
+ <summary>
+ Scale all elements with a number
+ </summary>
+ <param name="tensor"></param>
+ <param name="s"></param>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.TensorFlow.Rev">
+ <summary>
+ Data type for automatic differentiation with reverse mode accumulation.
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.sizes">
+ <summary>
+ dimension size
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.Item(System.Int32[])">
+ <summary>
+ Index parameter implementation
+ </summary>
+ <param name="keys"></param>
+ <returns></returns>
+ <exception cref="T:System.ArgumentException"></exception>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.Item(System.Int32)">
+ <summary>
+ Index parameter implementation
+ </summary>
+ <returns></returns>
+ <exception cref="T:System.ArgumentException"></exception>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.Item(System.Int32,System.Int32)">
+ <summary>
+ Index parameter implementation
+ </summary>
+ <returns></returns>
+ <exception cref="T:System.ArgumentException"></exception>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.Item(System.Int32,System.Int32,System.Int32)">
+ <summary>
+ Index parameter implementation
+ </summary>
+ <returns></returns>
+ <exception cref="T:System.ArgumentException"></exception>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.#ctor(System.Int32[])">
+ <summary>
+ Constructor
+ </summary>
+ <param name="sizes"></param>
+ <exception cref="T:System.ArgumentNullException"></exception>
+ <exception cref="T:System.ArgumentException"></exception>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.#ctor(Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor,System.Boolean)">
+ <summary>
+ Copy constructor. Removes the derivatives and actions.
+ </summary>
+ <param name="T"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.Transpose">
+ <summary>
+ Transpose the last two dimensions
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.Scale(System.Double)">
+ <summary>
+ Scale all elements with a number
+ </summary>
+ <param name="s"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.Add(System.Double)">
+ <summary>
+ Add a number to all elements
+ </summary>
+ <param name="s"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.Pow(System.Double)">
+ <summary>
+ Element-wise power 
+ </summary>
+ <param name="e"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.GenerateNormalRandomValues">
+ <summary>
+ Generate normal random values with He scaling over the second last dimension of the tensor.
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.Softmax">
+ <summary>
+ Softmax over last dimension
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.Mask">
+ <summary>
+ Mask upper triangular part of the last two dimensions of a tensor
+ </summary>
+ <exception cref="T:System.ArgumentException"></exception>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.Dropout(System.Boolean[],System.Double)">
+ <summary>
+ Zero out elemens of the last dimension of a tensor based on a masking array
+ </summary>
+ <param name="dropoutMask"></param>
+ <exception cref="T:System.ArgumentException"></exception>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.ReLU">
+ <summary>
+ Set all elements
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.Flatten">
+ <summary>
+ Flatten last two dimensions. 
+ </summary>
+ <returns></returns>
+ <exception cref="T:System.ArgumentException"></exception>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.GetMaxIndex">
+ <summary>
+ Only used for final output layer
+ </summary>
+ <returns></returns>
+ <exception cref="T:System.InvalidOperationException"></exception>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.VecAdd(Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor)">
+ <summary>
+ Add a vector to the last dimension of the matrix
+ </summary>
+ <param name="v"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.MatAdd(Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor)">
+ <summary>
+ In place element-wise addition of the elemens of two tensors with identical shape.
+ Only used for optimizer.
+ </summary>
+ <param name="T"></param>
+ <exception cref="T:System.ArgumentException"></exception>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.ClearDerivatives">
+ <summary>
+ Remove derivatives and derivative actions
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.GetDerivatives">
+ <summary>
+ Extract derivatives of a tensor and return as a new tensor
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.TransferDerivatives(Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor)">
+ <summary>
+ Perform derivative calculations for all elements in a tensor with input values from 
+ the derivatives of another tensor with the same shape
+ </summary>
+ <param name="T"></param>
+ <exception cref="T:System.ArgumentException"></exception>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.MatAdd(Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor,Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor)">
+ <summary>
+ Element-wise addition of the elemens of two tensors with identical shape
+ </summary>
+ <param name="A"></param>
+ <param name="B"></param>
+ <returns></returns>
+ <exception cref="T:System.ArgumentException"></exception>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.MatDivElementWise(Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor,Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor)">
+ <summary>
+ Element-wise division of the elemens of two tensors with identical shape
+ </summary>
+ <param name="A"></param>
+ <param name="B"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.MatMulElementWise(Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor,Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor)">
+ <summary>
+ Element-wise multiplication of the elemens of two tensors with identical shape
+ </summary>
+ <param name="A"></param>
+ <param name="B"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.MatMul(Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor,Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor)">
+ <summary>
+ Matrix multiplication over the last two dimensions of two tensors
+ </summary>
+ <param name="A"></param>
+ <param name="B"></param>
+ <returns></returns>
+ 
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.Concat(Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor[])">
+ <summary>
+ Concatenate an array of tensors of identical shape along its last dimension
+ </summary>
+ <param name="Tensors"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.AddNorm(Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor,Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor)">
+ <summary>
+ Add two tensors and normalize over last dimension
+ </summary>
+ <param name="A"></param>
+ <param name="B"></param>
+ <returns></returns>
+</member>
+</members>
+</doc>

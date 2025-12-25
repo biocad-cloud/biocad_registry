@@ -34,6 +34,13 @@ Microsoft.VisualBasic.MIME.text.markdown
  for avoid some un-expected markdown format bug, example as /?q=__a__ maybe transform as /?q=&lt;em>a&lt;/em>
  </remarks>
 </member>
+<member name="M:Microsoft.VisualBasic.MIME.text.markdown.MarkdownRender.GetTOC(System.String)">
+ <summary>
+ parse TOC from markdown document
+ </summary>
+ <param name="md"></param>
+ <returns></returns>
+</member>
 <member name="M:Microsoft.VisualBasic.MIME.text.markdown.HtmlRender.Paragraph(System.String,System.Boolean)">
  <summary>
  

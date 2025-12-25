@@ -184,6 +184,24 @@ BioNovoGene.BioDeep.Chemoinformatics
  </summary>
  <returns></returns>
 </member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.Formula.ElementSearchCandiate.Element">
+ <summary>
+ element atom name, example as C for carbon
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.Formula.ElementSearchCandiate.MinCount">
+ <summary>
+ element count lower bound
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.Formula.ElementSearchCandiate.MaxCount">
+ <summary>
+ element count upper bound
+ </summary>
+ <returns></returns>
+</member>
 <member name="M:BioNovoGene.BioDeep.Chemoinformatics.Formula.FormalCharge.CorrectChargeEmpirical(BioNovoGene.BioDeep.Chemoinformatics.Formula.Formula)">
  <summary>
  Correct charge using rules for an empirical formula
@@ -305,10 +323,20 @@ BioNovoGene.BioDeep.Chemoinformatics
  the method will populate a new atom and its atom number
  </remarks>
 </member>
-<member name="M:BioNovoGene.BioDeep.Chemoinformatics.Formula.FormulaSearch.reorderCandidateElements(System.Boolean@)">
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.Formula.FormulaSearch.ReorderCandidateElements(System.Boolean@)">
  <summary>
  为了方便计算HC比例以及加速计算，在这里总是将C放在第一位，H放在第二位
  </summary>
+ <returns></returns>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.Formula.FormulaSearch.SearchByExactMass(System.Double,BioNovoGene.BioDeep.Chemoinformatics.Formula.FormulaComposition,System.Collections.Generic.Stack{BioNovoGene.BioDeep.Chemoinformatics.Formula.ElementSearchCandiate},Microsoft.VisualBasic.Language.Value{System.Boolean})">
+ <summary>
+ Search all formula that its exact mass value is identical to target <paramref name="exact_mass"/> input. 
+ </summary>
+ <param name="exact_mass">target exact mass value for matches</param>
+ <param name="parent">parent formula tree</param>
+ <param name="candidates">cancidate atom elements and the corresponding search range</param>
+ <param name="cancel">cancel token of current search task</param>
  <returns></returns>
 </member>
 <member name="T:BioNovoGene.BioDeep.Chemoinformatics.Formula.IsotopicPatterns.Calculator">

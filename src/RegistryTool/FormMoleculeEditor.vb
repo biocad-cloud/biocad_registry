@@ -460,9 +460,9 @@ let options = { width: 450, height: 300 };
         Call refreshNames(lang)
     End Sub
 
-    Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
+    Private Async Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
         Dim prompt As String = $"please talk me about the biological function of the compound: '{TextBox2.Text}' in a short conclusion abstract text"
-        Dim msg As DeepSeekResponse = TaskProgress.LoadData(Function(println As Action(Of String)) MyApplication.ollama.Chat(prompt))
+        Dim msg As DeepSeekResponse = Await TaskProgress.LoadData(Function(println As Action(Of String)) MyApplication.ollama.Chat(prompt))
         Dim markdown As New MarkdownRender
 
         If Not msg Is Nothing Then
@@ -474,7 +474,7 @@ let options = { width: 450, height: 300 };
         End If
     End Sub
 
-    Private Sub ChineseNameTranslationToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ChineseNameTranslationToolStripMenuItem.Click
+    Private Async Sub ChineseNameTranslationToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ChineseNameTranslationToolStripMenuItem.Click
         If ListBox1.SelectedIndex < 0 Then
             Return
         End If
@@ -488,7 +488,7 @@ let options = { width: 450, height: 300 };
 
         Dim name = ListBox1.Items(ListBox1.SelectedIndex).ToString
         Dim prompt As String = $"将下面的这个化合物名称翻译为中文：'{name}'，如果没有正式的翻译，请进行音译。使用下面的json格式返回结果给我以方便我进行数据解析：{{""zh_name"": ""translated_name""}}"
-        Dim msg As DeepSeekResponse = TaskProgress.LoadData(Function(println As Action(Of String)) MyApplication.ollama.Chat(prompt))
+        Dim msg As DeepSeekResponse = Await TaskProgress.LoadData(Function(println As Action(Of String)) MyApplication.ollama.Chat(prompt))
 
         If Not msg Is Nothing Then
             Try

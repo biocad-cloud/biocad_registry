@@ -110,6 +110,13 @@ SMRUCC.genomics.Analysis.HTS.GSEA.Fisher.Core
  </summary>
  <returns></returns>
 </member>
+<member name="P:SMRUCC.genomics.Analysis.HTS.GSEA.Background.Item(System.String)">
+ <summary>
+ get background cluster object via its id reference
+ </summary>
+ <param name="id"></param>
+ <returns></returns>
+</member>
 <member name="M:SMRUCC.genomics.Analysis.HTS.GSEA.Background.SubsetOf(System.Func{SMRUCC.genomics.Analysis.HTS.GSEA.Cluster,System.Boolean})">
  <summary>
  take subset of the clusters
