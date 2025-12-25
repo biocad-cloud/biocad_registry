@@ -1,6 +1,7 @@
 ﻿Imports biocad_storage
 Imports BioNovoGene.BioDeep.Chemistry.MetaLib.CrossReference
 Imports Microsoft.VisualBasic.Linq
+Imports Microsoft.VisualBasic.Net.Tcp
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports Oracle.LinuxCompatibility.MySQL.Reflection.DbAttributes
 Imports RegistryTool.My
@@ -19,33 +20,73 @@ Module MetaboliteAnnotations
             key = MyApplication.biocad_registry.vocabulary.where(field("category") = "External Database", field("term") = db_subset).find(Of biocad_registryModel.vocabulary).id
         End If
 
+        Dim q As Model
+
         Do While True
             offset = (page - 1) * page_size
             page += 1
 
             If db_subset.StringEmpty Then
-                pagedata = MyApplication.biocad_registry.molecule _
+                q = MyApplication.biocad_registry.molecule _
                     .where(field("type") = 213) _
-                    .limit(offset, page_size) _
-                    .select(Of biocad_registryModel.molecule)
+                    .limit(offset, page_size)
             Else
-                pagedata = MyApplication.biocad_registry.molecule _
-                    .where(field("type") = 213, field("id").in($"SELECT obj_id FROM db_xrefs WHERE db_key = {key} AND type = 213")) _
-                    .limit(offset, page_size) _
-                    .select(Of biocad_registryModel.molecule)
+                q = MyApplication.biocad_registry.molecule _
+                    .where(field("type") = 213,
+                           field("id").in($"SELECT obj_id FROM db_xrefs WHERE db_key = {key} AND type = 213")) _
+                    .limit(offset, page_size)
             End If
+
+            Dim tryCounts As Integer = 0
+
+            Try
+re0:
+                pagedata = q.select(Of biocad_registryModel.molecule)
+            Catch ex As Exception
+                tryCounts += 1
+
+                If ex.CheckIsSocketException Then
+                    If tryCounts > 3 Then
+                        Throw
+                    End If
+
+                    GoTo re0
+                Else
+                    Throw
+                End If
+            End Try
 
             If pagedata.IsNullOrEmpty Then
                 Exit Do
             End If
 
             For Each mol As biocad_registryModel.molecule In pagedata
-                Dim xrefs As db_xref() = MyApplication.biocad_registry.db_xrefs _
+                Dim xrefs As db_xref()
+
+                tryCounts = 0
+                q = MyApplication.biocad_registry.db_xrefs _
                     .left_join("vocabulary") _
                     .on(field("vocabulary.`id`") = field("db_key")) _
-                    .where(field("obj_id") = mol.id) _
-                    .select(Of db_xref)("term AS db_name", "xref")
-                Dim xrefIndex = xrefs.SafeQuery _
+                    .where(field("obj_id") = mol.id)
+
+                Try
+re1:
+                    xrefs = q.select(Of db_xref)("term AS db_name", "xref")
+                Catch ex As Exception
+                    tryCounts += 1
+
+                    If ex.CheckIsSocketException Then
+                        If tryCounts > 3 Then
+                            Throw
+                        End If
+
+                        GoTo re1
+                    Else
+                        Throw
+                    End If
+                End Try
+
+                Dim xrefIndex As Dictionary(Of String, String) = xrefs.SafeQuery _
                     .GroupBy(Function(a) a.db_name.ToLower) _
                     .ToDictionary(Function(a) a.Key,
                                   Function(a)
