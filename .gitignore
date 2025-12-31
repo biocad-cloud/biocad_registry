@@ -294,3 +294,4 @@ data/chebi.obo
 data/chebi_lite.obo
 scripts/metadata.dat
 /workspace/transformer/enzymes.fasta
+mysql/cad_registry-v2.mwb.bak
