@@ -1,9 +1,14 @@
 ﻿
 Imports BioNovoGene.BioDeep.Chemistry.MetaLib
+Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports Microsoft.VisualBasic.CommandLine.Reflection
+Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Scripting.MetaData
+Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports registry_data
+Imports registry_data.biocad_registryModel
 Imports SMRUCC.genomics.Assembly.KEGG.DBGET.bGetObject
+Imports SMRUCC.genomics.ComponentModel.DBLinkBuilder
 Imports SMRUCC.Rsharp.Runtime
 Imports SMRUCC.Rsharp.Runtime.Internal.[Object]
 Imports SMRUCC.Rsharp.Runtime.Interop
@@ -34,6 +39,26 @@ Public Module setup
         End If
 
         For Each cpd As Compound In keggLib.populates(Of Compound)(env)
+            Dim m As metabolites = registry.metabolites _
+                .where(field("kegg_id") = cpd.entry) _
+                .find(Of metabolites)
+
+            If m Is Nothing Then
+                Dim exact_mass As Double = FormulaScanner.EvaluateExactMass(cpd.formula)
+                Dim name As String = cpd.commonNames.DefaultFirst([default]:=cpd.entry)
+                Dim db_xrefs As DBLink() = cpd.DbLinks
+
+                registry.metabolites.add(
+                    field("name") = name,
+                    field("hashcode") = name.ToLower.MD5,
+                    field("formula") = cpd.formula,
+                    field("exact_mass") = If(exact_mass < 0, 0, exact_mass),
+                    field("kegg_id") = cpd.entry
+                )
+            End If
+        Next
+
+        For Each met As RefMet In refmetLib.populates(Of RefMet)(env)
 
         Next
 
