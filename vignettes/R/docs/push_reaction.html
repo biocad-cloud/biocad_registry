@@ -5,7 +5,7 @@
     <title>Push a single reaction model into the biocad registry database</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-    <link rel="stylesheet" type="text/css" href="https://gcmodeller.org/lib/page.css">
+    <link rel="stylesheet" type="text/css" href="../../_assets/page.css">
 </head>
 
 <body>
@@ -55,6 +55,7 @@ the name of the source data of current reaction model data</p></p></dd>
 
         <p>The `reaction` argument must be a list with the following structure:
 
+
 <pre><code class="r">list(
 entry = "unique_id",                 # Unique identifier for the reaction (string)
 definition = "name",                  # Reaction name or equation (string)
@@ -78,6 +79,7 @@ factor = stoichiometric_factor  # Numeric (default = 1.0 if missing)
 )
 )
 </code></pre>
+
 
 
 <ul>
@@ -128,8 +130,8 @@ push_reaction(biocad_registry = my_registry, reaction = reaction_data)
     </div>
 </body>
 
-<script type="text/javascript" src="https://gcmodeller.org/lib/R_syntax.js"></script>
-<script type="text/javascript" src="https://gcmodeller.org/lib/highlights.js"></script>
+<script type="text/javascript" src="../../_assets/R_syntax.js"></script>
+<script type="text/javascript" src="../../_assets/highlights.js"></script>
 <script type="text/javascript">r_highlights("example_r");</script>
 
 </html>
