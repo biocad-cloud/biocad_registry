@@ -22,6 +22,24 @@ Public Class biocad_registry : Inherits biocad_registryModel.db_mysql
         End Get
     End Property
 
+    Public ReadOnly Property ontology As TableModel(Of ontology)
+        Get
+            Return m_ontology
+        End Get
+    End Property
+
+    Public ReadOnly Property ontology_relation As TableModel(Of ontology_relation)
+        Get
+            Return m_ontology_relation
+        End Get
+    End Property
+
+    Public ReadOnly Property metabolite_class As TableModel(Of metabolite_class)
+        Get
+            Return m_metabolite_class
+        End Get
+    End Property
+
     Public Sub New(mysqli As ConnectionUri)
         MyBase.New(mysqli)
     End Sub

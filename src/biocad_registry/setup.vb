@@ -150,47 +150,48 @@ Public Module setup
             End If
 
             If Not pubchem_cid.StringEmpty Then
-                registry.db_xrefs.ignore.add(field("db_source") = refmet_db,
-                                             field("db_name") = vocabulary.db_pubchem,
-                                             field("db_xref") = pubchem_cid,
-                                             field("type") = metabolite_type,
-                                             field("obj_id") = m.id)
+                registry.db_xrefs.ignore.add(field("db_source") = refmet_db, field("db_name") = vocabulary.db_pubchem, field("db_xref") = pubchem_cid, field("type") = metabolite_type, field("obj_id") = m.id)
             End If
             If Not chebi_id.StringEmpty Then
                 chebi_id = $"ChEBI:{chebi_id}"
-                registry.db_xrefs.ignore.add(field("db_source") = refmet_db,
-                                             field("db_name") = vocabulary.db_chebi,
-                                             field("db_xref") = chebi_id,
-                                             field("type") = metabolite_type,
-                                             field("obj_id") = m.id)
+                registry.db_xrefs.ignore.add(field("db_source") = refmet_db, field("db_name") = vocabulary.db_chebi, field("db_xref") = chebi_id, field("type") = metabolite_type, field("obj_id") = m.id)
             End If
             If Not met.hmdb_id.StringEmpty Then
-                registry.db_xrefs.ignore.add(field("db_source") = refmet_db,
-                                             field("db_name") = vocabulary.db_hmdb,
-                                             field("db_xref") = met.hmdb_id,
-                                             field("type") = metabolite_type,
-                                             field("obj_id") = m.id)
+                registry.db_xrefs.ignore.add(field("db_source") = refmet_db, field("db_name") = vocabulary.db_hmdb, field("db_xref") = met.hmdb_id, field("type") = metabolite_type, field("obj_id") = m.id)
             End If
             If Not met.lipidmaps_id.StringEmpty Then
-                registry.db_xrefs.ignore.add(field("db_source") = refmet_db,
-                                             field("db_name") = vocabulary.db_lipidmaps,
-                                             field("db_xref") = met.lipidmaps_id,
-                                             field("type") = metabolite_type,
-                                             field("obj_id") = m.id)
+                registry.db_xrefs.ignore.add(field("db_source") = refmet_db, field("db_name") = vocabulary.db_lipidmaps, field("db_xref") = met.lipidmaps_id, field("type") = metabolite_type, field("obj_id") = m.id)
             End If
             If Not met.kegg_id.StringEmpty Then
-                registry.db_xrefs.ignore.add(field("db_source") = refmet_db,
-                                             field("db_name") = vocabulary.db_kegg,
-                                             field("db_xref") = met.kegg_id,
-                                             field("type") = metabolite_type,
-                                             field("obj_id") = m.id)
+                registry.db_xrefs.ignore.add(field("db_source") = refmet_db, field("db_name") = vocabulary.db_kegg, field("db_xref") = met.kegg_id, field("type") = metabolite_type, field("obj_id") = m.id)
             End If
 
-            registry.db_xrefs.ignore.add(field("db_source") = refmet_db,
-                                             field("db_name") = refmet_db,
-                                             field("db_xref") = met.refmet_id,
-                                             field("type") = metabolite_type,
-                                             field("obj_id") = m.id)
+            registry.db_xrefs.ignore.add(field("db_source") = refmet_db, field("db_name") = refmet_db, field("db_xref") = met.refmet_id, field("type") = metabolite_type, field("obj_id") = m.id)
+
+            Dim super_class As ontology = registry.ontology.where(field("ontology_id") = refmet_db, field("term_id") = met.super_class).find(Of ontology)
+
+            If super_class Is Nothing Then
+                registry.ontology.add(field("ontology_id") = refmet_db, field("term_id") = met.super_class, field("term") = met.super_class)
+                super_class = registry.ontology.where(field("ontology_id") = refmet_db, field("term_id") = met.super_class).find(Of ontology)
+            End If
+
+            Dim main_class As ontology = registry.ontology.where(field("ontology_id") = refmet_db, field("term_id") = met.main_class).find(Of ontology)
+
+            If main_class Is Nothing Then
+                registry.ontology.add(field("ontology_id") = refmet_db, field("term_id") = met.main_class, field("term") = met.main_class)
+                main_class = registry.ontology.where(field("ontology_id") = refmet_db, field("term_id") = met.main_class).find(Of ontology)
+                registry.ontology_relation.add(field("term_id") = main_class.id, field("is_a") = super_class.id)
+            End If
+
+            Dim sub_class As ontology = registry.ontology.where(field("ontology_id") = refmet_db, field("term_id") = met.sub_class).find(Of ontology)
+
+            If sub_class Is Nothing Then
+                registry.ontology.add(field("ontology_id") = refmet_db, field("term_id") = met.sub_class, field("term") = met.sub_class)
+                sub_class = registry.ontology.where(field("ontology_id") = refmet_db, field("term_id") = met.sub_class).find(Of ontology)
+                registry.ontology_relation.add(field("term_id") = sub_class.id, field("is_a") = main_class.id)
+            End If
+
+            Call registry.metabolite_class.add(field("metabolite_id") = m.id, field("class_id") = sub_class.id, field("note") = met.refmet_id)
         Next
 
         Return Nothing
