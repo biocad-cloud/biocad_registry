@@ -79,6 +79,8 @@ Public Module setup
             Dim name As String = Strings.Trim(met.refmet_name)
             Dim hashcode As String = Strings.Trim(met.refmet_name).ToLower.MD5
             Dim exact_mass As Double = FormulaScanner.EvaluateExactMass(met.formula)
+            Dim hmdb_id As String = Strings.Trim(met.hmdb_id)
+            Dim lipidmaps_id As String = Strings.Trim(met.lipidmaps_id)
 
             If exact_mass < 0 Then
                 exact_mass = 0
@@ -139,11 +141,11 @@ Public Module setup
             If m.pubchem_cid = 0 AndAlso Not pubchem_cid Is Nothing Then
                 updates.Add(field("pubchem_cid") = pubchem_cid)
             End If
-            If m.hmdb_id.StringEmpty(, True) AndAlso Not met.hmdb_id.StringEmpty(, True) Then
-                updates.Add(field("hmdb_id") = met.hmdb_id)
+            If m.hmdb_id.StringEmpty(, True) AndAlso Not hmdb_id.StringEmpty(, True) Then
+                updates.Add(field("hmdb_id") = hmdb_id)
             End If
-            If m.lipidmaps_id.StringEmpty AndAlso Not met.lipidmaps_id.StringEmpty(, True) Then
-                updates.Add(field("lipidmaps_id") = met.lipidmaps_id)
+            If m.lipidmaps_id.StringEmpty AndAlso Not lipidmaps_id.StringEmpty(, True) Then
+                updates.Add(field("lipidmaps_id") = lipidmaps_id)
             End If
             If updates.Any Then
                 Call registry.metabolites.where(field("id") = m.id).save(updates.ToArray)
