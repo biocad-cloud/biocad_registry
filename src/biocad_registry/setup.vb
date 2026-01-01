@@ -2,6 +2,7 @@
 Imports BioNovoGene.BioDeep.Chemistry.MetaLib
 Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.Scripting.MetaData
+Imports registry_data
 Imports SMRUCC.genomics.Assembly.KEGG.DBGET.bGetObject
 Imports SMRUCC.Rsharp.Runtime
 Imports SMRUCC.Rsharp.Runtime.Internal.[Object]
@@ -22,7 +23,7 @@ Public Module setup
     ''' <param name="env"></param>
     ''' <returns></returns>
     <ExportAPI("setup_metabolites")>
-    Public Function setup_metabolites(<RRawVectorArgument> kegg As Object, <RRawVectorArgument> refmet As Object, Optional env As Environment = Nothing) As Object
+    Public Function setup_metabolites(registry As biocad_registry, <RRawVectorArgument> kegg As Object, <RRawVectorArgument> refmet As Object, Optional env As Environment = Nothing) As Object
         Dim keggLib As pipeline = pipeline.TryCreatePipeline(Of Compound)(kegg, env)
         Dim refmetLib As pipeline = pipeline.TryCreatePipeline(Of RefMet)(refmet, env)
 
