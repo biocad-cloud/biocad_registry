@@ -4,13 +4,47 @@ An in-house data repository system for GCModeller make reconstruction of the GMM
 
 ![](docs/Capture.PNG)
 
-## Build database 
+## registry database schema 
 
-1. imports ChEBI database
-2. imports Rhea reaction database
-3. imports Pubchem database
-4. imports uniprot database
-5. imports genbank database file
+```
+┌─────────────────┐
+│ vocabulary      │ ◄───────┐
+│ (术语表)         │         │
+└────────┬────────┘         │
+         │                  │ (定义实体类型)
+         │                  │
+    ┌────▼──────────────────┼────────────────┐
+    │                      │                 │
+┌───▼────┐    ┌────────▼───┐       ┌──────▼────┐
+│ entity │    │ reaction   │       │  regulator│
+│ types  │    │ roles      │       │   roles   │
+└────────┘    └────────────┘       └───────────┘
+      │              │                     │
+      │              │                     │
+      │    ┌─────────┴───────┐             │
+      │    │                 │             │
+  ┌───▼─▼───▼───┐      ┌────▼─────────────▼────┐
+  │   四大实体   │      │    核心网络表          │
+  ├─────────────┤      ├───────────────────────┤
+  │ metabolites │      │ metabolic_network     │
+  │ gene        │      │ regulatory_network    │
+  │ protein     │      │ pathway_network       │
+  │ reaction    │      │ complex               │
+  └──────┬──────┘      └───────────────────────┘
+         │                     │
+         │                     │
+         │    ┌────────────────┴────────────────┐
+         │    │                                 │
+    ┌────▼────▼────┐              ┌──────────▼──────────┐
+    │  辅助数据表   │              │   映射/索引表        │
+    ├──────────────┤              ├─────────────────────┤
+    │ struct_data  │              │ registry_resolver   │
+    │ pdb          │              │ db_xrefs            │
+    │ nucleotide   │              │ synonym             │
+    │ protein_data │              │ ontology            │
+    └──────────────┘              └─────────────────────┘
+
+```
 
 ![](mysql/biocad_registry.png)
 
