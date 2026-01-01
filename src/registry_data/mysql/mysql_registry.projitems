@@ -12,6 +12,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)biocad_registry.vb" />
     <Compile Include="$(MSBuildThisFileDirectory)mysql\compartment_location.vb" />
     <Compile Include="$(MSBuildThisFileDirectory)mysql\complex.vb" />
+    <Compile Include="$(MSBuildThisFileDirectory)mysql\conserved_operon.vb" />
     <Compile Include="$(MSBuildThisFileDirectory)mysql\db_mysql.vb" />
     <Compile Include="$(MSBuildThisFileDirectory)mysql\db_xrefs.vb" />
     <Compile Include="$(MSBuildThisFileDirectory)mysql\gene.vb" />
@@ -26,6 +27,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)mysql\nucleotide_data.vb" />
     <Compile Include="$(MSBuildThisFileDirectory)mysql\ontology.vb" />
     <Compile Include="$(MSBuildThisFileDirectory)mysql\ontology_relation.vb" />
+    <Compile Include="$(MSBuildThisFileDirectory)mysql\operon.vb" />
     <Compile Include="$(MSBuildThisFileDirectory)mysql\organism_source.vb" />
     <Compile Include="$(MSBuildThisFileDirectory)mysql\pathway_network.vb" />
     <Compile Include="$(MSBuildThisFileDirectory)mysql\pathway_view.vb" />
@@ -37,6 +39,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)mysql\registry_resolver.vb" />
     <Compile Include="$(MSBuildThisFileDirectory)mysql\regulatory_network.vb" />
     <Compile Include="$(MSBuildThisFileDirectory)mysql\struct_data.vb" />
+    <Compile Include="$(MSBuildThisFileDirectory)mysql\subcellular_location.vb" />
     <Compile Include="$(MSBuildThisFileDirectory)mysql\synonym.vb" />
     <Compile Include="$(MSBuildThisFileDirectory)mysql\topic.vb" />
     <Compile Include="$(MSBuildThisFileDirectory)mysql\vocabulary.vb" />
