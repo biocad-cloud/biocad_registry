@@ -15,6 +15,7 @@
     </Project>
   </Folder>
   <Folder Name="/renv/" />
+  <Project Path="registry_data/mysql/mysql_registry.shproj" Id="bd58c2b6-4588-4be9-a8ab-9be85f023d12" />
   <Project Path="registry_data/registry_data.vbproj">
     <Platform Solution="*|x64" Project="x64" />
   </Project>
