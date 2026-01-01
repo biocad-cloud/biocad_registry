@@ -6,15 +6,39 @@
     <Platform Name="Any CPU" />
     <Platform Name="x64" />
   </Configurations>
-  <Folder Name="/framework/" />
-  <Folder Name="/framework/gcmodeller/" />
+  <Folder Name="/framework/">
+    <Project Path="../../graphQL/src/mysqli/LibMySQL/LibMySQL.vbproj">
+      <Platform Solution="*|x64" Project="x64" />
+    </Project>
+    <Project Path="../../LLMs/src/Ollama/Ollama.vbproj">
+      <Platform Solution="*|x64" Project="x64" />
+    </Project>
+  </Folder>
+  <Folder Name="/framework/gcmodeller/">
+    <Project Path="../../GCModeller/src/GCModeller/core/Bio.Assembly/biocore-netcore5.vbproj">
+      <Platform Solution="*|x64" Project="x64" />
+    </Project>
+  </Folder>
   <Folder Name="/framework/mzkit/" />
   <Folder Name="/framework/scibasic/">
+    <Project Path="../../GCModeller/src/runtime/sciBASIC#/Data/DataFrame/dataframework-netcore5.vbproj">
+      <Platform Solution="*|x64" Project="x64" />
+    </Project>
+    <Project Path="../../GCModeller/src/runtime/sciBASIC#/Data_science/Mathematica/Math/Math/Math.NET5.vbproj">
+      <Platform Solution="*|x64" Project="x64" />
+    </Project>
     <Project Path="../../GCModeller/src/runtime/sciBASIC#/Microsoft.VisualBasic.Core/src/Core.vbproj">
       <Platform Solution="*|x64" Project="x64" />
     </Project>
   </Folder>
-  <Folder Name="/renv/" />
+  <Folder Name="/renv/">
+    <Project Path="../../GCModeller/src/R-sharp/R#/Rsharp-netcore5.vbproj">
+      <Platform Solution="*|x64" Project="x64" />
+    </Project>
+    <Project Path="../../GCModeller/src/R-sharp/studio/R-terminal/R-cmd.NET5.vbproj">
+      <Platform Solution="*|x64" Project="x64" />
+    </Project>
+  </Folder>
   <Project Path="registry_data/mysql/mysql_registry.shproj" Id="bd58c2b6-4588-4be9-a8ab-9be85f023d12" />
   <Project Path="registry_data/registry_data.vbproj">
     <Platform Solution="*|x64" Project="x64" />
