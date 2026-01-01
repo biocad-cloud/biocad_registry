@@ -2,6 +2,7 @@
 Imports BioNovoGene.BioDeep.Chemistry.MetaLib
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports Microsoft.VisualBasic.CommandLine.Reflection
+Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Scripting.MetaData
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
@@ -28,9 +29,14 @@ Public Module setup
     ''' <param name="env"></param>
     ''' <returns></returns>
     <ExportAPI("setup_metabolites")>
-    Public Function setup_metabolites(registry As biocad_registry, <RRawVectorArgument> kegg As Object, <RRawVectorArgument> refmet As Object, Optional env As Environment = Nothing) As Object
+    Public Function setup_metabolites(registry As biocad_registry,
+                                      <RRawVectorArgument> kegg As Object,
+                                      <RRawVectorArgument> refmet As Object,
+                                      Optional env As Environment = Nothing) As Object
+
         Dim keggLib As pipeline = pipeline.TryCreatePipeline(Of Compound)(kegg, env)
         Dim refmetLib As pipeline = pipeline.TryCreatePipeline(Of RefMet)(refmet, env)
+        Dim vocabulary As New biocad_vocabulary(registry)
 
         If keggLib.isError Then
             Return keggLib.getError
@@ -42,23 +48,108 @@ Public Module setup
             Dim m As metabolites = registry.metabolites _
                 .where(field("kegg_id") = cpd.entry) _
                 .find(Of metabolites)
+            Dim db_xrefs As DBLink() = cpd.DbLinks
+            Dim cas_id As String = db_xrefs.KeyItem("CAS")
 
             If m Is Nothing Then
                 Dim exact_mass As Double = FormulaScanner.EvaluateExactMass(cpd.formula)
                 Dim name As String = cpd.commonNames.DefaultFirst([default]:=cpd.entry)
-                Dim db_xrefs As DBLink() = cpd.DbLinks
 
                 registry.metabolites.add(
                     field("name") = name,
                     field("hashcode") = name.ToLower.MD5,
                     field("formula") = cpd.formula,
                     field("exact_mass") = If(exact_mass < 0, 0, exact_mass),
-                    field("kegg_id") = cpd.entry
+                    field("kegg_id") = cpd.entry,
+                    field("cas_id") = cas_id
                 )
+            ElseIf m.cas_id.StringEmpty(, True) Then
+                registry.metabolites.where(field("id") = m.id).save(field("cas_id") = cas_id)
             End If
         Next
 
+        Dim refmet_db As UInteger = vocabulary.GetDatabaseResource("RefMet").id
+        Dim metabolite_type As UInteger = vocabulary.GetRegistryEntity(biocad_vocabulary.EntityMetabolite).id
+
         For Each met As RefMet In refmetLib.populates(Of RefMet)(env)
+            Dim m As metabolites = Nothing
+            Dim kegg_id As String = Strings.Trim(met.kegg_id)
+            Dim pubchem_cid As String = Strings.Trim(met.pubchem_cid)
+            Dim chebi_id As String = Strings.Trim(met.chebi_id)
+            Dim name As String = Strings.Trim(met.refmet_name)
+            Dim hashcode As String = Strings.Trim(met.refmet_name).ToLower.MD5
+            Dim exact_mass As Double = FormulaScanner.EvaluateExactMass(met.formula)
+
+            If exact_mass < 0 Then
+                exact_mass = 0
+            End If
+
+            If Not pubchem_cid.StringEmpty(, True) Then
+                pubchem_cid = pubchem_cid.Match("\d+")
+            Else
+                pubchem_cid = Nothing
+            End If
+            If Not chebi_id.StringEmpty(, True) Then
+                chebi_id = chebi_id.Match("\d+")
+            Else
+                chebi_id = Nothing
+            End If
+
+            If Not kegg_id.StringEmpty(, True) Then
+                m = registry.metabolites.where(field("kegg_id") = met.kegg_id).find(Of metabolites)
+            End If
+
+            If m Is Nothing Then
+                Dim obj = registry.db_xrefs.where(field("type") = metabolite_type, field("db_name") = refmet_db, field("db_xref") = met.refmet_id).find(Of db_xrefs)
+
+                If obj Is Nothing Then
+                    registry.metabolites.add(
+                        field("name") = name,
+                        field("hashcode") = hashcode,
+                        field("formula") = met.formula,
+                        field("exact_mass") = exact_mass,
+                        field("pubchem_cid") = met.pubchem_cid,
+                        field("chebi_id") = met.chebi_id,
+                        field("hmdb_id") = met.hmdb_id,
+                        field("lipidmaps_id") = met.lipidmaps_id,
+                        field("kegg_id") = met.kegg_id
+                    )
+
+                    m = registry.metabolites _
+                        .where(field("hashcode") = hashcode,
+                               field("exact_mass").between(exact_mass - 0.5, exact_mass + 0.5)) _
+                        .order_by("id", desc:=True) _
+                        .find(Of metabolites)
+                Else
+                    m = registry.metabolites.where(field("id") = obj.obj_id).find(Of metabolites)
+                End If
+            End If
+            If m Is Nothing Then
+                Continue For
+            End If
+
+            Dim updates As New List(Of FieldAssert)
+
+            If m.kegg_id.StringEmpty(, True) AndAlso Not kegg_id.StringEmpty Then
+                updates.Add(field("kegg_id") = kegg_id)
+            End If
+            If m.chebi_id = 0 AndAlso Not chebi_id Is Nothing Then
+                updates.Add(field("chebi_id") = chebi_id)
+            End If
+            If m.pubchem_cid = 0 AndAlso Not pubchem_cid Is Nothing Then
+                updates.Add(field("pubchem_cid") = pubchem_cid)
+            End If
+            If m.hmdb_id.StringEmpty(, True) AndAlso Not met.hmdb_id.StringEmpty(, True) Then
+                updates.Add(field("hmdb_id") = met.hmdb_id)
+            End If
+            If m.lipidmaps_id.StringEmpty AndAlso Not met.lipidmaps_id.StringEmpty(, True) Then
+                updates.Add(field("lipidmaps_id") = met.lipidmaps_id)
+            End If
+
+            If updates.Any Then
+                Call registry.metabolites.where(field("id") = m.id).save(updates.ToArray)
+            End If
+
 
         Next
 

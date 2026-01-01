@@ -51,4 +51,13 @@ Public Class biocad_vocabulary
         Return q
     End Function
 
+    Public Function GetRegistryEntity(type As String) As vocabulary
+        Static cache As New Dictionary(Of String, vocabulary)
+        Return cache.ComputeIfAbsent(
+            type.ToLower,
+            lazyValue:=Function(dbname)
+                           Return GetVocabulary(EntityType, type)
+                       End Function)
+    End Function
+
 End Class
