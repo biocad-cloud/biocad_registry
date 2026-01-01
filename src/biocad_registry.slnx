@@ -47,6 +47,9 @@
     <Project Path="../../mzkit/src/metadb/Chemoinformatics/chemoinformatics-netcore5.vbproj">
       <Platform Solution="*|x64" Project="x64" />
     </Project>
+    <Project Path="../../mzkit/src/metadb/FormulaSearch.Extensions/FormulaSearch.Extensions.NET5.vbproj">
+      <Platform Solution="*|x64" Project="x64" />
+    </Project>
     <Project Path="../../mzkit/src/metadb/Massbank/massbank.NET5.vbproj">
       <Platform Solution="*|x64" Project="x64" />
     </Project>
@@ -57,6 +60,15 @@
       <Platform Solution="*|x64" Project="x64" />
     </Project>
     <Project Path="../../mzkit/src/mzmath/ms2_math-core/mzmath-netcore5.vbproj">
+      <Platform Solution="*|x64" Project="x64" />
+    </Project>
+    <Project Path="../../mzkit/src/mzmath/MSEngine/MSEngine.vbproj">
+      <Platform Solution="*|x64" Project="x64" />
+    </Project>
+    <Project Path="../../mzkit/src/mzmath/MSFinder/MSFinder.vbproj">
+      <Platform Solution="*|x64" Project="x64" />
+    </Project>
+    <Project Path="../../mzkit/src/mzmath/mz_deco/deconv.NET5.vbproj">
       <Platform Solution="*|x64" Project="x64" />
     </Project>
   </Folder>
