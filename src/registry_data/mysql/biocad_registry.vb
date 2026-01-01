@@ -40,6 +40,13 @@ Public Class biocad_registry : Inherits biocad_registryModel.db_mysql
         End Get
     End Property
 
+    Public ReadOnly Property synonym As TableModel(Of synonym)
+        Get
+            Return m_synonym
+        End Get
+    End Property
+
+
     Public Sub New(mysqli As ConnectionUri)
         MyBase.New(mysqli)
     End Sub

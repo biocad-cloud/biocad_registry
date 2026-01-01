@@ -44,6 +44,9 @@ Public Module setup
             Return refmetLib.getError
         End If
 
+        Dim kegg_db As UInteger = vocabulary.db_kegg
+        Dim metabolite_type As UInteger = vocabulary.GetRegistryEntity(biocad_vocabulary.EntityMetabolite).id
+
         For Each cpd As Compound In keggLib.populates(Of Compound)(env)
             Dim m As metabolites = registry.metabolites _
                 .where(field("kegg_id") = cpd.entry) _
@@ -63,13 +66,32 @@ Public Module setup
                     field("kegg_id") = cpd.entry,
                     field("cas_id") = cas_id
                 )
+                m = registry.metabolites _
+                    .where(field("kegg_id") = cpd.entry) _
+                    .order_by("id", desc:=True) _
+                    .find(Of metabolites)
             ElseIf m.cas_id.StringEmpty(, True) Then
                 registry.metabolites.where(field("id") = m.id).save(field("cas_id") = cas_id)
             End If
+
+            If Not cas_id.StringEmpty(, True) Then
+                registry.db_xrefs.ignore.add(field("db_source") = kegg_db, field("db_name") = vocabulary.db_cas, field("db_xref") = cas_id, field("type") = metabolite_type, field("obj_id") = m.id)
+            End If
+
+            registry.db_xrefs.ignore.add(field("db_source") = kegg_db, field("db_name") = kegg_db, field("db_xref") = cpd.entry, field("type") = metabolite_type, field("obj_id") = m.id)
+
+            For Each name As String In cpd.commonNames.SafeQuery
+                name = Strings.Trim(name)
+
+                If name <> "" Then
+                    registry.synonym.add(
+                        field("obj_id") = m.id, field("type") = metabolite_type, field("db_source") = kegg_db, field("synonym") = name, field("hashcode") = Strings.LCase(name).MD5, field("lang") = "en"
+                    )
+                End If
+            Next
         Next
 
         Dim refmet_db As UInteger = vocabulary.GetDatabaseResource("RefMet").id
-        Dim metabolite_type As UInteger = vocabulary.GetRegistryEntity(biocad_vocabulary.EntityMetabolite).id
 
         For Each met As RefMet In refmetLib.populates(Of RefMet)(env)
             Dim m As metabolites = Nothing
@@ -194,6 +216,10 @@ Public Module setup
             End If
 
             Call registry.metabolite_class.add(field("metabolite_id") = m.id, field("class_id") = sub_class.id, field("note") = met.refmet_id)
+
+            registry.synonym.add(
+                field("obj_id") = m.id, field("type") = metabolite_type, field("db_source") = refmet_db, field("synonym") = name, field("hashcode") = Strings.LCase(name).MD5, field("lang") = "en"
+            )
         Next
 
         Return Nothing
