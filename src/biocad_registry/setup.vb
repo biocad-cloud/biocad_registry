@@ -145,12 +145,52 @@ Public Module setup
             If m.lipidmaps_id.StringEmpty AndAlso Not met.lipidmaps_id.StringEmpty(, True) Then
                 updates.Add(field("lipidmaps_id") = met.lipidmaps_id)
             End If
-
             If updates.Any Then
                 Call registry.metabolites.where(field("id") = m.id).save(updates.ToArray)
             End If
 
+            If Not pubchem_cid.StringEmpty Then
+                registry.db_xrefs.ignore.add(field("db_source") = refmet_db,
+                                             field("db_name") = vocabulary.db_pubchem,
+                                             field("db_xref") = pubchem_cid,
+                                             field("type") = metabolite_type,
+                                             field("obj_id") = m.id)
+            End If
+            If Not chebi_id.StringEmpty Then
+                chebi_id = $"ChEBI:{chebi_id}"
+                registry.db_xrefs.ignore.add(field("db_source") = refmet_db,
+                                             field("db_name") = vocabulary.db_chebi,
+                                             field("db_xref") = chebi_id,
+                                             field("type") = metabolite_type,
+                                             field("obj_id") = m.id)
+            End If
+            If Not met.hmdb_id.StringEmpty Then
+                registry.db_xrefs.ignore.add(field("db_source") = refmet_db,
+                                             field("db_name") = vocabulary.db_hmdb,
+                                             field("db_xref") = met.hmdb_id,
+                                             field("type") = metabolite_type,
+                                             field("obj_id") = m.id)
+            End If
+            If Not met.lipidmaps_id.StringEmpty Then
+                registry.db_xrefs.ignore.add(field("db_source") = refmet_db,
+                                             field("db_name") = vocabulary.db_lipidmaps,
+                                             field("db_xref") = met.lipidmaps_id,
+                                             field("type") = metabolite_type,
+                                             field("obj_id") = m.id)
+            End If
+            If Not met.kegg_id.StringEmpty Then
+                registry.db_xrefs.ignore.add(field("db_source") = refmet_db,
+                                             field("db_name") = vocabulary.db_kegg,
+                                             field("db_xref") = met.kegg_id,
+                                             field("type") = metabolite_type,
+                                             field("obj_id") = m.id)
+            End If
 
+            registry.db_xrefs.ignore.add(field("db_source") = refmet_db,
+                                             field("db_name") = refmet_db,
+                                             field("db_xref") = met.refmet_id,
+                                             field("type") = metabolite_type,
+                                             field("obj_id") = m.id)
         Next
 
         Return Nothing

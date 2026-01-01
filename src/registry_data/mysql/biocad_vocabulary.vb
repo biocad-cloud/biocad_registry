@@ -16,8 +16,28 @@ Public Class biocad_vocabulary
 
     ReadOnly registry As biocad_registry
 
+    Public ReadOnly Property db_cas As UInteger
+    Public ReadOnly Property db_pubchem As UInteger
+    Public ReadOnly Property db_chebi As UInteger
+    Public ReadOnly Property db_hmdb As UInteger
+    Public ReadOnly Property db_lipidmaps As UInteger
+    Public ReadOnly Property db_kegg As UInteger
+    Public ReadOnly Property db_biocyc As UInteger
+    Public ReadOnly Property db_mesh As UInteger
+    Public ReadOnly Property db_wikipedia As UInteger
+
     Sub New(registry As biocad_registry)
         Me.registry = registry
+
+        db_cas = GetDatabaseResource("CAS Registry Number").id
+        db_pubchem = GetDatabaseResource("PubChem").id
+        db_chebi = GetDatabaseResource("ChEBI").id
+        db_hmdb = GetDatabaseResource("HMDB").id
+        db_lipidmaps = GetDatabaseResource("LipidMaps").id
+        db_kegg = GetDatabaseResource("KEGG").id
+        db_biocyc = GetDatabaseResource("BioCyc").id
+        db_mesh = GetDatabaseResource("NCBI MeSH").id
+        db_wikipedia = GetDatabaseResource("Wikipedia").id
     End Sub
 
     <MethodImpl(MethodImplOptions.AggressiveInlining)>
