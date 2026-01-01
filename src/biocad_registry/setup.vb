@@ -33,7 +33,11 @@ Public Module setup
             Return refmetLib.getError
         End If
 
+        For Each cpd As Compound In keggLib.populates(Of Compound)(env)
 
+        Next
+
+        Return Nothing
     End Function
 
 End Module
