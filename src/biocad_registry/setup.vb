@@ -132,6 +132,13 @@ Public Module setup
                 chebi_id = Nothing
             End If
 
+            If pubchem_cid = "" Then
+                pubchem_cid = Nothing
+            End If
+            If chebi_id = "" Then
+                chebi_id = Nothing
+            End If
+
             If Not kegg_id.StringEmpty(, True) Then
                 m = registry.metabolites.where(field("kegg_id") = met.kegg_id).find(Of metabolites)
             End If
