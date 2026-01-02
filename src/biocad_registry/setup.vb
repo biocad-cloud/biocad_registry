@@ -1,5 +1,8 @@
 ﻿
+Imports BioNovoGene.BioDeep.Chemistry
 Imports BioNovoGene.BioDeep.Chemistry.MetaLib
+Imports BioNovoGene.BioDeep.Chemistry.MetaLib.Models
+Imports BioNovoGene.BioDeep.Chemistry.TMIC.HMDB
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm
 Imports Microsoft.VisualBasic.CommandLine.Reflection
@@ -14,6 +17,7 @@ Imports SMRUCC.genomics.ComponentModel.DBLinkBuilder
 Imports SMRUCC.Rsharp.Runtime
 Imports SMRUCC.Rsharp.Runtime.Internal.[Object]
 Imports SMRUCC.Rsharp.Runtime.Interop
+Imports ontology = registry_data.biocad_registryModel.ontology
 
 ''' <summary>
 ''' The Initial setup of the database
@@ -267,4 +271,59 @@ Public Module setup
         Return Nothing
     End Function
 
+    <ExportAPI("setup_hmdb")>
+    Public Function setup_hmdb(registry As biocad_registry,
+                               <RRawVectorArgument>
+                               hmdb As Object,
+                               Optional env As Environment = Nothing) As Object
+
+        Dim pull As pipeline = pipeline.TryCreatePipeline(Of metabolite)(hmdb, env)
+
+        If pull.isError Then
+            Return pull.getError
+        End If
+
+        Dim vocabulary As New biocad_vocabulary(registry)
+        Dim metabolite_type As UInteger = vocabulary.GetRegistryEntity(biocad_vocabulary.EntityMetabolite).id
+        Dim db_hmdb As UInteger = vocabulary.db_hmdb
+
+        For Each met As metabolite In pull.populates(Of metabolite)(env)
+            Dim pubchem_cid As String = Strings.Trim(met.pubchem_compound_id)
+            Dim chebi_id As String = Strings.Trim(met.chebi_id)
+            Dim name As String = Strings.Trim(met.name)
+            Dim hashcode As String = name.ToLower.MD5
+            Dim exact_mass As Double = FormulaScanner.EvaluateExactMass(met.chemical_formula)
+
+            If exact_mass < 0 Then
+                exact_mass = 0
+            End If
+
+            If Not pubchem_cid.StringEmpty(, True) Then
+                pubchem_cid = pubchem_cid.Match("\d+")
+            Else
+                pubchem_cid = Nothing
+            End If
+            If Not chebi_id.StringEmpty(, True) Then
+                chebi_id = chebi_id.Match("\d+")
+            Else
+                chebi_id = Nothing
+            End If
+
+            If pubchem_cid = "" Then
+                pubchem_cid = Nothing
+            End If
+            If chebi_id = "" Then
+                chebi_id = Nothing
+            End If
+
+            Dim meta As MetaLib = TMIC.HMDB.CreateReferenceData(met)
+            Dim m As metabolites = registry.metabolites.where(field("hmdb_id") = meta.ID).find(Of metabolites)
+
+            If m Is Nothing Then
+
+            End If
+        Next
+
+        Return Nothing
+    End Function
 End Module

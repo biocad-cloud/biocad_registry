@@ -10,5 +10,9 @@ declare namespace setup {
    /**
      * @param env default value Is ``null``.
    */
-   function setup_metabolites(registry: object, kegg: any, refmet: any, env?: object): any;
+   function setup_kegg(registry: object, kegg: any, env?: object): any;
+   /**
+     * @param env default value Is ``null``.
+   */
+   function setup_refmet(registry: object, refmet: any, env?: object): any;
 }
