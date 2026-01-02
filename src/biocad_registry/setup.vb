@@ -1,6 +1,7 @@
 ﻿
 Imports BioNovoGene.BioDeep.Chemistry.MetaLib
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
+Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm
 Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.Linq
@@ -36,8 +37,9 @@ Public Module setup
 
         Dim kegg_db As UInteger = vocabulary.db_kegg
         Dim metabolite_type As UInteger = vocabulary.GetRegistryEntity(biocad_vocabulary.EntityMetabolite).id
+        Dim pull As Compound() = keggLib.populates(Of Compound)(env).ToArray
 
-        For Each cpd As Compound In keggLib.populates(Of Compound)(env)
+        For Each cpd As Compound In TqdmWrapper.Wrap(pull)
             Dim m As metabolites = registry.metabolites _
                 .where(field("kegg_id") = cpd.entry) _
                 .find(Of metabolites)
@@ -65,17 +67,30 @@ Public Module setup
             End If
 
             If Not cas_id.StringEmpty(, True) Then
-                registry.db_xrefs.ignore.add(field("db_source") = kegg_db, field("db_name") = vocabulary.db_cas, field("db_xref") = cas_id, field("type") = metabolite_type, field("obj_id") = m.id)
+                registry.db_xrefs.ignore.add(field("db_source") = kegg_db,
+                                             field("db_name") = vocabulary.db_cas,
+                                             field("db_xref") = cas_id,
+                                             field("type") = metabolite_type,
+                                             field("obj_id") = m.id)
             End If
 
-            registry.db_xrefs.ignore.add(field("db_source") = kegg_db, field("db_name") = kegg_db, field("db_xref") = cpd.entry, field("type") = metabolite_type, field("obj_id") = m.id)
+            registry.db_xrefs.ignore.add(field("db_source") = kegg_db,
+                                         field("db_name") = kegg_db,
+                                         field("db_xref") = cpd.entry,
+                                         field("type") = metabolite_type,
+                                         field("obj_id") = m.id)
 
             For Each name As String In cpd.commonNames.SafeQuery
                 name = Strings.Trim(name)
 
                 If name <> "" Then
                     registry.synonym.add(
-                        field("obj_id") = m.id, field("type") = metabolite_type, field("db_source") = kegg_db, field("synonym") = name, field("hashcode") = Strings.LCase(name).MD5, field("lang") = "en"
+                        field("obj_id") = m.id,
+                        field("type") = metabolite_type,
+                        field("db_source") = kegg_db,
+                        field("synonym") = name,
+                        field("hashcode") = Strings.LCase(name).MD5,
+                        field("lang") = "en"
                     )
                 End If
             Next
@@ -105,8 +120,9 @@ Public Module setup
         End If
 
         Dim refmet_db As UInteger = vocabulary.GetDatabaseResource("RefMet").id
+        Dim pull As RefMet() = refmetLib.populates(Of RefMet)(env).ToArray
 
-        For Each met As RefMet In refmetLib.populates(Of RefMet)(env)
+        For Each met As RefMet In TqdmWrapper.Wrap(pull)
             Dim m As metabolites = Nothing
             Dim kegg_id As String = Strings.Trim(met.kegg_id)
             Dim pubchem_cid As String = Strings.Trim(met.pubchem_cid)
@@ -144,8 +160,9 @@ Public Module setup
             End If
 
             If m Is Nothing Then
-                Dim obj = registry.db_xrefs.where(field("type") = metabolite_type, field("db_name") = refmet_db, field("db_xref") = met.refmet_id).find(Of db_xrefs)
-
+                Dim obj = registry.db_xrefs.where(field("type") = metabolite_type,
+                                                  field("db_name") = refmet_db,
+                                                  field("db_xref") = met.refmet_id).find(Of db_xrefs)
                 If obj Is Nothing Then
                     registry.metabolites.add(
                         field("name") = name,
@@ -238,7 +255,12 @@ Public Module setup
             Call registry.metabolite_class.add(field("metabolite_id") = m.id, field("class_id") = sub_class.id, field("note") = met.refmet_id)
 
             registry.synonym.add(
-                field("obj_id") = m.id, field("type") = metabolite_type, field("db_source") = refmet_db, field("synonym") = name, field("hashcode") = Strings.LCase(name).MD5, field("lang") = "en"
+                field("obj_id") = m.id,
+                field("type") = metabolite_type,
+                field("db_source") = refmet_db,
+                field("synonym") = name,
+                field("hashcode") = Strings.LCase(name).MD5,
+                field("lang") = "en"
             )
         Next
 
