@@ -2,6 +2,7 @@
 Imports BioNovoGene.BioDeep.Chemistry
 Imports BioNovoGene.BioDeep.Chemistry.MetaLib
 Imports BioNovoGene.BioDeep.Chemistry.MetaLib.Models
+Imports BioNovoGene.BioDeep.Chemistry.TMIC
 Imports BioNovoGene.BioDeep.Chemistry.TMIC.HMDB
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm
@@ -468,6 +469,30 @@ Public Module setup
                     field("lang") = "en"
                 )
             Next
+        Next
+
+        Return Nothing
+    End Function
+
+    <ExportAPI("setup_lipidmaps")>
+    Public Function setup_lipidmaps(registry As biocad_registry,
+                                    <RRawVectorArgument>
+                                    lipidmaps As Object,
+                                    Optional env As Environment = Nothing) As Object
+
+        Dim pull As pipeline = pipeline.TryCreatePipeline(Of LipidMaps.MetaData)(lipidmaps, env)
+
+        If pull.isError Then
+            Return pull.getError
+        End If
+
+        Dim vocabulary As New biocad_vocabulary(registry)
+        Dim metabolite_type As UInteger = vocabulary.GetRegistryEntity(biocad_vocabulary.EntityMetabolite).id
+        Dim db_lipidmaps As UInteger = vocabulary.db_lipidmaps
+        Dim ontology_id As UInteger = db_lipidmaps
+
+        For Each lipid As LipidMaps.MetaData In pull.populates(Of LipidMaps.MetaData)(env)
+
         Next
 
         Return Nothing
