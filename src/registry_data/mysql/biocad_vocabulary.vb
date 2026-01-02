@@ -25,6 +25,7 @@ Public Class biocad_vocabulary
     Public ReadOnly Property db_biocyc As UInteger
     Public ReadOnly Property db_mesh As UInteger
     Public ReadOnly Property db_wikipedia As UInteger
+    Public ReadOnly Property db_drugbank As UInteger
 
     Sub New(registry As biocad_registry)
         Me.registry = registry
@@ -38,6 +39,7 @@ Public Class biocad_vocabulary
         db_biocyc = GetDatabaseResource("BioCyc").id
         db_mesh = GetDatabaseResource("NCBI MeSH").id
         db_wikipedia = GetDatabaseResource("Wikipedia").id
+        db_drugbank = GetDatabaseResource("DrugBank").id
     End Sub
 
     <MethodImpl(MethodImplOptions.AggressiveInlining)>

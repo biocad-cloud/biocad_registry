@@ -46,6 +46,11 @@ Public Class biocad_registry : Inherits biocad_registryModel.db_mysql
         End Get
     End Property
 
+    Public ReadOnly Property struct_data As TableModel(Of struct_data)
+        Get
+            Return m_struct_data
+        End Get
+    End Property
 
     Public Sub New(mysqli As ConnectionUri)
         MyBase.New(mysqli)

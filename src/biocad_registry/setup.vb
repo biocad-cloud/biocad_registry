@@ -286,6 +286,7 @@ Public Module setup
         Dim vocabulary As New biocad_vocabulary(registry)
         Dim metabolite_type As UInteger = vocabulary.GetRegistryEntity(biocad_vocabulary.EntityMetabolite).id
         Dim db_hmdb As UInteger = vocabulary.db_hmdb
+        Dim ontology_id As UInteger = vocabulary.GetVocabulary(biocad_vocabulary.ExternalDatabase, "WishartLab ClassyFire").id
 
         For Each met As metabolite In pull.populates(Of metabolite)(env)
             Dim pubchem_cid As String = Strings.Trim(met.pubchem_compound_id)
@@ -320,8 +321,153 @@ Public Module setup
             Dim m As metabolites = registry.metabolites.where(field("hmdb_id") = meta.ID).find(Of metabolites)
 
             If m Is Nothing Then
-
+                Call registry.metabolites.add(
+                    field("name") = name,
+                    field("hashcode") = hashcode,
+                    field("formula") = met.chemical_formula,
+                    field("exact_mass") = exact_mass,
+                    field("cas_id") = meta.xref.CAS.DefaultFirst,
+                    field("pubchem_cid") = pubchem_cid,
+                    field("chebi_id") = chebi_id,
+                    field("hmdb_id") = meta.ID,
+                    field("lipidmaps_id") = meta.xref.lipidmaps,
+                    field("kegg_id") = meta.xref.KEGG,
+                    field("biocyc") = meta.xref.MetaCyc,
+                    field("mesh_id") = meta.xref.MeSH,
+                    field("wikipedia") = meta.xref.Wikipedia,
+                    field("note") = meta.description
+                )
+                m = registry.metabolites.where(field("hmdb_id") = meta.ID).order_by("id", desc:=True).find(Of metabolites)
+            ElseIf m.note.StringEmpty(, True) Then
+                registry.metabolites.where(field("id") = m.id).save(field("note") = meta.description)
             End If
+
+            Dim updates As New List(Of FieldAssert)
+
+            If m.pubchem_cid = 0 AndAlso Not pubchem_cid Is Nothing Then
+                updates.Add(field("pubchem_cid") = pubchem_cid)
+            End If
+            If m.chebi_id = 0 AndAlso Not chebi_id Is Nothing Then
+                updates.Add(field("chebi_id") = chebi_id)
+            End If
+            If m.hmdb_id.StringEmpty Then
+                updates.Add(field("hmdb_id") = meta.ID)
+            End If
+            If m.kegg_id.StringEmpty AndAlso Not meta.xref.KEGG.StringEmpty Then
+                updates.Add(field("kegg_id") = meta.xref.KEGG)
+            End If
+            If m.lipidmaps_id.StringEmpty AndAlso Not meta.xref.lipidmaps.StringEmpty Then
+                updates.Add(field("lipidmaps_id") = meta.xref.lipidmaps)
+            End If
+            If m.mesh_id.StringEmpty AndAlso Not meta.xref.MeSH.StringEmpty Then
+                updates.Add(field("mesh_id") = meta.xref.MeSH)
+            End If
+            If m.wikipedia.StringEmpty AndAlso Not meta.xref.Wikipedia.StringEmpty Then
+                updates.Add(field("wikipedia") = meta.xref.Wikipedia)
+            End If
+            If m.cas_id.StringEmpty AndAlso Not meta.xref.CAS.DefaultFirst.StringEmpty Then
+                updates.Add(field("cas_id") = meta.xref.CAS.DefaultFirst)
+            End If
+            If m.biocyc.StringEmpty AndAlso Not meta.xref.MetaCyc.StringEmpty Then
+                updates.Add(field("biocyc") = meta.xref.MetaCyc)
+            End If
+
+            If updates.Any Then
+                Call registry.metabolites.where(field("id") = m.id).save(updates.ToArray)
+            End If
+
+            If Not pubchem_cid.StringEmpty Then
+                registry.db_xrefs.ignore.add(field("db_source") = db_hmdb, field("db_name") = vocabulary.db_pubchem, field("db_xref") = pubchem_cid, field("type") = metabolite_type, field("obj_id") = m.id)
+            End If
+            If Not chebi_id.StringEmpty Then
+                chebi_id = $"ChEBI:{chebi_id}"
+                registry.db_xrefs.ignore.add(field("db_source") = db_hmdb, field("db_name") = vocabulary.db_chebi, field("db_xref") = chebi_id, field("type") = metabolite_type, field("obj_id") = m.id)
+            End If
+
+            registry.db_xrefs.ignore.add(field("db_source") = db_hmdb, field("db_name") = vocabulary.db_hmdb, field("db_xref") = meta.ID, field("type") = metabolite_type, field("obj_id") = m.id)
+
+            If Not meta.xref.lipidmaps.StringEmpty Then
+                registry.db_xrefs.ignore.add(field("db_source") = db_hmdb, field("db_name") = vocabulary.db_lipidmaps, field("db_xref") = meta.xref.lipidmaps, field("type") = metabolite_type, field("obj_id") = m.id)
+            End If
+            If Not meta.xref.KEGG.StringEmpty Then
+                registry.db_xrefs.ignore.add(field("db_source") = db_hmdb, field("db_name") = vocabulary.db_kegg, field("db_xref") = meta.xref.KEGG, field("type") = metabolite_type, field("obj_id") = m.id)
+            End If
+
+            If Not meta.xref.MeSH.StringEmpty Then
+                registry.db_xrefs.ignore.add(field("db_source") = db_hmdb, field("db_name") = vocabulary.db_mesh, field("db_xref") = meta.xref.MeSH, field("type") = metabolite_type, field("obj_id") = m.id)
+            End If
+            If Not meta.xref.Wikipedia.StringEmpty Then
+                registry.db_xrefs.ignore.add(field("db_source") = db_hmdb, field("db_name") = vocabulary.db_wikipedia, field("db_xref") = meta.xref.Wikipedia, field("type") = metabolite_type, field("obj_id") = m.id)
+            End If
+            If Not meta.xref.MetaCyc.StringEmpty Then
+                registry.db_xrefs.ignore.add(field("db_source") = db_hmdb, field("db_name") = vocabulary.db_biocyc, field("db_xref") = meta.xref.MetaCyc, field("type") = metabolite_type, field("obj_id") = m.id)
+            End If
+            If Not meta.xref.DrugBank.StringEmpty Then
+                registry.db_xrefs.ignore.add(field("db_source") = db_hmdb, field("db_name") = vocabulary.db_drugbank, field("db_xref") = meta.xref.DrugBank, field("type") = metabolite_type, field("obj_id") = m.id)
+            End If
+
+            For Each id As String In meta.xref.CAS.SafeQuery
+                If id.StringEmpty Then
+                    Continue For
+                End If
+                registry.db_xrefs.ignore.add(field("db_source") = db_hmdb, field("db_name") = vocabulary.db_cas, field("db_xref") = id, field("type") = metabolite_type, field("obj_id") = m.id)
+            Next
+
+            If Not meta.xref.SMILES.StringEmpty Then
+                Dim struct = registry.struct_data.where(field("metabolite_id") = m.id).find(Of struct_data)
+
+                If struct Is Nothing Then
+                    registry.struct_data.add(
+                        field("metabolite_id") = m.id,
+                        field("checksum") = meta.xref.SMILES.MD5,
+                        field("smiles") = meta.xref.SMILES
+                    )
+                End If
+            End If
+
+            Dim kingdom As ontology = registry.ontology.where(field("ontology_id") = ontology_id, field("term_id") = meta.kingdom).find(Of ontology)
+
+            If kingdom Is Nothing Then
+                registry.ontology.add(field("ontology_id") = ontology_id, field("term_id") = meta.kingdom, field("term") = meta.kingdom)
+                kingdom = registry.ontology.where(field("ontology_id") = ontology_id, field("term_id") = meta.kingdom).find(Of ontology)
+            End If
+
+            Dim super_class As ontology = registry.ontology.where(field("ontology_id") = ontology_id, field("term_id") = meta.super_class).find(Of ontology)
+
+            If super_class Is Nothing Then
+                registry.ontology.add(field("ontology_id") = ontology_id, field("term_id") = meta.super_class, field("term") = meta.super_class)
+                super_class = registry.ontology.where(field("ontology_id") = ontology_id, field("term_id") = meta.super_class).find(Of ontology)
+                registry.ontology_relation.add(field("term_id") = super_class.id, field("is_a") = kingdom.id)
+            End If
+
+            Dim [class] As ontology = registry.ontology.where(field("ontology_id") = ontology_id, field("term_id") = meta.class).find(Of ontology)
+
+            If [class] Is Nothing Then
+                registry.ontology.add(field("ontology_id") = ontology_id, field("term_id") = meta.class, field("term") = meta.class)
+                [class] = registry.ontology.where(field("ontology_id") = ontology_id, field("term_id") = meta.class).find(Of ontology)
+                registry.ontology_relation.add(field("term_id") = [class].id, field("is_a") = super_class.id)
+            End If
+
+            Dim sub_class As ontology = registry.ontology.where(field("ontology_id") = ontology_id, field("term_id") = meta.sub_class).find(Of ontology)
+
+            If sub_class Is Nothing Then
+                registry.ontology.add(field("ontology_id") = ontology_id, field("term_id") = meta.sub_class, field("term") = meta.sub_class)
+                sub_class = registry.ontology.where(field("ontology_id") = ontology_id, field("term_id") = meta.sub_class).find(Of ontology)
+                registry.ontology_relation.add(field("term_id") = sub_class.id, field("is_a") = [class].id)
+            End If
+
+            Call registry.metabolite_class.add(field("metabolite_id") = m.id, field("class_id") = sub_class.id, field("note") = meta.ID)
+
+            For Each synonym As String In meta.synonym.JoinIterates({meta.name, meta.IUPACName}).Distinct
+                registry.synonym.add(
+                    field("obj_id") = m.id,
+                    field("type") = metabolite_type,
+                    field("db_source") = db_hmdb,
+                    field("synonym") = synonym,
+                    field("hashcode") = Strings.LCase(synonym).MD5,
+                    field("lang") = "en"
+                )
+            Next
         Next
 
         Return Nothing
