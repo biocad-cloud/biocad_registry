@@ -21,27 +21,17 @@ Imports SMRUCC.Rsharp.Runtime.Interop
 <Package("setup")>
 Public Module setup
 
-    ''' <summary>
-    ''' use kegg+refmet as template for make setup of the metabolites table
-    ''' </summary>
-    ''' <param name="kegg"></param>
-    ''' <param name="refmet"></param>
-    ''' <param name="env"></param>
-    ''' <returns></returns>
-    <ExportAPI("setup_metabolites")>
-    Public Function setup_metabolites(registry As biocad_registry,
-                                      <RRawVectorArgument> kegg As Object,
-                                      <RRawVectorArgument> refmet As Object,
-                                      Optional env As Environment = Nothing) As Object
+    <ExportAPI("setup_kegg")>
+    Public Function setup_kegg(registry As biocad_registry,
+                               <RRawVectorArgument>
+                               kegg As Object,
+                               Optional env As Environment = Nothing) As Object
 
         Dim keggLib As pipeline = pipeline.TryCreatePipeline(Of Compound)(kegg, env)
-        Dim refmetLib As pipeline = pipeline.TryCreatePipeline(Of RefMet)(refmet, env)
         Dim vocabulary As New biocad_vocabulary(registry)
 
         If keggLib.isError Then
             Return keggLib.getError
-        ElseIf refmetLib.isError Then
-            Return refmetLib.getError
         End If
 
         Dim kegg_db As UInteger = vocabulary.db_kegg
@@ -91,6 +81,29 @@ Public Module setup
             Next
         Next
 
+        Return Nothing
+    End Function
+
+    ''' <summary>
+    ''' use kegg+refmet as template for make setup of the metabolites table
+    ''' </summary>
+    ''' <param name="refmet"></param>
+    ''' <param name="env"></param>
+    ''' <returns></returns>
+    <ExportAPI("setup_refmet")>
+    Public Function setup_metabolites(registry As biocad_registry,
+                                      <RRawVectorArgument>
+                                      refmet As Object,
+                                      Optional env As Environment = Nothing) As Object
+
+        Dim refmetLib As pipeline = pipeline.TryCreatePipeline(Of RefMet)(refmet, env)
+        Dim vocabulary As New biocad_vocabulary(registry)
+        Dim metabolite_type As UInteger = vocabulary.GetRegistryEntity(biocad_vocabulary.EntityMetabolite).id
+
+        If refmetLib.isError Then
+            Return refmetLib.getError
+        End If
+
         Dim refmet_db As UInteger = vocabulary.GetDatabaseResource("RefMet").id
 
         For Each met As RefMet In refmetLib.populates(Of RefMet)(env)
@@ -132,8 +145,8 @@ Public Module setup
                         field("hashcode") = hashcode,
                         field("formula") = met.formula,
                         field("exact_mass") = exact_mass,
-                        field("pubchem_cid") = met.pubchem_cid,
-                        field("chebi_id") = met.chebi_id,
+                        field("pubchem_cid") = pubchem_cid,
+                        field("chebi_id") = chebi_id,
                         field("hmdb_id") = met.hmdb_id,
                         field("lipidmaps_id") = met.lipidmaps_id,
                         field("kegg_id") = met.kegg_id
