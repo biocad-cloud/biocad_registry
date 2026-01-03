@@ -458,10 +458,10 @@ Public Module setup
                 registry.ontology_relation.add(field("term_id") = sub_class.id, field("is_a") = [class].id)
             End If
 
-            Call registry.metabolite_class.add(field("metabolite_id") = m.id, field("class_id") = sub_class.id, field("note") = meta.ID)
+            Call registry.metabolite_class.ignore.add(field("metabolite_id") = m.id, field("class_id") = sub_class.id, field("note") = meta.ID)
 
             For Each synonym As String In meta.synonym.JoinIterates({meta.name, meta.IUPACName}).Distinct
-                registry.synonym.add(
+                registry.synonym.ignore.add(
                     field("obj_id") = m.id,
                     field("type") = metabolite_type,
                     field("db_source") = db_hmdb,
