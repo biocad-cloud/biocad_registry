@@ -484,6 +484,8 @@ Public Module setup
         Dim db_regprecise As UInteger = vocabulary.GetDatabaseResource("RegPrecise").id
 
         For Each genome As BacteriaRegulome In TqdmWrapper.Wrap(database.populates(Of BacteriaRegulome)(env).ToArray)
+            Dim taxid As UInteger = genome.genome.taxonomyId
+
             For Each TF As SMRUCC.genomics.Data.Regprecise.Regulator In genome.regulome.AsEnumerable
                 Dim motifPlaceholder As motif = registry.motif.where(field("name") = TF.regulog.name).find(Of motif)
 
@@ -497,7 +499,30 @@ Public Module setup
                 End If
 
                 For Each site As MotifFasta In TF.regulatorySites.SafeQuery
+                    Dim id As String = $"{site.locus_tag}:{site.position}"
+                    Dim check = registry.motif _
+                        .where(field("source_id") = id,
+                               field("source_db") = db_regprecise,
+                               field("model_id") = motifPlaceholder.id,
+                               field("organism_source") = taxid) _
+                        .find(Of nucleotide_data)
 
+                    If check Is Nothing Then
+                        registry.motif.add(
+                            field("source_id") = id,
+                            field("source_db") = db_regprecise,
+                            field("name") = If(site.name.StringEmpty, id, $"{site.name}:{site.position}"),
+                            field("function") = "",
+                            field("is_motif") = 1,
+                            field("left") = 0,
+                            field("strand") = "+",
+                            field("operon_id") = 0,
+                            field("model_id") = motifPlaceholder.id,
+                            field("organism_source") = taxid,
+                            field("sequence") = Strings.UCase(site.SequenceData),
+                            field("checksum") = Strings.UCase(site.SequenceData).MD5
+                        )
+                    End If
                 Next
             Next
         Next
