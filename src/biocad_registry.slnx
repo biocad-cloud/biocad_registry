@@ -17,6 +17,22 @@
       <Platform Solution="*|x64" Project="x64" />
     </Project>
   </Folder>
+  <Folder Name="/framework/galaxy/">
+    <Project Path="../../galaxy/src/dockpanelsuite/Themes/ThemeVS2015.vbproj">
+      <Platform Solution="*|x64" Project="x64" />
+    </Project>
+    <Project Path="../../galaxy/src/dockpanelsuite/VSDockPanel/VSDockPanel.vbproj">
+      <BuildType Solution="Rsharp_app_release|*" Project="MEMI-Desktop" />
+      <Platform Solution="*|x64" Project="x64" />
+    </Project>
+    <Project Path="../../galaxy/src/GalaxyWorkbench/GalaxyWorkbench.vbproj">
+      <Platform Solution="*|x64" Project="x64" />
+    </Project>
+    <Project Path="../../galaxy/src/Microsoft.Windows.FeatureAPI/Microsoft.Windows.FeatureAPI.vbproj" Id="3d61f3a9-a8e0-4195-9133-6fd8e4b82d54">
+      <BuildType Solution="Rsharp_app_release|*" Project="MEMI-Desktop" />
+      <Platform Solution="*|x64" Project="x64" />
+    </Project>
+  </Folder>
   <Folder Name="/framework/gcmodeller/">
     <Project Path="../../GCModeller/src/GCModeller/analysis/OperonMapper/OperonMapper.vbproj">
       <Platform Solution="*|x64" Project="x64" />
@@ -79,7 +95,16 @@
     <Project Path="../../GCModeller/src/runtime/sciBASIC#/Data_science/Mathematica/Math/Math/Math.NET5.vbproj">
       <Platform Solution="*|x64" Project="x64" />
     </Project>
+    <Project Path="../../GCModeller/src/runtime/sciBASIC#/gr/Drawing-net4.8/Drawing-net4.8.vbproj">
+      <Platform Solution="*|x64" Project="x64" />
+    </Project>
     <Project Path="../../GCModeller/src/runtime/sciBASIC#/Microsoft.VisualBasic.Core/src/Core.vbproj">
+      <Platform Solution="*|x64" Project="x64" />
+    </Project>
+    <Project Path="../../GCModeller/src/runtime/sciBASIC#/mime/text%html/html_netcore5.vbproj">
+      <Platform Solution="*|x64" Project="x64" />
+    </Project>
+    <Project Path="../../GCModeller/src/runtime/sciBASIC#/mime/text%markdown/markdown.NET5.vbproj">
       <Platform Solution="*|x64" Project="x64" />
     </Project>
   </Folder>
@@ -161,6 +186,10 @@
     </Project>
   </Folder>
   <Project Path="biocad_registry/biocad_registry.vbproj">
+    <Platform Solution="*|x64" Project="x64" />
+  </Project>
+  <Project Path="RegistryTool/RegistryTool.vbproj">
+    <BuildType Solution="Rsharp_app_release|*" Project="gcmodeller_desktop" />
     <Platform Solution="*|x64" Project="x64" />
   </Project>
   <Project Path="registry_data/mysql/mysql_registry.shproj" Id="bd58c2b6-4588-4be9-a8ab-9be85f023d12" />

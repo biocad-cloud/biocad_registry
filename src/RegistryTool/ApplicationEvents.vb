@@ -1,7 +1,7 @@
 ﻿Imports System.Runtime.CompilerServices
-Imports biocad_storage
 Imports Galaxy.Workbench
 Imports Oracle.LinuxCompatibility.MySQL.Uri
+Imports registry_data
 Imports RegistryTool.Configs
 
 Namespace My
