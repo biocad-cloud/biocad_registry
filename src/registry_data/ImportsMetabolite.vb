@@ -1,8 +1,27 @@
 ﻿Imports System.Runtime.CompilerServices
+Imports Microsoft.VisualBasic.Linq
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports registry_data.biocad_registryModel
 
 Public Module ImportsMetabolite
+
+    <Extension>
+    Public Sub SaveStructureData(registry As biocad_registry,
+                                 m As metabolites,
+                                 smiles As String)
+
+        If Not smiles.StringEmpty Then
+            Dim struct = registry.struct_data.where(field("metabolite_id") = m.id).find(Of struct_data)
+
+            If struct Is Nothing Then
+                registry.struct_data.add(
+                    field("metabolite_id") = m.id,
+                    field("checksum") = smiles.MD5,
+                    field("smiles") = smiles
+                )
+            End If
+        End If
+    End Sub
 
     <Extension>
     Public Sub SaveMetaboliteClass(registry As biocad_registry,
@@ -105,5 +124,30 @@ Public Module ImportsMetabolite
                      field("class_id") = node.id,
                      field("note") = source_id)
         End If
+    End Sub
+
+    <Extension>
+    Public Sub SaveSynonyms(registry As biocad_registry,
+                            m As metabolites,
+                            synonyms As IEnumerable(Of String),
+                            db_source As UInteger)
+        Dim metabolite_type As UInteger = New biocad_vocabulary(registry).metabolite_type
+
+        For Each synonym As String In synonyms.SafeQuery
+            If synonym Is Nothing Then
+                Continue For
+            End If
+
+            Call registry.synonym _
+                .ignore _
+                .add(
+                    field("obj_id") = m.id,
+                    field("type") = metabolite_type,
+                    field("db_source") = db_source,
+                    field("synonym") = synonym,
+                    field("hashcode") = Strings.LCase(synonym).MD5,
+                    field("lang") = "en"
+            )
+        Next
     End Sub
 End Module

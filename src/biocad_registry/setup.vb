@@ -447,85 +447,9 @@ Public Module setup
                 registry.db_xrefs.ignore.add(field("db_source") = db_hmdb, field("db_name") = vocabulary.db_cas, field("db_xref") = id, field("type") = metabolite_type, field("obj_id") = m.id)
             Next
 
-            If Not meta.xref.SMILES.StringEmpty Then
-                Dim struct = registry.struct_data.where(field("metabolite_id") = m.id).find(Of struct_data)
-
-                If struct Is Nothing Then
-                    registry.struct_data.add(
-                        field("metabolite_id") = m.id,
-                        field("checksum") = meta.xref.SMILES.MD5,
-                        field("smiles") = meta.xref.SMILES
-                    )
-                End If
-            End If
-
-            Dim kingdom As ontology
-            Dim super_class As ontology
-            Dim [class] As ontology
-            Dim sub_class As ontology
-            Dim node As ontology = Nothing
-
-            If Not meta.kingdom.StringEmpty Then
-                kingdom = registry.ontology.where(field("ontology_id") = ontology_id, field("term_id") = meta.kingdom).find(Of ontology)
-
-                If kingdom Is Nothing Then
-                    registry.ontology.add(field("ontology_id") = ontology_id, field("term_id") = meta.kingdom, field("term") = meta.kingdom)
-                    kingdom = registry.ontology.where(field("ontology_id") = ontology_id, field("term_id") = meta.kingdom).find(Of ontology)
-                End If
-
-                If kingdom IsNot Nothing Then node = kingdom
-
-                If kingdom IsNot Nothing AndAlso Not meta.super_class.StringEmpty Then
-                    super_class = registry.ontology.where(field("ontology_id") = ontology_id, field("term_id") = meta.super_class).find(Of ontology)
-
-                    If super_class Is Nothing Then
-                        registry.ontology.add(field("ontology_id") = ontology_id, field("term_id") = meta.super_class, field("term") = meta.super_class)
-                        super_class = registry.ontology.where(field("ontology_id") = ontology_id, field("term_id") = meta.super_class).find(Of ontology)
-                        registry.ontology_relation.add(field("term_id") = super_class.id, field("is_a") = kingdom.id)
-                    End If
-
-                    If super_class IsNot Nothing Then node = super_class
-
-                    If super_class IsNot Nothing AndAlso Not meta.class.StringEmpty Then
-                        [class] = registry.ontology.where(field("ontology_id") = ontology_id, field("term_id") = meta.class).find(Of ontology)
-
-                        If [class] Is Nothing Then
-                            registry.ontology.add(field("ontology_id") = ontology_id, field("term_id") = meta.class, field("term") = meta.class)
-                            [class] = registry.ontology.where(field("ontology_id") = ontology_id, field("term_id") = meta.class).find(Of ontology)
-                            registry.ontology_relation.add(field("term_id") = [class].id, field("is_a") = super_class.id)
-                        End If
-
-                        If [class] IsNot Nothing Then node = [class]
-
-                        If [class] IsNot Nothing AndAlso Not meta.sub_class.StringEmpty Then
-                            sub_class = registry.ontology.where(field("ontology_id") = ontology_id, field("term_id") = meta.sub_class).find(Of ontology)
-
-                            If sub_class Is Nothing Then
-                                registry.ontology.add(field("ontology_id") = ontology_id, field("term_id") = meta.sub_class, field("term") = meta.sub_class)
-                                sub_class = registry.ontology.where(field("ontology_id") = ontology_id, field("term_id") = meta.sub_class).find(Of ontology)
-                                registry.ontology_relation.add(field("term_id") = sub_class.id, field("is_a") = [class].id)
-                            End If
-
-                            node = sub_class
-                        End If
-                    End If
-                End If
-            End If
-
-            If node IsNot Nothing Then
-                Call registry.metabolite_class.ignore.add(field("metabolite_id") = m.id, field("class_id") = node.id, field("note") = meta.ID)
-            End If
-
-            For Each synonym As String In meta.synonym.JoinIterates({meta.name, meta.IUPACName}).Distinct
-                registry.synonym.ignore.add(
-                    field("obj_id") = m.id,
-                    field("type") = metabolite_type,
-                    field("db_source") = db_hmdb,
-                    field("synonym") = synonym,
-                    field("hashcode") = Strings.LCase(synonym).MD5,
-                    field("lang") = "en"
-                )
-            Next
+            Call registry.SaveStructureData(m, meta.xref.SMILES)
+            Call registry.SaveMetaboliteClass(m, ontology_id, (meta.kingdom, meta.super_class, meta.class, meta.sub_class), meta.ID)
+            Call registry.SaveSynonyms(m, meta.synonym.JoinIterates({meta.name, meta.IUPACName}).Distinct, db_hmdb)
         Next
 
         Return Nothing

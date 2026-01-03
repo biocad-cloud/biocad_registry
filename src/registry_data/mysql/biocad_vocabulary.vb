@@ -28,6 +28,8 @@ Public Class biocad_vocabulary
     Public ReadOnly Property db_wikipedia As UInteger
     Public ReadOnly Property db_drugbank As UInteger
 
+    Public ReadOnly Property metabolite_type As UInteger
+
     Sub New(registry As biocad_registry)
         Me.registry = registry
 
@@ -41,6 +43,8 @@ Public Class biocad_vocabulary
         db_mesh = GetDatabaseResource("NCBI MeSH").id
         db_wikipedia = GetDatabaseResource("Wikipedia").id
         db_drugbank = GetDatabaseResource("DrugBank").id
+
+        metabolite_type = GetRegistryEntity(biocad_vocabulary.EntityMetabolite).id
     End Sub
 
     <MethodImpl(MethodImplOptions.AggressiveInlining)>
