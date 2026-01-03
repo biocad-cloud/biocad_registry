@@ -49,10 +49,16 @@
     <Project Path="../../GCModeller/src/GCModeller/data/RCSB PDB/RCSB PDB.vbproj">
       <Platform Solution="*|x64" Project="x64" />
     </Project>
+    <Project Path="../../GCModeller/src/GCModeller/data/RegulonDatabase/RegulonDatabase.NET5.vbproj">
+      <Platform Solution="*|x64" Project="x64" />
+    </Project>
     <Project Path="../../GCModeller/src/GCModeller/foundation/OBO_Foundry/obo_foundry-netcore5.vbproj">
       <Platform Solution="*|x64" Project="x64" />
     </Project>
     <Project Path="../../GCModeller/src/GCModeller/models/BioCyc/BioCyc.vbproj">
+      <Platform Solution="*|x64" Project="x64" />
+    </Project>
+    <Project Path="../../GCModeller/src/interops/localblast/LocalBLAST/localblast.NET5.vbproj">
       <Platform Solution="*|x64" Project="x64" />
     </Project>
     <Project Path="../../GCModeller/src/workbench/modules/Knowledge_base/ncbi_kb/ncbi_kb.vbproj">

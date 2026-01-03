@@ -3,7 +3,6 @@ Imports BioNovoGene.BioDeep.Chemistry
 Imports BioNovoGene.BioDeep.Chemistry.LipidMaps
 Imports BioNovoGene.BioDeep.Chemistry.MetaLib
 Imports BioNovoGene.BioDeep.Chemistry.MetaLib.Models
-Imports BioNovoGene.BioDeep.Chemistry.TMIC
 Imports BioNovoGene.BioDeep.Chemistry.TMIC.HMDB
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm
@@ -16,6 +15,8 @@ Imports registry_data
 Imports registry_data.biocad_registryModel
 Imports SMRUCC.genomics.Assembly.KEGG.DBGET.bGetObject
 Imports SMRUCC.genomics.ComponentModel.DBLinkBuilder
+Imports SMRUCC.genomics.Data.Regprecise
+Imports SMRUCC.genomics.Data.Regtransbase.WebServices
 Imports SMRUCC.Rsharp.Runtime
 Imports SMRUCC.Rsharp.Runtime.Internal.[Object]
 Imports SMRUCC.Rsharp.Runtime.Interop
@@ -725,6 +726,46 @@ Public Module setup
                     field("hashcode") = Strings.LCase(synonym).MD5,
                     field("lang") = "en"
                 )
+            Next
+        Next
+
+        Return Nothing
+    End Function
+
+    ''' <summary>
+    ''' Save RegPrecise motif sites 
+    ''' </summary>
+    ''' <param name="registry"></param>
+    ''' <param name="genomes"></param>
+    ''' <param name="env"></param>
+    ''' <returns></returns>
+    <ExportAPI("save_motif")>
+    Public Function save_regprecise(registry As biocad_registry, <RRawVectorArgument> genomes As Object, Optional env As Environment = Nothing) As Object
+        Dim database As pipeline = pipeline.TryCreatePipeline(Of BacteriaRegulome)(genomes, env)
+
+        If database.isError Then
+            Return database.getError
+        End If
+
+        Dim vocabulary As New biocad_vocabulary(registry)
+        Dim db_regprecise As UInteger = vocabulary.GetDatabaseResource("RegPrecise").id
+
+        For Each genome As BacteriaRegulome In TqdmWrapper.Wrap(database.populates(Of BacteriaRegulome)(env).ToArray)
+            For Each TF As SMRUCC.genomics.Data.Regprecise.Regulator In genome.regulome.AsEnumerable
+                Dim motifPlaceholder As motif = registry.motif.where(field("name") = TF.regulog.name).find(Of motif)
+
+                If motifPlaceholder Is Nothing Then
+                    registry.motif.add(field("name") = TF.regulog.name,
+                                       field("family") = TF.family,
+                                       field("pwm") = "",
+                                       field("width") = 0,
+                                       field("note") = TF.regulationMode & " - " & If(TF.pathway, TF.biological_process.JoinBy(";")))
+                    motifPlaceholder = registry.motif.where(field("name") = TF.regulog.name).find(Of motif)
+                End If
+
+                For Each site As MotifFasta In TF.regulatorySites.SafeQuery
+
+                Next
             Next
         Next
 
