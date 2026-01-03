@@ -15,6 +15,7 @@ Imports registry_data
 Imports registry_data.biocad_registryModel
 Imports SMRUCC.genomics.Assembly.KEGG.DBGET.bGetObject
 Imports SMRUCC.genomics.ComponentModel.DBLinkBuilder
+Imports SMRUCC.genomics.Data
 Imports SMRUCC.genomics.Data.Regprecise
 Imports SMRUCC.genomics.Data.Regtransbase.WebServices
 Imports SMRUCC.Rsharp.Runtime
@@ -508,6 +509,8 @@ Public Module setup
                         .find(Of nucleotide_data)
 
                     If check Is Nothing Then
+                        Dim seq = Strings.UCase(Regtransbase.WebServices.Regulator.SequenceTrimming(site.SequenceData)).Replace("-", "N")
+
                         registry.nucleotide_data.add(
                             field("source_id") = id,
                             field("source_db") = db_regprecise,
@@ -519,8 +522,8 @@ Public Module setup
                             field("operon_id") = 0,
                             field("model_id") = motifPlaceholder.id,
                             field("organism_source") = taxid,
-                            field("sequence") = Strings.UCase(site.SequenceData),
-                            field("checksum") = Strings.UCase(site.SequenceData).MD5
+                            field("sequence") = seq,
+                            field("checksum") = seq.MD5
                         )
                     End If
                 Next
