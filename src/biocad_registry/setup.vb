@@ -347,8 +347,10 @@ Public Module setup
             Dim model As registry_resolver = registry.registry_resolver.where(field("type") = metabolite_type, field("symbol_id") = m.id).find(Of registry_resolver)
 
             If model Is Nothing Then
+                Dim model_symbol As String = met.name.makeSymbol
+
                 registry.registry_resolver.add(
-                    field("register_name") = met.name,
+                    field("register_name") = model_symbol,
                     field("type") = metabolite_type,
                     field("symbol_id") = m.id
                 )

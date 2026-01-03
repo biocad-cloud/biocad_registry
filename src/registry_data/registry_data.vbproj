@@ -91,7 +91,6 @@
 
   <ItemGroup>
     <Folder Include="exports\" />
-    <Folder Include="views\" />
   </ItemGroup>
 
   <Import Project="mysql\mysql_registry.projitems" Label="Shared" />
