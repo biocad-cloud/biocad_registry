@@ -10,7 +10,15 @@ declare namespace setup {
    /**
      * @param env default value Is ``null``.
    */
+   function setup_hmdb(registry: object, hmdb: any, env?: object): any;
+   /**
+     * @param env default value Is ``null``.
+   */
    function setup_kegg(registry: object, kegg: any, env?: object): any;
+   /**
+     * @param env default value Is ``null``.
+   */
+   function setup_lipidmaps(registry: object, lipidmaps: any, env?: object): any;
    /**
      * @param env default value Is ``null``.
    */
