@@ -52,6 +52,18 @@ Public Class biocad_registry : Inherits biocad_registryModel.db_mysql
         End Get
     End Property
 
+    Public ReadOnly Property topic As TableModel(Of topic)
+        Get
+            Return m_topic
+        End Get
+    End Property
+
+    Public ReadOnly Property registry_resolver As TableModel(Of registry_resolver)
+        Get
+            Return m_registry_resolver
+        End Get
+    End Property
+
     Public Sub New(mysqli As ConnectionUri)
         MyBase.New(mysqli)
     End Sub

@@ -7,6 +7,7 @@ Public Class biocad_vocabulary
 
     Public Const ExternalDatabase As String = "External Database"
     Public Const EntityType As String = "Entity Type"
+    Public Const Topic As String = "Topic"
 
     Public Const EntityMetabolite As String = "Metabolite"
     Public Const EntityNucleotide As String = "Nucleotide"
@@ -49,6 +50,15 @@ Public Class biocad_vocabulary
             name.ToLower,
             lazyValue:=Function(dbname)
                            Return GetVocabulary(ExternalDatabase, name)
+                       End Function)
+    End Function
+
+    Public Function GetTopic(name As String) As vocabulary
+        Static cache As New Dictionary(Of String, vocabulary)
+        Return cache.ComputeIfAbsent(
+            name.ToLower,
+            lazyValue:=Function(topic)
+                           Return GetVocabulary(biocad_vocabulary.Topic, topic)
                        End Function)
     End Function
 

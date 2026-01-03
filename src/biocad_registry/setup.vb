@@ -344,6 +344,35 @@ Public Module setup
                 registry.metabolites.where(field("id") = m.id).save(field("note") = meta.description)
             End If
 
+            Dim model As registry_resolver = registry.registry_resolver.where(field("type") = metabolite_type, field("symbol_id") = m.id).find(Of registry_resolver)
+
+            If model Is Nothing Then
+                registry.registry_resolver.add(
+                    field("register_name") = met.name,
+                    field("type") = metabolite_type,
+                    field("symbol_id") = m.id
+                )
+                model = registry.registry_resolver.where(field("type") = metabolite_type, field("symbol_id") = m.id).find(Of registry_resolver)
+            End If
+
+            If model IsNot Nothing AndAlso met.biological_properties IsNot Nothing Then
+                Dim biospecimen As String() = met.biological_properties.biospecimen_locations.biospecimen
+                Dim cellular_locations As String() = met.biological_properties.cellular_locations.cellular
+                Dim tissues As String() = met.biological_properties.tissue_locations.tissue
+
+                For Each topic As String In biospecimen.JoinIterates(cellular_locations).JoinIterates(tissues)
+                    If topic.StringEmpty(, True) Then
+                        Dim term As vocabulary = vocabulary.GetTopic(topic)
+
+                        Call registry.topic.ignore.add(
+                            field("topic_id") = term.id,
+                            field("model_id") = model.id,
+                            field("note") = meta.ID
+                        )
+                    End If
+                Next
+            End If
+
             Dim updates As New List(Of FieldAssert)
 
             If m.pubchem_cid = 0 AndAlso Not pubchem_cid Is Nothing Then
