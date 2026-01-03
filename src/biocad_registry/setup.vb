@@ -363,7 +363,7 @@ Public Module setup
                 Dim tissues As String() = met.biological_properties.tissue_locations.tissue
 
                 For Each topic As String In biospecimen.JoinIterates(cellular_locations).JoinIterates(tissues)
-                    If topic.StringEmpty(, True) Then
+                    If Not topic.StringEmpty(, True) Then
                         Dim term As vocabulary = vocabulary.GetTopic(topic)
 
                         Call registry.topic.ignore.add(
