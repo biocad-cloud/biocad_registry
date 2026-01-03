@@ -500,7 +500,7 @@ Public Module setup
 
                 For Each site As MotifFasta In TF.regulatorySites.SafeQuery
                     Dim id As String = $"{site.locus_tag}:{site.position}"
-                    Dim check = registry.motif _
+                    Dim check = registry.nucleotide_data _
                         .where(field("source_id") = id,
                                field("source_db") = db_regprecise,
                                field("model_id") = motifPlaceholder.id,
@@ -508,7 +508,7 @@ Public Module setup
                         .find(Of nucleotide_data)
 
                     If check Is Nothing Then
-                        registry.motif.add(
+                        registry.nucleotide_data.add(
                             field("source_id") = id,
                             field("source_db") = db_regprecise,
                             field("name") = If(site.name.StringEmpty, id, $"{site.name}:{site.position}"),

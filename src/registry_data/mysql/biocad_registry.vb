@@ -70,6 +70,12 @@ Public Class biocad_registry : Inherits biocad_registryModel.db_mysql
         End Get
     End Property
 
+    Public ReadOnly Property nucleotide_data As TableModel(Of nucleotide_data)
+        Get
+            Return m_nucleotide_data
+        End Get
+    End Property
+
     Public Sub New(mysqli As ConnectionUri)
         MyBase.New(mysqli)
     End Sub
