@@ -10,6 +10,10 @@ declare namespace setup {
    /**
      * @param env default value Is ``null``.
    */
+   function save_motif(registry: object, genomes: any, env?: object): any;
+   /**
+     * @param env default value Is ``null``.
+   */
    function setup_hmdb(registry: object, hmdb: any, env?: object): any;
    /**
      * @param env default value Is ``null``.

@@ -6,3 +6,4 @@
 + [setup_refmet](setup/setup_refmet.1) 
 + [setup_hmdb](setup/setup_hmdb.1) 
 + [setup_lipidmaps](setup/setup_lipidmaps.1) 
++ [save_motif](setup/save_motif.1) 
