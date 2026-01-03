@@ -402,7 +402,7 @@ Public Module setup
         Dim db_lipidmaps As UInteger = vocabulary.db_lipidmaps
         Dim ontology_id As UInteger = db_lipidmaps
 
-        For Each lipid As LipidMaps.MetaData In pull.populates(Of LipidMaps.MetaData)(env)
+        For Each lipid As LipidMaps.MetaData In TqdmWrapper.Wrap(pull.populates(Of LipidMaps.MetaData)(env).ToArray)
             Dim pubchem_cid As String = Strings.Trim(lipid.PUBCHEM_CID)
             Dim chebi_id As String = Strings.Trim(lipid.CHEBI_ID)
             Dim name As String = Strings.Trim(lipid.NAME)
