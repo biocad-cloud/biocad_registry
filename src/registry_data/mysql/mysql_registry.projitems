@@ -11,6 +11,7 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)biocad_registry.vb" />
     <Compile Include="$(MSBuildThisFileDirectory)biocad_vocabulary.vb" />
+    <Compile Include="$(MSBuildThisFileDirectory)mysql\compartment_enrich.vb" />
     <Compile Include="$(MSBuildThisFileDirectory)mysql\compartment_location.vb" />
     <Compile Include="$(MSBuildThisFileDirectory)mysql\complex.vb" />
     <Compile Include="$(MSBuildThisFileDirectory)mysql\conserved_operon.vb" />

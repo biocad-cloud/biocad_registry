@@ -326,6 +326,13 @@ Public Module setup
                 Next
 
                 For Each location As String In cellular_locations
+                    Dim loc = registry.compartment_location.where(field("name") = location).find(Of compartment_location)
+
+                    If loc Is Nothing Then
+                        registry.compartment_location.add(field("name") = location, field("fullname") = location)
+                        loc = registry.compartment_location.where(field("name") = location).find(Of compartment_location)
+                    End If
+
 
                 Next
             End If

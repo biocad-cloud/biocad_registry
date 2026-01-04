@@ -5,6 +5,7 @@ Imports Oracle.LinuxCompatibility.MySQL.Uri
 Namespace biocad_registryModel
 
 Public MustInherit Class db_mysql : Inherits IDatabase
+Protected ReadOnly m_compartment_enrich As TableModel(Of compartment_enrich)
 Protected ReadOnly m_compartment_location As TableModel(Of compartment_location)
 Protected ReadOnly m_complex As TableModel(Of complex)
 Protected ReadOnly m_conserved_operon As TableModel(Of conserved_operon)
@@ -40,6 +41,7 @@ Protected ReadOnly m_vocabulary As TableModel(Of vocabulary)
 Protected Sub New(mysqli As ConnectionUri)
 Call MyBase.New(mysqli)
 
+Me.m_compartment_enrich = model(Of compartment_enrich)()
 Me.m_compartment_location = model(Of compartment_location)()
 Me.m_complex = model(Of complex)()
 Me.m_conserved_operon = model(Of conserved_operon)()
