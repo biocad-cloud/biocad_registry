@@ -293,59 +293,8 @@ Public Module setup
         Dim ontology_id As UInteger = vocabulary.GetVocabulary(biocad_vocabulary.ExternalDatabase, "WishartLab ClassyFire").id
 
         For Each met As metabolite In pull.populates(Of metabolite)(env)
-            Dim pubchem_cid As String = Strings.Trim(met.pubchem_compound_id)
-            Dim chebi_id As String = Strings.Trim(met.chebi_id)
-            Dim name As String = Strings.Trim(met.name)
-            Dim hashcode As String = name.ToLower.MD5
-            Dim exact_mass As Double = FormulaScanner.EvaluateExactMass(met.chemical_formula)
-
-            If exact_mass < 0 Then
-                exact_mass = 0
-            End If
-
-            If Not pubchem_cid.StringEmpty(, True) Then
-                pubchem_cid = pubchem_cid.Match("\d+")
-            Else
-                pubchem_cid = Nothing
-            End If
-            If Not chebi_id.StringEmpty(, True) Then
-                chebi_id = chebi_id.Match("\d+")
-            Else
-                chebi_id = Nothing
-            End If
-
-            If pubchem_cid = "" Then
-                pubchem_cid = Nothing
-            End If
-            If chebi_id = "" Then
-                chebi_id = Nothing
-            End If
-
             Dim meta As MetaLib = TMIC.HMDB.CreateReferenceData(met)
-            Dim m As metabolites = registry.metabolites.where(field("hmdb_id") = meta.ID).find(Of metabolites)
-
-            If m Is Nothing Then
-                Call registry.metabolites.add(
-                    field("name") = name,
-                    field("hashcode") = hashcode,
-                    field("formula") = met.chemical_formula,
-                    field("exact_mass") = exact_mass,
-                    field("cas_id") = meta.xref.CAS.DefaultFirst,
-                    field("pubchem_cid") = pubchem_cid,
-                    field("chebi_id") = chebi_id,
-                    field("hmdb_id") = meta.ID,
-                    field("lipidmaps_id") = meta.xref.lipidmaps,
-                    field("kegg_id") = meta.xref.KEGG,
-                    field("biocyc") = meta.xref.MetaCyc,
-                    field("mesh_id") = meta.xref.MeSH,
-                    field("wikipedia") = meta.xref.Wikipedia,
-                    field("note") = meta.description
-                )
-                m = registry.metabolites.where(field("hmdb_id") = meta.ID).order_by("id", desc:=True).find(Of metabolites)
-            ElseIf m.note.StringEmpty(, True) Then
-                registry.metabolites.where(field("id") = m.id).save(field("note") = meta.description)
-            End If
-
+            Dim m As metabolites = registry.FindMolecule(meta, primaryKey:="hmdb_id")
             Dim model As registry_resolver = registry.registry_resolver.where(field("type") = metabolite_type, field("symbol_id") = m.id).find(Of registry_resolver)
 
             If model Is Nothing Then
@@ -364,7 +313,7 @@ Public Module setup
                 Dim cellular_locations As String() = met.biological_properties.cellular_locations.cellular
                 Dim tissues As String() = met.biological_properties.tissue_locations.tissue
 
-                For Each topic As String In biospecimen.JoinIterates(cellular_locations).JoinIterates(tissues)
+                For Each topic As String In biospecimen.JoinIterates(tissues)
                     If Not topic.StringEmpty(, True) Then
                         Dim term As vocabulary = vocabulary.GetTopic(topic)
 
@@ -375,9 +324,13 @@ Public Module setup
                         )
                     End If
                 Next
+
+                For Each location As String In cellular_locations
+
+                Next
             End If
 
-            Call registry.SaveDbLinks(vocabulary, meta, m, db_hmdb, pubchem_cid, chebi_id)
+            Call registry.SaveDbLinks(vocabulary, meta, m, db_hmdb)
             Call registry.SaveStructureData(m, meta.xref.SMILES)
             Call registry.SaveMetaboliteClass(m, ontology_id, (meta.kingdom, meta.super_class, meta.class, meta.sub_class), meta.ID)
             Call registry.SaveSynonyms(m, meta.synonym.JoinIterates({meta.name, meta.IUPACName}).Distinct, db_hmdb)

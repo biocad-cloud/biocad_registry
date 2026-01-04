@@ -132,13 +132,14 @@ Public Module ImportsMetabolite
                             synonyms As IEnumerable(Of String),
                             db_source As UInteger)
         Dim metabolite_type As UInteger = New biocad_vocabulary(registry).metabolite_type
+        Dim trans As CommitTransaction = registry.synonym.open_transaction.ignore
 
         For Each synonym As String In synonyms.SafeQuery
             If synonym Is Nothing Then
                 Continue For
             End If
 
-            Call registry.synonym _
+            Call trans _
                 .ignore _
                 .add(
                     field("obj_id") = m.id,
@@ -149,5 +150,7 @@ Public Module ImportsMetabolite
                     field("lang") = "en"
             )
         Next
+
+        Call trans.commit()
     End Sub
 End Module
