@@ -269,8 +269,8 @@ Public Module setup
         Dim metabolite_type As UInteger = vocabulary.GetRegistryEntity(biocad_vocabulary.EntityMetabolite).id
         Dim db_chebi As UInteger = vocabulary.db_chebi
 
-        For Each term In chebi.GetRawTerms
-
+        For Each str As RawTerm In chebi.GetRawTerms
+            Dim term As New term
         Next
 
         For Each meta As Models.MetaInfo In TqdmWrapper.Wrap(metabolites)
