@@ -457,6 +457,10 @@ Public Module setup
                 registry.metabolites.where(field("id") = m.id).save(field("note") = meta.description)
             End If
 
+            If m.name.StringEmpty Then
+                registry.metabolites.where(field("id") = m.id).save(field("name") = meta.name)
+            End If
+
             Call registry.SaveDbLinks(vocabulary, meta, m, db_lipidmaps, pubchem_cid, chebi_id)
             Call registry.SaveStructureData(m, meta.xref.SMILES)
             Call registry.SaveMetaboliteClass(m, ontology_id, (meta.kingdom, meta.super_class, meta.class, meta.sub_class), meta.ID)
