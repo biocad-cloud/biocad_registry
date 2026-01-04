@@ -82,6 +82,12 @@ Public Class biocad_registry : Inherits biocad_registryModel.db_mysql
         End Get
     End Property
 
+    Public ReadOnly Property compartment_enrich As TableModel(Of compartment_enrich)
+        Get
+            Return m_compartment_enrich
+        End Get
+    End Property
+
     Public Sub New(mysqli As ConnectionUri)
         MyBase.New(mysqli)
     End Sub
