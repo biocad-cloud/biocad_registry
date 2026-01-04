@@ -49,6 +49,9 @@ Module MetaboliteData
         If m.biocyc.StringEmpty AndAlso Not meta.xref.MetaCyc.StringEmpty Then
             updates.Add(field("biocyc") = meta.xref.MetaCyc)
         End If
+        If m.drugbank_id.StringEmpty AndAlso Not meta.xref.DrugBank.StringEmpty Then
+            updates.Add(field("drugbank_id") = meta.xref.DrugBank)
+        End If
 
         If updates.Any Then
             Call trans.add(registry.metabolites.where(field("id") = m.id).save_sql(updates.ToArray))
@@ -160,9 +163,10 @@ Module MetaboliteData
                 field("biocyc") = meta.xref.MetaCyc,
                 field("mesh_id") = meta.xref.MeSH,
                 field("wikipedia") = meta.xref.Wikipedia,
+                field("drugbank_id") = meta.xref.DrugBank,
                 field("note") = meta.description
             )
-            m = registry.metabolites.where(field("hmdb_id") = meta.ID).order_by("id", desc:=True).find(Of metabolites)
+            m = registry.metabolites.where(field(primaryKey) = meta.ID).order_by("id", desc:=True).find(Of metabolites)
         Else
             If m.note.StringEmpty(, True) Then
                 registry.metabolites.where(field("id") = m.id).save(field("note") = meta.description)
