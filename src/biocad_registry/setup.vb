@@ -205,7 +205,7 @@ Public Module setup
                     End If
                 Next
 
-                For Each location As String In cellular_locations
+                For Each location As String In cellular_locations.SafeQuery
                     Dim loc = registry.compartment_location.where(field("name") = location).find(Of compartment_location)
 
                     If loc Is Nothing Then
