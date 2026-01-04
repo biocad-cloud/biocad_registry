@@ -19,6 +19,7 @@ Module MetaboliteData
         Dim updates As New List(Of FieldAssert)
         Dim pubchem_cid As String = Strings.Trim(meta.xref.pubchem).int_id
         Dim chebi_id As String = Strings.Trim(meta.xref.chebi).int_id
+        ' transaction of registry.db_xrefs
         Dim trans As CommitTransaction = registry.db_xrefs.open_transaction.ignore
 
         If m.pubchem_cid = 0 AndAlso Not pubchem_cid Is Nothing Then

@@ -312,12 +312,13 @@ Public Module setup
                 Dim biospecimen As String() = met.biological_properties.biospecimen_locations.biospecimen
                 Dim cellular_locations As String() = met.biological_properties.cellular_locations.cellular
                 Dim tissues As String() = met.biological_properties.tissue_locations.tissue
+                Dim trans As CommitTransaction = registry.topic.open_transaction.ignore
 
                 For Each topic As String In biospecimen.JoinIterates(tissues)
                     If Not topic.StringEmpty(, True) Then
                         Dim term As vocabulary = vocabulary.GetTopic(topic)
 
-                        Call registry.topic.ignore.add(
+                        Call trans.ignore.add(
                             field("topic_id") = term.id,
                             field("model_id") = model.id,
                             field("note") = meta.ID
@@ -333,8 +334,16 @@ Public Module setup
                         loc = registry.compartment_location.where(field("name") = location).find(Of compartment_location)
                     End If
 
-
+                    Call trans.add(
+                        registry.compartment_enrich.ignore.add_sql(
+                            field("metabolite_id") = m.id,
+                            field("location_id") = loc.id,
+                            field("evidence") = met.accession
+                        )
+                    )
                 Next
+
+                Call trans.commit()
             End If
 
             Call registry.SaveDbLinks(vocabulary, meta, m, db_hmdb)
