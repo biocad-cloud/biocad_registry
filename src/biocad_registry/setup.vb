@@ -19,10 +19,12 @@ Imports SMRUCC.genomics.Assembly.KEGG.DBGET.bGetObject
 Imports SMRUCC.genomics.Data
 Imports SMRUCC.genomics.Data.Regprecise
 Imports SMRUCC.genomics.Data.Regtransbase.WebServices
+Imports SMRUCC.genomics.foundation.OBO_Foundry
 Imports SMRUCC.genomics.foundation.OBO_Foundry.IO.Models
 Imports SMRUCC.Rsharp.Runtime
 Imports SMRUCC.Rsharp.Runtime.Internal.[Object]
 Imports SMRUCC.Rsharp.Runtime.Interop
+Imports ontology = registry_data.biocad_registryModel.ontology
 
 ''' <summary>
 ''' The Initial setup of the database
@@ -268,14 +270,39 @@ Public Module setup
         Dim vocabulary As New biocad_vocabulary(registry)
         Dim metabolite_type As UInteger = vocabulary.GetRegistryEntity(biocad_vocabulary.EntityMetabolite).id
         Dim db_chebi As UInteger = vocabulary.db_chebi
+        Dim terms As BasicTerm() = chebi.GetRawTerms.Select(Function(t) t.ExtractBasic).ToArray
 
-        For Each str As RawTerm In chebi.GetRawTerms
-            Dim term As New term
-        Next
+        Using trans As CommitTransaction = registry.ontology.ignore.open_transaction
+            For Each term As BasicTerm In terms
+                Call trans.ignore.add(
+                    field("term_id") = term.id,
+                    field("term") = term.name,
+                    field("ontology_id") = db_chebi,
+                    field("note") = term.def
+                )
+            Next
+        End Using
+
+        Using trans As CommitTransaction = registry.ontology_relation.ignore.open_transaction
+            For Each term As BasicTerm In terms
+                Dim term_id As ontology = registry.ontology.where(field("term_id") = term.id).find(Of ontology)
+
+                For Each is_a As String In term.is_a.SafeQuery
+                    Dim parent As ontology = registry.ontology.where(field("term_id") = is_a).find(Of ontology)
+
+                    Call trans.ignore.add(
+                        field("term_id") = term_id.id,
+                        field("is_a") = parent.id
+                    )
+                Next
+            Next
+        End Using
 
         For Each meta As Models.MetaInfo In TqdmWrapper.Wrap(metabolites)
             Dim m As metabolites = registry.FindMolecule(meta, "chebi_id")
+            Dim term_id As ontology = registry.ontology.where(field("term_id") = meta.ID).find(Of ontology)
 
+            Call registry.metabolite_class.add(field("metabolite_id") = m.id, field("class_id") = term_id.id)
             Call registry.SaveDbLinks(vocabulary, meta, m, db_chebi)
             Call registry.SaveStructureData(m, meta.xref.SMILES)
             Call registry.SaveSynonyms(m, meta.synonym.JoinIterates({meta.name, meta.IUPACName}).Distinct, db_chebi)

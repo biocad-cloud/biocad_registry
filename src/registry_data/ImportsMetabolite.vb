@@ -23,6 +23,14 @@ Public Module ImportsMetabolite
         End If
     End Sub
 
+    ''' <summary>
+    ''' save class information into ontology table
+    ''' </summary>
+    ''' <param name="registry"></param>
+    ''' <param name="m"></param>
+    ''' <param name="ontology_id"></param>
+    ''' <param name="ont"></param>
+    ''' <param name="source_id"></param>
     <Extension>
     Public Sub SaveMetaboliteClass(registry As biocad_registry,
                                    m As metabolites,
