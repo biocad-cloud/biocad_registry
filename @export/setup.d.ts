@@ -14,6 +14,10 @@ declare namespace setup {
    /**
      * @param env default value Is ``null``.
    */
+   function setup_chebi(registry: object, chebi: object, env?: object): any;
+   /**
+     * @param env default value Is ``null``.
+   */
    function setup_hmdb(registry: object, hmdb: any, env?: object): any;
    /**
      * @param env default value Is ``null``.
