@@ -5,7 +5,7 @@ Imports SMRUCC.Rsharp.Runtime.Interop
 
 <Package("models")>
 <RTypeExport("cad_registry", GetType(biocad_registry))>
-Public Module models
+Public Module registry_models
 
     Friend Sub Main()
     End Sub

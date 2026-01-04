@@ -11,7 +11,7 @@ Module MetaboliteData
     <Extension>
     Public Sub SaveDbLinks(registry As biocad_registry,
                            vocabulary As biocad_vocabulary,
-                           meta As MetaLib,
+                           meta As MetaInfo,
                            m As metabolites,
                            db_source As UInteger)
 
@@ -113,7 +113,7 @@ Module MetaboliteData
     End Function
 
     <Extension>
-    Public Function FindMolecule(registry As biocad_registry, meta As MetaLib, primaryKey As String) As metabolites
+    Public Function FindMolecule(registry As biocad_registry, meta As MetaInfo, primaryKey As String) As metabolites
         Dim pubchem_cid As String = Strings.Trim(meta.xref.pubchem).int_id
         Dim chebi_id As String = Strings.Trim(meta.xref.chebi).int_id
         Dim name As String = Strings.Trim(meta.name)

@@ -1,5 +1,6 @@
 ﻿
 Imports BioNovoGene.BioDeep.Chemistry
+Imports BioNovoGene.BioDeep.Chemistry.ChEBI
 Imports BioNovoGene.BioDeep.Chemistry.LipidMaps
 Imports BioNovoGene.BioDeep.Chemistry.MetaLib
 Imports BioNovoGene.BioDeep.Chemistry.MetaLib.CrossReference
@@ -15,10 +16,10 @@ Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports registry_data
 Imports registry_data.biocad_registryModel
 Imports SMRUCC.genomics.Assembly.KEGG.DBGET.bGetObject
-Imports SMRUCC.genomics.ComponentModel.DBLinkBuilder
 Imports SMRUCC.genomics.Data
 Imports SMRUCC.genomics.Data.Regprecise
 Imports SMRUCC.genomics.Data.Regtransbase.WebServices
+Imports SMRUCC.genomics.foundation.OBO_Foundry.IO.Models
 Imports SMRUCC.Rsharp.Runtime
 Imports SMRUCC.Rsharp.Runtime.Internal.[Object]
 Imports SMRUCC.Rsharp.Runtime.Interop
@@ -262,8 +263,25 @@ Public Module setup
     End Function
 
     <ExportAPI("setup_chebi")>
-    Public Function saveChebi(registry As biocad_registry, <RRawVectorArgument> chebi As Object, Optional env As Environment = Nothing) As Object
+    Public Function saveChebi(registry As biocad_registry, chebi As OBOFile, Optional env As Environment = Nothing) As Object
+        Dim metabolites As Models.MetaInfo() = ChEBIObo.ImportsMetabolites(chebi).ToArray
+        Dim vocabulary As New biocad_vocabulary(registry)
+        Dim metabolite_type As UInteger = vocabulary.GetRegistryEntity(biocad_vocabulary.EntityMetabolite).id
+        Dim db_chebi As UInteger = vocabulary.db_chebi
 
+        For Each term In chebi.GetRawTerms
+
+        Next
+
+        For Each meta As Models.MetaInfo In TqdmWrapper.Wrap(metabolites)
+            Dim m As metabolites = registry.FindMolecule(meta, "chebi_id")
+
+            Call registry.SaveDbLinks(vocabulary, meta, m, db_chebi)
+            Call registry.SaveStructureData(m, meta.xref.SMILES)
+            Call registry.SaveSynonyms(m, meta.synonym.JoinIterates({meta.name, meta.IUPACName}).Distinct, db_chebi)
+        Next
+
+        Return Nothing
     End Function
 
     ''' <summary>
