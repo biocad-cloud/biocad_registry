@@ -2,6 +2,7 @@
 Imports BioNovoGene.BioDeep.Chemistry
 Imports BioNovoGene.BioDeep.Chemistry.LipidMaps
 Imports BioNovoGene.BioDeep.Chemistry.MetaLib
+Imports BioNovoGene.BioDeep.Chemistry.MetaLib.CrossReference
 Imports BioNovoGene.BioDeep.Chemistry.MetaLib.Models
 Imports BioNovoGene.BioDeep.Chemistry.TMIC.HMDB
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
@@ -21,7 +22,6 @@ Imports SMRUCC.genomics.Data.Regtransbase.WebServices
 Imports SMRUCC.Rsharp.Runtime
 Imports SMRUCC.Rsharp.Runtime.Internal.[Object]
 Imports SMRUCC.Rsharp.Runtime.Interop
-Imports ontology = registry_data.biocad_registryModel.ontology
 
 ''' <summary>
 ''' The Initial setup of the database
@@ -45,14 +45,19 @@ Public Module setup
 
         Dim kegg_db As UInteger = vocabulary.db_kegg
         Dim metabolite_type As UInteger = vocabulary.GetRegistryEntity(biocad_vocabulary.EntityMetabolite).id
-        Dim pull As Compound() = keggLib.populates(Of Compound)(env).ToArray
+        Dim pull As Compound() = keggLib.populates(Of Compound)(env).OrderBy(Function(a) a.commonNames.DefaultFirst).ToArray
 
         For Each cpd As Compound In TqdmWrapper.Wrap(pull)
             Dim m As metabolites = registry.metabolites _
                 .where(field("kegg_id") = cpd.entry) _
                 .find(Of metabolites)
-            Dim db_xrefs As DBLink() = cpd.DbLinks
-            Dim cas_id As String = db_xrefs.KeyItem("CAS")
+            Dim db_xrefs As xref = cpd.Xref
+            Dim cas_id As String = db_xrefs.CAS.DefaultFirst
+            Dim chebi As String = db_xrefs.chebi.Match("\d+")
+
+            If chebi = "" Then
+                chebi = Nothing
+            End If
 
             If m Is Nothing Then
                 Dim exact_mass As Double = FormulaScanner.EvaluateExactMass(cpd.formula)
@@ -64,7 +69,8 @@ Public Module setup
                     field("formula") = cpd.formula,
                     field("exact_mass") = If(exact_mass < 0, 0, exact_mass),
                     field("kegg_id") = cpd.entry,
-                    field("cas_id") = cas_id
+                    field("cas_id") = cas_id,
+                    field("chebi_id") = chebi
                 )
                 m = registry.metabolites _
                     .where(field("kegg_id") = cpd.entry) _
@@ -81,6 +87,13 @@ Public Module setup
                                              field("type") = metabolite_type,
                                              field("obj_id") = m.id)
             End If
+            If Not chebi.StringEmpty(, True) Then
+                registry.db_xrefs.ignore.add(field("db_source") = kegg_db,
+                                             field("db_name") = vocabulary.db_chebi,
+                                             field("db_xref") = "ChEBI:" & chebi,
+                                             field("type") = metabolite_type,
+                                             field("obj_id") = m.id)
+            End If
 
             registry.db_xrefs.ignore.add(field("db_source") = kegg_db,
                                          field("db_name") = kegg_db,
@@ -88,20 +101,7 @@ Public Module setup
                                          field("type") = metabolite_type,
                                          field("obj_id") = m.id)
 
-            For Each name As String In cpd.commonNames.SafeQuery
-                name = Strings.Trim(name)
-
-                If name <> "" Then
-                    registry.synonym.add(
-                        field("obj_id") = m.id,
-                        field("type") = metabolite_type,
-                        field("db_source") = kegg_db,
-                        field("synonym") = name,
-                        field("hashcode") = Strings.LCase(name).MD5,
-                        field("lang") = "en"
-                    )
-                End If
-            Next
+            Call registry.SaveSynonyms(m, cpd.commonNames, kegg_db)
         Next
 
         Return Nothing
@@ -131,145 +131,20 @@ Public Module setup
         Dim pull As RefMet() = refmetLib.populates(Of RefMet)(env).ToArray
 
         For Each met As RefMet In TqdmWrapper.Wrap(pull)
-            Dim m As metabolites = Nothing
-            Dim kegg_id As String = Strings.Trim(met.kegg_id)
-            Dim pubchem_cid As String = Strings.Trim(met.pubchem_cid)
-            Dim chebi_id As String = Strings.Trim(met.chebi_id)
-            Dim name As String = Strings.Trim(met.refmet_name)
-            Dim hashcode As String = Strings.Trim(met.refmet_name).ToLower.MD5
-            Dim exact_mass As Double = FormulaScanner.EvaluateExactMass(met.formula)
-            Dim hmdb_id As String = Strings.Trim(met.hmdb_id)
-            Dim lipidmaps_id As String = Strings.Trim(met.lipidmaps_id)
+            Dim meta As MetaLib = met.CastModel
+            Dim m As metabolites = registry.FindMolecule(meta, "kegg_id")
 
-            If exact_mass < 0 Then
-                exact_mass = 0
-            End If
-
-            If Not pubchem_cid.StringEmpty(, True) Then
-                pubchem_cid = pubchem_cid.Match("\d+")
-            Else
-                pubchem_cid = Nothing
-            End If
-            If Not chebi_id.StringEmpty(, True) Then
-                chebi_id = chebi_id.Match("\d+")
-            Else
-                chebi_id = Nothing
-            End If
-
-            If pubchem_cid = "" Then
-                pubchem_cid = Nothing
-            End If
-            If chebi_id = "" Then
-                chebi_id = Nothing
-            End If
-
-            If Not kegg_id.StringEmpty(, True) Then
-                m = registry.metabolites.where(field("kegg_id") = met.kegg_id).find(Of metabolites)
-            End If
-
-            If m Is Nothing Then
-                Dim obj = registry.db_xrefs.where(field("type") = metabolite_type,
-                                                  field("db_name") = refmet_db,
-                                                  field("db_xref") = met.refmet_id).find(Of db_xrefs)
-                If obj Is Nothing Then
-                    registry.metabolites.add(
-                        field("name") = name,
-                        field("hashcode") = hashcode,
-                        field("formula") = met.formula,
-                        field("exact_mass") = exact_mass,
-                        field("pubchem_cid") = pubchem_cid,
-                        field("chebi_id") = chebi_id,
-                        field("hmdb_id") = met.hmdb_id,
-                        field("lipidmaps_id") = met.lipidmaps_id,
-                        field("kegg_id") = met.kegg_id
-                    )
-
-                    m = registry.metabolites _
-                        .where(field("hashcode") = hashcode,
-                               field("exact_mass").between(exact_mass - 0.5, exact_mass + 0.5)) _
-                        .order_by("id", desc:=True) _
-                        .find(Of metabolites)
-                Else
-                    m = registry.metabolites.where(field("id") = obj.obj_id).find(Of metabolites)
-                End If
-            End If
-            If m Is Nothing Then
-                Continue For
-            End If
-
-            Dim updates As New List(Of FieldAssert)
-
-            If m.kegg_id.StringEmpty(, True) AndAlso Not kegg_id.StringEmpty Then
-                updates.Add(field("kegg_id") = kegg_id)
-            End If
-            If m.chebi_id = 0 AndAlso Not chebi_id Is Nothing Then
-                updates.Add(field("chebi_id") = chebi_id)
-            End If
-            If m.pubchem_cid = 0 AndAlso Not pubchem_cid Is Nothing Then
-                updates.Add(field("pubchem_cid") = pubchem_cid)
-            End If
-            If m.hmdb_id.StringEmpty(, True) AndAlso Not hmdb_id.StringEmpty(, True) Then
-                updates.Add(field("hmdb_id") = hmdb_id)
-            End If
-            If m.lipidmaps_id.StringEmpty AndAlso Not lipidmaps_id.StringEmpty(, True) Then
-                updates.Add(field("lipidmaps_id") = lipidmaps_id)
-            End If
-            If updates.Any Then
-                Call registry.metabolites.where(field("id") = m.id).save(updates.ToArray)
-            End If
-
-            If Not pubchem_cid.StringEmpty Then
-                registry.db_xrefs.ignore.add(field("db_source") = refmet_db, field("db_name") = vocabulary.db_pubchem, field("db_xref") = pubchem_cid, field("type") = metabolite_type, field("obj_id") = m.id)
-            End If
-            If Not chebi_id.StringEmpty Then
-                chebi_id = $"ChEBI:{chebi_id}"
-                registry.db_xrefs.ignore.add(field("db_source") = refmet_db, field("db_name") = vocabulary.db_chebi, field("db_xref") = chebi_id, field("type") = metabolite_type, field("obj_id") = m.id)
-            End If
-            If Not met.hmdb_id.StringEmpty Then
-                registry.db_xrefs.ignore.add(field("db_source") = refmet_db, field("db_name") = vocabulary.db_hmdb, field("db_xref") = met.hmdb_id, field("type") = metabolite_type, field("obj_id") = m.id)
-            End If
-            If Not met.lipidmaps_id.StringEmpty Then
-                registry.db_xrefs.ignore.add(field("db_source") = refmet_db, field("db_name") = vocabulary.db_lipidmaps, field("db_xref") = met.lipidmaps_id, field("type") = metabolite_type, field("obj_id") = m.id)
-            End If
-            If Not met.kegg_id.StringEmpty Then
-                registry.db_xrefs.ignore.add(field("db_source") = refmet_db, field("db_name") = vocabulary.db_kegg, field("db_xref") = met.kegg_id, field("type") = metabolite_type, field("obj_id") = m.id)
-            End If
-
-            registry.db_xrefs.ignore.add(field("db_source") = refmet_db, field("db_name") = refmet_db, field("db_xref") = met.refmet_id, field("type") = metabolite_type, field("obj_id") = m.id)
-
-            Dim super_class As ontology = registry.ontology.where(field("ontology_id") = refmet_db, field("term_id") = met.super_class).find(Of ontology)
-
-            If super_class Is Nothing Then
-                registry.ontology.add(field("ontology_id") = refmet_db, field("term_id") = met.super_class, field("term") = met.super_class)
-                super_class = registry.ontology.where(field("ontology_id") = refmet_db, field("term_id") = met.super_class).find(Of ontology)
-            End If
-
-            Dim main_class As ontology = registry.ontology.where(field("ontology_id") = refmet_db, field("term_id") = met.main_class).find(Of ontology)
-
-            If main_class Is Nothing Then
-                registry.ontology.add(field("ontology_id") = refmet_db, field("term_id") = met.main_class, field("term") = met.main_class)
-                main_class = registry.ontology.where(field("ontology_id") = refmet_db, field("term_id") = met.main_class).find(Of ontology)
-                registry.ontology_relation.add(field("term_id") = main_class.id, field("is_a") = super_class.id)
-            End If
-
-            Dim sub_class As ontology = registry.ontology.where(field("ontology_id") = refmet_db, field("term_id") = met.sub_class).find(Of ontology)
-
-            If sub_class Is Nothing Then
-                registry.ontology.add(field("ontology_id") = refmet_db, field("term_id") = met.sub_class, field("term") = met.sub_class)
-                sub_class = registry.ontology.where(field("ontology_id") = refmet_db, field("term_id") = met.sub_class).find(Of ontology)
-                registry.ontology_relation.add(field("term_id") = sub_class.id, field("is_a") = main_class.id)
-            End If
-
-            Call registry.metabolite_class.add(field("metabolite_id") = m.id, field("class_id") = sub_class.id, field("note") = met.refmet_id)
-
-            registry.synonym.add(
-                field("obj_id") = m.id,
-                field("type") = metabolite_type,
+            registry.db_xrefs.ignore.add(
                 field("db_source") = refmet_db,
-                field("synonym") = name,
-                field("hashcode") = Strings.LCase(name).MD5,
-                field("lang") = "en"
+                field("db_name") = refmet_db,
+                field("db_xref") = met.refmet_id,
+                field("type") = metabolite_type,
+                field("obj_id") = m.id
             )
+
+            Call registry.SaveDbLinks(vocabulary, meta, m, refmet_db)
+            Call registry.SaveSynonyms(m, {m.name}, refmet_db)
+            Call registry.SaveMetaboliteClass(m, refmet, (met.super_class, met.main_class, met.sub_class, Nothing), met.refmet_id)
         Next
 
         Return Nothing
@@ -305,7 +180,8 @@ Public Module setup
                     field("type") = metabolite_type,
                     field("symbol_id") = m.id
                 )
-                model = registry.registry_resolver.where(field("type") = metabolite_type, field("symbol_id") = m.id).find(Of registry_resolver)
+                model = registry.registry_resolver.where(field("type") = metabolite_type,
+                                                         field("symbol_id") = m.id).find(Of registry_resolver)
             End If
 
             If model IsNot Nothing AndAlso met.biological_properties IsNot Nothing Then
@@ -373,64 +249,10 @@ Public Module setup
         Dim ontology_id As UInteger = db_lipidmaps
 
         For Each lipid As LipidMaps.MetaData In TqdmWrapper.Wrap(pull.populates(Of LipidMaps.MetaData)(env).ToArray)
-            Dim pubchem_cid As String = Strings.Trim(lipid.PUBCHEM_CID)
-            Dim chebi_id As String = Strings.Trim(lipid.CHEBI_ID)
-            Dim name As String = Strings.Trim(lipid.NAME)
-            Dim hashcode As String = name.ToLower.MD5
-            Dim exact_mass As Double = FormulaScanner.EvaluateExactMass(lipid.FORMULA)
-
-            If exact_mass < 0 Then
-                exact_mass = 0
-            End If
-
-            If Not pubchem_cid.StringEmpty(, True) Then
-                pubchem_cid = pubchem_cid.Match("\d+")
-            Else
-                pubchem_cid = Nothing
-            End If
-            If Not chebi_id.StringEmpty(, True) Then
-                chebi_id = chebi_id.Match("\d+")
-            Else
-                chebi_id = Nothing
-            End If
-
-            If pubchem_cid = "" Then
-                pubchem_cid = Nothing
-            End If
-            If chebi_id = "" Then
-                chebi_id = Nothing
-            End If
-
             Dim meta As MetaLib = lipid.CreateMetabolite
-            Dim m As metabolites = registry.metabolites.where(field("lipidmaps_id") = meta.ID).find(Of metabolites)
+            Dim m As metabolites = registry.FindMolecule(meta, "lipidmaps_id")
 
-            If m Is Nothing Then
-                Call registry.metabolites.add(
-                    field("name") = name,
-                    field("hashcode") = hashcode,
-                    field("formula") = lipid.FORMULA,
-                    field("exact_mass") = exact_mass,
-                    field("cas_id") = meta.xref.CAS.DefaultFirst,
-                    field("pubchem_cid") = pubchem_cid,
-                    field("chebi_id") = chebi_id,
-                    field("hmdb_id") = meta.xref.HMDB,
-                    field("lipidmaps_id") = meta.xref.lipidmaps,
-                    field("kegg_id") = meta.xref.KEGG,
-                    field("biocyc") = meta.xref.MetaCyc,
-                    field("mesh_id") = meta.xref.MeSH,
-                    field("wikipedia") = meta.xref.Wikipedia,
-                    field("note") = meta.description
-                )
-                m = registry.metabolites.where(field("lipidmaps_id") = meta.ID).order_by("id", desc:=True).find(Of metabolites)
-            ElseIf m.note.StringEmpty(, True) Then
-                registry.metabolites.where(field("id") = m.id).save(field("note") = meta.description)
-            End If
-
-            If m.name.StringEmpty Then
-                registry.metabolites.where(field("id") = m.id).save(field("name") = meta.name)
-            End If
-
-            Call registry.SaveDbLinks(vocabulary, meta, m, db_lipidmaps, pubchem_cid, chebi_id)
+            Call registry.SaveDbLinks(vocabulary, meta, m, db_lipidmaps)
             Call registry.SaveStructureData(m, meta.xref.SMILES)
             Call registry.SaveMetaboliteClass(m, ontology_id, (meta.kingdom, meta.super_class, meta.class, meta.sub_class), meta.ID)
             Call registry.SaveSynonyms(m, meta.synonym.JoinIterates({meta.name, meta.IUPACName}).Distinct, db_lipidmaps)
