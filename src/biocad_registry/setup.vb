@@ -470,6 +470,11 @@ Public Module setup
         Return Nothing
     End Function
 
+    <ExportAPI("setup_chebi")>
+    Public Function saveChebi(registry As biocad_registry, <RRawVectorArgument> chebi As Object, Optional env As Environment = Nothing) As Object
+
+    End Function
+
     ''' <summary>
     ''' Save RegPrecise motif sites 
     ''' </summary>
