@@ -22,7 +22,7 @@ Module registry
             Return pull.getError
         End If
 
-        For Each gb_asm As GBFF.File In genbank
+        For Each gb_asm As GBFF.File In pull.populates(Of GBFF.File)(env)
             Call registry.SaveGenBank(gb_asm)
         Next
 

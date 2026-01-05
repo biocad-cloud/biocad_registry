@@ -6,3 +6,9 @@
 
 /**
 */
+declare namespace registry {
+   /**
+     * @param env default value Is ``null``.
+   */
+   function save_genbank(registry: object, genbank: any, env?: object): any;
+}
