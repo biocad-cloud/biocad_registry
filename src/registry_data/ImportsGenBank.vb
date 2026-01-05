@@ -7,6 +7,11 @@ Imports SMRUCC.genomics.ComponentModel.Loci
 
 Public Module ImportsGenBank
 
+    ''' <summary>
+    ''' just create the data entry
+    ''' </summary>
+    ''' <param name="registry"></param>
+    ''' <param name="asm"></param>
     <Extension>
     Public Sub SaveGenBank(registry As biocad_registry, asm As GBFF.File)
         Dim taxid As UInteger = asm.Taxon
