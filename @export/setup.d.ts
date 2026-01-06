@@ -12,9 +12,10 @@ declare namespace setup {
    */
    function save_motif(registry: object, genomes: any, env?: object): any;
    /**
+     * @param init_ontology default value Is ``true``.
      * @param env default value Is ``null``.
    */
-   function setup_chebi(registry: object, chebi: object, env?: object): any;
+   function setup_chebi(registry: object, chebi: object, init_ontology?: boolean, env?: object): any;
    /**
      * @param env default value Is ``null``.
    */
