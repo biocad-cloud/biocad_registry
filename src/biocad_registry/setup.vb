@@ -147,7 +147,7 @@ Public Module setup
 
             Call registry.SaveDbLinks(vocabulary, meta, m, refmet_db)
             Call registry.SaveSynonyms(m, {m.name}, refmet_db)
-            Call registry.SaveMetaboliteClass(m, refmet, (met.super_class, met.main_class, met.sub_class, Nothing), met.refmet_id)
+            Call registry.SaveMetaboliteClass(m, refmet_db, (met.super_class, met.main_class, met.sub_class, Nothing), met.refmet_id)
         Next
 
         Return Nothing
