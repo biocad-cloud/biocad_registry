@@ -323,6 +323,11 @@ Public Module setup
             Dim m As metabolites = registry.FindMolecule(meta, "chebi_id")
             Dim term_id As ontology = registry.ontology.where(field("term_id") = meta.ID).find(Of ontology)
 
+            ' just ignores this error
+            If m Is Nothing Then
+                Continue For
+            End If
+
             Call registry.metabolite_class.add(field("metabolite_id") = m.id, field("class_id") = term_id.id)
             Call registry.SaveDbLinks(vocabulary, meta, m, db_chebi)
             Call registry.SaveStructureData(m, meta.xref.SMILES)
