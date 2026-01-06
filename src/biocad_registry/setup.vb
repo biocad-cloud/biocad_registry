@@ -271,44 +271,55 @@ Public Module setup
     End Function
 
     <ExportAPI("setup_chebi")>
-    Public Function saveChebi(registry As biocad_registry, chebi As OBOFile, Optional env As Environment = Nothing) As Object
+    Public Function saveChebi(registry As biocad_registry, chebi As OBOFile,
+                              Optional init_ontology As Boolean = True,
+                              Optional env As Environment = Nothing) As Object
+
         Dim metabolites As Models.MetaInfo() = ChEBIObo.ImportsMetabolites(chebi).ToArray
         Dim vocabulary As New biocad_vocabulary(registry)
         Dim metabolite_type As UInteger = vocabulary.GetRegistryEntity(biocad_vocabulary.EntityMetabolite).id
         Dim db_chebi As UInteger = vocabulary.db_chebi
-        Dim terms As BasicTerm() = chebi.GetRawTerms.Select(Function(t) t.ExtractBasic).ToArray
 
-        For i As Integer = 0 To terms.Length - 1
-            terms(i).def = Strings.Trim(terms(i).def).Replace(""""c, "").Replace("[]", "").Trim
-        Next
+        If init_ontology Then
+            Dim terms As BasicTerm() = chebi.GetRawTerms.Select(Function(t) t.ExtractBasic).ToArray
 
-        Using trans As CommitTransaction = registry.ontology.ignore.open_transaction
-            For Each term As BasicTerm In terms
-                Call trans.ignore.add(
-                    field("term_id") = term.id,
-                    field("term") = term.name,
-                    field("ontology_id") = db_chebi,
-                    field("note") = term.def
-                )
+            For i As Integer = 0 To terms.Length - 1
+                terms(i).def = Strings.Trim(terms(i).def).Replace(""""c, "").Replace("[]", "").Trim
             Next
-        End Using
 
-        Using trans As CommitTransaction = registry.ontology_relation.ignore.open_transaction
-            For Each term As BasicTerm In terms
-                Dim term_id As ontology = registry.ontology.where(field("term_id") = term.id).find(Of ontology)
-
-                For Each is_a As String In term.is_a.SafeQuery
-                    Dim parent As ontology = registry.ontology.where(field("term_id") = is_a).find(Of ontology)
-
+            Using trans As CommitTransaction = registry.ontology.ignore.open_transaction
+                For Each term As BasicTerm In terms
                     Call trans.ignore.add(
-                        field("term_id") = term_id.id,
-                        field("is_a") = parent.id
+                        field("term_id") = term.id,
+                        field("term") = term.name,
+                        field("ontology_id") = db_chebi,
+                        field("note") = term.def
                     )
                 Next
-            Next
-        End Using
+            End Using
+
+            Using trans As CommitTransaction = registry.ontology_relation.ignore.open_transaction
+                For Each term As BasicTerm In terms
+                    Dim term_id As ontology = registry.ontology.where(field("term_id") = term.id).find(Of ontology)
+
+                    For Each is_a As String In term.is_a.SafeQuery
+                        Dim parent As ontology = registry.ontology.where(field("term_id") = is_a).find(Of ontology)
+
+                        Call trans.ignore.add(
+                            field("term_id") = term_id.id,
+                            field("is_a") = parent.id
+                        )
+                    Next
+                Next
+            End Using
+        End If
 
         For Each meta As Models.MetaInfo In TqdmWrapper.Wrap(metabolites)
+            ' ontology term has no formula data
+            If meta.formula.StringEmpty(, True) Then
+                Continue For
+            End If
+
             Dim m As metabolites = registry.FindMolecule(meta, "chebi_id")
             Dim term_id As ontology = registry.ontology.where(field("term_id") = meta.ID).find(Of ontology)
 
