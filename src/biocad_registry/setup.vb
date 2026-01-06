@@ -279,7 +279,7 @@ Public Module setup
         Dim terms As BasicTerm() = chebi.GetRawTerms.Select(Function(t) t.ExtractBasic).ToArray
 
         For i As Integer = 0 To terms.Length - 1
-            terms(i).def = Strings.Trim(terms(i).def).Replace(""""c, "").Trim
+            terms(i).def = Strings.Trim(terms(i).def).Replace(""""c, "").Replace("[]", "").Trim
         Next
 
         Using trans As CommitTransaction = registry.ontology.ignore.open_transaction
