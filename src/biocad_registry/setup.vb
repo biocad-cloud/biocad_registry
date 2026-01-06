@@ -278,6 +278,10 @@ Public Module setup
         Dim db_chebi As UInteger = vocabulary.db_chebi
         Dim terms As BasicTerm() = chebi.GetRawTerms.Select(Function(t) t.ExtractBasic).ToArray
 
+        For i As Integer = 0 To terms.Length - 1
+            terms(i).def = Strings.Trim(terms(i).def).Replace(""""c, "").Trim
+        Next
+
         Using trans As CommitTransaction = registry.ontology.ignore.open_transaction
             For Each term As BasicTerm In terms
                 Call trans.ignore.add(
