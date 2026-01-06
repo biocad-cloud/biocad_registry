@@ -134,7 +134,7 @@ Public Module setup
         Dim pull As RefMet() = refmetLib.populates(Of RefMet)(env).ToArray
 
         For Each met As RefMet In TqdmWrapper.Wrap(pull)
-            Dim meta As MetaLib = met.CastModel
+            Dim meta = met.CastModel
             Dim m As metabolites = registry.FindMolecule(meta, "kegg_id")
 
             registry.db_xrefs.ignore.add(
