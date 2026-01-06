@@ -11,6 +11,7 @@ Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm
 Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.Linq
+Imports Microsoft.VisualBasic.MIME.application.json
 Imports Microsoft.VisualBasic.Scripting.MetaData
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports registry_data
@@ -136,6 +137,11 @@ Public Module setup
         For Each met As RefMet In TqdmWrapper.Wrap(pull)
             Dim meta = met.CastModel
             Dim m As metabolites = registry.FindMolecule(meta, "kegg_id")
+
+            If m Is Nothing Then
+                Call $"create metabolite {met.GetJson} error".warning
+                Continue For
+            End If
 
             registry.db_xrefs.ignore.add(
                 field("db_source") = refmet_db,

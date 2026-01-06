@@ -167,6 +167,18 @@ Module MetaboliteData
                 field("note") = meta.description
             )
             m = registry.metabolites.where(field(primaryKey) = meta.ID).order_by("id", desc:=True).find(Of metabolites)
+
+            ' 20260106 fix for the non-primary key database
+            ' exmple as refmet is missing from the master list
+            ' so m is always nothing
+            ' try to find by name at here
+            If m Is Nothing Then
+                m = registry.metabolites _
+                    .where(field("exact_mass").between(exact_mass - 1, exact_mass + 1),
+                           field("name") = name) _
+                    .order_by("id", desc:=True) _
+                    .find(Of metabolites)
+            End If
         Else
             If m.note.StringEmpty(, True) Then
                 registry.metabolites.where(field("id") = m.id).save(field("note") = meta.description)
