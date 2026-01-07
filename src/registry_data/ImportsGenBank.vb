@@ -1,6 +1,9 @@
 ﻿Imports System.Runtime.CompilerServices
 Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm
+Imports Microsoft.VisualBasic.Linq
+Imports Microsoft.VisualBasic.Math.Logical.FuzzyLogic.Models
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
+Imports registry_data.biocad_registryModel
 Imports SMRUCC.genomics.Assembly.NCBI.GenBank
 Imports SMRUCC.genomics.Assembly.NCBI.GenBank.GBFF.Keywords.FEATURES
 Imports SMRUCC.genomics.ComponentModel.Loci
@@ -56,6 +59,38 @@ Public Module ImportsGenBank
 
         Call genes.commit()
         Call proteins.commit()
+    End Sub
+
+    Public Sub SaveXrefs(registry As biocad_registry, asm As GBFF.File)
+        Dim vocabulary As New biocad_vocabulary(registry)
+        Dim prot_type As UInteger = vocabulary.protein_data
+        Dim nucl_type As UInteger = vocabulary.nucleotide_data
+        Dim ncbi_genbank As UInteger = vocabulary.db_genbank
+        Dim ec_number As UInteger = vocabulary.db_ECNumber
+        Dim xrefs As CommitTransaction = registry.db_xrefs.ignore.open_transaction
+
+        For Each gene As Feature In TqdmWrapper.Wrap(asm.EnumerateGeneFeatures(ORF:=True).ToArray)
+            Dim locus_tag As String = gene.Query(FeatureQualifiers.locus_tag)
+
+            If locus_tag.StringEmpty() Then
+                Continue For
+            End If
+
+            Dim prot = registry.protein_data.where(field("source_id") = locus_tag, field("source_db") = ncbi_genbank).find(Of protein_data)
+            Dim nucl = registry.nucleotide_data.where(field("source_id") = locus_tag, field("source_db") = ncbi_genbank).find(Of nucleotide_data)
+
+            If prot Is Nothing OrElse nucl Is Nothing Then
+                Continue For
+            End If
+
+            registry.protein_data.where(field("id") = prot.id).save(field("gene_id") = nucl.id)
+
+            For Each id As String In gene.QueryDuplicated("EC_number").SafeQuery
+                Call xrefs.ignore.add(field("obj_id") = prot.id, field("type") = prot_type, field("db_name") = ec_number, field("db_xref") = id, field("db_source") = ncbi_genbank)
+            Next
+        Next
+
+        Call xrefs.commit()
     End Sub
 
 End Module

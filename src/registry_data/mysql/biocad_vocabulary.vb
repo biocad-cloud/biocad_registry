@@ -8,6 +8,7 @@ Public Class biocad_vocabulary
     Public Const ExternalDatabase As String = "External Database"
     Public Const EntityType As String = "Entity Type"
     Public Const Topic As String = "Topic"
+    Public Const FastaData As String = "Fasta Data"
 
     ' reference model type
     Public Const EntityMetabolite As String = "Metabolite"
@@ -38,7 +39,18 @@ Public Class biocad_vocabulary
     Public ReadOnly Property db_ECNumber As UInteger
 
     Public ReadOnly Property metabolite_type As UInteger
+    ''' <summary>
+    ''' the protein reference model object
+    ''' </summary>
+    ''' <returns></returns>
     Public ReadOnly Property protein_type As UInteger
+
+    ''' <summary>
+    ''' the protein fasta seuqnece data
+    ''' </summary>
+    ''' <returns></returns>
+    Public ReadOnly Property protein_data As UInteger
+    Public ReadOnly Property nucleotide_data As UInteger
 
     Sub New(registry As biocad_registry)
         Me.registry = registry
@@ -59,6 +71,9 @@ Public Class biocad_vocabulary
 
         metabolite_type = GetRegistryEntity(biocad_vocabulary.EntityMetabolite).id
         protein_type = GetRegistryEntity(biocad_vocabulary.EntityProtein).id
+
+        protein_data = GetVocabulary(biocad_vocabulary.FastaData, biocad_vocabulary.ObjectProtein).id
+        nucleotide_data = GetVocabulary(biocad_vocabulary.FastaData, biocad_vocabulary.ObjectNucleotide).id
     End Sub
 
     <MethodImpl(MethodImplOptions.AggressiveInlining)>
