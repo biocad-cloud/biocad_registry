@@ -9,11 +9,16 @@ Public Class biocad_vocabulary
     Public Const EntityType As String = "Entity Type"
     Public Const Topic As String = "Topic"
 
+    ' reference model type
     Public Const EntityMetabolite As String = "Metabolite"
     Public Const EntityNucleotide As String = "Nucleotide"
     Public Const EntityProtein As String = "Protein"
     Public Const EntityReaction As String = "Reaction"
     Public Const EntitySubcellularLocation As String = "Subcellular Location"
+
+    ' object instance type
+    Public Const ObjectProtein As String = "Protein Sequence"
+    Public Const ObjectNucleotide As String = "Nucleotide Sequence"
 
     ReadOnly registry As biocad_registry
 
@@ -30,8 +35,10 @@ Public Class biocad_vocabulary
 
     Public ReadOnly Property db_genbank As UInteger
     Public ReadOnly Property db_uniprot As UInteger
+    Public ReadOnly Property db_ECNumber As UInteger
 
     Public ReadOnly Property metabolite_type As UInteger
+    Public ReadOnly Property protein_type As UInteger
 
     Sub New(registry As biocad_registry)
         Me.registry = registry
@@ -51,6 +58,7 @@ Public Class biocad_vocabulary
         db_uniprot = GetDatabaseResource("UniProt").id
 
         metabolite_type = GetRegistryEntity(biocad_vocabulary.EntityMetabolite).id
+        protein_type = GetRegistryEntity(biocad_vocabulary.EntityProtein).id
     End Sub
 
     <MethodImpl(MethodImplOptions.AggressiveInlining)>
