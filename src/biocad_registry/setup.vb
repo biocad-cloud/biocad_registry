@@ -420,41 +420,7 @@ Public Module setup
             Return pullKO.getError
         End If
 
-        Dim vocabulary As New biocad_vocabulary(registry)
-        Dim kegg_db As UInteger = vocabulary.db_kegg
-        Dim prot_type As UInteger = vocabulary.protein_type
-        Dim ec_number As UInteger = vocabulary.db_ECNumber
-        Dim xrefs As CommitTransaction = registry.db_xrefs.ignore.open_transaction
-
-        For Each term As KOrthology In TqdmWrapper.Wrap(pullKO.populates(Of KOrthology)(env).ToArray)
-            Dim name As String = term.geneNames.JoinBy(", ")
-            Dim prot As biocad_registryModel.protein = registry.protein _
-                .where(field("name") = name) _
-                .find(Of biocad_registryModel.protein)
-
-            If prot Is Nothing Then
-                Call registry.protein.add(
-                    field("name") = name,
-                    field("template") = 0,
-                    field("pdb_data") = 0,
-                    field("function") = term.function,
-                    field("note") = term.ToString
-                )
-
-                prot = registry.protein _
-                    .where(field("name") = name) _
-                    .order_by("id", desc:=True) _
-                    .find(Of biocad_registryModel.protein)
-            End If
-
-            Call xrefs.ignore.add(field("obj_id") = prot.id, field("type") = prot_type, field("db_name") = kegg_db, field("db_xref") = term.KO_id, field("db_source") = kegg_db)
-
-            For Each ec As String In term.EC_number.SafeQuery
-                Call xrefs.ignore.add(field("obj_id") = prot.id, field("type") = prot_type, field("db_name") = ec_number, field("db_xref") = ec, field("db_source") = kegg_db)
-            Next
-        Next
-
-        Call xrefs.commit()
+        Call registry.SetupKOModels(pullKO.populates(Of KOrthology)(env))
 
         Return Nothing
     End Function
