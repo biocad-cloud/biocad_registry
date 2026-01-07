@@ -28,4 +28,23 @@ Module registry
 
         Return Nothing
     End Function
+
+    <ExportAPI("make_genbank_dbxrefs")>
+    Public Function save_genbank_xrefs(registry As biocad_registry,
+                                       <RRawVectorArgument>
+                                       genbank As Object,
+                                       Optional env As Environment = Nothing) As Object
+
+        Dim pull As pipeline = pipeline.TryCreatePipeline(Of GBFF.File)(genbank, env)
+
+        If pull.isError Then
+            Return pull.getError
+        End If
+
+        For Each gb_asm As GBFF.File In pull.populates(Of GBFF.File)(env)
+            Call registry.SaveDbXrefs(gb_asm)
+        Next
+
+        Return Nothing
+    End Function
 End Module

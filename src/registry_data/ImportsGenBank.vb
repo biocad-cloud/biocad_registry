@@ -61,7 +61,8 @@ Public Module ImportsGenBank
         Call proteins.commit()
     End Sub
 
-    Public Sub SaveXrefs(registry As biocad_registry, asm As GBFF.File)
+    <Extension>
+    Public Sub SaveDbXrefs(registry As biocad_registry, asm As GBFF.File)
         Dim vocabulary As New biocad_vocabulary(registry)
         Dim prot_type As UInteger = vocabulary.protein_data
         Dim nucl_type As UInteger = vocabulary.nucleotide_data
