@@ -90,10 +90,6 @@
     <ProjectReference Include="..\..\..\graphQL\src\mysqli\LibMySQL\LibMySQL.vbproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="exports\" />
-  </ItemGroup>
-
   <Import Project="mysql\mysql_registry.projitems" Label="Shared" />
 
   
