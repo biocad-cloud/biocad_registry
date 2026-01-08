@@ -46,7 +46,7 @@ Module exports
 
     <Extension>
     Private Function [default](id As UInteger, prefix As String) As String
-        If id < 0 Then
+        If id <= 0 Then
             Return "-"
         ElseIf prefix Is Nothing Then
             Return id.ToString
