@@ -1,4 +1,5 @@
-﻿Imports Microsoft.VisualBasic.CommandLine.Reflection
+﻿Imports System.Runtime.CompilerServices
+Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.Scripting.MetaData
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports registry_data
@@ -26,21 +27,41 @@ Module exports
         }
 
         Call df.add("id", df.rownames)
-        Call df.add("name", From m As metabolites In table Select m.name)
+        Call df.add("name", From m As metabolites In table Select Strings.Trim(m.name).Replace("\", ""))
         Call df.add("formula", From m As metabolites In table Select m.formula)
         Call df.add("exact_mass", From m As metabolites In table Select m.exact_mass)
-        Call df.add("cas_id", From m As metabolites In table Select m.cas_id)
-        Call df.add("pubchem_id", From m As metabolites In table Select m.pubchem_cid)
-        Call df.add("chebi_id", From m As metabolites In table Select "ChEBI:" & m.chebi_id)
-        Call df.add("hmdb_id", From m As metabolites In table Select m.hmdb_id)
-        Call df.add("lipidmaps_id", From m As metabolites In table Select m.lipidmaps_id)
-        Call df.add("kegg_id", From m As metabolites In table Select m.kegg_id)
-        Call df.add("drugbank_id", From m As metabolites In table Select m.drugbank_id)
-        Call df.add("biocyc", From m As metabolites In table Select m.biocyc)
-        Call df.add("mesh_id", From m As metabolites In table Select m.mesh_id)
-        Call df.add("wikipedia", From m As metabolites In table Select m.wikipedia)
+        Call df.add("cas_id", From m As metabolites In table Select m.cas_id.default)
+        Call df.add("pubchem_id", From m As metabolites In table Select m.pubchem_cid.default(Nothing))
+        Call df.add("chebi_id", From m As metabolites In table Select m.chebi_id.default("ChEBI:"))
+        Call df.add("hmdb_id", From m As metabolites In table Select m.hmdb_id.default)
+        Call df.add("lipidmaps_id", From m As metabolites In table Select m.lipidmaps_id.default)
+        Call df.add("kegg_id", From m As metabolites In table Select m.kegg_id.default)
+        Call df.add("drugbank_id", From m As metabolites In table Select m.drugbank_id.default)
+        Call df.add("biocyc", From m As metabolites In table Select m.biocyc.default)
+        Call df.add("mesh_id", From m As metabolites In table Select m.mesh_id.default)
+        Call df.add("wikipedia", From m As metabolites In table Select m.wikipedia.default)
 
         Return df
+    End Function
+
+    <Extension>
+    Private Function [default](id As UInteger, prefix As String) As String
+        If id < 0 Then
+            Return "-"
+        ElseIf prefix Is Nothing Then
+            Return id.ToString
+        Else
+            Return prefix & id.ToString
+        End If
+    End Function
+
+    <Extension>
+    Private Function [default](s As String) As String
+        If s.StringEmpty(, True) Then
+            Return "-"
+        Else
+            Return s
+        End If
     End Function
 
 End Module
