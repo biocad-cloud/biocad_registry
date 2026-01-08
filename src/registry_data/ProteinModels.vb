@@ -18,6 +18,7 @@ Public Module ProteinModels
         Dim prot_type As UInteger = vocabulary.protein_type
         Dim ec_number As UInteger = vocabulary.db_ECNumber
         Dim xrefs As CommitTransaction = registry.db_xrefs.ignore.open_transaction
+        Dim names As CommitTransaction = registry.synonym.ignore.open_transaction
 
         For Each term As KOrthology In TqdmWrapper.Wrap(ko.OrderBy(Function(k) k.function).ToArray)
             Dim name As String = term.geneNames.JoinBy(", ")
@@ -45,6 +46,17 @@ Public Module ProteinModels
                 Continue For
             End If
 
+            For Each syn As String In term.geneNames.SafeQuery
+                Call names.ignore.add(
+                    field("obj_id") = prot.id,
+                    field("type") = prot_type,
+                    field("db_source") = kegg_db,
+                    field("synonym") = syn,
+                    field("hashcode") = syn.ToLower.MD5,
+                    field("lang") = "en"
+                )
+            Next
+
             Call xrefs.ignore.add(field("obj_id") = prot.id, field("type") = prot_type, field("db_name") = kegg_db, field("db_xref") = term.KO_id, field("db_source") = kegg_db)
 
             For Each ec As String In term.EC_number.SafeQuery
@@ -52,6 +64,7 @@ Public Module ProteinModels
             Next
         Next
 
+        Call names.commit()
         Call xrefs.commit()
     End Sub
 End Module
