@@ -68,6 +68,7 @@ Public Class biocad_vocabulary
 
         db_genbank = GetDatabaseResource("NCBI GenBank").id
         db_uniprot = GetDatabaseResource("UniProt").id
+        db_ECNumber = GetDatabaseResource("EC Number").id
 
         metabolite_type = GetRegistryEntity(biocad_vocabulary.EntityMetabolite).id
         protein_type = GetRegistryEntity(biocad_vocabulary.EntityProtein).id
