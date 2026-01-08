@@ -27,6 +27,10 @@ declare namespace setup {
    /**
      * @param env default value Is ``null``.
    */
+   function setup_ko(registry: object, ko: any, env?: object): any;
+   /**
+     * @param env default value Is ``null``.
+   */
    function setup_lipidmaps(registry: object, lipidmaps: any, env?: object): any;
    /**
      * @param env default value Is ``null``.

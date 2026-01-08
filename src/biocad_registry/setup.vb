@@ -413,8 +413,18 @@ Public Module setup
     ''' <param name="env"></param>
     ''' <returns></returns>
     <ExportAPI("setup_ko")>
-    Public Function setup_ko(registry As biocad_registry, <RRawVectorArgument> ko As Object, Optional env As Environment = Nothing) As Object
-        Dim pullKO As pipeline = pipeline.TryCreatePipeline(Of KOrthology)(ko, env)
+    Public Function setup_ko(registry As biocad_registry,
+                             <RRawVectorArgument>
+                             Optional ko As Object = Nothing,
+                             Optional env As Environment = Nothing) As Object
+
+        Dim pullKO As pipeline = Nothing
+
+        If ko Is Nothing Then
+            pullKO = pipeline.CreateFromPopulator(KOrthology.RequestKEGG)
+        Else
+            pullKO = pipeline.TryCreatePipeline(Of KOrthology)(ko, env)
+        End If
 
         If pullKO.isError Then
             Return pullKO.getError
