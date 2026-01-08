@@ -19,7 +19,7 @@ Public Module ProteinModels
         Dim ec_number As UInteger = vocabulary.db_ECNumber
         Dim xrefs As CommitTransaction = registry.db_xrefs.ignore.open_transaction
 
-        For Each term As KOrthology In TqdmWrapper.Wrap(ko.ToArray)
+        For Each term As KOrthology In TqdmWrapper.Wrap(ko.OrderBy(Function(k) k.function).ToArray)
             Dim name As String = term.geneNames.JoinBy(", ")
             Dim prot As biocad_registryModel.protein = registry.protein _
                 .where(field("name") = name) _
