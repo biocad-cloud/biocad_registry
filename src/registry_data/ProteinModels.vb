@@ -40,6 +40,11 @@ Public Module ProteinModels
                     .find(Of biocad_registryModel.protein)
             End If
 
+            If prot Is Nothing Then
+                Call ("error while create entry for " & term.ToString).warning
+                Continue For
+            End If
+
             Call xrefs.ignore.add(field("obj_id") = prot.id, field("type") = prot_type, field("db_name") = kegg_db, field("db_xref") = term.KO_id, field("db_source") = kegg_db)
 
             For Each ec As String In term.EC_number.SafeQuery
