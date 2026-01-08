@@ -3,6 +3,7 @@
   <PropertyGroup>
     <RootNamespace>registry_exports</RootNamespace>
     <TargetFrameworks>net8.0;net481</TargetFrameworks>
+    <Platforms>AnyCPU;x64</Platforms>
   </PropertyGroup>
 
   <ItemGroup>

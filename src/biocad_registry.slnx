@@ -200,5 +200,6 @@
   </Project>
   <Project Path="registry_exports/registry_exports.vbproj" Id="1507cb0f-2c69-4a06-98d1-0027afb25767">
     <BuildType Solution="Rsharp_app_release|*" Project="Release" />
+    <Platform Solution="Rsharp_app_release|x64" Project="x64" />
   </Project>
 </Solution>
