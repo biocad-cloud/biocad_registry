@@ -25,9 +25,10 @@ declare namespace setup {
    */
    function setup_kegg(registry: object, kegg: any, env?: object): any;
    /**
+     * @param ko default value Is ``null``.
      * @param env default value Is ``null``.
    */
-   function setup_ko(registry: object, ko: any, env?: object): any;
+   function setup_ko(registry: object, ko?: any, env?: object): any;
    /**
      * @param env default value Is ``null``.
    */
