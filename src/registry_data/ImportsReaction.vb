@@ -7,6 +7,14 @@ Imports SMRUCC.genomics.ComponentModel.EquaionModel
 
 Public Module ImportsReaction
 
+    Private Function CCNameMapping(cc As String) As String
+        Select Case LCase(cc)
+            Case ""
+            Case Else
+
+        End Select
+    End Function
+
     <Extension>
     Public Sub importsReactions(registry As biocad_registry, reactions As IEnumerable(Of Reaction), db_name As String)
         Dim db_source As UInteger = registry.biocad_vocabulary.GetDatabaseResource(db_name).id
@@ -20,12 +28,14 @@ Public Module ImportsReaction
         Dim dbList As UInteger() = {registry.biocad_vocabulary.db_kegg, registry.biocad_vocabulary.db_chebi}
         Dim compartmentIndex As New Dictionary(Of String, biocad_registryModel.compartment_location)
         Dim pool As Reaction() = reactions.ToArray
+        Dim enrich = registry.compartment_enrich.ignore.open_transaction
 
         For Each rxn As Reaction In TqdmWrapper.Wrap(pool)
             For Each cpd In rxn.equation.Reactants
                 Call compartmentIndex _
                     .ComputeIfAbsent(cpd.Compartment,
                                      Function(cc)
+                                         cc = CCNameMapping(cc)
                                          Dim cc_obj = registry.compartment_location.where(field("name") = cc).find(Of biocad_registryModel.compartment_location)
                                          If cc_obj Is Nothing Then
                                              registry.compartment_location.add(
@@ -42,6 +52,7 @@ Public Module ImportsReaction
                 Call compartmentIndex _
                     .ComputeIfAbsent(cpd.Compartment,
                                      Function(cc)
+                                         cc = CCNameMapping(cc)
                                          Dim cc_obj = registry.compartment_location.where(field("name") = cc).find(Of biocad_registryModel.compartment_location)
                                          If cc_obj Is Nothing Then
                                              registry.compartment_location.add(
@@ -122,6 +133,14 @@ Public Module ImportsReaction
                     field("compartment_id") = loc.id,
                     field("note") = sp.ToString
                 )
+
+                If metab IsNot Nothing Then
+                    Call enrich.ignore.add(
+                        field("metabolite_id") = metab.obj_id,
+                        field("location_id") = loc.id,
+                        field("evidence") = rxn.entry
+                    )
+                End If
             Next
         Next
 
