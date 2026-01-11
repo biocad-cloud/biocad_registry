@@ -19,8 +19,44 @@ Public Module ImportsReaction
         Dim metabolite_type As UInteger = registry.biocad_vocabulary.metabolite_type
         Dim dbList As UInteger() = {registry.biocad_vocabulary.db_kegg, registry.biocad_vocabulary.db_chebi}
         Dim compartmentIndex As New Dictionary(Of String, biocad_registryModel.compartment_location)
+        Dim pool As Reaction() = reactions.ToArray
 
-        For Each rxn As Reaction In TqdmWrapper.Wrap(reactions.ToArray)
+        For Each rxn As Reaction In TqdmWrapper.Wrap(pool)
+            For Each cpd In rxn.equation.Reactants
+                Call compartmentIndex _
+                    .ComputeIfAbsent(cpd.Compartment,
+                                     Function(cc)
+                                         Dim cc_obj = registry.compartment_location.where(field("name") = cc).find(Of biocad_registryModel.compartment_location)
+                                         If cc_obj Is Nothing Then
+                                             registry.compartment_location.add(
+                                                field("name") = cc,
+                                                field("fullname") = cc
+                                             )
+                                             cc_obj = registry.compartment_location.where(field("name") = cc).find(Of biocad_registryModel.compartment_location)
+                                         End If
+
+                                         Return cc_obj
+                                     End Function)
+            Next
+            For Each cpd In rxn.equation.Products
+                Call compartmentIndex _
+                    .ComputeIfAbsent(cpd.Compartment,
+                                     Function(cc)
+                                         Dim cc_obj = registry.compartment_location.where(field("name") = cc).find(Of biocad_registryModel.compartment_location)
+                                         If cc_obj Is Nothing Then
+                                             registry.compartment_location.add(
+                                                field("name") = cc,
+                                                field("fullname") = cc
+                                             )
+                                             cc_obj = registry.compartment_location.where(field("name") = cc).find(Of biocad_registryModel.compartment_location)
+                                         End If
+
+                                         Return cc_obj
+                                     End Function)
+            Next
+        Next
+
+        For Each rxn As Reaction In TqdmWrapper.Wrap(pool)
             Dim find As biocad_registryModel.reaction = registry.reaction _
                 .where(field("db_source") = db_source,
                        field("db_xref") = rxn.entry) _
