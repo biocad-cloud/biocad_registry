@@ -47,4 +47,8 @@ Module registry
 
         Return Nothing
     End Function
+
+    Public Function imports_metacyc()
+
+    End Function
 End Module
