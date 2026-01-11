@@ -18,7 +18,7 @@ Namespace Exports
                     .on(field("`struct_data`.metabolite_id") = field("`metabolites`.id")) _
                     .where(Not field(dbname).is_nothing, field(dbname) <> "") _
                     .limit(offset, page_size) _
-                    .select(Of SMILESData)("hmdb_id AS xref_id",
+                    .select(Of SMILESData)($"{dbname} AS xref_id",
                                            "smiles",
                                            "CONCAT('BioCAD', LPAD(metabolite_id, 11, '0')) AS id",
                                            "name",

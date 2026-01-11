@@ -4,6 +4,7 @@ Imports Microsoft.VisualBasic.Scripting.MetaData
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports registry_data
 Imports registry_data.biocad_registryModel
+Imports registry_data.Exports
 Imports SMRUCC.Rsharp.Runtime.Internal.[Object]
 
 <Package("exports")>
@@ -62,6 +63,11 @@ Module exports
         Else
             Return s
         End If
+    End Function
+
+    <ExportAPI("export_smiles_data")>
+    Public Function export_smiles_data(registry As biocad_registry, dbname As String) As Object
+        Return registry.exportSMILES(dbname)
     End Function
 
 End Module
