@@ -67,7 +67,7 @@ Module exports
 
     <ExportAPI("export_smiles_data")>
     Public Function export_smiles_data(registry As biocad_registry, dbname As String) As Object
-        Return registry.exportSMILES(dbname)
+        Return registry.exportSMILES(dbname).ToArray
     End Function
 
 End Module
