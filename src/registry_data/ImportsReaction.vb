@@ -1,5 +1,6 @@
 ﻿Imports System.Runtime.CompilerServices
 Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm
+Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.Linq
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports SMRUCC.genomics.ComponentModel.EquaionModel
@@ -15,6 +16,9 @@ Public Module ImportsReaction
         Dim role_substrate As UInteger = registry.biocad_vocabulary.GetVocabulary("Metabolic Role", "Substrate").id
         Dim role_product As UInteger = registry.biocad_vocabulary.GetVocabulary("Metabolic Role", "Product").id
         Dim network As CommitTransaction = registry.metabolic_network.ignore.open_transaction
+        Dim metabolite_type As UInteger = registry.biocad_vocabulary.metabolite_type
+        Dim dbList As UInteger() = {registry.biocad_vocabulary.db_kegg, registry.biocad_vocabulary.db_chebi}
+        Dim compartmentIndex As New Dictionary(Of String, biocad_registryModel.compartment_location)
 
         For Each rxn As Reaction In TqdmWrapper.Wrap(reactions.ToArray)
             Dim find As biocad_registryModel.reaction = registry.reaction _
@@ -56,16 +60,30 @@ Public Module ImportsReaction
                 field("db_source") = db_source
             )
 
+            Dim eq = rxn.equation
+
             For Each sp As SideCompound In rxn.compounds
                 Dim role As UInteger = If(sp.side = "left", role_substrate, role_product)
+                Dim factor = If(role = role_substrate, eq.Reactants, eq.Products).KeyItem(sp.compound.entry)
+                Dim metab = registry.db_xrefs _
+                    .where(field("type") = metabolite_type,
+                           field("db_name").in(dbList),
+                           field("db_xref") = sp.compound.entry) _
+                    .order_by("obj_id") _
+                    .find(Of biocad_registryModel.db_xrefs)
+                Dim loc As biocad_registryModel.compartment_location = compartmentIndex _
+                    .ComputeIfAbsent(factor.Compartment,
+                                     Function(cc)
+                                         Return registry.compartment_location.where(field("name") = cc).find(Of biocad_registryModel.compartment_location)
+                                     End Function)
 
                 Call network.ignore.add(
                     field("reaction_id") = find.id,
-                    field("factor") = 0,
-                    field("species_id") = 0,
+                    field("factor") = factor.Stoichiometry,
+                    field("species_id") = If(metab Is Nothing, 0, metab.obj_id),
                     field("symbol_id") = sp.compound.entry,
                     field("role") = role,
-                    field("compartment_id") = 0,
+                    field("compartment_id") = loc.id,
                     field("note") = sp.ToString
                 )
             Next
