@@ -8,6 +8,13 @@
 */
 declare namespace registry {
    /**
+   */
+   function imports_metacyc(registry: object, metacyc: object): any;
+   /**
+     * @param env default value Is ``null``.
+   */
+   function imports_pubchem(registry: object, pubchem: any, env?: object): any;
+   /**
      * @param env default value Is ``null``.
    */
    function make_genbank_dbxrefs(registry: object, genbank: any, env?: object): any;

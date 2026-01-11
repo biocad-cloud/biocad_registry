@@ -8,6 +8,9 @@
 */
 declare namespace exports {
    /**
+   */
+   function export_smiles_data(registry: object, dbname: string): any;
+   /**
      * @param dbname default value Is ``null``.
    */
    function metabolite_table(registry: object, dbname?: string): any;
