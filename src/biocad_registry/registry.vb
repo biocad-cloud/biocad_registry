@@ -2,6 +2,7 @@
 Imports BioNovoGene.BioDeep.Chemistry.MetaLib.Models
 Imports BioNovoGene.BioDeep.Chemistry.NCBI.PubChem
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
+Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm
 Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.Linq
@@ -65,12 +66,12 @@ Module registry
             Return pull.getError
         End If
 
-        Dim chunks = pull.populates(Of PugViewRecord)(env).Where(Function(c) Not c Is Nothing).SplitIterator(5000)
+        Dim chunks = pull.populates(Of PugViewRecord)(env).Where(Function(c) Not c Is Nothing).SplitIterator(50)
         Dim vocabulary As New biocad_vocabulary(registry)
         Dim db_pubchem As UInteger = vocabulary.db_pubchem
 
         For Each block As PugViewRecord() In chunks
-            For Each meta As MetaInfo In block.Select(Function(c) c.GetMetaInfo)
+            For Each meta As MetaInfo In TqdmWrapper.Wrap(block.Select(Function(c) c.GetMetaInfo).ToArray)
                 ' 不信任pubchem id的映射结果，在这里直接设置kegg_id来避免直接通过pubchem id查找到结果
                 Dim m As metabolites = registry.FindMolecule(meta, "kegg_id", nameSearch:=True)
 

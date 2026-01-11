@@ -2,6 +2,7 @@
 Imports BioNovoGene.BioDeep.Chemistry.MetaLib.Models
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports Microsoft.VisualBasic.Linq
+Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports Oracle.LinuxCompatibility.MySQL.Reflection.DbAttributes
 Imports registry_data
@@ -220,13 +221,13 @@ Module MetaboliteData
                     .Trim
             End If
 
+            Dim fulltext As String = match("synonym").against(name, booleanMode:=True).ToString
             Dim top = registry.synonym _
                 .left_join("metabolites").on((field("`metabolites`.id") = field("obj_id")) And (field("type") = metabolite_type)) _
-                .where(field("exact_mass").between(exact_mass - 1, exact_mass + 1),
-                       match("synonym").against(name, booleanMode:=True)) _
+                .where(field("exact_mass").between(exact_mass - 1, exact_mass + 1), expr(fulltext)) _
                 .group_by("`metabolites`.id") _
-                .order_by("count(*)", desc:=True) _
-                .find(Of NameHit)("metabolites.id", "COUNT(*) AS size")
+                .order_by($"count(*) * SUM({fulltext})", desc:=True) _
+                .find(Of NameHit)("metabolites.id", "COUNT(*) AS size", $"count(*) * SUM({fulltext}) as score")
 
             If top IsNot Nothing Then
                 Call hits.Add(top)
@@ -249,6 +250,11 @@ Module MetaboliteData
 
         <DatabaseField> Public Property id As UInteger
         <DatabaseField> Public Property size As Long
+        <DatabaseField> Public Property score As Double
+
+        Public Overrides Function ToString() As String
+            Return Me.GetJson
+        End Function
 
     End Class
 End Module
