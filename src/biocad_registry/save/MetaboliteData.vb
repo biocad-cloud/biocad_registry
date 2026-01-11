@@ -3,6 +3,7 @@ Imports BioNovoGene.BioDeep.Chemistry.MetaLib.Models
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports Microsoft.VisualBasic.Linq
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
+Imports Oracle.LinuxCompatibility.MySQL.Reflection.DbAttributes
 Imports registry_data
 Imports registry_data.biocad_registryModel
 
@@ -116,7 +117,7 @@ Module MetaboliteData
     End Function
 
     <Extension>
-    Public Function FindMolecule(registry As biocad_registry, meta As MetaInfo, primaryKey As String) As metabolites
+    Public Function FindMolecule(registry As biocad_registry, meta As MetaInfo, primaryKey As String, Optional nameSearch As Boolean = False) As metabolites
         Dim pubchem_cid As String = Strings.Trim(meta.xref.pubchem).int_id
         Dim chebi_id As String = Strings.Trim(meta.xref.chebi).int_id
         Dim name As String = Strings.Trim(meta.name)
@@ -139,6 +140,10 @@ Module MetaboliteData
             End If
             If m Is Nothing AndAlso Not meta.xref.lipidmaps.StringEmpty Then
                 m = registry.metabolites.where(field("lipidmaps_id") = meta.xref.lipidmaps, field("exact_mass").between(exact_mass - 1, exact_mass + 1)).find(Of metabolites)
+            End If
+
+            If m Is Nothing AndAlso nameSearch Then
+                m = registry.FindByName({meta.name, meta.IUPACName}.JoinIterates(meta.synonym), exact_mass)
             End If
         End If
 
@@ -191,4 +196,59 @@ Module MetaboliteData
         Return m
     End Function
 
+    <Extension>
+    Public Function FindByName(registry As biocad_registry, names As IEnumerable(Of String), exact_mass As Double) As metabolites
+        Dim hits As New List(Of NameHit)
+        Dim metabolite_type As UInteger = New biocad_vocabulary(registry).metabolite_type
+
+        For Each name As String In names
+            If name.StringEmpty(, True) Then
+                Continue For
+            Else
+                name = name _
+                    .Replace("-", " ") _
+                    .Replace("+", " ") _
+                    .Replace("""", " ") _
+                    .Replace("'", " ") _
+                    .Replace("*", " ") _
+                    .Replace(">", " ") _
+                    .Replace("<", " ") _
+                    .Replace("~", " ") _
+                    .Replace("(", " ") _
+                    .Replace(")", " ") _
+                    .Replace("`", " ") _
+                    .Trim
+            End If
+
+            Dim top = registry.synonym _
+                .left_join("metabolites").on((field("`metabolites`.id") = field("obj_id")) And (field("type") = metabolite_type)) _
+                .where(field("exact_mass").between(exact_mass - 1, exact_mass + 1),
+                       match("synonym").against(name, booleanMode:=True)) _
+                .group_by("`metabolites`.id") _
+                .order_by("count(*)", desc:=True) _
+                .find(Of NameHit)("metabolites.id", "COUNT(*) AS size")
+
+            If top IsNot Nothing Then
+                Call hits.Add(top)
+            End If
+        Next
+
+        If hits.Any Then
+            Dim top_id = hits _
+                .GroupBy(Function(a) a.id) _
+                .OrderByDescending(Function(a) Aggregate i In a Into Sum(i.size)) _
+                .First
+
+            Return registry.metabolites.where(field("id") = top_id.Key).find(Of metabolites)
+        Else
+            Return Nothing
+        End If
+    End Function
+
+    Private Class NameHit
+
+        <DatabaseField> Public Property id As UInteger
+        <DatabaseField> Public Property size As Long
+
+    End Class
 End Module
