@@ -1,5 +1,6 @@
 ﻿Imports BioNovoGene.BioDeep.Chemistry.MetaLib.CrossReference
 Imports BioNovoGene.BioDeep.Chemistry.MetaLib.Models
+Imports BioNovoGene.BioDeep.Chemistry.NCBI.PubChem
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.ComponentModel.Collection
@@ -51,6 +52,36 @@ Module registry
 
         For Each gb_asm As GBFF.File In pull.populates(Of GBFF.File)(env)
             Call registry.SaveDbXrefs(gb_asm)
+        Next
+
+        Return Nothing
+    End Function
+
+    <ExportAPI("imports_pubchem")>
+    Public Function imports_pubchem(registry As biocad_registry, <RRawVectorArgument> pubchem As Object, Optional env As Environment = Nothing) As Object
+        Dim pull As pipeline = pipeline.TryCreatePipeline(Of PugViewRecord)(pubchem, env)
+
+        If pull.isError Then
+            Return pull.getError
+        End If
+
+        Dim chunks = pull.populates(Of PugViewRecord)(env).Where(Function(c) Not c Is Nothing).SplitIterator(5000)
+        Dim vocabulary As New biocad_vocabulary(registry)
+        Dim db_pubchem As UInteger = vocabulary.db_pubchem
+
+        For Each block As PugViewRecord() In chunks
+            For Each meta As MetaInfo In block.Select(Function(c) c.GetMetaInfo)
+                ' 不信任pubchem id的映射结果，在这里直接设置kegg_id来避免直接通过pubchem id查找到结果
+                Dim m As metabolites = registry.FindMolecule(meta, "kegg_id", nameSearch:=True)
+
+                If m Is Nothing Then
+                    Continue For
+                End If
+
+                Call registry.SaveDbLinks(vocabulary, meta, m, db_pubchem)
+                Call registry.SaveStructureData(m, meta.xref.SMILES)
+                Call registry.SaveSynonyms(m, meta.synonym.JoinIterates({meta.name, meta.IUPACName}).Distinct, db_pubchem)
+            Next
         Next
 
         Return Nothing
@@ -126,11 +157,12 @@ Module registry
                     .pubchem = dbgroups.TryGetValue("PUBCHEM").DefaultFirst,
                     .Wikipedia = dbgroups.TryGetValue("|Wikipedia|").DefaultFirst,
                     .CAS = dbgroups.TryGetValue("CAS"),
-                    .DrugBank = dbgroups.TryGetValue("DRUGBANK").DefaultFirst
+                    .DrugBank = dbgroups.TryGetValue("DRUGBANK").DefaultFirst,
+                    .SMILES = cpd.SMILES
                 }
             }
 
-            Dim m As metabolites = registry.FindMolecule(meta, "biocyc")
+            Dim m As metabolites = registry.FindMolecule(meta, "biocyc", nameSearch:=True)
             Dim term_id As ontology = Nothing
 
             If Not cpd.superAtoms.StringEmpty Then
