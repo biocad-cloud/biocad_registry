@@ -17,22 +17,6 @@
       <Platform Solution="*|x64" Project="x64" />
     </Project>
   </Folder>
-  <Folder Name="/framework/galaxy/">
-    <Project Path="../../galaxy/src/dockpanelsuite/Themes/ThemeVS2015.vbproj">
-      <Platform Solution="*|x64" Project="x64" />
-    </Project>
-    <Project Path="../../galaxy/src/dockpanelsuite/VSDockPanel/VSDockPanel.vbproj">
-      <BuildType Solution="Rsharp_app_release|*" Project="MEMI-Desktop" />
-      <Platform Solution="*|x64" Project="x64" />
-    </Project>
-    <Project Path="../../galaxy/src/GalaxyWorkbench/GalaxyWorkbench.vbproj">
-      <Platform Solution="*|x64" Project="x64" />
-    </Project>
-    <Project Path="../../galaxy/src/Microsoft.Windows.FeatureAPI/Microsoft.Windows.FeatureAPI.vbproj" Id="3d61f3a9-a8e0-4195-9133-6fd8e4b82d54">
-      <BuildType Solution="Rsharp_app_release|*" Project="MEMI-Desktop" />
-      <Platform Solution="*|x64" Project="x64" />
-    </Project>
-  </Folder>
   <Folder Name="/framework/gcmodeller/">
     <Project Path="../../GCModeller/src/GCModeller/analysis/OperonMapper/OperonMapper.vbproj">
       <Platform Solution="*|x64" Project="x64" />
