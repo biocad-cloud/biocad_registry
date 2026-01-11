@@ -66,7 +66,7 @@ Module registry
             Return pull.getError
         End If
 
-        Dim chunks = pull.populates(Of PugViewRecord)(env).Where(Function(c) Not c Is Nothing).SplitIterator(50)
+        Dim chunks = pull.populates(Of PugViewRecord)(env).Where(Function(c) Not c Is Nothing).SplitIterator(1000)
         Dim vocabulary As New biocad_vocabulary(registry)
         Dim db_pubchem As UInteger = vocabulary.db_pubchem
 
