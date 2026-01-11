@@ -124,8 +124,10 @@ Module MetaboliteData
         Dim name As String = Strings.Trim(meta.name)
         Dim hashcode As String = name.ToLower.MD5
         Dim exact_mass As Double = FormulaScanner.EvaluateExactMass(meta.formula)
+        Dim metabolite_type As String = New biocad_vocabulary(registry).metabolite_type
         Dim m As metabolites = registry.metabolites _
-            .where(field(primaryKey) = meta.ID) _
+            .where(field(primaryKey) = meta.ID,
+                   field("exact_mass").between(exact_mass - 1, exact_mass + 1)) _
             .find(Of metabolites)
 
         If exact_mass < 0 Then
@@ -144,17 +146,38 @@ Module MetaboliteData
             End If
 
             If m Is Nothing AndAlso nameSearch Then
-                m = registry.FindByName({meta.name, meta.IUPACName}.JoinIterates(meta.synonym), exact_mass)
+                ' not working as expected
+                ' m = registry.FindByName({meta.name, meta.IUPACName}.JoinIterates(meta.synonym), exact_mass)
+                Dim hashset As String() = meta.synonym _
+                    .JoinIterates({meta.name, meta.IUPACName}) _
+                    .Where(Function(str) Not str.StringEmpty(, True)) _
+                    .Select(Function(str) str.ToLower.MD5) _
+                    .ToArray
+
+                m = registry.metabolites _
+                    .where(field("hashcode").in(hashset),
+                           field("exact_mass").between(exact_mass - 1, exact_mass + 1)) _
+                    .order_by("id") _
+                    .find(Of metabolites)
+
+                If m Is Nothing Then
+                    Dim hit = registry.synonym _
+                        .left_join("metabolites") _
+                        .on(field("`metabolites`.id") = field("obj_id") And field("type") = metabolite_type) _
+                        .where(field("exact_mass").between(exact_mass - 1, exact_mass + 1),
+                               field("`synonym`.hashcode").in(hashset)) _
+                        .group_by("obj_id") _
+                        .order_by("count(*)", desc:=True) _
+                        .find(Of NameHit)("obj_id AS id", "COUNT(*) AS size")
+
+                    If hit IsNot Nothing Then
+                        m = registry.metabolites.where(field("id") = hit.id).find(Of metabolites)
+                    End If
+                End If
             End If
         End If
 
         If m Is Nothing Then
-            Dim hashset As String() = meta.synonym _
-                .JoinIterates({meta.name, meta.IUPACName}) _
-                .Where(Function(str) Not str.StringEmpty(, True)) _
-                .Select(Function(str) str.ToLower.MD5) _
-                .ToArray
-
             Call registry.metabolites.add(
                 field("name") = name,
                 field("hashcode") = hashcode,
@@ -172,7 +195,10 @@ Module MetaboliteData
                 field("drugbank_id") = meta.xref.DrugBank,
                 field("note") = meta.description
             )
-            m = registry.metabolites.where(field(primaryKey) = meta.ID).order_by("id", desc:=True).find(Of metabolites)
+            m = registry.metabolites.where(field(primaryKey) = meta.ID,
+                                           field("exact_mass").between(exact_mass - 1, exact_mass + 1)) _
+                                    .order_by("id", desc:=True) _
+                                    .find(Of metabolites)
 
             ' 20260106 fix for the non-primary key database
             ' exmple as refmet is missing from the master list
@@ -221,7 +247,7 @@ Module MetaboliteData
                     .Trim
             End If
 
-            Dim fulltext As String = match("synonym").against(name, booleanMode:=True).ToString
+            Dim fulltext As String = match("synonym").against(name, booleanMode:=False).ToString
             Dim top = registry.synonym _
                 .left_join("metabolites").on((field("`metabolites`.id") = field("obj_id")) And (field("type") = metabolite_type)) _
                 .where(field("exact_mass").between(exact_mass - 1, exact_mass + 1), expr(fulltext)) _
