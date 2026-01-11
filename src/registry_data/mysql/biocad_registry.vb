@@ -100,7 +100,22 @@ Public Class biocad_registry : Inherits biocad_registryModel.db_mysql
         End Get
     End Property
 
+    Public ReadOnly Property reaction As TableModel(Of reaction)
+        Get
+            Return m_reaction
+        End Get
+    End Property
+
+    Public ReadOnly Property metabolic_network As TableModel(Of metabolic_network)
+        Get
+            Return m_metabolic_network
+        End Get
+    End Property
+
+    Public ReadOnly Property biocad_vocabulary As biocad_vocabulary
+
     Public Sub New(mysqli As ConnectionUri)
         MyBase.New(mysqli)
+        Me.biocad_vocabulary = New biocad_vocabulary(Me)
     End Sub
 End Class

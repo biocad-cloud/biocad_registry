@@ -44,6 +44,7 @@ Public Class biocad_vocabulary
     ''' </summary>
     ''' <returns></returns>
     Public ReadOnly Property protein_type As UInteger
+    Public ReadOnly Property reaction_type As UInteger
 
     ''' <summary>
     ''' the protein fasta seuqnece data
@@ -72,6 +73,7 @@ Public Class biocad_vocabulary
 
         metabolite_type = GetRegistryEntity(biocad_vocabulary.EntityMetabolite).id
         protein_type = GetRegistryEntity(biocad_vocabulary.EntityProtein).id
+        reaction_type = GetRegistryEntity(biocad_vocabulary.EntityReaction).id
 
         protein_data = GetVocabulary(biocad_vocabulary.FastaData, biocad_vocabulary.ObjectProtein).id
         nucleotide_data = GetVocabulary(biocad_vocabulary.FastaData, biocad_vocabulary.ObjectNucleotide).id
