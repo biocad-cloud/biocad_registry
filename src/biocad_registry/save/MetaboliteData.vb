@@ -173,6 +173,8 @@ Module MetaboliteData
                     If hit IsNot Nothing Then
                         m = registry.metabolites.where(field("id") = hit.id).find(Of metabolites)
                     End If
+                Else
+                    Call m.ToString.debug
                 End If
             End If
         End If
