@@ -11,6 +11,8 @@ Imports Microsoft.VisualBasic.Text.Xml
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports registry_data
 Imports registry_data.biocad_registryModel
+Imports SMRUCC.genomics.Assembly.KEGG
+Imports SMRUCC.genomics.Assembly.KEGG.DBGET.bGetObject
 Imports SMRUCC.genomics.Assembly.NCBI.GenBank
 Imports SMRUCC.genomics.Data.BioCyc
 Imports SMRUCC.Rsharp.Runtime
@@ -84,6 +86,26 @@ Module registry
                 Call registry.SaveSynonyms(m, meta.synonym.JoinIterates({meta.name, meta.IUPACName}).Distinct, db_pubchem)
             Next
         Next
+
+        Return Nothing
+    End Function
+
+    <ExportAPI("imports_kegg_reactions")>
+    Public Function imports_kegg_reactions(registry As biocad_registry, <RRawVectorArgument> kegg As Object, Optional env As Environment = Nothing) As Object
+        Dim pull As pipeline = pipeline.TryCreatePipeline(Of DBGET.bGetObject.Reaction)(kegg, env)
+
+        If pull.isError Then
+            Return pull.getError
+        End If
+
+        Dim models As SMRUCC.genomics.ComponentModel.EquaionModel.Reaction() = pull _
+            .populates(Of DBGET.bGetObject.Reaction)(env) _
+            .Select(Function(r)
+                        Return SMRUCC.genomics.ComponentModel.EquaionModel.Reaction.FromKeggReaction(r)
+                    End Function) _
+            .ToArray
+
+        Call registry.importsReactions(models, db_name:="kegg")
 
         Return Nothing
     End Function
