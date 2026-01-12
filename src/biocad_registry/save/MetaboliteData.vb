@@ -125,25 +125,28 @@ Module MetaboliteData
         Dim hashcode As String = name.ToLower.MD5
         Dim exact_mass As Double = FormulaScanner.EvaluateExactMass(meta.formula)
         Dim metabolite_type As String = registry.biocad_vocabulary.metabolite_type
+        Dim mass_filter As FieldAssert
 
         If exact_mass < 0 Then
             exact_mass = 0
+            mass_filter = field("exact_mass") = 0
+        Else
+            mass_filter = field("exact_mass").between(exact_mass - 1, exact_mass + 1)
         End If
 
         Dim m As metabolites = registry.metabolites _
-            .where(field(primaryKey) = meta.ID,
-                   field("exact_mass").between(exact_mass - 1, exact_mass + 1)) _
+            .where(field(primaryKey) = meta.ID, mass_filter) _
             .find(Of metabolites)
 
         If exact_mass > 1 Then
             If m Is Nothing AndAlso Not meta.xref.KEGG.StringEmpty Then
-                m = registry.metabolites.where(field("kegg_id") = meta.xref.KEGG, field("exact_mass").between(exact_mass - 1, exact_mass + 1)).find(Of metabolites)
+                m = registry.metabolites.where(field("kegg_id") = meta.xref.KEGG, mass_filter).find(Of metabolites)
             End If
             If m Is Nothing AndAlso Not meta.xref.HMDB.StringEmpty Then
-                m = registry.metabolites.where(field("hmdb_id") = meta.xref.HMDB, field("exact_mass").between(exact_mass - 1, exact_mass + 1)).find(Of metabolites)
+                m = registry.metabolites.where(field("hmdb_id") = meta.xref.HMDB, mass_filter).find(Of metabolites)
             End If
             If m Is Nothing AndAlso Not meta.xref.lipidmaps.StringEmpty Then
-                m = registry.metabolites.where(field("lipidmaps_id") = meta.xref.lipidmaps, field("exact_mass").between(exact_mass - 1, exact_mass + 1)).find(Of metabolites)
+                m = registry.metabolites.where(field("lipidmaps_id") = meta.xref.lipidmaps, mass_filter).find(Of metabolites)
             End If
 
             If m Is Nothing AndAlso nameSearch Then
@@ -156,8 +159,7 @@ Module MetaboliteData
                     .ToArray
 
                 m = registry.metabolites _
-                    .where(field("hashcode").in(hashset),
-                           field("exact_mass").between(exact_mass - 1, exact_mass + 1)) _
+                    .where(field("hashcode").in(hashset), mass_filter) _
                     .order_by("id") _
                     .find(Of metabolites)
 
@@ -165,8 +167,7 @@ Module MetaboliteData
                     Dim hit = registry.synonym _
                         .left_join("metabolites") _
                         .on(field("`metabolites`.id") = field("obj_id") And field("type") = metabolite_type) _
-                        .where(field("exact_mass").between(exact_mass - 1, exact_mass + 1),
-                               field("`synonym`.hashcode").in(hashset)) _
+                        .where(mass_filter, field("`synonym`.hashcode").in(hashset)) _
                         .group_by("obj_id") _
                         .order_by("count(*)", desc:=True) _
                         .find(Of NameHit)("obj_id AS id", "COUNT(*) AS size")
@@ -198,8 +199,7 @@ Module MetaboliteData
                 field("drugbank_id") = meta.xref.DrugBank,
                 field("note") = meta.description
             )
-            m = registry.metabolites.where(field(primaryKey) = meta.ID,
-                                           field("exact_mass").between(exact_mass - 1, exact_mass + 1)) _
+            m = registry.metabolites.where(field(primaryKey) = meta.ID, mass_filter) _
                                     .order_by("id", desc:=True) _
                                     .find(Of metabolites)
 
@@ -209,8 +209,7 @@ Module MetaboliteData
             ' try to find by name at here
             If m Is Nothing Then
                 m = registry.metabolites _
-                    .where(field("exact_mass").between(exact_mass - 1, exact_mass + 1),
-                           field("name") = name) _
+                    .where(mass_filter, field("name") = name) _
                     .order_by("id", desc:=True) _
                     .find(Of metabolites)
             End If

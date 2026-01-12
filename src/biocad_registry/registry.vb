@@ -105,7 +105,7 @@ Module registry
 
         Dim classIndex As New Dictionary(Of String, UInteger)
 
-        For Each id As String In superAtoms.Objects
+        For Each id As String In TqdmWrapper.Wrap(superAtoms.Objects)
             ' subclass
             Dim subclass As compounds = compoundSet(id)
             Dim classinfo As compounds = compoundSet(subclass.types.DefaultFirst)
@@ -132,7 +132,7 @@ Module registry
             End If
         Next
 
-        For Each cpd As compounds In compoundSet.features
+        For Each cpd As compounds In TqdmWrapper.Wrap(compoundSet.features.ToArray)
             Dim formula As String = compounds.FormulaString(cpd)
             Dim dblinks = compounds.GetDbLinks(cpd).ToArray
             Dim dbgroups As Dictionary(Of String, String()) = dblinks _
@@ -159,7 +159,8 @@ Module registry
                     .Wikipedia = dbgroups.TryGetValue("|Wikipedia|").DefaultFirst,
                     .CAS = dbgroups.TryGetValue("CAS"),
                     .DrugBank = dbgroups.TryGetValue("DRUGBANK").DefaultFirst,
-                    .SMILES = cpd.SMILES
+                    .SMILES = cpd.SMILES,
+                    .MetaCyc = cpd.uniqueId
                 }
             }
 
