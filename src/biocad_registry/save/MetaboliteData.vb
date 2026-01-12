@@ -124,15 +124,16 @@ Module MetaboliteData
         Dim name As String = Strings.Trim(meta.name)
         Dim hashcode As String = name.ToLower.MD5
         Dim exact_mass As Double = FormulaScanner.EvaluateExactMass(meta.formula)
-        Dim metabolite_type As String = New biocad_vocabulary(registry).metabolite_type
-        Dim m As metabolites = registry.metabolites _
-            .where(field(primaryKey) = meta.ID,
-                   field("exact_mass").between(exact_mass - 1, exact_mass + 1)) _
-            .find(Of metabolites)
+        Dim metabolite_type As String = registry.biocad_vocabulary.metabolite_type
 
         If exact_mass < 0 Then
             exact_mass = 0
         End If
+
+        Dim m As metabolites = registry.metabolites _
+            .where(field(primaryKey) = meta.ID,
+                   field("exact_mass").between(exact_mass - 1, exact_mass + 1)) _
+            .find(Of metabolites)
 
         If exact_mass > 1 Then
             If m Is Nothing AndAlso Not meta.xref.KEGG.StringEmpty Then
