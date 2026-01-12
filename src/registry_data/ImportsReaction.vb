@@ -11,7 +11,7 @@ Public Module ImportsReaction
         Select Case UCase(cc)
             Case "", "CCO-CYTOSOL", "NIL", "CCO-IN" : Return "Cytoplasm"
             Case "CCO-OUT" : Return "Extracellular"
-            Case "CCI-PM-BAC-NEG-GN" : Return "Membrane"
+            Case "CCI-PM-BAC-NEG-GN", "CCO-PM-BAC-NEG", "CCO-MEMBRANE", "CCO-PM-BAC-ACT", "CCO-MIDDLE" : Return "Membrane"
             Case Else
                 Throw New NotImplementedException(cc)
         End Select
