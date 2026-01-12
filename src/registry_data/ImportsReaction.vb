@@ -114,6 +114,11 @@ Public Module ImportsReaction
             For Each sp As SideCompound In rxn.compounds
                 Dim role As UInteger = If(sp.side = "left", role_substrate, role_product)
                 Dim factor = If(role = role_substrate, eq.Reactants, eq.Products).KeyItem(sp.compound.entry)
+
+                If factor Is Nothing Then
+                    factor = If(role <> role_substrate, eq.Reactants, eq.Products).KeyItem(sp.compound.entry)
+                End If
+
                 Dim metab = registry.db_xrefs _
                     .where(field("type") = metabolite_type,
                            field("db_name").in(dbList),
@@ -129,7 +134,7 @@ Public Module ImportsReaction
 
                 Call network.ignore.add(
                     field("reaction_id") = find.id,
-                    field("factor") = factor.Stoichiometry,
+                    field("factor") = If(factor.Stoichiometry.IsNaNImaginary, 1, factor.Stoichiometry),
                     field("species_id") = If(metab Is Nothing, 0, metab.obj_id),
                     field("symbol_id") = sp.compound.entry,
                     field("role") = role,
