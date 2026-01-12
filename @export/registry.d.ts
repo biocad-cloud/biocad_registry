@@ -9,7 +9,7 @@
 declare namespace registry {
    /**
    */
-   function imports_metacyc(registry: object, metacyc: object): any;
+   function imports_metacyc_compounds(registry: object, metacyc: object): any;
    /**
      * @param env default value Is ``null``.
    */

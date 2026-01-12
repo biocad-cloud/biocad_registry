@@ -88,7 +88,7 @@ Module registry
         Return Nothing
     End Function
 
-    <ExportAPI("imports_metacyc")>
+    <ExportAPI("imports_metacyc_compounds")>
     Public Function imports_metacyc(registry As biocad_registry, metacyc As Workspace) As Object
         Dim vocabulary As New biocad_vocabulary(registry)
         Dim metabolite_type As UInteger = vocabulary.GetRegistryEntity(biocad_vocabulary.EntityMetabolite).id
