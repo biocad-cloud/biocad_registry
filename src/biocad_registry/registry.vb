@@ -117,7 +117,7 @@ Module registry
         Dim models = reactions _
             .Select(Function(r)
                         Dim left As SideCompound() = r.left.Select(Function(c) New SideCompound With {.side = "left", .compound = New CompoundSpecies(c.ID)}).ToArray
-                        Dim right As SideCompound() = r.right.Select(Function(c) New SideCompound With {.side = "left", .compound = New CompoundSpecies(c.ID)}).ToArray
+                        Dim right As SideCompound() = r.right.Select(Function(c) New SideCompound With {.side = "right", .compound = New CompoundSpecies(c.ID)}).ToArray
 
                         Return New SMRUCC.genomics.ComponentModel.EquaionModel.Reaction With {
                             .entry = r.uniqueId,
