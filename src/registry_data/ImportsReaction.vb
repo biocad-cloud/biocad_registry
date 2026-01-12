@@ -8,10 +8,11 @@ Imports SMRUCC.genomics.ComponentModel.EquaionModel
 Public Module ImportsReaction
 
     Private Function CCNameMapping(cc As String) As String
-        Select Case LCase(cc)
-            Case "" : Return "Cytoplasm"
+        Select Case UCase(cc)
+            Case "", "CCO-CYTOSOL", "NIL", "CCO-IN" : Return "Cytoplasm"
+            Case "CCO-OUT" : Return "Extracellular"
             Case Else
-
+                Throw New NotImplementedException(cc)
         End Select
     End Function
 

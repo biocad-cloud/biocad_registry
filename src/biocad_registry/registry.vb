@@ -111,7 +111,7 @@ Module registry
         Return Nothing
     End Function
 
-    <ExportAPI("imports_metacyc_compounds")>
+    <ExportAPI("imports_metacyc_reactions")>
     Public Function imports_metacyc_reactions(registry As biocad_registry, metacyc As Workspace) As Object
         Dim reactions = metacyc.reactions.features.ToArray
         Dim models = reactions _
