@@ -164,6 +164,10 @@ Module registry
                 }
             }
 
+            If meta.name = "" Then
+                meta.name = meta.ID
+            End If
+
             Dim m As metabolites = registry.FindMolecule(meta, "biocyc", nameSearch:=True)
             Dim term_id As ontology = Nothing
 
