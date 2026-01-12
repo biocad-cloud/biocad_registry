@@ -108,6 +108,7 @@ Public Module ImportsReaction
             )
 
             Dim eq = rxn.equation
+            Dim links As New List(Of (UInteger, UInteger))
 
             For Each sp As SideCompound In rxn.compounds
                 Dim role As UInteger = If(sp.side = "left", role_substrate, role_product)
@@ -136,6 +137,12 @@ Public Module ImportsReaction
                 )
 
                 If metab IsNot Nothing Then
+                    Call links.Add((role, metab.obj_id))
+                Else
+                    Call links.Add((role, 0))
+                End If
+
+                If metab IsNot Nothing AndAlso compartmentIndex.Count > 0 AndAlso compartmentIndex.Keys.First <> "" Then
                     Call enrich.ignore.add(
                         field("metabolite_id") = metab.obj_id,
                         field("location_id") = loc.id,
@@ -143,9 +150,16 @@ Public Module ImportsReaction
                     )
                 End If
             Next
+
+            If links.All(Function(a) a.Item2 > 0) Then
+                Dim hashcode As String = links.OrderBy(Function(a) a.Item1).ThenBy(Function(a) a.Item2).Select(Function(a) {a.Item1, a.Item2}).IteratesALL.JoinBy(",").MD5
+
+                registry.reaction.where(field("id") = find.id).save(field("hashcode") = hashcode)
+            End If
         Next
 
         Call dblinks.commit()
         Call network.commit()
+        Call enrich.commit()
     End Sub
 End Module
