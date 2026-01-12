@@ -79,7 +79,7 @@ Public Module ImportsReaction
                     field("db_source") = db_source,
                     field("db_xref") = rxn.entry,
                     field("hashcode") = "",
-                    field("name") = rxn.definition,
+                    field("name") = If(rxn.definition, rxn.equation.ToString),
                     field("ec_number") = rxn.enzyme.DefaultFirst,
                     field("equation") = rxn.equation.ToString,
                     field("note") = rxn.comment
