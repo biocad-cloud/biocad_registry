@@ -15,6 +15,9 @@ declare namespace registry {
    */
    function imports_metacyc_compounds(registry: object, metacyc: object): any;
    /**
+   */
+   function imports_metacyc_reactions(registry: object, metacyc: object): any;
+   /**
      * @param env default value Is ``null``.
    */
    function imports_pubchem(registry: object, pubchem: any, env?: object): any;

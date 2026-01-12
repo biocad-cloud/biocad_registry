@@ -115,6 +115,7 @@ Module registry
     Public Function imports_metacyc_reactions(registry As biocad_registry, metacyc As Workspace) As Object
         Dim reactions = metacyc.reactions.features.ToArray
         Dim models = reactions _
+            .Where(Function(r) Not (r.left.IsNullOrEmpty OrElse r.right.IsNullOrEmpty)) _
             .Select(Function(r)
                         Dim left As SideCompound() = r.left.Select(Function(c) New SideCompound With {.side = "left", .compound = New CompoundSpecies(c.ID)}).ToArray
                         Dim right As SideCompound() = r.right.Select(Function(c) New SideCompound With {.side = "right", .compound = New CompoundSpecies(c.ID)}).ToArray
