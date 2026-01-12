@@ -13,6 +13,7 @@ Imports registry_data
 Imports registry_data.biocad_registryModel
 Imports SMRUCC.genomics.Assembly.KEGG
 Imports SMRUCC.genomics.Assembly.NCBI.GenBank
+Imports SMRUCC.genomics.ComponentModel.EquaionModel
 Imports SMRUCC.genomics.Data.BioCyc
 Imports SMRUCC.Rsharp.Runtime
 Imports SMRUCC.Rsharp.Runtime.Internal.[Object]
@@ -106,6 +107,30 @@ Module registry
             .ToArray
 
         Call registry.importsReactions(models, db_name:="kegg")
+
+        Return Nothing
+    End Function
+
+    <ExportAPI("imports_metacyc_compounds")>
+    Public Function imports_metacyc_reactions(registry As biocad_registry, metacyc As Workspace) As Object
+        Dim reactions = metacyc.reactions.features.ToArray
+        Dim models = reactions _
+            .Select(Function(r)
+                        Dim left As SideCompound() = r.left.Select(Function(c) New SideCompound With {.side = "left", .compound = New CompoundSpecies(c.ID)}).ToArray
+                        Dim right As SideCompound() = r.right.Select(Function(c) New SideCompound With {.side = "left", .compound = New CompoundSpecies(c.ID)}).ToArray
+
+                        Return New SMRUCC.genomics.ComponentModel.EquaionModel.Reaction With {
+                            .entry = r.uniqueId,
+                            .comment = r.comment,
+                            .definition = r.commonName,
+                            .enzyme = r.ec_number.SafeQuery.Select(Function(e) e.ECNumberString).ToArray,
+                            .equation = r.equation,
+                            .compounds = left.JoinIterates(right).ToArray
+                        }
+                    End Function) _
+            .ToArray
+
+        Call registry.importsReactions(models, db_name:="BioCyc")
 
         Return Nothing
     End Function
