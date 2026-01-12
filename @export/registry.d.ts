@@ -8,6 +8,10 @@
 */
 declare namespace registry {
    /**
+     * @param env default value Is ``null``.
+   */
+   function imports_kegg_reactions(registry: object, kegg: any, env?: object): any;
+   /**
    */
    function imports_metacyc_compounds(registry: object, metacyc: object): any;
    /**

@@ -12,7 +12,6 @@ Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports registry_data
 Imports registry_data.biocad_registryModel
 Imports SMRUCC.genomics.Assembly.KEGG
-Imports SMRUCC.genomics.Assembly.KEGG.DBGET.bGetObject
 Imports SMRUCC.genomics.Assembly.NCBI.GenBank
 Imports SMRUCC.genomics.Data.BioCyc
 Imports SMRUCC.Rsharp.Runtime
@@ -100,6 +99,7 @@ Module registry
 
         Dim models As SMRUCC.genomics.ComponentModel.EquaionModel.Reaction() = pull _
             .populates(Of DBGET.bGetObject.Reaction)(env) _
+            .Where(Function(r) Not r.ID.StringEmpty(, True)) _
             .Select(Function(r)
                         Return SMRUCC.genomics.ComponentModel.EquaionModel.Reaction.FromKeggReaction(r)
                     End Function) _

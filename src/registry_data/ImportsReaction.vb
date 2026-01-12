@@ -9,7 +9,7 @@ Public Module ImportsReaction
 
     Private Function CCNameMapping(cc As String) As String
         Select Case LCase(cc)
-            Case ""
+            Case "" : Return "Cytoplasm"
             Case Else
 
         End Select
@@ -25,7 +25,7 @@ Public Module ImportsReaction
         Dim role_product As UInteger = registry.biocad_vocabulary.GetVocabulary("Metabolic Role", "Product").id
         Dim network As CommitTransaction = registry.metabolic_network.ignore.open_transaction
         Dim metabolite_type As UInteger = registry.biocad_vocabulary.metabolite_type
-        Dim dbList As UInteger() = {registry.biocad_vocabulary.db_kegg, registry.biocad_vocabulary.db_chebi}
+        Dim dbList As UInteger() = {registry.biocad_vocabulary.db_kegg, registry.biocad_vocabulary.db_chebi, registry.biocad_vocabulary.db_biocyc}
         Dim compartmentIndex As New Dictionary(Of String, biocad_registryModel.compartment_location)
         Dim pool As Reaction() = reactions.ToArray
         Dim enrich = registry.compartment_enrich.ignore.open_transaction
@@ -33,7 +33,7 @@ Public Module ImportsReaction
         For Each rxn As Reaction In TqdmWrapper.Wrap(pool)
             For Each cpd In rxn.equation.Reactants
                 Call compartmentIndex _
-                    .ComputeIfAbsent(cpd.Compartment,
+                    .ComputeIfAbsent(If(cpd.Compartment, ""),
                                      Function(cc)
                                          cc = CCNameMapping(cc)
                                          Dim cc_obj = registry.compartment_location.where(field("name") = cc).find(Of biocad_registryModel.compartment_location)
@@ -50,7 +50,7 @@ Public Module ImportsReaction
             Next
             For Each cpd In rxn.equation.Products
                 Call compartmentIndex _
-                    .ComputeIfAbsent(cpd.Compartment,
+                    .ComputeIfAbsent(If(cpd.Compartment, ""),
                                      Function(cc)
                                          cc = CCNameMapping(cc)
                                          Dim cc_obj = registry.compartment_location.where(field("name") = cc).find(Of biocad_registryModel.compartment_location)
@@ -119,8 +119,9 @@ Public Module ImportsReaction
                     .order_by("obj_id") _
                     .find(Of biocad_registryModel.db_xrefs)
                 Dim loc As biocad_registryModel.compartment_location = compartmentIndex _
-                    .ComputeIfAbsent(factor.Compartment,
+                    .ComputeIfAbsent(If(factor.Compartment, ""),
                                      Function(cc)
+                                         cc = CCNameMapping(cc)
                                          Return registry.compartment_location.where(field("name") = cc).find(Of biocad_registryModel.compartment_location)
                                      End Function)
 
