@@ -72,6 +72,7 @@ Public Module ImportsGenBank
         Dim ncbi_genbank As UInteger = vocabulary.db_genbank
         Dim ec_number As UInteger = vocabulary.db_ECNumber
         Dim xrefs As CommitTransaction = registry.db_xrefs.ignore.open_transaction
+        Dim taxid As UInteger = asm.Taxon
 
         For Each gene As Feature In TqdmWrapper.Wrap(asm.EnumerateGeneFeatures(ORF:=True).ToArray)
             Dim locus_tag As String = gene.Query(FeatureQualifiers.locus_tag)
@@ -87,11 +88,13 @@ Public Module ImportsGenBank
                 Continue For
             End If
 
-            registry.protein_data.where(field("id") = prot.id).save(field("gene_id") = nucl.id)
+            registry.protein_data.where(field("id") = prot.id).save(field("gene_id") = nucl.id, field("ncbi_taxid") = taxid)
 
             For Each id As String In gene.QueryDuplicated("EC_number").SafeQuery
                 Call xrefs.ignore.add(field("obj_id") = prot.id, field("type") = prot_type, field("db_name") = ec_number, field("db_xref") = id, field("db_source") = ncbi_genbank)
             Next
+
+            Call xrefs.ignore.add(field("obj_id") = prot.id, field("type") = prot_type, field("db_name") = ncbi_genbank, field("db_xref") = locus_tag, field("db_source") = ncbi_genbank)
         Next
 
         Call xrefs.commit()
