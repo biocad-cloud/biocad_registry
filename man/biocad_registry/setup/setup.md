@@ -9,3 +9,4 @@
 + [setup_chebi](setup/setup_chebi.1) 
 + [save_motif](setup/save_motif.1) 
 + [setup_ko](setup/setup_ko.1) 
++ [setup_taxonomy](setup/setup_taxonomy.1) 

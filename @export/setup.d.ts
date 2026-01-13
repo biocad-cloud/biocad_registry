@@ -37,4 +37,7 @@ declare namespace setup {
      * @param env default value Is ``null``.
    */
    function setup_refmet(registry: object, refmet: any, env?: object): any;
+   /**
+   */
+   function setup_taxonomy(registry: object, ncbi_tax: object): any;
 }

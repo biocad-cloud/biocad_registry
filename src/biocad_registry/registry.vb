@@ -13,6 +13,7 @@ Imports registry_data
 Imports registry_data.biocad_registryModel
 Imports SMRUCC.genomics.Assembly.KEGG
 Imports SMRUCC.genomics.Assembly.NCBI.GenBank
+Imports SMRUCC.genomics.Assembly.Uniprot.XML
 Imports SMRUCC.genomics.ComponentModel.EquaionModel
 Imports SMRUCC.genomics.Data.BioCyc
 Imports SMRUCC.Rsharp.Runtime
@@ -21,6 +22,19 @@ Imports SMRUCC.Rsharp.Runtime.Interop
 
 <Package("registry")>
 Module registry
+
+    <ExportAPI("save_uniprot")>
+    Public Function saveUniprot(registry As biocad_registry, <RRawVectorArgument> uniprot As Object, Optional env As Environment = Nothing) As Object
+        Dim pull As pipeline = pipeline.TryCreatePipeline(Of entry)(uniprot, env)
+
+        If pull.isError Then
+            Return pull.getError
+        End If
+
+        Call registry.importsUniProt(pull.populates(Of entry)(env))
+
+        Return Nothing
+    End Function
 
     <ExportAPI("save_genbank")>
     Public Function save_genbank(registry As biocad_registry,
