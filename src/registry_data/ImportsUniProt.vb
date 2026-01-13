@@ -34,9 +34,9 @@ Public Module ImportsUniProt
                 Dim check As protein
 
                 If locus_tag.StringEmpty Then
-                    check = registry.protein_data.where(field("source_id") = prot.accessions.First, field("ncbi_taxid") = taxid, field("source_db") = db_uniprot).find(Of protein)
+                    check = registry.protein_data.where(field("source_id") = prot.accessions.First, field("ncbi_taxid") = taxid, field("source_db") = db_uniprot).find(Of protein)("id")
                 Else
-                    check = registry.protein_data.where(field("source_id") = locus_tag, field("ncbi_taxid") = taxid, field("source_db") = db_genbank).find(Of protein)
+                    check = registry.protein_data.where(field("source_id") = locus_tag, field("ncbi_taxid") = taxid, field("source_db") = db_genbank).find(Of protein)("id")
                 End If
 
                 If check Is Nothing Then
@@ -68,9 +68,9 @@ Public Module ImportsUniProt
                 Dim check As protein
 
                 If locus_tag.StringEmpty Then
-                    check = registry.protein_data.where(field("source_id") = prot.accessions.First, field("ncbi_taxid") = taxid, field("source_db") = db_uniprot).find(Of protein)
+                    check = registry.protein_data.where(field("source_id") = prot.accessions.First, field("ncbi_taxid") = taxid, field("source_db") = db_uniprot).find(Of protein)("id")
                 Else
-                    check = registry.protein_data.where(field("source_id") = locus_tag, field("ncbi_taxid") = taxid, field("source_db") = db_genbank).find(Of protein)
+                    check = registry.protein_data.where(field("source_id") = locus_tag, field("ncbi_taxid") = taxid, field("source_db") = db_genbank).find(Of protein)("id")
                 End If
 
                 If check Is Nothing Then
@@ -118,7 +118,7 @@ Public Module ImportsUniProt
                         Continue For
                     End If
 
-                    Dim rxn = registry.reaction.where(field("db_xref") = rhea.id, field("db_source") = db_rhea).find(Of biocad_registryModel.reaction)
+                    Dim rxn = registry.reaction.where(field("db_xref") = rhea.id, field("db_source") = db_rhea).find(Of biocad_registryModel.reaction)("id")
 
                     If Not rxn Is Nothing Then
                         Call sql.add(registry.metabolic_network.add_sql(

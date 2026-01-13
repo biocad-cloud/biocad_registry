@@ -81,8 +81,11 @@ Public Module ImportsGenBank
                 Continue For
             End If
 
-            Dim prot = registry.protein_data.where(field("source_id") = locus_tag, field("source_db") = ncbi_genbank).find(Of protein_data)
-            Dim nucl = registry.nucleotide_data.where(field("source_id") = locus_tag, field("source_db") = ncbi_genbank).find(Of nucleotide_data)
+            ' 20260114
+            ' select long text will be very slow
+            ' just select the id field at here
+            Dim prot = registry.protein_data.where(field("source_id") = locus_tag, field("source_db") = ncbi_genbank).find(Of protein_data)("id")
+            Dim nucl = registry.nucleotide_data.where(field("source_id") = locus_tag, field("source_db") = ncbi_genbank).find(Of nucleotide_data)("id")
 
             If prot Is Nothing OrElse nucl Is Nothing Then
                 Continue For
