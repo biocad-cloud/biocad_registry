@@ -112,6 +112,12 @@ Public Class biocad_registry : Inherits biocad_registryModel.db_mysql
         End Get
     End Property
 
+    Public ReadOnly Property ncbi_taxonomy As TableModel(Of ncbi_taxonomy)
+        Get
+            Return m_ncbi_taxonomy
+        End Get
+    End Property
+
     Public ReadOnly Property biocad_vocabulary As biocad_vocabulary
 
     Public Sub New(mysqli As ConnectionUri)

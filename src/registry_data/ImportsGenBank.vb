@@ -1,10 +1,12 @@
 ﻿Imports System.Runtime.CompilerServices
 Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm
+Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.Linq
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports registry_data.biocad_registryModel
 Imports SMRUCC.genomics.Assembly.NCBI.GenBank
 Imports SMRUCC.genomics.Assembly.NCBI.GenBank.GBFF.Keywords.FEATURES
+Imports SMRUCC.genomics.Assembly.NCBI.Taxonomy
 Imports SMRUCC.genomics.ComponentModel.Loci
 
 Public Module ImportsGenBank
@@ -91,6 +93,31 @@ Public Module ImportsGenBank
         Next
 
         Call xrefs.commit()
+    End Sub
+
+    <Extension>
+    Public Sub ImportsNCBITaxonomyTree(registry As biocad_registry, ncbi_tax As NcbiTaxonomyTree)
+        Dim taxdata As CommitTransaction = registry.ncbi_taxonomy.ignore.open_transaction
+        Dim rank_key As New Dictionary(Of String, vocabulary)
+
+        For Each node As TaxonomyNode In TqdmWrapper.Wrap(ncbi_tax.Taxonomy.Values)
+            Dim rank As vocabulary = rank_key.ComputeIfAbsent(
+                key:=node.rank,
+                lazyValue:=Function(level)
+                               Return registry.biocad_vocabulary.GetVocabulary(biocad_vocabulary.NCBITaxonomyRank, If(level, "unknown"))
+                           End Function)
+
+            Call taxdata.ignore.add(
+                field("id") = node.taxid,
+                field("name") = node.name,
+                field("rank") = rank.id,
+                field("ancestor") = node.parent,
+                field("num_childs") = node.children.TryCount,
+                field("note") = node.ToString
+            )
+        Next
+
+        Call taxdata.commit()
     End Sub
 
 End Module

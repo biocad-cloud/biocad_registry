@@ -10,6 +10,8 @@ Public Class biocad_vocabulary
     Public Const Topic As String = "Topic"
     Public Const FastaData As String = "Fasta Data"
 
+    Public Const NCBITaxonomyRank As String = "NCBI Taxonomy Rank"
+
     ' reference model type
     Public Const EntityMetabolite As String = "Metabolite"
     Public Const EntityNucleotide As String = "Nucleotide"
