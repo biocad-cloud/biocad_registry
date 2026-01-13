@@ -1,6 +1,7 @@
 ﻿Imports System.Runtime.CompilerServices
 Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm
 Imports Microsoft.VisualBasic.ComponentModel.Collection
+Imports Microsoft.VisualBasic.Linq
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports registry_data.biocad_registryModel
 Imports SMRUCC.genomics.Assembly.Uniprot.XML
@@ -17,6 +18,7 @@ Public Module ImportsUniProt
         Dim db_rhea As UInteger = registry.biocad_vocabulary.GetDatabaseResource("Rhea").id
         Dim enzyme As UInteger = registry.biocad_vocabulary.GetVocabulary("Metabolic Role", biocad_vocabulary.RoleEnzyme).id
         Dim db_EC As UInteger = registry.biocad_vocabulary.db_ECNumber
+        Dim keywords As New Dictionary(Of String, vocabulary)
 
         For Each block As entry() In proteins.SplitIterator(5000)
             ' db_xrefs
@@ -120,6 +122,21 @@ Public Module ImportsUniProt
                                  field("db_name") = db_EC,
                                  field("db_xref") = ec_num,
                                  field("db_source") = db_uniprot)
+                Next
+
+                For Each keyword In prot.keywords.SafeQuery
+                    Dim term As vocabulary = keywords.ComputeIfAbsent(
+                        keyword.value,
+                        Function(str)
+                            Return registry.biocad_vocabulary.GetVocabulary("UniProt Keyword", str)
+                        End Function)
+
+                    Call sql.add(registry.topic.add_sql(
+                        field("topic_id") = term.id,
+                        field("type") = prot_fasta,
+                        field("model_id") = check.id,
+                        field("note") = keyword.id
+                    ))
                 Next
             Next
 
