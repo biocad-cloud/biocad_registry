@@ -24,6 +24,10 @@ declare namespace registry {
    /**
      * @param env default value Is ``null``.
    */
+   function imports_rhea(registry: object, rhea: any, env?: object): any;
+   /**
+     * @param env default value Is ``null``.
+   */
    function make_genbank_dbxrefs(registry: object, genbank: any, env?: object): any;
    /**
      * @param env default value Is ``null``.

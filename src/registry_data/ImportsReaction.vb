@@ -91,6 +91,10 @@ Public Module ImportsReaction
                     .find(Of biocad_registryModel.reaction)
             End If
 
+            If find.name.StringEmpty(, True) Then
+                registry.reaction.where(field("id") = find.id).save(field("name") = find.equation)
+            End If
+
             For Each num As String In rxn.enzyme
                 Call dblinks.ignore.add(
                     field("obj_id") = find.id,

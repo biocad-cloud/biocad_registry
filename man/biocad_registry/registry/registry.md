@@ -6,5 +6,6 @@
 + [make_genbank_dbxrefs](registry/make_genbank_dbxrefs.1) 
 + [imports_pubchem](registry/imports_pubchem.1) 
 + [imports_kegg_reactions](registry/imports_kegg_reactions.1) 
++ [imports_rhea](registry/imports_rhea.1) 
 + [imports_metacyc_reactions](registry/imports_metacyc_reactions.1) 
 + [imports_metacyc_compounds](registry/imports_metacyc_compounds.1) 
