@@ -94,6 +94,12 @@ Public Class biocad_registry : Inherits biocad_registryModel.db_mysql
         End Get
     End Property
 
+    Public ReadOnly Property subcellular_location As TableModel(Of subcellular_location)
+        Get
+            Return m_subcellular_location
+        End Get
+    End Property
+
     Public ReadOnly Property protein As TableModel(Of protein)
         Get
             Return m_protein
