@@ -109,6 +109,26 @@ Public Module ImportsReaction
                 field("db_source") = db_source
             )
 
+            For Each link In rxn.db_xrefs.SafeQuery
+                Dim source_name As UInteger
+
+                Select Case LCase(link.name)
+                    Case "kegg.reaction" : source_name = registry.biocad_vocabulary.db_kegg
+                    Case "reactome" : source_name = registry.biocad_vocabulary.GetDatabaseResource("Reactome").id
+                    Case "biocyc" : source_name = registry.biocad_vocabulary.db_biocyc
+                    Case Else
+                        Throw New NotImplementedException(link.name)
+                End Select
+
+                Call dblinks.ignore.add(
+                    field("obj_id") = find.id,
+                    field("type") = entityType,
+                    field("db_name") = source_name,
+                    field("db_xref") = link.text,
+                    field("db_source") = db_source
+                )
+            Next
+
             Dim eq = rxn.equation
             Dim links As New List(Of (UInteger, UInteger))
 
