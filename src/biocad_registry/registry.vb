@@ -8,6 +8,7 @@ Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Scripting.MetaData
 Imports Microsoft.VisualBasic.Text.Xml
+Imports Microsoft.VisualBasic.Text.Xml.Models
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports registry_data
 Imports registry_data.biocad_registryModel
@@ -16,6 +17,7 @@ Imports SMRUCC.genomics.Assembly.NCBI.GenBank
 Imports SMRUCC.genomics.Assembly.Uniprot.XML
 Imports SMRUCC.genomics.ComponentModel.EquaionModel
 Imports SMRUCC.genomics.Data.BioCyc
+Imports SMRUCC.genomics.Data.Regprecise
 Imports SMRUCC.Rsharp.Runtime
 Imports SMRUCC.Rsharp.Runtime.Internal.[Object]
 Imports SMRUCC.Rsharp.Runtime.Interop
@@ -267,4 +269,76 @@ Module registry
 
         Return Nothing
     End Function
+
+    ''' <summary>
+    ''' Save RegPrecise regulation network
+    ''' </summary>
+    ''' <param name="registry"></param>
+    ''' <param name="genomes"></param>
+    ''' <param name="env"></param>
+    ''' <returns></returns>
+    <ExportAPI("save_TRN")>
+    Public Function save_regprecise(registry As biocad_registry, <RRawVectorArgument> genomes As Object, Optional env As Environment = Nothing) As Object
+        Dim database As pipeline = pipeline.TryCreatePipeline(Of BacteriaRegulome)(genomes, env)
+
+        If database.isError Then
+            Return database.getError
+        End If
+
+        Dim vocabulary As biocad_vocabulary = registry.biocad_vocabulary
+        Dim db_regprecise As UInteger = vocabulary.GetDatabaseResource("RegPrecise").id
+        Dim db_genbank As UInteger = vocabulary.db_genbank
+        Dim TRN As CommitTransaction = registry.regulatory_network.ignore.open_transaction
+
+        For Each genome As BacteriaRegulome In TqdmWrapper.Wrap(database.populates(Of BacteriaRegulome)(env).ToArray)
+            Dim taxid As UInteger = genome.genome.taxonomyId
+
+            For Each TF As SMRUCC.genomics.Data.Regprecise.Regulator In genome.regulome.AsEnumerable
+                Dim motifPlaceholder As motif = registry.motif.where(field("name") = TF.regulog.name).find(Of motif)("id")
+
+                If motifPlaceholder Is Nothing Then
+                    Continue For
+                End If
+
+                Dim effects As Double = 1
+
+                If Not TF.regulationMode.StringEmpty Then
+                    If TF.regulationMode.StartsWith("repressor") Then
+                        If Strings.InStr(TF.regulationMode, "activator") Then
+                            effects = -0.5
+                        Else
+                            effects = -1
+                        End If
+                    Else
+                        If Strings.InStr(TF.regulationMode, "repressor") Then
+                            effects = 0.5
+                        Else
+                            effects = 1
+                        End If
+                    End If
+                End If
+
+                For Each tag As NamedValue In TF.locus_tags.SafeQuery
+                    Dim protTF As protein_data = registry.protein_data.where(field("source_id") = tag.name, field("source_db") = db_genbank).find(Of protein_data)("id")
+
+                    If protTF IsNot Nothing Then
+                        Call TRN.add(
+                            field("regulator") = protTF.id,
+                            field("motif_site") = motifPlaceholder.id,
+                            field("effector_name") = TF.effector,
+                            field("effector") = 0,
+                            field("effects") = effects,
+                            field("db_source") = db_regprecise,
+                            field("note") = TF.regulationMode & " - " & TF.biological_process.JoinBy("; ")
+                        )
+                    End If
+                Next
+            Next
+        Next
+
+        Call TRN.commit()
+
+        Return Nothing
+    End Function
+
 End Module

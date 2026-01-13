@@ -70,6 +70,12 @@ Public Class biocad_registry : Inherits biocad_registryModel.db_mysql
         End Get
     End Property
 
+    Public ReadOnly Property regulatory_network As TableModel(Of regulatory_network)
+        Get
+            Return m_regulatory_network
+        End Get
+    End Property
+
     Public ReadOnly Property nucleotide_data As TableModel(Of nucleotide_data)
         Get
             Return m_nucleotide_data

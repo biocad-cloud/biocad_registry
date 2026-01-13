@@ -354,7 +354,7 @@ Public Module setup
             Return database.getError
         End If
 
-        Dim vocabulary As New biocad_vocabulary(registry)
+        Dim vocabulary As biocad_vocabulary = registry.biocad_vocabulary
         Dim db_regprecise As UInteger = vocabulary.GetDatabaseResource("RegPrecise").id
 
         For Each genome As BacteriaRegulome In TqdmWrapper.Wrap(database.populates(Of BacteriaRegulome)(env).ToArray)
