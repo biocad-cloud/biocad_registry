@@ -111,11 +111,18 @@ Public Module ImportsReaction
 
             For Each link In rxn.db_xrefs.SafeQuery
                 Dim source_name As UInteger
+                Dim xref_id As String = link.text
 
                 Select Case LCase(link.name)
                     Case "kegg.reaction" : source_name = registry.biocad_vocabulary.db_kegg
                     Case "reactome" : source_name = registry.biocad_vocabulary.GetDatabaseResource("Reactome").id
-                    Case "biocyc" : source_name = registry.biocad_vocabulary.db_biocyc
+                    Case "biocyc"
+                        source_name = registry.biocad_vocabulary.db_biocyc
+                        xref_id = Strings.Trim(xref_id.GetTagValue(":").Value)
+                    Case "macie" : source_name = registry.biocad_vocabulary.GetDatabaseResource("MACiE").id
+                    Case "obo"
+                        source_name = registry.biocad_vocabulary.GetDatabaseResource("Gene Ontology").id
+                        xref_id = Strings.Trim(xref_id.Replace("_", ":"))
                     Case Else
                         Throw New NotImplementedException(link.name)
                 End Select
@@ -124,7 +131,7 @@ Public Module ImportsReaction
                     field("obj_id") = find.id,
                     field("type") = entityType,
                     field("db_name") = source_name,
-                    field("db_xref") = link.text,
+                    field("db_xref") = xref_id,
                     field("db_source") = db_source
                 )
             Next
@@ -139,6 +146,8 @@ Public Module ImportsReaction
                 If factor Is Nothing Then
                     factor = If(role <> role_substrate, eq.Reactants, eq.Products).KeyItem(sp.compound.entry)
                 End If
+
+                factor = If(factor, New DefaultTypes.CompoundSpecieReference)
 
                 Dim metab = registry.db_xrefs _
                     .where(field("type") = metabolite_type,
@@ -155,7 +164,7 @@ Public Module ImportsReaction
 
                 Call network.ignore.add(
                     field("reaction_id") = find.id,
-                    field("factor") = If(factor.Stoichiometry.IsNaNImaginary, 1, factor.Stoichiometry),
+                    field("factor") = If(factor.Stoichiometry.IsNaNImaginary OrElse factor.Stoichiometry = 0.0, 1, factor.Stoichiometry),
                     field("species_id") = If(metab Is Nothing, 0, metab.obj_id),
                     field("symbol_id") = sp.compound.entry,
                     field("role") = role,
