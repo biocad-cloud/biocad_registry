@@ -128,7 +128,11 @@ Public Module ImportsUniProt
 
                 ' enzyme catalysis
                 For Each cat As comment In prot.CommentList.TryGetValue("catalytic activity")
-                    Dim rhea As dbReference = cat.dbReferences.KeyItem("Rhea")
+                    If cat.reaction Is Nothing Then
+                        Continue For
+                    End If
+
+                    Dim rhea As dbReference = cat.reaction.dbReferences.KeyItem("Rhea")
 
                     If rhea Is Nothing Then
                         Continue For
