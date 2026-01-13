@@ -23,6 +23,11 @@ Public Class biocad_vocabulary
     Public Const ObjectProtein As String = "Protein Sequence"
     Public Const ObjectNucleotide As String = "Nucleotide Sequence"
 
+    ''' <summary>
+    ''' Metabolic Role
+    ''' </summary>
+    Public Const RoleEnzyme As String = "Enzyme"
+
     ReadOnly registry As biocad_registry
 
     Public ReadOnly Property db_cas As UInteger

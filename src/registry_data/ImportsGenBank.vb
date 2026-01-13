@@ -88,7 +88,7 @@ Public Module ImportsGenBank
                 Continue For
             End If
 
-            registry.protein_data.where(field("id") = prot.id).save(field("gene_id") = nucl.id, field("ncbi_taxid") = taxid)
+            Call xrefs.add(registry.protein_data.where(field("id") = prot.id).save_sql(field("gene_id") = nucl.id, field("ncbi_taxid") = taxid))
 
             For Each id As String In gene.QueryDuplicated("EC_number").SafeQuery
                 Call xrefs.ignore.add(field("obj_id") = prot.id, field("type") = prot_type, field("db_name") = ec_number, field("db_xref") = id, field("db_source") = ncbi_genbank)
