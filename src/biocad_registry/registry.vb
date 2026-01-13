@@ -111,6 +111,21 @@ Module registry
         Return Nothing
     End Function
 
+    <ExportAPI("imports_rhea")>
+    Public Function imports_rhea(registry As biocad_registry, <RRawVectorArgument> rhea As Object, Optional env As Environment = Nothing) As Object
+        Dim pull As pipeline = pipeline.TryCreatePipeline(Of SMRUCC.genomics.ComponentModel.EquaionModel.Reaction)(rhea, env)
+
+        If pull.isError Then
+            Return pull.getError
+        End If
+
+        Dim models = pull.populates(Of SMRUCC.genomics.ComponentModel.EquaionModel.Reaction)(env).ToArray
+
+        Call registry.importsReactions(models, db_name:="Rhea")
+
+        Return Nothing
+    End Function
+
     <ExportAPI("imports_metacyc_reactions")>
     Public Function imports_metacyc_reactions(registry As biocad_registry, metacyc As Workspace) As Object
         Dim reactions = metacyc.reactions.features.ToArray
