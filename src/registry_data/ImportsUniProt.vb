@@ -22,7 +22,7 @@ Public Module ImportsUniProt
 
         For Each block As entry() In proteins.SplitIterator(5000)
             ' db_xrefs
-            Dim sql As CommitTransaction = registry.db_xrefs.ignore.open_transaction
+            Dim sql As CommitTransaction = registry.protein_data.ignore.open_transaction
 
             For Each prot As entry In TqdmWrapper.Wrap(block)
                 Dim locus_tag As String = prot.ORF
@@ -40,7 +40,7 @@ Public Module ImportsUniProt
                 End If
 
                 If check Is Nothing Then
-                    Call registry.protein_data.add(
+                    Call sql.add(
                         field("source_id") = prot.accessions.First,
                         field("ncbi_taxid") = taxid,
                         field("source_db") = db_uniprot,
@@ -52,7 +52,25 @@ Public Module ImportsUniProt
                         field("checksum") = hash,
                         field("pdb_data") = 0
                     )
-                    check = registry.protein_data.where(field("source_id") = prot.accessions.First, field("ncbi_taxid") = taxid, field("source_db") = db_uniprot).order_by("id", True).find(Of protein)
+                End If
+            Next
+
+            sql.commit()
+            sql = registry.db_xrefs.ignore.open_transaction
+
+            For Each prot As entry In TqdmWrapper.Wrap(block)
+                Dim locus_tag As String = prot.ORF
+                Dim name As String = If(prot.geneName, prot.name)
+                Dim desc As String = prot.proteinFullName
+                Dim taxid As UInteger = prot.NCBITaxonomyId
+                Dim seq As String = prot.ProteinSequence
+                Dim hash As String = Strings.UCase(seq).MD5
+                Dim check As protein
+
+                If locus_tag.StringEmpty Then
+                    check = registry.protein_data.where(field("source_id") = prot.accessions.First, field("ncbi_taxid") = taxid, field("source_db") = db_uniprot).find(Of protein)
+                Else
+                    check = registry.protein_data.where(field("source_id") = locus_tag, field("ncbi_taxid") = taxid, field("source_db") = db_genbank).find(Of protein)
                 End If
 
                 If check Is Nothing Then
