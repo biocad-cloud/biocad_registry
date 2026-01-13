@@ -18,6 +18,7 @@ Imports registry_data
 Imports registry_data.biocad_registryModel
 Imports SMRUCC.genomics.Assembly.KEGG.DBGET
 Imports SMRUCC.genomics.Assembly.KEGG.DBGET.bGetObject
+Imports SMRUCC.genomics.Assembly.NCBI.Taxonomy
 Imports SMRUCC.genomics.Data
 Imports SMRUCC.genomics.Data.Regprecise
 Imports SMRUCC.genomics.Data.Regtransbase.WebServices
@@ -432,6 +433,12 @@ Public Module setup
 
         Call registry.SetupKOModels(pullKO.populates(Of KOrthology)(env))
 
+        Return Nothing
+    End Function
+
+    <ExportAPI("setup_taxonomy")>
+    Public Function setup_ncbitax(registry As biocad_registry, ncbi_tax As NcbiTaxonomyTree) As Object
+        Call registry.ImportsNCBITaxonomyTree(ncbi_tax)
         Return Nothing
     End Function
 End Module
