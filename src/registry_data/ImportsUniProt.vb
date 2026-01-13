@@ -33,10 +33,18 @@ Public Module ImportsUniProt
                 Dim hash As String = Strings.UCase(seq).MD5
                 Dim check As protein
 
+                If Not prot.DbReferenceIds("EC").Any Then
+                    Continue For
+                End If
+
                 If locus_tag.StringEmpty Then
                     check = registry.protein_data.where(field("source_id") = prot.accessions.First, field("ncbi_taxid") = taxid, field("source_db") = db_uniprot).find(Of protein)("id")
                 Else
                     check = registry.protein_data.where(field("source_id") = locus_tag, field("ncbi_taxid") = taxid, field("source_db") = db_genbank).find(Of protein)("id")
+
+                    If check Is Nothing Then
+                        check = registry.protein_data.where(field("source_id") = prot.accessions.First, field("ncbi_taxid") = taxid, field("source_db") = db_uniprot).find(Of protein)("id")
+                    End If
                 End If
 
                 If check Is Nothing Then
@@ -67,10 +75,18 @@ Public Module ImportsUniProt
                 Dim hash As String = Strings.UCase(seq).MD5
                 Dim check As protein
 
+                If Not prot.DbReferenceIds("EC").Any Then
+                    Continue For
+                End If
+
                 If locus_tag.StringEmpty Then
                     check = registry.protein_data.where(field("source_id") = prot.accessions.First, field("ncbi_taxid") = taxid, field("source_db") = db_uniprot).find(Of protein)("id")
                 Else
                     check = registry.protein_data.where(field("source_id") = locus_tag, field("ncbi_taxid") = taxid, field("source_db") = db_genbank).find(Of protein)("id")
+
+                    If check Is Nothing Then
+                        check = registry.protein_data.where(field("source_id") = prot.accessions.First, field("ncbi_taxid") = taxid, field("source_db") = db_uniprot).find(Of protein)("id")
+                    End If
                 End If
 
                 If check Is Nothing Then
