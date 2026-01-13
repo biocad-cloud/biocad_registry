@@ -2,6 +2,8 @@
 Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm
 Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.Linq
+Imports Microsoft.VisualBasic.Scripting.Runtime
+Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports registry_data.biocad_registryModel
 Imports SMRUCC.genomics.Assembly.NCBI.GenBank
@@ -111,8 +113,9 @@ Public Module ImportsGenBank
                 field("id") = node.taxid,
                 field("name") = node.name,
                 field("rank") = rank.id,
-                field("ancestor") = node.parent,
+                field("ancestor") = CInt(Val(node.parent)),
                 field("num_childs") = node.children.TryCount,
+                field("childs") = node.children.SafeQuery.AsInteger.GetJson,
                 field("note") = node.ToString
             )
         Next
