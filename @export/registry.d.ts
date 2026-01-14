@@ -36,5 +36,9 @@ declare namespace registry {
    /**
      * @param env default value Is ``null``.
    */
+   function save_TRN(registry: object, genomes: any, env?: object): any;
+   /**
+     * @param env default value Is ``null``.
+   */
    function save_uniprot(registry: object, uniprot: any, env?: object): any;
 }
