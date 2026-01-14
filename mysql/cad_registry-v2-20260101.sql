@@ -123,7 +123,7 @@ CREATE TABLE `db_xrefs` (
   KEY `entity_metabolite_idx` (`obj_id`),
   KEY `find_by_xref` (`db_name`,`db_xref`,`type`),
   KEY `find_by_object` (`type`,`obj_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1899906 DEFAULT CHARSET=utf8mb3 COMMENT='database cross reference of the model objects ';
+) ENGINE=InnoDB AUTO_INCREMENT=4251001 DEFAULT CHARSET=utf8mb3 COMMENT='database cross reference of the model objects ';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -346,6 +346,7 @@ CREATE TABLE `ncbi_taxonomy` (
   `zh_name` varchar(255) DEFAULT NULL COMMENT 'chinese name translation of this node name',
   `rank` int unsigned NOT NULL COMMENT 'rank level of this taxonomy node, rank name is reference to the vocabulary term table',
   `ancestor` int unsigned NOT NULL DEFAULT '0' COMMENT 'ancestor taxonomy node id, this value for root node is zero',
+  `childs` json NOT NULL COMMENT 'json encode of the child nodes tax id vector, default empty should be []',
   `num_childs` int NOT NULL DEFAULT '0' COMMENT 'number of the direct child of this taxonomy node it have, leaf node is zero',
   `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `note` longtext,
@@ -355,6 +356,7 @@ CREATE TABLE `ncbi_taxonomy` (
   KEY `rank_name_idx` (`rank`),
   KEY `find_by_scientific_name` (`name`) /*!80000 INVISIBLE */,
   KEY `find_by_zh_name` (`zh_name`),
+  KEY `sort_time` (`add_time`),
   FULLTEXT KEY `search_text` (`name`,`note`) /*!80000 INVISIBLE */
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='[entity instance] the ncbi taxonomy tree data';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -387,7 +389,8 @@ CREATE TABLE `nucleotide_data` (
   KEY `gene_model_idx` (`model_id`),
   KEY `dbname_idx` (`source_db`),
   KEY `taxonomy_source_idx` (`organism_source`),
-  KEY `operon_data_idx` (`operon_id`)
+  KEY `operon_data_idx` (`operon_id`),
+  KEY `find_locus` (`source_id`,`source_db`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1991354 DEFAULT CHARSET=utf8mb3 COMMENT='[entity instance] gene object instance, nucleotide sequence region instance, used for build a local blastn database, or TFBS motif database';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -572,6 +575,7 @@ CREATE TABLE `protein_data` (
   `function` varchar(2048) NOT NULL COMMENT 'the protein function description',
   `gene_id` int unsigned NOT NULL COMMENT 'reference to the gene instance id(not gene model table)',
   `protein_id` int unsigned NOT NULL COMMENT 'id reference to the reference protein table(protein model table)',
+  `ncbi_taxid` int unsigned NOT NULL DEFAULT '0',
   `sequence` longtext NOT NULL COMMENT 'protein sequence, should be in upper case',
   `checksum` char(32) NOT NULL COMMENT 'md5 hash checksum of the protein sequence',
   `fingerprint` longtext COMMENT ' embedding vector of this sequence, base64 encoded double array, network byte order',
@@ -582,8 +586,10 @@ CREATE TABLE `protein_data` (
   KEY `translate_from_idx` (`gene_id`),
   KEY `protein_model_idx` (`protein_id`),
   KEY `dbname_idx` (`source_db`),
-  KEY `pdb_datavalue_idx` (`pdb_data`)
-) ENGINE=InnoDB AUTO_INCREMENT=1926746 DEFAULT CHARSET=utf8mb3 COMMENT='[entity instance] the instance of the protein with sequence data, used for build a local blastp database';
+  KEY `pdb_datavalue_idx` (`pdb_data`),
+  KEY `find_by_source_id` (`source_db`,`ncbi_taxid`,`source_id`),
+  KEY `query_db_locus` (`source_id`,`source_db`)
+) ENGINE=InnoDB AUTO_INCREMENT=1931628 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC COMMENT='[entity instance] the instance of the protein with sequence data, used for build a local blastp database';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -675,6 +681,7 @@ CREATE TABLE `regulatory_network` (
   `note` longtext,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
+  UNIQUE KEY `unique_TRN` (`regulator`,`motif_site`,`db_source`,`effector`),
   KEY `motif_site_info_idx` (`motif_site`),
   KEY `protein_info_idx` (`regulator`),
   KEY `metabolite_info_idx` (`effector`),
@@ -764,6 +771,7 @@ DROP TABLE IF EXISTS `topic`;
 CREATE TABLE `topic` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
   `topic_id` int unsigned NOT NULL,
+  `type` int unsigned NOT NULL DEFAULT '0' COMMENT 'default type id is zero, means the model object is registry resolved model. otherwise is the object instance id in this registry',
   `model_id` int unsigned NOT NULL,
   `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `note` longtext,
@@ -795,7 +803,7 @@ CREATE TABLE `vocabulary` (
   UNIQUE KEY `search_term` (`category`,`term`),
   KEY `ontology_tree_idx` (`parent_id`),
   FULLTEXT KEY `search_text` (`note`)
-) ENGINE=InnoDB AUTO_INCREMENT=84 DEFAULT CHARSET=utf8mb3 COMMENT='vocabulary term inside the registry database';
+) ENGINE=InnoDB AUTO_INCREMENT=134 DEFAULT CHARSET=utf8mb3 COMMENT='vocabulary term inside the registry database';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -815,4 +823,4 @@ CREATE TABLE `vocabulary` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-01-13 16:20:00
+-- Dump completed on 2026-01-14 10:28:51
