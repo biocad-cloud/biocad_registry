@@ -133,7 +133,7 @@ Public Module ImportsUniProt
                 End If
 
                 ' enzyme catalysis
-                For Each cat As comment In prot.CommentList.TryGetValue("catalytic activity")
+                For Each cat As comment In prot.CommentList.TryGetValue("catalytic activity").SafeQuery
                     If cat.reaction Is Nothing Then
                         Continue For
                     End If
