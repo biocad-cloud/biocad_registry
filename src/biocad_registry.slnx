@@ -16,6 +16,10 @@
     <Project Path="../../LLMs/src/Ollama/Ollama.vbproj">
       <Platform Solution="*|x64" Project="x64" />
     </Project>
+    <Project Path="../../Microsoft.VisualBasic.Drawing/src/Microsoft.VisualBasic.Drawing/Microsoft.VisualBasic.Drawing.vbproj">
+      <BuildType Solution="Rsharp_app_release|*" Project="MEMI-Desktop" />
+      <Platform Solution="*|x64" Project="x64" />
+    </Project>
   </Folder>
   <Folder Name="/framework/gcmodeller/">
     <Project Path="../../GCModeller/src/GCModeller/analysis/OperonMapper/OperonMapper.vbproj">
@@ -28,6 +32,9 @@
       <Platform Solution="*|x64" Project="x64" />
     </Project>
     <Project Path="../../GCModeller/src/GCModeller/core/Bio.Assembly/biocore-netcore5.vbproj">
+      <Platform Solution="*|x64" Project="x64" />
+    </Project>
+    <Project Path="../../GCModeller/src/GCModeller/core/Bio.InteractionModel/InteractionModel.NET5.vbproj">
       <Platform Solution="*|x64" Project="x64" />
     </Project>
     <Project Path="../../GCModeller/src/GCModeller/data/RCSB PDB/RCSB PDB.vbproj">
@@ -114,10 +121,16 @@
     <Project Path="../../GCModeller/src/runtime/sciBASIC#/Data/DataFrame/dataframework-netcore5.vbproj">
       <Platform Solution="*|x64" Project="x64" />
     </Project>
+    <Project Path="../../GCModeller/src/runtime/sciBASIC#/gr/avi/AVI.NET5.vbproj">
+      <Platform Solution="*|x64" Project="x64" />
+    </Project>
     <Project Path="../../GCModeller/src/runtime/sciBASIC#/mime/application%json/JSON-netcore5.vbproj">
       <Platform Solution="*|x64" Project="x64" />
     </Project>
     <Project Path="../../GCModeller/src/runtime/sciBASIC#/mime/application%rdf+xml/rdf_xml-netcore5.vbproj">
+      <Platform Solution="*|x64" Project="x64" />
+    </Project>
+    <Project Path="../../GCModeller/src/runtime/sciBASIC#/mime/application%vnd.openxmlformats-officedocument.spreadsheetml.sheet/Excel/xlsx-netcore5.vbproj">
       <Platform Solution="*|x64" Project="x64" />
     </Project>
     <Project Path="../../GCModeller/src/runtime/sciBASIC#/mime/application%xml/xml-netcore5.vbproj">
@@ -149,6 +162,9 @@
     <Project Path="../../GCModeller/src/runtime/sciBASIC#/Data_science/MachineLearning/TensorFlow/TensorFlow.vbproj">
       <Platform Solution="*|x64" Project="x64" />
     </Project>
+    <Project Path="../../GCModeller/src/runtime/sciBASIC#/Data_science/Mathematica/Math/ANOVA/ANOVA.vbproj">
+      <Platform Solution="*|x64" Project="x64" />
+    </Project>
     <Project Path="../../GCModeller/src/runtime/sciBASIC#/Data_science/Mathematica/Math/DataFittings/linear-netcore5.vbproj">
       <Platform Solution="*|x64" Project="x64" />
     </Project>
@@ -163,7 +179,28 @@
     </Project>
   </Folder>
   <Folder Name="/framework/scibasic/network/">
+    <Project Path="../../GCModeller/src/runtime/sciBASIC#/Data_science/Visualization/Plots/plots-netcore5.vbproj">
+      <Platform Solution="*|x64" Project="x64" />
+    </Project>
+    <Project Path="../../GCModeller/src/runtime/sciBASIC#/gr/Microsoft.VisualBasic.Imaging/imaging.NET5.vbproj">
+      <Platform Solution="*|x64" Project="x64" />
+    </Project>
     <Project Path="../../GCModeller/src/runtime/sciBASIC#/gr/network-visualization/Datavisualization.Network/network_graph-netcore5.vbproj">
+      <Platform Solution="*|x64" Project="x64" />
+    </Project>
+    <Project Path="../../GCModeller/src/runtime/sciBASIC#/gr/network-visualization/Network.IO.Extensions/network_io-netcore5.vbproj">
+      <Platform Solution="*|x64" Project="x64" />
+    </Project>
+    <Project Path="../../GCModeller/src/runtime/sciBASIC#/gr/network-visualization/NetworkCanvas/NetworkCanvas.NET5.vbproj">
+      <Platform Solution="*|x64" Project="x64" />
+    </Project>
+    <Project Path="../../GCModeller/src/runtime/sciBASIC#/gr/network-visualization/network_layout/network_layout.vbproj">
+      <Platform Solution="*|x64" Project="x64" />
+    </Project>
+    <Project Path="../../GCModeller/src/runtime/sciBASIC#/gr/network-visualization/Visualizer/networkVisualizer.NET5.vbproj">
+      <Platform Solution="*|x64" Project="x64" />
+    </Project>
+    <Project Path="../../GCModeller/src/runtime/sciBASIC#/gr/physics/physics-netcore5.vbproj">
       <Platform Solution="*|x64" Project="x64" />
     </Project>
   </Folder>
@@ -173,6 +210,9 @@
     </Project>
     <Project Path="../../galaxy/src/dockpanelsuite/VSDockPanel/VSDockPanel.vbproj">
       <BuildType Solution="Rsharp_app_release|*" Project="MEMI-Desktop" />
+      <Platform Solution="*|x64" Project="x64" />
+    </Project>
+    <Project Path="../../galaxy/src/GalaxyChartLibs/GalaxyChartLibs.vbproj">
       <Platform Solution="*|x64" Project="x64" />
     </Project>
     <Project Path="../../galaxy/src/GalaxyData/GalaxyData.vbproj">
@@ -193,7 +233,20 @@
       <Platform Solution="*|x64" Project="x64" />
     </Project>
   </Folder>
+  <Folder Name="/ggplot/">
+    <Project Path="../../GCModeller/src/runtime/ggplot/src/ggplot/ggplot.NET5.vbproj">
+      <Platform Solution="*|x64" Project="x64" />
+    </Project>
+    <Project Path="../../ggviewer/src/ggviewer.vbproj">
+      <BuildType Solution="Rsharp_app_release|*" Project="Release" />
+      <Platform Solution="*|x64" Project="x64" />
+    </Project>
+  </Folder>
   <Folder Name="/renv/">
+    <Project Path="../../GCModeller/src/R-sharp/Library/shares/graphics.common_runtime/R_graphics.common_runtime.vbproj">
+      <BuildType Solution="Rsharp_app_release|*" Project="nuget_release" />
+      <Platform Solution="*|x64" Project="x64" />
+    </Project>
     <Project Path="../../GCModeller/src/R-sharp/R#/Rsharp-netcore5.vbproj">
       <Platform Solution="*|x64" Project="x64" />
     </Project>
