@@ -20,7 +20,7 @@ Public Module ImportsUniProt
         Dim db_EC As UInteger = registry.biocad_vocabulary.db_ECNumber
         Dim keywords As New Dictionary(Of String, vocabulary)
 
-        For Each block As entry() In proteins.SplitIterator(5000)
+        For Each block As entry() In proteins.SplitIterator(10000)
             ' db_xrefs
             Dim sql As CommitTransaction = registry.protein_data.ignore.open_transaction
 
