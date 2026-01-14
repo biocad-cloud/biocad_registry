@@ -114,17 +114,17 @@ Public Module ImportsUniProt
 
                     If Not cc Is Nothing Then
                         loc_uid = cc.id
-                        Call sql.add(registry.subcellular_location.add_sql(field("protein_id") = check.id, field("location_id") = cc.id, field("evidence") = prot.accessions.First))
+                        Call sql.add(registry.subcellular_location.ignore.add_sql(field("protein_id") = check.id, field("location_id") = cc.id, field("evidence") = prot.accessions.First))
                     End If
                 Next
 
                 For Each acc As String In prot.accessions
-                    Call sql.add(field("obj_id") = check.id, field("type") = prot_fasta, field("db_name") = db_uniprot, field("db_xref") = acc, field("db_source") = db_uniprot)
+                    Call sql.ignore.add(field("obj_id") = check.id, field("type") = prot_fasta, field("db_name") = db_uniprot, field("db_xref") = acc, field("db_source") = db_uniprot)
                 Next
 
                 If Not locus_tag.IsNullOrEmpty Then
                     For Each locus_id As String In locus_tag
-                        Call sql.add(field("obj_id") = check.id,
+                        Call sql.ignore.add(field("obj_id") = check.id,
                                      field("type") = prot_fasta,
                                      field("db_name") = db_genbank,
                                      field("db_xref") = locus_id,
@@ -147,7 +147,7 @@ Public Module ImportsUniProt
                     Dim rxn = registry.reaction.where(field("db_xref") = rhea.id, field("db_source") = db_rhea).find(Of biocad_registryModel.reaction)("id")
 
                     If Not rxn Is Nothing Then
-                        Call sql.add(registry.metabolic_network.add_sql(
+                        Call sql.ignore.add(registry.metabolic_network.ignore.add_sql(
                             field("reaction_id") = rxn.id,
                             field("factor") = 1,
                             field("species_id") = check.id,
@@ -161,7 +161,7 @@ Public Module ImportsUniProt
 
                 ' ec number
                 For Each ec_num As String In prot.DbReferenceIds("EC")
-                    Call sql.add(field("obj_id") = check.id,
+                    Call sql.ignore.add(field("obj_id") = check.id,
                                  field("type") = prot_fasta,
                                  field("db_name") = db_EC,
                                  field("db_xref") = ec_num,
@@ -175,7 +175,7 @@ Public Module ImportsUniProt
                             Return registry.biocad_vocabulary.GetVocabulary("UniProt Keyword", str)
                         End Function)
 
-                    Call sql.add(registry.topic.add_sql(
+                    Call sql.ignore.add(registry.topic.ignore.add_sql(
                         field("topic_id") = term.id,
                         field("type") = prot_fasta,
                         field("model_id") = check.id,
