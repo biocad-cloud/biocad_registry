@@ -38,12 +38,12 @@ Public Module ImportsUniProt
                 End If
 
                 If locus_tag.IsNullOrEmpty Then
-                    check = registry.protein_data.where(field("source_id") = prot.accessions.First, field("ncbi_taxid") = taxid, field("source_db") = db_uniprot).find(Of protein)("id")
+                    check = registry.protein_data.where(field("source_id").in(prot.accessions), field("ncbi_taxid") = taxid, field("source_db") = db_uniprot).find(Of protein)("id")
                 Else
-                    check = registry.protein_data.where(field("source_id") = locus_tag, field("ncbi_taxid") = taxid, field("source_db") = db_genbank).find(Of protein)("id")
+                    check = registry.protein_data.where(field("source_id").in(locus_tag), field("ncbi_taxid") = taxid, field("source_db") = db_genbank).find(Of protein)("id")
 
                     If check Is Nothing Then
-                        check = registry.protein_data.where(field("source_id") = prot.accessions.First, field("ncbi_taxid") = taxid, field("source_db") = db_uniprot).find(Of protein)("id")
+                        check = registry.protein_data.where(field("source_id").in(prot.accessions), field("ncbi_taxid") = taxid, field("source_db") = db_uniprot).find(Of protein)("id")
                     End If
                 End If
 
@@ -80,12 +80,12 @@ Public Module ImportsUniProt
                 End If
 
                 If locus_tag.IsNullOrEmpty Then
-                    check = registry.protein_data.where(field("source_id") = prot.accessions.First, field("ncbi_taxid") = taxid, field("source_db") = db_uniprot).find(Of protein)("id")
+                    check = registry.protein_data.where(field("source_id").in(prot.accessions), field("ncbi_taxid") = taxid, field("source_db") = db_uniprot).find(Of protein)("id")
                 Else
-                    check = registry.protein_data.where(field("source_id") = locus_tag, field("ncbi_taxid") = taxid, field("source_db") = db_genbank).find(Of protein)("id")
+                    check = registry.protein_data.where(field("source_id").in(locus_tag), field("ncbi_taxid") = taxid, field("source_db") = db_genbank).find(Of protein)("id")
 
                     If check Is Nothing Then
-                        check = registry.protein_data.where(field("source_id") = prot.accessions.First, field("ncbi_taxid") = taxid, field("source_db") = db_uniprot).find(Of protein)("id")
+                        check = registry.protein_data.where(field("source_id").in(prot.accessions), field("ncbi_taxid") = taxid, field("source_db") = db_uniprot).find(Of protein)("id")
                     End If
                 End If
 
