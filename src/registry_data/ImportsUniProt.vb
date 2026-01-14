@@ -67,7 +67,7 @@ Public Module ImportsUniProt
             sql = registry.db_xrefs.ignore.open_transaction
 
             For Each prot As entry In TqdmWrapper.Wrap(block)
-                Dim locus_tag As String() = prot.gene.ORF
+                Dim locus_tag As String() = prot.gene?.ORF
                 Dim name As String = If(prot.geneName, prot.name)
                 Dim desc As String = prot.proteinFullName
                 Dim taxid As UInteger = prot.NCBITaxonomyId
