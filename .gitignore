@@ -297,3 +297,4 @@ scripts/metadata.dat
 mysql/cad_registry-v2.mwb.bak
 /test/2026_v2/hmdb.csv
 /test/2026_v2/exports/hmdb.csv
+/tools/runtimes
