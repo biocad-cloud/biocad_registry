@@ -52,6 +52,9 @@
     <Project Path="../../GCModeller/src/interops/localblast/LocalBLAST/localblast.NET5.vbproj">
       <Platform Solution="*|x64" Project="x64" />
     </Project>
+    <Project Path="../../GCModeller/src/interops/visualize/Cytoscape/Cytoscape/Cytoscape.NET5.vbproj">
+      <Platform Solution="*|x64" Project="x64" />
+    </Project>
     <Project Path="../../GCModeller/src/workbench/modules/Knowledge_base/ncbi_kb/ncbi_kb.vbproj">
       <Platform Solution="*|x64" Project="x64" />
     </Project>
