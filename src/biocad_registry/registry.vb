@@ -319,7 +319,11 @@ Module registry
                 End If
 
                 For Each tag As NamedValue In TF.locus_tags.SafeQuery
-                    Dim protTF As protein_data = registry.protein_data.where(field("source_id") = tag.name, field("source_db") = db_genbank).find(Of protein_data)("id", "ncbi_taxid")
+                    Dim protTF As protein_data = registry.protein_data _
+                        .where(field("source_id") = tag.name,
+                               field("source_db") = db_genbank,
+                               field("ncbi_taxid") = taxid) _
+                        .find(Of protein_data)("id", "ncbi_taxid")
 
                     If protTF IsNot Nothing Then
                         Call TRN.add(
