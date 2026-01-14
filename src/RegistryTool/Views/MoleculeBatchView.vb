@@ -10,7 +10,7 @@ Public Class MoleculeBatchView
     <DatabaseField> Public Property note As String
 
     Public Shared Function FromIdSet(ids As IEnumerable(Of UInteger)) As MoleculeBatchView()
-        Return MyApplication.biocad_registry.molecule _
+        Return MyApplication.biocad_registry.metabolites _
             .left_join("molecule_tags").on(field("`molecule`.id") = field("molecule_id")) _
             .left_join("vocabulary").on(field("vocabulary.id") = field("tag_id")) _
             .where(field("molecule.id").in(ids)) _

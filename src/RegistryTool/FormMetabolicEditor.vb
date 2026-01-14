@@ -1,5 +1,5 @@
-﻿Imports biocad_storage
-Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
+﻿Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
+Imports registry_data
 Imports RegistryTool.My
 
 Public Class FormMetabolicEditor
@@ -68,13 +68,13 @@ Public Class FormMetabolicEditor
     Private Async Function ShowReaction(rxn As biocad_registryModel.reaction) As Task
         Dim graph = Await Task.Run(
             Function()
-                Return MyApplication.biocad_registry.reaction_graph _
-                    .left_join("molecule") _
-                    .on(field("molecule_id") = field("molecule.id")) _
+                Return MyApplication.biocad_registry.metabolic_network _
+                    .left_join("metabolites") _
+                    .on(field("species_id") = field("metabolites.id")) _
                     .left_join("vocabulary") _
                     .on(field("vocabulary.id") = field("role")) _
-                    .where(field("reaction") = rxn.id) _
-                    .select(Of reaction_graphdata)("molecule.*", "db_xref", "term AS role")
+                    .where(field("reaction_id") = rxn.id) _
+                    .select(Of reaction_graphdata)("metabolites.*", "symbol_id as db_xref", "term AS role")
             End Function)
 
         DataGridView2.Rows.Clear()
@@ -85,7 +85,7 @@ Public Class FormMetabolicEditor
                 compound.db_xref,
                 compound.name,
                 compound.formula,
-                compound.mass,
+                compound.exact_mass,
                 compound.role
             )
         Next

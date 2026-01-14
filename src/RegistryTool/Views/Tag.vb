@@ -13,12 +13,12 @@ Public Class Tag
     End Function
 
     Public Shared Function GetTags(mol As UInteger) As Tag()
-        Return MyApplication.biocad_registry.molecule_tags _
-            .left_join("vocabulary") _
-            .on(field("`vocabulary`.id") = field("molecule_tags.tag_id")) _
-            .where(field("molecule_id") = mol) _
-            .order_by("term") _
-            .select(Of Tag)("term", "tag_id", "molecule_id")
+        'Return MyApplication.biocad_registry.molecule_tags _
+        '    .left_join("vocabulary") _
+        '    .on(field("`vocabulary`.id") = field("molecule_tags.tag_id")) _
+        '    .where(field("molecule_id") = mol) _
+        '    .order_by("term") _
+        '    .select(Of Tag)("term", "tag_id", "molecule_id")
     End Function
 
 End Class

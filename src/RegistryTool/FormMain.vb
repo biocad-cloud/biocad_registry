@@ -1,23 +1,20 @@
 ﻿Imports System.ComponentModel
 Imports System.IO
-Imports biocad_storage
 Imports BioNovoGene.BioDeep.Chemistry.MetaLib
 Imports BioNovoGene.BioDeep.Chemistry.MetaLib.CrossReference
-Imports BioNovoGene.BioDeep.Chemistry.MetaLib.Models
 Imports Galaxy.Workbench
-Imports Microsoft.VisualBasic.Data.Framework
 Imports Microsoft.VisualBasic.Data.Framework.IO
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Net.Http
-Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Microsoft.VisualStudio.WinForms.Docking
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
+Imports registry_data
+Imports registry_exports
 Imports RegistryTool.Configs
 Imports RegistryTool.My
 Imports SMRUCC.genomics
 Imports SMRUCC.genomics.Assembly.NCBI.GenBank
-Imports SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.PubMed
 Imports SMRUCC.genomics.SequenceModel.FASTA
 Imports ThemeVS2015
 Imports Metadata = BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaLib
@@ -121,7 +118,7 @@ Public Class FormMain : Implements AppHost
 
     Private Sub SubCellularCompartmentsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SubCellularCompartmentsToolStripMenuItem.Click
         Dim view As New FormDbView()
-        view.LoadTableView(Function() MyApplication.biocad_registry.subcellular_compartments.select(Of biocad_registryModel.subcellular_compartments)("*"))
+        view.LoadTableView(Function() MyApplication.biocad_registry.subcellular_location.select(Of biocad_registryModel.subcellular_location)("*"))
         view.Text = "`biocad_registry`.`subcellular_compartments`"
         view.Show(CommonRuntime.AppHost.GetDockPanel, DockState.Document)
     End Sub
@@ -160,7 +157,7 @@ Public Class FormMain : Implements AppHost
             Call row.Clear()
             Call println("Export metabolite annotation into table sheet...")
 
-            For Each mol As Metadata In MetaboliteAnnotations.ExportAnnotation(subset)
+            For Each mol As Metadata In ExportMetaboliteData.ExportMetabolites(MyApplication.biocad_registry, subset)
                 db_xrefs = mol.xref
                 row.AddRange({mol.ID, mol.name, mol.formula, mol.exact_mass, db_xrefs.CAS.FirstOrDefault, db_xrefs.KEGG, db_xrefs.HMDB, db_xrefs.chebi, db_xrefs.pubchem, db_xrefs.lipidmaps, db_xrefs.SMILES})
                 csv.WriteLine(row.AsLine)
@@ -182,7 +179,7 @@ Public Class FormMain : Implements AppHost
 
             Call println("Export metabolite annotation into local repository...")
 
-            For Each mol As Metadata In MetaboliteAnnotations.ExportAnnotation
+            For Each mol As Metadata In ExportMetaboliteData.ExportMetabolites(MyApplication.biocad_registry, Nothing)
                 If i > 2000 Then
                     i = 0
                     repo.CommitBlock()
@@ -222,7 +219,7 @@ Public Class FormMain : Implements AppHost
                 End If
 
                 For Each gb As GBFF.File In GBFF.File.LoadDatabase(gbff_stream)
-                    Call New GenBankImports(MyApplication.biocad_registry, gb).ImportsData()
+                    Call ImportsGenBank.SaveGenBank(MyApplication.biocad_registry, gb)
                 Next
             End If
         End Using
@@ -236,7 +233,7 @@ Public Class FormMain : Implements AppHost
 
                 Call MyApplication.Loading(
                     Function(println)
-                        Call str.Add(ProtFasta.ExportEnzyme(MyApplication.biocad_registry))
+                        Call str.Add(EnzymeData.ExportEnzyme(MyApplication.biocad_registry))
                         Return True
                     End Function)
                 Call str.Dispose()
@@ -254,10 +251,10 @@ Public Class FormMain : Implements AppHost
             If file.ShowDialog = DialogResult.OK Then
                 Call MyApplication.Loading(
                     Function(println)
-                        Call MyApplication.biocad_registry _
-                            .ExportIdMapping("KEGG") _
-                            .GetJson _
-                            .SaveTo(file.FileName)
+                        'Call MyApplication.biocad_registry _
+                        '    .ExportIdMapping("KEGG") _
+                        '    .GetJson _
+                        '    .SaveTo(file.FileName)
 
                         Return True
                     End Function)
@@ -275,11 +272,11 @@ Public Class FormMain : Implements AppHost
             .FileName = tag & ".txt"
         }
             If file.ShowDialog = DialogResult.OK Then
-                If file.FileName.ExtensionSuffix("txt") Then
-                    Call MyApplication.biocad_registry.ExportTagList(tag).SaveTo(file.FileName)
-                Else
-                    Call MyApplication.biocad_registry.ExportTagData(tag).SaveTo(file.FileName)
-                End If
+                'If file.FileName.ExtensionSuffix("txt") Then
+                '    Call MyApplication.biocad_registry.ExportTagList(tag).SaveTo(file.FileName)
+                'Else
+                '    Call MyApplication.biocad_registry.ExportTagData(tag).SaveTo(file.FileName)
+                'End If
             End If
         End Using
     End Sub
@@ -292,23 +289,23 @@ Public Class FormMain : Implements AppHost
                 If Not Topic.StringEmpty(, True) Then
                     Call MyApplication.Loading(
                         Function(println)
-                            Dim kb As New PubChemArticleImports(MyApplication.biocad_registry)
+                            'Dim kb As New PubChemArticleImports(MyApplication.biocad_registry)
 
-                            For Each filepath As String In file.FileNames
-                                Call println(" -> imports: " & filepath.BaseName)
+                            'For Each filepath As String In file.FileNames
+                            '    Call println(" -> imports: " & filepath.BaseName)
 
-                                If filepath.ExtensionSuffix("json") Then
-                                    Try
-                                        Call kb.MakeImports(PubMedTextTable.ParseJSON(filepath), {Topic})
-                                    Catch ex As Exception
-                                        Call MessageBox.Show(ex, "Data Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                                    End Try
-                                Else
-                                    Call kb.MakePageImports(PubMedTextTable.LoadTable(filepath), {Topic})
-                                End If
-                            Next
+                            '    If filepath.ExtensionSuffix("json") Then
+                            '        Try
+                            '            Call kb.MakeImports(PubMedTextTable.ParseJSON(filepath), {Topic})
+                            '        Catch ex As Exception
+                            '            Call MessageBox.Show(ex, "Data Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            '        End Try
+                            '    Else
+                            '        Call kb.MakePageImports(PubMedTextTable.LoadTable(filepath), {Topic})
+                            '    End If
+                            'Next
 
-                            Return True
+                            'Return True
                         End Function)
                 End If
             End If
@@ -322,33 +319,33 @@ Public Class FormMain : Implements AppHost
 
                 Using file As New SaveFileDialog With {.Filter = "Annotation Table(*.csv)|*.csv"}
                     If file.ShowDialog = DialogResult.OK Then
-                        Dim exports As New ExportMetabolites(MyApplication.biocad_registry)
-                        Dim list As MetaInfo() = TaskProgress.LoadData(Function(println As Action(Of String)) exports.setOntology("Coconut NPclass").ExportByID(ids, wrap_tqdm:=False).ToArray(Of MetaInfo))
-                        Dim df As New DataFrame With {
-                            .rownames = list.Select(Function(a) a.ID).ToArray
-                        }
+                        'Dim exports As New ExportMetabolites(MyApplication.biocad_registry)
+                        'Dim list As MetaInfo() = TaskProgress.LoadData(Function(println As Action(Of String)) exports.setOntology("Coconut NPclass").ExportByID(ids, wrap_tqdm:=False).ToArray(Of MetaInfo))
+                        'Dim df As New DataFrame With {
+                        '    .rownames = list.Select(Function(a) a.ID).ToArray
+                        '}
 
-                        For Each m As MetaInfo In list
-                            If m.name.StringEmpty(, True) AndAlso Not m.super_class.StringEmpty(, True) Then
-                                m.name = m.super_class & " NP" & m.formula
-                            End If
-                        Next
+                        'For Each m As MetaInfo In list
+                        '    If m.name.StringEmpty(, True) AndAlso Not m.super_class.StringEmpty(, True) Then
+                        '        m.name = m.super_class & " NP" & m.formula
+                        '    End If
+                        'Next
 
-                        Call df.add("name", From m As MetaInfo In list Select m.name)
-                        Call df.add("formula", From m As MetaInfo In list Select m.formula)
-                        Call df.add("exact_mass", From m As MetaInfo In list Select m.exact_mass)
-                        Call df.add("cas", From m As MetaInfo In list Select m.xref.CAS.DefaultFirst)
-                        Call df.add("kegg", From m As MetaInfo In list Select m.xref.KEGG)
-                        Call df.add("hmdb", From m As MetaInfo In list Select m.xref.HMDB)
-                        Call df.add("lipidmaps", From m As MetaInfo In list Select m.xref.lipidmaps)
-                        Call df.add("mesh", From m As MetaInfo In list Select m.xref.MeSH)
-                        Call df.add("wikipedia", From m As MetaInfo In list Select m.xref.Wikipedia)
-                        Call df.add("smiles", From m As MetaInfo In list Select m.xref.SMILES)
-                        Call df.add("super_class", From m As MetaInfo In list Select m.super_class)
-                        Call df.add("class", From m As MetaInfo In list Select m.class)
-                        Call df.add("sub_class", From m As MetaInfo In list Select m.sub_class)
+                        'Call df.add("name", From m As MetaInfo In list Select m.name)
+                        'Call df.add("formula", From m As MetaInfo In list Select m.formula)
+                        'Call df.add("exact_mass", From m As MetaInfo In list Select m.exact_mass)
+                        'Call df.add("cas", From m As MetaInfo In list Select m.xref.CAS.DefaultFirst)
+                        'Call df.add("kegg", From m As MetaInfo In list Select m.xref.KEGG)
+                        'Call df.add("hmdb", From m As MetaInfo In list Select m.xref.HMDB)
+                        'Call df.add("lipidmaps", From m As MetaInfo In list Select m.xref.lipidmaps)
+                        'Call df.add("mesh", From m As MetaInfo In list Select m.xref.MeSH)
+                        'Call df.add("wikipedia", From m As MetaInfo In list Select m.xref.Wikipedia)
+                        'Call df.add("smiles", From m As MetaInfo In list Select m.xref.SMILES)
+                        'Call df.add("super_class", From m As MetaInfo In list Select m.super_class)
+                        'Call df.add("class", From m As MetaInfo In list Select m.class)
+                        'Call df.add("sub_class", From m As MetaInfo In list Select m.sub_class)
 
-                        Call df.WriteCsv(file.FileName, blank:="NULL")
+                        'Call df.WriteCsv(file.FileName, blank:="NULL")
                     End If
                 End Using
             End If
@@ -431,23 +428,23 @@ FROM
         LEFT JOIN
     vocabulary ON vocabulary.id = t1.type"
 
-        Dim molecules As MoleculeSearch() = TaskProgress.LoadData(Function(println As Action(Of String)) MyApplication.biocad_registry.molecule.getDriver.Query(Of MoleculeSearch)(sql, throwExp:=False))
+        'Dim molecules As MoleculeSearch() = TaskProgress.LoadData(Function(println As Action(Of String)) MyApplication.biocad_registry.molecule.getDriver.Query(Of MoleculeSearch)(sql, throwExp:=False))
 
-        If molecules.IsNullOrEmpty Then
-            Call MessageBox.Show("Sorry, no search result.", "No result", MessageBoxButtons.OK, MessageBoxIcon.Information)
-            Return
-        End If
+        'If molecules.IsNullOrEmpty Then
+        '    Call MessageBox.Show("Sorry, no search result.", "No result", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        '    Return
+        'End If
 
-        Dim view As New FormDbView()
-        view.LoadTableView(Function() molecules)
-        view.SetViewer(Sub(row)
-                           Dim id As String = row.Cells(0).Value.ToString
-                           Dim name As String = row.Cells(1).Value.ToString
+        'Dim view As New FormDbView()
+        'view.LoadTableView(Function() molecules)
+        'view.SetViewer(Sub(row)
+        '                   Dim id As String = row.Cells(0).Value.ToString
+        '                   Dim name As String = row.Cells(1).Value.ToString
 
-                           Call Workbench.OpenMoleculeEditor(id, name)
-                       End Sub)
-        view.Text = $"Search Result of '{text}'"
-        view.Show(CommonRuntime.AppHost.GetDockPanel, DockState.Document)
+        '                   Call Workbench.OpenMoleculeEditor(id, name)
+        '               End Sub)
+        'view.Text = $"Search Result of '{text}'"
+        'view.Show(CommonRuntime.AppHost.GetDockPanel, DockState.Document)
     End Sub
 
     Public Sub SetWorkbenchVisible(visible As Boolean) Implements AppHost.SetWorkbenchVisible
@@ -515,15 +512,15 @@ FROM
                 Using s As Stream = file.FileName.Open(FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False),
                     fasta As New SequenceModel.FASTA.StreamWriter(s)
 
-                    Call TaskProgress.RunAction(
-                        Sub()
-                            For Each seq As views.OperonGene In MyApplication.biocad_registry.ExportOperonGeneFasta
-                                Call fasta.Add(New FastaSeq With {
-                                    .Headers = {seq.gene_id, seq.cluster_id, seq.name},
-                                    .SequenceData = seq.sequence
-                                })
-                            Next
-                        End Sub, "Export Data", "Fetch sequence data and write into a fasta sequence data file...")
+                    'Call TaskProgress.RunAction(
+                    '    Sub()
+                    '        For Each seq As views.OperonGene In MyApplication.biocad_registry.ExportOperonGeneFasta
+                    '            Call fasta.Add(New FastaSeq With {
+                    '                .Headers = {seq.gene_id, seq.cluster_id, seq.name},
+                    '                .SequenceData = seq.sequence
+                    '            })
+                    '        Next
+                    '    End Sub, "Export Data", "Fetch sequence data and write into a fasta sequence data file...")
                 End Using
             End If
         End Using
@@ -596,28 +593,28 @@ WHERE
             Return
         End If
 
-        Dim idset As UInteger() = TaskProgress.LoadData(Function(p As ITaskProgress)
-                                                            Dim set1 = MyApplication.biocad_registry.molecule.where(field("name") = getName).project(Of UInteger)("id")
-                                                            Dim set2 = MyApplication.biocad_registry.db_xrefs.where(field("xref") = getName).project(Of UInteger)("obj_id")
+        'Dim idset As UInteger() = TaskProgress.LoadData(Function(p As ITaskProgress)
+        '                                                    Dim set1 = MyApplication.biocad_registry.molecule.where(field("name") = getName).project(Of UInteger)("id")
+        '                                                    Dim set2 = MyApplication.biocad_registry.db_xrefs.where(field("xref") = getName).project(Of UInteger)("obj_id")
 
-                                                            Return set1.JoinIterates(set2).ToArray
-                                                        End Function)
-        If idset.IsNullOrEmpty Then
-            Call MessageBox.Show("Sorry, no search result.", "No result", MessageBoxButtons.OK, MessageBoxIcon.Information)
-            Return
-        End If
+        '                                                    Return set1.JoinIterates(set2).ToArray
+        '                                                End Function)
+        'If idset.IsNullOrEmpty Then
+        '    Call MessageBox.Show("Sorry, no search result.", "No result", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        '    Return
+        'End If
 
-        Dim molecules = MyApplication.biocad_registry.molecule.where(field("id").in(idset)).select(Of biocad_registryModel.molecule)
-        Dim view As New FormDbView()
-        view.LoadTableView(Function() molecules)
-        view.SetViewer(Sub(row)
-                           Dim id As String = row.Cells(0).Value.ToString
-                           Dim name As String = row.Cells(2).Value.ToString
+        'Dim molecules = MyApplication.biocad_registry.molecule.where(field("id").in(idset)).select(Of biocad_registryModel.molecule)
+        'Dim view As New FormDbView()
+        'view.LoadTableView(Function() molecules)
+        'view.SetViewer(Sub(row)
+        '                   Dim id As String = row.Cells(0).Value.ToString
+        '                   Dim name As String = row.Cells(2).Value.ToString
 
-                           Call Workbench.OpenMoleculeEditor(id, name)
-                       End Sub)
-        view.Text = $"Search Result of '{Text}'"
-        view.Show(CommonRuntime.AppHost.GetDockPanel, DockState.Document)
+        '                   Call Workbench.OpenMoleculeEditor(id, name)
+        '               End Sub)
+        'view.Text = $"Search Result of '{Text}'"
+        'view.Show(CommonRuntime.AppHost.GetDockPanel, DockState.Document)
     End Sub
 
     Private Sub ReactionEditorToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ReactionEditorToolStripMenuItem.Click

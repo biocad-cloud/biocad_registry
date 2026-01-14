@@ -1,0 +1,247 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+Galaxy.CommonControls
+</name>
+</assembly>
+<members>
+<member name="T:Galaxy.CommonControls.My.Resources.Resources">
+<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member>
+<member name="P:Galaxy.CommonControls.My.Resources.Resources.ResourceManager">
+<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member>
+<member name="P:Galaxy.CommonControls.My.Resources.Resources.Culture">
+<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member>
+<member name="P:Galaxy.CommonControls.My.Resources.Resources.theme">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="F:Galaxy.CommonControls.CommandLinkButton.components">
+ <summary>
+ Required designer variable.
+ </summary>
+</member>
+<member name="M:Galaxy.CommonControls.CommandLinkButton.Dispose(System.Boolean)">
+ <summary>
+ Clean up any resources being used.
+ </summary>
+ <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+</member>
+<member name="M:Galaxy.CommonControls.CommandLinkButton.InitializeComponent">
+ <summary>
+ Required method for Designer support - do not modify 
+ the contents of this method with the code editor.
+ </summary>
+</member>
+<member name="E:Galaxy.CommonControls.DropDownButton.Click">
+ <summary>
+ Occurs when the button is clicked.
+ </summary>
+</member>
+<member name="E:Galaxy.CommonControls.DropDownButton.DropDownClicked">
+ <summary>
+ Occurs when the drop down button is clicked, opening the drop down menu.
+ </summary>
+</member>
+<member name="E:Galaxy.CommonControls.DropDownButton.DropDownItemClicked">
+ <summary>
+ Occurs when a menu item in the drop down menu is clicked.
+ </summary>
+</member>
+<member name="P:Galaxy.CommonControls.DropDownButton.DropDownMenu">
+ <summary>
+ Gets or sets the DropDownMenu to display.
+ </summary>
+</member>
+<member name="P:Galaxy.CommonControls.DropDownButton.DropDownSelectedItem">
+ <summary>
+ Gets or sets the DropDownMenu selected item. (Last clicked item)
+ </summary>
+</member>
+<member name="P:Galaxy.CommonControls.DropDownButton.Renderer">
+ <summary>
+ Gets or sets the DropDownMenu renderer.
+ </summary>
+</member>
+<member name="M:Galaxy.CommonControls.DropDownButton.ShowContextMenuStrip(System.Boolean)">
+ <summary>
+ Shows the DropDownButton at the button.
+ </summary>
+ <param name="selectFirstItem">Selects the first item so arrow keys can be used.</param>
+</member>
+<member name="P:Galaxy.CommonControls.DropDownItemEventArgs.Item">
+ <summary>
+ Gets clicked ToolStripItem,
+ </summary>
+</member>
+<member name="P:Galaxy.CommonControls.DropDownItemEventArgs.ItemIndex">
+ <summary>
+ Gets the index of clicked item.
+ </summary>
+</member>
+<member name="P:Galaxy.CommonControls.DropDownMenu.DropDownButton">
+ <summary>
+ Gets or sets which DropDownButton is currently interacting with the menu.
+ </summary>
+</member>
+<member name="T:Galaxy.CommonControls.NativeToolStripRenderer">
+ <summary>Renders a toolstrip using the UxTheme API via VisualStyleRenderer and a specific style.</summary>
+ <remarks>Perhaps surprisingly, this does not need to be disposable.</remarks>
+</member>
+<member name="T:Galaxy.CommonControls.NativeToolStripRenderer.NativeMethods">
+ <summary>
+ It shouldn't be necessary to P/Invoke like this, however VisualStyleRenderer.GetMargins
+ misses out a parameter in its own P/Invoke.
+ </summary>
+</member>
+<member name="F:Galaxy.CommonControls.ThemeColorPicker.ThemeColorPicker.components">
+ <summary> 
+ Required designer variable.
+ </summary>
+</member>
+<member name="M:Galaxy.CommonControls.ThemeColorPicker.ThemeColorPicker.Dispose(System.Boolean)">
+ <summary> 
+ Clean up any resources being used.
+ </summary>
+ <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+</member>
+<member name="M:Galaxy.CommonControls.ThemeColorPicker.ThemeColorPicker.InitializeComponent">
+ <summary> 
+ Required method for Designer support - do not modify 
+ the contents of this method with the code editor.
+ </summary>
+</member>
+<member name="E:Galaxy.CommonControls.ThemeColorPicker.ThemeColorPicker.ColorSelected">
+ <summary>
+ Occur when a color is selected.
+ </summary>
+</member>
+<member name="E:Galaxy.CommonControls.ThemeColorPicker.ThemeColorPicker.ShowCustomMoreColorWindow">
+ <summary>
+ Don't show pre-configure default Color Dialog
+ </summary>
+</member>
+<member name="E:Galaxy.CommonControls.ThemeColorPicker.ThemeColorPickerToolStripSplitButton.ColorSelected">
+ <summary>
+ Occur when a color is selected.
+ </summary>
+</member>
+<member name="F:Galaxy.CommonControls.ThemeColorPicker.ThemeColorPickerWindow.components">
+ <summary>
+ Required designer variable.
+ </summary>
+</member>
+<member name="M:Galaxy.CommonControls.ThemeColorPicker.ThemeColorPickerWindow.Dispose(System.Boolean)">
+ <summary>
+ Clean up any resources being used.
+ </summary>
+ <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+</member>
+<member name="M:Galaxy.CommonControls.ThemeColorPicker.ThemeColorPickerWindow.InitializeComponent">
+ <summary>
+ Required method for Designer support - do not modify
+ the contents of this method with the code editor.
+ </summary>
+</member>
+<member name="E:Galaxy.CommonControls.ThemeColorPicker.ThemeColorPickerWindow.ColorSelected">
+ <summary>
+ Occur when a color is selected.
+ </summary>
+</member>
+<member name="M:Galaxy.CommonControls.ThemeColorPicker.ThemeColorPickerWindow.#ctor(System.Drawing.Point,System.Windows.Forms.FormBorderStyle,Galaxy.CommonControls.ThemeColorPicker.ThemeColorPickerWindow.Action,Galaxy.CommonControls.ThemeColorPicker.ThemeColorPickerWindow.Action)">
+ <summary>
+ Create a new window for ThemeColorPicker.
+ </summary>
+ <param name="startLocation">The starting position on screen. Note: This is not location in Form.</param>
+ <param name="borderStyle">How the border should displayed.</param>
+ <param name="actionAfterColorSelected">The form action of 0o-.</param>
+ <param name="actionAfterLostFocus"></param>
+</member>
+<member name="F:Galaxy.CommonControls.ToggleSlider.components">
+ <summary> 
+ Required designer variable.
+ </summary>
+</member>
+<member name="M:Galaxy.CommonControls.ToggleSlider.Dispose(System.Boolean)">
+ <summary> 
+ Clean up any resources being used.
+ </summary>
+ <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+</member>
+<member name="M:Galaxy.CommonControls.ToggleSlider.InitializeComponent">
+ <summary> 
+ Required method for Designer support - do not modify 
+ the contents of this method with the code editor.
+ </summary>
+</member>
+<member name="T:Galaxy.CommonControls.ToolTipWithPictureOrGif">
+ <summary>
+ https://github.com/Kurris/ToolTipWithPictureOrGif
+ </summary>
+</member>
+<member name="M:Galaxy.CommonControls.ToolTipWithPictureOrGif.#ctor">
+ <summary>
+ 自定义控件,用于在tooltip中显示图片
+ </summary>
+</member>
+<member name="F:Galaxy.CommonControls.ToolTipWithPictureOrGif._showImage">
+ <summary>
+ 显示的图片
+ </summary>
+</member>
+<member name="M:Galaxy.CommonControls.ToolTipWithPictureOrGif.CustomToolTip_Popup(System.Object,System.Windows.Forms.PopupEventArgs)">
+ <summary>
+ 展示大小
+ </summary>
+ <param name="sender"></param>
+ <param name="e"></param>
+</member>
+<member name="M:Galaxy.CommonControls.ToolTipWithPictureOrGif.CustomToolTip_Draw(System.Object,System.Windows.Forms.DrawToolTipEventArgs)">
+ <summary>
+ 自定义显示图片
+ </summary>
+ <param name="sender"></param>
+ <param name="e"></param>
+</member>
+<member name="M:Galaxy.CommonControls.ToolTipWithPictureOrGif.Binding(System.Windows.Forms.Control,System.Drawing.Image,System.String)">
+ <summary>
+ 绑定控件显示的图片
+ </summary>
+ <param name="ctrl">控件</param>
+ <param name="image">图片</param>
+</member>
+<member name="T:Galaxy.CommonControls.Win7StyleTreeView">
+ <summary>
+ Windows 7 style TreeView control.
+ </summary>
+</member>
+<member name="F:Galaxy.CommonControls.Win7StyleTreeView.components">
+ <summary>
+ Required designer variable.
+ </summary>
+</member>
+<member name="M:Galaxy.CommonControls.Win7StyleTreeView.Dispose(System.Boolean)">
+ <summary> 
+ Clean up any resources being used.
+ </summary>
+ <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+</member>
+<member name="M:Galaxy.CommonControls.Win7StyleTreeView.InitializeComponent">
+ <summary>
+ Required method for Designer support - do not modify
+ the contents of this method with the code editor.
+ </summary>
+</member>
+</members>
+</doc>

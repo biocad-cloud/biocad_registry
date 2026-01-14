@@ -1,7 +1,4 @@
-﻿Imports RegistryTool.My
-Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
-Imports biocad_storage
-Imports Microsoft.VisualBasic.Linq
+﻿Imports Microsoft.VisualBasic.Linq
 
 Public Class FormBatchEditor
 
@@ -84,9 +81,9 @@ Public Class FormBatchEditor
         Dim term As TopicTerm = ComboBox1.SelectedItem
 
         For Each mol As MoleculeBatchView In list
-            If MyApplication.biocad_registry.molecule_tags.where(field("tag_id") = term.id, field("molecule_id") = mol.id).find(Of biocad_registryModel.molecule_tags) Is Nothing Then
-                Call MyApplication.biocad_registry.molecule_tags.add(field("tag_id") = term.id, field("molecule_id") = mol.id, field("description") = "Batch Editor")
-            End If
+            ' If MyApplication.biocad_registry.molecule_tags.where(field("tag_id") = term.id, field("molecule_id") = mol.id).find(Of biocad_registryModel.molecule_tags) Is Nothing Then
+            '  Call MyApplication.biocad_registry.molecule_tags.add(field("tag_id") = term.id, field("molecule_id") = mol.id, field("description") = "Batch Editor")
+            '   End If
         Next
 
         Call refreshUI()
@@ -105,7 +102,7 @@ Public Class FormBatchEditor
         Dim term As TopicTerm = ComboBox1.SelectedItem
 
         For Each mol As MoleculeBatchView In list
-            MyApplication.biocad_registry.molecule_tags.where(field("tag_id") = term.id, field("molecule_id") = mol.id).delete()
+            '   MyApplication.biocad_registry.molecule_tags.where(field("tag_id") = term.id, field("molecule_id") = mol.id).delete()
         Next
 
         Call refreshUI()

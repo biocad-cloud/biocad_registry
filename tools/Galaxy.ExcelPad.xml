@@ -1,0 +1,46 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+Galaxy.ExcelPad
+</name>
+</assembly>
+<members>
+<member name="P:Galaxy.ExcelPad.ChartPad.BackgroundImage">
+ <summary>
+ get/set of the ggplot chart plot image
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Galaxy.ExcelPad.InputDataVisual.SetAxis(System.Collections.Generic.Dictionary{System.String,System.Type})">
+ <summary>
+ set field names
+ </summary>
+ <param name="fields"></param>
+</member>
+<member name="P:Galaxy.ExcelPad.FormExcelPad.InstanceGuid">
+ <summary>
+ for raw data traceback
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Galaxy.ExcelPad.FormExcelPad.GetSelectedRow">
+ <summary>
+ get data of the selected table row
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Galaxy.ExcelPad.FormExcelPad.LoadTable(System.Action{System.Data.DataTable})">
+ <summary>
+ thread safe invoke for load data table
+ </summary>
+ <param name="apply"></param>
+</member>
+<member name="P:Galaxy.ExcelPad.IDataTraceback.AppSource">
+ <summary>
+ the application object reference type of the source application
+ </summary>
+ <returns></returns>
+</member>
+</members>
+</doc>
