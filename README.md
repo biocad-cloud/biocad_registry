@@ -48,5 +48,5 @@ An in-house data repository system for GCModeller make reconstruction of the GMM
 
 ![](mysql/biocad_registry.png)
 
-+ https://gcmodeller.org/ 2023. All rights reserved.
-+ https://biocad.cloud/ 2024. All rights reserved.
++ https://gcmodeller.org/ 2016-2026. All rights reserved.
++ biocad_registry.innovation.ac.cn 2026. All rights reserved.
