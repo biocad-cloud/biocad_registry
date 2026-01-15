@@ -9,5 +9,5 @@ require(graphQL);
 require(mzkit);
 
 const .onLoad = function() {
-    options(biocad = "http://registry.biocad.cloud:8848");
+    options(biocad = "http://biocad.innovation.ac.cn/");
 }

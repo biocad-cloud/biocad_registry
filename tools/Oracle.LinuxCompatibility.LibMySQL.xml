@@ -299,6 +299,12 @@ Oracle.LinuxCompatibility.LibMySQL
  <param name="f"></param>
  <returns></returns>
 </member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert.#ctor(System.String)">
+ <summary>
+ Create an mysql data expression
+ </summary>
+ <param name="name">table field name</param>
+</member>
 <member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert.is_nothing">
  <summary>
  test current field value is null?
@@ -538,7 +544,7 @@ Oracle.LinuxCompatibility.LibMySQL
 </member>
 <member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.Model.select_sql(System.String[])">
  <summary>
- generates the sql expression of select query
+ SQL SELECT
  </summary>
  <param name="fields"></param>
  <returns></returns>
@@ -553,7 +559,7 @@ Oracle.LinuxCompatibility.LibMySQL
 </member>
 <member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.Model.save_sql(Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert[])">
  <summary>
- generates the update sql
+ SQL UPDATE SET
  </summary>
  <param name="fields"></param>
  <returns></returns>
@@ -598,9 +604,22 @@ Oracle.LinuxCompatibility.LibMySQL
  <param name="fields"></param>
  <returns></returns>
 </member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.Model.add_sql(Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert[])">
+ <summary>
+ SQL INSERT INTO
+ </summary>
+ <param name="fields"></param>
+ <returns></returns>
+</member>
 <member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.Model.delete">
  <summary>
  DELETE FROM
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.Model.delete_sql">
+ <summary>
+ SQL DELETE FROM
  </summary>
  <returns></returns>
 </member>

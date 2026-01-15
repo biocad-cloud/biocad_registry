@@ -25,6 +25,12 @@ SMRUCC.genomics.Model.MotifGraph.ProteinStructure
  <param name="seq"></param>
  <returns></returns>
 </member>
+<member name="M:SMRUCC.genomics.Model.MotifGraph.ProteinStructure.KmerTFIDFVectorizer.OneHotVectorizer">
+ <summary>
+ n-gram One-hot(Bag-of-n-grams)
+ </summary>
+ <returns></returns>
+</member>
 <member name="T:SMRUCC.genomics.Model.MotifGraph.ProteinStructure.Kmer.KMerGraph">
  <summary>
  k-mer graph

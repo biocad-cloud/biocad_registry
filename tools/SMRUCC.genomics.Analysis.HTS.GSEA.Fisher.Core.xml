@@ -41,13 +41,6 @@ SMRUCC.genomics.Analysis.HTS.GSEA.Fisher.Core
  <param name="outputAll"></param>
  <returns></returns>
 </member>
-<member name="M:SMRUCC.genomics.Analysis.HTS.GSEA.Enrichment.FDRCorrection(System.Collections.Generic.IEnumerable{SMRUCC.genomics.Analysis.HTS.GSEA.EnrichmentResult})">
- <summary>
- 进行计算结果的假阳性FDR控制计算
- </summary>
- <param name="enrichments">根据我们所提供的基因列表，对每一个代谢途径的富集计算结果的集合</param>
- <returns></returns>
-</member>
 <member name="T:SMRUCC.genomics.Analysis.HTS.GSEA.EnrichmentResult">
  <summary>
  The GCModeller enrichment analysis output table

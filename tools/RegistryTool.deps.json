@@ -13,7 +13,15 @@
           "BioNovoGene.BioDeep.Chemoinformatics": "1.0.0",
           "BioNovoGene.BioDeep.MSEngine": "1.0.0",
           "DockPanelSuite": "3.1.1",
+          "Galaxy.CommonControls": "1.0.0",
+          "Galaxy.Data": "1.0.0",
+          "Galaxy.ExcelPad": "1.0.0",
           "Galaxy.Workbench": "1.0.0",
+          "Microsoft.VisualBasic.Data.BinaryData": "1.0.0",
+          "Microsoft.VisualBasic.Data.Framework": "5.0.123",
+          "Microsoft.VisualBasic.DataStorage.HDSPack": "1.0.0",
+          "Microsoft.VisualBasic.Drawing.Windows": "1.0.0",
+          "Microsoft.VisualBasic.MIME.application.xml": "1.0.0",
           "Microsoft.VisualBasic.MIME.text.markdown": "1.0.0",
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
           "Microsoft.Web.WebView2": "1.0.3712-prerelease",
@@ -21,8 +29,11 @@
           "Oracle.LinuxCompatibility.LibMySQL": "1.0.0",
           "REnv": "5.1.3.5558",
           "SMRUCC.genomics.Core": "6.3.256.3655",
+          "SMRUCC.genomics.Data.BioCyc": "1.0.0",
+          "SMRUCC.genomics.Model.MotifGraph.ProteinStructure": "1.0.0",
           "ThemeVS2015": "1.0.0",
-          "biocad_storage": "1.0.0",
+          "registry_data": "1.0.0",
+          "registry_exports": "1.0.0",
           "BioNovoGene.Analytical.MassSpectrometry.Math.Deconvolution.Reference": "1.0.0.0",
           "BioNovoGene.Analytical.MassSpectrometry.Math.Reference": "1.0.0.0",
           "BioNovoGene.Analytical.MassSpectrometry.Math.Formula.Extensions.Reference": "1.0.0.0",
@@ -32,31 +43,44 @@
           "BioNovoGene.BioDeep.Chemoinformatics.SMILES.Reference": "1.0.0.0",
           "BioNovoGene.BioDeep.MSEngine.Reference": "1.0.0.0",
           "BioNovoGene.BioDeep.MSFinder.Reference": "1.0.0.0",
+          "Galaxy.CommonControls.Reference": "1.0.0.0",
+          "Galaxy.Data.Reference": "1.0.0.0",
+          "Galaxy.Data.Visualization.Reference": "1.0.0.0",
+          "Galaxy.ExcelPad.Reference": "1.0.0.0",
           "Galaxy.Workbench.Reference": "1.0.0.0",
+          "ggplot.Reference": "1.0.0.0",
           "Microsoft.VisualBasic.Data.BinaryData.Reference": "1.0.0.0",
           "Microsoft.VisualBasic.Data.Bootstrapping.Fittings.Reference": "5.0.1.2389",
+          "Microsoft.VisualBasic.Data.ChartPlots.Reference": "1.0.0.0",
           "Microsoft.VisualBasic.Data.Framework.Reference": "5.0.123.0",
           "Microsoft.VisualBasic.Data.GraphTheory.Reference": "1.0.0.0",
           "Microsoft.VisualBasic.Data.IO.MessagePack.Reference": "1.0.0.0",
           "Microsoft.VisualBasic.Data.NLP.Word2Vec.Reference": "5.33.69.2558",
           "Microsoft.VisualBasic.Data.TrinityNLP.Reference": "1.0.0.0",
+          "Microsoft.VisualBasic.Data.visualize.Network.Canvas.Reference": "2.33.9510.39271",
           "Microsoft.VisualBasic.Data.visualize.Network.Reference": "1.0.0.0",
-          "Microsoft.VisualBasic.DataMining.BinaryTreeClustering.Reference": "1.0.0.0",
+          "Microsoft.VisualBasic.Data.visualize.Network.IO.Extensions.Reference": "1.0.0.0",
+          "Microsoft.VisualBasic.Data.visualize.Network.Layouts.Reference": "1.0.0.0",
+          "Microsoft.VisualBasic.Data.visualize.Network.Visualizer.Reference": "1.0.0.0",
           "Microsoft.VisualBasic.DataMining.Framework.Reference": "1.0.0.0",
           "Microsoft.VisualBasic.DataStorage.HDSPack.Reference": "1.0.0.0",
           "Microsoft.VisualBasic.DeepLearning.Reference": "6.0.1.2389",
           "Microsoft.VisualBasic.Drawing.Windows.Reference": "1.0.0.0",
+          "Microsoft.VisualBasic.Imaging.AVIMedia.Reference": "1.0.0.0",
+          "Microsoft.VisualBasic.Imaging.Reference": "1.0.0.0",
+          "Microsoft.VisualBasic.Imaging.Physics.Reference": "1.0.0.0",
           "Microsoft.VisualBasic.MachineLearning.Bootstrapping.Reference": "1.0.0.0",
           "Microsoft.VisualBasic.MachineLearning.Reference": "5.0.1.2389",
           "Microsoft.VisualBasic.MachineLearning.TensorFlow.Reference": "1.0.0.0",
           "Microsoft.VisualBasic.Math.Core.Reference": "5.0.1.2389",
-          "Microsoft.VisualBasic.Math.Matrix.Reference": "1.0.0.0",
           "Microsoft.VisualBasic.Math.SignalProcessing.Reference": "1.0.0.0",
+          "Microsoft.VisualBasic.Math.Statistics.ANOVA.Reference": "1.0.0.0",
           "Microsoft.VisualBasic.Math.Statistics.Reference": "1.0.0.0",
           "Microsoft.VisualBasic.MIME.application.json.Reference": "1.0.0.0",
           "Microsoft.VisualBasic.MIME.application.rdf_xml.Reference": "1.0.0.0",
           "Microsoft.VisualBasic.MIME.application.xml.Reference": "1.0.0.0",
           "Microsoft.VisualBasic.MIME.Html.Reference": "1.0.0.0",
+          "Microsoft.VisualBasic.MIME.Office.Excel.Reference": "1.0.0.0",
           "Microsoft.VisualBasic.MIME.text.markdown.Reference": "1.0.0.0",
           "Microsoft.VisualBasic.Runtime.Reference": "5.33.69.2558",
           "Microsoft.VisualStudio.Windows.Form": "1.0.0.0",
@@ -65,14 +89,16 @@
           "Microsoft.Web.WebView2.Wpf": "1.0.3712.0",
           "Oracle.LinuxCompatibility.LibMySQL.Reference": "1.0.0.0",
           "REnv.Reference": "2.33.856.6961",
+          "R_graphics.Common.Runtime.Reference": "1.0.0.0",
           "SMRUCC.genomics.Analysis.HTS.GSEA.Fisher.Core.Reference": "1.0.0.0",
           "SMRUCC.genomics.Core.Reference": "6.3.256.3655",
           "SMRUCC.genomics.Data.BioCyc.Reference": "1.0.0.0",
           "SMRUCC.genomics.Data.RCSB.PDB.Reference": "1.0.0.0",
           "SMRUCC.genomics.foundation.OBO_Foundry.Reference": "1.0.0.0",
           "SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.Reference": "3.0.0.0",
+          "SMRUCC.genomics.InteractionModel.Reference": "1.0.0.0",
           "SMRUCC.genomics.Model.MotifGraph.ProteinStructure.Reference": "1.0.0.0",
-          "SMRUCC.genomics.Model.OperonMapper.Reference": "1.0.0.0"
+          "SMRUCC.genomics.Visualize.Cytoscape.Reference": "1.0.0.0"
         },
         "runtime": {
           "RegistryTool.dll": {}
@@ -198,6 +224,142 @@
             "rid": "win-x64",
             "assetType": "native",
             "fileVersion": "4.3.0.1"
+          }
+        }
+      },
+      "SkiaSharp/3.119.2-preview.1": {
+        "dependencies": {
+          "SkiaSharp.NativeAssets.Win32": "3.119.2-preview.1",
+          "SkiaSharp.NativeAssets.macOS": "3.119.2-preview.1"
+        },
+        "runtime": {
+          "lib/net8.0/SkiaSharp.dll": {
+            "assemblyVersion": "3.119.0.0",
+            "fileVersion": "3.119.2.0"
+          }
+        }
+      },
+      "SkiaSharp.Extended/3.1.0-preview.3": {
+        "dependencies": {
+          "SkiaSharp": "3.119.2-preview.1"
+        },
+        "runtime": {
+          "lib/netstandard2.0/SkiaSharp.Extended.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.0.0.0"
+          }
+        }
+      },
+      "SkiaSharp.NativeAssets.Linux/3.119.2-preview.1": {
+        "runtimeTargets": {
+          "runtimes/linux-arm/native/libSkiaSharp.so": {
+            "rid": "linux-arm",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/linux-arm64/native/libSkiaSharp.so": {
+            "rid": "linux-arm64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/linux-loongarch64/native/libSkiaSharp.so": {
+            "rid": "linux-loongarch64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/linux-musl-arm/native/libSkiaSharp.so": {
+            "rid": "linux-musl-arm",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/linux-musl-arm64/native/libSkiaSharp.so": {
+            "rid": "linux-musl-arm64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/linux-musl-loongarch64/native/libSkiaSharp.so": {
+            "rid": "linux-musl-loongarch64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/linux-musl-riscv64/native/libSkiaSharp.so": {
+            "rid": "linux-musl-riscv64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/linux-musl-x64/native/libSkiaSharp.so": {
+            "rid": "linux-musl-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/linux-riscv64/native/libSkiaSharp.so": {
+            "rid": "linux-riscv64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/linux-x64/native/libSkiaSharp.so": {
+            "rid": "linux-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/linux-x86/native/libSkiaSharp.so": {
+            "rid": "linux-x86",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "SkiaSharp.NativeAssets.macOS/3.119.2-preview.1": {
+        "runtimeTargets": {
+          "runtimes/osx/native/libSkiaSharp.dylib": {
+            "rid": "osx",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "SkiaSharp.NativeAssets.Win32/3.119.2-preview.1": {
+        "runtimeTargets": {
+          "runtimes/win-arm64/native/libSkiaSharp.dll": {
+            "rid": "win-arm64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win-arm64/native/libSkiaSharp.pdb": {
+            "rid": "win-arm64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win-x64/native/libSkiaSharp.dll": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win-x64/native/libSkiaSharp.pdb": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win-x86/native/libSkiaSharp.dll": {
+            "rid": "win-x86",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win-x86/native/libSkiaSharp.pdb": {
+            "rid": "win-x86",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "SkiaSharp.Svg/1.60.0": {
+        "dependencies": {
+          "SkiaSharp": "3.119.2-preview.1"
+        },
+        "runtime": {
+          "lib/netstandard2.0/SkiaSharp.Extended.Svg.dll": {
+            "assemblyVersion": "1.60.0.0",
+            "fileVersion": "1.60.0.0"
           }
         }
       },
@@ -341,6 +503,14 @@
           }
         }
       },
+      "System.IO.Packaging/10.0.1": {
+        "runtime": {
+          "lib/net8.0/System.IO.Packaging.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.125.57005"
+          }
+        }
+      },
       "System.IO.Pipelines/10.0.1": {
         "runtime": {
           "lib/net8.0/System.IO.Pipelines.dll": {
@@ -463,31 +633,6 @@
           "lib/net8.0/ZstdSharp.dll": {
             "assemblyVersion": "0.8.6.0",
             "fileVersion": "0.8.6.0"
-          }
-        }
-      },
-      "biocad_storage/1.0.0": {
-        "dependencies": {
-          "BioNovoGene.Analytical.MassSpectrometry.Math": "1.0.0",
-          "BioNovoGene.BioDeep.Chemistry.Massbank": "1.0.0",
-          "BioNovoGene.BioDeep.Chemistry.XrefEngine": "1.0.0",
-          "BioNovoGene.BioDeep.Chemoinformatics": "1.0.0",
-          "BioNovoGene.BioDeep.Chemoinformatics.SMILES": "1.0.0",
-          "Microsoft.VisualBasic.Data.Framework": "5.0.123",
-          "Microsoft.VisualBasic.Data.GraphTheory": "1.0.0",
-          "Microsoft.VisualBasic.Math.Core": "5.0.1.2389",
-          "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
-          "Oracle.LinuxCompatibility.LibMySQL": "1.0.0",
-          "SMRUCC.genomics.Core": "6.3.256.3655",
-          "SMRUCC.genomics.Data.BioCyc": "1.0.0",
-          "SMRUCC.genomics.Data.RCSB.PDB": "1.0.0",
-          "SMRUCC.genomics.Model.MotifGraph.ProteinStructure": "1.0.0",
-          "SMRUCC.genomics.Model.OperonMapper": "1.0.0"
-        },
-        "runtime": {
-          "biocad_storage.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
           }
         }
       },
@@ -658,6 +803,97 @@
           }
         }
       },
+      "Galaxy.CommonControls/1.0.0": {
+        "dependencies": {
+          "Microsoft.VisualBasic.Runtime": "5.0.1.2389"
+        },
+        "runtime": {
+          "Galaxy.CommonControls.dll": {
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Galaxy.Data/1.0.0": {
+        "dependencies": {
+          "Microsoft.VisualBasic.Data.Framework": "5.0.123",
+          "Microsoft.VisualBasic.MIME.Office.Excel": "1.0.0",
+          "Microsoft.VisualBasic.MIME.application.json": "1.0.0",
+          "Microsoft.VisualBasic.Runtime": "5.0.1.2389"
+        },
+        "runtime": {
+          "Galaxy.Data.dll": {
+            "fileVersion": "0.0.0.0"
+          }
+        },
+        "resources": {
+          "zh-CN/Galaxy.Data.resources.dll": {
+            "locale": "zh-CN"
+          },
+          "zh-HK/Galaxy.Data.resources.dll": {
+            "locale": "zh-HK"
+          }
+        }
+      },
+      "Galaxy.Data.Visualization/1.0.0": {
+        "dependencies": {
+          "Galaxy.Workbench": "1.0.0",
+          "Microsoft.VisualBasic.Data.ChartPlots": "1.0.0",
+          "Microsoft.VisualBasic.Drawing.Windows": "1.0.0",
+          "Microsoft.VisualBasic.Imaging": "1.0.0",
+          "Microsoft.VisualBasic.MIME.Html": "1.0.0",
+          "Microsoft.VisualBasic.Math.Core": "5.0.1.2389",
+          "Microsoft.VisualBasic.Runtime": "5.0.1.2389"
+        },
+        "runtime": {
+          "Galaxy.Data.Visualization.dll": {
+            "fileVersion": "0.0.0.0"
+          }
+        },
+        "resources": {
+          "zh-CN/Galaxy.Data.Visualization.resources.dll": {
+            "locale": "zh-CN"
+          }
+        }
+      },
+      "Galaxy.ExcelPad/1.0.0": {
+        "dependencies": {
+          "DockPanelSuite": "3.1.1",
+          "Galaxy.CommonControls": "1.0.0",
+          "Galaxy.Data": "1.0.0",
+          "Galaxy.Data.Visualization": "1.0.0",
+          "Galaxy.Workbench": "1.0.0",
+          "Microsoft.VisualBasic.Data.ChartPlots": "1.0.0",
+          "Microsoft.VisualBasic.Data.Framework": "5.0.123",
+          "Microsoft.VisualBasic.Data.visualize.Network": "1.0.0",
+          "Microsoft.VisualBasic.Data.visualize.Network.Canvas": "1.0.0",
+          "Microsoft.VisualBasic.Data.visualize.Network.IO.Extensions": "1.0.0",
+          "Microsoft.VisualBasic.Data.visualize.Network.Layouts": "1.0.0",
+          "Microsoft.VisualBasic.Data.visualize.Network.Visualizer": "1.0.0",
+          "Microsoft.VisualBasic.Drawing.Windows": "1.0.0",
+          "Microsoft.VisualBasic.Imaging": "1.0.0",
+          "Microsoft.VisualBasic.Imaging.Physics": "1.0.0",
+          "Microsoft.VisualBasic.MIME.Html": "1.0.0",
+          "Microsoft.VisualBasic.Math.Core": "5.0.1.2389",
+          "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
+          "SMRUCC.genomics.Visualize.Cytoscape": "1.0.0",
+          "ThemeVS2015": "1.0.0",
+          "ggplot": "1.0.0",
+          "ggviewer": "1.0.0"
+        },
+        "runtime": {
+          "Galaxy.ExcelPad.dll": {
+            "fileVersion": "0.0.0.0"
+          }
+        },
+        "resources": {
+          "zh-CN/Galaxy.ExcelPad.resources.dll": {
+            "locale": "zh-CN"
+          },
+          "zh-Hans/Galaxy.ExcelPad.resources.dll": {
+            "locale": "zh-Hans"
+          }
+        }
+      },
       "Galaxy.Workbench/1.0.0": {
         "dependencies": {
           "DockPanelSuite": "3.1.1",
@@ -680,6 +916,43 @@
           },
           "zh-HK/Galaxy.Workbench.resources.dll": {
             "locale": "zh-HK"
+          }
+        }
+      },
+      "ggplot/1.0.0": {
+        "dependencies": {
+          "Microsoft.VisualBasic.Data.ChartPlots": "1.0.0",
+          "Microsoft.VisualBasic.Data.Framework": "5.0.123",
+          "Microsoft.VisualBasic.Drawing": "1.0.0",
+          "Microsoft.VisualBasic.Imaging": "1.0.0",
+          "Microsoft.VisualBasic.MIME.Html": "1.0.0",
+          "Microsoft.VisualBasic.Math.Core": "5.0.1.2389",
+          "Microsoft.VisualBasic.Math.Statistics": "1.0.0",
+          "Microsoft.VisualBasic.Math.Statistics.ANOVA": "1.0.0",
+          "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
+          "REnv": "5.1.3.5558",
+          "R_graphics.Common.Runtime": "1.0.0"
+        },
+        "runtime": {
+          "ggplot.dll": {
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "ggviewer/1.0.0": {
+        "dependencies": {
+          "Microsoft.VisualBasic.Data.ChartPlots": "1.0.0",
+          "Microsoft.VisualBasic.Imaging": "1.0.0",
+          "Microsoft.VisualBasic.MIME.Html": "1.0.0",
+          "Microsoft.VisualBasic.Math.Core": "5.0.1.2389",
+          "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
+          "REnv": "5.1.3.5558",
+          "ggplot": "1.0.0"
+        },
+        "runtime": {
+          "ggviewer.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
           }
         }
       },
@@ -717,6 +990,21 @@
         },
         "runtime": {
           "Microsoft.VisualBasic.Data.Bootstrapping.Fittings.dll": {
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Microsoft.VisualBasic.Data.ChartPlots/1.0.0": {
+        "dependencies": {
+          "Microsoft.VisualBasic.Imaging": "1.0.0",
+          "Microsoft.VisualBasic.MIME.Html": "1.0.0",
+          "Microsoft.VisualBasic.Math.Core": "5.0.1.2389",
+          "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
+          "System.Composition": "10.0.1",
+          "System.Resources.Extensions": "10.0.1"
+        },
+        "runtime": {
+          "Microsoft.VisualBasic.Data.ChartPlots.dll": {
             "fileVersion": "0.0.0.0"
           }
         }
@@ -775,6 +1063,7 @@
       },
       "Microsoft.VisualBasic.Data.TrinityNLP/1.0.0": {
         "dependencies": {
+          "Microsoft.VisualBasic.Data.Framework": "5.0.123",
           "Microsoft.VisualBasic.Data.GraphTheory": "1.0.0",
           "Microsoft.VisualBasic.Math.Core": "5.0.1.2389",
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389"
@@ -799,19 +1088,70 @@
           }
         }
       },
-      "Microsoft.VisualBasic.DataMining.BinaryTreeClustering/1.0.0": {
+      "Microsoft.VisualBasic.Data.visualize.Network.Canvas/1.0.0": {
         "dependencies": {
           "Microsoft.VisualBasic.Data.GraphTheory": "1.0.0",
-          "Microsoft.VisualBasic.DataMining.Framework": "1.0.0",
+          "Microsoft.VisualBasic.Data.visualize.Network": "1.0.0",
+          "Microsoft.VisualBasic.Data.visualize.Network.IO.Extensions": "1.0.0",
+          "Microsoft.VisualBasic.Data.visualize.Network.Layouts": "1.0.0",
+          "Microsoft.VisualBasic.Data.visualize.Network.Visualizer": "1.0.0",
+          "Microsoft.VisualBasic.Drawing.Windows": "1.0.0",
+          "Microsoft.VisualBasic.Imaging": "1.0.0",
+          "Microsoft.VisualBasic.Imaging.AVIMedia": "1.0.0",
+          "Microsoft.VisualBasic.Imaging.Physics": "1.0.0",
           "Microsoft.VisualBasic.Math.Core": "5.0.1.2389",
-          "Microsoft.VisualBasic.Math.Matrix": "1.0.0",
-          "Microsoft.VisualBasic.Math.Statistics": "1.0.0",
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
-          "System.Composition": "10.0.1",
           "System.Resources.Extensions": "10.0.1"
         },
         "runtime": {
-          "Microsoft.VisualBasic.DataMining.BinaryTreeClustering.dll": {
+          "Microsoft.VisualBasic.Data.visualize.Network.Canvas.dll": {
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Microsoft.VisualBasic.Data.visualize.Network.IO.Extensions/1.0.0": {
+        "dependencies": {
+          "Microsoft.VisualBasic.Data.Framework": "5.0.123",
+          "Microsoft.VisualBasic.Data.GraphTheory": "1.0.0",
+          "Microsoft.VisualBasic.Data.visualize.Network": "1.0.0",
+          "Microsoft.VisualBasic.Runtime": "5.0.1.2389"
+        },
+        "runtime": {
+          "Microsoft.VisualBasic.Data.visualize.Network.IO.Extensions.dll": {
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Microsoft.VisualBasic.Data.visualize.Network.Layouts/1.0.0": {
+        "dependencies": {
+          "Microsoft.VisualBasic.Data.GraphTheory": "1.0.0",
+          "Microsoft.VisualBasic.Data.visualize.Network": "1.0.0",
+          "Microsoft.VisualBasic.Imaging.Physics": "1.0.0",
+          "Microsoft.VisualBasic.Math.Core": "5.0.1.2389",
+          "Microsoft.VisualBasic.Runtime": "5.0.1.2389"
+        },
+        "runtime": {
+          "Microsoft.VisualBasic.Data.visualize.Network.Layouts.dll": {
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Microsoft.VisualBasic.Data.visualize.Network.Visualizer/1.0.0": {
+        "dependencies": {
+          "Microsoft.VisualBasic.Data.ChartPlots": "1.0.0",
+          "Microsoft.VisualBasic.Data.Framework": "5.0.123",
+          "Microsoft.VisualBasic.Data.GraphTheory": "1.0.0",
+          "Microsoft.VisualBasic.Data.visualize.Network": "1.0.0",
+          "Microsoft.VisualBasic.Data.visualize.Network.IO.Extensions": "1.0.0",
+          "Microsoft.VisualBasic.Data.visualize.Network.Layouts": "1.0.0",
+          "Microsoft.VisualBasic.Imaging": "1.0.0",
+          "Microsoft.VisualBasic.Imaging.Physics": "1.0.0",
+          "Microsoft.VisualBasic.MIME.Html": "1.0.0",
+          "Microsoft.VisualBasic.Math.Core": "5.0.1.2389",
+          "Microsoft.VisualBasic.Runtime": "5.0.1.2389"
+        },
+        "runtime": {
+          "Microsoft.VisualBasic.Data.visualize.Network.Visualizer.dll": {
             "fileVersion": "0.0.0.0"
           }
         }
@@ -857,6 +1197,24 @@
           }
         }
       },
+      "Microsoft.VisualBasic.Drawing/1.0.0": {
+        "dependencies": {
+          "Microsoft.VisualBasic.Imaging": "1.0.0",
+          "Microsoft.VisualBasic.MIME.Html": "1.0.0",
+          "Microsoft.VisualBasic.Math.Core": "5.0.1.2389",
+          "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
+          "SkiaSharp": "3.119.2-preview.1",
+          "SkiaSharp.Extended": "3.1.0-preview.3",
+          "SkiaSharp.NativeAssets.Linux": "3.119.2-preview.1",
+          "SkiaSharp.Svg": "1.60.0"
+        },
+        "runtime": {
+          "Microsoft.VisualBasic.Drawing.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
       "Microsoft.VisualBasic.Drawing.Windows/1.0.0": {
         "dependencies": {
           "Microsoft.VisualBasic.MIME.Html": "1.0.0",
@@ -866,6 +1224,45 @@
         },
         "runtime": {
           "Microsoft.VisualBasic.Drawing.Windows.dll": {
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Microsoft.VisualBasic.Imaging/1.0.0": {
+        "dependencies": {
+          "Microsoft.VisualBasic.MIME.Html": "1.0.0",
+          "Microsoft.VisualBasic.Math.Core": "5.0.1.2389",
+          "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
+          "System.Composition": "10.0.1",
+          "System.Resources.Extensions": "10.0.1"
+        },
+        "runtime": {
+          "Microsoft.VisualBasic.Imaging.dll": {
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Microsoft.VisualBasic.Imaging.AVIMedia/1.0.0": {
+        "dependencies": {
+          "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
+          "System.Drawing.Common": "10.0.1"
+        },
+        "runtime": {
+          "Microsoft.VisualBasic.Imaging.AVIMedia.dll": {
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Microsoft.VisualBasic.Imaging.Physics/1.0.0": {
+        "dependencies": {
+          "Microsoft.VisualBasic.Data.GraphTheory": "1.0.0",
+          "Microsoft.VisualBasic.Math.Core": "5.0.1.2389",
+          "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
+          "System.Composition": "10.0.1",
+          "System.Resources.Extensions": "10.0.1"
+        },
+        "runtime": {
+          "Microsoft.VisualBasic.Imaging.Physics.dll": {
             "fileVersion": "0.0.0.0"
           }
         }
@@ -923,22 +1320,6 @@
           }
         }
       },
-      "Microsoft.VisualBasic.Math.Matrix/1.0.0": {
-        "dependencies": {
-          "Microsoft.VisualBasic.Data.Framework": "5.0.123",
-          "Microsoft.VisualBasic.Math.Core": "5.0.1.2389",
-          "Microsoft.VisualBasic.Math.Statistics": "1.0.0",
-          "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
-          "System.Composition": "10.0.1",
-          "System.Diagnostics.DiagnosticSource": "10.0.1",
-          "System.Resources.Extensions": "10.0.1"
-        },
-        "runtime": {
-          "Microsoft.VisualBasic.Math.Matrix.dll": {
-            "fileVersion": "0.0.0.0"
-          }
-        }
-      },
       "Microsoft.VisualBasic.Math.SignalProcessing/1.0.0": {
         "dependencies": {
           "Microsoft.VisualBasic.Data.Bootstrapping.Fittings": "5.0.1.2389",
@@ -963,6 +1344,21 @@
         },
         "runtime": {
           "Microsoft.VisualBasic.Math.Statistics.dll": {
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Microsoft.VisualBasic.Math.Statistics.ANOVA/1.0.0": {
+        "dependencies": {
+          "Microsoft.VisualBasic.Data.Framework": "5.0.123",
+          "Microsoft.VisualBasic.Math.Core": "5.0.1.2389",
+          "Microsoft.VisualBasic.Math.Statistics": "1.0.0",
+          "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
+          "System.Composition": "10.0.1",
+          "System.Resources.Extensions": "10.0.1"
+        },
+        "runtime": {
+          "Microsoft.VisualBasic.Math.Statistics.ANOVA.dll": {
             "fileVersion": "0.0.0.0"
           }
         }
@@ -1018,6 +1414,18 @@
           }
         }
       },
+      "Microsoft.VisualBasic.MIME.Office.Excel/1.0.0": {
+        "dependencies": {
+          "Microsoft.VisualBasic.Data.Framework": "5.0.123",
+          "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
+          "System.IO.Packaging": "10.0.1"
+        },
+        "runtime": {
+          "Microsoft.VisualBasic.MIME.Office.Excel.dll": {
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
       "Microsoft.VisualBasic.MIME.text.markdown/1.0.0": {
         "dependencies": {
           "Microsoft.VisualBasic.MIME.Html": "1.0.0",
@@ -1046,7 +1454,7 @@
       "Microsoft.Windows.FeatureAPI/1.0.0": {
         "runtime": {
           "Microsoft.Windows.FeatureAPI.dll": {
-            "assemblyVersion": "10.0.9490.28848",
+            "assemblyVersion": "10.0.9510.42990",
             "fileVersion": "1.0.10.8963"
           }
         }
@@ -1082,6 +1490,35 @@
           }
         }
       },
+      "registry_data/1.0.0": {
+        "dependencies": {
+          "Microsoft.VisualBasic.Math.Core": "5.0.1.2389",
+          "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
+          "Oracle.LinuxCompatibility.LibMySQL": "1.0.0",
+          "SMRUCC.genomics.Core": "6.3.256.3655"
+        },
+        "runtime": {
+          "registry_data.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "registry_exports/1.0.0": {
+        "dependencies": {
+          "BioNovoGene.BioDeep.Chemistry.Massbank": "1.0.0",
+          "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
+          "Oracle.LinuxCompatibility.LibMySQL": "1.0.0",
+          "SMRUCC.genomics.Core": "6.3.256.3655",
+          "registry_data": "1.0.0"
+        },
+        "runtime": {
+          "registry_exports.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
       "REnv/5.1.3.5558": {
         "dependencies": {
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
@@ -1093,6 +1530,17 @@
         },
         "runtime": {
           "REnv.dll": {
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "R_graphics.Common.Runtime/1.0.0": {
+        "dependencies": {
+          "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
+          "REnv": "5.1.3.5558"
+        },
+        "runtime": {
+          "R_graphics.Common.Runtime.dll": {
             "fileVersion": "0.0.0.0"
           }
         }
@@ -1178,6 +1626,19 @@
           }
         }
       },
+      "SMRUCC.genomics.InteractionModel/1.0.0": {
+        "dependencies": {
+          "Microsoft.VisualBasic.Data.GraphTheory": "1.0.0",
+          "Microsoft.VisualBasic.Math.Core": "5.0.1.2389",
+          "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
+          "SMRUCC.genomics.Core": "6.3.256.3655"
+        },
+        "runtime": {
+          "SMRUCC.genomics.InteractionModel.dll": {
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
       "SMRUCC.genomics.Model.MotifGraph.ProteinStructure/1.0.0": {
         "dependencies": {
           "Microsoft.VisualBasic.Data.GraphTheory": "1.0.0",
@@ -1197,18 +1658,22 @@
           }
         }
       },
-      "SMRUCC.genomics.Model.OperonMapper/1.0.0": {
+      "SMRUCC.genomics.Visualize.Cytoscape/1.0.0": {
         "dependencies": {
           "Microsoft.VisualBasic.Data.GraphTheory": "1.0.0",
-          "Microsoft.VisualBasic.DataMining.BinaryTreeClustering": "1.0.0",
-          "Microsoft.VisualBasic.MIME.application.json": "1.0.0",
+          "Microsoft.VisualBasic.Data.visualize.Network": "1.0.0",
+          "Microsoft.VisualBasic.Data.visualize.Network.IO.Extensions": "1.0.0",
+          "Microsoft.VisualBasic.Imaging": "1.0.0",
+          "Microsoft.VisualBasic.MIME.Html": "1.0.0",
+          "Microsoft.VisualBasic.MIME.application.rdf_xml": "1.0.0",
+          "Microsoft.VisualBasic.MIME.application.xml": "1.0.0",
           "Microsoft.VisualBasic.Math.Core": "5.0.1.2389",
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
           "SMRUCC.genomics.Core": "6.3.256.3655",
-          "SMRUCC.genomics.Model.MotifGraph.ProteinStructure": "1.0.0"
+          "SMRUCC.genomics.InteractionModel": "1.0.0"
         },
         "runtime": {
-          "SMRUCC.genomics.Model.OperonMapper.dll": {
+          "SMRUCC.genomics.Visualize.Cytoscape.dll": {
             "fileVersion": "0.0.0.0"
           }
         }
@@ -1296,6 +1761,59 @@
           }
         }
       },
+      "Galaxy.CommonControls.Reference/1.0.0.0": {
+        "runtime": {
+          "Galaxy.CommonControls.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Galaxy.Data.Reference/1.0.0.0": {
+        "runtime": {
+          "Galaxy.Data.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        },
+        "resources": {
+          "zh-CN/Galaxy.Data.resources.dll": {
+            "locale": "zh-CN"
+          },
+          "zh-HK/Galaxy.Data.resources.dll": {
+            "locale": "zh-HK"
+          }
+        }
+      },
+      "Galaxy.Data.Visualization.Reference/1.0.0.0": {
+        "runtime": {
+          "Galaxy.Data.Visualization.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        },
+        "resources": {
+          "zh-CN/Galaxy.Data.Visualization.resources.dll": {
+            "locale": "zh-CN"
+          }
+        }
+      },
+      "Galaxy.ExcelPad.Reference/1.0.0.0": {
+        "runtime": {
+          "Galaxy.ExcelPad.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        },
+        "resources": {
+          "zh-CN/Galaxy.ExcelPad.resources.dll": {
+            "locale": "zh-CN"
+          },
+          "zh-Hans/Galaxy.ExcelPad.resources.dll": {
+            "locale": "zh-Hans"
+          }
+        }
+      },
       "Galaxy.Workbench.Reference/1.0.0.0": {
         "runtime": {
           "Galaxy.Workbench.dll": {
@@ -1315,6 +1833,14 @@
           }
         }
       },
+      "ggplot.Reference/1.0.0.0": {
+        "runtime": {
+          "ggplot.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
       "Microsoft.VisualBasic.Data.BinaryData.Reference/1.0.0.0": {
         "runtime": {
           "Microsoft.VisualBasic.Data.BinaryData.dll": {
@@ -1328,6 +1854,14 @@
           "Microsoft.VisualBasic.Data.Bootstrapping.Fittings.dll": {
             "assemblyVersion": "5.0.1.2389",
             "fileVersion": "5.0.1.2389"
+          }
+        }
+      },
+      "Microsoft.VisualBasic.Data.ChartPlots.Reference/1.0.0.0": {
+        "runtime": {
+          "Microsoft.VisualBasic.Data.ChartPlots.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
           }
         }
       },
@@ -1371,6 +1905,14 @@
           }
         }
       },
+      "Microsoft.VisualBasic.Data.visualize.Network.Canvas.Reference/2.33.9510.39271": {
+        "runtime": {
+          "Microsoft.VisualBasic.Data.visualize.Network.Canvas.dll": {
+            "assemblyVersion": "2.33.9510.39271",
+            "fileVersion": "2.33.0.0"
+          }
+        }
+      },
       "Microsoft.VisualBasic.Data.visualize.Network.Reference/1.0.0.0": {
         "runtime": {
           "Microsoft.VisualBasic.Data.visualize.Network.dll": {
@@ -1379,9 +1921,25 @@
           }
         }
       },
-      "Microsoft.VisualBasic.DataMining.BinaryTreeClustering.Reference/1.0.0.0": {
+      "Microsoft.VisualBasic.Data.visualize.Network.IO.Extensions.Reference/1.0.0.0": {
         "runtime": {
-          "Microsoft.VisualBasic.DataMining.BinaryTreeClustering.dll": {
+          "Microsoft.VisualBasic.Data.visualize.Network.IO.Extensions.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Microsoft.VisualBasic.Data.visualize.Network.Layouts.Reference/1.0.0.0": {
+        "runtime": {
+          "Microsoft.VisualBasic.Data.visualize.Network.Layouts.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Microsoft.VisualBasic.Data.visualize.Network.Visualizer.Reference/1.0.0.0": {
+        "runtime": {
+          "Microsoft.VisualBasic.Data.visualize.Network.Visualizer.dll": {
             "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
           }
@@ -1419,6 +1977,30 @@
           }
         }
       },
+      "Microsoft.VisualBasic.Imaging.AVIMedia.Reference/1.0.0.0": {
+        "runtime": {
+          "Microsoft.VisualBasic.Imaging.AVIMedia.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Microsoft.VisualBasic.Imaging.Reference/1.0.0.0": {
+        "runtime": {
+          "Microsoft.VisualBasic.Imaging.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Microsoft.VisualBasic.Imaging.Physics.Reference/1.0.0.0": {
+        "runtime": {
+          "Microsoft.VisualBasic.Imaging.Physics.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
       "Microsoft.VisualBasic.MachineLearning.Bootstrapping.Reference/1.0.0.0": {
         "runtime": {
           "Microsoft.VisualBasic.MachineLearning.Bootstrapping.dll": {
@@ -1451,17 +2033,17 @@
           }
         }
       },
-      "Microsoft.VisualBasic.Math.Matrix.Reference/1.0.0.0": {
+      "Microsoft.VisualBasic.Math.SignalProcessing.Reference/1.0.0.0": {
         "runtime": {
-          "Microsoft.VisualBasic.Math.Matrix.dll": {
+          "Microsoft.VisualBasic.Math.SignalProcessing.dll": {
             "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
           }
         }
       },
-      "Microsoft.VisualBasic.Math.SignalProcessing.Reference/1.0.0.0": {
+      "Microsoft.VisualBasic.Math.Statistics.ANOVA.Reference/1.0.0.0": {
         "runtime": {
-          "Microsoft.VisualBasic.Math.SignalProcessing.dll": {
+          "Microsoft.VisualBasic.Math.Statistics.ANOVA.dll": {
             "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
           }
@@ -1502,6 +2084,14 @@
       "Microsoft.VisualBasic.MIME.Html.Reference/1.0.0.0": {
         "runtime": {
           "Microsoft.VisualBasic.MIME.Html.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Microsoft.VisualBasic.MIME.Office.Excel.Reference/1.0.0.0": {
+        "runtime": {
+          "Microsoft.VisualBasic.MIME.Office.Excel.dll": {
             "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
           }
@@ -1571,6 +2161,14 @@
           }
         }
       },
+      "R_graphics.Common.Runtime.Reference/1.0.0.0": {
+        "runtime": {
+          "R_graphics.Common.Runtime.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
       "SMRUCC.genomics.Analysis.HTS.GSEA.Fisher.Core.Reference/1.0.0.0": {
         "runtime": {
           "SMRUCC.genomics.Analysis.HTS.GSEA.Fisher.Core.dll": {
@@ -1619,6 +2217,14 @@
           }
         }
       },
+      "SMRUCC.genomics.InteractionModel.Reference/1.0.0.0": {
+        "runtime": {
+          "SMRUCC.genomics.InteractionModel.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
       "SMRUCC.genomics.Model.MotifGraph.ProteinStructure.Reference/1.0.0.0": {
         "runtime": {
           "SMRUCC.genomics.Model.MotifGraph.ProteinStructure.dll": {
@@ -1627,9 +2233,9 @@
           }
         }
       },
-      "SMRUCC.genomics.Model.OperonMapper.Reference/1.0.0.0": {
+      "SMRUCC.genomics.Visualize.Cytoscape.Reference/1.0.0.0": {
         "runtime": {
-          "SMRUCC.genomics.Model.OperonMapper.dll": {
+          "SMRUCC.genomics.Visualize.Cytoscape.dll": {
             "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
           }
@@ -1698,6 +2304,48 @@
       "sha512": "sha512-pbIrDv7vuvMlok6ldjliFOeb5fpGofAInUhG/8LraQBqT2a2xZTcAVjm/GyfZ9ZyjZeHJLWuMRbe0uI98sCoWg==",
       "path": "mysql.data/9.5.0",
       "hashPath": "mysql.data.9.5.0.nupkg.sha512"
+    },
+    "SkiaSharp/3.119.2-preview.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-gW+LU71pFNOM/o1mP4gzAnOgiX6Ffy7GFDAjcnbJMmAes6ogy00xKNwJ7bjxL2TSyBPXiH6CXjRe+gjmZVeqcA==",
+      "path": "skiasharp/3.119.2-preview.1",
+      "hashPath": "skiasharp.3.119.2-preview.1.nupkg.sha512"
+    },
+    "SkiaSharp.Extended/3.1.0-preview.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-lB3EbCIY9fNo3oBX2CiCYF9exTjbxoXDMrRN4ZW2aUNo/+biAScADMXf3GZFz/sVtNN2anBSRzdEui12mBFO4Q==",
+      "path": "skiasharp.extended/3.1.0-preview.3",
+      "hashPath": "skiasharp.extended.3.1.0-preview.3.nupkg.sha512"
+    },
+    "SkiaSharp.NativeAssets.Linux/3.119.2-preview.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-bsxLxfpE5VFExgCp1rfl4y3i4z36Mku03wP1Hino9jpi2hJftbv3l/zLfLK8G6UGo1/vL18PDDPUgi8iIjV02Q==",
+      "path": "skiasharp.nativeassets.linux/3.119.2-preview.1",
+      "hashPath": "skiasharp.nativeassets.linux.3.119.2-preview.1.nupkg.sha512"
+    },
+    "SkiaSharp.NativeAssets.macOS/3.119.2-preview.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-LcX8G40OiOZjPYukVvPQ9JhIPDQWOwVO6KejfAb9GTzYpDOVi5MNT2cbHG9oGkSGGGDQWmBtoQkPJFAWIxR3Eg==",
+      "path": "skiasharp.nativeassets.macos/3.119.2-preview.1",
+      "hashPath": "skiasharp.nativeassets.macos.3.119.2-preview.1.nupkg.sha512"
+    },
+    "SkiaSharp.NativeAssets.Win32/3.119.2-preview.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Mhybti0rGmZtk9whLkir5oRmhVhLNfwT7shnCaTX7yuO0PTIMD80fhmlcrB/PAP51xPUiV05a8DRCpp02LEGpw==",
+      "path": "skiasharp.nativeassets.win32/3.119.2-preview.1",
+      "hashPath": "skiasharp.nativeassets.win32.3.119.2-preview.1.nupkg.sha512"
+    },
+    "SkiaSharp.Svg/1.60.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-rTneyM6mt0w2xCCampFlkO3mGFIwGEJo7L2X3JOdyeMCZDQkyqv7m9kZfA89kLSErXErFnY72TZsryzqTIiT7g==",
+      "path": "skiasharp.svg/1.60.0",
+      "hashPath": "skiasharp.svg.1.60.0.nupkg.sha512"
     },
     "System.Collections.Immutable/10.0.1": {
       "type": "package",
@@ -1783,6 +2431,13 @@
       "path": "system.formats.nrbf/10.0.1",
       "hashPath": "system.formats.nrbf.10.0.1.nupkg.sha512"
     },
+    "System.IO.Packaging/10.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-KGS+cdplxa0R6cRQdVMRQRdnU8aY5UcUwDLyRJVHgOAstUnpF726xOYeaW3OxtkHcnfsijO0LfDjT4kDgvYn9A==",
+      "path": "system.io.packaging/10.0.1",
+      "hashPath": "system.io.packaging.10.0.1.nupkg.sha512"
+    },
     "System.IO.Pipelines/10.0.1": {
       "type": "package",
       "serviceable": true,
@@ -1860,11 +2515,6 @@
       "path": "zstdsharp.port/0.8.6",
       "hashPath": "zstdsharp.port.0.8.6.nupkg.sha512"
     },
-    "biocad_storage/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
     "BioNovoGene.Analytical.MassSpectrometry.Math/1.0.0": {
       "type": "project",
       "serviceable": false,
@@ -1915,7 +2565,37 @@
       "serviceable": false,
       "sha512": ""
     },
+    "Galaxy.CommonControls/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Galaxy.Data/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Galaxy.Data.Visualization/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Galaxy.ExcelPad/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
     "Galaxy.Workbench/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ggplot/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ggviewer/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -1931,6 +2611,11 @@
       "sha512": ""
     },
     "Microsoft.VisualBasic.Data.Bootstrapping.Fittings/5.0.1.2389": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.VisualBasic.Data.ChartPlots/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -1965,7 +2650,22 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Microsoft.VisualBasic.DataMining.BinaryTreeClustering/1.0.0": {
+    "Microsoft.VisualBasic.Data.visualize.Network.Canvas/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.VisualBasic.Data.visualize.Network.IO.Extensions/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.VisualBasic.Data.visualize.Network.Layouts/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.VisualBasic.Data.visualize.Network.Visualizer/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -1985,7 +2685,27 @@
       "serviceable": false,
       "sha512": ""
     },
+    "Microsoft.VisualBasic.Drawing/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
     "Microsoft.VisualBasic.Drawing.Windows/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.VisualBasic.Imaging/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.VisualBasic.Imaging.AVIMedia/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.VisualBasic.Imaging.Physics/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -2010,17 +2730,17 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Microsoft.VisualBasic.Math.Matrix/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
     "Microsoft.VisualBasic.Math.SignalProcessing/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
     "Microsoft.VisualBasic.Math.Statistics/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.VisualBasic.Math.Statistics.ANOVA/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -2041,6 +2761,11 @@
       "sha512": ""
     },
     "Microsoft.VisualBasic.MIME.Html/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.VisualBasic.MIME.Office.Excel/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -2070,7 +2795,22 @@
       "serviceable": false,
       "sha512": ""
     },
+    "registry_data/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "registry_exports/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
     "REnv/5.1.3.5558": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "R_graphics.Common.Runtime/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -2105,12 +2845,17 @@
       "serviceable": false,
       "sha512": ""
     },
+    "SMRUCC.genomics.InteractionModel/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
     "SMRUCC.genomics.Model.MotifGraph.ProteinStructure/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
-    "SMRUCC.genomics.Model.OperonMapper/1.0.0": {
+    "SMRUCC.genomics.Visualize.Cytoscape/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -2165,7 +2910,32 @@
       "serviceable": false,
       "sha512": ""
     },
+    "Galaxy.CommonControls.Reference/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Galaxy.Data.Reference/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Galaxy.Data.Visualization.Reference/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Galaxy.ExcelPad.Reference/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
     "Galaxy.Workbench.Reference/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ggplot.Reference/1.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
@@ -2176,6 +2946,11 @@
       "sha512": ""
     },
     "Microsoft.VisualBasic.Data.Bootstrapping.Fittings.Reference/5.0.1.2389": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.VisualBasic.Data.ChartPlots.Reference/1.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
@@ -2205,12 +2980,27 @@
       "serviceable": false,
       "sha512": ""
     },
+    "Microsoft.VisualBasic.Data.visualize.Network.Canvas.Reference/2.33.9510.39271": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
     "Microsoft.VisualBasic.Data.visualize.Network.Reference/1.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
     },
-    "Microsoft.VisualBasic.DataMining.BinaryTreeClustering.Reference/1.0.0.0": {
+    "Microsoft.VisualBasic.Data.visualize.Network.IO.Extensions.Reference/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.VisualBasic.Data.visualize.Network.Layouts.Reference/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.VisualBasic.Data.visualize.Network.Visualizer.Reference/1.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
@@ -2235,6 +3025,21 @@
       "serviceable": false,
       "sha512": ""
     },
+    "Microsoft.VisualBasic.Imaging.AVIMedia.Reference/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.VisualBasic.Imaging.Reference/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.VisualBasic.Imaging.Physics.Reference/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
     "Microsoft.VisualBasic.MachineLearning.Bootstrapping.Reference/1.0.0.0": {
       "type": "reference",
       "serviceable": false,
@@ -2255,12 +3060,12 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Microsoft.VisualBasic.Math.Matrix.Reference/1.0.0.0": {
+    "Microsoft.VisualBasic.Math.SignalProcessing.Reference/1.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
     },
-    "Microsoft.VisualBasic.Math.SignalProcessing.Reference/1.0.0.0": {
+    "Microsoft.VisualBasic.Math.Statistics.ANOVA.Reference/1.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
@@ -2286,6 +3091,11 @@
       "sha512": ""
     },
     "Microsoft.VisualBasic.MIME.Html.Reference/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.VisualBasic.MIME.Office.Excel.Reference/1.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
@@ -2330,6 +3140,11 @@
       "serviceable": false,
       "sha512": ""
     },
+    "R_graphics.Common.Runtime.Reference/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
     "SMRUCC.genomics.Analysis.HTS.GSEA.Fisher.Core.Reference/1.0.0.0": {
       "type": "reference",
       "serviceable": false,
@@ -2360,12 +3175,17 @@
       "serviceable": false,
       "sha512": ""
     },
+    "SMRUCC.genomics.InteractionModel.Reference/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
     "SMRUCC.genomics.Model.MotifGraph.ProteinStructure.Reference/1.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
     },
-    "SMRUCC.genomics.Model.OperonMapper.Reference/1.0.0.0": {
+    "SMRUCC.genomics.Visualize.Cytoscape.Reference/1.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

@@ -1,0 +1,2110 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+ggplot
+</name>
+</assembly>
+<members>
+<member name="T:ggplot.My.Resources.Resources">
+<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member>
+<member name="P:ggplot.My.Resources.Resources.ResourceManager">
+<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member>
+<member name="P:ggplot.My.Resources.Resources.Culture">
+<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member>
+<member name="T:ggplot.ggplot2">
+ <summary>
+ Create Elegant Data Visualisations Using the Grammar of Graphics
+ </summary>
+</member>
+<member name="M:ggplot.ggplot2.ggplot(System.Object,System.Object,System.Object,SMRUCC.Rsharp.Runtime.Internal.Object.list,SMRUCC.Rsharp.Runtime.Environment)">
+ <summary>
+ ### Create a new ggplot
+ 
+ ``ggplot()`` initializes a ggplot object. It can be used to declare 
+ the input data frame for a graphic and to specify the set of 
+ plot aesthetics intended to be common throughout all subsequent 
+ layers unless specifically overridden.
+ </summary>
+ <param name="data">
+ Default dataset to use for plot. If not already a data.frame, 
+ will be converted to one by fortify(). If not specified, must be 
+ supplied in each layer added to the plot.
+ </param>
+ <param name="mapping">
+ Default list of aesthetic mappings to use for plot. If not specified, 
+ must be supplied in each layer added to the plot.
+ </param>
+ <param name="args">
+ Other arguments passed on to methods. Not currently used.
+ </param>
+ <param name="environment"></param>
+ <returns>
+ a ggplot base layer object which can be rendering to graphics by 
+ invoke the ``plot`` function.
+ </returns>
+ <remarks>
+ ``ggplot()`` is used to construct the initial plot object, and is 
+ almost always followed by + to add component to the plot. There 
+ are three common ways to invoke ``ggplot()``:
+ 
+ + ``ggplot(df, aes(x, y, other aesthetics))``
+ + ``ggplot(df)``
+ + ``ggplot()``
+ 
+ 
+ The first method Is recommended If all layers use the same data 
+ And the same Set Of aesthetics, although this method can also be 
+ used To add a layer Using data from another data frame. See the 
+ first example below. The second method specifies the Default 
+ data frame To use For the plot, but no aesthetics are defined up 
+ front. This Is useful When one data frame Is used predominantly 
+ As layers are added, but the aesthetics may vary from one layer 
+ To another. The third method initializes a skeleton ggplot Object
+ which Is fleshed out As layers are added. This method Is useful 
+ When multiple data frames are used To produce different layers, 
+ As Is often the Case In complex graphics.
+ </remarks>
+</member>
+<member name="M:ggplot.ggplot2.get_last_plot">
+ <summary>
+ ### Retrieve the last plot to be modified or created.
+ 
+ Retrieve the last plot to be modified or created.
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:ggplot.ggplot2.ggsave(System.String,System.Object,System.Object,System.Object,System.Single,System.Nullable{System.Int32},System.Nullable{System.Int32},Microsoft.VisualBasic.MIME.Html.CSS.CssUnit,System.Int32,System.Boolean,System.Object,SMRUCC.Rsharp.Runtime.Internal.Object.list,SMRUCC.Rsharp.Runtime.Environment)">
+ <summary>
+ 
+ </summary>
+ <param name="filename"></param>
+ <param name="plot"></param>
+ <param name="device"></param>
+ <param name="path"></param>
+ <param name="scale"></param>
+ <param name="width"></param>
+ <param name="height"></param>
+ <param name="units"></param>
+ <param name="dpi"></param>
+ <param name="limitsize"></param>
+ <param name="bg"></param>
+ <param name="args"></param>
+ <param name="env"></param>
+ <returns></returns>
+</member>
+<member name="M:ggplot.ggplot2.aes(System.Object,System.Object,System.Object,System.Object,System.Object,System.Object,System.Object,System.Object,System.String,System.Object,System.Object,System.Object,System.Object,SMRUCC.Rsharp.Runtime.Internal.Object.list,SMRUCC.Rsharp.Runtime.Environment)">
+ <summary>
+ ### Construct aesthetic mappings
+ 
+ Aesthetic mappings describe how variables in the data are mapped 
+ to visual properties (aesthetics) of geoms. Aesthetic mappings 
+ can be set in ggplot() and in individual layers.
+ </summary>
+ <param name="x">
+ List of name-value pairs in the form aesthetic = variable describing 
+ which variables in the layer data should be mapped to which aesthetics 
+ used by the paired geom/stat. The expression variable is evaluated 
+ within the layer data, so there is no need to refer to the original 
+ dataset (i.e., use ggplot(df, aes(variable)) instead of 
+ ``ggplot(df, aes(df$variable)))``. The names for x and y aesthetics 
+ are typically omitted because they are so common; all other aesthetics
+ must be named.
+ </param>
+ <param name="y"></param>
+ <param name="color">The color mapping name</param>
+ <param name="colour">the alias name of the color parameter</param>
+ <param name="class">
+ mapping data of the element class group.
+ </param>
+ <param name="label">
+ data source for the scatter annotation label text
+ </param>
+ <param name="env"></param>
+ <returns>
+ A list with class uneval. Components of the list are either quosures 
+ or constants.
+ </returns>
+ <remarks>
+ This function also standardises aesthetic names by converting color to 
+ colour (also in substrings, e.g., point_color to point_colour) and 
+ translating old style R names to ggplot names (e.g., pch to shape and 
+ cex to size).
+ </remarks>
+</member>
+<member name="M:ggplot.ggplot2.geom_point(ggplot.ggplotReader,System.Object,System.Nullable{Microsoft.VisualBasic.Data.ChartPlots.Graphic.Legend.LegendStyles},System.Object,System.Object,System.Boolean,System.Double,SMRUCC.Rsharp.Runtime.Environment)">
+ <summary>
+ ### Scatter Points
+ 
+ The point geom is used to create scatterplots. The scatterplot is most 
+ useful for displaying the relationship between two continuous variables. 
+ It can be used to compare one continuous and one categorical variable, 
+ or two categorical variables, but a variation like geom_jitter(), 
+ geom_count(), or geom_bin2d() is usually more appropriate. A bubblechart 
+ is a scatterplot with a third variable mapped to the size of points.
+ </summary>
+ <param name="color"></param>
+ <param name="shape"></param>
+ <param name="size"></param>
+ <param name="show_legend">	
+ logical. Should this layer be included in the legends? NA, the default, 
+ includes if any aesthetics are mapped. FALSE never includes, And TRUE 
+ always includes. It can also be a named logical vector to finely select 
+ the aesthetics to display.
+ </param>
+ <param name="env"></param>
+ <returns>a scatter plot layer</returns>
+</member>
+<member name="M:ggplot.ggplot2.geom_text(ggplot.ggplotReader,System.Object,System.String,System.String,System.Boolean,System.Single,System.Single,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Object,SMRUCC.Rsharp.Interpreter.ExecuteEngine.Expression,System.Double,System.Nullable{System.Single},SMRUCC.Rsharp.Runtime.Internal.Object.list,SMRUCC.Rsharp.Runtime.Environment)">
+ <summary>
+ ### Text
+ 
+ Text geoms are useful for labeling plots. They can be used by themselves 
+ as scatterplots or in combination with other geoms, for example, for 
+ labeling points or for annotating the height of bars. geom_text() adds 
+ only text to the plot. geom_label() draws a rectangle behind the text, 
+ making it easier to read.
+ </summary>
+ <param name="mapping">
+ Set of aesthetic mappings created by aes() or aes_(). If specified and 
+ inherit.aes = TRUE (the default), it is combined with the default mapping 
+ at the top level of the plot. You must supply mapping if there is no plot 
+ mapping.
+ </param>
+ <param name="data">
+ The data to be displayed in this layer. There are three options:
+ 
+ If NULL, the Default, the data Is inherited from the plot data As 
+ specified In the Call To ggplot().
+ 
+ A data.frame, Or other Object, will override the plot data. All objects 
+ will be fortified To produce a data frame. See fortify() For which 
+ variables will be created.
+ 
+ A Function will be called With a Single argument, the plot data. The Return 
+ value must be a data.frame, And will be used As the layer data. A Function 
+ can be created from a formula (e.g. ~ head(.x, 10)).
+ </param>
+ <param name="stat">
+ The statistical transformation to use on the data for this layer, as a 
+ string.
+ </param>
+ <param name="position">
+ Position adjustment, either as a string, or the result of a call to a 
+ position adjustment function. Cannot be jointy specified with nudge_x or 
+ nudge_y.
+ </param>
+ <param name="parse">
+ If TRUE, the labels will be parsed into expressions and displayed as 
+ described in ?plotmath.
+ </param>
+ <param name="nudge_x">
+ Horizontal and vertical adjustment to nudge labels by. Useful for 
+ offsetting text from points, particularly on discrete scales. Cannot be 
+ jointly specified with position.
+ </param>
+ <param name="nudge_y">
+ Horizontal and vertical adjustment to nudge labels by. Useful for 
+ offsetting text from points, particularly on discrete scales. Cannot be 
+ jointly specified with position.
+ </param>
+ <param name="check_overlap">
+ If TRUE, text that overlaps previous text in the same layer will not be 
+ plotted. check_overlap happens at draw time and in the order of the data. 
+ Therefore data should be arranged by the label column before calling 
+ geom_text(). Note that this argument is not supported by geom_label().
+ </param>
+ <param name="na_rm">
+ If False, the Default, missing values are removed With a warning. 
+ If True, missing values are silently removed.
+ </param>
+ <param name="show_legend">
+ logical. Should this layer be included in the legends? NA, the default, 
+ includes if any aesthetics are mapped. FALSE never includes, and TRUE 
+ always includes. It can also be a named logical vector to finely select
+ the aesthetics to display.
+ </param>
+ <param name="inherit_aes">
+ If False, Overrides the Default aesthetics, rather than combining With 
+ them. This Is most useful For helper functions that define both data And 
+ aesthetics And shouldn't inherit behaviour from the default plot 
+ specification, e.g. borders().
+ </param>
+ <param name="color"></param>
+ <param name="args">
+ Other arguments passed On To layer(). These are often aesthetics, used To 
+ Set an aesthetic To a fixed value, Like colour = "red" Or size = 3. They
+ may also be parameters To the paired geom/stat.
+ </param>
+ <param name="env"></param>
+ <returns></returns>
+</member>
+<member name="M:ggplot.ggplot2.geom_histogram(System.Int32,ggplot.layers.LayoutPosition,System.Object,System.Double,System.Double,System.Object,SMRUCC.Rsharp.Runtime.Environment)">
+ <summary>
+ ## Histograms and frequency polygons
+ 
+ Visualise the distribution of a single continuous variable by dividing 
+ the x axis into bins and counting the number of observations in each bin. 
+ Histograms (``geom_histogram()``) display the counts with bars; 
+ </summary>
+ <param name="bins">
+ Number of bins. Overridden by binwidth. Defaults to 30.
+ </param>
+ <returns>
+ A histogram plot layer
+ </returns>
+</member>
+<member name="M:ggplot.ggplot2.geom_line(ggplot.ggplotReader,System.Object,System.Single,System.Boolean,System.Double,System.Boolean,SMRUCC.Rsharp.Runtime.Environment)">
+ <summary>
+ ### Connect observations
+ 
+ geom_path() connects the observations in the order in which they appear in 
+ the data. geom_line() connects them in order of the variable on the x axis. 
+ geom_step() creates a stairstep plot, highlighting exactly when changes 
+ occur. The group aesthetic determines which cases are connected together.
+ </summary>
+ <param name="bspline">
+ options for the b-spline smooth of the line plot
+ </param>
+ <returns>A line chart plot layer</returns>
+ <remarks>
+ An alternative parameterisation is geom_segment(), where each line corresponds 
+ to a single case which provides the start and end coordinates.
+ </remarks>
+</member>
+<member name="M:ggplot.ggplot2.geom_hline(System.Double,System.Object,System.Single,Microsoft.VisualBasic.Imaging.DashStyle)">
+ <summary>
+ ### Reference line defined by Y intercept. Useful for annotating plots.
+ 
+ Using the described geometry, you can insert a simple geometric 
+ object into your data visualization – a line defined by a position 
+ on the Y axis. 
+ </summary>
+ <param name="yintercept"></param>
+ <param name="color"></param>
+ <param name="line_width!"></param>
+ <param name="linetype"></param>
+ <returns></returns>
+</member>
+<member name="M:ggplot.ggplot2.geom_vline(System.Double,System.Object,System.Single,Microsoft.VisualBasic.Imaging.DashStyle)">
+ <summary>
+ ## Reference lines: horizontal, vertical, and diagonal
+ 
+ These geoms add reference lines (sometimes called rules) to a plot, 
+ either horizontal, vertical, or diagonal (specified by slope and
+ intercept). These are useful for annotating plots.
+ </summary>
+ <param name="xintercept">
+ Parameters that control the position of the line. If these are set, 
+ data, mapping and show.legend are overridden.
+ </param>
+ <param name="color"></param>
+ <param name="line_width!"></param>
+ <param name="linetype"></param>
+ <returns></returns>
+</member>
+<member name="M:ggplot.ggplot2.geom_path">
+ <summary>
+ ## Connect observations
+ 
+ geom_path() connects the observations in the order in which they 
+ appear in the data. geom_line() connects them in order of the 
+ variable on the x axis. geom_step() creates a stairstep plot, highlighting 
+ exactly when changes occur. The group aesthetic determines which 
+ cases are connected together.
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:ggplot.ggplot2.geom_boxplot(SMRUCC.Rsharp.Runtime.Internal.Object.list,System.Double,System.Double,SMRUCC.Rsharp.Runtime.Environment)">
+ <summary>
+ ## A box and whiskers plot (in the style of Tukey)
+ 
+ The boxplot compactly displays the distribution of a continuous variable. 
+ It visualises five summary statistics (the median, two hinges and two 
+ whiskers), and all "outlying" points individually.
+ </summary>
+ <returns></returns>
+ <remarks>
+ ## Orientation
+ This geom treats Each axis differently And, thus, can thus have two 
+ orientations. Often the orientation Is easy To deduce from a combination 
+ Of the given mappings And the types Of positional scales In use. Thus, 
+ ggplot2 will by Default Try To guess which orientation the layer should 
+ have. Under rare circumstances, the orientation Is ambiguous And guessing 
+ may fail. In that Case the orientation can be specified directly Using the 
+ orientation parameter, which can be either "x" Or "y". The value gives 
+ the axis that the geom should run along, "x" being the Default orientation 
+ you would expect For the geom.
+
+ ## Summary statistics
+ The lower And upper hinges correspond To the first And third quartiles 
+ (the 25th And 75th percentiles). This differs slightly from the method 
+ used by the boxplot() Function, And may be apparent With small samples. 
+ See boxplot.stats() For For more information On how hinge positions are 
+ calculated For boxplot().
+
+ The upper whisker extends from the hinge To the largest value no further 
+ than 1.5 * IQR from the hinge (where IQR Is the inter-quartile range, Or 
+ distance between the first And third quartiles). The lower whisker extends 
+ from the hinge To the smallest value at most 1.5 * IQR Of the hinge. Data 
+ beyond the End Of the whiskers are called "outlying" points And are plotted 
+ individually.
+
+ In a notched box plot, the notches extend 1.58 * IQR / sqrt(n). This gives a 
+ roughly 95% confidence interval for comparing medians. See McGill et al. 
+ (1978) for more details.
+
+ ## Aesthetics
+ geom_boxplot() understands the following aesthetics (required aesthetics are 
+ in bold):
+
+ + x Or y
+ + lower Or xlower
+ + upper Or xupper
+ + middle Or xmiddle
+ + ymin Or xmin
+ + ymax Or xmax
+ + alpha
+ + colour
+ + fill
+ + group
+ + linetype
+ + shape
+ + size
+ + weight
+
+ Learn more about setting these aesthetics In vignette("ggplot2-specs").
+
+ ## Computed variables
+ stat_boxplot() provides the following variables, some of which depend on the orientation:
+
+ + width: width of boxplot
+ + ymin Or xmin: lower whisker = smallest observation greater than Or equal To lower hinge - 1.5 * IQR
+ + lower Or xlower: lower hinge, 25% quantile
+ + notchlower: lower edge Of notch = median - 1.58 * IQR / sqrt(n)
+ + middle Or xmiddle: median, 50% quantile
+ + notchupper: upper edge Of notch = median + 1.58 * IQR / sqrt(n)
+ + upper Or xupper: upper hinge, 75% quantile
+ + ymax Or xmax: upper whisker = largest observation less than Or equal To upper hinge + 1.5 * IQR
+
+ ## References
+ 
+ > McGill, R., Tukey, J. W. And Larsen, W. A. (1978) Variations of box plots. 
+   The American Statistician 32, 12-16.
+ </remarks>
+</member>
+<member name="M:ggplot.ggplot2.geom_col(System.Object,System.Object,System.Object,System.Double,System.Double,System.Boolean,System.Nullable{System.Boolean},System.Boolean,SMRUCC.Rsharp.Runtime.Internal.Object.list,SMRUCC.Rsharp.Runtime.Environment)">
+ <summary>
+ ### Bar charts
+ 
+ There are two types of bar charts: geom_bar() and geom_col(). geom_bar() 
+ makes the height of the bar proportional to the number of cases in each
+ group (or if the weight aesthetic is supplied, the sum of the weights).
+ If you want the heights of the bars to represent values in the data, use 
+ geom_col() instead. geom_bar() uses stat_count() by default: it counts 
+ the number of cases at each x position. geom_col() uses stat_identity():
+ it leaves the data as is.
+ </summary>
+ <param name="mapping">Set of aesthetic mappings created by aes(). If specified
+ and inherit.aes = TRUE (the default), it is combined with the default mapping 
+ at the top level of the plot. You must supply mapping if there is no plot 
+ mapping.</param>
+ <param name="data">The data to be displayed in this layer. There are three options:
+ If NULL, the Default, the data Is inherited from the plot data As specified 
+ In the Call To ggplot().
+ A data.frame, Or other Object, will override the plot data. All objects will be
+ fortified To produce a data frame. See fortify() For which variables will be
+ created.
+ A Function will be called With a Single argument, the plot data. The Return 
+ value must be a data.frame, And will be used As the layer data. A Function 
+ can be created from a formula (e.g. ~ head(.x, 10)).</param>
+ <param name="position">Position adjustment, either as a string naming the 
+ adjustment (e.g. "jitter" to use position_jitter), or the result of a call 
+ to a position adjustment function. Use the latter if you need to change the
+ settings of the adjustment.</param>
+ <param name="just">Adjustment for column placement. Set to 0.5 by default, 
+ meaning that columns will be centered about axis breaks. Set to 0 or 1 to place 
+ columns to the left/right of axis breaks. Note that this argument may have 
+ unintended behaviour when used with alternative positions, e.g. position_dodge().</param>
+ <param name="width">Bar width. By default, set to 90% of the resolution() of
+ the data.</param>
+ <param name="na_rm">If FALSE, the default, missing values are removed with a
+ warning. If TRUE, missing values are silently removed.</param>
+ <param name="show_legend">logical. Should this layer be included in the legends? 
+ NA, the default, includes if any aesthetics are mapped. FALSE never includes, 
+ and TRUE always includes. It can also be a named logical vector to finely select 
+ the aesthetics to display.</param>
+ <param name="inherit_aes">If FALSE, overrides the default aesthetics, rather 
+ than combining with them. This is most useful for helper functions that define 
+ both data and aesthetics and shouldn't inherit behaviour from the default plot 
+ specification, e.g. borders().</param>
+ <param name="args">Other arguments passed on to layer(). These are often aesthetics,
+ used to set an aesthetic to a fixed value, like colour = "red" or size = 3. They 
+ may also be parameters to the paired geom/stat.</param>
+ <param name="env"></param>
+ <returns></returns>
+</member>
+<member name="M:ggplot.ggplot2.geom_bar(System.Object,System.Object,System.Object,System.Double,System.Double,System.Boolean,SMRUCC.Rsharp.Runtime.Environment)">
+ <summary>
+ ### Bar charts
+ 
+ There are two types of bar charts: geom_bar() and geom_col(). geom_bar() 
+ makes the height of the bar proportional to the number of cases in each
+ group (or if the weight aesthetic is supplied, the sum of the weights).
+ If you want the heights of the bars to represent values in the data, use 
+ geom_col() instead. geom_bar() uses stat_count() by default: it counts 
+ the number of cases at each x position. geom_col() uses stat_identity():
+ it leaves the data as is.
+ </summary>
+ <param name="stat"></param>
+ <param name="position"></param>
+ <param name="color"></param>
+ <param name="width"></param>
+ <param name="size"></param>
+ <param name="show_legend"></param>
+ <param name="env"></param>
+ <returns>A bar plot layer</returns>
+</member>
+<member name="M:ggplot.ggplot2.geom_segment(ggplot.ggplotReader,System.Object,System.String,System.String,Microsoft.VisualBasic.Imaging.Drawing2D.Shapes.Triangle,System.Object,System.String,System.String,System.Boolean,System.Boolean,System.Boolean,System.Double,System.Double,SMRUCC.Rsharp.Runtime.Internal.Object.list,SMRUCC.Rsharp.Runtime.Environment)">
+ <summary>
+ ### Line segments and curves
+ 
+ geom_segment() draws a straight line between points (x, y) and (xend, yend). Both geoms 
+ draw a single segment/curve per case. See geom_path() if you need to connect points 
+ across multiple cases.
+ </summary>
+ <param name="mapping">Set of aesthetic mappings created by aes(). If specified and ``inherit.aes = TRUE`` (the default),
+ it is combined with the default mapping at the top level of the plot. You must supply mapping if there is no 
+ plot mapping.</param>
+ <param name="data">The data to be displayed in this layer. There are three options:
+ 
+ If NULL, the default, the data is inherited from the plot data as specified in the call to ggplot().
+ 
+ A data.frame, or other object, will override the plot data. All objects will be fortified to 
+ produce a data frame. See fortify() for which variables will be created.
+ 
+ A function will be called with a single argument, the plot data. The return value must be a data.frame, 
+ and will be used as the layer data. A function can be created from a formula (e.g. ~ head(.x, 10)).
+ </param>
+ <param name="stat">The statistical transformation to use on the data for this layer. When using a geom_*() 
+ function to construct a layer, the stat argument can be used the override the default coupling between geoms
+ and stats. The stat argument accepts the following:
+ 
+ A Stat ggproto subclass, for example StatCount.
+ 
+ A string naming the stat. To give the stat as a string, strip the function name of the stat_ prefix. 
+ For example, to use stat_count(), give the stat as "count".
+ 
+ For more information and other ways to specify the stat, see the layer stat documentation.</param>
+ <param name="position">A position adjustment to use on the data for this layer. This can be used in 
+ various ways, including to prevent overplotting and improving the display. The position argument 
+ accepts the following:
+ 
+ The result of calling a position function, such as position_jitter(). This method allows for passing 
+ extra arguments to the position.
+ 
+ A string naming the position adjustment. To give the position as a string, strip the function name of 
+ the position_ prefix. For example, to use position_jitter(), give the position as "jitter".
+ 
+ For more information and other ways to specify the position, see the layer position documentation.</param>
+ <param name="arrow">specification for arrow heads, as created by grid::arrow().</param>
+ <param name="arrow_fill">fill colour to use for the arrow head (if closed). NULL means use colour aesthetic.</param>
+ <param name="lineend">Line end style (round, butt, square).</param>
+ <param name="linejoin">Line join style (round, mitre, bevel).</param>
+ <param name="na_rm">If FALSE, the default, missing values are removed with a warning. If TRUE, missing values are silently removed.</param>
+ <param name="show_legend">logical. Should this layer be included in the legends? NA, the default, 
+ includes if any aesthetics are mapped. FALSE never includes, and TRUE always includes. It can also 
+ be a named logical vector to finely select the aesthetics to display.</param>
+ <param name="inherit_aes">If FALSE, overrides the default aesthetics, rather than combining with them. 
+ This is most useful for helper functions that define both data and aesthetics and shouldn't inherit 
+ behaviour from the default plot specification, e.g. borders().</param>
+ <param name="args">Other arguments passed on to layer()'s params argument. These arguments broadly 
+ fall into one of 4 categories below. Notably, further arguments to the position argument, or aesthetics 
+ that are required can not be passed through .... Unknown arguments that are not part of the 4 
+ categories below are ignored.
+ 
+ Static aesthetics that are not mapped to a scale, but are at a fixed value and apply to the layer as 
+ a whole. For example, colour = "red" or linewidth = 3. The geom's documentation has an Aesthetics 
+ section that lists the available options. The 'required' aesthetics cannot be passed on to the params.
+ Please note that while passing unmapped aesthetics as vectors is technically possible, the order and 
+ required length is not guaranteed to be parallel to the input data.
+ 
+ When constructing a layer using a stat_*() function, the ... argument can be used to pass on parameters 
+ to the geom part of the layer. An example of this is stat_density(geom = "area", outline.type = "both").
+ The geom's documentation lists which parameters it can accept.
+ 
+ Inversely, when constructing a layer using a geom_*() function, the ... argument can be used to pass on 
+ parameters to the stat part of the layer. An example of this is geom_area(stat = "density", adjust = 0.5).
+ The stat's documentation lists which parameters it can accept.
+ 
+ The key_glyph argument of layer() may also be passed on through .... This can be one of the functions 
+ described as key glyphs, to change the display of the layer in the legend.</param>
+ <param name="env"></param>
+ <returns></returns>
+ <remarks>
+ geom_segment() understands the following aesthetics (required aesthetics are in bold):
+ 
+ + **x**
+ + **y**
+ + **xend or yend**
+ + alpha
+ + colour
+ + group
+ + linetype
+ + linewidth
+ 
+ Learn more about setting these aesthetics in vignette("ggplot2-specs").
+ </remarks>
+</member>
+<member name="M:ggplot.ggplot2.annotation_raster(System.Object)">
+ <summary>
+ annotation_raster: Annotation: high-performance rectangular tiling
+ 
+ This is a special version of geom_raster() optimised for static 
+ annotations that are the same in every panel. These annotations 
+ will not affect scales (i.e. the x and y axes will not grow to cover 
+ the range of the raster, and the raster must already have its own 
+ colours). This is useful for adding bitmap images.
+ </summary>
+ <param name="raster">
+ raster object to display, may be an array or a nativeRaster
+ </param>
+ <returns></returns>
+ 
+</member>
+<member name="M:ggplot.ggplot2.add_layer(ggplot.ggplot,ggplot.layers.ggplotLayer)">
+ <summary>
+ add a ggplot plot layer
+ </summary>
+ <param name="ggplot"></param>
+ <param name="layer"></param>
+ <returns></returns>
+</member>
+<member name="M:ggplot.ggplot2.labs(System.String,System.String,System.String,System.String,System.String,System.Object,System.Object,System.Object,SMRUCC.Rsharp.Runtime.Internal.Object.list,SMRUCC.Rsharp.Runtime.Environment)">
+ <summary>
+ ## Modify axis, legend, and plot labels
+ 
+ Good labels are critical for making your plots accessible to 
+ a wider audience. Always ensure the axis and legend labels 
+ display the full variable name. Use the plot title and subtitle 
+ to explain the main findings. It's common to use the caption 
+ to provide information about the data source. tag can be used 
+ for adding identification tags to differentiate between multiple 
+ plots.
+ </summary>
+ <param name="x"></param>
+ <param name="y"></param>
+ <param name="title">The text for the title.</param>
+ <param name="subtitle">
+ The text For the subtitle For the plot which will be displayed 
+ below the title.
+ </param>
+ <param name="caption">
+ The text for the caption which will be displayed in the 
+ bottom-right of the plot by default.
+ </param>
+ <param name="tag">
+ The text for the tag label which will be displayed at the top-left 
+ of the plot by default.
+ </param>
+ <param name="alt">
+ Text used for the generation of alt-text for the plot. See 
+ get_alt_text for examples.
+ </param>
+ <param name="alt_insight"></param>
+ <param name="args">
+ A list of new name-value pairs. The name should be an aesthetic.
+ </param>
+ <returns></returns>
+ <remarks>
+ You can also set axis and legend labels in the individual scales 
+ (using the first argument, the name). If you're changing other 
+ scale options, this is recommended.
+ 
+ If a plot already has a title, subtitle, caption, etc., And you want 
+ To remove it, you can Do so by setting the respective argument To 
+ NULL. For example, If plot p has a subtitle, Then p + labs(subtitle = NULL) 
+ will remove the subtitle from the plot.
+ </remarks>
+</member>
+<member name="M:ggplot.ggplot2.stat_pvalue_manual(SMRUCC.Rsharp.Runtime.Internal.Object.dataframe)">
+ <summary>
+ set stats p-value for the plot
+ </summary>
+ <param name="comparisons">
+ 
+ a dataframe object that should contains the data fiels at least:
+ 
+ + group1: the label name of the group 1
+ + group2: the label name of the group 2
+ + pvalue: a numeric vector of the t-test pvalue between group 1 and group 2.
+ 
+ </param>
+ <returns></returns>
+</member>
+<member name="M:ggplot.ggplot2.stat_compare_means(System.String,System.String,System.Boolean)">
+ <summary>
+ default create anova test for compares all groups
+ </summary>
+ <param name="method"></param>
+ <param name="ref_group"></param>
+ <param name="hide_ns">hide not sig result?</param>
+ <returns></returns>
+</member>
+<member name="M:ggplot.ggplot2.geom_signif(SMRUCC.Rsharp.Runtime.Internal.Object.list,System.String)">
+ <summary>
+ ## Create significance layer
+ 
+ </summary>
+ <param name="comparisons">
+ the comparision groups tuple list, each tuple value should be 
+ two group label for extract the corresponding sample vector 
+ from the ggplot input raw dataframe for run the ``t.test``.
+ </param>
+ <param name="test">
+ the stats test method between two groups: t.test or wilcox.test
+ </param>
+ <returns></returns>
+</member>
+<member name="M:ggplot.ggplot2.xlab(System.String)">
+ <summary>
+ ## Modify axis, legend, and plot labels
+ 
+ Good labels are critical for making your plots accessible to a 
+ wider audience. Always ensure the axis and legend labels display 
+ the full variable name. Use the plot title and subtitle to 
+ explain the main findings. It's common to use the caption to 
+ provide information about the data source. tag can be used for 
+ adding identification tags to differentiate between multiple 
+ plots.
+ </summary>
+ <param name="label">
+ The title of the respective axis (for xlab() or ylab()) or 
+ of the plot (for ggtitle()).
+ </param>
+ <returns></returns>
+ <remarks>
+ You can also set axis and legend labels in the individual scales 
+ (using the first argument, the name). If you're changing other 
+ scale options, this is recommended.
+ 
+ If a plot already has a title, subtitle, caption, etc., And you want 
+ To remove it, you can Do so by setting the respective argument To 
+ NULL. For example, If plot p has a subtitle, Then p + labs(subtitle = NULL) 
+ will remove the subtitle from the plot.
+ </remarks>
+</member>
+<member name="M:ggplot.ggplot2.ylab(System.String)">
+ <summary>
+ ## Modify axis, legend, and plot labels
+ 
+ Good labels are critical for making your plots accessible to a 
+ wider audience. Always ensure the axis and legend labels display 
+ the full variable name. Use the plot title and subtitle to 
+ explain the main findings. It's common to use the caption to 
+ provide information about the data source. tag can be used for 
+ adding identification tags to differentiate between multiple 
+ plots.
+ </summary>
+ <param name="label">
+ The title of the respective axis (for xlab() or ylab()) or 
+ of the plot (for ggtitle()).
+ </param>
+ <returns></returns>
+ <remarks>
+ You can also set axis and legend labels in the individual scales 
+ (using the first argument, the name). If you're changing other 
+ scale options, this is recommended.
+ 
+ If a plot already has a title, subtitle, caption, etc., And you want 
+ To remove it, you can Do so by setting the respective argument To 
+ NULL. For example, If plot p has a subtitle, Then p + labs(subtitle = NULL) 
+ will remove the subtitle from the plot.
+ </remarks>
+</member>
+<member name="M:ggplot.ggplot2.coord_flip">
+ <summary>
+ Swapping X- and Y-Axes
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:ggplot.ggplot2.theme_f(ggplot.elements.textElement,ggplot.elements.textElement,ggplot.elements.textElement,System.Object,ggplot.elements.textElement,System.String,ggplot.elements.textElement,ggplot.elements.textElement,ggplot.elements.textElement,System.String,System.Int32,System.String,ggplot.elements.textElement,System.String,System.Object,System.Object,System.Object,ggplot.elements.rectElement,System.Object)">
+ <summary>
+ ## Modify components of a theme
+ 
+ Themes are a powerful way to customize the non-data components of 
+ your plots: i.e. titles, labels, fonts, background, gridlines, and 
+ legends. Themes can be used to give plots a consistent customized 
+ look. Modify a single plot's theme using theme(); see theme_update() 
+ if you want modify the active theme, to affect all subsequent plots. 
+ Use the themes available in complete themes if you would like to use 
+ a complete theme such as theme_bw(), theme_minimal(), and more. 
+ 
+ Theme elements are documented together according to inheritance, read
+ more about theme inheritance below.
+ </summary>
+ <param name="axis_text"></param>
+ <param name="text">all text elements (element_text())</param>
+ <param name="plot_background">background of the entire plot (element_rect(); inherits from rect)</param>
+ <param name="legend_background">background of legend (element_rect(); inherits from rect)</param>
+ <param name="panel_background">background of plotting area, drawn underneath plot (element_rect(); inherits from rect)</param>
+ <param name="legend_text">legend item labels (element_text(); inherits from text)</param>
+ <param name="axis_line">lines along axes (element_line()). Specify lines 
+ along all axes (axis.line), lines for each plane (using axis.line.x or 
+ axis.line.y), or individually for each axis (using axis.line.x.bottom, 
+ axis.line.x.top, axis.line.y.left, axis.line.y.right). ``axis.line.*.*`` 
+ inherits from axis.line.* which inherits from axis.line, which in turn 
+ inherits from line</param>
+ <returns>
+ A style mapper for create the internal <see cref="T:Microsoft.VisualBasic.Data.ChartPlots.Graphic.Canvas.Theme"/> object
+ </returns>
+ <remarks>
+ Theme elements inherit properties from other theme elements hierarchically. 
+ For example, axis.title.x.bottom inherits from axis.title.x which inherits 
+ from axis.title, which in turn inherits from text. All text elements inherit
+ directly or indirectly from text; all lines inherit from line, and all 
+ rectangular objects inherit from rect. This means that you can modify the 
+ appearance of multiple elements by setting a single high-level component.
+ 
+ Learn more about setting these aesthetics In vignette("ggplot2-specs").
+ </remarks>
+</member>
+<member name="M:ggplot.ggplot2.element_blank_f(System.Boolean)">
+ <summary>
+ means nothing
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:ggplot.ggplot2.waiver">
+ <summary>
+ ### A waiver object.
+ 
+ A waiver is a "flag" object, similar to NULL, that indicates the calling 
+ function should just use the default value. It is used in certain functions 
+ to distinguish between displaying nothing (NULL) and displaying a default 
+ value calculated elsewhere (waiver())
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:ggplot.ggplot2.element_line(System.Object,System.Object,System.Object,System.Object,System.Object)">
+ <summary>
+ Theme element: line.
+ </summary>
+ <param name="colour">line colour</param>
+ <param name="size">line size</param>
+ <param name="linetype">line type</param>
+ <param name="lineend">line end</param>
+ <param name="color">an alias for ``colour``</param>
+ <returns></returns>
+</member>
+<member name="M:ggplot.ggplot2.ggtitle(System.String,System.Boolean)">
+ <summary>
+ ### Modify axis, legend, and plot labels
+ 
+ Good labels are critical for making your plots accessible 
+ to a wider audience. Always ensure the axis and legend 
+ labels display the full variable name. Use the plot title 
+ and subtitle to explain the main findings. It's common to 
+ use the caption to provide information about the data 
+ source. tag can be used for adding identification tags to 
+ differentiate between multiple plots.
+ </summary>
+ <param name="title">The text for the title.</param>
+ <returns></returns>
+ <remarks>
+ You can also set axis and legend labels in the individual 
+ scales (using the first argument, the name). If you're
+ changing other scale options, this is recommended.
+ 
+ If a plot already has a title, subtitle, caption, etc., And
+ you want To remove it, you can Do so by setting the respective 
+ argument To NULL. For example, If plot p has a subtitle, Then
+ p + labs(subtitle = NULL) will remove the subtitle from the 
+ plot.
+ </remarks>
+</member>
+<member name="M:ggplot.ggplot2.scale_colour_manual(System.Object,System.Double,SMRUCC.Rsharp.Runtime.Environment)">
+ <summary>
+ ### Create your own discrete scale
+ 
+ These functions allow you to specify your own set of 
+ mappings from levels in the data to aesthetic values.
+ </summary>
+ <param name="values"></param>
+ <param name="env"></param>
+ <returns></returns>
+ <remarks>
+ ### Color Blindness
+ 
+ Many color palettes derived from RGB combinations (Like 
+ the "rainbow" color palette) are Not suitable To support 
+ all viewers, especially those With color vision 
+ deficiencies. 
+ 
+ Using viridis type, which Is perceptually uniform In both 
+ colour And black-And-white display Is an easy Option To 
+ ensure good perceptive properties Of your visulizations. 
+ The colorspace package offers functionalities.
+ 
+ to generate color palettes with good perceptive properties,
+ 
+ to analyse a given color palette, Like emulating color 
+ blindness,
+ 
+ And to modify a given color palette for better perceptivity.
+ 
+ For more information on color vision deficiencies And 
+ suitable color choices see the paper on the colorspace 
+ package And references therein.
+ </remarks>
+</member>
+<member name="M:ggplot.ggplot2.scale_color_brewer(System.Object,System.Int32,System.Double,System.String,SMRUCC.Rsharp.Runtime.Environment)">
+ <summary>
+ Sequential, diverging and qualitative colour scales from ColorBrewer
+ </summary>
+ <param name="name">
+ The name of the scale. Used as the axis or legend title. If waiver(), the default,
+ the name of the scale is taken from the first mapping used for that aesthetic. 
+ If NULL, the legend title will be omitted.
+ </param>
+ <param name="direction">
+ Sets the order Of colours In the scale. If 1, the Default, colours are 
+ As output by RColorBrewer:brewer.pal(). If -1, the order of colours 
+ Is reversed.
+ </param>
+ <param name="alpha">
+ color alpha channel value between [0,1]
+ </param>
+ <param name="env"></param>
+ <returns></returns>
+ <remarks>
+ The brewer scales provide sequential, diverging and qualitative colour
+ schemes from ColorBrewer. These are particularly well suited to display 
+ discrete values on a map. See https://colorbrewer2.org for more 
+ information.
+ 
+ The brewer scales were carefully designed and tested on discrete data. 
+ They were not designed to be extended to continuous data, but results 
+ often look good. Your mileage may vary.
+ 
+ The following palettes are available for use with these scales:
+ 
+ #### Diverging
+ BrBG, PiYG, PRGn, PuOr, RdBu, RdGy, RdYlBu, RdYlGn, Spectral
+ 
+ #### Qualitative
+ Accent, Dark2, Paired, Pastel1, Pastel2, Set1, Set2, Set3
+ 
+ #### Sequential
+ Blues, BuGn, BuPu, GnBu, Greens, Greys, Oranges, OrRd, PuBu, PuBuGn, PuRd, Purples, RdPu, Reds, YlGn, YlGnBu, YlOrBr, YlOrRd
+ 
+ Modify the palette through the palette argument.
+ </remarks>
+</member>
+<member name="M:ggplot.ggplot2.scale_x_continuous(System.String,System.Double[],System.Int32,SMRUCC.Rsharp.Runtime.Environment)">
+ <summary>
+ Position scales for continuous data (x &amp; y)
+ </summary>
+ <param name="labels">
+ One of:
+ 
+ + ``NULL`` for no labels
+ + waiver() for the default labels computed by the transformation object
+ + A character vector giving labels (must be same length As breaks)
+ + A Function that() takes the breaks As input And returns labels As output. Also accepts rlang lambda Function notation.
+ + .NET number format string, example as: F2, G3
+ </param>
+ <param name="n">
+ set number of the ticks on the x axis
+ </param>
+ <returns></returns>
+</member>
+<member name="M:ggplot.ggplot2.scale_y_continuous(System.String,System.Double[],System.Int32,SMRUCC.Rsharp.Runtime.Environment)">
+ <summary>
+ ### Position scales for continuous data (x &amp; y)
+ </summary>
+ <param name="labels">
+ One of:
+ 
+ + ``NULL`` for no labels
+ + waiver() for the default labels computed by the transformation object
+ + A character vector giving labels (must be same length As breaks)
+ + A Function that() takes the breaks As input And returns labels As output. Also accepts rlang lambda Function notation.
+ + .NET number format string, example as: F2, G3
+ </param>
+ <param name="n">
+ set number of the ticks on the y axis
+ </param>
+ <returns></returns>
+</member>
+<member name="M:ggplot.ggplot2.scale_y_reverse">
+ <summary>
+ ### Position scales for continuous data (x &amp; y)
+ 
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:ggplot.ggplot2.element_text(System.String,ggplot.elements.ggplotFontFace,System.Single,System.Single,System.Single,System.Single,System.Single,System.String,System.Single,System.Boolean,System.Boolean)">
+ <summary>
+ ### Theme elements
+ 
+ text.
+ </summary>
+ <param name="family">Font family</param>
+ <param name="face">Font face ("plain", "italic", "bold", "bold.italic")</param>
+ <param name="size">Line/border size in mm; text size in pts.</param>
+ <param name="hjust">Horizontal justification (in [0, 1])</param>
+ <param name="vjust">Vertical justification (in [0, 1])</param>
+ <param name="angle">Angle (in [0, 360])</param>
+ <param name="lineheight">Line height</param>
+ <param name="color">Line/border colour. Color is an alias for colour.</param>
+ <param name="margin">
+ Margins around the text. See margin() for more details. When creating a theme, 
+ the margins should be placed on the side of the text facing towards the center 
+ of the plot.
+ </param>
+ <param name="debug">
+ If TRUE, aids visual debugging by drawing a solid rectangle behind the complete 
+ text area, and a point where each label is anchored.
+ </param>
+ <param name="inherit_blank">
+ Should this element inherit the existence of an element_blank among its parents? 
+ If TRUE the existence of a blank element among its parents will cause this 
+ element to be blank as well. If FALSE any blank parent element will be ignored 
+ when calculating final element state.
+ </param>
+ <returns></returns>
+</member>
+<member name="M:ggplot.ggplot2.element_rect(System.Object,System.Object,System.Single,Microsoft.VisualBasic.Imaging.DashStyle,System.Object,System.Boolean,SMRUCC.Rsharp.Runtime.Environment)">
+ <summary>
+ ## Theme elements
+ 
+ In conjunction with the theme system, the ``element_`` functions
+ specify the display of how non-data components of the plot are 
+ drawn.
+ 
+ borders and backgrounds.
+ </summary>
+ <param name="fill">Fill colour.</param>
+ <param name="color">Line/border colour. Color is an alias for colour.</param>
+ <param name="colour">Line/border colour. Color is an alias for colour.</param>
+ <param name="size">Line/border size in mm; text size in pts.</param>
+ <param name="linetype">
+ Line type. An integer (0:8), a name (blank, solid, dashed, dotted, 
+ dotdash, longdash, twodash), or a string with an even number (up 
+ to eight) of hexadecimal digits which give the lengths in consecutive 
+ positions in the string.
+ </param>
+ <param name="inherit_blank">
+ Should this element inherit the existence of an element_blank 
+ among its parents? If TRUE the existence of a blank element
+ among its parents will cause this element to be blank as well. 
+ If FALSE any blank parent element will be ignored when calculating
+ final element state.
+ </param>
+ <returns></returns>
+</member>
+<member name="T:ggplot.ggplot3">
+ <summary>
+ ggplot for 3D
+ </summary>
+</member>
+<member name="M:ggplot.ggplot3.view_camera(System.Int32,System.Int32,System.Object)">
+ <summary>
+ Create view camera for 3D plot
+ </summary>
+ <param name="angle">
+ should be a numeric vector with 3 elements, the camera view angle to the canvas
+ </param>
+ <returns></returns>
+</member>
+<member name="T:ggplot.colors.ggplotColorCustomSet">
+ <summary>
+ use a character vector that contains multiple color values for make item category mapping or scale mapping
+ </summary>
+ <remarks>
+ ``scale_fill_manual``
+ </remarks>
+</member>
+<member name="M:ggplot.colors.ggplotColorCustomSet.ColorHandler(ggplot.ggplot,System.Array)">
+ <summary>
+ get color mapper from a character vector or numeric vector
+ </summary>
+ <param name="ggplot"></param>
+ <param name="factors"></param>
+ <returns></returns>
+</member>
+<member name="T:ggplot.colors.ggplotColorFactorMap">
+ <summary>
+ used the field value as color factor
+ </summary>
+</member>
+<member name="T:ggplot.colors.ggplotColorLiteral">
+ <summary>
+ A single color literal value mapping
+ </summary>
+</member>
+<member name="T:ggplot.colors.ggplotColorMap">
+ <summary>
+ + <see cref="T:ggplot.colors.ggplotColorLiteral"/>: target color value is a single color value
+ + <see cref="T:ggplot.colors.ggplotColorPalette"/>: target color string is a color scaler name
+ + <see cref="T:ggplot.colors.ggplotColorFactorMap"/>: target color value is a mapping of factor string to color name
+ </summary>
+</member>
+<member name="P:ggplot.colors.ggplotColorMap.colorMap">
+ <summary>
+ for each data object, this property value has different meanings:
+ 
+ 1. <see cref="T:ggplot.colors.ggplotColorLiteral"/>: a single color value
+ 2. <see cref="T:ggplot.colors.ggplotColorPalette"/>: a color set name string
+ 3. <see cref="T:ggplot.colors.ggplotColorFactorMap"/>: a list mapping of factor to color value
+ 4. <see cref="T:ggplot.colors.ggplotColorCustomSet"/>: a character vector of the color list
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:ggplot.colors.ggplotColorMap.alpha">
+ <summary>
+ value range of this property value is in [0, 1], controls 
+ the transparent alpha channel value. 
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:ggplot.colors.ggplotColorMap.CreateColorMap(System.Object,System.Double,SMRUCC.Rsharp.Runtime.Environment)">
+ <summary>
+ Create a color palette mapping object
+ </summary>
+ <param name="map">
+ any kind of the color palette data, could be a name of the supported 
+ color palette name, a set of color values, etc.
+ </param>
+ <param name="alpha">
+ color alpha channel value between [0,1]
+ </param>
+ <param name="env"></param>
+ <returns>
+ returns nothing if the given color <paramref name="map"/> data is nothing
+ </returns>
+ <remarks>
+ grays is the color palette name of the gray scale
+ </remarks>
+</member>
+<member name="M:ggplot.colors.ggplotColorMap.stringMap(System.String,System.Double)">
+ <summary>
+ 
+ </summary>
+ <param name="map"></param>
+ <param name="alpha">
+ color alpha channel value between [0,1]
+ </param>
+ <returns></returns>
+</member>
+<member name="T:ggplot.colors.ggplotColorPalette">
+ <summary>
+ A color palette literal mapping, mapping from a term to a set of the color names
+ </summary>
+</member>
+<member name="M:ggplot.colors.ggplotColorPalette.checkDataMap(ggplot.ggplot)">
+ <summary>
+ check of the <see cref="P:ggplot.colors.ggplotColorMap.colorMap"/> is mapping from the ggplot data source?
+ </summary>
+ <param name="ggplot"></param>
+ <returns></returns>
+</member>
+<member name="M:ggplot.colors.ggplotColorPalette.ColorHandler(ggplot.ggplot,System.Array)">
+ <summary>
+ 
+ </summary>
+ <param name="ggplot"></param>
+ <param name="factors">
+ the mapping source
+ </param>
+ <returns></returns>
+</member>
+<member name="M:ggplot.colors.ggplotColorPalette.getColors(System.Int32,System.Object)">
+ <summary>
+ heatmap colors
+ </summary>
+ <param name="factorSize"></param>
+ <returns></returns>
+</member>
+<member name="M:ggplot.colors.ggplotColorPalette.TryGetFactorLegends(System.Array,Microsoft.VisualBasic.Data.ChartPlots.Graphic.Legend.LegendStyles,Microsoft.VisualBasic.Data.ChartPlots.Graphic.Canvas.Theme)">
+ <summary>
+ category colors
+ </summary>
+ <param name="factors"></param>
+ <param name="shape"></param>
+ <param name="theme"></param>
+ <returns></returns>
+</member>
+<member name="T:ggplot.elements.axisMap">
+ <summary>
+ the axis value mapper
+ </summary>
+</member>
+<member name="P:ggplot.elements.axisMap.mapper">
+ <summary>
+ the axis data type
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:ggplot.elements.axisMap.value">
+ <summary>
+ the mapping data vector based on the <see cref="P:ggplot.elements.axisMap.source"/>
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:ggplot.elements.axisMap.source">
+ <summary>
+ the data mapping source tag
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:ggplot.elements.axisMap.size">
+ <summary>
+ the length of the axis map data
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:ggplot.elements.axisMap.FromArray(System.Array,System.Object)">
+ <summary>
+ Create axis mapping with type auto mapping
+ </summary>
+ <param name="value"></param>
+ <returns></returns>
+</member>
+<member name="T:ggplot.elements.ggplotElement">
+ <summary>
+ ### Theme elements
+ 
+ In conjunction with the theme system, the ``element_`` 
+ functions specify the display of how non-data 
+ components of the plot are drawn.
+ </summary>
+</member>
+<member name="T:ggplot.elements.legend.IggplotLegendElement">
+ <summary>
+ legend element to draw of current ggplot layer
+ </summary>
+</member>
+<member name="P:ggplot.elements.legend.IggplotLegendElement.size">
+ <summary>
+ the number of the legend object that 
+ contains in current legend group 
+ element object.
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:ggplot.elements.legend.legendColorMapElement">
+ <summary>
+ legend for heatmap scale
+ </summary>
+</member>
+<member name="T:ggplot.elements.legend.legendGroupElement">
+ <summary>
+ A category group color legends
+ </summary>
+</member>
+<member name="T:ggplot.elements.rectElement">
+ <summary>
+ plot style for the 2D rectangle shape
+ </summary>
+</member>
+<member name="T:ggplot.elements.textElement">
+ <summary>
+ data model helper for create the css font object
+ </summary>
+</member>
+<member name="P:ggplot.elements.textElement.style">
+ <summary>
+ the font for drawing the specific text elements
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:ggplot.elements.textElement.color">
+ <summary>
+ the text drawing color
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:ggplot.elements.textElement.angle">
+ <summary>
+ the text drawing angle
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:ggplot.filters.ggfx">
+ <summary>
+ ggfx is a (currently experimantal) package that 
+ allows the use of various filters and shaders 
+ on ggplot2 layers.
+ </summary>
+</member>
+<member name="T:ggplot.ggplot">
+ <summary>
+ graphics drawing engine of the ggplot library
+ </summary>
+ <remarks>
+ ggplot is a chart <see cref="T:Microsoft.VisualBasic.Data.ChartPlots.Graphic.Plot"/>
+ </remarks>
+</member>
+<member name="P:ggplot.ggplot.ggplotTheme">
+ <summary>
+ the theme of the plot
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:ggplot.ggplot.is3D">
+ <summary>
+ does the given plot data has [x,y,z] axis data?
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:ggplot.ggplot.data">
+ <summary>
+ the source data for the ggplot chartting plot, data value type could be dataframe, list, and others
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:ggplot.ggplot.layers">
+ <summary>
+ the plot layers: scatter, line, bar, etc
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:ggplot.ggplot.args">
+ <summary>
+ a tuple list of the plot arguments
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:ggplot.ggplot.environment">
+ <summary>
+ the runtime environment for current ggplot object, 
+ which is comes from the first 
+ <see cref="M:ggplot.ggplot2.ggplot(System.Object,System.Object,System.Object,SMRUCC.Rsharp.Runtime.Internal.Object.list,SMRUCC.Rsharp.Runtime.Environment)"/> 
+ function calls.
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:ggplot.ggplot.driver">
+ <summary>
+ the driver flag for the graphics device
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:ggplot.ggplot.panelBorder">
+ <summary>
+ works on 2D chart plot
+ </summary>
+ <returns></returns>
+</member>
+<member name="F:ggplot.ggplot.template">
+ <summary>
+ the <see cref="P:ggplot.ggplot.data"/> template
+ </summary>
+</member>
+<member name="M:ggplot.ggplot.Register(System.Type,System.Func{Microsoft.VisualBasic.Data.ChartPlots.Graphic.Canvas.Theme,ggplot.ggplot})">
+ <summary>
+ register the data driver for invoke ggplot
+ </summary>
+ <param name="driver">
+ the clr data type of the ggplot framework that going to supports.
+ </param>
+ <param name="activator"></param>
+ <remarks>
+ default data source that ggplot <see cref="P:ggplot.ggplot.data"/> supports dataframe, tuple 
+ list these R# language internal object, but with this function, the data type 
+ that ggplot supports could be extends to more.
+ </remarks>
+</member>
+<member name="M:ggplot.ggplot.CreateRender(System.Object,SMRUCC.Rsharp.Runtime.Environment,Microsoft.VisualBasic.Data.ChartPlots.Graphic.Canvas.Theme)">
+ <summary>
+ 
+ </summary>
+ <param name="driver">
+ clr data object for make canvas,standard data type could be:
+ 
+ 1. R# runtime dataframe
+ 2. sciBASIC# dataframe
+ 
+ other data type that registered in <see cref="F:ggplot.ggplot.templates"/> is accepeted.
+ </param>
+ <param name="env"></param>
+ <param name="theme"></param>
+ <returns></returns>
+</member>
+<member name="M:ggplot.ggplot.DrawSingle(ggplot.elements.legend.IggplotLegendElement,Microsoft.VisualBasic.Imaging.IGraphics,Microsoft.VisualBasic.Imaging.Drawing2D.GraphicsRegion,System.Drawing.PointF)">
+ <summary>
+ draw a single legend object
+ </summary>
+ <param name="legend"></param>
+ <param name="g"></param>
+ <param name="canvas"></param>
+ <param name="pos"></param>
+</member>
+<member name="M:ggplot.ggplot.op_Addition(ggplot.ggplot,ggplot.layers.ggplotLayer)">
+ <summary>
+ add plot layer to the ggplot canvas
+ </summary>
+ <param name="ggplot"></param>
+ <param name="layer"></param>
+ <returns></returns>
+</member>
+<member name="T:ggplot.ggplotBase">
+ <summary>
+ 只绘制出一个基本的坐标轴
+ </summary>
+</member>
+<member name="M:ggplot.ggplotBase.checkMultipleLegendGroup(ggplot.elements.legend.IggplotLegendElement)">
+ <summary>
+ Check of the given legend obejct is a group of multiple data serials?
+ </summary>
+ <param name="legend"></param>
+ <returns></returns>
+</member>
+<member name="M:ggplot.ggplotBase.getGgplotData(ggplot.ggplot)">
+ <summary>
+ create new ggplot data source
+ </summary>
+ <param name="ggplot"></param>
+ <returns></returns>
+</member>
+<member name="T:ggplot.ggplotData">
+ <summary>
+ the plot data source in ggplot
+ </summary>
+</member>
+<member name="P:ggplot.ggplotData.fill">
+ <summary>
+ fill class groups 
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:ggplot.ggplotPipeline">
+ <summary>
+ a wrapper of a collection of the ggplot rendering objects
+ </summary>
+</member>
+<member name="F:ggplot.ggplotPipeline.scale">
+ <summary>
+ Do [x,y] translation
+ </summary>
+</member>
+<member name="P:ggplot.ggplotPipeline.theme">
+ <summary>
+ get <see cref="T:Microsoft.VisualBasic.Data.ChartPlots.Graphic.Canvas.Theme"/> object from <see cref="P:ggplot.ggplot.ggplotTheme"/>
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:ggplot.ggplotReader">
+ <summary>
+ [aes] / [aes_string] ggplot data mapper
+ </summary>
+</member>
+<member name="P:ggplot.ggplotReader.x">
+ <summary>
+ the x axis mapping
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:ggplot.ggplotReader.y">
+ <summary>
+ the y axis mapping
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:ggplot.ggplotReader.z">
+ <summary>
+ the z axis mapping
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:ggplot.ggplotReader.class">
+ <summary>
+ the fill class group
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:ggplot.ggplotReader.title">
+ <summary>
+ the legend title label text
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:ggplot.ggplotReader.label">
+ <summary>
+ the scatter text label mapping
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:ggplot.ggplotReader.isPlain2D">
+ <summary>
+ test for the 2d render mode based on test of the <see cref="P:ggplot.ggplotReader.z"/> is empty or not.
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:ggplot.ggplotReader.getMapData``1(System.Object,System.Object,SMRUCC.Rsharp.Runtime.Environment)">
+ <summary>
+ get vector data from the given data source
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="data">the data source of the plot data, usually be a dataframe object</param>
+ <param name="map">the data source mapping of the plot data, usually be the field name of the dataframe object</param>
+ <param name="env"></param>
+ <returns></returns>
+</member>
+<member name="M:ggplot.ggplotReader.getMapData(System.Object,SMRUCC.Rsharp.Runtime.Environment)">
+ <summary>
+ create new ggplot data source
+ </summary>
+ <param name="data"></param>
+ <param name="env"></param>
+ <returns></returns>
+</member>
+<member name="M:ggplot.ggplotReader.FactorLegends(System.Collections.Generic.IEnumerable{System.String},System.Func{System.Object,System.String},Microsoft.VisualBasic.Data.ChartPlots.Graphic.Legend.LegendStyles,System.String)">
+ <summary>
+ 
+ </summary>
+ <param name="factors"></param>
+ <param name="colors"></param>
+ <param name="shape"></param>
+ <param name="labelCss">label text css style of the legend label</param>
+ <returns></returns>
+</member>
+<member name="M:ggplot.ggplotReader.FactorLegends(Microsoft.VisualBasic.ComponentModel.Collection.Index{System.String},System.String[],Microsoft.VisualBasic.Data.ChartPlots.Graphic.Legend.LegendStyles,System.String)">
+ <summary>
+ 
+ </summary>
+ <param name="factors"></param>
+ <param name="colors"></param>
+ <param name="shape"></param>
+ <param name="labelCss">label text css style of the legend label</param>
+ <returns></returns>
+ 
+</member>
+<member name="P:ggplot.layers.ggplotConvexhull.scale">
+ <summary>
+ the polygon size scale factor
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:ggplot.layers.ggplotHistogram">
+ <summary>
+ A histogram is a type of bar plot that represents the distribution of numerical data. It is an estimate of the 
+ probability distribution of a continuous variable and was first introduced by Karl Pearson. Histograms are particularly 
+ useful for showcasing the frequency distribution of a dataset, which can provide insights into the underlying
+ properties of the data.
+ 
+ Here's how a histogram is constructed and what each of its components represents:
+ 
+ ### Construction of a Histogram:
+ 1. **Data Grouping:** The data range is divided into a series of intervals, also known as bins. The choice of the number of bins can affect the shape of the histogram, so it's important to choose a number that accurately represents the data.
+ 2. **Counting Frequencies:** For each bin, the number of data points that fall into the interval is counted. This is the frequency of the bin.
+ 3. **Plotting:** The frequencies are plotted on the vertical axis, and the bin intervals are plotted on the horizontal axis. Each bar's height corresponds to the frequency of data points within the interval that the bar represents.
+ 
+ ### Components of a Histogram:
+ - **BARS:** Each bar represents the frequency of data points within a particular interval. The taller the bar, the more data points fall into that interval.
+ - **X-AXIS:** This axis represents the variable being measured and the intervals (bins) into which the data has been divided.
+ - **Y-AXIS:** This axis represents the frequency of occurrences for each bin. It can also represent the relative frequency or density if the histogram is normalized.
+ - **BIN WIDTH:** The width of the bins is constant and represents the range of values that are counted for each bar.
+ 
+ ### Types of Histograms:
+ - **Normal Histogram:** The bars are centered around the mean value, and the distribution may be symmetric if the data is normally distributed.
+ - **Cumulative Histogram:** Instead of showing the frequency for each bin, it shows the cumulative frequency up to each bin.
+ - **Density Histogram:** In a density histogram, the height of the bar does not represent the frequency but the density of the data within each bin. The total area of all the bars sums to 1.
+ 
+ ### Uses of Histograms:
+ - **Data Analysis:** To understand the distribution of the data, such as whether it is symmetric, skewed, bimodal, etc.
+ - **Quality Control:** In manufacturing, histograms can help determine if a process is within acceptable limits.
+ - **Statistical Analysis:** Histograms can help in choosing appropriate statistical tests or models for data analysis.
+ 
+ ### Limitations:
+ - The shape of a histogram can be sensitive to the number of bins chosen.
+ - Histograms do not show information about individual data points; they only show the frequency of data within intervals.
+ </summary>
+</member>
+<member name="T:ggplot.layers.ggplotLayer">
+ <summary>
+ A graphics layer in ggplot
+ </summary>
+</member>
+<member name="P:ggplot.layers.ggplotLayer.reader">
+ <summary>
+ the custom data reader for each ggplot plot layer
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:ggplot.layers.ggplotLayer.zindex">
+ <summary>
+ z-index, the smaller value of this index, the first that we draw this image layer
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:ggplot.layers.ggplotLayer.alpha">
+ <summary>
+ the fill color transparency, value in range [0,1]
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:ggplot.layers.ggplotLayer.dataset">
+ <summary>
+ the custom data source for this ggplot layer plot
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:ggplot.layers.ggplotLayer.useCustomData">
+ <summary>
+ use the local custom data mapping source for the layer drawing
+ </summary>
+ <returns>check if the local <see cref="P:ggplot.layers.ggplotLayer.reader"/> aes mapping is not nothing and also not empty?</returns>
+</member>
+<member name="P:ggplot.layers.ggplotLayer.useCustomColorMaps">
+ <summary>
+ the local <see cref="P:ggplot.layers.ggplotLayer.colorMap"/> is not nothing means use the custom color maps
+ </summary>
+ <returns></returns>
+ <remarks>
+ the local mapping always overrides the global mapping
+ </remarks>
+</member>
+<member name="M:ggplot.layers.ggplotLayer.mapFromPalette(ggplot.ggplot,System.Double[],Microsoft.VisualBasic.Imaging.IGraphics,ggplot.elements.legend.IggplotLegendElement@)">
+ <summary>
+ generate heatmap scale colors
+ </summary>
+ <param name="ggplot"></param>
+ <param name="data"></param>
+ <param name="g"></param>
+ <param name="legends"></param>
+ <returns></returns>
+</member>
+<member name="M:ggplot.layers.ggplotLayer.getColorSet(ggplot.ggplotPipeline,System.Int32,System.Nullable{Microsoft.VisualBasic.Data.ChartPlots.Graphic.Legend.LegendStyles},System.Double[],ggplot.elements.legend.IggplotLegendElement@)">
+ <summary>
+ 
+ </summary>
+ <param name="stream"></param>
+ <param name="nsize"></param>
+ <param name="shape"></param>
+ <param name="data"></param>
+ <param name="legends"></param>
+ <returns>the generated colors vector its element size equals to the size of the given <paramref name="data"/> 
+ vector, which means the colors array has already been mapping from the data, not the raw color 
+ palette value.</returns>
+</member>
+<member name="T:ggplot.layers.ggplotLine">
+ <summary>
+ A line chart, also known as a line plot or line graph, is a type of chart used to display the trend, progress, 
+ or change over time or between different conditions or categories. It is one of the most common and simple 
+ methods for visualizing data sequences. Here's an introduction to the components and purposes of a line chart:
+ 
+ ### Components of a Line Chart:
+ 
+ 1. **Horizontal Axis (X-axis):** This axis typically represents the independent variable, often time, which is placed on the horizontal line. Each point on the axis corresponds to a specific point in time or a category.
+ 2. **Vertical Axis (Y-axis):** This axis represents the dependent variable, which is the data that is being measured or tracked. The scale on the y-axis can be linear or logarithmic, depending on the range and distribution of the data.
+ 3. **Lines:** These are the curves or straight lines that connect the data points. Each line usually represents a different data series or category.
+ 4. **Data Points:** These are the individual markers on the chart that indicate the value of the dependent variable at a specific point on the x-axis. They can be represented by dots, squares, or other symbols.
+ 5. **Legend:** When multiple data series are represented on the same chart, a legend is used to explain what each line represents.
+ 
+ ### Purposes of a Line Chart:
+ 
+ - **Show Trends:** Line charts are ideal for showing trends over time, such as the stock market performance, temperature changes, or website traffic.
+ - **Compare Data Series:** They can be used to compare the performance of different groups or categories over the same period.
+ - **Highlight Patterns:** Line charts can reveal patterns such as cycles, trends, seasonality, or irregularities in the data.
+ - **Forecasting:** By identifying trends, line charts can be used as a tool for making predictions about future data points.
+ 
+ Line charts are versatile and can be used in a wide range of fields, including business, economics, science, and
+ education, to present data in a clear and concise manner.
+ </summary>
+</member>
+<member name="P:ggplot.layers.ggplotRaster.layout">
+ <summary>
+ the layout and position of the raster image plot placed at, nothing means overlaps the entire plot region
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:ggplot.layers.ggplotRaster.image">
+ <summary>
+ the raster image
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:ggplot.layers.ggplotScatter">
+ <summary>
+ A scatter plot is a type of data visualization that uses dots to represent the values of two different numerical variables. 
+ The position of each dot on the horizontal and vertical axes corresponds to the values of the two variables being plotted. 
+ Scatter plots are particularly useful for showing the relationship between two variables and are a key tool in statistics 
+ and data analysis.
+ 
+ Here are some key aspects of scatter plots:
+ 
+ ### Purpose:
+ - To observe and interpret relationships between two quantitative variables.
+ - To identify trends, patterns, or clusters in data.
+ - To help in making predictions or drawing conclusions based on the observed relationships.
+ 
+ ### Components:
+ - **X-axis (Horizontal axis):** Represents one variable, often called the independent variable.
+ - **Y-axis (Vertical axis):** Represents the other variable, often called the dependent variable.
+ - **Data Points (Dots):** Each point represents an observation with coordinates corresponding to its values on both axes.
+ 
+ ### Types of Relationships:
+ - **Positive Correlation:** As the value of one variable increases, the value of the other variable also increases. The points tend to rise from left to right.
+ - **Negative Correlation:** As the value of one variable increases, the value of the other variable decreases. The points tend to fall from left to right.
+ - **No Correlation:** There is no apparent relationship between the variables. The points are scattered randomly on the plot.
+ - **Non-linear Relationship:** The relationship between variables is not a straight line but might be curved or follow another pattern.
+ 
+ ### Interpreting the Plot:
+ - **Cluster:** A group of points that are close together, indicating a concentration of data points.
+ - **Outlier:** A point that is distant from other points, indicating an unusual observation or a data error.
+ - **Trend Line (or Line of Best Fit):** A line that best represents the relationship between the variables. It can be used to make predictions.
+ 
+ ### Uses:
+ - In fields like economics, biology, psychology, and social sciences to understand the dynamics between variables.
+ - In machine learning and data science for feature selection and to understand the underlying structure of data.
+ </summary>
+ <remarks>
+ scatter and bubble
+ </remarks>
+</member>
+<member name="P:ggplot.layers.ggplotTextLabel.isLabeler">
+ <summary>
+ calling from the ``geom_label`` function?
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:ggplot.layers.geom_bar">
+ <summary>
+ A bar plot, also known as a bar chart or bar graph, is a type of data visualization that presents categorical 
+ data with rectangular bars with heights or lengths proportional to the values that they represent. Bar plots
+ are one of the most common types of charts and are used in a wide variety of fields for their simplicity and
+ effectiveness in conveying information.
+ 
+ Here are the main components and characteristics of a bar plot:
+ 
+ **Components:**
+ 1. **Axes:** The horizontal axis (x-axis) and the vertical axis (y-axis) define the scales for the categories and the values, respectively. 
+ 2. **Bars:** The bars are the rectangular elements of the plot. Each bar represents a category, and its length or height corresponds to the value of that category.
+ 3. **Labels:** The categories are usually labeled on the x-axis, and the y-axis is often labeled with the type of value being represented (e.g., frequency, count, percentage).
+ 4. **Title:** The plot may have a title that describes the data being presented.
+ 
+ **Types of Bar Plots:**
+ - **Vertical Bar Plot:** The bars extend vertically, with the categories along the horizontal axis and the values along the vertical axis.
+ - **Horizontal Bar Plot:** The bars extend horizontally, with the categories along the vertical axis and the values along the horizontal axis.
+ - **Grouped Bar Plot:** Used to compare two or more related groups of data. The bars are grouped by category, and each group contains bars for the different subcategories being compared.
+ - **Stacked Bar Plot:** Each bar represents the whole, and segments within the bar represent different parts of the whole. This is useful for showing the composition of each category.
+ 
+ **When to Use Bar Plots:**
+ - To compare frequencies, counts, or other quantities across different categories.
+ - To display distributions of categorical data.
+ - To illustrate changes over time if each bar represents a time period.
+ 
+ **Advantages:**
+ - Easy to understand and interpret.
+ - Good for comparing different categories.
+ - Can be used for a wide range of data types.
+ 
+ **Disadvantages:**
+ - Can become cluttered if there are too many categories.
+ - May not be the best choice for representing continuous data.
+ </summary>
+</member>
+<member name="P:ggplot.layers.geom_bar.stat">
+ <summary>
+ the bar height evaluation method, value could be 
+ 
+ 1. identity
+ 2. percentage
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:ggplot.layers.ggplotGroup">
+ <summary>
+ the base type of the group plot in ggplot
+ </summary>
+</member>
+<member name="M:ggplot.layers.ggplotGroup.getColors(ggplot.ggplotPipeline,System.Collections.Generic.IEnumerable{System.String})">
+ <summary>
+ get colorset mapping from <see cref="P:ggplot.layers.ggplotLayer.colorMap"/> or 
+ use default color set 'paper'.
+ </summary>
+ <param name="stream"></param>
+ <param name="groupNames"></param>
+ <returns></returns>
+</member>
+<member name="T:ggplot.layers.ggplotViolin">
+ <summary>
+ The violin plot is a statistical graph used to visualize the distribution of numerical data, similar to a box plot but with more information. 
+ It was introduced byHintze and Nelson in 1998. Here's how it works:
+ 
+ ### Key Components:
+ 1. **Kernel Density Estimation (KDE)**: The violin plot uses KDE to provide a better understanding of the distribution of data. 
+                                         The width of the violin at a given y-value represents the density of data points at that 
+                                         value.
+ 2. **Box Plot Elements**: Inside the violin, there is often a smaller box plot which provides summary statistics:
+    - **Median**: A line inside the box that indicates the median value of the data.
+    - **Interquartile Range (IQR)**: The box's width represents the IQR, which is the range between the first quartile (25th percentile) and the third quartile (75th percentile).
+    - **Whiskers**: Lines extending from the box that represent the range of the data, typically 1.5 * IQR above the third quartile and below the first quartile.
+    - **Outliers**: Individual points outside the whiskers, indicating values that are significantly different from the rest of the dataset.
+    
+ ### How to Interpret:
+ - **Shape**: The shape of the violin plot reflects the underlying distribution of the data. A symmetric shape indicates a normal distribution, while an asymmetric shape indicates a skewed distribution.
+ - **Size**: The width of the violin at different points is proportional to the number of data points in that region. Wider sections indicate more data points, while narrower sections indicate fewer data points.
+ - **Box Plot Inside**: This gives you a quick view of the median, IQR, and potential outliers, which can be compared across violins if multiple violins are plotted side by side.
+ 
+ ### Advantages:
+ - Provides more detailed information about the distribution of data than a traditional box plot.
+ - Can easily compare distributions between groups by plotting multiple violins side by side.
+ 
+ ### Disadvantages:
+ - Can be more complex to understand for those not familiar with statistical distributions.
+ - May be less precise in representing the exact distribution of data, especially in the tails, compared to a histogram or density plot.
+ 
+ ### Use Cases:
+ - Violin plots are commonly used in fields like data science, biostatistics, and economics to visualize distributions of datasets, 
+   especially when comparing multiple datasets or groups.
+ </summary>
+</member>
+<member name="T:ggplot.layers.compare_means">
+ <summary>
+ group stats comparision result
+ </summary>
+</member>
+<member name="M:ggplot.layers.compare_means.fromManualData(SMRUCC.Rsharp.Runtime.Internal.Object.dataframe)">
+ <summary>
+ load stats pvalue result from the group compares
+ </summary>
+ <param name="data">
+ a dataframe object that should contains the data fiels at least:
+ 
+ + group1: the label name of the group 1
+ + group2: the label name of the group 2
+ + pvalue: a numeric vector of the t-test pvalue between group 1 and group 2.
+ 
+ </param>
+ <returns></returns>
+</member>
+<member name="P:ggplot.layers.ggplotSignifLayer.comparision">
+ <summary>
+ a tuple list of the comparision group labels
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:ggplot.layers.ggplotScatterheatmap.layer">
+ <summary>
+ the dataframe feature name for get heatmap layer
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:ggplot.layers.ggplotScatterLayer.minCell">
+ <summary>
+ the min cell width/height
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:ggplot.layers.ggplotScatterpie">
+ <summary>
+ this plot combine the scatter plot with the pie 
+ plot, each scatter point is a pie chart.
+ </summary>
+</member>
+<member name="P:ggplot.layers.ggplotScatterpie.pie">
+ <summary>
+ the pie group names across all scatter points data
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:ggplot.options.element_blank">
+ <summary>
+ a flag object for indicates the NULL or default value
+ </summary>
+</member>
+<member name="P:ggplot.options.element_blank.waiver">
+ <summary>
+ does current blank value means ggplot2 liked waiver object?
+ 
+ A waiver is a "flag" object, similar to NULL, that indicates the calling function 
+ should just use the default value. It is used in certain functions to distinguish 
+ between displaying nothing (NULL) and displaying a default value calculated 
+ elsewhere (waiver())
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:ggplot.options.element_blank.GetCssStroke(System.Object)">
+ <summary>
+ gets the default value
+ </summary>
+ <param name="stroke"></param>
+ <returns>
+ this function may returns values of:
+ 
+ 1. nothing, for the given object is nothing
+ 2. element_blank, if the given object is <see cref="M:ggplot.options.element_blank.element_blank"/>
+ 3. css value, if the given object is scibasic.net internal css object
+ 
+ </returns>
+</member>
+<member name="T:ggplot.options.ggplotCamera">
+ <summary>
+ 3d camera wrapper object in ggplot
+ </summary>
+</member>
+<member name="M:ggplot.options.ggplotColorProfile.Config(ggplot.ggplot)">
+ <summary>
+ config the last <see cref="T:ggplot.layers.ggplotLayer"/> its color map value.
+ </summary>
+ <param name="ggplot"></param>
+ <returns></returns>
+</member>
+<member name="M:ggplot.options.ggplotColorProfile.MapColorBrewer(System.String,System.Double)">
+ <summary>
+ 
+ </summary>
+ <param name="name"></param>
+ <param name="alpha">
+ color alpha channel value between [0,1]
+ </param>
+ <returns></returns>
+</member>
+<member name="T:ggplot.options.ggplotOption">
+ <summary>
+ usually use the option model for configs the last added ggplot layer
+ </summary>
+</member>
+<member name="M:ggplot.options.ggplotSize.Config(ggplot.ggplot)">
+ <summary>
+ config the size value for the ggplot layer
+ </summary>
+ <param name="ggplot"></param>
+ <returns></returns>
+</member>
+<member name="T:ggplot.options.ggplotTheme">
+ <summary>
+ a wrapper for the scibasic.net internal <see cref="T:Microsoft.VisualBasic.Data.ChartPlots.Graphic.Canvas.Theme"/> object
+ </summary>
+</member>
+<member name="M:ggplot.options.ggplotTheme.Config(ggplot.ggplot)">
+ <summary>
+ set up the <see cref="P:ggplot.ggplot.ggplotTheme"/> object
+ </summary>
+ <param name="ggplot"></param>
+ <returns></returns>
+</member>
+<member name="T:ggplot.options.ggplotTicks">
+ <summary>
+ Position scales for continuous data (x &amp; y)
+ 
+ scale_x_continuous() and scale_y_continuous() are the default 
+ scales for continuous x and y aesthetics. There are three 
+ variants that set the trans argument for commonly used 
+ transformations: ``scale_*_log10()``, ``scale_*_sqrt()`` and 
+ ``scale_*_reverse()``.
+ </summary>
+</member>
+<member name="P:ggplot.options.ggplotTicks.axis">
+ <summary>
+ target axis config: x or y
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:ggplot.options.ggplotTicks.n">
+ <summary>
+ set number of the ticks that prefers
+ </summary>
+ <returns></returns>
+</member>
+<member name="F:ggplot.options.ggplotTicks.TickStyleNames.numeric">
+ <summary>
+ 普通的数字
+ </summary>
+</member>
+<member name="F:ggplot.options.ggplotTicks.TickStyleNames.percent">
+ <summary>
+ 带百分比符号的百分数样式
+ </summary>
+</member>
+<member name="F:ggplot.options.ggplotTicks.TickStyleNames.scientific">
+ <summary>
+ 科学计数法样式
+ </summary>
+</member>
+<member name="F:ggplot.options.ggplotTicks.TickStyleNames.money">
+ <summary>
+ 带金钱符号样式的
+ </summary>
+</member>
+<member name="T:ggplot.ggplotFunction">
+ <summary>
+ ggplot function exports for interop
+ </summary>
+</member>
+<member name="M:ggplot.ggplotFunction.labs(System.String,System.String,System.String,System.String,System.String,System.Object,System.Object,System.Object)">
+ <summary>
+ ## Modify axis, legend, and plot labels
+ 
+ Good labels are critical for making your plots accessible to 
+ a wider audience. Always ensure the axis and legend labels 
+ display the full variable name. Use the plot title and subtitle 
+ to explain the main findings. It's common to use the caption 
+ to provide information about the data source. tag can be used 
+ for adding identification tags to differentiate between multiple 
+ plots.
+ </summary>
+ <param name="x"></param>
+ <param name="y"></param>
+ <param name="title">The text for the title.</param>
+ <param name="subtitle">
+ The text For the subtitle For the plot which will be displayed 
+ below the title.
+ </param>
+ <param name="caption">
+ The text for the caption which will be displayed in the 
+ bottom-right of the plot by default.
+ </param>
+ <param name="tag">
+ The text for the tag label which will be displayed at the top-left 
+ of the plot by default.
+ </param>
+ <param name="alt">
+ Text used for the generation of alt-text for the plot. See 
+ get_alt_text for examples.
+ </param>
+ <param name="alt_insight"></param>
+ <returns></returns>
+ <remarks>
+ You can also set axis and legend labels in the individual scales 
+ (using the first argument, the name). If you're changing other 
+ scale options, this is recommended.
+ 
+ If a plot already has a title, subtitle, caption, etc., And you want 
+ To remove it, you can Do so by setting the respective argument To 
+ NULL. For example, If plot p has a subtitle, Then p + labs(subtitle = NULL) 
+ will remove the subtitle from the plot.
+ </remarks>
+</member>
+<member name="M:ggplot.imageDriverHandler.getDriver(SMRUCC.Rsharp.Runtime.Environment,Microsoft.VisualBasic.Imaging.Driver.Drivers)">
+ <summary>
+ get graphics device driver flag
+ </summary>
+ <param name="env"></param>
+ <returns></returns>
+</member>
+<member name="M:ggplot.imageDriverHandler.CheckGraphicsDeviceExists(SMRUCC.Rsharp.Runtime.Internal.Object.list)">
+ <summary>
+ Checking the graphics context
+ 
+ check for the argument name 'grDevices' is exists in the given
+ argument list or not and also the argument value should be the 
+ object type of <see cref="T:R_graphics.Common.Runtime.graphicsDevice"/>.
+ </summary>
+ <param name="args"></param>
+ <returns></returns>
+</member>
+<member name="T:ggplot.InteropArgumentHelper">
+ <summary>
+ R# graphics argument scripting helper
+ </summary>
+</member>
+<member name="M:ggplot.InteropArgumentHelper.getSize(System.Object,SMRUCC.Rsharp.Runtime.Environment,System.String)">
+ <summary>
+ parse data tuple for graphics element size 
+ </summary>
+ <param name="size">
+ supports a numeric vector, string, list element with tuple fields: width/height or w/h
+ </param>
+ <param name="env"></param>
+ <param name="default"></param>
+ <returns>
+ a string with value format: width,height
+ </returns>
+ <remarks>
+ <see cref="T:System.Drawing.Size"/> value could be parse from the generated 
+ string via the <see cref="M:Microsoft.VisualBasic.Scripting.Runtime.Casting.SizeParser(System.String)"/> helper function.
+ </remarks>
+</member>
+<member name="M:ggplot.InteropArgumentHelper.getStrokePenCSS(System.Object,System.String)">
+ <summary>
+ <see cref="T:Microsoft.VisualBasic.MIME.Html.CSS.Stroke"/>
+ </summary>
+ <param name="stroke"></param>
+ <param name="default"></param>
+ <returns></returns>
+</member>
+<member name="M:ggplot.cast.size_toList(System.Drawing.Size)">
+ <summary>
+ cast the gdi size data to R# tuple list object
+ </summary>
+ <param name="size"></param>
+ <returns>
+ a tuple list obejct that contains two slot elements: w for width and h for height
+ </returns>
+</member>
+<member name="M:ggplot.RColorPalette.GetRawColor(System.Object,System.String)">
+ <summary>
+ 因为html颜色不支持透明度，所以这个函数是为了解决透明度丢失的问题而编写的
+ </summary>
+ <param name="color"></param>
+ <param name="default$"></param>
+ <returns></returns>
+</member>
+<member name="M:ggplot.RColorPalette.CreateColorMaps(System.String[],System.Object,SMRUCC.Rsharp.Runtime.Environment,System.String,System.Boolean)">
+ <summary>
+ 
+ </summary>
+ <param name="uniqClass"></param>
+ <param name="colorArguments"></param>
+ <param name="env"></param>
+ <param name="[default]"></param>
+ <param name="shuffles">
+ this options not working on the situation when the <paramref name="colorArguments"/> 
+ is a tuple list unique key-value mapping
+ </param>
+ <returns></returns>
+</member>
+<member name="M:ggplot.RColorPalette.getColors(System.Object,System.Int32,System.String)">
+ <summary>
+ create color mapping
+ </summary>
+ <param name="colorSet"></param>
+ <param name="levels"></param>
+ <param name="default"></param>
+ <returns></returns>
+</member>
+<member name="M:ggplot.RColorPalette.getColor(System.Object,System.String,SMRUCC.Rsharp.Runtime.Environment)">
+ <summary>
+ get a single color literal string
+ </summary>
+ <param name="color"></param>
+ <param name="default$"></param>
+ <returns></returns>
+</member>
+<member name="M:ggplot.MathDataSet.toDataframe(Microsoft.VisualBasic.Data.Framework.DataFrame,SMRUCC.Rsharp.Runtime.Internal.Object.list,SMRUCC.Rsharp.Runtime.Environment)">
+ <summary>
+ cast the scibasic.net dataframe object to R# dataframe object
+ </summary>
+ <param name="features"></param>
+ <param name="args"></param>
+ <param name="env"></param>
+ <returns></returns>
+ 
+</member>
+<member name="M:ggplot.MathDataSet.toFeatureSet(SMRUCC.Rsharp.Runtime.Internal.Object.dataframe,SMRUCC.Rsharp.Runtime.Environment)">
+ <summary>
+ cast the R# dataframe object to <see cref="T:Microsoft.VisualBasic.Data.Framework.DataFrame"/> type object in scibasic.net framework.
+ </summary>
+ <param name="x"></param>
+ <param name="env"></param>
+ <returns>
+ this function may returns an error message if vectro data type cast error
+ </returns>
+</member>
+</members>
+</doc>

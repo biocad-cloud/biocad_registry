@@ -51,7 +51,7 @@ Public Class FormOdors
 
         If MessageBox.Show($"Going to delete current odor data: {odor.odor} ({odor.name})?", "Delete Confirmed", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) = DialogResult.OK Then
 
-            MyApplication.biocad_registry.odor.where(field("id") = odor.id).limit(1).delete()
+            '  MyApplication.biocad_registry.odor.where(field("id") = odor.id).limit(1).delete()
             Await loadPage()
         End If
     End Sub
@@ -65,7 +65,7 @@ Public Class FormOdors
 
         If MessageBox.Show($"Going to delete all odor data: {odor.odor}?", "Delete Confirmed", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) = DialogResult.OK Then
 
-            MyApplication.biocad_registry.odor.where(field("odor") = odor.odor).delete()
+            '  MyApplication.biocad_registry.odor.where(field("odor") = odor.odor).delete()
             Await loadPage()
         End If
     End Sub
@@ -133,7 +133,7 @@ Public Class FormOdors
 
                     Await Task.Run(
                         Sub()
-                            Call MyApplication.biocad_registry.odor.where(field("odor") = term.term).delete()
+                            ' Call MyApplication.biocad_registry.odor.where(field("odor") = term.term).delete()
                         End Sub)
 
                     refresh = True
@@ -169,7 +169,7 @@ Public Class FormOdors
 
                 Await Task.Run(
                         Sub()
-                            Call MyApplication.biocad_registry.odor.where(field("odor") = term.term).delete()
+                            ' Call MyApplication.biocad_registry.odor.where(field("odor") = term.term).delete()
                         End Sub)
             Next
 
@@ -199,12 +199,12 @@ Public Class OdorTerm
     <DatabaseField> Public Property count As Long
 
     Public Shared Function LoadTerms() As OdorTerm()
-        Return MyApplication.biocad_registry.odor _
-            .left_join("vocabulary") _
-            .on(field("`vocabulary`.id") = field("`odor`.category")) _
-            .group_by("term", "odor") _
-            .order_by("count") _
-            .select(Of OdorTerm)("term AS category", "odor AS term", "COUNT(*) AS count")
+        'Return MyApplication.biocad_registry.odor _
+        '    .left_join("vocabulary") _
+        '    .on(field("`vocabulary`.id") = field("`odor`.category")) _
+        '    .group_by("term", "odor") _
+        '    .order_by("count") _
+        '    .select(Of OdorTerm)("term AS category", "odor AS term", "COUNT(*) AS count")
     End Function
 
 End Class
@@ -220,22 +220,22 @@ Public Class OdorData
     <DatabaseField> Public Property text As String
 
     Public Shared Async Function LoadPage(page As Integer, page_size As Integer) As Task(Of OdorData())
-        Dim offset As Long = (page - 1) * page_size
-        Dim q = Await Task.Run(Function() MyApplication.biocad_registry.odor _
-            .left_join("molecule") _
-            .on(field("`molecule`.id") = field("molecule_id")) _
-            .left_join("vocabulary") _
-            .on(field("`vocabulary`.id") = field("`odor`.category")) _
-            .limit(offset, page_size) _
-            .select(Of OdorData)("`odor`.id",
-    "molecule_id",
-    "name",
-    "formula",
-    "`vocabulary`.term AS category",
-    "odor",
-    "text"))
+        '    Dim offset As Long = (page - 1) * page_size
+        '    Dim q = Await Task.Run(Function() MyApplication.biocad_registry.odor _
+        '        .left_join("molecule") _
+        '        .on(field("`molecule`.id") = field("molecule_id")) _
+        '        .left_join("vocabulary") _
+        '        .on(field("`vocabulary`.id") = field("`odor`.category")) _
+        '        .limit(offset, page_size) _
+        '        .select(Of OdorData)("`odor`.id",
+        '"molecule_id",
+        '"name",
+        '"formula",
+        '"`vocabulary`.term AS category",
+        '"odor",
+        '"text"))
 
-        Return q
+        '    Return q
     End Function
 
 End Class

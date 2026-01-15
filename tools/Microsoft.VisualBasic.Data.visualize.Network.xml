@@ -163,12 +163,12 @@ Microsoft.VisualBasic.Data.visualize.Network
  an edge collection for indexing the in/out edge connection with current node.
  </summary>
 </member>
-<member name="F:Microsoft.VisualBasic.Data.visualize.Network.Analysis.Model.DirectedVertex.outgoingEdges">
+<member name="F:Microsoft.VisualBasic.Data.visualize.Network.Analysis.Model.DirectedVertex.m_outgoingEdges">
  <summary>
  me to target
  </summary>
 </member>
-<member name="F:Microsoft.VisualBasic.Data.visualize.Network.Analysis.Model.DirectedVertex.incomingEdges">
+<member name="F:Microsoft.VisualBasic.Data.visualize.Network.Analysis.Model.DirectedVertex.m_incomingEdges">
  <summary>
  source to me
  </summary>

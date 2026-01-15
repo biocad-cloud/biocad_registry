@@ -1,0 +1,64 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+R_graphics.Common.Runtime
+</name>
+</assembly>
+<members>
+<member name="P:R_graphics.Common.Runtime.graphics.curDev">
+ <summary>
+ the current actived graphics device
+ </summary>
+</member>
+<member name="M:R_graphics.Common.Runtime.graphics.openNew(Microsoft.VisualBasic.Imaging.IGraphics,System.IO.Stream,SMRUCC.Rsharp.Runtime.Internal.Object.list,System.String)">
+ <summary>
+ a common method for create new graphics device
+ </summary>
+ <param name="dev"></param>
+ <param name="buffer"></param>
+ <param name="args"></param>
+</member>
+<member name="T:R_graphics.Common.Runtime.graphicsDevice">
+ <summary>
+ the internal graphics device handle of the R# environment
+ </summary>
+</member>
+<member name="F:R_graphics.Common.Runtime.graphicsDevice.g">
+ <summary>
+ the graphics device for plot rendering
+ </summary>
+</member>
+<member name="P:R_graphics.Common.Runtime.graphicsDevice.Item(System.String)">
+ <summary>
+ get argument value by name
+ </summary>
+ <param name="ref"></param>
+ <returns>
+ this method get value directly from the <see cref="F:R_graphics.Common.Runtime.graphicsDevice.args"/> data 
+ list, an exception will be throw if the argument name key is 
+ missing.
+ 
+ for safely get the argument value from this object, use the 
+ <see cref="M:R_graphics.Common.Runtime.graphicsDevice.getArgumentValue(System.String,SMRUCC.Rsharp.Runtime.Internal.Object.list)"/> method.
+ </returns>
+</member>
+<member name="M:R_graphics.Common.Runtime.graphicsDevice.getArgumentValue(System.String,SMRUCC.Rsharp.Runtime.Internal.Object.list)">
+ <summary>
+ try <see cref="F:R_graphics.Common.Runtime.graphicsDevice.args"/> at first, then this function will 
+ try to find the argument value in <paramref name="args2"/> 
+ if the argument name is missing from the <see cref="F:R_graphics.Common.Runtime.graphicsDevice.args"/>
+ collection.
+ </summary>
+ <param name="ref">the argument name to find</param>
+ <param name="args2">
+ this argument value can be nothing
+ </param>
+ <returns>
+ this function is a safe function, value nothing will 
+ be returns if all argument pack is missing the required
+ argument name key.
+ </returns>
+</member>
+</members>
+</doc>

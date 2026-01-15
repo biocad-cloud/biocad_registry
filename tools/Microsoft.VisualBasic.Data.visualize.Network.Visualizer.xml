@@ -1,0 +1,449 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+Microsoft.VisualBasic.Data.visualize.Network.Visualizer
+</name>
+</assembly>
+<members>
+<member name="T:Microsoft.VisualBasic.Data.visualize.Network.CanvasScaler">
+ <summary>
+ 进行网络模型之中的节点的位置缩放以及中心化平移操作的帮助模块
+ </summary>
+ <remarks>
+ 计算节点在画布上面的正确的位置操作：
+ 
+ 1. 计算整个网络图形的边界
+ 2. 计算出缩放因子
+ 3. 执行位置的缩放
+ 4. 计算出中心点平移的偏移值
+ 5. 执行中心点平移
+ 6. 完成节点的位置计算操作
+ </remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.CanvasScaler.CalculateNodePositions(Microsoft.VisualBasic.Data.visualize.Network.Graph.NetworkGraph,System.Drawing.SizeF,Microsoft.VisualBasic.MIME.Html.CSS.Padding,System.Drawing.SizeF@,System.Drawing.PointF@)">
+ <summary>
+ <see cref="P:Microsoft.VisualBasic.Data.GraphTheory.Vertex.label"/>
+ </summary>
+ <param name="net"><see cref="P:Microsoft.VisualBasic.Data.GraphTheory.Vertex.label"/></param>
+ <param name="frameSize"></param>
+ <param name="padding"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.CanvasScaler.CentralOffsets(System.Collections.Generic.Dictionary{Microsoft.VisualBasic.Data.visualize.Network.Graph.Node,System.Drawing.PointF},System.Drawing.SizeF)">
+ <summary>
+ 这里是计算出网络几点偏移到图像的中心所需要的偏移量
+ </summary>
+ <param name="nodes"></param>
+ <param name="size"></param>
+ <returns></returns>
+ 
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Extensions.GetDisplayText(Microsoft.VisualBasic.Data.visualize.Network.Graph.Node)">
+ <summary>
+ 优先显示： <see cref="P:Microsoft.VisualBasic.Data.visualize.Network.Graph.GraphData.label"/> -> <see cref="P:Microsoft.VisualBasic.Data.visualize.Network.Graph.NodeData.origID"/> -> <see cref="P:Microsoft.VisualBasic.Data.GraphTheory.Vertex.ID"/>
+ </summary>
+ <param name="n"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.RenderHelpers.expandEdgesHelper(Microsoft.VisualBasic.Data.visualize.Network.Graph.Node,System.Collections.Generic.List{System.Double[]},System.Collections.Generic.List{System.Double[][]})">
+ <summary>
+ Extend generic Graph class with bundle methods And rendering options
+ </summary>
+ <param name="node"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.RenderHelpers.expandEdgesRichHelper(Microsoft.VisualBasic.Data.visualize.Network.Graph.Node,Microsoft.VisualBasic.Data.visualize.Network.PosItem[],Microsoft.VisualBasic.Data.visualize.Network.PosItem[][])">
+ <summary>
+ Extend generic Graph class with bundle methods And rendering options
+ </summary>
+ <param name="node"></param>
+ <param name="Array"></param>
+ <param name="collect"></param>
+</member>
+<member name="T:Microsoft.VisualBasic.Data.visualize.Network.NetworkVisualizer">
+ <summary>
+ Image drawing of a network model
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.Data.visualize.Network.NetworkVisualizer.BackgroundColor">
+ <summary>
+ This background color was picked from https://github.com/whichlight/reddit-network-vis
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.NetworkVisualizer.DrawImage(Microsoft.VisualBasic.Data.visualize.Network.Graph.NetworkGraph,System.String,System.String,System.String,System.String,System.Boolean,System.Boolean,System.String,System.Single,System.Func{Microsoft.VisualBasic.Data.visualize.Network.Graph.Edge,System.Single},Microsoft.VisualBasic.Language.Variant{System.Func{Microsoft.VisualBasic.Data.visualize.Network.Graph.Node,System.Single},System.Single},Microsoft.VisualBasic.Language.Variant{System.Func{Microsoft.VisualBasic.Data.visualize.Network.Graph.Node,System.Single},System.Single},System.String,Microsoft.VisualBasic.Language.Variant{System.Collections.Generic.Dictionary{System.String,Microsoft.VisualBasic.Imaging.DashStyle},Microsoft.VisualBasic.Imaging.DashStyle},System.Single,Microsoft.VisualBasic.Data.visualize.Network.NetworkVisualizer.DrawNodeShape,System.Func{Microsoft.VisualBasic.Imaging.IGraphics,System.Drawing.PointF,System.Double,Microsoft.VisualBasic.Data.visualize.Network.Graph.Node,System.Drawing.RectangleF},Microsoft.VisualBasic.Data.visualize.Network.NetworkVisualizer.DrawShape,System.Func{Microsoft.VisualBasic.Data.visualize.Network.Graph.Node,System.String},Microsoft.VisualBasic.Data.visualize.Network.NetworkVisualizer.GetLabelPosition,System.Func{Microsoft.VisualBasic.Data.visualize.Network.Graph.Node,System.Drawing.Color},System.Boolean,System.Boolean,Microsoft.VisualBasic.ComponentModel.DataSourceModel.NamedValue{System.String},System.Int32,System.Int32,System.Boolean,System.String,System.String,System.String,System.Boolean,System.Boolean,System.Boolean,System.String,System.Single,System.Single,System.Boolean,Microsoft.VisualBasic.Imaging.Driver.Drivers,System.Int32)">
+ <summary>
+ Rendering png or svg image from a given network graph model.
+ (假若属性是空值的话，在绘图之前可以调用<see cref="M:Microsoft.VisualBasic.Data.visualize.Network.Graph.Extensions.ApplyAnalysis(Microsoft.VisualBasic.Data.visualize.Network.Graph.NetworkGraph@)"/>拓展方法进行一些分析)
+ </summary>
+ <param name="net"></param>
+ <param name="canvasSize">画布的大小</param>
+ <param name="padding">上下左右的边距分别为多少？</param>
+ <param name="background">背景色或者背景图片的文件路径</param>
+ <param name="defaultColor"></param>
+ <param name="hullPolygonGroups">
+ ```
+ [<see cref="P:Microsoft.VisualBasic.ComponentModel.DataSourceModel.DynamicPropertyBase`1.Properties"/> Name => expression]
+ ```
+ 
+ + expression = max/min largest or smallest group
+ + expression = 'a,b,c,d,e' node category to draw hull polygon 
+ + expression = top&lt;n> show top n largest group
+ 
+ (需要显示分组的多边形的分组的名称的列表，也可以是一个表达式max或者min，分别表示最大或者最小的分组)
+ </param>
+ <param name="nodeRadius">By default all of the node have the same radius size</param>
+ <param name="labelFontBase">
+ 这个参数会提供字体的一些基础样式,字体的大小会从节点的属性中计算出来
+ </param>
+ <param name="displayId">
+ 是否现在节点的标签文本
+ </param>
+ <param name="labelerIterations">
+ 0表示不进行
+ </param>
+ <param name="edgeDashTypes">
+ 1. ``interaction_type`` property value in <see cref="P:Microsoft.VisualBasic.Data.visualize.Network.Graph.Edge.data"/>, or
+ 2. <see cref="P:Microsoft.VisualBasic.Data.GraphTheory.Edge`1.ID"/> value
+ </param>
+ <param name="labelTextStroke">
+ 当这个参数为空字符串的时候，将不进行描边
+ </param>
+ <param name="labelWordWrapWidth">
+ 每一行文本所限定的字符数量，小于等于零表示不进行自动textwrap
+ </param>
+ <returns></returns>
+ <remarks>
+ 一些内置的样式支持:
+ 
+ + 节点的颜色或者纹理: <see cref="P:Microsoft.VisualBasic.Data.visualize.Network.Graph.NodeData.color"/>
+ + 如果<see cref="P:Microsoft.VisualBasic.Data.visualize.Network.Graph.EdgeData.bends"/>不是空的话，会按照这个定义的点集合绘制边
+   否则会直接在两个节点之间绘制一条直线作为边连接
+ </remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.NetworkVisualizer.drawhullPolygon(Microsoft.VisualBasic.Imaging.IGraphics,Microsoft.VisualBasic.Data.visualize.Network.Graph.Node[],Microsoft.VisualBasic.ComponentModel.DataSourceModel.NamedValue{System.String},System.Collections.Generic.Dictionary{System.String,System.Drawing.PointF},System.Boolean,System.Boolean,System.String,System.Single,System.Single)">
+ <summary>
+ 
+ </summary>
+ <param name="g"></param>
+ <param name="drawPoints"></param>
+ <param name="hullPolygonGroups">
+ [<see cref="P:Microsoft.VisualBasic.ComponentModel.DataSourceModel.DynamicPropertyBase`1.Properties"/> Name => expression]
+ 
+ expression = max/min largest or smallest group
+ expression = 'a,b,c,d,e' node category to draw hull polygon 
+ </param>
+ <param name="scalePos"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.EdgeRendering.drawEdges(Microsoft.VisualBasic.Imaging.IGraphics,Microsoft.VisualBasic.Data.visualize.Network.Graph.NetworkGraph)">
+ <summary>
+ 这个函数会将edge作为一个layout的shape返回用于标签的布局计算
+ </summary>
+ <param name="g"></param>
+ <param name="graph"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.EdgeRendering.rendering(Microsoft.VisualBasic.Data.visualize.Network.Graph.Edge,Microsoft.VisualBasic.Imaging.Pen,Microsoft.VisualBasic.Imaging.Pen,Microsoft.VisualBasic.Imaging.IGraphics,System.Drawing.PointF,System.Drawing.PointF)">
+ <summary>
+ 
+ </summary>
+ <param name="edge"></param>
+ <param name="edgeShadowColor"></param>
+ <param name="lineColor"></param>
+ <param name="g"></param>
+ <param name="a">location of the node a</param>
+ <param name="b">location of the node b</param>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.Data.visualize.Network.LineSegmentRender">
+ <summary>
+ draw a line segment
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.Data.visualize.Network.LabelRendering">
+ <summary>
+ 使用退火算法计算出节点标签文本的位置
+ </summary>
+ 
+</member>
+<member name="T:Microsoft.VisualBasic.Data.visualize.Network.Styling.CSS.NamespaceDoc">
+ <summary>
+ CSS style file loader module for the network render.
+ 
+ How it works?
+ 
+ ```
+ define a css file -> parse css -> generate styles -> do network-graph clone -> write property value -> do visualize
+ ```
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Data.visualize.Network.Styling.CSS.StyleCreator.selector">
+ <summary>
+ 类似于CSS选择器的字符串表达式
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Data.visualize.Network.Styling.CSS.StyleCreator.stroke">
+ <summary>
+ 进行对象绘制的时候的边框样式
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Data.visualize.Network.Styling.CSS.StyleCreator.font">
+ <summary>
+ 对象标签的字体
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Data.visualize.Network.Styling.CSS.StyleCreator.fill">
+ <summary>
+ 对对象进行填充的样式画笔
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Data.visualize.Network.Styling.CSS.StyleCreator.size">
+ <summary>
+ 主要是针对于节点对象的大小直径的获取函数
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Data.visualize.Network.Styling.CSS.StyleCreator.label">
+ <summary>
+ 从对象之中得到标签字符串的方法函数指针
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.Data.visualize.Network.Styling.CSS.StyleMapper">
+ <summary>
+ Network object visualize styling object model, the network render css file parser
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Data.visualize.Network.Styling.CSS.StyleMapper.labelStyles">
+ <summary>
+ node label styling
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.Data.visualize.Network.Styling.CSS.Styles.stroke">
+ <summary>
+ 线条的样式
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Data.visualize.Network.Styling.CSS.Styles.fill">
+ <summary>
+ 节点的填充颜色，边的填充颜色，以及文本的填充颜色
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Data.visualize.Network.Styling.CSS.NodeStyle.size">
+ <summary>
+ 节点大小的表达式
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Data.visualize.Network.Styling.CSS.NodeStyle.shape">
+ <summary>
+ 节点的形状的表达式
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Data.visualize.Network.Styling.CSS.LabelStyle.FontCSS">
+ <summary>
+ CSS字体表达式
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.Data.visualize.Network.Styling.CSS.StyleParser">
+ <summary>
+ The Css file model parser
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Styling.BrushExpression.Evaluate(System.String)">
+ <summary>
+ 通过这个函数来进行颜色填充以及图案填充的画笔对象的统一构建
+ </summary>
+ <param name="expression">
+ #### 使用图片作为填充材质
+ 
+ + url(filepath/data uri) 所有节点都使用统一的图案
+ + map(propertyName, val1=url1, val2=url2, val3=url3)  离散映射
+ + map(propertyName, [url(directory), *.png])  passthrough映射，属性值作为文件名，从directory之中读取图像文件，后面必须要跟文件拓展名
+ + rgb(x,x,x,x)|#xxxxx|xxxxx 颜色表达式，所有的节点都使用相同的颜色
+ + map(propertyName, val1=color1, val2=color2) 离散映射
+ + map(propertyName, [patternName, n]) 区间映射
+ </param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Styling.BrushExpression.brushMapper(System.String)">
+ <summary>
+ 在这里处理图案映射和颜色映射，对于图案映射而言，是没有区间映射的
+ </summary>
+ <param name="expression"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Styling.BrushExpression.discreteMapper(Microsoft.VisualBasic.Data.visualize.Network.Styling.MapExpression)">
+ <summary>
+ 在离散映射之中，颜色和图案可能会进行混用
+ </summary>
+ <param name="model"></param>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.Data.visualize.Network.Styling.FillBrushes.CategoryBrush">
+ <summary>
+ 差不多相当于离散映射的一种变种
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Styling.FillBrushes.CategoryBrush.#ctor(Microsoft.VisualBasic.Data.visualize.Network.Styling.MapExpression)">
+ <summary>
+ map(propertyName, [patternName, category])
+ </summary>
+ <param name="map"></param>
+</member>
+<member name="T:Microsoft.VisualBasic.Data.visualize.Network.Styling.FillBrushes.ColorRangeBrush">
+ <summary>
+ 区间映射，也可能是category映射
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.Data.visualize.Network.Styling.FillBrushes.ImagePassthroughBrush">
+ <summary>
+ 属性名作为文件名，从指定的文件夹之中读取图片文件的passthrough映射
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.Data.visualize.Network.Styling.FillBrushes.PassthroughBrush">
+ <summary>
+ 只能够映射颜色
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.Data.visualize.Network.Styling.FillBrushes.UnifyColorBrush">
+ <summary>
+ 全部都使用统一的颜色进行填充
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.Data.visualize.Network.Styling.FillBrushes.UnifyImageBrush">
+ <summary>
+ 全部都使用统一的图案
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Styling.Numeric.IGetSize.GetSize(System.Collections.Generic.IEnumerable{Microsoft.VisualBasic.Data.visualize.Network.Graph.Node})">
+ <summary>
+ 这个函数描述了这样的一个过程：
+ 
+ 对一个节点集合进行成员的枚举，然后将每一个成员映射为一个大小数值，并返回这些映射集合
+ </summary>
+ <param name="nodes"></param>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.Data.visualize.Network.Styling.Numeric.PassthroughNumber">
+ <summary>
+ 从节点的给定属性之中得到对应的节点大小值
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Data.visualize.Network.Styling.Numeric.PassthroughNumber.expression">
+ <summary>
+ 单词
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Styling.Numeric.PassthroughNumber.#ctor(System.String)">
+ <summary>
+ 
+ </summary>
+ <param name="expression">这个表达式应该是属性名称</param>
+</member>
+<member name="T:Microsoft.VisualBasic.Data.visualize.Network.Styling.Numeric.UnifyNumber">
+ <summary>
+ 所有的节点都统一大小
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Styling.SizeExpression.Evaluate(System.String)">
+ <summary>
+ 
+ </summary>
+ <param name="expression$">
+ + propertyName
+ + 数字
+ + map表达式：
+    + ``map(propertyName, [min, max])`` 区间映射
+    + ``map(propertyName, val1=size1, val2=size2, val3=size3, ...)`` 离散映射
+ </param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Styling.SizeExpression.mappingSize(System.String)">
+ <summary>
+ 离散映射或者区间映射
+ </summary>
+ <param name="expression"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Styling.SyntaxExtensions.MapExpressionParser(System.String)">
+ <summary>
+ 表达式之中的值不可以有逗号或者括号
+ </summary>
+ <param name="expression$">
+ + 区间映射 map(word, [min, max])
+ + 离散映射 map(word, val1=map1, val2=map2, ...)
+ </param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Styling.SyntaxExtensions.IsMapExpression(System.String)">
+ <summary>
+ 因为可能会存在前导或者后置的空格，所以在这里就直接做模式匹配而不是绝对模式匹配了
+ </summary>
+ <param name="expression"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Styling.SyntaxExtensions.RangeTransform``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Double},Microsoft.VisualBasic.ComponentModel.Ranges.Model.DoubleRange)">
+ <summary>
+ 将节点列表进行区间映射，这个函数返回``[节点值，目标区间值]``
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="nodes"></param>
+ <param name="eval"></param>
+ <param name="range">将节点的大小映射到这个半径大小的区间之内</param>
+ <returns>
+ ``[节点值，目标区间值]``， 这个函数返回来的序列之中的元素的顺序
+ 是和函数参数所输入的节点序列之中的元素顺序是一致的
+ </returns>
+</member>
+<member name="T:Microsoft.VisualBasic.Data.visualize.Network.Styling.MapperProcessor">
+ <summary>
+ Do style mapping from the parsed css file at here
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Styling.MapperProcessor.WritePropertyValue(Microsoft.VisualBasic.Data.visualize.Network.Graph.NetworkGraph,Microsoft.VisualBasic.Data.visualize.Network.Styling.CSS.StyleMapper)">
+ <summary>
+ 
+ </summary>
+ <param name="g">use the clone data</param>
+ <param name="styles"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Styling.NodeStyles.DegreeAsSize(System.Collections.Generic.IEnumerable{Microsoft.VisualBasic.Data.visualize.Network.Graph.Node},System.Func{Microsoft.VisualBasic.Data.visualize.Network.Graph.Node,System.Double},Microsoft.VisualBasic.ComponentModel.Ranges.Model.DoubleRange)">
+ <summary>
+ Map the node degree as size 
+ </summary>
+ <param name="nodes"></param>
+ <param name="getDegree"></param>
+ <param name="sizeRange"></param>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.Data.visualize.Network.Styling.StyleMappings">
+ <summary>
+ Color, size, shapes, line type, etc.
+ (这个模块之中的API是为node和edge进行styling所提供的基于<see cref="T:Microsoft.VisualBasic.Imaging.d3js.scale.MapperTypes"/>这三种映射类型的结果)
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Styling.StyleMappings.DiscreteMapping(System.Collections.Generic.IEnumerable{Microsoft.VisualBasic.Data.visualize.Network.Graph.Node},System.String)">
+ <summary>
+ 离散映射，即一组已知的值映射到另一组已知的值
+ </summary>
+ <param name="source"></param>
+ <param name="property$"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Styling.StyleMappings.ColorMapping``1(System.Collections.Generic.IEnumerable{``0},System.String,System.String,System.Int32)">
+ <summary>
+ This function works based on <see cref="M:Microsoft.VisualBasic.Data.visualize.Network.Styling.StyleMappings.NumericMapping``1(System.Collections.Generic.IEnumerable{``0},System.String,Microsoft.VisualBasic.ComponentModel.Ranges.Model.DoubleRange)"/>.(函数获得的是连续的颜色映射)
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="source"></param>
+ <param name="key$"></param>
+ <param name="colorSchema$"></param>
+ <param name="level%"></param>
+ <returns></returns>
+</member>
+</members>
+</doc>

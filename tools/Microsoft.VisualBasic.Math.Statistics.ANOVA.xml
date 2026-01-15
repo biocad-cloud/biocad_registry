@@ -1,0 +1,149 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+Microsoft.VisualBasic.Math.Statistics.ANOVA
+</name>
+</assembly>
+<members>
+<member name="P:Microsoft.VisualBasic.Math.Statistics.Hypothesis.ANOVA.AnovaTest.numenator">
+ <summary>
+ numenator_degrees_of_freedom(Groups degrees of freedom)
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Math.Statistics.Hypothesis.ANOVA.AnovaTest.denomenator">
+ <summary>
+ denomenator_degrees_of_freedom(Observations degrees of freedom)
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Math.Statistics.Hypothesis.ANOVA.AnovaTest.type">
+ <summary>
+ return whether this is a 1% or a 5% test
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Math.Statistics.Hypothesis.ANOVA.AnovaTest.fScore_determineIt">
+ <summary>
+ step7
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Math.Statistics.Hypothesis.ANOVA.AnovaTest.divide_by_degrees_of_freedom">
+ <summary>
+ step6
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Math.Statistics.Hypothesis.ANOVA.AnovaTest.populate(System.Collections.Generic.IEnumerable{System.Double[]},System.String)">
+ <summary>
+ step1
+ </summary>
+ <param name="matrix"></param>
+ <param name="type"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.Math.Statistics.Hypothesis.ANOVA.AnovaTest.findWithinGroupMeans">
+ <summary>
+ step2
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Math.Statistics.Hypothesis.ANOVA.AnovaTest.setSumOfSquaresOfGroups">
+ <summary>
+ step3
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Math.Statistics.Hypothesis.ANOVA.AnovaTest.setTotalSumOfSquares">
+ <summary>
+ step4
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Math.Statistics.Hypothesis.ANOVA.DistributionTable.getRowIndex(System.Int32)">
+ <summary>
+ Row = numerator lookup
+ </summary>
+ <param name="actualNumerator"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Math.Statistics.Hypothesis.ANOVA.DistributionTable.getColIndex(System.Int32)">
+ <summary>
+ Col = denominator lookup
+ </summary>
+ <param name="actualNumerator"></param>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.Math.Statistics.Hypothesis.ANOVA.DataSetHelper">
+ <summary>
+ helper module for create the input dataset for run analysis
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Math.Statistics.Hypothesis.ANOVA.DataSetHelper.CommonDataSet(Microsoft.VisualBasic.Data.Framework.DataFrame,System.Array)">
+ <summary>
+ 
+ </summary>
+ <param name="df"></param>
+ <param name="labels">
+ should be the sample name of each sample data, should be unique, and should not be the class label of each sample.
+ </param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Math.Statistics.Hypothesis.ANOVA.DataSetHelper.CommonDataSet``1(System.Collections.Generic.IEnumerable{``0},System.String[],System.Array)">
+ <summary>
+ 
+ </summary>
+ <typeparam name="Row"></typeparam>
+ <param name="mat"></param>
+ <param name="labels">the sample class labels for each row of the <paramref name="mat"/>, 
+ should be a string array(classify) or a numeric array(regression).
+ </param>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Math.Statistics.Hypothesis.ANOVA.MultivariateAnalysisResult.StatisticsObject">
+ <summary>
+ model set
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Math.Statistics.Hypothesis.ANOVA.OPLS.OrthogonalProjectionsToLatentStructures(Microsoft.VisualBasic.Math.Statistics.Hypothesis.ANOVA.StatisticsObject,System.Int32)">
+ <summary>
+ Do OPLS-DA analysis
+ </summary>
+ <param name="statObject"></param>
+ <param name="component"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Math.Statistics.Hypothesis.ANOVA.PCA.PrincipalComponentAnalysis(Microsoft.VisualBasic.Math.Statistics.Hypothesis.ANOVA.StatisticsObject,System.Int32,System.Double)">
+ <summary>
+ PCA analysis
+ </summary>
+ <param name="statObject"></param>
+ <param name="maxPC"></param>
+ <param name="cutoff"></param>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.Math.Statistics.Hypothesis.ANOVA.PCAData">
+ <summary>
+ get pca result: contribution, score, loading
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Math.Statistics.Hypothesis.ANOVA.PCAData.GetPCAScore(Microsoft.VisualBasic.Math.Statistics.Hypothesis.ANOVA.MultivariateAnalysisResult)">
+ <summary>
+ 
+ </summary>
+ <param name="mvar"></param>
+ <returns>a dataframe object that contains data field column: ``PC1, PC2, PCx``</returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Math.Statistics.Hypothesis.ANOVA.PLS.PartialLeastSquares(Microsoft.VisualBasic.Math.Statistics.Hypothesis.ANOVA.StatisticsObject,System.Int32)">
+ <summary>
+ PLS-DA analysis
+ </summary>
+ <param name="statObject"></param>
+ <param name="component"></param>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.Math.Statistics.Hypothesis.ANOVA.PLSData">
+ <summary>
+ get pls-da result
+ </summary>
+</member>
+</members>
+</doc>

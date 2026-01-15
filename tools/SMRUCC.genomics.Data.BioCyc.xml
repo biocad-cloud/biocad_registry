@@ -105,6 +105,12 @@ SMRUCC.genomics.Data.BioCyc
  </summary>
  <returns></returns>
 </member>
+<member name="P:SMRUCC.genomics.Data.BioCyc.compounds.superAtoms">
+ <summary>
+ atom group class
+ </summary>
+ <returns></returns>
+</member>
 <member name="P:SMRUCC.genomics.Data.BioCyc.enzrxns.enzyme">
  <summary>
  This slot lists the enzyme whose activity is described in this frame. More specifically, 
@@ -514,6 +520,18 @@ SMRUCC.genomics.Data.BioCyc
  <summary>
  enumerates all feature items inside current data file
  </summary>
+ <returns></returns>
+</member>
+<member name="F:SMRUCC.genomics.Data.BioCyc.AttrDataCollection`1.models">
+ <summary>
+ index by model unique id entry key
+ </summary>
+</member>
+<member name="P:SMRUCC.genomics.Data.BioCyc.AttrDataCollection`1.getFeature(System.String)">
+ <summary>
+ get model by its unique id as key
+ </summary>
+ <param name="id">model unique id</param>
  <returns></returns>
 </member>
 <member name="T:SMRUCC.genomics.Data.BioCyc.AttrValDatFile">

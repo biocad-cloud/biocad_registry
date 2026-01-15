@@ -1,0 +1,1117 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+Microsoft.VisualBasic.Data.visualize.Network.Layouts
+</name>
+</assembly>
+<members>
+<member name="T:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.batch">
+ <summary>
+ 这个模块是对外开放网络布局生成的计算函数的接口
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.batch.gridify(Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.LayoutGraph,System.Double,System.Double,System.Double)">
+ <summary>
+ 
+ </summary>
+ <param name="pgLayout"></param>
+ <param name="nudgeGap">spacing between parallel edge segments</param>
+ <param name="margin">space around nodes</param>
+ <param name="groupMargin">space around groups</param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.batch.powerGraphGridLayout(Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.network,System.Int32[],System.Double)">
+ <summary>
+ 从这里开始进行布局的计算
+ </summary>
+ <param name="graph"></param>
+ <param name="size">The canvas size [width, height]</param>
+ <param name="grouppadding"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.Extensions.makeEdgeBetween(Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.Rectangle2D,Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.Rectangle2D,System.Double)">
+ <summary>
+ Returns the endpoints of a line that connects the centre of two rectangles.
+ </summary>
+ <param name="source">The source Rectangle.</param>
+ <param name="target">The target Rectangle.</param>
+ <param name="ah">The size of the arrow head, a distance to shorten the line by.</param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.Extensions.makeEdgeTo(Microsoft.VisualBasic.Imaging.LayoutModel.Point2D,Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.Rectangle2D,System.Double)">
+ <summary>
+ Returns the intersection of a line from the given point to the centre
+ of the target rectangle where it intersects the rectanngle.
+ </summary>
+ <param name="s">The source point.</param>
+ <param name="target">The target Rectangle.</param>
+ <param name="ah">The size of the arrow head, a distance to shorten the
+ line by.</param>
+ <returns>The point an arrow head of the specified size would need to start.</returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.Extensions.removeOverlapInOneDimension(System.ValueTuple{System.Double,System.Double}[],System.Double,System.Double)">
+ <summary>
+ Remove overlap between spans while keeping their centers as close as possible to the specified desiredCenters.
+ Lower And upper bounds will be respected if the spans physically fit between them
+ (otherwise they'll be moved and their new position returned).
+ If no upper/lower bound Is specified then the bounds of the moved spans will be returned.
+ returns a New center for each span.
+ </summary>
+ <param name="spans"></param>
+ <param name="lowerBound"></param>
+ <param name="upperBound"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.Extensions.isLeft(Microsoft.VisualBasic.Imaging.LayoutModel.Point2D,Microsoft.VisualBasic.Imaging.LayoutModel.Point2D,Microsoft.VisualBasic.Imaging.LayoutModel.Point2D)">
+ <summary>
+ tests if a point is Left|On|Right of an infinite line.
+ </summary>
+ <param name="P0"></param>
+ <param name="P1"></param>
+ <param name="P2"></param>
+ <returns>
+ + ``>0`` for P2 left of the line through P0 and P1
+ + ``=0`` for P2 on the line
+ + ``&lt;0`` for P2 right of the line
+ </returns>
+ 
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.Extensions.clockwiseRadialSweep(Microsoft.VisualBasic.Imaging.LayoutModel.Point2D,Microsoft.VisualBasic.Imaging.LayoutModel.Point2D[],System.Action{Microsoft.VisualBasic.Imaging.LayoutModel.Point2D})">
+ <summary>
+ apply f to the points in P in clockwise order around the point p
+ </summary>
+ <param name="p"></param>
+ <param name="pList"></param>
+ <param name="force"></param>
+ 
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.Extensions.tangent_PointPolyC(Microsoft.VisualBasic.Imaging.LayoutModel.Point2D,Microsoft.VisualBasic.Imaging.LayoutModel.Point2D[])">
+ <summary>
+ fast binary search for tangents to a convex polygon
+ </summary>
+ <param name="P">a 2D point (exterior to the polygon)</param>
+ <param name="V">array of vertices for a 2D convex polygon</param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.Extensions.Rtangent_PointPolyC(Microsoft.VisualBasic.Imaging.LayoutModel.Point2D,System.Collections.Generic.List{Microsoft.VisualBasic.Imaging.LayoutModel.Point2D})">
+ <summary>
+ binary search for convex polygon right tangent
+ </summary>
+ <param name="P">a 2D point (exterior to the polygon)</param>
+ <param name="V">array of vertices for a 2D convex polygon with first
+ vertex duplicated as last, so V[n-1] = V[0]</param>
+ <returns>index "i" of rightmost tangent point V[i]</returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.tangentPoly.rtan">
+ <summary>
+ index of rightmost tangent point V[rtan]
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.tangentPoly.ltan">
+ <summary>
+ index of leftmost tangent point V[ltan]
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.GridRouter`1.getGridLines(System.String)">
+ <summary>
+ in the given axis, find sets of leaves overlapping in that axis
+ center of each GridLine is average of all nodes in column
+ </summary>
+ <param name="axis"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.GridRouter`1.getDepth(System.Object)">
+ <summary>
+ get the depth of the given node in the group hierarchy
+ </summary>
+ <param name="v"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.GridRouter`1.findLineage(Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.GridRouter.NodeWrapper)">
+ <summary>
+ find path from v to root including both v and root
+ </summary>
+ <param name="v"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.GridRouter`1.findAncestorPathBetween(Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.GridRouter.NodeWrapper,Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.GridRouter.NodeWrapper)">
+ <summary>
+ find path connecting a and b through their lowest common ancestor
+ </summary>
+ <param name="a"></param>
+ <param name="b"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.GridRouter`1.siblingObstacles(Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.GridRouter.NodeWrapper,Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.GridRouter.NodeWrapper)">
+ <summary>
+ when finding a path between two nodes a and b, siblings of a and b on the
+ paths from a and b to their least common ancestor are obstacles
+ </summary>
+ <param name="a"></param>
+ <param name="b"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.GridRouter`1.getSegmentSets(System.Collections.Generic.List{Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.GridRouter.Segment[]},System.Int32,System.Int32)">
+ <summary>
+ for the given routes, extract all the segments orthogonal to the axis x
+ and return all them grouped by x position
+ </summary>
+ <param name="routes"></param>
+ <param name="x"></param>
+ <param name="y"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.GridRouter`1.nudgeSegs(System.String,System.String,System.Collections.Generic.List{Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.GridRouter.Segment[]},System.Collections.Generic.List{Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.GridRouter.Segment},System.Object,System.Double)">
+ <summary>
+ for all segments in this bundle create a vpsc problem such that
+ each segment's x position is a variable and separation constraints
+ are given by the partial order over the edges to which the segments belong
+ for each pair s1,s2 of segments in the open set:
+ 
+ + e1 = edge of s1, e2 = edge of s2
+ + if leftOf(e1,e2) create constraint s1.x + gap &lt;= s2.x
+ + else if leftOf(e2,e1) create cons. s2.x + gap &lt;= s1.x
+ </summary>
+ <param name="x"></param>
+ <param name="y"></param>
+ <param name="routes"></param>
+ <param name="segments"></param>
+ <param name="leftOf"></param>
+ <param name="gap"></param>
+</member>
+<member name="T:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.GridRouter.GridLine">
+ <summary>
+ a horizontal Or vertical line of nodes
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.handleDisconnected.calculate_bb(System.Collections.Generic.List{Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.Graph},System.Double)">
+ <summary>
+ get bounding boxes for all separate graphs
+ </summary>
+ <param name="graphs"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.handleDisconnected.apply(System.Collections.Generic.List{Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.Graph},System.Double)">
+ <summary>
+ starts box packing algorithm, desired ratio is 1 by default
+ </summary>
+ <param name="data"></param>
+ <param name="desired_ratio"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.handleDisconnected.put_nodes_to_right_positions(System.Collections.Generic.List{Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.Graph})">
+ <summary>
+ actual assigning of position to nodes
+ </summary>
+ <param name="graphs"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.handleDisconnected.applyPacking(System.Collections.Generic.List{Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.Graph},System.Int32,System.Int32,System.Nullable{System.Double},System.Nullable{System.Int32},System.Boolean)">
+ <summary>
+ assign x, y to nodes while using box packing algorithm for disconnected graphs
+ </summary>
+ <param name="graphs"></param>
+ <param name="w"></param>
+ <param name="h"></param>
+ <param name="node_size"></param>
+ <param name="desired_ratio"></param>
+ <param name="centerGraph"></param>
+ <remarks>
+ 这个函数是整个计算流程的起始函数
+ </remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.handleDisconnected.separateGraphs(System.Object,Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.Link{Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.Node}[])">
+ <summary>
+ connected components of graph, returns an array of {}
+ </summary>
+ <param name="nodes"></param>
+ <param name="links"></param>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.EventType">
+ <summary>
+ The layout process fires three events:
+ 
+ > - ``start``: layout iterations started
+ > - ``tick``: fired once per iteration, listen to this to animate
+ > - ``end``: layout converged, you might like to zoom-to-fit or 
+ >       something at notification of this event
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.EventType.start">
+ <summary>
+ layout iterations started
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.EventType.tick">
+ <summary>
+ fired once per iteration, listen to this to animate
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.EventType.end">
+ <summary>
+ layout converged, you might like to zoom-to-fit or something 
+ at notification of this event
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.Layout">
+ <summary>
+ Main interface to cola layout.
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.Layout._links">
+ <summary>
+ 与<see cref="F:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.Layout._indexLinks"/>是一一对应的
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.Layout._indexLinks">
+ <summary>
+ 因为在typescript里面，类型是可变的，所以在这里会需要这个额外的index对象来保持兼容
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.Layout.event">
+ <summary>
+ sub-class and override this property to replace with a more sophisticated eventing mechanism
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.Layout.size">
+ <summary>
+ Size of the layout canvas dimensions [x,y]. Currently only used to determine the midpoint which is taken as the starting position
+ for nodes with no preassigned x and y.
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.Layout.size(System.Int32[])">
+ <summary>
+ 
+ </summary>
+ <param name="x"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.Layout.start(System.Double,System.Double,System.Double,System.Double,System.Boolean,System.Boolean)">
+ <summary>
+ start the layout process
+ </summary>
+ <param name="initialUnconstrainedIterations">unconstrained initial layout iterations</param>
+ <param name="initialUserConstraintIterations">initial layout iterations with user-specified constraints</param>
+ <param name="initialAllConstraintsIterations">initial layout iterations with all constraints including non-overlap</param>
+ <param name="gridSnapIterations">iterations of "grid snap", which pulls nodes towards grid cell centers - grid of size node[0].width - only really makes sense if all nodes have the same width and height</param>
+ <param name="keepRunning">keep iterating asynchronously via the tick method</param>
+ <param name="centerGraph">Center graph on restart</param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.Layout.prepareEdgeRouting(System.Double)">
+ <summary>
+ find a visibility graph over the set of nodes.  assumes all nodes have a
+ bounds property (a rectangle) and that no pair of bounds overlaps.
+ </summary>
+ <param name="nodeMargin"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.Layout.storeOffset(Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.Node,Microsoft.VisualBasic.Imaging.LayoutModel.Point2D)">
+ <summary>
+ we store offsets for each node relative to the centre of the ancestor group
+ being dragged in a pair of properties on the node
+ </summary>
+ <param name="d"></param>
+ <param name="origin"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.Layout.dragOrigin(Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.Node)">
+ <summary>
+ the drag origin is taken as the centre of the node or group
+ </summary>
+ <param name="d"></param>
+ <returns></returns>
+ 
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.Layout.drag(Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.Node,Microsoft.VisualBasic.Imaging.LayoutModel.Point2D)">
+ <summary>
+ for groups, the drag translation is propagated down to all of the children of
+ the group.
+ </summary>
+ <param name="d"></param>
+ <param name="position"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.Layout.dragEnd(Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.Node)">
+ <summary>
+ we unset only bits 2 and 3 so that the user can fix nodes with another a different
+ bit such that the lock persists between drags
+ </summary>
+ <param name="d"></param>
+</member>
+<member name="T:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.Link`1">
+ <summary>
+ 
+ </summary>
+ <typeparam name="NodeRefType">可以是节点对象类型的实例或者节点数组的下标数字值</typeparam>
+</member>
+<member name="P:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.Link`1.length">
+ <summary>
+ ideal length the layout should try to achieve for this link 
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.Link`1.weight">
+ <summary>
+ how hard we should try to satisfy this link's ideal length
+ must be in the range: ``0 &lt; weight &lt;= 1``
+ if unspecified 1 is the default
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.InputNode.index">
+ <summary>
+ index in nodes array, this is initialized by Layout.start()
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.InputNode.x">
+ <summary>
+ x and y will be computed by layout as the Node's centroid
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.InputNode.y">
+ <summary>
+ x and y will be computed by layout as the Node's centroid
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.InputNode.width">
+ <summary>
+ specify a width and height of the node's bounding box if you turn on avoidOverlaps
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.InputNode.height">
+ <summary>
+ specify a width and height of the node's bounding box if you turn on avoidOverlaps
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.InputNode.fixed">
+ <summary>
+ if fixed, layout will not move the node from its specified starting position
+ selective bit mask.  !=0 means layout will not move.
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.Node">
+ <summary>
+ Client-passed node may be missing these properties, which will be set
+ upon ingestion
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.Projection`1.createSeparation(Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.Constraint{System.Int32})">
+ <summary>
+ 在这个函数会需要index
+ </summary>
+ <param name="c"></param>
+ <returns></returns>
+ 
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.linkLengthExtensions.unionCount(System.Collections.Generic.Dictionary{System.Int32,System.Object},System.Collections.Generic.Dictionary{System.Int32,System.Object})">
+ <summary>
+ compute the size of the union of two sets a and b
+ </summary>
+ <param name="a"></param>
+ <param name="b"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.linkLengthExtensions.intersectionCount(System.Collections.Generic.Dictionary{System.Int32,System.Object},System.Collections.Generic.Dictionary{System.Int32,System.Object})">
+ <summary>
+ compute the size of the intersection of two sets a and b
+ </summary>
+ <param name="a"></param>
+ <param name="b"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.linkLengthExtensions.computeLinkLengths``1(``0[],System.Double,System.Func{System.Collections.Generic.Dictionary{System.Int32,System.Object},System.Collections.Generic.Dictionary{System.Int32,System.Object},System.Double},Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.GridRouter.LinkAccessor{``0})">
+ <summary>
+ modify the lengths of the specified links by the result of function f weighted by w
+ </summary>
+ <typeparam name="Link"></typeparam>
+ <param name="links"></param>
+ <param name="w"></param>
+ <param name="f"></param>
+ <param name="la"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.linkLengthExtensions.symmetricDiffLinkLengths``1(``0[],Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.GridRouter.LinkAccessor{``0},System.Double)">
+ <summary>
+ modify the specified link lengths based on the symmetric difference of their neighbours
+ </summary>
+ <typeparam name="Link"></typeparam>
+ <param name="links"></param>
+ <param name="la"></param>
+ <param name="w"></param>
+ 
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.linkLengthExtensions.jaccardLinkLengths``1(``0[],Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.GridRouter.LinkAccessor{``0},System.Double)">
+ <summary>
+ modify the specified links lengths based on the jaccard difference between their neighbours
+ </summary>
+ <typeparam name="Link"></typeparam>
+ <param name="links"></param>
+ <param name="la"></param>
+ <param name="w"></param>
+ 
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.linkLengthExtensions.generateDirectedEdgeConstraints``1(System.Double,``0[],System.String,Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.GridRouter.LinkAccessor{``0})">
+ <summary>
+ generate separation constraints for all edges unless both their source and sink are in the same strongly connected component
+ </summary>
+ <typeparam name="Link"></typeparam>
+ <param name="n"></param>
+ <param name="links"></param>
+ <param name="axis"></param>
+ <param name="la"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.linkLengthExtensions.stronglyConnectedComponents``1(System.Int32,``0[],Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.GridRouter.LinkAccessor{``0})">
+ <summary>
+ Tarjan's strongly connected components algorithm for directed graphs
+ returns an array of arrays of node indicies in each of the strongly connected components.
+ a vertex not in a SCC of two or more nodes is it's own SCC.
+ adaptation of https://en.wikipedia.org/wiki/Tarjan%27s_strongly_connected_components_algorithm
+ </summary>
+ <typeparam name="Link"></typeparam>
+ <param name="numVertices"></param>
+ <param name="edges"></param>
+ <param name="la"></param>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.LinkTypeAccessor`1.GetLinkType">
+ <summary>
+ return a unique identifier for the type of the link
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.Block.updateWeightedPosition">
+ <summary>
+ move the block where it needs to be to minimize cost
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.Block.traverse(System.Func{Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.Constraint,System.Object},Microsoft.VisualBasic.Language.List{System.Object},Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.Variable,Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.Variable)">
+ <summary>
+ traverse the active constraint tree applying visit to each active constraint
+ </summary>
+ <param name="visit"></param>
+ <param name="acc"></param>
+ <param name="v"></param>
+ <param name="prev"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.Block.findMinLM">
+ <summary>
+ Calculate lagrangian multipliers on constraints And
+ find the active constraint in this block with the smallest lagrangian.
+ if the lagrangian Is negative, then the constraint Is a split candidate.
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.Block.isActiveDirectedPathBetween(Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.Variable,Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.Variable)">
+ <summary>
+ Search active constraint tree from u to see if there Is a directed path to v.
+ Returns true if path Is found.
+ </summary>
+ <param name="u"></param>
+ <param name="v"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.Block.split(Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.Constraint)">
+ <summary>
+ split the block into two by deactivating the specified constraint
+ </summary>
+ <param name="C"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.Block.splitBetween(Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.Variable,Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.Variable)">
+ <summary>
+ find a split point somewhere between the specified variables
+ </summary>
+ <param name="vl"></param>
+ <param name="vr"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.Blocks.merge(Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.Constraint)">
+ <summary>
+ merge the blocks on either side of the specified constraint, by copying the smaller block into the larger
+ And deleting the smaller.
+ </summary>
+ <param name="c"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.Blocks.updateBlockPositions">
+ <summary>
+ useful, for example, after variable desired positions change.
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.Blocks.split(Microsoft.VisualBasic.Language.List{Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.Constraint}@)">
+ <summary>
+ split each block across its constraint with the minimum lagrangian
+ </summary>
+ <param name="inactive"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.Blocks.GetEnumerator">
+ <summary>
+ For Each
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.DirectedEdge">
+ <summary>
+ An object with three point properties, the intersection with the
+ source rectangle (sourceIntersection), the intersection with then
+ target rectangle (targetIntersection), And the point an arrow
+ head of the specified size would need to start (arrowStart).
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.IGraphNode">
+ <summary>
+ The common type interface that will be used in <see cref="T:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.Projection`1"/>
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.Locks">
+ <summary>
+ Descent respects a collection of locks over nodes that should not move
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.Locks.isEmpty">
+ <summary>
+ 
+ </summary>
+ <returns>false if no locks exist</returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.Locks.add(System.Int32,System.Double[])">
+ <summary>
+ add a lock on the node at index id
+ </summary>
+ <param name="id">index of node to be locked</param>
+ <param name="x">required position for node</param>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.Locks.clear">
+ <summary>
+ clear all locks
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.Locks.apply(System.Action{System.Int32,System.Double[]})">
+ <summary>
+ perform an operation on each lock
+ </summary>
+ <param name="f"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.Solver.setStartingPositions(System.Double[])">
+ <summary>
+ set starting positions without changing desired positions.
+ Note: it throws away any previous block Structure.
+ </summary>
+ <param name="ps"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.Solver.satisfy">
+ <summary>
+ satisfy constraints by building block structure over violated constraints 
+ And moving the blocks to their desired positions
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.Solver.solve">
+ <summary>
+ repeatedly build And split block structure until we converge to an optimal solution
+ </summary>
+ <returns></returns>
+</member>
+<member name="F:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.Configuration`1.modules">
+ <summary>
+ canonical list of modules.
+ Initialized to a module for each leaf node, such that the ids and indexes 
+ of the module in the array match the indexes of the nodes in links Modules 
+ created through merges are appended to the end of this.
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.Configuration`1.roots">
+ <summary>
+ top level modules and candidates for merges
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.Configuration`1.R">
+ <summary>
+ remaining edge count 
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.Configuration`1.merge(Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.Module,Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.Module,System.Int32)">
+ <summary>
+ merge modules a and b keeping track of their power edges and removing the from roots
+ </summary>
+ <param name="a"></param>
+ <param name="b"></param>
+ <param name="k"></param>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.Data.visualize.Network.Layouts.EdgeBundling.Mingle.Bundler">
+ <summary>
+ Edge bundling algorithm class.
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.EdgeBundling.Mingle.Bundler.setNodes(System.Collections.Generic.IEnumerable{Microsoft.VisualBasic.Data.visualize.Network.Graph.Node})">
+ <summary>
+ 这里仅仅是计算节点分组，与边连接无关
+ 边连接在渲染的时候才会需要
+ </summary>
+ <param name="nodes">
+ 节点应该是已经完成了布局计算之后，已经具有位置信息的节点
+ </param>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.EdgeBundling.Mingle.Bundler.coalesceNodes(Microsoft.VisualBasic.Data.visualize.Network.Graph.Node[])">
+ <summary>
+ the generated node id is assigned via the bundle object id
+ </summary>
+ <param name="nodes"></param>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.Data.visualize.Network.Layouts.ForceDirected.DegreeWeightedPlanner">
+ <summary>
+ 依据节点度值的大小对每一个节点动态生产排斥力权重：
+ 
+ 度值越大则该节点对周围节点的排斥力越大
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.ForceDirected.DegreeWeightedPlanner.runAttraction">
+ <summary>
+ 具有边连接或者间接边连接的节点都可以相互吸引
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.Data.visualize.Network.Layouts.ForceDirected.EdgeWeightedPlanner">
+ <summary>
+ 力导向+边权重：边权重越大，两个节点的引力越大
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.ForceDirected.EdgeWeightedPlanner.runAttraction">
+ <summary>
+ 边连接的权重越大，吸引力越大
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.ForceDirected.EdgeWeightedPlanner.runRepulsive">
+ <summary>
+ 边连接的权重越大，排斥力越小
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.Data.visualize.Network.Layouts.ForceDirected.GroupPlanner">
+ <summary>
+ 这个模块之中的方法会尽量让相同类型分组的节点聚集在一块
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.ForceDirected.MassHandler.DeltaMass(Microsoft.VisualBasic.Data.visualize.Network.Graph.Node,Microsoft.VisualBasic.Data.visualize.Network.Graph.Node,System.Double,System.Double)">
+ <summary>
+ 
+ </summary>
+ <param name="a">node to move</param>
+ <param name="b"></param>
+ <param name="dx#"></param>
+ <param name="dy#"></param>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.Data.visualize.Network.Layouts.ForceDirected.Planner">
+ <summary>
+ 力导向原始算法代码
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.Data.visualize.Network.Layouts.ForceDirected.Planner.avoidRegions">
+ <summary>
+ 会尽量避免在这个区域内存在网络的节点，这个区域一般为legend的绘制区域
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.ForceDirected.Planner.Collide(System.Double)">
+ <summary>
+ run a step of the current layout algorithm 
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.ForceDirected.Planner.runRepulsive">
+ <summary>
+ 计算出任意两个节点之间的排斥力
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.ForceDirected.Planner.runAttraction">
+ <summary>
+ 边连接两端的节点之间的吸引力
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.forceNetwork.doForceLayout(Microsoft.VisualBasic.Data.visualize.Network.Graph.NetworkGraph@,Microsoft.VisualBasic.Data.visualize.Network.Layouts.SpringForce.ForceDirectedArgs,System.Boolean,System.Action{System.String},Microsoft.VisualBasic.Language.Value{System.Boolean})">
+ <summary>
+ <see cref="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.SpringForce.Parameters.Load(System.String,Microsoft.VisualBasic.Data.visualize.Network.Layouts.SpringForce.ForceDirectedArgs)"/>
+ </summary>
+ <param name="net"></param>
+ <param name="parameters"></param>
+ <param name="showProgress"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.forceNetwork.CheckZero(Microsoft.VisualBasic.Data.visualize.Network.Graph.NetworkGraph)">
+ <summary>
+ 这个函数用来检查所有的节点是否都是处于零位置
+ 
+ #### 20200616
+ 
+ **假若所有的节点都是处于零位置，则<see cref="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.forceNetwork.doForceLayout(Microsoft.VisualBasic.Data.visualize.Network.Graph.NetworkGraph@,Microsoft.VisualBasic.Data.visualize.Network.Layouts.SpringForce.ForceDirectedArgs,System.Boolean,System.Action{System.String},Microsoft.VisualBasic.Language.Value{System.Boolean})"/>函数无法正常工作**
+ 
+ 因为布局引擎会自动使用随机位置初始化位置为空值的节点
+ 所以在这里只需要检查非空位置的节点即可
+ </summary>
+ <param name="g"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.forceNetwork.doForceLayout(Microsoft.VisualBasic.Data.visualize.Network.Graph.NetworkGraph@,System.Double,System.Double,System.Double,System.Int32,System.Boolean,System.Action{System.String},Microsoft.VisualBasic.Language.Value{System.Boolean})">
+ <summary>
+ Applies the force directed layout. Parameter can be read from a ``*.ini`` profile file by using <see cref="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.SpringForce.Parameters.Load(System.String,Microsoft.VisualBasic.Data.visualize.Network.Layouts.SpringForce.ForceDirectedArgs)"/>
+ (如果有些时候这个函数不起作用的话，考虑一下在调用这个函数之前，先使用<see cref="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.forceNetwork.doRandomLayout(Microsoft.VisualBasic.Data.visualize.Network.Graph.NetworkGraph@)"/>初始化随机位置)
+ </summary>
+ <param name="net"></param>
+ <param name="iterations">网络的布局layout的计算迭代次数</param>
+ <param name="Stiffness">
+ 密度：影响网络的节点的距离，这个参数值越小，则网络节点的相互之间的距离越大，即这个密度参数值越小，则单位面积内的节点数量越少
+ </param>
+ <param name="Damping">
+ 阻尼：这个参数值越小，则在计算layout的时候，某一个节点所能够影响到的节点数量也越少。即某一个节点的位置调整之后，被影响的其他节点的数量也越少。
+ 这个参数值介于0-1之间，超过1的时候网络永远也不会处于稳定的状态
+ </param>
+ <param name="Repulsion">
+ 排斥力：节点之间的排斥力的大小，当这个参数值越大的时候，节点之间的排斥力也会越大，则节点之间的距离也越远。反之节点之间的距离也越近
+ </param>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.IPlanner.Collide(System.Double)">
+ <summary>
+ Calculates the physics updates.
+ run a step of the current layout algorithm 
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Orthogonal.Blocks">
+ 
+ <summary>
+ @author santi
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Orthogonal.DisconnectedGraphs">
+ 
+ <summary>
+ @author santi
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Orthogonal.OEElement">
+ 
+ <summary>
+ @author santi
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Orthogonal.OEVertex">
+ 
+ <summary>
+ @author santi
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Orthogonal.optimization.EmbeddingComparator">
+ 
+ <summary>
+ @author santi
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Orthogonal.optimization.OrthographicEmbeddingBoardSizeOptimizer">
+ 
+ <summary>
+ @author santi
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Orthogonal.optimization.OrthographicEmbeddingOptimizer">
+ 
+ <summary>
+ @author santi
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Orthogonal.optimization.OrthographicEmbeddingPathOptimizer">
+ 
+ <summary>
+ @author santi
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Orthogonal.optimization.SegmentLengthEmbeddingComparator">
+ 
+ <summary>
+ @author santi
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Orthogonal.optimization.SegmentLengthEmbeddingComparator.compare(Microsoft.VisualBasic.Data.visualize.Network.Layouts.Orthogonal.util.Pair{System.Double,System.Int32},Microsoft.VisualBasic.Data.visualize.Network.Layouts.Orthogonal.util.Pair{System.Double,System.Int32})">
+ <summary>
+ true is s1 is better than s2
+ </summary>
+ <param name="s1"></param>
+ <param name="s2"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Orthogonal.optimization.SegmentLengthEmbeddingComparator.resultScore(Microsoft.VisualBasic.Data.visualize.Network.Layouts.Orthogonal.OrthographicEmbeddingResult)">
+ <summary>
+ the score of a result is a pair with the accumulated length of the segments and the number of segments
+ </summary>
+ <param name="o"></param>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Orthogonal.OrthographicEmbedding">
+ <summary>
+ # OGE
+ 
+ Orthographic Graph Embedder (OGE) v1.1 by Santiago Ontañón (2016-2017)  
+
+ This tool computes an orthographic embedding of a plannar input graph. 
+ Although the tool was originally designed to be part of a procedural-content 
+ generation (PCG) module for a game, it is designed to be usable to find 
+ orthographic embeddings for any planar input graphs.
+
+ OGE uses an algorithm that uses st-numberings to construct a weak-visibility
+ representation, and then PQ-trees to generate the orthographic embeddings. 
+ If the input graph is plannar, this procedure guarantees that an orthographic
+ embedding without any edges crossing over any other vertices will be found. 
+ The algorihtms implemented in this package were adapted from the following 
+ papers:  
+ 
+ - S. Even and R. E. Tarjan, "Computing an st-numbering", Theoret. Comput. Sci. 2, (1976), 339-344.  
+ - Tamassia, Roberto, and Ioannis G. Tollis. "Planar Grid Embedding in Linear Time"  
+ - Tamassia, Roberto, and Ioannis G. Tollis. "A unified approach to visibility representations 
+   of planar graphs." Discrete &amp; Computational Geometry 1.4 (1986): 321-341.  
+
+ Example usage: java -classpath OGE.jar Main data/graph1 oe1.txt -png:oe1.png  
+
+ parameters: input-file output-file options   
+ - input-file: a file containing the adjacency matrix of a graph  
+ - output-file: the desired output filename  
+ - Options:  
+   - -output:[type] : the type of output desired, which can be:  
+     - txt (default): a text file with the connectivity matrix, and then a list of vertices,
+       with their mapping to the original vertices, and their coordinates in the orthographic embedding. 
+      (more output types might be added in the future)  
+   - -png:filename : saves a graphical version of the output as a .png file  
+   - -simplify:true/false : defaults to true, applies a filter to try to reduce unnecessary auxiliary vertices.  
+   - -optimize:true/false : defaults to true, postprocesses the output to try to make it more compact.  
+   - -rs:XXX : specifies the random seed for the random number generator.
+
+ For example, providing this input graph (included as an example in the "examples"
+ folder as "graph2.txt"), where a graph is represented as the adjacency matrix between 
+ each pair of vertices ("0" is no edge and "1" is edge):  
+
+ ```
+ 0,1,0,0,0,0,0,0,0,1,1  
+ 1,0,1,1,0,0,0,0,0,0,0  
+ 0,1,0,0,0,0,0,0,0,0,0  
+ 0,1,0,0,1,1,1,0,0,0,0  
+ 0,0,0,1,0,1,0,0,0,0,0  
+ 0,0,0,1,1,0,0,0,0,0,0  
+ 0,0,0,1,0,0,0,1,1,0,0  
+ 0,0,0,0,0,0,1,0,1,0,0  
+ 0,0,0,0,0,0,1,1,0,1,0  
+ 1,0,0,0,0,0,0,0,1,0,1  
+ 1,0,0,0,0,0,0,0,0,1,0  
+ ```
+ 
+ The program generates an orthographic embedding that looks like this (where the large 
+ vertices with numbers in them represent the original vertices of the input graph, 
+ and the smaller vertices are auxiliary vertices that had to be added in order to 
+ generate the projection, assuming that edges cannot have "elbows"):  
+
+ ![graph2 png output](examples/oe2.png)
+
+ The output embedding is saved in a text file that contains:
+ - First the adjacency matrix of the graph (including any auxiliary vertices that might
+   have had to be added)
+ - Second a list of vertices of the new (projected) graph, with the index of the original 
+   node in the input graph they correspond to (or -1 if the vertex is a new auxiliary 
+   vertex), and the x, y coordinates of the vertex in the orthographic embedding.
+ 
+ @author santi
+ </summary>
+ <remarks>
+ https://github.com/santiontanon/OGE
+ </remarks>
+</member>
+<member name="T:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Orthogonal.OrthographicEmbeddingResult">
+ 
+ <summary>
+ @author santi
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Orthogonal.OrthographicEmbeddingResult.nodeVerticalWiggleRoom(System.Int32,System.Collections.Generic.IList{System.Int32})">
+ <summary>
+ Do the same thing for vertical
+ </summary>
+ <param name="vertex"></param>
+ <param name="nodeGroup"></param>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Orthogonal.PlanarEmbedding">
+ 
+ <summary>
+ @author santi
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Orthogonal.PlanarEmbedding.planarEmbedding2Connected(System.Int32[][])">
+ <summary>
+ This function assumes that the given graph is 2-connected
+ </summary>
+ <param name="graph"></param>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Orthogonal.STNumbering">
+ 
+ <summary>
+ @author santi
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Orthogonal.algorithm.DoLayout(Microsoft.VisualBasic.Data.visualize.Network.Graph.NetworkGraph@,System.Int32,System.Boolean,System.Boolean,System.Boolean)">
+ <summary>
+ do orthogonal layout and then write node layout position information into network graph
+ </summary>
+ <param name="g"></param>
+ <param name="numberOfAttempts"></param>
+ <param name="optimize"></param>
+ <param name="simplify"></param>
+ <param name="fixNonOrthogonal"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Orthogonal.algorithm.RunLayoutMatrix(System.Int32[][]@,System.Int32,System.Boolean,System.Boolean,System.Boolean)">
+ <summary>
+ create orthographic layout
+ </summary>
+ <param name="graph"></param>
+ <param name="numberOfAttempts"></param>
+ <param name="optimize"></param>
+ <param name="simplify"></param>
+ <param name="fixNonOrthogonal"></param>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Orthogonal.Visibility">
+ 
+ <summary>
+ @author santi
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Orthogonal.Visibility.WVisibility">
+ <summary>
+ W-Visibility algorithm (reference)
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.Orthogonal.Visibility.WVisibility2Connected">
+ <summary>
+ 1,2: select (s,t) and generate an st-order. 
+   Generate the graph D induced by the st-ordering
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.SpringEmbedder.#ctor(Microsoft.VisualBasic.Data.visualize.Network.Graph.NetworkGraph,System.Drawing.Size,System.Double,System.Double)">
+ <summary>
+ 
+ </summary>
+ <param name="g"></param>
+ <param name="size"></param>
+ <param name="maxRepulsiveForceDistance">
+ Repulsive forces between nodes that are further apart than this are ignored.
+ </param>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.SpringEmbedder.doLayout(System.Int32)">
+ <summary>
+ Applies the spring embedder.
+ </summary>
+ <param name="iterations"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.SpringEmbedder.repulsions">
+ <summary>
+ Calculate forces acting on nodes due to node-node repulsions...
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.SpringEmbedder.edgeAttractions">
+ <summary>
+ Calculate forces acting on nodes due to edge attractions.
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.SpringEmbedder.setLocation(System.Double)">
+ <summary>
+ Now move each node to its new location...
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.SpringEmbedder.ForceDirectedLayout(Microsoft.VisualBasic.Data.visualize.Network.Graph.NetworkGraph,System.Drawing.Size,System.Int32)">
+ <summary>
+ 
+ </summary>
+ <param name="network"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.SpringForce.Interfaces.IForceDirected.EachNode(Microsoft.VisualBasic.Data.visualize.Network.Layouts.SpringForce.Interfaces.NodeAction)">
+ <summary>
+ 节点的经过计算之后的当前位置可以从这个方法之中获取得到
+ </summary>
+ <param name="del"></param>
+</member>
+<member name="T:Microsoft.VisualBasic.Data.visualize.Network.Layouts.SpringForce.LayoutUpdater.layoutGenerator">
+ <summary>
+ Do nothing, just used for generate network layout
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.SpringForce.LayoutUpdater.layoutGenerator.drawNode(Microsoft.VisualBasic.Data.visualize.Network.Graph.Node,Microsoft.VisualBasic.Data.visualize.Network.Layouts.AbstractVector)">
+ <summary>
+ 在这里更新节点的位置
+ </summary>
+ <param name="iNode"></param>
+ <param name="iPosition"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.SpringForce.AbstractRenderer.Draw(System.Double,System.Boolean)">
+ <summary>
+ 
+ </summary>
+ <param name="iTimeStep"><see cref="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.IPlanner.Collide(System.Double)"/></param>
+ <param name="physicsUpdate"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.SpringForce.AbstractRenderer.DirectDraw">
+ <summary>
+ 不计算位置而直接更新绘图
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.SpringForce.ForceDirected`1.applyCoulombsLaw">
+ <summary>
+ 库仑法则，所有的节点之间都存在着斥力
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.SpringForce.ForceDirected`1.applyHookesLaw">
+ <summary>
+ 弹簧力，所有的通过边连接的节点间都存在着弹簧的牵引力
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.SpringForce.ForceDirected`1.Flush">
+ <summary>
+ write node layout position
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.Data.visualize.Network.Layouts.SpringForce.ForceDirected2D">
+ <summary>
+ Layout provider engine for the 2D network graphics.
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.Data.visualize.Network.Layouts.SpringForce.LayoutPoint">
+ <summary>
+ The position of the node object in the fdg data model.
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.Data.visualize.Network.Layouts.SpringForce.Parameters">
+ <summary>
+ The network graph layout parameters
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.Data.visualize.Network.Layouts.SpringForce.ForceDirectedArgs">
+ <summary>
+ Function parameters for <see cref="M:Microsoft.VisualBasic.Data.visualize.Network.Layouts.forceNetwork.doForceLayout(Microsoft.VisualBasic.Data.visualize.Network.Graph.NetworkGraph@,Microsoft.VisualBasic.Data.visualize.Network.Layouts.SpringForce.ForceDirectedArgs,System.Boolean,System.Action{System.String},Microsoft.VisualBasic.Language.Value{System.Boolean})"/>
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.Data.visualize.Network.Layouts.SpringForce.ForceDirectedArgs.Stiffness">
+ <summary>
+ 刚度值,这个参数值越大,则节点间的距离越小,网络的变化越明显
+ 这个参数值越小,则节点间的距离越大,网络的变化越平缓
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Data.visualize.Network.Layouts.SpringForce.ForceDirectedArgs.Repulsion">
+ <summary>
+ 节点之间的排斥力大小,这个值越大,则节点间的距离越远,反之节点之间的距离越近
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.Data.visualize.Network.Layouts.SpringForce.ForceDirectedArgs.Damping">
+ <summary>
+ 阻尼,这个值越小,则变化越不明显,值接近于1的时候,网络的布局结构会变化非常大
+ 当这个参数值大于1的时候,网络将无法稳定下来
+ </summary>
+ <returns></returns>
+</member>
+</members>
+</doc>

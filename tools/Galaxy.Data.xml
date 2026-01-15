@@ -1,0 +1,1799 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+Galaxy.Data
+</name>
+</assembly>
+<members>
+<member name="T:Galaxy.Data.My.Resources.Resources">
+<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member>
+<member name="P:Galaxy.Data.My.Resources.Resources.ResourceManager">
+<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member>
+<member name="P:Galaxy.Data.My.Resources.Resources.Culture">
+<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member>
+<member name="P:Galaxy.Data.My.Resources.Resources.AdvancedDataGridView_logo">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:Galaxy.Data.My.Resources.Resources.ColumnHeader_Filtered">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:Galaxy.Data.My.Resources.Resources.ColumnHeader_FilteredAndOrderedASC">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:Galaxy.Data.My.Resources.Resources.ColumnHeader_FilteredAndOrderedDESC">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:Galaxy.Data.My.Resources.Resources.ColumnHeader_OrderedASC">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:Galaxy.Data.My.Resources.Resources.ColumnHeader_OrderedDESC">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:Galaxy.Data.My.Resources.Resources.ColumnHeader_SavedFilters">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:Galaxy.Data.My.Resources.Resources.ColumnHeader_UnFiltered">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:Galaxy.Data.My.Resources.Resources.export_table">
+<summary>
+  Looks up a localized string similar to Export Table Data.
+</summary>
+</member>
+<member name="P:Galaxy.Data.My.Resources.Resources.export_table_zh">
+<summary>
+  Looks up a localized string similar to 导出表格数据.
+</summary>
+</member>
+<member name="P:Galaxy.Data.My.Resources.Resources.MenuStrip_OrderASCbool">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:Galaxy.Data.My.Resources.Resources.MenuStrip_OrderASCnum">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:Galaxy.Data.My.Resources.Resources.MenuStrip_OrderASCtxt">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:Galaxy.Data.My.Resources.Resources.MenuStrip_OrderDESCbool">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:Galaxy.Data.My.Resources.Resources.MenuStrip_OrderDESCnum">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:Galaxy.Data.My.Resources.Resources.MenuStrip_OrderDESCtxt">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:Galaxy.Data.My.Resources.Resources.MenuStrip_ResizeGrip">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:Galaxy.Data.My.Resources.Resources.SearchToolBar_ButtonCaseSensitive">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:Galaxy.Data.My.Resources.Resources.SearchToolBar_ButtonClose">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:Galaxy.Data.My.Resources.Resources.SearchToolBar_ButtonFromBegin">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:Galaxy.Data.My.Resources.Resources.SearchToolBar_ButtonSearch">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:Galaxy.Data.My.Resources.Resources.SearchToolBar_ButtonWholeWord">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="M:Galaxy.Data.DataControlHandler.getFieldVector(System.Data.DataTable,System.String)">
+ <summary>
+ Get the field column data vector from the given data table by field name reference
+ </summary>
+ <param name="table"></param>
+ <param name="fieldRef"></param>
+ <returns></returns>
+</member>
+<member name="M:Galaxy.Data.DataControlHandler.getFieldVector(System.Data.DataTable,System.Int32)">
+ <summary>
+ Get the field column data vector from the given data table by field ordinal index reference
+ </summary>
+ <param name="table"></param>
+ <param name="fieldRef"></param>
+ <returns></returns>
+</member>
+<member name="M:Galaxy.Data.DataControlHandler.getFieldVector(System.Windows.Forms.DataGridView,System.String)">
+ <summary>
+ found based on the <see cref="P:System.Windows.Forms.DataGridViewColumn.Name"/>
+ </summary>
+ <param name="AdvancedDataGridView1"></param>
+ <param name="fieldRef"></param>
+ <returns></returns>
+</member>
+<member name="T:Galaxy.Data.HyperlinkSimulator">
+ <summary>
+ Hyperlink simulator for <see cref="P:Galaxy.Data.HyperlinkSimulator.propertyGrid"/>
+ </summary>
+</member>
+<member name="M:Galaxy.Data.JSON.JsonRender.Reset">
+ <summary>
+ clear the json tree list view
+ </summary>
+</member>
+<member name="T:Galaxy.Data.JSON.JsonViewer">
+ <summary>
+ https://github.com/Sesshoumaru/JsonViewer
+ </summary>
+</member>
+<member name="M:Galaxy.Data.TableHelper.GetDataFrame(System.Windows.Forms.DataGridView,System.Boolean,System.Action{System.String})">
+ <summary>
+ Helper function for get dataframe from datagrid view table object
+ </summary>
+ <param name="table2"></param>
+ <param name="saveHeader"></param>
+ <returns></returns>
+</member>
+<member name="M:Galaxy.Data.TableHelper.WriteTableToFile(System.Windows.Forms.DataGridView,System.IO.TextWriter,System.Boolean,System.Char,System.Action{System.String})">
+ <summary>
+ write table in tsv file format
+ </summary>
+ <param name="table2"></param>
+ <param name="writeTsv">
+ target file or the <see cref="T:System.Text.StringBuilder"/> for copy to clipboard
+ </param>
+</member>
+<member name="M:Galaxy.Data.TableHelper.SaveDataGrid(System.Windows.Forms.DataGridView,System.String)">
+ <summary>
+ save data grid as excel table file
+ </summary>
+ <param name="table"></param>
+ <param name="title">
+ ``%s`` is the place holder for file name
+ </param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridView.#ctor">
+ <summary>
+ AdvancedDataGridView constructor
+ </summary>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridView.OnHandleDestroyed(System.EventArgs)">
+ <summary>
+ Handle the dispose methods
+ </summary>
+ <param name="e"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridView.OnDataSourceChanged(System.EventArgs)">
+ <summary>
+ Handle the DataSource change
+ </summary>
+ <param name="e"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridView.SetTranslations(System.Collections.Generic.IDictionary{System.String,System.String})">
+ <summary>
+ Set translation dictionary
+ </summary>
+ <param name="translations"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridView.GetTranslations">
+ <summary>
+ Get translation dictionary
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridView.LoadTranslationsFromFile(System.String)">
+ <summary>
+ Load translations from file
+ </summary>
+ <param name="filename"></param>
+ <returns></returns>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridView.SetDoubleBuffered">
+ <summary>
+ Set AdvancedDataGridView the Double Buffered
+ </summary>
+</member>
+<member name="P:Galaxy.Data.TableSheet.AdvancedDataGridView.SortStringChangedInvokeBeforeDatasourceUpdate">
+ <summary>
+ SortStringChanged event called before DataSource update after sort changed is triggered
+ </summary>
+</member>
+<member name="P:Galaxy.Data.TableSheet.AdvancedDataGridView.FilterStringChangedInvokeBeforeDatasourceUpdate">
+ <summary>
+ FilterStringChanged event called before DataSource update after sort changed is triggered
+ </summary>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridView.DisableFilterAndSort(System.Windows.Forms.DataGridViewColumn)">
+ <summary>
+ Disable a Filter and Sort on a DataGridViewColumn
+ </summary>
+ <param name="column"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridView.EnableFilterAndSort(System.Windows.Forms.DataGridViewColumn)">
+ <summary>
+ Enable a Filter and Sort on a DataGridViewColumn
+ </summary>
+ <param name="column"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridView.SetFilterAndSortEnabled(System.Windows.Forms.DataGridViewColumn,System.Boolean)">
+ <summary>
+ Enabled or disable Filter and Sort capabilities on a DataGridViewColumn
+ </summary>
+ <param name="column"></param>
+ <param name="enabled"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridView.DisableFilterChecklist(System.Windows.Forms.DataGridViewColumn)">
+ <summary>
+ Disable a Filter checklist on a DataGridViewColumn
+ </summary>
+ <param name="column"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridView.EnableFilterChecklist(System.Windows.Forms.DataGridViewColumn)">
+ <summary>
+ Enable a Filter checklist on a DataGridViewColumn
+ </summary>
+ <param name="column"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridView.SetFilterChecklistEnabled(System.Windows.Forms.DataGridViewColumn,System.Boolean)">
+ <summary>
+ Enabled or disable Filter checklist capabilities on a DataGridViewColumn
+ </summary>
+ <param name="column"></param>
+ <param name="enabled"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridView.SetFilterChecklistNodesMax(System.Windows.Forms.DataGridViewColumn,System.Int32)">
+ <summary>
+ Set Filter checklist nodes max on a DataGridViewColumn
+ </summary>
+ <param name="column"></param>
+ <param name="maxnodes"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridView.SetFilterChecklistNodesMax(System.Int32)">
+ <summary>
+ Set Filter checklist nodes max
+ </summary>
+ <param name="maxnodes"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridView.EnabledFilterChecklistNodesMax(System.Windows.Forms.DataGridViewColumn,System.Boolean)">
+ <summary>
+ Enable or disable Filter checklist nodes max on a DataGridViewColumn
+ </summary>
+ <param name="column"></param>
+ <param name="enabled"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridView.EnabledFilterChecklistNodesMax(System.Boolean)">
+ <summary>
+ Enable or disable Filter checklist nodes max
+ </summary>
+ <param name="enabled"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridView.DisableFilterCustom(System.Windows.Forms.DataGridViewColumn)">
+ <summary>
+ Disable a Filter custom on a DataGridViewColumn
+ </summary>
+ <param name="column"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridView.EnableFilterCustom(System.Windows.Forms.DataGridViewColumn)">
+ <summary>
+ Enable a Filter custom on a DataGridViewColumn
+ </summary>
+ <param name="column"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridView.SetFilterCustomEnabled(System.Windows.Forms.DataGridViewColumn,System.Boolean)">
+ <summary>
+ Enabled or disable Filter custom capabilities on a DataGridViewColumn
+ </summary>
+ <param name="column"></param>
+ <param name="enabled"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridView.SetFilterChecklistTextFilterTextChangedDelayNodes(System.Windows.Forms.DataGridViewColumn,System.Int32)">
+ <summary>
+ Set nodes to enable TextChanged delay on filter checklist on a DataGridViewColumn
+ </summary>
+ <param name="column"></param>
+ <param name="numnodes"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridView.SetFilterChecklistTextFilterTextChangedDelayNodes(System.Int32)">
+ <summary>
+ Set nodes to enable TextChanged delay on filter checklist
+ </summary>
+ <param name="numnodes"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridView.SetFilterChecklistTextFilterTextChangedDelayDisabled(System.Windows.Forms.DataGridViewColumn)">
+ <summary>
+ Disable TextChanged delay on filter checklist on a DataGridViewColumn
+ </summary>
+ <param name="column"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridView.SetFilterChecklistTextFilterTextChangedDelayDisabled">
+ <summary>
+ Disable TextChanged delay on filter checklist
+ </summary>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridView.SetFilterChecklistTextFilterTextChangedDelayMs(System.Windows.Forms.DataGridViewColumn,System.Int32)">
+ <summary>
+ Set TextChanged delay milliseconds on filter checklist on a DataGridViewColumn
+ </summary>
+ <param name="column"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridView.SetFilterChecklistTextFilterTextChangedDelayMs(System.Int32)">
+ <summary>
+ Set TextChanged delay milliseconds on filter checklist
+ </summary>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridView.LoadFilterAndSort(System.String,System.String)">
+ <summary>
+ Load a Filter and Sort preset
+ </summary>
+ <param name="filter"></param>
+ <param name="sorting"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridView.CleanFilterAndSort">
+ <summary>
+ Clean Filter and Sort
+ </summary>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridView.SetMenuStripFilterNOTINLogic(System.Boolean)">
+ <summary>
+ Set the NOTIN Logic for checkbox filter
+ </summary>
+ <param name="enabled"></param>
+</member>
+<member name="P:Galaxy.Data.TableSheet.AdvancedDataGridView.FilterAndSortEnabled">
+ <summary>
+ Get or Set Filter and Sort status
+ </summary>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridView.SetFilterTextFocusOnShow(System.Boolean)">
+ <summary>
+ Set the Filter Text focus OnShow
+ </summary>
+ <param name="enabled"></param>
+</member>
+<member name="P:Galaxy.Data.TableSheet.AdvancedDataGridView.SortString">
+ <summary>
+ Get the Sort string
+ </summary>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridView.TriggerSortStringChanged">
+ <summary>
+ Trigger the sort string changed method
+ </summary>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridView.SetSortEnabled(System.Windows.Forms.DataGridViewColumn,System.Boolean)">
+ <summary>
+ Enabled or disable Sort capabilities for a DataGridViewColumn
+ </summary>
+ <param name="column"></param>
+ <param name="enabled"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridView.SortASC(System.Windows.Forms.DataGridViewColumn)">
+ <summary>
+ Sort ASC
+ </summary>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridView.SortDESC(System.Windows.Forms.DataGridViewColumn)">
+ <summary>
+ Sort ASC
+ </summary>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridView.CleanSort(System.Windows.Forms.DataGridViewColumn,System.Boolean)">
+ <summary>
+ Clean all Sort on specific column
+ </summary>
+ <param name="column"></param>
+ <param name="fireEvent"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridView.CleanSort(System.Windows.Forms.DataGridViewColumn)">
+ <summary>
+ Clean all Sort on specific column
+ </summary>
+ <param name="column"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridView.CleanSort(System.Boolean)">
+ <summary>
+ Clean all Sort on all columns
+ </summary>
+ <param name="fireEvent"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridView.CleanSort">
+ <summary>
+ Clean all Sort on all columns
+ </summary>
+</member>
+<member name="P:Galaxy.Data.TableSheet.AdvancedDataGridView.FilterString">
+ <summary>
+ Get the Filter string
+ </summary>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridView.TriggerFilterStringChanged">
+ <summary>
+ Trigger the filter string changed method
+ </summary>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridView.SetFilterDateAndTimeEnabled(System.Windows.Forms.DataGridViewColumn,System.Boolean)">
+ <summary>
+ Set FilterDateAndTime status for a DataGridViewColumn
+ </summary>
+ <param name="column"></param>
+ <param name="enabled"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridView.SetFilterEnabled(System.Windows.Forms.DataGridViewColumn,System.Boolean)">
+ <summary>
+ Enable or disable Filter capabilities for a DataGridViewColumn
+ </summary>
+ <param name="column"></param>
+ <param name="enabled"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridView.SetChecklistTextFilterRemoveNodesOnSearchMode(System.Windows.Forms.DataGridViewColumn,System.Boolean)">
+ <summary>
+ Enable or disable Text filter on checklist remove node mode for a DataGridViewColumn
+ </summary>
+ <param name="column"></param>
+ <param name="enabled"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridView.CleanFilter(System.Windows.Forms.DataGridViewColumn,System.Boolean)">
+ <summary>
+ Clean Filter on specific column
+ </summary>
+ <param name="column"></param>
+ <param name="fireEvent"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridView.CleanFilter(System.Windows.Forms.DataGridViewColumn)">
+ <summary>
+ Clean Filter on specific column
+ </summary>
+ <param name="column"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridView.CleanFilter(System.Boolean)">
+ <summary>
+ Clean Filter on all columns
+ </summary>
+ <param name="fireEvent"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridView.CleanFilter">
+ <summary>
+ Clean all Sort on all columns
+ </summary>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridView.SetTextFilterRemoveNodesOnSearch(System.Windows.Forms.DataGridViewColumn,System.Boolean)">
+ <summary>
+ Set the text filter search nodes behaviour
+ </summary>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridView.GetTextFilterRemoveNodesOnSearch(System.Windows.Forms.DataGridViewColumn)">
+ <summary>
+ Get the text filter search nodes behaviour
+ </summary>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridView.GetColumnsFilteredStrings">
+ <summary>
+ Return the filtered strings by column name
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridView.SetFilterBuilderMode(Galaxy.Data.TableSheet.FilterBuilerMode)">
+ <summary>
+ Set the filter builder mode
+ </summary>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridView.GetFilterBuilderMode">
+ <summary>
+ Get the filter builder mode
+ </summary>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridView.FindCell(System.String,System.String,System.Int32,System.Int32,System.Boolean,System.Boolean)">
+ <summary>
+ Find the Cell with the given value
+ </summary>
+ <param name="valueToFind"></param>
+ <param name="columnName"></param>
+ <param name="rowIndex"></param>
+ <param name="columnIndex"></param>
+ <param name="isWholeWordSearch"></param>
+ <param name="isCaseSensitive"></param>
+ <returns></returns>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridView.ShowMenuStrip(System.Windows.Forms.DataGridViewColumn)">
+ <summary>
+ Show a menu strip
+ </summary>
+ <param name="column"></param>
+</member>
+<member name="P:Galaxy.Data.TableSheet.AdvancedDataGridView.MaxFilterButtonImageHeight">
+ <summary>
+ Get or Set the max filter button image height
+ </summary>
+</member>
+<member name="P:Galaxy.Data.TableSheet.AdvancedDataGridView.MaxAllCellHeight">
+ <summary>
+ Get or Set the max filter button image height of all cells
+ </summary>
+</member>
+<member name="P:Galaxy.Data.TableSheet.AdvancedDataGridView.FilterableCells">
+ <summary>
+ Get all columns
+ </summary>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridView.OnColumnAdded(System.Windows.Forms.DataGridViewColumnEventArgs)">
+ <summary>
+ Overriden  OnColumnAdded event
+ </summary>
+ <param name="e"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridView.OnColumnRemoved(System.Windows.Forms.DataGridViewColumnEventArgs)">
+ <summary>
+ Overridden OnColumnRemoved event
+ </summary>
+ <param name="e"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridView.OnRowsAdded(System.Windows.Forms.DataGridViewRowsAddedEventArgs)">
+ <summary>
+ Overridden OnRowsAdded event
+ </summary>
+ <param name="e"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridView.OnRowsRemoved(System.Windows.Forms.DataGridViewRowsRemovedEventArgs)">
+ <summary>
+ Overridden OnRowsRemoved event
+ </summary>
+ <param name="e"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridView.OnCellValueChanged(System.Windows.Forms.DataGridViewCellEventArgs)">
+ <summary>
+ Overridden OnCellValueChanged event
+ </summary>
+ <param name="e"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridView.BuildFilterString">
+ <summary>
+ Build the complete Filter string
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridView.Cell_FilterPopup(System.Object,Galaxy.Data.TableSheet.Events.ColumnHeaderCellEventArgs)">
+ <summary>
+ FilterPopup event
+ </summary>
+ <param name="sender"></param>
+ <param name="e"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridView.Cell_FilterChanged(System.Object,Galaxy.Data.TableSheet.Events.ColumnHeaderCellEventArgs)">
+ <summary>
+ FilterChanged event
+ </summary>
+ <param name="sender"></param>
+ <param name="e"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridView.BuildSortString">
+ <summary>
+ Build the complete Sort string
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridView.Cell_SortChanged(System.Object,Galaxy.Data.TableSheet.Events.ColumnHeaderCellEventArgs)">
+ <summary>
+ SortChanged event
+ </summary>
+ <param name="sender"></param>
+ <param name="e"></param>
+</member>
+<member name="F:Galaxy.Data.TableSheet.AdvancedDataGridViewSearchToolBar.components">
+ <summary>
+ Required designer variable.
+ </summary>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridViewSearchToolBar.Dispose(System.Boolean)">
+ <summary>
+ Clean up any resources being used.
+ </summary>
+ <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridViewSearchToolBar.InitializeComponent">
+ <summary>
+ Required method for Designer support - do not modify
+ the contents of this method with the code editor.
+ </summary>
+</member>
+<member name="F:Galaxy.Data.TableSheet.AdvancedDataGridViewSearchToolBar._translationsRefreshComponentTranslationsCheck">
+ <summary>
+ Used to check if components translations has to be updated
+ </summary>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridViewSearchToolBar.#ctor">
+ <summary>
+ AdvancedDataGridViewSearchToolBar constructor
+ </summary>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridViewSearchToolBar.SetTranslations(System.Collections.Generic.IDictionary{System.String,System.String})">
+ <summary>
+ Set translation dictionary
+ </summary>
+ <param name="translations"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridViewSearchToolBar.LoadTranslationsFromFile(System.String)">
+ <summary>
+ Load translations from file
+ </summary>
+ <param name="filename"></param>
+ <returns></returns>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridViewSearchToolBar.RefreshComponentTranslations">
+ <summary>
+ Update components translations
+ </summary>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridViewSearchToolBar.button_search_Click(System.Object,System.EventArgs)">
+ <summary>
+ button Search Click event
+ </summary>
+ <param name="sender"></param>
+ <param name="e"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridViewSearchToolBar.button_close_Click(System.Object,System.EventArgs)">
+ <summary>
+ button Close Click event
+ </summary>
+ <param name="sender"></param>
+ <param name="e"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridViewSearchToolBar.textBox_search_TextChanged(System.Object,System.EventArgs)">
+ <summary>
+ textBox Search TextChanged event
+ </summary>
+ <param name="sender"></param>
+ <param name="e"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridViewSearchToolBar.textBox_search_Enter(System.Object,System.EventArgs)">
+ <summary>
+ textBox Search Enter event
+ </summary>
+ <param name="sender"></param>
+ <param name="e"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridViewSearchToolBar.textBox_search_Leave(System.Object,System.EventArgs)">
+ <summary>
+ textBox Search Leave event
+ </summary>
+ <param name="sender"></param>
+ <param name="e"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridViewSearchToolBar.textBox_search_KeyDown(System.Object,System.Windows.Forms.KeyEventArgs)">
+ <summary>
+ textBox Search KeyDown event
+ </summary>
+ <param name="sender"></param>
+ <param name="e"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridViewSearchToolBar.SetColumns(System.Windows.Forms.DataGridViewColumnCollection)">
+ <summary>
+ Set Columns to search in
+ </summary>
+ <param name="columns"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridViewSearchToolBar.ResizeMe(System.Object,System.EventArgs)">
+ <summary>
+ Resize event
+ </summary>
+ <param name="sender"></param>
+ <param name="e"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridViewSearchToolBar.GetResizeBoxSize(System.Int32,System.Int32@,System.Int32@)">
+ <summary>
+ Get a Resize Size for a box
+ </summary>
+ <param name="width"></param>
+ <param name="w1"></param>
+ <param name="w2"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.AdvancedDataGridViewSearchToolBar.OnPaint(System.Windows.Forms.PaintEventArgs)">
+ <summary>
+ On Paint event
+ </summary>
+ <param name="e"></param>
+</member>
+<member name="F:Galaxy.Data.TableSheet.ColumnHeaderCell._MenuStrip">
+ <summary>
+ Get the MenuStrip for this ColumnHeaderCell
+ </summary>
+</member>
+<member name="F:Galaxy.Data.TableSheet.ColumnHeaderCell.FilterDateAndTimeDefaultEnabled">
+ <summary>
+ Default behaviour for Date and Time filter
+ </summary>
+</member>
+<member name="F:Galaxy.Data.TableSheet.ColumnHeaderCell.FilterButtonImageDefaultSize">
+ <summary>
+ Default filter button image width and height
+ </summary>
+</member>
+<member name="M:Galaxy.Data.TableSheet.ColumnHeaderCell.#ctor(Galaxy.Data.TableSheet.AdvancedDataGridView,System.Windows.Forms.DataGridViewColumnHeaderCell,System.Boolean)">
+ <summary>
+ ColumnHeaderCell constructor
+ </summary>
+ <param name="dataGridView"></param>
+ <param name="oldCell"></param>
+ <param name="filterEnabled"></param>
+</member>
+<member name="P:Galaxy.Data.TableSheet.ColumnHeaderCell.FilterAndSortEnabled">
+ <summary>
+ Get or Set the Filter and Sort enabled status
+ </summary>
+</member>
+<member name="M:Galaxy.Data.TableSheet.ColumnHeaderCell.SetLoadedMode(System.Boolean)">
+ <summary>
+ Set or Unset the Filter and Sort to Loaded mode
+ </summary>
+ <param name="enabled"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.ColumnHeaderCell.CleanSort">
+ <summary>
+ Clean Sort
+ </summary>
+</member>
+<member name="M:Galaxy.Data.TableSheet.ColumnHeaderCell.CleanFilter">
+ <summary>
+ Clean Filter
+ </summary>
+</member>
+<member name="M:Galaxy.Data.TableSheet.ColumnHeaderCell.SortASC">
+ <summary>
+ Sort ASC
+ </summary>
+</member>
+<member name="M:Galaxy.Data.TableSheet.ColumnHeaderCell.SortDESC">
+ <summary>
+ Sort DESC
+ </summary>
+</member>
+<member name="M:Galaxy.Data.TableSheet.ColumnHeaderCell.Clone">
+ <summary>
+ Clone the ColumnHeaderCell
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Galaxy.Data.TableSheet.ColumnHeaderCell.ActiveSortType">
+ <summary>
+ Get the MenuStrip SortType
+ </summary>
+</member>
+<member name="P:Galaxy.Data.TableSheet.ColumnHeaderCell.ActiveFilterType">
+ <summary>
+ Get the MenuStrip FilterType
+ </summary>
+</member>
+<member name="P:Galaxy.Data.TableSheet.ColumnHeaderCell.SortString">
+ <summary>
+ Get the Sort string
+ </summary>
+</member>
+<member name="P:Galaxy.Data.TableSheet.ColumnHeaderCell.FilterString">
+ <summary>
+ Get the Filter string
+ </summary>
+</member>
+<member name="P:Galaxy.Data.TableSheet.ColumnHeaderCell.MinimumSize">
+ <summary>
+ Get the Minimum size
+ </summary>
+</member>
+<member name="P:Galaxy.Data.TableSheet.ColumnHeaderCell.IsSortEnabled">
+ <summary>
+ Get or Set the Sort enabled status
+ </summary>
+</member>
+<member name="P:Galaxy.Data.TableSheet.ColumnHeaderCell.IsFilterEnabled">
+ <summary>
+ Get or Set the Filter enabled status
+ </summary>
+</member>
+<member name="P:Galaxy.Data.TableSheet.ColumnHeaderCell.IsFilterChecklistEnabled">
+ <summary>
+ Get or Set the Filter enabled status
+ </summary>
+</member>
+<member name="P:Galaxy.Data.TableSheet.ColumnHeaderCell.IsFilterDateAndTimeEnabled">
+ <summary>
+ Get or Set the FilterDateAndTime enabled status
+ </summary>
+</member>
+<member name="P:Galaxy.Data.TableSheet.ColumnHeaderCell.IsMenuStripFilterNOTINLogicEnabled">
+ <summary>
+ Get or Set the NOT IN logic for Filter
+ </summary>
+</member>
+<member name="P:Galaxy.Data.TableSheet.ColumnHeaderCell.DoesTextFilterRemoveNodesOnSearch">
+ <summary>
+ Set the text filter search nodes behaviour
+ </summary>
+</member>
+<member name="P:Galaxy.Data.TableSheet.ColumnHeaderCell.TextFilterTextChangedDelayNodes">
+ <summary>
+ Number of nodes to enable the TextChanged delay on text filter
+ </summary>
+</member>
+<member name="P:Galaxy.Data.TableSheet.ColumnHeaderCell.FilterTextFocusOnShow">
+ <summary>
+ Get or Set the Filter Text focus OnShow
+ </summary>
+</member>
+<member name="M:Galaxy.Data.TableSheet.ColumnHeaderCell.SetSortEnabled(System.Boolean)">
+ <summary>
+ Enabled or disable Sort capabilities
+ </summary>
+ <param name="enabled"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.ColumnHeaderCell.SetFilterEnabled(System.Boolean)">
+ <summary>
+ Enable or disable Filter capabilities
+ </summary>
+ <param name="enabled"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.ColumnHeaderCell.SetFilterChecklistEnabled(System.Boolean)">
+ <summary>
+ Enable or disable Filter checklist capabilities
+ </summary>
+ <param name="enabled"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.ColumnHeaderCell.SetFilterChecklistNodesMax(System.Int32)">
+ <summary>
+ Set Filter checklist nodes max
+ </summary>
+ <param name="maxnodes"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.ColumnHeaderCell.EnabledFilterChecklistNodesMax(System.Boolean)">
+ <summary>
+ Enable or disable Filter checklist nodes max
+ </summary>
+ <param name="enabled"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.ColumnHeaderCell.SetFilterCustomEnabled(System.Boolean)">
+ <summary>
+ Enable or disable Filter custom capabilities
+ </summary>
+ <param name="enabled"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.ColumnHeaderCell.SetChecklistTextFilterRemoveNodesOnSearchMode(System.Boolean)">
+ <summary>
+ Enable or disable Text filter on checklist remove node mode
+ </summary>
+ <param name="enabled"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.ColumnHeaderCell.SetTextFilterTextChangedDelayNodesDisabled">
+ <summary>
+ Disable text filter TextChanged delay
+ </summary>
+</member>
+<member name="M:Galaxy.Data.TableSheet.ColumnHeaderCell.SetTextFilterTextChangedDelayMs(System.Int32)">
+ <summary>
+ Set text filter TextChanged delay milliseconds
+ </summary>
+</member>
+<member name="M:Galaxy.Data.TableSheet.ColumnHeaderCell.MenuStrip_FilterChanged(System.Object,System.EventArgs)">
+ <summary>
+ OnFilterChanged event
+ </summary>
+ <param name="sender"></param>
+ <param name="e"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.ColumnHeaderCell.MenuStrip_SortChanged(System.Object,System.EventArgs)">
+ <summary>
+ OnSortChanged event
+ </summary>
+ <param name="sender"></param>
+ <param name="e"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.ColumnHeaderCell.CleanEvents">
+ <summary>
+ Clean attached events
+ </summary>
+</member>
+<member name="M:Galaxy.Data.TableSheet.ColumnHeaderCell.RepaintCell">
+ <summary>
+ Repaint the Cell
+ </summary>
+</member>
+<member name="M:Galaxy.Data.TableSheet.ColumnHeaderCell.RefreshImage">
+ <summary>
+ Refrash the Cell image
+ </summary>
+</member>
+<member name="M:Galaxy.Data.TableSheet.ColumnHeaderCell.Paint(System.Drawing.Graphics,System.Drawing.Rectangle,System.Drawing.Rectangle,System.Int32,System.Windows.Forms.DataGridViewElementStates,System.Object,System.Object,System.String,System.Windows.Forms.DataGridViewCellStyle,System.Windows.Forms.DataGridViewAdvancedBorderStyle,System.Windows.Forms.DataGridViewPaintParts)">
+ <summary>
+ Pain method
+ </summary>
+ <param name="graphics"></param>
+ <param name="clipBounds"></param>
+ <param name="cellBounds"></param>
+ <param name="rowIndex"></param>
+ <param name="cellState"></param>
+ <param name="value"></param>
+ <param name="formattedValue"></param>
+ <param name="errorText"></param>
+ <param name="cellStyle"></param>
+ <param name="advancedBorderStyle"></param>
+ <param name="paintParts"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.ColumnHeaderCell.GetFilterBounds(System.Boolean)">
+ <summary>
+ Get the ColumnHeaderCell Bounds
+ </summary>
+ <param name="withOffset"></param>
+ <returns></returns>
+</member>
+<member name="M:Galaxy.Data.TableSheet.ColumnHeaderCell.OnMouseMove(System.Windows.Forms.DataGridViewCellMouseEventArgs)">
+ <summary>
+ OnMouseMove event
+ </summary>
+ <param name="e"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.ColumnHeaderCell.OnMouseDown(System.Windows.Forms.DataGridViewCellMouseEventArgs)">
+ <summary>
+ OnMouseDown event
+ </summary>
+ <param name="e"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.ColumnHeaderCell.OnMouseUp(System.Windows.Forms.DataGridViewCellMouseEventArgs)">
+ <summary>
+ OnMouseUp event
+ </summary>
+ <param name="e"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.ColumnHeaderCell.OnMouseLeave(System.Int32)">
+ <summary>
+ OnMouseLeave event
+ </summary>
+ <param name="rowIndex"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.GridSearchHandler.AdvancedDataGridViewSearchToolBar1_Search(System.Object,Galaxy.Data.TableSheet.Events.AdvancedDataGridViewSearchToolBarSearchEventArgs)">
+ <summary>
+ Handles AdvancedDataGridViewSearchToolBar1.Search
+ </summary>
+ <param name="sender"></param>
+ <param name="e"></param>
+</member>
+<member name="T:Galaxy.Data.TableSheet.FilterBuilerMode">
+ <summary>
+ Filter builder mode
+ </summary>
+</member>
+<member name="F:Galaxy.Data.TableSheet.FormCustomFilter.components">
+ <summary>
+ Required designer variable.
+ </summary>
+</member>
+<member name="M:Galaxy.Data.TableSheet.FormCustomFilter.Dispose(System.Boolean)">
+ <summary>
+ Clean up any resources being used.
+ </summary>
+ <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.FormCustomFilter.InitializeComponent">
+ <summary>
+ Required method for Designer support - do not modify
+ the contents of this method with the code editor.
+ </summary>
+</member>
+<member name="M:Galaxy.Data.TableSheet.FormCustomFilter.#ctor(System.Type,System.Boolean)">
+ <summary>
+ Main constructor
+ </summary>
+ <param name="dataType"></param>
+ <param name="filterDateAndTimeEnabled"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.FormCustomFilter.FormCustomFilter_Load(System.Object,System.EventArgs)">
+ <summary>
+ Form loaders
+ </summary>
+ <param name="sender"></param>
+ <param name="e"></param>
+</member>
+<member name="P:Galaxy.Data.TableSheet.FormCustomFilter.FilterString">
+ <summary>
+ Get the Filter string
+ </summary>
+</member>
+<member name="P:Galaxy.Data.TableSheet.FormCustomFilter.FilterStringDescription">
+ <summary>
+ Get the Filter string description
+ </summary>
+</member>
+<member name="M:Galaxy.Data.TableSheet.FormCustomFilter.BuildCustomFilter(Galaxy.Data.TableSheet.FormCustomFilter.FilterType,System.Boolean,System.String,System.Windows.Forms.Control,System.Windows.Forms.Control)">
+ <summary>
+ Build a Filter string
+ </summary>
+ <param name="filterType"></param>
+ <param name="filterDateAndTimeEnabled"></param>
+ <param name="filterTypeConditionText"></param>
+ <param name="control1"></param>
+ <param name="control2"></param>
+ <returns></returns>
+</member>
+<member name="M:Galaxy.Data.TableSheet.FormCustomFilter.FormatFilterString(System.String)">
+ <summary>
+ Format a text Filter string
+ </summary>
+ <param name="text"></param>
+ <returns></returns>
+</member>
+<member name="M:Galaxy.Data.TableSheet.FormCustomFilter.button_cancel_Click(System.Object,System.EventArgs)">
+ <summary>
+ Button Cancel Clieck
+ </summary>
+ <param name="sender"></param>
+ <param name="e"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.FormCustomFilter.button_ok_Click(System.Object,System.EventArgs)">
+ <summary>
+ Button OK Click
+ </summary>
+ <param name="sender"></param>
+ <param name="e"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.FormCustomFilter.comboBox_filterType_SelectedIndexChanged(System.Object,System.EventArgs)">
+ <summary>
+ Changed condition type
+ </summary>
+ <param name="sender"></param>
+ <param name="e"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.FormCustomFilter.valControl_TextChanged(System.Object,System.EventArgs)">
+ <summary>
+ Changed a control Text
+ </summary>
+ <param name="sender"></param>
+ <param name="e"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.FormCustomFilter.valControl_KeyDown(System.Object,System.Windows.Forms.KeyEventArgs)">
+ <summary>
+ KeyDown on a control
+ </summary>
+ <param name="sender"></param>
+ <param name="e"></param>
+</member>
+<member name="F:Galaxy.Data.TableSheet.MenuStrip.components">
+ <summary>
+ Required designer variable.
+ </summary>
+</member>
+<member name="M:Galaxy.Data.TableSheet.MenuStrip.Dispose(System.Boolean)">
+ <summary>
+ Clean up any resources being used.
+ </summary>
+ <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.MenuStrip.InitializeComponent">
+ <summary>
+ Required method for Designer support - do not modify
+ the contents of this method with the code editor.
+ </summary>
+</member>
+<member name="F:Galaxy.Data.TableSheet.MenuStrip._DataType">
+ <summary>
+ Get the DataType for the MenuStrip Filter
+ </summary>
+</member>
+<member name="T:Galaxy.Data.TableSheet.MenuStrip.FilterType">
+ <summary>
+ MenuStrip Filter type
+ </summary>
+</member>
+<member name="T:Galaxy.Data.TableSheet.MenuStrip.SortType">
+ <summary>
+ MenuStrip Sort type
+ </summary>
+</member>
+<member name="F:Galaxy.Data.TableSheet.MenuStrip.DefaultCheckTextFilterRemoveNodesOnSearch">
+ <summary>
+ Default checklist filter node behaviour 
+ </summary>
+</member>
+<member name="F:Galaxy.Data.TableSheet.MenuStrip.DefaultMaxChecklistNodes">
+ <summary>
+ Default max filter checklist max nodes
+ </summary>
+</member>
+<member name="F:Galaxy.Data.TableSheet.MenuStrip.DefaultTextFilterTextChangedDelayNodes">
+ <summary>
+ Default number of nodes to enable the TextChanged delay on text filter
+ </summary>
+</member>
+<member name="F:Galaxy.Data.TableSheet.MenuStrip.TextFilterTextChangedDelayNodesDisabled">
+ <summary>
+ Number of nodes to disable the text filter TextChanged delay
+ </summary>
+</member>
+<member name="F:Galaxy.Data.TableSheet.MenuStrip.DefaultTextFilterTextChangedDelayMs">
+ <summary>
+ Default delay milliseconds for TextChanged delay on text filter
+ </summary>
+</member>
+<member name="M:Galaxy.Data.TableSheet.MenuStrip.#ctor(System.Type)">
+ <summary>
+ MenuStrip constructor
+ </summary>
+ <param name="dataType"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.MenuStrip.MenuStrip_Closed(System.Object,System.EventArgs)">
+ <summary>
+ Closed event
+ </summary>
+ <param name="sender"></param>
+ <param name="e"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.MenuStrip.MenuStrip_LostFocus(System.Object,System.EventArgs)">
+ <summary>
+ LostFocust event
+ </summary>
+ <param name="sender"></param>
+ <param name="e"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.MenuStrip.OnControlRemoved(System.Windows.Forms.ControlEventArgs)">
+ <summary>
+ Control removed event
+ </summary>
+ <param name="e"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.MenuStrip.GetCheckListStateImages">
+ <summary>
+ Get all images for checkList
+ </summary>
+ <returns></returns>
+</member>
+<member name="E:Galaxy.Data.TableSheet.MenuStrip.SortChanged">
+ <summary>
+ The current Sorting in changed
+ </summary>
+</member>
+<member name="E:Galaxy.Data.TableSheet.MenuStrip.FilterChanged">
+ <summary>
+ The current Filter is changed
+ </summary>
+</member>
+<member name="P:Galaxy.Data.TableSheet.MenuStrip.MaxChecklistNodes">
+ <summary>
+ Set the max checklist nodes
+ </summary>
+</member>
+<member name="P:Galaxy.Data.TableSheet.MenuStrip.ActiveSortType">
+ <summary>
+ Get the current MenuStripSortType type
+ </summary>
+</member>
+<member name="P:Galaxy.Data.TableSheet.MenuStrip.ActiveFilterType">
+ <summary>
+ Get the current MenuStripFilterType type
+ </summary>
+</member>
+<member name="P:Galaxy.Data.TableSheet.MenuStrip.IsSortEnabled">
+ <summary>
+ Get or Set the Filter Sort enabled
+ </summary>
+</member>
+<member name="P:Galaxy.Data.TableSheet.MenuStrip.IsFilterEnabled">
+ <summary>
+ Get or Set the Filter enabled
+ </summary>
+</member>
+<member name="P:Galaxy.Data.TableSheet.MenuStrip.IsFilterChecklistEnabled">
+ <summary>
+ Get or Set the Filter Checklist enabled
+ </summary>
+</member>
+<member name="P:Galaxy.Data.TableSheet.MenuStrip.IsFilterCustomEnabled">
+ <summary>
+ Get or Set the Filter Custom enabled
+ </summary>
+</member>
+<member name="P:Galaxy.Data.TableSheet.MenuStrip.IsFilterDateAndTimeEnabled">
+ <summary>
+ Get or Set the Filter DateAndTime enabled
+ </summary>
+</member>
+<member name="P:Galaxy.Data.TableSheet.MenuStrip.IsFilterNOTINLogicEnabled">
+ <summary>
+ Get or Set the NOT IN logic for Filter
+ </summary>
+</member>
+<member name="P:Galaxy.Data.TableSheet.MenuStrip.DoesTextFilterRemoveNodesOnSearch">
+ <summary>
+ Set the text filter search nodes behaviour
+ </summary>
+</member>
+<member name="P:Galaxy.Data.TableSheet.MenuStrip.TextFilterTextChangedDelayNodes">
+ <summary>
+ Number of nodes to enable the TextChanged delay on text filter
+ </summary>
+</member>
+<member name="P:Galaxy.Data.TableSheet.MenuStrip.TextFilterTextChangedDelayMs">
+ <summary>
+ Delay milliseconds for TextChanged delay on text filter
+ </summary>
+</member>
+<member name="P:Galaxy.Data.TableSheet.MenuStrip.FilterTextFocusOnShow">
+ <summary>
+ Get or Set the Filter Text focus OnShow
+ </summary>
+</member>
+<member name="M:Galaxy.Data.TableSheet.MenuStrip.SetSortEnabled(System.Boolean)">
+ <summary>
+ Enabled or disable Sorting capabilities
+ </summary>
+ <param name="enabled"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.MenuStrip.SetFilterEnabled(System.Boolean)">
+ <summary>
+ Enable or disable Filter capabilities
+ </summary>
+ <param name="enabled"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.MenuStrip.SetFilterChecklistEnabled(System.Boolean)">
+ <summary>
+ Enable or disable Filter checklist capabilities
+ </summary>
+ <param name="enabled"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.MenuStrip.SetFilterCustomEnabled(System.Boolean)">
+ <summary>
+ Enable or disable Filter custom capabilities
+ </summary>
+ <param name="enabled"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.MenuStrip.SetTextFilterTextChangedDelayNodesDisabled">
+ <summary>
+ Disable text filter TextChanged delay
+ </summary>
+</member>
+<member name="M:Galaxy.Data.TableSheet.MenuStrip.Show(System.Windows.Forms.Control,System.Int32,System.Int32,System.String)">
+ <summary>
+ Show the menuStrip
+ </summary>
+ <param name="control"></param>
+ <param name="x"></param>
+ <param name="y"></param>
+ <param name="columnName"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.MenuStrip.Show(System.Windows.Forms.Control,System.Int32,System.Int32,System.Boolean)">
+ <summary>
+ Show the menuStrip
+ </summary>
+ <param name="control"></param>
+ <param name="x"></param>
+ <param name="y"></param>
+ <param name="_restoreFilter"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.MenuStrip.GetValuesForFilter(System.Windows.Forms.DataGridView,System.String)">
+ <summary>
+ Get values used for Show method
+ </summary>
+ <param name="grid"></param>
+ <param name="columnName"></param>
+ <returns></returns>
+</member>
+<member name="M:Galaxy.Data.TableSheet.MenuStrip.SortASC">
+ <summary>
+ Sort ASC
+ </summary>
+</member>
+<member name="M:Galaxy.Data.TableSheet.MenuStrip.SortDESC">
+ <summary>
+ Sort DESC
+ </summary>
+</member>
+<member name="P:Galaxy.Data.TableSheet.MenuStrip.SortString">
+ <summary>
+ Get the Sorting String
+ </summary>
+</member>
+<member name="M:Galaxy.Data.TableSheet.MenuStrip.CleanSort">
+ <summary>
+ Clean the Sorting
+ </summary>
+</member>
+<member name="P:Galaxy.Data.TableSheet.MenuStrip.FilterString">
+ <summary>
+ Get the Filter string
+ </summary>
+</member>
+<member name="M:Galaxy.Data.TableSheet.MenuStrip.CleanFilter">
+ <summary>
+ Clean the Filter
+ </summary>
+</member>
+<member name="M:Galaxy.Data.TableSheet.MenuStrip.SetChecklistTextFilterRemoveNodesOnSearchMode(System.Boolean)">
+ <summary>
+ Set the text filter on checklist remove node mode
+ </summary>
+ <param name="enabled"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.MenuStrip.ChecklistClearNodes">
+ <summary>
+ Clear checklist loaded nodes
+ </summary>
+</member>
+<member name="M:Galaxy.Data.TableSheet.MenuStrip.ChecklistAddNode(Galaxy.Data.TableSheet.TreeNodeItemSelector)">
+ <summary>
+ Add a node to checklist nodes
+ </summary>
+ <param name="node"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.MenuStrip.ChecklistReloadNodes">
+ <summary>
+ Load checklist nodes
+ </summary>
+</member>
+<member name="M:Galaxy.Data.TableSheet.MenuStrip.ChecklistNodes">
+ <summary>
+ Get checklist nodes
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Galaxy.Data.TableSheet.MenuStrip.SetCheckListFilter">
+ <summary>
+ Set the Filter String using checkList selected Nodes
+ </summary>
+</member>
+<member name="M:Galaxy.Data.TableSheet.MenuStrip.BuildNodesFilterString(System.Collections.Generic.IEnumerable{Galaxy.Data.TableSheet.TreeNodeItemSelector})">
+ <summary>
+ Build a Filter string based on selectd Nodes
+ </summary>
+ <param name="nodes"></param>
+ <returns></returns>
+</member>
+<member name="M:Galaxy.Data.TableSheet.MenuStrip.FormatFilterString(System.String)">
+ <summary>
+ Format a text Filter string
+ </summary>
+ <param name="text"></param>
+ <returns></returns>
+</member>
+<member name="M:Galaxy.Data.TableSheet.MenuStrip.BuildNodes(System.Collections.Generic.IEnumerable{System.Windows.Forms.DataGridViewCell},System.Windows.Forms.DataGridView,System.String)">
+ <summary>
+ Add nodes to checkList
+ </summary>
+ <param name="vals"></param>
+ <param name="dataGridView"></param>
+ <param name="columnName"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.MenuStrip.CheckFilterButtonEnabled">
+ <summary>
+ Check if filter buttons needs to be enabled
+ </summary>
+</member>
+<member name="M:Galaxy.Data.TableSheet.MenuStrip.HasNodesChecked(Galaxy.Data.TableSheet.TreeNodeItemSelector[])">
+ <summary>
+ Check if selected nodes exists
+ </summary>
+ <param name="nodes"></param>
+ <returns></returns>
+</member>
+<member name="M:Galaxy.Data.TableSheet.MenuStrip.NodeCheckChange(Galaxy.Data.TableSheet.TreeNodeItemSelector)">
+ <summary>
+ Check
+ </summary>
+ <param name="node"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.MenuStrip.SetNodesCheckState(Galaxy.Data.TableSheet.TreeNodeItemSelector[],System.Boolean)">
+ <summary>
+ Set Nodes CheckState
+ </summary>
+ <param name="nodes"></param>
+ <param name="isChecked"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.MenuStrip.UpdateNodesCheckState(System.Windows.Forms.TreeNodeCollection)">
+ <summary>
+ Update Nodes CheckState recursively
+ </summary>
+ <param name="nodes"></param>
+ <returns></returns>
+</member>
+<member name="M:Galaxy.Data.TableSheet.MenuStrip.GetSelectAllNode">
+ <summary>
+ Get the SelectAll Node
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Galaxy.Data.TableSheet.MenuStrip.GetSelectEmptyNode">
+ <summary>
+ Get the SelectEmpty Node
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Galaxy.Data.TableSheet.MenuStrip.DuplicateNodes(Galaxy.Data.TableSheet.TreeNodeItemSelector[])">
+ <summary>
+ Duplicate Nodes
+ </summary>
+</member>
+<member name="M:Galaxy.Data.TableSheet.MenuStrip.CheckList_NodeMouseClick(System.Object,System.Windows.Forms.TreeNodeMouseClickEventArgs)">
+ <summary>
+ CheckList NodeMouseClick event
+ </summary>
+ <param name="sender"></param>
+ <param name="e"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.MenuStrip.CheckList_KeyDown(System.Object,System.Windows.Forms.KeyEventArgs)">
+ <summary>
+ CheckList KeyDown event
+ </summary>
+ <param name="sender"></param>
+ <param name="e"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.MenuStrip.CheckList_NodeMouseDoubleClick(System.Object,System.Windows.Forms.TreeNodeMouseClickEventArgs)">
+ <summary>
+ CheckList NodeMouseDoubleClick event
+ </summary>
+ <param name="sender"></param>
+ <param name="e"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.MenuStrip.CheckList_MouseEnter(System.Object,System.EventArgs)">
+ <summary>
+ CheckList MouseEnter event
+ </summary>
+ <param name="sender"></param>
+ <param name="e"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.MenuStrip.CheckList_MouseLeave(System.Object,System.EventArgs)">
+ <summary>
+ CheckList MouseLeave envet
+ </summary>
+ <param name="sender"></param>
+ <param name="e"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.MenuStrip.Button_ok_Click(System.Object,System.EventArgs)">
+ <summary>
+ Set the Filter by checkList
+ </summary>
+ <param name="sender"></param>
+ <param name="e"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.MenuStrip.Button_cancel_Click(System.Object,System.EventArgs)">
+ <summary>
+ Undo changed by checkList 
+ </summary>
+ <param name="sender"></param>
+ <param name="e"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.MenuStrip.UnCheckCustomFilters">
+ <summary>
+ UnCheck all Custom Filter presets
+ </summary>
+</member>
+<member name="M:Galaxy.Data.TableSheet.MenuStrip.SetCustomFilter(System.Int32)">
+ <summary>
+ Set a Custom Filter
+ </summary>
+ <param name="filtersMenuItemIndex"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.MenuStrip.CancelFilterMenuItem_Click(System.Object,System.EventArgs)">
+ <summary>
+ Cancel Filter Click event
+ </summary>
+ <param name="sender"></param>
+ <param name="e"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.MenuStrip.CancelFilterMenuItem_MouseEnter(System.Object,System.EventArgs)">
+ <summary>
+ Cancel Filter MouseEnter event
+ </summary>
+ <param name="sender"></param>
+ <param name="e"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.MenuStrip.CustomFilterMenuItem_Click(System.Object,System.EventArgs)">
+ <summary>
+ Custom Filter Click event
+ </summary>
+ <param name="sender"></param>
+ <param name="e"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.MenuStrip.CustomFilterLastFiltersListMenuItem_MouseEnter(System.Object,System.EventArgs)">
+ <summary>
+ Custom Filter preset MouseEnter event
+ </summary>
+ <param name="sender"></param>
+ <param name="e"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.MenuStrip.CustomFilterLastFiltersListMenuItem_Paint(System.Object,System.Windows.Forms.PaintEventArgs)">
+ <summary>
+ Custom Filter preset MouseEnter event
+ </summary>
+ <param name="sender"></param>
+ <param name="e"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.MenuStrip.CustomFilterLastFilter1MenuItem_VisibleChanged(System.Object,System.EventArgs)">
+ <summary>
+ Custom Filter preset 1 Visibility changed
+ </summary>
+ <param name="sender"></param>
+ <param name="e"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.MenuStrip.CustomFilterLastFilterMenuItem_Click(System.Object,System.EventArgs)">
+ <summary>
+ Custom Filter preset Click event
+ </summary>
+ <param name="sender"></param>
+ <param name="e"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.MenuStrip.CustomFilterLastFilterMenuItem_TextChanged(System.Object,System.EventArgs)">
+ <summary>
+ Custom Filter preset TextChanged event
+ </summary>
+ <param name="sender"></param>
+ <param name="e"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.MenuStrip.CheckTextFilterTextChangedTimer_Tick(System.Object,System.EventArgs)">
+ <summary>
+ Text changed timer
+ </summary>
+ <param name="sender"></param>
+ <param name="e"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.MenuStrip.CheckTextFilter_TextChanged(System.Object,System.EventArgs)">
+ <summary>
+ Check list filter changer
+ </summary>
+ <param name="sender"></param>
+ <param name="e"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.MenuStrip.CheckTextFilterHandleTextChanged(System.String)">
+ <summary>
+ Handle check filter text changed
+ </summary>
+ <param name="text"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.MenuStrip.SortASCMenuItem_Click(System.Object,System.EventArgs)">
+ <summary>
+ Sort ASC Click event
+ </summary>
+ <param name="sender"></param>
+ <param name="e"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.MenuStrip.SortASCMenuItem_MouseEnter(System.Object,System.EventArgs)">
+ <summary>
+ Sort ASC MouseEnter event
+ </summary>
+ <param name="sender"></param>
+ <param name="e"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.MenuStrip.SortDESCMenuItem_Click(System.Object,System.EventArgs)">
+ <summary>
+ Sort DESC Click event
+ </summary>
+ <param name="sender"></param>
+ <param name="e"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.MenuStrip.SortDESCMenuItem_MouseEnter(System.Object,System.EventArgs)">
+ <summary>
+ Sort DESC MouseEnter event
+ </summary>
+ <param name="sender"></param>
+ <param name="e"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.MenuStrip.CancelSortMenuItem_Click(System.Object,System.EventArgs)">
+ <summary>
+ Cancel Sort Click event
+ </summary>
+ <param name="sender"></param>
+ <param name="e"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.MenuStrip.CancelSortMenuItem_MouseEnter(System.Object,System.EventArgs)">
+ <summary>
+ Cancel Sort MouseEnter event
+ </summary>
+ <param name="sender"></param>
+ <param name="e"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.MenuStrip.SetDataType(System.Type)">
+ <summary>
+ Update datatype
+ </summary>
+ <param name="dataType"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.MenuStrip.GetScalingFactor">
+ <summary>
+ Get the scaling factor
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Galaxy.Data.TableSheet.MenuStrip.Scale(System.Int32,System.Single)">
+ <summary>
+ Scale an item
+ </summary>
+ <param name="dimesion"></param>
+ <param name="factor"></param>
+ <returns></returns>
+</member>
+<member name="M:Galaxy.Data.TableSheet.MenuStrip.ResizeBox(System.Int32,System.Int32)">
+ <summary>
+ Resize the box
+ </summary>
+ <param name="w"></param>
+ <param name="h"></param>
+ 
+</member>
+<member name="M:Galaxy.Data.TableSheet.MenuStrip.ResizeClean">
+ <summary>
+ Clean box for Resize
+ </summary>
+</member>
+<member name="M:Galaxy.Data.TableSheet.MenuStrip.ResizeBoxControlHost_MouseDown(System.Object,System.Windows.Forms.MouseEventArgs)">
+ <summary>
+ Resize MouseDown event
+ </summary>
+ <param name="sender"></param>
+ <param name="e"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.MenuStrip.ResizeBoxControlHost_MouseMove(System.Object,System.Windows.Forms.MouseEventArgs)">
+ <summary>
+ Resize MouseMove event
+ </summary>
+ <param name="sender"></param>
+ <param name="e"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.MenuStrip.ResizeBoxControlHost_MouseUp(System.Object,System.Windows.Forms.MouseEventArgs)">
+ <summary>
+ Resize MouseUp event
+ </summary>
+ <param name="sender"></param>
+ <param name="e"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.MenuStrip.ResizeBoxControlHost_Paint(System.Object,System.Windows.Forms.PaintEventArgs)">
+ <summary>
+ Resize Paint event
+ </summary>
+ <param name="sender"></param>
+ <param name="e"></param>
+</member>
+<member name="T:Galaxy.Data.TableSheet.AdvancedDataGridViewSearchToolBarTranslationKey">
+ <summary>
+ Available translation keys
+ </summary>
+</member>
+<member name="F:Galaxy.Data.TableSheet.AdvancedDataGridViewSearchToolBarTranslations.Translations">
+ <summary>
+ Internationalization strings
+ </summary>
+</member>
+<member name="T:Galaxy.Data.TableSheet.AdvancedDataGridViewTranslationKey">
+ <summary>
+ Available translation keys
+ </summary>
+</member>
+<member name="F:Galaxy.Data.TableSheet.AdvancedDataGridViewTranslations.Translations">
+ <summary>
+ Internationalization strings
+ </summary>
+</member>
+<member name="M:Galaxy.Data.TableSheet.TreeNodeItemSelector.#ctor(System.String,System.Object,System.Windows.Forms.CheckState,Galaxy.Data.TableSheet.TreeNodeItemSelector.CustomNodeType)">
+ <summary>
+ TreeNodeItemSelector constructor
+ </summary>
+ <param name="text"></param>
+ <param name="value"></param>
+ <param name="state"></param>
+ <param name="nodeType"></param>
+</member>
+<member name="M:Galaxy.Data.TableSheet.TreeNodeItemSelector.Clone">
+ <summary>
+ Clone a Node
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Galaxy.Data.TableSheet.TreeNodeItemSelector.NodeType">
+ <summary>
+ Get Node NodeType
+ </summary>
+</member>
+<member name="P:Galaxy.Data.TableSheet.TreeNodeItemSelector.Value">
+ <summary>
+ Get Node value
+ </summary>
+</member>
+<member name="P:Galaxy.Data.TableSheet.TreeNodeItemSelector.Parent">
+ <summary>
+ Get Node parent
+ </summary>
+</member>
+<member name="P:Galaxy.Data.TableSheet.TreeNodeItemSelector.Checked">
+ <summary>
+ Node is Checked
+ </summary>
+</member>
+<member name="P:Galaxy.Data.TableSheet.TreeNodeItemSelector.CheckState">
+ <summary>
+ Get or Set the current Node CheckState
+ </summary>
+</member>
+<member name="M:Galaxy.Data.TableSheet.TreeNodeItemSelector.CreateNode(System.String,System.Object,System.Windows.Forms.CheckState,Galaxy.Data.TableSheet.TreeNodeItemSelector.CustomNodeType)">
+ <summary>
+ Create a Node
+ </summary>
+ <param name="text"></param>
+ <param name="value"></param>
+ <param name="state"></param>
+ <param name="type"></param>
+ <returns></returns>
+</member>
+<member name="M:Galaxy.Data.TableSheet.TreeNodeItemSelector.CreateChildNode(System.String,System.Object,System.Windows.Forms.CheckState)">
+ <summary>
+ Create a child Node
+ </summary>
+ <param name="text"></param>
+ <param name="value"></param>
+ <param name="state"></param>
+ <returns></returns>
+</member>
+<member name="M:Galaxy.Data.TableSheet.TreeNodeItemSelector.AddChild(Galaxy.Data.TableSheet.TreeNodeItemSelector)">
+ <summary>
+ Add a child Node to this Node
+ </summary>
+ <param name="child"></param>
+</member>
+<member name="M:Galaxy.Data.UIInteractive.SetAutoSelectRow(System.Windows.Forms.DataGridView)">
+ <summary>
+ Auto select the row on cell click
+ </summary>
+ <param name="dv"></param>
+</member>
+<member name="M:Galaxy.Data.UIInteractive.PasteTextData(System.Windows.Forms.DataGridView)">
+ <summary>
+ Paste the text data to the table control
+ </summary>
+ <param name="table"></param>
+</member>
+<member name="M:Galaxy.Data.XmlSyntaxRender.HighlightXML(System.String)">
+ <summary>
+ Pretty prints XML and applies syntax highlighting in RichTextBox
+ </summary>
+</member>
+<member name="M:Galaxy.Data.XmlSyntaxRender.Colorize(System.String,System.Drawing.Color)">
+ <summary>
+ Applies regex-based syntax highlighting
+ </summary>
+</member>
+</members>
+</doc>
