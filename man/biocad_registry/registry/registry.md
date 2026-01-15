@@ -2,8 +2,12 @@
 
 
 
-+ [get_taxinfo](registry/get_taxinfo.1) 
-+ [find_taxinfo](registry/find_taxinfo.1) 
-+ [taxonomy_lineage](registry/taxonomy_lineage.1) 
-+ [child_list](registry/child_list.1) 
-+ [get_by_xref](registry/get_by_xref.1) 
++ [save_uniprot](registry/save_uniprot.1) 
++ [save_genbank](registry/save_genbank.1) 
++ [make_genbank_dbxrefs](registry/make_genbank_dbxrefs.1) 
++ [imports_pubchem](registry/imports_pubchem.1) 
++ [imports_kegg_reactions](registry/imports_kegg_reactions.1) 
++ [imports_rhea](registry/imports_rhea.1) 
++ [imports_metacyc_reactions](registry/imports_metacyc_reactions.1) 
++ [imports_metacyc_compounds](registry/imports_metacyc_compounds.1) 
++ [save_TRN](registry/save_TRN.1) 

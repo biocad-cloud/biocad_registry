@@ -1,181 +1,348 @@
-﻿Imports System.Runtime.CompilerServices
-Imports biocad_storage
+﻿Imports BioNovoGene.BioDeep.Chemistry.MetaLib.CrossReference
+Imports BioNovoGene.BioDeep.Chemistry.MetaLib.Models
+Imports BioNovoGene.BioDeep.Chemistry.NCBI.PubChem
+Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
+Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm
 Imports Microsoft.VisualBasic.CommandLine.Reflection
+Imports Microsoft.VisualBasic.ComponentModel.Collection
+Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Scripting.MetaData
+Imports Microsoft.VisualBasic.Text.Xml
+Imports Microsoft.VisualBasic.Text.Xml.Models
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
-Imports SMRUCC.genomics.Metagenomics
+Imports registry_data
+Imports registry_data.biocad_registryModel
+Imports SMRUCC.genomics.Assembly.KEGG
+Imports SMRUCC.genomics.Assembly.NCBI.GenBank
+Imports SMRUCC.genomics.Assembly.Uniprot.XML
+Imports SMRUCC.genomics.ComponentModel.EquaionModel
+Imports SMRUCC.genomics.Data.BioCyc
+Imports SMRUCC.genomics.Data.Regprecise
 Imports SMRUCC.Rsharp.Runtime
 Imports SMRUCC.Rsharp.Runtime.Internal.[Object]
 Imports SMRUCC.Rsharp.Runtime.Interop
 
-''' <summary>
-''' query of the biocad_registry
-''' </summary>
-''' 
 <Package("registry")>
 Module registry
 
-    Sub New()
-        Call Converts.makeDataframe.addHandler(GetType(taxonomyInfo()), AddressOf taxinfoTable)
-    End Sub
+    <ExportAPI("save_uniprot")>
+    Public Function saveUniprot(registry As biocad_registry, <RRawVectorArgument> uniprot As Object, Optional env As Environment = Nothing) As Object
+        Dim pull As pipeline = pipeline.TryCreatePipeline(Of entry)(uniprot, env)
 
-    <RGenericOverloads("as.data.frame")>
-    Private Function taxinfoTable(list As taxonomyInfo(), args As list, env As Environment) As dataframe
-        Dim table As New dataframe With {.columns = New Dictionary(Of String, Array)}
-
-        Call table.add("ncbi_taxid", From tax As taxonomyInfo In list Select tax.ncbi_taxid)
-        Call table.add("taxname", From tax As taxonomyInfo In list Select tax.taxname)
-        Call table.add("rank", From tax As taxonomyInfo In list Select tax.rank)
-        Call table.add("parent_id", From tax As taxonomyInfo In list Select tax.parent_id)
-        Call table.add("description", From tax As taxonomyInfo In list Select tax.description)
-
-        Return table
-    End Function
-
-    ''' <summary>
-    ''' get taxonomy node information via the taxonomy name or the taxonomy id
-    ''' </summary>
-    ''' <param name="registry"></param>
-    ''' <param name="tax">the taxonomy name or the ncbi taxonomy id</param>
-    ''' <returns></returns>
-    <ExportAPI("get_taxinfo")>
-    <Extension>
-    Public Function get_taxinfo(registry As biocad_registry, tax As String) As taxonomyInfo
-        Dim q As FieldAssert
-
-        If tax.IsPattern("\d+") Then
-            ' is tax id
-            q = field("`ncbi_taxonomy`.id") = tax
-        Else
-            ' is tax name
-            q = field("`ncbi_taxonomy`.taxname") = tax
+        If pull.isError Then
+            Return pull.getError
         End If
 
-        Return registry.ncbi_taxonomy _
-            .left_join("vocabulary") _
-            .on(field("`vocabulary`.id") = field("`ncbi_taxonomy`.`rank`")) _
-            .where(q) _
-            .find(Of taxonomyInfo)("ncbi_taxonomy.id AS ncbi_taxid",
-    "taxname",
-    "term AS `rank`",
-    "parent_id",
-    "description")
+        Call registry.importsUniProt(pull.populates(Of entry)(env))
+
+        Return Nothing
     End Function
 
-    <ExportAPI("find_taxinfo")>
-    Public Function find_taxinfo(registry As biocad_registry, tax As String) As taxonomyInfo()
-        Return registry.ncbi_taxonomy _
-            .left_join("vocabulary") _
-            .on(field("`vocabulary`.id") = field("`ncbi_taxonomy`.`rank`")) _
-            .where(match("taxname", "description").against(tax, booleanMode:=True)) _
-            .select(Of taxonomyInfo)("ncbi_taxonomy.id AS ncbi_taxid",
-    "taxname",
-    "term AS `rank`",
-    "parent_id",
-    "description")
+    <ExportAPI("save_genbank")>
+    Public Function save_genbank(registry As biocad_registry,
+                                 <RRawVectorArgument>
+                                 genbank As Object,
+                                 Optional env As Environment = Nothing) As Object
+
+        Dim pull As pipeline = pipeline.TryCreatePipeline(Of GBFF.File)(genbank, env)
+
+        If pull.isError Then
+            Return pull.getError
+        End If
+
+        For Each gb_asm As GBFF.File In pull.populates(Of GBFF.File)(env)
+            Call registry.SaveGenBank(gb_asm)
+        Next
+
+        Return Nothing
     End Function
 
-    <ExportAPI("taxonomy_lineage")>
-    Public Function taxonomy_lineage(registry As biocad_registry, tax_id As String) As Taxonomy
-        Dim taxnode As taxonomyInfo = registry.get_taxinfo(tax:=tax_id)
-        Dim lineage As New Dictionary(Of String, String) From {
-            {taxnode.rank, taxnode.taxname}
-        }
-        Dim list As New List(Of taxonomyInfo) From {taxnode}
+    <ExportAPI("make_genbank_dbxrefs")>
+    Public Function save_genbank_xrefs(registry As biocad_registry,
+                                       <RRawVectorArgument>
+                                       genbank As Object,
+                                       Optional env As Environment = Nothing) As Object
 
-        Do While True
-            Dim parent = registry.taxonomy_tree _
-                .where(field("child_tax") = taxnode.ncbi_taxid) _
-                .find(Of biocad_registryModel.taxonomy_tree)
+        Dim pull As pipeline = pipeline.TryCreatePipeline(Of GBFF.File)(genbank, env)
 
-            If parent Is Nothing Then
-                Exit Do
-            End If
+        If pull.isError Then
+            Return pull.getError
+        End If
 
-            taxnode = registry.get_taxinfo(tax:=parent.tax_id)
-            list.Add(taxnode)
-            lineage(taxnode.rank) = taxnode.taxname
-        Loop
+        For Each gb_asm As GBFF.File In pull.populates(Of GBFF.File)(env)
+            Call registry.SaveDbXrefs(gb_asm)
+        Next
 
-        Return New Taxonomy(lineage) With {
-            .ncbi_taxid = tax_id
-        }
+        Return Nothing
     End Function
 
-    ''' <summary>
-    ''' get child taxonomy id list
-    ''' </summary>
-    ''' <param name="registry"></param>
-    ''' <param name="tax_id"></param>
-    ''' <returns></returns>
-    <ExportAPI("child_list")>
-    Public Function child_list(registry As biocad_registry,
-                               tax_id As String,
-                               Optional direct_list As Boolean = True) As Object
+    <ExportAPI("imports_pubchem")>
+    Public Function imports_pubchem(registry As biocad_registry, <RRawVectorArgument> pubchem As Object, Optional env As Environment = Nothing) As Object
+        Dim pull As pipeline = pipeline.TryCreatePipeline(Of PugViewRecord)(pubchem, env)
 
-        Dim list As List(Of biocad_registryModel.taxonomy_tree) = registry.taxonomy_tree _
-            .where(field("tax_id") = tax_id) _
-            .select(Of biocad_registryModel.taxonomy_tree) _
-            .AsList
+        If pull.isError Then
+            Return pull.getError
+        End If
 
-        If Not direct_list Then
-            Dim childs As biocad_registryModel.taxonomy_tree() = list.ToArray
+        Dim chunks = pull.populates(Of PugViewRecord)(env).Where(Function(c) Not c Is Nothing).SplitIterator(1000)
+        Dim vocabulary As New biocad_vocabulary(registry)
+        Dim db_pubchem As UInteger = vocabulary.db_pubchem
 
-            Do While True
-                childs = registry.taxonomy_tree _
-                    .where(field("tax_id").in(childs.Select(Function(t) t.child_tax).Distinct)) _
-                    .select(Of biocad_registryModel.taxonomy_tree)
+        For Each block As PugViewRecord() In chunks
+            For Each meta As MetaInfo In TqdmWrapper.Wrap(block.Select(Function(c) c.GetMetaInfo).ToArray)
+                ' 不信任pubchem id的映射结果，在这里直接设置kegg_id来避免直接通过pubchem id查找到结果
+                Dim m As metabolites = registry.FindMolecule(meta, "kegg_id", nameSearch:=True)
 
-                Call list.AddRange(childs)
-
-                If childs.IsNullOrEmpty Then
-                    Exit Do
+                If m Is Nothing Then
+                    Continue For
                 End If
-            Loop
+
+                Call registry.SaveDbLinks(vocabulary, meta, m, db_pubchem)
+                Call registry.SaveStructureData(m, meta.xref.SMILES)
+                Call registry.SaveSynonyms(m, meta.synonym.JoinIterates({meta.name, meta.IUPACName}).Distinct, db_pubchem)
+            Next
+        Next
+
+        Return Nothing
+    End Function
+
+    <ExportAPI("imports_kegg_reactions")>
+    Public Function imports_kegg_reactions(registry As biocad_registry, <RRawVectorArgument> kegg As Object, Optional env As Environment = Nothing) As Object
+        Dim pull As pipeline = pipeline.TryCreatePipeline(Of DBGET.bGetObject.Reaction)(kegg, env)
+
+        If pull.isError Then
+            Return pull.getError
         End If
 
-        Return list.Select(Function(t) t.child_tax).Distinct.ToArray
+        Dim models As SMRUCC.genomics.ComponentModel.EquaionModel.Reaction() = pull _
+            .populates(Of DBGET.bGetObject.Reaction)(env) _
+            .Where(Function(r) Not r.ID.StringEmpty(, True)) _
+            .Select(Function(r)
+                        Return SMRUCC.genomics.ComponentModel.EquaionModel.Reaction.FromKeggReaction(r)
+                    End Function) _
+            .ToArray
+
+        Call registry.importsReactions(models, db_name:="kegg")
+
+        Return Nothing
+    End Function
+
+    <ExportAPI("imports_rhea")>
+    Public Function imports_rhea(registry As biocad_registry, <RRawVectorArgument> rhea As Object, Optional env As Environment = Nothing) As Object
+        Dim pull As pipeline = pipeline.TryCreatePipeline(Of SMRUCC.genomics.ComponentModel.EquaionModel.Reaction)(rhea, env)
+
+        If pull.isError Then
+            Return pull.getError
+        End If
+
+        Dim models = pull.populates(Of SMRUCC.genomics.ComponentModel.EquaionModel.Reaction)(env).ToArray
+
+        Call registry.importsReactions(models, db_name:="Rhea")
+
+        Return Nothing
+    End Function
+
+    <ExportAPI("imports_metacyc_reactions")>
+    Public Function imports_metacyc_reactions(registry As biocad_registry, metacyc As Workspace) As Object
+        Dim reactions = metacyc.reactions.features.ToArray
+        Dim models = reactions _
+            .Where(Function(r) Not (r.left.IsNullOrEmpty OrElse r.right.IsNullOrEmpty)) _
+            .Select(Function(r)
+                        Dim left As SideCompound() = r.left.Select(Function(c) New SideCompound With {.side = "left", .compound = New CompoundSpecies(c.ID)}).ToArray
+                        Dim right As SideCompound() = r.right.Select(Function(c) New SideCompound With {.side = "right", .compound = New CompoundSpecies(c.ID)}).ToArray
+
+                        Return New SMRUCC.genomics.ComponentModel.EquaionModel.Reaction With {
+                            .entry = r.uniqueId,
+                            .comment = r.comment,
+                            .definition = r.commonName,
+                            .enzyme = r.ec_number.SafeQuery.Select(Function(e) e.ECNumberString).ToArray,
+                            .equation = r.equation,
+                            .compounds = left.JoinIterates(right).ToArray
+                        }
+                    End Function) _
+            .ToArray
+
+        Call registry.importsReactions(models, db_name:="BioCyc")
+
+        Return Nothing
+    End Function
+
+    <ExportAPI("imports_metacyc_compounds")>
+    Public Function imports_metacyc(registry As biocad_registry, metacyc As Workspace) As Object
+        Dim vocabulary As New biocad_vocabulary(registry)
+        Dim metabolite_type As UInteger = vocabulary.GetRegistryEntity(biocad_vocabulary.EntityMetabolite).id
+        Dim db_metacyc As UInteger = vocabulary.db_biocyc
+        Dim superAtoms As New Index(Of String)
+        Dim compoundSet As AttrDataCollection(Of compounds) = metacyc.compounds
+
+        ' save ontology group
+        For Each cpd As compounds In compoundSet.features
+            If Not cpd.superAtoms.StringEmpty Then
+                Call superAtoms.Add(cpd.superAtoms)
+            End If
+        Next
+
+        Dim classIndex As New Dictionary(Of String, UInteger)
+
+        For Each id As String In TqdmWrapper.Wrap(superAtoms.Objects)
+            ' subclass
+            Dim subclass As compounds = compoundSet(id)
+            Dim classinfo As compounds = compoundSet(subclass.types.DefaultFirst)
+
+            Dim classNode As ontology = registry.ontology.where(field("term_id") = classinfo.uniqueId, field("ontology_id") = db_metacyc).find(Of ontology)
+            Dim subclassNode As ontology = registry.ontology.where(field("term_id") = subclass.uniqueId, field("ontology_id") = db_metacyc).find(Of ontology)
+
+            If classNode Is Nothing Then
+                Call registry.ontology.add(field("term_id") = classinfo.uniqueId, field("ontology_id") = db_metacyc, field("term") = classinfo.commonName, field("note") = classinfo.comment)
+                classNode = registry.ontology.where(field("term_id") = classinfo.uniqueId, field("ontology_id") = db_metacyc).find(Of ontology)
+            End If
+            If subclassNode Is Nothing Then
+                Call registry.ontology.add(field("term_id") = subclass.uniqueId, field("ontology_id") = db_metacyc, field("term") = subclass.commonName, field("note") = subclass.comment)
+                subclassNode = registry.ontology.where(field("term_id") = subclass.uniqueId, field("ontology_id") = db_metacyc).find(Of ontology)
+            End If
+
+            If classNode IsNot Nothing AndAlso subclassNode IsNot Nothing Then
+                classIndex(classNode.term_id) = classNode.id
+                classIndex(subclassNode.term_id) = subclassNode.id
+
+                If registry.ontology_relation.where(field("term_id") = subclassNode.id, field("is_a") = classNode.id).find(Of ontology_relation) Is Nothing Then
+                    registry.ontology_relation.add(field("term_id") = subclassNode.id, field("is_a") = classNode.id)
+                End If
+            End If
+        Next
+
+        For Each cpd As compounds In TqdmWrapper.Wrap(compoundSet.features.ToArray)
+            Dim formula As String = compounds.FormulaString(cpd)
+            Dim dblinks = compounds.GetDbLinks(cpd).ToArray
+            Dim dbgroups As Dictionary(Of String, String()) = dblinks _
+                .GroupBy(Function(a) a.DBName.ToLower) _
+                .ToDictionary(Function(a) a.Key,
+                              Function(a)
+                                  Return a.Select(Function(ai) ai.entry).ToArray
+                              End Function)
+            Dim meta As New MetaInfo With {
+                .ID = cpd.uniqueId,
+                .formula = formula,
+                .exact_mass = FormulaScanner.EvaluateExactMass(formula),
+                .description = cpd.comment,
+                .name = XmlEntity.UnescapeHTML(cpd.commonName),
+                .IUPACName = .name,
+                .synonym = cpd.synonyms _
+                    .SafeQuery _
+                    .Select(Function(name) XmlEntity.UnescapeHTML(name)) _
+                    .ToArray,
+                .xref = New xref With {
+                    .HMDB = dbgroups.TryGetValue("HMDB").DefaultFirst,
+                    .chebi = dbgroups.TryGetValue("CHEBI").DefaultFirst,
+                    .pubchem = dbgroups.TryGetValue("PUBCHEM").DefaultFirst,
+                    .Wikipedia = dbgroups.TryGetValue("|Wikipedia|").DefaultFirst,
+                    .CAS = dbgroups.TryGetValue("CAS"),
+                    .DrugBank = dbgroups.TryGetValue("DRUGBANK").DefaultFirst,
+                    .SMILES = cpd.SMILES,
+                    .MetaCyc = cpd.uniqueId
+                }
+            }
+
+            If meta.name = "" Then
+                meta.name = meta.ID
+            End If
+
+            Dim m As metabolites = registry.FindMolecule(meta, "biocyc", nameSearch:=True)
+            Dim term_id As ontology = Nothing
+
+            If Not cpd.superAtoms.StringEmpty Then
+                term_id = registry.ontology.where(field("term_id") = cpd.superAtoms).find(Of ontology)
+            End If
+
+            ' just ignores this error
+            If m Is Nothing Then
+                Continue For
+            End If
+            If term_id IsNot Nothing Then
+                Call registry.metabolite_class.add(field("metabolite_id") = m.id, field("class_id") = term_id.id)
+            End If
+
+            Call registry.SaveDbLinks(vocabulary, meta, m, db_metacyc)
+            Call registry.SaveStructureData(m, meta.xref.SMILES)
+            Call registry.SaveSynonyms(m, meta.synonym.JoinIterates({meta.name, meta.IUPACName}).Distinct, db_metacyc)
+        Next
+
+        Return Nothing
     End Function
 
     ''' <summary>
-    ''' get molecule information by its reference id
+    ''' Save RegPrecise regulation network
     ''' </summary>
     ''' <param name="registry"></param>
-    ''' <param name="id">default is the biocad id, this parameter could also be other xref in external database if the <paramref name="dbname"/> has been specific</param>
-    ''' <param name="dbname"></param>
+    ''' <param name="genomes"></param>
+    ''' <param name="env"></param>
     ''' <returns></returns>
-    <ExportAPI("get_by_xref")>
-    Public Function get_by_xref(registry As biocad_registry, id As String, Optional dbname As String = Nothing) As Object
-        If Not dbname Is Nothing Then
-            Dim dbkey = registry.getVocabulary(dbname, category:="External Database", [readonly]:=True)
-            Dim db_xrefs = registry.db_xrefs _
-                .where(field("db_key") = dbkey,
-                       field("xref") = id) _
-                .select(Of biocad_registryModel.db_xrefs)
-            Dim uniq As UInteger() = db_xrefs _
-                .Select(Function(r) r.obj_id) _
-                .Distinct _
-                .ToArray
+    <ExportAPI("save_TRN")>
+    Public Function save_regprecise(registry As biocad_registry, <RRawVectorArgument> genomes As Object, Optional env As Environment = Nothing) As Object
+        Dim database As pipeline = pipeline.TryCreatePipeline(Of BacteriaRegulome)(genomes, env)
 
-            If uniq.IsNullOrEmpty Then
-                Return Nothing
-            ElseIf uniq.Length = 1 Then
-                Return New ExportMetabolites(registry).GetByBioCADId(db_xrefs(0).obj_id)
-            Else
-                Dim result As list = list.empty
-                Dim export As New ExportMetabolites(registry)
-                Dim mol As BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaInfo
-
-                For Each uid As UInteger In uniq
-                    mol = export.GetByBioCADId(uid)
-                    result.slots(mol.ID) = mol
-                Next
-
-                Return result
-            End If
-        Else
-            Return New ExportMetabolites(registry).GetByBioCADId(UInteger.Parse(id.Match("\d+")))
+        If database.isError Then
+            Return database.getError
         End If
-    End Function
-End Module
 
+        Dim vocabulary As biocad_vocabulary = registry.biocad_vocabulary
+        Dim db_regprecise As UInteger = vocabulary.GetDatabaseResource("RegPrecise").id
+        Dim db_genbank As UInteger = vocabulary.db_genbank
+        Dim TRN As CommitTransaction = registry.regulatory_network.ignore.open_transaction
+
+        For Each genome As BacteriaRegulome In TqdmWrapper.Wrap(database.populates(Of BacteriaRegulome)(env).ToArray)
+            Dim taxid As UInteger = genome.genome.taxonomyId
+
+            For Each TF As SMRUCC.genomics.Data.Regprecise.Regulator In genome.regulome.AsEnumerable
+                Dim motifPlaceholder As motif = registry.motif.where(field("name") = TF.regulog.name).find(Of motif)("id")
+
+                If motifPlaceholder Is Nothing Then
+                    Continue For
+                End If
+
+                Dim effects As Double = 1
+
+                If Not TF.regulationMode.StringEmpty Then
+                    If TF.regulationMode.StartsWith("repressor") Then
+                        If Strings.InStr(TF.regulationMode, "activator") Then
+                            effects = -0.5
+                        Else
+                            effects = -1
+                        End If
+                    Else
+                        If Strings.InStr(TF.regulationMode, "repressor") Then
+                            effects = 0.5
+                        Else
+                            effects = 1
+                        End If
+                    End If
+                End If
+
+                For Each tag As NamedValue In TF.locus_tags.SafeQuery
+                    Dim protTF As protein_data = registry.protein_data _
+                        .where(field("source_id") = tag.name,
+                               field("source_db") = db_genbank,
+                               field("ncbi_taxid") = taxid) _
+                        .find(Of protein_data)("id", "ncbi_taxid")
+
+                    If protTF IsNot Nothing Then
+                        Call TRN.add(
+                            field("regulator") = protTF.id,
+                            field("motif_site") = motifPlaceholder.id,
+                            field("effector_name") = TF.effector,
+                            field("effector") = 0,
+                            field("effects") = effects,
+                            field("db_source") = db_regprecise,
+                            field("note") = TF.regulationMode & " - " & TF.biological_process.JoinBy("; ")
+                        )
+                    End If
+                Next
+            Next
+        Next
+
+        Call TRN.commit()
+
+        Return Nothing
+    End Function
+
+End Module

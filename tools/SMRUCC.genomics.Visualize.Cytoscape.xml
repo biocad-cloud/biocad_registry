@@ -1,0 +1,364 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+SMRUCC.genomics.Visualize.Cytoscape
+</name>
+</assembly>
+<members>
+<member name="M:SMRUCC.genomics.Visualize.Cytoscape.API.GraphExtensions.CreateGraph(SMRUCC.genomics.Visualize.Cytoscape.CytoscapeGraphView.XGMML.File.XGMMLgraph)">
+ <summary>
+ Creates the network graph model from the Cytoscape data model to generates the network layout or visualization 
+ </summary>
+ <param name="g"></param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Visualize.Cytoscape.API.ImportantNodes.ImportantNodes.SignificantRegulator(System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.Int32,SMRUCC.genomics.Visualize.Cytoscape.Tables.Node[]}},System.Collections.Generic.IEnumerable{SMRUCC.genomics.InteractionModel.Regulon.IRegulatorRegulation},System.Double)">
+ <summary>
+这个仅仅是理论上面的计算结果，仅供参考
+ </summary>
+ <param name="ImportantNodes"></param>
+ <param name="Regulations"></param>
+ <param name="rankCutoff"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:SMRUCC.genomics.Visualize.Cytoscape.API.ImportantNodes.ImportantNodes.EquivalenceClass(SMRUCC.genomics.Visualize.Cytoscape.Tables.Node[],System.Boolean)">
+ <summary>
+ 
+ </summary>
+ <param name="S"></param>
+ <param name="Fast">
+ if fast parameter is set to true, then a parallel edition of the algorithm 
+ will implemented for accelerates the network calculation, and this is much 
+ helpful for a large scale network.
+ </param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="T:SMRUCC.genomics.Visualize.Cytoscape.API.ImportantNodes.Regulations">
+ <summary>
+ 从footprint之中导出来的Cytoscape的网络数据文件
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Visualize.Cytoscape.API.ImportantNodes.RankRegulations.RankScore">
+ <summary>
+ 得分越高越重要
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="T:SMRUCC.genomics.Visualize.Cytoscape.Tables.LinkageNetwork">
+ <summary>
+ 一般应用这个模块进行知识网络的构建与可视化模型生成
+ </summary>
+</member>
+<member name="M:SMRUCC.genomics.Visualize.Cytoscape.Tables.LinkageNetwork.BuildNetwork(Microsoft.VisualBasic.Data.Framework.IO.File,System.Boolean,System.String)">
+ <summary>
+ 
+ </summary>
+ <param name="source"></param>
+ <param name="schema$">The color schema name</param>
+ <returns></returns>
+</member>
+<member name="T:SMRUCC.genomics.Visualize.Cytoscape.Tables.SIF">
+ <summary>
+ the cytoscape simple interaction format table
+ </summary>
+</member>
+<member name="P:SMRUCC.genomics.Visualize.Cytoscape.Tables.SIF.source">
+ <summary>
+ the source node id
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Visualize.Cytoscape.Tables.SIF.interaction">
+ <summary>
+ the iteraction type
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Visualize.Cytoscape.Tables.SIF.target">
+ <summary>
+ the target node id
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:SMRUCC.genomics.Visualize.Cytoscape.CytoscapeGraphView.Cyjs.Cyjs">
+ <summary>
+ 网络模型的JSON文档格式，WebApp的网络数据模型的json文件
+ </summary>
+</member>
+<member name="T:SMRUCC.genomics.Visualize.Cytoscape.CytoscapeGraphView.Cyjs.style.Expression">
+ <summary>
+ The <see cref="P:SMRUCC.genomics.Visualize.Cytoscape.CytoscapeGraphView.Cyjs.style.style.css"/> (<see cref="T:SMRUCC.genomics.Visualize.Cytoscape.CytoscapeGraphView.Cyjs.style.CSSTranslator"/>) value expression
+ </summary>
+</member>
+<member name="M:SMRUCC.genomics.Visualize.Cytoscape.CytoscapeGraphView.Cyjs.style.Expression.ValueMap(System.String)">
+ <summary>
+ ``mapData(strength,70,100,2,6)``
+ </summary>
+ <param name="exp$"></param>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Visualize.Cytoscape.CytoscapeGraphView.Cyjs.style.Selector.Type">
+ <summary>
+ node or edge?
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Visualize.Cytoscape.CytoscapeGraphView.Cyjs.style.Selector.#ctor(System.String)">
+ <summary>
+ 
+ </summary>
+ <param name="ctor$">
+ 字典条件
+ ```
+ type[key = 'value']
+ ```
+ </param>
+</member>
+<member name="T:SMRUCC.genomics.Visualize.Cytoscape.CytoscapeGraphView.Cyjs.style.JSON">
+ <summary>
+ Style for cytoscape.js (*.json)
+ </summary>
+</member>
+<member name="T:SMRUCC.genomics.Visualize.Cytoscape.CytoscapeGraphView.Serialization.ExportToFile">
+ <summary>
+ 将网络模型的数据导出至Cytoscape的网络模型文件之中
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="M:SMRUCC.genomics.Visualize.Cytoscape.CytoscapeGraphView.Serialization.ExportToFile.Export``2(``0[],``1[],System.String)">
+ <summary>
+ 对于所有的属性值，Cytoscape之中的数据类型会根据属性值的类型自动映射
+ </summary>
+ <typeparam name="Node"></typeparam>
+ <typeparam name="Edge"></typeparam>
+ <param name="nodeList"></param>
+ <param name="edges"></param>
+ <param name="title"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:SMRUCC.genomics.Visualize.Cytoscape.CytoscapeGraphView.Serialization.ExportToFile.Export``2(``0[],``1[],System.Collections.Generic.Dictionary{System.String,System.Type},System.Collections.Generic.Dictionary{System.String,System.Type},System.String)">
+ <summary>
+ 属性类型可以进行用户的自定义映射
+ </summary>
+ <typeparam name="Node"></typeparam>
+ <typeparam name="Edge"></typeparam>
+ <param name="NodeList"></param>
+ <param name="Edges"></param>
+ <param name="NodeTypeMapping"></param>
+ <param name="EdgeTypeMapping"></param>
+ <param name="Title"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:SMRUCC.genomics.Visualize.Cytoscape.CytoscapeGraphView.Serialization.ExportToFile.__createTypeMapping(System.Collections.Generic.Dictionary{System.String,System.Type})">
+ <summary>
+
+ </summary>
+ <returns>输入属性名，然后返回属性的值类型的映射</returns>
+ <remarks></remarks>
+</member>
+<member name="T:SMRUCC.genomics.Visualize.Cytoscape.CytoscapeGraphView.Serialization.GraphicsMapper">
+ <summary>
+ 向<see cref="T:SMRUCC.genomics.Visualize.Cytoscape.CytoscapeGraphView.XGMML.File.XGMMLgraph"></see>的节点和边之中添加绘图的映射<see cref="T:SMRUCC.genomics.Visualize.Cytoscape.CytoscapeGraphView.XGMML.File.Attribute">属性</see>
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="T:SMRUCC.genomics.Visualize.Cytoscape.CytoscapeGraphView.VizModel">
+ <summary>
+ 在这个模块之中提供将<see cref="T:SMRUCC.genomics.Visualize.Cytoscape.CytoscapeGraphView.XGMML.File.XGMMLgraph"/>转换为<see cref="T:Microsoft.VisualBasic.Data.visualize.Network.Graph.NetworkGraph"/>模型的方法
+ 用于进行网络图的自定义渲染
+ </summary>
+</member>
+<member name="M:SMRUCC.genomics.Visualize.Cytoscape.CytoscapeGraphView.VizModel.ToNetworkGraph(SMRUCC.genomics.Visualize.Cytoscape.CytoscapeGraphView.XGMML.File.XGMMLgraph,System.String[])">
+ <summary>
+ 请注意，这个函数只会产生最基本的网络模型数据，以及布局信息，个性化的样式调整需要在外部函数调用之中自行添加完成
+ </summary>
+ <param name="graph"></param>
+ <returns></returns>
+</member>
+<member name="T:SMRUCC.genomics.Visualize.Cytoscape.CytoscapeGraphView.XGMML.File.Attribute">
+ <summary>
+ 一个网络之中的对象所具备有的属性值
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Visualize.Cytoscape.CytoscapeGraphView.XGMML.File.Attribute.TypeMapping">
+ <summary>
+ Maps the .NET basic data type to the cytoscape data type name.
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Visualize.Cytoscape.CytoscapeGraphView.XGMML.File.AttributeDictionary.Value(System.String)">
+ <summary>
+ 属性值不存在则返回空值
+ </summary>
+ <param name="Name"></param>
+ <returns></returns>
+</member>
+<member name="T:SMRUCC.genomics.Visualize.Cytoscape.CytoscapeGraphView.XGMML.File.GraphAttribute">
+ <summary>
+ 全局的属性
+ </summary>
+</member>
+<member name="P:SMRUCC.genomics.Visualize.Cytoscape.CytoscapeGraphView.XGMML.File.GraphAttribute.RDF">
+ <summary>
+ RDF的描述数据
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Visualize.Cytoscape.CytoscapeGraphView.XGMML.File.NetworkMetadata.type">
+ <summary>
+ 节点之间互作的类型
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Visualize.Cytoscape.CytoscapeGraphView.XGMML.File.NetworkMetadata.title">
+ <summary>
+ 网络模型的名称
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Visualize.Cytoscape.CytoscapeGraphView.XGMML.File.XGMMLedge.__internalUID">
+ <summary>
+ 应用于节点的去重
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Visualize.Cytoscape.CytoscapeGraphView.XGMML.File.XGMMLnode.id">
+ <summary>
+ 当前的这个节点在整个网络的节点列表之中的位置
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="T:SMRUCC.genomics.Visualize.Cytoscape.CytoscapeGraphView.XGMML.File.XGMMLgraph">
+ <summary>
+ The Cytoscape software XML format network visualization model.(Cytoscape软件的网络XML模型文件)
+ </summary>
+ <remarks>请注意，由于在Cytoscape之中，每一个Xml元素都是小写字母的，所以在这个类之中的所有的Xml序列化的标记都不可以再更改大小写了</remarks>
+</member>
+<member name="P:SMRUCC.genomics.Visualize.Cytoscape.CytoscapeGraphView.XGMML.File.XGMMLgraph.label">
+ <summary>
+ The brief title information of this cytoscape network model.(这个Cytoscape网络模型文件的摘要标题信息)
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Visualize.Cytoscape.CytoscapeGraphView.XGMML.File.XGMMLgraph.directed">
+ <summary>
+ The edges between these nodes have the direction from one node to another node?
+ (这个网络模型文件之中的相互作用的节点之间的边是否是具有方向性的)
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Visualize.Cytoscape.CytoscapeGraphView.XGMML.File.XGMMLgraph.networkMetadata">
+ <summary>
+ 在这个属性里面会自动设置Graph对象的属性列表里面的数据
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Visualize.Cytoscape.CytoscapeGraphView.XGMML.File.XGMMLgraph.attributes">
+ <summary>
+ the graph attributes
+ </summary>
+ <returns></returns>
+</member>
+<member name="F:SMRUCC.genomics.Visualize.Cytoscape.CytoscapeGraphView.XGMML.File.XGMMLgraph.xmlnsCytoscape">
+ <summary>
+ cy:xxx
+ </summary>
+</member>
+<member name="F:SMRUCC.genomics.Visualize.Cytoscape.CytoscapeGraphView.XGMML.File.XGMMLgraph.xmlns_dc">
+ <summary>
+ dc:xxx
+ </summary>
+</member>
+<member name="M:SMRUCC.genomics.Visualize.Cytoscape.CytoscapeGraphView.XGMML.File.XGMMLgraph.CreateObject">
+ <summary>
+ 创建一个初始默认的网络文件
+ </summary>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:SMRUCC.genomics.Visualize.Cytoscape.CytoscapeGraphView.XGMML.File.XGMMLgraph.CreateObject(System.String,System.String,System.String)">
+ <summary>
+ Creates a default cytoscape network model xml file with specific title and description.(创建一个初始默认的网络文件)
+ </summary>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:SMRUCC.genomics.Visualize.Cytoscape.CytoscapeGraphView.XGMML.File.XGMMLgraph.Save(System.String,System.Text.Encoding)">
+ <summary>
+ Save this cytoscape network visualization model using this function.
+ (请使用这个方法进行Cytoscape网络模型文件的保存)
+ </summary>
+ <param name="FilePath">The file path of the xml file saved location.</param>
+ <param name="encoding">The text encoding of saved text file.</param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:SMRUCC.genomics.Visualize.Cytoscape.CytoscapeGraphView.XGMML.GraphIndex.GetNode(System.String)">
+ <summary>
+ 
+ </summary>
+ <param name="label">Synonym</param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Visualize.Cytoscape.CytoscapeGraphView.XGMML.RDFXml.Load(System.String)">
+ <summary>
+ 使用这个方法才能够正确的加载一个cytoscape的网络模型文件
+ </summary>
+ <param name="path"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="T:SMRUCC.genomics.Visualize.Cytoscape.Visualization.VizMap">
+ <summary>
+ visual styles xml
+ </summary>
+</member>
+<member name="T:SMRUCC.genomics.Visualize.Cytoscape.Session.CysSessionFile">
+ <summary>
+ ``*.cys`` cytoscape session file reader model
+ </summary>
+</member>
+<member name="P:SMRUCC.genomics.Visualize.Cytoscape.Session.CysSessionFile.source">
+ <summary>
+ the original *.cys session file location.
+ </summary>
+</member>
+<member name="M:SMRUCC.genomics.Visualize.Cytoscape.Session.CysSessionFile.GetLayoutedGraph(System.String,System.String)">
+ <summary>
+ 加载一个已经具有网络布局信息的网络模型
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:SMRUCC.genomics.Visualize.Cytoscape.Session.virtualColumn">
+ <summary>
+ the column data
+ </summary>
+</member>
+<member name="T:SMRUCC.genomics.Visualize.Cytoscape.Session.NamespaceDoc">
+ <summary>
+ the cytoscape session file imports
+ </summary>
+</member>
+</members>
+</doc>

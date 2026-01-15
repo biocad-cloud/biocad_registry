@@ -1,5 +1,6 @@
 ﻿Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports Oracle.LinuxCompatibility.MySQL.Reflection.DbAttributes
+Imports registry_data
 Imports RegistryTool.My
 
 Public Class Tag
@@ -13,12 +14,18 @@ Public Class Tag
     End Function
 
     Public Shared Function GetTags(mol As UInteger) As Tag()
-        Return MyApplication.biocad_registry.molecule_tags _
+        Dim model = MyApplication.biocad_registry.GetMetaboliteModel(mol)
+
+        If model Is Nothing Then
+            Return {}
+        End If
+
+        Return MyApplication.biocad_registry.topic _
             .left_join("vocabulary") _
-            .on(field("`vocabulary`.id") = field("molecule_tags.tag_id")) _
-            .where(field("molecule_id") = mol) _
+            .on(field("`vocabulary`.id") = field("topic_id")) _
+            .where(field("model_id") = model.id) _
             .order_by("term") _
-            .select(Of Tag)("term", "tag_id", "molecule_id")
+            .select(Of Tag)("term", "topic_id as tag_id", $"{mol} as molecule_id")
     End Function
 
 End Class

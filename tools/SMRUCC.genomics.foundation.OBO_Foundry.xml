@@ -181,6 +181,16 @@ SMRUCC.genomics.foundation.OBO_Foundry
  ```
  </remarks>
 </member>
+<member name="M:SMRUCC.genomics.foundation.OBO_Foundry.IO.Models.OBOFile.GetRawTerms">
+ <summary>
+ read term data from obo file stream
+ </summary>
+ <returns></returns>
+ <remarks>
+ this function has cache data, first time call this function will cache term data into memory
+ then second time call this function will populate data from the memory cache directly. 
+ </remarks>
+</member>
 <member name="P:SMRUCC.genomics.foundation.OBO_Foundry.IO.Models.RawTerm.type">
  <summary>
  Example: ``[Term]``

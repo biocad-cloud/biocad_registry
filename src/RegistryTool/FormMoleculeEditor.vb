@@ -1,5 +1,4 @@
-﻿Imports biocad_storage
-Imports BioNovoGene.BioDeep.Chemoinformatics
+﻿Imports BioNovoGene.BioDeep.Chemoinformatics
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports BioNovoGene.BioDeep.Chemoinformatics.SMILES
 Imports Galaxy.Workbench
@@ -13,6 +12,8 @@ Imports Microsoft.Web.WebView2.Core
 Imports Ollama
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports Oracle.LinuxCompatibility.MySQL.Reflection.DbAttributes
+Imports registry_data
+Imports registry_data.biocad_registryModel
 Imports RegistryTool.Configs
 Imports RegistryTool.My
 Imports SMRUCC.genomics.Model.MotifGraph
@@ -56,14 +57,14 @@ let options = { width: 450, height: 300 };
 </script>
 </html>"
 
-    Dim struct As biocad_registryModel.sequence_graph
-    Dim mol As biocad_registryModel.molecule
+    Dim struct As biocad_registryModel.struct_data
+    Dim mol As biocad_registryModel.metabolites
     Dim morgan As ProteinStructure.MorganFingerprint
 
     Private Async Sub FormMoleculeEditor_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        mol = MyApplication.biocad_registry.molecule _
+        mol = MyApplication.biocad_registry.metabolites _
             .where(field("id") = UInteger.Parse(id.Match("\d+"))) _
-            .find(Of biocad_registryModel.molecule)
+            .find(Of biocad_registryModel.metabolites)
 
         SMILES.MolecularFingerprint.Length = 1024
         morgan = New ProteinStructure.MorganFingerprint(SMILES.MolecularFingerprint.Length)
@@ -86,13 +87,13 @@ let options = { width: 450, height: 300 };
         TextBox4.Text = mol.note
         LinkLabel1.Text = $"http://biocad.innovation.ac.cn/molecule/BioCAD{mol.id.ToString.PadLeft(11, "0"c)}/"
 
-        struct = MyApplication.biocad_registry.sequence_graph _
-            .where(field("molecule_id") = mol.id) _
-            .find(Of biocad_registryModel.sequence_graph)
+        struct = MyApplication.biocad_registry.struct_data _
+            .where(field("metabolite_id") = mol.id) _
+            .find(Of biocad_registryModel.struct_data)
 
         If Not struct Is Nothing Then
-            TextBox1.Text = struct.sequence
-            TextBox5.Text = struct.morgan
+            TextBox1.Text = struct.smiles
+            TextBox5.Text = struct.fingerprint
         End If
 
         For Each term As TopicTerm In TopicTerm.GetTopics
@@ -103,12 +104,12 @@ let options = { width: 450, height: 300 };
             Call ComboBox3.Items.Add(term)
         Next
 
-        Dim taxonomy As OrganismSource() = MyApplication.biocad_registry.taxonomy_source _
+        Dim taxonomy As OrganismSource() = MyApplication.biocad_registry.organism_source _
             .left_join("ncbi_taxonomy") _
-            .on(field("`ncbi_taxonomy`.id") = field("ncbi_taxid")) _
-            .where(field("molecule_id") = mol.id) _
+            .on(field("`ncbi_taxonomy`.id") = field("organism_id")) _
+            .where(field("metabolite_id") = mol.id) _
             .distinct _
-            .select(Of OrganismSource)("ncbi_taxid", "taxname")
+            .select(Of OrganismSource)("organism_id as ncbi_taxid", "`ncbi_taxonomy`.name as taxname")
 
         Call ListBox3.Items.Clear()
 
@@ -129,7 +130,7 @@ let options = { width: 450, height: 300 };
     End Sub
 
     Private Async Function LoadReactions() As Task
-        Dim reaction_ids As UInteger() = Await Task.Run(Function() MyApplication.biocad_registry.reaction_graph.where(field("molecule_id") = mol.id).distinct.project(Of UInteger)("reaction"))
+        Dim reaction_ids As UInteger() = Await Task.Run(Function() MyApplication.biocad_registry.metabolic_network.where(field("species_id") = mol.id).distinct.project(Of UInteger)("reaction_id"))
 
         If reaction_ids.IsNullOrEmpty Then
             Return
@@ -149,7 +150,7 @@ let options = { width: 450, height: 300 };
     Private Sub refreshNames(Optional lang As String = Nothing)
         Dim q As FieldAssert() = {
             field("obj_id") = mol.id,
-            field("type_id") = mol.type
+            field("type") = MyApplication.biocad_registry.biocad_vocabulary.metabolite_type
         }
 
         If Not lang.StringEmpty(, True) Then
@@ -175,10 +176,10 @@ let options = { width: 450, height: 300 };
     Private Sub refreshXrefs()
         Dim xrefs = MyApplication.biocad_registry.db_xrefs _
             .left_join("vocabulary") _
-            .on(field("`vocabulary`.id") = field("db_key")) _
+            .on((field("`vocabulary`.id") = field("db_name")) And (field("type") = MyApplication.biocad_registry.biocad_vocabulary.metabolite_type)) _
             .where(field("obj_id") = mol.id) _
-            .order_by("dbname") _
-            .select(Of XrefID)("db_xrefs.id as xref_id", "term as dbname", "xref", "db_key")
+            .order_by("db_name") _
+            .select(Of XrefID)("db_xrefs.id as xref_id", "term as dbname", "db_xref", "db_name")
 
         DataGridView1.Rows.Clear()
 
@@ -200,12 +201,12 @@ let options = { width: 450, height: 300 };
 
     Private Async Sub SaveCommonName() Handles Button2.Click
         Dim name As String = Strings.Trim(TextBox2.Text)
-        Await Task.Run(Sub() MyApplication.biocad_registry.molecule.where(field("id") = UInteger.Parse(id.Match("\d+"))).save(field("name") = name))
+        Await Task.Run(Sub() MyApplication.biocad_registry.metabolites.where(field("id") = UInteger.Parse(id.Match("\d+"))).save(field("name") = name))
     End Sub
 
     Private Sub WebView21_CoreWebView2InitializationCompleted(sender As Object, e As CoreWebView2InitializationCompletedEventArgs) Handles WebView21.CoreWebView2InitializationCompleted
         If Not struct Is Nothing Then
-            Call WebView21.NavigateToString(viewer.Replace("{$struct_data}", struct.sequence))
+            Call WebView21.NavigateToString(viewer.Replace("{$struct_data}", struct.smiles))
         End If
     End Sub
 
@@ -215,13 +216,7 @@ let options = { width: 450, height: 300 };
         Dim fingerprint As String = Nothing
 
         Await Task.Run(Sub()
-                           If mol.type = MyApplication.biocad_registry.vocabulary_terms.metabolite_term Then
-                               checksum = MolecularFingerprint.ConvertToMorganFingerprint(smilesOrSeq, radius:=3)
-                           Else
-                               Dim graph = KMerGraph.FromSequence(smilesOrSeq, k:=3)
-                               checksum = morgan.CalculateFingerprintCheckSum(graph, radius:=3)
-                           End If
-
+                           checksum = MolecularFingerprint.ConvertToMorganFingerprint(smilesOrSeq, radius:=3)
                            fingerprint = checksum.GZipAsBase64
                        End Sub)
 
@@ -229,27 +224,27 @@ let options = { width: 450, height: 300 };
 
         If struct Is Nothing Then
             Await Task.Run(Sub()
-                               MyApplication.biocad_registry.sequence_graph.add(
-                                   field("sequence") = smilesOrSeq,
-                                        field("morgan") = fingerprint,
-                                        field("hashcode") = smilesOrSeq.MD5,
-                                        field("molecule_id") = UInteger.Parse(id.Match("\d+"))
+                               MyApplication.biocad_registry.struct_data.add(
+                                   field("smiles") = smilesOrSeq,
+                                        field("fingerprint") = fingerprint,
+                                        field("checksum") = smilesOrSeq.MD5,
+                                        field("metabolite_id") = UInteger.Parse(id.Match("\d+"))
                                )
 
-                               struct = MyApplication.biocad_registry.sequence_graph _
-                                  .where(field("molecule_id") = UInteger.Parse(id.Match("\d+"))) _
+                               struct = MyApplication.biocad_registry.struct_data _
+                                  .where(field("metabolite_id") = UInteger.Parse(id.Match("\d+"))) _
                                   .order_by("id", desc:=True) _
-                                  .find(Of biocad_registryModel.sequence_graph)
+                                  .find(Of biocad_registryModel.struct_data)
                            End Sub)
 
             WebView21_CoreWebView2InitializationCompleted(Nothing, Nothing)
         Else
             Await Task.Run(Sub()
-                               MyApplication.biocad_registry.sequence_graph _
+                               MyApplication.biocad_registry.struct_data _
                                    .where(field("id") = struct.id) _
-                                   .save(field("sequence") = smilesOrSeq,
-                                         field("morgan") = fingerprint,
-                                         field("hashcode") = smilesOrSeq.MD5)
+                                   .save(field("smiles") = smilesOrSeq,
+                                         field("fingerprint") = fingerprint,
+                                         field("checksum") = smilesOrSeq.MD5)
                            End Sub)
         End If
     End Sub
@@ -294,12 +289,12 @@ let options = { width: 450, height: 300 };
     Private Async Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
         Dim desc = Strings.Trim(TextBox4.Text)
 
-        Await Task.Run(Sub() MyApplication.biocad_registry.molecule.where(field("id") = UInteger.Parse(id.Match("\d+"))).save(field("note") = desc))
+        Await Task.Run(Sub() MyApplication.biocad_registry.metabolites.where(field("id") = UInteger.Parse(id.Match("\d+"))).save(field("note") = desc))
     End Sub
 
     Private Sub LinkLabel1_LinkClicked() Handles LinkLabel1.Click
         Dim int = UInteger.Parse(id.Match("\d+"))
-        Dim url = $"http://biocad.innovation.ac.cn/molecule/BioCAD{int.ToString.PadLeft(11, "0"c)}/"
+        Dim url = $"http://biocad.innovation.ac.cn/metabolite/BioCAD{int.ToString.PadLeft(11, "0"c)}/"
 
         OpenUrlWithDefaultBrowser(url)
     End Sub
@@ -311,7 +306,9 @@ let options = { width: 450, height: 300 };
             Return
         End If
 
-        Await Task.Run(Sub() MyApplication.biocad_registry.molecule_tags.where(field("tag_id") = sel.tag_id, field("molecule_id") = sel.molecule_id).delete())
+        Dim model As registry_resolver = Await Task.Run(Function() MyApplication.biocad_registry.registry_resolver.where(field("type") = MyApplication.biocad_registry.biocad_vocabulary.metabolite_type, field("symbol_id") = sel.molecule_id).find(Of registry_resolver))
+
+        Await Task.Run(Sub() MyApplication.biocad_registry.topic.where(field("topic_id") = sel.tag_id, field("model_id") = model.id).delete())
         Call refreshTags()
     End Sub
 
@@ -324,16 +321,17 @@ let options = { width: 450, height: 300 };
 
         Dim db As XrefID = sel(0).Tag
         Dim all_xrefs = MyApplication.biocad_registry.db_xrefs _
-            .where(field("db_key") = db.db_key,
+            .where(field("db_name") = db.db_key,
+                   field("type") = Terms.metabolite_type,
                    field("obj_id") = mol.id) _
             .select(Of biocad_registryModel.db_xrefs)
         Dim edit As New FormTextEditor
 
-        edit.SetText(all_xrefs.Select(Function(a) a.xref))
+        edit.SetText(all_xrefs.Select(Function(a) a.db_xref))
         edit.SetPromptText("Edit the database xref id(delete text for removes id from database, add text for add new id into database)")
         edit.ShowDialog()
 
-        Dim current = all_xrefs.GroupBy(Function(a) a.xref).ToDictionary(Function(a) a.Key, Function(a) a.ToArray)
+        Dim current = all_xrefs.GroupBy(Function(a) a.db_xref).ToDictionary(Function(a) a.Key, Function(a) a.ToArray)
 
         Call TaskProgress.RunAction(
             Sub(println As ITaskProgress)
@@ -345,10 +343,10 @@ let options = { width: 450, height: 300 };
                     Else
                         ' add new
                         Call MyApplication.biocad_registry.db_xrefs.add(
-                            field("db_key") = db.db_key,
+                            field("db_name") = db.db_key,
                             field("obj_id") = mol.id,
-                            field("xref") = id,
-                            field("type") = mol.type
+                            field("db_xref") = id,
+                            field("type") = Terms.metabolite_type
                         )
                     End If
                 Next
@@ -360,10 +358,10 @@ let options = { width: 450, height: 300 };
                         ' no changed
                     Else
                         ' deleted
-                        Call MyApplication.biocad_registry.db_xrefs.where(field("db_key") = db.db_key,
+                        Call MyApplication.biocad_registry.db_xrefs.where(field("db_name") = db.db_key,
                             field("obj_id") = mol.id,
-                            field("xref") = key,
-                            field("type") = mol.type).delete()
+                            field("db_xref") = key,
+                            field("type") = Terms.metabolite_type).delete()
                     End If
                 Next
             End Sub)
@@ -378,18 +376,18 @@ let options = { width: 450, height: 300 };
 
         Dim term As TopicTerm = ComboBox2.SelectedItem
 
-        If MyApplication.biocad_registry.molecule_tags _
-            .where(field("tag_id") = term.id,
-                   field("molecule_id") = mol.id) _
-            .find(Of biocad_registryModel.molecule_tags) Is Nothing Then
+        'If MyApplication.biocad_registry.molecule_tags _
+        '    .where(field("tag_id") = term.id,
+        '           field("molecule_id") = mol.id) _
+        '    .find(Of biocad_registryModel.molecule_tags) Is Nothing Then
 
-            Call MyApplication.biocad_registry.molecule_tags.add(
-                field("tag_id") = term.id,
-                field("molecule_id") = mol.id,
-                field("description") = "Molecule Editor"
-            )
-            Call refreshTags()
-        End If
+        '    Call MyApplication.biocad_registry.molecule_tags.add(
+        '        field("tag_id") = term.id,
+        '        field("molecule_id") = mol.id,
+        '        field("description") = "Molecule Editor"
+        '    )
+        '    Call refreshTags()
+        'End If
     End Sub
 
     Private Sub ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox1.SelectedIndexChanged
@@ -422,39 +420,39 @@ let options = { width: 450, height: 300 };
 
         Call TaskProgress.RunAction(
             Sub(println As ITaskProgress)
-                Dim current = names.Indexing
+                'Dim current = names.Indexing
 
-                Call println.SetInfo("Commit modified data to database...")
+                'Call println.SetInfo("Commit modified data to database...")
 
-                For Each name As String In edit.TextLines
-                    If name Like current Then
-                        ' no changed
-                    Else
-                        ' add new
-                        Call MyApplication.biocad_registry.synonym.add(
-                            field("type_id") = mol.type,
-                            field("obj_id") = mol.id,
-                            field("synonym") = name,
-                            field("lang") = lang,
-                            field("hashcode") = name.ToLower.MD5
-                        )
-                    End If
-                Next
+                'For Each name As String In edit.TextLines
+                '    If name Like current Then
+                '        ' no changed
+                '    Else
+                '        ' add new
+                '        Call MyApplication.biocad_registry.synonym.add(
+                '            field("type_id") = mol.type,
+                '            field("obj_id") = mol.id,
+                '            field("synonym") = name,
+                '            field("lang") = lang,
+                '            field("hashcode") = name.ToLower.MD5
+                '        )
+                '    End If
+                'Next
 
-                Dim modified As Index(Of String) = edit.TextLines.Indexing
+                'Dim modified As Index(Of String) = edit.TextLines.Indexing
 
-                For Each key As String In current.Objects
-                    If key Like modified Then
-                        ' no changed
-                    Else
-                        ' deleted
-                        Call MyApplication.biocad_registry.synonym _
-                            .where(field("obj_id") = mol.id,
-                                   field("lang") = lang,
-                                   field("type_id") = mol.type,
-                                   field("synonym") = key).delete()
-                    End If
-                Next
+                'For Each key As String In current.Objects
+                '    If key Like modified Then
+                '        ' no changed
+                '    Else
+                '        ' deleted
+                '        Call MyApplication.biocad_registry.synonym _
+                '            .where(field("obj_id") = mol.id,
+                '                   field("lang") = lang,
+                '                   field("type_id") = mol.type,
+                '                   field("synonym") = key).delete()
+                '    End If
+                'Next
             End Sub)
 
         Call refreshNames(lang)
@@ -495,19 +493,19 @@ let options = { width: 450, height: 300 };
                 Dim json As String = msg.output.Match("[{].+[}]")
                 Dim zh_name = json.LoadJSON(Of TranslatedName)
 
-                If MyApplication.biocad_registry.synonym.where(field("type_id") = mol.type,
-                    field("obj_id") = mol.id,
-                    field("synonym") = zh_name.ToString,
-                    field("lang") = "zh").find(Of biocad_registryModel.synonym) Is Nothing Then
+                'If MyApplication.biocad_registry.synonym.where(field("type_id") = mol.type,
+                '    field("obj_id") = mol.id,
+                '    field("synonym") = zh_name.ToString,
+                '    field("lang") = "zh").find(Of biocad_registryModel.synonym) Is Nothing Then
 
-                    Call MyApplication.biocad_registry.synonym.add(
-                        field("type_id") = mol.type,
-                        field("obj_id") = mol.id,
-                        field("synonym") = zh_name.ToString,
-                        field("lang") = "zh",
-                        field("hashcode") = zh_name.ToString.ToLower.MD5
-                    )
-                End If
+                'Call MyApplication.biocad_registry.synonym.add(
+                '    field("type_id") = mol.type,
+                '    field("obj_id") = mol.id,
+                '    field("synonym") = zh_name.ToString,
+                '    field("lang") = "zh",
+                '    field("hashcode") = zh_name.ToString.ToLower.MD5
+                ')
+                ' End If
             Catch ex As Exception
                 Call CommonRuntime.Warning(ex.Message)
             End Try
@@ -525,18 +523,18 @@ let options = { width: 450, height: 300 };
             Return
         End If
 
-        If MyApplication.biocad_registry.db_xrefs.where(field("db_key") = dbname.id,
-            field("obj_id") = mol.id,
-            field("xref") = new_id,
-            field("type") = mol.type).find(Of biocad_registryModel.db_xrefs) Is Nothing Then
+        'If MyApplication.biocad_registry.db_xrefs.where(field("db_key") = dbname.id,
+        '    field("obj_id") = mol.id,
+        '    field("xref") = new_id,
+        '    field("type") = mol.type).find(Of biocad_registryModel.db_xrefs) Is Nothing Then
 
-            Call MyApplication.biocad_registry.db_xrefs.add(
-                field("db_key") = dbname.id,
-                field("obj_id") = mol.id,
-                field("xref") = new_id,
-                field("type") = mol.type
-            )
-        End If
+        '    Call MyApplication.biocad_registry.db_xrefs.add(
+        '        field("db_key") = dbname.id,
+        '        field("obj_id") = mol.id,
+        '        field("xref") = new_id,
+        '        field("type") = mol.type
+        '    )
+        'End If
 
         Call refreshXrefs()
     End Sub
@@ -572,9 +570,9 @@ let options = { width: 450, height: 300 };
         Dim formula As String = Strings.Trim(TextBox3.Text)
         Dim exact_mass As Double = FormulaScanner.EvaluateExactMass(formula)
 
-        Await Task.Run(Sub() MyApplication.biocad_registry.molecule.where(field("id") = mol.id).save(
+        Await Task.Run(Sub() MyApplication.biocad_registry.metabolites.where(field("id") = mol.id).save(
             field("formula") = formula,
-            field("mass") = exact_mass
+            field("exact_mass") = exact_mass
         ))
     End Sub
 
@@ -584,30 +582,30 @@ let options = { width: 450, height: 300 };
         End If
 
         Dim source As OrganismSource = DirectCast(ListBox3.SelectedItem, OrganismSource)
-        Dim molecules As MoleculeSearch() = TaskProgress _
-            .LoadData(Function(println As Action(Of String))
-                          Return MyApplication.biocad_registry.taxonomy_source _
-                            .left_join("molecule").on(field("`molecule`.id") = field("molecule_id")) _
-                            .left_join("vocabulary").on(field("`vocabulary`.id") = field("`molecule`.type")) _
-                            .where(field("ncbi_taxid") = source.ncbi_taxid) _
-                            .distinct _
-                            .select(Of MoleculeSearch)("`molecule`.id",
-    "`molecule`.name",
-    "formula",
-    "mass",
-    "term AS type",
-    "`molecule`.note")
-                      End Function)
-        Dim view As New FormDbView()
-        view.LoadTableView(Function() molecules)
-        view.SetViewer(Sub(row)
-                           Dim id As String = row.Cells(0).Value.ToString
-                           Dim name As String = row.Cells(1).Value.ToString
+        '    Dim molecules As MoleculeSearch() = TaskProgress _
+        '        .LoadData(Function(println As Action(Of String))
+        '                      Return MyApplication.biocad_registry.taxonomy_source _
+        '                        .left_join("molecule").on(field("`molecule`.id") = field("molecule_id")) _
+        '                        .left_join("vocabulary").on(field("`vocabulary`.id") = field("`molecule`.type")) _
+        '                        .where(field("ncbi_taxid") = source.ncbi_taxid) _
+        '                        .distinct _
+        '                        .select(Of MoleculeSearch)("`molecule`.id",
+        '"`molecule`.name",
+        '"formula",
+        '"mass",
+        '"term AS type",
+        '"`molecule`.note")
+        '                  End Function)
+        '    Dim view As New FormDbView()
+        '    view.LoadTableView(Function() molecules)
+        '    view.SetViewer(Sub(row)
+        '                       Dim id As String = row.Cells(0).Value.ToString
+        '                       Dim name As String = row.Cells(1).Value.ToString
 
-                           Call Workbench.OpenMoleculeEditor(id, name)
-                       End Sub)
-        view.Text = $"Metabolite From Taxonomy '{source}'"
-        view.Show(CommonRuntime.AppHost.GetDockPanel, DockState.Document)
+        '                       Call Workbench.OpenMoleculeEditor(id, name)
+        '                   End Sub)
+        '    view.Text = $"Metabolite From Taxonomy '{source}'"
+        '    view.Show(CommonRuntime.AppHost.GetDockPanel, DockState.Document)
     End Sub
 
     Private Sub SearchByThisDbXrefToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SearchByThisDbXrefToolStripMenuItem.Click
@@ -668,30 +666,30 @@ let options = { width: 450, height: 300 };
 
         Dim rxn = DataGridView2.SelectedRows(0)
         Dim rxn_id As String = CStr(rxn.HeaderCell.Value)
-        Dim graph = Await Task.Run(
-            Function()
-                Return MyApplication.biocad_registry.reaction_graph _
-                    .left_join("molecule") _
-                    .on(field("molecule_id") = field("molecule.id")) _
-                    .left_join("vocabulary") _
-                    .on(field("vocabulary.id") = field("role")) _
-                    .where(field("reaction") = UInteger.Parse(rxn_id)) _
-                    .select(Of reaction_graphdata)("molecule.*", "db_xref", "term AS role")
-            End Function)
+        'Dim graph = Await Task.Run(
+        '    Function()
+        '        Return MyApplication.biocad_registry.reaction_graph _
+        '            .left_join("molecule") _
+        '            .on(field("molecule_id") = field("molecule.id")) _
+        '            .left_join("vocabulary") _
+        '            .on(field("vocabulary.id") = field("role")) _
+        '            .where(field("reaction") = UInteger.Parse(rxn_id)) _
+        '            .select(Of reaction_graphdata)("molecule.*", "db_xref", "term AS role")
+        '    End Function)
 
-        TextBox7.Text = rxn.Tag
-        DataGridView3.Rows.Clear()
+        'TextBox7.Text = rxn.Tag
+        'DataGridView3.Rows.Clear()
 
-        For Each compound In graph
-            Call DataGridView3.Rows.Add(
-                compound.id,
-                compound.db_xref,
-                compound.name,
-                compound.formula,
-                compound.mass,
-                compound.role
-            )
-        Next
+        'For Each compound In graph
+        '    Call DataGridView3.Rows.Add(
+        '        compound.id,
+        '        compound.db_xref,
+        '        compound.name,
+        '        compound.formula,
+        '        compound.mass,
+        '        compound.role
+        '    )
+        'Next
     End Sub
 End Class
 
@@ -699,7 +697,7 @@ Public Class reaction_graphdata
 
     <DatabaseField> Public Property id As UInteger
     <DatabaseField> Public Property name As String
-    <DatabaseField> Public Property mass As Double
+    <DatabaseField> Public Property exact_mass As Double
     <DatabaseField> Public Property formula As String
     <DatabaseField> Public Property db_xref As String
     <DatabaseField> Public Property role As String

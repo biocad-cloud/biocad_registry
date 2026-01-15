@@ -5,6 +5,6 @@
 Public Class zzz
 
     Public Shared Sub onLoad()
-        Call models.Main()
+        Call registry_models.Main()
     End Sub
 End Class

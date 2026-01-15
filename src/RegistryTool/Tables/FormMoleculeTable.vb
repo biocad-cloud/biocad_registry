@@ -12,9 +12,9 @@ Public Class FormMoleculeTable
     Private Function GetVocabulary() As Integer
         Select Case ToolStripComboBox1.SelectedItem.ToString
             Case "*" : Return -1
-            Case "Gene" : Return MyApplication.biocad_registry.getVocabulary("Nucleic Acid", "Molecule Type")
-            Case "Protein" : Return MyApplication.biocad_registry.getVocabulary("Polypeptide", "Molecule Type")
-            Case "Metabolite" : Return MyApplication.biocad_registry.getVocabulary("Metabolite", "Molecule Type")
+                'Case "Gene" : Return MyApplication.biocad_registry.getVocabulary("Nucleic Acid", "Molecule Type")
+                'Case "Protein" : Return MyApplication.biocad_registry.getVocabulary("Polypeptide", "Molecule Type")
+                'Case "Metabolite" : Return MyApplication.biocad_registry.getVocabulary("Metabolite", "Molecule Type")
             Case Else
                 Return -1
         End Select
@@ -40,46 +40,46 @@ Public Class FormMoleculeTable
 
         ToolStripLabel2.Text = $"Page {page} data"
 
-        Dim q = MyApplication.biocad_registry.molecule _
-            .left_join("sequence_graph") _
-            .on(field("sequence_graph.molecule_id") = field("molecule.id"))
-        Dim qwhere As New List(Of FieldAssert)
+        '    Dim q = MyApplication.biocad_registry.molecule _
+        '        .left_join("sequence_graph") _
+        '        .on(field("sequence_graph.molecule_id") = field("molecule.id"))
+        '    Dim qwhere As New List(Of FieldAssert)
 
-        If type > -1 Then
-            qwhere.Add(field("molecule.type") = type)
-        End If
-        If topic IsNot Nothing Then
-            qwhere.Add(field("tag_id") = topic.id)
-            q = q _
-                .left_join("molecule_tags") _
-                .on(field("molecule_tags.molecule_id") = field("molecule.id"))
-        End If
+        '    If type > -1 Then
+        '        qwhere.Add(field("molecule.type") = type)
+        '    End If
+        '    If topic IsNot Nothing Then
+        '        qwhere.Add(field("tag_id") = topic.id)
+        '        q = q _
+        '            .left_join("molecule_tags") _
+        '            .on(field("molecule_tags.molecule_id") = field("molecule.id"))
+        '    End If
 
-        If qwhere.Any Then
-            q = q.where(qwhere)
-        End If
+        '    If qwhere.Any Then
+        '        q = q.where(qwhere)
+        '    End If
 
-        Dim data = Await Task.Run(Function() q.limit(offset, page_size).distinct.select(Of MoleculeData)("molecule.id AS molecule_id",
-    "xref_id",
-    "name",
-    "formula",
-    "mass",
-    "sequence",
-    "note"))
+        '    Dim data = Await Task.Run(Function() q.limit(offset, page_size).distinct.select(Of MoleculeData)("molecule.id AS molecule_id",
+        '"xref_id",
+        '"name",
+        '"formula",
+        '"mass",
+        '"sequence",
+        '"note"))
 
-        Call DataGridView1.Rows.Clear()
+        '    Call DataGridView1.Rows.Clear()
 
-        ToolStripProgressBar1.Value = 0
-        ToolStripProgressBar1.Maximum = data.Length
-        ToolStripProgressBar1.Minimum = 0
+        '    ToolStripProgressBar1.Value = 0
+        '    ToolStripProgressBar1.Maximum = data.Length
+        '    ToolStripProgressBar1.Minimum = 0
 
-        For Each mol As MoleculeData In data
-            Dim i = DataGridView1.Rows.Add(mol.molecule_id, mol.xref_id, mol.name, mol.formula, mol.mass, mol.sequence, mol.note)
-            Dim r = DataGridView1.Rows(i)
+        '    For Each mol As MoleculeData In data
+        '        Dim i = DataGridView1.Rows.Add(mol.molecule_id, mol.xref_id, mol.name, mol.formula, mol.mass, mol.sequence, mol.note)
+        '        Dim r = DataGridView1.Rows(i)
 
-            r.Tag = mol
-            ToolStripProgressBar1.Value += 1
-        Next
+        '        r.Tag = mol
+        '        ToolStripProgressBar1.Value += 1
+        '    Next
 
         Call DataGridView1.CommitEdit(DataGridViewDataErrorContexts.Commit)
     End Function
@@ -176,7 +176,7 @@ Public Class FormMoleculeTable
         Dim row = DataGridView1.SelectedRows(0)
         Dim id As String = CStr(row.Cells(0).Value)
 
-        MyApplication.biocad_registry.molecule_tags.where(field("tag_id") = topic.id, field("molecule_id") = id).delete()
+        'MyApplication.biocad_registry.molecule_tags.where(field("tag_id") = topic.id, field("molecule_id") = id).delete()
     End Sub
 End Class
 

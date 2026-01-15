@@ -8,20 +8,37 @@
 */
 declare namespace registry {
    /**
-     * @param direct_list default value Is ``true``.
+     * @param env default value Is ``null``.
    */
-   function child_list(registry: object, tax_id: string, direct_list?: boolean): any;
+   function imports_kegg_reactions(registry: object, kegg: any, env?: object): any;
    /**
    */
-   function find_taxinfo(registry: object, tax: string): object;
-   /**
-     * @param dbname default value Is ``null``.
-   */
-   function get_by_xref(registry: object, id: string, dbname?: string): any;
+   function imports_metacyc_compounds(registry: object, metacyc: object): any;
    /**
    */
-   function get_taxinfo(registry: object, tax: string): object;
+   function imports_metacyc_reactions(registry: object, metacyc: object): any;
    /**
+     * @param env default value Is ``null``.
    */
-   function taxonomy_lineage(registry: object, tax_id: string): object;
+   function imports_pubchem(registry: object, pubchem: any, env?: object): any;
+   /**
+     * @param env default value Is ``null``.
+   */
+   function imports_rhea(registry: object, rhea: any, env?: object): any;
+   /**
+     * @param env default value Is ``null``.
+   */
+   function make_genbank_dbxrefs(registry: object, genbank: any, env?: object): any;
+   /**
+     * @param env default value Is ``null``.
+   */
+   function save_genbank(registry: object, genbank: any, env?: object): any;
+   /**
+     * @param env default value Is ``null``.
+   */
+   function save_TRN(registry: object, genomes: any, env?: object): any;
+   /**
+     * @param env default value Is ``null``.
+   */
+   function save_uniprot(registry: object, uniprot: any, env?: object): any;
 }
