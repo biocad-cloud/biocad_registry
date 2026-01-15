@@ -296,3 +296,6 @@ scripts/metadata.dat
 /workspace/transformer/enzymes.fasta
 mysql/cad_registry-v2.mwb.bak
 test/2026_v2/hmdb.csv
+test/2026_v2/exports/hmdb.csv
+*.so
+*.dylib
