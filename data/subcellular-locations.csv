@@ -1,0 +1,173 @@
+id,name,zh_name,membrane
+1,Cytoplasm,细胞质,0
+2,Extracellular,胞外,0
+3,Membrane,膜,1
+4,Mitochondria,线粒体,0
+5,Nucleus,细胞核,0
+6,Lysosome,溶酶体,0
+7,Endoplasmic reticulum,内质网,0
+8,Golgi apparatus,高尔基体,0
+9,Peroxisome,过氧化物酶体,0
+10,Microsomes,微粒体,0
+11,Inner mitochondrial membrane,线粒体内膜,1
+12,Cell inner membrane,细胞内膜,1
+13,Periplasm,周质,0
+14,Cell membrane,细胞膜,1
+15,Cell outer membrane,细胞外膜,1
+16,Cytoskeleton,细胞骨架,0
+17,Secreted,分泌,0
+18,Cell surface,细胞表面,0
+19,Nucleoid,拟核,0
+20,Bacterial microcompartment,细菌微室,0
+21,Nucleus membrane,核膜,1
+22,Mitochondrion inner membrane,线粒体内膜,1
+23,Nucleolus,核仁,0
+24,Mitochondrion,线粒体,0
+25,Vacuole membrane,液泡膜,1
+26,Mitochondrion outer membrane,线粒体外膜,1
+27,Peroxisome membrane,过氧化物酶体膜,1
+28,Preautophagosomal structure membrane,自噬前体结构膜,1
+29,Chromosome,染色体,0
+30,Vacuole lumen,液泡腔,0
+31,Cytosol,细胞质基质,0
+32,Mitochondrion intermembrane space,线粒体膜间隙,1
+33,Mitochondrion matrix,线粒体基质,0
+34,Nucleoplasm,核质,0
+35,Endoplasmic reticulum membrane,内质网膜,1
+36,Mitochondrion membrane,线粒体膜,1
+37,Microsome membrane,微粒体膜,1
+38,Golgi apparatus membrane,高尔基体膜,1
+39,Endosome membrane,内体膜,1
+40,Vacuole,液泡,0
+41,trans-Golgi network membrane,反式高尔基网络膜,1
+42,Nucleus envelope,核膜,1
+43,Virion,病毒粒子,0
+44,Peroxisome matrix,过氧化物酶体基质,0
+45,Nucleus inner membrane,核内膜,1
+46,Cell wall,细胞壁,1
+47,Endoplasmic reticulum lumen,内质网腔,0
+48,Endomembrane system,内膜系统,1
+49,Microtubule organizing center,微管组织中心,0
+50,Spindle pole body,纺锤极体,0
+51,Spindle,纺锤体,0
+52,Nuclear pore complex,核孔复合体,0
+53,Cytoplasmic vesicle,细胞质囊泡,0
+54,COPII-coated vesicle membrane,COPII包被囊泡膜,1
+55,Mitochondrion nucleoid,线粒体拟核,0
+56,Perinuclear region,核周区,0
+57,P-body,P小体,0
+58,Bud neck,芽颈,0
+59,Microsome,微粒体,0
+60,Endosome,内体,0
+61,Multivesicular body membrane,多泡体膜,1
+62,Prevacuolar compartment membrane,前液泡室膜,1
+63,Spindle pole,纺锤极,0
+64,Extracellular space,胞外空间,0
+65,Extracellular matrix,胞外基质,0
+66,Lipid droplet,脂滴,0
+67,Cytoplasmic vesicle membrane,细胞质囊泡膜,1
+68,Late endosome membrane,晚期内体膜,1
+69,Telomere,端粒,0
+70,Cell septum,细胞隔,1
+71,Bud,芽,0
+72,Centromere,着丝粒,0
+73,Kinetochore,动粒,0
+74,Golgi stack membrane,高尔基堆膜,1
+75,Secretory vesicle,分泌囊泡,0
+76,Late endosome,晚期内体,0
+77,Early endosome membrane,早期内体膜,1
+78,trans-Golgi network,反式高尔基网络,0
+79,Actin patch,肌动蛋白斑,0
+80,Clathrin-coated vesicle membrane,网格蛋白包被囊泡膜,1
+81,cis-Golgi network membrane,顺式高尔基网络膜,1
+82,Cell cortex,细胞皮层,0
+83,Autophagosome membrane,自噬体膜,1
+84,Preautophagosomal structure,自噬前体结构,0
+85,Cytoplasmic granule membrane,细胞质颗粒膜,1
+86,Prospore,前孢子,0
+87,Host mitochondrion outer membrane,宿主线粒体外膜,1
+88,Spore wall,孢子壁,1
+89,cis-Golgi network,顺式高尔基网络,0
+90,Glyoxysome,乙醛酸循环体,0
+91,Cell projection,细胞突起,0
+92,Rhabdomere membrane,感杆膜,1
+93,Cell envelope,细胞包膜,1
+94,Hydrogenosome lumen,氢化酶体腔,0
+95,Host cytoplasm,宿主细胞质,0
+96,Axon,轴突,0
+97,Cytoplasmic vesicle lumen,细胞质囊泡腔,0
+98,Golgi apparatus lumen,高尔基体腔,0
+99,Cell tip,细胞尖端,0
+100,COPI-coated vesicle membrane,COPI包被囊泡膜,1
+101,Coated pit,包被小窝,0
+102,Sarcoplasmic reticulum membrane,肌质网膜,1
+103,Host cell,宿主细胞,0
+104,Ruffle membrane,皱褶膜,1
+105,Plastid,质体,0
+106,Chloroplast,叶绿体,0
+107,Nucleus matrix,核基质,0
+108,Nucleus speckle,核斑点,0
+109,Basement membrane,基底膜,1
+110,Glycosome,糖酵解体,0
+111,Encapsulin nanocompartment,包裹素纳米室,0
+112,Archaeal flagellum,古菌鞭毛,0
+113,Gas vesicle,气泡囊,0
+114,Membrane raft,膜筏,1
+115,Host cell membrane,宿主细胞膜,1
+116,Cellular thylakoid membrane,细胞类囊体膜,1
+117,Cellular chromatophore membrane,细胞载色体膜,1
+118,Host membrane,宿主膜,1
+119,Host cytosol,宿主细胞质基质,0
+120,Host synapse,宿主突触,0
+121,Host presynaptic cell membrane,宿主突触前细胞膜,1
+122,Host cytoplasmic vesicle,宿主细胞质囊泡,0
+123,Host secretory vesicle,宿主分泌囊泡,0
+124,Host synaptic vesicle membrane,宿主突触囊泡膜,1
+125,Host cytoplasmic vesicle membrane,宿主细胞质囊泡膜,1
+126,Attachment organelle,附着器官,0
+127,Host endoplasmic reticulum,宿主内质网,0
+128,Carboxysome,羧酶体,0
+129,Target cell,靶细胞,0
+130,Target cell cytoplasm,靶细胞质,0
+131,Target cell membrane,靶细胞膜,1
+132,Capsule,荚膜,0
+133,Host mitochondrion,宿主线粒体,0
+134,Host nucleus,宿主细胞核,0
+135,Spore coat,孢子外壁,0
+136,Cellular thylakoid lumen,细胞类囊体腔,0
+137,Forespore intermembrane space,前孢子膜间隙,1
+138,Forespore outer membrane,前孢子外膜,1
+139,Host phagosome,宿主吞噬体,0
+140,Extracellular vesicle,胞外囊泡,0
+141,Bacterial extracellular vesicle,细菌胞外囊泡,0
+142,Host extracellular space,宿主胞外空间,0
+143,Anammoxosome,厌氧氨氧化体,0
+144,Host cytoskeleton,宿主细胞骨架,0
+145,Acidocalcisome membrane,酸钙体膜,1
+146,Host vacuole,宿主液泡,0
+147,Host cell surface,宿主细胞表面,0
+148,Host mitochondrion membrane,宿主线粒体膜,1
+149,Magnetosome membrane,磁小体膜,1
+150,Host perinuclear region,宿主核周区,0
+151,Forespore inner membrane,前孢子内膜,1
+152,Forespore,前孢子,0
+153,Spore membrane,孢子膜,1
+154,Host nucleolus,宿主核仁,0
+155,Spore cortex,孢子皮层,0
+156,Host Golgi apparatus,宿主高尔基体,0
+157,Host apical cell membrane,宿主顶端细胞膜,1
+158,Host endoplasmic reticulum lumen,宿主内质网腔,0
+159,Host periplasm,宿主周质,0
+160,Host endosome membrane,宿主内体膜,1
+161,S-layer,S层,1
+162,Ascus epiplasm,子囊外质,0
+163,Mitosome membrane,线粒体样细胞器膜,1
+164,Apical cell membrane,顶端细胞膜,1
+165,Prospore membrane,前孢子膜,1
+166,Barrier septum,屏障隔,1
+167,Forespore membrane,前孢子膜,1
+168,Hydrogenosome,氢化酶体,0
+169,Mitosome,线粒体样细胞器,0
+170,Spore core,孢子核心,0
+171,Cajal body,卡哈尔体,0
+172,Extracellular vesicle membrane,胞外囊泡膜,1
