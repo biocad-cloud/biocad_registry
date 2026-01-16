@@ -21,6 +21,21 @@ Public Class ExportVirtualCellModels
         Me.registry = registry
     End Sub
 
+    Public Sub ExportLocations()
+        Dim locs = registry.registry_resolver.where(field("type") = vocabulary.GetRegistryEntity(biocad_vocabulary.EntitySubcellularLocation)).select(Of registry_resolver)
+        Dim models As WebJSON.CellularLocation() = locs _
+            .SafeQuery _
+            .Select(Function(cc)
+                        Return New WebJSON.CellularLocation With {
+                            .id = cc.symbol_id,
+                            .symbol = cc.register_name
+                        }
+                    End Function) _
+            .ToArray
+
+        Call models.GetJson.SaveTo($"{repo}/subcellular.json")
+    End Sub
+
     Public Sub ExportEnzymeDb()
         Using text As New StreamWriter($"{repo}/ec_numbers.fasta".Open(IO.FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False))
             Call text.Add(registry.ExportEnzyme, filterEmpty:=True)
