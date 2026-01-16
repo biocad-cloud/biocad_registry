@@ -6,7 +6,7 @@ Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Public Module EnzymeData
 
     <Extension>
-    Public Iterator Function ExportEnzyme(registry As biocad_registry, Optional page_size As Integer = 1000) As IEnumerable(Of FastaSeq)
+    Public Iterator Function ExportEnzyme(registry As biocad_registry, Optional page_size As Integer = 5000) As IEnumerable(Of FastaSeq)
         Dim terms = registry.biocad_vocabulary
         Dim ec_number As UInteger = terms.db_ECNumber
         Dim prot_fasta As UInteger = terms.protein_data
@@ -24,6 +24,8 @@ Public Module EnzymeData
             If page_data.IsNullOrEmpty Then
                 Exit For
             Else
+                Call $"Export enzyme sequence data page {page}...".info
+
                 For Each seq As EnzymeSequenceView In page_data
                     Yield New FastaSeq(seq.sequence, title:=seq.ec_number)
                 Next

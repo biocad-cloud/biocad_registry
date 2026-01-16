@@ -1208,6 +1208,12 @@ Microsoft.VisualBasic.Data.GraphTheory
  </summary>
  <returns></returns>
 </member>
+<member name="M:Microsoft.VisualBasic.Data.GraphTheory.GridGraph.GridCell`1.GetHashCode">
+ <summary>
+ hashcode overrides for A-star algorithm
+ </summary>
+ <returns></returns>
+</member>
 <member name="T:Microsoft.VisualBasic.Data.GraphTheory.GridGraph.IPoint2D">
  <summary>
  2d point data model in readonly
