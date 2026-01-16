@@ -71,6 +71,12 @@ Module exports
         Return registry.exportSMILES(dbname).ToArray
     End Function
 
+    ''' <summary>
+    ''' Make exports of the component models for run virtual cell annotations
+    ''' </summary>
+    ''' <param name="registry"></param>
+    ''' <param name="repo"></param>
+    ''' <returns></returns>
     <ExportAPI("virtualcell_componentdb")>
     Public Function export_virtualCell_components(registry As biocad_registry, repo As String) As Object
         Dim dump As New ExportVirtualCellModels(registry, repo)

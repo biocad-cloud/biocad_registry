@@ -9,6 +9,9 @@ Imports registry_data.biocad_registryModel
 Imports SMRUCC.genomics.GCModeller.ModellingEngine.Model
 Imports SMRUCC.genomics.SequenceModel.FASTA
 
+''' <summary>
+''' Make exports of the component models for run virtual cell annotations
+''' </summary>
 Public Class ExportVirtualCellModels
 
     ReadOnly registry As biocad_registry
