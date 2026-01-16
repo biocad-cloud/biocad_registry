@@ -5,6 +5,7 @@ Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports registry_data
 Imports registry_data.biocad_registryModel
 Imports registry_data.Exports
+Imports registry_exports
 Imports SMRUCC.Rsharp.Runtime.Internal.[Object]
 
 <Package("exports")>
@@ -68,6 +69,15 @@ Module exports
     <ExportAPI("export_smiles_data")>
     Public Function export_smiles_data(registry As biocad_registry, dbname As String) As Object
         Return registry.exportSMILES(dbname).ToArray
+    End Function
+
+    <ExportAPI("virtualcell_componentdb")>
+    Public Function export_virtualCell_components(registry As biocad_registry, repo As String) As Object
+        Dim dump As New ExportVirtualCellModels(registry, repo)
+
+        Call dump.ExportEnzymeDb()
+
+        Return Nothing
     End Function
 
 End Module
