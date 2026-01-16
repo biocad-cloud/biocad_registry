@@ -1,5 +1,5 @@
-﻿Imports Oracle.LinuxCompatibility.MySQL.Reflection.DbAttributes
-Imports registry_data
+﻿Imports registry_data
+Imports SMRUCC.genomics.SequenceModel.FASTA
 
 Public Class ExportVirtualCellModels
 
@@ -13,6 +13,10 @@ Public Class ExportVirtualCellModels
         Me.registry = registry
     End Sub
 
-
+    Public Sub ExportEnzymeDb()
+        Using text As New StreamWriter($"{repo}/ec_numbers.fasta".Open(IO.FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False))
+            Call text.Add(registry.ExportEnzyme, filterEmpty:=True)
+        End Using
+    End Sub
 
 End Class
