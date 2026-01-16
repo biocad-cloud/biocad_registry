@@ -300,3 +300,4 @@ mysql/cad_registry-v2.mwb.bak
 /tools/runtimes
 /scripts/localdb/ec_numbers.fasta
 /scripts/localdb/subcellular.fasta
+scripts/localdb/subcellular.json
