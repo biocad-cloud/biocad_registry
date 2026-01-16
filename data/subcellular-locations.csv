@@ -1,4 +1,4 @@
-id,name,zh_name,membrane
+﻿id,name,zh_name,membrane
 1,Cytoplasm,细胞质,0
 2,Extracellular,胞外,0
 3,Membrane,膜,1
