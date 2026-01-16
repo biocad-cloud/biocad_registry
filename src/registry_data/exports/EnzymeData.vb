@@ -19,7 +19,7 @@ Public Module EnzymeData
                 .where(field("db_name") = ec_number,
                        field("sequence").char_length > 1) _
                 .limit(offset, page_size) _
-                .select(Of EnzymeSequenceView)("db_xref AS ec_number", "sequence", "protein_data.id")
+                .select(Of EnzymeSequenceView)("db_xref AS term", "sequence", "protein_data.id")
 
             If page_data.IsNullOrEmpty Then
                 Exit For
@@ -27,7 +27,7 @@ Public Module EnzymeData
                 Call $"Export enzyme sequence data page {page}...".info
 
                 For Each seq As EnzymeSequenceView In page_data
-                    Yield New FastaSeq(seq.sequence, title:=seq.ec_number & " " & seq.id)
+                    Yield New FastaSeq(seq.sequence, title:=seq.term & " " & seq.id)
                 Next
             End If
         Next
@@ -36,8 +36,33 @@ Public Module EnzymeData
     Private Class EnzymeSequenceView
 
         <DatabaseField> Public Property id As UInteger
-        <DatabaseField> Public Property ec_number As String
+        <DatabaseField> Public Property term As String
         <DatabaseField> Public Property sequence As String
 
     End Class
+
+    <Extension>
+    Public Iterator Function ExportCellularLocation(registry As biocad_registry, Optional page_size As Integer = 5000) As IEnumerable(Of FastaSeq)
+        For page As Integer = 1 To Integer.MaxValue
+            Dim offset As UInteger = (page - 1) * page_size
+            Dim page_data As EnzymeSequenceView() = registry.subcellular_location _
+                .left_join("protein_data") _
+                .on(field("protein_data.id") = field("subcellular_location.protein_id")) _
+                .left_join("compartment_location") _
+                .on(field("compartment_location.id") = field("location_id")) _
+                .where(field("sequence").char_length > 1) _
+                .limit(offset, page_size) _
+                .select(Of EnzymeSequenceView)("compartment_location.name AS term", "protein_data.id", "sequence")
+
+            If page_data.IsNullOrEmpty Then
+                Exit For
+            Else
+                Call $"Export subcellular location reference sequence data page {page}...".info
+
+                For Each seq As EnzymeSequenceView In page_data
+                    Yield New FastaSeq(seq.sequence, title:=seq.term.Replace(" ", "_") & " " & seq.id)
+                Next
+            End If
+        Next
+    End Function
 End Module

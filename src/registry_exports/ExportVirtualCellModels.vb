@@ -19,4 +19,10 @@ Public Class ExportVirtualCellModels
         End Using
     End Sub
 
+    Public Sub ExportSubcellularLocationDb()
+        Using text As New StreamWriter($"{repo}/subcellular.fasta".Open(IO.FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False))
+            Call text.Add(registry.ExportCellularLocation, filterEmpty:=True)
+        End Using
+    End Sub
+
 End Class
