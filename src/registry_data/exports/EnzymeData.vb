@@ -19,7 +19,7 @@ Public Module EnzymeData
                 .where(field("db_name") = ec_number,
                        field("sequence").char_length > 1) _
                 .limit(offset, page_size) _
-                .select(Of EnzymeSequenceView)("db_xref AS ec_number", "sequence")
+                .select(Of EnzymeSequenceView)("db_xref AS ec_number", "sequence", "protein_data.id")
 
             If page_data.IsNullOrEmpty Then
                 Exit For
@@ -27,7 +27,7 @@ Public Module EnzymeData
                 Call $"Export enzyme sequence data page {page}...".info
 
                 For Each seq As EnzymeSequenceView In page_data
-                    Yield New FastaSeq(seq.sequence, title:=seq.ec_number)
+                    Yield New FastaSeq(seq.sequence, title:=seq.ec_number & " " & seq.id)
                 Next
             End If
         Next
@@ -35,6 +35,7 @@ Public Module EnzymeData
 
     Private Class EnzymeSequenceView
 
+        <DatabaseField> Public Property id As UInteger
         <DatabaseField> Public Property ec_number As String
         <DatabaseField> Public Property sequence As String
 
