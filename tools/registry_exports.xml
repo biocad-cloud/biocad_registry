@@ -6,5 +6,10 @@ registry_exports
 </name>
 </assembly>
 <members>
+<member name="T:registry_exports.ExportVirtualCellModels">
+ <summary>
+ Make exports of the component models for run virtual cell annotations
+ </summary>
+</member>
 </members>
 </doc>
