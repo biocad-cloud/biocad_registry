@@ -6,3 +6,8 @@
 
 /**
 */
+declare namespace models {
+   /**
+   */
+   function update_location(registry: object, locations: object): ;
+}
