@@ -1,4 +1,6 @@
 ﻿Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm
+Imports Microsoft.VisualBasic.ComponentModel.Collection
+Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
@@ -30,6 +32,60 @@ Public Class ExportVirtualCellModels
             Call text.Add(registry.ExportCellularLocation, filterEmpty:=True)
         End Using
     End Sub
+
+    Public Sub ExportMoleculeData()
+        Using jsonl As New IO.StreamReader($"{repo}/metabolic_network.jsonl".Open(IO.FileMode.Open, doClear:=False, [readOnly]:=True))
+            Dim json_str As Value(Of String) = ""
+            Dim mols As New Dictionary(Of String, WebJSON.Molecule)
+
+            Using molecules As New IO.StreamWriter($"{repo}/molecules.jsonl".Open(IO.FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False))
+                Do While (json_str = jsonl.ReadLine) IsNot Nothing
+                    Dim model As WebJSON.Reaction = json_str.LoadJSON(Of WebJSON.Reaction)
+
+                    For Each cid As UInteger In From c As WebJSON.Substrate
+                                                In model.left.JoinIterates(model.right)
+                                                Select c.molecule_id
+                                                Distinct
+
+                        Call mols.ComputeIfAbsent(cid.ToString, Function(id) MakeQueryMetabolite(id, molecules))
+                    Next
+                Loop
+            End Using
+        End Using
+    End Sub
+
+    Private Function MakeQueryMetabolite(id As UInteger, jsonl As IO.StreamWriter) As WebJSON.Molecule
+        Dim metabolite_type As UInteger = vocabulary.metabolite_type
+        Dim meta As metabolites = registry.metabolites.where(field("id") = id).find(Of metabolites)
+
+        If meta Is Nothing Then
+            Return Nothing
+        End If
+
+        Dim xrefs As New List(Of WebJSON.DBXref)
+
+        If meta.pubchem_cid > 0 Then Call xrefs.Add(New WebJSON.DBXref With {.dbname = "PubChem", .xref_id = "PubChem:" & meta.pubchem_cid})
+        If meta.chebi_id > 0 Then Call xrefs.Add(New WebJSON.DBXref With {.dbname = "ChEBI", .xref_id = "ChEBI:" & meta.chebi_id})
+
+        If Not meta.cas_id.StringEmpty(, True) Then Call xrefs.Add(New WebJSON.DBXref With {.dbname = "CAS", .xref_id = meta.cas_id})
+        If Not meta.kegg_id.StringEmpty(, True) Then Call xrefs.Add(New WebJSON.DBXref With {.dbname = "KEGG", .xref_id = meta.kegg_id})
+        If Not meta.hmdb_id.StringEmpty(, True) Then Call xrefs.Add(New WebJSON.DBXref With {.dbname = "HMDB", .xref_id = meta.hmdb_id})
+        If Not meta.lipidmaps_id.StringEmpty(, True) Then Call xrefs.Add(New WebJSON.DBXref With {.dbname = "LipidMaps", .xref_id = meta.lipidmaps_id})
+        If Not meta.biocyc.StringEmpty(, True) Then Call xrefs.Add(New WebJSON.DBXref With {.dbname = "BioCyc", .xref_id = meta.biocyc})
+        If Not meta.mesh_id.StringEmpty(, True) Then Call xrefs.Add(New WebJSON.DBXref With {.dbname = "MeSH", .xref_id = meta.mesh_id})
+        If Not meta.wikipedia.StringEmpty(, True) Then Call xrefs.Add(New WebJSON.DBXref With {.dbname = "Wikipedia", .xref_id = meta.wikipedia})
+
+        Dim model As New WebJSON.Molecule With {
+            .id = "BioCAD" & id.ToString.PadLeft(11, "0"c),
+            .name = meta.name,
+            .formula = meta.formula,
+            .db_xrefs = xrefs.ToArray
+        }
+
+        Call jsonl.WriteLine(model.GetJson)
+
+        Return model
+    End Function
 
     Public Sub ExportReactionPool()
         Dim hashset As String() = registry.reaction _
