@@ -26,15 +26,26 @@ Public Module registry_models
         Dim zh_names As String() = CLRVector.asCharacter(locations!zh_name)
         Dim membrane As Integer() = CLRVector.asInteger(locations!membrane)
         Dim updates As CommitTransaction = registry.compartment_location.ignore.open_transaction
+        Dim term_location As UInteger = registry.biocad_vocabulary.GetRegistryEntity(biocad_vocabulary.EntitySubcellularLocation).id
 
         For i As Integer = 0 To locations.nrows - 1
             Dim loc As compartment_location = registry.compartment_location.where(field("name") = name(i)).find(Of compartment_location)
 
             If Not loc Is Nothing Then
+                Dim term As String = loc.name.Replace(" ", "_")
+
                 Call updates.add(registry.compartment_location _
                             .where(field("id") = loc.id) _
                             .save_sql(field("zh_name") = zh_names(i),
                                       field("membrane") = membrane(i)))
+
+                If registry.registry_resolver.where(field("symbol_id") = loc.id, field("type") = term_location, field("register_name") = term).find(Of registry_resolver) Is Nothing Then
+                    Call updates.add(registry.registry_resolver.add_sql(
+                        field("symbol_id") = loc.id,
+                        field("type") = term_location,
+                        field("register_name") = term
+                    ))
+                End If
             End If
         Next
 
