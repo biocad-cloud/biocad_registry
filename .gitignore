@@ -301,3 +301,5 @@ mysql/cad_registry-v2.mwb.bak
 /scripts/localdb/ec_numbers.fasta
 /scripts/localdb/subcellular.fasta
 scripts/localdb/subcellular.json
+scripts/localdb/metabolic_network.jsonl
+scripts/localdb/molecules.jsonl
