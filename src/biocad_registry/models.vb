@@ -39,7 +39,12 @@ Public Module registry_models
                             .save_sql(field("zh_name") = zh_names(i),
                                       field("membrane") = membrane(i)))
 
-                If registry.registry_resolver.where(field("symbol_id") = loc.id, field("type") = term_location, field("register_name") = term).find(Of registry_resolver) Is Nothing Then
+                If registry.registry_resolver _
+                    .where(field("symbol_id") = loc.id,
+                           field("type") = term_location,
+                           field("register_name") = term) _
+                    .find(Of registry_resolver) Is Nothing Then
+
                     Call updates.add(registry.registry_resolver.add_sql(
                         field("symbol_id") = loc.id,
                         field("type") = term_location,
