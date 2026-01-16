@@ -14,4 +14,7 @@ declare namespace exports {
      * @param dbname default value Is ``null``.
    */
    function metabolite_table(registry: object, dbname?: string): any;
+   /**
+   */
+   function virtualcell_componentdb(registry: object, repo: string): any;
 }
