@@ -51,7 +51,7 @@ Public Module RegisterSymbol
         If Not m.wikipedia.StringEmpty Then score += 1
         If Not m.mesh_id.StringEmpty Then score += 1
 
-        Return score
+        Return score / m.id
     End Function
 
     ''' <summary>
