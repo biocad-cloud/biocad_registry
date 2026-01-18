@@ -114,7 +114,7 @@ Module registry
         End If
 
         Dim chunks = pull.populates(Of PugViewRecord)(env).Where(Function(c) Not c Is Nothing).SplitIterator(1000)
-        Dim vocabulary As New biocad_vocabulary(registry)
+        Dim vocabulary As biocad_vocabulary = registry.biocad_vocabulary
         Dim db_pubchem As UInteger = vocabulary.db_pubchem
 
         For Each block As PugViewRecord() In chunks
@@ -126,7 +126,7 @@ Module registry
                     Continue For
                 End If
 
-                Call registry.SaveDbLinks(vocabulary, meta, m, db_pubchem)
+                Call registry.SaveDbLinks(meta, m, db_pubchem)
                 Call registry.SaveStructureData(m, meta.xref.SMILES)
                 Call registry.SaveSynonyms(m, meta.synonym.JoinIterates({meta.name, meta.IUPACName}).Distinct, db_pubchem)
             Next
@@ -198,7 +198,7 @@ Module registry
 
     <ExportAPI("imports_metacyc_compounds")>
     Public Function imports_metacyc(registry As biocad_registry, metacyc As Workspace) As Object
-        Dim vocabulary As New biocad_vocabulary(registry)
+        Dim vocabulary As biocad_vocabulary = registry.biocad_vocabulary
         Dim metabolite_type As UInteger = vocabulary.GetRegistryEntity(biocad_vocabulary.EntityMetabolite).id
         Dim db_metacyc As UInteger = vocabulary.db_biocyc
         Dim superAtoms As New Index(Of String)
@@ -291,7 +291,7 @@ Module registry
                 Call registry.metabolite_class.add(field("metabolite_id") = m.id, field("class_id") = term_id.id)
             End If
 
-            Call registry.SaveDbLinks(vocabulary, meta, m, db_metacyc)
+            Call registry.SaveDbLinks(meta, m, db_metacyc)
             Call registry.SaveStructureData(m, meta.xref.SMILES)
             Call registry.SaveSynonyms(m, meta.synonym.JoinIterates({meta.name, meta.IUPACName}).Distinct, db_metacyc)
         Next

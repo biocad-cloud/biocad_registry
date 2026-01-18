@@ -126,7 +126,7 @@ Public Module setup
                                       Optional env As Environment = Nothing) As Object
 
         Dim refmetLib As pipeline = pipeline.TryCreatePipeline(Of RefMet)(refmet, env)
-        Dim vocabulary As New biocad_vocabulary(registry)
+        Dim vocabulary As biocad_vocabulary = registry.biocad_vocabulary
         Dim metabolite_type As UInteger = vocabulary.GetRegistryEntity(biocad_vocabulary.EntityMetabolite).id
 
         If refmetLib.isError Then
@@ -153,7 +153,7 @@ Public Module setup
                 field("obj_id") = m.id
             )
 
-            Call registry.SaveDbLinks(vocabulary, meta, m, refmet_db)
+            Call registry.SaveDbLinks(meta, m, refmet_db)
             Call registry.SaveSynonyms(m, {m.name}, refmet_db)
             Call registry.SaveMetaboliteClass(m, refmet_db, (met.super_class, met.main_class, met.sub_class, Nothing), met.refmet_id)
         Next
@@ -173,7 +173,7 @@ Public Module setup
             Return pull.getError
         End If
 
-        Dim vocabulary As New biocad_vocabulary(registry)
+        Dim vocabulary As biocad_vocabulary = registry.biocad_vocabulary
         Dim metabolite_type As UInteger = vocabulary.GetRegistryEntity(biocad_vocabulary.EntityMetabolite).id
         Dim db_hmdb As UInteger = vocabulary.db_hmdb
         Dim ontology_id As UInteger = vocabulary.GetVocabulary(biocad_vocabulary.ExternalDatabase, "WishartLab ClassyFire").id
@@ -225,7 +225,7 @@ Public Module setup
                 Call trans.commit()
             End If
 
-            Call registry.SaveDbLinks(vocabulary, meta, m, db_hmdb)
+            Call registry.SaveDbLinks(meta, m, db_hmdb)
             Call registry.SaveStructureData(m, meta.xref.SMILES)
             Call registry.SaveMetaboliteClass(m, ontology_id, (meta.kingdom, meta.super_class, meta.class, meta.sub_class), meta.ID)
             Call registry.SaveSynonyms(m, meta.synonym.JoinIterates({meta.name, meta.IUPACName}).Distinct, db_hmdb)
@@ -246,7 +246,7 @@ Public Module setup
             Return pull.getError
         End If
 
-        Dim vocabulary As New biocad_vocabulary(registry)
+        Dim vocabulary As biocad_vocabulary = registry.biocad_vocabulary
         Dim metabolite_type As UInteger = vocabulary.GetRegistryEntity(biocad_vocabulary.EntityMetabolite).id
         Dim db_lipidmaps As UInteger = vocabulary.db_lipidmaps
         Dim ontology_id As UInteger = db_lipidmaps
@@ -255,7 +255,7 @@ Public Module setup
             Dim meta As MetaLib = lipid.CreateMetabolite
             Dim m As metabolites = registry.FindMolecule(meta, "lipidmaps_id")
 
-            Call registry.SaveDbLinks(vocabulary, meta, m, db_lipidmaps)
+            Call registry.SaveDbLinks(meta, m, db_lipidmaps)
             Call registry.SaveStructureData(m, meta.xref.SMILES)
             Call registry.SaveMetaboliteClass(m, ontology_id, (meta.kingdom, meta.super_class, meta.class, meta.sub_class), meta.ID)
             Call registry.SaveSynonyms(m, meta.synonym.JoinIterates({meta.name, meta.IUPACName}).Distinct, db_lipidmaps)
@@ -270,7 +270,7 @@ Public Module setup
                               Optional env As Environment = Nothing) As Object
 
         Dim metabolites As Models.MetaInfo() = ChEBIObo.ImportsMetabolites(chebi).ToArray
-        Dim vocabulary As New biocad_vocabulary(registry)
+        Dim vocabulary As biocad_vocabulary = registry.biocad_vocabulary
         Dim metabolite_type As UInteger = vocabulary.GetRegistryEntity(biocad_vocabulary.EntityMetabolite).id
         Dim db_chebi As UInteger = vocabulary.db_chebi
 
@@ -323,7 +323,7 @@ Public Module setup
             End If
 
             Call registry.metabolite_class.add(field("metabolite_id") = m.id, field("class_id") = term_id.id)
-            Call registry.SaveDbLinks(vocabulary, meta, m, db_chebi)
+            Call registry.SaveDbLinks(meta, m, db_chebi)
             Call registry.SaveStructureData(m, meta.xref.SMILES)
             Call registry.SaveSynonyms(m, meta.synonym.JoinIterates({meta.name, meta.IUPACName}).Distinct, db_chebi)
         Next
