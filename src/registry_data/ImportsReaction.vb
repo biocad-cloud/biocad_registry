@@ -3,6 +3,7 @@ Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm
 Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.Linq
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
+Imports registry_data.biocad_registryModel
 Imports SMRUCC.genomics.ComponentModel.EquaionModel
 
 Public Module ImportsReaction
@@ -18,13 +19,23 @@ Public Module ImportsReaction
     End Function
 
     <Extension>
+    Public Function MetabolicSubstrateRole(registry As biocad_registry) As vocabulary
+        Return registry.biocad_vocabulary.GetVocabulary("Metabolic Role", "Substrate")
+    End Function
+
+    <Extension>
+    Public Function MetabolicProductRole(registry As biocad_registry) As vocabulary
+        Return registry.biocad_vocabulary.GetVocabulary("Metabolic Role", "Product")
+    End Function
+
+    <Extension>
     Public Sub importsReactions(registry As biocad_registry, reactions As IEnumerable(Of Reaction), db_name As String)
         Dim db_source As UInteger = registry.biocad_vocabulary.GetDatabaseResource(db_name).id
         Dim ec_num As UInteger = registry.biocad_vocabulary.db_ECNumber
         Dim dblinks As CommitTransaction = registry.db_xrefs.ignore.open_transaction
         Dim entityType As UInteger = registry.biocad_vocabulary.reaction_type
-        Dim role_substrate As UInteger = registry.biocad_vocabulary.GetVocabulary("Metabolic Role", "Substrate").id
-        Dim role_product As UInteger = registry.biocad_vocabulary.GetVocabulary("Metabolic Role", "Product").id
+        Dim role_substrate As UInteger = registry.MetabolicSubstrateRole.id
+        Dim role_product As UInteger = registry.MetabolicProductRole.id
         Dim network As CommitTransaction = registry.metabolic_network.ignore.open_transaction
         Dim metabolite_type As UInteger = registry.biocad_vocabulary.metabolite_type
         Dim dbList As UInteger() = {registry.biocad_vocabulary.db_kegg, registry.biocad_vocabulary.db_chebi, registry.biocad_vocabulary.db_biocyc}
