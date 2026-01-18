@@ -30,27 +30,35 @@ Public Module ImportsReaction
 
             If page_data.IsNullOrEmpty Then
                 Exit For
+            Else
+                Call $"update metabolic network of page {page}".debug
             End If
 
             Dim updates As CommitTransaction = registry.metabolic_network.open_transaction
 
-            For Each meta In page_data
+            For Each link In page_data
                 Dim q As FieldAssert
 
-                If meta.symbol_id.IsPattern("C\d{5}") Then
-                    q = field("kegg_id") = meta.symbol_id
-                ElseIf meta.symbol_id.IsPattern("ChEBI[:]\d+") Then
-                    q = field("chebi_id") = UInteger.Parse(meta.symbol_id.Match("\d+"))
+                If link.symbol_id.IsPattern("C\d{5}") Then
+                    q = field("kegg_id") = link.symbol_id
+                ElseIf link.symbol_id.IsPattern("ChEBI[:]\d+") Then
+                    q = field("chebi_id") = UInteger.Parse(link.symbol_id.Match("\d+"))
                 Else
-                    q = field("biocyc") = meta.symbol_id
+                    q = field("biocyc") = link.symbol_id
                 End If
 
                 Dim m = registry.metabolites.where(q).find(Of metabolites)("id", "main_id")
 
                 If Not m Is Nothing Then
-
+                    If m.main_id > 0 Then
+                        Call updates.add(registry.metabolic_network.where(field("id") = link.id).save_sql(field("species_id") = m.main_id))
+                    Else
+                        Call updates.add(registry.metabolic_network.where(field("id") = link.id).save_sql(field("species_id") = m.id))
+                    End If
                 End If
             Next
+
+            Call updates.commit()
         Next
     End Sub
 
