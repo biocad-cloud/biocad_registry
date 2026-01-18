@@ -238,7 +238,7 @@ Public Module ImportsMetabolite
                 End If
 
                 If meta.id = top_main.id Then
-                    Call registry.metabolites.where(field("id") = top_main.id).save(field("main_id") = 0)
+                    Call trans.add(registry.metabolites.where(field("id") = top_main.id).save_sql(field("main_id") = 0))
                 Else
                     Dim updates As New List(Of FieldAssert)
 
