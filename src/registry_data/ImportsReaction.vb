@@ -21,7 +21,7 @@ Public Module ImportsReaction
 
     <Extension>
     Public Sub UpdateMetabolicNetwork(registry As biocad_registry)
-        Dim page_size As Integer = 1000
+        Dim page_size As Integer = 6000
         Dim role = {registry.MetabolicSubstrateRole.id, registry.MetabolicProductRole.id}
 
         For page As Integer = 1 To Integer.MaxValue
@@ -52,7 +52,7 @@ Public Module ImportsReaction
                 If Not m Is Nothing Then
                     If m.main_id > 0 Then
                         Call updates.add(registry.metabolic_network.where(field("id") = link.id).save_sql(field("species_id") = m.main_id))
-                    Else
+                    ElseIf m.id <> link.species_id Then
                         Call updates.add(registry.metabolic_network.where(field("id") = link.id).save_sql(field("species_id") = m.id))
                     End If
                 End If
