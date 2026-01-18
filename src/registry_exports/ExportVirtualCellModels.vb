@@ -81,6 +81,10 @@ Public Class ExportVirtualCellModels
         End If
 
         Dim xrefs As New List(Of WebJSON.DBXref)
+        Dim symbol As registry_resolver = registry.registry_resolver _
+            .where(field("symbol_id") = meta.id,
+                   field("type") = metabolite_type) _
+            .find(Of registry_resolver)
 
         If meta.pubchem_cid > 0 Then Call xrefs.Add(New WebJSON.DBXref With {.dbname = "PubChem", .xref_id = "PubChem:" & meta.pubchem_cid})
         If meta.chebi_id > 0 Then Call xrefs.Add(New WebJSON.DBXref With {.dbname = "ChEBI", .xref_id = "ChEBI:" & meta.chebi_id})
@@ -97,7 +101,8 @@ Public Class ExportVirtualCellModels
             .id = "BioCAD" & id.ToString.PadLeft(11, "0"c),
             .name = meta.name,
             .formula = meta.formula,
-            .db_xrefs = xrefs.ToArray
+            .db_xrefs = xrefs.ToArray,
+            .symbol = If(symbol Is Nothing, Nothing, symbol.register_name)
         }
 
         Call jsonl.WriteLine(model.GetJson)
