@@ -56,4 +56,9 @@ Public Module registry_models
 
         Call updates.commit()
     End Sub
+
+    <ExportAPI("register_metabolic_symbols")>
+    Public Sub register_metabolic_symbols(registry As biocad_registry)
+        Call registry.RegisterMetabolicSymbols
+    End Sub
 End Module
