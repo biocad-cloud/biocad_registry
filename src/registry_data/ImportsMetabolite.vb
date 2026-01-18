@@ -196,6 +196,8 @@ Public Module ImportsMetabolite
 
             If page_data.IsNullOrEmpty Then
                 Exit For
+            Else
+                Call $"update hashcode for metabolite data page {page}...".debug
             End If
 
             For Each name As metabolites In page_data
@@ -206,9 +208,13 @@ Public Module ImportsMetabolite
                         .save(field("name") = name.name)
                 End If
 
-                Call updates.add(registry.metabolites _
-                    .where(field("id") = name.id) _
-                    .save_sql(field("hashcode") = Strings.LCase(name.name).MD5))
+                Dim hashcode As String = Strings.LCase(name.name).MD5
+
+                If hashcode <> name.hashcode Then
+                    Call updates.add(registry.metabolites _
+                        .where(field("id") = name.id) _
+                        .save_sql(field("hashcode") = hashcode))
+                End If
             Next
         Next
 
