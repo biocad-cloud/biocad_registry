@@ -9,5 +9,8 @@
 declare namespace models {
    /**
    */
+   function register_metabolic_symbols(registry: object): ;
+   /**
+   */
    function update_location(registry: object, locations: object): ;
 }
