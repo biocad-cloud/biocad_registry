@@ -69,12 +69,16 @@ Public Module RegisterSymbol
         Dim symbol_name As String = meta.name.makeSymbol
         Dim check As registry_resolver = registry.registry_resolver _
             .where(field("register_name") = symbol_name,
-                   field("symbol_id") = meta.id,
                    field("type") = metabolite_type) _
             .find(Of registry_resolver)
 
         If check IsNot Nothing Then
             ' symbol is already existsed
+            If check.symbol_id <> meta.id Then
+                registry.registry_resolver.where(field("id") = check.id).save(field("symbol_id") = meta.id)
+                check.symbol_id = meta.id
+            End If
+
             Return check
         End If
 
