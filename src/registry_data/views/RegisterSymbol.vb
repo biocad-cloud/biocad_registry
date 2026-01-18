@@ -34,6 +34,26 @@ Public Module RegisterSymbol
             .find(Of registry_resolver)
     End Function
 
+    <Extension>
+    Public Function MetaboliteScore(m As metabolites) As Double
+        Dim score As Double = 0
+
+        If m.exact_mass > 0 Then score += 1
+        If m.pubchem_cid > 0 Then score += 1
+        If m.chebi_id > 0 Then score += 1
+
+        If Not m.kegg_id.StringEmpty Then score += 1
+        If Not m.hmdb_id.StringEmpty Then score += 1
+        If Not m.biocyc.StringEmpty Then score += 1
+        If Not m.cas_id.StringEmpty Then score += 1
+        If Not m.drugbank_id.StringEmpty Then score += 1
+        If Not m.lipidmaps_id.StringEmpty Then score += 1
+        If Not m.wikipedia.StringEmpty Then score += 1
+        If Not m.mesh_id.StringEmpty Then score += 1
+
+        Return score
+    End Function
+
     ''' <summary>
     ''' make register of the metabolite symbol inside the biocad registry and then returns the new symbol
     ''' </summary>
