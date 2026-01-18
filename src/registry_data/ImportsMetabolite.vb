@@ -232,7 +232,8 @@ Public Module ImportsMetabolite
 
         For Each hashcode As String In TqdmWrapper.Wrap(registry.metabolites.group_by("hashcode").having(field("*").count > 1).project(Of String)("hashcode"))
             Dim metas = registry.metabolites.where(field("hashcode") = hashcode).select(Of metabolites)
-            Dim top_main As metabolites = metas.OrderByDescending(Function(a) a.MetaboliteScore).First
+            Dim top_main As metabolites = metas.OrderBy(Function(a) a.id).First
+            Dim struct = registry.struct_data.where(field("metabolite_id") = top_main.id).find(Of struct_data)
 
             For Each meta As metabolites In metas
                 If std.Abs(meta.exact_mass - top_main.exact_mass) > 0.1 Then
@@ -282,6 +283,20 @@ Public Module ImportsMetabolite
 
                     If updates.Any Then
                         Call trans.add(registry.metabolites.where(field("id") = top_main.id).save_sql(updates.ToArray))
+                    End If
+
+                    If struct Is Nothing Then
+                        Dim smiles_str = registry.struct_data.where(field("metabolite_id") = meta.id).find(Of struct_data)
+
+                        If Not smiles_str Is Nothing Then
+                            Call registry.struct_data.add(
+                                field("metabolite_id") = top_main.id,
+                                field("checksum") = smiles_str.checksum,
+                                field("smiles") = smiles_str.smiles
+                            )
+
+                            struct = smiles_str
+                        End If
                     End If
                 End If
             Next
