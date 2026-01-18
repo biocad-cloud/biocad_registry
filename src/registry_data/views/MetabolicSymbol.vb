@@ -45,7 +45,9 @@ Public Module MetabolicSymbol
             If m Is Nothing Then
                 Continue For
             Else
-                Call registry.SymbolRegister(meta:=m)
+                If registry.SymbolRegister(meta:=m) Is Nothing Then
+                    Call $"make register of '{m.name}' error!".warning
+                End If
             End If
         Next
     End Sub
