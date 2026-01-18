@@ -247,9 +247,7 @@ Public Module ImportsReaction
             Next
 
             If links.All(Function(a) a.Item2 > 0) Then
-                Dim hashcode As String = links.OrderBy(Function(a) a.Item1).ThenBy(Function(a) a.Item2).Select(Function(a) {a.Item1, a.Item2}).IteratesALL.JoinBy(",").MD5
-
-                registry.reaction.where(field("id") = find.id).save(field("hashcode") = hashcode)
+                registry.reaction.where(field("id") = find.id).save(field("hashcode") = links.CalculateReactionHashCode)
             End If
         Next
 
@@ -257,4 +255,15 @@ Public Module ImportsReaction
         Call network.commit()
         Call enrich.commit()
     End Sub
+
+    <Extension>
+    Public Function CalculateReactionHashCode(links As IEnumerable(Of (UInteger, UInteger))) As String
+        Return links _
+            .OrderBy(Function(a) a.Item1) _
+            .ThenBy(Function(a) a.Item2) _
+            .Select(Function(a) {a.Item1, a.Item2}) _
+            .IteratesALL _
+            .JoinBy(",") _
+            .MD5
+    End Function
 End Module
