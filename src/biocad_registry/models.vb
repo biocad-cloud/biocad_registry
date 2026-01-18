@@ -61,4 +61,9 @@ Public Module registry_models
     Public Sub register_metabolic_symbols(registry As biocad_registry)
         Call registry.RegisterMetabolicSymbols
     End Sub
+
+    <ExportAPI("resolve_metabolite_duplicates")>
+    Public Sub update_metabolite_models(registry As biocad_registry)
+        Call registry.MetaboliteLinks
+    End Sub
 End Module

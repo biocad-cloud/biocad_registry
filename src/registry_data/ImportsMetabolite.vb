@@ -216,6 +216,7 @@ Public Module ImportsMetabolite
         Call updates.commit()
     End Sub
 
+    <Extension>
     Public Sub MetaboliteLinks(registry As biocad_registry)
         Dim trans As CommitTransaction = registry.metabolites.open_transaction
 
