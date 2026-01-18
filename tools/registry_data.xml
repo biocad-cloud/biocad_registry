@@ -30,6 +30,27 @@ registry_data
  <param name="registry"></param>
  <param name="ko"></param>
 </member>
+<member name="M:registry_data.RegisterSymbol.GetMetaboliteModel(registry_data.biocad_registry,System.UInt32)">
+ <summary>
+ get an existed register symbol for the target metabolite
+ </summary>
+ <param name="registry"></param>
+ <param name="meta_id"></param>
+ <returns>
+ this function will returns nothing if the symbol is not found
+ </returns>
+</member>
+<member name="M:registry_data.RegisterSymbol.SymbolRegister(registry_data.biocad_registry,registry_data.biocad_registryModel.metabolites)">
+ <summary>
+ make register of the metabolite symbol inside the biocad registry and then returns the new symbol
+ </summary>
+ <param name="registry"></param>
+ <param name="meta"></param>
+ <returns></returns>
+ <remarks>
+ this function will try to find the existsed symbol with the same name, if not found then will try to make a new one
+ </remarks>
+</member>
 <member name="F:registry_data.biocad_vocabulary.RoleEnzyme">
  <summary>
  Metabolic Role
