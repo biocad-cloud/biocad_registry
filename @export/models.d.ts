@@ -12,5 +12,11 @@ declare namespace models {
    function register_metabolic_symbols(registry: object): ;
    /**
    */
+   function resolve_metabolite_duplicates(registry: object): ;
+   /**
+   */
    function update_location(registry: object, locations: object): ;
+   /**
+   */
+   function update_metabolic_network(registry: object): ;
 }
