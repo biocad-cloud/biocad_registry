@@ -76,7 +76,7 @@ Public Module RegisterSymbol
             ' symbol is already existsed
             If check.symbol_id <> meta.id Then
                 registry.registry_resolver.where(field("id") = check.id).save(field("symbol_id") = meta.id)
-                check.symbol_id = meta.id
+                Return GetMetaboliteModel(registry, meta.id)
             End If
 
             Return check
