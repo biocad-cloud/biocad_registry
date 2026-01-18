@@ -49,14 +49,16 @@ DROP TABLE IF EXISTS `compartment_location`;
 CREATE TABLE `compartment_location` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL COMMENT 'symbol name that used in virtual cell model',
+  `zh_name` varchar(45) DEFAULT NULL,
   `fullname` varchar(1024) NOT NULL COMMENT 'full name of this location',
+  `membrane` tinyint(1) NOT NULL DEFAULT '0',
   `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `note` mediumtext COMMENT 'description note about this cellular location',
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   UNIQUE KEY `name_UNIQUE` (`name`),
   FULLTEXT KEY `search_text` (`fullname`,`note`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb3 COMMENT='[cellular entity model] cellular location name';
+) ENGINE=InnoDB AUTO_INCREMENT=173 DEFAULT CHARSET=utf8mb3 COMMENT='[cellular entity model] cellular location name';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -122,8 +124,9 @@ CREATE TABLE `db_xrefs` (
   KEY `dbname_idx` (`db_name`),
   KEY `entity_metabolite_idx` (`obj_id`),
   KEY `find_by_xref` (`db_name`,`db_xref`,`type`),
-  KEY `find_by_object` (`type`,`obj_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4251001 DEFAULT CHARSET=utf8mb3 COMMENT='database cross reference of the model objects ';
+  KEY `find_by_object` (`type`,`obj_id`),
+  KEY `search_xref_word` (`db_xref`)
+) ENGINE=InnoDB AUTO_INCREMENT=6455837 DEFAULT CHARSET=utf8mb3 COMMENT='database cross reference of the model objects ';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -222,7 +225,7 @@ CREATE TABLE `metabolic_network` (
   KEY `location_info_idx` (`compartment_id`),
   KEY `registry_model_idx` (`species_id`),
   KEY `symbol_index` (`symbol_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=382479 DEFAULT CHARSET=utf8mb3 COMMENT='metabolic reaction network';
+) ENGINE=InnoDB AUTO_INCREMENT=474042 DEFAULT CHARSET=utf8mb3 COMMENT='metabolic reaction network';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -243,7 +246,7 @@ CREATE TABLE `metabolite_class` (
   UNIQUE KEY `unique_class` (`metabolite_id`,`class_id`),
   KEY `metabolite_info_idx` (`metabolite_id`),
   KEY `class_info_idx` (`class_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=593772 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=595468 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -255,6 +258,7 @@ DROP TABLE IF EXISTS `metabolites`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `metabolites` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `main_id` int unsigned NOT NULL DEFAULT '0' COMMENT 'processing of the possible duplicated name metabolites',
   `name` varchar(2048) NOT NULL,
   `hashcode` char(32) NOT NULL COMMENT 'md5 checksum of the tolower(name)',
   `formula` varchar(128) NOT NULL,
@@ -286,7 +290,7 @@ CREATE TABLE `metabolites` (
   KEY `find_mesh` (`mesh_id`),
   KEY `find_wiki` (`wikipedia`),
   FULLTEXT KEY `search_text` (`name`,`note`)
-) ENGINE=InnoDB AUTO_INCREMENT=768394 DEFAULT CHARSET=utf8mb3 COMMENT='[cellular entity model][entity instance] a set of reference metabolites, template based on the www.metabolomicsworkbench.org refmet dataset';
+) ENGINE=InnoDB AUTO_INCREMENT=775469 DEFAULT CHARSET=utf8mb3 COMMENT='[cellular entity model][entity instance] a set of reference metabolites, template based on the www.metabolomicsworkbench.org refmet dataset';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -413,7 +417,7 @@ CREATE TABLE `ontology` (
   UNIQUE KEY `unique_term` (`term_id`,`ontology_id`),
   KEY `ontology_db_idx` (`ontology_id`),
   FULLTEXT KEY `search_text` (`term`,`note`)
-) ENGINE=InnoDB AUTO_INCREMENT=203612 DEFAULT CHARSET=utf8mb3 COMMENT='ontology terms, classification system';
+) ENGINE=InnoDB AUTO_INCREMENT=203615 DEFAULT CHARSET=utf8mb3 COMMENT='ontology terms, classification system';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -434,7 +438,7 @@ CREATE TABLE `ontology_relation` (
   UNIQUE KEY `unique_relation` (`term_id`,`is_a`),
   KEY `term_node_idx` (`term_id`),
   KEY `parent_node_idx` (`is_a`)
-) ENGINE=InnoDB AUTO_INCREMENT=281653 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=281656 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -588,8 +592,9 @@ CREATE TABLE `protein_data` (
   KEY `dbname_idx` (`source_db`),
   KEY `pdb_datavalue_idx` (`pdb_data`),
   KEY `find_by_source_id` (`source_db`,`ncbi_taxid`,`source_id`),
-  KEY `query_db_locus` (`source_id`,`source_db`)
-) ENGINE=InnoDB AUTO_INCREMENT=1931628 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC COMMENT='[entity instance] the instance of the protein with sequence data, used for build a local blastp database';
+  KEY `query_db_locus` (`source_id`,`source_db`),
+  KEY `finter_organism` (`ncbi_taxid`)
+) ENGINE=InnoDB AUTO_INCREMENT=2560045 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC COMMENT='[entity instance] the instance of the protein with sequence data, used for build a local blastp database';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -636,7 +641,7 @@ CREATE TABLE `reaction` (
   UNIQUE KEY `find_reference` (`db_xref`,`db_source`),
   KEY `hash_index` (`hashcode`),
   FULLTEXT KEY `search_text` (`name`,`note`)
-) ENGINE=InnoDB AUTO_INCREMENT=69278 DEFAULT CHARSET=utf8mb3 COMMENT='[biological process model] biological reaction/chemical reaction model';
+) ENGINE=InnoDB AUTO_INCREMENT=85533 DEFAULT CHARSET=utf8mb3 COMMENT='[biological process model] biological reaction/chemical reaction model';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -656,10 +661,11 @@ CREATE TABLE `registry_resolver` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   UNIQUE KEY `register_name_UNIQUE` (`register_name`),
+  UNIQUE KEY `unique_symbol` (`register_name`,`symbol_id`,`type`),
   KEY `register_namespace_idx` (`type`),
   KEY `metabolite_reference_idx` (`symbol_id`),
   KEY `find_name` (`register_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=217507 DEFAULT CHARSET=utf8mb3 COMMENT='a unify symbol mapping inside the registry database system';
+) ENGINE=InnoDB AUTO_INCREMENT=279478 DEFAULT CHARSET=utf8mb3 COMMENT='a unify symbol mapping inside the registry database system';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -687,7 +693,7 @@ CREATE TABLE `regulatory_network` (
   KEY `metabolite_info_idx` (`effector`),
   KEY `db_name_idx` (`db_source`),
   FULLTEXT KEY `search_text` (`note`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='TF to motif binding relationship';
+) ENGINE=InnoDB AUTO_INCREMENT=4775 DEFAULT CHARSET=utf8mb3 COMMENT='TF to motif binding relationship';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -709,7 +715,7 @@ CREATE TABLE `struct_data` (
   UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `metabolite_info_idx` (`metabolite_id`),
   KEY `pdb_modelvalue_idx` (`pdb_data`)
-) ENGINE=InnoDB AUTO_INCREMENT=579954 DEFAULT CHARSET=utf8mb3 COMMENT='the metabolite molecule structre data';
+) ENGINE=InnoDB AUTO_INCREMENT=588595 DEFAULT CHARSET=utf8mb3 COMMENT='the metabolite molecule structre data';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -730,7 +736,7 @@ CREATE TABLE `subcellular_location` (
   UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `compartment_term_idx` (`location_id`),
   KEY `prot_obj_idx` (`protein_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=398794 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -758,7 +764,7 @@ CREATE TABLE `synonym` (
   KEY `fast_hash_search` (`obj_id`,`hashcode`,`type`),
   KEY `entity_metabolite_idx` (`obj_id`,`type`),
   FULLTEXT KEY `search_text` (`synonym`)
-) ENGINE=InnoDB AUTO_INCREMENT=4450105 DEFAULT CHARSET=utf8mb3 COMMENT='synonyms, alias names of the model objects';
+) ENGINE=InnoDB AUTO_INCREMENT=4501812 DEFAULT CHARSET=utf8mb3 COMMENT='synonyms, alias names of the model objects';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -780,7 +786,7 @@ CREATE TABLE `topic` (
   UNIQUE KEY `unique_link` (`topic_id`,`model_id`),
   KEY `registry_model_idx` (`model_id`),
   KEY `topic_term_idx` (`topic_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=67538 DEFAULT CHARSET=utf8mb3 COMMENT='topic about the biological model';
+) ENGINE=InnoDB AUTO_INCREMENT=4556842 DEFAULT CHARSET=utf8mb3 COMMENT='topic about the biological model';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -803,7 +809,7 @@ CREATE TABLE `vocabulary` (
   UNIQUE KEY `search_term` (`category`,`term`),
   KEY `ontology_tree_idx` (`parent_id`),
   FULLTEXT KEY `search_text` (`note`)
-) ENGINE=InnoDB AUTO_INCREMENT=134 DEFAULT CHARSET=utf8mb3 COMMENT='vocabulary term inside the registry database';
+) ENGINE=InnoDB AUTO_INCREMENT=742 DEFAULT CHARSET=utf8mb3 COMMENT='vocabulary term inside the registry database';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -823,4 +829,4 @@ CREATE TABLE `vocabulary` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-01-14 10:28:51
+-- Dump completed on 2026-01-19  4:46:43

@@ -20,6 +20,41 @@ Public Module ImportsReaction
     End Function
 
     <Extension>
+    Public Sub UpdateMetabolicNetwork(registry As biocad_registry)
+        Dim page_size As Integer = 1000
+        Dim role = {registry.MetabolicSubstrateRole.id, registry.MetabolicProductRole.id}
+
+        For page As Integer = 1 To Integer.MaxValue
+            Dim offset As UInteger = (page - 1) * page_size
+            Dim page_data = registry.metabolic_network.where(field("role").in(role)).limit(offset, page_size).select(Of metabolic_network)
+
+            If page_data.IsNullOrEmpty Then
+                Exit For
+            End If
+
+            Dim updates As CommitTransaction = registry.metabolic_network.open_transaction
+
+            For Each meta In page_data
+                Dim q As FieldAssert
+
+                If meta.symbol_id.IsPattern("C\d{5}") Then
+                    q = field("kegg_id") = meta.symbol_id
+                ElseIf meta.symbol_id.IsPattern("ChEBI[:]\d+") Then
+                    q = field("chebi_id") = UInteger.Parse(meta.symbol_id.Match("\d+"))
+                Else
+                    q = field("biocyc") = meta.symbol_id
+                End If
+
+                Dim m = registry.metabolites.where(q).find(Of metabolites)("id", "main_id")
+
+                If Not m Is Nothing Then
+
+                End If
+            Next
+        Next
+    End Sub
+
+    <Extension>
     Public Function MetabolicSubstrateRole(registry As biocad_registry) As vocabulary
         Return registry.biocad_vocabulary.GetVocabulary("Metabolic Role", "Substrate")
     End Function
