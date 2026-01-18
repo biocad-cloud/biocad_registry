@@ -223,10 +223,12 @@ Public Module ImportsMetabolite
     End Sub
 
     <Extension>
-    Public Sub MetaboliteLinks(registry As biocad_registry)
+    Public Sub MetaboliteLinks(registry As biocad_registry, Optional check_hash As Boolean = False)
         Dim trans As CommitTransaction = registry.metabolites.open_transaction
 
-        Call UpdateHashCode(registry)
+        If check_hash Then
+            Call UpdateHashCode(registry)
+        End If
 
         For Each hashcode As String In TqdmWrapper.Wrap(registry.metabolites.group_by("hashcode").having(field("*").count > 1).project(Of String)("hashcode"))
             Dim metas = registry.metabolites.where(field("hashcode") = hashcode).select(Of metabolites)
