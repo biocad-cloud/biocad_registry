@@ -231,7 +231,6 @@ Public Module ImportsMetabolite
         For Each hashcode As String In TqdmWrapper.Wrap(registry.metabolites.group_by("hashcode").having(field("*").count > 1).project(Of String)("hashcode"))
             Dim metas = registry.metabolites.where(field("hashcode") = hashcode).select(Of metabolites)
             Dim top_main As metabolites = metas.OrderByDescending(Function(a) a.MetaboliteScore).First
-            Dim updates As New List(Of FieldAssert)
 
             For Each meta As metabolites In metas
                 If std.Abs(meta.exact_mass - top_main.exact_mass) > 0.1 Then
@@ -241,6 +240,8 @@ Public Module ImportsMetabolite
                 If meta.id = top_main.id Then
                     Call registry.metabolites.where(field("id") = top_main.id).save(field("main_id") = 0)
                 Else
+                    Dim updates As New List(Of FieldAssert)
+
                     Call trans.add(registry.metabolites.where(field("id") = meta.id).save_sql(field("main_id") = top_main.id))
 
                     If top_main.cas_id.StringEmpty AndAlso Not meta.cas_id.StringEmpty Then
@@ -278,7 +279,7 @@ Public Module ImportsMetabolite
                     End If
 
                     If updates.Any Then
-                        Call trans.add(registry.metabolites.where(field("id") = meta.id).save_sql(updates.ToArray))
+                        Call trans.add(registry.metabolites.where(field("id") = top_main.id).save_sql(updates.ToArray))
                     End If
                 End If
             Next
