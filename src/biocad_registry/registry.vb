@@ -1,5 +1,6 @@
 ﻿Imports BioNovoGene.BioDeep.Chemistry.MetaLib.CrossReference
 Imports BioNovoGene.BioDeep.Chemistry.MetaLib.Models
+Imports BioNovoGene.BioDeep.Chemistry.NCBI
 Imports BioNovoGene.BioDeep.Chemistry.NCBI.PubChem
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm
@@ -74,6 +75,15 @@ Module registry
         Next
 
         Return Nothing
+    End Function
+
+    <ExportAPI("imports_mona")>
+    Public Function imports_mona(registry As biocad_registry, <RRawVectorArgument> mona As Object, Optional env As Environment = Nothing) As Object
+        Dim pull As pipeline = pipeline.TryCreatePipeline(Of PugViewRecord)(pubchem, env)
+
+        If pull.isError Then
+            Return pull.getError
+        End If
     End Function
 
     <ExportAPI("imports_pubchem")>

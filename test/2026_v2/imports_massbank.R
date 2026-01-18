@@ -1,7 +1,7 @@
 require(biocad_registry);
 
 imports "massbank" from "mzkit";
-imports "data_imports" from "biocad_registry";
+imports "registry" from "biocad_registry";
 
 let biocad_registry = open_registry("xieguigang", 123456, host ="192.168.3.15");
 let mona = read.MoNA([
@@ -32,4 +32,4 @@ let mona = read.MoNA([
     "F:\datapool\mona\MoNA-export-FAHFA.msp"
 ], lazy = FALSE);
 
-biocad_registry |> imports_metab_repo(mona, lazy_molecule_ctor = FALSE);
+biocad_registry |> imports_mona(mona);
