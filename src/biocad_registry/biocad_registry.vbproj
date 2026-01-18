@@ -31,6 +31,7 @@
     <ProjectReference Include="../..\..\mzkit\src\mzmath\ms2_math-core\mzmath-netcore5.vbproj" />
     <ProjectReference Include="..\..\..\GCModeller\src\GCModeller\data\RegulonDatabase\RegulonDatabase.NET5.vbproj" />
     <ProjectReference Include="..\..\..\GCModeller\src\GCModeller\models\BioCyc\BioCyc.vbproj" />
+    <ProjectReference Include="..\..\..\mzkit\src\metadb\MoNA\MoNA.NET5.vbproj" />
     <ProjectReference Include="..\registry_data\registry_data.vbproj" />
     <ProjectReference Include="..\registry_exports\registry_exports.vbproj" />
   </ItemGroup>

@@ -12,11 +12,11 @@ Module MetaboliteData
 
     <Extension>
     Public Sub SaveDbLinks(registry As biocad_registry,
-                           vocabulary As biocad_vocabulary,
                            meta As MetaInfo,
                            m As metabolites,
                            db_source As UInteger)
 
+        Dim vocabulary As biocad_vocabulary = registry.biocad_vocabulary
         Dim metabolite_type As UInteger = vocabulary.metabolite_type
         Dim updates As New List(Of FieldAssert)
         Dim pubchem_cid As String = Strings.Trim(meta.xref.pubchem).int_id

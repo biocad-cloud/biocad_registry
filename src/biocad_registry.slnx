@@ -63,6 +63,9 @@
     </Project>
   </Folder>
   <Folder Name="/framework/mzkit/">
+    <Project Path="../../mzkit/src/assembly/assembly/assembly-netcore5.vbproj">
+      <Platform Solution="*|x64" Project="x64" />
+    </Project>
     <Project Path="../../mzkit/src/metadb/Chemoinformatics/chemoinformatics-netcore5.vbproj">
       <Platform Solution="*|x64" Project="x64" />
     </Project>
@@ -70,6 +73,9 @@
       <Platform Solution="*|x64" Project="x64" />
     </Project>
     <Project Path="../../mzkit/src/metadb/Massbank/massbank.NET5.vbproj">
+      <Platform Solution="*|x64" Project="x64" />
+    </Project>
+    <Project Path="../../mzkit/src/metadb/MoNA/MoNA.NET5.vbproj">
       <Platform Solution="*|x64" Project="x64" />
     </Project>
     <Project Path="../../mzkit/src/metadb/SMILES/SMILES.NET5.vbproj">

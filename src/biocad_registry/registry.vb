@@ -1,4 +1,5 @@
-﻿Imports BioNovoGene.BioDeep.Chemistry.MetaLib.CrossReference
+﻿Imports BioNovoGene.BioDeep.Chemistry
+Imports BioNovoGene.BioDeep.Chemistry.MetaLib.CrossReference
 Imports BioNovoGene.BioDeep.Chemistry.MetaLib.Models
 Imports BioNovoGene.BioDeep.Chemistry.NCBI
 Imports BioNovoGene.BioDeep.Chemistry.NCBI.PubChem
@@ -79,11 +80,29 @@ Module registry
 
     <ExportAPI("imports_mona")>
     Public Function imports_mona(registry As biocad_registry, <RRawVectorArgument> mona As Object, Optional env As Environment = Nothing) As Object
-        Dim pull As pipeline = pipeline.TryCreatePipeline(Of PugViewRecord)(pubchem, env)
+        Dim pull As pipeline = pipeline.TryCreatePipeline(Of SpectraSection)(mona, env)
 
         If pull.isError Then
             Return pull.getError
         End If
+
+        Dim db_mona As UInteger = registry.biocad_vocabulary.GetDatabaseResource("MoNA").id
+
+        For Each chunk As SpectraSection() In pull.populates(Of SpectraSection)(env).SplitIterator(5000)
+            For Each spectra As SpectraSection In TqdmWrapper.Wrap(chunk)
+                Dim m As metabolites = registry.FindMolecule(spectra, "kegg_id", nameSearch:=True)
+
+                If m Is Nothing Then
+                    Continue For
+                End If
+
+                Call registry.SaveDbLinks(spectra, m, db_mona)
+                Call registry.SaveStructureData(m, spectra.xref.SMILES)
+                Call registry.SaveSynonyms(m, spectra.synonym.JoinIterates({spectra.name, spectra.IUPACName}).Distinct, db_mona)
+            Next
+        Next
+
+        Return Nothing
     End Function
 
     <ExportAPI("imports_pubchem")>
