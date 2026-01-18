@@ -17,6 +17,8 @@ Public Module MetabolicSymbol
 
             If page_data.IsNullOrEmpty Then
                 Exit For
+            Else
+                Call $"process metabolic symbol data page {page}".info
             End If
 
             For Each reaction As reaction In page_data
