@@ -20,6 +20,10 @@ declare namespace registry {
    /**
      * @param env default value Is ``null``.
    */
+   function imports_mona(registry: object, mona: any, env?: object): any;
+   /**
+     * @param env default value Is ``null``.
+   */
    function imports_pubchem(registry: object, pubchem: any, env?: object): any;
    /**
      * @param env default value Is ``null``.
