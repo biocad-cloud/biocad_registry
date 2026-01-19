@@ -28,6 +28,21 @@
     <Project Path="../../GCModeller/src/GCModeller/analysis/ProteinTools/ProteinMatrix/ProteinMatrix.vbproj">
       <Platform Solution="*|x64" Project="x64" />
     </Project>
+    <Project Path="../../GCModeller/src/GCModeller/analysis/SequenceToolkit/MotifFinder/MotifFinder.vbproj">
+      <Platform Solution="*|x64" Project="x64" />
+    </Project>
+    <Project Path="../../GCModeller/src/GCModeller/analysis/SequenceToolkit/SequenceAlignment/SequenceAlignment.vbproj">
+      <Platform Solution="*|x64" Project="x64" />
+    </Project>
+    <Project Path="../../GCModeller/src/GCModeller/analysis/SequenceToolkit/SequenceLogo/SequenceLogo.NET5.vbproj">
+      <Platform Solution="*|x64" Project="x64" />
+    </Project>
+    <Project Path="../../GCModeller/src/GCModeller/analysis/SequenceToolkit/SequencePatterns.Abstract/SequencePatterns.Abstract.NET5.vbproj">
+      <Platform Solution="*|x64" Project="x64" />
+    </Project>
+    <Project Path="../../GCModeller/src/GCModeller/analysis/SequenceToolkit/SequencePatterns/SequencePatterns.NET5.vbproj">
+      <Platform Solution="*|x64" Project="x64" />
+    </Project>
     <Project Path="../../GCModeller/src/GCModeller/annotations/GSEA/FisherCore/Fisher.NET5.vbproj">
       <Platform Solution="*|x64" Project="x64" />
     </Project>
@@ -181,6 +196,9 @@
       <Platform Solution="*|x64" Project="x64" />
     </Project>
     <Project Path="../../GCModeller/src/runtime/sciBASIC#/Data_science/Mathematica/Math/DataFrame/dataframeUtils-netcore5.vbproj">
+      <Platform Solution="*|x64" Project="x64" />
+    </Project>
+    <Project Path="../../GCModeller/src/runtime/sciBASIC#/Data_science/Mathematica/Math/Gibbs/Gibbs.vbproj">
       <Platform Solution="*|x64" Project="x64" />
     </Project>
     <Project Path="../../GCModeller/src/runtime/sciBASIC#/Data_science/Mathematica/Math/Math.Statistics/stats-netcore5.vbproj">

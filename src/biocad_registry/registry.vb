@@ -20,6 +20,7 @@ Imports SMRUCC.genomics.Assembly.Uniprot.XML
 Imports SMRUCC.genomics.ComponentModel.EquaionModel
 Imports SMRUCC.genomics.Data.BioCyc
 Imports SMRUCC.genomics.Data.Regprecise
+Imports SMRUCC.genomics.SequenceModel.FASTA
 Imports SMRUCC.Rsharp.Runtime
 Imports SMRUCC.Rsharp.Runtime.Internal.[Object]
 Imports SMRUCC.Rsharp.Runtime.Interop
@@ -370,6 +371,17 @@ Module registry
         Next
 
         Call TRN.commit()
+
+        Return Nothing
+    End Function
+
+    <ExportAPI("update_logo")>
+    Public Function update_logo(registry As biocad_registry) As Object
+        For Each model As motif In TqdmWrapper.Wrap(registry.motif.select(Of motif)("id", "name"))
+            Dim sites = registry.nucleotide_data.where(field("is_motif") <> 0, field("model_id") = model.id).select(Of nucleotide_data)("source_id", "sequence")
+            Dim fq As FastaSeq() = sites.Select(Function(si) New FastaSeq(si.sequence, si.source_id)).ToArray
+
+        Next
 
         Return Nothing
     End Function
