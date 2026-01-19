@@ -31,6 +31,9 @@
     <Project Path="../../GCModeller/src/GCModeller/analysis/SequenceToolkit/MotifFinder/MotifFinder.vbproj">
       <Platform Solution="*|x64" Project="x64" />
     </Project>
+    <Project Path="../../GCModeller/src/GCModeller/analysis/SequenceToolkit/MotifScanner/MotifScanner.NET5.vbproj">
+      <Platform Solution="*|x64" Project="x64" />
+    </Project>
     <Project Path="../../GCModeller/src/GCModeller/analysis/SequenceToolkit/SequenceAlignment/SequenceAlignment.vbproj">
       <Platform Solution="*|x64" Project="x64" />
     </Project>

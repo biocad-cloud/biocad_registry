@@ -30,6 +30,7 @@
     <ProjectReference Include="../..\..\mzkit\src\metadb\SMILES\SMILES.NET5.vbproj" />
     <ProjectReference Include="../..\..\mzkit\src\mzmath\ms2_math-core\mzmath-netcore5.vbproj" />
     <ProjectReference Include="..\..\..\GCModeller\src\GCModeller\analysis\SequenceToolkit\MotifFinder\MotifFinder.vbproj" />
+    <ProjectReference Include="..\..\..\GCModeller\src\GCModeller\analysis\SequenceToolkit\MotifScanner\MotifScanner.NET5.vbproj" />
     <ProjectReference Include="..\..\..\GCModeller\src\GCModeller\analysis\SequenceToolkit\SequenceAlignment\SequenceAlignment.vbproj" />
     <ProjectReference Include="..\..\..\GCModeller\src\GCModeller\analysis\SequenceToolkit\SequenceLogo\SequenceLogo.NET5.vbproj" />
     <ProjectReference Include="..\..\..\GCModeller\src\GCModeller\analysis\SequenceToolkit\SequencePatterns.Abstract\SequencePatterns.Abstract.NET5.vbproj" />
