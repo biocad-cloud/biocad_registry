@@ -12,3 +12,4 @@
 + [imports_metacyc_reactions](registry/imports_metacyc_reactions.1) 
 + [imports_metacyc_compounds](registry/imports_metacyc_compounds.1) 
 + [save_TRN](registry/save_TRN.1) 
++ [update_logo](registry/update_logo.1) 
