@@ -387,7 +387,7 @@ Module registry
             Dim sites = registry.nucleotide_data.where(field("is_motif") <> 0, field("model_id") = model.id).select(Of nucleotide_data)("source_id", "sequence")
             Dim fq As FastaSeq() = sites.Select(Function(si) New FastaSeq(si.sequence, si.source_id)).ToArray
 
-            If fq.IsNullOrEmpty Then
+            If fq.Length < 3 Then
                 Continue For
             End If
 
