@@ -397,7 +397,7 @@ Module registry
             Dim pwm As Double()() = motif
             Dim matrix As String = nethost.Base64String(pwm.IteratesALL, gzip:=False)
             Dim w As Integer = pwm.Length
-            Dim logo = DrawingDevice.DrawFrequency(motif, title:=model.name, driver:=Drivers.SVG)
+            Dim logo = DrawingDevice.DrawFrequency(motif, title:=model.name, logoPadding:="padding:30% 5% 20% 8%;", driver:=Drivers.SVG)
             Dim logoUri As String = logo.GetDataURI.ToString
 
             ' 在这里分为两个步骤做这条记录的更新
