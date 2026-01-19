@@ -14,7 +14,8 @@ Module MetaboliteData
     Public Sub SaveDbLinks(registry As biocad_registry,
                            meta As MetaInfo,
                            m As metabolites,
-                           db_source As UInteger)
+                           db_source As UInteger,
+                           Optional saveID As Boolean = False)
 
         Dim vocabulary As biocad_vocabulary = registry.biocad_vocabulary
         Dim metabolite_type As UInteger = vocabulary.metabolite_type
@@ -86,6 +87,13 @@ Module MetaboliteData
         End If
         If Not meta.xref.DrugBank.StringEmpty Then
             trans.ignore.add(field("db_source") = db_source, field("db_name") = vocabulary.db_drugbank, field("db_xref") = meta.xref.DrugBank, field("type") = metabolite_type, field("obj_id") = m.id)
+        End If
+        If saveID Then
+            Call trans.ignore.add(field("db_source") = db_source,
+                                  field("db_name") = db_source,
+                                  field("db_xref") = meta.ID,
+                                  field("type") = metabolite_type,
+                                  field("obj_id") = m.id)
         End If
 
         For Each id As String In meta.xref.CAS.SafeQuery

@@ -96,7 +96,7 @@ Module registry
                     Continue For
                 End If
 
-                Call registry.SaveDbLinks(spectra, m, db_mona)
+                Call registry.SaveDbLinks(spectra, m, db_mona, saveID:=True)
                 Call registry.SaveStructureData(m, spectra.xref.SMILES)
                 Call registry.SaveSynonyms(m, spectra.synonym.JoinIterates({spectra.name, spectra.IUPACName}).Distinct, db_mona)
             Next
