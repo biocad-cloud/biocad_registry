@@ -1,7 +1,6 @@
 ﻿Imports System.Runtime.CompilerServices
 Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
-Imports registry_data.biocad_registryModel
 
 Public Class biocad_vocabulary
 
@@ -87,8 +86,8 @@ Public Class biocad_vocabulary
     End Sub
 
     <MethodImpl(MethodImplOptions.AggressiveInlining)>
-    Public Function GetDatabaseResource(name As String) As vocabulary
-        Static cache As New Dictionary(Of String, vocabulary)
+    Public Function GetDatabaseResource(name As String) As biocad_registryModel.vocabulary
+        Static cache As New Dictionary(Of String, biocad_registryModel.vocabulary)
         Return cache.ComputeIfAbsent(
             name.ToLower,
             lazyValue:=Function(dbname)
@@ -96,8 +95,8 @@ Public Class biocad_vocabulary
                        End Function)
     End Function
 
-    Public Function GetTopic(name As String) As vocabulary
-        Static cache As New Dictionary(Of String, vocabulary)
+    Public Function GetTopic(name As String) As biocad_registryModel.vocabulary
+        Static cache As New Dictionary(Of String, biocad_registryModel.vocabulary)
         Return cache.ComputeIfAbsent(
             name.ToLower,
             lazyValue:=Function(topic)
@@ -105,11 +104,11 @@ Public Class biocad_vocabulary
                        End Function)
     End Function
 
-    Public Function GetVocabulary(category As String, term As String) As vocabulary
+    Public Function GetVocabulary(category As String, term As String) As biocad_registryModel.vocabulary
         Dim q = registry.vocabulary _
             .where(field("category") = category,
                     field("term") = term) _
-            .find(Of vocabulary)
+            .find(Of biocad_registryModel.vocabulary)
 
         If q Is Nothing Then
             Call registry.vocabulary.add(
@@ -120,14 +119,14 @@ Public Class biocad_vocabulary
             q = registry.vocabulary _
                 .where(field("category") = category,
                         field("term") = term) _
-                .find(Of vocabulary)
+                .find(Of biocad_registryModel.vocabulary)
         End If
 
         Return q
     End Function
 
-    Public Function GetRegistryEntity(type As String) As vocabulary
-        Static cache As New Dictionary(Of String, vocabulary)
+    Public Function GetRegistryEntity(type As String) As biocad_registryModel.vocabulary
+        Static cache As New Dictionary(Of String, biocad_registryModel.vocabulary)
         Return cache.ComputeIfAbsent(
             type.ToLower,
             lazyValue:=Function(dbname)
