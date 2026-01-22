@@ -109,6 +109,8 @@ Public Class ExportVirtualCellModels
             .symbol = If(symbol Is Nothing, Nothing, symbol.register_name)
         }
 
+        meta.note = model.symbol
+
         Call jsonl.WriteLine(model.GetJson)
 
         Return meta
