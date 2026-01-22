@@ -693,6 +693,7 @@
           "Microsoft.VisualBasic.Data.Framework": "5.0.123",
           "Microsoft.VisualBasic.Data.GraphTheory": "1.0.0",
           "Microsoft.VisualBasic.Data.IO.MessagePack": "1.0.0",
+          "Microsoft.VisualBasic.Data.TrinityNLP": "1.0.0",
           "Microsoft.VisualBasic.MIME.application.json": "1.0.0",
           "Microsoft.VisualBasic.MIME.application.xml": "1.0.0",
           "Microsoft.VisualBasic.Math.Core": "5.0.1.2389",
