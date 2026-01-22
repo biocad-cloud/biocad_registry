@@ -228,6 +228,9 @@
     <Project Path="../../GCModeller/src/runtime/sciBASIC#/Data_science/Mathematica/SignalProcessing/SignalProcessing/signalprocessing-netcore5.vbproj">
       <Platform Solution="*|x64" Project="x64" />
     </Project>
+    <Project Path="../../GCModeller/src/runtime/sciBASIC#/Data_science/NLP/NLP.NET.vbproj">
+      <Platform Solution="*|x64" Project="x64" />
+    </Project>
   </Folder>
   <Folder Name="/framework/scibasic/network/">
     <Project Path="../../GCModeller/src/runtime/sciBASIC#/Data_science/Visualization/Plots/plots-netcore5.vbproj">

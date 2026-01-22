@@ -55,9 +55,10 @@
           "Microsoft.VisualBasic.Data.Framework.Reference": "5.0.123.0",
           "Microsoft.VisualBasic.Data.GraphTheory.Reference": "1.0.0.0",
           "Microsoft.VisualBasic.Data.IO.MessagePack.Reference": "1.0.0.0",
+          "Microsoft.VisualBasic.Data.NLP.Reference": "1.0.0.0",
           "Microsoft.VisualBasic.Data.NLP.Word2Vec.Reference": "5.33.69.2558",
           "Microsoft.VisualBasic.Data.TrinityNLP.Reference": "1.0.0.0",
-          "Microsoft.VisualBasic.Data.visualize.Network.Canvas.Reference": "2.33.9514.37474",
+          "Microsoft.VisualBasic.Data.visualize.Network.Canvas.Reference": "2.33.9518.18609",
           "Microsoft.VisualBasic.Data.visualize.Network.Reference": "1.0.0.0",
           "Microsoft.VisualBasic.Data.visualize.Network.IO.Extensions.Reference": "1.0.0.0",
           "Microsoft.VisualBasic.Data.visualize.Network.Layouts.Reference": "1.0.0.0",
@@ -692,7 +693,6 @@
           "Microsoft.VisualBasic.Data.Framework": "5.0.123",
           "Microsoft.VisualBasic.Data.GraphTheory": "1.0.0",
           "Microsoft.VisualBasic.Data.IO.MessagePack": "1.0.0",
-          "Microsoft.VisualBasic.Data.TrinityNLP": "1.0.0",
           "Microsoft.VisualBasic.MIME.application.json": "1.0.0",
           "Microsoft.VisualBasic.MIME.application.xml": "1.0.0",
           "Microsoft.VisualBasic.Math.Core": "5.0.1.2389",
@@ -1045,6 +1045,18 @@
         },
         "runtime": {
           "Microsoft.VisualBasic.Data.IO.MessagePack.dll": {
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Microsoft.VisualBasic.Data.NLP/1.0.0": {
+        "dependencies": {
+          "Microsoft.VisualBasic.Data.Framework": "5.0.123",
+          "Microsoft.VisualBasic.Math.Core": "5.0.1.2389",
+          "Microsoft.VisualBasic.Runtime": "5.0.1.2389"
+        },
+        "runtime": {
+          "Microsoft.VisualBasic.Data.NLP.dll": {
             "fileVersion": "0.0.0.0"
           }
         }
@@ -1455,7 +1467,7 @@
       "Microsoft.Windows.FeatureAPI/1.0.0": {
         "runtime": {
           "Microsoft.Windows.FeatureAPI.dll": {
-            "assemblyVersion": "10.0.9514.37435",
+            "assemblyVersion": "10.0.9518.18590",
             "fileVersion": "1.0.10.8963"
           }
         }
@@ -1657,6 +1669,7 @@
       "SMRUCC.genomics.Model.MotifGraph.ProteinStructure/1.0.0": {
         "dependencies": {
           "Microsoft.VisualBasic.Data.GraphTheory": "1.0.0",
+          "Microsoft.VisualBasic.Data.NLP": "1.0.0",
           "Microsoft.VisualBasic.DataMining.Framework": "1.0.0",
           "Microsoft.VisualBasic.DeepLearning": "6.0.1.2389",
           "Microsoft.VisualBasic.MachineLearning": "5.0.1.2389",
@@ -1904,6 +1917,14 @@
           }
         }
       },
+      "Microsoft.VisualBasic.Data.NLP.Reference/1.0.0.0": {
+        "runtime": {
+          "Microsoft.VisualBasic.Data.NLP.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
       "Microsoft.VisualBasic.Data.NLP.Word2Vec.Reference/5.33.69.2558": {
         "runtime": {
           "Microsoft.VisualBasic.Data.NLP.Word2Vec.dll": {
@@ -1920,10 +1941,10 @@
           }
         }
       },
-      "Microsoft.VisualBasic.Data.visualize.Network.Canvas.Reference/2.33.9514.37474": {
+      "Microsoft.VisualBasic.Data.visualize.Network.Canvas.Reference/2.33.9518.18609": {
         "runtime": {
           "Microsoft.VisualBasic.Data.visualize.Network.Canvas.dll": {
-            "assemblyVersion": "2.33.9514.37474",
+            "assemblyVersion": "2.33.9518.18609",
             "fileVersion": "2.33.0.0"
           }
         }
@@ -2658,6 +2679,11 @@
       "serviceable": false,
       "sha512": ""
     },
+    "Microsoft.VisualBasic.Data.NLP/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
     "Microsoft.VisualBasic.Data.NLP.Word2Vec/5.0.1.2389": {
       "type": "project",
       "serviceable": false,
@@ -2998,6 +3024,11 @@
       "serviceable": false,
       "sha512": ""
     },
+    "Microsoft.VisualBasic.Data.NLP.Reference/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
     "Microsoft.VisualBasic.Data.NLP.Word2Vec.Reference/5.33.69.2558": {
       "type": "reference",
       "serviceable": false,
@@ -3008,7 +3039,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Microsoft.VisualBasic.Data.visualize.Network.Canvas.Reference/2.33.9514.37474": {
+    "Microsoft.VisualBasic.Data.visualize.Network.Canvas.Reference/2.33.9518.18609": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
