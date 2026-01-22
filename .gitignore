@@ -303,3 +303,4 @@ mysql/cad_registry-v2.mwb.bak
 scripts/localdb/subcellular.json
 scripts/localdb/metabolic_network.jsonl
 scripts/localdb/molecules.jsonl
+/scripts/localdb/molecules.csv
