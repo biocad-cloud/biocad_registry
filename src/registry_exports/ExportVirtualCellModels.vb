@@ -1,5 +1,6 @@
 ﻿Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm
 Imports Microsoft.VisualBasic.ComponentModel.Collection
+Imports Microsoft.VisualBasic.Data.Framework
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Serialization.JSON
@@ -40,23 +41,23 @@ Public Class ExportVirtualCellModels
     End Sub
 
     Public Sub ExportEnzymeDb()
-        Using text As New StreamWriter($"{repo}/ec_numbers.fasta".Open(IO.FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False))
+        Using text As New StreamWriter($"{repo}/ec_numbers.fasta".Open(System.IO.FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False))
             Call text.Add(registry.ExportEnzyme, filterEmpty:=True)
         End Using
     End Sub
 
     Public Sub ExportSubcellularLocationDb()
-        Using text As New StreamWriter($"{repo}/subcellular.fasta".Open(IO.FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False))
+        Using text As New StreamWriter($"{repo}/subcellular.fasta".Open(System.IO.FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False))
             Call text.Add(registry.ExportCellularLocation, filterEmpty:=True)
         End Using
     End Sub
 
     Public Sub ExportMoleculeData()
-        Using jsonl As New IO.StreamReader($"{repo}/metabolic_network.jsonl".Open(IO.FileMode.Open, doClear:=False, [readOnly]:=True))
+        Using jsonl As New System.IO.StreamReader($"{repo}/metabolic_network.jsonl".Open(System.IO.FileMode.Open, doClear:=False, [readOnly]:=True))
             Dim json_str As Value(Of String) = ""
-            Dim mols As New Dictionary(Of String, WebJSON.Molecule)
+            Dim mols As New Dictionary(Of String, metabolites)
 
-            Using molecules As New IO.StreamWriter($"{repo}/molecules.jsonl".Open(IO.FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False))
+            Using molecules As New System.IO.StreamWriter($"{repo}/molecules.jsonl".Open(System.IO.FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False))
                 Do While (json_str = jsonl.ReadLine) IsNot Nothing
                     Dim model As WebJSON.Reaction = json_str.LoadJSON(Of WebJSON.Reaction)
 
@@ -69,10 +70,13 @@ Public Class ExportVirtualCellModels
                     Next
                 Loop
             End Using
+
+            ' export table
+            Call mols.Values.SaveTo($"{repo}/molecules.csv")
         End Using
     End Sub
 
-    Private Function MakeQueryMetabolite(id As UInteger, jsonl As IO.StreamWriter) As WebJSON.Molecule
+    Private Function MakeQueryMetabolite(id As UInteger, jsonl As System.IO.StreamWriter) As metabolites
         Dim metabolite_type As UInteger = vocabulary.metabolite_type
         Dim meta As metabolites = registry.metabolites.where(field("id") = id).find(Of metabolites)
 
@@ -107,7 +111,7 @@ Public Class ExportVirtualCellModels
 
         Call jsonl.WriteLine(model.GetJson)
 
-        Return model
+        Return meta
     End Function
 
     Public Sub ExportReactionPool()
@@ -120,7 +124,7 @@ Public Class ExportVirtualCellModels
         Dim ec_type As UInteger = vocabulary.db_ECNumber
         Dim reaction_type As UInteger = vocabulary.reaction_type
 
-        Using json As New IO.StreamWriter($"{repo}/metabolic_network.jsonl".Open(IO.FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False))
+        Using json As New System.IO.StreamWriter($"{repo}/metabolic_network.jsonl".Open(System.IO.FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False))
             For Each hashcode As String In TqdmWrapper.Wrap(hashset)
                 Dim rxn As reaction = registry.reaction _
                     .where(field("hashcode") = hashcode) _
