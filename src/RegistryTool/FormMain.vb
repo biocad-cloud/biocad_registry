@@ -631,18 +631,25 @@ WHERE
             Return
         End If
 
-        Dim data = PubChem.Query.FetchPugViewByCID(Strings.Trim(cid))
-        Dim meta = data.GetMetaInfo
-        ' 不信任pubchem id的映射结果，在这里直接设置kegg_id来避免直接通过pubchem id查找到结果
-        Dim m As metabolites = MyApplication.biocad_registry.FindMolecule(meta, "kegg_id", nameSearch:=True)
-        Dim db_pubchem As UInteger = MyApplication.biocad_registry.biocad_vocabulary.db_pubchem
+        Call TaskProgress.LoadData(
+            Function(p As ITaskProgress)
+                Dim data = PubChem.Query.FetchPugViewByCID(Strings.Trim(cid))
+                Dim meta = data.GetMetaInfo
+                ' 不信任pubchem id的映射结果，在这里直接设置kegg_id来避免直接通过pubchem id查找到结果
+                Dim m As metabolites = MyApplication.biocad_registry.FindMolecule(meta, "kegg_id", nameSearch:=True)
+                Dim db_pubchem As UInteger = MyApplication.biocad_registry.biocad_vocabulary.db_pubchem
 
-        If m Is Nothing Then
-            Return
-        End If
+                If m Is Nothing Then
+                    Return False
+                Else
+                    Call p.SetInfo("save mysql")
+                End If
 
-        Call MyApplication.biocad_registry.SaveDbLinks(meta, m, db_pubchem)
-        Call MyApplication.biocad_registry.SaveStructureData(m, meta.xref.SMILES)
-        Call MyApplication.biocad_registry.SaveSynonyms(m, meta.synonym.JoinIterates({meta.name, meta.IUPACName}).Distinct, db_pubchem)
+                Call MyApplication.biocad_registry.SaveDbLinks(meta, m, db_pubchem)
+                Call MyApplication.biocad_registry.SaveStructureData(m, meta.xref.SMILES)
+                Call MyApplication.biocad_registry.SaveSynonyms(m, meta.synonym.JoinIterates({meta.name, meta.IUPACName}).Distinct, db_pubchem)
+
+                Return True
+            End Function, $"fetch pubchem metabolite of cid={cid}", "Make pubchem metabolite data imports")
     End Sub
 End Class
