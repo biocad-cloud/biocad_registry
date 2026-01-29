@@ -37,6 +37,16 @@ registry_data
  <param name="registry"></param>
  <returns></returns>
 </member>
+<member name="M:registry_data.ImportsReaction.CalculateReactionHashCode(System.Collections.Generic.IEnumerable{System.ValueTuple{System.UInt32,System.UInt32}})">
+ <summary>
+ a set of tuple of [role_id, obj_id]
+ </summary>
+ <param name="links">no needs to sort order before, this function will sort the order automatically</param>
+ <returns></returns>
+ <remarks>
+ this function will sort by role_id first, then sort by symbol_id, then build hashcode
+ </remarks>
+</member>
 <member name="M:registry_data.ProteinModels.SetupKOModels(registry_data.biocad_registry,System.Collections.Generic.IEnumerable{SMRUCC.genomics.Assembly.KEGG.DBGET.KOrthology})">
  <summary>
  Use KEGG orthology as protein reference model

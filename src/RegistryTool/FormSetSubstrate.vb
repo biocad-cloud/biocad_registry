@@ -9,8 +9,16 @@ Public Class FormSetSubstrate
             Return
         End If
 
-        Dim q_str As String = TextBox1.Text.Replace("+", " ").Replace("-", " ")
-        Dim q = MyApplication.biocad_registry.metabolites.where(match("name", "note").against(q_str, booleanMode:=True)).select(Of SymbolView)
+        Dim name As String = Strings.Trim(TextBox1.Text)
+        Dim q_str As String = name.Replace("+", " ").Replace("-", " ").Replace("""", " ").Replace("'", " ")
+        Dim hashcode As String = Strings.Trim(name).ToLower.MD5
+        Dim sort As String = $"IF(hashcode = '{hashcode}',
+    100000000,
+    MATCH (name , note) AGAINST ('{q_str}' IN BOOLEAN MODE))"
+        Dim q = MyApplication.biocad_registry.metabolites _
+            .where(match("name", "note").against(q_str, booleanMode:=True) Or field("hashcode") = hashcode) _
+            .order_by(sort, desc:=True) _
+            .select(Of SymbolView)
 
         Call ListBox1.Items.Clear()
 
