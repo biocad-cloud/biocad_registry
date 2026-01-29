@@ -206,7 +206,7 @@ Public Module ImportsReaction
             Next
 
             Dim eq = rxn.equation
-            Dim links As New List(Of (UInteger, UInteger))
+            Dim links As New List(Of (role_id As UInteger, species_id As UInteger))
 
             For Each sp As SideCompound In rxn.compounds
                 Dim role As UInteger = If(sp.side = "left", role_substrate, role_product)
@@ -266,12 +266,20 @@ Public Module ImportsReaction
         Call enrich.commit()
     End Sub
 
+    ''' <summary>
+    ''' a set of tuple of [role_id, obj_id]
+    ''' </summary>
+    ''' <param name="links">no needs to sort order before, this function will sort the order automatically</param>
+    ''' <returns></returns>
+    ''' <remarks>
+    ''' this function will sort by role_id first, then sort by symbol_id, then build hashcode
+    ''' </remarks>
     <Extension>
-    Public Function CalculateReactionHashCode(links As IEnumerable(Of (UInteger, UInteger))) As String
+    Public Function CalculateReactionHashCode(links As IEnumerable(Of (role_id As UInteger, species_id As UInteger))) As String
         Return links _
-            .OrderBy(Function(a) a.Item1) _
-            .ThenBy(Function(a) a.Item2) _
-            .Select(Function(a) {a.Item1, a.Item2}) _
+            .OrderBy(Function(a) a.role_id) _
+            .ThenBy(Function(a) a.species_id) _
+            .Select(Function(a) {a.role_id, a.species_id}) _
             .IteratesALL _
             .JoinBy(",") _
             .MD5

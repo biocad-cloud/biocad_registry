@@ -65,7 +65,7 @@ Public Class FormSetSubstrate
         <DatabaseField> Public Property biocyc As String
 
         Public Overrides Function ToString() As String
-            Return $"{name} ({formula} - {exact_mass})"
+            Return $"{name} ({formula} - {exact_mass.ToString("F4")})"
         End Function
 
         Public Function GetSymbolId() As String
