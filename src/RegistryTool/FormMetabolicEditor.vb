@@ -1,4 +1,5 @@
-﻿Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
+﻿Imports Galaxy.Workbench.CommonDialogs
+Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports registry_data
 Imports RegistryTool.My
 
@@ -110,5 +111,9 @@ Public Class FormMetabolicEditor
         Dim rxn = Await Task.Run(Function() MyApplication.biocad_registry.reaction.where(field("id") = id).find(Of biocad_registryModel.reaction))
 
         Await ShowReaction(rxn)
+    End Sub
+
+    Private Sub ToolStripButton5_Click(sender As Object, e As EventArgs) Handles ToolStripButton5.Click
+        Call InputDialog.Input(Of FormBuildReaction)()
     End Sub
 End Class

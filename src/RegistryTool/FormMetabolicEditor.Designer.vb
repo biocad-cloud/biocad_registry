@@ -54,6 +54,8 @@ Partial Class FormMetabolicEditor
         ToolStripLabel3 = New ToolStripLabel()
         ToolStripTextBox2 = New ToolStripTextBox()
         ToolStripButton4 = New ToolStripButton()
+        ToolStripSeparator2 = New ToolStripSeparator()
+        ToolStripButton5 = New ToolStripButton()
         CType(SplitContainer1, ISupportInitialize).BeginInit()
         SplitContainer1.Panel1.SuspendLayout()
         SplitContainer1.Panel2.SuspendLayout()
@@ -210,7 +212,7 @@ Partial Class FormMetabolicEditor
         ' 
         ' ToolStrip1
         ' 
-        ToolStrip1.Items.AddRange(New ToolStripItem() {ToolStripLabel1, ToolStripButton1, ToolStripLabel2, ToolStripTextBox1, ToolStripButton2, ToolStripButton3, ToolStripSeparator1, ToolStripLabel3, ToolStripTextBox2, ToolStripButton4})
+        ToolStrip1.Items.AddRange(New ToolStripItem() {ToolStripLabel1, ToolStripButton1, ToolStripLabel2, ToolStripTextBox1, ToolStripButton2, ToolStripButton3, ToolStripSeparator1, ToolStripLabel3, ToolStripTextBox2, ToolStripButton4, ToolStripSeparator2, ToolStripButton5})
         ToolStrip1.Location = New Point(0, 0)
         ToolStrip1.Name = "ToolStrip1"
         ToolStrip1.Size = New Size(1394, 25)
@@ -287,6 +289,20 @@ Partial Class FormMetabolicEditor
         ToolStripButton4.Size = New Size(23, 22)
         ToolStripButton4.Text = "ToolStripButton4"
         ' 
+        ' ToolStripSeparator2
+        ' 
+        ToolStripSeparator2.Name = "ToolStripSeparator2"
+        ToolStripSeparator2.Size = New Size(6, 25)
+        ' 
+        ' ToolStripButton5
+        ' 
+        ToolStripButton5.DisplayStyle = ToolStripItemDisplayStyle.Image
+        ToolStripButton5.Image = CType(resources.GetObject("ToolStripButton5.Image"), Image)
+        ToolStripButton5.ImageTransparentColor = Color.Magenta
+        ToolStripButton5.Name = "ToolStripButton5"
+        ToolStripButton5.Size = New Size(23, 22)
+        ToolStripButton5.Text = "Add"
+        ' 
         ' FormMetabolicEditor
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
@@ -345,4 +361,6 @@ Partial Class FormMetabolicEditor
     Friend WithEvents ToolStripLabel3 As ToolStripLabel
     Friend WithEvents ToolStripTextBox2 As ToolStripTextBox
     Friend WithEvents ToolStripButton4 As ToolStripButton
+    Friend WithEvents ToolStripSeparator2 As ToolStripSeparator
+    Friend WithEvents ToolStripButton5 As ToolStripButton
 End Class

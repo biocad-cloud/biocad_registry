@@ -121,8 +121,8 @@ Public Class ExportVirtualCellModels
             .where(field("hashcode").char_length > 0) _
             .distinct _
             .project(Of String)("hashcode")
-        Dim role_left As UInteger = vocabulary.GetVocabulary("Metabolic Role", "Substrate").id
-        Dim role_right As UInteger = vocabulary.GetVocabulary("Metabolic Role", "Product").id
+        Dim role_left As UInteger = registry.MetabolicSubstrateRole.id
+        Dim role_right As UInteger = registry.MetabolicProductRole.id
         Dim ec_type As UInteger = vocabulary.db_ECNumber
         Dim reaction_type As UInteger = vocabulary.reaction_type
 
