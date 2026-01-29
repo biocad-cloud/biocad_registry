@@ -68,7 +68,7 @@ Public Class FormSetSubstrate
             Dim hashcode As String = Strings.LCase(name).MD5
 
             Call MyApplication.biocad_registry.metabolites.add(
-               field("main_id" = 0),
+               field("main_id") = 0,
                field("name") = name,
                field("hashcode") = hashcode,
                field("formula") = "",

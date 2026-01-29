@@ -8,7 +8,7 @@ Imports Oracle.LinuxCompatibility.MySQL.Reflection.DbAttributes
 Imports registry_data
 Imports registry_data.biocad_registryModel
 
-Module MetaboliteData
+Public Module MetaboliteData
 
     <Extension>
     Public Sub SaveDbLinks(registry As biocad_registry,

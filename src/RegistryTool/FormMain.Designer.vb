@@ -60,6 +60,7 @@ Partial Class FormMain
         ToolStripStatusLabel1 = New ToolStripStatusLabel()
         m_dockPanel = New Microsoft.VisualStudio.WinForms.Docking.DockPanel()
         VisualStudioToolStripExtender1 = New Microsoft.VisualStudio.WinForms.Docking.VisualStudioToolStripExtender(components)
+        PubChemIDToolStripMenuItem = New ToolStripMenuItem()
         MenuStrip1.SuspendLayout()
         StatusStrip1.SuspendLayout()
         SuspendLayout()
@@ -239,7 +240,7 @@ Partial Class FormMain
         ' 
         ' ImportsToolStripMenuItem
         ' 
-        ImportsToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {GenBankToolStripMenuItem, PubMedKnowledgeToolStripMenuItem})
+        ImportsToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {GenBankToolStripMenuItem, PubMedKnowledgeToolStripMenuItem, PubChemIDToolStripMenuItem})
         ImportsToolStripMenuItem.Name = "ImportsToolStripMenuItem"
         ImportsToolStripMenuItem.Size = New Size(60, 20)
         ImportsToolStripMenuItem.Text = "Imports"
@@ -289,7 +290,7 @@ Partial Class FormMain
         ' 
         m_dockPanel.Dock = DockStyle.Fill
         m_dockPanel.Location = New Point(0, 24)
-        m_dockPanel.Margin = New Padding(4, 4, 4, 4)
+        m_dockPanel.Margin = New Padding(4)
         m_dockPanel.Name = "m_dockPanel"
         m_dockPanel.Size = New Size(836, 381)
         m_dockPanel.TabIndex = 4
@@ -297,6 +298,12 @@ Partial Class FormMain
         ' VisualStudioToolStripExtender1
         ' 
         VisualStudioToolStripExtender1.DefaultRenderer = Nothing
+        ' 
+        ' PubChemIDToolStripMenuItem
+        ' 
+        PubChemIDToolStripMenuItem.Name = "PubChemIDToolStripMenuItem"
+        PubChemIDToolStripMenuItem.Size = New Size(181, 22)
+        PubChemIDToolStripMenuItem.Text = "PubChem ID"
         ' 
         ' FormMain
         ' 
@@ -307,7 +314,7 @@ Partial Class FormMain
         Controls.Add(StatusStrip1)
         Controls.Add(MenuStrip1)
         MainMenuStrip = MenuStrip1
-        Margin = New Padding(4, 4, 4, 4)
+        Margin = New Padding(4)
         Name = "FormMain"
         Text = "Registry Tool"
         MenuStrip1.ResumeLayout(False)
@@ -356,4 +363,5 @@ Partial Class FormMain
     Friend WithEvents ReactionEditorToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents m_dockPanel As Microsoft.VisualStudio.WinForms.Docking.DockPanel
     Friend WithEvents VisualStudioToolStripExtender1 As Microsoft.VisualStudio.WinForms.Docking.VisualStudioToolStripExtender
+    Friend WithEvents PubChemIDToolStripMenuItem As ToolStripMenuItem
 End Class

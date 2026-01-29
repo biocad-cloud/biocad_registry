@@ -2,6 +2,8 @@
 Imports System.IO
 Imports BioNovoGene.BioDeep.Chemistry.MetaLib
 Imports BioNovoGene.BioDeep.Chemistry.MetaLib.CrossReference
+Imports BioNovoGene.BioDeep.Chemistry.NCBI
+Imports BioNovoGene.BioDeep.Chemistry.NCBI.PubChem
 Imports Galaxy.Workbench
 Imports Microsoft.VisualBasic.Data.Framework.IO
 Imports Microsoft.VisualBasic.Language
@@ -10,6 +12,7 @@ Imports Microsoft.VisualBasic.Net.Http
 Imports Microsoft.VisualStudio.WinForms.Docking
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports registry_data
+Imports registry_data.biocad_registryModel
 Imports registry_exports
 Imports RegistryTool.Configs
 Imports RegistryTool.My
@@ -619,5 +622,27 @@ WHERE
 
     Private Sub ReactionEditorToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ReactionEditorToolStripMenuItem.Click
         Call CommonRuntime.ShowDocument(Of FormMetabolicEditor)()
+    End Sub
+
+    Private Sub PubChemIDToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PubChemIDToolStripMenuItem.Click
+        Dim cid As String = InputBox("Input the pubchem cid to make imports into registry database!", "Imports PubChem")
+
+        If cid.StringEmpty(, True) Then
+            Return
+        End If
+
+        Dim data = PubChem.Query.FetchPugViewByCID(Strings.Trim(cid))
+        Dim meta = data.GetMetaInfo
+        ' 不信任pubchem id的映射结果，在这里直接设置kegg_id来避免直接通过pubchem id查找到结果
+        Dim m As metabolites = MyApplication.biocad_registry.FindMolecule(meta, "kegg_id", nameSearch:=True)
+        Dim db_pubchem As UInteger = MyApplication.biocad_registry.biocad_vocabulary.db_pubchem
+
+        If m Is Nothing Then
+            Return
+        End If
+
+        Call MyApplication.biocad_registry.SaveDbLinks(meta, m, db_pubchem)
+        Call MyApplication.biocad_registry.SaveStructureData(m, meta.xref.SMILES)
+        Call MyApplication.biocad_registry.SaveSynonyms(m, meta.synonym.JoinIterates({meta.name, meta.IUPACName}).Distinct, db_pubchem)
     End Sub
 End Class
