@@ -23,6 +23,20 @@ registry_data
  <param name="ont"></param>
  <param name="source_id"></param>
 </member>
+<member name="M:registry_data.ImportsReaction.MetabolicSubstrateRole(registry_data.biocad_registry)">
+ <summary>
+ left
+ </summary>
+ <param name="registry"></param>
+ <returns></returns>
+</member>
+<member name="M:registry_data.ImportsReaction.MetabolicProductRole(registry_data.biocad_registry)">
+ <summary>
+ right
+ </summary>
+ <param name="registry"></param>
+ <returns></returns>
+</member>
 <member name="M:registry_data.ProteinModels.SetupKOModels(registry_data.biocad_registry,System.Collections.Generic.IEnumerable{SMRUCC.genomics.Assembly.KEGG.DBGET.KOrthology})">
  <summary>
  Use KEGG orthology as protein reference model

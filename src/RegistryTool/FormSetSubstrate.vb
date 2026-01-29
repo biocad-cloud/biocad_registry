@@ -21,6 +21,15 @@ Public Class FormSetSubstrate
 
     Dim sel As SymbolView
 
+    Public Function GetSymbol() As SymbolHolder
+        Return New SymbolHolder With {
+            .factor = NumericUpDown1.Value,
+            .species_id = sel.id,
+            .symbol_id = sel.GetSymbolId,
+            .note = sel.ToString
+        }
+    End Function
+
     Private Sub SetMoleculeReferenceToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SetMoleculeReferenceToolStripMenuItem.Click
         If ListBox1.SelectedIndex = -1 Then
             Return

@@ -22,6 +22,20 @@ RegistryTool
   resource lookups using this strongly typed resource class.
 </summary>
 </member>
+<member name="M:RegistryTool.FormBuildReaction.AddToolStripMenuItem_Click(System.Object,System.EventArgs)">
+ <summary>
+ add left
+ </summary>
+ <param name="sender"></param>
+ <param name="e"></param>
+</member>
+<member name="M:RegistryTool.FormBuildReaction.AddToolStripMenuItem1_Click(System.Object,System.EventArgs)">
+ <summary>
+ add right
+ </summary>
+ <param name="sender"></param>
+ <param name="e"></param>
+</member>
 <member name="M:RegistryTool.FormBatchEditor.Button1_Click(System.Object,System.EventArgs)">
  <summary>
  add
