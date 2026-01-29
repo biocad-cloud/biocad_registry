@@ -678,30 +678,33 @@ let options = { width: 450, height: 300 };
 
         Dim rxn = DataGridView2.SelectedRows(0)
         Dim rxn_id As String = CStr(rxn.HeaderCell.Value)
-        'Dim graph = Await Task.Run(
-        '    Function()
-        '        Return MyApplication.biocad_registry.reaction_graph _
-        '            .left_join("molecule") _
-        '            .on(field("molecule_id") = field("molecule.id")) _
-        '            .left_join("vocabulary") _
-        '            .on(field("vocabulary.id") = field("role")) _
-        '            .where(field("reaction") = UInteger.Parse(rxn_id)) _
-        '            .select(Of reaction_graphdata)("molecule.*", "db_xref", "term AS role")
-        '    End Function)
+        Dim role_left = MyApplication.biocad_registry.MetabolicSubstrateRole
+        Dim role_right = MyApplication.biocad_registry.MetabolicProductRole
 
-        'TextBox7.Text = rxn.Tag
-        'DataGridView3.Rows.Clear()
+        Dim graph = Await Task.Run(
+            Function()
+                Return MyApplication.biocad_registry.metabolic_network _
+                    .left_join("metabolites") _
+                    .on(field("species_id") = field("metabolites.id")) _
+                    .left_join("vocabulary") _
+                    .on(field("vocabulary.id") = field("role")) _
+                    .where(field("reaction_id") = UInteger.Parse(rxn_id)) _
+                    .select(Of reaction_graphdata)("metabolites.*", "symbol_id as db_xref", "term AS role")
+            End Function)
 
-        'For Each compound In graph
-        '    Call DataGridView3.Rows.Add(
-        '        compound.id,
-        '        compound.db_xref,
-        '        compound.name,
-        '        compound.formula,
-        '        compound.mass,
-        '        compound.role
-        '    )
-        'Next
+        TextBox7.Text = rxn.Tag
+        DataGridView3.Rows.Clear()
+
+        For Each compound In graph
+            Call DataGridView3.Rows.Add(
+                compound.id,
+                compound.db_xref,
+               compound.name,
+                compound.formula,
+                compound.exact_mass,
+                compound.role
+           )
+        Next
     End Sub
 End Class
 

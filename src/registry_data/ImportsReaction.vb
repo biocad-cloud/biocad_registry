@@ -62,11 +62,21 @@ Public Module ImportsReaction
         Next
     End Sub
 
+    ''' <summary>
+    ''' left
+    ''' </summary>
+    ''' <param name="registry"></param>
+    ''' <returns></returns>
     <Extension>
     Public Function MetabolicSubstrateRole(registry As biocad_registry) As vocabulary
         Return registry.biocad_vocabulary.GetVocabulary("Metabolic Role", "Substrate")
     End Function
 
+    ''' <summary>
+    ''' right
+    ''' </summary>
+    ''' <param name="registry"></param>
+    ''' <returns></returns>
     <Extension>
     Public Function MetabolicProductRole(registry As biocad_registry) As vocabulary
         Return registry.biocad_vocabulary.GetVocabulary("Metabolic Role", "Product")
