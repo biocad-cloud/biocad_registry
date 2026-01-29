@@ -1,4 +1,5 @@
 ﻿Imports Galaxy.Workbench.CommonDialogs
+Imports Microsoft.VisualBasic.Linq
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports registry_data
 Imports RegistryTool.My
@@ -53,6 +54,7 @@ Public Class FormBuildReaction
         Else
             Dim max_id As UInteger = MyApplication.biocad_registry.reaction.aggregate(Of UInteger)("max(id)") + 1
             Dim id As String = $"BIOCAD_RXN-{max_id}"
+            Dim ec_numbers As String() = Strings.Trim(TextBox3.Text).StringSplit("\s*[,;]\s*")
 
             Call MyApplication.biocad_registry.reaction.add(
                 field("db_xref") = id,
@@ -60,7 +62,7 @@ Public Class FormBuildReaction
                 field("hashcode") = hashcode,
                 field("main_id") = 0,
                 field("name") = Strings.Trim(TextBox1.Text),
-                field("ec_number") = Strings.Trim(TextBox3.Text),
+                field("ec_number") = ec_numbers.FirstOrDefault,
                 field("equation") = eq.ToString,
                 field("note") = TextBox2.Text
             )
@@ -70,6 +72,16 @@ Public Class FormBuildReaction
             If rxn Is Nothing Then
                 Return False
             End If
+
+            For Each ec_num As String In ec_numbers.SafeQuery
+                Call MyApplication.biocad_registry.db_xrefs.add(
+                    field("obj_id") = rxn.id,
+                    field("type") = MyApplication.biocad_registry.biocad_vocabulary.reaction_type,
+                    field("db_name") = MyApplication.biocad_registry.biocad_vocabulary.db_ECNumber,
+                    field("db_xref") = ec_num,
+                    field("db_source") = MyApplication.biocad_registry.biocad_vocabulary.db_ManualAudit
+                )
+            Next
 
             Dim net As CommitTransaction = MyApplication.biocad_registry.metabolic_network.ignore.open_transaction
 
