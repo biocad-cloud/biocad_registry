@@ -6674,6 +6674,7 @@ to take away yo [rest of string was truncated]&quot;;.
  <summary>
  s4object api function exports
  </summary>
+ 
 </member>
 <member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.s4Methods.setClass(System.String,System.Object,SMRUCC.Rsharp.Runtime.Internal.Object.list,System.String,System.Object,System.Object,System.Object,System.Object,System.Object,System.Object,System.Boolean,SMRUCC.Rsharp.Runtime.Internal.Object.list,SMRUCC.Rsharp.Runtime.Environment)">
  <summary>
@@ -12650,7 +12651,7 @@ to take away yo [rest of string was truncated]&quot;;.
  which is true is zero-based by default
  </remarks>
 </member>
-<member name="M:SMRUCC.Rsharp.Runtime.Internal.Object.dataframe.sliceByRow(System.Array,SMRUCC.Rsharp.Runtime.Environment)">
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Object.dataframe.sliceByRow(System.Array,SMRUCC.Rsharp.Runtime.Environment,System.Boolean)">
  <summary>
  ``data[selector, ]``
  </summary>

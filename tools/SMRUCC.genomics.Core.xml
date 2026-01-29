@@ -11299,6 +11299,14 @@ Get feature site data by nucleotide location.
  Extension methods for some common operations
  </summary>
 </member>
+<member name="M:SMRUCC.genomics.BioAssemblyExtensions.ExpressionValue``1(System.Collections.Generic.IEnumerable{``0})">
+ <summary>
+ Extract of the gene expression value
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="genes"></param>
+ <returns></returns>
+</member>
 <member name="M:SMRUCC.genomics.BioAssemblyExtensions.IsUnknown(System.Char)">
  <summary>
  Current nt base is a unknown base?
@@ -11528,31 +11536,31 @@ Get feature site data by nucleotide location.
 </member>
 <member name="T:SMRUCC.genomics.ComponentModel.Annotation.IGeneBrief">
  <summary>
- The basically information of a gene object.(这个接口对象表示了一个在计算机程序之中的最基本的基因信息的载体对象)
+ The basically information of a gene object.
  </summary>
- <remarks></remarks>
+ <remarks>(这个接口对象表示了一个在计算机程序之中的最基本的基因信息的载体对象)</remarks>
 </member>
 <member name="P:SMRUCC.genomics.ComponentModel.Annotation.IGeneBrief.Product">
  <summary>
- The protein function annotation data of the gene coding product.(所编码的蛋白质产物的功能注释)
+ The protein function annotation data of the gene coding product.
  </summary>
  <value></value>
  <returns></returns>
- <remarks></remarks>
+ <remarks>(所编码的蛋白质产物的功能注释)</remarks>
 </member>
 <member name="P:SMRUCC.genomics.ComponentModel.Annotation.IGeneBrief.Length">
  <summary>
- The nucleotide sequence length.(基因的长度)
+ The nucleotide sequence length.
  </summary>
  <value></value>
  <returns></returns>
- <remarks></remarks>
+ <remarks>(基因的长度)</remarks>
 </member>
 <member name="T:SMRUCC.genomics.ComponentModel.Annotation.IFeatureDigest">
  <summary>
- The feature annotation data of the genes.(基因对象的特征注释结果)
+ The feature annotation data of the genes.
  </summary>
- <remarks></remarks>
+ <remarks>(基因对象的特征注释结果)</remarks>
 </member>
 <member name="P:SMRUCC.genomics.ComponentModel.Annotation.IFeatureDigest.Feature">
  <summary>
@@ -11569,11 +11577,11 @@ Get feature site data by nucleotide location.
 </member>
 <member name="P:SMRUCC.genomics.ComponentModel.Annotation.ICOGCatalog.COG">
  <summary>
- The gene object COG classification.(COG功能分类)
+ The gene object COG classification.
  </summary>
  <value></value>
  <returns></returns>
- <remarks></remarks>
+ <remarks>(COG功能分类)</remarks>
 </member>
 <member name="T:SMRUCC.genomics.ComponentModel.Annotation.GeneTable">
  <summary>
@@ -12726,13 +12734,6 @@ Get feature site data by nucleotide location.
  NCBI PTT和MetaCyc数据库所公用的多文件的数据库加载器的基本类型
  </summary>
 </member>
-<member name="T:SMRUCC.genomics.ComponentModel.KeyValuePairExtensions">
- <summary>
- String type key value pair.(两个字符串构成的键值对)
- </summary>
- <remarks></remarks>
-
-</member>
 <member name="T:SMRUCC.genomics.ContextModel.Context">
  <summary>
  Context model of a specific genomics feature site.
@@ -13520,6 +13521,12 @@ to take away yo [rest of string was truncated]&quot;;.
  所以这个构造方法是安全的构造方法，不需要担心会因为缺少否些rank而抛出错误
  </summary>
  <param name="lineage"></param>
+</member>
+<member name="M:SMRUCC.genomics.Metagenomics.Taxonomy.#ctor(System.Collections.Generic.IEnumerable{SMRUCC.genomics.Assembly.NCBI.Taxonomy.TaxonomyNode})">
+ <summary>
+ construct of the taxonomy information from the ncbi taxonomy tree lineage data
+ </summary>
+ <param name="taxonomyNodes"></param>
 </member>
 <member name="M:SMRUCC.genomics.Metagenomics.Taxonomy.#ctor">
  <summary>
