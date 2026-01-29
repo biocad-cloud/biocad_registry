@@ -84,7 +84,7 @@ Module exports
         Call dump.ExportLocations()
         ' Call dump.ExportEnzymeDb()
         ' Call dump.ExportSubcellularLocationDb()
-        ' Call dump.ExportReactionPool()
+        Call dump.ExportReactionPool()
         Call dump.ExportMoleculeData()
 
         Return Nothing
