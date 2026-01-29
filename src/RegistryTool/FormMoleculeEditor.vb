@@ -20,8 +20,6 @@ Imports SMRUCC.genomics.Model.MotifGraph
 
 Public Class FormMoleculeEditor
 
-    Dim id As String
-
     Public Const viewer As String = "<!DOCTYPE html SYSTEM ""about:legacy-compat"">
 <html xmlns=""http://www.w3.org/1999/xhtml"" lang=""en"" xml:lang=""en"">
 
@@ -207,7 +205,7 @@ let options = { width: 450, height: 300 };
 
     Private Async Sub SaveCommonName() Handles Button2.Click
         Dim name As String = Strings.Trim(TextBox2.Text)
-        Await Task.Run(Sub() MyApplication.biocad_registry.metabolites.where(field("id") = UInteger.Parse(id.Match("\d+"))).save(field("name") = name))
+        Await Task.Run(Sub() MyApplication.biocad_registry.metabolites.where(field("id") = mol.id).save(field("name") = name))
     End Sub
 
     Private Sub WebView21_CoreWebView2InitializationCompleted(sender As Object, e As CoreWebView2InitializationCompletedEventArgs) Handles WebView21.CoreWebView2InitializationCompleted
@@ -234,11 +232,11 @@ let options = { width: 450, height: 300 };
                                    field("smiles") = smilesOrSeq,
                                         field("fingerprint") = fingerprint,
                                         field("checksum") = smilesOrSeq.MD5,
-                                        field("metabolite_id") = UInteger.Parse(id.Match("\d+"))
+                                        field("metabolite_id") = mol.id
                                )
 
                                struct = MyApplication.biocad_registry.struct_data _
-                                  .where(field("metabolite_id") = UInteger.Parse(id.Match("\d+"))) _
+                                  .where(field("metabolite_id") = mol.id) _
                                   .order_by("id", desc:=True) _
                                   .find(Of biocad_registryModel.struct_data)
                            End Sub)
@@ -295,7 +293,7 @@ let options = { width: 450, height: 300 };
     Private Async Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
         Dim desc = Strings.Trim(TextBox4.Text)
 
-        Await Task.Run(Sub() MyApplication.biocad_registry.metabolites.where(field("id") = UInteger.Parse(id.Match("\d+"))).save(field("note") = desc))
+        Await Task.Run(Sub() MyApplication.biocad_registry.metabolites.where(field("id") = mol.id).save(field("note") = desc))
     End Sub
 
     Private Sub LinkLabel1_LinkClicked() Handles LinkLabel1.Click
@@ -461,9 +459,9 @@ let options = { width: 450, height: 300 };
         Call refreshNames(lang)
     End Sub
 
-    Private Async Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
+    Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
         Dim prompt As String = $"please talk me about the biological function of the compound: '{TextBox2.Text}' in a short conclusion abstract text"
-        Dim msg As DeepSeekResponse = Await TaskProgress.LoadData(Function(println As Action(Of String)) MyApplication.ollama.Chat(prompt))
+        Dim msg As DeepSeekResponse = TaskProgress.LoadData(Function(println As Action(Of String)) MyApplication.ollama.Chat(prompt).GetAwaiter.GetResult)
         Dim markdown As New MarkdownRender
 
         If Not msg Is Nothing Then
@@ -489,7 +487,7 @@ let options = { width: 450, height: 300 };
 
         Dim name = ListBox1.Items(ListBox1.SelectedIndex).ToString
         Dim prompt As String = $"将下面的这个化合物名称翻译为中文：'{name}'，如果没有正式的翻译，请进行音译。使用下面的json格式返回结果给我以方便我进行数据解析：{{""zh_name"": ""translated_name""}}"
-        Dim msg As DeepSeekResponse = Await TaskProgress.LoadData(Function(println As Action(Of String)) MyApplication.ollama.Chat(prompt))
+        Dim msg As DeepSeekResponse = TaskProgress.LoadData(Function(println As Action(Of String)) MyApplication.ollama.Chat(prompt).GetAwaiter.GetResult)
         Dim class_id As UInteger = MyApplication.biocad_registry.biocad_vocabulary.metabolite_type
         Dim llms_source As UInteger = MyApplication.biocad_registry.biocad_vocabulary.db_LLMs
 
@@ -504,20 +502,22 @@ let options = { width: 450, height: 300 };
 
                 Dim hashcode As String = zh_name.ToString.ToLower.MD5
 
-                If MyApplication.biocad_registry.synonym.where(field("type") = class_id,
-                    field("obj_id") = mol.id,
-                    field("hashcode") = hashcode,
-                    field("lang") = "zh").find(Of biocad_registryModel.synonym) Is Nothing Then
+                Await Task.Run(Sub()
+                                   If MyApplication.biocad_registry.synonym.where(field("type") = class_id,
+                                        field("obj_id") = mol.id,
+                                        field("hashcode") = hashcode,
+                                        field("lang") = "zh").find(Of biocad_registryModel.synonym) Is Nothing Then
 
-                    Call MyApplication.biocad_registry.synonym.add(
-                    field("type") = class_id,
-                    field("obj_id") = mol.id,
-                    field("db_source") = llms_source,
-                    field("synonym") = zh_name.ToString,
-                    field("lang") = "zh",
-                    field("hashcode") = hashcode
-                )
-                End If
+                                       Call MyApplication.biocad_registry.synonym.add(
+                                           field("type") = class_id,
+                                           field("obj_id") = mol.id,
+                                           field("db_source") = llms_source,
+                                           field("synonym") = zh_name.ToString,
+                                           field("lang") = "zh",
+                                           field("hashcode") = hashcode
+                                       )
+                                   End If
+                               End Sub)
             Catch ex As Exception
                 Call CommonRuntime.Warning(ex.Message)
             End Try
