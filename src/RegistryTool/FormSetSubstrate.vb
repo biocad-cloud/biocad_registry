@@ -1,4 +1,5 @@
-﻿Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
+﻿Imports Galaxy.Workbench
+Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports Oracle.LinuxCompatibility.MySQL.Reflection.DbAttributes
 Imports registry_data.biocad_registryModel
 Imports RegistryTool.My
@@ -16,11 +17,12 @@ Public Class FormSetSubstrate
         Dim sort = $"IF(hashcode = '{hashcode}',
     100000000,
     MATCH (name , note) AGAINST ('{q_str}' IN BOOLEAN MODE))"
-        Dim q = MyApplication.biocad_registry.metabolites _
+        Dim q As SymbolView() = TaskProgress.LoadData(Function(p As ITaskProgress)
+                                                          Return MyApplication.biocad_registry.metabolites _
             .where(match("name", "note").against(q_str, booleanMode:=True) Or field("hashcode") = hashcode) _
             .order_by(sort, desc:=True) _
             .select(Of SymbolView)
-
+                                                      End Function)
         ListBox1.Items.Clear()
 
         For Each item In q
