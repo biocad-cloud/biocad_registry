@@ -21,7 +21,7 @@ Imports SMRUCC.genomics.Model.MotifGraph.ProteinStructure.Kmer
 
 Public Class FormMoleculeEditor
 
-    Public id As String
+    Dim id As String
 
     Public Const viewer As String = "<!DOCTYPE html SYSTEM ""about:legacy-compat"">
 <html xmlns=""http://www.w3.org/1999/xhtml"" lang=""en"" xml:lang=""en"">
@@ -61,25 +61,32 @@ let options = { width: 450, height: 300 };
     Dim mol As biocad_registryModel.metabolites
     Dim morgan As ProteinStructure.MorganFingerprint
 
-    Private Async Sub FormMoleculeEditor_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        mol = MyApplication.biocad_registry.metabolites _
+    Public Async Function LoadModel(id As String) As Task(Of Boolean)
+        mol = Await Task.Run(Function() MyApplication.biocad_registry.metabolites _
             .where(field("id") = UInteger.Parse(id.Match("\d+"))) _
-            .find(Of biocad_registryModel.metabolites)
+            .find(Of biocad_registryModel.metabolites))
+
+        If mol Is Nothing Then
+            MessageBox.Show($"There is no molecule object that associated with the given unique id: {id}", "Missing Object", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return False
+        Else
+            Return True
+        End If
+    End Function
+
+    Private Async Sub FormMoleculeEditor_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        If mol Is Nothing Then
+            Throw New InvalidProgramException("Please load the molecule model data via load model method at first!")
+        End If
 
         SMILES.MolecularFingerprint.Length = 1024
         morgan = New ProteinStructure.MorganFingerprint(SMILES.MolecularFingerprint.Length)
 
-        If mol Is Nothing Then
-            MessageBox.Show($"There is no molecule object that associated with the given unique id: {id}", "Missing Object", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            Me.Close()
-            Return
-        Else
-            MyApplication.settings.molecule_history = MyApplication.settings.molecule_history _
-                .JoinIterates(New MoleculeEditHistory With {.id = mol.id, .name = mol.name}) _
-                .Take(50) _
-                .ToArray
-            MyApplication.settings.Save()
-        End If
+        MyApplication.settings.molecule_history = MyApplication.settings.molecule_history _
+            .JoinIterates(New MoleculeEditHistory With {.id = mol.id, .name = mol.name}) _
+            .Take(50) _
+            .ToArray
+        MyApplication.settings.Save()
 
         TextBox2.Text = mol.name
         TextBox3.Text = mol.formula

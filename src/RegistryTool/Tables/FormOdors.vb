@@ -205,6 +205,7 @@ Public Class OdorTerm
         '    .group_by("term", "odor") _
         '    .order_by("count") _
         '    .select(Of OdorTerm)("term AS category", "odor AS term", "COUNT(*) AS count")
+        Throw New NotImplementedException
     End Function
 
 End Class
@@ -236,6 +237,7 @@ Public Class OdorData
         '"text"))
 
         '    Return q
+        Throw New NotImplementedException
     End Function
 
 End Class
