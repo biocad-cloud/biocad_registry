@@ -480,8 +480,8 @@ let options = { width: 450, height: 300 };
 
         Dim lang As String = CStr(ComboBox1.SelectedItem)
 
-        If lang <> "en" Then
-            MessageBox.Show("Only allows synonym names in english language to be translated into chinese name.", "Invalid Language", MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
+        If lang = "zh" Then
+            MessageBox.Show("there is no needs of translate the chinese synonym names into another chinese name.", "Invalid Language", MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
             Return
         End If
 
