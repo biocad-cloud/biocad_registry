@@ -37,6 +37,7 @@ Partial Class FormSetSubstrate
         SetMoleculeReferenceToolStripMenuItem = New ToolStripMenuItem()
         Button2 = New Button()
         Button3 = New Button()
+        Button4 = New Button()
         CType(NumericUpDown1, ComponentModel.ISupportInitialize).BeginInit()
         ContextMenuStrip1.SuspendLayout()
         SuspendLayout()
@@ -59,7 +60,7 @@ Partial Class FormSetSubstrate
         ' 
         ' Button1
         ' 
-        Button1.Location = New Point(495, 16)
+        Button1.Location = New Point(477, 16)
         Button1.Name = "Button1"
         Button1.Size = New Size(75, 23)
         Button1.TabIndex = 2
@@ -142,11 +143,21 @@ Partial Class FormSetSubstrate
         Button3.Text = "Cancel"
         Button3.UseVisualStyleBackColor = True
         ' 
+        ' Button4
+        ' 
+        Button4.Location = New Point(584, 16)
+        Button4.Name = "Button4"
+        Button4.Size = New Size(131, 23)
+        Button4.TabIndex = 10
+        Button4.Text = "Create Placeholder"
+        Button4.UseVisualStyleBackColor = True
+        ' 
         ' FormSetSubstrate
         ' 
-        AutoScaleDimensions = New SizeF(7F, 15F)
+        AutoScaleDimensions = New SizeF(7.0F, 15.0F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(743, 403)
+        Controls.Add(Button4)
         Controls.Add(Button3)
         Controls.Add(Button2)
         Controls.Add(ListBox1)
@@ -177,4 +188,5 @@ Partial Class FormSetSubstrate
     Friend WithEvents SetMoleculeReferenceToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents Button2 As Button
     Friend WithEvents Button3 As Button
+    Friend WithEvents Button4 As Button
 End Class

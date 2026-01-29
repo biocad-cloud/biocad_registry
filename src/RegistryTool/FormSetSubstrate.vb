@@ -1,5 +1,6 @@
 ﻿Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports Oracle.LinuxCompatibility.MySQL.Reflection.DbAttributes
+Imports registry_data.biocad_registryModel
 Imports RegistryTool.My
 
 Public Class FormSetSubstrate
@@ -9,10 +10,10 @@ Public Class FormSetSubstrate
             Return
         End If
 
-        Dim name As String = Strings.Trim(TextBox1.Text)
-        Dim q_str As String = name.Replace("+", " ").Replace("-", " ").Replace("""", " ").Replace("'", " ")
-        Dim hashcode As String = Strings.Trim(name).ToLower.MD5
-        Dim sort As String = $"IF(hashcode = '{hashcode}',
+        Dim name = Trim(TextBox1.Text)
+        Dim q_str = name.Replace("+", " ").Replace("-", " ").Replace("""", " ").Replace("'", " ")
+        Dim hashcode = Trim(name).ToLower.MD5
+        Dim sort = $"IF(hashcode = '{hashcode}',
     100000000,
     MATCH (name , note) AGAINST ('{q_str}' IN BOOLEAN MODE))"
         Dim q = MyApplication.biocad_registry.metabolites _
@@ -20,10 +21,10 @@ Public Class FormSetSubstrate
             .order_by(sort, desc:=True) _
             .select(Of SymbolView)
 
-        Call ListBox1.Items.Clear()
+        ListBox1.Items.Clear()
 
         For Each item In q
-            Call ListBox1.Items.Add(item)
+            ListBox1.Items.Add(item)
         Next
     End Sub
 
@@ -57,6 +58,34 @@ Public Class FormSetSubstrate
         End If
 
         Me.DialogResult = DialogResult.OK
+    End Sub
+
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+        If TextBox1.Text.StringEmpty(, True) Then
+            Return
+        ElseIf MessageBox.Show($"Will create a new empty metabolite({NumericUpDown1.Value} {TextBox1.Text}) for this reaction model?", "Create new empty metabolite", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) = DialogResult.OK Then
+            Dim name As String = Strings.Trim(TextBox1.Text)
+            Dim hashcode As String = Strings.LCase(name).MD5
+
+            Call MyApplication.biocad_registry.metabolites.add(
+               field("main_id" = 0),
+               field("name") = name,
+               field("hashcode") = hashcode,
+               field("formula") = "",
+               field("exact_mass") = 0
+            )
+
+            Dim m = MyApplication.biocad_registry.metabolites.where(field("hashcode") = hashcode).order_by("id", desc:=True).find(Of metabolites)
+
+            If Not m Is Nothing Then
+                sel = New SymbolView With {
+                    .exact_mass = 0,
+                    .formula = "",
+                    .id = m.id,
+                    .name = m.name
+                }
+            End If
+        End If
     End Sub
 
     Private Class SymbolView
