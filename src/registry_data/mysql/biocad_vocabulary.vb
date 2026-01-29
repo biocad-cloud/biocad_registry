@@ -43,6 +43,16 @@ Public Class biocad_vocabulary
     Public ReadOnly Property db_genbank As UInteger
     Public ReadOnly Property db_uniprot As UInteger
     Public ReadOnly Property db_ECNumber As UInteger
+    ''' <summary>
+    ''' LLM generated content data
+    ''' </summary>
+    ''' <returns></returns>
+    Public ReadOnly Property db_LLMs As UInteger
+    ''' <summary>
+    ''' manually audit content data
+    ''' </summary>
+    ''' <returns></returns>
+    Public ReadOnly Property db_ManualAudit As UInteger
 
     Public ReadOnly Property metabolite_type As UInteger
     ''' <summary>
@@ -72,6 +82,9 @@ Public Class biocad_vocabulary
         db_mesh = GetDatabaseResource("NCBI MeSH").id
         db_wikipedia = GetDatabaseResource("Wikipedia").id
         db_drugbank = GetDatabaseResource("DrugBank").id
+
+        db_LLMs = GetDatabaseResource("LLMs Generated").id
+        db_ManualAudit = GetDatabaseResource("Manual Audit").id
 
         db_genbank = GetDatabaseResource("NCBI GenBank").id
         db_uniprot = GetDatabaseResource("UniProt").id

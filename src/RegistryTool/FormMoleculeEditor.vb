@@ -17,7 +17,6 @@ Imports registry_data.biocad_registryModel
 Imports RegistryTool.Configs
 Imports RegistryTool.My
 Imports SMRUCC.genomics.Model.MotifGraph
-Imports SMRUCC.genomics.Model.MotifGraph.ProteinStructure.Kmer
 
 Public Class FormMoleculeEditor
 
@@ -92,7 +91,7 @@ let options = { width: 450, height: 300 };
         TextBox3.Text = mol.formula
         Label7.Text = FormulaScanner.EvaluateExactMass(mol.formula).ToString("F4")
         TextBox4.Text = mol.note
-        LinkLabel1.Text = $"http://biocad.innovation.ac.cn/molecule/BioCAD{mol.id.ToString.PadLeft(11, "0"c)}/"
+        LinkLabel1.Text = $"http://biocad.innovation.ac.cn/metabolite/BioCAD{mol.id.ToString.PadLeft(11, "0"c)}/"
 
         struct = MyApplication.biocad_registry.struct_data _
             .where(field("metabolite_id") = mol.id) _
@@ -183,10 +182,10 @@ let options = { width: 450, height: 300 };
     Private Sub refreshXrefs()
         Dim xrefs = MyApplication.biocad_registry.db_xrefs _
             .left_join("vocabulary") _
-            .on((field("`vocabulary`.id") = field("db_name")) And (field("type") = MyApplication.biocad_registry.biocad_vocabulary.metabolite_type)) _
-            .where(field("obj_id") = mol.id) _
+            .on((field("`vocabulary`.id") = field("db_name"))) _
+            .where(field("obj_id") = mol.id, field("type") = MyApplication.biocad_registry.biocad_vocabulary.metabolite_type) _
             .order_by("db_name") _
-            .select(Of XrefID)("db_xrefs.id as xref_id", "term as dbname", "db_xref", "db_name")
+            .select(Of XrefID)("db_xrefs.id as xref_id", "term as dbname", "db_xref as xref", "db_name as db_key")
 
         DataGridView1.Rows.Clear()
 
@@ -300,10 +299,7 @@ let options = { width: 450, height: 300 };
     End Sub
 
     Private Sub LinkLabel1_LinkClicked() Handles LinkLabel1.Click
-        Dim int = UInteger.Parse(id.Match("\d+"))
-        Dim url = $"http://biocad.innovation.ac.cn/metabolite/BioCAD{int.ToString.PadLeft(11, "0"c)}/"
-
-        OpenUrlWithDefaultBrowser(url)
+        OpenUrlWithDefaultBrowser(LinkLabel1.Text)
     End Sub
 
     Private Async Sub ClearThisTagToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ClearThisTagToolStripMenuItem.Click
@@ -494,25 +490,34 @@ let options = { width: 450, height: 300 };
         Dim name = ListBox1.Items(ListBox1.SelectedIndex).ToString
         Dim prompt As String = $"将下面的这个化合物名称翻译为中文：'{name}'，如果没有正式的翻译，请进行音译。使用下面的json格式返回结果给我以方便我进行数据解析：{{""zh_name"": ""translated_name""}}"
         Dim msg As DeepSeekResponse = Await TaskProgress.LoadData(Function(println As Action(Of String)) MyApplication.ollama.Chat(prompt))
+        Dim class_id As UInteger = MyApplication.biocad_registry.biocad_vocabulary.metabolite_type
+        Dim llms_source As UInteger = MyApplication.biocad_registry.biocad_vocabulary.db_LLMs
 
         If Not msg Is Nothing Then
             Try
                 Dim json As String = msg.output.Match("[{].+[}]")
                 Dim zh_name = json.LoadJSON(Of TranslatedName)
 
-                'If MyApplication.biocad_registry.synonym.where(field("type_id") = mol.type,
-                '    field("obj_id") = mol.id,
-                '    field("synonym") = zh_name.ToString,
-                '    field("lang") = "zh").find(Of biocad_registryModel.synonym) Is Nothing Then
+                If zh_name Is Nothing Then
+                    Return
+                End If
 
-                'Call MyApplication.biocad_registry.synonym.add(
-                '    field("type_id") = mol.type,
-                '    field("obj_id") = mol.id,
-                '    field("synonym") = zh_name.ToString,
-                '    field("lang") = "zh",
-                '    field("hashcode") = zh_name.ToString.ToLower.MD5
-                ')
-                ' End If
+                Dim hashcode As String = zh_name.ToString.ToLower.MD5
+
+                If MyApplication.biocad_registry.synonym.where(field("type") = class_id,
+                    field("obj_id") = mol.id,
+                    field("hashcode") = hashcode,
+                    field("lang") = "zh").find(Of biocad_registryModel.synonym) Is Nothing Then
+
+                    Call MyApplication.biocad_registry.synonym.add(
+                    field("type") = class_id,
+                    field("obj_id") = mol.id,
+                    field("db_source") = llms_source,
+                    field("synonym") = zh_name.ToString,
+                    field("lang") = "zh",
+                    field("hashcode") = hashcode
+                )
+                End If
             Catch ex As Exception
                 Call CommonRuntime.Warning(ex.Message)
             End Try
