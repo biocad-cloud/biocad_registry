@@ -24,7 +24,7 @@
           "Microsoft.VisualBasic.MIME.application.xml": "1.0.0",
           "Microsoft.VisualBasic.MIME.text.markdown": "1.0.0",
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
-          "Microsoft.Web.WebView2": "1.0.3712-prerelease",
+          "Microsoft.Web.WebView2": "1.0.3796-prerelease",
           "Ollama": "1.0.0",
           "Oracle.LinuxCompatibility.LibMySQL": "1.0.0",
           "REnv": "5.1.3.5558",
@@ -58,7 +58,7 @@
           "Microsoft.VisualBasic.Data.NLP.Reference": "1.0.0.0",
           "Microsoft.VisualBasic.Data.NLP.Word2Vec.Reference": "5.33.69.2558",
           "Microsoft.VisualBasic.Data.TrinityNLP.Reference": "1.0.0.0",
-          "Microsoft.VisualBasic.Data.visualize.Network.Canvas.Reference": "2.33.9525.41291",
+          "Microsoft.VisualBasic.Data.visualize.Network.Canvas.Reference": "2.33.9526.41647",
           "Microsoft.VisualBasic.Data.visualize.Network.Reference": "1.0.0.0",
           "Microsoft.VisualBasic.Data.visualize.Network.IO.Extensions.Reference": "1.0.0.0",
           "Microsoft.VisualBasic.Data.visualize.Network.Layouts.Reference": "1.0.0.0",
@@ -85,9 +85,9 @@
           "Microsoft.VisualBasic.MIME.text.markdown.Reference": "1.0.0.0",
           "Microsoft.VisualBasic.Runtime.Reference": "5.33.69.2558",
           "Microsoft.VisualStudio.Windows.Form": "1.0.0.0",
-          "Microsoft.Web.WebView2.Core": "1.0.3712.0",
-          "Microsoft.Web.WebView2.WinForms": "1.0.3712.0",
-          "Microsoft.Web.WebView2.Wpf": "1.0.3712.0",
+          "Microsoft.Web.WebView2.Core": "1.0.3796.0",
+          "Microsoft.Web.WebView2.WinForms": "1.0.3796.0",
+          "Microsoft.Web.WebView2.Wpf": "1.0.3796.0",
           "Oracle.LinuxCompatibility.LibMySQL.Reference": "1.0.0.0",
           "REnv.Reference": "2.33.856.6961",
           "R_graphics.Common.Runtime.Reference": "1.0.0.0",
@@ -114,11 +114,11 @@
           }
         }
       },
-      "Google.Protobuf/3.33.2": {
+      "Google.Protobuf/3.34.0-rc1": {
         "runtime": {
           "lib/net5.0/Google.Protobuf.dll": {
-            "assemblyVersion": "3.33.2.0",
-            "fileVersion": "3.33.2.0"
+            "assemblyVersion": "3.34.0.0",
+            "fileVersion": "3.34.0.0"
           }
         }
       },
@@ -134,7 +134,7 @@
         "dependencies": {
           "K4os.Compression.LZ4": "1.3.8",
           "K4os.Hash.xxHash": "1.0.8",
-          "System.IO.Pipelines": "10.0.1"
+          "System.IO.Pipelines": "10.0.2"
         },
         "runtime": {
           "lib/net6.0/K4os.Compression.LZ4.Streams.dll": {
@@ -151,30 +151,30 @@
           }
         }
       },
-      "Microsoft.Web.WebView2/1.0.3712-prerelease": {
+      "Microsoft.Web.WebView2/1.0.3796-prerelease": {
         "runtimeTargets": {
           "runtimes/win-arm64/native/WebView2Loader.dll": {
             "rid": "win-arm64",
             "assetType": "native",
-            "fileVersion": "1.0.3712.0"
+            "fileVersion": "1.0.3796.0"
           },
           "runtimes/win-x64/native/WebView2Loader.dll": {
             "rid": "win-x64",
             "assetType": "native",
-            "fileVersion": "1.0.3712.0"
+            "fileVersion": "1.0.3796.0"
           },
           "runtimes/win-x86/native/WebView2Loader.dll": {
             "rid": "win-x86",
             "assetType": "native",
-            "fileVersion": "1.0.3712.0"
+            "fileVersion": "1.0.3796.0"
           }
         }
       },
-      "Microsoft.Win32.SystemEvents/10.0.1": {
+      "Microsoft.Win32.SystemEvents/10.0.2": {
         "runtime": {
           "lib/net8.0/Microsoft.Win32.SystemEvents.dll": {
             "assemblyVersion": "10.0.0.0",
-            "fileVersion": "10.0.125.57005"
+            "fileVersion": "10.0.225.61305"
           }
         },
         "runtimeTargets": {
@@ -182,23 +182,23 @@
             "rid": "win",
             "assetType": "runtime",
             "assemblyVersion": "10.0.0.0",
-            "fileVersion": "10.0.125.57005"
+            "fileVersion": "10.0.225.61305"
           }
         }
       },
-      "MySql.Data/9.5.0": {
+      "MySql.Data/9.6.0": {
         "dependencies": {
           "BouncyCastle.Cryptography": "2.6.2",
-          "Google.Protobuf": "3.33.2",
+          "Google.Protobuf": "3.34.0-rc1",
           "K4os.Compression.LZ4.Streams": "1.3.8",
-          "System.Configuration.ConfigurationManager": "10.0.1",
-          "System.Security.Permissions": "10.0.1",
+          "System.Configuration.ConfigurationManager": "10.0.2",
+          "System.Security.Permissions": "10.0.2",
           "ZstdSharp.Port": "0.8.6"
         },
         "runtime": {
           "lib/net8.0/MySql.Data.dll": {
-            "assemblyVersion": "9.5.0.0",
-            "fileVersion": "9.5.0.0"
+            "assemblyVersion": "9.6.0.0",
+            "fileVersion": "9.6.0.0"
           }
         },
         "runtimeTargets": {
@@ -229,10 +229,10 @@
           }
         }
       },
-      "SkiaSharp/3.119.2-preview.1": {
+      "SkiaSharp/3.119.2-preview.2.3": {
         "dependencies": {
-          "SkiaSharp.NativeAssets.Win32": "3.119.2-preview.1",
-          "SkiaSharp.NativeAssets.macOS": "3.119.2-preview.1"
+          "SkiaSharp.NativeAssets.Win32": "3.119.2-preview.2.3",
+          "SkiaSharp.NativeAssets.macOS": "3.119.2-preview.2.3"
         },
         "runtime": {
           "lib/net8.0/SkiaSharp.dll": {
@@ -243,7 +243,7 @@
       },
       "SkiaSharp.Extended/3.1.0-preview.3": {
         "dependencies": {
-          "SkiaSharp": "3.119.2-preview.1"
+          "SkiaSharp": "3.119.2-preview.2.3"
         },
         "runtime": {
           "lib/netstandard2.0/SkiaSharp.Extended.dll": {
@@ -252,7 +252,7 @@
           }
         }
       },
-      "SkiaSharp.NativeAssets.Linux/3.119.2-preview.1": {
+      "SkiaSharp.NativeAssets.Linux/3.119.2-preview.2.3": {
         "runtimeTargets": {
           "runtimes/linux-arm/native/libSkiaSharp.so": {
             "rid": "linux-arm",
@@ -311,7 +311,7 @@
           }
         }
       },
-      "SkiaSharp.NativeAssets.macOS/3.119.2-preview.1": {
+      "SkiaSharp.NativeAssets.macOS/3.119.2-preview.2.3": {
         "runtimeTargets": {
           "runtimes/osx/native/libSkiaSharp.dylib": {
             "rid": "osx",
@@ -320,7 +320,7 @@
           }
         }
       },
-      "SkiaSharp.NativeAssets.Win32/3.119.2-preview.1": {
+      "SkiaSharp.NativeAssets.Win32/3.119.2-preview.2.3": {
         "runtimeTargets": {
           "runtimes/win-arm64/native/libSkiaSharp.dll": {
             "rid": "win-arm64",
@@ -356,7 +356,7 @@
       },
       "SkiaSharp.Svg/1.60.0": {
         "dependencies": {
-          "SkiaSharp": "3.119.2-preview.1"
+          "SkiaSharp": "3.119.2-preview.2.3"
         },
         "runtime": {
           "lib/netstandard2.0/SkiaSharp.Extended.Svg.dll": {
@@ -365,99 +365,99 @@
           }
         }
       },
-      "System.Collections.Immutable/10.0.1": {
+      "System.Collections.Immutable/10.0.2": {
         "runtime": {
           "lib/net8.0/System.Collections.Immutable.dll": {
             "assemblyVersion": "10.0.0.0",
-            "fileVersion": "10.0.125.57005"
+            "fileVersion": "10.0.225.61305"
           }
         }
       },
-      "System.Composition/10.0.1": {
+      "System.Composition/10.0.2": {
         "dependencies": {
-          "System.Composition.AttributedModel": "10.0.1",
-          "System.Composition.Convention": "10.0.1",
-          "System.Composition.Hosting": "10.0.1",
-          "System.Composition.Runtime": "10.0.1",
-          "System.Composition.TypedParts": "10.0.1"
+          "System.Composition.AttributedModel": "10.0.2",
+          "System.Composition.Convention": "10.0.2",
+          "System.Composition.Hosting": "10.0.2",
+          "System.Composition.Runtime": "10.0.2",
+          "System.Composition.TypedParts": "10.0.2"
         }
       },
-      "System.Composition.AttributedModel/10.0.1": {
+      "System.Composition.AttributedModel/10.0.2": {
         "runtime": {
           "lib/net8.0/System.Composition.AttributedModel.dll": {
-            "assemblyVersion": "10.0.0.1",
-            "fileVersion": "10.0.125.57005"
+            "assemblyVersion": "10.0.0.2",
+            "fileVersion": "10.0.225.61305"
           }
         }
       },
-      "System.Composition.Convention/10.0.1": {
+      "System.Composition.Convention/10.0.2": {
         "dependencies": {
-          "System.Composition.AttributedModel": "10.0.1"
+          "System.Composition.AttributedModel": "10.0.2"
         },
         "runtime": {
           "lib/net8.0/System.Composition.Convention.dll": {
-            "assemblyVersion": "10.0.0.1",
-            "fileVersion": "10.0.125.57005"
+            "assemblyVersion": "10.0.0.2",
+            "fileVersion": "10.0.225.61305"
           }
         }
       },
-      "System.Composition.Hosting/10.0.1": {
+      "System.Composition.Hosting/10.0.2": {
         "dependencies": {
-          "System.Composition.Runtime": "10.0.1"
+          "System.Composition.Runtime": "10.0.2"
         },
         "runtime": {
           "lib/net8.0/System.Composition.Hosting.dll": {
-            "assemblyVersion": "10.0.0.1",
-            "fileVersion": "10.0.125.57005"
+            "assemblyVersion": "10.0.0.2",
+            "fileVersion": "10.0.225.61305"
           }
         }
       },
-      "System.Composition.Runtime/10.0.1": {
+      "System.Composition.Runtime/10.0.2": {
         "runtime": {
           "lib/net8.0/System.Composition.Runtime.dll": {
-            "assemblyVersion": "10.0.0.1",
-            "fileVersion": "10.0.125.57005"
+            "assemblyVersion": "10.0.0.2",
+            "fileVersion": "10.0.225.61305"
           }
         }
       },
-      "System.Composition.TypedParts/10.0.1": {
+      "System.Composition.TypedParts/10.0.2": {
         "dependencies": {
-          "System.Composition.AttributedModel": "10.0.1",
-          "System.Composition.Hosting": "10.0.1",
-          "System.Composition.Runtime": "10.0.1"
+          "System.Composition.AttributedModel": "10.0.2",
+          "System.Composition.Hosting": "10.0.2",
+          "System.Composition.Runtime": "10.0.2"
         },
         "runtime": {
           "lib/net8.0/System.Composition.TypedParts.dll": {
-            "assemblyVersion": "10.0.0.1",
-            "fileVersion": "10.0.125.57005"
+            "assemblyVersion": "10.0.0.2",
+            "fileVersion": "10.0.225.61305"
           }
         }
       },
-      "System.Configuration.ConfigurationManager/10.0.1": {
+      "System.Configuration.ConfigurationManager/10.0.2": {
         "dependencies": {
-          "System.Diagnostics.EventLog": "10.0.1",
-          "System.Security.Cryptography.ProtectedData": "10.0.1"
+          "System.Diagnostics.EventLog": "10.0.2",
+          "System.Security.Cryptography.ProtectedData": "10.0.2"
         },
         "runtime": {
           "lib/net8.0/System.Configuration.ConfigurationManager.dll": {
             "assemblyVersion": "10.0.0.0",
-            "fileVersion": "10.0.125.57005"
+            "fileVersion": "10.0.225.61305"
           }
         }
       },
-      "System.Diagnostics.DiagnosticSource/10.0.1": {
+      "System.Diagnostics.DiagnosticSource/10.0.2": {
         "runtime": {
           "lib/net8.0/System.Diagnostics.DiagnosticSource.dll": {
             "assemblyVersion": "10.0.0.0",
-            "fileVersion": "10.0.125.57005"
+            "fileVersion": "10.0.225.61305"
           }
         }
       },
-      "System.Diagnostics.EventLog/10.0.1": {
+      "System.Diagnostics.EventLog/10.0.2": {
         "runtime": {
           "lib/net8.0/System.Diagnostics.EventLog.dll": {
             "assemblyVersion": "10.0.0.0",
-            "fileVersion": "10.0.125.57005"
+            "fileVersion": "10.0.225.61305"
           }
         },
         "runtimeTargets": {
@@ -471,110 +471,110 @@
             "rid": "win",
             "assetType": "runtime",
             "assemblyVersion": "10.0.0.0",
-            "fileVersion": "10.0.125.57005"
+            "fileVersion": "10.0.225.61305"
           }
         }
       },
-      "System.Drawing.Common/10.0.1": {
+      "System.Drawing.Common/10.0.2": {
         "dependencies": {
-          "Microsoft.Win32.SystemEvents": "10.0.1"
+          "Microsoft.Win32.SystemEvents": "10.0.2"
         },
         "runtime": {
           "lib/net8.0/System.Drawing.Common.dll": {
             "assemblyVersion": "10.0.0.0",
-            "fileVersion": "10.0.125.57005"
+            "fileVersion": "10.0.225.61305"
           },
           "lib/net8.0/System.Private.Windows.Core.dll": {
             "assemblyVersion": "10.0.0.0",
-            "fileVersion": "10.0.125.57005"
+            "fileVersion": "10.0.225.61305"
           },
           "lib/net8.0/System.Private.Windows.GdiPlus.dll": {
             "assemblyVersion": "10.0.0.0",
-            "fileVersion": "10.0.125.57005"
+            "fileVersion": "10.0.225.61305"
           }
         }
       },
-      "System.Formats.Nrbf/10.0.1": {
+      "System.Formats.Nrbf/10.0.2": {
         "dependencies": {
-          "System.Reflection.Metadata": "10.0.1"
+          "System.Reflection.Metadata": "10.0.2"
         },
         "runtime": {
           "lib/net8.0/System.Formats.Nrbf.dll": {
             "assemblyVersion": "10.0.0.0",
-            "fileVersion": "10.0.125.57005"
+            "fileVersion": "10.0.225.61305"
           }
         }
       },
-      "System.IO.Packaging/10.0.1": {
+      "System.IO.Packaging/10.0.2": {
         "runtime": {
           "lib/net8.0/System.IO.Packaging.dll": {
             "assemblyVersion": "10.0.0.0",
-            "fileVersion": "10.0.125.57005"
+            "fileVersion": "10.0.225.61305"
           }
         }
       },
-      "System.IO.Pipelines/10.0.1": {
+      "System.IO.Pipelines/10.0.2": {
         "runtime": {
           "lib/net8.0/System.IO.Pipelines.dll": {
             "assemblyVersion": "10.0.0.0",
-            "fileVersion": "10.0.125.57005"
+            "fileVersion": "10.0.225.61305"
           }
         }
       },
-      "System.Numerics.Tensors/10.0.1": {
+      "System.Numerics.Tensors/10.0.2": {
         "runtime": {
           "lib/net8.0/System.Numerics.Tensors.dll": {
-            "assemblyVersion": "10.0.0.1",
-            "fileVersion": "10.0.125.57005"
+            "assemblyVersion": "10.0.0.2",
+            "fileVersion": "10.0.225.61305"
           }
         }
       },
-      "System.Reflection.Metadata/10.0.1": {
+      "System.Reflection.Metadata/10.0.2": {
         "dependencies": {
-          "System.Collections.Immutable": "10.0.1"
+          "System.Collections.Immutable": "10.0.2"
         },
         "runtime": {
           "lib/net8.0/System.Reflection.Metadata.dll": {
             "assemblyVersion": "10.0.0.0",
-            "fileVersion": "10.0.125.57005"
+            "fileVersion": "10.0.225.61305"
           }
         }
       },
-      "System.Resources.Extensions/10.0.1": {
+      "System.Resources.Extensions/10.0.2": {
         "dependencies": {
-          "System.Formats.Nrbf": "10.0.1"
+          "System.Formats.Nrbf": "10.0.2"
         },
         "runtime": {
           "lib/net8.0/System.Resources.Extensions.dll": {
             "assemblyVersion": "10.0.0.0",
-            "fileVersion": "10.0.125.57005"
+            "fileVersion": "10.0.225.61305"
           }
         }
       },
-      "System.Security.Cryptography.ProtectedData/10.0.1": {
+      "System.Security.Cryptography.ProtectedData/10.0.2": {
         "runtime": {
           "lib/net8.0/System.Security.Cryptography.ProtectedData.dll": {
             "assemblyVersion": "10.0.0.0",
-            "fileVersion": "10.0.125.57005"
+            "fileVersion": "10.0.225.61305"
           }
         }
       },
-      "System.Security.Permissions/10.0.1": {
+      "System.Security.Permissions/10.0.2": {
         "dependencies": {
-          "System.Windows.Extensions": "10.0.1"
+          "System.Windows.Extensions": "10.0.2"
         },
         "runtime": {
           "lib/net8.0/System.Security.Permissions.dll": {
             "assemblyVersion": "10.0.0.0",
-            "fileVersion": "10.0.125.57005"
+            "fileVersion": "10.0.225.61305"
           }
         }
       },
-      "System.Text.Encoding.CodePages/10.0.1": {
+      "System.Text.Encoding.CodePages/10.0.2": {
         "runtime": {
           "lib/net8.0/System.Text.Encoding.CodePages.dll": {
             "assemblyVersion": "10.0.0.0",
-            "fileVersion": "10.0.125.57005"
+            "fileVersion": "10.0.225.61305"
           }
         },
         "runtimeTargets": {
@@ -582,15 +582,15 @@
             "rid": "win",
             "assetType": "runtime",
             "assemblyVersion": "10.0.0.0",
-            "fileVersion": "10.0.125.57005"
+            "fileVersion": "10.0.225.61305"
           }
         }
       },
-      "System.Text.Encodings.Web/10.0.1": {
+      "System.Text.Encodings.Web/10.0.2": {
         "runtime": {
           "lib/net8.0/System.Text.Encodings.Web.dll": {
             "assemblyVersion": "10.0.0.0",
-            "fileVersion": "10.0.125.57005"
+            "fileVersion": "10.0.225.61305"
           }
         },
         "runtimeTargets": {
@@ -598,27 +598,27 @@
             "rid": "browser",
             "assetType": "runtime",
             "assemblyVersion": "10.0.0.0",
-            "fileVersion": "10.0.125.57005"
+            "fileVersion": "10.0.225.61305"
           }
         }
       },
-      "System.Text.Json/10.0.1": {
+      "System.Text.Json/10.0.2": {
         "dependencies": {
-          "System.IO.Pipelines": "10.0.1",
-          "System.Text.Encodings.Web": "10.0.1"
+          "System.IO.Pipelines": "10.0.2",
+          "System.Text.Encodings.Web": "10.0.2"
         },
         "runtime": {
           "lib/net8.0/System.Text.Json.dll": {
             "assemblyVersion": "10.0.0.0",
-            "fileVersion": "10.0.125.57005"
+            "fileVersion": "10.0.225.61305"
           }
         }
       },
-      "System.Windows.Extensions/10.0.1": {
+      "System.Windows.Extensions/10.0.2": {
         "runtime": {
           "lib/net8.0/System.Windows.Extensions.dll": {
             "assemblyVersion": "10.0.0.0",
-            "fileVersion": "10.0.125.57005"
+            "fileVersion": "10.0.225.61305"
           }
         },
         "runtimeTargets": {
@@ -626,7 +626,7 @@
             "rid": "win",
             "assetType": "runtime",
             "assemblyVersion": "10.0.0.0",
-            "fileVersion": "10.0.125.57005"
+            "fileVersion": "10.0.225.61305"
           }
         }
       },
@@ -642,8 +642,8 @@
         "dependencies": {
           "Microsoft.VisualBasic.Math.Core": "5.0.1.2389",
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
-          "System.Composition": "10.0.1",
-          "System.Resources.Extensions": "10.0.1"
+          "System.Composition": "10.0.2",
+          "System.Resources.Extensions": "10.0.2"
         },
         "runtime": {
           "BioNovoGene.Analytical.MassSpectrometry.Math.dll": {
@@ -658,8 +658,8 @@
           "Microsoft.VisualBasic.Math.Core": "5.0.1.2389",
           "Microsoft.VisualBasic.Math.SignalProcessing": "1.0.0",
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
-          "System.Composition": "10.0.1",
-          "System.Resources.Extensions": "10.0.1"
+          "System.Composition": "10.0.2",
+          "System.Resources.Extensions": "10.0.2"
         },
         "runtime": {
           "BioNovoGene.Analytical.MassSpectrometry.Math.Deconvolution.dll": {
@@ -703,8 +703,8 @@
           "SMRUCC.genomics.Core": "6.3.256.3655",
           "SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI": "3.0.0",
           "SMRUCC.genomics.foundation.OBO_Foundry": "1.0.0",
-          "System.Composition": "10.0.1",
-          "System.Resources.Extensions": "10.0.1"
+          "System.Composition": "10.0.2",
+          "System.Resources.Extensions": "10.0.2"
         },
         "runtime": {
           "BioNovoGene.BioDeep.Chemistry.Massbank.dll": {
@@ -738,8 +738,8 @@
           "Microsoft.VisualBasic.Math.Core": "5.0.1.2389",
           "Microsoft.VisualBasic.Math.Statistics": "1.0.0",
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
-          "System.Composition": "10.0.1",
-          "System.Resources.Extensions": "10.0.1"
+          "System.Composition": "10.0.2",
+          "System.Resources.Extensions": "10.0.2"
         },
         "runtime": {
           "BioNovoGene.BioDeep.Chemoinformatics.dll": {
@@ -771,8 +771,8 @@
           "Microsoft.VisualBasic.Math.Statistics": "1.0.0",
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
           "SMRUCC.genomics.Core": "6.3.256.3655",
-          "System.Composition": "10.0.1",
-          "System.Resources.Extensions": "10.0.1"
+          "System.Composition": "10.0.2",
+          "System.Resources.Extensions": "10.0.2"
         },
         "runtime": {
           "BioNovoGene.BioDeep.MSEngine.dll": {
@@ -785,8 +785,8 @@
           "BioNovoGene.Analytical.MassSpectrometry.Math": "1.0.0",
           "BioNovoGene.BioDeep.Chemoinformatics": "1.0.0",
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
-          "System.Composition": "10.0.1",
-          "System.Resources.Extensions": "10.0.1"
+          "System.Composition": "10.0.2",
+          "System.Resources.Extensions": "10.0.2"
         },
         "runtime": {
           "BioNovoGene.BioDeep.MSFinder.dll": {
@@ -900,7 +900,7 @@
         "dependencies": {
           "DockPanelSuite": "3.1.1",
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
-          "Microsoft.Web.WebView2": "1.0.3712-prerelease",
+          "Microsoft.Web.WebView2": "1.0.3796-prerelease",
           "Microsoft.Windows.FeatureAPI": "1.0.0",
           "ThemeVS2015": "1.0.0"
         },
@@ -973,9 +973,9 @@
       "Microsoft.VisualBasic.Data.BinaryData/1.0.0": {
         "dependencies": {
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
-          "System.Composition": "10.0.1",
-          "System.Diagnostics.DiagnosticSource": "10.0.1",
-          "System.Resources.Extensions": "10.0.1"
+          "System.Composition": "10.0.2",
+          "System.Diagnostics.DiagnosticSource": "10.0.2",
+          "System.Resources.Extensions": "10.0.2"
         },
         "runtime": {
           "Microsoft.VisualBasic.Data.BinaryData.dll": {
@@ -987,8 +987,8 @@
         "dependencies": {
           "Microsoft.VisualBasic.Math.Core": "5.0.1.2389",
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
-          "System.Composition": "10.0.1",
-          "System.Resources.Extensions": "10.0.1"
+          "System.Composition": "10.0.2",
+          "System.Resources.Extensions": "10.0.2"
         },
         "runtime": {
           "Microsoft.VisualBasic.Data.Bootstrapping.Fittings.dll": {
@@ -1002,8 +1002,8 @@
           "Microsoft.VisualBasic.MIME.Html": "1.0.0",
           "Microsoft.VisualBasic.Math.Core": "5.0.1.2389",
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
-          "System.Composition": "10.0.1",
-          "System.Resources.Extensions": "10.0.1"
+          "System.Composition": "10.0.2",
+          "System.Resources.Extensions": "10.0.2"
         },
         "runtime": {
           "Microsoft.VisualBasic.Data.ChartPlots.dll": {
@@ -1014,9 +1014,9 @@
       "Microsoft.VisualBasic.Data.Framework/5.0.123": {
         "dependencies": {
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
-          "System.Composition": "10.0.1",
-          "System.Diagnostics.DiagnosticSource": "10.0.1",
-          "System.Resources.Extensions": "10.0.1"
+          "System.Composition": "10.0.2",
+          "System.Diagnostics.DiagnosticSource": "10.0.2",
+          "System.Resources.Extensions": "10.0.2"
         },
         "runtime": {
           "Microsoft.VisualBasic.Data.Framework.dll": {
@@ -1028,8 +1028,8 @@
         "dependencies": {
           "Microsoft.VisualBasic.Math.Core": "5.0.1.2389",
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
-          "System.Composition": "10.0.1",
-          "System.Resources.Extensions": "10.0.1"
+          "System.Composition": "10.0.2",
+          "System.Resources.Extensions": "10.0.2"
         },
         "runtime": {
           "Microsoft.VisualBasic.Data.GraphTheory.dll": {
@@ -1041,8 +1041,8 @@
         "dependencies": {
           "Microsoft.VisualBasic.Data.BinaryData": "1.0.0",
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
-          "System.Composition": "10.0.1",
-          "System.Resources.Extensions": "10.0.1"
+          "System.Composition": "10.0.2",
+          "System.Resources.Extensions": "10.0.2"
         },
         "runtime": {
           "Microsoft.VisualBasic.Data.IO.MessagePack.dll": {
@@ -1093,8 +1093,8 @@
           "Microsoft.VisualBasic.Data.GraphTheory": "1.0.0",
           "Microsoft.VisualBasic.Math.Core": "5.0.1.2389",
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
-          "System.Composition": "10.0.1",
-          "System.Resources.Extensions": "10.0.1"
+          "System.Composition": "10.0.2",
+          "System.Resources.Extensions": "10.0.2"
         },
         "runtime": {
           "Microsoft.VisualBasic.Data.visualize.Network.dll": {
@@ -1115,7 +1115,7 @@
           "Microsoft.VisualBasic.Imaging.Physics": "1.0.0",
           "Microsoft.VisualBasic.Math.Core": "5.0.1.2389",
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
-          "System.Resources.Extensions": "10.0.1"
+          "System.Resources.Extensions": "10.0.2"
         },
         "runtime": {
           "Microsoft.VisualBasic.Data.visualize.Network.Canvas.dll": {
@@ -1174,8 +1174,8 @@
         "dependencies": {
           "Microsoft.VisualBasic.Math.Core": "5.0.1.2389",
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
-          "System.Composition": "10.0.1",
-          "System.Resources.Extensions": "10.0.1"
+          "System.Composition": "10.0.2",
+          "System.Resources.Extensions": "10.0.2"
         },
         "runtime": {
           "Microsoft.VisualBasic.DataMining.Framework.dll": {
@@ -1188,8 +1188,8 @@
           "Microsoft.VisualBasic.Data.BinaryData": "1.0.0",
           "Microsoft.VisualBasic.Data.IO.MessagePack": "1.0.0",
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
-          "System.Composition": "10.0.1",
-          "System.Resources.Extensions": "10.0.1"
+          "System.Composition": "10.0.2",
+          "System.Resources.Extensions": "10.0.2"
         },
         "runtime": {
           "Microsoft.VisualBasic.DataStorage.HDSPack.dll": {
@@ -1217,9 +1217,9 @@
           "Microsoft.VisualBasic.MIME.Html": "1.0.0",
           "Microsoft.VisualBasic.Math.Core": "5.0.1.2389",
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
-          "SkiaSharp": "3.119.2-preview.1",
+          "SkiaSharp": "3.119.2-preview.2.3",
           "SkiaSharp.Extended": "3.1.0-preview.3",
-          "SkiaSharp.NativeAssets.Linux": "3.119.2-preview.1",
+          "SkiaSharp.NativeAssets.Linux": "3.119.2-preview.2.3",
           "SkiaSharp.Svg": "1.60.0"
         },
         "runtime": {
@@ -1234,7 +1234,7 @@
           "Microsoft.VisualBasic.MIME.Html": "1.0.0",
           "Microsoft.VisualBasic.Math.Core": "5.0.1.2389",
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
-          "System.Drawing.Common": "10.0.1"
+          "System.Drawing.Common": "10.0.2"
         },
         "runtime": {
           "Microsoft.VisualBasic.Drawing.Windows.dll": {
@@ -1247,8 +1247,8 @@
           "Microsoft.VisualBasic.MIME.Html": "1.0.0",
           "Microsoft.VisualBasic.Math.Core": "5.0.1.2389",
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
-          "System.Composition": "10.0.1",
-          "System.Resources.Extensions": "10.0.1"
+          "System.Composition": "10.0.2",
+          "System.Resources.Extensions": "10.0.2"
         },
         "runtime": {
           "Microsoft.VisualBasic.Imaging.dll": {
@@ -1259,7 +1259,7 @@
       "Microsoft.VisualBasic.Imaging.AVIMedia/1.0.0": {
         "dependencies": {
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
-          "System.Drawing.Common": "10.0.1"
+          "System.Drawing.Common": "10.0.2"
         },
         "runtime": {
           "Microsoft.VisualBasic.Imaging.AVIMedia.dll": {
@@ -1272,8 +1272,8 @@
           "Microsoft.VisualBasic.Data.GraphTheory": "1.0.0",
           "Microsoft.VisualBasic.Math.Core": "5.0.1.2389",
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
-          "System.Composition": "10.0.1",
-          "System.Resources.Extensions": "10.0.1"
+          "System.Composition": "10.0.2",
+          "System.Resources.Extensions": "10.0.2"
         },
         "runtime": {
           "Microsoft.VisualBasic.Imaging.Physics.dll": {
@@ -1286,8 +1286,8 @@
           "Microsoft.VisualBasic.DataMining.Framework": "1.0.0",
           "Microsoft.VisualBasic.Math.Core": "5.0.1.2389",
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
-          "System.Composition": "10.0.1",
-          "System.Resources.Extensions": "10.0.1"
+          "System.Composition": "10.0.2",
+          "System.Resources.Extensions": "10.0.2"
         },
         "runtime": {
           "Microsoft.VisualBasic.MachineLearning.dll": {
@@ -1324,9 +1324,9 @@
       "Microsoft.VisualBasic.Math.Core/5.0.1.2389": {
         "dependencies": {
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
-          "System.Composition": "10.0.1",
-          "System.Diagnostics.DiagnosticSource": "10.0.1",
-          "System.Resources.Extensions": "10.0.1"
+          "System.Composition": "10.0.2",
+          "System.Diagnostics.DiagnosticSource": "10.0.2",
+          "System.Resources.Extensions": "10.0.2"
         },
         "runtime": {
           "Microsoft.VisualBasic.Math.Core.dll": {
@@ -1339,8 +1339,8 @@
           "Microsoft.VisualBasic.Data.Bootstrapping.Fittings": "5.0.1.2389",
           "Microsoft.VisualBasic.Math.Core": "5.0.1.2389",
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
-          "System.Composition": "10.0.1",
-          "System.Resources.Extensions": "10.0.1"
+          "System.Composition": "10.0.2",
+          "System.Resources.Extensions": "10.0.2"
         },
         "runtime": {
           "Microsoft.VisualBasic.Math.SignalProcessing.dll": {
@@ -1352,9 +1352,9 @@
         "dependencies": {
           "Microsoft.VisualBasic.Math.Core": "5.0.1.2389",
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
-          "System.Composition": "10.0.1",
-          "System.Diagnostics.DiagnosticSource": "10.0.1",
-          "System.Resources.Extensions": "10.0.1"
+          "System.Composition": "10.0.2",
+          "System.Diagnostics.DiagnosticSource": "10.0.2",
+          "System.Resources.Extensions": "10.0.2"
         },
         "runtime": {
           "Microsoft.VisualBasic.Math.Statistics.dll": {
@@ -1368,8 +1368,8 @@
           "Microsoft.VisualBasic.Math.Core": "5.0.1.2389",
           "Microsoft.VisualBasic.Math.Statistics": "1.0.0",
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
-          "System.Composition": "10.0.1",
-          "System.Resources.Extensions": "10.0.1"
+          "System.Composition": "10.0.2",
+          "System.Resources.Extensions": "10.0.2"
         },
         "runtime": {
           "Microsoft.VisualBasic.Math.Statistics.ANOVA.dll": {
@@ -1380,8 +1380,8 @@
       "Microsoft.VisualBasic.MIME.application.json/1.0.0": {
         "dependencies": {
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
-          "System.Composition": "10.0.1",
-          "System.Resources.Extensions": "10.0.1"
+          "System.Composition": "10.0.2",
+          "System.Resources.Extensions": "10.0.2"
         },
         "runtime": {
           "Microsoft.VisualBasic.MIME.application.json.dll": {
@@ -1392,9 +1392,9 @@
       "Microsoft.VisualBasic.MIME.application.rdf_xml/1.0.0": {
         "dependencies": {
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
-          "System.Composition": "10.0.1",
-          "System.Diagnostics.DiagnosticSource": "10.0.1",
-          "System.Resources.Extensions": "10.0.1"
+          "System.Composition": "10.0.2",
+          "System.Diagnostics.DiagnosticSource": "10.0.2",
+          "System.Resources.Extensions": "10.0.2"
         },
         "runtime": {
           "Microsoft.VisualBasic.MIME.application.rdf_xml.dll": {
@@ -1405,9 +1405,9 @@
       "Microsoft.VisualBasic.MIME.application.xml/1.0.0": {
         "dependencies": {
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
-          "System.Composition": "10.0.1",
-          "System.Diagnostics.DiagnosticSource": "10.0.1",
-          "System.Resources.Extensions": "10.0.1"
+          "System.Composition": "10.0.2",
+          "System.Diagnostics.DiagnosticSource": "10.0.2",
+          "System.Resources.Extensions": "10.0.2"
         },
         "runtime": {
           "Microsoft.VisualBasic.MIME.application.xml.dll": {
@@ -1418,9 +1418,9 @@
       "Microsoft.VisualBasic.MIME.Html/1.0.0": {
         "dependencies": {
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
-          "System.Composition": "10.0.1",
-          "System.Configuration.ConfigurationManager": "10.0.1",
-          "System.Resources.Extensions": "10.0.1"
+          "System.Composition": "10.0.2",
+          "System.Configuration.ConfigurationManager": "10.0.2",
+          "System.Resources.Extensions": "10.0.2"
         },
         "runtime": {
           "Microsoft.VisualBasic.MIME.Html.dll": {
@@ -1432,7 +1432,7 @@
         "dependencies": {
           "Microsoft.VisualBasic.Data.Framework": "5.0.123",
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
-          "System.IO.Packaging": "10.0.1"
+          "System.IO.Packaging": "10.0.2"
         },
         "runtime": {
           "Microsoft.VisualBasic.MIME.Office.Excel.dll": {
@@ -1453,11 +1453,11 @@
       },
       "Microsoft.VisualBasic.Runtime/5.0.1.2389": {
         "dependencies": {
-          "System.Composition": "10.0.1",
-          "System.Diagnostics.DiagnosticSource": "10.0.1",
-          "System.Resources.Extensions": "10.0.1",
-          "System.Text.Encoding.CodePages": "10.0.1",
-          "System.Text.Encodings.Web": "10.0.1"
+          "System.Composition": "10.0.2",
+          "System.Diagnostics.DiagnosticSource": "10.0.2",
+          "System.Resources.Extensions": "10.0.2",
+          "System.Text.Encoding.CodePages": "10.0.2",
+          "System.Text.Encodings.Web": "10.0.2"
         },
         "runtime": {
           "Microsoft.VisualBasic.Runtime.dll": {
@@ -1468,7 +1468,7 @@
       "Microsoft.Windows.FeatureAPI/1.0.0": {
         "runtime": {
           "Microsoft.Windows.FeatureAPI.dll": {
-            "assemblyVersion": "10.0.9525.41270",
+            "assemblyVersion": "10.0.9526.41635",
             "fileVersion": "1.0.10.8963"
           }
         }
@@ -1487,16 +1487,16 @@
       },
       "Oracle.LinuxCompatibility.LibMySQL/1.0.0": {
         "dependencies": {
-          "Google.Protobuf": "3.33.2",
+          "Google.Protobuf": "3.34.0-rc1",
           "Microsoft.VisualBasic.Math.Core": "5.0.1.2389",
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
-          "MySql.Data": "9.5.0",
-          "System.Composition": "10.0.1",
-          "System.Configuration.ConfigurationManager": "10.0.1",
-          "System.Diagnostics.DiagnosticSource": "10.0.1",
-          "System.Resources.Extensions": "10.0.1",
-          "System.Security.Permissions": "10.0.1",
-          "System.Text.Json": "10.0.1"
+          "MySql.Data": "9.6.0",
+          "System.Composition": "10.0.2",
+          "System.Configuration.ConfigurationManager": "10.0.2",
+          "System.Diagnostics.DiagnosticSource": "10.0.2",
+          "System.Resources.Extensions": "10.0.2",
+          "System.Security.Permissions": "10.0.2",
+          "System.Text.Json": "10.0.2"
         },
         "runtime": {
           "Oracle.LinuxCompatibility.LibMySQL.dll": {
@@ -1537,11 +1537,11 @@
       "REnv/5.1.3.5558": {
         "dependencies": {
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
-          "System.Composition": "10.0.1",
-          "System.Diagnostics.DiagnosticSource": "10.0.1",
-          "System.Numerics.Tensors": "10.0.1",
-          "System.Resources.Extensions": "10.0.1",
-          "System.Security.Permissions": "10.0.1"
+          "System.Composition": "10.0.2",
+          "System.Diagnostics.DiagnosticSource": "10.0.2",
+          "System.Numerics.Tensors": "10.0.2",
+          "System.Resources.Extensions": "10.0.2",
+          "System.Security.Permissions": "10.0.2"
         },
         "runtime": {
           "REnv.dll": {
@@ -1567,8 +1567,8 @@
           "Microsoft.VisualBasic.Math.Statistics": "1.0.0",
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
           "SMRUCC.genomics.Core": "6.3.256.3655",
-          "System.Composition": "10.0.1",
-          "System.Resources.Extensions": "10.0.1"
+          "System.Composition": "10.0.2",
+          "System.Resources.Extensions": "10.0.2"
         },
         "runtime": {
           "SMRUCC.genomics.Analysis.HTS.GSEA.Fisher.Core.dll": {
@@ -1579,9 +1579,9 @@
       "SMRUCC.genomics.Core/6.3.256.3655": {
         "dependencies": {
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
-          "System.Composition": "10.0.1",
-          "System.Diagnostics.DiagnosticSource": "10.0.1",
-          "System.Resources.Extensions": "10.0.1"
+          "System.Composition": "10.0.2",
+          "System.Diagnostics.DiagnosticSource": "10.0.2",
+          "System.Resources.Extensions": "10.0.2"
         },
         "runtime": {
           "SMRUCC.genomics.Core.dll": {
@@ -1616,8 +1616,8 @@
         "dependencies": {
           "Microsoft.VisualBasic.MIME.application.rdf_xml": "1.0.0",
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
-          "System.Composition": "10.0.1",
-          "System.Resources.Extensions": "10.0.1"
+          "System.Composition": "10.0.2",
+          "System.Resources.Extensions": "10.0.2"
         },
         "runtime": {
           "SMRUCC.genomics.foundation.OBO_Foundry.dll": {
@@ -1630,7 +1630,7 @@
           "Microsoft.VisualBasic.Math.Core": "5.0.1.2389",
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
           "SMRUCC.genomics.Core": "6.3.256.3655",
-          "System.Diagnostics.DiagnosticSource": "10.0.1"
+          "System.Diagnostics.DiagnosticSource": "10.0.2"
         },
         "runtime": {
           "SMRUCC.genomics.GCModeller.ModellingEngine.Model.dll": {
@@ -1645,8 +1645,8 @@
           "Microsoft.VisualBasic.MIME.application.json": "1.0.0",
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
           "SMRUCC.genomics.Core": "6.3.256.3655",
-          "System.Composition": "10.0.1",
-          "System.Resources.Extensions": "10.0.1"
+          "System.Composition": "10.0.2",
+          "System.Resources.Extensions": "10.0.2"
         },
         "runtime": {
           "SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll": {
@@ -1942,10 +1942,10 @@
           }
         }
       },
-      "Microsoft.VisualBasic.Data.visualize.Network.Canvas.Reference/2.33.9525.41291": {
+      "Microsoft.VisualBasic.Data.visualize.Network.Canvas.Reference/2.33.9526.41647": {
         "runtime": {
           "Microsoft.VisualBasic.Data.visualize.Network.Canvas.dll": {
-            "assemblyVersion": "2.33.9525.41291",
+            "assemblyVersion": "2.33.9526.41647",
             "fileVersion": "2.33.0.0"
           }
         }
@@ -2158,27 +2158,27 @@
           }
         }
       },
-      "Microsoft.Web.WebView2.Core/1.0.3712.0": {
+      "Microsoft.Web.WebView2.Core/1.0.3796.0": {
         "runtime": {
           "Microsoft.Web.WebView2.Core.dll": {
-            "assemblyVersion": "1.0.3712.0",
-            "fileVersion": "1.0.3712.0"
+            "assemblyVersion": "1.0.3796.0",
+            "fileVersion": "1.0.3796.0"
           }
         }
       },
-      "Microsoft.Web.WebView2.WinForms/1.0.3712.0": {
+      "Microsoft.Web.WebView2.WinForms/1.0.3796.0": {
         "runtime": {
           "Microsoft.Web.WebView2.WinForms.dll": {
-            "assemblyVersion": "1.0.3712.0",
-            "fileVersion": "1.0.3712.0"
+            "assemblyVersion": "1.0.3796.0",
+            "fileVersion": "1.0.3796.0"
           }
         }
       },
-      "Microsoft.Web.WebView2.Wpf/1.0.3712.0": {
+      "Microsoft.Web.WebView2.Wpf/1.0.3796.0": {
         "runtime": {
           "Microsoft.Web.WebView2.Wpf.dll": {
-            "assemblyVersion": "1.0.3712.0",
-            "fileVersion": "1.0.3712.0"
+            "assemblyVersion": "1.0.3796.0",
+            "fileVersion": "1.0.3796.0"
           }
         }
       },
@@ -2301,12 +2301,12 @@
       "path": "bouncycastle.cryptography/2.6.2",
       "hashPath": "bouncycastle.cryptography.2.6.2.nupkg.sha512"
     },
-    "Google.Protobuf/3.33.2": {
+    "Google.Protobuf/3.34.0-rc1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-vZXVbrZgBqUkP5iWQi0CS6pucIS2MQdEYPS1duWCo8fGrrt4th6HTiHfLFX2RmAWAQl1oUnzGgyDBsfq7fHQJA==",
-      "path": "google.protobuf/3.33.2",
-      "hashPath": "google.protobuf.3.33.2.nupkg.sha512"
+      "sha512": "sha512-e+4da8rlFxuhfyyK94WmcNjMYmUdDw5aY7wIAGoAGVhNpV/y1osdBi7T6B1Wl+9Gx5vO5h8ouCIK5Y6lA7RHLQ==",
+      "path": "google.protobuf/3.34.0-rc1",
+      "hashPath": "google.protobuf.3.34.0-rc1.nupkg.sha512"
     },
     "K4os.Compression.LZ4/1.3.8": {
       "type": "package",
@@ -2329,33 +2329,33 @@
       "path": "k4os.hash.xxhash/1.0.8",
       "hashPath": "k4os.hash.xxhash.1.0.8.nupkg.sha512"
     },
-    "Microsoft.Web.WebView2/1.0.3712-prerelease": {
+    "Microsoft.Web.WebView2/1.0.3796-prerelease": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-1AlRzOut1fvzN+Nquu+IUDRhc9HeSlrh96WgYUeAgHY6CbZ9PB13QnTQyw0Mw9xlYbJ6d+AgQFxDLDf2Y5hAIg==",
-      "path": "microsoft.web.webview2/1.0.3712-prerelease",
-      "hashPath": "microsoft.web.webview2.1.0.3712-prerelease.nupkg.sha512"
+      "sha512": "sha512-gXD9147EYLBK2H4r1m6yNKwPEzeUjTJoCdGXnqvBnQOePFFZ6YaQ04PZEHmsPeP+TzteEsQISgyCVAp7FI0JHw==",
+      "path": "microsoft.web.webview2/1.0.3796-prerelease",
+      "hashPath": "microsoft.web.webview2.1.0.3796-prerelease.nupkg.sha512"
     },
-    "Microsoft.Win32.SystemEvents/10.0.1": {
+    "Microsoft.Win32.SystemEvents/10.0.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-trU4LN2C04nj5qnl8HqoX0NJGPCFg9h2f5o+jjp3Xm8c8fQtu6Ga1/fNFMf3AapoHyLP1WlP21XnL2ij/TLKlg==",
-      "path": "microsoft.win32.systemevents/10.0.1",
-      "hashPath": "microsoft.win32.systemevents.10.0.1.nupkg.sha512"
+      "sha512": "sha512-1G4BdeFwc8E95MpwtR7pO4rEh2YCG/o5gqcOszdQRGrWX1ayHTZtho3xPuYZTbBxKb/3kQHjL3b4nQeNGvbM9g==",
+      "path": "microsoft.win32.systemevents/10.0.2",
+      "hashPath": "microsoft.win32.systemevents.10.0.2.nupkg.sha512"
     },
-    "MySql.Data/9.5.0": {
+    "MySql.Data/9.6.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-pbIrDv7vuvMlok6ldjliFOeb5fpGofAInUhG/8LraQBqT2a2xZTcAVjm/GyfZ9ZyjZeHJLWuMRbe0uI98sCoWg==",
-      "path": "mysql.data/9.5.0",
-      "hashPath": "mysql.data.9.5.0.nupkg.sha512"
+      "sha512": "sha512-jjCXNBxLLQHBcyYyOP4yp5jqljStH2qGFXXg3jBMdwYQk9ihpLH9BXoMyc/J3421pENBDjCf/eGi9Ow0Ib7LUA==",
+      "path": "mysql.data/9.6.0",
+      "hashPath": "mysql.data.9.6.0.nupkg.sha512"
     },
-    "SkiaSharp/3.119.2-preview.1": {
+    "SkiaSharp/3.119.2-preview.2.3": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-gW+LU71pFNOM/o1mP4gzAnOgiX6Ffy7GFDAjcnbJMmAes6ogy00xKNwJ7bjxL2TSyBPXiH6CXjRe+gjmZVeqcA==",
-      "path": "skiasharp/3.119.2-preview.1",
-      "hashPath": "skiasharp.3.119.2-preview.1.nupkg.sha512"
+      "sha512": "sha512-a2lXMGEi05OxDzKqDqLIq/8tqi0Yr/6fYfWh0tIODFY23gTp0K/aDJ43GQwTjgS19iFSNjPmSAaCHEPj/7mhNA==",
+      "path": "skiasharp/3.119.2-preview.2.3",
+      "hashPath": "skiasharp.3.119.2-preview.2.3.nupkg.sha512"
     },
     "SkiaSharp.Extended/3.1.0-preview.3": {
       "type": "package",
@@ -2364,26 +2364,26 @@
       "path": "skiasharp.extended/3.1.0-preview.3",
       "hashPath": "skiasharp.extended.3.1.0-preview.3.nupkg.sha512"
     },
-    "SkiaSharp.NativeAssets.Linux/3.119.2-preview.1": {
+    "SkiaSharp.NativeAssets.Linux/3.119.2-preview.2.3": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-bsxLxfpE5VFExgCp1rfl4y3i4z36Mku03wP1Hino9jpi2hJftbv3l/zLfLK8G6UGo1/vL18PDDPUgi8iIjV02Q==",
-      "path": "skiasharp.nativeassets.linux/3.119.2-preview.1",
-      "hashPath": "skiasharp.nativeassets.linux.3.119.2-preview.1.nupkg.sha512"
+      "sha512": "sha512-4gkgeENmGg/FtGu7QBXkbQ8N4Ww8ODBlW4DkQe0zSu88qWHJzkDp5Cf9xStXzCAS9jUdCLkpkkfTdnImWxMD6g==",
+      "path": "skiasharp.nativeassets.linux/3.119.2-preview.2.3",
+      "hashPath": "skiasharp.nativeassets.linux.3.119.2-preview.2.3.nupkg.sha512"
     },
-    "SkiaSharp.NativeAssets.macOS/3.119.2-preview.1": {
+    "SkiaSharp.NativeAssets.macOS/3.119.2-preview.2.3": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-LcX8G40OiOZjPYukVvPQ9JhIPDQWOwVO6KejfAb9GTzYpDOVi5MNT2cbHG9oGkSGGGDQWmBtoQkPJFAWIxR3Eg==",
-      "path": "skiasharp.nativeassets.macos/3.119.2-preview.1",
-      "hashPath": "skiasharp.nativeassets.macos.3.119.2-preview.1.nupkg.sha512"
+      "sha512": "sha512-Fc2AVhPPYNue4e65cD+3M5q+a/QtD0Gupnq41MxRqXYzcbxWdaDQipN0Kcf5uqLXTSmj8hxClfTl6TzAHTI2Qg==",
+      "path": "skiasharp.nativeassets.macos/3.119.2-preview.2.3",
+      "hashPath": "skiasharp.nativeassets.macos.3.119.2-preview.2.3.nupkg.sha512"
     },
-    "SkiaSharp.NativeAssets.Win32/3.119.2-preview.1": {
+    "SkiaSharp.NativeAssets.Win32/3.119.2-preview.2.3": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-Mhybti0rGmZtk9whLkir5oRmhVhLNfwT7shnCaTX7yuO0PTIMD80fhmlcrB/PAP51xPUiV05a8DRCpp02LEGpw==",
-      "path": "skiasharp.nativeassets.win32/3.119.2-preview.1",
-      "hashPath": "skiasharp.nativeassets.win32.3.119.2-preview.1.nupkg.sha512"
+      "sha512": "sha512-2scXTPY5/3GRlzyEWMXCI6ryhO3TCPDrHrZz5gpt7N1Lv/a7gN4qBcy54n+Lvj4L5O2QXiobMkoLD1rHvPQXrw==",
+      "path": "skiasharp.nativeassets.win32/3.119.2-preview.2.3",
+      "hashPath": "skiasharp.nativeassets.win32.3.119.2-preview.2.3.nupkg.sha512"
     },
     "SkiaSharp.Svg/1.60.0": {
       "type": "package",
@@ -2392,166 +2392,166 @@
       "path": "skiasharp.svg/1.60.0",
       "hashPath": "skiasharp.svg.1.60.0.nupkg.sha512"
     },
-    "System.Collections.Immutable/10.0.1": {
+    "System.Collections.Immutable/10.0.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-kdTe61B8P7i2M1pODC3MLbZ/CfFGjpC6c6jzxjQoB5DHZNewayCRqgFUmx3JKB6vLQtozpMQEiw+R5fO32Jv4g==",
-      "path": "system.collections.immutable/10.0.1",
-      "hashPath": "system.collections.immutable.10.0.1.nupkg.sha512"
+      "sha512": "sha512-ty6kCaqyoh/M/jKV5yojgta+nf7T8zkkjpRI1beLQkrTC+9R6LS1eCEc+3ED2YUlRyA0g0PXExESnxnW3HcVVQ==",
+      "path": "system.collections.immutable/10.0.2",
+      "hashPath": "system.collections.immutable.10.0.2.nupkg.sha512"
     },
-    "System.Composition/10.0.1": {
+    "System.Composition/10.0.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-DJkqaWQfho/ReTzKcZD3zJJ6K4GcS154k+T0UCPMBNIOZ2U/lNpyiiWZ6Etw0onWyTH1K+yhICsdmwA5xy2aPQ==",
-      "path": "system.composition/10.0.1",
-      "hashPath": "system.composition.10.0.1.nupkg.sha512"
+      "sha512": "sha512-bBKd6VqiAqD4GRGKb1Qj+QDnNNHV1QDlbeN9jXWuXKLBAVHJRqtVfmRq9Q4RkJcc4MNAayMtNGYgMhXYt5jTLw==",
+      "path": "system.composition/10.0.2",
+      "hashPath": "system.composition.10.0.2.nupkg.sha512"
     },
-    "System.Composition.AttributedModel/10.0.1": {
+    "System.Composition.AttributedModel/10.0.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-mRxYvpCVPAeuLEk0c0kxWJVjbW1/HUoxCgYotOj9eDeQiYcTDOMdCQApsTrHYMN3pHBA8WoF00KGolG632Etaw==",
-      "path": "system.composition.attributedmodel/10.0.1",
-      "hashPath": "system.composition.attributedmodel.10.0.1.nupkg.sha512"
+      "sha512": "sha512-Vq11FCgkOMHN4q8IrXOcVm5FA+06wXBhza5c8qQqOUjJic9Cy4gzLoa4E5a5BQa+Vws/AJaL3pX8eeM0agl0ZQ==",
+      "path": "system.composition.attributedmodel/10.0.2",
+      "hashPath": "system.composition.attributedmodel.10.0.2.nupkg.sha512"
     },
-    "System.Composition.Convention/10.0.1": {
+    "System.Composition.Convention/10.0.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-dYynUByfVBzYDheNPGxS8UN8AvG/4tXf/coSs1odHOyoh4etv1kad/FrLWLMq4f8NO49NV20Xu+0/y613woTUA==",
-      "path": "system.composition.convention/10.0.1",
-      "hashPath": "system.composition.convention.10.0.1.nupkg.sha512"
+      "sha512": "sha512-dCXgoWziEULVjqhjtLFf1NtcTZ1q5UTalOEzSBz7yhoQqjBBhu8gqyfyBFsVZSVIGHJ6EgIj5x79HaCOYwk6LA==",
+      "path": "system.composition.convention/10.0.2",
+      "hashPath": "system.composition.convention.10.0.2.nupkg.sha512"
     },
-    "System.Composition.Hosting/10.0.1": {
+    "System.Composition.Hosting/10.0.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-4UGmyBdKWEN1nkqspJlji/nV7XIVm6KGlOC2So0mtM/gKvaNgLz+tUkcbY+6Zpr7dr6ohX1S5yl0RLID5otRHw==",
-      "path": "system.composition.hosting/10.0.1",
-      "hashPath": "system.composition.hosting.10.0.1.nupkg.sha512"
+      "sha512": "sha512-1GzhkoAyGUQHrRcBNuUuhLvvTSiU8ycRF8UVzftnzlA+s4BJR5E6nfSvClH17JJvfLLLEU8YPK/Wjj9RmDEX8w==",
+      "path": "system.composition.hosting/10.0.2",
+      "hashPath": "system.composition.hosting.10.0.2.nupkg.sha512"
     },
-    "System.Composition.Runtime/10.0.1": {
+    "System.Composition.Runtime/10.0.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-TVfys1gnUIhmXuYfFzyez0fOkDyELe9UwlxYeVlq6FmqmWmt1ouF0OQJ+6ozkHbkaop7uBUaXw7Qb+/o0m+nMg==",
-      "path": "system.composition.runtime/10.0.1",
-      "hashPath": "system.composition.runtime.10.0.1.nupkg.sha512"
+      "sha512": "sha512-+6e/uVS9xtcBgHort2ow0qp9FH0XDaLMKNdflCE5QkreIMz/i7dc2VyLySnKq7BmVTtcWE1W1CdcIM4Glhv52w==",
+      "path": "system.composition.runtime/10.0.2",
+      "hashPath": "system.composition.runtime.10.0.2.nupkg.sha512"
     },
-    "System.Composition.TypedParts/10.0.1": {
+    "System.Composition.TypedParts/10.0.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-koSfjkdQZfgQr3SyiSIBboDn+GiR0vZ3x9Uek9FJbXK0w5AiATV8KrnMEP8B8OAlO+Y3zQf0CPCNzwH+VIYDKg==",
-      "path": "system.composition.typedparts/10.0.1",
-      "hashPath": "system.composition.typedparts.10.0.1.nupkg.sha512"
+      "sha512": "sha512-lO/zSor+OU/GGJk0nVQvHTahdNtyrqhxG7H8sS0l61Q+zh/XEdrg9MZW3c292PQ8nSTRPtvaFq1CztuthvMkKw==",
+      "path": "system.composition.typedparts/10.0.2",
+      "hashPath": "system.composition.typedparts.10.0.2.nupkg.sha512"
     },
-    "System.Configuration.ConfigurationManager/10.0.1": {
+    "System.Configuration.ConfigurationManager/10.0.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-HfOAIlSA8OuaxBZD6xjsUWhtB0KdKSWEfRId8gSGveLUjuP6G8IxfiFgJNxaiRIEC1kx4pSvz3Em5xW/J6LLxA==",
-      "path": "system.configuration.configurationmanager/10.0.1",
-      "hashPath": "system.configuration.configurationmanager.10.0.1.nupkg.sha512"
+      "sha512": "sha512-UpBPpVzF+xbB3GsBrraPvlYCwUiOhs+RLxnTMKLqDs2gNNaAtxQRlKjXfMV3zxE+hiQkGId5olZ+9tE6xXHdwQ==",
+      "path": "system.configuration.configurationmanager/10.0.2",
+      "hashPath": "system.configuration.configurationmanager.10.0.2.nupkg.sha512"
     },
-    "System.Diagnostics.DiagnosticSource/10.0.1": {
+    "System.Diagnostics.DiagnosticSource/10.0.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-wVYO4/71Pk177uQ3TG8ZQFS3Pnmr98cF9pYxnpuIb/bMnbEWsdZZoLU/euv29mfSi2/Iuypj0TRUchPk7aqBGg==",
-      "path": "system.diagnostics.diagnosticsource/10.0.1",
-      "hashPath": "system.diagnostics.diagnosticsource.10.0.1.nupkg.sha512"
+      "sha512": "sha512-lYWBy8fKkJHaRcOuw30d67PrtVjR5754sz5Wl76s8P+vJ9FSThh9b7LIcTSODx1LY7NB3Srvg+JMnzd67qNZOw==",
+      "path": "system.diagnostics.diagnosticsource/10.0.2",
+      "hashPath": "system.diagnostics.diagnosticsource.10.0.2.nupkg.sha512"
     },
-    "System.Diagnostics.EventLog/10.0.1": {
+    "System.Diagnostics.EventLog/10.0.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-xfaHEHVDkMOOZR5S6ZGezD0+vekdH1Nx/9Ih8/rOqOGSOk1fxiN3u94bYkBW/wigj0Uw2Wt3vvRj9mtYdgwEjw==",
-      "path": "system.diagnostics.eventlog/10.0.1",
-      "hashPath": "system.diagnostics.eventlog.10.0.1.nupkg.sha512"
+      "sha512": "sha512-TJPpTLF5MFPobq09c9BQ5X8QuviQfsKvH0Jbm7MkGylGvfIdRqJQLZDPC5sMRFkk9aZhmgir1NJKekip2NxfaA==",
+      "path": "system.diagnostics.eventlog/10.0.2",
+      "hashPath": "system.diagnostics.eventlog.10.0.2.nupkg.sha512"
     },
-    "System.Drawing.Common/10.0.1": {
+    "System.Drawing.Common/10.0.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-cmkIduwyVPfuO8kNehu3xNcjo26nMgUoJyfso9S/zTO85YovvPPG0/AFLjanx1iVgQ80OpJVnLb1jU3aIKNLdg==",
-      "path": "system.drawing.common/10.0.1",
-      "hashPath": "system.drawing.common.10.0.1.nupkg.sha512"
+      "sha512": "sha512-nCq8jeGD4vWaUjX3nGaDMKYqfFPposw2f4KCFnuY5Rt3NhK6zMZ/c0a52a3TZK/nnkCJfyQMwb+POKwAnZexZw==",
+      "path": "system.drawing.common/10.0.2",
+      "hashPath": "system.drawing.common.10.0.2.nupkg.sha512"
     },
-    "System.Formats.Nrbf/10.0.1": {
+    "System.Formats.Nrbf/10.0.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-UnsCQWrLHB4AzTxSvxriBQ+N4EiAPSOPWNdL/XzqgNyxu5Q9rU/s7M+ld5sHPRvtP9OkJPSXDi0iuhlq1IcdkQ==",
-      "path": "system.formats.nrbf/10.0.1",
-      "hashPath": "system.formats.nrbf.10.0.1.nupkg.sha512"
+      "sha512": "sha512-reP4I/m8Fp0RbGNHmAgDTPp44I4+CXPWvnqE2Oiuz7Nmq6jcIyZ/8WcvyhTz+0xR2xXUsOeCGcbECaA12s45Nw==",
+      "path": "system.formats.nrbf/10.0.2",
+      "hashPath": "system.formats.nrbf.10.0.2.nupkg.sha512"
     },
-    "System.IO.Packaging/10.0.1": {
+    "System.IO.Packaging/10.0.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-KGS+cdplxa0R6cRQdVMRQRdnU8aY5UcUwDLyRJVHgOAstUnpF726xOYeaW3OxtkHcnfsijO0LfDjT4kDgvYn9A==",
-      "path": "system.io.packaging/10.0.1",
-      "hashPath": "system.io.packaging.10.0.1.nupkg.sha512"
+      "sha512": "sha512-JTpM4z0wpoIHHDvlCU27HsXo+zVnpWib94HXQpzzr+jc/P9NYf4w353AK4MXyGq/grm1mbLi7eXsOsDU8sGmNg==",
+      "path": "system.io.packaging/10.0.2",
+      "hashPath": "system.io.packaging.10.0.2.nupkg.sha512"
     },
-    "System.IO.Pipelines/10.0.1": {
+    "System.IO.Pipelines/10.0.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-26LbFXHKd7PmRnWlkjnYgmjd5B6HYVG+1MpTO25BdxTJnx6D0O16JPAC/S4YBqjtt4YpfGj1QO/Ss6SPMGEGQw==",
-      "path": "system.io.pipelines/10.0.1",
-      "hashPath": "system.io.pipelines.10.0.1.nupkg.sha512"
+      "sha512": "sha512-EqMsn9r18ABvTDxrDce4OWDhBE3y+rR23ilG7Y3BudDKrDKrLG/hkD/JmeFZbctAPxSkCjyJ/Ddwbn/g7ufRJA==",
+      "path": "system.io.pipelines/10.0.2",
+      "hashPath": "system.io.pipelines.10.0.2.nupkg.sha512"
     },
-    "System.Numerics.Tensors/10.0.1": {
+    "System.Numerics.Tensors/10.0.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-1ERX7TgHGP8Cs3sHWp0Vk6kg9xVQSgLsumb5qw1KNiClUC5cs4lKZ1LzPHI/ZYY3at7EX2nx4uWU6SGSi2V8Kg==",
-      "path": "system.numerics.tensors/10.0.1",
-      "hashPath": "system.numerics.tensors.10.0.1.nupkg.sha512"
+      "sha512": "sha512-EzimXy5WX7RJxf1pHBfolBApA4GR7qje1cY9XofD4C+cQepx0a5ZVlZjde8NHk+W1+6kltrbbfa8LIOVpTM6yQ==",
+      "path": "system.numerics.tensors/10.0.2",
+      "hashPath": "system.numerics.tensors.10.0.2.nupkg.sha512"
     },
-    "System.Reflection.Metadata/10.0.1": {
+    "System.Reflection.Metadata/10.0.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-zpcfT/wacPPhE17zcudozlxQtWN/84qyiMyZNGLnK4cj2IMBtLsZYwYjVnALUhPliwyUVj/P7kaZvBWYBCnf2Q==",
-      "path": "system.reflection.metadata/10.0.1",
-      "hashPath": "system.reflection.metadata.10.0.1.nupkg.sha512"
+      "sha512": "sha512-4A6MHPmF4UK/rD9lCHtzW/y8Bbn63qy9Tfd7YRqncgq17I0lGjFATValjvcQ9qb3ObPfnLClCQoGawS5J/2nOQ==",
+      "path": "system.reflection.metadata/10.0.2",
+      "hashPath": "system.reflection.metadata.10.0.2.nupkg.sha512"
     },
-    "System.Resources.Extensions/10.0.1": {
+    "System.Resources.Extensions/10.0.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-zq8Q3THQDjZ2O2LfwGnHXJ9aON4sIYf6kTR3AKXib+z2bwI9apV2vOWvBB1FygVfJZigFypwNxJ2PXeF/6S4GQ==",
-      "path": "system.resources.extensions/10.0.1",
-      "hashPath": "system.resources.extensions.10.0.1.nupkg.sha512"
+      "sha512": "sha512-Q+KjsDz/cOtCXwXUBHu6a7diH8DMp4tIbMYnZ9+AEB15/7trJE/qaplM/h0BgfKnnzmFtJ4WkPmk6Kjwg+G0Sg==",
+      "path": "system.resources.extensions/10.0.2",
+      "hashPath": "system.resources.extensions.10.0.2.nupkg.sha512"
     },
-    "System.Security.Cryptography.ProtectedData/10.0.1": {
+    "System.Security.Cryptography.ProtectedData/10.0.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-9SqHNq+lAjZeyPcm69FTQEjr+wsRYvkS3aW8yxoEndVYwDRkCrsP/44QPqpWHwzevoX26rkOoQ6kr7GZWngw2A==",
-      "path": "system.security.cryptography.protecteddata/10.0.1",
-      "hashPath": "system.security.cryptography.protecteddata.10.0.1.nupkg.sha512"
+      "sha512": "sha512-me7W69hkjdu5EzHXCQSXv9OS3uAkMXT26oZuWTaabeoO5BPxSVuRVJ2FSfIW8xyGxBb6mKCE6ZKg7TLk3IzJBQ==",
+      "path": "system.security.cryptography.protecteddata/10.0.2",
+      "hashPath": "system.security.cryptography.protecteddata.10.0.2.nupkg.sha512"
     },
-    "System.Security.Permissions/10.0.1": {
+    "System.Security.Permissions/10.0.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-A6a/n+CGdHO3YVCbHwePGxCBi38H+RPAwbvgekPmmoQfui9FaHeXLpWOGRN5qiWjVxyFcWIshwqKFjrRiPrXaw==",
-      "path": "system.security.permissions/10.0.1",
-      "hashPath": "system.security.permissions.10.0.1.nupkg.sha512"
+      "sha512": "sha512-6u42B99m8M38sQJh8njFrffV4TeD6Z5ilyJNgBN49nRvawQC5VedMUk9btFyU7t7+WSbVse7Sxc9ahRm8JXd+A==",
+      "path": "system.security.permissions/10.0.2",
+      "hashPath": "system.security.permissions.10.0.2.nupkg.sha512"
     },
-    "System.Text.Encoding.CodePages/10.0.1": {
+    "System.Text.Encoding.CodePages/10.0.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-lsaz3vFh4sl7k1UAwZkyDLPFvZRyVPBniqFne98LwUesNkTJta1XXGri25vRho0TxesYBBNHTv06IqpHkzK6Aw==",
-      "path": "system.text.encoding.codepages/10.0.1",
-      "hashPath": "system.text.encoding.codepages.10.0.1.nupkg.sha512"
+      "sha512": "sha512-hovZmFBPhs8l3ZtVXxKqAGs3CKbkuAA7aRUTlDUU0CBmoHj2DERdwmqb52DisjmlamH3yesJEc20dqLb5JMMug==",
+      "path": "system.text.encoding.codepages/10.0.2",
+      "hashPath": "system.text.encoding.codepages.10.0.2.nupkg.sha512"
     },
-    "System.Text.Encodings.Web/10.0.1": {
+    "System.Text.Encodings.Web/10.0.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-cVAka0o1rJJ5/De0pjNs7jcaZk5hUGf1HGzUyVmE2MEB1Vf0h/8qsWxImk1zjitCbeD2Avaq2P2+usdvqgbeVQ==",
-      "path": "system.text.encodings.web/10.0.1",
-      "hashPath": "system.text.encodings.web.10.0.1.nupkg.sha512"
+      "sha512": "sha512-Ro4cLT4qpRy64crfLAy3ekihtXckeXrD5eI6qb6NDSEVyHcHsmH7KgN4dbnIuiBmXIoaCslx4SynLYxag1SLSQ==",
+      "path": "system.text.encodings.web/10.0.2",
+      "hashPath": "system.text.encodings.web.10.0.2.nupkg.sha512"
     },
-    "System.Text.Json/10.0.1": {
+    "System.Text.Json/10.0.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-EsgwDgU1PFqhrFA9l5n+RBu76wFhNGCEwu8ITrBNhjPP3MxLyklroU5GIF8o6JYpYg6T4KD/VICfMdgPAvNp5g==",
-      "path": "system.text.json/10.0.1",
-      "hashPath": "system.text.json.10.0.1.nupkg.sha512"
+      "sha512": "sha512-zy8ey7I16G9neZ6uzxrnYwS7pidElzN8XarsBjGu7lE2m7afTKMEe18KbY3ZSmh/z/bR40oxjd6hlUcmOEaMHw==",
+      "path": "system.text.json/10.0.2",
+      "hashPath": "system.text.json.10.0.2.nupkg.sha512"
     },
-    "System.Windows.Extensions/10.0.1": {
+    "System.Windows.Extensions/10.0.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-NkxuY2TrVVZJYbdNzoYyTXjkp6T6ZZ/HrObEBTRzJxwTKTvVJEgbF4vSthBNZR3UKaKx79c7+1k83KhjxxVeWg==",
-      "path": "system.windows.extensions/10.0.1",
-      "hashPath": "system.windows.extensions.10.0.1.nupkg.sha512"
+      "sha512": "sha512-FJEb7THQLoYQDSIfu656zidYmLFZTBE9gi/IdKpPV9KhGuMZL/xLpLpRNLr7WDt2oLNldae8Jp/1e2H+MPCxGg==",
+      "path": "system.windows.extensions/10.0.2",
+      "hashPath": "system.windows.extensions.10.0.2.nupkg.sha512"
     },
     "ZstdSharp.Port/0.8.6": {
       "type": "package",
@@ -3040,7 +3040,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Microsoft.VisualBasic.Data.visualize.Network.Canvas.Reference/2.33.9525.41291": {
+    "Microsoft.VisualBasic.Data.visualize.Network.Canvas.Reference/2.33.9526.41647": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
@@ -3175,17 +3175,17 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Microsoft.Web.WebView2.Core/1.0.3712.0": {
+    "Microsoft.Web.WebView2.Core/1.0.3796.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
     },
-    "Microsoft.Web.WebView2.WinForms/1.0.3712.0": {
+    "Microsoft.Web.WebView2.WinForms/1.0.3796.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
     },
-    "Microsoft.Web.WebView2.Wpf/1.0.3712.0": {
+    "Microsoft.Web.WebView2.Wpf/1.0.3796.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

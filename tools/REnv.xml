@@ -8711,7 +8711,7 @@ to take away yo [rest of string was truncated]&quot;;.
  list. *****
  </returns>
 </member>
-<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.LinqPipeline.linq.sort(System.Object,System.Boolean,System.Boolean)">
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.LinqPipeline.linq.sort(System.Object,System.Boolean,System.Object,System.Boolean)">
  <summary>
  ### Sorting or Ordering Vectors
  
@@ -8723,6 +8723,8 @@ to take away yo [rest of string was truncated]&quot;;.
  For sort an R object with a class Or a numeric, complex, 
  character Or logical vector. For sort.int, a numeric, complex, 
  character Or logical vector, Or a factor.
+ 
+ for sort a dataframe object, then it will sort by the value order which is defined via the given columns.
  </param>
  <param name="decreasing">
  logical. Should the sort be increasing or decreasing? For the 
@@ -8822,7 +8824,7 @@ to take away yo [rest of string was truncated]&quot;;.
  <summary>
  Sorts the elements of a sequence in ascending order according to a key.
  </summary>
- <param name="sequence">A sequence of values to order.</param>
+ <param name="x">A sequence of values to order.</param>
  <param name="getKey">
  A function to extract a key from an element. and this parameter value 
  can also be the field name or column name to sort.
