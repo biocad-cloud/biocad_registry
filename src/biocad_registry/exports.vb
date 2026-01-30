@@ -66,6 +66,12 @@ Module exports
         End If
     End Function
 
+    ''' <summary>
+    ''' Export smiles table for run molecule strucutre analysis
+    ''' </summary>
+    ''' <param name="registry"></param>
+    ''' <param name="dbname"></param>
+    ''' <returns></returns>
     <ExportAPI("export_smiles_data")>
     Public Function export_smiles_data(registry As biocad_registry, dbname As String) As Object
         Return registry.exportSMILES(dbname).ToArray

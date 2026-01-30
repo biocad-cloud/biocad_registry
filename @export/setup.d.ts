@@ -5,10 +5,19 @@
 // ref=biocadRegistry.setup@biocad_registry, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 
 /**
+ * The Initial setup of the database
+ * 
 */
 declare namespace setup {
    /**
-     * @param env default value Is ``null``.
+    * Save RegPrecise motif sites
+    * 
+    * 
+     * @param registry -
+     * @param genomes -
+     * @param env -
+     * 
+     * + default value Is ``null``.
    */
    function save_motif(registry: object, genomes: any, env?: object): any;
    /**
@@ -25,8 +34,16 @@ declare namespace setup {
    */
    function setup_kegg(registry: object, kegg: any, env?: object): any;
    /**
-     * @param ko default value Is ``null``.
-     * @param env default value Is ``null``.
+    * use KEGG orthology as protein reference model
+    * 
+    * 
+     * @param registry -
+     * @param ko -
+     * 
+     * + default value Is ``null``.
+     * @param env -
+     * 
+     * + default value Is ``null``.
    */
    function setup_ko(registry: object, ko?: any, env?: object): any;
    /**
@@ -34,7 +51,13 @@ declare namespace setup {
    */
    function setup_lipidmaps(registry: object, lipidmaps: any, env?: object): any;
    /**
-     * @param env default value Is ``null``.
+    * use kegg+refmet as template for make setup of the metabolites table
+    * 
+    * 
+     * @param refmet -
+     * @param env -
+     * 
+     * + default value Is ``null``.
    */
    function setup_refmet(registry: object, refmet: any, env?: object): any;
    /**

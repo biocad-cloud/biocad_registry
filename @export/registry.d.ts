@@ -5,6 +5,7 @@
 // ref=biocadRegistry.registry@biocad_registry, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 
 /**
+ * 
 */
 declare namespace registry {
    /**
@@ -38,7 +39,14 @@ declare namespace registry {
    */
    function save_genbank(registry: object, genbank: any, env?: object): any;
    /**
-     * @param env default value Is ``null``.
+    * Save RegPrecise regulation network
+    * 
+    * 
+     * @param registry -
+     * @param genomes -
+     * @param env -
+     * 
+     * + default value Is ``null``.
    */
    function save_TRN(registry: object, genomes: any, env?: object): any;
    /**

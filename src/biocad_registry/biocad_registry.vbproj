@@ -7,6 +7,7 @@
     <Configurations>Debug;Release;Rsharp_app_release;LipidSearch;PlantMAT;mzkit;NPSearch;mzkit_win32;gcmodeller_desktop</Configurations>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <OutputPath>../../assembly/</OutputPath>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
