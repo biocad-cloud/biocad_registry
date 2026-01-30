@@ -74,7 +74,11 @@ Module exports
     ''' <returns></returns>
     <ExportAPI("export_smiles_data")>
     Public Function export_smiles_data(registry As biocad_registry, dbname As String) As Object
-        Return registry.exportSMILES(dbname).ToArray
+        Return registry.exportSMILES(dbname) _
+            .Where(Function(r)
+                       Return Not r.id.StringEmpty(, True)
+                   End Function) _
+            .ToArray
     End Function
 
     ''' <summary>
