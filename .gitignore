@@ -304,3 +304,6 @@ scripts/localdb/subcellular.json
 scripts/localdb/metabolic_network.jsonl
 scripts/localdb/molecules.jsonl
 /scripts/localdb/molecules.csv
+test/2026_v2/exports/biocyc.csv
+test/2026_v2/exports/kegg.csv
+test/2026_v2/exports/lipidmaps.csv
