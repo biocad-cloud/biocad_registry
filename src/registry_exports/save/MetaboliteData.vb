@@ -101,13 +101,15 @@ Public Module MetaboliteData
                 Continue For
             End If
 
-            Call trans _
-                .ignore _
-                .add(field("db_source") = db_source,
-                     field("db_name") = vocabulary.db_cas,
-                     field("db_xref") = id,
-                     field("type") = metabolite_type,
-                     field("obj_id") = m.id)
+            For Each split As String In id.StringSplit("[,;]\s*")
+                Call trans _
+                    .ignore _
+                    .add(field("db_source") = db_source,
+                         field("db_name") = vocabulary.db_cas,
+                         field("db_xref") = split,
+                         field("type") = metabolite_type,
+                         field("obj_id") = m.id)
+            Next
         Next
 
         Call trans.commit()

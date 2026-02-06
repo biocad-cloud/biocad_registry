@@ -40,10 +40,10 @@ Public Class FormMoleculeTable
 
         ToolStripLabel2.Text = $"Page {page} data"
 
-        '    Dim q = MyApplication.biocad_registry.molecule _
-        '        .left_join("sequence_graph") _
-        '        .on(field("sequence_graph.molecule_id") = field("molecule.id"))
-        '    Dim qwhere As New List(Of FieldAssert)
+        Dim q = MyApplication.biocad_registry.metabolites _
+                .left_join("struct_data") _
+                .on(field("`struct_data`.metabolite_id") = field("`metabolites`.id"))
+        Dim qwhere As New List(Of FieldAssert)
 
         '    If type > -1 Then
         '        qwhere.Add(field("molecule.type") = type)
@@ -55,31 +55,31 @@ Public Class FormMoleculeTable
         '            .on(field("molecule_tags.molecule_id") = field("molecule.id"))
         '    End If
 
-        '    If qwhere.Any Then
-        '        q = q.where(qwhere)
-        '    End If
+        If qwhere.Any Then
+            q = q.where(qwhere)
+        End If
 
-        '    Dim data = Await Task.Run(Function() q.limit(offset, page_size).distinct.select(Of MoleculeData)("molecule.id AS molecule_id",
-        '"xref_id",
-        '"name",
-        '"formula",
-        '"mass",
-        '"sequence",
-        '"note"))
+        Dim data = Await Task.Run(Function() q.limit(offset, page_size).distinct.select(Of MoleculeData)("molecule.id AS molecule_id",
+        "xref_id",
+        "name",
+        "formula",
+        "mass",
+        "sequence",
+        "note"))
 
-        '    Call DataGridView1.Rows.Clear()
+        Call DataGridView1.Rows.Clear()
 
-        '    ToolStripProgressBar1.Value = 0
-        '    ToolStripProgressBar1.Maximum = data.Length
-        '    ToolStripProgressBar1.Minimum = 0
+        ToolStripProgressBar1.Value = 0
+        ToolStripProgressBar1.Maximum = data.Length
+        ToolStripProgressBar1.Minimum = 0
 
-        '    For Each mol As MoleculeData In data
-        '        Dim i = DataGridView1.Rows.Add(mol.molecule_id, mol.xref_id, mol.name, mol.formula, mol.mass, mol.sequence, mol.note)
-        '        Dim r = DataGridView1.Rows(i)
+        For Each mol As MoleculeData In data
+            Dim i = DataGridView1.Rows.Add(mol.molecule_id, mol.xref_id, mol.name, mol.formula, mol.mass, mol.sequence, mol.note)
+            Dim r = DataGridView1.Rows(i)
 
-        '        r.Tag = mol
-        '        ToolStripProgressBar1.Value += 1
-        '    Next
+            r.Tag = mol
+            ToolStripProgressBar1.Value += 1
+        Next
 
         Call DataGridView1.CommitEdit(DataGridViewDataErrorContexts.Commit)
     End Function
@@ -140,7 +140,7 @@ Public Class FormMoleculeTable
 
         id = $"BioCAD{id.PadLeft(11, "0"c)}"
 
-        Dim url As String = $"http://biocad.innovation.ac.cn/molecule/{id}/"
+        Dim url As String = $"http://biocad.innovation.ac.cn/metabolite/{id}/"
 
         Call Tools.OpenUrlWithDefaultBrowser(url)
     End Sub

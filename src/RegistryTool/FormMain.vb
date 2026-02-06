@@ -121,8 +121,8 @@ Public Class FormMain : Implements AppHost
 
     Private Sub SubCellularCompartmentsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SubCellularCompartmentsToolStripMenuItem.Click
         Dim view As New FormDbView()
-        view.LoadTableView(Function() MyApplication.biocad_registry.subcellular_location.select(Of biocad_registryModel.subcellular_location)("*"))
-        view.Text = "`biocad_registry`.`subcellular_compartments`"
+        view.LoadTableView(Function() MyApplication.biocad_registry.compartment_location.select(Of biocad_registryModel.compartment_location)("*"))
+        view.Text = "`biocad_registry`.`compartment_location`"
         view.Show(CommonRuntime.AppHost.GetDockPanel, DockState.Document)
     End Sub
 
