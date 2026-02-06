@@ -154,6 +154,7 @@ Public Class FormMain : Implements AppHost
     Private Shared Function ExportLocal(println As Action(Of String), filename As String, subset$) As Boolean
         Dim i As Integer = 0
         Dim block As i32 = 1
+        Dim class_id As UInteger = MyApplication.biocad_registry.biocad_vocabulary.GetDatabaseResource("RefMet").id
 
         If filename.ExtensionSuffix("csv") Then
             Dim csv As New System.IO.StreamWriter(filename.Open(FileMode.OpenOrCreate, doClear:=True))
@@ -164,7 +165,7 @@ Public Class FormMain : Implements AppHost
             Call row.Clear()
             Call println("Export metabolite annotation into table sheet...")
 
-            For Each mol As Metadata In ExportMetaboliteData.ExportMetabolites(MyApplication.biocad_registry, subset)
+            For Each mol As Metadata In ExportMetaboliteData.ExportMetabolites(MyApplication.biocad_registry, subset, ontology_id:=class_id)
                 db_xrefs = mol.xref
                 row.AddRange({mol.ID, mol.name, mol.formula, mol.exact_mass, db_xrefs.CAS.FirstOrDefault, db_xrefs.KEGG, db_xrefs.HMDB, db_xrefs.chebi, db_xrefs.pubchem, db_xrefs.lipidmaps, db_xrefs.SMILES})
                 csv.WriteLine(row.AsLine)
@@ -186,7 +187,9 @@ Public Class FormMain : Implements AppHost
 
             Call println("Export metabolite annotation into local repository...")
 
-            For Each mol As Metadata In ExportMetaboliteData.ExportMetabolites(MyApplication.biocad_registry, Nothing)
+            For Each mol As Metadata In ExportMetaboliteData.ExportMetabolites(MyApplication.biocad_registry,
+                                                                               dbname:=Nothing,
+                                                                               ontology_id:=class_id)
                 If i > 2000 Then
                     i = 0
                     repo.CommitBlock()
