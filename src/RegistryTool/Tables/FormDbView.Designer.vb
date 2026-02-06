@@ -24,110 +24,120 @@ Partial Class FormDbView
     '不要使用代码编辑器修改它。
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
+        components = New ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormDbView))
-        Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
-        Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
-        Me.ToolStripLabel1 = New System.Windows.Forms.ToolStripLabel()
-        Me.ToolStripComboBox1 = New System.Windows.Forms.ToolStripComboBox()
-        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.ViewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStrip1.SuspendLayout()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.ContextMenuStrip1.SuspendLayout()
-        Me.SuspendLayout()
-        '
-        'ToolStrip1
-        '
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.ToolStripButton2, Me.ToolStripSeparator1, Me.ToolStripLabel1, Me.ToolStripComboBox1})
-        Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
-        Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(800, 25)
-        Me.ToolStrip1.TabIndex = 0
-        Me.ToolStrip1.Text = "ToolStrip1"
-        '
-        'ToolStripButton1
-        '
-        Me.ToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ToolStripButton1.Image = CType(resources.GetObject("ToolStripButton1.Image"), System.Drawing.Image)
-        Me.ToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton1.Name = "ToolStripButton1"
-        Me.ToolStripButton1.Size = New System.Drawing.Size(23, 22)
-        Me.ToolStripButton1.Text = "ToolStripButton1"
-        '
-        'ToolStripButton2
-        '
-        Me.ToolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ToolStripButton2.Image = CType(resources.GetObject("ToolStripButton2.Image"), System.Drawing.Image)
-        Me.ToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton2.Name = "ToolStripButton2"
-        Me.ToolStripButton2.Size = New System.Drawing.Size(23, 22)
-        Me.ToolStripButton2.Text = "ToolStripButton2"
-        '
-        'ToolStripSeparator1
-        '
-        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 25)
-        '
-        'ToolStripLabel1
-        '
-        Me.ToolStripLabel1.Name = "ToolStripLabel1"
-        Me.ToolStripLabel1.Size = New System.Drawing.Size(36, 22)
-        Me.ToolStripLabel1.Text = "Filter:"
-        '
-        'ToolStripComboBox1
-        '
-        Me.ToolStripComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.ToolStripComboBox1.Name = "ToolStripComboBox1"
-        Me.ToolStripComboBox1.Size = New System.Drawing.Size(121, 25)
-        '
-        'DataGridView1
-        '
-        Me.DataGridView1.AllowUserToAddRows = False
-        Me.DataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllHeaders
-        Me.DataGridView1.BackgroundColor = System.Drawing.Color.Gainsboro
-        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.ContextMenuStrip = Me.ContextMenuStrip1
-        Me.DataGridView1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.DataGridView1.Location = New System.Drawing.Point(0, 25)
-        Me.DataGridView1.MultiSelect = False
-        Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.ReadOnly = True
-        Me.DataGridView1.RowTemplate.Height = 23
-        Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DataGridView1.Size = New System.Drawing.Size(800, 425)
-        Me.DataGridView1.TabIndex = 1
-        '
-        'ContextMenuStrip1
-        '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewToolStripMenuItem})
-        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(181, 48)
-        '
-        'ViewToolStripMenuItem
-        '
-        Me.ViewToolStripMenuItem.Name = "ViewToolStripMenuItem"
-        Me.ViewToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.ViewToolStripMenuItem.Text = "View"
-        '
-        'FormDbView
-        '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
-        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 450)
-        Me.Controls.Add(Me.DataGridView1)
-        Me.Controls.Add(Me.ToolStrip1)
-        Me.Name = "FormDbView"
-        Me.Text = "Form1"
-        Me.ToolStrip1.ResumeLayout(False)
-        Me.ToolStrip1.PerformLayout()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ContextMenuStrip1.ResumeLayout(False)
-        Me.ResumeLayout(False)
-        Me.PerformLayout()
+        ToolStrip1 = New ToolStrip()
+        ToolStripButton1 = New ToolStripButton()
+        ToolStripButton2 = New ToolStripButton()
+        ToolStripSeparator1 = New ToolStripSeparator()
+        ToolStripLabel1 = New ToolStripLabel()
+        ToolStripComboBox1 = New ToolStripComboBox()
+        DataGridView1 = New DataGridView()
+        ContextMenuStrip1 = New ContextMenuStrip(components)
+        ViewToolStripMenuItem = New ToolStripMenuItem()
+        UpdateNoteTextToolStripMenuItem = New ToolStripMenuItem()
+        ToolStrip1.SuspendLayout()
+        CType(DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
+        ContextMenuStrip1.SuspendLayout()
+        SuspendLayout()
+        ' 
+        ' ToolStrip1
+        ' 
+        ToolStrip1.Items.AddRange(New ToolStripItem() {ToolStripButton1, ToolStripButton2, ToolStripSeparator1, ToolStripLabel1, ToolStripComboBox1})
+        ToolStrip1.Location = New Point(0, 0)
+        ToolStrip1.Name = "ToolStrip1"
+        ToolStrip1.Size = New Size(925, 25)
+        ToolStrip1.TabIndex = 0
+        ToolStrip1.Text = "ToolStrip1"
+        ' 
+        ' ToolStripButton1
+        ' 
+        ToolStripButton1.DisplayStyle = ToolStripItemDisplayStyle.Image
+        ToolStripButton1.Image = CType(resources.GetObject("ToolStripButton1.Image"), Image)
+        ToolStripButton1.ImageTransparentColor = Color.Magenta
+        ToolStripButton1.Name = "ToolStripButton1"
+        ToolStripButton1.Size = New Size(23, 22)
+        ToolStripButton1.Text = "ToolStripButton1"
+        ' 
+        ' ToolStripButton2
+        ' 
+        ToolStripButton2.DisplayStyle = ToolStripItemDisplayStyle.Image
+        ToolStripButton2.Image = CType(resources.GetObject("ToolStripButton2.Image"), Image)
+        ToolStripButton2.ImageTransparentColor = Color.Magenta
+        ToolStripButton2.Name = "ToolStripButton2"
+        ToolStripButton2.Size = New Size(23, 22)
+        ToolStripButton2.Text = "ToolStripButton2"
+        ' 
+        ' ToolStripSeparator1
+        ' 
+        ToolStripSeparator1.Name = "ToolStripSeparator1"
+        ToolStripSeparator1.Size = New Size(6, 25)
+        ' 
+        ' ToolStripLabel1
+        ' 
+        ToolStripLabel1.Name = "ToolStripLabel1"
+        ToolStripLabel1.Size = New Size(36, 22)
+        ToolStripLabel1.Text = "Filter:"
+        ' 
+        ' ToolStripComboBox1
+        ' 
+        ToolStripComboBox1.DropDownStyle = ComboBoxStyle.DropDownList
+        ToolStripComboBox1.Name = "ToolStripComboBox1"
+        ToolStripComboBox1.Size = New Size(121, 25)
+        ' 
+        ' DataGridView1
+        ' 
+        DataGridView1.AllowUserToAddRows = False
+        DataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllHeaders
+        DataGridView1.BackgroundColor = Color.Gainsboro
+        DataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        DataGridView1.ContextMenuStrip = ContextMenuStrip1
+        DataGridView1.Dock = DockStyle.Fill
+        DataGridView1.Location = New Point(0, 25)
+        DataGridView1.MultiSelect = False
+        DataGridView1.Name = "DataGridView1"
+        DataGridView1.ReadOnly = True
+        DataGridView1.RowTemplate.Height = 23
+        DataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect
+        DataGridView1.Size = New Size(925, 559)
+        DataGridView1.TabIndex = 1
+        ' 
+        ' ContextMenuStrip1
+        ' 
+        ContextMenuStrip1.Items.AddRange(New ToolStripItem() {ViewToolStripMenuItem, UpdateNoteTextToolStripMenuItem})
+        ContextMenuStrip1.Name = "ContextMenuStrip1"
+        ContextMenuStrip1.Size = New Size(181, 70)
+        ' 
+        ' ViewToolStripMenuItem
+        ' 
+        ViewToolStripMenuItem.Name = "ViewToolStripMenuItem"
+        ViewToolStripMenuItem.Size = New Size(180, 22)
+        ViewToolStripMenuItem.Text = "View"
+        ' 
+        ' UpdateNoteTextToolStripMenuItem
+        ' 
+        UpdateNoteTextToolStripMenuItem.Name = "UpdateNoteTextToolStripMenuItem"
+        UpdateNoteTextToolStripMenuItem.Size = New Size(180, 22)
+        UpdateNoteTextToolStripMenuItem.Text = "Update Note Text"
+        ' 
+        ' FormDbView
+        ' 
+        AutoScaleDimensions = New SizeF(7F, 15F)
+        AutoScaleMode = AutoScaleMode.Font
+        ClientSize = New Size(925, 584)
+        Controls.Add(DataGridView1)
+        Controls.Add(ToolStrip1)
+        DockAreas = Microsoft.VisualStudio.WinForms.Docking.DockAreas.Float Or Microsoft.VisualStudio.WinForms.Docking.DockAreas.DockLeft Or Microsoft.VisualStudio.WinForms.Docking.DockAreas.DockRight Or Microsoft.VisualStudio.WinForms.Docking.DockAreas.DockTop Or Microsoft.VisualStudio.WinForms.Docking.DockAreas.DockBottom Or Microsoft.VisualStudio.WinForms.Docking.DockAreas.Document
+        DoubleBuffered = True
+        Name = "FormDbView"
+        ShowHint = Microsoft.VisualStudio.WinForms.Docking.DockState.Unknown
+        TabPageContextMenuStrip = DockContextMenuStrip1
+        ToolStrip1.ResumeLayout(False)
+        ToolStrip1.PerformLayout()
+        CType(DataGridView1, ComponentModel.ISupportInitialize).EndInit()
+        ContextMenuStrip1.ResumeLayout(False)
+        ResumeLayout(False)
+        PerformLayout()
 
     End Sub
 
@@ -140,4 +150,5 @@ Partial Class FormDbView
     Friend WithEvents ToolStripComboBox1 As ToolStripComboBox
     Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
     Friend WithEvents ViewToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents UpdateNoteTextToolStripMenuItem As ToolStripMenuItem
 End Class

@@ -1,5 +1,10 @@
 ﻿Imports System.Reflection
+Imports Galaxy.Workbench
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
+Imports Microsoft.VisualBasic.MIME.text.markdown
+Imports Ollama
+Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
+Imports RegistryTool.My
 
 Public Class FormDbView
 
@@ -10,9 +15,19 @@ Public Class FormDbView
     Dim _binding As New BindingSource
     Dim _filter As String = Nothing
     Dim _view As Action(Of DataGridViewRow)
+    Dim _prompt As Func(Of DataGridViewRow, String)
+    Dim _table As Model
 
     Public Sub SetViewer(view As Action(Of DataGridViewRow))
         _view = view
+    End Sub
+
+    Public Sub SetLLMsPrompt(prompt As Func(Of DataGridViewRow, String))
+        _prompt = prompt
+    End Sub
+
+    Public Sub SetTable(table As Model)
+        _table = table
     End Sub
 
     Public Sub DisableFilter()
@@ -145,5 +160,33 @@ Public Class FormDbView
 
     Private Sub FormDbView_Load(sender As Object, e As EventArgs) Handles Me.Load
         Call ApplyVsTheme(ToolStrip1, ContextMenuStrip1)
+    End Sub
+
+    Private Sub UpdateNoteTextToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles UpdateNoteTextToolStripMenuItem.Click
+        If DataGridView1.SelectedRows.Count = 0 Then
+            Return
+        End If
+        If _prompt IsNot Nothing AndAlso _table IsNot Nothing Then
+            Dim target As DataGridViewRow = DataGridView1.SelectedRows(0)
+            Dim prompt_text As String = _prompt(target)
+            Dim id As UInteger = CUInt(target.Cells(0).Value)
+            Dim note As String = TaskProgress.LoadData(Of String)(
+                Function(p As ITaskProgress)
+                    Dim msg As DeepSeekResponse = TaskProgress.LoadData(Function(println As Action(Of String)) MyApplication.ollama.Chat(prompt_text).GetAwaiter.GetResult)
+                    Dim markdown As New MarkdownRender
+
+                    If Not msg Is Nothing Then
+                        Try
+                            Return markdown.Transform(msg.output)
+                        Catch ex As Exception
+                            Return msg.output
+                        End Try
+                    Else
+                        Return ""
+                    End If
+                End Function, title:="LLMs talk", info:="Generates the LLM note...")
+
+            Call _table.where(field("id") = id).save(field("note") = note)
+        End If
     End Sub
 End Class
