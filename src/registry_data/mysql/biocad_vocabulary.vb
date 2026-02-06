@@ -29,6 +29,10 @@ Public Class biocad_vocabulary
 
     ReadOnly registry As biocad_registry
 
+    ''' <summary>
+    ''' CAS Registry Number
+    ''' </summary>
+    ''' <returns></returns>
     Public ReadOnly Property db_cas As UInteger
     Public ReadOnly Property db_pubchem As UInteger
     Public ReadOnly Property db_chebi As UInteger

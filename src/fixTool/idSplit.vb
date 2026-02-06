@@ -6,7 +6,7 @@ Public Module idSplit
 
     Public Sub splitJointID()
         Dim page_size As Integer = 1000
-        Dim db As UInteger = registry.biocad_vocabulary.GetDatabaseResource("CAS").id
+        Dim db As UInteger = registry.biocad_vocabulary.db_cas
 
         Do While True
             Dim list = registry.db_xrefs _
@@ -23,7 +23,7 @@ Public Module idSplit
             For Each invalid In TqdmWrapper.Wrap(list)
                 Dim newIds = invalid.db_xref.StringSplit("\s+") ' \s*,\s*
 
-                For Each newId In newIds.Select(AddressOf Strings.Trim)
+                For Each newId As String In newIds.Select(AddressOf Strings.Trim).Select(Function(idsplit) idsplit.Trim(","c))
                     Dim exists = registry.db_xrefs.where(field("obj_id") = invalid.obj_id,
                                                          field("db_name") = db,
                                                          field("db_xref") = newId,
