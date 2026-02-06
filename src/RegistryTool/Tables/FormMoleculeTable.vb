@@ -142,7 +142,7 @@ Public Class FormMoleculeTable
 
         id = $"BioCAD{id.PadLeft(11, "0"c)}"
 
-        Dim url As String = $"http://biocad.innovation.ac.cn/metabolite/{id}/"
+        Dim url As String = $"{MyApplication.settings.website}/metabolite/{id}/"
 
         Call Tools.OpenUrlWithDefaultBrowser(url)
     End Sub

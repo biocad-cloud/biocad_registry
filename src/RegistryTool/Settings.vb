@@ -15,6 +15,8 @@ Namespace Configs
         <Category("LLMs")> Public Property ollama_server As String = "127.0.0.1"
         <Category("LLMs")> Public Property ollama_service As Integer = 11434
 
+        Public Property website As String = "http://biocad.innovation.ac.cn"
+
         <Browsable(False)>
         Public Property molecule_history As MoleculeEditHistory()
 
@@ -27,7 +29,8 @@ Namespace Configs
                 .user = "root",
                 .model = "qwen3:30b",
                 .ollama_server = "127.0.0.1",
-                .ollama_service = 11434
+                .ollama_service = 11434,
+                .website = "http://biocad.innovation.ac.cn"
             }
         End Function
 
