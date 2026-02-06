@@ -1,4 +1,3 @@
-Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar
 Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports Oracle.LinuxCompatibility.MySQL.Uri
@@ -17,7 +16,7 @@ Module Program
     Friend ReadOnly registry As New biocad_registry(mysql)
 
     Sub Main(args As String())
-
+        Call removesInvalidNameChars()
     End Sub
 
     Sub removesInvalidNameChars()
@@ -31,7 +30,7 @@ Module Program
                 Exit For
             End If
 
-            For Each item In q
+            For Each item In TqdmWrapper.Wrap(q)
                 registry.metabolites _
                     .where(field("id") = item.id) _
                     .save(field("name") = item.name.Trim(""""c, "'"c, " "c))
