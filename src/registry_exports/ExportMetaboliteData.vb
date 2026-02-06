@@ -8,17 +8,17 @@ Imports registry_data.biocad_registryModel
 Public Module ExportMetaboliteData
 
     <Extension>
-    Public Iterator Function ExportMetabolites(registry As biocad_registry, dbname As String) As IEnumerable(Of MetaLib)
+    Public Iterator Function ExportMetabolites(registry As biocad_registry, dbname As String, Optional filterMass As Boolean = True) As IEnumerable(Of MetaLib)
         Dim page_size As Integer = 100
         Dim offset As UInteger
         Dim page As metabolites()
         Dim struct As struct_data
-        Dim q = {Not field(dbname).is_nothing, field(dbname) <> ""}
+        Dim q As FieldAssert() = If(dbname.StringEmpty, Nothing, {Not field(dbname).is_nothing, field(dbname) <> ""})
 
         For i As Integer = 1 To Integer.MaxValue
             offset = (i - 1) * page_size
 
-            If dbname.StringEmpty() Then
+            If q Is Nothing Then
                 page = registry.metabolites _
                     .limit(offset, page_size) _
                     .select(Of metabolites)
@@ -30,6 +30,10 @@ Public Module ExportMetaboliteData
             End If
 
             For Each m As metabolites In page
+                If filterMass AndAlso m.exact_mass <= 1 Then
+                    Continue For
+                End If
+
                 struct = registry.struct_data _
                     .where(field("metabolite_id") = m.id) _
                     .find(Of struct_data)
@@ -43,7 +47,7 @@ Public Module ExportMetaboliteData
                     .IUPACName = m.name,
                     .xref = New xref With {
                         .CAS = If(m.cas_id.StringEmpty, Nothing, {m.cas_id}),
-                        .chebi = m.chebi_id,
+                        .chebi = If(m.chebi_id > 0, $"ChEBI:{m.chebi_id}", ""),
                         .DrugBank = m.drugbank_id,
                         .HMDB = m.hmdb_id,
                         .KEGG = m.kegg_id,
