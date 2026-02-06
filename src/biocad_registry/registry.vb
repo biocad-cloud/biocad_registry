@@ -105,7 +105,7 @@ Module registry
                     clean_name = clean_name.GetTagValue("!").Value.ToLower
                 End If
 
-                If clean_name.StartsWith("(((Cl)|[CHONPS])\d*)+_", RegexICMul) Then
+                If clean_name.StartsWith("(((Cl)|[CHONPS])\d*){3,}_", RegexICMul) Then
                     clean_name = clean_name.GetTagValue("_").Value
                 End If
 
