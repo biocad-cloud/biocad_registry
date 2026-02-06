@@ -1,6 +1,7 @@
 ﻿Imports BioNovoGene.BioDeep.Chemoinformatics
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports BioNovoGene.BioDeep.Chemoinformatics.SMILES
+Imports Galaxy.Data.TextValidates
 Imports Galaxy.Workbench
 Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.Linq
@@ -708,7 +709,62 @@ let options = { width: 450, height: 300 };
     End Sub
 
     Private Sub Button9_Click(sender As Object, e As EventArgs) Handles Button9.Click
+        Call SaveMainXrefID(txtCASID, "cas_id")
+    End Sub
 
+    Private Sub Button10_Click(sender As Object, e As EventArgs) Handles Button10.Click
+        If txtPubChemCID.StringEmpty(, True) Then
+            ' make clear
+            Call MyApplication.biocad_registry.metabolites.where(field("id") = mol.id).save(field("pubchem_cid") = Nothing)
+        Else
+            Call MyApplication.biocad_registry.metabolites.where(field("id") = mol.id).save(field("pubchem_cid") = Strings.Trim(txtPubChemCID.Text).Match("\d+"))
+        End If
+    End Sub
+
+    Private Sub Button11_Click(sender As Object, e As EventArgs) Handles Button11.Click
+        If txtCHEBIID.StringEmpty(, True) Then
+            ' make clear
+            Call MyApplication.biocad_registry.metabolites.where(field("id") = mol.id).save(field("chebi_id") = Nothing)
+        Else
+            Call MyApplication.biocad_registry.metabolites.where(field("id") = mol.id).save(field("chebi_id") = Strings.Trim(txtCHEBIID.Text).Match("\d+"))
+        End If
+    End Sub
+
+    Private Sub Button12_Click(sender As Object, e As EventArgs) Handles Button12.Click
+        Call SaveMainXrefID(txtHMDBID, "hmdb_id")
+    End Sub
+
+    Private Sub SaveMainXrefID(source As TextBox, name As String)
+        If source.StringEmpty(, True) Then
+            ' make clear
+            Call MyApplication.biocad_registry.metabolites.where(field("id") = mol.id).save(field(name) = Nothing)
+        Else
+            Call MyApplication.biocad_registry.metabolites.where(field("id") = mol.id).save(field(name) = Strings.Trim(source.Text))
+        End If
+    End Sub
+
+    Private Sub Button13_Click(sender As Object, e As EventArgs) Handles Button13.Click
+        Call SaveMainXrefID(txtLipidMapsID, "lipidmaps_id")
+    End Sub
+
+    Private Sub Button14_Click(sender As Object, e As EventArgs) Handles Button14.Click
+        Call SaveMainXrefID(txtKEGGID, "kegg_id")
+    End Sub
+
+    Private Sub Button15_Click(sender As Object, e As EventArgs) Handles Button15.Click
+        Call SaveMainXrefID(txtDrugBankID, "drugbank_id")
+    End Sub
+
+    Private Sub Button16_Click(sender As Object, e As EventArgs) Handles Button16.Click
+        Call SaveMainXrefID(txtBioCYCID, "biocyc")
+    End Sub
+
+    Private Sub Button17_Click(sender As Object, e As EventArgs) Handles Button17.Click
+        Call SaveMainXrefID(txtMeshID, "mesh_id")
+    End Sub
+
+    Private Sub Button18_Click(sender As Object, e As EventArgs) Handles Button18.Click
+        Call SaveMainXrefID(txtWikipediaID, "wikipedia")
     End Sub
 End Class
 

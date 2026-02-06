@@ -25,7 +25,7 @@ Partial Class FormMoleculeEditor
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         components = New ComponentModel.Container()
-        Dim DataGridViewCellStyle2 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As DataGridViewCellStyle = New DataGridViewCellStyle()
         DataGridView1 = New DataGridView()
         Column1 = New DataGridViewTextBoxColumn()
         Column2 = New DataGridViewTextBoxColumn()
@@ -58,10 +58,43 @@ Partial Class FormMoleculeEditor
         GroupBox1 = New GroupBox()
         Panel3 = New Panel()
         GroupBox2 = New GroupBox()
+        TabControl2 = New TabControl()
+        TabPage4 = New TabPage()
+        Button18 = New Button()
+        txtWikipediaID = New TextBox()
+        Button17 = New Button()
+        txtMeshID = New TextBox()
+        Button16 = New Button()
+        txtBioCYCID = New TextBox()
+        Button15 = New Button()
+        txtDrugBankID = New TextBox()
+        Button14 = New Button()
+        txtKEGGID = New TextBox()
+        Button13 = New Button()
+        txtLipidMapsID = New TextBox()
+        Button12 = New Button()
+        txtHMDBID = New TextBox()
+        Button11 = New Button()
+        txtCHEBIID = New TextBox()
+        Button10 = New Button()
+        txtPubChemCID = New TextBox()
+        Label17 = New Label()
+        Label16 = New Label()
+        Label15 = New Label()
+        Label14 = New Label()
+        Label13 = New Label()
+        Label12 = New Label()
+        Label11 = New Label()
+        Label10 = New Label()
+        Button9 = New Button()
+        txtCASID = New TextBox()
+        Label9 = New Label()
+        Label3 = New Label()
+        TabPage3 = New TabPage()
         Button8 = New Button()
+        Button5 = New Button()
         TextBox6 = New TextBox()
         ComboBox3 = New ComboBox()
-        Button5 = New Button()
         GroupBox3 = New GroupBox()
         TextBox5 = New TextBox()
         Label1 = New Label()
@@ -99,39 +132,6 @@ Partial Class FormMoleculeEditor
         TabControl1 = New TabControl()
         TabPage1 = New TabPage()
         TabPage2 = New TabPage()
-        TabControl2 = New TabControl()
-        TabPage3 = New TabPage()
-        TabPage4 = New TabPage()
-        Label3 = New Label()
-        Label9 = New Label()
-        txtCASID = New TextBox()
-        Button9 = New Button()
-        Label10 = New Label()
-        Label11 = New Label()
-        Label12 = New Label()
-        Label13 = New Label()
-        Label14 = New Label()
-        Label15 = New Label()
-        Label16 = New Label()
-        Label17 = New Label()
-        Button10 = New Button()
-        txtPubChemCID = New TextBox()
-        Button11 = New Button()
-        txtCHEBIID = New TextBox()
-        Button12 = New Button()
-        txtHMDBID = New TextBox()
-        Button13 = New Button()
-        txtLipidMapsID = New TextBox()
-        Button14 = New Button()
-        txtKEGGID = New TextBox()
-        Button15 = New Button()
-        txtDrugBankID = New TextBox()
-        Button16 = New Button()
-        txtBioCYCID = New TextBox()
-        Button17 = New Button()
-        txtMeshID = New TextBox()
-        Button18 = New Button()
-        txtWikipediaID = New TextBox()
         CType(DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
         ContextMenuStrip3.SuspendLayout()
         CType(WebView21, ComponentModel.ISupportInitialize).BeginInit()
@@ -139,6 +139,9 @@ Partial Class FormMoleculeEditor
         GroupBox1.SuspendLayout()
         Panel3.SuspendLayout()
         GroupBox2.SuspendLayout()
+        TabControl2.SuspendLayout()
+        TabPage4.SuspendLayout()
+        TabPage3.SuspendLayout()
         GroupBox3.SuspendLayout()
         GroupBox4.SuspendLayout()
         GroupBox5.SuspendLayout()
@@ -158,9 +161,6 @@ Partial Class FormMoleculeEditor
         TabControl1.SuspendLayout()
         TabPage1.SuspendLayout()
         TabPage2.SuspendLayout()
-        TabControl2.SuspendLayout()
-        TabPage3.SuspendLayout()
-        TabPage4.SuspendLayout()
         SuspendLayout()
         ' 
         ' DataGridView1
@@ -431,6 +431,322 @@ Partial Class FormMoleculeEditor
         GroupBox2.TabStop = False
         GroupBox2.Text = "Database CrossReference"
         ' 
+        ' TabControl2
+        ' 
+        TabControl2.Controls.Add(TabPage4)
+        TabControl2.Controls.Add(TabPage3)
+        TabControl2.Dock = DockStyle.Fill
+        TabControl2.Location = New Point(3, 19)
+        TabControl2.Name = "TabControl2"
+        TabControl2.SelectedIndex = 0
+        TabControl2.Size = New Size(509, 431)
+        TabControl2.TabIndex = 25
+        ' 
+        ' TabPage4
+        ' 
+        TabPage4.Controls.Add(Button18)
+        TabPage4.Controls.Add(txtWikipediaID)
+        TabPage4.Controls.Add(Button17)
+        TabPage4.Controls.Add(txtMeshID)
+        TabPage4.Controls.Add(Button16)
+        TabPage4.Controls.Add(txtBioCYCID)
+        TabPage4.Controls.Add(Button15)
+        TabPage4.Controls.Add(txtDrugBankID)
+        TabPage4.Controls.Add(Button14)
+        TabPage4.Controls.Add(txtKEGGID)
+        TabPage4.Controls.Add(Button13)
+        TabPage4.Controls.Add(txtLipidMapsID)
+        TabPage4.Controls.Add(Button12)
+        TabPage4.Controls.Add(txtHMDBID)
+        TabPage4.Controls.Add(Button11)
+        TabPage4.Controls.Add(txtCHEBIID)
+        TabPage4.Controls.Add(Button10)
+        TabPage4.Controls.Add(txtPubChemCID)
+        TabPage4.Controls.Add(Label17)
+        TabPage4.Controls.Add(Label16)
+        TabPage4.Controls.Add(Label15)
+        TabPage4.Controls.Add(Label14)
+        TabPage4.Controls.Add(Label13)
+        TabPage4.Controls.Add(Label12)
+        TabPage4.Controls.Add(Label11)
+        TabPage4.Controls.Add(Label10)
+        TabPage4.Controls.Add(Button9)
+        TabPage4.Controls.Add(txtCASID)
+        TabPage4.Controls.Add(Label9)
+        TabPage4.Controls.Add(Label3)
+        TabPage4.Location = New Point(4, 24)
+        TabPage4.Name = "TabPage4"
+        TabPage4.Padding = New Padding(3)
+        TabPage4.Size = New Size(501, 403)
+        TabPage4.TabIndex = 1
+        TabPage4.Text = "Main Db Xrefs"
+        TabPage4.UseVisualStyleBackColor = True
+        ' 
+        ' Button18
+        ' 
+        Button18.Location = New Point(417, 363)
+        Button18.Name = "Button18"
+        Button18.Size = New Size(75, 23)
+        Button18.TabIndex = 29
+        Button18.Text = "Save"
+        Button18.UseVisualStyleBackColor = True
+        ' 
+        ' txtWikipediaID
+        ' 
+        txtWikipediaID.Location = New Point(115, 364)
+        txtWikipediaID.Name = "txtWikipediaID"
+        txtWikipediaID.Size = New Size(276, 23)
+        txtWikipediaID.TabIndex = 28
+        ' 
+        ' Button17
+        ' 
+        Button17.Location = New Point(417, 326)
+        Button17.Name = "Button17"
+        Button17.Size = New Size(75, 23)
+        Button17.TabIndex = 27
+        Button17.Text = "Save"
+        Button17.UseVisualStyleBackColor = True
+        ' 
+        ' txtMeshID
+        ' 
+        txtMeshID.Location = New Point(115, 327)
+        txtMeshID.Name = "txtMeshID"
+        txtMeshID.Size = New Size(276, 23)
+        txtMeshID.TabIndex = 26
+        ' 
+        ' Button16
+        ' 
+        Button16.Location = New Point(417, 288)
+        Button16.Name = "Button16"
+        Button16.Size = New Size(75, 23)
+        Button16.TabIndex = 25
+        Button16.Text = "Save"
+        Button16.UseVisualStyleBackColor = True
+        ' 
+        ' txtBioCYCID
+        ' 
+        txtBioCYCID.Location = New Point(115, 289)
+        txtBioCYCID.Name = "txtBioCYCID"
+        txtBioCYCID.Size = New Size(276, 23)
+        txtBioCYCID.TabIndex = 24
+        ' 
+        ' Button15
+        ' 
+        Button15.Location = New Point(417, 249)
+        Button15.Name = "Button15"
+        Button15.Size = New Size(75, 23)
+        Button15.TabIndex = 23
+        Button15.Text = "Save"
+        Button15.UseVisualStyleBackColor = True
+        ' 
+        ' txtDrugBankID
+        ' 
+        txtDrugBankID.Location = New Point(115, 250)
+        txtDrugBankID.Name = "txtDrugBankID"
+        txtDrugBankID.Size = New Size(276, 23)
+        txtDrugBankID.TabIndex = 22
+        ' 
+        ' Button14
+        ' 
+        Button14.Location = New Point(417, 213)
+        Button14.Name = "Button14"
+        Button14.Size = New Size(75, 23)
+        Button14.TabIndex = 21
+        Button14.Text = "Save"
+        Button14.UseVisualStyleBackColor = True
+        ' 
+        ' txtKEGGID
+        ' 
+        txtKEGGID.Location = New Point(115, 214)
+        txtKEGGID.Name = "txtKEGGID"
+        txtKEGGID.Size = New Size(276, 23)
+        txtKEGGID.TabIndex = 20
+        ' 
+        ' Button13
+        ' 
+        Button13.Location = New Point(417, 173)
+        Button13.Name = "Button13"
+        Button13.Size = New Size(75, 23)
+        Button13.TabIndex = 19
+        Button13.Text = "Save"
+        Button13.UseVisualStyleBackColor = True
+        ' 
+        ' txtLipidMapsID
+        ' 
+        txtLipidMapsID.Location = New Point(115, 174)
+        txtLipidMapsID.Name = "txtLipidMapsID"
+        txtLipidMapsID.Size = New Size(276, 23)
+        txtLipidMapsID.TabIndex = 18
+        ' 
+        ' Button12
+        ' 
+        Button12.Location = New Point(417, 133)
+        Button12.Name = "Button12"
+        Button12.Size = New Size(75, 23)
+        Button12.TabIndex = 17
+        Button12.Text = "Save"
+        Button12.UseVisualStyleBackColor = True
+        ' 
+        ' txtHMDBID
+        ' 
+        txtHMDBID.Location = New Point(115, 134)
+        txtHMDBID.Name = "txtHMDBID"
+        txtHMDBID.Size = New Size(276, 23)
+        txtHMDBID.TabIndex = 16
+        ' 
+        ' Button11
+        ' 
+        Button11.Location = New Point(417, 94)
+        Button11.Name = "Button11"
+        Button11.Size = New Size(75, 23)
+        Button11.TabIndex = 15
+        Button11.Text = "Save"
+        Button11.UseVisualStyleBackColor = True
+        ' 
+        ' txtCHEBIID
+        ' 
+        txtCHEBIID.Location = New Point(115, 95)
+        txtCHEBIID.Name = "txtCHEBIID"
+        txtCHEBIID.Size = New Size(276, 23)
+        txtCHEBIID.TabIndex = 14
+        ' 
+        ' Button10
+        ' 
+        Button10.Location = New Point(417, 54)
+        Button10.Name = "Button10"
+        Button10.Size = New Size(75, 23)
+        Button10.TabIndex = 13
+        Button10.Text = "Save"
+        Button10.UseVisualStyleBackColor = True
+        ' 
+        ' txtPubChemCID
+        ' 
+        txtPubChemCID.Location = New Point(115, 55)
+        txtPubChemCID.Name = "txtPubChemCID"
+        txtPubChemCID.Size = New Size(276, 23)
+        txtPubChemCID.TabIndex = 12
+        ' 
+        ' Label17
+        ' 
+        Label17.AutoSize = True
+        Label17.Location = New Point(36, 364)
+        Label17.Name = "Label17"
+        Label17.Size = New Size(62, 15)
+        Label17.TabIndex = 11
+        Label17.Text = "Wikipedia:"
+        ' 
+        ' Label16
+        ' 
+        Label16.AutoSize = True
+        Label16.Location = New Point(42, 327)
+        Label16.Name = "Label16"
+        Label16.Size = New Size(56, 15)
+        Label16.TabIndex = 10
+        Label16.Text = "MeSH ID:"
+        ' 
+        ' Label15
+        ' 
+        Label15.AutoSize = True
+        Label15.Location = New Point(51, 289)
+        Label15.Name = "Label15"
+        Label15.Size = New Size(47, 15)
+        Label15.TabIndex = 9
+        Label15.Text = "BioCyc:"
+        ' 
+        ' Label14
+        ' 
+        Label14.AutoSize = True
+        Label14.Location = New Point(22, 250)
+        Label14.Name = "Label14"
+        Label14.Size = New Size(76, 15)
+        Label14.TabIndex = 8
+        Label14.Text = "DrugBank ID:"
+        ' 
+        ' Label13
+        ' 
+        Label13.AutoSize = True
+        Label13.Location = New Point(45, 214)
+        Label13.Name = "Label13"
+        Label13.Size = New Size(53, 15)
+        Label13.TabIndex = 7
+        Label13.Text = "KEGG ID:"
+        ' 
+        ' Label12
+        ' 
+        Label12.AutoSize = True
+        Label12.Location = New Point(16, 174)
+        Label12.Name = "Label12"
+        Label12.Size = New Size(82, 15)
+        Label12.TabIndex = 6
+        Label12.Text = "LipidMAPS ID:"
+        ' 
+        ' Label11
+        ' 
+        Label11.AutoSize = True
+        Label11.Location = New Point(36, 134)
+        Label11.Name = "Label11"
+        Label11.Size = New Size(59, 15)
+        Label11.TabIndex = 5
+        Label11.Text = "HMDB ID:"
+        ' 
+        ' Label10
+        ' 
+        Label10.AutoSize = True
+        Label10.Location = New Point(40, 95)
+        Label10.Name = "Label10"
+        Label10.Size = New Size(55, 15)
+        Label10.TabIndex = 4
+        Label10.Text = "ChEBI ID:"
+        ' 
+        ' Button9
+        ' 
+        Button9.Location = New Point(417, 13)
+        Button9.Name = "Button9"
+        Button9.Size = New Size(75, 23)
+        Button9.TabIndex = 3
+        Button9.Text = "Save"
+        Button9.UseVisualStyleBackColor = True
+        ' 
+        ' txtCASID
+        ' 
+        txtCASID.Location = New Point(115, 14)
+        txtCASID.Name = "txtCASID"
+        txtCASID.Size = New Size(276, 23)
+        txtCASID.TabIndex = 2
+        ' 
+        ' Label9
+        ' 
+        Label9.AutoSize = True
+        Label9.Location = New Point(13, 58)
+        Label9.Name = "Label9"
+        Label9.Size = New Size(85, 15)
+        Label9.TabIndex = 1
+        Label9.Text = "PubChem CID:"
+        ' 
+        ' Label3
+        ' 
+        Label3.AutoSize = True
+        Label3.Location = New Point(52, 17)
+        Label3.Name = "Label3"
+        Label3.Size = New Size(46, 15)
+        Label3.TabIndex = 0
+        Label3.Text = "CAS ID:"
+        ' 
+        ' TabPage3
+        ' 
+        TabPage3.Controls.Add(DataGridView1)
+        TabPage3.Controls.Add(Button8)
+        TabPage3.Controls.Add(Button5)
+        TabPage3.Controls.Add(TextBox6)
+        TabPage3.Controls.Add(ComboBox3)
+        TabPage3.Location = New Point(4, 24)
+        TabPage3.Name = "TabPage3"
+        TabPage3.Padding = New Padding(3)
+        TabPage3.Size = New Size(501, 403)
+        TabPage3.TabIndex = 0
+        TabPage3.Text = "Other Db Xrefs"
+        TabPage3.UseVisualStyleBackColor = True
+        ' 
         ' Button8
         ' 
         Button8.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
@@ -440,6 +756,15 @@ Partial Class FormMoleculeEditor
         Button8.TabIndex = 24
         Button8.Text = "Add"
         Button8.UseVisualStyleBackColor = True
+        ' 
+        ' Button5
+        ' 
+        Button5.Location = New Point(415, 12)
+        Button5.Name = "Button5"
+        Button5.Size = New Size(75, 23)
+        Button5.TabIndex = 20
+        Button5.Text = "Save"
+        Button5.UseVisualStyleBackColor = True
         ' 
         ' TextBox6
         ' 
@@ -458,15 +783,6 @@ Partial Class FormMoleculeEditor
         ComboBox3.Name = "ComboBox3"
         ComboBox3.Size = New Size(93, 23)
         ComboBox3.TabIndex = 21
-        ' 
-        ' Button5
-        ' 
-        Button5.Location = New Point(415, 12)
-        Button5.Name = "Button5"
-        Button5.Size = New Size(75, 23)
-        Button5.TabIndex = 20
-        Button5.Text = "Save"
-        Button5.UseVisualStyleBackColor = True
         ' 
         ' GroupBox3
         ' 
@@ -620,20 +936,20 @@ Partial Class FormMoleculeEditor
         DataGridView2.AllowUserToAddRows = False
         DataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
         DataGridView2.Columns.AddRange(New DataGridViewColumn() {Column3, Column4})
-        DataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.BackColor = SystemColors.Window
-        DataGridViewCellStyle2.Font = New Font("Cambria", 8.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle2.ForeColor = SystemColors.ControlText
-        DataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight
-        DataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText
-        DataGridViewCellStyle2.WrapMode = DataGridViewTriState.False
-        DataGridView2.DefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle1.BackColor = SystemColors.Window
+        DataGridViewCellStyle1.Font = New Font("Cambria", 8.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle1.ForeColor = SystemColors.ControlText
+        DataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = DataGridViewTriState.False
+        DataGridView2.DefaultCellStyle = DataGridViewCellStyle1
         DataGridView2.Dock = DockStyle.Fill
         DataGridView2.Location = New Point(0, 0)
         DataGridView2.Name = "DataGridView2"
         DataGridView2.RowTemplate.Height = 23
         DataGridView2.SelectionMode = DataGridViewSelectionMode.FullRowSelect
-        DataGridView2.Size = New Size(2182, 518)
+        DataGridView2.Size = New Size(1850, 541)
         DataGridView2.TabIndex = 28
         ' 
         ' Column3
@@ -665,8 +981,8 @@ Partial Class FormMoleculeEditor
         ' 
         SplitContainer1.Panel2.Controls.Add(DataGridView3)
         SplitContainer1.Panel2.Controls.Add(TextBox7)
-        SplitContainer1.Size = New Size(2182, 949)
-        SplitContainer1.SplitterDistance = 518
+        SplitContainer1.Size = New Size(1850, 992)
+        SplitContainer1.SplitterDistance = 541
         SplitContainer1.TabIndex = 30
         ' 
         ' DataGridView3
@@ -680,7 +996,7 @@ Partial Class FormMoleculeEditor
         DataGridView3.Name = "DataGridView3"
         DataGridView3.RowTemplate.Height = 23
         DataGridView3.SelectionMode = DataGridViewSelectionMode.FullRowSelect
-        DataGridView3.Size = New Size(2182, 337)
+        DataGridView3.Size = New Size(1850, 357)
         DataGridView3.TabIndex = 29
         ' 
         ' Column6
@@ -740,7 +1056,7 @@ Partial Class FormMoleculeEditor
         TextBox7.Multiline = True
         TextBox7.Name = "TextBox7"
         TextBox7.ReadOnly = True
-        TextBox7.Size = New Size(2182, 90)
+        TextBox7.Size = New Size(1850, 90)
         TextBox7.TabIndex = 30
         ' 
         ' ToolStrip1
@@ -816,326 +1132,10 @@ Partial Class FormMoleculeEditor
         TabPage2.Location = New Point(4, 24)
         TabPage2.Name = "TabPage2"
         TabPage2.Padding = New Padding(3)
-        TabPage2.Size = New Size(2188, 955)
+        TabPage2.Size = New Size(1856, 998)
         TabPage2.TabIndex = 1
         TabPage2.Text = "Related Metabolic Network"
         TabPage2.UseVisualStyleBackColor = True
-        ' 
-        ' TabControl2
-        ' 
-        TabControl2.Controls.Add(TabPage4)
-        TabControl2.Controls.Add(TabPage3)
-        TabControl2.Dock = DockStyle.Fill
-        TabControl2.Location = New Point(3, 19)
-        TabControl2.Name = "TabControl2"
-        TabControl2.SelectedIndex = 0
-        TabControl2.Size = New Size(509, 431)
-        TabControl2.TabIndex = 25
-        ' 
-        ' TabPage3
-        ' 
-        TabPage3.Controls.Add(DataGridView1)
-        TabPage3.Controls.Add(Button8)
-        TabPage3.Controls.Add(Button5)
-        TabPage3.Controls.Add(TextBox6)
-        TabPage3.Controls.Add(ComboBox3)
-        TabPage3.Location = New Point(4, 24)
-        TabPage3.Name = "TabPage3"
-        TabPage3.Padding = New Padding(3)
-        TabPage3.Size = New Size(501, 403)
-        TabPage3.TabIndex = 0
-        TabPage3.Text = "Other Db Xrefs"
-        TabPage3.UseVisualStyleBackColor = True
-        ' 
-        ' TabPage4
-        ' 
-        TabPage4.Controls.Add(Button18)
-        TabPage4.Controls.Add(txtWikipediaID)
-        TabPage4.Controls.Add(Button17)
-        TabPage4.Controls.Add(txtMeshID)
-        TabPage4.Controls.Add(Button16)
-        TabPage4.Controls.Add(txtBioCYCID)
-        TabPage4.Controls.Add(Button15)
-        TabPage4.Controls.Add(txtDrugBankID)
-        TabPage4.Controls.Add(Button14)
-        TabPage4.Controls.Add(txtKEGGID)
-        TabPage4.Controls.Add(Button13)
-        TabPage4.Controls.Add(txtLipidMapsID)
-        TabPage4.Controls.Add(Button12)
-        TabPage4.Controls.Add(txtHMDBID)
-        TabPage4.Controls.Add(Button11)
-        TabPage4.Controls.Add(txtCHEBIID)
-        TabPage4.Controls.Add(Button10)
-        TabPage4.Controls.Add(txtPubChemCID)
-        TabPage4.Controls.Add(Label17)
-        TabPage4.Controls.Add(Label16)
-        TabPage4.Controls.Add(Label15)
-        TabPage4.Controls.Add(Label14)
-        TabPage4.Controls.Add(Label13)
-        TabPage4.Controls.Add(Label12)
-        TabPage4.Controls.Add(Label11)
-        TabPage4.Controls.Add(Label10)
-        TabPage4.Controls.Add(Button9)
-        TabPage4.Controls.Add(txtCASID)
-        TabPage4.Controls.Add(Label9)
-        TabPage4.Controls.Add(Label3)
-        TabPage4.Location = New Point(4, 24)
-        TabPage4.Name = "TabPage4"
-        TabPage4.Padding = New Padding(3)
-        TabPage4.Size = New Size(501, 403)
-        TabPage4.TabIndex = 1
-        TabPage4.Text = "Main Db Xrefs"
-        TabPage4.UseVisualStyleBackColor = True
-        ' 
-        ' Label3
-        ' 
-        Label3.AutoSize = True
-        Label3.Location = New Point(52, 17)
-        Label3.Name = "Label3"
-        Label3.Size = New Size(46, 15)
-        Label3.TabIndex = 0
-        Label3.Text = "CAS ID:"
-        ' 
-        ' Label9
-        ' 
-        Label9.AutoSize = True
-        Label9.Location = New Point(13, 58)
-        Label9.Name = "Label9"
-        Label9.Size = New Size(85, 15)
-        Label9.TabIndex = 1
-        Label9.Text = "PubChem CID:"
-        ' 
-        ' txtCASID
-        ' 
-        txtCASID.Location = New Point(115, 14)
-        txtCASID.Name = "txtCASID"
-        txtCASID.Size = New Size(276, 23)
-        txtCASID.TabIndex = 2
-        ' 
-        ' Button9
-        ' 
-        Button9.Location = New Point(417, 13)
-        Button9.Name = "Button9"
-        Button9.Size = New Size(75, 23)
-        Button9.TabIndex = 3
-        Button9.Text = "Save"
-        Button9.UseVisualStyleBackColor = True
-        ' 
-        ' Label10
-        ' 
-        Label10.AutoSize = True
-        Label10.Location = New Point(40, 95)
-        Label10.Name = "Label10"
-        Label10.Size = New Size(55, 15)
-        Label10.TabIndex = 4
-        Label10.Text = "ChEBI ID:"
-        ' 
-        ' Label11
-        ' 
-        Label11.AutoSize = True
-        Label11.Location = New Point(36, 134)
-        Label11.Name = "Label11"
-        Label11.Size = New Size(59, 15)
-        Label11.TabIndex = 5
-        Label11.Text = "HMDB ID:"
-        ' 
-        ' Label12
-        ' 
-        Label12.AutoSize = True
-        Label12.Location = New Point(16, 174)
-        Label12.Name = "Label12"
-        Label12.Size = New Size(82, 15)
-        Label12.TabIndex = 6
-        Label12.Text = "LipidMAPS ID:"
-        ' 
-        ' Label13
-        ' 
-        Label13.AutoSize = True
-        Label13.Location = New Point(45, 214)
-        Label13.Name = "Label13"
-        Label13.Size = New Size(53, 15)
-        Label13.TabIndex = 7
-        Label13.Text = "KEGG ID:"
-        ' 
-        ' Label14
-        ' 
-        Label14.AutoSize = True
-        Label14.Location = New Point(22, 250)
-        Label14.Name = "Label14"
-        Label14.Size = New Size(76, 15)
-        Label14.TabIndex = 8
-        Label14.Text = "DrugBank ID:"
-        ' 
-        ' Label15
-        ' 
-        Label15.AutoSize = True
-        Label15.Location = New Point(51, 289)
-        Label15.Name = "Label15"
-        Label15.Size = New Size(47, 15)
-        Label15.TabIndex = 9
-        Label15.Text = "BioCyc:"
-        ' 
-        ' Label16
-        ' 
-        Label16.AutoSize = True
-        Label16.Location = New Point(42, 327)
-        Label16.Name = "Label16"
-        Label16.Size = New Size(56, 15)
-        Label16.TabIndex = 10
-        Label16.Text = "MeSH ID:"
-        ' 
-        ' Label17
-        ' 
-        Label17.AutoSize = True
-        Label17.Location = New Point(36, 364)
-        Label17.Name = "Label17"
-        Label17.Size = New Size(62, 15)
-        Label17.TabIndex = 11
-        Label17.Text = "Wikipedia:"
-        ' 
-        ' Button10
-        ' 
-        Button10.Location = New Point(417, 54)
-        Button10.Name = "Button10"
-        Button10.Size = New Size(75, 23)
-        Button10.TabIndex = 13
-        Button10.Text = "Save"
-        Button10.UseVisualStyleBackColor = True
-        ' 
-        ' txtPubChemCID
-        ' 
-        txtPubChemCID.Location = New Point(115, 55)
-        txtPubChemCID.Name = "txtPubChemCID"
-        txtPubChemCID.Size = New Size(276, 23)
-        txtPubChemCID.TabIndex = 12
-        ' 
-        ' Button11
-        ' 
-        Button11.Location = New Point(417, 94)
-        Button11.Name = "Button11"
-        Button11.Size = New Size(75, 23)
-        Button11.TabIndex = 15
-        Button11.Text = "Save"
-        Button11.UseVisualStyleBackColor = True
-        ' 
-        ' txtCHEBIID
-        ' 
-        txtCHEBIID.Location = New Point(115, 95)
-        txtCHEBIID.Name = "txtCHEBIID"
-        txtCHEBIID.Size = New Size(276, 23)
-        txtCHEBIID.TabIndex = 14
-        ' 
-        ' Button12
-        ' 
-        Button12.Location = New Point(417, 133)
-        Button12.Name = "Button12"
-        Button12.Size = New Size(75, 23)
-        Button12.TabIndex = 17
-        Button12.Text = "Save"
-        Button12.UseVisualStyleBackColor = True
-        ' 
-        ' txtHMDBID
-        ' 
-        txtHMDBID.Location = New Point(115, 134)
-        txtHMDBID.Name = "txtHMDBID"
-        txtHMDBID.Size = New Size(276, 23)
-        txtHMDBID.TabIndex = 16
-        ' 
-        ' Button13
-        ' 
-        Button13.Location = New Point(417, 173)
-        Button13.Name = "Button13"
-        Button13.Size = New Size(75, 23)
-        Button13.TabIndex = 19
-        Button13.Text = "Save"
-        Button13.UseVisualStyleBackColor = True
-        ' 
-        ' txtLipidMapsID
-        ' 
-        txtLipidMapsID.Location = New Point(115, 174)
-        txtLipidMapsID.Name = "txtLipidMapsID"
-        txtLipidMapsID.Size = New Size(276, 23)
-        txtLipidMapsID.TabIndex = 18
-        ' 
-        ' Button14
-        ' 
-        Button14.Location = New Point(417, 213)
-        Button14.Name = "Button14"
-        Button14.Size = New Size(75, 23)
-        Button14.TabIndex = 21
-        Button14.Text = "Save"
-        Button14.UseVisualStyleBackColor = True
-        ' 
-        ' txtKEGGID
-        ' 
-        txtKEGGID.Location = New Point(115, 214)
-        txtKEGGID.Name = "txtKEGGID"
-        txtKEGGID.Size = New Size(276, 23)
-        txtKEGGID.TabIndex = 20
-        ' 
-        ' Button15
-        ' 
-        Button15.Location = New Point(417, 249)
-        Button15.Name = "Button15"
-        Button15.Size = New Size(75, 23)
-        Button15.TabIndex = 23
-        Button15.Text = "Save"
-        Button15.UseVisualStyleBackColor = True
-        ' 
-        ' txtDrugBankID
-        ' 
-        txtDrugBankID.Location = New Point(115, 250)
-        txtDrugBankID.Name = "txtDrugBankID"
-        txtDrugBankID.Size = New Size(276, 23)
-        txtDrugBankID.TabIndex = 22
-        ' 
-        ' Button16
-        ' 
-        Button16.Location = New Point(417, 288)
-        Button16.Name = "Button16"
-        Button16.Size = New Size(75, 23)
-        Button16.TabIndex = 25
-        Button16.Text = "Save"
-        Button16.UseVisualStyleBackColor = True
-        ' 
-        ' txtBioCYCID
-        ' 
-        txtBioCYCID.Location = New Point(115, 289)
-        txtBioCYCID.Name = "txtBioCYCID"
-        txtBioCYCID.Size = New Size(276, 23)
-        txtBioCYCID.TabIndex = 24
-        ' 
-        ' Button17
-        ' 
-        Button17.Location = New Point(417, 326)
-        Button17.Name = "Button17"
-        Button17.Size = New Size(75, 23)
-        Button17.TabIndex = 27
-        Button17.Text = "Save"
-        Button17.UseVisualStyleBackColor = True
-        ' 
-        ' txtMeshID
-        ' 
-        txtMeshID.Location = New Point(115, 327)
-        txtMeshID.Name = "txtMeshID"
-        txtMeshID.Size = New Size(276, 23)
-        txtMeshID.TabIndex = 26
-        ' 
-        ' Button18
-        ' 
-        Button18.Location = New Point(417, 363)
-        Button18.Name = "Button18"
-        Button18.Size = New Size(75, 23)
-        Button18.TabIndex = 29
-        Button18.Text = "Save"
-        Button18.UseVisualStyleBackColor = True
-        ' 
-        ' txtWikipediaID
-        ' 
-        txtWikipediaID.Location = New Point(115, 364)
-        txtWikipediaID.Name = "txtWikipediaID"
-        txtWikipediaID.Size = New Size(276, 23)
-        txtWikipediaID.TabIndex = 28
         ' 
         ' FormMoleculeEditor
         ' 
@@ -1159,6 +1159,11 @@ Partial Class FormMoleculeEditor
         Panel3.ResumeLayout(False)
         Panel3.PerformLayout()
         GroupBox2.ResumeLayout(False)
+        TabControl2.ResumeLayout(False)
+        TabPage4.ResumeLayout(False)
+        TabPage4.PerformLayout()
+        TabPage3.ResumeLayout(False)
+        TabPage3.PerformLayout()
         GroupBox3.ResumeLayout(False)
         GroupBox3.PerformLayout()
         GroupBox4.ResumeLayout(False)
@@ -1182,11 +1187,6 @@ Partial Class FormMoleculeEditor
         TabControl1.ResumeLayout(False)
         TabPage1.ResumeLayout(False)
         TabPage2.ResumeLayout(False)
-        TabControl2.ResumeLayout(False)
-        TabPage3.ResumeLayout(False)
-        TabPage3.PerformLayout()
-        TabPage4.ResumeLayout(False)
-        TabPage4.PerformLayout()
         ResumeLayout(False)
         PerformLayout()
 
