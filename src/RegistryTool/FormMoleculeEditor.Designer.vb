@@ -91,10 +91,12 @@ Partial Class FormMoleculeEditor
         Label9 = New Label()
         Label3 = New Label()
         TabPage3 = New TabPage()
-        Button8 = New Button()
+        Panel5 = New Panel()
         Button5 = New Button()
-        TextBox6 = New TextBox()
+        Panel4 = New Panel()
+        Button8 = New Button()
         ComboBox3 = New ComboBox()
+        TextBox6 = New TextBox()
         GroupBox3 = New GroupBox()
         TextBox5 = New TextBox()
         Label1 = New Label()
@@ -132,8 +134,6 @@ Partial Class FormMoleculeEditor
         TabControl1 = New TabControl()
         TabPage1 = New TabPage()
         TabPage2 = New TabPage()
-        Panel4 = New Panel()
-        Panel5 = New Panel()
         CType(DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
         ContextMenuStrip3.SuspendLayout()
         CType(WebView21, ComponentModel.ISupportInitialize).BeginInit()
@@ -144,6 +144,8 @@ Partial Class FormMoleculeEditor
         TabControl2.SuspendLayout()
         TabPage4.SuspendLayout()
         TabPage3.SuspendLayout()
+        Panel5.SuspendLayout()
+        Panel4.SuspendLayout()
         GroupBox3.SuspendLayout()
         GroupBox4.SuspendLayout()
         GroupBox5.SuspendLayout()
@@ -163,25 +165,23 @@ Partial Class FormMoleculeEditor
         TabControl1.SuspendLayout()
         TabPage1.SuspendLayout()
         TabPage2.SuspendLayout()
-        Panel4.SuspendLayout()
-        Panel5.SuspendLayout()
         SuspendLayout()
         ' 
         ' DataGridView1
         ' 
         DataGridView1.AllowUserToAddRows = False
-        DataGridView1.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left
         DataGridView1.BackgroundColor = Color.LightGray
         DataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
         DataGridView1.Columns.AddRange(New DataGridViewColumn() {Column1, Column2})
         DataGridView1.ContextMenuStrip = ContextMenuStrip3
-        DataGridView1.Location = New Point(7, 7)
+        DataGridView1.Dock = DockStyle.Left
+        DataGridView1.Location = New Point(0, 0)
         DataGridView1.Name = "DataGridView1"
         DataGridView1.ReadOnly = True
         DataGridView1.RowTemplate.Height = 23
         DataGridView1.ScrollBars = ScrollBars.Vertical
         DataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect
-        DataGridView1.Size = New Size(396, 341)
+        DataGridView1.Size = New Size(406, 354)
         DataGridView1.TabIndex = 0
         ' 
         ' Column1
@@ -748,15 +748,15 @@ Partial Class FormMoleculeEditor
         TabPage3.Text = "Other Db Xrefs"
         TabPage3.UseVisualStyleBackColor = True
         ' 
-        ' Button8
+        ' Panel5
         ' 
-        Button8.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
-        Button8.Location = New Point(333, 8)
-        Button8.Name = "Button8"
-        Button8.Size = New Size(73, 23)
-        Button8.TabIndex = 24
-        Button8.Text = "Add"
-        Button8.UseVisualStyleBackColor = True
+        Panel5.Controls.Add(DataGridView1)
+        Panel5.Controls.Add(Button5)
+        Panel5.Dock = DockStyle.Fill
+        Panel5.Location = New Point(3, 3)
+        Panel5.Name = "Panel5"
+        Panel5.Size = New Size(495, 354)
+        Panel5.TabIndex = 26
         ' 
         ' Button5
         ' 
@@ -767,13 +767,26 @@ Partial Class FormMoleculeEditor
         Button5.Text = "Save"
         Button5.UseVisualStyleBackColor = True
         ' 
-        ' TextBox6
+        ' Panel4
         ' 
-        TextBox6.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
-        TextBox6.Location = New Point(109, 9)
-        TextBox6.Name = "TextBox6"
-        TextBox6.Size = New Size(218, 23)
-        TextBox6.TabIndex = 23
+        Panel4.Controls.Add(Button8)
+        Panel4.Controls.Add(ComboBox3)
+        Panel4.Controls.Add(TextBox6)
+        Panel4.Dock = DockStyle.Bottom
+        Panel4.Location = New Point(3, 357)
+        Panel4.Name = "Panel4"
+        Panel4.Size = New Size(495, 43)
+        Panel4.TabIndex = 25
+        ' 
+        ' Button8
+        ' 
+        Button8.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
+        Button8.Location = New Point(333, 8)
+        Button8.Name = "Button8"
+        Button8.Size = New Size(73, 23)
+        Button8.TabIndex = 24
+        Button8.Text = "Add"
+        Button8.UseVisualStyleBackColor = True
         ' 
         ' ComboBox3
         ' 
@@ -784,6 +797,14 @@ Partial Class FormMoleculeEditor
         ComboBox3.Name = "ComboBox3"
         ComboBox3.Size = New Size(93, 23)
         ComboBox3.TabIndex = 21
+        ' 
+        ' TextBox6
+        ' 
+        TextBox6.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
+        TextBox6.Location = New Point(109, 9)
+        TextBox6.Name = "TextBox6"
+        TextBox6.Size = New Size(218, 23)
+        TextBox6.TabIndex = 23
         ' 
         ' GroupBox3
         ' 
@@ -1138,27 +1159,6 @@ Partial Class FormMoleculeEditor
         TabPage2.Text = "Related Metabolic Network"
         TabPage2.UseVisualStyleBackColor = True
         ' 
-        ' Panel4
-        ' 
-        Panel4.Controls.Add(Button8)
-        Panel4.Controls.Add(ComboBox3)
-        Panel4.Controls.Add(TextBox6)
-        Panel4.Dock = DockStyle.Bottom
-        Panel4.Location = New Point(3, 357)
-        Panel4.Name = "Panel4"
-        Panel4.Size = New Size(495, 43)
-        Panel4.TabIndex = 25
-        ' 
-        ' Panel5
-        ' 
-        Panel5.Controls.Add(DataGridView1)
-        Panel5.Controls.Add(Button5)
-        Panel5.Dock = DockStyle.Fill
-        Panel5.Location = New Point(3, 3)
-        Panel5.Name = "Panel5"
-        Panel5.Size = New Size(495, 354)
-        Panel5.TabIndex = 26
-        ' 
         ' FormMoleculeEditor
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
@@ -1185,6 +1185,9 @@ Partial Class FormMoleculeEditor
         TabPage4.ResumeLayout(False)
         TabPage4.PerformLayout()
         TabPage3.ResumeLayout(False)
+        Panel5.ResumeLayout(False)
+        Panel4.ResumeLayout(False)
+        Panel4.PerformLayout()
         GroupBox3.ResumeLayout(False)
         GroupBox3.PerformLayout()
         GroupBox4.ResumeLayout(False)
@@ -1208,9 +1211,6 @@ Partial Class FormMoleculeEditor
         TabControl1.ResumeLayout(False)
         TabPage1.ResumeLayout(False)
         TabPage2.ResumeLayout(False)
-        Panel4.ResumeLayout(False)
-        Panel4.PerformLayout()
-        Panel5.ResumeLayout(False)
         ResumeLayout(False)
         PerformLayout()
 
