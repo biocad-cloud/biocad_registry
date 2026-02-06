@@ -59,13 +59,7 @@ Public Class FormMoleculeTable
             q = q.where(qwhere)
         End If
 
-        Dim data = Await Task.Run(Function() q.limit(offset, page_size).distinct.select(Of MoleculeData)("molecule.id AS molecule_id",
-        "xref_id",
-        "name",
-        "formula",
-        "mass",
-        "sequence",
-        "note"))
+        Dim data = Await Task.Run(Function() q.limit(offset, page_size).distinct.select(Of MoleculeData)("metabolites.*", "smiles"))
 
         Call DataGridView1.Rows.Clear()
 
