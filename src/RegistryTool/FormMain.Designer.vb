@@ -54,13 +54,13 @@ Partial Class FormMain
         ImportsToolStripMenuItem = New ToolStripMenuItem()
         GenBankToolStripMenuItem = New ToolStripMenuItem()
         PubMedKnowledgeToolStripMenuItem = New ToolStripMenuItem()
+        PubChemIDToolStripMenuItem = New ToolStripMenuItem()
         WindowsToolStripMenuItem = New ToolStripMenuItem()
         CloseAllToolStripMenuItem = New ToolStripMenuItem()
         StatusStrip1 = New StatusStrip()
         ToolStripStatusLabel1 = New ToolStripStatusLabel()
         m_dockPanel = New Microsoft.VisualStudio.WinForms.Docking.DockPanel()
         VisualStudioToolStripExtender1 = New Microsoft.VisualStudio.WinForms.Docking.VisualStudioToolStripExtender(components)
-        PubChemIDToolStripMenuItem = New ToolStripMenuItem()
         MenuStrip1.SuspendLayout()
         StatusStrip1.SuspendLayout()
         SuspendLayout()
@@ -71,7 +71,7 @@ Partial Class FormMain
         MenuStrip1.Location = New Point(0, 0)
         MenuStrip1.Name = "MenuStrip1"
         MenuStrip1.Padding = New Padding(7, 2, 0, 2)
-        MenuStrip1.Size = New Size(836, 24)
+        MenuStrip1.Size = New Size(1028, 24)
         MenuStrip1.TabIndex = 1
         MenuStrip1.Text = "MenuStrip1"
         ' 
@@ -257,6 +257,12 @@ Partial Class FormMain
         PubMedKnowledgeToolStripMenuItem.Size = New Size(181, 22)
         PubMedKnowledgeToolStripMenuItem.Text = "PubMed Knowledge"
         ' 
+        ' PubChemIDToolStripMenuItem
+        ' 
+        PubChemIDToolStripMenuItem.Name = "PubChemIDToolStripMenuItem"
+        PubChemIDToolStripMenuItem.Size = New Size(181, 22)
+        PubChemIDToolStripMenuItem.Text = "PubChem ID"
+        ' 
         ' WindowsToolStripMenuItem
         ' 
         WindowsToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {CloseAllToolStripMenuItem})
@@ -273,10 +279,10 @@ Partial Class FormMain
         ' StatusStrip1
         ' 
         StatusStrip1.Items.AddRange(New ToolStripItem() {ToolStripStatusLabel1})
-        StatusStrip1.Location = New Point(0, 405)
+        StatusStrip1.Location = New Point(0, 553)
         StatusStrip1.Name = "StatusStrip1"
         StatusStrip1.Padding = New Padding(1, 0, 16, 0)
-        StatusStrip1.Size = New Size(836, 22)
+        StatusStrip1.Size = New Size(1028, 22)
         StatusStrip1.TabIndex = 3
         StatusStrip1.Text = "StatusStrip1"
         ' 
@@ -292,24 +298,18 @@ Partial Class FormMain
         m_dockPanel.Location = New Point(0, 24)
         m_dockPanel.Margin = New Padding(4)
         m_dockPanel.Name = "m_dockPanel"
-        m_dockPanel.Size = New Size(836, 381)
+        m_dockPanel.Size = New Size(1028, 529)
         m_dockPanel.TabIndex = 4
         ' 
         ' VisualStudioToolStripExtender1
         ' 
         VisualStudioToolStripExtender1.DefaultRenderer = Nothing
         ' 
-        ' PubChemIDToolStripMenuItem
-        ' 
-        PubChemIDToolStripMenuItem.Name = "PubChemIDToolStripMenuItem"
-        PubChemIDToolStripMenuItem.Size = New Size(181, 22)
-        PubChemIDToolStripMenuItem.Text = "PubChem ID"
-        ' 
         ' FormMain
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(836, 427)
+        ClientSize = New Size(1028, 575)
         Controls.Add(m_dockPanel)
         Controls.Add(StatusStrip1)
         Controls.Add(MenuStrip1)
