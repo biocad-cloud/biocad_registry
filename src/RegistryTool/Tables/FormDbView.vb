@@ -172,7 +172,7 @@ Public Class FormDbView
             Dim id As UInteger = CUInt(target.Cells(0).Value)
             Dim note As String = TaskProgress.LoadData(Of String)(
                 Function(p As ITaskProgress)
-                    Dim msg As DeepSeekResponse = TaskProgress.LoadData(Function(println As Action(Of String)) MyApplication.ollama.Chat(prompt_text).GetAwaiter.GetResult)
+                    Dim msg As DeepSeekResponse = MyApplication.ollama.Chat(prompt_text).GetAwaiter.GetResult
                     Dim markdown As New MarkdownRender
 
                     If Not msg Is Nothing Then
