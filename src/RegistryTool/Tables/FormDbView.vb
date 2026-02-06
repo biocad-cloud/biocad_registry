@@ -184,7 +184,7 @@ Public Class FormDbView
                     Else
                         Return ""
                     End If
-                End Function, title:="LLMs talk", info:="Generates the LLM note...")
+                End Function, title:="LLMs talk: Generates the LLM note...", info:=prompt_text)
 
             Call _table.where(field("id") = id).save(field("note") = note)
         End If
