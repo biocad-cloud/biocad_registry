@@ -225,15 +225,17 @@ Partial Class FormMoleculeTable
         ' 
         ' Column1
         ' 
-        Column1.HeaderText = "metabolite_id"
+        Column1.HeaderText = "id"
         Column1.Name = "Column1"
         Column1.ReadOnly = True
+        Column1.Width = 65
         ' 
         ' Column2
         ' 
         Column2.HeaderText = "main_id"
         Column2.Name = "Column2"
         Column2.ReadOnly = True
+        Column2.Width = 65
         ' 
         ' Column3
         ' 
@@ -315,6 +317,7 @@ Partial Class FormMoleculeTable
         ' 
         ' Column6
         ' 
+        Column6.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
         Column6.HeaderText = "smiles"
         Column6.Name = "Column6"
         Column6.ReadOnly = True
