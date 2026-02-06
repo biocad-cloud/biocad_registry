@@ -18,7 +18,8 @@ Module Program
 
     Sub Main(args As String())
         ' Call removesInvalidNameChars()
-        Call fixMoNANames()
+        ' Call fixMoNANames()
+        Call idSplit.splitCAS_id()
     End Sub
 
     Sub fixMoNANames()

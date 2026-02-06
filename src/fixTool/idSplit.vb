@@ -4,13 +4,12 @@ Imports registry_data
 
 Public Module idSplit
 
-    Public Sub splitJointID()
+    Public Sub splitJointID(db As UInteger, split_regex$, ParamArray q As FieldAssert())
         Dim page_size As Integer = 1000
-        Dim db As UInteger = registry.biocad_vocabulary.db_cas
 
         Do While True
-            Dim list = registry.db_xrefs _
-                .where(field("db_name") = db, field("db_xref").instr(" ")) _
+            Dim list As biocad_registryModel.db_xrefs() = registry.db_xrefs _
+                .where(q) _
                 .limit(page_size) _
                 .select(Of biocad_registryModel.db_xrefs)
 
@@ -21,9 +20,9 @@ Public Module idSplit
             Dim id_trans = registry.db_xrefs.open_transaction.ignore
 
             For Each invalid In TqdmWrapper.Wrap(list)
-                Dim newIds = invalid.db_xref.StringSplit("\s+") ' \s*,\s*
+                Dim newIds = invalid.db_xref.StringSplit(split_regex)
 
-                For Each newId As String In newIds.Select(AddressOf Strings.Trim).Select(Function(idsplit) idsplit.Trim(","c))
+                For Each newId As String In newIds.Select(AddressOf Strings.Trim).Select(Function(idsplit) idsplit.Trim(","c, ";"c))
                     Dim exists = registry.db_xrefs.where(field("obj_id") = invalid.obj_id,
                                                          field("db_name") = db,
                                                          field("db_xref") = newId,
@@ -45,5 +44,11 @@ Public Module idSplit
 
             Call id_trans.commit()
         Loop
+    End Sub
+
+    Public Sub splitCAS_id()
+        Dim db As UInteger = registry.biocad_vocabulary.db_cas
+
+        Call splitJointID(db, "((\s)|[,;])+", field("db_name") = db, field("db_xref").instr(" ") Or field("db_xref").instr(",") Or field("db_xref").instr(";"))
     End Sub
 End Module

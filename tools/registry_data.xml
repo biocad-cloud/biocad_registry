@@ -80,6 +80,12 @@ registry_data
  Metabolic Role
  </summary>
 </member>
+<member name="P:registry_data.biocad_vocabulary.db_cas">
+ <summary>
+ CAS Registry Number
+ </summary>
+ <returns></returns>
+</member>
 <member name="P:registry_data.biocad_vocabulary.db_LLMs">
  <summary>
  LLM generated content data
