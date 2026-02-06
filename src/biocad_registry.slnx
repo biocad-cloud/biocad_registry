@@ -311,6 +311,10 @@
   <Project Path="biocad_registry/biocad_registry.vbproj">
     <Platform Solution="*|x64" Project="x64" />
   </Project>
+  <Project Path="fixTool/fixTool.vbproj">
+    <BuildType Solution="Rsharp_app_release|*" Project="Release" />
+    <Platform Solution="*|x64" Project="x64" />
+  </Project>
   <Project Path="RegistryTool/RegistryTool.vbproj">
     <BuildType Solution="Rsharp_app_release|*" Project="gcmodeller_desktop" />
     <Platform Solution="*|x64" Project="x64" />

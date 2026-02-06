@@ -1,16 +1,16 @@
-﻿Imports biocad_storage
-Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm
+﻿Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
+Imports registry_data
 
 Public Module idSplit
 
     Public Sub splitJointID()
         Dim page_size As Integer = 1000
-        Dim db = 283
+        Dim db As UInteger = registry.biocad_vocabulary.GetDatabaseResource("CAS").id
 
         Do While True
             Dim list = registry.db_xrefs _
-                .where(field("db_key") = db, field("xref").instr(" ")) _
+                .where(field("db_name") = db, field("db_xref").instr(" ")) _
                 .limit(page_size) _
                 .select(Of biocad_registryModel.db_xrefs)
 
@@ -21,17 +21,20 @@ Public Module idSplit
             Dim id_trans = registry.db_xrefs.open_transaction.ignore
 
             For Each invalid In TqdmWrapper.Wrap(list)
-                Dim newIds = invalid.xref.StringSplit("\s+") ' \s*,\s*
+                Dim newIds = invalid.db_xref.StringSplit("\s+") ' \s*,\s*
 
                 For Each newId In newIds.Select(AddressOf Strings.Trim)
                     Dim exists = registry.db_xrefs.where(field("obj_id") = invalid.obj_id,
-                                                         field("db_key") = db,
-                                                         field("xref") = newId).find(Of biocad_registryModel.db_xrefs)
+                                                         field("db_name") = db,
+                                                         field("db_xref") = newId,
+                                                         field("db_source") = invalid.db_source,
+                                                         field("type") = invalid.type).find(Of biocad_registryModel.db_xrefs)
                     If exists Is Nothing Then
-                        id_trans.add(
+                        id_trans.ignore.add(
                             field("obj_id") = invalid.obj_id,
-                            field("db_key") = db,
-                            field("xref") = newId,
+                            field("db_name") = db,
+                            field("db_xref") = newId,
+                            field("db_source") = invalid.db_source,
                             field("type") = invalid.type
                         )
                     End If
