@@ -13,14 +13,21 @@ Public Module ExportMetaboliteData
         Dim offset As UInteger
         Dim page As metabolites()
         Dim struct As struct_data
+        Dim q = {Not field(dbname).is_nothing, field(dbname) <> ""}
 
         For i As Integer = 1 To Integer.MaxValue
             offset = (i - 1) * page_size
-            page = registry.metabolites _
-                .where(Not field(dbname).is_nothing,
-                       field(dbname) <> "") _
-                .limit(offset, page_size) _
-                .select(Of metabolites)
+
+            If dbname.StringEmpty() Then
+                page = registry.metabolites _
+                    .limit(offset, page_size) _
+                    .select(Of metabolites)
+            Else
+                page = registry.metabolites _
+                    .where(q) _
+                    .limit(offset, page_size) _
+                    .select(Of metabolites)
+            End If
 
             For Each m As metabolites In page
                 struct = registry.struct_data _
