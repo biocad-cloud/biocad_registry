@@ -18,7 +18,7 @@ Module Program
 
     Sub Main(args As String())
         ' Call removesInvalidNameChars()
-        ' Call fixMoNANames()
+        Call fixMoNANames()
     End Sub
 
     Sub fixMoNANames()
@@ -33,14 +33,18 @@ WHERE
             cad_registry.db_xrefs
         WHERE
             db_name = 742)
-        AND INSTR(name, 'NCGC') = 1
+        AND (INSTR(name, 'NCGC') = 1 OR INSTR(name, 'MLS') = 1)
 ORDER BY id DESC"
 
         Dim q = registry.metabolites.getDriver.Query(Of biocad_registryModel.metabolites)(sel)
         Dim update_names = registry.metabolites.ignore.open_transaction
 
         For Each invalid In TqdmWrapper.Wrap(q)
-            Dim clean_name = invalid.name.StringReplace("NCGC\d+[-]\d+", "").Trim(" "c, "!"c, """"c, "-"c, "_"c)
+            Dim clean_name = invalid.name.StringReplace("((NCGC)|(MLS))\d+[-]\d+", "").Trim(" "c, "!"c, """"c, "-"c, "_"c)
+
+            If clean_name = "" Then
+                clean_name = invalid.name.Trim(" "c, "!"c, """"c, "-"c, "_"c)
+            End If
 
             If clean_name.StartsWith("(((Cl)|[CHONPS])\d*)+_", RegexICMul) Then
                 clean_name = clean_name.GetTagValue("_").Value

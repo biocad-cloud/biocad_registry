@@ -92,56 +92,8 @@ Module registry
             Return pull.getError
         End If
 
-        Dim db_mona As UInteger = registry.biocad_vocabulary.GetDatabaseResource("MoNA").id
-        Dim metabolite_type As UInteger = registry.biocad_vocabulary.metabolite_type
-
         For Each chunk As SpectraSection() In pull.populates(Of SpectraSection)(env).SplitIterator(5000)
-            For Each spectra As SpectraSection In TqdmWrapper.Wrap(chunk)
-                spectra.name = Strings.Trim(spectra.name).Trim(""""c, " "c, "'"c)
-
-                Dim clean_name As String = spectra.name
-
-                If clean_name.IsPattern("NCGC\d+[-]\d+[!].+") Then
-                    clean_name = clean_name.GetTagValue("!").Value.ToLower
-                End If
-
-                If clean_name.StartsWith("(((Cl)|[CHONPS])\d*){3,}_", RegexICMul) Then
-                    clean_name = clean_name.GetTagValue("_").Value
-                End If
-
-                If clean_name <> "" Then
-                    spectra.name = clean_name
-                End If
-
-                ' check mona id reference
-                Dim m As metabolites = registry.metabolites.getDriver.ExecuteScalar(Of biocad_registryModel.metabolites)($"
-SELECT 
-    *
-FROM
-    cad_registry.metabolites
-WHERE
-    id = (SELECT 
-            obj_id
-        FROM
-            db_xrefs
-        WHERE
-            type = {metabolite_type} AND db_name = {db_mona}
-                AND db_xref = '{spectra.ID}'
-                AND db_source = {db_mona}
-        LIMIT 1) LIMIT 1;")
-
-                If m Is Nothing Then
-                    m = registry.FindMolecule(spectra, "kegg_id", nameSearch:=True)
-                End If
-
-                If m Is Nothing Then
-                    Continue For
-                End If
-
-                Call registry.SaveDbLinks(spectra, m, db_mona, saveID:=True)
-                Call registry.SaveStructureData(m, spectra.xref.SMILES)
-                Call registry.SaveSynonyms(m, spectra.synonym.JoinIterates({spectra.name, spectra.IUPACName}).Distinct, db_mona)
-            Next
+            Call MoNADatabase.MakeImports(registry, chunk)
         Next
 
         Return Nothing
