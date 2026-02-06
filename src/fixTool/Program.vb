@@ -30,11 +30,18 @@ Module Program
                 Exit For
             End If
 
+            Dim update_names = registry.metabolites.ignore.open_transaction
+
             For Each item In TqdmWrapper.Wrap(q)
-                registry.metabolites _
+                Dim clean_name = item.name.Trim(""""c, "'"c, " "c)
+
+                Call update_names.add(registry.metabolites _
                     .where(field("id") = item.id) _
-                    .save(field("name") = item.name.Trim(""""c, "'"c, " "c))
+                    .save_sql(field("name") = clean_name,
+                              field("hashcode") = clean_name.ToLower.MD5))
             Next
+
+            Call update_names.commit()
 
             Call Console.WriteLine("------------")
         Next
