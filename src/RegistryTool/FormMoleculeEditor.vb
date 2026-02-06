@@ -75,6 +75,17 @@ let options = { width: 450, height: 300 };
     Private Async Sub FormMoleculeEditor_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If mol Is Nothing Then
             Throw New InvalidProgramException("Please load the molecule model data via load model method at first!")
+        Else
+            txtBioCYCID.Text = mol.biocyc
+            txtCASID.Text = mol.cas_id
+            txtCHEBIID.Text = mol.chebi_id
+            txtDrugBankID.Text = mol.drugbank_id
+            txtHMDBID.Text = mol.hmdb_id
+            txtKEGGID.Text = mol.kegg_id
+            txtLipidMapsID.Text = mol.lipidmaps_id
+            txtMeshID.Text = mol.mesh_id
+            txtPubChemCID.Text = mol.pubchem_cid
+            txtWikipediaID.Text = mol.wikipedia
         End If
 
         SMILES.MolecularFingerprint.Length = 1024

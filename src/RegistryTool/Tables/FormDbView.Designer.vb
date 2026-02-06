@@ -57,7 +57,7 @@ Partial Class FormDbView
         ToolStripButton1.ImageTransparentColor = Color.Magenta
         ToolStripButton1.Name = "ToolStripButton1"
         ToolStripButton1.Size = New Size(23, 22)
-        ToolStripButton1.Text = "ToolStripButton1"
+        ToolStripButton1.Text = "Refresh"
         ' 
         ' ToolStripButton2
         ' 
@@ -66,7 +66,7 @@ Partial Class FormDbView
         ToolStripButton2.ImageTransparentColor = Color.Magenta
         ToolStripButton2.Name = "ToolStripButton2"
         ToolStripButton2.Size = New Size(23, 22)
-        ToolStripButton2.Text = "ToolStripButton2"
+        ToolStripButton2.Text = "Export Table"
         ' 
         ' ToolStripSeparator1
         ' 
@@ -106,18 +106,18 @@ Partial Class FormDbView
         ' 
         ContextMenuStrip1.Items.AddRange(New ToolStripItem() {ViewToolStripMenuItem, UpdateNoteTextToolStripMenuItem})
         ContextMenuStrip1.Name = "ContextMenuStrip1"
-        ContextMenuStrip1.Size = New Size(181, 70)
+        ContextMenuStrip1.Size = New Size(166, 48)
         ' 
         ' ViewToolStripMenuItem
         ' 
         ViewToolStripMenuItem.Name = "ViewToolStripMenuItem"
-        ViewToolStripMenuItem.Size = New Size(180, 22)
+        ViewToolStripMenuItem.Size = New Size(165, 22)
         ViewToolStripMenuItem.Text = "View"
         ' 
         ' UpdateNoteTextToolStripMenuItem
         ' 
         UpdateNoteTextToolStripMenuItem.Name = "UpdateNoteTextToolStripMenuItem"
-        UpdateNoteTextToolStripMenuItem.Size = New Size(180, 22)
+        UpdateNoteTextToolStripMenuItem.Size = New Size(165, 22)
         UpdateNoteTextToolStripMenuItem.Text = "Update Note Text"
         ' 
         ' FormDbView

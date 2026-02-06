@@ -7,7 +7,7 @@ Public Class Tag
 
     <DatabaseField> Public Property term As String
     <DatabaseField> Public Property tag_id As UInteger
-    <DatabaseField> Public Property molecule_id As UInteger
+    <DatabaseField> Public Property molecule_id As Long
 
     Public Overrides Function ToString() As String
         Return term
