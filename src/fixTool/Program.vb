@@ -17,8 +17,8 @@ Module Program
     Friend ReadOnly registry As New biocad_registry(mysql)
 
     Sub Main(args As String())
-        Call removesInvalidNameChars()
-        Call fixMoNANames()
+        ' Call removesInvalidNameChars()
+        ' Call fixMoNANames()
     End Sub
 
     Sub fixMoNANames()
@@ -41,10 +41,17 @@ ORDER BY id DESC"
 
         For Each invalid In TqdmWrapper.Wrap(q)
             Dim clean_name = invalid.name.StringReplace("NCGC\d+[-]\d+", "").Trim(" "c, "!"c, """"c, "-"c, "_"c)
-            Call update_names.add(registry.metabolites _
-                   .where(field("id") = invalid.id) _
-                   .save_sql(field("name") = clean_name,
-                             field("hashcode") = clean_name.ToLower.MD5))
+
+            If clean_name.StartsWith("(((Cl)|[CHONPS])\d*)+_", RegexICMul) Then
+                clean_name = clean_name.GetTagValue("_").Value
+            End If
+
+            If clean_name <> "" Then
+                Call update_names.add(registry.metabolites _
+                       .where(field("id") = invalid.id) _
+                       .save_sql(field("name") = clean_name,
+                                 field("hashcode") = clean_name.ToLower.MD5))
+            End If
         Next
 
         Call update_names.commit()
