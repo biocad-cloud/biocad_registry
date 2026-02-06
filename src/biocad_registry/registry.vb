@@ -96,6 +96,12 @@ Module registry
 
         For Each chunk As SpectraSection() In pull.populates(Of SpectraSection)(env).SplitIterator(5000)
             For Each spectra As SpectraSection In TqdmWrapper.Wrap(chunk)
+                spectra.name = Strings.Trim(spectra.name).Trim(""""c, " "c)
+
+                If spectra.name.IsPattern("NCGC\d+[-]\d+[!].+") Then
+                    spectra.name = spectra.name.GetTagValue("!").Value.ToLower
+                End If
+
                 Dim m As metabolites = registry.FindMolecule(spectra, "kegg_id", nameSearch:=True)
 
                 If m Is Nothing Then
