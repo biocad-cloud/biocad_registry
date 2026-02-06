@@ -100,10 +100,23 @@
           "SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.Reference": "3.0.0.0",
           "SMRUCC.genomics.InteractionModel.Reference": "1.0.0.0",
           "SMRUCC.genomics.Model.MotifGraph.ProteinStructure.Reference": "1.0.0.0",
-          "SMRUCC.genomics.Visualize.Cytoscape.Reference": "1.0.0.0"
+          "SMRUCC.genomics.Visualize.Cytoscape.Reference": "1.0.0.0",
+          "runtimepack.Microsoft.Windows.SDK.NET.Ref": "10.0.17763.57"
         },
         "runtime": {
           "RegistryTool.dll": {}
+        }
+      },
+      "runtimepack.Microsoft.Windows.SDK.NET.Ref/10.0.17763.57": {
+        "runtime": {
+          "Microsoft.Windows.SDK.NET.dll": {
+            "assemblyVersion": "10.0.17763.38",
+            "fileVersion": "10.0.17763.55"
+          },
+          "WinRT.Runtime.dll": {
+            "assemblyVersion": "2.2.0.0",
+            "fileVersion": "2.2.0.48161"
+          }
         }
       },
       "BouncyCastle.Cryptography/2.6.2": {
@@ -2291,6 +2304,11 @@
   "libraries": {
     "RegistryTool/1.0.0": {
       "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "runtimepack.Microsoft.Windows.SDK.NET.Ref/10.0.17763.57": {
+      "type": "runtimepack",
       "serviceable": false,
       "sha512": ""
     },

@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net8.0-windows</TargetFramework>
+    <TargetFramework>net8.0-windows10.0.17763.0</TargetFramework>
     <StartupObject>RegistryTool.My.MyApplication</StartupObject>
     <UseWindowsForms>true</UseWindowsForms>
     <MyType>WindowsForms</MyType>
@@ -10,6 +10,8 @@
     <Configurations>Debug;Release;gcmodeller_desktop</Configurations>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <UseWPF>True</UseWPF>
+    <AssemblyTitle>BioCAD Registry Editor</AssemblyTitle>
     
   </PropertyGroup>
 
