@@ -1,9 +1,6 @@
 ﻿Imports BioNovoGene.BioDeep.Chemistry
-Imports BioNovoGene.BioDeep.Chemistry.MetaLib.CrossReference
 Imports BioNovoGene.BioDeep.Chemistry.MetaLib.Models
-Imports BioNovoGene.BioDeep.Chemistry.NCBI
 Imports BioNovoGene.BioDeep.Chemistry.NCBI.PubChem
-Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm
 Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.ComponentModel.Collection
@@ -11,7 +8,6 @@ Imports Microsoft.VisualBasic.Imaging.Driver
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Scripting.MetaData
 Imports Microsoft.VisualBasic.Serialization.BinaryDumping
-Imports Microsoft.VisualBasic.Text.Xml
 Imports Microsoft.VisualBasic.Text.Xml.Models
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports registry_data
@@ -22,7 +18,6 @@ Imports SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.SequenceLogo
 Imports SMRUCC.genomics.Assembly.KEGG
 Imports SMRUCC.genomics.Assembly.NCBI.GenBank
 Imports SMRUCC.genomics.Assembly.Uniprot.XML
-Imports SMRUCC.genomics.ComponentModel.EquaionModel
 Imports SMRUCC.genomics.Data.BioCyc
 Imports SMRUCC.genomics.Data.Regprecise
 Imports SMRUCC.genomics.SequenceModel.FASTA
@@ -167,129 +162,13 @@ Module registry
 
     <ExportAPI("imports_metacyc_reactions")>
     Public Function imports_metacyc_reactions(registry As biocad_registry, metacyc As Workspace) As Object
-        Dim reactions = metacyc.reactions.features.ToArray
-        Dim models = reactions _
-            .Where(Function(r) Not (r.left.IsNullOrEmpty OrElse r.right.IsNullOrEmpty)) _
-            .Select(Function(r)
-                        Dim left As SideCompound() = r.left.Select(Function(c) New SideCompound With {.side = "left", .compound = New CompoundSpecies(c.ID)}).ToArray
-                        Dim right As SideCompound() = r.right.Select(Function(c) New SideCompound With {.side = "right", .compound = New CompoundSpecies(c.ID)}).ToArray
-
-                        Return New SMRUCC.genomics.ComponentModel.EquaionModel.Reaction With {
-                            .entry = r.uniqueId,
-                            .comment = r.comment,
-                            .definition = r.commonName,
-                            .enzyme = r.ec_number.SafeQuery.Select(Function(e) e.ECNumberString).ToArray,
-                            .equation = r.equation,
-                            .compounds = left.JoinIterates(right).ToArray
-                        }
-                    End Function) _
-            .ToArray
-
-        Call registry.importsReactions(models, db_name:="BioCyc")
-
+        Call BioCycDatabase.ImportsMetaCycReactions(registry, metacyc)
         Return Nothing
     End Function
 
     <ExportAPI("imports_metacyc_compounds")>
     Public Function imports_metacyc(registry As biocad_registry, metacyc As Workspace) As Object
-        Dim vocabulary As biocad_vocabulary = registry.biocad_vocabulary
-        Dim metabolite_type As UInteger = vocabulary.GetRegistryEntity(biocad_vocabulary.EntityMetabolite).id
-        Dim db_metacyc As UInteger = vocabulary.db_biocyc
-        Dim superAtoms As New Index(Of String)
-        Dim compoundSet As AttrDataCollection(Of compounds) = metacyc.compounds
-
-        ' save ontology group
-        For Each cpd As compounds In compoundSet.features
-            If Not cpd.superAtoms.StringEmpty Then
-                Call superAtoms.Add(cpd.superAtoms)
-            End If
-        Next
-
-        Dim classIndex As New Dictionary(Of String, UInteger)
-
-        For Each id As String In TqdmWrapper.Wrap(superAtoms.Objects)
-            ' subclass
-            Dim subclass As compounds = compoundSet(id)
-            Dim classinfo As compounds = compoundSet(subclass.types.DefaultFirst)
-
-            Dim classNode As ontology = registry.ontology.where(field("term_id") = classinfo.uniqueId, field("ontology_id") = db_metacyc).find(Of ontology)
-            Dim subclassNode As ontology = registry.ontology.where(field("term_id") = subclass.uniqueId, field("ontology_id") = db_metacyc).find(Of ontology)
-
-            If classNode Is Nothing Then
-                Call registry.ontology.add(field("term_id") = classinfo.uniqueId, field("ontology_id") = db_metacyc, field("term") = classinfo.commonName, field("note") = classinfo.comment)
-                classNode = registry.ontology.where(field("term_id") = classinfo.uniqueId, field("ontology_id") = db_metacyc).find(Of ontology)
-            End If
-            If subclassNode Is Nothing Then
-                Call registry.ontology.add(field("term_id") = subclass.uniqueId, field("ontology_id") = db_metacyc, field("term") = subclass.commonName, field("note") = subclass.comment)
-                subclassNode = registry.ontology.where(field("term_id") = subclass.uniqueId, field("ontology_id") = db_metacyc).find(Of ontology)
-            End If
-
-            If classNode IsNot Nothing AndAlso subclassNode IsNot Nothing Then
-                classIndex(classNode.term_id) = classNode.id
-                classIndex(subclassNode.term_id) = subclassNode.id
-
-                If registry.ontology_relation.where(field("term_id") = subclassNode.id, field("is_a") = classNode.id).find(Of ontology_relation) Is Nothing Then
-                    registry.ontology_relation.add(field("term_id") = subclassNode.id, field("is_a") = classNode.id)
-                End If
-            End If
-        Next
-
-        For Each cpd As compounds In TqdmWrapper.Wrap(compoundSet.features.ToArray)
-            Dim formula As String = compounds.FormulaString(cpd)
-            Dim dblinks = compounds.GetDbLinks(cpd).ToArray
-            Dim dbgroups As Dictionary(Of String, String()) = dblinks _
-                .GroupBy(Function(a) a.DBName.ToLower) _
-                .ToDictionary(Function(a) a.Key,
-                              Function(a)
-                                  Return a.Select(Function(ai) ai.entry).ToArray
-                              End Function)
-            Dim meta As New MetaInfo With {
-                .ID = cpd.uniqueId,
-                .formula = formula,
-                .exact_mass = FormulaScanner.EvaluateExactMass(formula),
-                .description = cpd.comment,
-                .name = XmlEntity.UnescapeHTML(cpd.commonName),
-                .IUPACName = .name,
-                .synonym = cpd.synonyms _
-                    .SafeQuery _
-                    .Select(Function(name) XmlEntity.UnescapeHTML(name)) _
-                    .ToArray,
-                .xref = New xref With {
-                    .HMDB = dbgroups.TryGetValue("HMDB").DefaultFirst,
-                    .chebi = dbgroups.TryGetValue("CHEBI").DefaultFirst,
-                    .pubchem = dbgroups.TryGetValue("PUBCHEM").DefaultFirst,
-                    .Wikipedia = dbgroups.TryGetValue("|Wikipedia|").DefaultFirst,
-                    .CAS = dbgroups.TryGetValue("CAS"),
-                    .DrugBank = dbgroups.TryGetValue("DRUGBANK").DefaultFirst,
-                    .SMILES = cpd.SMILES,
-                    .MetaCyc = cpd.uniqueId
-                }
-            }
-
-            If meta.name = "" Then
-                meta.name = meta.ID
-            End If
-
-            Dim m As metabolites = registry.FindMolecule(meta, "biocyc", nameSearch:=True)
-            Dim term_id As ontology = Nothing
-
-            If Not cpd.superAtoms.StringEmpty Then
-                term_id = registry.ontology.where(field("term_id") = cpd.superAtoms).find(Of ontology)
-            End If
-
-            ' just ignores this error
-            If m Is Nothing Then
-                Continue For
-            End If
-            If term_id IsNot Nothing Then
-                Call registry.metabolite_class.add(field("metabolite_id") = m.id, field("class_id") = term_id.id)
-            End If
-
-            Call registry.SaveDbLinks(meta, m, db_metacyc)
-            Call registry.SaveStructureData(m, meta.xref.SMILES)
-            Call registry.SaveSynonyms(m, meta.synonym.JoinIterates({meta.name, meta.IUPACName}).Distinct, db_metacyc)
-        Next
-
+        Call BioCycDatabase.ImportsMetaCyc(registry, metacyc)
         Return Nothing
     End Function
 
