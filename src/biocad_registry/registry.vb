@@ -109,8 +109,8 @@ Module registry
                     clean_name = clean_name.GetTagValue("_").Value
                 End If
 
-                If clean_name = "" Then
-                    clean_name = spectra.name
+                If clean_name <> "" Then
+                    spectra.name = clean_name
                 End If
 
                 ' check mona id reference
