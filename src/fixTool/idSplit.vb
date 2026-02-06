@@ -20,7 +20,7 @@ Public Module idSplit
             Dim id_trans = registry.db_xrefs.open_transaction.ignore
 
             For Each invalid In TqdmWrapper.Wrap(list)
-                Dim newIds = invalid.db_xref.StringSplit(split_regex)
+                Dim newIds = invalid.db_xref.StringSplit(split_regex, trimTrailingEmptyStrings:=True)
 
                 For Each newId As String In newIds.Select(AddressOf Strings.Trim).Select(Function(idsplit) idsplit.Trim(","c, ";"c))
                     Dim exists = registry.db_xrefs.where(field("obj_id") = invalid.obj_id,
