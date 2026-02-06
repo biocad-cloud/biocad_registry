@@ -2059,8 +2059,8 @@ ATT I Ile      ACT T Thr   [rest of string was truncated]&quot;;.
  <summary>
  Parse the fasta header of the sequence from UniProt database.
  </summary>
- <param name="s$"></param>
- <param name="id$"></param>
+ <param name="s"></param>
+ <param name="id"></param>
  <returns></returns>
 </member>
 <member name="M:SMRUCC.genomics.Assembly.Uniprot.UniprotFasta.LoadFasta(System.String)">
@@ -9404,11 +9404,20 @@ ATT I Ile      ACT T Thr   [rest of string was truncated]&quot;;.
  <param name="path"></param>
  <returns></returns>
 </member>
-<member name="M:SMRUCC.genomics.Assembly.NCBI.GenBank.Extensions.ExportProteins(SMRUCC.genomics.Assembly.NCBI.GenBank.GBFF.File)">
+<member name="M:SMRUCC.genomics.Assembly.NCBI.GenBank.Extensions.ExportProteins(SMRUCC.genomics.Assembly.NCBI.GenBank.GBFF.File,System.Boolean)">
  <summary>
  Export protein sequence with full annotation.
  </summary>
  <param name="gbk"></param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Assembly.NCBI.GenBank.Extensions.ExportProteins(SMRUCC.genomics.Assembly.NCBI.GenBank.GBFF.File,Microsoft.VisualBasic.ComponentModel.DataSourceModel.Repository.StringTemplate,System.Boolean)">
+ <summary>
+ Export protein sequence with custom annotation title with given template.
+ </summary>
+ <param name="gb"></param>
+ <param name="headers">the fasta sequence header template</param>
+ <param name="filterEmpty"></param>
  <returns></returns>
 </member>
 <member name="M:SMRUCC.genomics.Assembly.NCBI.GenBank.Extensions.ExportProteins_Short(SMRUCC.genomics.Assembly.NCBI.GenBank.GBFF.File,System.Boolean,System.Boolean)">
@@ -15597,6 +15606,11 @@ to take away yo [rest of string was truncated]&quot;;.
  <returns></returns>
  <remarks>(获取某一条核酸序列的互补序列，但是新得到的序列并不会首尾反转，
  请注意，这个函数所输入的DNA序列字符串必须是大写字母的)</remarks>
+</member>
+<member name="M:SMRUCC.genomics.SequenceModel.NucleotideModels.NucleicAcid.GetReverseComplement(System.String)">
+ <summary>
+ 获取DNA序列的反向互补序列。
+ </summary>
 </member>
 <member name="M:SMRUCC.genomics.SequenceModel.NucleotideModels.NucleicAcid.Canonical(System.String)">
  <summary>

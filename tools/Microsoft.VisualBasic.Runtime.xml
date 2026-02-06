@@ -14503,6 +14503,11 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="newKey"></param>
  <param name="setHeapNode"></param>
 </member>
+<member name="M:Microsoft.VisualBasic.ComponentModel.Collection.RewindableEnumerator`1.Previous">
+ <summary>
+ 将枚举器回退一步，使得下一次 MoveNext() 再次返回当前元素。
+ </summary>
+</member>
 <member name="T:Microsoft.VisualBasic.ComponentModel.Collection.KeyValuePairExtensions">
  <summary>
  KeyValue pair data related extensions API.
@@ -34878,6 +34883,17 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
          elements in the list are less than the specified key.  Note
          that this guarantees that the return value will be &gt;= 0 if
          and only if the key is found. </returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Language.Java.Collections.retainAll``1(System.Collections.Generic.IList{``0},System.Collections.Generic.IEnumerable{``0})">
+ <summary>
+ 模拟 Java Collection 中的 retainAll 方法。
+ 仅保留当前集合中包含在指定集合中的元素（即求交集）。
+ 如果集合发生了更改，则返回 True。
+ </summary>
+ <typeparam name="T">集合元素类型</typeparam>
+ <param name="source">原集合（会被修改）</param>
+ <param name="itemsToKeep">要保留的元素集合</param>
+ <returns>如果原集合被修改了返回 True，否则返回 False</returns>
 </member>
 <member name="T:Microsoft.VisualBasic.Language.Java.JavaMath">
  <summary>

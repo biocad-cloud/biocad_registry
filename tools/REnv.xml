@@ -8962,6 +8962,21 @@ to take away yo [rest of string was truncated]&quot;;.
  4. Groups are maintained; you can't select off grouping variables.
  </returns>
 </member>
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.LinqPipeline.linq.switch(System.Object,SMRUCC.Rsharp.Runtime.Internal.Object.list,SMRUCC.Rsharp.Runtime.Environment)">
+ <summary>
+ text labeler
+ </summary>
+ <param name="x"></param>
+ <param name="labels"></param>
+ <param name="env"></param>
+ <returns></returns>
+ <example>
+ let labels = switch(c(...),  gene = c(...), prot = c(...), metabolite = c(...), NA = "kegg_pathway" );
+ 
+ print(labels);
+ # [6] "gene" "gene" "prot" "prot" "prot" "metabolite" "kegg_pathway"
+ </example>
+</member>
 <member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.LinqPipeline.parallelApplys.parallelList(System.Collections.IDictionary,SMRUCC.Rsharp.Runtime.Components.Interface.RFunction,System.Int32,System.Int32,System.Boolean,SMRUCC.Rsharp.Runtime.Environment)">
  <summary>
  
