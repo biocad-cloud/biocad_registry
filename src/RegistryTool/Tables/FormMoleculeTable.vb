@@ -74,7 +74,9 @@ Public Class FormMoleculeTable
         ToolStripProgressBar1.Minimum = 0
 
         For Each mol As MoleculeData In data
-            Dim i = DataGridView1.Rows.Add(mol.molecule_id, mol.xref_id, mol.name, mol.formula, mol.mass, mol.sequence, mol.note)
+            Dim i = DataGridView1.Rows.Add(mol.id, mol.main_id, mol.name, mol.formula, mol.exact_mass,
+                                           mol.cas_id, mol.pubchem_cid, mol.chebi_id, mol.hmdb_id, mol.lipidmaps_id, mol.kegg_id, mol.drugbank_id, mol.biocyc, mol.mesh_id, mol.wikipedia,
+                                           mol.smiles, mol.note)
             Dim r = DataGridView1.Rows(i)
 
             r.Tag = mol
@@ -193,12 +195,24 @@ End Class
 
 Public Class MoleculeData
 
-    <DatabaseField> Public Property molecule_id As UInteger
-    <DatabaseField> Public Property xref_id As String
+    <DatabaseField> Public Property id As UInteger
+    <DatabaseField> Public Property main_id As UInteger
     <DatabaseField> Public Property name As String
     <DatabaseField> Public Property formula As String
-    <DatabaseField> Public Property mass As Double
-    <DatabaseField> Public Property sequence As String
+    <DatabaseField> Public Property exact_mass As Double
+
+    <DatabaseField> Public Property cas_id As String
+    <DatabaseField> Public Property pubchem_cid As UInteger
+    <DatabaseField> Public Property chebi_id As UInteger
+    <DatabaseField> Public Property hmdb_id As String
+    <DatabaseField> Public Property lipidmaps_id As String
+    <DatabaseField> Public Property kegg_id As String
+    <DatabaseField> Public Property drugbank_id As String
+    <DatabaseField> Public Property biocyc As String
+    <DatabaseField> Public Property mesh_id As String
+    <DatabaseField> Public Property wikipedia As String
+
+    <DatabaseField> Public Property smiles As String
     <DatabaseField> Public Property note As String
 
 End Class
