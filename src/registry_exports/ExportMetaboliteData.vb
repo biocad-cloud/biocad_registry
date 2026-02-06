@@ -113,11 +113,11 @@ Public Module ExportMetaboliteData
 
         Dim class_data As New ClassyfireInfoTable
 
-        class_data.kingdom = lineage.ElementAtOrDefault(0)?.term
-        class_data.super_class = lineage.ElementAtOrDefault(1)?.term
-        class_data.class = lineage.ElementAtOrDefault(2)?.term
-        class_data.sub_class = lineage.ElementAtOrDefault(3)?.term
-        class_data.molecular_framework = lineage.ElementAtOrDefault(4)?.term
+        ' class_data.kingdom = lineage.ElementAtOrDefault(0)?.term
+        class_data.super_class = lineage.ElementAtOrDefault(0)?.term
+        class_data.class = lineage.ElementAtOrDefault(1)?.term
+        class_data.sub_class = lineage.ElementAtOrDefault(2)?.term
+        ' class_data.molecular_framework = lineage.ElementAtOrDefault(3)?.term
 
         Return class_data
     End Function

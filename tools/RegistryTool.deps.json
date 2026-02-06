@@ -1534,6 +1534,7 @@
       "registry_exports/1.0.0": {
         "dependencies": {
           "BioNovoGene.BioDeep.Chemistry.Massbank": "1.0.0",
+          "BioNovoGene.BioDeep.Chemistry.XrefEngine": "1.0.0",
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
           "Oracle.LinuxCompatibility.LibMySQL": "1.0.0",
           "SMRUCC.genomics.Core": "6.3.256.3655",
