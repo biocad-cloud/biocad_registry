@@ -128,8 +128,7 @@ WHERE
             type = {metabolite_type} AND db_name = {db_mona}
                 AND db_xref = '{spectra.ID}'
                 AND db_source = {db_mona}
-        LIMIT 1) 
-LIMIT 1;")
+        LIMIT 1) LIMIT 1;")
 
                 If m Is Nothing Then
                     m = registry.FindMolecule(spectra, "kegg_id", nameSearch:=True)
