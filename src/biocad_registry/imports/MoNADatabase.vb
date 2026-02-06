@@ -25,7 +25,7 @@ Module MoNADatabase
             spectra.name = clean_name
         End If
 
-        Return spectra
+        Return DirectCast(spectra, MetaInfo)
     End Function
 
     Public Sub MakeImports(registry As biocad_registry, chunk As SpectraSection())
