@@ -141,56 +141,56 @@ Partial Class FormMain
         ' VocabularyToolStripMenuItem
         ' 
         VocabularyToolStripMenuItem.Name = "VocabularyToolStripMenuItem"
-        VocabularyToolStripMenuItem.Size = New Size(261, 22)
+        VocabularyToolStripMenuItem.Size = New Size(271, 22)
         VocabularyToolStripMenuItem.Text = "Vocabulary"
         ' 
         ' MoleculesToolStripMenuItem
         ' 
         MoleculesToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {SearchToolStripMenuItem, SearchNameToolStripMenuItem})
         MoleculesToolStripMenuItem.Name = "MoleculesToolStripMenuItem"
-        MoleculesToolStripMenuItem.Size = New Size(261, 22)
+        MoleculesToolStripMenuItem.Size = New Size(271, 22)
         MoleculesToolStripMenuItem.Text = "Molecules"
         ' 
         ' SearchToolStripMenuItem
         ' 
         SearchToolStripMenuItem.Name = "SearchToolStripMenuItem"
-        SearchToolStripMenuItem.Size = New Size(144, 22)
+        SearchToolStripMenuItem.Size = New Size(180, 22)
         SearchToolStripMenuItem.Text = "Search Text"
         ' 
         ' SearchNameToolStripMenuItem
         ' 
         SearchNameToolStripMenuItem.Name = "SearchNameToolStripMenuItem"
-        SearchNameToolStripMenuItem.Size = New Size(144, 22)
+        SearchNameToolStripMenuItem.Size = New Size(180, 22)
         SearchNameToolStripMenuItem.Text = "Search Name"
         ' 
         ' SubCellularCompartmentsToolStripMenuItem
         ' 
         SubCellularCompartmentsToolStripMenuItem.Name = "SubCellularCompartmentsToolStripMenuItem"
-        SubCellularCompartmentsToolStripMenuItem.Size = New Size(261, 22)
-        SubCellularCompartmentsToolStripMenuItem.Text = "SubCellular Compartments"
+        SubCellularCompartmentsToolStripMenuItem.Size = New Size(271, 22)
+        SubCellularCompartmentsToolStripMenuItem.Text = "Sub-Cellular Compartment Locations"
         ' 
         ' FlavorOdorsToolStripMenuItem
         ' 
         FlavorOdorsToolStripMenuItem.Name = "FlavorOdorsToolStripMenuItem"
-        FlavorOdorsToolStripMenuItem.Size = New Size(261, 22)
+        FlavorOdorsToolStripMenuItem.Size = New Size(271, 22)
         FlavorOdorsToolStripMenuItem.Text = "Flavor Odors"
         ' 
         ' ReactionEditorToolStripMenuItem
         ' 
         ReactionEditorToolStripMenuItem.Name = "ReactionEditorToolStripMenuItem"
-        ReactionEditorToolStripMenuItem.Size = New Size(261, 22)
+        ReactionEditorToolStripMenuItem.Size = New Size(271, 22)
         ReactionEditorToolStripMenuItem.Text = "Reaction Editor"
         ' 
         ' ToolStripMenuItem2
         ' 
         ToolStripMenuItem2.Name = "ToolStripMenuItem2"
-        ToolStripMenuItem2.Size = New Size(258, 6)
+        ToolStripMenuItem2.Size = New Size(268, 6)
         ' 
         ' ExportEnzymeDatabaseToolStripMenuItem
         ' 
         ExportEnzymeDatabaseToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {ExportMembraneTransporterToolStripMenuItem})
         ExportEnzymeDatabaseToolStripMenuItem.Name = "ExportEnzymeDatabaseToolStripMenuItem"
-        ExportEnzymeDatabaseToolStripMenuItem.Size = New Size(261, 22)
+        ExportEnzymeDatabaseToolStripMenuItem.Size = New Size(271, 22)
         ExportEnzymeDatabaseToolStripMenuItem.Text = "Export Enzyme Database"
         ' 
         ' ExportMembraneTransporterToolStripMenuItem
@@ -202,24 +202,24 @@ Partial Class FormMain
         ' ExportConservedOperonDatabaseToolStripMenuItem
         ' 
         ExportConservedOperonDatabaseToolStripMenuItem.Name = "ExportConservedOperonDatabaseToolStripMenuItem"
-        ExportConservedOperonDatabaseToolStripMenuItem.Size = New Size(261, 22)
+        ExportConservedOperonDatabaseToolStripMenuItem.Size = New Size(271, 22)
         ExportConservedOperonDatabaseToolStripMenuItem.Text = "Export Conserved Operon Database"
         ' 
         ' ToolStripMenuItem3
         ' 
         ToolStripMenuItem3.Name = "ToolStripMenuItem3"
-        ToolStripMenuItem3.Size = New Size(258, 6)
+        ToolStripMenuItem3.Size = New Size(268, 6)
         ' 
         ' ExportBloodTagToolStripMenuItem
         ' 
         ExportBloodTagToolStripMenuItem.Name = "ExportBloodTagToolStripMenuItem"
-        ExportBloodTagToolStripMenuItem.Size = New Size(261, 22)
+        ExportBloodTagToolStripMenuItem.Size = New Size(271, 22)
         ExportBloodTagToolStripMenuItem.Text = "Export Tag Data"
         ' 
         ' ExportAnnotationTableToolStripMenuItem
         ' 
         ExportAnnotationTableToolStripMenuItem.Name = "ExportAnnotationTableToolStripMenuItem"
-        ExportAnnotationTableToolStripMenuItem.Size = New Size(261, 22)
+        ExportAnnotationTableToolStripMenuItem.Size = New Size(271, 22)
         ExportAnnotationTableToolStripMenuItem.Text = "Export Annotation Table"
         ' 
         ' ImportsToolStripMenuItem
