@@ -153,68 +153,9 @@ Public Class FormMain : Implements AppHost
         End Using
     End Sub
 
-    Private Shared Function ExportLocal(println As Action(Of String), filename As String, subset$) As Boolean
-        Dim i As Integer = 0
-        Dim block As i32 = 1
-        Dim class_id As UInteger = MyApplication.biocad_registry.biocad_vocabulary.GetDatabaseResource("RefMet").id
-
-        If filename.ExtensionSuffix("csv") Then
-            Dim csv As New System.IO.StreamWriter(filename.Open(FileMode.OpenOrCreate, doClear:=True))
-            Dim row As New RowObject From {"ID", "name", "formula", "exact_mass", "cas_id", "kegg_id", "hmdb_id", "chebi_id", "pubchem_cid", "lipidmaps_id", "smiles"}
-            Dim db_xrefs As xref
-
-            Call csv.WriteLine(row.AsLine)
-            Call row.Clear()
-            Call println("Export metabolite annotation into table sheet...")
-
-            For Each mol As Metadata In ExportMetaboliteData.ExportMetabolites(MyApplication.biocad_registry, subset, ontology_id:=class_id)
-                db_xrefs = mol.xref
-                row.AddRange({mol.ID, mol.name, mol.formula, mol.exact_mass, db_xrefs.CAS.FirstOrDefault, db_xrefs.KEGG, db_xrefs.HMDB, db_xrefs.chebi, db_xrefs.pubchem, db_xrefs.lipidmaps, db_xrefs.SMILES})
-                csv.WriteLine(row.AsLine)
-                row.Clear()
-                i += 1
-
-                If i > 2000 Then
-                    i = 0
-                    println($"commit block data: {++block}")
-                    csv.Flush()
-                End If
-            Next
-
-            Call csv.Flush()
-            Call csv.Close()
-            Call csv.Dispose()
-        Else
-            Dim repo As New RepositoryWriter(filename.Open(System.IO.FileMode.OpenOrCreate, doClear:=True))
-
-            Call println("Export metabolite annotation into local repository...")
-
-            For Each mol As Metadata In ExportMetaboliteData.ExportMetabolites(MyApplication.biocad_registry,
-                                                                               dbname:=Nothing,
-                                                                               ontology_id:=class_id)
-                If i > 2000 Then
-                    i = 0
-                    repo.CommitBlock()
-                    println($"commit block data: {++block}")
-                Else
-                    i += 1
-                    repo.Add(mol)
-                End If
-            Next
-
-            Call repo.Dispose()
-        End If
-
-        Return True
-    End Function
-
     Private Sub FlavorOdorsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FlavorOdorsToolStripMenuItem.Click
         Dim viewer As New FormOdors
         viewer.Show(CommonRuntime.AppHost.GetDockPanel, DockState.Document)
-    End Sub
-
-    Private Sub ImportsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ImportsToolStripMenuItem.Click
-
     End Sub
 
     Private Sub GenBankToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GenBankToolStripMenuItem.Click
@@ -543,7 +484,7 @@ FROM
             If file.ShowDialog = DialogResult.OK Then
                 MyApplication.Loading(
                     Function(println)
-                        Return ExportLocal(println, file.FileName, "KEGG")
+                        Return ExportLocal(println, file.FileName, "kegg_id")
                     End Function)
 
                 MessageBox.Show("Export metabolite local annotation repository database success!",
