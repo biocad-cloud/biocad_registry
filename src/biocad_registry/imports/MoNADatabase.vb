@@ -79,7 +79,20 @@ WHERE
 
         For Each meta As spectraverse In chunk
             Dim model As MetaInfo = meta.CreateMeta
+            ' check mona id reference
+            Dim m As metabolites = FindBySpectraID(registry, db_spectraverse, model.ID)
 
+            If m Is Nothing Then
+                m = registry.FindMolecule(model, "kegg_id", nameSearch:=True)
+            End If
+
+            If m Is Nothing Then
+                Continue For
+            End If
+
+            Call registry.SaveDbLinks(model, m, db_spectraverse, saveID:=True)
+            Call registry.SaveStructureData(m, model.xref.SMILES)
+            Call registry.SaveSynonyms(m, model.synonym.JoinIterates({model.name, model.IUPACName}).Distinct, db_spectraverse)
         Next
     End Sub
 End Module
