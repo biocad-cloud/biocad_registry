@@ -90,13 +90,13 @@ Public Class FormMain : Implements AppHost
             .where(field("category") = "Topic") _
             .project(Of String)("term"))
 
-        ExportBloodTagToolStripMenuItem.DropDownItems.Clear()
+        ExportTagDataToolStripMenuItem.DropDownItems.Clear()
 
         For Each tag As String In topics.OrderBy(Function(s) s.ToLower)
             Dim item As New ToolStripMenuItem(tag)
             item.Tag = tag
             AddHandler item.Click, Sub() ExportTagToolStripMenuItem_Click(tag)
-            ExportBloodTagToolStripMenuItem.DropDownItems.Add(item)
+            ExportTagDataToolStripMenuItem.DropDownItems.Add(item)
         Next
 
         OpenMoleculeToolStripMenuItem.DropDownItems.Clear()
