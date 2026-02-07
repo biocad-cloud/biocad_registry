@@ -536,14 +536,14 @@ FROM
         End Using
     End Sub
 
-    Private Sub ExportKEGGMetaboliteTableToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportKEGGMetaboliteTableToolStripMenuItem.Click
+    Private Sub ExportKEGGMetaboliteTableToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportKEGGMetaboliteTableToolStripMenuItem1.Click
         Using file As New SaveFileDialog With {.Filter = "Metabolite Table(*.csv)|*.csv"}
             If file.ShowDialog = DialogResult.OK Then
-                Call MyApplication.Loading(
+                MyApplication.Loading(
                     Function(println)
                         Return ExportLocal(println, file.FileName, "KEGG")
                     End Function)
-                Call MessageBox.Show("Export metabolite local annotation repository database success!", "Task Finish", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                MessageBox.Show("Export metabolite local annotation repository database success!", "Task Finish", MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If
         End Using
     End Sub

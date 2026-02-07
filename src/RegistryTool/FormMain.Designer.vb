@@ -43,7 +43,6 @@ Partial Class FormMain
         ReactionEditorToolStripMenuItem = New ToolStripMenuItem()
         ToolStripMenuItem2 = New ToolStripSeparator()
         ExportMetabolitesDatabaseToolStripMenuItem = New ToolStripMenuItem()
-        ExportKEGGMetaboliteTableToolStripMenuItem = New ToolStripMenuItem()
         ExportEnzymeDatabaseToolStripMenuItem = New ToolStripMenuItem()
         ExportMembraneTransporterToolStripMenuItem = New ToolStripMenuItem()
         ExportConservedOperonDatabaseToolStripMenuItem = New ToolStripMenuItem()
@@ -190,16 +189,9 @@ Partial Class FormMain
         ' 
         ' ExportMetabolitesDatabaseToolStripMenuItem
         ' 
-        ExportMetabolitesDatabaseToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {ExportKEGGMetaboliteTableToolStripMenuItem})
         ExportMetabolitesDatabaseToolStripMenuItem.Name = "ExportMetabolitesDatabaseToolStripMenuItem"
         ExportMetabolitesDatabaseToolStripMenuItem.Size = New Size(261, 22)
         ExportMetabolitesDatabaseToolStripMenuItem.Text = "Export Metabolites Database"
-        ' 
-        ' ExportKEGGMetaboliteTableToolStripMenuItem
-        ' 
-        ExportKEGGMetaboliteTableToolStripMenuItem.Name = "ExportKEGGMetaboliteTableToolStripMenuItem"
-        ExportKEGGMetaboliteTableToolStripMenuItem.Size = New Size(230, 22)
-        ExportKEGGMetaboliteTableToolStripMenuItem.Text = "Export KEGG Metabolite Table"
         ' 
         ' ExportEnzymeDatabaseToolStripMenuItem
         ' 
@@ -392,7 +384,6 @@ Partial Class FormMain
     Friend WithEvents BatchOperationToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents SearchToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ExportConservedOperonDatabaseToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents ExportKEGGMetaboliteTableToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ExportMembraneTransporterToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents SearchNameToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ReactionEditorToolStripMenuItem As ToolStripMenuItem
