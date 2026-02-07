@@ -28,14 +28,9 @@ Module MoNADatabase
         Return DirectCast(spectra, MetaInfo)
     End Function
 
-    Public Sub MakeImports(registry As biocad_registry, chunk As SpectraSection())
-        Dim db_mona As UInteger = registry.biocad_vocabulary.GetDatabaseResource("MoNA").id
+    Public Function FindBySpectraID(registry As biocad_registry, db_key As UInteger, spectra_id As String) As metabolites
         Dim metabolite_type As UInteger = registry.biocad_vocabulary.metabolite_type
-
-        For Each spectra As SpectraSection In TqdmWrapper.Wrap(chunk)
-            Dim model As MetaInfo = MakeCleanName(spectra)
-            ' check mona id reference
-            Dim m As metabolites = registry.metabolites.getDriver.ExecuteScalar(Of biocad_registryModel.metabolites)($"
+        Dim sql As String = $"
 SELECT 
     *
 FROM
@@ -46,10 +41,23 @@ WHERE
         FROM
             db_xrefs
         WHERE
-            type = {metabolite_type} AND db_name = {db_mona}
-                AND db_xref = '{model.ID}'
-                AND db_source = {db_mona}
-        LIMIT 1) LIMIT 1;")
+            type = {metabolite_type} AND db_name = {db_key}
+                AND db_xref = '{spectra_id}'
+                AND db_source = {db_key}
+        LIMIT 1) LIMIT 1;
+"
+        Dim m As metabolites = registry.metabolites.getDriver.ExecuteScalar(Of biocad_registryModel.metabolites)(sql)
+        Return m
+    End Function
+
+    Public Sub MakeImports(registry As biocad_registry, chunk As SpectraSection())
+        Dim db_mona As UInteger = registry.biocad_vocabulary.GetDatabaseResource("MoNA").id
+        Dim metabolite_type As UInteger = registry.biocad_vocabulary.metabolite_type
+
+        For Each spectra As SpectraSection In TqdmWrapper.Wrap(chunk)
+            Dim model As MetaInfo = MakeCleanName(spectra)
+            ' check mona id reference
+            Dim m As metabolites = FindBySpectraID(registry, db_mona, model.ID)
 
             If m Is Nothing Then
                 m = registry.FindMolecule(model, "kegg_id", nameSearch:=True)
@@ -62,6 +70,16 @@ WHERE
             Call registry.SaveDbLinks(model, m, db_mona, saveID:=True)
             Call registry.SaveStructureData(m, model.xref.SMILES)
             Call registry.SaveSynonyms(m, model.synonym.JoinIterates({model.name, model.IUPACName}).Distinct, db_mona)
+        Next
+    End Sub
+
+    Public Sub MakeImports(registry As biocad_registry, chunk As spectraverse())
+        Dim db_spectraverse As UInteger = registry.biocad_vocabulary.GetDatabaseResource("spectraverse").id
+        Dim metabolite_type As UInteger = registry.biocad_vocabulary.metabolite_type
+
+        For Each meta As spectraverse In chunk
+            Dim model As MetaInfo = meta.CreateMeta
+
         Next
     End Sub
 End Module

@@ -21,6 +21,7 @@ Imports SMRUCC.genomics.Assembly.Uniprot.XML
 Imports SMRUCC.genomics.Data.BioCyc
 Imports SMRUCC.genomics.Data.Regprecise
 Imports SMRUCC.genomics.SequenceModel.FASTA
+Imports SMRUCC.genomics.SequenceModel.NucleotideModels
 Imports SMRUCC.Rsharp.Runtime
 Imports SMRUCC.Rsharp.Runtime.Internal.[Object]
 Imports SMRUCC.Rsharp.Runtime.Interop
@@ -88,6 +89,21 @@ Module registry
         End If
 
         For Each chunk As SpectraSection() In pull.populates(Of SpectraSection)(env).SplitIterator(5000)
+            Call MoNADatabase.MakeImports(registry, chunk)
+        Next
+
+        Return Nothing
+    End Function
+
+    <ExportAPI("imports_spectraverse")>
+    Public Function imports_spectraverse(registry As biocad_registry, <RRawVectorArgument> spectraverse As Object, Optional env As Environment = Nothing) As Object
+        Dim pull As pipeline = pipeline.TryCreatePipeline(Of spectraverse)(spectraverse, env)
+
+        If pull.isError Then
+            Return pull.getError
+        End If
+
+        For Each chunk As spectraverse() In pull.populates(Of spectraverse)(env).SplitIterator(5000)
             Call MoNADatabase.MakeImports(registry, chunk)
         Next
 
