@@ -32,14 +32,6 @@ Public Class FormMain : Implements AppHost
         End Get
     End Property
 
-    Private Sub VocabularyToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles VocabularyToolStripMenuItem.Click
-        Dim view As New FormDbView()
-        view.SetFilter("Vocabulary Category", NameOf(biocad_registryModel.vocabulary.category))
-        view.LoadTableView(Function() MyApplication.biocad_registry.vocabulary.select(Of biocad_registryModel.vocabulary)("*"))
-        view.Text = "`biocad_registry`.`vocabulary`"
-        view.Show(CommonRuntime.AppHost.GetDockPanel, DockState.Document)
-    End Sub
-
     Private Sub ExitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExitToolStripMenuItem.Click
         App.Exit(0)
     End Sub
@@ -123,6 +115,18 @@ Public Class FormMain : Implements AppHost
                            End Function)
         view.SetTable(MyApplication.biocad_registry.compartment_location)
         view.Text = "`biocad_registry`.`compartment_location`"
+        view.Show(CommonRuntime.AppHost.GetDockPanel, DockState.Document)
+    End Sub
+
+    Private Sub VocabularyToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles VocabularyToolStripMenuItem.Click
+        Dim view As New FormDbView()
+        view.SetFilter("Vocabulary Category", NameOf(biocad_registryModel.vocabulary.category))
+        view.LoadTableView(Function() MyApplication.biocad_registry.vocabulary.select(Of biocad_registryModel.vocabulary)("*"))
+        view.SetLLMsPrompt(Function(row)
+                               Return $"please talk me about the {row.Cells(1).Value} term: '{row.Cells(2).Value}' in a short conclusion abstract text"
+                           End Function)
+        view.SetTable(MyApplication.biocad_registry.vocabulary)
+        view.Text = "`biocad_registry`.`vocabulary`"
         view.Show(CommonRuntime.AppHost.GetDockPanel, DockState.Document)
     End Sub
 
