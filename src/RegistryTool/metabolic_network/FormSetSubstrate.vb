@@ -6,7 +6,7 @@ Imports RegistryTool.My
 
 Public Class FormSetSubstrate
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click, Button5.Click
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         If TextBox1.Text.StringEmpty(, True) Then
             Return
         End If
@@ -18,12 +18,12 @@ Public Class FormSetSubstrate
     100000000,
     MATCH (name , note) AGAINST ('{q_str}' IN BOOLEAN MODE))"
         Dim q = TaskProgress.LoadData(Function(p As ITaskProgress)
-                                                          Return MyApplication.biocad_registry.metabolites _
-            .where(match("name", "note").against(q_str, booleanMode:=True) Or field("hashcode") = hashcode) _
-            .order_by(sort, desc:=True) _
-            .select(Of SymbolView)
-                                                      End Function)
-        ListBox1.Items.Clear
+                                          Return MyApplication.biocad_registry.metabolites _
+                                                .where(match("name", "note").against(q_str, booleanMode:=True) Or field("hashcode") = hashcode) _
+                                                .order_by(sort, desc:=True) _
+                                                .select(Of SymbolView)
+                                      End Function)
+        ListBox1.Items.Clear()
 
         For Each item In q
             ListBox1.Items.Add(item)
@@ -62,10 +62,14 @@ Public Class FormSetSubstrate
         Me.DialogResult = DialogResult.OK
     End Sub
 
-    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click, Button6.Click
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
         If TextBox1.Text.StringEmpty(, True) Then
             Return
-        ElseIf MessageBox.Show($"Will create a new empty metabolite({NumericUpDown1.Value} {TextBox1.Text}) for this reaction model?", "Create new empty metabolite", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) = DialogResult.OK Then
+        ElseIf MessageBox.Show($"Will create a new empty metabolite({NumericUpDown1.Value} {TextBox1.Text}) for this reaction model?",
+                               "Create new empty metabolite",
+                               MessageBoxButtons.OKCancel,
+                               MessageBoxIcon.Warning) = DialogResult.OK Then
+
             Dim name = Trim(TextBox1.Text)
             Dim hashcode = LCase(name).MD5
 
@@ -77,7 +81,10 @@ Public Class FormSetSubstrate
                field("exact_mass") = 0
             )
 
-            Dim m = MyApplication.biocad_registry.metabolites.where(field("hashcode") = hashcode).order_by("id", desc:=True).find(Of metabolites)
+            Dim m = MyApplication.biocad_registry.metabolites _
+                .where(field("hashcode") = hashcode) _
+                .order_by("id", desc:=True) _
+                .find(Of metabolites)
 
             If Not m Is Nothing Then
                 sel = New SymbolView With {
