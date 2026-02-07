@@ -4,6 +4,7 @@ Imports BioNovoGene.BioDeep.Chemistry.NCBI
 Imports BioNovoGene.BioDeep.Chemistry.NCBI.PubChem
 Imports Galaxy.Workbench
 Imports Galaxy.Workbench.CommonDialogs
+Imports Microsoft.VisualBasic.Data.Framework
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Net.Http
 Imports Microsoft.VisualBasic.Serialization.JSON
@@ -258,11 +259,19 @@ Public Class FormMain : Implements AppHost
             .FileName = tag & ".txt"
         }
             If file.ShowDialog = DialogResult.OK Then
-                If file.FileName.ExtensionSuffix("txt") Then
-                    '    Call MyApplication.biocad_registry.ExportTagList(tag).SaveTo(file.FileName)
-                Else
-                    '    Call MyApplication.biocad_registry.ExportTagData(tag).SaveTo(file.FileName)
-                End If
+                Call TaskProgress.RunAction(
+                    Sub(p As ITaskProgress)
+                        If file.FileName.ExtensionSuffix("txt") Then
+                            Call MyApplication.biocad_registry.ExportTagList(tag).SaveTo(file.FileName)
+                        Else
+                            Call MyApplication.biocad_registry.ExportTagData(tag).SaveTo(file.FileName)
+                        End If
+                    End Sub, info:=$"Export topic data of '{tag}' from database...")
+
+                Call MessageBox.Show($"Export topic data of '{tag}' success!",
+                                     "Export data success",
+                                     MessageBoxButtons.OK,
+                                     MessageBoxIcon.Information)
             End If
         End Using
     End Sub
