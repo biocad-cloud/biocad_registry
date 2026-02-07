@@ -172,25 +172,8 @@ Public Class FormMain : Implements AppHost
         End Using
     End Sub
 
-    Private Sub ExportEnzymeDatabaseToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportEnzymeDatabaseToolStripMenuItem.Click
-        Using file As New SaveFileDialog With {.Filter = "Enzyme Protein Sequence(*.fasta)|*.fasta"}
-            If file.ShowDialog = DialogResult.OK Then
-                Dim s As Stream = file.FileName.Open(FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False)
-                Dim str As New SequenceModel.FASTA.StreamWriter(s)
-
-                Call MyApplication.Loading(
-                    Function(println)
-                        Call str.Add(EnzymeData.ExportEnzyme(MyApplication.biocad_registry))
-                        Return True
-                    End Function)
-                Call str.Dispose()
-                Call s.Dispose()
-                Call MessageBox.Show("Export enzyme database to local annotation repository file success!",
-                                     "Task Finish",
-                                     MessageBoxButtons.OK,
-                                     MessageBoxIcon.Information)
-            End If
-        End Using
+    Private Sub ExportEnzymeDatabaseToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportEnzymeDatabaseToolStripMenuItem1.Click
+        Call FastaDatabase.ExportEnzymeDatabase()
     End Sub
 
     Private Sub ExportKEGGIDMappingToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportKEGGIDMappingToolStripMenuItem1.Click
