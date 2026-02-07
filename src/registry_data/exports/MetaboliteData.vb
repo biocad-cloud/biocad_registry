@@ -60,8 +60,36 @@ Namespace Exports
         End Function
 
         <Extension>
-        Private Function ExportTagIDSet(registry As biocad_registry, topic As String) As IEnumerable(Of UInteger())
+        Private Iterator Function ExportTagIDSet(registry As biocad_registry, topic As String) As IEnumerable(Of UInteger())
+            Dim topic_term As vocabulary = registry.biocad_vocabulary.GetTopic(topic)
+            Dim page_size As Integer = 1000
+            Dim offset As UInteger
+            Dim page_data As UInteger()
 
+            ' use the standard registry symbol model at here
+            ' class id is zero
+            Const model_type As UInteger = 0
+
+            If topic_term Is Nothing Then
+                Return
+            End If
+
+            For page As Integer = 1 To Integer.MaxValue
+                offset = (page - 1) * page_size
+                page_data = registry.topic _
+                    .left_join("registry_resolver") _
+                    .on(field("`registry_resolver`.id") = field("model_id")) _
+                    .where(field("topic_id") = topic_term.id,
+                           field("`topic`.type") = model_type) _
+                    .limit(offset, page_size) _
+                    .project(Of UInteger)("symbol_id")
+
+                If page_data.IsNullOrEmpty Then
+                    Exit For
+                Else
+                    Yield page_data
+                End If
+            Next
         End Function
 
         <Extension>
