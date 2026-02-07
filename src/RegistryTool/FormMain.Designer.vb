@@ -52,6 +52,7 @@ Partial Class FormMain
         PubChemIDToolStripMenuItem = New ToolStripMenuItem()
         ExportsToolStripMenuItem = New ToolStripMenuItem()
         DaisyLCMSWorkflowToolStripMenuItem = New ToolStripMenuItem()
+        ExportLipidMAPSIDMappingToolStripMenuItem = New ToolStripMenuItem()
         ExportHMDBIDMappingToolStripMenuItem = New ToolStripMenuItem()
         ExportKEGGIDMappingToolStripMenuItem1 = New ToolStripMenuItem()
         ExportKEGGMetaboliteTableToolStripMenuItem1 = New ToolStripMenuItem()
@@ -66,7 +67,7 @@ Partial Class FormMain
         ToolStripStatusLabel1 = New ToolStripStatusLabel()
         m_dockPanel = New Microsoft.VisualStudio.WinForms.Docking.DockPanel()
         VisualStudioToolStripExtender1 = New Microsoft.VisualStudio.WinForms.Docking.VisualStudioToolStripExtender(components)
-        ExportLipidMAPSIDMappingToolStripMenuItem = New ToolStripMenuItem()
+        ProteinModelsToolStripMenuItem = New ToolStripMenuItem()
         MenuStrip1.SuspendLayout()
         StatusStrip1.SuspendLayout()
         SuspendLayout()
@@ -136,7 +137,7 @@ Partial Class FormMain
         ' 
         ' DataToolStripMenuItem
         ' 
-        DataToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {VocabularyToolStripMenuItem, MoleculesToolStripMenuItem, SubCellularCompartmentsToolStripMenuItem, FlavorOdorsToolStripMenuItem, ReactionEditorToolStripMenuItem, ToolStripMenuItem2, ExportConservedOperonDatabaseToolStripMenuItem, ToolStripMenuItem3, ExportBloodTagToolStripMenuItem, ExportAnnotationTableToolStripMenuItem})
+        DataToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {VocabularyToolStripMenuItem, ProteinModelsToolStripMenuItem, MoleculesToolStripMenuItem, SubCellularCompartmentsToolStripMenuItem, FlavorOdorsToolStripMenuItem, ReactionEditorToolStripMenuItem, ToolStripMenuItem2, ExportConservedOperonDatabaseToolStripMenuItem, ToolStripMenuItem3, ExportBloodTagToolStripMenuItem, ExportAnnotationTableToolStripMenuItem})
         DataToolStripMenuItem.Name = "DataToolStripMenuItem"
         DataToolStripMenuItem.Size = New Size(43, 20)
         DataToolStripMenuItem.Text = "Data"
@@ -251,6 +252,12 @@ Partial Class FormMain
         DaisyLCMSWorkflowToolStripMenuItem.Size = New Size(190, 22)
         DaisyLCMSWorkflowToolStripMenuItem.Text = "Daisy LCMS Workflow"
         ' 
+        ' ExportLipidMAPSIDMappingToolStripMenuItem
+        ' 
+        ExportLipidMAPSIDMappingToolStripMenuItem.Name = "ExportLipidMAPSIDMappingToolStripMenuItem"
+        ExportLipidMAPSIDMappingToolStripMenuItem.Size = New Size(231, 22)
+        ExportLipidMAPSIDMappingToolStripMenuItem.Text = "Export LipidMAPS IDMapping"
+        ' 
         ' ExportHMDBIDMappingToolStripMenuItem
         ' 
         ExportHMDBIDMappingToolStripMenuItem.Name = "ExportHMDBIDMappingToolStripMenuItem"
@@ -341,11 +348,11 @@ Partial Class FormMain
         ' 
         VisualStudioToolStripExtender1.DefaultRenderer = Nothing
         ' 
-        ' ExportLipidMAPSIDMappingToolStripMenuItem
+        ' ProteinModelsToolStripMenuItem
         ' 
-        ExportLipidMAPSIDMappingToolStripMenuItem.Name = "ExportLipidMAPSIDMappingToolStripMenuItem"
-        ExportLipidMAPSIDMappingToolStripMenuItem.Size = New Size(231, 22)
-        ExportLipidMAPSIDMappingToolStripMenuItem.Text = "Export LipidMAPS IDMapping"
+        ProteinModelsToolStripMenuItem.Name = "ProteinModelsToolStripMenuItem"
+        ProteinModelsToolStripMenuItem.Size = New Size(271, 22)
+        ProteinModelsToolStripMenuItem.Text = "Protein Models"
         ' 
         ' FormMain
         ' 
@@ -412,4 +419,5 @@ Partial Class FormMain
     Friend WithEvents ExportEnzymeDatabaseToolStripMenuItem1 As ToolStripMenuItem
     Friend WithEvents ExportHMDBIDMappingToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ExportLipidMAPSIDMappingToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ProteinModelsToolStripMenuItem As ToolStripMenuItem
 End Class

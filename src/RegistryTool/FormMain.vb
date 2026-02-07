@@ -130,6 +130,17 @@ Public Class FormMain : Implements AppHost
         view.Show(CommonRuntime.AppHost.GetDockPanel, DockState.Document)
     End Sub
 
+    Private Sub ProteinModelsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ProteinModelsToolStripMenuItem.Click
+        Dim view As New FormDbView()
+        view.LoadTableView(Function() MyApplication.biocad_registry.protein.select(Of biocad_registryModel.protein)("*"))
+        view.SetLLMsPrompt(Function(row)
+                               Return $"please talk me about the protein {row.Cells(1).Value}({row.Cells(4).Value}) its biological function in a short conclusion abstract text"
+                           End Function)
+        view.SetTable(MyApplication.biocad_registry.protein)
+        view.Text = "`biocad_registry`.`protein`"
+        view.Show(CommonRuntime.AppHost.GetDockPanel, DockState.Document)
+    End Sub
+
     Private Sub SettingsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SettingsToolStripMenuItem.Click
         Call New FormSettings().ShowDialog()
     End Sub
