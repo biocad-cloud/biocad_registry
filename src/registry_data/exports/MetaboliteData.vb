@@ -1,5 +1,7 @@
 ﻿Imports System.Runtime.CompilerServices
+Imports Microsoft.VisualBasic.Linq
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
+Imports Oracle.LinuxCompatibility.MySQL.Reflection.DbAttributes
 
 Namespace Exports
 
@@ -33,5 +35,29 @@ Namespace Exports
                 End If
             Next
         End Function
+
+        <Extension>
+        Public Function ExportIDMapping(registry As biocad_registry, db_field As String) As Dictionary(Of String, String())
+            Dim id As String = "CONCAT('BioCAD', LPAD(id, 11, '0')) AS id"
+            Dim db_xref As String = $"`{db_field}` AS db_xref"
+            Dim mapping As ExportIDMapping() = registry.metabolites.where(field(db_field).char_length > 0).select(Of ExportIDMapping)(id, db_field)
+
+            Return mapping.SafeQuery _
+                .GroupBy(Function(a) a.db_xref) _
+                .ToDictionary(Function(a) a.Key,
+                              Function(a)
+                                  Return a _
+                                      .Select(Function(map) map.id) _
+                                      .Distinct _
+                                      .ToArray
+                              End Function)
+        End Function
     End Module
+
+    Friend Class ExportIDMapping
+
+        <DatabaseField> Public Property id As String
+        <DatabaseField> Public Property db_xref As String
+
+    End Class
 End Namespace

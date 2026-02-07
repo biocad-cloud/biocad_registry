@@ -9,10 +9,12 @@ Imports Microsoft.VisualBasic.Data.Framework.IO
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Net.Http
+Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Microsoft.VisualStudio.WinForms.Docking
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports registry_data
 Imports registry_data.biocad_registryModel
+Imports registry_data.Exports
 Imports registry_exports
 Imports RegistryTool.Configs
 Imports RegistryTool.My
@@ -261,17 +263,17 @@ Public Class FormMain : Implements AppHost
             If file.ShowDialog = DialogResult.OK Then
                 MyApplication.Loading(
                     Function(println)
-                        'Call MyApplication.biocad_registry _
-                        '    .ExportIdMapping("KEGG") _
-                        '    .GetJson _
-                        '    .SaveTo(file.FileName)
+                        Call MyApplication.biocad_registry _
+                            .ExportIDMapping("kegg_id") _
+                            .GetJson _
+                            .SaveTo(file.FileName)
 
                         Return True
                     End Function)
                 MessageBox.Show("Export KEGG id mapping to local annotation repository file success!",
-                                     "Task Finish",
-                                     MessageBoxButtons.OK,
-                                     MessageBoxIcon.Information)
+                                "Task Finish",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information)
             End If
         End Using
     End Sub
