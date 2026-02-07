@@ -59,7 +59,9 @@ WHERE
             ' check mona id reference
             Dim m As metabolites = FindBySpectraID(registry, db_mona, model.ID)
 
-            If m Is Nothing Then
+            If Not m Is Nothing Then
+                ' skip of the existed metadata
+            Else
                 m = registry.FindMolecule(model, "kegg_id", nameSearch:=True)
             End If
 
@@ -67,9 +69,9 @@ WHERE
                 Continue For
             End If
 
-            Call registry.SaveDbLinks(model, m, db_mona, saveID:=True)
             Call registry.SaveStructureData(m, model.xref.SMILES)
             Call registry.SaveSynonyms(m, model.synonym.JoinIterates({model.name, model.IUPACName}).Distinct, db_mona)
+            Call registry.SaveDbLinks(model, m, db_mona, saveID:=True)
         Next
     End Sub
 
