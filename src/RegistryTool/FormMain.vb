@@ -258,11 +258,11 @@ Public Class FormMain : Implements AppHost
             .FileName = tag & ".txt"
         }
             If file.ShowDialog = DialogResult.OK Then
-                'If file.FileName.ExtensionSuffix("txt") Then
-                '    Call MyApplication.biocad_registry.ExportTagList(tag).SaveTo(file.FileName)
-                'Else
-                '    Call MyApplication.biocad_registry.ExportTagData(tag).SaveTo(file.FileName)
-                'End If
+                If file.FileName.ExtensionSuffix("txt") Then
+                    '    Call MyApplication.biocad_registry.ExportTagList(tag).SaveTo(file.FileName)
+                Else
+                    '    Call MyApplication.biocad_registry.ExportTagData(tag).SaveTo(file.FileName)
+                End If
             End If
         End Using
     End Sub
