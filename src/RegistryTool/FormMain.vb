@@ -139,14 +139,14 @@ Public Class FormMain : Implements AppHost
         view.Show(CommonRuntime.AppHost.GetDockPanel, DockState.Document)
     End Sub
 
-    Private Sub ExportMetabolitesDatabaseToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportMetabolitesDatabaseToolStripMenuItem.Click
+    Private Sub ExportMetabolitesDatabaseToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportMetabolitesDatabaseToolStripMenuItem1.Click
         Using file As New SaveFileDialog With {.Filter = "Metabolite Annotation Database(*.dat)|*.dat|Metabolite Table(*.csv)|*.csv"}
             If file.ShowDialog = DialogResult.OK Then
-                Call MyApplication.Loading(
+                MyApplication.Loading(
                     Function(println)
                         Return ExportLocal(println, file.FileName, Nothing)
                     End Function)
-                Call MessageBox.Show("Export metabolite local annotation repository database success!", "Task Finish", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                MessageBox.Show("Export metabolite local annotation repository database success!", "Task Finish", MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If
         End Using
     End Sub
