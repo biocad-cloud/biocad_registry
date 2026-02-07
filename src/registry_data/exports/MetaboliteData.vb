@@ -40,7 +40,7 @@ Namespace Exports
         Public Function ExportIDMapping(registry As biocad_registry, db_field As String) As Dictionary(Of String, String())
             Dim id As String = "CONCAT('BioCAD', LPAD(id, 11, '0')) AS id"
             Dim db_xref As String = $"`{db_field}` AS db_xref"
-            Dim mapping As ExportIDMapping() = registry.metabolites.where(field(db_field).char_length > 0).select(Of ExportIDMapping)(id, db_field)
+            Dim mapping As ExportIDMapping() = registry.metabolites.where(field(db_field).char_length > 0).select(Of ExportIDMapping)(id, db_xref)
 
             Return mapping.SafeQuery _
                 .GroupBy(Function(a) a.db_xref) _
