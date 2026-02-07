@@ -44,7 +44,6 @@ Partial Class FormMain
         ReactionEditorToolStripMenuItem = New ToolStripMenuItem()
         ToolStripMenuItem2 = New ToolStripSeparator()
         CreateMetabolicReactionToolStripMenuItem = New ToolStripMenuItem()
-        ToolStripMenuItem3 = New ToolStripSeparator()
         ImportsToolStripMenuItem = New ToolStripMenuItem()
         GenBankToolStripMenuItem = New ToolStripMenuItem()
         PubMedKnowledgeToolStripMenuItem = New ToolStripMenuItem()
@@ -139,7 +138,7 @@ Partial Class FormMain
         ' 
         ' DataToolStripMenuItem
         ' 
-        DataToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {VocabularyToolStripMenuItem, ProteinModelsToolStripMenuItem, MoleculesToolStripMenuItem, SubCellularCompartmentsToolStripMenuItem, FlavorOdorsToolStripMenuItem, ReactionEditorToolStripMenuItem, ToolStripMenuItem2, CreateMetabolicReactionToolStripMenuItem, ToolStripMenuItem3})
+        DataToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {VocabularyToolStripMenuItem, ProteinModelsToolStripMenuItem, MoleculesToolStripMenuItem, SubCellularCompartmentsToolStripMenuItem, FlavorOdorsToolStripMenuItem, ReactionEditorToolStripMenuItem, ToolStripMenuItem2, CreateMetabolicReactionToolStripMenuItem})
         DataToolStripMenuItem.Name = "DataToolStripMenuItem"
         DataToolStripMenuItem.Size = New Size(43, 20)
         DataToolStripMenuItem.Text = "Data"
@@ -203,11 +202,6 @@ Partial Class FormMain
         CreateMetabolicReactionToolStripMenuItem.Name = "CreateMetabolicReactionToolStripMenuItem"
         CreateMetabolicReactionToolStripMenuItem.Size = New Size(271, 22)
         CreateMetabolicReactionToolStripMenuItem.Text = "Create Metabolic Reaction"
-        ' 
-        ' ToolStripMenuItem3
-        ' 
-        ToolStripMenuItem3.Name = "ToolStripMenuItem3"
-        ToolStripMenuItem3.Size = New Size(268, 6)
         ' 
         ' ImportsToolStripMenuItem
         ' 
@@ -403,7 +397,6 @@ Partial Class FormMain
     Friend WithEvents FlavorOdorsToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ImportsToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents GenBankToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents ToolStripMenuItem3 As ToolStripSeparator
     Friend WithEvents PubMedKnowledgeToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents OpenMoleculeToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem4 As ToolStripSeparator
