@@ -180,6 +180,46 @@ Public Class FormMain : Implements AppHost
         Call FastaDatabase.ExportEnzymeDatabase()
     End Sub
 
+    Private Sub ExportLipidMAPSIDMappingToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportLipidMAPSIDMappingToolStripMenuItem.Click
+        Using file As New SaveFileDialog With {.Filter = "id mapping file(*.json)|*.json"}
+            If file.ShowDialog = DialogResult.OK Then
+                MyApplication.Loading(
+                    Function(println)
+                        Call MyApplication.biocad_registry _
+                            .ExportIDMapping("lipidmaps_id") _
+                            .GetJson _
+                            .SaveTo(file.FileName)
+
+                        Return True
+                    End Function)
+                MessageBox.Show("Export LipidMAPS id mapping to local annotation repository file success!",
+                                "Task Finish",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information)
+            End If
+        End Using
+    End Sub
+
+    Private Sub ExportHMDBIDMappingToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportHMDBIDMappingToolStripMenuItem.Click
+        Using file As New SaveFileDialog With {.Filter = "id mapping file(*.json)|*.json"}
+            If file.ShowDialog = DialogResult.OK Then
+                MyApplication.Loading(
+                    Function(println)
+                        Call MyApplication.biocad_registry _
+                            .ExportIDMapping("hmdb_id") _
+                            .GetJson _
+                            .SaveTo(file.FileName)
+
+                        Return True
+                    End Function)
+                MessageBox.Show("Export HMDB id mapping to local annotation repository file success!",
+                                "Task Finish",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information)
+            End If
+        End Using
+    End Sub
+
     Private Sub ExportKEGGIDMappingToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportKEGGIDMappingToolStripMenuItem1.Click
         Using file As New SaveFileDialog With {.Filter = "id mapping file(*.json)|*.json"}
             If file.ShowDialog = DialogResult.OK Then

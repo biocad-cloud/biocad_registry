@@ -52,6 +52,7 @@ Partial Class FormMain
         PubChemIDToolStripMenuItem = New ToolStripMenuItem()
         ExportsToolStripMenuItem = New ToolStripMenuItem()
         DaisyLCMSWorkflowToolStripMenuItem = New ToolStripMenuItem()
+        ExportHMDBIDMappingToolStripMenuItem = New ToolStripMenuItem()
         ExportKEGGIDMappingToolStripMenuItem1 = New ToolStripMenuItem()
         ExportKEGGMetaboliteTableToolStripMenuItem1 = New ToolStripMenuItem()
         ToolStripMenuItem5 = New ToolStripSeparator()
@@ -65,6 +66,7 @@ Partial Class FormMain
         ToolStripStatusLabel1 = New ToolStripStatusLabel()
         m_dockPanel = New Microsoft.VisualStudio.WinForms.Docking.DockPanel()
         VisualStudioToolStripExtender1 = New Microsoft.VisualStudio.WinForms.Docking.VisualStudioToolStripExtender(components)
+        ExportLipidMAPSIDMappingToolStripMenuItem = New ToolStripMenuItem()
         MenuStrip1.SuspendLayout()
         StatusStrip1.SuspendLayout()
         SuspendLayout()
@@ -244,32 +246,38 @@ Partial Class FormMain
         ' 
         ' DaisyLCMSWorkflowToolStripMenuItem
         ' 
-        DaisyLCMSWorkflowToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {ExportKEGGIDMappingToolStripMenuItem1, ExportKEGGMetaboliteTableToolStripMenuItem1, ToolStripMenuItem5, ExportMetabolitesDatabaseToolStripMenuItem1})
+        DaisyLCMSWorkflowToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {ExportLipidMAPSIDMappingToolStripMenuItem, ExportHMDBIDMappingToolStripMenuItem, ExportKEGGIDMappingToolStripMenuItem1, ExportKEGGMetaboliteTableToolStripMenuItem1, ToolStripMenuItem5, ExportMetabolitesDatabaseToolStripMenuItem1})
         DaisyLCMSWorkflowToolStripMenuItem.Name = "DaisyLCMSWorkflowToolStripMenuItem"
         DaisyLCMSWorkflowToolStripMenuItem.Size = New Size(190, 22)
         DaisyLCMSWorkflowToolStripMenuItem.Text = "Daisy LCMS Workflow"
         ' 
+        ' ExportHMDBIDMappingToolStripMenuItem
+        ' 
+        ExportHMDBIDMappingToolStripMenuItem.Name = "ExportHMDBIDMappingToolStripMenuItem"
+        ExportHMDBIDMappingToolStripMenuItem.Size = New Size(231, 22)
+        ExportHMDBIDMappingToolStripMenuItem.Text = "Export HMDB IDMapping"
+        ' 
         ' ExportKEGGIDMappingToolStripMenuItem1
         ' 
         ExportKEGGIDMappingToolStripMenuItem1.Name = "ExportKEGGIDMappingToolStripMenuItem1"
-        ExportKEGGIDMappingToolStripMenuItem1.Size = New Size(230, 22)
+        ExportKEGGIDMappingToolStripMenuItem1.Size = New Size(231, 22)
         ExportKEGGIDMappingToolStripMenuItem1.Text = "Export KEGG IDMapping"
         ' 
         ' ExportKEGGMetaboliteTableToolStripMenuItem1
         ' 
         ExportKEGGMetaboliteTableToolStripMenuItem1.Name = "ExportKEGGMetaboliteTableToolStripMenuItem1"
-        ExportKEGGMetaboliteTableToolStripMenuItem1.Size = New Size(230, 22)
+        ExportKEGGMetaboliteTableToolStripMenuItem1.Size = New Size(231, 22)
         ExportKEGGMetaboliteTableToolStripMenuItem1.Text = "Export KEGG Metabolite Table"
         ' 
         ' ToolStripMenuItem5
         ' 
         ToolStripMenuItem5.Name = "ToolStripMenuItem5"
-        ToolStripMenuItem5.Size = New Size(227, 6)
+        ToolStripMenuItem5.Size = New Size(228, 6)
         ' 
         ' ExportMetabolitesDatabaseToolStripMenuItem1
         ' 
         ExportMetabolitesDatabaseToolStripMenuItem1.Name = "ExportMetabolitesDatabaseToolStripMenuItem1"
-        ExportMetabolitesDatabaseToolStripMenuItem1.Size = New Size(230, 22)
+        ExportMetabolitesDatabaseToolStripMenuItem1.Size = New Size(231, 22)
         ExportMetabolitesDatabaseToolStripMenuItem1.Text = "Export Metabolites Database"
         ' 
         ' FastaDatabaseToolStripMenuItem
@@ -332,6 +340,12 @@ Partial Class FormMain
         ' VisualStudioToolStripExtender1
         ' 
         VisualStudioToolStripExtender1.DefaultRenderer = Nothing
+        ' 
+        ' ExportLipidMAPSIDMappingToolStripMenuItem
+        ' 
+        ExportLipidMAPSIDMappingToolStripMenuItem.Name = "ExportLipidMAPSIDMappingToolStripMenuItem"
+        ExportLipidMAPSIDMappingToolStripMenuItem.Size = New Size(231, 22)
+        ExportLipidMAPSIDMappingToolStripMenuItem.Text = "Export LipidMAPS IDMapping"
         ' 
         ' FormMain
         ' 
@@ -396,4 +410,6 @@ Partial Class FormMain
     Friend WithEvents FastaDatabaseToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ExportMembraneTransporterToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ExportEnzymeDatabaseToolStripMenuItem1 As ToolStripMenuItem
+    Friend WithEvents ExportHMDBIDMappingToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ExportLipidMAPSIDMappingToolStripMenuItem As ToolStripMenuItem
 End Class
