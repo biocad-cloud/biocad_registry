@@ -256,10 +256,10 @@ Public Class FormMain : Implements AppHost
         End Using
     End Sub
 
-    Private Sub ExportKEGGIDMappingToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportKEGGIDMappingToolStripMenuItem.Click
+    Private Sub ExportKEGGIDMappingToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportKEGGIDMappingToolStripMenuItem1.Click
         Using file As New SaveFileDialog With {.Filter = "id mapping file(*.json)|*.json"}
             If file.ShowDialog = DialogResult.OK Then
-                Call MyApplication.Loading(
+                MyApplication.Loading(
                     Function(println)
                         'Call MyApplication.biocad_registry _
                         '    .ExportIdMapping("KEGG") _
@@ -268,7 +268,7 @@ Public Class FormMain : Implements AppHost
 
                         Return True
                     End Function)
-                Call MessageBox.Show("Export KEGG id mapping to local annotation repository file success!",
+                MessageBox.Show("Export KEGG id mapping to local annotation repository file success!",
                                      "Task Finish",
                                      MessageBoxButtons.OK,
                                      MessageBoxIcon.Information)

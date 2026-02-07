@@ -47,7 +47,6 @@ Partial Class FormMain
         ExportEnzymeDatabaseToolStripMenuItem = New ToolStripMenuItem()
         ExportMembraneTransporterToolStripMenuItem = New ToolStripMenuItem()
         ExportConservedOperonDatabaseToolStripMenuItem = New ToolStripMenuItem()
-        ExportKEGGIDMappingToolStripMenuItem = New ToolStripMenuItem()
         ToolStripMenuItem3 = New ToolStripSeparator()
         ExportBloodTagToolStripMenuItem = New ToolStripMenuItem()
         ExportAnnotationTableToolStripMenuItem = New ToolStripMenuItem()
@@ -55,23 +54,29 @@ Partial Class FormMain
         GenBankToolStripMenuItem = New ToolStripMenuItem()
         PubMedKnowledgeToolStripMenuItem = New ToolStripMenuItem()
         PubChemIDToolStripMenuItem = New ToolStripMenuItem()
+        ExportsToolStripMenuItem = New ToolStripMenuItem()
+        DaisyLCMSWorkflowToolStripMenuItem = New ToolStripMenuItem()
+        ExportKEGGIDMappingToolStripMenuItem1 = New ToolStripMenuItem()
         WindowsToolStripMenuItem = New ToolStripMenuItem()
         CloseAllToolStripMenuItem = New ToolStripMenuItem()
         StatusStrip1 = New StatusStrip()
         ToolStripStatusLabel1 = New ToolStripStatusLabel()
         m_dockPanel = New Microsoft.VisualStudio.WinForms.Docking.DockPanel()
         VisualStudioToolStripExtender1 = New Microsoft.VisualStudio.WinForms.Docking.VisualStudioToolStripExtender(components)
+        ExportMetabolitesDatabaseToolStripMenuItem1 = New ToolStripMenuItem()
+        ExportKEGGMetaboliteTableToolStripMenuItem1 = New ToolStripMenuItem()
+        ToolStripMenuItem5 = New ToolStripSeparator()
         MenuStrip1.SuspendLayout()
         StatusStrip1.SuspendLayout()
         SuspendLayout()
         ' 
         ' MenuStrip1
         ' 
-        MenuStrip1.Items.AddRange(New ToolStripItem() {FileToolStripMenuItem, DataToolStripMenuItem, ImportsToolStripMenuItem, WindowsToolStripMenuItem})
+        MenuStrip1.Items.AddRange(New ToolStripItem() {FileToolStripMenuItem, DataToolStripMenuItem, ImportsToolStripMenuItem, ExportsToolStripMenuItem, WindowsToolStripMenuItem})
         MenuStrip1.Location = New Point(0, 0)
         MenuStrip1.Name = "MenuStrip1"
         MenuStrip1.Padding = New Padding(7, 2, 0, 2)
-        MenuStrip1.Size = New Size(1028, 24)
+        MenuStrip1.Size = New Size(1347, 24)
         MenuStrip1.TabIndex = 1
         MenuStrip1.Text = "MenuStrip1"
         ' 
@@ -130,7 +135,7 @@ Partial Class FormMain
         ' 
         ' DataToolStripMenuItem
         ' 
-        DataToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {VocabularyToolStripMenuItem, MoleculesToolStripMenuItem, SubCellularCompartmentsToolStripMenuItem, FlavorOdorsToolStripMenuItem, ReactionEditorToolStripMenuItem, ToolStripMenuItem2, ExportMetabolitesDatabaseToolStripMenuItem, ExportEnzymeDatabaseToolStripMenuItem, ExportConservedOperonDatabaseToolStripMenuItem, ExportKEGGIDMappingToolStripMenuItem, ToolStripMenuItem3, ExportBloodTagToolStripMenuItem, ExportAnnotationTableToolStripMenuItem})
+        DataToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {VocabularyToolStripMenuItem, MoleculesToolStripMenuItem, SubCellularCompartmentsToolStripMenuItem, FlavorOdorsToolStripMenuItem, ReactionEditorToolStripMenuItem, ToolStripMenuItem2, ExportMetabolitesDatabaseToolStripMenuItem, ExportEnzymeDatabaseToolStripMenuItem, ExportConservedOperonDatabaseToolStripMenuItem, ToolStripMenuItem3, ExportBloodTagToolStripMenuItem, ExportAnnotationTableToolStripMenuItem})
         DataToolStripMenuItem.Name = "DataToolStripMenuItem"
         DataToolStripMenuItem.Size = New Size(43, 20)
         DataToolStripMenuItem.Text = "Data"
@@ -151,13 +156,13 @@ Partial Class FormMain
         ' SearchToolStripMenuItem
         ' 
         SearchToolStripMenuItem.Name = "SearchToolStripMenuItem"
-        SearchToolStripMenuItem.Size = New Size(144, 22)
+        SearchToolStripMenuItem.Size = New Size(180, 22)
         SearchToolStripMenuItem.Text = "Search Text"
         ' 
         ' SearchNameToolStripMenuItem
         ' 
         SearchNameToolStripMenuItem.Name = "SearchNameToolStripMenuItem"
-        SearchNameToolStripMenuItem.Size = New Size(144, 22)
+        SearchNameToolStripMenuItem.Size = New Size(180, 22)
         SearchNameToolStripMenuItem.Text = "Search Name"
         ' 
         ' SubCellularCompartmentsToolStripMenuItem
@@ -215,12 +220,6 @@ Partial Class FormMain
         ExportConservedOperonDatabaseToolStripMenuItem.Size = New Size(261, 22)
         ExportConservedOperonDatabaseToolStripMenuItem.Text = "Export Conserved Operon Database"
         ' 
-        ' ExportKEGGIDMappingToolStripMenuItem
-        ' 
-        ExportKEGGIDMappingToolStripMenuItem.Name = "ExportKEGGIDMappingToolStripMenuItem"
-        ExportKEGGIDMappingToolStripMenuItem.Size = New Size(261, 22)
-        ExportKEGGIDMappingToolStripMenuItem.Text = "Export KEGG IDMapping"
-        ' 
         ' ToolStripMenuItem3
         ' 
         ToolStripMenuItem3.Name = "ToolStripMenuItem3"
@@ -263,6 +262,26 @@ Partial Class FormMain
         PubChemIDToolStripMenuItem.Size = New Size(181, 22)
         PubChemIDToolStripMenuItem.Text = "PubChem ID"
         ' 
+        ' ExportsToolStripMenuItem
+        ' 
+        ExportsToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {DaisyLCMSWorkflowToolStripMenuItem})
+        ExportsToolStripMenuItem.Name = "ExportsToolStripMenuItem"
+        ExportsToolStripMenuItem.Size = New Size(58, 20)
+        ExportsToolStripMenuItem.Text = "Exports"
+        ' 
+        ' DaisyLCMSWorkflowToolStripMenuItem
+        ' 
+        DaisyLCMSWorkflowToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {ExportKEGGIDMappingToolStripMenuItem1, ExportKEGGMetaboliteTableToolStripMenuItem1, ToolStripMenuItem5, ExportMetabolitesDatabaseToolStripMenuItem1})
+        DaisyLCMSWorkflowToolStripMenuItem.Name = "DaisyLCMSWorkflowToolStripMenuItem"
+        DaisyLCMSWorkflowToolStripMenuItem.Size = New Size(190, 22)
+        DaisyLCMSWorkflowToolStripMenuItem.Text = "Daisy LCMS Workflow"
+        ' 
+        ' ExportKEGGIDMappingToolStripMenuItem1
+        ' 
+        ExportKEGGIDMappingToolStripMenuItem1.Name = "ExportKEGGIDMappingToolStripMenuItem1"
+        ExportKEGGIDMappingToolStripMenuItem1.Size = New Size(230, 22)
+        ExportKEGGIDMappingToolStripMenuItem1.Text = "Export KEGG IDMapping"
+        ' 
         ' WindowsToolStripMenuItem
         ' 
         WindowsToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {CloseAllToolStripMenuItem})
@@ -279,10 +298,10 @@ Partial Class FormMain
         ' StatusStrip1
         ' 
         StatusStrip1.Items.AddRange(New ToolStripItem() {ToolStripStatusLabel1})
-        StatusStrip1.Location = New Point(0, 553)
+        StatusStrip1.Location = New Point(0, 810)
         StatusStrip1.Name = "StatusStrip1"
         StatusStrip1.Padding = New Padding(1, 0, 16, 0)
-        StatusStrip1.Size = New Size(1028, 22)
+        StatusStrip1.Size = New Size(1347, 22)
         StatusStrip1.TabIndex = 3
         StatusStrip1.Text = "StatusStrip1"
         ' 
@@ -298,18 +317,35 @@ Partial Class FormMain
         m_dockPanel.Location = New Point(0, 24)
         m_dockPanel.Margin = New Padding(4)
         m_dockPanel.Name = "m_dockPanel"
-        m_dockPanel.Size = New Size(1028, 529)
+        m_dockPanel.Size = New Size(1347, 786)
         m_dockPanel.TabIndex = 4
         ' 
         ' VisualStudioToolStripExtender1
         ' 
         VisualStudioToolStripExtender1.DefaultRenderer = Nothing
         ' 
+        ' ExportMetabolitesDatabaseToolStripMenuItem1
+        ' 
+        ExportMetabolitesDatabaseToolStripMenuItem1.Name = "ExportMetabolitesDatabaseToolStripMenuItem1"
+        ExportMetabolitesDatabaseToolStripMenuItem1.Size = New Size(230, 22)
+        ExportMetabolitesDatabaseToolStripMenuItem1.Text = "Export Metabolites Database"
+        ' 
+        ' ExportKEGGMetaboliteTableToolStripMenuItem1
+        ' 
+        ExportKEGGMetaboliteTableToolStripMenuItem1.Name = "ExportKEGGMetaboliteTableToolStripMenuItem1"
+        ExportKEGGMetaboliteTableToolStripMenuItem1.Size = New Size(230, 22)
+        ExportKEGGMetaboliteTableToolStripMenuItem1.Text = "Export KEGG Metabolite Table"
+        ' 
+        ' ToolStripMenuItem5
+        ' 
+        ToolStripMenuItem5.Name = "ToolStripMenuItem5"
+        ToolStripMenuItem5.Size = New Size(227, 6)
+        ' 
         ' FormMain
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(1028, 575)
+        ClientSize = New Size(1347, 832)
         Controls.Add(m_dockPanel)
         Controls.Add(StatusStrip1)
         Controls.Add(MenuStrip1)
@@ -343,7 +379,6 @@ Partial Class FormMain
     Friend WithEvents ImportsToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents GenBankToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ExportEnzymeDatabaseToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents ExportKEGGIDMappingToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem3 As ToolStripSeparator
     Friend WithEvents ExportBloodTagToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents PubMedKnowledgeToolStripMenuItem As ToolStripMenuItem
@@ -364,4 +399,10 @@ Partial Class FormMain
     Friend WithEvents m_dockPanel As Microsoft.VisualStudio.WinForms.Docking.DockPanel
     Friend WithEvents VisualStudioToolStripExtender1 As Microsoft.VisualStudio.WinForms.Docking.VisualStudioToolStripExtender
     Friend WithEvents PubChemIDToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ExportsToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents DaisyLCMSWorkflowToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ExportKEGGIDMappingToolStripMenuItem1 As ToolStripMenuItem
+    Friend WithEvents ExportKEGGMetaboliteTableToolStripMenuItem1 As ToolStripMenuItem
+    Friend WithEvents ToolStripMenuItem5 As ToolStripSeparator
+    Friend WithEvents ExportMetabolitesDatabaseToolStripMenuItem1 As ToolStripMenuItem
 End Class
