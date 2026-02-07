@@ -47,7 +47,8 @@ Public Module MetaboliteData
             updates.Add(field("wikipedia") = meta.xref.Wikipedia)
         End If
         If m.cas_id.StringEmpty AndAlso Not meta.xref.CAS.DefaultFirst.StringEmpty Then
-            updates.Add(field("cas_id") = meta.xref.CAS.DefaultFirst)
+            Dim main_cas_id As String = meta.xref.CAS.DefaultFirst.StringSplit("[,;]", True).First.Split.First
+            updates.Add(field("cas_id") = main_cas_id)
         End If
         If m.biocyc.StringEmpty AndAlso Not meta.xref.MetaCyc.StringEmpty Then
             updates.Add(field("biocyc") = meta.xref.MetaCyc)
@@ -192,12 +193,18 @@ Public Module MetaboliteData
         End If
 
         If m Is Nothing Then
+            Dim main_cas_id As String = meta.xref.CAS.DefaultFirst.StringSplit("\s*[,;]\s*", True).FirstOrDefault
+
+            If main_cas_id IsNot Nothing Then
+                main_cas_id = main_cas_id.Split.First
+            End If
+
             Call registry.metabolites.add(
                 field("name") = name,
                 field("hashcode") = hashcode,
                 field("formula") = If(meta.formula, ""),
                 field("exact_mass") = exact_mass,
-                field("cas_id") = meta.xref.CAS.DefaultFirst,
+                field("cas_id") = main_cas_id,
                 field("pubchem_cid") = pubchem_cid,
                 field("chebi_id") = chebi_id,
                 field("hmdb_id") = meta.xref.HMDB,
