@@ -3,6 +3,7 @@ Imports System.IO
 Imports BioNovoGene.BioDeep.Chemistry.NCBI
 Imports BioNovoGene.BioDeep.Chemistry.NCBI.PubChem
 Imports Galaxy.Workbench
+Imports Galaxy.Workbench.CommonDialogs
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Net.Http
 Imports Microsoft.VisualBasic.Serialization.JSON
@@ -297,10 +298,10 @@ Public Class FormMain : Implements AppHost
         End Using
     End Sub
 
-    Private Sub ExportAnnotationTableToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportAnnotationTableToolStripMenuItem.Click
+    Private Sub ExportAnnotationTableToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportAnnotationTableToolStripMenuItem1.Click
         Using idfile As New OpenFileDialog With {.Filter = "ID List(*.txt)|*.txt"}
             If idfile.ShowDialog = DialogResult.OK Then
-                Dim ids As String() = idfile.FileName.ReadAllLines
+                Dim ids = idfile.FileName.ReadAllLines
 
                 Using file As New SaveFileDialog With {.Filter = "Annotation Table(*.csv)|*.csv"}
                     If file.ShowDialog = DialogResult.OK Then
@@ -593,5 +594,9 @@ FROM
 
                 Return True
             End Function, $"fetch pubchem metabolite of cid={cid}", "Make pubchem metabolite data imports")
+    End Sub
+
+    Private Sub CreateMetabolicReactionToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CreateMetabolicReactionToolStripMenuItem.Click
+        Call InputDialog.Input(Of FormBuildReaction)()
     End Sub
 End Class

@@ -6,7 +6,7 @@ Imports RegistryTool.My
 
 Public Class FormSetSubstrate
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click, Button5.Click
         If TextBox1.Text.StringEmpty(, True) Then
             Return
         End If
@@ -17,13 +17,13 @@ Public Class FormSetSubstrate
         Dim sort = $"IF(hashcode = '{hashcode}',
     100000000,
     MATCH (name , note) AGAINST ('{q_str}' IN BOOLEAN MODE))"
-        Dim q As SymbolView() = TaskProgress.LoadData(Function(p As ITaskProgress)
+        Dim q = TaskProgress.LoadData(Function(p As ITaskProgress)
                                                           Return MyApplication.biocad_registry.metabolites _
             .where(match("name", "note").against(q_str, booleanMode:=True) Or field("hashcode") = hashcode) _
             .order_by(sort, desc:=True) _
             .select(Of SymbolView)
                                                       End Function)
-        ListBox1.Items.Clear()
+        ListBox1.Items.Clear
 
         For Each item In q
             ListBox1.Items.Add(item)
@@ -62,14 +62,14 @@ Public Class FormSetSubstrate
         Me.DialogResult = DialogResult.OK
     End Sub
 
-    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click, Button6.Click
         If TextBox1.Text.StringEmpty(, True) Then
             Return
         ElseIf MessageBox.Show($"Will create a new empty metabolite({NumericUpDown1.Value} {TextBox1.Text}) for this reaction model?", "Create new empty metabolite", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) = DialogResult.OK Then
-            Dim name As String = Strings.Trim(TextBox1.Text)
-            Dim hashcode As String = Strings.LCase(name).MD5
+            Dim name = Trim(TextBox1.Text)
+            Dim hashcode = LCase(name).MD5
 
-            Call MyApplication.biocad_registry.metabolites.add(
+            MyApplication.biocad_registry.metabolites.add(
                field("main_id") = 0,
                field("name") = name,
                field("hashcode") = hashcode,

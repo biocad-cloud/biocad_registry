@@ -35,6 +35,7 @@ Partial Class FormMain
         ExitToolStripMenuItem = New ToolStripMenuItem()
         DataToolStripMenuItem = New ToolStripMenuItem()
         VocabularyToolStripMenuItem = New ToolStripMenuItem()
+        ProteinModelsToolStripMenuItem = New ToolStripMenuItem()
         MoleculesToolStripMenuItem = New ToolStripMenuItem()
         SearchToolStripMenuItem = New ToolStripMenuItem()
         SearchNameToolStripMenuItem = New ToolStripMenuItem()
@@ -42,10 +43,8 @@ Partial Class FormMain
         FlavorOdorsToolStripMenuItem = New ToolStripMenuItem()
         ReactionEditorToolStripMenuItem = New ToolStripMenuItem()
         ToolStripMenuItem2 = New ToolStripSeparator()
-        ExportConservedOperonDatabaseToolStripMenuItem = New ToolStripMenuItem()
         ToolStripMenuItem3 = New ToolStripSeparator()
         ExportBloodTagToolStripMenuItem = New ToolStripMenuItem()
-        ExportAnnotationTableToolStripMenuItem = New ToolStripMenuItem()
         ImportsToolStripMenuItem = New ToolStripMenuItem()
         GenBankToolStripMenuItem = New ToolStripMenuItem()
         PubMedKnowledgeToolStripMenuItem = New ToolStripMenuItem()
@@ -58,16 +57,18 @@ Partial Class FormMain
         ExportKEGGMetaboliteTableToolStripMenuItem1 = New ToolStripMenuItem()
         ToolStripMenuItem5 = New ToolStripSeparator()
         ExportMetabolitesDatabaseToolStripMenuItem1 = New ToolStripMenuItem()
+        ExportAnnotationTableToolStripMenuItem1 = New ToolStripMenuItem()
         FastaDatabaseToolStripMenuItem = New ToolStripMenuItem()
         ExportMembraneTransporterToolStripMenuItem = New ToolStripMenuItem()
         ExportEnzymeDatabaseToolStripMenuItem1 = New ToolStripMenuItem()
+        ExportConservedOperonDatabaseToolStripMenuItem = New ToolStripMenuItem()
         WindowsToolStripMenuItem = New ToolStripMenuItem()
         CloseAllToolStripMenuItem = New ToolStripMenuItem()
         StatusStrip1 = New StatusStrip()
         ToolStripStatusLabel1 = New ToolStripStatusLabel()
         m_dockPanel = New Microsoft.VisualStudio.WinForms.Docking.DockPanel()
         VisualStudioToolStripExtender1 = New Microsoft.VisualStudio.WinForms.Docking.VisualStudioToolStripExtender(components)
-        ProteinModelsToolStripMenuItem = New ToolStripMenuItem()
+        CreateMetabolicReactionToolStripMenuItem = New ToolStripMenuItem()
         MenuStrip1.SuspendLayout()
         StatusStrip1.SuspendLayout()
         SuspendLayout()
@@ -92,52 +93,52 @@ Partial Class FormMain
         ' OpenMoleculeToolStripMenuItem
         ' 
         OpenMoleculeToolStripMenuItem.Name = "OpenMoleculeToolStripMenuItem"
-        OpenMoleculeToolStripMenuItem.Size = New Size(160, 22)
+        OpenMoleculeToolStripMenuItem.Size = New Size(180, 22)
         OpenMoleculeToolStripMenuItem.Text = "Open Molecule"
         ' 
         ' BatchOperationToolStripMenuItem
         ' 
         BatchOperationToolStripMenuItem.Name = "BatchOperationToolStripMenuItem"
-        BatchOperationToolStripMenuItem.Size = New Size(160, 22)
+        BatchOperationToolStripMenuItem.Size = New Size(180, 22)
         BatchOperationToolStripMenuItem.Text = "Batch Operation"
         ' 
         ' SearchNamesToolStripMenuItem
         ' 
         SearchNamesToolStripMenuItem.Name = "SearchNamesToolStripMenuItem"
-        SearchNamesToolStripMenuItem.Size = New Size(160, 22)
+        SearchNamesToolStripMenuItem.Size = New Size(180, 22)
         SearchNamesToolStripMenuItem.Text = "Search Names"
         ' 
         ' ToolStripMenuItem4
         ' 
         ToolStripMenuItem4.Name = "ToolStripMenuItem4"
-        ToolStripMenuItem4.Size = New Size(157, 6)
+        ToolStripMenuItem4.Size = New Size(177, 6)
         ' 
         ' SettingsToolStripMenuItem
         ' 
         SettingsToolStripMenuItem.Name = "SettingsToolStripMenuItem"
-        SettingsToolStripMenuItem.Size = New Size(160, 22)
+        SettingsToolStripMenuItem.Size = New Size(180, 22)
         SettingsToolStripMenuItem.Text = "Settings"
         ' 
         ' AboutToolStripMenuItem
         ' 
         AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        AboutToolStripMenuItem.Size = New Size(160, 22)
+        AboutToolStripMenuItem.Size = New Size(180, 22)
         AboutToolStripMenuItem.Text = "About"
         ' 
         ' ToolStripMenuItem1
         ' 
         ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        ToolStripMenuItem1.Size = New Size(157, 6)
+        ToolStripMenuItem1.Size = New Size(177, 6)
         ' 
         ' ExitToolStripMenuItem
         ' 
         ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        ExitToolStripMenuItem.Size = New Size(160, 22)
+        ExitToolStripMenuItem.Size = New Size(180, 22)
         ExitToolStripMenuItem.Text = "Exit"
         ' 
         ' DataToolStripMenuItem
         ' 
-        DataToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {VocabularyToolStripMenuItem, ProteinModelsToolStripMenuItem, MoleculesToolStripMenuItem, SubCellularCompartmentsToolStripMenuItem, FlavorOdorsToolStripMenuItem, ReactionEditorToolStripMenuItem, ToolStripMenuItem2, ExportConservedOperonDatabaseToolStripMenuItem, ToolStripMenuItem3, ExportBloodTagToolStripMenuItem, ExportAnnotationTableToolStripMenuItem})
+        DataToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {VocabularyToolStripMenuItem, ProteinModelsToolStripMenuItem, MoleculesToolStripMenuItem, SubCellularCompartmentsToolStripMenuItem, FlavorOdorsToolStripMenuItem, ReactionEditorToolStripMenuItem, ToolStripMenuItem2, CreateMetabolicReactionToolStripMenuItem, ToolStripMenuItem3, ExportBloodTagToolStripMenuItem})
         DataToolStripMenuItem.Name = "DataToolStripMenuItem"
         DataToolStripMenuItem.Size = New Size(43, 20)
         DataToolStripMenuItem.Text = "Data"
@@ -147,6 +148,12 @@ Partial Class FormMain
         VocabularyToolStripMenuItem.Name = "VocabularyToolStripMenuItem"
         VocabularyToolStripMenuItem.Size = New Size(271, 22)
         VocabularyToolStripMenuItem.Text = "Vocabulary"
+        ' 
+        ' ProteinModelsToolStripMenuItem
+        ' 
+        ProteinModelsToolStripMenuItem.Name = "ProteinModelsToolStripMenuItem"
+        ProteinModelsToolStripMenuItem.Size = New Size(271, 22)
+        ProteinModelsToolStripMenuItem.Text = "Protein Models"
         ' 
         ' MoleculesToolStripMenuItem
         ' 
@@ -190,12 +197,6 @@ Partial Class FormMain
         ToolStripMenuItem2.Name = "ToolStripMenuItem2"
         ToolStripMenuItem2.Size = New Size(268, 6)
         ' 
-        ' ExportConservedOperonDatabaseToolStripMenuItem
-        ' 
-        ExportConservedOperonDatabaseToolStripMenuItem.Name = "ExportConservedOperonDatabaseToolStripMenuItem"
-        ExportConservedOperonDatabaseToolStripMenuItem.Size = New Size(271, 22)
-        ExportConservedOperonDatabaseToolStripMenuItem.Text = "Export Conserved Operon Database"
-        ' 
         ' ToolStripMenuItem3
         ' 
         ToolStripMenuItem3.Name = "ToolStripMenuItem3"
@@ -206,12 +207,6 @@ Partial Class FormMain
         ExportBloodTagToolStripMenuItem.Name = "ExportBloodTagToolStripMenuItem"
         ExportBloodTagToolStripMenuItem.Size = New Size(271, 22)
         ExportBloodTagToolStripMenuItem.Text = "Export Tag Data"
-        ' 
-        ' ExportAnnotationTableToolStripMenuItem
-        ' 
-        ExportAnnotationTableToolStripMenuItem.Name = "ExportAnnotationTableToolStripMenuItem"
-        ExportAnnotationTableToolStripMenuItem.Size = New Size(271, 22)
-        ExportAnnotationTableToolStripMenuItem.Text = "Export Annotation Table"
         ' 
         ' ImportsToolStripMenuItem
         ' 
@@ -247,7 +242,7 @@ Partial Class FormMain
         ' 
         ' DaisyLCMSWorkflowToolStripMenuItem
         ' 
-        DaisyLCMSWorkflowToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {ExportLipidMAPSIDMappingToolStripMenuItem, ExportHMDBIDMappingToolStripMenuItem, ExportKEGGIDMappingToolStripMenuItem1, ExportKEGGMetaboliteTableToolStripMenuItem1, ToolStripMenuItem5, ExportMetabolitesDatabaseToolStripMenuItem1})
+        DaisyLCMSWorkflowToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {ExportLipidMAPSIDMappingToolStripMenuItem, ExportHMDBIDMappingToolStripMenuItem, ExportKEGGIDMappingToolStripMenuItem1, ExportKEGGMetaboliteTableToolStripMenuItem1, ToolStripMenuItem5, ExportMetabolitesDatabaseToolStripMenuItem1, ExportAnnotationTableToolStripMenuItem1})
         DaisyLCMSWorkflowToolStripMenuItem.Name = "DaisyLCMSWorkflowToolStripMenuItem"
         DaisyLCMSWorkflowToolStripMenuItem.Size = New Size(190, 22)
         DaisyLCMSWorkflowToolStripMenuItem.Text = "Daisy LCMS Workflow"
@@ -287,9 +282,15 @@ Partial Class FormMain
         ExportMetabolitesDatabaseToolStripMenuItem1.Size = New Size(231, 22)
         ExportMetabolitesDatabaseToolStripMenuItem1.Text = "Export Metabolites Database"
         ' 
+        ' ExportAnnotationTableToolStripMenuItem1
+        ' 
+        ExportAnnotationTableToolStripMenuItem1.Name = "ExportAnnotationTableToolStripMenuItem1"
+        ExportAnnotationTableToolStripMenuItem1.Size = New Size(231, 22)
+        ExportAnnotationTableToolStripMenuItem1.Text = "Export Annotation Table"
+        ' 
         ' FastaDatabaseToolStripMenuItem
         ' 
-        FastaDatabaseToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {ExportMembraneTransporterToolStripMenuItem, ExportEnzymeDatabaseToolStripMenuItem1})
+        FastaDatabaseToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {ExportMembraneTransporterToolStripMenuItem, ExportEnzymeDatabaseToolStripMenuItem1, ExportConservedOperonDatabaseToolStripMenuItem})
         FastaDatabaseToolStripMenuItem.Name = "FastaDatabaseToolStripMenuItem"
         FastaDatabaseToolStripMenuItem.Size = New Size(190, 22)
         FastaDatabaseToolStripMenuItem.Text = "Fasta Database"
@@ -297,14 +298,20 @@ Partial Class FormMain
         ' ExportMembraneTransporterToolStripMenuItem
         ' 
         ExportMembraneTransporterToolStripMenuItem.Name = "ExportMembraneTransporterToolStripMenuItem"
-        ExportMembraneTransporterToolStripMenuItem.Size = New Size(231, 22)
+        ExportMembraneTransporterToolStripMenuItem.Size = New Size(261, 22)
         ExportMembraneTransporterToolStripMenuItem.Text = "Export Membrane Transporter"
         ' 
         ' ExportEnzymeDatabaseToolStripMenuItem1
         ' 
         ExportEnzymeDatabaseToolStripMenuItem1.Name = "ExportEnzymeDatabaseToolStripMenuItem1"
-        ExportEnzymeDatabaseToolStripMenuItem1.Size = New Size(231, 22)
+        ExportEnzymeDatabaseToolStripMenuItem1.Size = New Size(261, 22)
         ExportEnzymeDatabaseToolStripMenuItem1.Text = "Export Enzyme Database"
+        ' 
+        ' ExportConservedOperonDatabaseToolStripMenuItem
+        ' 
+        ExportConservedOperonDatabaseToolStripMenuItem.Name = "ExportConservedOperonDatabaseToolStripMenuItem"
+        ExportConservedOperonDatabaseToolStripMenuItem.Size = New Size(261, 22)
+        ExportConservedOperonDatabaseToolStripMenuItem.Text = "Export Conserved Operon Database"
         ' 
         ' WindowsToolStripMenuItem
         ' 
@@ -348,11 +355,11 @@ Partial Class FormMain
         ' 
         VisualStudioToolStripExtender1.DefaultRenderer = Nothing
         ' 
-        ' ProteinModelsToolStripMenuItem
+        ' CreateMetabolicReactionToolStripMenuItem
         ' 
-        ProteinModelsToolStripMenuItem.Name = "ProteinModelsToolStripMenuItem"
-        ProteinModelsToolStripMenuItem.Size = New Size(271, 22)
-        ProteinModelsToolStripMenuItem.Text = "Protein Models"
+        CreateMetabolicReactionToolStripMenuItem.Name = "CreateMetabolicReactionToolStripMenuItem"
+        CreateMetabolicReactionToolStripMenuItem.Size = New Size(271, 22)
+        CreateMetabolicReactionToolStripMenuItem.Text = "Create Metabolic Reaction"
         ' 
         ' FormMain
         ' 
@@ -393,7 +400,6 @@ Partial Class FormMain
     Friend WithEvents ToolStripMenuItem3 As ToolStripSeparator
     Friend WithEvents ExportBloodTagToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents PubMedKnowledgeToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents ExportAnnotationTableToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents OpenMoleculeToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem4 As ToolStripSeparator
     Friend WithEvents AboutToolStripMenuItem As ToolStripMenuItem
@@ -402,7 +408,6 @@ Partial Class FormMain
     Friend WithEvents SearchNamesToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents BatchOperationToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents SearchToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents ExportConservedOperonDatabaseToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents SearchNameToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ReactionEditorToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents m_dockPanel As Microsoft.VisualStudio.WinForms.Docking.DockPanel
@@ -420,4 +425,7 @@ Partial Class FormMain
     Friend WithEvents ExportHMDBIDMappingToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ExportLipidMAPSIDMappingToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ProteinModelsToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ExportAnnotationTableToolStripMenuItem1 As ToolStripMenuItem
+    Friend WithEvents ExportConservedOperonDatabaseToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents CreateMetabolicReactionToolStripMenuItem As ToolStripMenuItem
 End Class

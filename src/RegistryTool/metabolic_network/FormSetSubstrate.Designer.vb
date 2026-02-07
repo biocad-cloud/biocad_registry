@@ -38,14 +38,16 @@ Partial Class FormSetSubstrate
         Button2 = New Button()
         Button3 = New Button()
         Button4 = New Button()
+        GroupBox2 = New GroupBox()
         CType(NumericUpDown1, ComponentModel.ISupportInitialize).BeginInit()
         ContextMenuStrip1.SuspendLayout()
+        GroupBox2.SuspendLayout()
         SuspendLayout()
         ' 
         ' Label1
         ' 
         Label1.AutoSize = True
-        Label1.Location = New Point(24, 19)
+        Label1.Location = New Point(20, 30)
         Label1.Name = "Label1"
         Label1.Size = New Size(80, 15)
         Label1.TabIndex = 0
@@ -53,16 +55,16 @@ Partial Class FormSetSubstrate
         ' 
         ' TextBox1
         ' 
-        TextBox1.Location = New Point(134, 16)
+        TextBox1.Location = New Point(110, 27)
         TextBox1.Name = "TextBox1"
-        TextBox1.Size = New Size(325, 23)
+        TextBox1.Size = New Size(308, 23)
         TextBox1.TabIndex = 1
         ' 
         ' Button1
         ' 
-        Button1.Location = New Point(477, 16)
+        Button1.Location = New Point(424, 27)
         Button1.Name = "Button1"
-        Button1.Size = New Size(75, 23)
+        Button1.Size = New Size(68, 23)
         Button1.TabIndex = 2
         Button1.Text = "Search"
         Button1.UseVisualStyleBackColor = True
@@ -70,7 +72,7 @@ Partial Class FormSetSubstrate
         ' Label2
         ' 
         Label2.AutoSize = True
-        Label2.Location = New Point(61, 50)
+        Label2.Location = New Point(57, 62)
         Label2.Name = "Label2"
         Label2.Size = New Size(43, 15)
         Label2.TabIndex = 3
@@ -78,17 +80,17 @@ Partial Class FormSetSubstrate
         ' 
         ' NumericUpDown1
         ' 
-        NumericUpDown1.Location = New Point(134, 48)
+        NumericUpDown1.Location = New Point(110, 56)
         NumericUpDown1.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         NumericUpDown1.Name = "NumericUpDown1"
-        NumericUpDown1.Size = New Size(120, 23)
+        NumericUpDown1.Size = New Size(88, 23)
         NumericUpDown1.TabIndex = 4
         NumericUpDown1.Value = New Decimal(New Integer() {1, 0, 0, 0})
         ' 
         ' Label3
         ' 
         Label3.AutoSize = True
-        Label3.Location = New Point(50, 88)
+        Label3.Location = New Point(46, 90)
         Label3.Name = "Label3"
         Label3.Size = New Size(54, 15)
         Label3.TabIndex = 5
@@ -97,7 +99,7 @@ Partial Class FormSetSubstrate
         ' Label4
         ' 
         Label4.AutoSize = True
-        Label4.Location = New Point(134, 88)
+        Label4.Location = New Point(110, 90)
         Label4.Name = "Label4"
         Label4.Size = New Size(52, 15)
         Label4.TabIndex = 6
@@ -108,9 +110,9 @@ Partial Class FormSetSubstrate
         ListBox1.ContextMenuStrip = ContextMenuStrip1
         ListBox1.FormattingEnabled = True
         ListBox1.ItemHeight = 15
-        ListBox1.Location = New Point(24, 122)
+        ListBox1.Location = New Point(20, 113)
         ListBox1.Name = "ListBox1"
-        ListBox1.Size = New Size(635, 244)
+        ListBox1.Size = New Size(605, 229)
         ListBox1.TabIndex = 7
         ' 
         ' ContextMenuStrip1
@@ -127,7 +129,7 @@ Partial Class FormSetSubstrate
         ' 
         ' Button2
         ' 
-        Button2.Location = New Point(665, 306)
+        Button2.Location = New Point(562, 370)
         Button2.Name = "Button2"
         Button2.Size = New Size(75, 23)
         Button2.TabIndex = 8
@@ -136,7 +138,7 @@ Partial Class FormSetSubstrate
         ' 
         ' Button3
         ' 
-        Button3.Location = New Point(665, 343)
+        Button3.Location = New Point(481, 370)
         Button3.Name = "Button3"
         Button3.Size = New Size(75, 23)
         Button3.TabIndex = 9
@@ -145,35 +147,46 @@ Partial Class FormSetSubstrate
         ' 
         ' Button4
         ' 
-        Button4.Location = New Point(584, 16)
+        Button4.Location = New Point(502, 26)
         Button4.Name = "Button4"
-        Button4.Size = New Size(131, 23)
+        Button4.Size = New Size(123, 23)
         Button4.TabIndex = 10
         Button4.Text = "Create Placeholder"
         Button4.UseVisualStyleBackColor = True
         ' 
+        ' GroupBox2
+        ' 
+        GroupBox2.Controls.Add(Label1)
+        GroupBox2.Controls.Add(TextBox1)
+        GroupBox2.Controls.Add(Button4)
+        GroupBox2.Controls.Add(Button1)
+        GroupBox2.Controls.Add(Label2)
+        GroupBox2.Controls.Add(NumericUpDown1)
+        GroupBox2.Controls.Add(ListBox1)
+        GroupBox2.Controls.Add(Label3)
+        GroupBox2.Controls.Add(Label4)
+        GroupBox2.Location = New Point(10, 12)
+        GroupBox2.Name = "GroupBox2"
+        GroupBox2.Size = New Size(644, 350)
+        GroupBox2.TabIndex = 11
+        GroupBox2.TabStop = False
+        GroupBox2.Text = "Set Metabolite Reference"
+        ' 
         ' FormSetSubstrate
         ' 
-        AutoScaleDimensions = New SizeF(7.0F, 15.0F)
+        AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(743, 403)
-        Controls.Add(Button4)
+        ClientSize = New Size(663, 403)
+        Controls.Add(GroupBox2)
         Controls.Add(Button3)
         Controls.Add(Button2)
-        Controls.Add(ListBox1)
-        Controls.Add(Label4)
-        Controls.Add(Label3)
-        Controls.Add(NumericUpDown1)
-        Controls.Add(Label2)
-        Controls.Add(Button1)
-        Controls.Add(TextBox1)
-        Controls.Add(Label1)
         Name = "FormSetSubstrate"
-        Text = "Form1"
+        Text = "Select Substrate/Product Metabolite"
         CType(NumericUpDown1, ComponentModel.ISupportInitialize).EndInit()
         ContextMenuStrip1.ResumeLayout(False)
+        GroupBox2.ResumeLayout(False)
+        GroupBox2.PerformLayout()
         ResumeLayout(False)
-        PerformLayout()
     End Sub
 
     Friend WithEvents Label1 As Label
@@ -189,4 +202,5 @@ Partial Class FormSetSubstrate
     Friend WithEvents Button2 As Button
     Friend WithEvents Button3 As Button
     Friend WithEvents Button4 As Button
+    Friend WithEvents GroupBox2 As GroupBox
 End Class
