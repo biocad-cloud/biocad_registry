@@ -32,6 +32,10 @@ Public Module ExportMetaboliteData
                     .select(Of metabolites)
             End If
 
+            If page.IsNullOrEmpty Then
+                Exit For
+            End If
+
             For Each m As metabolites In page
                 If filterMass AndAlso m.exact_mass <= 1 Then
                     Continue For

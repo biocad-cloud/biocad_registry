@@ -195,7 +195,7 @@ Public Module MetaboliteData
             Call registry.metabolites.add(
                 field("name") = name,
                 field("hashcode") = hashcode,
-                field("formula") = meta.formula,
+                field("formula") = If(meta.formula, ""),
                 field("exact_mass") = exact_mass,
                 field("cas_id") = meta.xref.CAS.DefaultFirst,
                 field("pubchem_cid") = pubchem_cid,
