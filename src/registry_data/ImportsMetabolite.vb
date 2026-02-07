@@ -145,20 +145,29 @@ Public Module ImportsMetabolite
         Dim trans As CommitTransaction = registry.synonym.open_transaction.ignore
 
         For Each synonym As String In synonyms.SafeQuery
-            If synonym Is Nothing Then
+            If synonym.StringEmpty(, True) Then
                 Continue For
             End If
 
-            Call trans _
-                .ignore _
-                .add(
-                    field("obj_id") = m.id,
-                    field("type") = metabolite_type,
-                    field("db_source") = db_source,
-                    field("synonym") = synonym,
-                    field("hashcode") = Strings.LCase(synonym).MD5,
-                    field("lang") = "en"
-            )
+            Dim hashcode As String = Strings.LCase(synonym).MD5
+            Dim check = registry.synonym.where(
+                field("obj_id") = m.id,
+                field("type") = metabolite_type,
+                field("db_source") = db_source,
+                field("hashcode") = hashcode).find(Of synonym)
+
+            If check Is Nothing Then
+                Call trans _
+                    .ignore _
+                    .add(
+                        field("obj_id") = m.id,
+                        field("type") = metabolite_type,
+                        field("db_source") = db_source,
+                        field("synonym") = synonym,
+                        field("hashcode") = Strings.LCase(synonym).MD5,
+                        field("lang") = "en"
+                )
+            End If
         Next
 
         Call trans.commit()
