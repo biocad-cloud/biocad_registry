@@ -61,6 +61,7 @@ WHERE
 
             If Not m Is Nothing Then
                 ' skip of the existed metadata
+                Continue For
             Else
                 m = registry.FindMolecule(model, "kegg_id", nameSearch:=True)
             End If
