@@ -543,7 +543,11 @@ FROM
                     Function(println)
                         Return ExportLocal(println, file.FileName, "KEGG")
                     End Function)
-                MessageBox.Show("Export metabolite local annotation repository database success!", "Task Finish", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+                MessageBox.Show("Export metabolite local annotation repository database success!",
+                                "Task Finish",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information)
             End If
         End Using
     End Sub
