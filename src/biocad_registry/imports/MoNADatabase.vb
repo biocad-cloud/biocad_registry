@@ -10,6 +10,10 @@ Module MoNADatabase
 
     Private Function MakeCleanName(ByRef spectra As SpectraSection) As MetaInfo
         spectra.name = Strings.Trim(spectra.name).Trim(""""c, " "c, "'"c, "!"c, "_"c, "-"c)
+        spectra.xref.KEGG = spectra.xref.KEGG _
+            .StringSplit("\s+") _
+            .Where(Function(id) id.IsPattern("C\d+")) _
+            .FirstOrDefault
 
         Dim clean_name As String = spectra.name
 
