@@ -2347,6 +2347,14 @@ to [rest of string was truncated]&quot;;.
  <param name="value"></param>
  <param name="type"></param>
 </member>
+<member name="M:SMRUCC.Rsharp.Interpreter.RInterpreter.Set(System.String,System.Object)">
+ <summary>
+ declare new variable or set variable value
+ </summary>
+ <param name="name"></param>
+ <param name="value"></param>
+ <returns></returns>
+</member>
 <member name="M:SMRUCC.Rsharp.Interpreter.RInterpreter.Invoke(System.String,System.Object[])">
  <summary>
  direct invoke

@@ -58,7 +58,7 @@
           "Microsoft.VisualBasic.Data.NLP.Reference": "1.0.0.0",
           "Microsoft.VisualBasic.Data.NLP.Word2Vec.Reference": "5.33.69.2558",
           "Microsoft.VisualBasic.Data.TrinityNLP.Reference": "1.0.0.0",
-          "Microsoft.VisualBasic.Data.visualize.Network.Canvas.Reference": "2.33.9533.29541",
+          "Microsoft.VisualBasic.Data.visualize.Network.Canvas.Reference": "2.33.9537.28174",
           "Microsoft.VisualBasic.Data.visualize.Network.Reference": "1.0.0.0",
           "Microsoft.VisualBasic.Data.visualize.Network.IO.Extensions.Reference": "1.0.0.0",
           "Microsoft.VisualBasic.Data.visualize.Network.Layouts.Reference": "1.0.0.0",
@@ -94,11 +94,11 @@
           "SMRUCC.genomics.Analysis.HTS.GSEA.Fisher.Core.Reference": "1.0.0.0",
           "SMRUCC.genomics.Core.Reference": "6.3.256.3655",
           "SMRUCC.genomics.Data.BioCyc.Reference": "1.0.0.0",
-          "SMRUCC.genomics.Data.RCSB.PDB.Reference": "1.0.0.0",
           "SMRUCC.genomics.foundation.OBO_Foundry.Reference": "1.0.0.0",
           "SMRUCC.genomics.GCModeller.ModellingEngine.Model.Reference": "1.0.0.0",
           "SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.Reference": "3.0.0.0",
           "SMRUCC.genomics.InteractionModel.Reference": "1.0.0.0",
+          "SMRUCC.genomics.Interops.NCBI.Extensions.Reference": "1.0.0.0",
           "SMRUCC.genomics.Model.MotifGraph.ProteinStructure.Reference": "1.0.0.0",
           "SMRUCC.genomics.Visualize.Cytoscape.Reference": "1.0.0.0",
           "runtimepack.Microsoft.Windows.SDK.NET.Ref": "10.0.17763.57"
@@ -1615,17 +1615,6 @@
           }
         }
       },
-      "SMRUCC.genomics.Data.RCSB.PDB/1.0.0": {
-        "dependencies": {
-          "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
-          "SMRUCC.genomics.Core": "6.3.256.3655"
-        },
-        "runtime": {
-          "SMRUCC.genomics.Data.RCSB.PDB.dll": {
-            "fileVersion": "0.0.0.0"
-          }
-        }
-      },
       "SMRUCC.genomics.foundation.OBO_Foundry/1.0.0": {
         "dependencies": {
           "Microsoft.VisualBasic.MIME.application.rdf_xml": "1.0.0",
@@ -1681,6 +1670,19 @@
           }
         }
       },
+      "SMRUCC.genomics.Interops.NCBI.Extensions/1.0.0": {
+        "dependencies": {
+          "Microsoft.VisualBasic.Data.Framework": "5.0.123",
+          "Microsoft.VisualBasic.Math.Core": "5.0.1.2389",
+          "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
+          "SMRUCC.genomics.Core": "6.3.256.3655"
+        },
+        "runtime": {
+          "SMRUCC.genomics.Interops.NCBI.Extensions.dll": {
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
       "SMRUCC.genomics.Model.MotifGraph.ProteinStructure/1.0.0": {
         "dependencies": {
           "Microsoft.VisualBasic.Data.GraphTheory": "1.0.0",
@@ -1693,7 +1695,7 @@
           "Microsoft.VisualBasic.Math.Core": "5.0.1.2389",
           "Microsoft.VisualBasic.Runtime": "5.0.1.2389",
           "SMRUCC.genomics.Core": "6.3.256.3655",
-          "SMRUCC.genomics.Data.RCSB.PDB": "1.0.0"
+          "SMRUCC.genomics.Interops.NCBI.Extensions": "1.0.0"
         },
         "runtime": {
           "SMRUCC.genomics.Model.MotifGraph.ProteinStructure.dll": {
@@ -1956,10 +1958,10 @@
           }
         }
       },
-      "Microsoft.VisualBasic.Data.visualize.Network.Canvas.Reference/2.33.9533.29541": {
+      "Microsoft.VisualBasic.Data.visualize.Network.Canvas.Reference/2.33.9537.28174": {
         "runtime": {
           "Microsoft.VisualBasic.Data.visualize.Network.Canvas.dll": {
-            "assemblyVersion": "2.33.9533.29541",
+            "assemblyVersion": "2.33.9537.28174",
             "fileVersion": "2.33.0.0"
           }
         }
@@ -2244,14 +2246,6 @@
           }
         }
       },
-      "SMRUCC.genomics.Data.RCSB.PDB.Reference/1.0.0.0": {
-        "runtime": {
-          "SMRUCC.genomics.Data.RCSB.PDB.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
-        }
-      },
       "SMRUCC.genomics.foundation.OBO_Foundry.Reference/1.0.0.0": {
         "runtime": {
           "SMRUCC.genomics.foundation.OBO_Foundry.dll": {
@@ -2279,6 +2273,14 @@
       "SMRUCC.genomics.InteractionModel.Reference/1.0.0.0": {
         "runtime": {
           "SMRUCC.genomics.InteractionModel.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "SMRUCC.genomics.Interops.NCBI.Extensions.Reference/1.0.0.0": {
+        "runtime": {
+          "SMRUCC.genomics.Interops.NCBI.Extensions.dll": {
             "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
           }
@@ -2899,11 +2901,6 @@
       "serviceable": false,
       "sha512": ""
     },
-    "SMRUCC.genomics.Data.RCSB.PDB/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
     "SMRUCC.genomics.foundation.OBO_Foundry/1.0.0": {
       "type": "project",
       "serviceable": false,
@@ -2920,6 +2917,11 @@
       "sha512": ""
     },
     "SMRUCC.genomics.InteractionModel/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SMRUCC.genomics.Interops.NCBI.Extensions/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -3059,7 +3061,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Microsoft.VisualBasic.Data.visualize.Network.Canvas.Reference/2.33.9533.29541": {
+    "Microsoft.VisualBasic.Data.visualize.Network.Canvas.Reference/2.33.9537.28174": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
@@ -3239,11 +3241,6 @@
       "serviceable": false,
       "sha512": ""
     },
-    "SMRUCC.genomics.Data.RCSB.PDB.Reference/1.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
     "SMRUCC.genomics.foundation.OBO_Foundry.Reference/1.0.0.0": {
       "type": "reference",
       "serviceable": false,
@@ -3260,6 +3257,11 @@
       "sha512": ""
     },
     "SMRUCC.genomics.InteractionModel.Reference/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SMRUCC.genomics.Interops.NCBI.Extensions.Reference/1.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

@@ -524,7 +524,7 @@ Microsoft.VisualBasic.Data.NLP
  <param name="externalWords"></param>
  <returns></returns>
  <remarks>
- each time the <see cref="M:Microsoft.VisualBasic.Data.NLP.TFIDF.Add(System.String,System.Collections.Generic.IEnumerable{System.String})"/> method is call in this module, the words cache will be cleared. 
+ each time the <see cref="M:Microsoft.VisualBasic.Data.NLP.TFIDF.Add(System.String,System.Collections.Generic.Dictionary{System.String,System.Int32})"/> method is call in this module, the words cache will be cleared. 
  this function should be called after all sequence has already been added into this generator.
  </remarks>
 </member>

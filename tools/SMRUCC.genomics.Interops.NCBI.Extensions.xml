@@ -1,0 +1,3457 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+SMRUCC.genomics.Interops.NCBI.Extensions
+</name>
+</assembly>
+<members>
+<member name="T:SMRUCC.genomics.Interops.NCBI.Extensions.My.Resources.Resources">
+<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.My.Resources.Resources.ResourceManager">
+<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.My.Resources.Resources.Culture">
+<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member>
+<member name="T:SMRUCC.genomics.Interops.NCBI.Extensions.DiamondAnnotation">
+ <summary>
+ 代表 DIAMOND BLASTP 结果文件 (.m8) 中的一行记录
+ </summary>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.DiamondAnnotation.ToString">
+ <summary>
+ 重写 ToString，方便调试输出
+ </summary>
+</member>
+<member name="T:SMRUCC.genomics.Interops.NCBI.Extensions.DiamondM8Parser">
+ <summary>
+ 用于解析 DIAMOND .m8 格式文件的工具类
+ </summary>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.DiamondM8Parser.ParseFile(System.String)">
+ <summary>
+ 解析指定的 .m8 文件并返回结果列表
+ </summary>
+ <param name="filePath">文件的完整路径</param>
+ <returns>包含 DiamondAnnotation 对象的列表</returns>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.Extensions.IsNullOrEmpty(System.Collections.Generic.IEnumerable{SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.BestHit})">
+ <summary>
+ Is this collection of the besthit data is empty or nothing?
+ </summary>
+ <param name="data"></param>
+ <returns></returns>
+</member>
+<member name="T:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.IBlastOutput">
+ <summary>
+ Blast程序结果对外输出的统一接口类型对象
+ </summary>
+ <remarks>
+ Reader文件夹之下为各种格式的日志文件的读取类对象
+ 对于BLAST日志文件，则有一个BlastLogFile对象作为对外保存和其他程序读取的统一接口
+ </remarks>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.IBlastOutput.ExportBestHit(System.Double,System.Double)">
+ <summary>
+ 仅导出每条记录的第一个最佳匹配的结果
+ </summary>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.IBlastOutput.ExportAllBestHist(System.Double,System.Double)">
+ <summary>
+ 导出每条记录中的所有最佳的匹配结果
+ </summary>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.ComponentModel.Parameter.__blastnParser(System.String)">
+ <summary>
+ Blastn和Blastp的分数的项目是不一样的
+ </summary>
+ <param name="line"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.ComponentModel.BlastXScore.Frame">
+ <summary>
+ The triple codon offset.
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.ComponentModel.Score">
+ <summary>
+ Query和Subject之间的比对得分
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.ComponentModel.Score.Expect">
+ <summary>
+ E-value 期望值
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.ComponentModel.Score.Identities">
+ <summary>
+ 相似度
+ </summary>
+ <returns></returns>
+</member>
+<member name="F:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.ComponentModel.Score._DOUBLE">
+ <summary>
+ 一个任意实数
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.ComponentModel.Score.ScoreTable(System.String)">
+ <summary>
+ 
+ </summary>
+ <param name="text"></param>
+ <returns></returns>.
+ <remarks>
+ 2018-10-30 可能有时候会因为原始数据文件分段读取的原因，会出现空缺
+ 在这个函数之中会需要进行这些空缺的额外处理来保证程序不会出错
+ </remarks>
+</member>
+<member name="T:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.ComponentModel.HitSegment">
+ <summary>
+ 表示一个Query和Subject匹配上的序列片段相对应的位置，即HSP高分区片段
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="T:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.ComponentModel.Segment">
+ <summary>
+ 匹配上的序列片段
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.BlastPlus.BlastpOutputReader.QueryBlockIterates(System.String,Microsoft.VisualBasic.Text.Encodings)">
+ <summary>
+ 每次只生成一个query的文本内容数据
+ </summary>
+ <param name="path$"></param>
+ <param name="encoding"></param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.BlastPlus.BlastpOutputReader.RunParser(System.String,System.Boolean,Microsoft.VisualBasic.Text.Encodings)">
+ <summary>
+ Calls the blastp parser for the blast+ alignment result.
+ </summary>
+ <param name="path$"></param>
+ <param name="encoding"></param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.BlastPlus.BlastpOutputReader.subjectParser(System.String,System.Boolean)">
+ <summary>
+ 
+ </summary>
+ <param name="block"></param>
+ <param name="fast">fast模式下,将不会解析匹配的具体序列匹配内容,只解析出query,subject和具体的得分</param>
+ <returns></returns>
+</member>
+<member name="T:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.BlastPlus.BlastX.v228_BlastX">
+ <summary>
+ The output result data model of the blastx output text file.
+ </summary>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.BlastPlus.BlastX.v228_BlastX.Queries">
+ <summary>
+ The blastx query inputs
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.BlastPlus.BlastX.Extensions">
+ <summary>
+ Extensions API for blastX output table
+ </summary>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.BlastPlus.BlastX.Extensions.TopBest(System.Collections.Generic.IEnumerable{SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.BlastPlus.BlastX.BlastXHit})">
+ <summary>
+ Get the top best hit from the blastx output table result
+ </summary>
+ <param name="result"></param>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.BlastPlus.BlastX.Components.HitFragment.Score">
+ <summary>
+ The score of this fragment
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.BlastPlus.BlastX.Components.HitFragment.Hsp">
+ <summary>
+ The alignment high score region.
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.BlastPlus.BlastX.Components.HitFragment.ReadingFrameOffSet">
+ <summary>
+ ORF阅读框的偏移碱基数
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="T:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.BlastPlus.BlastX.Components.Query">
+ <summary>
+ The blastx query input result data.
+ 
+ ```
+ + Query
+   + Subject
+      + Fragment
+         + HSP1
+         + HSP2
+         + HSP3
+      + Fragment
+      ...
+ ```
+ </summary>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.BlastPlus.BlastX.Components.Query.Subjects">
+ <summary>
+ The hits result in target protein sequence database.
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.BlastPlus.BlastX.Components.Subject">
+ <summary>
+ The hits result in target protein sequence database.
+ </summary>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.BlastPlus.BlastX.Components.Subject.Hits">
+ <summary>
+ The blastx subject hit is consist with sevral fragment.
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.BlastPlus.BlastX.Components.Subject.FilteringSegments(System.Double)">
+ <summary>
+ 这个函数过滤掉所有过短的比对片段
+ </summary>
+ <returns></returns>
+ <param name="p">0-1之间的数，用于表示长度的百分比</param>
+ <remarks></remarks>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.BlastPlus.BlastX.OutputReader.TryParseOutput(System.String,System.Boolean,System.Text.Encoding)">
+ <summary>
+ Try load the blastx output file data.(尝试使用这个方法来加载blastx的输出数据)
+ </summary>
+ <param name="path">The file path of the blastx output file.(blastx输出文件的文件路径)</param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="F:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.BlastPlus.BlastX.OutputReader.queryInfoRegexp">
+ <summary>
+ 
+ </summary>
+ <remarks>
+ ###### 20190615
+ 当queryName是空的时候，这个正则表达式将无法正常工作
+ </remarks>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.BlastPlus.BlastX.OutputReader.__queryParser(System.String,System.Boolean)">
+ <summary>
+ 一个query对应多个hits，每一个hit与query之间又会存在多个比对的高分区碎片
+ </summary>
+ <param name="str"></param>
+ <returns></returns>
+</member>
+<member name="F:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.BlastPlus.ParameterSummary.Charts">
+ <summary>
+ Number of letters in database
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.BlastPlus.ParameterSummary.NWThreshold">
+ <summary>
+ Neighboring words threshold
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.BlastPlus.ParameterSummary.Window">
+ <summary>
+ Window for multiple hits
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.BlastPlus.Parser.ParsingSizeAuto(System.String,System.Text.Encoding)">
+ <summary>
+ The parser worker will be select automatically based on the blast output file size.
+ (当blast的输出文件非常大的时候，会自动选择分片段解析读取的方法工作)
+ </summary>
+ <param name="path"></param>
+ <param name="encoding"></param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.BlastPlus.Parser.UltraLarge(System.String)">
+ <summary>
+ 判断文件的大小是否是输入超大的文件类型的
+ </summary>
+ <param name="path"></param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.BlastPlus.Parser.isUltraLargeFileSize(System.String)">
+ <summary>
+ 单条字符串的最大长度好像只有700MB的内存左右
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.BlastPlus.Parser.LoadBlastOutput(System.String)">
+ <summary>
+ Load the blast output from a local file, if the exceptions happened during the data loading process, then a 
+ null value will be return.
+ (读取blast日志文件，当发生错误的时候，函数返回空值)
+ </summary>
+ <param name="path">The file path of the blast output</param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.BlastPlus.Parser.TryParse(System.String,System.Text.Encoding)">
+ <summary>
+ Log file size smaller than 512MB is recommended using this loading method, if the log file size is large than 512MB, 
+ please using the method <see cref="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.BlastPlus.Parser.TryParseUltraLarge(System.String,System.Int64,System.Text.Encoding)"></see>.
+ (当blast输出的日志文件比较小的时候，可以使用当前的这个方法进行读取)
+ </summary>
+ <param name="Path">Original plant text file path of the blast output file.</param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="T:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.BlastPlus.Parser.ReaderTypes">
+ <summary>
+ + BLASTP
+ + BLASTN
+ + BLASTX
+ </summary>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.BlastPlus.Parser.IsBlastOut(System.String)">
+ <summary>
+ 判断目标文件是否为一个blast+的原始输出的结果文件
+ </summary>
+ <param name="path$"></param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.BlastPlus.Parser.GetType(System.String,System.Text.Encoding)">
+ <summary>
+ The target blast output text file is from the blastp or blastn?
+ </summary>
+ <param name="path"></param>
+ <param name="Encoding"></param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.BlastPlus.Parser.TryParseBlastnOutput(System.String)">
+ <summary>
+ Load the blastn output data.(读取blastn日志输出的数据.)
+ </summary>
+ <param name="Path">The blastn output file path.</param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="F:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.BlastPlus.Parser.CHUNK_SIZE">
+ <summary>
+ It seems 768MB possibly is the up bound of the Utf8.GetString function.
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.BlastPlus.Parser.Transform(Microsoft.VisualBasic.Language.Value{System.String},System.Int64,System.Action{SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.BlastPlus.Query},System.Text.Encoding,System.ValueTuple{System.String,System.String})">
+ <summary>
+ File processor for the file size which is greater than 10GB.
+ (处理非常大的blast输出文件的时候所需要的，大小大于10GB的文件建议使用这个方法处理)
+ </summary>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.BlastPlus.Parser.Transform(System.String,System.Int32,System.Action{SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.BlastPlus.Query[]},System.Text.Encoding,System.ValueTuple{System.String,System.String})">
+ <summary>
+ 处理非常大的blast输出文件的时候所需要的，大小大于10GB的文件建议使用这个方法处理
+ </summary>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.BlastPlus.Parser.measureParser(System.String)">
+ <summary>
+ 获取blastn或者blastp的解析器
+ </summary>
+ <param name="path"></param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.BlastPlus.Parser.__tryParseUltraLarge(System.String,System.Int64,System.Text.Encoding)">
+ <summary>
+ Dealing with the file size large than 2GB.
+ (当Blast日志文件的大小大于100M的时候，可以使用这个方法进行加载，函数会自动判断日志是否为blastn还是blastp)
+ </summary>
+ <param name="path">File path of the blast output file.</param>
+ <param name="CHUNK_SIZE">The parameter unit for this value is Byte, so you need to multiply the 1024*1024 to get a MB level value.
+ It seems 768MB possibly is the up bound of the Utf8.GetString function. default is 64MB</param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.BlastPlus.Parser.TryParseUltraLarge(System.String,System.Int64,System.Text.Encoding)">
+ <summary>
+ Dealing with the file size large than 2GB.(当Blast日志文件的大小大于100M的时候，可以使用这个方法进行加载，函数会自动判断日志是否为blastn还是blastp)
+ </summary>
+ <param name="path">File path of the blast output file.</param>
+ <param name="CHUNK_SIZE">The parameter unit for this value is Byte, so you need to multiply the 1024*1024 to get a MB level value.
+ It seems 768MB possibly is the up bound of the Utf8.GetString function. default is 64MB</param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="F:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.BlastPlus.BlastnHit._referStrand">
+ <summary>
+ 参考链的方向
+ </summary>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.BlastPlus.BlastnHit.hitParser(System.String)">
+ <summary>
+ 
+ </summary>
+ <param name="str"></param>
+ <returns></returns>
+ <remarks>非并行化的，所以会保持原有的顺序</remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.BlastPlus.FragmentHit.Hsp">
+ <summary>
+ The sequence aligmment details data.
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.BlastPlus.FragmentHit.LengthHit">
+ <summary>
+ 高分区的hit片段的长度
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.BlastPlus.Query.QueryLength">
+ <summary>
+ Protein length of <see cref="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.BlastPlus.Query.QueryName">the target query protein</see>.
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.BlastPlus.Query.#ctor(SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.BlastPlus.Query)">
+ <summary>
+ Value copy
+ </summary>
+ <param name="query"></param>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.BlastPlus.Query.GetBesthits(System.Double,System.Double)">
+ <summary>
+ 导出所有符合条件的最佳匹配
+ </summary>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.BlastPlus.Query.TryParse(System.String)">
+ <summary>
+ <see cref="F:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.BlastPlus.Parser.ReaderTypes.BLASTP"/>
+ </summary>
+ <param name="strText"></param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.BlastPlus.Query.BlastnOutputParser(System.String)">
+ <summary>
+ <see cref="F:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.BlastPlus.Parser.ReaderTypes.BLASTN"/>
+ </summary>
+ <param name="text"></param>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.BlastPlus.SubjectHit.Length">
+ <summary>
+ hit蛋白质序列的全长
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.BlastPlus.SubjectHit.QueryLocation">
+ <summary>
+ Hit position on the query sequence.
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.BlastPlus.SubjectHit.LengthHit">
+ <summary>
+ 高分区的hit片段的长度
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.BlastPlus.SubjectHit.GetItems(System.String)">
+ <summary>
+
+ </summary>
+ <param name="text"></param>
+ <returns></returns>
+ <remarks>请不要在这里使用.AsParallel拓展方法，以保持各个片段的顺序关系</remarks>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.BlastPlus.SubjectHit.TryParse(System.String)">
+ <summary>
+ 一个subject可能会出现不止一种的最佳比对结果
+ </summary>
+ <param name="text"></param>
+ <returns></returns>
+</member>
+<member name="T:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.BlastPlus.v228">
+ <summary>
+ 2.2.28版本的BLAST+程序的日志输出文件
+ </summary>
+ <remarks>
+ 默认的文件编码是<see cref="P:System.Text.Encoding.UTF8"/>
+ </remarks>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.BlastPlus.v228.ExportBestHit(System.Double,System.Double)">
+ <summary>
+ 从本日志文件之中导出BestHit表格(单项最佳的)
+ </summary>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.BlastPlus.v228.topHitResult(SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.BlastPlus.Query,System.Double,System.Double)">
+ <summary>
+ 导出最佳的符合条件的
+ </summary>
+ <param name="query"></param>
+ <param name="coverage"></param>
+ <param name="identities"></param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.BlastPlus.v228.SBHLines(SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.BlastPlus.Query,System.Double,System.Double,Microsoft.VisualBasic.Scripting.TextGrepMethod,System.Boolean)">
+ <summary>
+ 导出所有符合条件的
+ </summary>
+ <param name="Query"></param>
+ <param name="coverage"></param>
+ <param name="identities"></param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.BlastPlus.v228.ExportOverview">
+ <summary>
+ 不做任何筛选，导出所有的比对信息
+ </summary>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.BlastPlus.v228.ExportAllBestHist(System.Double,System.Double)">
+ <summary>
+ Exports all of the hits which it meet the condition of threshold.(导出所有的单项最佳)
+ </summary>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="F:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.BlastPlus.v228.tokenFirst">
+ <summary>
+ split name with default fasta header delimiters
+ </summary>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.BlastPlus.v228.CheckIntegrity(SMRUCC.genomics.SequenceModel.FASTA.FastaFile)">
+ <summary>
+ 根据Query检查完整性
+ </summary>
+ <param name="source">主要是使用到Query序列之中的Title属性</param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="T:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.Views.Overview">
+ <summary>
+ 方便程序调试的一个对象数据结构
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.XmlFile.Hits.Hit.Coverage">
+ <summary>
+ 高分区长度与Hit的总长度的比值
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.XmlFile.Hits.Hit.HitLength">
+ <summary>
+ Hit序列比对上的区域长度，与Len属性不同的是，Len属性指的是Hit序列本身的长度
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.XmlFile.BlastOutput.Grep(Microsoft.VisualBasic.Scripting.TextGrepMethod,Microsoft.VisualBasic.Scripting.TextGrepMethod)">
+ <summary>
+ Trim for uid/locus_tag
+ </summary>
+ <param name="QueryGrepMethod"></param>
+ <param name="HitsGrepMethod"></param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.XmlFile.BlastOutput.LoadFromFile(System.String)">
+ <summary>
+ 
+ </summary>
+ <param name="XmlPath">Xml文件的文件路径</param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="T:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.Abstract.I_BlastQueryHit">
+ <summary>
+ <see cref="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.Abstract.I_BlastQueryHit.QueryName"></see> and <see cref="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.Abstract.I_BlastQueryHit.HitName"></see>
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.Abstract.I_BlastQueryHit.QueryName">
+ <summary>
+ The query source.
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.Abstract.I_BlastQueryHit.HitName">
+ <summary>
+ The subject hit.
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.Abstract.I_BlastQueryHit.description">
+ <summary>
+ The functional description of <see cref="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.Abstract.I_BlastQueryHit.HitName"/>
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.Abstract.I_BlastQueryHit.isMatched">
+ <summary>
+ 仅仅是依靠对HitName的判断来使用这个属性了解<see cref="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.Abstract.I_BlastQueryHit.QueryName"></see>是否已经和<see cref="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.Abstract.I_BlastQueryHit.HitName"></see>比对上了
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.Abstract.I_BlastQueryHit.BBH_ID">
+ <summary>
+ 会忽略掉基因号ID的先后顺序的，重新按照字符先后进行排序
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.Abstract.BBHIndex">
+ <summary>
+ 可以使用这个对象来表述<see cref="T:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.Abstract.I_BlastQueryHit"/>的所有派生类
+ </summary>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.Abstract.BBHIndex.Properties">
+ <summary>
+ 动态属性
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.Abstract.BBHIndex.Property(System.String)">
+ <summary>
+ 请注意这个属性进行字典的读取的时候，假若不存在，则会返回空字符串，不会报错
+ </summary>
+ <param name="Name"></param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.Abstract.BBHIndex.BuildHitsTable(System.Collections.Generic.IEnumerable{SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.Abstract.BBHIndex},System.Boolean,System.Boolean)">
+ <summary>
+ 从bbh结果里面构建出比对信息的哈希表
+ </summary>
+ <param name="source"></param>
+ <param name="indexByHits">Using <see cref="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.Abstract.I_BlastQueryHit.HitName"/> as hash key? Default is using <see cref="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.Abstract.I_BlastQueryHit.QueryName"/></param>
+ <param name="trim">这个函数里面默认是消除了KEGG的物种简写代码的</param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.Abstract.Extensions.isEmpty(SMRUCC.genomics.ComponentModel.Annotation.IQueryHits)">
+ <summary>
+ 目标比对结果是否是空的?
+ 
+ 1. 对象是空值
+ 2. 空的<see cref="P:SMRUCC.genomics.ComponentModel.Annotation.IBlastHit.queryName"/>
+ 3. 空的<see cref="P:SMRUCC.genomics.ComponentModel.Annotation.IBlastHit.hitName"/>或者其等于<see cref="F:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.IBlastOutput.HITS_NOT_FOUND"/>
+ </summary>
+ <param name="hit"></param>
+ <returns></returns>
+</member>
+<member name="T:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.BBHParser">
+ <summary>
+ BBH解析的时候，是不会区分方向的，所以只要保证编号是一致的就会解析出结果，这个不需要担心
+ </summary>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.BBHParser.GetDirreBhAll2(SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.BestHit[],SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.BestHit[],System.Double,System.Double)">
+ <summary>
+ 导出所有的双向最佳比对结果
+ </summary>
+ <param name="bhQvS"></param>
+ <param name="bhSvQ"></param>
+ <returns></returns>
+ <remarks>
+ 取出所有符合条件的单向最佳的记录
+ </remarks>
+
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.BBHParser.TopHit(System.Collections.Generic.IEnumerable{SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.BestHit})">
+ <summary>
+ 通过排序得到最好的比对结果，在这里假设evalue都已经满足条件了
+ </summary>
+ <param name="hits">假设这里面的hits都是通过了cutoff了的数据</param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.BBHParser.GetDirreBhAll2(Microsoft.VisualBasic.Data.Framework.IO.File,Microsoft.VisualBasic.Data.Framework.IO.File)">
+ <summary>
+ 导出所有的双向最佳比对结果
+ </summary>
+ <param name="SvQ"></param>
+ <param name="QvS"></param>
+ <returns></returns>
+ <remarks>
+ 取出所有符合条件的单向最佳的记录
+ </remarks>
+
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.BBHParser.BBHTop(Microsoft.VisualBasic.Data.Framework.IO.File,Microsoft.VisualBasic.Data.Framework.IO.File)">
+ <summary>
+ 获取双向的最佳匹配结果.(只取出第一个最好的结果)
+ </summary>
+ <param name="QvS"></param>
+ <param name="SvQ"></param>
+ <returns></returns>
+ <remarks></remarks>
+
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.BBHParser.GetDirreBhAll(Microsoft.VisualBasic.Data.Framework.IO.File,Microsoft.VisualBasic.Data.Framework.IO.File)">
+ <summary>
+ 导出所有的双向最佳比对结果，只要能够在双方的列表之中匹配上，则认为是最佳双向匹配
+ </summary>
+ <param name="SvQ"></param>
+ <param name="QvS"></param>
+ <returns></returns>
+ <remarks>
+ 取出所有符合条件的单向最佳的记录
+ </remarks>
+
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.BBHParser.get_DiReBh(Microsoft.VisualBasic.Data.Framework.IO.File,Microsoft.VisualBasic.Data.Framework.IO.File)">
+ <summary>
+ 获取双向的最佳匹配结果.(只取出第一个最好的结果)
+ </summary>
+ <param name="QvS"></param>
+ <param name="SvQ"></param>
+ <returns></returns>
+ <remarks></remarks>
+
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.BBHParser.__topBesthit(SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.BestHit,SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.BestHit[])">
+ <summary>
+ 假若没有最佳比对，则HitName为空值
+ </summary>
+ <param name="Query"></param>
+ <param name="SubjectVsQuery"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.BBHParser.bhTopTable(System.Collections.Generic.IEnumerable{SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.BestHit},System.Double,System.Double)">
+ <summary>
+ 按照阈值构建最好的比对结果
+ </summary>
+ <param name="source"></param>
+ <param name="identities"></param>
+ <param name="coverage"></param>
+ <returns></returns>
+</member>
+<member name="F:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.BBHParser.HITS_NOT_FOUND">
+ <summary>
+ HITS_NOT_FOUND
+ </summary>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.BBHParser.GetBBHTop(System.Collections.Generic.IEnumerable{SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.BestHit},System.Collections.Generic.IEnumerable{SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.BestHit},System.Double,System.Double)">
+ <summary>
+ Only using the first besthit paired result for the orthology data, if the query have no matches then using an empty string for the hit name.
+ (只使用第一个做为最佳的双向结果，假若匹配不上，Hitname属性会为空字符串)
+ </summary>
+ <param name="qvs"></param>
+ <param name="svq"></param>
+ <returns></returns>
+ <remarks>
+ query: 待注释的query，功能未知
+ subject: 数据库之中的已知功能的蛋白，则bbh的输出结果的注释信息来自于subject.
+ 
+ 因为qvs表示query vs subject，所以sbh的注释结果来自于subject，则在这里的注释功能描述结果则来自于qvs之中
+ </remarks>
+</member>
+<member name="T:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.Levels">
+ <summary>
+ The blast result alignment identify levels
+ </summary>
+</member>
+<member name="F:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.Levels.NA">
+ <summary>
+ A和B之间没有同源性
+ </summary>
+</member>
+<member name="F:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.Levels.BBH">
+ <summary>
+ A vs B 以及 B vs A 都是得分最高的(BHR = 1)
+ </summary>
+</member>
+<member name="F:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.Levels.BHR">
+ <summary>
+ A vs B 以及 B vs A 都不是得分最高的,但是BHR得分是最高的 (BHR >= threshold)
+ </summary>
+</member>
+<member name="F:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.Levels.SBH">
+ <summary>
+ 只有一个方向的比对结果是最高的
+ </summary>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.BHRHit.BHRScore">
+ <summary>
+ bi-directional hit rate score
+ </summary>
+</member>
+<member name="T:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.BHR">
+ <summary>
+ **BHR(Bi-directional hit rate)** 
+ 
+ http://www.genome.jp/tools/kaas/help.html
+ 
+ 把要注释的genome作为``query``，和KEGG数据库中的``reference``进行blast比对，输出的结果（E>10）称为 homolog。
+ 同时把reference作为query，把genome作为refernce，进行blast比对。按照下面的条件对每个 homolog 进行过滤：
+ 
+ + Blast bits score > 60
+ + bi-directional hit rate (BHR) > 0.95。
+ 
+ Blast Bits Score 是在``Blast raw score``换算过来的。
+ 
+ ``BHR``是KEGG在``Bi-directioanl Best Hit``的基础上进行修改的一个选项，``BHR = Rf * Rr``。
+ 
+ + Rf和Rr分别为forward sbh以及reverse sbh的``R``值
+ 
+ Given a genome to be annotated, it is compared against each genome in the reference set of the KEGG GENES database 
+ by the homology searches in both forward and reverse directions, taking each gene in genome A as a query compared 
+ against all genes in genome B, and vice versa. Those hits with bit scores less than 60 are removed. Because the bit 
+ scores of a gene pair a and b from two genomes A and B, respectively, can be different in forward and reverse 
+ directions, and because the top scores do not necessarily reflect the order of the rigorous Smith-Waterman scores
+ 
+ Here, ``R = S'/Sb`` where S' is the bit score of a against b, and Sb is the score of a against the best-hit gene in 
+ genome B (which may not necessarily be b). Rf refers to the score from the forward hit (A against B), and Rr refers 
+ to the score from the reverse hit (B against A). We select those genes whose BHR is greater than 0.95 in BBH method, 
+ and Rf is greater than 0.95 in SBH method.
+ 
+ KEGG 在做注释的时候，并不是把所有的基因都作为refernce，而是按照是否来自同一个基因组分成一个一个的小的 
+ reference，分别进行blast，假设有两个基因组A和B，含有的基因分别为``a1, a2, a3...an``, ``b1, b2, b3...bn``先用A
+ 作为query，B作为refer，进行blast比对，A中的基因a1对B中的基因进行遍历，和基因b1有最高的bit score。
+ 现在用B作为refer,A作为query,进行blast比对，B中的基因b1对A中的基因进行遍历，如果bits score最高的是a1，
+ 则a1和a2就是一个BBH，但也有可能不是a1，只能成为 Single-directional hit rate。
+ 
+ 用刚才的A和B作为例子。``Rf``为用A作为query，B作为Refer,a1和B中的每一个基因都计算一次，
+ 
+ ```
+ R = Bits_score[a1-b1] / MaxBits_score[a1_b]
+ ```
+ 
+ 分子是a1和B中的一个基因的Bit_score,分母是a1和B中基因最大的bit_score。假设注释得到的a1和b1中的某个基因
+ 是``BBH``，则``BHR``一定等于1。当然，容许修改BHR参数``&lt;1``。计算``KO assignment score``后, 
+ 选择得分最高的``KO``作为这个``gene``的``KO``。
+ </summary>
+ <remarks>
+ + Moriya, Y., Itoh, M., Okuda, S., Yoshizawa, A., and Kanehisa, M.; KAAS: an automatic genome annotation and pathway reconstruction server. Nucleic Acids Res. 35, W182-W185 (2007). 
+ </remarks>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.BHR.HitRate(System.Collections.Generic.IEnumerable{SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.BestHit},System.Double,System.Boolean)">
+ <summary>
+ Calculate R score for hit
+ 
+ ```
+ R = bits / max(bits)
+ ```
+ </summary>
+ <param name="threshold">
+ bit score filter threshold, Those hits with bit scores less than 60 are removed.
+ </param>
+ <returns></returns>
+ 
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.BHR.BHRResult(Microsoft.VisualBasic.ComponentModel.DataSourceModel.NamedCollection{SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.BestHit}[],Microsoft.VisualBasic.ComponentModel.DataSourceModel.NamedCollection{SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.BestHit}[],System.Double,System.Double)">
+ <summary>
+ make term assignment directly via calculate BBH through BHR score
+ </summary>
+ <param name="forward">localblast alignment result of query vs. subj reference</param>
+ <param name="reverse">localblast alignment result of subj reference vs. query</param>
+ <param name="threshold">
+ The BHR score threshold. (当这个参数为1的时候,算法会变为传统的BBH构建方法)
+ </param>
+ <returns></returns>
+ <remarks>
+ BHR的意义在于, 
+ + 假若BBH结果中,A在B中的bit得分并不是最高的那个的话,则按照传统的严格的BBH方法,A将不是B的BBH.(此时将会丢掉一个可能的BBH结果)
+ + 但是现在在引入BHR之后,即使A在B中的bit得分不是最高的,但是BHR是最高的,则可以认为A和B此时是BBH(保留下来了一个非常可能存在的BBH结果)
+ </remarks>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.BHR.GetTopBHR(SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.TopHitRates,System.Collections.Generic.Dictionary{System.String,System.Double})">
+ <summary>
+ 在这里计算出最高的BHR比对结果
+ </summary>
+ <param name="q"></param>
+ <param name="r"></param>
+ <returns>Rf * Rr</returns>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.BHR.ReverseAssembly(System.Collections.Generic.IEnumerable{SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.TopHitRates})">
+ <summary>
+ Reverse assembling of the subj vs. query result.
+ </summary>
+ <param name="Rr"></param>
+ <returns></returns>
+</member>
+<member name="T:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.KOAssignmentCandidate">
+ <summary>
+ 用于存储一个查询基因的KO分配候选
+ </summary>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.KOAssignmentCandidate.AssignmentScore">
+ <summary>
+ 最终计算出的KO分配得分 S_KO
+ </summary>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.KOAssignmentCandidate.Sh">
+ <summary>
+ 最高比特分数 S_h，来自与该KO中所有基因比对的最佳结果
+ </summary>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.KOAssignmentCandidate.N">
+ <summary>
+ 满足BHR阈值的基因数
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.KOAssignmentCandidate.X">
+ <summary>
+ KO中的总基因数
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.KOAssignmentScore">
+ <summary>
+ KEGG KAAS Assignment Score (S_KO) 计算模块
+ </summary>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.KOAssignmentScore.KOgeneCounts(System.Collections.Generic.IEnumerable{SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.BestHit})">
+ <summary>
+ 基于reverse比对计算出每一个ko中的基因总数
+ </summary>
+ <param name="reverse">query is the KO, use input target as subject reference</param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.KOAssignmentScore.CalculateAssignmentScore(System.Double,System.Int32,System.Int32,System.Int32,System.Int32,System.Double)">
+ <summary>
+ 计算KEGG的KO分配得分 S_KO
+ </summary>
+ <param name="Sh">最高比特分数</param>
+ <param name="m">查询基因长度</param>
+ <param name="n">参考基因长度</param>
+ <param name="x">KO中的总基因数</param>
+ <param name="N">满足BHR阈值的基因数</param>
+ <param name="p">单个基因满足BHR阈值的经验概率 (p0)</param>
+ <returns>Assignment Score (S_KO)</returns>
+ <remarks>
+ 这个函数直接对应了 KEGG 帮助文档中的公式：
+ 
+ We define a score for each ortholog group in order to assign the best fitting K numbers to the query gene:
+ 
+ ```
+ S_KO = S_h - log_2(mn) - log_2( sum_{k=N}^{x} C_k * p^k * (1-p)^{x-k} )
+ ```
+ 
+ where Sh is the highest score among all ortholog candidates in the ortholog group, 
+ m and n are the sequence lengths of the query and the target of BLAST, respectively, 
+ N is the number of organisms in ortholog group, x is the number of organisms in the 
+ original ortholog group from which this group is derived, and p is the ratio of the 
+ size of the original ortholog group versus the size of the entire GENES database. 
+ The second term is for the normalization of the first term by sequence lengths, and 
+ the third term is a weighting factor to consider the number of ortholog candidates 
+ that are found in the original.
+ </remarks>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.KOAssignmentScore.Log2BinomialRightTailProbability(System.Int32,System.Int32,System.Double)">
+ <summary>
+ 计算二项分布右尾概率的对数 (以2为底)
+ 即计算 log2( sum_{k=N}^{x} C(x,k) * p^k * (1-p)^(x-k) )
+ </summary>
+ <param name="x">总试验次数 (对应KO中的总基因数)</param>
+ <param name="N">成功的最小次数 (对应满足BHR阈值的基因数)</param>
+ <param name="p">单次试验成功的概率 (对应经验概率 p0)</param>
+ <returns>右尾概率的以2为底的对数</returns>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.KOAssignmentScore.Log2BinomialCoefficient(System.Int32,System.Int32)">
+ <summary>
+ 计算二项式系数的对数 (以2为底) log2(C(n, k))，
+ 使用 LogGamma 函数来避免计算大数阶乘导致的溢出。
+ </summary>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.KOAssignmentScore.Log2(System.Double)">
+ <summary>
+ 计算以2为底的对数
+ </summary>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.KOAssignmentScore.AssignBestKO(System.Collections.Generic.IEnumerable{SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.BHRHit},System.Collections.Generic.Dictionary{System.String,System.Int32},System.Double)">
+ <summary>
+ 为单个查询基因分配最佳KO。它会评估所有可能的KO，并选择得分最高的一个。
+ </summary>
+ <param name="allBHRHitsForQuery">该查询基因与所有参考基因的BHR计算结果列表</param>
+ <param name="koGeneCounts">一个字典，包含每个KO的总基因数</param>
+ <param name="bhrThreshold">BHR阈值</param>
+ <returns>得分最高的KO分配候选，如果没有则返回Nothing</returns>
+ 
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.KOAssignmentScore.KOCandidates(SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.BestHit[],System.String,System.Int32,System.Double,System.Double)">
+ <summary>
+ 
+ </summary>
+ <param name="groupHits"></param>
+ <param name="ko"></param>
+ <param name="x">获取KO的总基因数 x</param>
+ <param name="bhrThreshold"></param>
+ <param name="empiricalProbability"></param>
+ <returns></returns>
+</member>
+<member name="T:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.BestHit">
+ <summary>
+ A single direction best hit.
+ (单向的最佳比对结果)
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.BestHit.score">
+ <summary>
+ usually be the blast raw bit score
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.BestHit.coverage">
+ <summary>
+ 这个覆盖度是相对于query作为未知功能的全长protein序列而言的。
+ <see cref="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.BestHit.length_query"/> / <see cref="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.BestHit.query_length"/>
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.BestHit.IsMatchedBesthit(System.Double,System.Double)">
+ <summary>
+ <see cref="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.BestHit.coverage"/> >= <paramref name="coverage"/> AndAlso <see cref="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.BestHit.identities"/> >= <paramref name="identities"/> 
+ </summary>
+ <param name="identities"></param>
+ <param name="coverage"></param>
+ <returns></returns>
+</member>
+<member name="T:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.BiDirectionalBesthit">
+ <summary>
+ Best hit result from the binary direction blastp result.(最佳双向比对结果，BBH，直系同源)
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.BiDirectionalBesthit.description">
+ <summary>
+ Functional annotiation for protein <see cref="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.Abstract.I_BlastQueryHit.QueryName"></see>
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.BiDirectionalBesthit.term">
+ <summary>
+ Category term annotiation for protein <see cref="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.Abstract.I_BlastQueryHit.QueryName"></see>, like COG/KO, etc
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.BiDirectionalBesthit.length">
+ <summary>
+ Protein length annotiation for protein <see cref="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.Abstract.I_BlastQueryHit.QueryName"></see>.(本蛋白质实体对象的序列长度)
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.BiDirectionalBesthit.forward">
+ <summary>
+ 
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.BiDirectionalBesthit.ToString">
+ <summary>
+
+ </summary>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="T:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.BiDirectionalBesthit.GetDescriptionHandle">
+ <summary>
+ Get gene function description from the specific locus_tag
+ </summary>
+ <param name="locusId"></param>
+ <returns></returns>
+</member>
+<member name="T:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.NtMapping.BlastnMapping">
+ <summary>
+ Blastn Mapping for fastaq
+ </summary>
+ <remarks>
+ ##### BLAST word-size
+
+ Length of an exact sequence match, as start region for the final alignment
+
+ ```
+ blastn -query genes.ffn -subject genome.fna -word_size 11
+ ```
+
+ A BLAST search starts With finding a perfect sequence match Of length given by -word_size. 
+ This initial region Of an exact sequence match Is Then extended In both direction allowing 
+ gaps And substitutions based On the scoring thresholds. 
+
+ Changing the initial word-size can help To find more, but less accurate hits; Or To limit 
+ the results To almost perfect hits. 
+
+ + Decreasing the word-size will increase the number Of detected homologous sequences, but hits 
+ can include alignments Of higher fragmentation due To gaps And substitutions (example: search 
+ for homologous genes between distant species, see also: -task blastn)
+ + Increasing the word-size will give less hits As it requires a longer continuous regions Of 
+ exact match. If the word-size Is chosen To be almost the size Of the query, BLAST will search 
+ For almost exact matches (example: search for location of gene sequences in the original genome 
+ of the gene)
+
+ For Short sequences, word-size must be less than half the query length, otherwise reliable hits can be missed.
+
+ Default word-sizes
+
+ + nucleotide sequence search blastn With Default megablast (bastn): ``-word_size 28``   
+ + nucleotide sequence search blastn only (bastn -task blastn): ``-word_size 11``  
+ + amino acid search (blastp): ``-word_size 3`` 
+
+ Setting the word-size To a very low value (-word_size 5) makes a blastn search very slow. 
+ 
+ 如果做motif位点搜索，因为motif序列通常比较短，并且有些区域差异很大，所以word size可以设置的比较小
+ </remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.NtMapping.BlastnMapping.ReadQuery">
+ <summary>
+ The name of the reads query
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.NtMapping.BlastnMapping.Reference">
+ <summary>
+ The name of the reference genome sequence.
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.NtMapping.BlastnMapping.QueryLength">
+ <summary>
+ Length of <see cref="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.NtMapping.BlastnMapping.ReadQuery"/>
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.NtMapping.BlastnMapping.Score">
+ <summary>
+ Score(bits)
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.NtMapping.BlastnMapping.RawScore">
+ <summary>
+ Score(Raw)
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.NtMapping.BlastnMapping.identitiesValue">
+ <summary>
+ Identities(%)
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.NtMapping.BlastnMapping.gapsValue">
+ <summary>
+ Gaps(%)
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.NtMapping.BlastnMapping.ReferenceStrand">
+ <summary>
+ 在进行装配的时候是以基因组上面的链方向以及位置为基准的
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.NtMapping.BlastnMapping.Unique">
+ <summary>
+ Unique?(这个属性值应该从blastn日志之中导出mapping数据的时候就执行了的)
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.NtMapping.BlastnMapping.PerfectAlignment">
+ <summary>
+ Perfect?
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.NtMapping.BlastnMapping.Data(System.String)">
+ <summary>
+ 不存在的键名会返回空值
+ </summary>
+ <param name="key$"></param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.NtMapping.MapsAPI.GetCoverage(SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.NtMapping.BlastnMapping)">
+ <summary>
+ ```vbnet
+ Math.Abs(map.QueryRight - map.QueryLeft) / map.QueryLength
+ ```
+ </summary>
+ <param name="map"></param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.NtMapping.MapsAPI.CreateObject(SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.BlastPlus.Query,System.Boolean)">
+ <summary>
+ 从blastn日志之中导出Mapping的数据
+ </summary>
+ <param name="Query"></param>
+ <returns></returns>
+ 
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.NtMapping.MapsAPI.setUnique(SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.NtMapping.BlastnMapping[]@)">
+ <summary>
+ Unique的判断原则：
+ 
+ 1. 假若一个query之中只含有一个hit，则为unique
+ 2. 假若一个query之中含有多个hit的话，假若只有一个hit是perfect类型的，则为unique
+ 3. 同一个query之中假若为多个perfect类型的hit的话，则不为unique
+ </summary>
+ <param name="data"></param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.NtMapping.MapsAPI.__createObject(SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.BlastPlus.Query,SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.BlastPlus.BlastnHit)">
+ <summary>
+ 从blastn日志之中导出Mapping的数据
+ </summary>
+ <param name="Query"></param>
+ <param name="hitMapping"></param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.NtMapping.MapsAPI.Export(SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.BlastPlus.v228,System.Boolean,System.String,System.Boolean)">
+ <summary>
+ 从blastn日志文件之中导出fastq对基因组的比对的结果
+ </summary>
+ <param name="blastnMapping"></param>
+ <param name="best">前提是query里面的hit的原有的顺序没有被破坏掉</param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.NtMapping.MapsAPI.TrimAssembly(System.Collections.Generic.IEnumerable{SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.NtMapping.BlastnMapping})">
+ <summary>
+ 按照条件 <see cref="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.NtMapping.BlastnMapping.Unique"/>=TRUE and <see cref="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.NtMapping.BlastnMapping.PerfectAlignment"/>=TRUE
+ 进行可用的alignment mapping结果的筛选
+ </summary>
+ <returns></returns>
+ 
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.NtMapping.MapsAPI.UniqueAlignment(System.Collections.Generic.IEnumerable{SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.Abstract.BBHIndex})">
+ <summary>
+ 为每一个query都赋值一个唯一的hit结果,如果需要比较真实的比对结果,则可以使用包含有重复值的besthit导出方法
+ </summary>
+ <param name="blast">假设query和hit的id编号都是已经经过修剪了的</param>
+ <returns></returns>
+ 
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.Paralog.ExportParalog(SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.BLASTOutput.BlastPlus.v228,System.Double,System.Double)">
+ <summary>
+ Exports the blastp paralog hits.
+ </summary>
+ <param name="blastp"></param>
+ <param name="coverage"></param>
+ <param name="identities"></param>
+ <returns></returns>
+</member>
+<member name="T:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.PartialBestBLAST">
+ <summary>
+ 部分最佳比对BLAST
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.PartialBestBLAST.LocalBLAST">
+ <summary>
+ 本地BLAST的中间服务
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.PartialBestBLAST.Peformance(System.String,System.String,Microsoft.VisualBasic.Scripting.TextGrepMethod,Microsoft.VisualBasic.Scripting.TextGrepMethod,System.String,System.Boolean)">
+ <summary>
+ 执行BLASTP操作，返回单项部分匹配的最佳匹配的蛋白质列表
+ </summary>
+ <param name="Query"></param>
+ <param name="Subject">匹配上Query的部分区域但是Subject对象为完全匹配的目标</param>
+ <param name="HitsGrepMethod">对Hit蛋白质序列的FASTA数据库中的基因号的解析方法</param>
+ <param name="QueryGrepMethod">对Query蛋白质序列的FASTA数据库中的基因号的解析方法</param>
+ <returns>返回双相匹配的BestHit列表</returns>
+ <remarks></remarks>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.InteropService.InitializeMethods.GetProgram(System.String)">
+ <summary>
+ 
+ </summary>
+ <param name="Name">Only two value: 'blastplus' or 'localblast'</param>
+ <returns></returns>
+ <remarks></remarks>
+ 
+</member>
+<member name="T:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.InteropService.InitializeParameter">
+ <summary>
+ 对本地BLAST外部命令的初始化参数
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.InteropService.InitializeParameter.Program">
+ <summary>
+ BLAST程序的类型
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.InteropService.InitializeParameter.BlastBin">
+ <summary>
+ BLAST程序的可执行文件的存放的文件夹
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.InteropService.InitializeParameter.#ctor(System.String,SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.InteropService.InitializeMethods.Program)">
+ <summary>
+ 
+ </summary>
+ <param name="BLASTBIN">BLAST程序的可执行文件的存放文件夹</param>
+ <param name="Type">BLAST程序的类型</param>
+ <remarks></remarks>
+</member>
+<member name="F:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.InteropService.LocalBlastProgramGroup._innerBLASTBinDIR">
+ <summary>
+ Blast程序组所在的安装文件夹
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.InteropService.LocalBlastProgramGroup._InternalLastBLASTOutputFile">
+ <summary>
+ The blast output file path of the last time blast operation.(上一次执行BLAST操作时所输出的日志文件)
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.InteropService.LocalBlastProgramGroup.NumThreads">
+ <summary>
+ The cpu core number usage of the blast operation.(进行blast操作所需要的线程数)
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.InteropService.LocalBlastProgramGroup.BlastBin">
+ <summary>
+ Gets the directory which contains the local blast program group.(本地blast程序组所在的文件夹)
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="T:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.InteropService.InteropService">
+ <summary>
+ InteropService to the local blast program.(对本地BLAST程序的中间服务)
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.InteropService.InteropService.MolTypeProtein">
+ <summary>
+ Gets the command line parameter of the protein sequence molecular type.(获取蛋白质分子序列的命令行参数的值)
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.InteropService.InteropService.MolTypeNucleotide">
+ <summary>
+ Gets the command line parameter of the nucleotide sequence molecular type.(获取核酸序列类型的分子序列的命令行参数的值)
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="T:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.InteropService.InteropService.AlignmentViewOptions">
+ <summary>
+ Alignment view options.(比对输出视图的选项)
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.InteropService.InteropService.AlignmentViewOptions.Pairwise">
+ <summary>
+ Pairwise
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.InteropService.InteropService.AlignmentViewOptions.QueryAnchoredShowingIdentities">
+ <summary>
+ Query-anchored showing identities
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.InteropService.InteropService.AlignmentViewOptions.QueryAnchoredNoIdentities">
+ <summary>
+ Query-anchored no identities
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.InteropService.InteropService.AlignmentViewOptions.FlatQueryAnchoredWithIdentities">
+ <summary>
+ Flat query-anchored, show identities
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.InteropService.InteropService.AlignmentViewOptions.FlatQueryAnchoredNoIdentities">
+ <summary>
+ Flat query-anchored, no identities
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.InteropService.InteropService.AlignmentViewOptions.QueryAnchored">
+ <summary>
+ Query-anchored no identities and blunt ends
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.InteropService.InteropService.AlignmentViewOptions.FlatQueryAnchored">
+ <summary>
+ Flat query-anchored, no identities and blunt ends
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.InteropService.InteropService.AlignmentViewOptions.XML">
+ <summary>
+ XML Blast output
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.InteropService.InteropService.AlignmentViewOptions.Tabular">
+ <summary>
+ Tabular
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.InteropService.InteropService.AlignmentViewOptions.TabularWithCommentLines">
+ <summary>
+ Tabular with comment lines
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.InteropService.InteropService.AlignmentViewOptions.ASNText">
+ <summary>
+ ASN, text
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.InteropService.InteropService.AlignmentViewOptions.ASNBinary">
+ <summary>
+ ASN, binary [Integer]
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.InteropService.InteropService.GetLastLogFile">
+ <summary>
+ Get the blast program output result file from the last BLAST operation. Filepath: <see cref="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.InteropService.InteropService.LastBLASTOutputFilePath"></see>.
+ (获取上一个BLAST操作所输出的结果日志文件)
+ </summary>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.InteropService.InteropService.LastBLASTOutputFilePath">
+ <summary>
+ Get the last blast operation output log file path.(获取上一次BLAST操作的输出文件的文件名)
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.InteropService.InteropService.Blastp(System.String,System.String,System.String,System.String)">
+ <summary>
+ Generate the command line arguments of the program blastp.(生成blastp程序的命令行参数)
+ </summary>
+ <param name="InputQuery">The target sequence FASTA file.(包含有目标待比对序列的FASTA文件)</param>
+ <param name="TargetSubjectDb">The selected database that to aligned.(将要进行比对的目标数据库)</param>
+ <param name="Output">结果文件</param>
+ <param name="e">The E-value</param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.InteropService.InteropService.Blastn(System.String,System.String,System.String,System.String)">
+ <summary>
+ Generate the command line arguments of the program blastn.(生成blastn程序的命令行参数)
+ </summary>
+ <param name="Input">The target sequence FASTA file.(包含有目标待比对序列的FASTA文件)</param>
+ <param name="TargetDb">The selected database that to aligned.(将要进行比对的目标FASTA数据库的文件名)</param>
+ <param name="Output">结果文件</param>
+ <param name="e">The E-value</param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.InteropService.InteropService.FormatDb(System.String,System.String)">
+ <summary>
+ Format theta target fasta sequence database for the blast search.
+ </summary>
+ <param name="Db">The name of the target formated db.(目标格式化数据库的名称)</param>
+ <param name="dbType">Database type for the target sequence database(目标序列数据库的分子类型)</param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.InteropService.InteropService.TryInvoke(System.String,System.String,System.String,System.String,System.String)">
+ <summary>
+ Try invoke the blast program based on its program name as the executable file name.
+ </summary>
+ <param name="Program">The program file name</param>
+ <param name="Query"></param>
+ <param name="Subject"></param>
+ <param name="Evalue"></param>
+ <param name="Output"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="T:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.InteropService.Operation">
+ <summary>
+ 通用化操作
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.InteropService.Operation.CreateObject(System.String,System.String)">
+ <summary>
+ 
+ </summary>
+ <param name="BlastBin"></param>
+ <param name="TypeId">if the given key is not exists in the default profile collection then the function will return the standard LOCALBLAST profile as default.</param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.InteropService.Operation.CreateObjectFromFile(System.String,System.String)">
+ <summary>
+ 
+ </summary>
+ <param name="BlastBin"></param>
+ <param name="FilePath">Profile file path of <see cref="T:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.InteropService.ProgramProfiles"></see></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.InteropService.Executable.Parameters">
+ <summary>
+ The collection of switches information in the target assembly command.
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.InteropService.Executable.GetValue(System.String)">
+ <summary>
+ Get an item value in the <see cref="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.InteropService.Executable.Parameters"></see> property, if the query key is not exists in the 
+ collection then throw an key not found exception.(获取<see cref="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.InteropService.Executable.Parameters"></see>属性中的一个对象的值，
+ 如果目标对象不存在于集合之中，则会抛出一个错误)
+ </summary>
+ <param name="key"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="T:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.BLASTPlus">
+ <summary>
+ The ``&lt;space>`` char can not exists in the input fasta file path, or blast+ program will run into an error.
+ (请注意：当目标FASTA序列文件的文件路径中的空格字符过多的时候，BLAST+程序组将不能够很好的工作，故而当程序出错的时候，
+ 请检查文件路径是否存在此问题)
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.BLASTPlus.GetHelp">
+ <summary>
+ USAGE and DESCRIPTION
+ </summary>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.BLASTPlus.GetManual">
+ <summary>
+ Get USAGE, DESCRIPTION and ARGUMENTS
+ </summary>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.BLASTPlus.#ctor(System.String)">
+ <summary>
+ 
+ </summary>
+ <param name="bin">The ``bin`` directory for the NCBI blast+ suite.</param>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.BLASTPlus.Blastp(System.String,System.String,System.String,System.String)">
+ <summary>
+ 这个函数只是生成了一个blastp的操作任务，但是并没有被启动
+ </summary>
+ <param name="Input"></param>
+ <param name="TargetDb"></param>
+ <param name="Output"></param>
+ <param name="e"></param>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.BLASTPlus.MolTypeNucleotide">
+ <summary>
+ The nucleotide molecular type value for the makeblastdb operation.
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks>(用于makeblastdb操作所需要的核酸链分子的命令行参数值)</remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.BLASTPlus.MolTypeProtein">
+ <summary>
+ The protein molecular type value for the makeblastdb operation.
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks>(用于makeblastdb操作所需要的蛋白质分子的命令行参数值)</remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.BLASTPlus.Version">
+ <summary>
+ Gets the blast program group version.
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks>(获取blast程序组的版本信息)</remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastpOptionalArguments.QueryLocation">
+ <summary>
+ Location on the query sequence in 1-based offsets (Format: start-stop)
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastpOptionalArguments.Task">
+ <summary>
+ Task to execute, Permissible values: 'blastp' 'blastp-short' 'deltablast'
+ Default = `blastp'
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastpOptionalArguments.WordSize">
+ <summary>
+ Word size for wordfinder algorithm, >=2
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastpOptionalArguments.GapOpen">
+ <summary>
+ Cost to open a gap
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastpOptionalArguments.GapExtend">
+ <summary>
+ Cost to extend a gap
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastpOptionalArguments.Matrix">
+ <summary>
+ Scoring matrix name (normally BLOSUM62)
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastpOptionalArguments.Threshold">
+ <summary>
+ Minimum word score such that the word is added to the BLAST lookup table, >=0
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastpOptionalArguments.CompBasedStats">
+ <summary>
+ Use composition-based statistics:
+ D or d: default (equivalent to 2 )
+ 0 or F or f: No composition-based statistics
+ 1: Composition-based statistics as in NAR 29:2994-3005, 2001
+ 2 or T or t : Composition-based score adjustment as in Bioinformatics 21:902-911, 2005, conditioned on sequence properties
+ 3: Composition-based score adjustment as in Bioinformatics 21:902-911, 2005, unconditionally
+ 
+ Default = `2'
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastpOptionalArguments.SubjectLocation">
+ <summary>
+ Location on the subject sequence in 1-based offsets (Format: start-stop)
+ * Incompatible with:  db, gilist, seqidlist, negative_gilist, db_soft_mask, db_hard_mask, remote
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastpOptionalArguments.OutFormat">
+ <summary>
+ Alignment view options:
+ 0 = pairwise,
+ 1 = query-anchored showing identities,
+ 2 = query-anchored no identities,
+ 3 = flat query-anchored, show identities,
+ 4 = flat query-anchored, no identities,
+ 5 = XML Blast output,
+ 6 = tabular,
+ 7 = tabular with comment lines,
+ 8 = Text ASN.1,
+ 9 = Binary ASN.1,
+ 10 = Comma-separated values,
+ 11 = BLAST archive format (ASN.1) 
+ 
+ Options 6, 7, and 10 can be additionally configured to produce a custom format specified by space delimited 
+ format specifiers.
+ The supported format specifiers are:
+         qseqid means Query Seq-id
+            qgi means Query GI
+           qacc means Query accesion
+        qaccver means Query accesion.version
+           qlen means Query sequence length
+         sseqid means Subject Seq-id
+      sallseqid means All subject Seq-id(s), separated by a ';'
+            sgi means Subject GI
+  	    sallgi means All subject GIs
+           sacc means Subject accession
+ 	   saccver means Subject accession.version
+ 	   sallacc means All subject accessions
+           slen means Subject sequence length
+ 	    qstart means Start of alignment in query
+  	      qend means End of alignment in query
+ 	    sstart means Start of alignment in subject
+ 	      send means End of alignment in subject
+ 	      qseq means Aligned part of query sequence
+           sseq means Aligned part of subject sequence
+    	    evalue means Expect value
+ 	  bitscore means Bit score
+    	     score means Raw score
+         length means Alignment length
+  	    pident means Percentage of identical matches
+         nident means Number of identical matches
+  	  mismatch means Number of mismatches
+       positive means Number of positive-scoring matches
+        gapopen means Number of gap openings
+           gaps means Total number of gaps
+ 	      ppos means Percentage of positive-scoring matches
+         frames means Query and subject frames separated by a '/'
+ 	    qframe means Query frame
+ 	    sframe means Subject frame
+  	      btop means Blast traceback operations (BTOP)
+  	   staxids means Subject Taxonomy ID(s), separated by a ';'
+  	 sscinames means Subject Scientific Name(s), separated by a ';'
+  	 scomnames means Subject Common Name(s), separated by a ';'
+    sblastnames means Subject Blast Name(s), separated by a ';'
+ 	                 (in alphabetical order)
+     sskingdoms means Subject Super Kingdom(s), separated by a ';'
+                      (in alphabetical order) 
+         stitle means Subject Title
+     salltitles means All Subject Title(s), separated by a 
+        sstrand means Subject Strand
+          qcovs means Query Coverage Per Subject
+        qcovhsp means Query Coverage Per HSP
+ When not provided, the default value is:
+ 'qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore', which is equivalent to the keyword 'std'
+ Default = `0'
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastpOptionalArguments.ShowGis">
+ <summary>
+ Show NCBI GIs in deflines?
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastpOptionalArguments.NumberDescriptions">
+ <summary>
+ Number  >=0 of database sequences to show one-line descriptions for Not applicable for outfmt > 4
+ Default = `500'
+ * Incompatible with:  max_target_seqs
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastpOptionalArguments.NumberAlignments">
+ <summary>
+ Number >=0 of database sequences to show alignments for
+ Default = `250'
+ * Incompatible with:  max_target_seqs
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastpOptionalArguments.Html">
+ <summary>
+ Produce HTML output?
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastpOptionalArguments.Seg">
+ <summary>
+ Filter query sequence with SEG (Format: 'yes', 'window locut hicut', or 'no' to disable)
+ Default = `no'
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastpOptionalArguments.SoftMasking">
+ <summary>
+ Apply filtering locations as soft masks
+ Default = `false'
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastpOptionalArguments.LCaseMasking">
+ <summary>
+ Use lower case filtering in query and subject sequence(s)?
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastpOptionalArguments.GiList">
+ <summary>
+ Restrict search of database to list of GI's
+ * Incompatible with:  negative_gilist, seqidlist, remote, subject, subject_loc
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastpOptionalArguments.SeqIdList">
+ <summary>
+ Restrict search of database to list of SeqId's
+ * Incompatible with:  gilist, negative_gilist, remote, subject, subject_loc
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastpOptionalArguments.NegativeGiList">
+ <summary>
+ Restrict search of database to everything except the listed GIs
+ * Incompatible with:  gilist, seqidlist, remote, subject, subject_loc
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastpOptionalArguments.EntrezQuery">
+ <summary>
+ Restrict search with the given Entrez query
+ * Requires:  remote
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastpOptionalArguments.DbSoftMask">
+ <summary>
+ Filtering algorithm ID to apply to the BLAST database as soft masking
+ * Incompatible with:  db_hard_mask, subject, subject_loc
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastpOptionalArguments.DbHardMask">
+ <summary>
+ Filtering algorithm ID to apply to the BLAST database as hard masking
+ * Incompatible with:  db_soft_mask, subject, subject_loc
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastpOptionalArguments.CullingLimit">
+ <summary>
+ If the query range of a hit is enveloped by that of at least this many higher-scoring hits >=0, delete the hit
+ * Incompatible with:  best_hit_overhang, best_hit_score_edge
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastpOptionalArguments.BestHitOverhang">
+ <summary>
+ Best Hit algorithm overhang value ((0, 0.5), recommended value: 0.1)
+ * Incompatible with:  culling_limit
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastpOptionalArguments.BestHitScoreEdge">
+ <summary>
+ Best Hit algorithm score edge value ((0, 0.5), recommended value: 0.1)
+ * Incompatible with:  culling_limit
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastpOptionalArguments.MaxTargetSeqs">
+ <summary>
+ Maximum number >=1 of aligned sequences to keep 
+ Not applicable for outfmt less than 4
+ Default = `500'
+ * Incompatible with:  num_descriptions, num_alignments
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastpOptionalArguments.DbSize">
+ <summary>
+ Effective length of the database 
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastpOptionalArguments.SearcHsp">
+ <summary>
+ Effective length >=0 of the search space
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastpOptionalArguments.MaxHspsPerSubject">
+ <summary>
+ Override maximum number >=0 of HSPs per subject to save for ungapped searches
+ (0 means do not override)
+ Default = `0'
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastpOptionalArguments.ImportSearchStrategy">
+ <summary>
+ Search strategy to use
+ * Incompatible with:  export_search_strategy
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastpOptionalArguments.ExportSearchStrategy">
+ <summary>
+ File name to record the search strategy used
+ * Incompatible with:  import_search_strategy
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastpOptionalArguments.XDropUngap">
+ <summary>
+ X-dropoff value (in bits) for ungapped extensions
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastpOptionalArguments.XDropGap">
+ <summary>
+ X-dropoff value (in bits) for preliminary gapped extensions
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastpOptionalArguments.XDropGapFinal">
+ <summary>
+ X-dropoff value (in bits) for final gapped alignment
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastpOptionalArguments.WindowSize">
+ <summary>
+ Multiple hits window size >=0, use 0 to specify 1-hit algorithm
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastpOptionalArguments.UnGapped">
+ <summary>
+ Perform ungapped alignment only?
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastpOptionalArguments.ParseDeflines">
+ <summary>
+ Should the query and subject defline(s) be parsed?
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastpOptionalArguments.NumThreads">
+ <summary>
+ Number of threads >=1 (CPUs) to use in the BLAST search
+ Default = `1'
+ * Incompatible with:  remote
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastpOptionalArguments.Remote">
+ <summary>
+ Execute search remotely?
+ * Incompatible with:  gilist, seqidlist, negative_gilist, subject_loc, num_threads
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastpOptionalArguments.UseSwTback">
+ <summary>
+ Compute locally optimal Smith-Waterman alignments?
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastnOptionalArguments.QueryLocation">
+ <summary>
+ Location on the query sequence in 1-based offsets (Format: start-stop)
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastnOptionalArguments.Task">
+ <summary>
+ Task to execute, Permissible values: 'blastp' 'blastp-short' 'deltablast'
+ Default = `blastp'
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastnOptionalArguments.WordSize">
+ <summary>
+ Word size for wordfinder algorithm, >=2
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastnOptionalArguments.GapOpen">
+ <summary>
+ Cost to open a gap
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastnOptionalArguments.GapExtend">
+ <summary>
+ Cost to extend a gap
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastnOptionalArguments.Matrix">
+ <summary>
+ Scoring matrix name (normally BLOSUM62)
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastnOptionalArguments.Threshold">
+ <summary>
+ Minimum word score such that the word is added to the BLAST lookup table, >=0
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastnOptionalArguments.CompBasedStats">
+ <summary>
+ Use composition-based statistics:
+ D or d: default (equivalent to 2 )
+ 0 or F or f: No composition-based statistics
+ 1: Composition-based statistics as in NAR 29:2994-3005, 2001
+ 2 or T or t : Composition-based score adjustment as in Bioinformatics 21:902-911, 2005, conditioned on sequence properties
+ 3: Composition-based score adjustment as in Bioinformatics 21:902-911, 2005, unconditionally
+ 
+ Default = `2'
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastnOptionalArguments.SubjectLocation">
+ <summary>
+ Location on the subject sequence in 1-based offsets (Format: start-stop)
+ * Incompatible with:  db, gilist, seqidlist, negative_gilist, db_soft_mask, db_hard_mask, remote
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastnOptionalArguments.OutFormat">
+ <summary>
+ Alignment view options:
+ 0 = pairwise,
+ 1 = query-anchored showing identities,
+ 2 = query-anchored no identities,
+ 3 = flat query-anchored, show identities,
+ 4 = flat query-anchored, no identities,
+ 5 = XML Blast output,
+ 6 = tabular,
+ 7 = tabular with comment lines,
+ 8 = Text ASN.1,
+ 9 = Binary ASN.1,
+ 10 = Comma-separated values,
+ 11 = BLAST archive format (ASN.1) 
+ 
+ Options 6, 7, and 10 can be additionally configured to produce a custom format specified by space delimited 
+ format specifiers.
+ The supported format specifiers are:
+         qseqid means Query Seq-id
+            qgi means Query GI
+           qacc means Query accesion
+        qaccver means Query accesion.version
+           qlen means Query sequence length
+         sseqid means Subject Seq-id
+      sallseqid means All subject Seq-id(s), separated by a ';'
+            sgi means Subject GI
+  	    sallgi means All subject GIs
+           sacc means Subject accession
+ 	   saccver means Subject accession.version
+ 	   sallacc means All subject accessions
+           slen means Subject sequence length
+ 	    qstart means Start of alignment in query
+  	      qend means End of alignment in query
+ 	    sstart means Start of alignment in subject
+ 	      send means End of alignment in subject
+ 	      qseq means Aligned part of query sequence
+           sseq means Aligned part of subject sequence
+    	    evalue means Expect value
+ 	  bitscore means Bit score
+    	     score means Raw score
+         length means Alignment length
+  	    pident means Percentage of identical matches
+         nident means Number of identical matches
+  	  mismatch means Number of mismatches
+       positive means Number of positive-scoring matches
+        gapopen means Number of gap openings
+           gaps means Total number of gaps
+ 	      ppos means Percentage of positive-scoring matches
+         frames means Query and subject frames separated by a '/'
+ 	    qframe means Query frame
+ 	    sframe means Subject frame
+  	      btop means Blast traceback operations (BTOP)
+  	   staxids means Subject Taxonomy ID(s), separated by a ';'
+  	 sscinames means Subject Scientific Name(s), separated by a ';'
+  	 scomnames means Subject Common Name(s), separated by a ';'
+    sblastnames means Subject Blast Name(s), separated by a ';'
+ 	                 (in alphabetical order)
+     sskingdoms means Subject Super Kingdom(s), separated by a ';'
+                      (in alphabetical order) 
+         stitle means Subject Title
+     salltitles means All Subject Title(s), separated by a 
+        sstrand means Subject Strand
+          qcovs means Query Coverage Per Subject
+        qcovhsp means Query Coverage Per HSP
+ When not provided, the default value is:
+ 'qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore', which is equivalent to the keyword 'std'
+ Default = `0'
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastnOptionalArguments.ShowGis">
+ <summary>
+ Show NCBI GIs in deflines?
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastnOptionalArguments.NumberDescriptions">
+ <summary>
+ Number  >=0 of database sequences to show one-line descriptions for Not applicable for outfmt > 4
+ Default = `500'
+ * Incompatible with:  max_target_seqs
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastnOptionalArguments.NumberAlignments">
+ <summary>
+ Number >=0 of database sequences to show alignments for
+ Default = `250'
+ * Incompatible with:  max_target_seqs
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastnOptionalArguments.Html">
+ <summary>
+ Produce HTML output?
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastnOptionalArguments.Seg">
+ <summary>
+ Filter query sequence with SEG (Format: 'yes', 'window locut hicut', or 'no' to disable)
+ Default = `no'
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastnOptionalArguments.SoftMasking">
+ <summary>
+ Apply filtering locations as soft masks
+ Default = `false'
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastnOptionalArguments.LCaseMasking">
+ <summary>
+ Use lower case filtering in query and subject sequence(s)?
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastnOptionalArguments.GiList">
+ <summary>
+ Restrict search of database to list of GI's
+ * Incompatible with:  negative_gilist, seqidlist, remote, subject, subject_loc
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastnOptionalArguments.SeqIdList">
+ <summary>
+ Restrict search of database to list of SeqId's
+ * Incompatible with:  gilist, negative_gilist, remote, subject, subject_loc
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastnOptionalArguments.NegativeGiList">
+ <summary>
+ Restrict search of database to everything except the listed GIs
+ * Incompatible with:  gilist, seqidlist, remote, subject, subject_loc
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastnOptionalArguments.EntrezQuery">
+ <summary>
+ Restrict search with the given Entrez query
+ * Requires:  remote
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastnOptionalArguments.DbSoftMask">
+ <summary>
+ Filtering algorithm ID to apply to the BLAST database as soft masking
+ * Incompatible with:  db_hard_mask, subject, subject_loc
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastnOptionalArguments.DbHardMask">
+ <summary>
+ Filtering algorithm ID to apply to the BLAST database as hard masking
+ * Incompatible with:  db_soft_mask, subject, subject_loc
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastnOptionalArguments.CullingLimit">
+ <summary>
+ If the query range of a hit is enveloped by that of at least this many higher-scoring hits >=0, delete the hit
+ * Incompatible with:  best_hit_overhang, best_hit_score_edge
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastnOptionalArguments.BestHitOverhang">
+ <summary>
+ Best Hit algorithm overhang value ((0, 0.5), recommended value: 0.1)
+ * Incompatible with:  culling_limit
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastnOptionalArguments.BestHitScoreEdge">
+ <summary>
+ Best Hit algorithm score edge value ((0, 0.5), recommended value: 0.1)
+ * Incompatible with:  culling_limit
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastnOptionalArguments.MaxTargetSeqs">
+ <summary>
+ Maximum number >=1 of aligned sequences to keep 
+ Not applicable for outfmt less than 4
+ Default = `500'
+ * Incompatible with:  num_descriptions, num_alignments
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastnOptionalArguments.DbSize">
+ <summary>
+ Effective length of the database 
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastnOptionalArguments.SearcHsp">
+ <summary>
+ Effective length >=0 of the search space
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastnOptionalArguments.MaxHspsPerSubject">
+ <summary>
+ Override maximum number >=0 of HSPs per subject to save for ungapped searches
+ (0 means do not override)
+ Default = `0'
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastnOptionalArguments.ImportSearchStrategy">
+ <summary>
+ Search strategy to use
+ * Incompatible with:  export_search_strategy
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastnOptionalArguments.ExportSearchStrategy">
+ <summary>
+ File name to record the search strategy used
+ * Incompatible with:  import_search_strategy
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastnOptionalArguments.XDropUngap">
+ <summary>
+ X-dropoff value (in bits) for ungapped extensions
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastnOptionalArguments.XDropGap">
+ <summary>
+ X-dropoff value (in bits) for preliminary gapped extensions
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastnOptionalArguments.XDropGapFinal">
+ <summary>
+ X-dropoff value (in bits) for final gapped alignment
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastnOptionalArguments.WindowSize">
+ <summary>
+ Multiple hits window size >=0, use 0 to specify 1-hit algorithm
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastnOptionalArguments.UnGapped">
+ <summary>
+ Perform ungapped alignment only?
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastnOptionalArguments.ParseDeflines">
+ <summary>
+ Should the query and subject defline(s) be parsed?
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastnOptionalArguments.NumThreads">
+ <summary>
+ Number of threads >=1 (CPUs) to use in the BLAST search
+ Default = `1'
+ * Incompatible with:  remote
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastnOptionalArguments.Remote">
+ <summary>
+ Execute search remotely?
+ * Incompatible with:  gilist, seqidlist, negative_gilist, subject_loc, num_threads
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastnOptionalArguments.UseSwTback">
+ <summary>
+ Compute locally optimal Smith-Waterman alignments?
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.CLIArgumentsBuilder.BlastnOptionalArguments.Query">
+ <summary>
+ -query &lt;File_In&gt;
+ 
+ Input file name
+ Default = `-'
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="F:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.LocalBLAST.BLASTALLAssembly">
+ <summary>
+ The file path of the blastall program the in the BLAST+ program groups.
+ (在BLAST+程序组之中的BLASTALL程序的文件路径)
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.LocalBLAST.FormatDbAssembly">
+ <summary>
+ formatdb程序的文件名
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.LocalBLAST.EValue">
+ <summary>
+ Expectation value (E) [Real]  
+ Default = 10.0
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.LocalBLAST.AlignmentView">
+ <summary>
+ Alignment view options, Range from 0 to 11:
+ 0 = pairwise,
+ 1 = query-anchored showing identities,
+ 2 = query-anchored no identities,
+ 3 = flat query-anchored, show identities,
+ 4 = flat query-anchored, no identities,
+ 5 = query-anchored no identities and blunt ends,
+ 6 = flat query-anchored, no identities and blunt ends,
+ 7 = XML Blast output,
+ 8 = tabular, 
+ 9 tabular with comment lines
+ 10 ASN, text
+ 11 ASN, binary [Integer]
+ Default = 0
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.LocalBLAST.Filter">
+ <summary>
+ Filter query sequence (DUST with blastn, SEG with others) [String]
+ Default = T
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.LocalBLAST.GapOpen">
+ <summary>
+ Cost to open a gap (-1 invokes default behavior) [Integer]
+ Default = -1
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.LocalBLAST.GapExtend">
+ <summary>
+ Cost to extend a gap (-1 invokes default behavior) [Integer]
+ default = -1
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.LocalBLAST.DropoffValue">
+ <summary>
+ X dropoff value for gapped alignment (in bits) (zero invokes default behavior)
+ blastn 30, megablast 20, tblastx 0, all others 15 [Integer]
+ default = 0
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.LocalBLAST.GI">
+ <summary>
+ Show GI's in deflines [T/F]
+ default = F
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.LocalBLAST.MismatchPenalty">
+ <summary>
+ Penalty for a nucleotide mismatch (blastn only) [Integer]
+ default = -3
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.LocalBLAST.MatchReward">
+ <summary>
+ Reward for a nucleotide match (blastn only) [Integer]
+ default = 1
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.LocalBLAST.ForceLegacyNumber">
+ <summary>
+ Number of database sequences to show one-line descriptions for (V) [Integer]
+ default = 500
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.LocalBLAST.ConcatenatedQueriesNumber">
+ <summary>
+ Number of database sequence to show alignments for (B) [Integer]
+ default = 250
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.LocalBLAST.Threshold">
+ <summary>
+ Threshold for extending hits, default if zero
+ blastp 11, blastn 0, blastx 12, tblastn 13
+ tblastx 13, megablast 0 [Real]
+ default = 0
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.LocalBLAST.GappedAlignment">
+ <summary>
+ Perform gapped alignment (not available with tblastx) [T/F]
+ default = T
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.LocalBLAST.QueryGeneticCode">
+ <summary>
+ Query Genetic code to use [Integer]
+ default = 1
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.LocalBLAST.DBGeneticCode">
+ <summary>
+ DB Genetic code (for tblast[nx] only) [Integer]
+ default = 1
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.LocalBLAST.Processors">
+ <summary>
+ Number of processors to use [Integer]
+ default = 1
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.LocalBLAST.SeqAlign">
+ <summary>
+ SeqAlign file [File Out]  Optional
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.LocalBLAST.QueryDeflineBelieve">
+ <summary>
+ Believe the query defline [T/F]
+ default = F
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.LocalBLAST.Matrix">
+ <summary>
+ Matrix [String]
+ default = BLOSUM62
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.LocalBLAST.WordSize">
+ <summary>
+ Word size, default if zero (blastn 11, megablast 28, all others 3) [Integer]
+ default = 0
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.LocalBLAST.DBEffectiveLength">
+ <summary>
+ Effective length of the database (use zero for the real size) [Real]
+ default = 0
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.LocalBLAST.BestHitsKeepsNumber">
+ <summary>
+ Number of best hits from a region to keep. Off by default.
+ If used a value of 100 is recommended.  Very high values of -v or -b is also suggested [Integer]
+ default = 0
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.LocalBLAST.Hits">
+ <summary>
+ 0 for multiple hit, 1 for single hit (does not apply to blastn) [Integer]
+ default = 0
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.LocalBLAST.SearchSpace">
+ <summary>
+ Effective length of the search space (use zero for the real size) [Real]
+ default = 0
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.LocalBLAST.Strand">
+ <summary>
+ Query strands to search against database (for blast[nx], and tblastx)
+ 3 is both, 1 is top, 2 is bottom [Integer]
+ default = 3
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.LocalBLAST.HTML">
+ <summary>
+ Produce HTML output [T/F]
+ default = F
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.LocalBLAST.RestrictList">
+ <summary>
+ Restrict search of database to list of GI's [String]  Optional
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.LocalBLAST.LowerCaseFiltering">
+ <summary>
+ Use lower case filtering of FASTA sequence [T/F]  Optional
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.LocalBLAST.UngappedExtensionsXDropOff">
+ <summary>
+ X dropoff value for ungapped extensions in bits (0.0 invokes default behavior)
+ blastn 20, megablast 10, all others 7 [Real]
+ default = 0.0
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.LocalBLAST.XDropoffValue">
+ <summary>
+ X dropoff value for final gapped alignment in bits (0.0 invokes default behavior)
+ blastn/megablast 100, tblastx 0, all others 25 [Integer]
+ default = 0
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.LocalBLAST.CheckpointFile">
+ <summary>
+ PSI-TBLASTN checkpoint file [File In]  Optional
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.LocalBLAST.MegaBlast">
+ <summary>
+ MegaBlast search [T/F]
+ default = F
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.LocalBLAST.QueryLocation">
+ <summary>
+ Location on query sequence [String]  Optional
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.LocalBLAST.HitsWindowSize">
+ <summary>
+ Multiple Hits window size, default if zero (blastn/megablast 0, all others 40 [Integer]
+ default = 0
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.LocalBLAST.FrameShiftPenalty">
+ <summary>
+ Frame shift penalty (OOF algorithm for blastx) [Integer]
+ default = 0
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.LocalBLAST.IntronLength">
+ <summary>
+ Length of the largest intron allowed in a translated nucleotide sequence when linking multiple distinct alignments. (0 invokes default behavior; a negative value disables linking.) [Integer]
+ default = 0
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.LocalBLAST.ConcatenatedQueries">
+ <summary>
+ Number of concatenated queries, for blastn and tblastn [Integer]  Optional
+ default = 0
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.LocalBLAST.ForceLegacy">
+ <summary>
+ Force use of the legacy BLAST engine [T/F]  Optional
+ default = F
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.LocalBLAST.CompositionBasedScoreAdjustments">
+ <summary>
+ Use composition-based score adjustments for blastp or tblastn:
+ 
+ As first character:
+ D or d: default (equivalent to T)
+ 0 or F or f: no composition-based statistics
+ 2 or T or t: Composition-based score adjustments as in Bioinformatics 21:902-911,
+ 1: Composition-based statistics as in NAR 29:2994-3005, 2001
+ 2005, conditioned on sequence properties
+ 3: Composition-based score adjustment as in Bioinformatics 21:902-911,
+ 2005, unconditionally
+ For programs other than tblastn, must either be absent or be D, F or 0.
+ 
+ As second character, if first character is equivalent to 1, 2, or 3:
+ U or u: unified p-value combining alignment p-value and compositional p-value in round 1 only
+ 
+ default = D
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.LocalBLAST.SmithWatermanAlignments">
+ <summary>
+ Compute locally optimal Smith-Waterman alignments (This option is only available for gapped tblastn.) [T/F]
+ default = F
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.LocalBLAST.#ctor(System.String)">
+ <summary>
+ 
+ </summary>
+ <param name="BlastBin">Blast+ bin dir</param>
+ <remarks></remarks>
+</member>
+<member name="F:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.LocalBLAST.ARGUMS_BLASTP">
+ <summary>
+ The command line arguments of the blastp program.
+ (blastp程序的命令行参数)
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.LocalBLAST.ARGUMS_BLASTN">
+ <summary>
+ The command line arguments of the blastn program.
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.LocalBLAST.Blastp(System.String,System.String,System.String,System.String)">
+ <summary>
+ Generate the command line arguments of the program blastp.
+ (生成blastp程序的命令行参数)
+ </summary>
+ <param name="Input">The target sequence FASTA file.(包含有目标待比对序列的FASTA文件)</param>
+ <param name="TargetDb">The selected database that to aligned.(将要进行比对的目标数据库)</param>
+ <param name="Output"></param>
+ <param name="e"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.LocalBLAST.GetLastLogFile">
+ <summary>
+ 返回BLAST程序的日志文件，本函数必须在执行完BLASTP或者BLASTN操作之后才可以调用，否则返回空对象
+ </summary>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Programs.LocalBLAST.FormatDb(System.String,System.String)">
+ <summary>
+ 
+ </summary>
+ <param name="Db"></param>
+ <param name="dbType">"T" for protein, "F" for nucleotide.</param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="T:SMRUCC.genomics.Interops.NCBI.Extensions.Pipeline.COG.COG2014">
+ <summary>
+ ftp://ftp.ncbi.nih.gov/pub/COG/COG2020/data
+ </summary>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.Pipeline.COG.COG2014.COGCatalog(System.Collections.Generic.IEnumerable{SMRUCC.genomics.Interops.NCBI.Extensions.Pipeline.COG.MyvaCOG},SMRUCC.genomics.Assembly.NCBI.COG.COGs.COGName[])">
+ <summary>
+ 在<see cref="M:SMRUCC.genomics.Interops.NCBI.Extensions.Pipeline.COG.COG2014.COG2014_result(System.Collections.Generic.IEnumerable{SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.BestHit},SMRUCC.genomics.Assembly.NCBI.COG.COGs.COGTable[])"/>生成的结果之中并没有<see cref="P:SMRUCC.genomics.Interops.NCBI.Extensions.Pipeline.COG.MyvaCOG.Category"/>的值，则可以在这里进行填充
+ </summary>
+ <param name="genes"></param>
+ <param name="names"></param>
+ <returns></returns>
+</member>
+<member name="T:SMRUCC.genomics.Interops.NCBI.Extensions.Pipeline.COG.COGsUtils">
+ <summary>
+ Cog分类操作
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.Pipeline.COG.COGsUtils.MyvaCOGCatalog(System.String,System.String,System.Double,System.Double,Microsoft.VisualBasic.Scripting.TextGrepMethod,System.Boolean)">
+ <summary>
+ 
+ </summary>
+ <param name="blastp">raw blastp output file path.</param>
+ <param name="descriptParser"></param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.Pipeline.COG.COGsUtils.MyvaCOGCatalog(System.Collections.Generic.IEnumerable{SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.BestHit},System.String,Microsoft.VisualBasic.Scripting.TextGrepMethod)">
+ <summary>
+ <see cref="M:SMRUCC.genomics.Interops.NCBI.Extensions.Pipeline.COG.MyvaCOG.CreateObject(SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.BestHit)"/>.
+ (因为所输入进来的函数参数<paramref name="bbh"/>是已经通过参数筛选之后的结果，所以这个函数就不需要再使用参数筛选了。)
+ </summary>
+ <param name="bbh"></param>
+ <param name="whogXml"></param>
+ <param name="descriptParser">
+ 解析出來的是query protein的fasta標題裏面的功能注釋信息
+ </param>
+ <returns></returns>
+</member>
+<member name="T:SMRUCC.genomics.Interops.NCBI.Extensions.Pipeline.COG.MGACOG">
+ <summary>
+ COG output data from http://weizhong-lab.ucsd.edu/metagenomic-analysis/server/
+ </summary>
+</member>
+<member name="T:SMRUCC.genomics.Interops.NCBI.Extensions.Pipeline.COG.MyvaCOG">
+ <summary>
+ Protein cog category using myva database.
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.Pipeline.COG.MyvaCOG.Category">
+ <summary>
+ COG category
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.Pipeline.COG.MyvaCOG.DataAsset">
+ <summary>
+ 额外的附件数据
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.Pipeline.COG.MyvaCOG.CreateObject(SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.BestHit)">
+ <summary>
+ ```
+ query   -> <see cref="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.Abstract.I_BlastQueryHit.QueryName"/>
+ myvaCOG -> <see cref="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.Abstract.I_BlastQueryHit.HitName"/>
+ ```
+ </summary>
+ <param name="besthit"></param>
+ <returns></returns>
+ 
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.Pipeline.COG.Whog.Assigner.DoAssign(SMRUCC.genomics.Interops.NCBI.Extensions.Pipeline.COG.Whog.WhogRepository,SMRUCC.genomics.Interops.NCBI.Extensions.Pipeline.COG.MyvaCOG)">
+ <summary>
+ Do COG category assign based on the whog data
+ </summary>
+ <param name="repo"></param>
+ <param name="prot"></param>
+ <returns></returns>
+</member>
+<member name="T:SMRUCC.genomics.Interops.NCBI.Extensions.Pipeline.COG.Whog.WhogRepository">
+ <summary>
+ Cog Category
+ </summary>
+ <remarks></remarks>
+ 
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.Pipeline.COG.Whog.WhogRepository.Imports(System.String)">
+ <summary>
+ 从Whog文本文件导入COG的分类数据，然后保存为XML文件
+ </summary>
+ <param name="path"></param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.Pipeline.COG.Whog.WhogRepository.MatchCogCategory(System.Collections.Generic.IEnumerable{SMRUCC.genomics.Interops.NCBI.Extensions.Pipeline.COG.MyvaCOG})">
+ <summary>
+ 
+ </summary>
+ <param name="MatchedData">Myva BLASTP result</param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.Pipeline.COG.Whog.WhogRepository.Save(System.String,System.Text.Encoding)">
+ <summary>
+ Save the whog data as XML
+ </summary>
+ <param name="FilePath"></param>
+ <param name="Encoding"></param>
+ <returns></returns>
+ 
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.Pipeline.Extensions.SkipHitNotFound">
+ <summary>
+ 在反序列化之前，使用这个过滤器过滤掉一些无效的hits来节省反序列的处理时间
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.Pipeline.Extensions.UniProtProteinExports(System.Collections.Generic.IEnumerable{SMRUCC.genomics.Assembly.Uniprot.XML.entry},System.Func{SMRUCC.genomics.Assembly.Uniprot.XML.entry,System.String})">
+ <summary>
+ ``term|uniprot_acc fullName|organismName``
+ </summary>
+ <param name="source"></param>
+ <param name="getAnnotationTerm">通过这个函数指针来获取得到KO或者GO注释信息</param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.Pipeline.GenomeVector.GroupByTaxonomy(System.Collections.Generic.IEnumerable{SMRUCC.genomics.Interops.NCBI.Extensions.Pipeline.GenomeVector},System.Int32)">
+ <summary>
+ Make union of the taxonomy assembly contig result
+ </summary>
+ <param name="vectors"></param>
+ <param name="size_cutoff">test of the contigby gene size cutoff.</param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.Pipeline.KOAssignment.KOAssignmentSBH(System.Collections.Generic.IEnumerable{SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.BestHit},System.Boolean)">
+ <summary>
+ 在这里主要是将hit_name之中的KO编号提取出来就好了
+ </summary>
+ <param name="result"></param>
+ <param name="removesNohit">Removes all of the alignment that produce hit not found...</param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.Pipeline.KOAssignment.KOassignmentBBH(System.Collections.Generic.IEnumerable{SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.BestHit},System.Collections.Generic.IEnumerable{SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.BestHit})">
+ <summary>
+ KO number assignment in bbh method
+ </summary>
+ <param name="drf">Besthits in direction forward</param>
+ <param name="drr">Besthits in direction reverse</param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.Pipeline.KOAssignment.populateHitGroup(System.Collections.Generic.IEnumerable{SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.BestHit})">
+ <summary>
+ Populate hit group of each query
+ </summary>
+ <param name="drr"></param>
+ <returns></returns>
+ 
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.Pipeline.KOAssignment.pickDrfBesthit(System.Collections.Generic.IEnumerable{SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.BestHit},System.Func{SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.BestHit,System.String},System.Func{SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.BestHit,System.String})">
+ <summary>
+ 因为在导出结果的时候是没有取tophit的，所以会在物种间或者物种内存在多个重复的结果
+ 在这里对每一个query进行物种分组，取物种内最佳
+ </summary>
+ <param name="drf"></param>
+ <returns></returns>
+</member>
+<member name="T:SMRUCC.genomics.Interops.NCBI.Extensions.Pipeline.NamespaceDoc">
+ <summary>
+ The functional annotation analysis pipeline based on the ncbi localblast+ toolkit
+ </summary>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.Pipeline.RankTerm.score">
+ <summary>
+ SUM of the all scores for this term
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:SMRUCC.genomics.Interops.NCBI.Extensions.Tasks.Models.Hit">
+ <summary>
+ 和Query的一个比对结果
+ </summary>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.Tasks.Models.Hit.tag">
+ <summary>
+ <see cref="P:SMRUCC.genomics.Interops.NCBI.Extensions.Tasks.Models.Hit.hitName"></see>所在的物种
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.Tasks.Models.Hit.hitName">
+ <summary>
+ 和query蛋白质比对上的
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="T:SMRUCC.genomics.Interops.NCBI.Extensions.Tasks.Models.HitCollection">
+ <summary>
+ A collection of hits for the target query protein.
+ </summary>
+ <remarks>
+ 其实这个就是相当于一个KEGG里面的SSDB BBH结果文件
+ </remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.Tasks.Models.HitCollection.QueryName">
+ <summary>
+ The locus tag of the query protein.(主键蛋白质名称)
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.Tasks.Models.HitCollection.description">
+ <summary>
+ Query protein functional annotation.
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.Tasks.Models.HitCollection.hits">
+ <summary>
+ Query hits protein.
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.Tasks.Models.HitCollection.Hit(System.String)">
+ <summary>
+ Gets hits protein tag inform by hit protein locus_tag
+ </summary>
+ <param name="hitName"></param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.Tasks.Models.HitCollection.orderBySp">
+ <summary>
+ 按照菌株排序
+ </summary>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.Tasks.Models.HitCollection.Take(System.String[])">
+ <summary>
+ 按照物种编号取出数据构建一个新的bbh集合
+ </summary>
+ <param name="spTags"></param>
+ <returns></returns>
+</member>
+<member name="T:SMRUCC.genomics.Interops.NCBI.Extensions.Tasks.Models.SpeciesBesthit">
+ <summary>
+ 元数据Xml文件
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.Tasks.Models.SpeciesBesthit.sp">
+ <summary>
+ The species name of query.(进行当前匹配操作的物种名称，这个属性不是蛋白质的名称)
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.Tasks.Models.SpeciesBesthit.GetTotalIdentities(System.String,System.Func{System.Double[],System.Double})">
+ <summary>
+ 
+ </summary>
+ <param name="sp"></param>
+ <param name="aggregate"><see cref="M:System.Linq.Enumerable.Average(System.Collections.Generic.IEnumerable{System.Decimal})"/> as default</param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.Tasks.Models.SpeciesBesthit.GetUnConservedRegions(System.Collections.Generic.IReadOnlyList{System.String[]})">
+ <summary>
+ 从保守的片段数据之中反向取出不保守的片段
+ </summary>
+ <param name="conserved"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.Tasks.Models.SpeciesBesthit.Hit(System.String)">
+ <summary>
+ 通过query查找的是reference的对象
+ </summary>
+ <param name="queryName"></param>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.Tasks.Models.SpeciesBesthit.GetTopHits">
+ <summary>
+ 获取能够被比对上的较多数目的物种的编号
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.Tasks.Models.SpeciesBesthit.TrimEmpty(System.Double)">
+ <summary>
+
+ </summary>
+ <param name="p">0-1</param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.Tasks.Models.SpeciesBesthit.GetConservedRegions(System.Double,System.Int32)">
+ <summary>
+ 根据比对数据自动的推断出保守的区域
+ </summary>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.Tasks.Models.SpeciesBesthit.SelectSourceFromHits(System.String,System.String)">
+ <summary>
+ 将比对上的物种的fasta文件复制到目标文件夹<paramref name="copyTo"></paramref>之中，目标函数返回所复制的菌株的编号列表
+ </summary>
+ <param name="source"></param>
+ <param name="copyTo"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.Tasks.Models.SpeciesBesthit.InternalSort(System.Boolean)">
+ <summary>
+ 按照比对的蛋白质的数目的多少对Hit之中的元素进行统一进行排序
+ </summary>
+ <param name="TrimNull">将没有任何匹配的对象去除</param>
+ <remarks></remarks>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.Tasks.Models.SpeciesBesthit.ExportCsv(System.Boolean)">
+ <summary>
+ 在这里导出Venn表
+
+ 格式
+ [Description] [QueryProtein]  {[] [HitProtein] [Identities] [Positive]}
+ </summary>
+ <returns></returns>
+ <remarks>请注意，为了保持数据之间的一一对应关系，这里不能够再使用并行化了</remarks>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.NCBIBlastResult.AlignmentTableParser.IterateTables(System.String,System.Boolean)">
+ <summary>
+ 当文件之中包含有多个表的时候使用
+ </summary>
+ <param name="path"></param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.NCBIBlastResult.AlignmentTableParser.LoadTable(System.String,System.Boolean)">
+ <summary>
+ 适用于一个文件只有一个表的时候
+ </summary>
+ <param name="path">使用NCBI的web blast的结果输出表的默认格式的文件</param>
+ <param name="headerSplit">
+ 当<see cref="P:SMRUCC.genomics.Interops.NCBI.Extensions.NCBIBlastResult.WebBlast.HitRecord.SubjectIDs"/>之中包含有多个比对结果序列的时候，是否使用分号``;``作为分隔符将表头分开？默认不分开
+ </param>
+ <returns></returns>
+ 
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.NCBIBlastResult.AlignmentTableParser.CreateFromBlastn(System.String)">
+ <summary>
+ 从一个包含有blastn结果的文件夹之中构建出比对的结果表
+ </summary>
+ <param name="sourceDIR$"></param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.NCBIBlastResult.AlignmentTableParser.CreateFromBlastnFile(System.String,System.Int32)">
+ <summary>
+ 从单个blastn结果输出文件之中构建出比对结果表
+ </summary>
+ <param name="file$">query vs multiple subjects</param>
+ <returns></returns>
+ <remarks>
+ 因为只是一条query比对多条序列，所以所输出的blastn结果之中只有一个query
+ </remarks>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.NCBIBlastResult.AlignmentTableParser.CreateFromBlastnFiles(System.Collections.Generic.IEnumerable{System.String},System.String)">
+ <summary>
+ 从一组blastn数据的结果文件之中构建出比对结果表
+ </summary>
+ <param name="source"></param>
+ <param name="database$"></param>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.NCBIBlastResult.WebBlast.AlignmentTable.Query">
+ <summary>
+ The query fasta file name or NCBI sequence accession id
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.NCBIBlastResult.WebBlast.AlignmentTable.RID">
+ <summary>
+ NCBI blast task id
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.NCBIBlastResult.WebBlast.AlignmentTable.Database">
+ <summary>
+ Selected NCBI blast sequence database name
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.NCBIBlastResult.WebBlast.AlignmentTable.Hits">
+ <summary>
+ The alignment result
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.NCBIBlastResult.WebBlast.AlignmentTable.DescriptionSubstituted(SMRUCC.genomics.Assembly.NCBI.GenBank.CsvExports.gbEntryBrief[])">
+ <summary>
+ 按照GI编号进行替换
+ </summary>
+ <param name="Info"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.NCBIBlastResult.WebBlast.AlignmentTable.DescriptionSubstituted2(SMRUCC.genomics.Assembly.NCBI.GenBank.CsvExports.gbEntryBrief[])">
+ <summary>
+ 按照基因组编号进行替换
+ </summary>
+ <param name="Info"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.NCBIBlastResult.WebBlast.AlignmentTable.Save(System.String,System.Text.Encoding)">
+ <summary>
+ Save as XML
+ </summary>
+ <param name="Path"></param>
+ <param name="encoding"></param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.NCBIBlastResult.WebBlast.Extensions.ExportOrderByGI(SMRUCC.genomics.Interops.NCBI.Extensions.NCBIBlastResult.WebBlast.AlignmentTable)">
+ <summary>
+ 导出绘制的顺序
+ </summary>
+ <returns></returns>
+ <remarks>这里不能够使用并行拓展</remarks>
+ 
+</member>
+<member name="T:SMRUCC.genomics.Interops.NCBI.Extensions.NCBIBlastResult.WebBlast.HitRecord">
+ <summary>
+ 在目标基因组之上的blast hit的结果
+ </summary>
+ <remarks>
+ Fields: query id, subject ids, % identity, alignment length, mismatches, gap opens, q. start, q. end, s. start, s. end, evalue, bit score
+ </remarks>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.NCBIBlastResult.WebBlast.HitRecord.SubjectIDs">
+ <summary>
+ 不同的编号，但是都是代表着同一个对象
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.NCBIBlastResult.WebBlast.HitRecord.#ctor(SMRUCC.genomics.Interops.NCBI.Extensions.NCBIBlastResult.WebBlast.HitRecord)">
+ <summary>
+ 请注意，在这里是按值复制
+ </summary>
+ <param name="copy"></param>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.NCBIBlastResult.WebBlast.HitRecord.SplitByHeaders">
+ <summary>
+ 当<see cref="P:SMRUCC.genomics.Interops.NCBI.Extensions.NCBIBlastResult.WebBlast.HitRecord.SubjectIDs"/>之中包含有多个比对结果序列的时候，使用分号``;``作为分隔符将表头分开
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:SMRUCC.genomics.Interops.NCBI.Extensions.NCBIBlastResult.WebBlast.HitTableParser">
+ <summary>
+ 从NCBI网站之中下载的比对结果的表格文本文件之中进行数据的解析操作
+ </summary>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.NCBIBlastResult.WebBlast.HitTableParser.IterateTables(System.String,System.Boolean)">
+ <summary>
+ 当文件之中包含有多个表的时候使用
+ </summary>
+ <param name="path$"></param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.NCBIBlastResult.WebBlast.HitTableParser.LoadTable(System.String,System.Boolean)">
+ <summary>
+ 适用于一个文件只有一个表的时候
+ </summary>
+ <param name="path">使用NCBI的web blast的结果输出表的默认格式的文件</param>
+ <param name="headerSplit">
+ 当<see cref="P:SMRUCC.genomics.Interops.NCBI.Extensions.NCBIBlastResult.WebBlast.HitRecord.SubjectIDs"/>之中包含有多个比对结果序列的时候，是否使用分号``;``作为分隔符将表头分开？默认不分开
+ </param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.NCBIBlastResult.WebBlast.HitTableParser.Mapper(System.String,Microsoft.VisualBasic.ComponentModel.Collection.Index{System.String})">
+ <summary>
+ Document line parser
+ </summary>
+ <param name="s"></param>
+ <returns></returns>
+</member>
+<member name="T:SMRUCC.genomics.Interops.NCBI.Extensions.NCBIBlastResult.WebBlast.NamespaceDoc">
+ <summary>
+ File parser for alignment text output from NCBI web application.
+ </summary>
+</member>
+<member name="T:SMRUCC.genomics.Interops.NCBI.Extensions.NCBIBlastResult.BBHMetaAPI">
+ <summary>
+ <see cref="T:SMRUCC.genomics.Interops.NCBI.Extensions.Tasks.Models.SpeciesBesthit"/> -> <see cref="T:SMRUCC.genomics.Interops.NCBI.Extensions.NCBIBlastResult.WebBlast.AlignmentTable"/>
+ </summary>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.NCBIBlastResult.BBHMetaAPI.DataParser(SMRUCC.genomics.Interops.NCBI.Extensions.Tasks.Models.SpeciesBesthit,SMRUCC.genomics.Assembly.NCBI.GenBank.TabularFormat.PTT,System.Boolean,System.Func{SMRUCC.genomics.Interops.NCBI.Extensions.Tasks.Models.Hit,System.Double})">
+ <summary>
+ 
+ </summary>
+ <param name="bbh"></param>
+ <param name="PTT">因为这个是blastp BBH的结果，所以没有基因组的位置信息，在这里使用PTT文档来生成绘图时所需要的位点信息</param>
+ <param name="visualGroup">
+ 由于在进行blast绘图的时候，程序是按照基因组来分组绘制的，而绘制的对象不需要显示详细的信息，所以在这里为True的话，会直接使用基因组tag来替换名称进而用于blast作图
+ </param>
+ <returns></returns>
+</member>
+<member name="T:SMRUCC.genomics.Interops.NCBI.Extensions.Web.KeggSSDB">
+ <summary>
+ KEGG SSDB API
+ </summary>
+</member>
+</members>
+</doc>
