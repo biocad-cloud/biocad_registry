@@ -128,7 +128,18 @@ Module registry
         Dim db_pubchem As UInteger = vocabulary.db_pubchem
 
         For Each block As PugViewRecord() In chunks
-            For Each meta As MetaInfo In TqdmWrapper.Wrap(block.Select(Function(c) c.GetMetaInfo).ToArray)
+            For Each meta As MetaInfo In TqdmWrapper.Wrap(block _
+                .Select(Function(c)
+                            Try
+                                Return c.GetMetaInfo
+                            Catch ex As Exception
+                                Call App.LogException(ex)
+                                Return Nothing
+                            End Try
+                        End Function) _
+                .Where(Function(m) m IsNot Nothing) _
+                .ToArray
+            )
                 ' 不信任pubchem id的映射结果，在这里直接设置kegg_id来避免直接通过pubchem id查找到结果
                 Dim m As metabolites = registry.FindMolecule(meta, "kegg_id", nameSearch:=True)
 
