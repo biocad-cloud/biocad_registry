@@ -112,7 +112,7 @@ Module registry
 
     <ExportAPI("imports_pubchem")>
     Public Function imports_pubchem(registry As biocad_registry, <RRawVectorArgument> pubchem As Object,
-                                    Optional skip_from As UInteger = 0,
+                                    Optional skip_prefix As UInteger = 0,
                                     Optional env As Environment = Nothing) As Object
 
         Dim pull As pipeline = pipeline.TryCreatePipeline(Of PugViewRecord)(pubchem, env)
@@ -122,7 +122,7 @@ Module registry
         End If
 
         Dim chunks = pull.populates(Of PugViewRecord)(env).Where(Function(c) Not c Is Nothing) _
-            .Where(Function(c) UInteger.Parse(c.RecordNumber) > skip_from) _
+            .Where(Function(c) Integer.Parse(c.RecordNumber.First) >= skip_prefix) _
             .SplitIterator(1000)
         Dim vocabulary As biocad_vocabulary = registry.biocad_vocabulary
         Dim db_pubchem As UInteger = vocabulary.db_pubchem
