@@ -122,7 +122,12 @@ Module registry
         End If
 
         Dim chunks = pull.populates(Of PugViewRecord)(env).Where(Function(c) Not c Is Nothing) _
-            .Where(Function(c) Integer.Parse(c.RecordNumber.First) >= skip_prefix) _
+            .Where(Function(c)
+                       ' 20260211 id is order by string
+                       ' example as 1 100 11000 1113333
+                       ' so we just test the first char of the int id
+                       Return Integer.Parse(c.RecordNumber.First) >= skip_prefix
+                   End Function) _
             .SplitIterator(1000)
         Dim vocabulary As biocad_vocabulary = registry.biocad_vocabulary
         Dim db_pubchem As UInteger = vocabulary.db_pubchem
