@@ -23,10 +23,10 @@ declare namespace registry {
    */
    function imports_mona(registry: object, mona: any, env?: object): any;
    /**
-     * @param skip_from default value Is ``0``.
+     * @param skip_prefix default value Is ``0``.
      * @param env default value Is ``null``.
    */
-   function imports_pubchem(registry: object, pubchem: any, skip_from?: object, env?: object): any;
+   function imports_pubchem(registry: object, pubchem: any, skip_prefix?: object, env?: object): any;
    /**
      * @param env default value Is ``null``.
    */
