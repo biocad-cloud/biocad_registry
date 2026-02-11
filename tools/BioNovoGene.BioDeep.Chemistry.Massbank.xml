@@ -1098,6 +1098,12 @@ BioNovoGene.BioDeep.Chemistry.Massbank
  the <see cref="P:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.PugViewRecord.Reference"/> data.
  </remarks>
 </member>
+<member name="P:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.PugViewRecord.RecordNumber">
+ <summary>
+ the pubchem cid
+ </summary>
+ <returns></returns>
+</member>
 <member name="T:BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.ExtensionModels.ReactionGraph">
  <summary>
  reaction.json data which downloaded from pubchem

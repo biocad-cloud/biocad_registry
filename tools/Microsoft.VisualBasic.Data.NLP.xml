@@ -551,9 +551,9 @@ Microsoft.VisualBasic.Data.NLP
 </member>
 <member name="M:Microsoft.VisualBasic.Data.NLP.TFIDF.DF(System.String)">
  <summary>
- 
+ get number of document which contains term <paramref name="v"/>
  </summary>
- <param name="v"></param>
+ <param name="v">term for count documents</param>
  <returns></returns>
 </member>
 <member name="M:Microsoft.VisualBasic.Data.NLP.TFIDF.IDF(System.String)">
