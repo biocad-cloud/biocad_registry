@@ -119,6 +119,8 @@ Module registry
 
         If pull.isError Then
             Return pull.getError
+        ElseIf skip_prefix > 0 Then
+            Call VBDebugger.EchoLine($"all metabolite with int id prefix char value less than {skip_prefix} will be ignored.")
         End If
 
         Dim chunks = pull.populates(Of PugViewRecord)(env).Where(Function(c) Not c Is Nothing) _
