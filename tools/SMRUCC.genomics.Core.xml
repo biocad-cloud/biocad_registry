@@ -16507,5 +16507,13 @@ to take away yo [rest of string was truncated]&quot;;.
  <returns></returns>
  <remarks></remarks>
 </member>
+<member name="M:SMRUCC.genomics.SequenceModel.TypeExtensions.IsProteinSource(System.String)">
+ <summary>
+ 目标序列数据是否为一条蛋白质序列
+ </summary>
+ <param name="seq"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
 </members>
 </doc>
