@@ -324,6 +324,10 @@ Module registry
             For Each file As String In TqdmWrapper.Wrap(block)
                 Dim doc As SbmlDocument = SbmlDocument.LoadDocument(file)
 
+                If doc Is Nothing OrElse doc.empty Then
+                    Continue For
+                End If
+
                 Pause()
             Next
         Next
