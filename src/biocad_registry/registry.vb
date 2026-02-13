@@ -316,4 +316,9 @@ Module registry
         Return Nothing
     End Function
 
+    <ExportAPI("imports_enzyme_kinetics")>
+    Public Function imports_enzyme_kinetics(registry As biocad_registry) As Object
+
+    End Function
+
 End Module
