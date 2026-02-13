@@ -37,6 +37,7 @@
     <ProjectReference Include="..\..\..\GCModeller\src\GCModeller\analysis\SequenceToolkit\SequencePatterns.Abstract\SequencePatterns.Abstract.NET5.vbproj" />
     <ProjectReference Include="..\..\..\GCModeller\src\GCModeller\analysis\SequenceToolkit\SequencePatterns\SequencePatterns.NET5.vbproj" />
     <ProjectReference Include="..\..\..\GCModeller\src\GCModeller\data\RegulonDatabase\RegulonDatabase.NET5.vbproj" />
+    <ProjectReference Include="..\..\..\GCModeller\src\GCModeller\data\SABIO-RK\SABIO-RK.NET.vbproj" />
     <ProjectReference Include="..\..\..\GCModeller\src\GCModeller\models\BioCyc\BioCyc.vbproj" />
     <ProjectReference Include="..\..\..\mzkit\src\metadb\MoNA\MoNA.NET5.vbproj" />
     <ProjectReference Include="..\registry_data\registry_data.vbproj" />

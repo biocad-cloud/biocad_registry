@@ -70,6 +70,9 @@
     <Project Path="../../GCModeller/src/GCModeller/data/RegulonDatabase/RegulonDatabase.NET5.vbproj">
       <Platform Solution="*|x64" Project="x64" />
     </Project>
+    <Project Path="../../GCModeller/src/GCModeller/data/SABIO-RK/SABIO-RK.NET.vbproj">
+      <Platform Solution="*|x64" Project="x64" />
+    </Project>
     <Project Path="../../GCModeller/src/GCModeller/engine/Model/Model.Core.NET5.vbproj">
       <Platform Solution="*|x64" Project="x64" />
     </Project>

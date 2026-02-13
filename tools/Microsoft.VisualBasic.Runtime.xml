@@ -27746,15 +27746,20 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  </summary>
  <param name="P"></param>
  <param name="Q"></param>
- <returns></returns>
+ <returns>
+ jsd value is not in range [0,1], value maybe in any real number.
+ </returns>
 </member>
 <member name="M:Microsoft.VisualBasic.Math.Correlations.Correlations.KLD(System.Double[],System.Double[])">
  <summary>
- Kullback-Leibler divergence, <paramref name="x"/>和<paramref name="y"/>必须是等长的
+ Kullback-Leibler divergence, (KL散度/相对熵)
  </summary>
- <param name="x"></param>
+ <param name="x"><paramref name="x"/>和<paramref name="y"/>必须是等长的</param>
  <param name="y"></param>
  <returns></returns>
+ <remarks>
+ 计算 D_KL(P || Q) = Σ P(i) * ln(P(i) / Q(i))
+ </remarks>
 </member>
 <member name="M:Microsoft.VisualBasic.Math.Correlations.Correlations.rankKendallTauBeta(System.Double[],System.Double[])">
  <summary>

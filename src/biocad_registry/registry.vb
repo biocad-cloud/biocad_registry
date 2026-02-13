@@ -20,11 +20,13 @@ Imports SMRUCC.genomics.Assembly.NCBI.GenBank
 Imports SMRUCC.genomics.Assembly.Uniprot.XML
 Imports SMRUCC.genomics.Data.BioCyc
 Imports SMRUCC.genomics.Data.Regprecise
+Imports SMRUCC.genomics.Data.SABIORK.SBML
 Imports SMRUCC.genomics.SequenceModel.FASTA
 Imports SMRUCC.genomics.SequenceModel.NucleotideModels
 Imports SMRUCC.Rsharp.Runtime
 Imports SMRUCC.Rsharp.Runtime.Internal.[Object]
 Imports SMRUCC.Rsharp.Runtime.Interop
+Imports SMRUCC.Rsharp.Runtime.Vectorization
 
 <Package("registry")>
 Module registry
@@ -316,9 +318,17 @@ Module registry
         Return Nothing
     End Function
 
-    <ExportAPI("imports_enzyme_kinetics")>
-    Public Function imports_enzyme_kinetics(registry As biocad_registry) As Object
+    <ExportAPI("imports_sabiork")>
+    Public Function imports_enzyme_kinetics(registry As biocad_registry, <RRawVectorArgument> xmlfiles As Object, Optional env As Environment = Nothing) As Object
+        For Each block As String() In CLRVector.asCharacter(xmlfiles).SplitIterator(1000)
+            For Each file As String In TqdmWrapper.Wrap(block)
+                Dim doc As SbmlDocument = SbmlDocument.LoadDocument(file)
 
+                Pause()
+            Next
+        Next
+
+        Return Nothing
     End Function
 
 End Module
