@@ -197,6 +197,26 @@ to [rest of string was truncated]&quot;;.
  <param name="env"></param>
  <returns></returns>
 </member>
+<member name="T:SMRUCC.Rsharp.Interpreter.DebugAction">
+ <summary>
+ 调试动作类型
+ </summary>
+</member>
+<member name="T:SMRUCC.Rsharp.Interpreter.DebuggerContext">
+ <summary>
+ 调试器状态管理类
+ </summary>
+</member>
+<member name="M:SMRUCC.Rsharp.Interpreter.DebuggerContext.ShouldPause(SMRUCC.Rsharp.Interpreter.ExecuteEngine.Expression)">
+ <summary>
+ 检查是否应该暂停执行
+ </summary>
+</member>
+<member name="M:SMRUCC.Rsharp.Interpreter.DebuggerContext.Pause(SMRUCC.Rsharp.Interpreter.ExecuteEngine.Expression,SMRUCC.Rsharp.Runtime.Environment)">
+ <summary>
+ 进入暂停状态，等待用户指令
+ </summary>
+</member>
 <member name="T:SMRUCC.Rsharp.Interpreter.DebugLevels">
  <summary>
  debug echo verbose level for the R# interpreter engine
@@ -234,7 +254,7 @@ to [rest of string was truncated]&quot;;.
  <param name="env"></param>
  <returns></returns>
 </member>
-<member name="M:SMRUCC.Rsharp.Interpreter.ExecutableLoop.ExecuteCodeLine(SMRUCC.Rsharp.Interpreter.ExecuteEngine.Expression,SMRUCC.Rsharp.Runtime.Environment,System.Boolean@,System.Boolean)">
+<member name="M:SMRUCC.Rsharp.Interpreter.ExecutableLoop.ExecuteCodeLine(SMRUCC.Rsharp.Interpreter.ExecuteEngine.Expression,SMRUCC.Rsharp.Runtime.Environment,System.Boolean@)">
  <summary>
  For execute lambda function
  </summary>

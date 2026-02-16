@@ -1483,6 +1483,14 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  </summary>
  <param name="clone"></param>
 </member>
+<member name="M:Microsoft.VisualBasic.ApplicationServices.Debugging.Diagnostics.StackFrame.GetBreakpointHashCode">
+ <summary>
+ 计算当前堆栈帧位置的哈希值，用于断点匹配。
+ 哈希计算基于：标准化后的文件路径 + 行号。
+ 如果文件路径为空，则回退到 Method 全名 + 行号。
+ </summary>
+ <returns>一个整数哈希值，可用于 HashSet 或 Dictionary 的 Key</returns>
+</member>
 <member name="T:Microsoft.VisualBasic.ApplicationServices.Debugging.ExceptionHandler">
  <summary>
  处理错误的工作逻辑的抽象接口
