@@ -334,8 +334,8 @@ Module registry
                     Dim kinetics_id = rxn.SabiorkId
                     Dim enzymes = rxn.enzyme
                     Dim args = rxn.parameters
-                    Dim left = rxn.substrates
-                    Dim right = rxn.products
+                    Dim left = rxn.substrates.ToDictionary(Function(a) a.Key, Function(a) registry.FindSymbol(a.Value.name, a.Value))
+                    Dim right = rxn.products.ToDictionary(Function(a) a.Key, Function(a) registry.FindSymbol(a.Value.name, a.Value))
                     Dim uniprot_id = rxn.uniprot_id
 
 
