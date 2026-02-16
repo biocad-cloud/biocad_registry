@@ -15110,12 +15110,22 @@ to take away yo [rest of string was truncated]&quot;;.
  </remarks>
  
 </member>
-<member name="M:SMRUCC.genomics.SequenceModel.NucleotideModels.Extensions.SegmentAssembler(System.Collections.Generic.IEnumerable{SMRUCC.genomics.SequenceModel.NucleotideModels.SimpleSegment})">
+<member name="M:SMRUCC.genomics.SequenceModel.NucleotideModels.Extensions.CalculateJukesCantorDistance(System.Double)">
  <summary>
- 
+ 根据Jukes-Cantor模型计算校正后的进化距离。
  </summary>
- <param name="source"></param>
- <returns></returns>
+ <param name="p">观测到的序列差异比例 (范围 0 到 0.75)。</param>
+ <returns>校正后的进化距离。如果输入无效，返回 Double.NaN。</returns>
+</member>
+<member name="M:SMRUCC.genomics.SequenceModel.NucleotideModels.Extensions.CalculateJCFromSequences(System.String,System.String,System.Boolean,System.String)">
+ <summary>
+ 比较两条已对齐的DNA序列，并计算它们之间的Jukes-Cantor距离。
+ </summary>
+ <param name="sequence1">第一条DNA序列。</param>
+ <param name="sequence2">第二条DNA序列。</param>
+ <param name="ignoreCase">是否忽略大小写（默认忽略）。</param>
+ <param name="gapPenalty">如何处理缺失位点（-）：‘N’=视为未知不计入， ‘P’=视为差异， ‘S’=跳过整个位点。</param>
+ <returns>Jukes-Cantor距离。如果计算失败，返回 Double.NaN。</returns>
 </member>
 <member name="M:SMRUCC.genomics.SequenceModel.NucleotideModels.mRNA.Putative_mRNA(System.String,System.Int32@,System.Int32@,System.String@)">
  <summary>

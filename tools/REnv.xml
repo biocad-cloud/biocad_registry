@@ -14593,6 +14593,13 @@ to take away yo [rest of string was truncated]&quot;;.
  construct a vector flag with any object type and use the <see cref="T:SMRUCC.Rsharp.Runtime.Interop.DefaultVectorParser"/>.
  </summary>
 </member>
+<member name="M:SMRUCC.Rsharp.Runtime.Interop.RRawVectorArgumentAttribute.#ctor(SMRUCC.Rsharp.Runtime.Components.TypeCodes,System.Type)">
+ <summary>
+ 
+ </summary>
+ <param name="vector">the vector element type</param>
+ <param name="parser"></param>
+</member>
 <member name="T:SMRUCC.Rsharp.Runtime.Interop.RReturn">
  <summary>
  VB.NET api to R# function invoke result wrapper, with additional warning, debug, errors messages, etc
@@ -15197,6 +15204,12 @@ to take away yo [rest of string was truncated]&quot;;.
 <member name="P:SMRUCC.Rsharp.Runtime.Interop.RType.closure">
  <summary>
  R runtime function
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.Rsharp.Runtime.Interop.RType.is_any">
+ <summary>
+ check of current type information is clr <see cref="T:System.Object"/> type?
  </summary>
  <returns></returns>
 </member>

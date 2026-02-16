@@ -27,10 +27,77 @@ SMRUCC.genomics.Interops.NCBI.Extensions
  代表 DIAMOND BLASTP 结果文件 (.m8) 中的一行记录
  </summary>
 </member>
-<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.DiamondAnnotation.ToString">
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.DiamondAnnotation.QseqId">
  <summary>
- 重写 ToString，方便调试输出
+ 1. 查询序列ID
  </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.DiamondAnnotation.SseqId">
+ <summary>
+ 2. 目标序列ID
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.DiamondAnnotation.Pident">
+ <summary>
+ 3. 比对一致性百分比
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.DiamondAnnotation.Length">
+ <summary>
+ 4. 比对长度
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.DiamondAnnotation.Mismatch">
+ <summary>
+ 5. 错配数
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.DiamondAnnotation.GapOpen">
+ <summary>
+ 6. Gap 打开次数
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.DiamondAnnotation.QStart">
+ <summary>
+ 7. 查询序列起始位置
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.DiamondAnnotation.QEnd">
+ <summary>
+ 8. 查询序列结束位置
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.DiamondAnnotation.SStart">
+ <summary>
+ 9. 目标序列起始位置
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.DiamondAnnotation.SEnd">
+ <summary>
+ 10. 目标序列结束位置
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.DiamondAnnotation.EValue">
+ <summary>
+ 11. E-value (期望值)
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.DiamondAnnotation.BitScore">
+ <summary>
+ 12. Bit Score (比特得分)
+ </summary>
+ <returns></returns>
 </member>
 <member name="T:SMRUCC.genomics.Interops.NCBI.Extensions.DiamondM8Parser">
  <summary>
@@ -43,6 +110,13 @@ SMRUCC.genomics.Interops.NCBI.Extensions
  </summary>
  <param name="filePath">文件的完整路径</param>
  <returns>包含 DiamondAnnotation 对象的列表</returns>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.TermStreamAssignment.MakeTerms(System.Collections.Generic.IEnumerable{SMRUCC.genomics.Interops.NCBI.Extensions.DiamondAnnotation},System.Boolean)">
+ <summary>
+ Processing term assignment via stream processing of the large diamond annotation result output
+ </summary>
+ <param name="m8"></param>
+ <returns></returns>
 </member>
 <member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.Extensions.IsNullOrEmpty(System.Collections.Generic.IEnumerable{SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.BestHit})">
  <summary>
@@ -3114,6 +3188,18 @@ SMRUCC.genomics.Interops.NCBI.Extensions
  SUM of the all scores for this term
  </summary>
  <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.Pipeline.RankTerm.MeasureTopTerm``1(System.Linq.IGrouping{System.String,``0},System.Func{``0,System.Double},System.Collections.Generic.Dictionary{System.String,System.String})">
+ <summary>
+ make terms assignment result 
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="group"></param>
+ <param name="eval"></param>
+ <param name="termMaps"></param>
+ <returns>
+ terms has been ordered by its score in desc order
+ </returns>
 </member>
 <member name="T:SMRUCC.genomics.Interops.NCBI.Extensions.Tasks.Models.Hit">
  <summary>

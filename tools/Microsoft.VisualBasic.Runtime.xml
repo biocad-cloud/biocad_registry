@@ -25773,6 +25773,13 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  (通过具有缓存的流对象读取文本数据，使用迭代器来读取文件之中的所有的行，大文件推荐使用这个方法进行读取操作)
  </remarks>
 </member>
+<member name="M:Microsoft.VisualBasic.TextDoc.ReadLines(System.IO.StreamReader)">
+ <summary>
+ Read large text file lines with tqdm progress bar
+ </summary>
+ <param name="reader"></param>
+ <returns></returns>
+</member>
 <member name="M:Microsoft.VisualBasic.TextDoc.ReadFirstLine(System.String,System.Text.Encoding)">
  <summary>
  Read the first line of the text in the file.
