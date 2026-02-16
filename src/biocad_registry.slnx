@@ -17,7 +17,8 @@
       <Platform Solution="*|x64" Project="x64" />
     </Project>
     <Project Path="../../Microsoft.VisualBasic.Drawing/src/Microsoft.VisualBasic.Drawing/Microsoft.VisualBasic.Drawing.vbproj">
-      <BuildType Solution="Rsharp_app_release|*" Project="MEMI-Desktop" />
+      <BuildType Solution="Rsharp_app_release|Any CPU" Project="MEMI-Desktop" />
+      <BuildType Solution="Rsharp_app_release|x64" Project="Release" />
       <Platform Solution="*|x64" Project="x64" />
     </Project>
   </Folder>
@@ -80,6 +81,9 @@
       <Platform Solution="*|x64" Project="x64" />
     </Project>
     <Project Path="../../GCModeller/src/GCModeller/models/BioCyc/BioCyc.vbproj">
+      <Platform Solution="*|x64" Project="x64" />
+    </Project>
+    <Project Path="../../GCModeller/src/GCModeller/models/SBML/SBML/sbml-netcore5.vbproj">
       <Platform Solution="*|x64" Project="x64" />
     </Project>
     <Project Path="../../GCModeller/src/interops/localblast/LocalBLAST/localblast.NET5.vbproj">
@@ -263,7 +267,8 @@
       <Platform Solution="*|x64" Project="x64" />
     </Project>
     <Project Path="../../galaxy/src/dockpanelsuite/VSDockPanel/VSDockPanel.vbproj">
-      <BuildType Solution="Rsharp_app_release|*" Project="MEMI-Desktop" />
+      <BuildType Solution="Rsharp_app_release|Any CPU" Project="MEMI-Desktop" />
+      <BuildType Solution="Rsharp_app_release|x64" Project="Release" />
       <Platform Solution="*|x64" Project="x64" />
     </Project>
     <Project Path="../../galaxy/src/GalaxyChartLibs/GalaxyChartLibs.vbproj">
@@ -283,7 +288,8 @@
       <Platform Solution="*|x64" Project="x64" />
     </Project>
     <Project Path="../../galaxy/src/Microsoft.Windows.FeatureAPI/Microsoft.Windows.FeatureAPI.vbproj" Id="3d61f3a9-a8e0-4195-9133-6fd8e4b82d54">
-      <BuildType Solution="Rsharp_app_release|*" Project="MEMI-Desktop" />
+      <BuildType Solution="Rsharp_app_release|Any CPU" Project="MEMI-Desktop" />
+      <BuildType Solution="Rsharp_app_release|x64" Project="Release" />
       <Platform Solution="*|x64" Project="x64" />
     </Project>
   </Folder>
@@ -298,7 +304,8 @@
   </Folder>
   <Folder Name="/renv/">
     <Project Path="../../GCModeller/src/R-sharp/Library/shares/graphics.common_runtime/R_graphics.common_runtime.vbproj">
-      <BuildType Solution="Rsharp_app_release|*" Project="nuget_release" />
+      <BuildType Solution="Rsharp_app_release|Any CPU" Project="nuget_release" />
+      <BuildType Solution="Rsharp_app_release|x64" Project="Release" />
       <Platform Solution="*|x64" Project="x64" />
     </Project>
     <Project Path="../../GCModeller/src/R-sharp/R#/Rsharp-netcore5.vbproj">
