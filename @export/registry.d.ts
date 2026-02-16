@@ -34,6 +34,10 @@ declare namespace registry {
    /**
      * @param env default value Is ``null``.
    */
+   function imports_sabiork(registry: object, xmlfiles: any, env?: object): any;
+   /**
+     * @param env default value Is ``null``.
+   */
    function imports_spectraverse(registry: object, spectraverse: any, env?: object): any;
    /**
      * @param env default value Is ``null``.

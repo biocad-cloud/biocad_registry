@@ -14,3 +14,4 @@
 + [imports_metacyc_compounds](registry/imports_metacyc_compounds.1) 
 + [save_TRN](registry/save_TRN.1) Save RegPrecise regulation network
 + [update_logo](registry/update_logo.1) 
++ [imports_sabiork](registry/imports_sabiork.1) 

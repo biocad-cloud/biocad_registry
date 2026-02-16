@@ -20,6 +20,7 @@ Imports SMRUCC.genomics.Assembly.NCBI.GenBank
 Imports SMRUCC.genomics.Assembly.Uniprot.XML
 Imports SMRUCC.genomics.Data.BioCyc
 Imports SMRUCC.genomics.Data.Regprecise
+Imports SMRUCC.genomics.Data.SABIORK
 Imports SMRUCC.genomics.Data.SABIORK.SBML
 Imports SMRUCC.genomics.SequenceModel.FASTA
 Imports SMRUCC.Rsharp.Runtime
@@ -326,6 +327,20 @@ Module registry
                 If doc Is Nothing OrElse doc.empty Then
                     Continue For
                 End If
+
+                Dim mathSet = doc.mathML.ToDictionary(Function(a) a.Name, Function(a) a.Value)
+
+                For Each rxn In ModelHelper.CreateKineticsData(doc).Select(Function(r) r.Item2)
+                    Dim kinetics_id = rxn.SabiorkId
+                    Dim enzymes = rxn.enzyme
+                    Dim args = rxn.parameters
+                    Dim left = rxn.substrates
+                    Dim right = rxn.products
+                    Dim uniprot_id = rxn.uniprot_id
+
+
+                    Pause()
+                Next
 
                 Pause()
             Next

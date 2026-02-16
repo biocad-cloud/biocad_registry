@@ -10,9 +10,6 @@ declare namespace biocad_registry {
    }
    /**
    */
-   function __find_substrate_id(args: any, xrefs: any): object;
-   /**
-   */
    function __push_compound_metadata(biocad_registry: any, compound: any, mol: any): object;
    /**
    */
@@ -85,9 +82,6 @@ declare namespace biocad_registry {
      * @param rhea default value Is ``./rhea.rdf``.
    */
    function imports_rhea(biocad_registry: any, rhea?: any): object;
-   /**
-   */
-   function imports_sabiork(biocad_registry: any, repo: any): object;
    /**
      * @param fast_check default value Is ``false``.
    */
