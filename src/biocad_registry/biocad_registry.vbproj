@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <RootNamespace>biocadRegistry</RootNamespace>
-    <TargetFrameworks>net8.0</TargetFrameworks>
+    <TargetFrameworks>net10.0-windows;net10.0</TargetFrameworks>
     <Platforms>AnyCPU;x64;x86</Platforms>
     <Configurations>Debug;Release;Rsharp_app_release;LipidSearch;PlantMAT;mzkit;NPSearch;mzkit_win32;gcmodeller_desktop</Configurations>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
