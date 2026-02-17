@@ -363,26 +363,43 @@ Module registry
                         If reactions.Any Then
                             reaction = reactions _
                                 .GroupBy(Function(a) a.id) _
-                                .OrderByDescending(Function(a) a.Count) _
+                                .OrderByDescending(Function(a)
+                                                       If Not rxn.Ec_number.StringEmpty(, True) Then
+                                                           If a.First.ec_number = rxn.Ec_number Then
+                                                               Return CDbl(Integer.MaxValue) * a.Count
+                                                           End If
+                                                       End If
+                                                       Return a.Count
+                                                   End Function) _
+                                .First _
                                 .First
                         End If
                     End If
+
+                    For Each id As String In args.Keys
+                        Dim key As String = args(id)
+
+                        If left.ContainsKey(key) AndAlso left(key) IsNot Nothing Then
+                            args(id) = left(key).id & " - " & left(key).name
+                        End If
+                    Next
 
                     Call registry.kinetics_law.add(
                         field("db_xref") = kinetics_id,
                         field("ec_number") = rxn.Ec_number,
                         field("enzyme_id") = uniprot_id,
-                        field("enzyme_name") = "",
+                        field("enzyme_name") = If(enzymes.IsNullOrEmpty, "-", enzymes.First.Value),
                         field("lambda") = rxn.lambda,
                         field("parameters") = args.GetJson,
-                        field("metabolic_node") = 0,
+                        field("metabolic_node") = If(reaction Is Nothing, 0, reaction.id),
                         field("buffer") = rxn.buffer,
                         field("ph") = rxn.PH,
                         field("temperature") = rxn.temperature,
-                        field("pdb_data") = Nothing,
-                        field("note") = ""
+                        field("pubmed_id") = If(rxn.PubMed.DefaultFirst, "-"),
+                        field("pdb_data") = 0,
+                        field("note") = rxn.reaction,
+                        field("raw") = rxn.GetJson
                     )
-
 
                     Pause()
                 Next
