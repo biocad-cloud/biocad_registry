@@ -19,6 +19,7 @@ Imports SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.SequenceLogo
 Imports SMRUCC.genomics.Assembly.KEGG
 Imports SMRUCC.genomics.Assembly.NCBI.GenBank
 Imports SMRUCC.genomics.Assembly.Uniprot.XML
+Imports SMRUCC.genomics.ComponentModel.Annotation
 Imports SMRUCC.genomics.Data.BioCyc
 Imports SMRUCC.genomics.Data.Regprecise
 Imports SMRUCC.genomics.Data.SABIORK
@@ -359,6 +360,7 @@ Module registry
                             .left_join("reaction").on(field("`reaction`.id") = field("`metabolic_network`.reaction_id")) _
                             .where(field("role") = left_role, field("species_id").in(From c In left.Values Where Not c Is Nothing Select c.id)) _
                             .select(Of biocad_registryModel.reaction)("reaction.*")
+                        Dim ec As ECNumber = ECNumber.ValueParser(rxn.Ec_number)
 
                         If reactions.Any Then
                             reaction = reactions _
@@ -367,8 +369,11 @@ Module registry
                                                        If Not rxn.Ec_number.StringEmpty(, True) Then
                                                            If a.First.ec_number = rxn.Ec_number Then
                                                                Return CDbl(Integer.MaxValue) * a.Count
+                                                           ElseIf ec.Contains(ECNumber.ValueParser(a.First.ec_number)) Then
+                                                               Return CDbl(Integer.MaxValue) * a.Count / 1000
                                                            End If
                                                        End If
+
                                                        Return a.Count
                                                    End Function) _
                                 .First _
@@ -391,7 +396,7 @@ Module registry
                     Call registry.kinetics_law.add(
                         field("db_xref") = kinetics_id,
                         field("ec_number") = rxn.Ec_number,
-                        field("enzyme_id") = If(uniprot_id.DefaultFirst, "-"),
+                        field("enzyme_id") = If(uniprot_id.IsEmptyStringVector(True), "-", $"uniprot:{uniprot_id.JoinBy(",")}"),
                         field("enzyme_name") = If(enzymes.IsNullOrEmpty, "-", enzymes.First.Value),
                         field("lambda") = rxn.lambda,
                         field("parameters") = args.GetJson,
