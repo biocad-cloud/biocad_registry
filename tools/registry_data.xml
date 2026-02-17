@@ -513,7 +513,7 @@ registry_data
    KEY `find_by_xref` (`db_name`,`db_xref`,`type`),
    KEY `find_by_object` (`type`,`obj_id`),
    KEY `search_xref_word` (`db_xref`)
- ) ENGINE=InnoDB AUTO_INCREMENT=6455837 DEFAULT CHARSET=utf8mb3 COMMENT='database cross reference of the model objects ';
+ ) ENGINE=InnoDB AUTO_INCREMENT=10901612 DEFAULT CHARSET=utf8mb3 COMMENT='database cross reference of the model objects ';
  /*!40101 SET character_set_client = @saved_cs_client */;
  
  --
@@ -809,8 +809,10 @@ registry_data
  /*!50503 SET character_set_client = utf8mb4 */;
  CREATE TABLE `kinetics_law` (
    `id` int unsigned NOT NULL AUTO_INCREMENT,
+   `db_xref` varchar(64) NOT NULL,
    `ec_number` varchar(16) NOT NULL COMMENT 'ec number of this kinetics law(or enzyme protein)',
    `enzyme_id` int unsigned NOT NULL COMMENT 'id reference to the protein model table',
+   `enzyme_name` varchar(255) NOT NULL DEFAULT '-',
    `lambda` varchar(4096) NOT NULL COMMENT 'the math expression for this kinetics law, usually be the Michaelis-Menten equation: v = vmax * S / (km + S)',
    `parameters` json NOT NULL COMMENT 'parameter values for the lambda expression, a key-value pair tuple json data, store the kinetics constant at here, example as there is a kinetics lambda expression: v = vmax * S / (km + S), parameter value json could be {vmax: 1000, S: registry_resolver_id, km: 500}, where number in parameter value is a constant value that detected from the experiment and S is the substrate, value is the model registry resolver id, could be unify mapping to metabolite or other biomolecule entity object',
    `metabolic_node` int unsigned NOT NULL COMMENT 'metabolic network id, mount this enzyme kinetics law model to a metabolic reaction',
@@ -916,14 +918,14 @@ registry_data
 <member name="M:registry_data.biocad_registryModel.kinetics_law.GetInsertSQL">
  <summary>
  ```SQL
- INSERT INTO `kinetics_law` (`id`, `ec_number`, `enzyme_id`, `lambda`, `parameters`, `metabolic_node`, `buffer`, `ph`, `temperature`, `pdb_data`, `add_time`, `note`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}');
+ INSERT INTO `kinetics_law` (`id`, `db_xref`, `ec_number`, `enzyme_id`, `enzyme_name`, `lambda`, `parameters`, `metabolic_node`, `buffer`, `ph`, `temperature`, `pdb_data`, `add_time`, `note`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}');
  ```
  </summary>
 </member>
 <member name="M:registry_data.biocad_registryModel.kinetics_law.GetInsertSQL(System.Boolean)">
  <summary>
  ```SQL
- INSERT INTO `kinetics_law` (`id`, `ec_number`, `enzyme_id`, `lambda`, `parameters`, `metabolic_node`, `buffer`, `ph`, `temperature`, `pdb_data`, `add_time`, `note`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}');
+ INSERT INTO `kinetics_law` (`id`, `db_xref`, `ec_number`, `enzyme_id`, `enzyme_name`, `lambda`, `parameters`, `metabolic_node`, `buffer`, `ph`, `temperature`, `pdb_data`, `add_time`, `note`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}');
  ```
  </summary>
 </member>
@@ -935,21 +937,21 @@ registry_data
 <member name="M:registry_data.biocad_registryModel.kinetics_law.GetReplaceSQL">
  <summary>
  ```SQL
- REPLACE INTO `kinetics_law` (`id`, `ec_number`, `enzyme_id`, `lambda`, `parameters`, `metabolic_node`, `buffer`, `ph`, `temperature`, `pdb_data`, `add_time`, `note`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}');
+ REPLACE INTO `kinetics_law` (`id`, `db_xref`, `ec_number`, `enzyme_id`, `enzyme_name`, `lambda`, `parameters`, `metabolic_node`, `buffer`, `ph`, `temperature`, `pdb_data`, `add_time`, `note`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}');
  ```
  </summary>
 </member>
 <member name="M:registry_data.biocad_registryModel.kinetics_law.GetReplaceSQL(System.Boolean)">
  <summary>
  ```SQL
- REPLACE INTO `kinetics_law` (`id`, `ec_number`, `enzyme_id`, `lambda`, `parameters`, `metabolic_node`, `buffer`, `ph`, `temperature`, `pdb_data`, `add_time`, `note`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}');
+ REPLACE INTO `kinetics_law` (`id`, `db_xref`, `ec_number`, `enzyme_id`, `enzyme_name`, `lambda`, `parameters`, `metabolic_node`, `buffer`, `ph`, `temperature`, `pdb_data`, `add_time`, `note`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}');
  ```
  </summary>
 </member>
 <member name="M:registry_data.biocad_registryModel.kinetics_law.GetUpdateSQL">
  <summary>
  ```SQL
- UPDATE `kinetics_law` SET `id`='{0}', `ec_number`='{1}', `enzyme_id`='{2}', `lambda`='{3}', `parameters`='{4}', `metabolic_node`='{5}', `buffer`='{6}', `ph`='{7}', `temperature`='{8}', `pdb_data`='{9}', `add_time`='{10}', `note`='{11}' WHERE `id` = '{12}';
+ UPDATE `kinetics_law` SET `id`='{0}', `db_xref`='{1}', `ec_number`='{2}', `enzyme_id`='{3}', `enzyme_name`='{4}', `lambda`='{5}', `parameters`='{6}', `metabolic_node`='{7}', `buffer`='{8}', `ph`='{9}', `temperature`='{10}', `pdb_data`='{11}', `add_time`='{12}', `note`='{13}' WHERE `id` = '{14}';
  ```
  </summary>
 </member>
@@ -984,7 +986,7 @@ registry_data
    KEY `location_info_idx` (`compartment_id`),
    KEY `registry_model_idx` (`species_id`),
    KEY `symbol_index` (`symbol_id`)
- ) ENGINE=InnoDB AUTO_INCREMENT=474042 DEFAULT CHARSET=utf8mb3 COMMENT='metabolic reaction network';
+ ) ENGINE=InnoDB AUTO_INCREMENT=474084 DEFAULT CHARSET=utf8mb3 COMMENT='metabolic reaction network';
  /*!40101 SET character_set_client = @saved_cs_client */;
  
  --
@@ -1127,7 +1129,7 @@ registry_data
    KEY `find_mesh` (`mesh_id`),
    KEY `find_wiki` (`wikipedia`),
    FULLTEXT KEY `search_text` (`name`,`note`)
- ) ENGINE=InnoDB AUTO_INCREMENT=775469 DEFAULT CHARSET=utf8mb3 COMMENT='[cellular entity model][entity instance] a set of reference metabolites, template based on the www.metabolomicsworkbench.org refmet dataset';
+ ) ENGINE=InnoDB AUTO_INCREMENT=1356216 DEFAULT CHARSET=utf8mb3 COMMENT='[cellular entity model][entity instance] a set of reference metabolites, template based on the www.metabolomicsworkbench.org refmet dataset';
  /*!40101 SET character_set_client = @saved_cs_client */;
  
  --
@@ -1483,13 +1485,14 @@ registry_data
    `family` varchar(45) NOT NULL COMMENT 'motif family name',
    `pwm` longtext NOT NULL COMMENT 'pre-computed motif pwm matrix, base64 encoded of double[][] matrix, network byte order',
    `width` int NOT NULL,
+   `logo` longtext COMMENT 'data uri of the motif logo image encoded in base64 string',
    `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
    `note` longtext,
    PRIMARY KEY (`id`),
    UNIQUE KEY `id_UNIQUE` (`id`),
    KEY `family_index` (`family`),
    KEY `name_search` (`name`)
- ) ENGINE=InnoDB AUTO_INCREMENT=2718 DEFAULT CHARSET=utf8mb3;
+ ) ENGINE=InnoDB AUTO_INCREMENT=2718 DEFAULT CHARSET=utf8mb3 COMMENT='alphabets for nucleotide seuqnece is ACGT';
  /*!40101 SET character_set_client = @saved_cs_client */;
  
  --
@@ -1521,6 +1524,14 @@ registry_data
  <returns></returns>
  <remarks></remarks>
 </member>
+<member name="P:registry_data.biocad_registryModel.motif.logo">
+ <summary>
+ data uri of the motif logo image encoded in base64 string
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
 <member name="M:registry_data.biocad_registryModel.motif.GetDeleteSQL">
  <summary>
  ```SQL
@@ -1531,14 +1542,14 @@ registry_data
 <member name="M:registry_data.biocad_registryModel.motif.GetInsertSQL">
  <summary>
  ```SQL
- INSERT INTO `motif` (`id`, `name`, `family`, `pwm`, `width`, `add_time`, `note`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}');
+ INSERT INTO `motif` (`id`, `name`, `family`, `pwm`, `width`, `logo`, `add_time`, `note`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}');
  ```
  </summary>
 </member>
 <member name="M:registry_data.biocad_registryModel.motif.GetInsertSQL(System.Boolean)">
  <summary>
  ```SQL
- INSERT INTO `motif` (`id`, `name`, `family`, `pwm`, `width`, `add_time`, `note`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}');
+ INSERT INTO `motif` (`id`, `name`, `family`, `pwm`, `width`, `logo`, `add_time`, `note`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}');
  ```
  </summary>
 </member>
@@ -1550,21 +1561,21 @@ registry_data
 <member name="M:registry_data.biocad_registryModel.motif.GetReplaceSQL">
  <summary>
  ```SQL
- REPLACE INTO `motif` (`id`, `name`, `family`, `pwm`, `width`, `add_time`, `note`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}');
+ REPLACE INTO `motif` (`id`, `name`, `family`, `pwm`, `width`, `logo`, `add_time`, `note`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}');
  ```
  </summary>
 </member>
 <member name="M:registry_data.biocad_registryModel.motif.GetReplaceSQL(System.Boolean)">
  <summary>
  ```SQL
- REPLACE INTO `motif` (`id`, `name`, `family`, `pwm`, `width`, `add_time`, `note`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}');
+ REPLACE INTO `motif` (`id`, `name`, `family`, `pwm`, `width`, `logo`, `add_time`, `note`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}');
  ```
  </summary>
 </member>
 <member name="M:registry_data.biocad_registryModel.motif.GetUpdateSQL">
  <summary>
  ```SQL
- UPDATE `motif` SET `id`='{0}', `name`='{1}', `family`='{2}', `pwm`='{3}', `width`='{4}', `add_time`='{5}', `note`='{6}' WHERE `id` = '{7}';
+ UPDATE `motif` SET `id`='{0}', `name`='{1}', `family`='{2}', `pwm`='{3}', `width`='{4}', `logo`='{5}', `add_time`='{6}', `note`='{7}' WHERE `id` = '{8}';
  ```
  </summary>
 </member>
@@ -2963,7 +2974,7 @@ registry_data
    UNIQUE KEY `find_reference` (`db_xref`,`db_source`),
    KEY `hash_index` (`hashcode`),
    FULLTEXT KEY `search_text` (`name`,`note`)
- ) ENGINE=InnoDB AUTO_INCREMENT=85533 DEFAULT CHARSET=utf8mb3 COMMENT='[biological process model] biological reaction/chemical reaction model';
+ ) ENGINE=InnoDB AUTO_INCREMENT=85543 DEFAULT CHARSET=utf8mb3 COMMENT='[biological process model] biological reaction/chemical reaction model';
  /*!40101 SET character_set_client = @saved_cs_client */;
  
  --
@@ -3070,7 +3081,7 @@ registry_data
    KEY `register_namespace_idx` (`type`),
    KEY `metabolite_reference_idx` (`symbol_id`),
    KEY `find_name` (`register_name`)
- ) ENGINE=InnoDB AUTO_INCREMENT=279478 DEFAULT CHARSET=utf8mb3 COMMENT='a unify symbol mapping inside the registry database system';
+ ) ENGINE=InnoDB AUTO_INCREMENT=279609 DEFAULT CHARSET=utf8mb3 COMMENT='a unify symbol mapping inside the registry database system';
  /*!40101 SET character_set_client = @saved_cs_client */;
  
  --
@@ -3302,7 +3313,7 @@ registry_data
    UNIQUE KEY `id_UNIQUE` (`id`),
    KEY `metabolite_info_idx` (`metabolite_id`),
    KEY `pdb_modelvalue_idx` (`pdb_data`)
- ) ENGINE=InnoDB AUTO_INCREMENT=588595 DEFAULT CHARSET=utf8mb3 COMMENT='the metabolite molecule structre data';
+ ) ENGINE=InnoDB AUTO_INCREMENT=1194219 DEFAULT CHARSET=utf8mb3 COMMENT='the metabolite molecule structre data';
  /*!40101 SET character_set_client = @saved_cs_client */;
  
  --
@@ -3533,7 +3544,7 @@ registry_data
    KEY `fast_hash_search` (`obj_id`,`hashcode`,`type`),
    KEY `entity_metabolite_idx` (`obj_id`,`type`),
    FULLTEXT KEY `search_text` (`synonym`)
- ) ENGINE=InnoDB AUTO_INCREMENT=4501812 DEFAULT CHARSET=utf8mb3 COMMENT='synonyms, alias names of the model objects';
+ ) ENGINE=InnoDB AUTO_INCREMENT=6162466 DEFAULT CHARSET=utf8mb3 COMMENT='synonyms, alias names of the model objects';
  /*!40101 SET character_set_client = @saved_cs_client */;
  
  --
@@ -3752,7 +3763,7 @@ registry_data
    UNIQUE KEY `search_term` (`category`,`term`),
    KEY `ontology_tree_idx` (`parent_id`),
    FULLTEXT KEY `search_text` (`note`)
- ) ENGINE=InnoDB AUTO_INCREMENT=742 DEFAULT CHARSET=utf8mb3 COMMENT='vocabulary term inside the registry database';
+ ) ENGINE=InnoDB AUTO_INCREMENT=745 DEFAULT CHARSET=utf8mb3 COMMENT='vocabulary term inside the registry database';
  /*!40101 SET character_set_client = @saved_cs_client */;
  
  --
@@ -3772,7 +3783,7 @@ registry_data
  /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
  /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
  
- -- Dump completed on 2026-01-19  4:46:43
+ -- Dump completed on 2026-02-17 15:12:46
  ```
  </summary>
  <remarks></remarks>

@@ -4,7 +4,7 @@ USE `cad_registry`;
 --
 -- Host: 192.168.3.15    Database: cad_registry
 -- ------------------------------------------------------
--- Server version	8.0.44-0ubuntu0.24.04.2
+-- Server version	8.0.45-0ubuntu0.24.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -126,7 +126,7 @@ CREATE TABLE `db_xrefs` (
   KEY `find_by_xref` (`db_name`,`db_xref`,`type`),
   KEY `find_by_object` (`type`,`obj_id`),
   KEY `search_xref_word` (`db_xref`)
-) ENGINE=InnoDB AUTO_INCREMENT=6455837 DEFAULT CHARSET=utf8mb3 COMMENT='database cross reference of the model objects ';
+) ENGINE=InnoDB AUTO_INCREMENT=10901612 DEFAULT CHARSET=utf8mb3 COMMENT='database cross reference of the model objects ';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -181,8 +181,10 @@ DROP TABLE IF EXISTS `kinetics_law`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `kinetics_law` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `db_xref` varchar(64) NOT NULL,
   `ec_number` varchar(16) NOT NULL COMMENT 'ec number of this kinetics law(or enzyme protein)',
   `enzyme_id` int unsigned NOT NULL COMMENT 'id reference to the protein model table',
+  `enzyme_name` varchar(255) NOT NULL DEFAULT '-',
   `lambda` varchar(4096) NOT NULL COMMENT 'the math expression for this kinetics law, usually be the Michaelis-Menten equation: v = vmax * S / (km + S)',
   `parameters` json NOT NULL COMMENT 'parameter values for the lambda expression, a key-value pair tuple json data, store the kinetics constant at here, example as there is a kinetics lambda expression: v = vmax * S / (km + S), parameter value json could be {vmax: 1000, S: registry_resolver_id, km: 500}, where number in parameter value is a constant value that detected from the experiment and S is the substrate, value is the model registry resolver id, could be unify mapping to metabolite or other biomolecule entity object',
   `metabolic_node` int unsigned NOT NULL COMMENT 'metabolic network id, mount this enzyme kinetics law model to a metabolic reaction',
@@ -225,7 +227,7 @@ CREATE TABLE `metabolic_network` (
   KEY `location_info_idx` (`compartment_id`),
   KEY `registry_model_idx` (`species_id`),
   KEY `symbol_index` (`symbol_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=474042 DEFAULT CHARSET=utf8mb3 COMMENT='metabolic reaction network';
+) ENGINE=InnoDB AUTO_INCREMENT=474084 DEFAULT CHARSET=utf8mb3 COMMENT='metabolic reaction network';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -290,7 +292,7 @@ CREATE TABLE `metabolites` (
   KEY `find_mesh` (`mesh_id`),
   KEY `find_wiki` (`wikipedia`),
   FULLTEXT KEY `search_text` (`name`,`note`)
-) ENGINE=InnoDB AUTO_INCREMENT=775469 DEFAULT CHARSET=utf8mb3 COMMENT='[cellular entity model][entity instance] a set of reference metabolites, template based on the www.metabolomicsworkbench.org refmet dataset';
+) ENGINE=InnoDB AUTO_INCREMENT=1356216 DEFAULT CHARSET=utf8mb3 COMMENT='[cellular entity model][entity instance] a set of reference metabolites, template based on the www.metabolomicsworkbench.org refmet dataset';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -328,13 +330,14 @@ CREATE TABLE `motif` (
   `family` varchar(45) NOT NULL COMMENT 'motif family name',
   `pwm` longtext NOT NULL COMMENT 'pre-computed motif pwm matrix, base64 encoded of double[][] matrix, network byte order',
   `width` int NOT NULL,
+  `logo` longtext COMMENT 'data uri of the motif logo image encoded in base64 string',
   `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `note` longtext,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `family_index` (`family`),
   KEY `name_search` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=2718 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=2718 DEFAULT CHARSET=utf8mb3 COMMENT='alphabets for nucleotide seuqnece is ACGT';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -641,7 +644,7 @@ CREATE TABLE `reaction` (
   UNIQUE KEY `find_reference` (`db_xref`,`db_source`),
   KEY `hash_index` (`hashcode`),
   FULLTEXT KEY `search_text` (`name`,`note`)
-) ENGINE=InnoDB AUTO_INCREMENT=85533 DEFAULT CHARSET=utf8mb3 COMMENT='[biological process model] biological reaction/chemical reaction model';
+) ENGINE=InnoDB AUTO_INCREMENT=85543 DEFAULT CHARSET=utf8mb3 COMMENT='[biological process model] biological reaction/chemical reaction model';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -665,7 +668,7 @@ CREATE TABLE `registry_resolver` (
   KEY `register_namespace_idx` (`type`),
   KEY `metabolite_reference_idx` (`symbol_id`),
   KEY `find_name` (`register_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=279478 DEFAULT CHARSET=utf8mb3 COMMENT='a unify symbol mapping inside the registry database system';
+) ENGINE=InnoDB AUTO_INCREMENT=279609 DEFAULT CHARSET=utf8mb3 COMMENT='a unify symbol mapping inside the registry database system';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -715,7 +718,7 @@ CREATE TABLE `struct_data` (
   UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `metabolite_info_idx` (`metabolite_id`),
   KEY `pdb_modelvalue_idx` (`pdb_data`)
-) ENGINE=InnoDB AUTO_INCREMENT=588595 DEFAULT CHARSET=utf8mb3 COMMENT='the metabolite molecule structre data';
+) ENGINE=InnoDB AUTO_INCREMENT=1194219 DEFAULT CHARSET=utf8mb3 COMMENT='the metabolite molecule structre data';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -764,7 +767,7 @@ CREATE TABLE `synonym` (
   KEY `fast_hash_search` (`obj_id`,`hashcode`,`type`),
   KEY `entity_metabolite_idx` (`obj_id`,`type`),
   FULLTEXT KEY `search_text` (`synonym`)
-) ENGINE=InnoDB AUTO_INCREMENT=4501812 DEFAULT CHARSET=utf8mb3 COMMENT='synonyms, alias names of the model objects';
+) ENGINE=InnoDB AUTO_INCREMENT=6162466 DEFAULT CHARSET=utf8mb3 COMMENT='synonyms, alias names of the model objects';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -809,7 +812,7 @@ CREATE TABLE `vocabulary` (
   UNIQUE KEY `search_term` (`category`,`term`),
   KEY `ontology_tree_idx` (`parent_id`),
   FULLTEXT KEY `search_text` (`note`)
-) ENGINE=InnoDB AUTO_INCREMENT=742 DEFAULT CHARSET=utf8mb3 COMMENT='vocabulary term inside the registry database';
+) ENGINE=InnoDB AUTO_INCREMENT=745 DEFAULT CHARSET=utf8mb3 COMMENT='vocabulary term inside the registry database';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -829,4 +832,4 @@ CREATE TABLE `vocabulary` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-01-19  4:46:43
+-- Dump completed on 2026-02-17 15:12:46

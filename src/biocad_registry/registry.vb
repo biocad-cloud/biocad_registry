@@ -8,6 +8,7 @@ Imports Microsoft.VisualBasic.Imaging.Driver
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Scripting.MetaData
 Imports Microsoft.VisualBasic.Serialization.BinaryDumping
+Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Microsoft.VisualBasic.Text.Xml.Models
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports registry_data
@@ -320,6 +321,10 @@ Module registry
 
     <ExportAPI("imports_sabiork")>
     Public Function imports_enzyme_kinetics(registry As biocad_registry, <RRawVectorArgument> xmlfiles As Object, Optional env As Environment = Nothing) As Object
+        Dim left_role As UInteger = registry.MetabolicSubstrateRole.id
+        Dim right_role As UInteger = registry.MetabolicProductRole.id
+        Dim kegg_db As UInteger = registry.biocad_vocabulary.db_kegg
+
         For Each block As String() In CLRVector.asCharacter(xmlfiles).SplitIterator(1000)
             For Each file As String In TqdmWrapper.Wrap(block)
                 Dim doc As SbmlDocument = SbmlDocument.LoadDocument(file)
@@ -332,11 +337,51 @@ Module registry
 
                 For Each rxn In ModelHelper.CreateKineticsData(doc).Select(Function(r) r.Item2)
                     Dim kinetics_id = rxn.SabiorkId
+                    Dim find_law = registry.kinetics_law.where(field("db_xref") = kinetics_id).find(Of biocad_registryModel.kinetics_law)
+
+                    If Not find_law Is Nothing Then
+                        Continue For
+                    End If
+
                     Dim enzymes = rxn.enzyme
                     Dim args = rxn.parameters
                     Dim left = rxn.substrates.ToDictionary(Function(a) a.Key, Function(a) registry.FindSymbol(a.Value.name, a.Value))
                     Dim right = rxn.products.ToDictionary(Function(a) a.Key, Function(a) registry.FindSymbol(a.Value.name, a.Value))
                     Dim uniprot_id = rxn.uniprot_id
+                    Dim kegg_rxn As String = rxn.KEGGReactionId
+                    Dim reaction As biocad_registryModel.reaction = Nothing
+
+                    If Not kegg_rxn.StringEmpty Then
+                        reaction = registry.reaction.where(field("db_xref") = kegg_rxn, field("db_source") = kegg_db).find(Of biocad_registryModel.reaction)
+                    End If
+                    If reaction Is Nothing Then
+                        Dim reactions = registry.metabolic_network _
+                            .left_join("reaction").on(field("`reaction`.id") = field("`metabolic_network`.reaction_id")) _
+                            .where(field("role") = left_role, field("species_id").in(From c In left.Values Where Not c Is Nothing Select c.id)) _
+                            .select(Of biocad_registryModel.reaction)("reaction.*")
+
+                        If reactions.Any Then
+                            reaction = reactions _
+                                .GroupBy(Function(a) a.id) _
+                                .OrderByDescending(Function(a) a.Count) _
+                                .First
+                        End If
+                    End If
+
+                    Call registry.kinetics_law.add(
+                        field("db_xref") = kinetics_id,
+                        field("ec_number") = rxn.Ec_number,
+                        field("enzyme_id") = uniprot_id,
+                        field("enzyme_name") = "",
+                        field("lambda") = rxn.lambda,
+                        field("parameters") = args.GetJson,
+                        field("metabolic_node") = 0,
+                        field("buffer") = rxn.buffer,
+                        field("ph") = rxn.PH,
+                        field("temperature") = rxn.temperature,
+                        field("pdb_data") = Nothing,
+                        field("note") = ""
+                    )
 
 
                     Pause()
