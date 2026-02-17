@@ -325,6 +325,7 @@ Module registry
         Dim left_role As UInteger = registry.MetabolicSubstrateRole.id
         Dim right_role As UInteger = registry.MetabolicProductRole.id
         Dim kegg_db As UInteger = registry.biocad_vocabulary.db_kegg
+        Dim sabiork As UInteger = registry.biocad_vocabulary.GetDatabaseResource("SABIO-RK").id
 
         For Each block As String() In CLRVector.asCharacter(xmlfiles).SplitIterator(1000)
             For Each file As String In TqdmWrapper.Wrap(block)
@@ -338,7 +339,7 @@ Module registry
 
                 For Each rxn In ModelHelper.CreateKineticsData(doc).Select(Function(r) r.Item2)
                     Dim kinetics_id = rxn.SabiorkId
-                    Dim find_law = registry.kinetics_law.where(field("db_xref") = kinetics_id).find(Of biocad_registryModel.kinetics_law)
+                    Dim find_law = registry.kinetics_law.where(field("db_xref") = kinetics_id, field("db_source") = sabiork).find(Of biocad_registryModel.kinetics_law)
 
                     If Not find_law Is Nothing Then
                         Continue For
@@ -366,7 +367,7 @@ Module registry
                             reaction = reactions _
                                 .GroupBy(Function(a) a.id) _
                                 .OrderByDescending(Function(a)
-                                                       If Not rxn.Ec_number.StringEmpty(, True) Then
+                                                       If ec IsNot Nothing AndAlso Not rxn.Ec_number.StringEmpty(, True) Then
                                                            If a.First.ec_number = rxn.Ec_number Then
                                                                Return CDbl(Integer.MaxValue) * a.Count
                                                            ElseIf ec.Contains(ECNumber.ValueParser(a.First.ec_number)) Then
@@ -395,6 +396,7 @@ Module registry
 
                     Call registry.kinetics_law.add(
                         field("db_xref") = kinetics_id,
+                        field("db_source") = sabiork,
                         field("ec_number") = rxn.Ec_number,
                         field("enzyme_id") = If(uniprot_id.IsEmptyStringVector(True), "-", $"uniprot:{uniprot_id.JoinBy(",")}"),
                         field("enzyme_name") = If(enzymes.IsNullOrEmpty, "-", enzymes.First.Value),
