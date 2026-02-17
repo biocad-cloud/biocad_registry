@@ -382,12 +382,16 @@ Module registry
                         If left.ContainsKey(key) AndAlso left(key) IsNot Nothing Then
                             args(id) = left(key).id & " - " & left(key).name
                         End If
+
+                        If enzymes.ContainsKey(key) Then
+                            args(id) = $"enzyme - {uniprot_id.DefaultFirst}"
+                        End If
                     Next
 
                     Call registry.kinetics_law.add(
                         field("db_xref") = kinetics_id,
                         field("ec_number") = rxn.Ec_number,
-                        field("enzyme_id") = uniprot_id,
+                        field("enzyme_id") = If(uniprot_id.DefaultFirst, "-"),
                         field("enzyme_name") = If(enzymes.IsNullOrEmpty, "-", enzymes.First.Value),
                         field("lambda") = rxn.lambda,
                         field("parameters") = args.GetJson,
@@ -400,11 +404,7 @@ Module registry
                         field("note") = rxn.reaction,
                         field("raw") = rxn.GetJson
                     )
-
-                    Pause()
                 Next
-
-                Pause()
             Next
         Next
 
