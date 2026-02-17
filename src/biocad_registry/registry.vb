@@ -356,7 +356,7 @@ Module registry
                     If Not kegg_rxn.StringEmpty Then
                         reaction = registry.reaction.where(field("db_xref") = kegg_rxn, field("db_source") = kegg_db).find(Of biocad_registryModel.reaction)
                     End If
-                    If reaction Is Nothing Then
+                    If reaction Is Nothing AndAlso (From c In left.Values Where Not c Is Nothing).Any Then
                         Dim reactions = registry.metabolic_network _
                             .left_join("reaction").on(field("`reaction`.id") = field("`metabolic_network`.reaction_id")) _
                             .where(field("role") = left_role, field("species_id").in(From c In left.Values Where Not c Is Nothing Select c.id)) _
