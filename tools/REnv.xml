@@ -1267,7 +1267,9 @@ to [rest of string was truncated]&quot;;.
  </summary>
  <param name="envir"></param>
  <param name="passed"></param>
- <returns></returns>
+ <returns>
+ returns the function name string or the function object value
+ </returns>
 </member>
 <member name="M:SMRUCC.Rsharp.Interpreter.ExecuteEngine.ExpressionSymbols.Closure.FunctionInvoke.HandleResult(System.Object,SMRUCC.Rsharp.Runtime.Environment)">
  <summary>
@@ -5793,7 +5795,7 @@ to take away yo [rest of string was truncated]&quot;;.
  <param name="env"></param>
  <returns></returns>
 </member>
-<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.base.names(System.Object,System.Array,SMRUCC.Rsharp.Runtime.Environment)">
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.base.names(System.Object,System.Object,SMRUCC.Rsharp.Runtime.Environment)">
  <summary>
  # The Names of an Object
  
@@ -5868,7 +5870,7 @@ to take away yo [rest of string was truncated]&quot;;.
  <param name="names"></param>
  <returns>this function by extends the numeric suffix to the duplictaed name for make the name string be uniqued!</returns>
 </member>
-<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.base.rownames(System.Object,System.Array,SMRUCC.Rsharp.Runtime.Environment)">
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.base.rownames(System.Object,System.Object,SMRUCC.Rsharp.Runtime.Environment)">
  <summary>
  # Row and Column Names
  
@@ -5900,7 +5902,7 @@ to take away yo [rest of string was truncated]&quot;;.
  by as.character, And setting colnames will convert the row names To character.
  </remarks>
 </member>
-<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.base.colnames(System.Object,System.Array,SMRUCC.Rsharp.Runtime.Environment)">
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.base.colnames(System.Object,System.Object,SMRUCC.Rsharp.Runtime.Environment)">
  <summary>
  # Row and Column Names
  

@@ -3,10 +3,9 @@ Imports BioNovoGene.BioDeep.Chemistry
 Imports BioNovoGene.BioDeep.Chemistry.ChEBI
 Imports BioNovoGene.BioDeep.Chemistry.LipidMaps
 Imports BioNovoGene.BioDeep.Chemistry.MetaLib
-Imports BioNovoGene.BioDeep.Chemistry.MetaLib.CrossReference
-Imports BioNovoGene.BioDeep.Chemistry.MetaLib.Models
 Imports BioNovoGene.BioDeep.Chemistry.TMIC.HMDB
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
+Imports BioNovoGene.BioDeep.Chemoinformatics.Metabolite.CrossReference
 Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm
 Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.ComponentModel.Collection
@@ -180,7 +179,7 @@ Public Module setup
         Dim ontology_id As UInteger = vocabulary.GetVocabulary(biocad_vocabulary.ExternalDatabase, "WishartLab ClassyFire").id
 
         For Each met As metabolite In pull.populates(Of metabolite)(env)
-            Dim meta As MetaLib = TMIC.HMDB.CreateReferenceData(met)
+            Dim meta As BioNovoGene.BioDeep.Chemoinformatics.Metabolite.MetaLib = TMIC.HMDB.CreateReferenceData(met)
             Dim m As metabolites = registry.FindMolecule(meta, primaryKey:="hmdb_id")
             Dim model As registry_resolver = registry.registry_resolver.where(field("type") = metabolite_type, field("symbol_id") = m.id).find(Of registry_resolver)
 
@@ -253,7 +252,7 @@ Public Module setup
         Dim ontology_id As UInteger = db_lipidmaps
 
         For Each lipid As LipidMaps.MetaData In TqdmWrapper.Wrap(pull.populates(Of LipidMaps.MetaData)(env).ToArray)
-            Dim meta As MetaLib = lipid.CreateMetabolite
+            Dim meta As BioNovoGene.BioDeep.Chemoinformatics.Metabolite.MetaLib = lipid.CreateMetabolite
             Dim m As metabolites = registry.FindMolecule(meta, "lipidmaps_id")
 
             Call registry.SaveDbLinks(meta, m, db_lipidmaps)
@@ -270,7 +269,7 @@ Public Module setup
                               Optional init_ontology As Boolean = True,
                               Optional env As Environment = Nothing) As Object
 
-        Dim metabolites As Models.MetaInfo() = ChEBIObo.ImportsMetabolites(chebi).ToArray
+        Dim metabolites As BioNovoGene.BioDeep.Chemoinformatics.Metabolite.MetaInfo() = ChEBIObo.ImportsMetabolites(chebi).ToArray
         Dim vocabulary As biocad_vocabulary = registry.biocad_vocabulary
         Dim metabolite_type As UInteger = vocabulary.GetRegistryEntity(biocad_vocabulary.EntityMetabolite).id
         Dim db_chebi As UInteger = vocabulary.db_chebi
@@ -309,7 +308,7 @@ Public Module setup
             End Using
         End If
 
-        For Each meta As Models.MetaInfo In TqdmWrapper.Wrap(metabolites)
+        For Each meta As BioNovoGene.BioDeep.Chemoinformatics.Metabolite.MetaInfo In TqdmWrapper.Wrap(metabolites)
             ' ontology term has no formula data
             If meta.formula.StringEmpty(, True) Then
                 Continue For

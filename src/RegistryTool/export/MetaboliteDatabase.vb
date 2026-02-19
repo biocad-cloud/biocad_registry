@@ -1,7 +1,7 @@
 ﻿Imports System.IO
 Imports System.Runtime.CompilerServices
 Imports BioNovoGene.BioDeep.Chemistry.MetaLib
-Imports BioNovoGene.BioDeep.Chemistry.MetaLib.CrossReference
+Imports BioNovoGene.BioDeep.Chemoinformatics.Metabolite.CrossReference
 Imports Microsoft.VisualBasic.Data.Framework.IO
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
@@ -9,7 +9,7 @@ Imports registry_data
 Imports registry_exports
 Imports RegistryTool.My
 Imports SMRUCC.genomics.Assembly.NCBI.GenBank
-Imports Metadata = BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaLib
+Imports Metadata = BioNovoGene.BioDeep.Chemoinformatics.Metabolite.MetaLib
 
 
 Module MetaboliteDatabase

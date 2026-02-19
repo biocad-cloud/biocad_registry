@@ -173,7 +173,7 @@ BioNovoGene.BioDeep.Chemistry.XrefEngine
 </member>
 <member name="M:BioNovoGene.BioDeep.Chemistry.MetaLib.FillClass.ClassyfireFillerLambda``1(System.Collections.Generic.IEnumerable{BioNovoGene.BioDeep.Chemistry.MetaLib.ClassyfireAnnotation},BioNovoGene.BioDeep.Chemistry.MetaLib.ChemOntClassify,System.Func{``0,System.String})">
  <summary>
- 构建出一个信息填充表达式, 即分子的注释信息传递进入函数, 然后函数尝试填充<see cref="T:BioNovoGene.BioDeep.Chemoinformatics.ICompoundClass"/>物质结构分类信息后返回原始对象的引用
+ 构建出一个信息填充表达式, 即分子的注释信息传递进入函数, 然后函数尝试填充<see cref="T:BioNovoGene.BioDeep.Chemoinformatics.Metabolite.ICompoundClass"/>物质结构分类信息后返回原始对象的引用
  </summary>
  <typeparam name="cpd"></typeparam>
  <param name="anno"></param>
@@ -204,7 +204,7 @@ BioNovoGene.BioDeep.Chemistry.XrefEngine
  
  </summary>
  <param name="uniqueId"></param>
- <returns>the metabolite annotation data model <see cref="T:BioNovoGene.BioDeep.Chemistry.MetaLib.Models.MetaLib"/>. this function will returns nothing if the id is not hit in the library.</returns>
+ <returns>the metabolite annotation data model <see cref="T:BioNovoGene.BioDeep.Chemoinformatics.Metabolite.MetaLib"/>. this function will returns nothing if the id is not hit in the library.</returns>
 </member>
 <member name="T:BioNovoGene.BioDeep.Chemistry.MetaLib.RepositoryWriter">
  <summary>
