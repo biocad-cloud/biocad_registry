@@ -9992,7 +9992,7 @@ to take away yo [rest of string was truncated]&quot;;.
  </param>
  <returns>Root of number.</returns>
 </member>
-<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.ranking.rank(System.Double[],System.Boolean,Microsoft.VisualBasic.Math.Correlations.Ranking.Strategies)">
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.ranking.rank(System.Object,System.Boolean,Microsoft.VisualBasic.Math.Correlations.Ranking.Strategies)">
  <summary>
  ### Sample Ranks
  
@@ -10035,7 +10035,7 @@ to take away yo [rest of string was truncated]&quot;;.
  slowly.
  </remarks>
 </member>
-<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.ranking.order(System.Array,System.Boolean,System.Object,SMRUCC.Rsharp.Runtime.Environment)">
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.ranking.order(System.Object,System.Boolean,System.Object,SMRUCC.Rsharp.Runtime.Environment)">
  <summary>
  ### Ordering Permutation
  
@@ -10864,7 +10864,7 @@ to take away yo [rest of string was truncated]&quot;;.
  <param name="env"></param>
  <returns></returns>
 </member>
-<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.stringr.Csprintf(System.Array,System.Object,SMRUCC.Rsharp.Runtime.Environment)">
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.stringr.Csprintf(System.Object,System.Object,SMRUCC.Rsharp.Runtime.Environment)">
  <summary>
  #### Use C-style String Formatting Commands
  
@@ -15492,10 +15492,10 @@ to take away yo [rest of string was truncated]&quot;;.
  <param name="vec"></param>
  <param name="env"></param>
  <returns>
- A class variant type: error message or a generic array
+ A class variant type: error message or a generic array.
  
- Andalso this function will returns nothing if the input <paramref name="vec"/>
- is nothing.
+ Andalso this function will returns nothing <strong>if the input <paramref name="vec"/>
+ is nothing orelse is empty array.</strong>
  </returns>
  <remarks>
  返回错误消息或者结果向量

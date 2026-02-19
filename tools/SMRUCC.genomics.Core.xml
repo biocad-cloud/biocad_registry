@@ -11502,6 +11502,11 @@ Get feature site data by nucleotide location.
  </summary>
  <remarks></remarks>
 </member>
+<member name="F:SMRUCC.genomics.ComponentModel.Annotation.EnzymeClasses.Spontaneous">
+ <summary>
+ no needs for enzyme catalysis
+ </summary>
+</member>
 <member name="F:SMRUCC.genomics.ComponentModel.Annotation.EnzymeClasses.OxidoReductase">
  <summary>
  Oxido Reductase.(氧化还原酶)

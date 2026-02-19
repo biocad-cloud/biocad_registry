@@ -2397,6 +2397,12 @@ BioNovoGene.Analytical.MassSpectrometry.Math
  </summary>
  <returns></returns>
 </member>
+<member name="P:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml.AlignmentOutput.Q3">
+ <summary>
+ get basepeak of the reference ion as Q3 product ion
+ </summary>
+ <returns></returns>
+</member>
 <member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml.AlignmentOutput.GetAlignmentMirror">
  <summary>
  construct a tuple of the spectrum data as the mirror alignment
