@@ -253,6 +253,26 @@ Public Class FormMain : Implements AppHost
         End Using
     End Sub
 
+    Private Sub ExportMoNAIDMappingToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportMoNAIDMappingToolStripMenuItem.Click
+        Using file As New SaveFileDialog With {.Filter = "id mapping file(*.json)|*.json"}
+            If file.ShowDialog = DialogResult.OK Then
+                MyApplication.Loading(
+                    Function(println)
+                        Call MyApplication.biocad_registry _
+                            .ExportDbXrefIDMapping("MoNA") _
+                            .GetJson _
+                            .SaveTo(file.FileName)
+
+                        Return True
+                    End Function)
+                MessageBox.Show("Export MoNA spectrum id mapping to metabolite id local annotation repository file success!",
+                                "Task Finish",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information)
+            End If
+        End Using
+    End Sub
+
     Private Sub ExportTagToolStripMenuItem_Click(tag As String)
         Using file As New SaveFileDialog With {
             .Filter = "id file(*.txt)|*.txt|Molecule table(*.csv)|*.csv",

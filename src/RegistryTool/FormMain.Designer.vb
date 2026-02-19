@@ -69,6 +69,7 @@ Partial Class FormMain
         ToolStripStatusLabel1 = New ToolStripStatusLabel()
         m_dockPanel = New Microsoft.VisualStudio.WinForms.Docking.DockPanel()
         VisualStudioToolStripExtender1 = New Microsoft.VisualStudio.WinForms.Docking.VisualStudioToolStripExtender(components)
+        ExportMoNAIDMappingToolStripMenuItem = New ToolStripMenuItem()
         MenuStrip1.SuspendLayout()
         StatusStrip1.SuspendLayout()
         SuspendLayout()
@@ -79,7 +80,7 @@ Partial Class FormMain
         MenuStrip1.Location = New Point(0, 0)
         MenuStrip1.Name = "MenuStrip1"
         MenuStrip1.Padding = New Padding(7, 2, 0, 2)
-        MenuStrip1.Size = New Size(1347, 24)
+        MenuStrip1.Size = New Size(1072, 25)
         MenuStrip1.TabIndex = 1
         MenuStrip1.Text = "MenuStrip1"
         ' 
@@ -87,290 +88,296 @@ Partial Class FormMain
         ' 
         FileToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {OpenMoleculeToolStripMenuItem, BatchOperationToolStripMenuItem, SearchNamesToolStripMenuItem, ToolStripMenuItem4, SettingsToolStripMenuItem, AboutToolStripMenuItem, ToolStripMenuItem1, ExitToolStripMenuItem})
         FileToolStripMenuItem.Name = "FileToolStripMenuItem"
-        FileToolStripMenuItem.Size = New Size(37, 20)
+        FileToolStripMenuItem.Size = New Size(39, 21)
         FileToolStripMenuItem.Text = "File"
         ' 
         ' OpenMoleculeToolStripMenuItem
         ' 
         OpenMoleculeToolStripMenuItem.Name = "OpenMoleculeToolStripMenuItem"
-        OpenMoleculeToolStripMenuItem.Size = New Size(160, 22)
+        OpenMoleculeToolStripMenuItem.Size = New Size(171, 22)
         OpenMoleculeToolStripMenuItem.Text = "Open Molecule"
         ' 
         ' BatchOperationToolStripMenuItem
         ' 
         BatchOperationToolStripMenuItem.Name = "BatchOperationToolStripMenuItem"
-        BatchOperationToolStripMenuItem.Size = New Size(160, 22)
+        BatchOperationToolStripMenuItem.Size = New Size(171, 22)
         BatchOperationToolStripMenuItem.Text = "Batch Operation"
         ' 
         ' SearchNamesToolStripMenuItem
         ' 
         SearchNamesToolStripMenuItem.Name = "SearchNamesToolStripMenuItem"
-        SearchNamesToolStripMenuItem.Size = New Size(160, 22)
+        SearchNamesToolStripMenuItem.Size = New Size(171, 22)
         SearchNamesToolStripMenuItem.Text = "Search Names"
         ' 
         ' ToolStripMenuItem4
         ' 
         ToolStripMenuItem4.Name = "ToolStripMenuItem4"
-        ToolStripMenuItem4.Size = New Size(157, 6)
+        ToolStripMenuItem4.Size = New Size(168, 6)
         ' 
         ' SettingsToolStripMenuItem
         ' 
         SettingsToolStripMenuItem.Name = "SettingsToolStripMenuItem"
-        SettingsToolStripMenuItem.Size = New Size(160, 22)
+        SettingsToolStripMenuItem.Size = New Size(171, 22)
         SettingsToolStripMenuItem.Text = "Settings"
         ' 
         ' AboutToolStripMenuItem
         ' 
         AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        AboutToolStripMenuItem.Size = New Size(160, 22)
+        AboutToolStripMenuItem.Size = New Size(171, 22)
         AboutToolStripMenuItem.Text = "About"
         ' 
         ' ToolStripMenuItem1
         ' 
         ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        ToolStripMenuItem1.Size = New Size(157, 6)
+        ToolStripMenuItem1.Size = New Size(168, 6)
         ' 
         ' ExitToolStripMenuItem
         ' 
         ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        ExitToolStripMenuItem.Size = New Size(160, 22)
+        ExitToolStripMenuItem.Size = New Size(171, 22)
         ExitToolStripMenuItem.Text = "Exit"
         ' 
         ' DataToolStripMenuItem
         ' 
         DataToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {VocabularyToolStripMenuItem, ProteinModelsToolStripMenuItem, MoleculesToolStripMenuItem, SubCellularCompartmentsToolStripMenuItem, FlavorOdorsToolStripMenuItem, ReactionEditorToolStripMenuItem, ToolStripMenuItem2, CreateMetabolicReactionToolStripMenuItem})
         DataToolStripMenuItem.Name = "DataToolStripMenuItem"
-        DataToolStripMenuItem.Size = New Size(43, 20)
+        DataToolStripMenuItem.Size = New Size(47, 21)
         DataToolStripMenuItem.Text = "Data"
         ' 
         ' VocabularyToolStripMenuItem
         ' 
         VocabularyToolStripMenuItem.Name = "VocabularyToolStripMenuItem"
-        VocabularyToolStripMenuItem.Size = New Size(271, 22)
+        VocabularyToolStripMenuItem.Size = New Size(289, 22)
         VocabularyToolStripMenuItem.Text = "Vocabulary"
         ' 
         ' ProteinModelsToolStripMenuItem
         ' 
         ProteinModelsToolStripMenuItem.Name = "ProteinModelsToolStripMenuItem"
-        ProteinModelsToolStripMenuItem.Size = New Size(271, 22)
+        ProteinModelsToolStripMenuItem.Size = New Size(289, 22)
         ProteinModelsToolStripMenuItem.Text = "Protein Models"
         ' 
         ' MoleculesToolStripMenuItem
         ' 
         MoleculesToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {SearchToolStripMenuItem, SearchNameToolStripMenuItem})
         MoleculesToolStripMenuItem.Name = "MoleculesToolStripMenuItem"
-        MoleculesToolStripMenuItem.Size = New Size(271, 22)
+        MoleculesToolStripMenuItem.Size = New Size(289, 22)
         MoleculesToolStripMenuItem.Text = "Molecules"
         ' 
         ' SearchToolStripMenuItem
         ' 
         SearchToolStripMenuItem.Name = "SearchToolStripMenuItem"
-        SearchToolStripMenuItem.Size = New Size(144, 22)
+        SearchToolStripMenuItem.Size = New Size(154, 22)
         SearchToolStripMenuItem.Text = "Search Text"
         ' 
         ' SearchNameToolStripMenuItem
         ' 
         SearchNameToolStripMenuItem.Name = "SearchNameToolStripMenuItem"
-        SearchNameToolStripMenuItem.Size = New Size(144, 22)
+        SearchNameToolStripMenuItem.Size = New Size(154, 22)
         SearchNameToolStripMenuItem.Text = "Search Name"
         ' 
         ' SubCellularCompartmentsToolStripMenuItem
         ' 
         SubCellularCompartmentsToolStripMenuItem.Name = "SubCellularCompartmentsToolStripMenuItem"
-        SubCellularCompartmentsToolStripMenuItem.Size = New Size(271, 22)
+        SubCellularCompartmentsToolStripMenuItem.Size = New Size(289, 22)
         SubCellularCompartmentsToolStripMenuItem.Text = "Sub-Cellular Compartment Locations"
         ' 
         ' FlavorOdorsToolStripMenuItem
         ' 
         FlavorOdorsToolStripMenuItem.Name = "FlavorOdorsToolStripMenuItem"
-        FlavorOdorsToolStripMenuItem.Size = New Size(271, 22)
+        FlavorOdorsToolStripMenuItem.Size = New Size(289, 22)
         FlavorOdorsToolStripMenuItem.Text = "Flavor Odors"
         ' 
         ' ReactionEditorToolStripMenuItem
         ' 
         ReactionEditorToolStripMenuItem.Name = "ReactionEditorToolStripMenuItem"
-        ReactionEditorToolStripMenuItem.Size = New Size(271, 22)
+        ReactionEditorToolStripMenuItem.Size = New Size(289, 22)
         ReactionEditorToolStripMenuItem.Text = "Reaction Editor"
         ' 
         ' ToolStripMenuItem2
         ' 
         ToolStripMenuItem2.Name = "ToolStripMenuItem2"
-        ToolStripMenuItem2.Size = New Size(268, 6)
+        ToolStripMenuItem2.Size = New Size(286, 6)
         ' 
         ' CreateMetabolicReactionToolStripMenuItem
         ' 
         CreateMetabolicReactionToolStripMenuItem.Name = "CreateMetabolicReactionToolStripMenuItem"
-        CreateMetabolicReactionToolStripMenuItem.Size = New Size(271, 22)
+        CreateMetabolicReactionToolStripMenuItem.Size = New Size(289, 22)
         CreateMetabolicReactionToolStripMenuItem.Text = "Create Metabolic Reaction"
         ' 
         ' ImportsToolStripMenuItem
         ' 
         ImportsToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {GenBankToolStripMenuItem, PubMedKnowledgeToolStripMenuItem, PubChemIDToolStripMenuItem})
         ImportsToolStripMenuItem.Name = "ImportsToolStripMenuItem"
-        ImportsToolStripMenuItem.Size = New Size(60, 20)
+        ImportsToolStripMenuItem.Size = New Size(66, 21)
         ImportsToolStripMenuItem.Text = "Imports"
         ' 
         ' GenBankToolStripMenuItem
         ' 
         GenBankToolStripMenuItem.Name = "GenBankToolStripMenuItem"
-        GenBankToolStripMenuItem.Size = New Size(181, 22)
+        GenBankToolStripMenuItem.Size = New Size(194, 22)
         GenBankToolStripMenuItem.Text = "GenBank"
         ' 
         ' PubMedKnowledgeToolStripMenuItem
         ' 
         PubMedKnowledgeToolStripMenuItem.Name = "PubMedKnowledgeToolStripMenuItem"
-        PubMedKnowledgeToolStripMenuItem.Size = New Size(181, 22)
+        PubMedKnowledgeToolStripMenuItem.Size = New Size(194, 22)
         PubMedKnowledgeToolStripMenuItem.Text = "PubMed Knowledge"
         ' 
         ' PubChemIDToolStripMenuItem
         ' 
         PubChemIDToolStripMenuItem.Name = "PubChemIDToolStripMenuItem"
-        PubChemIDToolStripMenuItem.Size = New Size(181, 22)
+        PubChemIDToolStripMenuItem.Size = New Size(194, 22)
         PubChemIDToolStripMenuItem.Text = "PubChem ID"
         ' 
         ' ExportsToolStripMenuItem
         ' 
         ExportsToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {DaisyLCMSWorkflowToolStripMenuItem, FastaDatabaseToolStripMenuItem})
         ExportsToolStripMenuItem.Name = "ExportsToolStripMenuItem"
-        ExportsToolStripMenuItem.Size = New Size(58, 20)
+        ExportsToolStripMenuItem.Size = New Size(64, 21)
         ExportsToolStripMenuItem.Text = "Exports"
         ' 
         ' DaisyLCMSWorkflowToolStripMenuItem
         ' 
-        DaisyLCMSWorkflowToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {ExportLipidMAPSIDMappingToolStripMenuItem, ExportHMDBIDMappingToolStripMenuItem, ExportKEGGIDMappingToolStripMenuItem1, ExportKEGGMetaboliteTableToolStripMenuItem1, ToolStripMenuItem5, ExportMetabolitesDatabaseToolStripMenuItem1, ExportAnnotationTableToolStripMenuItem1, ToolStripMenuItem6, ExportTagDataToolStripMenuItem})
+        DaisyLCMSWorkflowToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {ExportLipidMAPSIDMappingToolStripMenuItem, ExportHMDBIDMappingToolStripMenuItem, ExportMoNAIDMappingToolStripMenuItem, ExportKEGGIDMappingToolStripMenuItem1, ExportKEGGMetaboliteTableToolStripMenuItem1, ToolStripMenuItem5, ExportMetabolitesDatabaseToolStripMenuItem1, ExportAnnotationTableToolStripMenuItem1, ToolStripMenuItem6, ExportTagDataToolStripMenuItem})
         DaisyLCMSWorkflowToolStripMenuItem.Name = "DaisyLCMSWorkflowToolStripMenuItem"
-        DaisyLCMSWorkflowToolStripMenuItem.Size = New Size(190, 22)
+        DaisyLCMSWorkflowToolStripMenuItem.Size = New Size(204, 22)
         DaisyLCMSWorkflowToolStripMenuItem.Text = "Daisy LCMS Workflow"
         ' 
         ' ExportLipidMAPSIDMappingToolStripMenuItem
         ' 
         ExportLipidMAPSIDMappingToolStripMenuItem.Name = "ExportLipidMAPSIDMappingToolStripMenuItem"
-        ExportLipidMAPSIDMappingToolStripMenuItem.Size = New Size(231, 22)
+        ExportLipidMAPSIDMappingToolStripMenuItem.Size = New Size(254, 22)
         ExportLipidMAPSIDMappingToolStripMenuItem.Text = "Export LipidMAPS IDMapping"
         ' 
         ' ExportHMDBIDMappingToolStripMenuItem
         ' 
         ExportHMDBIDMappingToolStripMenuItem.Name = "ExportHMDBIDMappingToolStripMenuItem"
-        ExportHMDBIDMappingToolStripMenuItem.Size = New Size(231, 22)
+        ExportHMDBIDMappingToolStripMenuItem.Size = New Size(254, 22)
         ExportHMDBIDMappingToolStripMenuItem.Text = "Export HMDB IDMapping"
         ' 
         ' ExportKEGGIDMappingToolStripMenuItem1
         ' 
         ExportKEGGIDMappingToolStripMenuItem1.Name = "ExportKEGGIDMappingToolStripMenuItem1"
-        ExportKEGGIDMappingToolStripMenuItem1.Size = New Size(231, 22)
+        ExportKEGGIDMappingToolStripMenuItem1.Size = New Size(254, 22)
         ExportKEGGIDMappingToolStripMenuItem1.Text = "Export KEGG IDMapping"
         ' 
         ' ExportKEGGMetaboliteTableToolStripMenuItem1
         ' 
         ExportKEGGMetaboliteTableToolStripMenuItem1.Name = "ExportKEGGMetaboliteTableToolStripMenuItem1"
-        ExportKEGGMetaboliteTableToolStripMenuItem1.Size = New Size(231, 22)
+        ExportKEGGMetaboliteTableToolStripMenuItem1.Size = New Size(254, 22)
         ExportKEGGMetaboliteTableToolStripMenuItem1.Text = "Export KEGG Metabolite Table"
         ' 
         ' ToolStripMenuItem5
         ' 
         ToolStripMenuItem5.Name = "ToolStripMenuItem5"
-        ToolStripMenuItem5.Size = New Size(228, 6)
+        ToolStripMenuItem5.Size = New Size(251, 6)
         ' 
         ' ExportMetabolitesDatabaseToolStripMenuItem1
         ' 
         ExportMetabolitesDatabaseToolStripMenuItem1.Name = "ExportMetabolitesDatabaseToolStripMenuItem1"
-        ExportMetabolitesDatabaseToolStripMenuItem1.Size = New Size(231, 22)
+        ExportMetabolitesDatabaseToolStripMenuItem1.Size = New Size(254, 22)
         ExportMetabolitesDatabaseToolStripMenuItem1.Text = "Export Metabolites Database"
         ' 
         ' ExportAnnotationTableToolStripMenuItem1
         ' 
         ExportAnnotationTableToolStripMenuItem1.Name = "ExportAnnotationTableToolStripMenuItem1"
-        ExportAnnotationTableToolStripMenuItem1.Size = New Size(231, 22)
+        ExportAnnotationTableToolStripMenuItem1.Size = New Size(254, 22)
         ExportAnnotationTableToolStripMenuItem1.Text = "Export Annotation Table"
         ' 
         ' ToolStripMenuItem6
         ' 
         ToolStripMenuItem6.Name = "ToolStripMenuItem6"
-        ToolStripMenuItem6.Size = New Size(228, 6)
+        ToolStripMenuItem6.Size = New Size(251, 6)
         ' 
         ' ExportTagDataToolStripMenuItem
         ' 
         ExportTagDataToolStripMenuItem.Name = "ExportTagDataToolStripMenuItem"
-        ExportTagDataToolStripMenuItem.Size = New Size(231, 22)
+        ExportTagDataToolStripMenuItem.Size = New Size(254, 22)
         ExportTagDataToolStripMenuItem.Text = "Export Tag Data"
         ' 
         ' FastaDatabaseToolStripMenuItem
         ' 
         FastaDatabaseToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {ExportMembraneTransporterToolStripMenuItem, ExportEnzymeDatabaseToolStripMenuItem1, ExportConservedOperonDatabaseToolStripMenuItem})
         FastaDatabaseToolStripMenuItem.Name = "FastaDatabaseToolStripMenuItem"
-        FastaDatabaseToolStripMenuItem.Size = New Size(190, 22)
+        FastaDatabaseToolStripMenuItem.Size = New Size(204, 22)
         FastaDatabaseToolStripMenuItem.Text = "Fasta Database"
         ' 
         ' ExportMembraneTransporterToolStripMenuItem
         ' 
         ExportMembraneTransporterToolStripMenuItem.Name = "ExportMembraneTransporterToolStripMenuItem"
-        ExportMembraneTransporterToolStripMenuItem.Size = New Size(261, 22)
+        ExportMembraneTransporterToolStripMenuItem.Size = New Size(288, 22)
         ExportMembraneTransporterToolStripMenuItem.Text = "Export Membrane Transporter"
         ' 
         ' ExportEnzymeDatabaseToolStripMenuItem1
         ' 
         ExportEnzymeDatabaseToolStripMenuItem1.Name = "ExportEnzymeDatabaseToolStripMenuItem1"
-        ExportEnzymeDatabaseToolStripMenuItem1.Size = New Size(261, 22)
+        ExportEnzymeDatabaseToolStripMenuItem1.Size = New Size(288, 22)
         ExportEnzymeDatabaseToolStripMenuItem1.Text = "Export Enzyme Database"
         ' 
         ' ExportConservedOperonDatabaseToolStripMenuItem
         ' 
         ExportConservedOperonDatabaseToolStripMenuItem.Name = "ExportConservedOperonDatabaseToolStripMenuItem"
-        ExportConservedOperonDatabaseToolStripMenuItem.Size = New Size(261, 22)
+        ExportConservedOperonDatabaseToolStripMenuItem.Size = New Size(288, 22)
         ExportConservedOperonDatabaseToolStripMenuItem.Text = "Export Conserved Operon Database"
         ' 
         ' WindowsToolStripMenuItem
         ' 
         WindowsToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {CloseAllToolStripMenuItem})
         WindowsToolStripMenuItem.Name = "WindowsToolStripMenuItem"
-        WindowsToolStripMenuItem.Size = New Size(68, 20)
+        WindowsToolStripMenuItem.Size = New Size(73, 21)
         WindowsToolStripMenuItem.Text = "Windows"
         ' 
         ' CloseAllToolStripMenuItem
         ' 
         CloseAllToolStripMenuItem.Name = "CloseAllToolStripMenuItem"
-        CloseAllToolStripMenuItem.Size = New Size(120, 22)
+        CloseAllToolStripMenuItem.Size = New Size(126, 22)
         CloseAllToolStripMenuItem.Text = "Close All"
         ' 
         ' StatusStrip1
         ' 
         StatusStrip1.Items.AddRange(New ToolStripItem() {ToolStripStatusLabel1})
-        StatusStrip1.Location = New Point(0, 810)
+        StatusStrip1.Location = New Point(0, 560)
         StatusStrip1.Name = "StatusStrip1"
         StatusStrip1.Padding = New Padding(1, 0, 16, 0)
-        StatusStrip1.Size = New Size(1347, 22)
+        StatusStrip1.Size = New Size(1072, 22)
         StatusStrip1.TabIndex = 3
         StatusStrip1.Text = "StatusStrip1"
         ' 
         ' ToolStripStatusLabel1
         ' 
         ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
-        ToolStripStatusLabel1.Size = New Size(42, 17)
+        ToolStripStatusLabel1.Size = New Size(48, 17)
         ToolStripStatusLabel1.Text = "Ready!"
         ' 
         ' m_dockPanel
         ' 
         m_dockPanel.Dock = DockStyle.Fill
-        m_dockPanel.Location = New Point(0, 24)
-        m_dockPanel.Margin = New Padding(4)
+        m_dockPanel.Location = New Point(0, 25)
+        m_dockPanel.Margin = New Padding(4, 5, 4, 5)
         m_dockPanel.Name = "m_dockPanel"
-        m_dockPanel.Size = New Size(1347, 786)
+        m_dockPanel.Size = New Size(1072, 535)
         m_dockPanel.TabIndex = 4
         ' 
         ' VisualStudioToolStripExtender1
         ' 
         VisualStudioToolStripExtender1.DefaultRenderer = Nothing
         ' 
+        ' ExportMoNAIDMappingToolStripMenuItem
+        ' 
+        ExportMoNAIDMappingToolStripMenuItem.Name = "ExportMoNAIDMappingToolStripMenuItem"
+        ExportMoNAIDMappingToolStripMenuItem.Size = New Size(254, 22)
+        ExportMoNAIDMappingToolStripMenuItem.Text = "Export MoNA IDMapping"
+        ' 
         ' FormMain
         ' 
-        AutoScaleDimensions = New SizeF(7F, 15F)
+        AutoScaleDimensions = New SizeF(7F, 17F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(1347, 832)
+        ClientSize = New Size(1072, 582)
         Controls.Add(m_dockPanel)
         Controls.Add(StatusStrip1)
         Controls.Add(MenuStrip1)
         MainMenuStrip = MenuStrip1
-        Margin = New Padding(4)
+        Margin = New Padding(4, 5, 4, 5)
         Name = "FormMain"
         Text = "Registry Tool"
         MenuStrip1.ResumeLayout(False)
@@ -428,4 +435,5 @@ Partial Class FormMain
     Friend WithEvents CreateMetabolicReactionToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem6 As ToolStripSeparator
     Friend WithEvents ExportTagDataToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ExportMoNAIDMappingToolStripMenuItem As ToolStripMenuItem
 End Class

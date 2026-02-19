@@ -55,6 +55,33 @@ Namespace Exports
         End Function
 
         <Extension>
+        Public Function ExportDbXrefIDMapping(registry As biocad_registry, db_field As String) As Dictionary(Of String, String)
+            Dim db_key As UInteger = registry.biocad_vocabulary.GetDatabaseResource(db_field).id
+            Dim metabolite_type As UInteger = registry.biocad_vocabulary.metabolite_type
+            Dim page_size As Integer = 50000
+            Dim idMap As New Dictionary(Of String, String)
+
+            For page As Integer = 1 To Integer.MaxValue
+                Dim offset As UInteger = (page - 1) * page_size
+                Dim page_data = registry.db_xrefs _
+                    .where(field("type") = metabolite_type,
+                           field("db_name") = db_key) _
+                    .limit(offset, page_size) _
+                    .select(Of biocad_registryModel.db_xrefs)
+
+                If page_data.IsNullOrEmpty Then
+                    Exit For
+                End If
+
+                For Each map As biocad_registryModel.db_xrefs In page_data
+                    idMap(map.db_xref) = "BioCAD" & map.obj_id.ToString.PadLeft(11, "0"c)
+                Next
+            Next
+
+            Return idMap
+        End Function
+
+        <Extension>
         Public Function ExportTagList(registry As biocad_registry, topic As String) As IEnumerable(Of String)
             Return registry.ExportTagIDSet(topic).IteratesALL.Distinct.Select(Function(id) "BioCAD" & id.ToString.PadLeft(11, "0"c))
         End Function
