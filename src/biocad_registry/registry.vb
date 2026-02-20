@@ -22,6 +22,7 @@ Imports SMRUCC.genomics.Assembly.Uniprot.XML
 Imports SMRUCC.genomics.ComponentModel.Annotation
 Imports SMRUCC.genomics.Data.BioCyc
 Imports SMRUCC.genomics.Data.Regprecise
+Imports SMRUCC.genomics.Data.Rhea
 Imports SMRUCC.genomics.Data.SABIORK
 Imports SMRUCC.genomics.Data.SABIORK.SBML
 Imports SMRUCC.genomics.SequenceModel.FASTA
@@ -416,6 +417,17 @@ Module registry
         Next
 
         Return Nothing
+    End Function
+
+    <ExportAPI("import_brenda_enzymes")>
+    Public Function import_brenda_enzymes(registry As biocad_registry, <RRawVectorArgument> brenda As Object, Optional env As Environment = Nothing)
+        Dim pull As pipeline = pipeline.TryCreatePipeline(Of BrendaEnzymeData)(brenda, env)
+
+        If pull.isError Then
+            Return pull.getError
+        End If
+
+        Return registry.MakeImports(pull.populates(Of BrendaEnzymeData)(env))
     End Function
 
 End Module
