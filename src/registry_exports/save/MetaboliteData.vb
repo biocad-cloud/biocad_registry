@@ -89,6 +89,9 @@ Public Module MetaboliteData
         If Not meta.xref.DrugBank.StringEmpty Then
             trans.ignore.add(field("db_source") = db_source, field("db_name") = vocabulary.db_drugbank, field("db_xref") = meta.xref.DrugBank, field("type") = metabolite_type, field("obj_id") = m.id)
         End If
+        If Not meta.xref.metlin.StringEmpty Then
+            trans.ignore.add(field("db_source") = db_source, field("db_name") = vocabulary.db_metlin, field("db_xref") = meta.xref.metlin, field("type") = metabolite_type, field("obj_id") = m.id)
+        End If
         If saveID Then
             Call trans.ignore.add(field("db_source") = db_source,
                                   field("db_name") = db_source,

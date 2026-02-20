@@ -43,6 +43,7 @@ Public Class biocad_vocabulary
     Public ReadOnly Property db_mesh As UInteger
     Public ReadOnly Property db_wikipedia As UInteger
     Public ReadOnly Property db_drugbank As UInteger
+    Public ReadOnly Property db_metlin As UInteger
 
     Public ReadOnly Property db_genbank As UInteger
     Public ReadOnly Property db_uniprot As UInteger
@@ -86,6 +87,7 @@ Public Class biocad_vocabulary
         db_mesh = GetDatabaseResource("NCBI MeSH").id
         db_wikipedia = GetDatabaseResource("Wikipedia").id
         db_drugbank = GetDatabaseResource("DrugBank").id
+        db_metlin = GetDatabaseResource("Metlin").id
 
         db_LLMs = GetDatabaseResource("LLMs Generated").id
         db_ManualAudit = GetDatabaseResource("Manual Audit").id
