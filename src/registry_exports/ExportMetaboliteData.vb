@@ -1,5 +1,4 @@
 Imports System.Runtime.CompilerServices
-Imports BioNovoGene.BioDeep.Chemistry.MetaLib
 Imports BioNovoGene.BioDeep.Chemoinformatics.Metabolite
 Imports BioNovoGene.BioDeep.Chemoinformatics.Metabolite.CrossReference
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
@@ -84,8 +83,8 @@ Public Module ExportMetaboliteData
     End Function
 
     <Extension>
-    Private Function GetClass(registry As biocad_registry, metabolite_id As UInteger, ontology_id As UInteger) As ClassyfireInfoTable
-        Dim class_data As New ClassyfireInfoTable
+    Private Function GetClass(registry As biocad_registry, metabolite_id As UInteger, ontology_id As UInteger) As CompoundClass
+        Dim class_data As New CompoundClass
         Dim lineage As ontology() = registry.GetClassLineage(metabolite_id, ontology_id)
 
         If lineage Is Nothing Then
