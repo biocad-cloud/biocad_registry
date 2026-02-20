@@ -1,8 +1,10 @@
 ﻿Imports System.Runtime.CompilerServices
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports BioNovoGene.BioDeep.Chemoinformatics.Metabolite
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Serialization.JSON
+Imports Microsoft.Win32
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports Oracle.LinuxCompatibility.MySQL.Reflection.DbAttributes
 Imports registry_data
@@ -132,13 +134,66 @@ Public Module MetaboliteData
     End Function
 
     <Extension>
-    Public Function FindMolecule(registry As biocad_registry, meta As MetaInfo, primaryKey As String, Optional nameSearch As Boolean = False) As metabolites
+    Private Function MakeNameSearch(registry As biocad_registry, meta As MetaInfo, mass_filter As FieldAssert) As metabolites
+        ' not working as expected
+        ' m = registry.FindByName({meta.name, meta.IUPACName}.JoinIterates(meta.synonym), exact_mass)
+        Dim hashset As String() = meta.synonym _
+            .JoinIterates({meta.name, meta.IUPACName}) _
+            .Where(Function(str) Not str.StringEmpty(, True)) _
+            .Select(Function(str) str.ToLower.MD5) _
+            .ToArray
+        Dim m As metabolites = registry.metabolites _
+            .where(field("hashcode").in(hashset), mass_filter) _
+            .order_by("id") _
+            .find(Of metabolites)
+        Dim metabolite_type As String = registry.biocad_vocabulary.metabolite_type
+
+        If m Is Nothing Then
+            Dim hit = registry.synonym _
+                .left_join("metabolites") _
+                .on(field("`metabolites`.id") = field("obj_id") And field("type") = metabolite_type) _
+                .where(mass_filter, field("`synonym`.hashcode").in(hashset)) _
+                .group_by("obj_id") _
+                .order_by("count(*)", desc:=True) _
+                .find(Of NameHit)("obj_id AS id", "COUNT(*) AS size")
+
+            If hit IsNot Nothing Then
+                m = registry.metabolites.where(field("id") = hit.id).find(Of metabolites)
+            End If
+        Else
+            Call m.ToString.debug
+        End If
+
+        Return m
+    End Function
+
+    <Extension>
+    Private Function MakePrimaryKeySearch(registry As biocad_registry, meta As MetaInfo, mass_filter As FieldAssert) As metabolites
+        Dim m As metabolites = Nothing
+
+        If m Is Nothing AndAlso Not meta.xref.KEGG.StringEmpty Then
+            m = registry.metabolites.where(field("kegg_id") = meta.xref.KEGG, mass_filter).find(Of metabolites)
+        End If
+        If m Is Nothing AndAlso Not meta.xref.HMDB.StringEmpty Then
+            m = registry.metabolites.where(field("hmdb_id") = meta.xref.HMDB, mass_filter).find(Of metabolites)
+        End If
+        If m Is Nothing AndAlso Not meta.xref.lipidmaps.StringEmpty Then
+            m = registry.metabolites.where(field("lipidmaps_id") = meta.xref.lipidmaps, mass_filter).find(Of metabolites)
+        End If
+
+        Return m
+    End Function
+
+    <Extension>
+    Public Function FindMolecule(registry As biocad_registry, meta As MetaInfo, primaryKey As String,
+                                 Optional nameSearch As Boolean = False,
+                                 Optional preferNameSearch As Boolean = False) As metabolites
+
         Dim pubchem_cid As String = Strings.Trim(meta.xref.pubchem).int_id
         Dim chebi_id As String = Strings.Trim(meta.xref.chebi).int_id
         Dim name As String = Strings.Trim(meta.name)
         Dim hashcode As String = name.ToLower.MD5
         Dim exact_mass As Double = FormulaScanner.EvaluateExactMass(meta.formula)
-        Dim metabolite_type As String = registry.biocad_vocabulary.metabolite_type
         Dim mass_filter As FieldAssert
 
         If exact_mass < 0 Then
@@ -152,51 +207,27 @@ Public Module MetaboliteData
             .where(field(primaryKey) = meta.ID, mass_filter) _
             .find(Of metabolites)
 
-        If exact_mass > 1 Then
-            If m Is Nothing AndAlso Not meta.xref.KEGG.StringEmpty Then
-                m = registry.metabolites.where(field("kegg_id") = meta.xref.KEGG, mass_filter).find(Of metabolites)
-            End If
-            If m Is Nothing AndAlso Not meta.xref.HMDB.StringEmpty Then
-                m = registry.metabolites.where(field("hmdb_id") = meta.xref.HMDB, mass_filter).find(Of metabolites)
-            End If
-            If m Is Nothing AndAlso Not meta.xref.lipidmaps.StringEmpty Then
-                m = registry.metabolites.where(field("lipidmaps_id") = meta.xref.lipidmaps, mass_filter).find(Of metabolites)
-            End If
-
-            If m Is Nothing AndAlso nameSearch Then
-                ' not working as expected
-                ' m = registry.FindByName({meta.name, meta.IUPACName}.JoinIterates(meta.synonym), exact_mass)
-                Dim hashset As String() = meta.synonym _
-                    .JoinIterates({meta.name, meta.IUPACName}) _
-                    .Where(Function(str) Not str.StringEmpty(, True)) _
-                    .Select(Function(str) str.ToLower.MD5) _
-                    .ToArray
-
-                m = registry.metabolites _
-                    .where(field("hashcode").in(hashset), mass_filter) _
-                    .order_by("id") _
-                    .find(Of metabolites)
+        If exact_mass > 1 AndAlso m Is Nothing Then
+            If preferNameSearch AndAlso nameSearch Then
+                m = registry.MakeNameSearch(meta, mass_filter)
 
                 If m Is Nothing Then
-                    Dim hit = registry.synonym _
-                        .left_join("metabolites") _
-                        .on(field("`metabolites`.id") = field("obj_id") And field("type") = metabolite_type) _
-                        .where(mass_filter, field("`synonym`.hashcode").in(hashset)) _
-                        .group_by("obj_id") _
-                        .order_by("count(*)", desc:=True) _
-                        .find(Of NameHit)("obj_id AS id", "COUNT(*) AS size")
+                    m = registry.MakePrimaryKeySearch(meta, mass_filter)
+                End If
+            Else
+                m = registry.MakePrimaryKeySearch(meta, mass_filter)
 
-                    If hit IsNot Nothing Then
-                        m = registry.metabolites.where(field("id") = hit.id).find(Of metabolites)
-                    End If
-                Else
-                    Call m.ToString.debug
+                If m Is Nothing AndAlso nameSearch Then
+                    m = registry.MakeNameSearch(meta, mass_filter)
                 End If
             End If
         End If
 
         If m Is Nothing Then
-            Dim main_cas_id As String = meta.xref.CAS.DefaultFirst.StringSplit("\s*[,;]\s*", True).FirstOrDefault
+            Dim main_cas_id As String = meta.xref.CAS _
+                .DefaultFirst _
+                .StringSplit("\s*[,;]\s*", True) _
+                .FirstOrDefault
 
             If main_cas_id IsNot Nothing Then
                 main_cas_id = main_cas_id.Split.First
