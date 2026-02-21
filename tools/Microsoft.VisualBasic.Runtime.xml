@@ -25907,7 +25907,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <typeparam name="T"></typeparam>
  <returns></returns>
 </member>
-<member name="M:Microsoft.VisualBasic.XmlExtensions.LoadXml``1(System.String,System.Text.Encoding,System.Boolean,System.Func{System.String,System.String},System.Boolean)">
+<member name="M:Microsoft.VisualBasic.XmlExtensions.LoadXml``1(System.String,System.Text.Encoding,System.Boolean,System.Func{System.String,System.String},System.Boolean,System.Boolean)">
  <summary>
  Load class object from the exists Xml document.
  </summary>
@@ -25924,7 +25924,7 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <returns></returns>
  <remarks>(从文件之中加载XML之中的数据至一个对象类型之中)</remarks>
 </member>
-<member name="M:Microsoft.VisualBasic.XmlExtensions.LoadXml(System.String,System.Type,System.Text.Encoding,System.Boolean,System.Func{System.String,System.String},System.Boolean)">
+<member name="M:Microsoft.VisualBasic.XmlExtensions.LoadXml(System.String,System.Type,System.Text.Encoding,System.Boolean,System.Func{System.String,System.String},System.Boolean,System.Boolean)">
  <summary>
  从文件之中加载XML之中的数据至一个对象类型之中
  </summary>
