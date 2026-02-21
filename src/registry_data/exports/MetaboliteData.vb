@@ -37,6 +37,12 @@ Namespace Exports
             Next
         End Function
 
+        ''' <summary>
+        ''' export primary id to database cross reference mapping, the key is the database cross reference and the value is the list of primary ids that mapped to this cross reference
+        ''' </summary>
+        ''' <param name="registry"></param>
+        ''' <param name="db_field"></param>
+        ''' <returns></returns>
         <Extension>
         Public Function ExportIDMapping(registry As biocad_registry, db_field As String) As Dictionary(Of String, String())
             Dim id As String = "CONCAT('BioCAD', LPAD(id, 11, '0')) AS id"
@@ -54,6 +60,12 @@ Namespace Exports
                               End Function)
         End Function
 
+        ''' <summary>
+        ''' export other db cross reference id mapping from the db_xrefs table, the key is the database cross reference and the value is the list of primary ids that mapped to this cross reference
+        ''' </summary>
+        ''' <param name="registry"></param>
+        ''' <param name="db_field"></param>
+        ''' <returns></returns>
         <Extension>
         Public Function ExportDbXrefIDMapping(registry As biocad_registry, db_field As String) As Dictionary(Of String, String)
             Dim db_key As UInteger = registry.biocad_vocabulary.GetDatabaseResource(db_field).id
