@@ -126,7 +126,33 @@ CREATE TABLE `db_xrefs` (
   KEY `find_by_xref` (`db_name`,`db_xref`,`type`),
   KEY `find_by_object` (`type`,`obj_id`),
   KEY `search_xref_word` (`db_xref`)
-) ENGINE=InnoDB AUTO_INCREMENT=10901612 DEFAULT CHARSET=utf8mb3 COMMENT='database cross reference of the model objects ';
+) ENGINE=InnoDB AUTO_INCREMENT=11204169 DEFAULT CHARSET=utf8mb3 COMMENT='database cross reference of the model objects ';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `enzyme`
+--
+
+DROP TABLE IF EXISTS `enzyme`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `enzyme` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `enzyme_class` int unsigned NOT NULL DEFAULT '0' COMMENT 'First digit, Main enzyme class (EC X), Indicates the broad category of reaction catalyzed (e.g., oxidation-reduction, transfer, hydrolysis).',
+  `sub_class` int unsigned NOT NULL DEFAULT '0' COMMENT 'the second digit, Specifies the type of reaction within the main class, often based on the type of bond or chemical group involved.',
+  `sub_category` int unsigned NOT NULL DEFAULT '0' COMMENT 'the third digit, Further defines the reaction mechanism or the specific type of chemical transformation.',
+  `enzyme_number` int unsigned NOT NULL DEFAULT '0' COMMENT 'the fourth digit, enzyme serial number, the identifier in this class, Uniquely identifies the specific enzyme that catalyzes a reaction within the given subclass.',
+  `recommended_name` varchar(255) NOT NULL,
+  `hashcode` char(32) NOT NULL COMMENT 'md5 hashcode of the lower recommended_name string',
+  `systematic_name` mediumtext,
+  `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `note` longtext,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  UNIQUE KEY `check_ecnumber` (`enzyme_class`,`sub_class`,`sub_category`,`enzyme_number`),
+  KEY `find_name_hash` (`hashcode`),
+  FULLTEXT KEY `search_text` (`recommended_name`,`systematic_name`,`note`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='a table of the metabolic enzyme data model';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -182,25 +208,29 @@ DROP TABLE IF EXISTS `kinetics_law`;
 CREATE TABLE `kinetics_law` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
   `db_xref` varchar(64) NOT NULL,
+  `db_source` int unsigned NOT NULL,
   `ec_number` varchar(16) NOT NULL COMMENT 'ec number of this kinetics law(or enzyme protein)',
-  `enzyme_id` int unsigned NOT NULL COMMENT 'id reference to the protein model table',
+  `enzyme_id` varchar(64) NOT NULL COMMENT 'id reference to the protein model table',
   `enzyme_name` varchar(255) NOT NULL DEFAULT '-',
   `lambda` varchar(4096) NOT NULL COMMENT 'the math expression for this kinetics law, usually be the Michaelis-Menten equation: v = vmax * S / (km + S)',
   `parameters` json NOT NULL COMMENT 'parameter values for the lambda expression, a key-value pair tuple json data, store the kinetics constant at here, example as there is a kinetics lambda expression: v = vmax * S / (km + S), parameter value json could be {vmax: 1000, S: registry_resolver_id, km: 500}, where number in parameter value is a constant value that detected from the experiment and S is the substrate, value is the model registry resolver id, could be unify mapping to metabolite or other biomolecule entity object',
-  `metabolic_node` int unsigned NOT NULL COMMENT 'metabolic network id, mount this enzyme kinetics law model to a metabolic reaction',
+  `metabolic_node` int unsigned NOT NULL COMMENT 'metabolic reaction id, mount this enzyme kinetics law model to a metabolic reaction',
   `buffer` varchar(4096) DEFAULT NULL COMMENT 'experiment condition description',
   `ph` double NOT NULL COMMENT 'experiment ph value',
   `temperature` double NOT NULL COMMENT 'experiment temperature value',
+  `pubmed_id` varchar(45) NOT NULL DEFAULT '-',
   `pdb_data` int unsigned NOT NULL COMMENT 'structure data of this kinetics law: molecule docking visual of the enzyme with the substrate molecule',
-  `add_time` datetime NOT NULL,
+  `raw` json DEFAULT NULL COMMENT 'the rawdata json of this kinetics law model',
+  `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `note` longtext,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `enzyme_protein_idx` (`enzyme_id`),
   KEY `metabolic_netnode_idx` (`metabolic_node`),
   KEY `docking_result_idx` (`pdb_data`),
+  KEY `find_by_id` (`db_xref`,`db_source`),
   FULLTEXT KEY `search_text` (`buffer`,`note`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='enzyme kinetics law, the kinetics law has a unify unit at here, all kinetics law in this table its parameter value must be converted to the standard unit before it save into this table: standard unit of time is second(s), velocity standard unit is mmol/L/s, Km standard unit is (mM)';
+) ENGINE=InnoDB AUTO_INCREMENT=35204 DEFAULT CHARSET=utf8mb3 COMMENT='enzyme kinetics law, the kinetics law has a unify unit at here, all kinetics law in this table its parameter value must be converted to the standard unit before it save into this table: standard unit of time is second(s), velocity standard unit is mmol/L/s, Km standard unit is (mM)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -226,7 +256,8 @@ CREATE TABLE `metabolic_network` (
   KEY `role_term_idx` (`role`),
   KEY `location_info_idx` (`compartment_id`),
   KEY `registry_model_idx` (`species_id`),
-  KEY `symbol_index` (`symbol_id`)
+  KEY `symbol_index` (`symbol_id`),
+  KEY `filter_network` (`role`,`species_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=474084 DEFAULT CHARSET=utf8mb3 COMMENT='metabolic reaction network';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -292,7 +323,7 @@ CREATE TABLE `metabolites` (
   KEY `find_mesh` (`mesh_id`),
   KEY `find_wiki` (`wikipedia`),
   FULLTEXT KEY `search_text` (`name`,`note`)
-) ENGINE=InnoDB AUTO_INCREMENT=1356216 DEFAULT CHARSET=utf8mb3 COMMENT='[cellular entity model][entity instance] a set of reference metabolites, template based on the www.metabolomicsworkbench.org refmet dataset';
+) ENGINE=InnoDB AUTO_INCREMENT=1531872 DEFAULT CHARSET=utf8mb3 COMMENT='[cellular entity model][entity instance] a set of reference metabolites, template based on the www.metabolomicsworkbench.org refmet dataset';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -564,7 +595,7 @@ CREATE TABLE `protein` (
   KEY `pdb_data_idx` (`pdb_data`),
   KEY `name_hit` (`name`),
   FULLTEXT KEY `search_text` (`function`,`note`)
-) ENGINE=InnoDB AUTO_INCREMENT=26976 DEFAULT CHARSET=utf8mb3 COMMENT='[cellular entity model] a table of the reference protein models, just defined the protein model information at here, usually be the KO/COG orthology data model';
+) ENGINE=InnoDB AUTO_INCREMENT=26976 DEFAULT CHARSET=utf8mb3 COMMENT='[cellular entity model] a table of the reference protein models, just defined the protein model information at here, usually be the KO/COG orthology data model, includes metabolic enzyme and other biological protein models';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -766,8 +797,9 @@ CREATE TABLE `synonym` (
   KEY `find_name` (`lang`,`hashcode`),
   KEY `fast_hash_search` (`obj_id`,`hashcode`,`type`),
   KEY `entity_metabolite_idx` (`obj_id`,`type`),
+  KEY `obj_hash_query` (`type`,`hashcode`),
   FULLTEXT KEY `search_text` (`synonym`)
-) ENGINE=InnoDB AUTO_INCREMENT=6162466 DEFAULT CHARSET=utf8mb3 COMMENT='synonyms, alias names of the model objects';
+) ENGINE=InnoDB AUTO_INCREMENT=6589623 DEFAULT CHARSET=utf8mb3 COMMENT='synonyms, alias names of the model objects';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -812,7 +844,7 @@ CREATE TABLE `vocabulary` (
   UNIQUE KEY `search_term` (`category`,`term`),
   KEY `ontology_tree_idx` (`parent_id`),
   FULLTEXT KEY `search_text` (`note`)
-) ENGINE=InnoDB AUTO_INCREMENT=745 DEFAULT CHARSET=utf8mb3 COMMENT='vocabulary term inside the registry database';
+) ENGINE=InnoDB AUTO_INCREMENT=748 DEFAULT CHARSET=utf8mb3 COMMENT='vocabulary term inside the registry database';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -832,4 +864,4 @@ CREATE TABLE `vocabulary` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-02-17 15:12:46
+-- Dump completed on 2026-02-21 13:55:56
