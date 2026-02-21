@@ -74,6 +74,13 @@ Module EnzymeDatabase
                 synonyms:=From name As ValueData
                           In enzyme.synonyms.SafeQuery
                           Select name.value)
+            Call registry.db_xrefs.add(
+                field("type") = db_enzyme,
+                       field("db_name") = db_enzyme,
+                       field("db_xref") = ec_number,
+                       field("db_source") = db_enzyme,
+                       field("obj_id") = check.id
+            )
         Next
 
         Return True
