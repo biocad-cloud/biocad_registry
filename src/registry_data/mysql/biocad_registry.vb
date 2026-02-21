@@ -69,6 +69,12 @@ Public Class biocad_registry : Inherits biocad_registryModel.db_mysql
         End Get
     End Property
 
+    Public ReadOnly Property enzyme As TableModel(Of biocad_registryModel.enzyme)
+        Get
+            Return m_enzyme
+        End Get
+    End Property
+
     Public ReadOnly Property regulatory_network As TableModel(Of biocad_registryModel.regulatory_network)
         Get
             Return m_regulatory_network
