@@ -11,7 +11,10 @@ Module EnzymeDatabase
     Public Function MakeImports(registry As biocad_registry, enzymes As IEnumerable(Of BrendaEnzymeData)) As Boolean
         Dim db_enzyme As UInteger = registry.biocad_vocabulary.db_ECNumber
 
-        For Each enzyme As BrendaEnzymeData In enzymes
+        For Each enzyme As BrendaEnzymeData In From enz As BrendaEnzymeData
+                                               In enzymes
+                                               Where enz IsNot Nothing
+
             Dim ec_number As String = enzyme.id
 
             If ec_number = "spontaneous" Then
