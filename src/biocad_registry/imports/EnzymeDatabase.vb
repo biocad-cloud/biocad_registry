@@ -65,13 +65,13 @@ Module EnzymeDatabase
                 Continue For
             End If
 
-            Dim name_save As CommitTransaction = registry.synonym.ignore.open_transaction
-
-            For Each name As ValueData In enzyme.synonyms.SafeQuery
-
-            Next
-
-            Call name_save.commit()
+            Call registry.SaveSynonyms(
+                obj_id:=check.id,
+                db_source:=db_enzyme,
+                class_id:=db_enzyme,
+                synonyms:=From name As ValueData
+                          In enzyme.synonyms.SafeQuery
+                          Select name.value)
         Next
 
         Return True
