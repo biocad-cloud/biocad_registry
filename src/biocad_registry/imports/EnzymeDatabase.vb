@@ -25,6 +25,8 @@ Module EnzymeDatabase
                        field("db_source") = db_enzyme) _
                 .find(Of biocad_registryModel.db_xrefs) IsNot Nothing
 
+            Call enzyme.ToString.debug
+
             If check_number Then
                 Continue For
             End If
