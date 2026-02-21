@@ -3,6 +3,7 @@ Imports Microsoft.VisualBasic.Scripting.Runtime
 Imports registry_data
 Imports SMRUCC.genomics.Data.Rhea
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
+Imports Microsoft.VisualBasic.Linq
 
 Module EnzymeDatabase
 
@@ -41,8 +42,36 @@ Module EnzymeDatabase
                 .find(Of biocad_registryModel.enzyme)
 
             If check Is Nothing Then
+                Call registry.enzyme.add(
+                    field("enzyme_class") = first,
+                       field("sub_class") = second,
+                       field("sub_category") = third,
+                       field("enzyme_number") = fourth,
+                       field("recommended_name") = enzyme.recommended_name,
+                       field("hashcode") = Strings.Trim(enzyme.recommended_name).MD5,
+                       field("systematic_name") = enzyme.systematic_name
+                )
 
+                check = registry.enzyme _
+                    .where(field("enzyme_class") = first,
+                           field("sub_class") = second,
+                           field("sub_category") = third,
+                           field("enzyme_number") = fourth) _
+                    .order_by("id", desc:=True) _
+                    .find(Of biocad_registryModel.enzyme)
             End If
+
+            If check Is Nothing Then
+                Continue For
+            End If
+
+            Dim name_save As CommitTransaction = registry.synonym.ignore.open_transaction
+
+            For Each name As ValueData In enzyme.synonyms.SafeQuery
+
+            Next
+
+            Call name_save.commit()
         Next
 
         Return True
