@@ -11,6 +11,10 @@ declare namespace registry {
    /**
      * @param env default value Is ``null``.
    */
+   function import_brenda_enzymes(registry: object, brenda: any, env?: object): any;
+   /**
+     * @param env default value Is ``null``.
+   */
    function imports_kegg_reactions(registry: object, kegg: any, env?: object): any;
    /**
    */
