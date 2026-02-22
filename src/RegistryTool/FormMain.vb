@@ -260,29 +260,6 @@ Public Class FormMain : Implements AppHost
         End Using
     End Sub
 
-    Private Sub ExportTagToolStripMenuItem_Click(tag As String)
-        Using file As New SaveFileDialog With {
-            .Filter = "id file(*.txt)|*.txt|Molecule table(*.csv)|*.csv",
-            .FileName = tag & ".txt"
-        }
-            If file.ShowDialog = DialogResult.OK Then
-                Call TaskProgress.RunAction(
-                    Sub(p As ITaskProgress)
-                        If file.FileName.ExtensionSuffix("txt") Then
-                            Call MyApplication.biocad_registry.ExportTagList(tag).SaveTo(file.FileName)
-                        Else
-                            Call MyApplication.biocad_registry.ExportTagData(tag).SaveTo(file.FileName)
-                        End If
-                    End Sub, info:=$"Export topic data of '{tag}' from database...")
-
-                Call MessageBox.Show($"Export topic data of '{tag}' success!",
-                                     "Export data success",
-                                     MessageBoxButtons.OK,
-                                     MessageBoxIcon.Information)
-            End If
-        End Using
-    End Sub
-
     Private Sub PubMedKnowledgeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PubMedKnowledgeToolStripMenuItem.Click
         Using file As New OpenFileDialog With {.Filter = "pubmed json(*.json)|*.json|pubmed table(*.csv)|*.csv", .Multiselect = True}
             If file.ShowDialog = DialogResult.OK Then
