@@ -703,6 +703,108 @@ Oracle.LinuxCompatibility.LibMySQL
  <returns></returns>
  
 </member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.AsyncModelTable.where(System.String)">
+ <summary>
+ WHERE
+ </summary>
+ <param name="q"></param>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.AsyncModelTable.where(System.Collections.Generic.IEnumerable{Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert})">
+ <summary>
+ WHERE
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.AsyncModelTable.where(Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert[])">
+ <summary>
+ WHERE
+ </summary>
+ <param name="asserts"></param>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.AsyncModelTable.project``1(System.String)">
+ <summary>
+ project a field column as vector from the database
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="field">the field name to project as vector</param>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.AsyncModelTable.save(Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert[])">
+ <summary>
+ UPDATE
+ </summary>
+ <param name="fields"></param>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.AsyncModelTable.add(Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert[])">
+ <summary>
+ INSERT INTO
+ </summary>
+ <param name="fields"></param>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.AsyncModelTable.delete">
+ <summary>
+ DELETE FROM
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.AsyncModelTable.limit(System.Int32,System.Nullable{System.Int32})">
+ <summary>
+ LIMIT m,n
+ </summary>
+ <param name="m"></param>
+ <param name="n"></param>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.AsyncModelTable.left_join(System.String)">
+ <summary>
+ LEFT JOIN
+ </summary>
+ <param name="table"></param>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.AsyncModelTable.on(Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert[])">
+ <summary>
+ LEFT JOIN ON
+ </summary>
+ <param name="fields"></param>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.AsyncModelTable.order_by(System.String[])">
+ <summary>
+ ORDER BY
+ </summary>
+ <param name="fields"></param>
+ <returns></returns>
+ <remarks>
+ fields parameter data could be field name or an expression
+ </remarks>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.AsyncModelTable.order_by(System.String[],System.Boolean)">
+ <summary>
+ ORDER BY DESC
+ </summary>
+ <param name="fields"></param>
+ <param name="desc"></param>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.AsyncModelTable.order_by(System.String,System.Boolean)">
+ <summary>
+ ORDER BY DESC
+ </summary>
+ <param name="field"></param>
+ <param name="desc"></param>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.AsyncModelTable.distinct">
+ <summary>
+ DISTINCT
+ </summary>
+ <returns></returns>
+</member>
 <member name="T:Oracle.LinuxCompatibility.MySQL.MySqli">
  <summary>
  MySql database server connection module.
