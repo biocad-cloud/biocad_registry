@@ -47,7 +47,7 @@ Public Module ExportMetaboliteData
     End Function
 
     <Extension>
-    Private Function BuildMetabolite(registry As biocad_registry, m As metabolites, ontology_id As UInteger) As MetaLib
+    Public Function BuildMetabolite(registry As biocad_registry, m As metabolites, ontology_id As UInteger) As MetaLib
         Dim class_info = registry.GetClass(m.id, ontology_id)
         Dim struct = registry.struct_data _
             .where(field("metabolite_id") = m.id) _
