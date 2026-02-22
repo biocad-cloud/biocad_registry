@@ -53,7 +53,7 @@ Public Class FormMetabolicTopicView
     Dim topic_id As String
 
     Private Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
-        If topic_id = 0 Then
+        If topic_id.StringEmpty(, True) Then
             CommonRuntime.Warning("please select a topic row at first!")
             Return
         Else
@@ -82,5 +82,9 @@ Public Class FormMetabolicTopicView
                                      MessageBoxIcon.Information)
             End If
         End Using
+    End Sub
+
+    Private Sub ExportWorkflowIDSetToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportWorkflowIDSetToolStripMenuItem.Click
+        Call ToolStripButton1_Click(Nothing, Nothing)
     End Sub
 End Class

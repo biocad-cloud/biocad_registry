@@ -24,6 +24,7 @@ Partial Class FormMetabolicTopicView
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        components = New ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormMetabolicTopicView))
         ToolStrip1 = New ToolStrip()
         ToolStripButton1 = New ToolStripButton()
@@ -31,8 +32,11 @@ Partial Class FormMetabolicTopicView
         Column1 = New DataGridViewTextBoxColumn()
         Column2 = New DataGridViewTextBoxColumn()
         Column3 = New DataGridViewTextBoxColumn()
+        ContextMenuStrip1 = New ContextMenuStrip(components)
+        ExportWorkflowIDSetToolStripMenuItem = New ToolStripMenuItem()
         ToolStrip1.SuspendLayout()
         CType(DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
+        ContextMenuStrip1.SuspendLayout()
         SuspendLayout()
         ' 
         ' ToolStrip1
@@ -88,6 +92,18 @@ Partial Class FormMetabolicTopicView
         Column3.Name = "Column3"
         Column3.ReadOnly = True
         ' 
+        ' ContextMenuStrip1
+        ' 
+        ContextMenuStrip1.Items.AddRange(New ToolStripItem() {ExportWorkflowIDSetToolStripMenuItem})
+        ContextMenuStrip1.Name = "ContextMenuStrip1"
+        ContextMenuStrip1.Size = New Size(214, 48)
+        ' 
+        ' ExportWorkflowIDSetToolStripMenuItem
+        ' 
+        ExportWorkflowIDSetToolStripMenuItem.Name = "ExportWorkflowIDSetToolStripMenuItem"
+        ExportWorkflowIDSetToolStripMenuItem.Size = New Size(213, 22)
+        ExportWorkflowIDSetToolStripMenuItem.Text = "Export Workflow ID Set"
+        ' 
         ' FormMetabolicTopicView
         ' 
         AutoScaleDimensions = New SizeF(7F, 17F)
@@ -104,6 +120,7 @@ Partial Class FormMetabolicTopicView
         ToolStrip1.ResumeLayout(False)
         ToolStrip1.PerformLayout()
         CType(DataGridView1, ComponentModel.ISupportInitialize).EndInit()
+        ContextMenuStrip1.ResumeLayout(False)
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -114,4 +131,6 @@ Partial Class FormMetabolicTopicView
     Friend WithEvents Column1 As DataGridViewTextBoxColumn
     Friend WithEvents Column2 As DataGridViewTextBoxColumn
     Friend WithEvents Column3 As DataGridViewTextBoxColumn
+    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents ExportWorkflowIDSetToolStripMenuItem As ToolStripMenuItem
 End Class
