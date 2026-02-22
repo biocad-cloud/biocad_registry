@@ -27,6 +27,7 @@ Partial Class FormMetabolicTopicView
         components = New ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormMetabolicTopicView))
         ToolStrip1 = New ToolStrip()
+        ToolStripButton2 = New ToolStripButton()
         ToolStripButton1 = New ToolStripButton()
         DataGridView1 = New DataGridView()
         Column1 = New DataGridViewTextBoxColumn()
@@ -35,7 +36,6 @@ Partial Class FormMetabolicTopicView
         Column3 = New DataGridViewTextBoxColumn()
         ContextMenuStrip1 = New ContextMenuStrip(components)
         ExportWorkflowIDSetToolStripMenuItem = New ToolStripMenuItem()
-        ToolStripButton2 = New ToolStripButton()
         ToolStrip1.SuspendLayout()
         CType(DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
         ContextMenuStrip1.SuspendLayout()
@@ -49,6 +49,15 @@ Partial Class FormMetabolicTopicView
         ToolStrip1.Size = New Size(874, 25)
         ToolStrip1.TabIndex = 1
         ToolStrip1.Text = "ToolStrip1"
+        ' 
+        ' ToolStripButton2
+        ' 
+        ToolStripButton2.DisplayStyle = ToolStripItemDisplayStyle.Image
+        ToolStripButton2.Image = CType(resources.GetObject("ToolStripButton2.Image"), Image)
+        ToolStripButton2.ImageTransparentColor = Color.Magenta
+        ToolStripButton2.Name = "ToolStripButton2"
+        ToolStripButton2.Size = New Size(23, 22)
+        ToolStripButton2.Text = "Reload"
         ' 
         ' ToolStripButton1
         ' 
@@ -65,6 +74,7 @@ Partial Class FormMetabolicTopicView
         DataGridView1.AllowUserToDeleteRows = False
         DataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
         DataGridView1.Columns.AddRange(New DataGridViewColumn() {Column1, Column2, Column4, Column3})
+        DataGridView1.ContextMenuStrip = ContextMenuStrip1
         DataGridView1.Dock = DockStyle.Fill
         DataGridView1.Location = New Point(0, 25)
         DataGridView1.MultiSelect = False
@@ -111,15 +121,6 @@ Partial Class FormMetabolicTopicView
         ExportWorkflowIDSetToolStripMenuItem.Name = "ExportWorkflowIDSetToolStripMenuItem"
         ExportWorkflowIDSetToolStripMenuItem.Size = New Size(213, 22)
         ExportWorkflowIDSetToolStripMenuItem.Text = "Export Workflow ID Set"
-        ' 
-        ' ToolStripButton2
-        ' 
-        ToolStripButton2.DisplayStyle = ToolStripItemDisplayStyle.Image
-        ToolStripButton2.Image = CType(resources.GetObject("ToolStripButton2.Image"), Image)
-        ToolStripButton2.ImageTransparentColor = Color.Magenta
-        ToolStripButton2.Name = "ToolStripButton2"
-        ToolStripButton2.Size = New Size(23, 22)
-        ToolStripButton2.Text = "Reload"
         ' 
         ' FormMetabolicTopicView
         ' 
