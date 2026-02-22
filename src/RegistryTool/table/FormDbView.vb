@@ -204,15 +204,17 @@ Public Class FormDbView
         End If
         If _translatePrompt IsNot Nothing AndAlso _table IsNot Nothing Then
             Dim target As DataGridViewRow = DataGridView1.SelectedRows(0)
-            Dim prompt_text As String = _abstractNotePrompt(target)
+            Dim prompt_text As String = _translatePrompt(target)
             Dim id As UInteger = CUInt(target.Cells(0).Value)
             Dim name_translate As String = TaskProgress.LoadData(Of String)(
                 Function(p As ITaskProgress)
+                    Call p.SetInfo(prompt_text)
+
                     Dim msg As DeepSeekResponse = MyApplication.ollama.Chat(prompt_text).GetAwaiter.GetResult
                     Dim zh_name As String = TranslatedName.DecodeLLMTranslateOutput(msg)
 
                     Return zh_name
-                End Function, title:="LLMs talk: Generates the LLM note...", info:=prompt_text)
+                End Function, title:="LLMs talk: Translate with LLMs...", info:=prompt_text)
 
             If Not name_translate.StringEmpty(, True) Then
                 Call _table.where(field("id") = id).save(field(_translateField) = name_translate)
