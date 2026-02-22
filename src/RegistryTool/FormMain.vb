@@ -114,6 +114,9 @@ Public Class FormMain : Implements AppHost
         view.SetLLMsPrompt(Function(row)
                                Return $"please talk me about the {row.Cells(1).Value} term: '{row.Cells(2).Value}' in a short conclusion abstract text"
                            End Function)
+        view.SetTranslatePrompt(Function(row)
+                                    Return $"将下面的这个单词名称翻译为中文：'{row.Cells(2).Value}'，如果没有正式的翻译，请进行音译。使用下面的json格式返回结果给我以方便我进行数据解析：{{""zh_name"": ""translated_name""}}"
+                                End Function, fieldZh:="term_zh")
         view.SetTable(MyApplication.biocad_registry.vocabulary)
         view.Text = "`biocad_registry`.`vocabulary`"
         view.Show(CommonRuntime.AppHost.GetDockPanel, DockState.Document)

@@ -502,37 +502,30 @@ let options = { width: 450, height: 300 };
         Dim msg As DeepSeekResponse = TaskProgress.LoadData(Function(println As Action(Of String)) MyApplication.ollama.Chat(prompt).GetAwaiter.GetResult)
         Dim class_id As UInteger = MyApplication.biocad_registry.biocad_vocabulary.metabolite_type
         Dim llms_source As UInteger = MyApplication.biocad_registry.biocad_vocabulary.db_LLMs
+        Dim zh_name As String = TranslatedName.DecodeLLMTranslateOutput(msg)
 
-        If Not msg Is Nothing Then
-            Try
-                Dim json As String = msg.output.Match("[{].+[}]")
-                Dim zh_name = json.LoadJSON(Of TranslatedName)
+        If Not zh_name.StringEmpty(, True) Then
+            Dim hashcode As String = zh_name.ToString.ToLower.MD5
 
-                If zh_name Is Nothing Then
-                    Return
-                End If
+            Await Task.Run(
+                Sub()
+                    If MyApplication.biocad_registry.synonym _
+                        .where(field("type") = class_id,
+                               field("obj_id") = mol.id,
+                               field("hashcode") = hashcode,
+                               field("lang") = "zh") _
+                        .find(Of biocad_registryModel.synonym) Is Nothing Then
 
-                Dim hashcode As String = zh_name.ToString.ToLower.MD5
-
-                Await Task.Run(Sub()
-                                   If MyApplication.biocad_registry.synonym.where(field("type") = class_id,
-                                        field("obj_id") = mol.id,
-                                        field("hashcode") = hashcode,
-                                        field("lang") = "zh").find(Of biocad_registryModel.synonym) Is Nothing Then
-
-                                       Call MyApplication.biocad_registry.synonym.add(
-                                           field("type") = class_id,
-                                           field("obj_id") = mol.id,
-                                           field("db_source") = llms_source,
-                                           field("synonym") = zh_name.ToString,
-                                           field("lang") = "zh",
-                                           field("hashcode") = hashcode
-                                       )
-                                   End If
-                               End Sub)
-            Catch ex As Exception
-                Call CommonRuntime.Warning(ex.Message)
-            End Try
+                        Call MyApplication.biocad_registry.synonym.add(
+                            field("type") = class_id,
+                            field("obj_id") = mol.id,
+                            field("db_source") = llms_source,
+                            field("synonym") = zh_name.ToString,
+                            field("lang") = "zh",
+                            field("hashcode") = hashcode
+                        )
+                    End If
+                End Sub)
         End If
     End Sub
 

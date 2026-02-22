@@ -2,6 +2,7 @@
 Imports Galaxy.Workbench
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.MIME.text.markdown
+Imports Microsoft.Windows.Shell.PropertySystem.SystemProperties.System
 Imports Ollama
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports RegistryTool.My
@@ -15,7 +16,9 @@ Public Class FormDbView
     Dim _binding As New BindingSource
     Dim _filter As String = Nothing
     Dim _view As Action(Of DataGridViewRow)
-    Dim _prompt As Func(Of DataGridViewRow, String)
+    Dim _abstractNotePrompt As Func(Of DataGridViewRow, String)
+    Dim _translatePrompt As Func(Of DataGridViewRow, String)
+    Dim _translateField As String
     Dim _table As Model
 
     Public Sub SetViewer(view As Action(Of DataGridViewRow))
@@ -23,7 +26,12 @@ Public Class FormDbView
     End Sub
 
     Public Sub SetLLMsPrompt(prompt As Func(Of DataGridViewRow, String))
-        _prompt = prompt
+        _abstractNotePrompt = prompt
+    End Sub
+
+    Public Sub SetTranslatePrompt(prompt As Func(Of DataGridViewRow, String), fieldZh As String)
+        _translatePrompt = prompt
+        _translateField = fieldZh
     End Sub
 
     Public Sub SetTable(table As Model)
@@ -166,9 +174,9 @@ Public Class FormDbView
         If DataGridView1.SelectedRows.Count = 0 Then
             Return
         End If
-        If _prompt IsNot Nothing AndAlso _table IsNot Nothing Then
+        If _abstractNotePrompt IsNot Nothing AndAlso _table IsNot Nothing Then
             Dim target As DataGridViewRow = DataGridView1.SelectedRows(0)
-            Dim prompt_text As String = _prompt(target)
+            Dim prompt_text As String = _abstractNotePrompt(target)
             Dim id As UInteger = CUInt(target.Cells(0).Value)
             Dim note As String = TaskProgress.LoadData(Of String)(
                 Function(p As ITaskProgress)
@@ -187,6 +195,28 @@ Public Class FormDbView
                 End Function, title:="LLMs talk: Generates the LLM note...", info:=prompt_text)
 
             Call _table.where(field("id") = id).save(field("note") = note)
+        End If
+    End Sub
+
+    Private Sub TranslateToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TranslateToolStripMenuItem.Click
+        If DataGridView1.SelectedRows.Count = 0 Then
+            Return
+        End If
+        If _translatePrompt IsNot Nothing AndAlso _table IsNot Nothing Then
+            Dim target As DataGridViewRow = DataGridView1.SelectedRows(0)
+            Dim prompt_text As String = _abstractNotePrompt(target)
+            Dim id As UInteger = CUInt(target.Cells(0).Value)
+            Dim name_translate As String = TaskProgress.LoadData(Of String)(
+                Function(p As ITaskProgress)
+                    Dim msg As DeepSeekResponse = MyApplication.ollama.Chat(prompt_text).GetAwaiter.GetResult
+                    Dim zh_name As String = TranslatedName.DecodeLLMTranslateOutput(msg)
+
+                    Return zh_name
+                End Function, title:="LLMs talk: Generates the LLM note...", info:=prompt_text)
+
+            If Not name_translate.StringEmpty(, True) Then
+                Call _table.where(field("id") = id).save(field(_translateField) = name_translate)
+            End If
         End If
     End Sub
 End Class

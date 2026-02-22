@@ -36,6 +36,8 @@ Partial Class FormDbView
         ContextMenuStrip1 = New ContextMenuStrip(components)
         ViewToolStripMenuItem = New ToolStripMenuItem()
         UpdateNoteTextToolStripMenuItem = New ToolStripMenuItem()
+        ToolStripMenuItem1 = New ToolStripSeparator()
+        TranslateToolStripMenuItem = New ToolStripMenuItem()
         ToolStrip1.SuspendLayout()
         CType(DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
         ContextMenuStrip1.SuspendLayout()
@@ -76,7 +78,7 @@ Partial Class FormDbView
         ' ToolStripLabel1
         ' 
         ToolStripLabel1.Name = "ToolStripLabel1"
-        ToolStripLabel1.Size = New Size(36, 22)
+        ToolStripLabel1.Size = New Size(39, 22)
         ToolStripLabel1.Text = "Filter:"
         ' 
         ' ToolStripComboBox1
@@ -104,25 +106,36 @@ Partial Class FormDbView
         ' 
         ' ContextMenuStrip1
         ' 
-        ContextMenuStrip1.Items.AddRange(New ToolStripItem() {ViewToolStripMenuItem, UpdateNoteTextToolStripMenuItem})
+        ContextMenuStrip1.Items.AddRange(New ToolStripItem() {ViewToolStripMenuItem, ToolStripMenuItem1, UpdateNoteTextToolStripMenuItem, TranslateToolStripMenuItem})
         ContextMenuStrip1.Name = "ContextMenuStrip1"
-        ContextMenuStrip1.Size = New Size(166, 48)
+        ContextMenuStrip1.Size = New Size(181, 98)
         ' 
         ' ViewToolStripMenuItem
         ' 
         ViewToolStripMenuItem.Name = "ViewToolStripMenuItem"
-        ViewToolStripMenuItem.Size = New Size(165, 22)
+        ViewToolStripMenuItem.Size = New Size(180, 22)
         ViewToolStripMenuItem.Text = "View"
         ' 
         ' UpdateNoteTextToolStripMenuItem
         ' 
         UpdateNoteTextToolStripMenuItem.Name = "UpdateNoteTextToolStripMenuItem"
-        UpdateNoteTextToolStripMenuItem.Size = New Size(165, 22)
+        UpdateNoteTextToolStripMenuItem.Size = New Size(180, 22)
         UpdateNoteTextToolStripMenuItem.Text = "Update Note Text"
+        ' 
+        ' ToolStripMenuItem1
+        ' 
+        ToolStripMenuItem1.Name = "ToolStripMenuItem1"
+        ToolStripMenuItem1.Size = New Size(177, 6)
+        ' 
+        ' TranslateToolStripMenuItem
+        ' 
+        TranslateToolStripMenuItem.Name = "TranslateToolStripMenuItem"
+        TranslateToolStripMenuItem.Size = New Size(180, 22)
+        TranslateToolStripMenuItem.Text = "Translate"
         ' 
         ' FormDbView
         ' 
-        AutoScaleDimensions = New SizeF(7F, 15F)
+        AutoScaleDimensions = New SizeF(7F, 17F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(925, 584)
         Controls.Add(DataGridView1)
@@ -151,4 +164,6 @@ Partial Class FormDbView
     Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
     Friend WithEvents ViewToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents UpdateNoteTextToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStripMenuItem1 As ToolStripSeparator
+    Friend WithEvents TranslateToolStripMenuItem As ToolStripMenuItem
 End Class
