@@ -86,22 +86,9 @@ Public Class FormMain : Implements AppHost
             Call MessageBox.Show("Application initialization error!", "Application Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End If
 
-        Dim topics = Await Task.Run(Function() MyApplication.biocad_registry.vocabulary _
-            .where(field("category") = "Topic") _
-            .project(Of String)("term"))
-
-        ExportTagDataToolStripMenuItem.DropDownItems.Clear()
-
-        For Each tag As String In topics.OrderBy(Function(s) s.ToLower)
-            Dim item As New ToolStripMenuItem(tag)
-            item.Tag = tag
-            AddHandler item.Click, Sub() ExportTagToolStripMenuItem_Click(tag)
-            ExportTagDataToolStripMenuItem.DropDownItems.Add(item)
-        Next
-
         OpenMoleculeToolStripMenuItem.DropDownItems.Clear()
 
-        For Each entry As MoleculeEditHistory In MyApplication.settings.molecule_history.SafeQuery
+        For Each entry As MoleculeEditHistory In Await Task.Run(Function() MyApplication.settings.GetHistoryItems)
             Dim item As New ToolStripMenuItem(entry.ToString)
             item.Tag = entry
             AddHandler item.Click, Sub() Call Workbench.OpenMoleculeEditor(entry.id, entry.name)
@@ -627,5 +614,9 @@ FROM
 
     Private Sub CreateMetabolicReactionToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CreateMetabolicReactionToolStripMenuItem.Click
         Call InputDialog.Input(Of FormBuildReaction)()
+    End Sub
+
+    Private Sub ExportTagDataToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportTagDataToolStripMenuItem.Click
+        Call CommonRuntime.ShowDocument(Of FormMetabolicTopicView)()
     End Sub
 End Class

@@ -52,6 +52,7 @@ Partial Class FormMain
         DaisyLCMSWorkflowToolStripMenuItem = New ToolStripMenuItem()
         ExportLipidMAPSIDMappingToolStripMenuItem = New ToolStripMenuItem()
         ExportHMDBIDMappingToolStripMenuItem = New ToolStripMenuItem()
+        ExportMoNAIDMappingToolStripMenuItem = New ToolStripMenuItem()
         ExportKEGGIDMappingToolStripMenuItem1 = New ToolStripMenuItem()
         ExportKEGGMetaboliteTableToolStripMenuItem1 = New ToolStripMenuItem()
         ToolStripMenuItem5 = New ToolStripSeparator()
@@ -69,7 +70,6 @@ Partial Class FormMain
         ToolStripStatusLabel1 = New ToolStripStatusLabel()
         m_dockPanel = New Microsoft.VisualStudio.WinForms.Docking.DockPanel()
         VisualStudioToolStripExtender1 = New Microsoft.VisualStudio.WinForms.Docking.VisualStudioToolStripExtender(components)
-        ExportMoNAIDMappingToolStripMenuItem = New ToolStripMenuItem()
         MenuStrip1.SuspendLayout()
         StatusStrip1.SuspendLayout()
         SuspendLayout()
@@ -255,6 +255,12 @@ Partial Class FormMain
         ExportHMDBIDMappingToolStripMenuItem.Size = New Size(254, 22)
         ExportHMDBIDMappingToolStripMenuItem.Text = "Export HMDB IDMapping"
         ' 
+        ' ExportMoNAIDMappingToolStripMenuItem
+        ' 
+        ExportMoNAIDMappingToolStripMenuItem.Name = "ExportMoNAIDMappingToolStripMenuItem"
+        ExportMoNAIDMappingToolStripMenuItem.Size = New Size(254, 22)
+        ExportMoNAIDMappingToolStripMenuItem.Text = "Export MoNA IDMapping"
+        ' 
         ' ExportKEGGIDMappingToolStripMenuItem1
         ' 
         ExportKEGGIDMappingToolStripMenuItem1.Name = "ExportKEGGIDMappingToolStripMenuItem1"
@@ -361,12 +367,6 @@ Partial Class FormMain
         ' VisualStudioToolStripExtender1
         ' 
         VisualStudioToolStripExtender1.DefaultRenderer = Nothing
-        ' 
-        ' ExportMoNAIDMappingToolStripMenuItem
-        ' 
-        ExportMoNAIDMappingToolStripMenuItem.Name = "ExportMoNAIDMappingToolStripMenuItem"
-        ExportMoNAIDMappingToolStripMenuItem.Size = New Size(254, 22)
-        ExportMoNAIDMappingToolStripMenuItem.Text = "Export MoNA IDMapping"
         ' 
         ' FormMain
         ' 

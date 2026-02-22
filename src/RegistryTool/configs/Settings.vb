@@ -34,6 +34,14 @@ Namespace Configs
             }
         End Function
 
+        Public Function GetHistoryItems() As MoleculeEditHistory()
+            If molecule_history.IsNullOrEmpty Then
+                Return New MoleculeEditHistory() {}
+            Else
+                Return molecule_history
+            End If
+        End Function
+
         Public Sub Save()
             Call Me.GetJson.SaveTo(defaultConfig)
         End Sub
