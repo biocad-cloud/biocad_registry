@@ -1,7 +1,15 @@
 ﻿Imports Galaxy.Workbench
 Imports Microsoft.VisualStudio.WinForms.Docking
+Imports registry_data
+Imports RegistryTool.My
 
 Module Workbench
+
+    Public ReadOnly Property cad_registry As biocad_registry
+        Get
+            Return MyApplication.biocad_registry
+        End Get
+    End Property
 
     Public Async Sub OpenMoleculeEditor(id As String, name As String)
         Dim edit As New FormMoleculeEditor
