@@ -31,9 +31,11 @@ Partial Class FormMetabolicTopicView
         DataGridView1 = New DataGridView()
         Column1 = New DataGridViewTextBoxColumn()
         Column2 = New DataGridViewTextBoxColumn()
+        Column4 = New DataGridViewTextBoxColumn()
         Column3 = New DataGridViewTextBoxColumn()
         ContextMenuStrip1 = New ContextMenuStrip(components)
         ExportWorkflowIDSetToolStripMenuItem = New ToolStripMenuItem()
+        ToolStripButton2 = New ToolStripButton()
         ToolStrip1.SuspendLayout()
         CType(DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
         ContextMenuStrip1.SuspendLayout()
@@ -41,7 +43,7 @@ Partial Class FormMetabolicTopicView
         ' 
         ' ToolStrip1
         ' 
-        ToolStrip1.Items.AddRange(New ToolStripItem() {ToolStripButton1})
+        ToolStrip1.Items.AddRange(New ToolStripItem() {ToolStripButton2, ToolStripButton1})
         ToolStrip1.Location = New Point(0, 0)
         ToolStrip1.Name = "ToolStrip1"
         ToolStrip1.Size = New Size(874, 25)
@@ -62,7 +64,7 @@ Partial Class FormMetabolicTopicView
         DataGridView1.AllowUserToAddRows = False
         DataGridView1.AllowUserToDeleteRows = False
         DataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridView1.Columns.AddRange(New DataGridViewColumn() {Column1, Column2, Column3})
+        DataGridView1.Columns.AddRange(New DataGridViewColumn() {Column1, Column2, Column4, Column3})
         DataGridView1.Dock = DockStyle.Fill
         DataGridView1.Location = New Point(0, 25)
         DataGridView1.MultiSelect = False
@@ -85,6 +87,12 @@ Partial Class FormMetabolicTopicView
         Column2.Name = "Column2"
         Column2.ReadOnly = True
         ' 
+        ' Column4
+        ' 
+        Column4.HeaderText = "Zh Name"
+        Column4.Name = "Column4"
+        Column4.ReadOnly = True
+        ' 
         ' Column3
         ' 
         Column3.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
@@ -96,13 +104,22 @@ Partial Class FormMetabolicTopicView
         ' 
         ContextMenuStrip1.Items.AddRange(New ToolStripItem() {ExportWorkflowIDSetToolStripMenuItem})
         ContextMenuStrip1.Name = "ContextMenuStrip1"
-        ContextMenuStrip1.Size = New Size(214, 48)
+        ContextMenuStrip1.Size = New Size(214, 26)
         ' 
         ' ExportWorkflowIDSetToolStripMenuItem
         ' 
         ExportWorkflowIDSetToolStripMenuItem.Name = "ExportWorkflowIDSetToolStripMenuItem"
         ExportWorkflowIDSetToolStripMenuItem.Size = New Size(213, 22)
         ExportWorkflowIDSetToolStripMenuItem.Text = "Export Workflow ID Set"
+        ' 
+        ' ToolStripButton2
+        ' 
+        ToolStripButton2.DisplayStyle = ToolStripItemDisplayStyle.Image
+        ToolStripButton2.Image = CType(resources.GetObject("ToolStripButton2.Image"), Image)
+        ToolStripButton2.ImageTransparentColor = Color.Magenta
+        ToolStripButton2.Name = "ToolStripButton2"
+        ToolStripButton2.Size = New Size(23, 22)
+        ToolStripButton2.Text = "Reload"
         ' 
         ' FormMetabolicTopicView
         ' 
@@ -128,9 +145,11 @@ Partial Class FormMetabolicTopicView
     Friend WithEvents ToolStrip1 As ToolStrip
     Friend WithEvents ToolStripButton1 As ToolStripButton
     Friend WithEvents DataGridView1 As DataGridView
-    Friend WithEvents Column1 As DataGridViewTextBoxColumn
-    Friend WithEvents Column2 As DataGridViewTextBoxColumn
-    Friend WithEvents Column3 As DataGridViewTextBoxColumn
     Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
     Friend WithEvents ExportWorkflowIDSetToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents Column1 As DataGridViewTextBoxColumn
+    Friend WithEvents Column2 As DataGridViewTextBoxColumn
+    Friend WithEvents Column4 As DataGridViewTextBoxColumn
+    Friend WithEvents Column3 As DataGridViewTextBoxColumn
+    Friend WithEvents ToolStripButton2 As ToolStripButton
 End Class

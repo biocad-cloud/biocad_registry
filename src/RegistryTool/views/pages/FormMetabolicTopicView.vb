@@ -22,7 +22,7 @@ Public Class FormMetabolicTopicView
         Call DataGridView1.Rows.Clear()
 
         For Each topic As TopicSet In q
-            Call DataGridView1.Rows.Add(topic.topic_id, topic.term, topic.size)
+            Call DataGridView1.Rows.Add(topic.topic_id, topic.term, topic.term_zh, topic.size)
         Next
     End Function
 
@@ -30,6 +30,7 @@ Public Class FormMetabolicTopicView
 
         <DatabaseField> Public Property topic_id As UInteger
         <DatabaseField> Public Property term As String
+        <DatabaseField> Public Property term_zh As String
         <DatabaseField> Public Property size As Long
 
     End Class
@@ -39,7 +40,7 @@ Public Class FormMetabolicTopicView
 
         Dim row = DataGridView1.SelectedRows(0)
         Dim topic As String = row.Cells(1).Value.ToString
-        Dim num As Long = row.Cells(2).Value
+        Dim num As Long = row.Cells(3).Value
 
         topic_id = topic
 
@@ -86,5 +87,9 @@ Public Class FormMetabolicTopicView
 
     Private Sub ExportWorkflowIDSetToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportWorkflowIDSetToolStripMenuItem.Click
         Call ToolStripButton1_Click(Nothing, Nothing)
+    End Sub
+
+    Private Async Sub ToolStripButton2_Click(sender As Object, e As EventArgs) Handles ToolStripButton2.Click
+        Await LoadTable()
     End Sub
 End Class
