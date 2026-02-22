@@ -17,7 +17,7 @@ Public Class FormMetabolicTopicView
             .on(field("`vocabulary`.id") = field("topic_id")) _
             .where(field("type").in({0, metabolite_type})) _
             .group_by("topic_id") _
-            .select(Of TopicSet)("topic_id", "term", "COUNT(*) AS size")
+            .select(Of TopicSet)("topic_id", "term", "term_zh", "COUNT(*) AS size")
 
         Call DataGridView1.Rows.Clear()
 
