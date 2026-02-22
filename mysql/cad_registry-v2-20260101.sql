@@ -126,7 +126,7 @@ CREATE TABLE `db_xrefs` (
   KEY `find_by_xref` (`db_name`,`db_xref`,`type`),
   KEY `find_by_object` (`type`,`obj_id`),
   KEY `search_xref_word` (`db_xref`)
-) ENGINE=InnoDB AUTO_INCREMENT=11204169 DEFAULT CHARSET=utf8mb3 COMMENT='database cross reference of the model objects ';
+) ENGINE=InnoDB AUTO_INCREMENT=11212223 DEFAULT CHARSET=utf8mb3 COMMENT='database cross reference of the model objects ';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -152,7 +152,7 @@ CREATE TABLE `enzyme` (
   UNIQUE KEY `check_ecnumber` (`enzyme_class`,`sub_class`,`sub_category`,`enzyme_number`),
   KEY `find_name_hash` (`hashcode`),
   FULLTEXT KEY `search_text` (`recommended_name`,`systematic_name`,`note`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='a table of the metabolic enzyme data model';
+) ENGINE=InnoDB AUTO_INCREMENT=8055 DEFAULT CHARSET=utf8mb3 COMMENT='a table of the metabolic enzyme data model';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -367,7 +367,8 @@ CREATE TABLE `motif` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `family_index` (`family`),
-  KEY `name_search` (`name`)
+  KEY `name_search` (`name`),
+  FULLTEXT KEY `text_search` (`name`,`note`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2718 DEFAULT CHARSET=utf8mb3 COMMENT='alphabets for nucleotide seuqnece is ACGT';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -799,7 +800,7 @@ CREATE TABLE `synonym` (
   KEY `entity_metabolite_idx` (`obj_id`,`type`),
   KEY `obj_hash_query` (`type`,`hashcode`),
   FULLTEXT KEY `search_text` (`synonym`)
-) ENGINE=InnoDB AUTO_INCREMENT=6589623 DEFAULT CHARSET=utf8mb3 COMMENT='synonyms, alias names of the model objects';
+) ENGINE=InnoDB AUTO_INCREMENT=6715996 DEFAULT CHARSET=utf8mb3 COMMENT='synonyms, alias names of the model objects';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -820,7 +821,8 @@ CREATE TABLE `topic` (
   UNIQUE KEY `id_UNIQUE` (`id`),
   UNIQUE KEY `unique_link` (`topic_id`,`model_id`),
   KEY `registry_model_idx` (`model_id`),
-  KEY `topic_term_idx` (`topic_id`)
+  KEY `topic_term_idx` (`topic_id`),
+  KEY `filter_class_type` (`type`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4556842 DEFAULT CHARSET=utf8mb3 COMMENT='topic about the biological model';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -835,6 +837,7 @@ CREATE TABLE `vocabulary` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
   `category` varchar(64) NOT NULL DEFAULT 'NA' COMMENT 'term category name, value could be registry model type, external database, metabolic edge type',
   `term` varchar(255) NOT NULL COMMENT 'vocabulary term',
+  `term_zh` varchar(255) DEFAULT NULL COMMENT 'the chinese translation of the term name',
   `parent_id` int unsigned NOT NULL DEFAULT '0' COMMENT 'ontology parent is of this vocabylary term, reference to the id of another vocabulary term that could be used as the ancestor of this term',
   `color` varchar(8) NOT NULL DEFAULT '#000000' COMMENT 'html color code for make render of this vocabulary term display on web',
   `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -864,4 +867,4 @@ CREATE TABLE `vocabulary` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-02-21 13:55:56
+-- Dump completed on 2026-02-22 21:25:03
