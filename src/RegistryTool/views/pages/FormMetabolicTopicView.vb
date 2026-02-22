@@ -27,7 +27,7 @@ Public Class FormMetabolicTopicView
 
         <DatabaseField> Public Property topic_id As UInteger
         <DatabaseField> Public Property term As String
-        <DatabaseField> Public Property size As Integer
+        <DatabaseField> Public Property size As Long
 
     End Class
 End Class
