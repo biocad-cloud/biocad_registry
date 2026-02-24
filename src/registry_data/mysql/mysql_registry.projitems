@@ -39,6 +39,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)mysql\protein_data.vb" />
     <Compile Include="$(MSBuildThisFileDirectory)mysql\protein_ontology.vb" />
     <Compile Include="$(MSBuildThisFileDirectory)mysql\reaction.vb" />
+    <Compile Include="$(MSBuildThisFileDirectory)mysql\refseq.vb" />
     <Compile Include="$(MSBuildThisFileDirectory)mysql\registry_resolver.vb" />
     <Compile Include="$(MSBuildThisFileDirectory)mysql\regulatory_network.vb" />
     <Compile Include="$(MSBuildThisFileDirectory)mysql\struct_data.vb" />

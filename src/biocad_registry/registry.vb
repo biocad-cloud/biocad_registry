@@ -20,6 +20,7 @@ Imports SMRUCC.genomics.Assembly.KEGG
 Imports SMRUCC.genomics.Assembly.NCBI.GenBank
 Imports SMRUCC.genomics.Assembly.Uniprot.XML
 Imports SMRUCC.genomics.ComponentModel.Annotation
+Imports SMRUCC.genomics.Data
 Imports SMRUCC.genomics.Data.BioCyc
 Imports SMRUCC.genomics.Data.Regprecise
 Imports SMRUCC.genomics.Data.Rhea
@@ -428,6 +429,41 @@ Module registry
         End If
 
         Return registry.MakeImports(pull.populates(Of BrendaEnzymeData)(env))
+    End Function
+
+    <ExportAPI("import_refseq")>
+    Public Function import_refseq(registry As biocad_registry, refseq As Object, Optional env As Environment = Nothing) As Object
+        Dim pull As pipeline = pipeline.TryCreatePipeline(Of GenBankAssemblyIndex)(refseq, env)
+
+        If pull.isError Then
+            Return pull.getError
+        End If
+
+        Dim trans As CommitTransaction = registry.refseq.ignore.open_transaction
+
+        For Each seq As GenBankAssemblyIndex In pull.populates(Of GenBankAssemblyIndex)(env)
+            Dim asm_id As String = seq.assembly_accession.Split("."c).First
+            Dim check = registry.refseq.where(field("assembly_accession") = asm_id).find(Of biocad_registryModel.refseq)
+
+            If check Is Nothing Then
+                Call trans.add(
+                    field("assembly_accession") = asm_id,
+                    field("assembly_level") = seq.assembly_level,
+                    field("bioproject") = seq.bioproject,
+                    field("biosample") = seq.biosample,
+                    field("group") = seq.group,
+                    field("taxid") = seq.taxid,
+                    field("species_taxid") = seq.species_taxid,
+                    field("organism_name") = seq.organism_name,
+                    field("infraspecific_name") = seq.infraspecific_name,
+                    field("ftp_path") = seq.ftp_path
+                )
+            End If
+        Next
+
+        Call trans.commit()
+
+        Return Nothing
     End Function
 
 End Module

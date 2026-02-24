@@ -680,6 +680,35 @@ CREATE TABLE `reaction` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `refseq`
+--
+
+DROP TABLE IF EXISTS `refseq`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `refseq` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `assembly_accession` varchar(45) NOT NULL,
+  `assembly_level` varchar(45) DEFAULT NULL,
+  `bioproject` varchar(45) NOT NULL,
+  `biosample` varchar(45) DEFAULT NULL,
+  `group` varchar(45) DEFAULT NULL,
+  `taxid` int unsigned NOT NULL,
+  `species_taxid` int unsigned NOT NULL,
+  `organism_name` varchar(255) DEFAULT NULL,
+  `infraspecific_name` varchar(255) DEFAULT NULL,
+  `ftp_path` mediumtext NOT NULL,
+  `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  UNIQUE KEY `find_asm_id` (`assembly_accession`),
+  KEY `search_tax1` (`taxid`),
+  KEY `search_tax2` (`species_taxid`),
+  KEY `filter_tax_group` (`group`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='imports of assembly_summary_refseq.txt';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `registry_resolver`
 --
 
@@ -867,4 +896,4 @@ CREATE TABLE `vocabulary` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-02-22 21:25:03
+-- Dump completed on 2026-02-24 23:40:46
