@@ -3138,6 +3138,47 @@ SMRUCC.genomics.Interops.NCBI.Extensions
  <param name="getAnnotationTerm">通过这个函数指针来获取得到KO或者GO注释信息</param>
  <returns></returns>
 </member>
+<member name="T:SMRUCC.genomics.Interops.NCBI.Extensions.Pipeline.GenomeVector">
+ <summary>
+ 基因组代谢酶注释结果
+ </summary>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.Pipeline.GenomeVector.assembly_id">
+ <summary>
+ the unique reference id of the genome, usually is the genbank assembly id, but it can be any string that can uniquely 
+ identify this genome in the dataset, and it should be consistent with the assembly id used in the annotation result, 
+ so that we can link the annotation result to the taxonomy information of this genome
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.Pipeline.GenomeVector.taxonomy">
+ <summary>
+ the genome taxonomy information, it can be the taxonomic name of this genome, or the taxonomic id of this genome, 
+ but it should be consistent with the taxonomy information used in the annotation result, so that we can link the 
+ annotation result to the taxonomy information of this genome
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.Pipeline.GenomeVector.terms">
+ <summary>
+ annotated terms inside this genome, the key is the term name, and the value is the count of this term in this genome
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.Pipeline.GenomeVector.size">
+ <summary>
+ annotated gene count
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.Pipeline.GenomeVector.GetHierarchicalECNumberTerms">
+ <summary>
+ used for processing of the ec number terms, make the count of the
+ hierarchical ec number terms by summing the count of the specific 
+ ec number terms
+ </summary>
+ <returns></returns>
+</member>
 <member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.Pipeline.GenomeVector.GroupByTaxonomy(System.Collections.Generic.IEnumerable{SMRUCC.genomics.Interops.NCBI.Extensions.Pipeline.GenomeVector},System.Int32)">
  <summary>
  Make union of the taxonomy assembly contig result

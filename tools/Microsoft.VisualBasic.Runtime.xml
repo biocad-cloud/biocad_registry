@@ -28513,6 +28513,20 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="weights">这个数组里面的值的和必须要等于1</param>
  <returns></returns>
 </member>
+<member name="M:Microsoft.VisualBasic.Math.VBMath.WeightedMedian(System.Double[],System.Double[])">
+ <summary>
+ 计算加权中位数
+ </summary>
+ <param name="values">数据值数组</param>
+ <param name="weights">对应的权重数组</param>
+ <returns>加权中位数</returns>
+ 
+</member>
+<member name="M:Microsoft.VisualBasic.Math.VBMath.WeightedMedianOptimized(System.Double[],System.Double[])">
+ <summary>
+ 更高效的加权中位数计算（使用Value-Weight对结构）
+ </summary>
+</member>
 <member name="M:Microsoft.VisualBasic.Math.VBMath.seq(Microsoft.VisualBasic.Language.Value{System.Double},System.Double,System.Double)">
  <summary>
  [Sequence Generation] Generate regular sequences. seq is a standard generic with a default method.
