@@ -432,7 +432,7 @@ Module registry
     End Function
 
     <ExportAPI("import_refseq")>
-    Public Function import_refseq(registry As biocad_registry, refseq As Object, Optional env As Environment = Nothing) As Object
+    Public Function import_refseq(registry As biocad_registry, <RRawVectorArgument> refseq As Object, Optional env As Environment = Nothing) As Object
         Dim pull As pipeline = pipeline.TryCreatePipeline(Of GenBankAssemblyIndex)(refseq, env)
 
         If pull.isError Then
