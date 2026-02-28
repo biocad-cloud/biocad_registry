@@ -9,7 +9,7 @@ Public Module Translations
         Dim ontology_id As UInteger = registry.biocad_vocabulary.GetDatabaseResource(ontology).id
         Dim terms = registry.ontology _
             .where(field("ontology_id") = ontology_id,
-                   field("term_zh").char_length = 0) _
+                  (field("term_zh").char_length = 0) Or field("term_zh").is_nothing) _
             .select(Of biocad_registryModel.ontology)
 
         For Each term As biocad_registryModel.ontology In terms
