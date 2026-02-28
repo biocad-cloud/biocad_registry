@@ -466,4 +466,9 @@ Module registry
         Return Nothing
     End Function
 
+    <ExportAPI("ontology_translation")>
+    Public Sub OntologyTranslation(registry As biocad_registry, ontology As String)
+        Call Translations.TranslateOntology(registry, ontology)
+    End Sub
+
 End Module
