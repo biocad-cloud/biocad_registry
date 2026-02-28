@@ -38555,7 +38555,7 @@ to take away yo [rest of string was truncated]&quot;;.
  <summary>
  A proxy function for LLMs talk in framework runtime
  </summary>
- <param name="msg"></param>
+ <param name="prompt">the LLMs prompt text</param>
  <returns>
  this proxy function will returns nothing if there is no ollama client is hooked
  </returns>
