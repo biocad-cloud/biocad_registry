@@ -471,4 +471,9 @@ Module registry
         Call Translations.TranslateOntology(registry, ontology)
     End Sub
 
+    <ExportAPI("metabolite_translation")>
+    Public Sub MetaboliteTranslation(registry As biocad_registry, ontology As String)
+        Call Translations.TranslateMetaboliteName(registry, ontology)
+    End Sub
+
 End Module
