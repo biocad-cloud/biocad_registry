@@ -16,3 +16,6 @@
 + [update_logo](registry/update_logo.1) 
 + [imports_sabiork](registry/imports_sabiork.1) 
 + [import_brenda_enzymes](registry/import_brenda_enzymes.1) 
++ [import_refseq](registry/import_refseq.1) 
++ [ontology_translation](registry/ontology_translation.1) 
++ [metabolite_translation](registry/metabolite_translation.1) 

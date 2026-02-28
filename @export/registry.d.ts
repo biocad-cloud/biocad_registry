@@ -15,6 +15,10 @@ declare namespace registry {
    /**
      * @param env default value Is ``null``.
    */
+   function import_refseq(registry: object, refseq: any, env?: object): any;
+   /**
+     * @param env default value Is ``null``.
+   */
    function imports_kegg_reactions(registry: object, kegg: any, env?: object): any;
    /**
    */
@@ -47,6 +51,12 @@ declare namespace registry {
      * @param env default value Is ``null``.
    */
    function make_genbank_dbxrefs(registry: object, genbank: any, env?: object): any;
+   /**
+   */
+   function metabolite_translation(registry: object, ontology: string): ;
+   /**
+   */
+   function ontology_translation(registry: object, ontology: string): ;
    /**
      * @param env default value Is ``null``.
    */
