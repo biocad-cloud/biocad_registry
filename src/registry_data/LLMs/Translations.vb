@@ -1,5 +1,5 @@
 ﻿Imports System.Runtime.CompilerServices
-Imports Microsoft.VisualBasic.Math.Logical.FuzzyLogic.Models
+Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 
 Public Module Translations
@@ -12,7 +12,7 @@ Public Module Translations
                   (field("term_zh").char_length = 0) Or field("term_zh").is_nothing) _
             .select(Of biocad_registryModel.ontology)
 
-        For Each term As biocad_registryModel.ontology In terms
+        For Each term As biocad_registryModel.ontology In TqdmWrapper.Wrap(terms)
             Dim prompt As String = $"将下面的这个化合物分类词条名称翻译为中文：'{term.term}'，如果没有正式的翻译，请进行音译。使用下面的json格式返回结果给我以方便我进行数据解析：{{""zh_name"": ""translated_name""}}"
             Dim zh_name As String = TranslatedName.DecodeLLMTranslateOutput(LLMs.LLMsTalk(prompt))
 
@@ -41,7 +41,7 @@ Public Module Translations
                 Exit For
             End If
 
-            For Each metab As biocad_registryModel.metabolites In pagedata
+            For Each metab As biocad_registryModel.metabolites In TqdmWrapper.Wrap(pagedata)
                 Dim zh_name = registry.synonym _
                     .where(field("type") = metabo_class,
                            field("obj_id") = metab.id,
