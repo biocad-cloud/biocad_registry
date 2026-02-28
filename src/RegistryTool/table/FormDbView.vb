@@ -5,6 +5,7 @@ Imports Microsoft.VisualBasic.MIME.text.markdown
 Imports Microsoft.Windows.Shell.PropertySystem.SystemProperties.System
 Imports Ollama
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
+Imports registry_data
 Imports RegistryTool.My
 
 Public Class FormDbView
@@ -211,7 +212,7 @@ Public Class FormDbView
                     Call p.SetInfo(prompt_text)
 
                     Dim msg As DeepSeekResponse = MyApplication.ollama.Chat(prompt_text).GetAwaiter.GetResult
-                    Dim zh_name As String = TranslatedName.DecodeLLMTranslateOutput(msg)
+                    Dim zh_name As String = TranslatedName.DecodeLLMTranslateOutput(msg?.output)
 
                     Return zh_name
                 End Function, title:="LLMs talk: Translate with LLMs...", info:=prompt_text)

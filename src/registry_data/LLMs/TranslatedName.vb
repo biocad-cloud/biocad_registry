@@ -9,10 +9,10 @@ Public Class TranslatedName
         Return zh_name
     End Function
 
-    Public Shared Function DecodeLLMTranslateOutput(msg As DeepSeekResponse) As String
-        If Not msg Is Nothing Then
+    Public Shared Function DecodeLLMTranslateOutput(llms_output As String) As String
+        If Not llms_output Is Nothing Then
             Try
-                Dim json As String = msg.output.Match("[{].+[}]")
+                Dim json As String = llms_output.Match("[{].+[}]")
                 Dim zh_name = json.LoadJSON(Of TranslatedName)
 
                 If zh_name Is Nothing Then

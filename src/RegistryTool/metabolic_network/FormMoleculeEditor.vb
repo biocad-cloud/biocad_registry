@@ -502,7 +502,7 @@ let options = { width: 450, height: 300 };
         Dim msg As DeepSeekResponse = TaskProgress.LoadData(Function(println As Action(Of String)) MyApplication.ollama.Chat(prompt).GetAwaiter.GetResult)
         Dim class_id As UInteger = MyApplication.biocad_registry.biocad_vocabulary.metabolite_type
         Dim llms_source As UInteger = MyApplication.biocad_registry.biocad_vocabulary.db_LLMs
-        Dim zh_name As String = TranslatedName.DecodeLLMTranslateOutput(msg)
+        Dim zh_name As String = TranslatedName.DecodeLLMTranslateOutput(msg?.output)
 
         If Not zh_name.StringEmpty(, True) Then
             Dim hashcode As String = zh_name.ToString.ToLower.MD5
