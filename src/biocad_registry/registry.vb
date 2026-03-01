@@ -198,6 +198,35 @@ Module registry
         Return Nothing
     End Function
 
+    <ExportAPI("imports_coconut")>
+    Public Function imports_coconut(registry As biocad_registry, <RRawVectorArgument> coconut As Object, Optional env As Environment = Nothing)
+        Dim pull As pipeline = pipeline.TryCreatePipeline(Of Coconut.CoconutNPTable)(coconut, env)
+
+        If pull.isError Then
+            Return pull.getError
+        End If
+
+        Dim coconut_db As UInteger = registry.biocad_vocabulary.GetDatabaseResource("Coconut NaturalProduct").id
+
+        For Each block As Coconut.CoconutNPTable() In pull.populates(Of Coconut.CoconutNPTable)(env).SplitIterator(5000)
+            For Each np In TqdmWrapper.Wrap(block)
+                Dim metab As MetaLib = np.GetMetaboliteData
+                Dim m As metabolites = registry.FindMolecule(metab, "kegg_id", nameSearch:=True)
+
+                If m Is Nothing Then
+                    Continue For
+                End If
+
+                Call registry.SaveStructureData(m, metab.xref.SMILES)
+                Call registry.SaveMetaboliteClass(m, coconut_db, (metab.super_class, metab.class, Nothing, Nothing), np.identifier)
+                Call registry.SaveSynonyms(m, metab.EnumerateAllNames, coconut_db)
+                Call registry.SaveDbLinks(metab, m, coconut_db, saveID:=True)
+            Next
+        Next
+
+        Return Nothing
+    End Function
+
     <ExportAPI("imports_kegg_reactions")>
     Public Function imports_kegg_reactions(registry As biocad_registry, <RRawVectorArgument> kegg As Object, Optional env As Environment = Nothing) As Object
         Dim pull As pipeline = pipeline.TryCreatePipeline(Of DBGET.bGetObject.Reaction)(kegg, env)
