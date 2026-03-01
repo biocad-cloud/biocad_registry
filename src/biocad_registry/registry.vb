@@ -162,7 +162,35 @@ Module registry
 
                 Call registry.SaveDbLinks(meta, m, db_pubchem)
                 Call registry.SaveStructureData(m, meta.xref.SMILES)
-                Call registry.SaveSynonyms(m, meta.synonym.JoinIterates({meta.name, meta.IUPACName}).Distinct, db_pubchem)
+                Call registry.SaveSynonyms(m, meta.EnumerateAllNames, db_pubchem)
+            Next
+        Next
+
+        Return Nothing
+    End Function
+
+    <ExportAPI("imports_lotus")>
+    Public Function imports_lotus(registry As biocad_registry, <RRawVectorArgument> lotus As Object, Optional env As Environment = Nothing)
+        Dim pull As pipeline = pipeline.TryCreatePipeline(Of LOTUS.NaturalProduct)(lotus, env)
+
+        If pull.isError Then
+            Return pull.getError
+        End If
+
+        Dim lotus_db As UInteger = registry.biocad_vocabulary.GetDatabaseResource("LOTUS NaturalProduct").id
+
+        For Each block As LOTUS.NaturalProduct() In pull.populates(Of LOTUS.NaturalProduct)(env).SplitIterator(5000)
+            For Each np In TqdmWrapper.Wrap(block)
+                Dim metab As MetaLib = np.CreateMetabolite
+                Dim m As metabolites = registry.FindMolecule(metab, "kegg_id", nameSearch:=True)
+
+                If m Is Nothing Then
+                    Continue For
+                End If
+
+                Call registry.SaveDbLinks(metab, m, lotus_db)
+                Call registry.SaveStructureData(m, metab.xref.SMILES)
+                Call registry.SaveSynonyms(m, metab.EnumerateAllNames, lotus_db)
             Next
         Next
 
