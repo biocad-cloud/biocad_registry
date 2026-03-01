@@ -188,9 +188,10 @@ Module registry
                     Continue For
                 End If
 
-                Call registry.SaveDbLinks(metab, m, lotus_db)
                 Call registry.SaveStructureData(m, metab.xref.SMILES)
+                Call registry.SaveMetaboliteClass(m, lotus_db, (metab.super_class, metab.class, Nothing, Nothing), np.lotus_id)
                 Call registry.SaveSynonyms(m, metab.EnumerateAllNames, lotus_db)
+                Call registry.SaveDbLinks(metab, m, lotus_db, saveID:=True)
             Next
         Next
 
