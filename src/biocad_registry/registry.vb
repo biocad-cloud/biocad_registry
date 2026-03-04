@@ -211,7 +211,7 @@ Module registry
         For Each block As Coconut.CoconutNPTable() In pull.populates(Of Coconut.CoconutNPTable)(env).SplitIterator(5000)
             For Each np In TqdmWrapper.Wrap(block)
                 Dim metab As MetaLib = np.GetMetaboliteData
-                Dim m As metabolites = registry.FindMolecule(metab, "kegg_id", nameSearch:=True)
+                Dim m As metabolites = registry.FindMolecule(metab, "kegg_id", nameSearch:=True, preferNameSearch:=True)
 
                 If m Is Nothing Then
                     Continue For
@@ -221,6 +221,29 @@ Module registry
                 Call registry.SaveMetaboliteClass(m, coconut_db, (metab.super_class, metab.class, Nothing, Nothing), np.identifier)
                 Call registry.SaveSynonyms(m, metab.EnumerateAllNames, coconut_db)
                 Call registry.SaveDbLinks(metab, m, coconut_db, saveID:=True)
+
+                Dim source As CommitTransaction = registry.organism_source.ignore.open_transaction
+
+                For Each taxname As String In np.organisms.SafeQuery
+                    Dim tax = registry.GetTaxonomy(taxname)
+                    Dim taxid As UInteger = tax?.id
+                    Dim check = registry.organism_source _
+                        .where(field("metabolite_id") = m.id,
+                               field("organism_id") = taxid,
+                               field("evidence") = np.identifier) _
+                        .find(Of biocad_registryModel.organism_source)
+
+                    If check Is Nothing Then
+                        Call source.ignore.add(
+                            field("metabolite_id") = m.id,
+                            field("organism_id") = taxid,
+                            field("evidence") = np.identifier,
+                            field("note") = np.np_classifier_pathway
+                        )
+                    End If
+                Next
+
+                Call source.commit()
             Next
         Next
 

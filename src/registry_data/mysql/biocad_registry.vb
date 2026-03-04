@@ -1,4 +1,7 @@
+Imports System.Runtime.CompilerServices
+Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Oracle.LinuxCompatibility.MySQL
+Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports Oracle.LinuxCompatibility.MySQL.Uri
 
 Public Class biocad_registry : Inherits biocad_registryModel.db_mysql
@@ -155,8 +158,21 @@ Public Class biocad_registry : Inherits biocad_registryModel.db_mysql
 
     Public ReadOnly Property biocad_vocabulary As biocad_vocabulary
 
+    ReadOnly ncbi_tax As New Dictionary(Of String, biocad_registryModel.ncbi_taxonomy)
+
     Public Sub New(mysqli As ConnectionUri)
         MyBase.New(mysqli)
         Me.biocad_vocabulary = New biocad_vocabulary(Me)
     End Sub
+
+    <MethodImpl(MethodImplOptions.AggressiveInlining)>
+    Public Function GetTaxonomy(name As String) As biocad_registryModel.ncbi_taxonomy
+        Return ncbi_tax.ComputeIfAbsent(
+            name,
+            lazyValue:=Function(key)
+                           Return m_ncbi_taxonomy _
+                               .where(field("name") = key) _
+                               .find(Of biocad_registryModel.ncbi_taxonomy)
+                       End Function)
+    End Function
 End Class
