@@ -740,6 +740,9 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  Gets the name, without the extension, of the assembly file for the application.
  </summary>
  <returns></returns>
+ <remarks>
+ get <see cref="M:Microsoft.VisualBasic.PathExtensions.BaseName(System.String,System.Boolean)"/> of the <see cref="P:Microsoft.VisualBasic.App.ExecutablePath"/>.
+ </remarks>
 </member>
 <member name="P:Microsoft.VisualBasic.App.HOME">
  <summary>
@@ -11519,6 +11522,20 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  
  </summary>
  <param name="source">名称属性<see cref="P:Microsoft.VisualBasic.ComponentModel.DataSourceModel.NamedValue`1.Name"/></param>必须是相同的
+</member>
+<member name="M:Microsoft.VisualBasic.ComponentModel.DataSourceModel.NamedCollection`1.#ctor(System.Linq.IGrouping{System.String,`0})">
+ <summary>
+ Create from the linq group output
+ </summary>
+ <param name="group"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.ComponentModel.DataSourceModel.NamedCollection`1.#ctor(System.String,System.Collections.Generic.IEnumerable{`0},System.String)">
+ <summary>
+ make the given <paramref name="data"/> collection with a label <paramref name="name"/>.
+ </summary>
+ <param name="name"></param>
+ <param name="data"></param>
+ <param name="description"></param>
 </member>
 <member name="T:Microsoft.VisualBasic.ComponentModel.DataSourceModel.NamedValue`1">
  <summary>

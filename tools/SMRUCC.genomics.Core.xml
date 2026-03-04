@@ -13369,7 +13369,9 @@ to take away yo [rest of string was truncated]&quot;;.
  <summary>
  parse auto
  </summary>
- <param name="biomString"></param>
+ <param name="biomString">
+ [Bifidobacterium [indicum] DSM 20214 = LMG 11587] k__Bacteria;p__Bacillati;c__Actinomycetota;o__Actinomycetes;f__Bifidobacteriales;g__Bifidobacteriaceae;s__Bifidobacterium.
+ </param>
  <returns></returns>
 </member>
 <member name="T:SMRUCC.genomics.Metagenomics.GenomeNameIndex`1">

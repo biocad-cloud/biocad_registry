@@ -8,6 +8,8 @@
 + [imports_mona](registry/imports_mona.1) 
 + [imports_spectraverse](registry/imports_spectraverse.1) 
 + [imports_pubchem](registry/imports_pubchem.1) 
++ [imports_lotus](registry/imports_lotus.1) 
++ [imports_coconut](registry/imports_coconut.1) 
 + [imports_kegg_reactions](registry/imports_kegg_reactions.1) 
 + [imports_rhea](registry/imports_rhea.1) 
 + [imports_metacyc_reactions](registry/imports_metacyc_reactions.1) 

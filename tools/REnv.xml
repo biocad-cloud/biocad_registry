@@ -12365,6 +12365,14 @@ to take away yo [rest of string was truncated]&quot;;.
  </summary>
  <returns></returns>
 </member>
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Object.baseOp.s4Reflector.#ctor">
+ <summary>
+ 
+ </summary>
+ <remarks>
+ constructor for the runtime s4object
+ </remarks>
+</member>
 <member name="M:SMRUCC.Rsharp.Runtime.Internal.Object.baseOp.s4Reflector.getByName(System.String)">
  <summary>
  Get property value/method reference by name
@@ -13488,6 +13496,14 @@ to take away yo [rest of string was truncated]&quot;;.
  <param name="safe">
  will cast null to empty string if this parameter value is set to TRUE
  </param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Object.names.uniqueNames``1(System.Collections.Generic.IEnumerable{``0})">
+ <summary>
+ Make unique names
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="data"></param>
  <returns></returns>
 </member>
 <member name="M:SMRUCC.Rsharp.Runtime.Internal.Object.names.setNames(System.Object,System.Array,SMRUCC.Rsharp.Runtime.Environment)">
@@ -17749,6 +17765,13 @@ to take away yo [rest of string was truncated]&quot;;.
  this function will rename the function with anomoymous name
  </remarks>
 </member>
+<member name="M:SMRUCC.Rsharp.Development.Package.File.CreatePackage.loadingDependency(System.Collections.Generic.IEnumerable{SMRUCC.Rsharp.Interpreter.ExecuteEngine.Expression})">
+ <summary>
+ Create package dependency and module loading list
+ </summary>
+ <param name="loading"></param>
+ <returns></returns>
+</member>
 <member name="M:SMRUCC.Rsharp.Development.Package.File.CreatePackage.getFileReader(System.String)">
  <summary>
  + ``%s``, means the <paramref name="path"/> parameter value
@@ -18304,7 +18327,7 @@ to take away yo [rest of string was truncated]&quot;;.
  R# ``zzz.R`` magic trick
  </summary>
 </member>
-<member name="M:SMRUCC.Rsharp.Development.Package.zzz.TryRunZzzOnLoad(System.Reflection.Assembly)">
+<member name="M:SMRUCC.Rsharp.Development.Package.zzz.TryRunZzzOnLoad(System.Reflection.Assembly,System.Boolean)">
  <summary>
  It's a file where one usually puts actions on load of the package. 
  It is tradition/convention that it's called zzz.R and could be 
@@ -18316,6 +18339,15 @@ to take away yo [rest of string was truncated]&quot;;.
  </summary>
  <param name="package">
  module named ``zzz`` andalso contains a entry method named ``onLoad``
+ </param>
+</member>
+<member name="M:SMRUCC.Rsharp.Development.Package.zzz.RunZzz(System.Reflection.Assembly,System.Boolean)">
+ <summary>
+ 
+ </summary>
+ <param name="package"></param>
+ <param name="quietly">
+ config quietly for clr assembly module loader
  </param>
 </member>
 <member name="T:SMRUCC.Rsharp.Development.Polyglot.Platform">
