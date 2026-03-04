@@ -226,10 +226,10 @@ Module registry
 
                 For Each taxname As String In np.organisms.SafeQuery
                     Dim tax = registry.GetTaxonomy(taxname)
-                    Dim taxid As UInteger = tax?.id
+                    Dim taxid As UInteger = If(tax Is Nothing, 0, tax.id)
                     Dim check = registry.organism_source _
                         .where(field("metabolite_id") = m.id,
-                               field("organism_id") = taxid,
+                               field("taxname") = taxname,
                                field("evidence") = np.identifier) _
                         .find(Of biocad_registryModel.organism_source)
 
@@ -237,8 +237,9 @@ Module registry
                         Call source.ignore.add(
                             field("metabolite_id") = m.id,
                             field("organism_id") = taxid,
+                            field("taxname") = taxname,
                             field("evidence") = np.identifier,
-                            field("note") = np.np_classifier_pathway
+                            field("note") = taxname & " - " & np.np_classifier_pathway
                         )
                     End If
                 Next
