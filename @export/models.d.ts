@@ -10,6 +10,9 @@
 declare namespace models {
    /**
    */
+   function build_plantnp_library(registry: object): ;
+   /**
+   */
    function register_metabolic_symbols(registry: object): ;
    /**
    */
