@@ -160,6 +160,7 @@ Public Class biocad_registry : Inherits biocad_registryModel.db_mysql
     Public ReadOnly Property biocad_vocabulary As biocad_vocabulary
 
     ReadOnly ncbi_tax As New Dictionary(Of String, biocad_registryModel.ncbi_taxonomy)
+    ReadOnly ncbi_taxset As New Dictionary(Of UInteger, biocad_registryModel.ncbi_taxonomy)
 
     Public Sub New(mysqli As ConnectionUri)
         MyBase.New(mysqli)
@@ -177,6 +178,17 @@ Public Class biocad_registry : Inherits biocad_registryModel.db_mysql
                        End Function)
     End Function
 
+    <MethodImpl(MethodImplOptions.AggressiveInlining)>
+    Public Function GetTaxonomy(taxid As UInteger) As biocad_registryModel.ncbi_taxonomy
+        Return ncbi_taxset.ComputeIfAbsent(
+            taxid,
+            lazyValue:=Function(id)
+                           Return ncbi_taxonomy _
+                               .where(field("id") = taxid) _
+                               .find(Of ncbi_taxonomy)
+                       End Function)
+    End Function
+
     ''' <summary>
     ''' Check of the target <paramref name="taxid"/> is belongs to the given <paramref name="ancestor_id"/>.
     ''' </summary>
@@ -184,9 +196,7 @@ Public Class biocad_registry : Inherits biocad_registryModel.db_mysql
     ''' <param name="ancestor_id"></param>
     ''' <returns></returns>
     Public Function CheckLineage(taxid As UInteger, ancestor_id As UInteger) As Boolean
-        Dim tax As ncbi_taxonomy = ncbi_taxonomy _
-            .where(field("id") = taxid) _
-            .find(Of ncbi_taxonomy)
+        Dim tax As ncbi_taxonomy = GetTaxonomy(taxid)
 
         If tax Is Nothing Then
             Return False
@@ -196,9 +206,7 @@ Public Class biocad_registry : Inherits biocad_registryModel.db_mysql
             If ancestor_id = tax.ancestor Then
                 Return True
             Else
-                tax = ncbi_taxonomy _
-                    .where(field("id") = tax.ancestor) _
-                    .find(Of ncbi_taxonomy)
+                tax = GetTaxonomy(tax.ancestor)
 
                 If tax Is Nothing Then
                     Return False

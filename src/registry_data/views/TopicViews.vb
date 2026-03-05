@@ -1,4 +1,5 @@
 ﻿Imports System.Runtime.CompilerServices
+Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports registry_data.biocad_registryModel
 
@@ -37,7 +38,7 @@ Public Module TopicViews
                 Exit For
             End If
 
-            For Each link As biocad_registryModel.organism_source In page_data
+            For Each link As biocad_registryModel.organism_source In TqdmWrapper.Wrap(page_data)
                 If registry.CheckLineage(link.organism_id, root_tax) Then
                     Dim m As metabolites = registry.metabolites _
                         .where(field("id") = link.metabolite_id) _
