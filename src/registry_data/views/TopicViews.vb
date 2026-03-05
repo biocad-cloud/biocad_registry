@@ -7,9 +7,24 @@ Public Module TopicViews
     <Extension>
     Public Sub PlantNP(registry As biocad_registry)
         Dim np_topic As UInteger = registry.biocad_vocabulary.GetTopic("Plant Natural Products").id
-        Dim page_size As Integer = 5000
         ' Viridiplantae
         Dim plant_tax As UInteger = 33090
+
+        Call registry.NaturalProductLib(np_topic, plant_tax)
+    End Sub
+
+    <Extension>
+    Public Sub MicrobialNP(registry As biocad_registry)
+        Dim np_topic As UInteger = registry.biocad_vocabulary.GetTopic("Microbial Natural Products").id
+        ' Viridiplantae
+        Dim bacterial_tax As UInteger = 2
+
+        Call registry.NaturalProductLib(np_topic, bacterial_tax)
+    End Sub
+
+    <Extension>
+    Private Sub NaturalProductLib(registry As biocad_registry, np_topic As UInteger, root_tax As UInteger)
+        Dim page_size As Integer = 5000
         Dim metabolite_type As UInteger = registry.biocad_vocabulary.metabolite_type
 
         For page As Integer = 1 To Integer.MaxValue
@@ -23,7 +38,7 @@ Public Module TopicViews
             End If
 
             For Each link As biocad_registryModel.organism_source In page_data
-                If registry.CheckLineage(link.organism_id, plant_tax) Then
+                If registry.CheckLineage(link.organism_id, root_tax) Then
                     Dim m As metabolites = registry.metabolites _
                         .where(field("id") = link.metabolite_id) _
                         .find(Of metabolites)
