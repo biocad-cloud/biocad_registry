@@ -49,6 +49,12 @@ Public Module TopicViews
                     End If
 
                     Dim meta As registry_resolver = registry.SymbolRegister(m)
+
+                    If meta Is Nothing Then
+                        ' name is too long, insert error
+                        Continue For
+                    End If
+
                     Dim check_topic = registry.topic _
                         .where(field("topic_id") = np_topic,
                                field("model_id") = meta.id) _
