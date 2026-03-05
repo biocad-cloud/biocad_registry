@@ -71,4 +71,9 @@ Public Module registry_models
     Public Sub update_metabolite_models(registry As biocad_registry)
         Call registry.MetaboliteLinks
     End Sub
+
+    <ExportAPI("build_plantnp_library")>
+    Public Sub build_plantnp(registry As biocad_registry)
+        Call TopicViews.PlantNP(registry)
+    End Sub
 End Module
