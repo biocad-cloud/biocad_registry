@@ -75,7 +75,15 @@ Public Module RegisterSymbol
         If check IsNot Nothing Then
             ' symbol is already existsed
             If check.symbol_id <> meta.id Then
-                registry.registry_resolver.where(field("id") = check.id).save(field("symbol_id") = meta.id)
+                ' check of the main id alias
+                If registry.CheckIdAlias(meta.id, check.symbol_id) OrElse registry.CheckIdAlias(check.symbol_id, meta.id) Then
+                    Return check
+                Else
+                    Call registry.registry_resolver _
+                        .where(field("id") = check.id) _
+                        .save(field("symbol_id") = meta.id)
+                End If
+
                 Return GetMetaboliteModel(registry, meta.id)
             End If
 

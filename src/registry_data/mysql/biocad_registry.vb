@@ -3,6 +3,7 @@ Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Oracle.LinuxCompatibility.MySQL
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports Oracle.LinuxCompatibility.MySQL.Uri
+Imports registry_data.biocad_registryModel
 
 Public Class biocad_registry : Inherits biocad_registryModel.db_mysql
 
@@ -174,5 +175,67 @@ Public Class biocad_registry : Inherits biocad_registryModel.db_mysql
                                .where(field("name") = key) _
                                .find(Of biocad_registryModel.ncbi_taxonomy)
                        End Function)
+    End Function
+
+    ''' <summary>
+    ''' Check of the target <paramref name="taxid"/> is belongs to the given <paramref name="ancestor_id"/>.
+    ''' </summary>
+    ''' <param name="taxid"></param>
+    ''' <param name="ancestor_id"></param>
+    ''' <returns></returns>
+    Public Function CheckLineage(taxid As UInteger, ancestor_id As UInteger) As Boolean
+        Dim tax As ncbi_taxonomy = ncbi_taxonomy _
+            .where(field("id") = taxid) _
+            .find(Of ncbi_taxonomy)
+
+        If tax Is Nothing Then
+            Return False
+        End If
+
+        Do While tax.ancestor > 0
+            If ancestor_id = tax.ancestor Then
+                Return True
+            Else
+                tax = ncbi_taxonomy _
+                    .where(field("id") = tax.ancestor) _
+                    .find(Of ncbi_taxonomy)
+
+                If tax Is Nothing Then
+                    Return False
+                End If
+            End If
+        Loop
+
+        Return False
+    End Function
+
+    ''' <summary>
+    ''' Check <paramref name="id"/> could be mapping to <paramref name="main_id"/>
+    ''' </summary>
+    ''' <param name="id"></param>
+    ''' <param name="main_id"></param>
+    ''' <returns></returns>
+    Public Function CheckIdAlias(id As UInteger, main_id As UInteger) As Boolean
+        Dim m = metabolites.where(field("id") = id).find(Of metabolites)
+
+        If m Is Nothing Then
+            Return False
+        End If
+
+        Do While m.main_id > 0
+            If main_id = m.main_id Then
+                Return True
+            Else
+                m = metabolites _
+                    .where(field("id") = m.main_id) _
+                    .find(Of metabolites)
+
+                If m Is Nothing Then
+                    Return False
+                End If
+            End If
+        Loop
+
+        Return False
     End Function
 End Class
