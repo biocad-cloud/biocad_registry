@@ -96,6 +96,22 @@ registry_data
  common method module for save mysql data
  </summary>
 </member>
+<member name="M:registry_data.biocad_registry.CheckLineage(System.UInt32,System.UInt32)">
+ <summary>
+ Check of the target <paramref name="taxid"/> is belongs to the given <paramref name="ancestor_id"/>.
+ </summary>
+ <param name="taxid"></param>
+ <param name="ancestor_id"></param>
+ <returns></returns>
+</member>
+<member name="M:registry_data.biocad_registry.CheckIdAlias(System.UInt32,System.UInt32)">
+ <summary>
+ Check <paramref name="id"/> could be mapping to <paramref name="main_id"/>
+ </summary>
+ <param name="id"></param>
+ <param name="main_id"></param>
+ <returns></returns>
+</member>
 <member name="F:registry_data.biocad_vocabulary.RoleEnzyme">
  <summary>
  Metabolic Role
