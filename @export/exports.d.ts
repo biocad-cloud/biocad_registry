@@ -14,8 +14,12 @@ declare namespace exports {
     * 
      * @param registry -
      * @param dbname -
+     * 
+     * + default value Is ``null``.
+     * @param topic 
+     * + default value Is ``null``.
    */
-   function export_smiles_data(registry: object, dbname: string): any;
+   function export_smiles_data(registry: object, dbname?: string, topic?: string): object;
    /**
      * @param dbname default value Is ``null``.
    */
