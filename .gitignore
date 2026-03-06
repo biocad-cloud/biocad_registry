@@ -307,3 +307,4 @@ scripts/localdb/molecules.jsonl
 test/2026_v2/exports/biocyc.csv
 test/2026_v2/exports/kegg.csv
 test/2026_v2/exports/lipidmaps.csv
+test/2026_v2/natural_products/plant_np.csv
