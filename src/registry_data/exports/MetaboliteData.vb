@@ -52,6 +52,7 @@ Namespace Exports
                     .left_join("metabolites").on(field("`metabolites`.id") = field("`struct_data`.metabolite_id")) _
                     .where(field("topic_id") = topic_id, field("`topic`.type") = 0) _
                     .limit(offset, page_size) _
+                    .distinct _
                     .select(Of SMILESData)(
                         "CONCAT('CAD-METAB_', model_id) AS xref_id",
                         "smiles",
