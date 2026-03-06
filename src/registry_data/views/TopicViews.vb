@@ -17,8 +17,12 @@ Public Module TopicViews
     <Extension>
     Public Sub MicrobialNP(registry As biocad_registry)
         Dim np_topic As UInteger = registry.biocad_vocabulary.GetTopic("Microbial Natural Products").id
-        ' Viridiplantae
+        ' bacterials
         Dim bacterial_tax As UInteger = 2
+        ' fungi
+        Dim fungi As UInteger = 4751
+        ' archaea
+        Dim archaea As UInteger = 2157
 
         Call registry.NaturalProductLib(np_topic, bacterial_tax)
     End Sub

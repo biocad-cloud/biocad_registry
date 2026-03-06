@@ -76,4 +76,9 @@ Public Module registry_models
     Public Sub build_plantnp(registry As biocad_registry)
         Call TopicViews.PlantNP(registry)
     End Sub
+
+    <ExportAPI("build_microbial_nps")>
+    Public Sub build_fermertation_np(registry As biocad_registry)
+        Call TopicViews.MicrobialNP(registry)
+    End Sub
 End Module
