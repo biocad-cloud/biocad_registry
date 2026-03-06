@@ -10,6 +10,9 @@
 declare namespace models {
    /**
    */
+   function build_microbial_nps(registry: object): ;
+   /**
+   */
    function build_plantnp_library(registry: object): ;
    /**
    */
