@@ -37,6 +37,39 @@ Namespace Exports
             Next
         End Function
 
+        <Extension>
+        Public Iterator Function ExportTopicSMILES(registry As biocad_registry, topic_name As String) As IEnumerable(Of SMILESData)
+            Dim page_size As Integer = 2000
+            Dim offset As UInteger
+            Dim page_data As SMILESData()
+            Dim topic_id As UInteger = registry.biocad_vocabulary.GetTopic(topic_name).id
+
+            For i As Integer = 1 To Integer.MaxValue
+                offset = (i - 1) * page_size
+                page_data = registry.topic _
+                    .left_join("registry_resolver").on(field("`registry_resolver`.id") = field("model_id")) _
+                    .left_join("struct_data").on(field("`struct_data`.metabolite_id") = field("symbol_id")) _
+                    .left_join("metabolites").on(field("`metabolites`.id") = field("`struct_data`.metabolite_id")) _
+                    .where(field("topic_id") = topic_id, field("`topic`.type") = 0) _
+                    .limit(offset, page_size) _
+                    .select(Of SMILESData)(
+                        "CONCAT('CAD-METAB_', model_id) AS xref_id",
+                        "smiles",
+                        "CONCAT('BioCAD', LPAD(metabolite_id, 11, '0')) AS id",
+                        "name",
+                        "formula",
+                        "exact_mass")
+
+                If page_data.IsNullOrEmpty Then
+                    Exit For
+                Else
+                    For Each data As SMILESData In page_data
+                        Yield data
+                    Next
+                End If
+            Next
+        End Function
+
         ''' <summary>
         ''' export primary id to database cross reference mapping, the key is the database cross reference and the value is the list of primary ids that mapped to this cross reference
         ''' </summary>
