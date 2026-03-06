@@ -24,11 +24,11 @@ Public Module TopicViews
         ' archaea
         Dim archaea As UInteger = 2157
 
-        Call registry.NaturalProductLib(np_topic, bacterial_tax)
+        Call registry.NaturalProductLib(np_topic, bacterial_tax, fungi, archaea)
     End Sub
 
     <Extension>
-    Private Sub NaturalProductLib(registry As biocad_registry, np_topic As UInteger, root_tax As UInteger)
+    Private Sub NaturalProductLib(registry As biocad_registry, np_topic As UInteger, ParamArray root_tax As UInteger())
         Dim page_size As Integer = 5000
         Dim metabolite_type As UInteger = registry.biocad_vocabulary.metabolite_type
 
@@ -43,7 +43,7 @@ Public Module TopicViews
             End If
 
             For Each link As biocad_registryModel.organism_source In TqdmWrapper.Wrap(page_data)
-                If registry.CheckLineage(link.organism_id, root_tax) Then
+                If root_tax.Any(Function(taxid) registry.CheckLineage(link.organism_id, taxid)) Then
                     Dim m As metabolites = registry.metabolites _
                         .where(field("id") = link.metabolite_id) _
                         .find(Of metabolites)
