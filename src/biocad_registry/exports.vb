@@ -7,6 +7,7 @@ Imports registry_data.biocad_registryModel
 Imports registry_data.Exports
 Imports registry_exports
 Imports SMRUCC.Rsharp.Runtime.Internal.[Object]
+Imports SMRUCC.Rsharp.Runtime.Interop
 
 <Package("exports")>
 Module exports
@@ -73,12 +74,28 @@ Module exports
     ''' <param name="dbname"></param>
     ''' <returns></returns>
     <ExportAPI("export_smiles_data")>
-    Public Function export_smiles_data(registry As biocad_registry, dbname As String) As Object
-        Return registry.ExportSMILES(dbname) _
+    <RApiReturn(GetType(SMILESData))>
+    Public Function export_smiles_data(registry As biocad_registry,
+                                       Optional dbname As String = Nothing,
+                                       Optional topic As String = Nothing) As Object
+
+        Dim smiles_data As SMILESData()
+
+        If Not dbname.StringEmpty(, True) Then
+            smiles_data = registry.ExportSMILES(dbname).ToArray
+        ElseIf Not topic.StringEmpty(, True) Then
+            smiles_data = registry.ExportTopicSMILES(topic).ToArray
+        Else
+            Return Nothing
+        End If
+
+        smiles_data = smiles_data _
             .Where(Function(r)
                        Return Not r.id.StringEmpty(, True)
                    End Function) _
             .ToArray
+
+        Return smiles_data
     End Function
 
     ''' <summary>
