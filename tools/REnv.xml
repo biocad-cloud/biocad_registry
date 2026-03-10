@@ -15481,6 +15481,15 @@ to take away yo [rest of string was truncated]&quot;;.
  propably returns an array with all element value is nothing
  </returns>
 </member>
+<member name="M:SMRUCC.Rsharp.Runtime.RVectorExtensions.UnsafeTryCastGenericArray(System.Array,System.Type)">
+ <summary>
+ Cast a possible object array to a generic type constrained array
+ </summary>
+ <param name="vec"></param>
+ <returns>
+ propably returns an array with all element value is nothing
+ </returns>
+</member>
 <member name="M:SMRUCC.Rsharp.Runtime.RVectorExtensions.isScalarVector(System.Object)">
  <summary>
  target value is nothing orelse is array with less than or equals to one element?

@@ -29669,6 +29669,21 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <returns>The Pearson of the sequence of values, or null if the source sequence is
  empty or contains only values that are null.</returns>
 </member>
+<member name="M:Microsoft.VisualBasic.Math.Statistics.Linq.EnumerableStatsStandardDeviation.StandardDeviation(System.Collections.Generic.IEnumerable{System.Double})">
+ <summary>
+ Computes the StandardDeviation of a sequence of System.Double values.
+ </summary>
+ <param name="source">A sequence of System.Double values to calculate the StandardDeviation of.</param>
+ <returns>The StandardDeviation of the sequence of values.</returns>
+</member>
+<member name="M:Microsoft.VisualBasic.Math.Statistics.Linq.EnumerableStatsStandardDeviation.StandardDeviation(System.Collections.Generic.IEnumerable{System.Nullable{System.Single}})">
+ <summary>
+ Computes the StandardDeviation of a sequence of nullable System.Single values.
+ </summary>
+ <param name="source">A sequence of nullable System.Single values to calculate the StandardDeviation of.</param>
+ <returns>The StandardDeviation of the sequence of values, or null if the source sequence is
+     empty or contains only values that are null.</returns>
+</member>
 <member name="T:Microsoft.VisualBasic.Math.Statistics.Linq.EnumerableStatsVariance">
  <summary>
  make sqrt of the variance result will be the standard deviation
