@@ -116,8 +116,8 @@ Public Module registry_models
                     field("name") = pwy.name,
                     field("type") = pwy.pwtype,
                     field("taxid") = CInt(Val(pwy.taxid)),
-                    field("dois") = pwy.dois.GetJson,
-                    field("note") = pwy.citations.JoinBy("; ")
+                    field("dois") = pwy.dois.SafeQuery.Where(Function(did) Not did.StringEmpty(, True)).GetJson,
+                    field("note") = pwy.citations.Where(Function(ct) Not ct.StringEmpty(, True)).JoinBy("; ")
                 )
                 check = registry.pathway _
                     .where(field("db_source") = source_db,
