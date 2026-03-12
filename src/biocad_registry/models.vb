@@ -165,7 +165,7 @@ Public Module registry_models
                     Call links.add(
                         field("pathway_id") = check.id,
                         field("symbol_id") = ec_id,
-                        field("class_id") = metab_class,
+                        field("class_id") = enzyme_class,
                         field("note") = pwy.name & $" [{ec_id}]",
                         field("model_id") = If(enz Is Nothing, 0, enz.id)
                     )
@@ -176,7 +176,7 @@ Public Module registry_models
                 Dim check_link = registry.pathway_network _
                     .where(field("pathway_id") = check.id,
                            field("symbol_id") = prot_id,
-                           field("class_id") = enzyme_class) _
+                           field("class_id") = prot_class) _
                     .find(Of pathway_network)
 
                 If check_link Is Nothing Then
