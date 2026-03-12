@@ -207,7 +207,7 @@ Public Module registry_models
                         field("symbol_id") = prot_id,
                         field("class_id") = prot_class,
                         field("note") = pwy.name & $" [{prot_id}]",
-                        field("model_id") = If(uniprot Is Nothing, 0, uniprot.id)
+                        field("model_id") = If(uniprot Is Nothing, 0, uniprot.obj_id)
                     )
                 End If
             Next
