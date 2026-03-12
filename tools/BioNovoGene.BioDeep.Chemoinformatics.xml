@@ -387,10 +387,40 @@ BioNovoGene.BioDeep.Chemoinformatics
  Relative intensity is standardized to 100 as the maximum
  </summary>
 </member>
+<member name="T:BioNovoGene.BioDeep.Chemoinformatics.Formula.Atom">
+ <summary>
+ the atoms metadata for supports build formula and graph in SMILES parser
+ </summary>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.Formula.Atom.valence">
+ <summary>
+ Possible net charge value of current element atom
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:BioNovoGene.BioDeep.Chemoinformatics.Formula.Atom.maxKeys">
+ <summary>
+ the max number of the chemical keys
+ (max charge number)
+ </summary>
+ <returns></returns>
+</member>
 <member name="F:BioNovoGene.BioDeep.Chemoinformatics.Formula.Canonical.orders">
  <summary>
  C -> H -> N -> O -> P -> S -> Cl -> others
  </summary>
+</member>
+<member name="F:BioNovoGene.BioDeep.Chemoinformatics.Formula.ChemicalCalculator.elementDb">
+ <summary>
+ 1. 构建元素查找表
+ </summary>
+</member>
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.Formula.ChemicalCalculator.CalculatePossibleCharges(System.Collections.Generic.Dictionary{System.String,System.Int32})">
+ <summary>
+ 计算化学式可能的电荷数及其概率
+ </summary>
+ <param name="formula">化学式组成字典，如 {"N":1, "H":4}</param>
+ <returns>返回按概率降序排列的列表，包含电荷数和概率值</returns>
 </member>
 <member name="T:BioNovoGene.BioDeep.Chemoinformatics.Formula.Element">
  <summary>

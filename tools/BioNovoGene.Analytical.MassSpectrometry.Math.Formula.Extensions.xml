@@ -84,6 +84,13 @@ BioNovoGene.Analytical.MassSpectrometry.Math.Formula.Extensions
  </returns>
  
 </member>
+<member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.AdductsRanking.GetAdductsFormula(BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType.MzCalculator)">
+ <summary>
+ Parse the adduct formula
+ </summary>
+ <param name="adduct"></param>
+ <returns></returns>
+</member>
 <member name="M:BioNovoGene.Analytical.MassSpectrometry.Math.AnthocyaninValidator.CalculateProbability(System.Collections.Generic.Dictionary{System.String,System.Int32})">
  <summary>
  

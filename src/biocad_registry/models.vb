@@ -1,9 +1,15 @@
 ﻿
+Imports BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.ExtensionModels
+Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm
 Imports Microsoft.VisualBasic.CommandLine.Reflection
+Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Scripting.MetaData
+Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports registry_data
 Imports registry_data.biocad_registryModel
+Imports SMRUCC.genomics.ComponentModel.Annotation
+Imports SMRUCC.Rsharp.Runtime
 Imports SMRUCC.Rsharp.Runtime.Internal.[Object]
 Imports SMRUCC.Rsharp.Runtime.Interop
 Imports SMRUCC.Rsharp.Runtime.Vectorization
@@ -81,4 +87,90 @@ Public Module registry_models
     Public Sub build_fermertation_np(registry As biocad_registry)
         Call TopicViews.MicrobialNP(registry)
     End Sub
+
+    <ExportAPI("imports_pathways")>
+    Public Function imports_pathways(registry As biocad_registry, <RRawVectorArgument> pathways As Object, Optional env As Environment = Nothing) As Object
+        Dim pull As pipeline = pipeline.TryCreatePipeline(Of PathwayGraph)(pathways, env)
+
+        If pull.isError Then
+            Return pull.getError
+        End If
+
+        Dim vocabulary As biocad_vocabulary = registry.biocad_vocabulary
+        Dim metab_class = vocabulary.metabolite_type
+        Dim enzyme_class = vocabulary.db_ECNumber
+
+        For Each pwy As PathwayGraph In TqdmWrapper.Wrap(pull.populates(Of PathwayGraph)(env).ToArray)
+            Dim source_db As UInteger = vocabulary.GetDatabaseResource(pwy.source).id
+            Dim check = registry.pathway _
+                .where(field("db_source") = source_db,
+                       field("accession_id") = pwy.pwacc) _
+                .find(Of biocad_registryModel.pathway)
+            Dim links As CommitTransaction = registry.pathway_network.ignore.open_transaction
+
+            If check Is Nothing Then
+                Call registry.pathway.add(
+                    field("db_source") = source_db, field("accession_id") = pwy.pwacc,
+                    field("name") = pwy.name,
+                    field("type") = pwy.pwtype,
+                    field("taxid") = CInt(Val(pwy.taxid)),
+                    field("dois") = pwy.dois.GetJson,
+                    field("note") = pwy.citations.JoinBy("; ")
+                )
+                check = registry.pathway _
+                    .where(field("db_source") = source_db,
+                           field("accession_id") = pwy.pwacc) _
+                    .order_by("id", desc:=True) _
+                    .find(Of biocad_registryModel.pathway)
+            End If
+
+            For Each cid As String In pwy.cids.SafeQuery
+                Dim check_link = registry.pathway_network _
+                    .where(field("pathway_id") = check.id,
+                           field("symbol_id") = cid,
+                           field("class_id") = metab_class) _
+                    .find(Of pathway_network)
+
+                If check_link Is Nothing Then
+                    Dim metab = registry.metabolites.where(field("pubchem_cid") = cid).find(Of metabolites)
+
+                    Call links.add(
+                        field("pathway_id") = check.id,
+                        field("symbol_id") = cid,
+                        field("class_id") = metab_class,
+                        field("note") = pwy.name & $" [{If(metab Is Nothing, $"CID:{cid}", metab.name)}]",
+                        field("model_id") = If(metab Is Nothing, 0, metab.id)
+                    )
+                End If
+            Next
+
+            For Each ec_id As String In pwy.ecs.SafeQuery
+                Dim check_link = registry.pathway_network _
+                    .where(field("pathway_id") = check.id,
+                           field("symbol_id") = ec_id,
+                           field("class_id") = enzyme_class) _
+                    .find(Of pathway_network)
+
+                If check_link Is Nothing Then
+                    Dim ecnum As ECNumber = ECNumber.ValueParser(ec_id)
+                    Dim enz = registry.enzyme _
+                        .where(field("enzyme_class") = CInt(ecnum.type),
+                               field("sub_class") = ecnum.subType,
+                               field("sub_category") = ecnum.subCategory,
+                               field("enzyme_number") = ecnum.serialNumber) _
+                        .find(Of biocad_registryModel.enzyme)
+
+                    Call links.add(
+                        field("pathway_id") = check.id,
+                        field("symbol_id") = ec_id,
+                        field("class_id") = metab_class,
+                        field("note") = pwy.name & $" [{ec_id}]",
+                        field("model_id") = If(enz Is Nothing, 0, enz.id)
+                    )
+                End If
+            Next
+        Next
+
+        Return Nothing
+    End Function
 End Module

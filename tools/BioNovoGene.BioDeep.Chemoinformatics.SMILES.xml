@@ -6,24 +6,6 @@ BioNovoGene.BioDeep.Chemoinformatics.SMILES
 </name>
 </assembly>
 <members>
-<member name="T:BioNovoGene.BioDeep.Chemoinformatics.SMILES.Atom">
- <summary>
- the atoms metadata for supports build formula and graph in SMILES parser
- </summary>
-</member>
-<member name="P:BioNovoGene.BioDeep.Chemoinformatics.SMILES.Atom.valence">
- <summary>
- Possible net charge value of current element atom
- </summary>
- <returns></returns>
-</member>
-<member name="P:BioNovoGene.BioDeep.Chemoinformatics.SMILES.Atom.maxKeys">
- <summary>
- the max number of the chemical keys
- (max charge number)
- </summary>
- <returns></returns>
-</member>
 <member name="M:BioNovoGene.BioDeep.Chemoinformatics.SMILES.AtomGroup.CheckDefaultLabel(System.String)">
  <summary>
  Check of the given atom group label is existsed inside the default atom group list
@@ -50,7 +32,7 @@ BioNovoGene.BioDeep.Chemoinformatics.SMILES
  </summary>
  <returns></returns>
 </member>
-<member name="M:BioNovoGene.BioDeep.Chemoinformatics.SMILES.FormulaBuilder.Push(BioNovoGene.BioDeep.Chemoinformatics.SMILES.Atom,BioNovoGene.BioDeep.Chemoinformatics.SMILES.ChemicalElement)">
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.SMILES.FormulaBuilder.Push(BioNovoGene.BioDeep.Chemoinformatics.Formula.Atom,BioNovoGene.BioDeep.Chemoinformatics.SMILES.ChemicalElement)">
  <summary>
  add target element group into the target chemical formula data
  </summary>
