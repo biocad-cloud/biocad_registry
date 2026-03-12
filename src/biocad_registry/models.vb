@@ -99,6 +99,8 @@ Public Module registry_models
         Dim vocabulary As biocad_vocabulary = registry.biocad_vocabulary
         Dim metab_class = vocabulary.metabolite_type
         Dim enzyme_class = vocabulary.db_ECNumber
+        Dim prot_class = vocabulary.protein_data
+        Dim db_uniprot = vocabulary.db_uniprot
 
         For Each pwy As PathwayGraph In TqdmWrapper.Wrap(pull.populates(Of PathwayGraph)(env).ToArray)
             Dim source_db As UInteger = vocabulary.GetDatabaseResource(pwy.source).id
@@ -169,6 +171,32 @@ Public Module registry_models
                     )
                 End If
             Next
+
+            For Each prot_id As String In pwy.protacxns.SafeQuery
+                Dim check_link = registry.pathway_network _
+                    .where(field("pathway_id") = check.id,
+                           field("symbol_id") = prot_id,
+                           field("class_id") = enzyme_class) _
+                    .find(Of pathway_network)
+
+                If check_link Is Nothing Then
+                    Dim uniprot = registry.db_xrefs _
+                        .where(field("type") = prot_class,
+                               field("db_name") = db_uniprot,
+                               field("db_xref") = prot_id) _
+                        .find(Of biocad_registryModel.db_xrefs)
+
+                    Call links.add(
+                        field("pathway_id") = check.id,
+                        field("symbol_id") = prot_id,
+                        field("class_id") = prot_class,
+                        field("note") = pwy.name & $" [{prot_id}]",
+                        field("model_id") = If(uniprot Is Nothing, 0, uniprot.id)
+                    )
+                End If
+            Next
+
+            Call links.commit()
         Next
 
         Return Nothing
