@@ -126,7 +126,7 @@ CREATE TABLE `db_xrefs` (
   KEY `find_by_xref` (`db_name`,`db_xref`,`type`),
   KEY `find_by_object` (`type`,`obj_id`),
   KEY `search_xref_word` (`db_xref`)
-) ENGINE=InnoDB AUTO_INCREMENT=11212223 DEFAULT CHARSET=utf8mb3 COMMENT='database cross reference of the model objects ';
+) ENGINE=InnoDB AUTO_INCREMENT=11961599 DEFAULT CHARSET=utf8mb3 COMMENT='database cross reference of the model objects ';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -279,7 +279,7 @@ CREATE TABLE `metabolite_class` (
   UNIQUE KEY `unique_class` (`metabolite_id`,`class_id`),
   KEY `metabolite_info_idx` (`metabolite_id`),
   KEY `class_info_idx` (`class_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=595468 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=1145148 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -323,7 +323,7 @@ CREATE TABLE `metabolites` (
   KEY `find_mesh` (`mesh_id`),
   KEY `find_wiki` (`wikipedia`),
   FULLTEXT KEY `search_text` (`name`,`note`)
-) ENGINE=InnoDB AUTO_INCREMENT=1531872 DEFAULT CHARSET=utf8mb3 COMMENT='[cellular entity model][entity instance] a set of reference metabolites, template based on the www.metabolomicsworkbench.org refmet dataset';
+) ENGINE=InnoDB AUTO_INCREMENT=1994143 DEFAULT CHARSET=utf8mb3 COMMENT='[cellular entity model][entity instance] a set of reference metabolites, template based on the www.metabolomicsworkbench.org refmet dataset';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -393,10 +393,10 @@ CREATE TABLE `ncbi_taxonomy` (
   UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `taxonomy_tree_idx` (`ancestor`),
   KEY `rank_name_idx` (`rank`),
-  KEY `find_by_scientific_name` (`name`) /*!80000 INVISIBLE */,
+  KEY `find_by_scientific_name` (`name`),
   KEY `find_by_zh_name` (`zh_name`),
   KEY `sort_time` (`add_time`),
-  FULLTEXT KEY `search_text` (`name`,`note`) /*!80000 INVISIBLE */
+  FULLTEXT KEY `search_text` (`name`,`note`,`zh_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='[entity instance] the ncbi taxonomy tree data';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -444,6 +444,7 @@ CREATE TABLE `ontology` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
   `term_id` varchar(128) NOT NULL COMMENT 'ontology term id',
   `term` varchar(2048) NOT NULL COMMENT 'term name',
+  `term_zh` varchar(255) DEFAULT NULL COMMENT 'chinease name translation of the term field',
   `ontology_id` int unsigned NOT NULL COMMENT 'external ontology database name, example as gene_ontology for gene_data, protein_ontology for protein_data, chebi ontology for metabolites',
   `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `note` longtext COMMENT 'term description text',
@@ -452,7 +453,7 @@ CREATE TABLE `ontology` (
   UNIQUE KEY `unique_term` (`term_id`,`ontology_id`),
   KEY `ontology_db_idx` (`ontology_id`),
   FULLTEXT KEY `search_text` (`term`,`note`)
-) ENGINE=InnoDB AUTO_INCREMENT=203615 DEFAULT CHARSET=utf8mb3 COMMENT='ontology terms, classification system';
+) ENGINE=InnoDB AUTO_INCREMENT=204378 DEFAULT CHARSET=utf8mb3 COMMENT='ontology terms, classification system';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -473,7 +474,7 @@ CREATE TABLE `ontology_relation` (
   UNIQUE KEY `unique_relation` (`term_id`,`is_a`),
   KEY `term_node_idx` (`term_id`),
   KEY `parent_node_idx` (`is_a`)
-) ENGINE=InnoDB AUTO_INCREMENT=281656 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=282337 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -506,15 +507,43 @@ DROP TABLE IF EXISTS `organism_source`;
 CREATE TABLE `organism_source` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
   `metabolite_id` int unsigned NOT NULL COMMENT 'reference to the metabolite information',
+  `taxname` varchar(255) NOT NULL,
   `organism_id` int unsigned NOT NULL COMMENT 'organism source its ncbi taxonomy id',
-  `evidence` varchar(1024) NOT NULL DEFAULT '-' COMMENT 'usually be the article DOI id/ncbi pubmed id ',
+  `evidence` varchar(255) NOT NULL DEFAULT '-' COMMENT 'usually be the article DOI id/ncbi pubmed id ',
   `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `note` longtext,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
+  UNIQUE KEY `check_unique` (`metabolite_id`,`evidence`,`taxname`),
   KEY `metabolite_data_idx` (`metabolite_id`),
   KEY `organism_info_idx` (`organism_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='metabolite organism source report, or the lcms experiment annotation result based on the experiment sample information associated with the organism information ';
+) ENGINE=InnoDB AUTO_INCREMENT=881293 DEFAULT CHARSET=utf8mb3 COMMENT='metabolite organism source report, or the lcms experiment annotation result based on the experiment sample information associated with the organism information ';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `pathway`
+--
+
+DROP TABLE IF EXISTS `pathway`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `pathway` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `accession_id` varchar(45) DEFAULT NULL,
+  `db_source` int unsigned NOT NULL,
+  `name` varchar(1024) NOT NULL COMMENT 'the pathway name',
+  `type` varchar(45) DEFAULT NULL,
+  `taxid` int unsigned NOT NULL DEFAULT '0',
+  `dois` json DEFAULT NULL COMMENT 'a json array of the doi reference of this pathway',
+  `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `note` longtext COMMENT 'pathway description text',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  UNIQUE KEY `id_index` (`db_source`,`accession_id`),
+  KEY `id_search` (`accession_id`),
+  KEY `filter_tax` (`taxid`),
+  FULLTEXT KEY `search_text` (`name`,`note`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='pathway view(a collection of reaction models) and biological event view.';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -527,32 +556,16 @@ DROP TABLE IF EXISTS `pathway_network`;
 CREATE TABLE `pathway_network` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
   `pathway_id` int unsigned NOT NULL,
-  `event_id` int unsigned NOT NULL,
+  `model_id` int unsigned NOT NULL,
+  `class_id` int unsigned NOT NULL COMMENT 'data type of the reference model object',
   `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `note` longtext,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
+  UNIQUE KEY `unique_link` (`pathway_id`,`model_id`,`class_id`),
   KEY `pathway_info_idx` (`pathway_id`),
-  KEY `biological_events_idx` (`event_id`)
+  KEY `biological_events_idx` (`model_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `pathway_view`
---
-
-DROP TABLE IF EXISTS `pathway_view`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `pathway_view` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(1024) NOT NULL COMMENT 'the pathway name',
-  `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `note` longtext COMMENT 'pathway description text',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `id_UNIQUE` (`id`),
-  FULLTEXT KEY `search_text` (`name`,`note`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='pathway view(a collection of reaction models) and biological event view.';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -705,7 +718,7 @@ CREATE TABLE `refseq` (
   KEY `search_tax1` (`taxid`),
   KEY `search_tax2` (`species_taxid`),
   KEY `filter_tax_group` (`group`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='imports of assembly_summary_refseq.txt';
+) ENGINE=InnoDB AUTO_INCREMENT=492871 DEFAULT CHARSET=utf8mb3 COMMENT='imports of assembly_summary_refseq.txt';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -729,7 +742,7 @@ CREATE TABLE `registry_resolver` (
   KEY `register_namespace_idx` (`type`),
   KEY `metabolite_reference_idx` (`symbol_id`),
   KEY `find_name` (`register_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=279609 DEFAULT CHARSET=utf8mb3 COMMENT='a unify symbol mapping inside the registry database system';
+) ENGINE=InnoDB AUTO_INCREMENT=336483 DEFAULT CHARSET=utf8mb3 COMMENT='a unify symbol mapping inside the registry database system';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -779,7 +792,7 @@ CREATE TABLE `struct_data` (
   UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `metabolite_info_idx` (`metabolite_id`),
   KEY `pdb_modelvalue_idx` (`pdb_data`)
-) ENGINE=InnoDB AUTO_INCREMENT=1194219 DEFAULT CHARSET=utf8mb3 COMMENT='the metabolite molecule structre data';
+) ENGINE=InnoDB AUTO_INCREMENT=1657186 DEFAULT CHARSET=utf8mb3 COMMENT='the metabolite molecule structre data';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -829,7 +842,7 @@ CREATE TABLE `synonym` (
   KEY `entity_metabolite_idx` (`obj_id`,`type`),
   KEY `obj_hash_query` (`type`,`hashcode`),
   FULLTEXT KEY `search_text` (`synonym`)
-) ENGINE=InnoDB AUTO_INCREMENT=6715996 DEFAULT CHARSET=utf8mb3 COMMENT='synonyms, alias names of the model objects';
+) ENGINE=InnoDB AUTO_INCREMENT=10049420 DEFAULT CHARSET=utf8mb3 COMMENT='synonyms, alias names of the model objects';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -852,7 +865,7 @@ CREATE TABLE `topic` (
   KEY `registry_model_idx` (`model_id`),
   KEY `topic_term_idx` (`topic_id`),
   KEY `filter_class_type` (`type`)
-) ENGINE=InnoDB AUTO_INCREMENT=4556842 DEFAULT CHARSET=utf8mb3 COMMENT='topic about the biological model';
+) ENGINE=InnoDB AUTO_INCREMENT=4633424 DEFAULT CHARSET=utf8mb3 COMMENT='topic about the biological model';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -876,7 +889,7 @@ CREATE TABLE `vocabulary` (
   UNIQUE KEY `search_term` (`category`,`term`),
   KEY `ontology_tree_idx` (`parent_id`),
   FULLTEXT KEY `search_text` (`note`)
-) ENGINE=InnoDB AUTO_INCREMENT=748 DEFAULT CHARSET=utf8mb3 COMMENT='vocabulary term inside the registry database';
+) ENGINE=InnoDB AUTO_INCREMENT=751 DEFAULT CHARSET=utf8mb3 COMMENT='vocabulary term inside the registry database';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -896,4 +909,4 @@ CREATE TABLE `vocabulary` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-02-24 23:40:46
+-- Dump completed on 2026-03-12 13:14:24

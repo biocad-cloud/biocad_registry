@@ -32,8 +32,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)mysql\ontology_relation.vb" />
     <Compile Include="$(MSBuildThisFileDirectory)mysql\operon.vb" />
     <Compile Include="$(MSBuildThisFileDirectory)mysql\organism_source.vb" />
+    <Compile Include="$(MSBuildThisFileDirectory)mysql\pathway.vb" />
     <Compile Include="$(MSBuildThisFileDirectory)mysql\pathway_network.vb" />
-    <Compile Include="$(MSBuildThisFileDirectory)mysql\pathway_view.vb" />
     <Compile Include="$(MSBuildThisFileDirectory)mysql\pdb.vb" />
     <Compile Include="$(MSBuildThisFileDirectory)mysql\protein.vb" />
     <Compile Include="$(MSBuildThisFileDirectory)mysql\protein_data.vb" />
