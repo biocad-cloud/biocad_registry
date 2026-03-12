@@ -126,6 +126,10 @@ Public Module registry_models
                     .find(Of biocad_registryModel.pathway)
             End If
 
+            If check Is Nothing Then
+                Throw New InvalidOperationException("create new pathway model error: " & registry.pathway.GetLastErrorMessage)
+            End If
+
             For Each cid As String In pwy.cids.SafeQuery
                 If cid.StringEmpty(, True) Then
                     Continue For
