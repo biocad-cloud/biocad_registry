@@ -127,6 +127,10 @@ Public Module registry_models
             End If
 
             For Each cid As String In pwy.cids.SafeQuery
+                If cid.StringEmpty(, True) Then
+                    Continue For
+                End If
+
                 Dim check_link = registry.pathway_network _
                     .where(field("pathway_id") = check.id,
                            field("symbol_id") = cid,
@@ -147,6 +151,10 @@ Public Module registry_models
             Next
 
             For Each ec_id As String In pwy.ecs.SafeQuery
+                If ec_id.StringEmpty(, True) Then
+                    Continue For
+                End If
+
                 Dim check_link = registry.pathway_network _
                     .where(field("pathway_id") = check.id,
                            field("symbol_id") = ec_id,
@@ -173,6 +181,10 @@ Public Module registry_models
             Next
 
             For Each prot_id As String In pwy.protacxns.SafeQuery
+                If prot_id.StringEmpty(, True) Then
+                    Continue For
+                End If
+
                 Dim check_link = registry.pathway_network _
                     .where(field("pathway_id") = check.id,
                            field("symbol_id") = prot_id,
