@@ -15,6 +15,10 @@ declare namespace models {
    */
    function build_plantnp_library(registry: object): ;
    /**
+     * @param env default value Is ``null``.
+   */
+   function imports_pathways(registry: object, pathways: any, env?: object): any;
+   /**
    */
    function register_metabolic_symbols(registry: object): ;
    /**
