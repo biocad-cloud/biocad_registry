@@ -127,6 +127,18 @@ Public Class biocad_registry : Inherits biocad_registryModel.db_mysql
         End Get
     End Property
 
+    Public ReadOnly Property pathway As TableModel(Of pathway)
+        Get
+            Return m_pathway
+        End Get
+    End Property
+
+    Public ReadOnly Property pathway_network As TableModel(Of pathway_network)
+        Get
+            Return m_pathway_network
+        End Get
+    End Property
+
     Public ReadOnly Property metabolic_network As TableModel(Of biocad_registryModel.metabolic_network)
         Get
             Return m_metabolic_network
