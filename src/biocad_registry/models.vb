@@ -113,7 +113,7 @@ Public Module registry_models
             If check Is Nothing Then
                 Call registry.pathway.add(
                     field("db_source") = source_db, field("accession_id") = pwy.pwacc,
-                    field("name") = pwy.name,
+                    field("name") = If(pwy.name, pwy.pwacc),
                     field("type") = pwy.pwtype,
                     field("taxid") = CInt(Val(pwy.taxid)),
                     field("dois") = pwy.dois.SafeQuery.Where(Function(did) Not did.StringEmpty(, True)).GetJson,
