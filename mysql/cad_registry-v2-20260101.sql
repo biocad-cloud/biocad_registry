@@ -130,6 +130,29 @@ CREATE TABLE `db_xrefs` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `dois`
+--
+
+DROP TABLE IF EXISTS `dois`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `dois` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `doi` varchar(255) NOT NULL,
+  `title` mediumtext NOT NULL,
+  `journal` varchar(255) NOT NULL,
+  `year` int unsigned NOT NULL DEFAULT '0',
+  `pmid` int unsigned NOT NULL,
+  `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `note` longtext,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  UNIQUE KEY `doi_UNIQUE` (`doi`),
+  FULLTEXT KEY `search_text` (`title`,`note`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `enzyme`
 --
 
@@ -529,7 +552,7 @@ DROP TABLE IF EXISTS `pathway`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `pathway` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `accession_id` varchar(45) DEFAULT NULL,
+  `accession_id` varchar(255) NOT NULL,
   `db_source` int unsigned NOT NULL,
   `name` varchar(1024) NOT NULL COMMENT 'the pathway name',
   `type` varchar(45) DEFAULT NULL,
@@ -542,8 +565,9 @@ CREATE TABLE `pathway` (
   UNIQUE KEY `id_index` (`db_source`,`accession_id`),
   KEY `id_search` (`accession_id`),
   KEY `filter_tax` (`taxid`),
+  KEY `find_by_name` (`name`),
   FULLTEXT KEY `search_text` (`name`,`note`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='pathway view(a collection of reaction models) and biological event view.';
+) ENGINE=InnoDB AUTO_INCREMENT=249688 DEFAULT CHARSET=utf8mb3 COMMENT='pathway view(a collection of reaction models) and biological event view.';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -557,6 +581,7 @@ CREATE TABLE `pathway_network` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
   `pathway_id` int unsigned NOT NULL,
   `model_id` int unsigned NOT NULL,
+  `symbol_id` varchar(64) NOT NULL,
   `class_id` int unsigned NOT NULL COMMENT 'data type of the reference model object',
   `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `note` longtext,
@@ -564,8 +589,9 @@ CREATE TABLE `pathway_network` (
   UNIQUE KEY `id_UNIQUE` (`id`),
   UNIQUE KEY `unique_link` (`pathway_id`,`model_id`,`class_id`),
   KEY `pathway_info_idx` (`pathway_id`),
-  KEY `biological_events_idx` (`model_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+  KEY `biological_events_idx` (`model_id`),
+  KEY `link2` (`pathway_id`,`symbol_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5667852 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -641,7 +667,8 @@ CREATE TABLE `protein_data` (
   KEY `pdb_datavalue_idx` (`pdb_data`),
   KEY `find_by_source_id` (`source_db`,`ncbi_taxid`,`source_id`),
   KEY `query_db_locus` (`source_id`,`source_db`),
-  KEY `finter_organism` (`ncbi_taxid`)
+  KEY `finter_organism` (`ncbi_taxid`),
+  FULLTEXT KEY `search_text` (`function`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2560045 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC COMMENT='[entity instance] the instance of the protein with sequence data, used for build a local blastp database';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -889,7 +916,7 @@ CREATE TABLE `vocabulary` (
   UNIQUE KEY `search_term` (`category`,`term`),
   KEY `ontology_tree_idx` (`parent_id`),
   FULLTEXT KEY `search_text` (`note`)
-) ENGINE=InnoDB AUTO_INCREMENT=751 DEFAULT CHARSET=utf8mb3 COMMENT='vocabulary term inside the registry database';
+) ENGINE=InnoDB AUTO_INCREMENT=755 DEFAULT CHARSET=utf8mb3 COMMENT='vocabulary term inside the registry database';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -909,4 +936,4 @@ CREATE TABLE `vocabulary` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-03-12 13:14:24
+-- Dump completed on 2026-03-13 13:55:13
