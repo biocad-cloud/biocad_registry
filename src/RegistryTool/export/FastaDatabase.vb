@@ -47,4 +47,5 @@ Module FastaDatabase
             End If
         End Using
     End Sub
+
 End Module

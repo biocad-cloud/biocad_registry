@@ -17,9 +17,37 @@ Module Program
     Friend ReadOnly registry As New biocad_registry(mysql)
 
     Sub Main(args As String())
+        Call fixMissingSourceID()
         ' Call removesInvalidNameChars()
         ' Call fixMoNANames()
-        Call idSplit.splitCAS_id()
+        ' Call idSplit.splitCAS_id()
+    End Sub
+
+    Sub fixMissingSourceID()
+        Dim page_size As Integer = 10000
+
+        For page As Integer = 1 To Integer.MaxValue
+            Dim save As CommitTransaction = registry.protein_data.ignore.open_transaction
+            Dim offset = (page - 1) * page_size
+            Dim seqs = registry.protein_data _
+                .where(field("source_id").is_nothing Or field("source_id").char_length = 0) _
+                .limit(offset, page_size) _
+                .select(Of biocad_registryModel.protein_data)("id", "source_id", "name")
+
+            If seqs.IsNullOrEmpty Then
+                Exit For
+            End If
+
+            For Each seq In TqdmWrapper.Wrap(seqs)
+                If seq.name.StringEmpty(, True) Then
+                    Call save.add(registry.protein_data.where(field("id") = seq.id).save_sql(field("source_id") = "PROTSEQ_" & seq.id))
+                Else
+                    Call save.add(registry.protein_data.where(field("id") = seq.id).save_sql(field("source_id") = seq.name & "_" & seq.id))
+                End If
+            Next
+
+            Call save.commit()
+        Next
     End Sub
 
     Sub fixMoNANames()
