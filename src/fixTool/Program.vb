@@ -31,7 +31,7 @@ Module Program
             Dim offset = (page - 1) * page_size
             Dim seqs = registry.protein_data _
                 .where(field("source_id").is_nothing Or field("source_id").char_length = 0) _
-                .limit(offset, page_size) _
+                .limit(0, page_size) _
                 .select(Of biocad_registryModel.protein_data)("id", "source_id", "name")
 
             If seqs.IsNullOrEmpty Then
