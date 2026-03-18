@@ -602,4 +602,8 @@ FROM
     Private Sub ExportTagDataToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportTagDataToolStripMenuItem.Click
         Call CommonRuntime.ShowDocument(Of FormMetabolicTopicView)()
     End Sub
+
+    Private Sub ExportProteinDatabaseToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportProteinDatabaseToolStripMenuItem.Click
+        Call FastaDatabase.ExportProteinDatabase()
+    End Sub
 End Class

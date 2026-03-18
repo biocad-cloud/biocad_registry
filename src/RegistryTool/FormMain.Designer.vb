@@ -64,12 +64,14 @@ Partial Class FormMain
         ExportMembraneTransporterToolStripMenuItem = New ToolStripMenuItem()
         ExportEnzymeDatabaseToolStripMenuItem1 = New ToolStripMenuItem()
         ExportConservedOperonDatabaseToolStripMenuItem = New ToolStripMenuItem()
+        ExportProteinDatabaseToolStripMenuItem = New ToolStripMenuItem()
         WindowsToolStripMenuItem = New ToolStripMenuItem()
         CloseAllToolStripMenuItem = New ToolStripMenuItem()
         StatusStrip1 = New StatusStrip()
         ToolStripStatusLabel1 = New ToolStripStatusLabel()
         m_dockPanel = New Microsoft.VisualStudio.WinForms.Docking.DockPanel()
         VisualStudioToolStripExtender1 = New Microsoft.VisualStudio.WinForms.Docking.VisualStudioToolStripExtender(components)
+        ToolStripMenuItem3 = New ToolStripSeparator()
         MenuStrip1.SuspendLayout()
         StatusStrip1.SuspendLayout()
         SuspendLayout()
@@ -303,7 +305,7 @@ Partial Class FormMain
         ' 
         ' FastaDatabaseToolStripMenuItem
         ' 
-        FastaDatabaseToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {ExportMembraneTransporterToolStripMenuItem, ExportEnzymeDatabaseToolStripMenuItem1, ExportConservedOperonDatabaseToolStripMenuItem})
+        FastaDatabaseToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {ExportMembraneTransporterToolStripMenuItem, ExportEnzymeDatabaseToolStripMenuItem1, ExportConservedOperonDatabaseToolStripMenuItem, ToolStripMenuItem3, ExportProteinDatabaseToolStripMenuItem})
         FastaDatabaseToolStripMenuItem.Name = "FastaDatabaseToolStripMenuItem"
         FastaDatabaseToolStripMenuItem.Size = New Size(204, 22)
         FastaDatabaseToolStripMenuItem.Text = "Fasta Database"
@@ -325,6 +327,12 @@ Partial Class FormMain
         ExportConservedOperonDatabaseToolStripMenuItem.Name = "ExportConservedOperonDatabaseToolStripMenuItem"
         ExportConservedOperonDatabaseToolStripMenuItem.Size = New Size(288, 22)
         ExportConservedOperonDatabaseToolStripMenuItem.Text = "Export Conserved Operon Database"
+        ' 
+        ' ExportProteinDatabaseToolStripMenuItem
+        ' 
+        ExportProteinDatabaseToolStripMenuItem.Name = "ExportProteinDatabaseToolStripMenuItem"
+        ExportProteinDatabaseToolStripMenuItem.Size = New Size(288, 22)
+        ExportProteinDatabaseToolStripMenuItem.Text = "Export Protein Database"
         ' 
         ' WindowsToolStripMenuItem
         ' 
@@ -367,6 +375,11 @@ Partial Class FormMain
         ' VisualStudioToolStripExtender1
         ' 
         VisualStudioToolStripExtender1.DefaultRenderer = Nothing
+        ' 
+        ' ToolStripMenuItem3
+        ' 
+        ToolStripMenuItem3.Name = "ToolStripMenuItem3"
+        ToolStripMenuItem3.Size = New Size(285, 6)
         ' 
         ' FormMain
         ' 
@@ -436,4 +449,6 @@ Partial Class FormMain
     Friend WithEvents ToolStripMenuItem6 As ToolStripSeparator
     Friend WithEvents ExportTagDataToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ExportMoNAIDMappingToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ExportProteinDatabaseToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStripMenuItem3 As ToolStripSeparator
 End Class

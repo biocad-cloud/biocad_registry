@@ -65,4 +65,20 @@ Public Module EnzymeData
             End If
         Next
     End Function
+
+    <Extension>
+    Public Iterator Function ExportProteinDb(registry As biocad_registry, Optional page_size As Integer = 5000) As IEnumerable(Of FastaSeq)
+        For page As Integer = 1 To Integer.MaxValue
+            Dim offset As UInteger = (page - 1) * page_size
+            Dim pagedata = registry.protein_data.limit(offset, page_size).select(Of biocad_registryModel.protein_data)
+
+            If pagedata.IsNullOrEmpty Then
+                Exit For
+            End If
+
+            For Each seq As biocad_registryModel.protein_data In pagedata
+                Yield New FastaSeq(New String() {seq.source_id, seq.id}, seq.sequence)
+            Next
+        Next
+    End Function
 End Module
