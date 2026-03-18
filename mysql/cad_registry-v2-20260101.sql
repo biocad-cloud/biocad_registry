@@ -639,6 +639,32 @@ CREATE TABLE `protein` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `protein_cluster`
+--
+
+DROP TABLE IF EXISTS `protein_cluster`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `protein_cluster` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `prot1` int unsigned NOT NULL,
+  `prot2` int unsigned NOT NULL,
+  `identities` float unsigned NOT NULL,
+  `mis_match` int unsigned NOT NULL,
+  `gap_open` int unsigned NOT NULL,
+  `q_start` int unsigned NOT NULL,
+  `q_end` int unsigned NOT NULL,
+  `s_start` int unsigned NOT NULL,
+  `s_end` int unsigned NOT NULL,
+  `e_value` double NOT NULL,
+  `bit_score` float NOT NULL,
+  `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `protein_data`
 --
 
@@ -936,4 +962,4 @@ CREATE TABLE `vocabulary` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-03-13 13:55:13
+-- Dump completed on 2026-03-18 21:45:52
