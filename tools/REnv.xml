@@ -12798,7 +12798,7 @@ to take away yo [rest of string was truncated]&quot;;.
  the class object property used as the dataframe column data
  </remarks>
 </member>
-<member name="M:SMRUCC.Rsharp.Runtime.Internal.Object.dataframe.CreateDataFrame``1(Microsoft.VisualBasic.ComponentModel.DataSourceModel.NamedCollection{``0}[],System.Collections.Generic.IEnumerable{System.String})">
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Object.dataframe.CreateDataFrame``1(System.Collections.Generic.IReadOnlyCollection{Microsoft.VisualBasic.ComponentModel.DataSourceModel.NamedCollection{``0}},System.Collections.Generic.IEnumerable{System.String})">
  <summary>
  Create dataframe from row data
  </summary>
