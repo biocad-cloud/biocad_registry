@@ -462,12 +462,15 @@ FROM
     End Sub
 
     Public Sub StatusMessage(msg As String, Optional icon As Image = Nothing) Implements AppHost.StatusMessage
-        ToolStripStatusLabel1.Text = msg
-        ToolStripStatusLabel1.Image = icon
+        Call Me.Invoke(
+            Sub()
+                ToolStripStatusLabel1.Text = msg
+                ToolStripStatusLabel1.Image = icon
+            End Sub)
     End Sub
 
     Public Sub Warning(msg As String) Implements AppHost.Warning
-        ToolStripStatusLabel1.Text = msg
+        Call Me.Invoke(Sub() ToolStripStatusLabel1.Text = msg)
     End Sub
 
     Public Sub LogText(text As String) Implements AppHost.LogText
