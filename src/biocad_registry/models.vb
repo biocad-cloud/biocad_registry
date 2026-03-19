@@ -221,14 +221,18 @@ Public Module registry_models
     End Function
 
     <ExportAPI("imports_diamond")>
-    Public Function imports_diamond(registry As biocad_registry, <RRawVectorArgument> blastp As Object, Optional check_unique As Boolean = False, Optional env As Environment = Nothing)
+    Public Function imports_diamond(registry As biocad_registry, <RRawVectorArgument> blastp As Object,
+                                    Optional check_unique As Boolean = False,
+                                    Optional batch_size As Integer = 500000,
+                                    Optional env As Environment = Nothing)
+
         Dim pull As pipeline = pipeline.TryCreatePipeline(Of DiamondAnnotation)(blastp, env)
 
         If pull.isError Then
             Return pull.getError
         End If
 
-        For Each block As DiamondAnnotation() In pull.populates(Of DiamondAnnotation)(env).SplitIterator(500000)
+        For Each block As DiamondAnnotation() In pull.populates(Of DiamondAnnotation)(env).SplitIterator(batch_size)
             Dim insert As CommitTransaction = registry.protein_cluster.open_transaction
 
             For Each hit As DiamondAnnotation In block
