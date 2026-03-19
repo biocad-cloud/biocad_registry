@@ -16,9 +16,10 @@ declare namespace models {
    function build_plantnp_library(registry: object): ;
    /**
      * @param check_unique default value Is ``false``.
+     * @param batch_size default value Is ``500000``.
      * @param env default value Is ``null``.
    */
-   function imports_diamond(registry: object, blastp: any, check_unique?: boolean, env?: object): any;
+   function imports_diamond(registry: object, blastp: any, check_unique?: boolean, batch_size?: object, env?: object): any;
    /**
      * @param env default value Is ``null``.
    */
