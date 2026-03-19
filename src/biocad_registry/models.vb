@@ -224,6 +224,7 @@ Public Module registry_models
     Public Function imports_diamond(registry As biocad_registry, <RRawVectorArgument> blastp As Object,
                                     Optional check_unique As Boolean = False,
                                     Optional batch_size As Integer = 500000,
+                                    Optional block_size As Integer = 100000,
                                     Optional env As Environment = Nothing)
 
         Dim pull As pipeline = pipeline.TryCreatePipeline(Of DiamondAnnotation)(blastp, env)
@@ -233,7 +234,7 @@ Public Module registry_models
         End If
 
         For Each block As DiamondAnnotation() In pull.populates(Of DiamondAnnotation)(env).SplitIterator(batch_size)
-            Dim insert As CommitTransaction = registry.protein_cluster.open_transaction
+            Dim insert As CommitTransaction = registry.protein_cluster.open_transaction(blockSize:=block_size)
 
             For Each hit As DiamondAnnotation In block
                 Dim qid As UInteger = hit.QseqId.Split("|"c).Last
