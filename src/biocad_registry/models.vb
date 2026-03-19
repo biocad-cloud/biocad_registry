@@ -228,7 +228,7 @@ Public Module registry_models
             Return pull.getError
         End If
 
-        For Each block As DiamondAnnotation() In pull.populates(Of DiamondAnnotation)(env).SplitIterator(30000)
+        For Each block As DiamondAnnotation() In pull.populates(Of DiamondAnnotation)(env).SplitIterator(500000)
             Dim insert As CommitTransaction = registry.protein_cluster.open_transaction
 
             For Each hit As DiamondAnnotation In block
