@@ -650,6 +650,88 @@ registry_data
  Memberwise clone of current table Object.
  </summary>
 </member>
+<member name="T:registry_data.biocad_registryModel.dois">
+ <summary>
+ ```SQL
+ 
+ --
+ 
+ DROP TABLE IF EXISTS `dois`;
+ /*!40101 SET @saved_cs_client     = @@character_set_client */;
+ /*!50503 SET character_set_client = utf8mb4 */;
+ CREATE TABLE `dois` (
+   `id` int unsigned NOT NULL AUTO_INCREMENT,
+   `doi` varchar(255) NOT NULL,
+   `title` mediumtext NOT NULL,
+   `journal` varchar(255) NOT NULL,
+   `year` int unsigned NOT NULL DEFAULT '0',
+   `pmid` int unsigned NOT NULL,
+   `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+   `note` longtext,
+   PRIMARY KEY (`id`),
+   UNIQUE KEY `id_UNIQUE` (`id`),
+   UNIQUE KEY `doi_UNIQUE` (`doi`),
+   FULLTEXT KEY `search_text` (`title`,`note`)
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+ /*!40101 SET character_set_client = @saved_cs_client */;
+ 
+ --
+ ```
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="M:registry_data.biocad_registryModel.dois.GetDeleteSQL">
+ <summary>
+ ```SQL
+ DELETE FROM `dois` WHERE `id` = '{0}';
+ ```
+ </summary>
+</member>
+<member name="M:registry_data.biocad_registryModel.dois.GetInsertSQL">
+ <summary>
+ ```SQL
+ INSERT INTO `dois` (`id`, `doi`, `title`, `journal`, `year`, `pmid`, `add_time`, `note`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}');
+ ```
+ </summary>
+</member>
+<member name="M:registry_data.biocad_registryModel.dois.GetInsertSQL(System.Boolean)">
+ <summary>
+ ```SQL
+ INSERT INTO `dois` (`id`, `doi`, `title`, `journal`, `year`, `pmid`, `add_time`, `note`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}');
+ ```
+ </summary>
+</member>
+<member name="M:registry_data.biocad_registryModel.dois.GetDumpInsertValue(System.Boolean)">
+ <summary>
+ <see cref="M:registry_data.biocad_registryModel.dois.GetInsertSQL"/>
+ </summary>
+</member>
+<member name="M:registry_data.biocad_registryModel.dois.GetReplaceSQL">
+ <summary>
+ ```SQL
+ REPLACE INTO `dois` (`id`, `doi`, `title`, `journal`, `year`, `pmid`, `add_time`, `note`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}');
+ ```
+ </summary>
+</member>
+<member name="M:registry_data.biocad_registryModel.dois.GetReplaceSQL(System.Boolean)">
+ <summary>
+ ```SQL
+ REPLACE INTO `dois` (`id`, `doi`, `title`, `journal`, `year`, `pmid`, `add_time`, `note`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}');
+ ```
+ </summary>
+</member>
+<member name="M:registry_data.biocad_registryModel.dois.GetUpdateSQL">
+ <summary>
+ ```SQL
+ UPDATE `dois` SET `id`='{0}', `doi`='{1}', `title`='{2}', `journal`='{3}', `year`='{4}', `pmid`='{5}', `add_time`='{6}', `note`='{7}' WHERE `id` = '{8}';
+ ```
+ </summary>
+</member>
+<member name="M:registry_data.biocad_registryModel.dois.Clone">
+ <summary>
+ Memberwise clone of current table Object.
+ </summary>
+</member>
 <member name="T:registry_data.biocad_registryModel.enzyme">
  <summary>
  ```SQL
@@ -2513,7 +2595,7 @@ registry_data
  /*!50503 SET character_set_client = utf8mb4 */;
  CREATE TABLE `pathway` (
    `id` int unsigned NOT NULL AUTO_INCREMENT,
-   `accession_id` varchar(45) DEFAULT NULL,
+   `accession_id` varchar(255) NOT NULL,
    `db_source` int unsigned NOT NULL,
    `name` varchar(1024) NOT NULL COMMENT 'the pathway name',
    `type` varchar(45) DEFAULT NULL,
@@ -2526,8 +2608,9 @@ registry_data
    UNIQUE KEY `id_index` (`db_source`,`accession_id`),
    KEY `id_search` (`accession_id`),
    KEY `filter_tax` (`taxid`),
+   KEY `find_by_name` (`name`),
    FULLTEXT KEY `search_text` (`name`,`note`)
- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='pathway view(a collection of reaction models) and biological event view.';
+ ) ENGINE=InnoDB AUTO_INCREMENT=249688 DEFAULT CHARSET=utf8mb3 COMMENT='pathway view(a collection of reaction models) and biological event view.';
  /*!40101 SET character_set_client = @saved_cs_client */;
  
  --
@@ -2624,6 +2707,7 @@ registry_data
    `id` int unsigned NOT NULL AUTO_INCREMENT,
    `pathway_id` int unsigned NOT NULL,
    `model_id` int unsigned NOT NULL,
+   `symbol_id` varchar(64) NOT NULL,
    `class_id` int unsigned NOT NULL COMMENT 'data type of the reference model object',
    `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
    `note` longtext,
@@ -2631,8 +2715,9 @@ registry_data
    UNIQUE KEY `id_UNIQUE` (`id`),
    UNIQUE KEY `unique_link` (`pathway_id`,`model_id`,`class_id`),
    KEY `pathway_info_idx` (`pathway_id`),
-   KEY `biological_events_idx` (`model_id`)
- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+   KEY `biological_events_idx` (`model_id`),
+   KEY `link2` (`pathway_id`,`symbol_id`)
+ ) ENGINE=InnoDB AUTO_INCREMENT=5667852 DEFAULT CHARSET=utf8mb3;
  /*!40101 SET character_set_client = @saved_cs_client */;
  
  --
@@ -2658,14 +2743,14 @@ registry_data
 <member name="M:registry_data.biocad_registryModel.pathway_network.GetInsertSQL">
  <summary>
  ```SQL
- INSERT INTO `pathway_network` (`id`, `pathway_id`, `model_id`, `class_id`, `add_time`, `note`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}');
+ INSERT INTO `pathway_network` (`id`, `pathway_id`, `model_id`, `symbol_id`, `class_id`, `add_time`, `note`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}');
  ```
  </summary>
 </member>
 <member name="M:registry_data.biocad_registryModel.pathway_network.GetInsertSQL(System.Boolean)">
  <summary>
  ```SQL
- INSERT INTO `pathway_network` (`id`, `pathway_id`, `model_id`, `class_id`, `add_time`, `note`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}');
+ INSERT INTO `pathway_network` (`id`, `pathway_id`, `model_id`, `symbol_id`, `class_id`, `add_time`, `note`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}');
  ```
  </summary>
 </member>
@@ -2677,21 +2762,21 @@ registry_data
 <member name="M:registry_data.biocad_registryModel.pathway_network.GetReplaceSQL">
  <summary>
  ```SQL
- REPLACE INTO `pathway_network` (`id`, `pathway_id`, `model_id`, `class_id`, `add_time`, `note`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}');
+ REPLACE INTO `pathway_network` (`id`, `pathway_id`, `model_id`, `symbol_id`, `class_id`, `add_time`, `note`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}');
  ```
  </summary>
 </member>
 <member name="M:registry_data.biocad_registryModel.pathway_network.GetReplaceSQL(System.Boolean)">
  <summary>
  ```SQL
- REPLACE INTO `pathway_network` (`id`, `pathway_id`, `model_id`, `class_id`, `add_time`, `note`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}');
+ REPLACE INTO `pathway_network` (`id`, `pathway_id`, `model_id`, `symbol_id`, `class_id`, `add_time`, `note`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}');
  ```
  </summary>
 </member>
 <member name="M:registry_data.biocad_registryModel.pathway_network.GetUpdateSQL">
  <summary>
  ```SQL
- UPDATE `pathway_network` SET `id`='{0}', `pathway_id`='{1}', `model_id`='{2}', `class_id`='{3}', `add_time`='{4}', `note`='{5}' WHERE `id` = '{6}';
+ UPDATE `pathway_network` SET `id`='{0}', `pathway_id`='{1}', `model_id`='{2}', `symbol_id`='{3}', `class_id`='{4}', `add_time`='{5}', `note`='{6}' WHERE `id` = '{7}';
  ```
  </summary>
 </member>
@@ -2910,6 +2995,91 @@ registry_data
  Memberwise clone of current table Object.
  </summary>
 </member>
+<member name="T:registry_data.biocad_registryModel.protein_cluster">
+ <summary>
+ ```SQL
+ 
+ --
+ 
+ DROP TABLE IF EXISTS `protein_cluster`;
+ /*!40101 SET @saved_cs_client     = @@character_set_client */;
+ /*!50503 SET character_set_client = utf8mb4 */;
+ CREATE TABLE `protein_cluster` (
+   `id` int unsigned NOT NULL AUTO_INCREMENT,
+   `prot1` int unsigned NOT NULL,
+   `prot2` int unsigned NOT NULL,
+   `identities` float unsigned NOT NULL,
+   `mis_match` int unsigned NOT NULL,
+   `gap_open` int unsigned NOT NULL,
+   `q_start` int unsigned NOT NULL,
+   `q_end` int unsigned NOT NULL,
+   `s_start` int unsigned NOT NULL,
+   `s_end` int unsigned NOT NULL,
+   `e_value` double NOT NULL,
+   `bit_score` float NOT NULL,
+   `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+   PRIMARY KEY (`id`),
+   UNIQUE KEY `id_UNIQUE` (`id`)
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+ /*!40101 SET character_set_client = @saved_cs_client */;
+ 
+ --
+ ```
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="M:registry_data.biocad_registryModel.protein_cluster.GetDeleteSQL">
+ <summary>
+ ```SQL
+ DELETE FROM `protein_cluster` WHERE `id` = '{0}';
+ ```
+ </summary>
+</member>
+<member name="M:registry_data.biocad_registryModel.protein_cluster.GetInsertSQL">
+ <summary>
+ ```SQL
+ INSERT INTO `protein_cluster` (`id`, `prot1`, `prot2`, `identities`, `mis_match`, `gap_open`, `q_start`, `q_end`, `s_start`, `s_end`, `e_value`, `bit_score`, `add_time`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}');
+ ```
+ </summary>
+</member>
+<member name="M:registry_data.biocad_registryModel.protein_cluster.GetInsertSQL(System.Boolean)">
+ <summary>
+ ```SQL
+ INSERT INTO `protein_cluster` (`id`, `prot1`, `prot2`, `identities`, `mis_match`, `gap_open`, `q_start`, `q_end`, `s_start`, `s_end`, `e_value`, `bit_score`, `add_time`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}');
+ ```
+ </summary>
+</member>
+<member name="M:registry_data.biocad_registryModel.protein_cluster.GetDumpInsertValue(System.Boolean)">
+ <summary>
+ <see cref="M:registry_data.biocad_registryModel.protein_cluster.GetInsertSQL"/>
+ </summary>
+</member>
+<member name="M:registry_data.biocad_registryModel.protein_cluster.GetReplaceSQL">
+ <summary>
+ ```SQL
+ REPLACE INTO `protein_cluster` (`id`, `prot1`, `prot2`, `identities`, `mis_match`, `gap_open`, `q_start`, `q_end`, `s_start`, `s_end`, `e_value`, `bit_score`, `add_time`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}');
+ ```
+ </summary>
+</member>
+<member name="M:registry_data.biocad_registryModel.protein_cluster.GetReplaceSQL(System.Boolean)">
+ <summary>
+ ```SQL
+ REPLACE INTO `protein_cluster` (`id`, `prot1`, `prot2`, `identities`, `mis_match`, `gap_open`, `q_start`, `q_end`, `s_start`, `s_end`, `e_value`, `bit_score`, `add_time`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}');
+ ```
+ </summary>
+</member>
+<member name="M:registry_data.biocad_registryModel.protein_cluster.GetUpdateSQL">
+ <summary>
+ ```SQL
+ UPDATE `protein_cluster` SET `id`='{0}', `prot1`='{1}', `prot2`='{2}', `identities`='{3}', `mis_match`='{4}', `gap_open`='{5}', `q_start`='{6}', `q_end`='{7}', `s_start`='{8}', `s_end`='{9}', `e_value`='{10}', `bit_score`='{11}', `add_time`='{12}' WHERE `id` = '{13}';
+ ```
+ </summary>
+</member>
+<member name="M:registry_data.biocad_registryModel.protein_cluster.Clone">
+ <summary>
+ Memberwise clone of current table Object.
+ </summary>
+</member>
 <member name="T:registry_data.biocad_registryModel.protein_data">
  <summary>
  ```SQL
@@ -2941,7 +3111,8 @@ registry_data
    KEY `pdb_datavalue_idx` (`pdb_data`),
    KEY `find_by_source_id` (`source_db`,`ncbi_taxid`,`source_id`),
    KEY `query_db_locus` (`source_id`,`source_db`),
-   KEY `finter_organism` (`ncbi_taxid`)
+   KEY `finter_organism` (`ncbi_taxid`),
+   FULLTEXT KEY `search_text` (`function`)
  ) ENGINE=InnoDB AUTO_INCREMENT=2560045 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC COMMENT='[entity instance] the instance of the protein with sequence data, used for build a local blastp database';
  /*!40101 SET character_set_client = @saved_cs_client */;
  
@@ -4067,7 +4238,7 @@ registry_data
    UNIQUE KEY `search_term` (`category`,`term`),
    KEY `ontology_tree_idx` (`parent_id`),
    FULLTEXT KEY `search_text` (`note`)
- ) ENGINE=InnoDB AUTO_INCREMENT=751 DEFAULT CHARSET=utf8mb3 COMMENT='vocabulary term inside the registry database';
+ ) ENGINE=InnoDB AUTO_INCREMENT=755 DEFAULT CHARSET=utf8mb3 COMMENT='vocabulary term inside the registry database';
  /*!40101 SET character_set_client = @saved_cs_client */;
  
  --
@@ -4087,7 +4258,7 @@ registry_data
  /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
  /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
  
- -- Dump completed on 2026-03-12 13:14:24
+ -- Dump completed on 2026-03-18 21:45:52
  ```
  </summary>
  <remarks></remarks>

@@ -17,6 +17,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)mysql\conserved_operon.vb" />
     <Compile Include="$(MSBuildThisFileDirectory)mysql\db_mysql.vb" />
     <Compile Include="$(MSBuildThisFileDirectory)mysql\db_xrefs.vb" />
+    <Compile Include="$(MSBuildThisFileDirectory)mysql\dois.vb" />
     <Compile Include="$(MSBuildThisFileDirectory)mysql\enzyme.vb" />
     <Compile Include="$(MSBuildThisFileDirectory)mysql\gene.vb" />
     <Compile Include="$(MSBuildThisFileDirectory)mysql\gene_ontology.vb" />

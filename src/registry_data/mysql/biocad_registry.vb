@@ -25,6 +25,12 @@ Public Class biocad_registry : Inherits biocad_registryModel.db_mysql
         End Get
     End Property
 
+    Public ReadOnly Property dois As TableModel(Of dois)
+        Get
+            Return m_dois
+        End Get
+    End Property
+
     Public ReadOnly Property ontology As TableModel(Of biocad_registryModel.ontology)
         Get
             Return m_ontology
