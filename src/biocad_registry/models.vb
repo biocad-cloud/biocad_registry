@@ -221,7 +221,7 @@ Public Module registry_models
     End Function
 
     <ExportAPI("imports_diamond")>
-    Public Function imports_diamond(registry As biocad_registry, <RRawVectorArgument> blastp As Object, Optional env As Environment = Nothing)
+    Public Function imports_diamond(registry As biocad_registry, <RRawVectorArgument> blastp As Object, Optional check_unique As Boolean = False, Optional env As Environment = Nothing)
         Dim pull As pipeline = pipeline.TryCreatePipeline(Of DiamondAnnotation)(blastp, env)
 
         If pull.isError Then
@@ -234,12 +234,16 @@ Public Module registry_models
             For Each hit As DiamondAnnotation In TqdmWrapper.Wrap(block)
                 Dim qid As UInteger = hit.QseqId.Split("|"c).Last
                 Dim sid As UInteger = hit.SseqId.Split("|"c).Last
+                Dim make_insert As Boolean = True
 
-                If registry.protein_cluster _
-                    .where(field("query_id") = qid,
-                           field("hit_id") = sid) _
-                    .find(Of biocad_registryModel.protein_cluster) Is Nothing Then
+                If check_unique Then
+                    make_insert = registry.protein_cluster _
+                        .where(field("query_id") = qid,
+                               field("hit_id") = sid) _
+                        .find(Of biocad_registryModel.protein_cluster) Is Nothing
+                End If
 
+                If make_insert Then
                     Call insert.add(
                         field("query_id") = qid,
                            field("hit_id") = sid,
