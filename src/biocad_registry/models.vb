@@ -271,6 +271,7 @@ Public Module registry_models
         Return Nothing
     End Function
 
+    <ExportAPI("make_protein_clusters")>
     Public Function make_protein_clusters(registry As biocad_registry, Optional cutoff As Double = 50)
         Dim page_size As Integer = 5000
 
