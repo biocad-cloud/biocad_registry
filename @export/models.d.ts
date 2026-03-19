@@ -15,6 +15,11 @@ declare namespace models {
    */
    function build_plantnp_library(registry: object): ;
    /**
+     * @param check_unique default value Is ``false``.
+     * @param env default value Is ``null``.
+   */
+   function imports_diamond(registry: object, blastp: any, check_unique?: boolean, env?: object): any;
+   /**
      * @param env default value Is ``null``.
    */
    function imports_pathways(registry: object, pathways: any, env?: object): any;

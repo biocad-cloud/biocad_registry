@@ -9,3 +9,4 @@
 + [build_plantnp_library](models/build_plantnp_library.1) 
 + [build_microbial_nps](models/build_microbial_nps.1) 
 + [imports_pathways](models/imports_pathways.1) 
++ [imports_diamond](models/imports_diamond.1) 
