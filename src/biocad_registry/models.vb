@@ -276,10 +276,40 @@ Public Module registry_models
 
         For page As Integer = 1 To Integer.MaxValue
             Dim offset = (page - 1) * page_size
-            Dim proteins = registry.protein_data _
+            Dim proteins As protein_data() = registry.protein_data _
                 .limit(offset, page_size) _
                 .select(Of biocad_registryModel.protein_data)
 
+            For Each protein As protein_data In TqdmWrapper.Wrap(proteins)
+                If protein.cluster_id > 0 Then
+                    ' 如果已经被归簇，跳过
+                    Continue For
+                End If
+
+                Dim cluster As protein_cluster() = registry.protein_cluster _
+                    .where(field("query_id") = protein.id,
+                           field("identities") > 30) _
+                    .order_by("identities", desc:=True) _
+                    .limit(100) _
+                    .select(Of protein_cluster)
+
+                For Each hit As protein_cluster In cluster
+                    Dim hit_model As protein_data = registry.protein_data _
+                        .where(field("id") = hit.hit_id) _
+                        .find(Of protein_data)("cluster_id")
+
+                    ' 跳过丢失的蛋白模型数据以及已经有分类信息的蛋白模型
+                    If hit_model Is Nothing OrElse hit_model.cluster_id > 0 Then
+                        Continue For
+                    End If
+
+                    Call registry.protein_data _
+                        .where(field("id") = hit_model.id) _
+                        .save(field("cluster_id") = protein.id)
+                Next
+            Next
         Next
+
+        Return Nothing
     End Function
 End Module
