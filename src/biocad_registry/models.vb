@@ -290,28 +290,28 @@ Public Module registry_models
                         .save(field("cluster_id") = protein.id)
                 End If
 
-                Dim update As CommitTransaction = registry.protein_data.open_transaction
-                Dim cluster As protein_cluster() = registry.protein_cluster _
-                    .where(field("query_id") = protein.id,
-                           field("identities") > cutoff) _
-                    .select(Of protein_cluster)
+                Dim cluster_key As UInteger = protein.id
+                Dim query_id As UInteger() = {protein.id}
 
-                For Each hit As protein_cluster In cluster
-                    Dim hit_model As protein_data = registry.protein_data _
-                        .where(field("id") = hit.hit_id) _
-                        .find(Of protein_data)("cluster_id")
+                Do While True
+                    Dim cluster As protein_data() = registry.protein_cluster _
+                        .left_join("protein_data") _
+                        .on(field("`protein_data`.id") = field("hit_id")) _
+                        .where(field("query_id").in(query_id),
+                               field("identities") > cutoff,
+                               field("`protein_data`.cluster_id") = 0) _
+                        .select(Of protein_data)("`protein_data`.*")
 
-                    ' 跳过丢失的蛋白模型数据以及已经有分类信息的蛋白模型
-                    If hit_model Is Nothing OrElse hit_model.cluster_id > 0 Then
-                        Continue For
+                    If cluster.IsNullOrEmpty Then
+                        Exit Do
+                    Else
+                        query_id = (From prot As protein_data In cluster Select prot.id).ToArray
                     End If
 
-                    Call update.add(registry.protein_data _
-                        .where(field("id") = hit_model.id) _
-                        .save_sql(field("cluster_id") = protein.id))
-                Next
-
-                Call update.commit()
+                    registry.protein_data _
+                        .where(field("id").in(query_id)) _
+                        .save(field("cluster_id") = protein.id)
+                Loop
             Next
         Next
 
