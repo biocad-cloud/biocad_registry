@@ -272,7 +272,7 @@ Public Module registry_models
     End Function
 
     <ExportAPI("make_protein_clusters")>
-    Public Function make_protein_clusters(registry As biocad_registry, Optional cutoff As Double = 50)
+    Public Function make_protein_clusters(registry As biocad_registry, Optional cutoff As Double = 30, Optional eval_cutoff As Double = 0.00001)
         Dim page_size As Integer = 5000
 
         For page As Integer = 1 To Integer.MaxValue
@@ -300,6 +300,7 @@ Public Module registry_models
                         .on(field("`protein_data`.id") = field("hit_id")) _
                         .where(field("query_id").in(query_id),
                                field("identities") > cutoff,
+                               field("e_value") < eval_cutoff,
                                field("`protein_data`.cluster_id") = 0) _
                         .project(Of UInteger)("`protein_data`.id")
 

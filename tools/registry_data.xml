@@ -3005,7 +3005,6 @@ registry_data
  /*!40101 SET @saved_cs_client     = @@character_set_client */;
  /*!50503 SET character_set_client = utf8mb4 */;
  CREATE TABLE `protein_cluster` (
-   `id` int unsigned NOT NULL AUTO_INCREMENT,
    `query_id` int unsigned NOT NULL COMMENT 'id reference to the protein fasta table',
    `hit_id` int unsigned NOT NULL COMMENT 'id reference to the protein fasta table',
    `identities` float unsigned NOT NULL COMMENT 'protein sequence similarity score value',
@@ -3018,9 +3017,9 @@ registry_data
    `e_value` double NOT NULL,
    `bit_score` float NOT NULL,
    `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-   PRIMARY KEY (`id`),
-   UNIQUE KEY `id_UNIQUE` (`id`),
-   UNIQUE KEY `unique_idx_edge` (`query_id`,`hit_id`)
+   PRIMARY KEY (`query_id`,`hit_id`),
+   UNIQUE KEY `diamond_idx_edge` (`query_id`,`hit_id`),
+   KEY `rank_score` (`identities` DESC)
  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
  /*!40101 SET character_set_client = @saved_cs_client */;
  
@@ -3056,21 +3055,21 @@ registry_data
 <member name="M:registry_data.biocad_registryModel.protein_cluster.GetDeleteSQL">
  <summary>
  ```SQL
- DELETE FROM `protein_cluster` WHERE `id` = '{0}';
+ DELETE FROM `protein_cluster` WHERE `query_id`='{0}' and `hit_id`='{1}';
  ```
  </summary>
 </member>
 <member name="M:registry_data.biocad_registryModel.protein_cluster.GetInsertSQL">
  <summary>
  ```SQL
- INSERT INTO `protein_cluster` (`id`, `query_id`, `hit_id`, `identities`, `mis_match`, `gap_open`, `q_start`, `q_end`, `s_start`, `s_end`, `e_value`, `bit_score`, `add_time`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}');
+ INSERT INTO `protein_cluster` (`query_id`, `hit_id`, `identities`, `mis_match`, `gap_open`, `q_start`, `q_end`, `s_start`, `s_end`, `e_value`, `bit_score`, `add_time`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}');
  ```
  </summary>
 </member>
 <member name="M:registry_data.biocad_registryModel.protein_cluster.GetInsertSQL(System.Boolean)">
  <summary>
  ```SQL
- INSERT INTO `protein_cluster` (`id`, `query_id`, `hit_id`, `identities`, `mis_match`, `gap_open`, `q_start`, `q_end`, `s_start`, `s_end`, `e_value`, `bit_score`, `add_time`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}');
+ INSERT INTO `protein_cluster` (`query_id`, `hit_id`, `identities`, `mis_match`, `gap_open`, `q_start`, `q_end`, `s_start`, `s_end`, `e_value`, `bit_score`, `add_time`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}');
  ```
  </summary>
 </member>
@@ -3082,21 +3081,21 @@ registry_data
 <member name="M:registry_data.biocad_registryModel.protein_cluster.GetReplaceSQL">
  <summary>
  ```SQL
- REPLACE INTO `protein_cluster` (`id`, `query_id`, `hit_id`, `identities`, `mis_match`, `gap_open`, `q_start`, `q_end`, `s_start`, `s_end`, `e_value`, `bit_score`, `add_time`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}');
+ REPLACE INTO `protein_cluster` (`query_id`, `hit_id`, `identities`, `mis_match`, `gap_open`, `q_start`, `q_end`, `s_start`, `s_end`, `e_value`, `bit_score`, `add_time`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}');
  ```
  </summary>
 </member>
 <member name="M:registry_data.biocad_registryModel.protein_cluster.GetReplaceSQL(System.Boolean)">
  <summary>
  ```SQL
- REPLACE INTO `protein_cluster` (`id`, `query_id`, `hit_id`, `identities`, `mis_match`, `gap_open`, `q_start`, `q_end`, `s_start`, `s_end`, `e_value`, `bit_score`, `add_time`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}');
+ REPLACE INTO `protein_cluster` (`query_id`, `hit_id`, `identities`, `mis_match`, `gap_open`, `q_start`, `q_end`, `s_start`, `s_end`, `e_value`, `bit_score`, `add_time`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}');
  ```
  </summary>
 </member>
 <member name="M:registry_data.biocad_registryModel.protein_cluster.GetUpdateSQL">
  <summary>
  ```SQL
- UPDATE `protein_cluster` SET `id`='{0}', `query_id`='{1}', `hit_id`='{2}', `identities`='{3}', `mis_match`='{4}', `gap_open`='{5}', `q_start`='{6}', `q_end`='{7}', `s_start`='{8}', `s_end`='{9}', `e_value`='{10}', `bit_score`='{11}', `add_time`='{12}' WHERE `id` = '{13}';
+ UPDATE `protein_cluster` SET `query_id`='{0}', `hit_id`='{1}', `identities`='{2}', `mis_match`='{3}', `gap_open`='{4}', `q_start`='{5}', `q_end`='{6}', `s_start`='{7}', `s_end`='{8}', `e_value`='{9}', `bit_score`='{10}', `add_time`='{11}' WHERE `query_id`='{12}' and `hit_id`='{13}';
  ```
  </summary>
 </member>
@@ -3121,7 +3120,8 @@ registry_data
    `name` varchar(45) NOT NULL COMMENT 'protein name',
    `function` varchar(2048) NOT NULL COMMENT 'the protein function description',
    `gene_id` int unsigned NOT NULL COMMENT 'reference to the gene instance id(not gene model table)',
-   `protein_id` int unsigned NOT NULL COMMENT 'id reference to the reference protein table(protein model table)',
+   `cluster_id` int unsigned NOT NULL DEFAULT '0' COMMENT 'protein cluster id',
+   `protein_id` int unsigned NOT NULL DEFAULT '0' COMMENT 'id reference to the reference protein table(protein model table)',
    `ncbi_taxid` int unsigned NOT NULL DEFAULT '0',
    `sequence` longtext NOT NULL COMMENT 'protein sequence, should be in upper case',
    `checksum` char(32) NOT NULL COMMENT 'md5 hash checksum of the protein sequence',
@@ -3137,6 +3137,7 @@ registry_data
    KEY `find_by_source_id` (`source_db`,`ncbi_taxid`,`source_id`),
    KEY `query_db_locus` (`source_id`,`source_db`),
    KEY `finter_organism` (`ncbi_taxid`),
+   KEY `filter_cluster` (`cluster_id`),
    FULLTEXT KEY `search_text` (`function`)
  ) ENGINE=InnoDB AUTO_INCREMENT=2560045 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC COMMENT='[entity instance] the instance of the protein with sequence data, used for build a local blastp database';
  /*!40101 SET character_set_client = @saved_cs_client */;
@@ -3181,6 +3182,14 @@ registry_data
 <member name="P:registry_data.biocad_registryModel.protein_data.gene_id">
  <summary>
  reference to the gene instance id(not gene model table)
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:registry_data.biocad_registryModel.protein_data.cluster_id">
+ <summary>
+ protein cluster id
  </summary>
  <value></value>
  <returns></returns>
@@ -3236,14 +3245,14 @@ registry_data
 <member name="M:registry_data.biocad_registryModel.protein_data.GetInsertSQL">
  <summary>
  ```SQL
- INSERT INTO `protein_data` (`id`, `source_id`, `source_db`, `name`, `function`, `gene_id`, `protein_id`, `ncbi_taxid`, `sequence`, `checksum`, `fingerprint`, `pdb_data`, `add_time`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}');
+ INSERT INTO `protein_data` (`id`, `source_id`, `source_db`, `name`, `function`, `gene_id`, `cluster_id`, `protein_id`, `ncbi_taxid`, `sequence`, `checksum`, `fingerprint`, `pdb_data`, `add_time`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}');
  ```
  </summary>
 </member>
 <member name="M:registry_data.biocad_registryModel.protein_data.GetInsertSQL(System.Boolean)">
  <summary>
  ```SQL
- INSERT INTO `protein_data` (`id`, `source_id`, `source_db`, `name`, `function`, `gene_id`, `protein_id`, `ncbi_taxid`, `sequence`, `checksum`, `fingerprint`, `pdb_data`, `add_time`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}');
+ INSERT INTO `protein_data` (`id`, `source_id`, `source_db`, `name`, `function`, `gene_id`, `cluster_id`, `protein_id`, `ncbi_taxid`, `sequence`, `checksum`, `fingerprint`, `pdb_data`, `add_time`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}');
  ```
  </summary>
 </member>
@@ -3255,21 +3264,21 @@ registry_data
 <member name="M:registry_data.biocad_registryModel.protein_data.GetReplaceSQL">
  <summary>
  ```SQL
- REPLACE INTO `protein_data` (`id`, `source_id`, `source_db`, `name`, `function`, `gene_id`, `protein_id`, `ncbi_taxid`, `sequence`, `checksum`, `fingerprint`, `pdb_data`, `add_time`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}');
+ REPLACE INTO `protein_data` (`id`, `source_id`, `source_db`, `name`, `function`, `gene_id`, `cluster_id`, `protein_id`, `ncbi_taxid`, `sequence`, `checksum`, `fingerprint`, `pdb_data`, `add_time`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}');
  ```
  </summary>
 </member>
 <member name="M:registry_data.biocad_registryModel.protein_data.GetReplaceSQL(System.Boolean)">
  <summary>
  ```SQL
- REPLACE INTO `protein_data` (`id`, `source_id`, `source_db`, `name`, `function`, `gene_id`, `protein_id`, `ncbi_taxid`, `sequence`, `checksum`, `fingerprint`, `pdb_data`, `add_time`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}');
+ REPLACE INTO `protein_data` (`id`, `source_id`, `source_db`, `name`, `function`, `gene_id`, `cluster_id`, `protein_id`, `ncbi_taxid`, `sequence`, `checksum`, `fingerprint`, `pdb_data`, `add_time`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}');
  ```
  </summary>
 </member>
 <member name="M:registry_data.biocad_registryModel.protein_data.GetUpdateSQL">
  <summary>
  ```SQL
- UPDATE `protein_data` SET `id`='{0}', `source_id`='{1}', `source_db`='{2}', `name`='{3}', `function`='{4}', `gene_id`='{5}', `protein_id`='{6}', `ncbi_taxid`='{7}', `sequence`='{8}', `checksum`='{9}', `fingerprint`='{10}', `pdb_data`='{11}', `add_time`='{12}' WHERE `id` = '{13}';
+ UPDATE `protein_data` SET `id`='{0}', `source_id`='{1}', `source_db`='{2}', `name`='{3}', `function`='{4}', `gene_id`='{5}', `cluster_id`='{6}', `protein_id`='{7}', `ncbi_taxid`='{8}', `sequence`='{9}', `checksum`='{10}', `fingerprint`='{11}', `pdb_data`='{12}', `add_time`='{13}' WHERE `id` = '{14}';
  ```
  </summary>
 </member>
@@ -4283,7 +4292,7 @@ registry_data
  /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
  /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
  
- -- Dump completed on 2026-03-19  9:53:36
+ -- Dump completed on 2026-03-19 13:47:45
  ```
  </summary>
  <remarks></remarks>
