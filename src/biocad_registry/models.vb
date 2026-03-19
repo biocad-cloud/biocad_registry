@@ -3,12 +3,14 @@ Imports BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.ExtensionModels
 Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm
 Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.Linq
+Imports Microsoft.VisualBasic.Parallel.Linq
 Imports Microsoft.VisualBasic.Scripting.MetaData
 Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports registry_data
 Imports registry_data.biocad_registryModel
 Imports SMRUCC.genomics.ComponentModel.Annotation
+Imports SMRUCC.genomics.Interops.NCBI.Extensions
 Imports SMRUCC.Rsharp.Runtime
 Imports SMRUCC.Rsharp.Runtime.Internal.[Object]
 Imports SMRUCC.Rsharp.Runtime.Interop
@@ -213,6 +215,27 @@ Public Module registry_models
             Next
 
             Call links.commit()
+        Next
+
+        Return Nothing
+    End Function
+
+    <ExportAPI("imports_diamond")>
+    Public Function imports_diamond(registry As biocad_registry, <RRawVectorArgument> blastp As Object, Optional env As Environment = Nothing)
+        Dim pull As pipeline = pipeline.TryCreatePipeline(Of DiamondAnnotation)(blastp, env)
+
+        If pull.isError Then
+            Return pull.getError
+        End If
+
+        For Each block As DiamondAnnotation() In pull.populates(Of DiamondAnnotation)(env).SplitIterator(30000)
+            Dim insert As CommitTransaction = registry.protein_cluster.ignore.open_transaction
+
+            For Each hit As DiamondAnnotation In TqdmWrapper.Wrap(block)
+
+            Next
+
+            Call insert.commit()
         Next
 
         Return Nothing

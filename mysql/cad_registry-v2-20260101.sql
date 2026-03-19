@@ -647,9 +647,9 @@ DROP TABLE IF EXISTS `protein_cluster`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `protein_cluster` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `prot1` int unsigned NOT NULL,
-  `prot2` int unsigned NOT NULL,
-  `identities` float unsigned NOT NULL,
+  `query_id` int unsigned NOT NULL COMMENT 'id reference to the protein fasta table',
+  `hit_id` int unsigned NOT NULL COMMENT 'id reference to the protein fasta table',
+  `identities` float unsigned NOT NULL COMMENT 'protein sequence similarity score value',
   `mis_match` int unsigned NOT NULL,
   `gap_open` int unsigned NOT NULL,
   `q_start` int unsigned NOT NULL,
@@ -660,7 +660,8 @@ CREATE TABLE `protein_cluster` (
   `bit_score` float NOT NULL,
   `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `id_UNIQUE` (`id`)
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  UNIQUE KEY `unique_idx_edge` (`query_id`,`hit_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -962,4 +963,4 @@ CREATE TABLE `vocabulary` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-03-18 21:45:52
+-- Dump completed on 2026-03-19  9:53:36
