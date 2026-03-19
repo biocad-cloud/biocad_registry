@@ -278,7 +278,7 @@ Public Module registry_models
             Dim offset = (page - 1) * page_size
             Dim proteins As protein_data() = registry.protein_data _
                 .limit(offset, page_size) _
-                .select(Of biocad_registryModel.protein_data)
+                .select(Of biocad_registryModel.protein_data)("id", "cluster_id")
 
             For Each protein As protein_data In TqdmWrapper.Wrap(proteins)
                 If protein.cluster_id > 0 Then
@@ -294,23 +294,21 @@ Public Module registry_models
                 Dim query_id As UInteger() = {protein.id}
 
                 Do While True
-                    Dim cluster As protein_data() = registry.protein_cluster _
+                    query_id = registry.protein_cluster _
                         .left_join("protein_data") _
                         .on(field("`protein_data`.id") = field("hit_id")) _
                         .where(field("query_id").in(query_id),
                                field("identities") > cutoff,
                                field("`protein_data`.cluster_id") = 0) _
-                        .select(Of protein_data)("`protein_data`.*")
+                        .project(Of UInteger)("`protein_data`.id")
 
-                    If cluster.IsNullOrEmpty Then
+                    If query_id.IsNullOrEmpty Then
                         Exit Do
-                    Else
-                        query_id = (From prot As protein_data In cluster Select prot.id).ToArray
                     End If
 
                     registry.protein_data _
                         .where(field("id").in(query_id)) _
-                        .save(field("cluster_id") = protein.id)
+                        .save(field("cluster_id") = cluster_key)
                 Loop
             Next
         Next
