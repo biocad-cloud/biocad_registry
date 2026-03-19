@@ -231,7 +231,7 @@ Public Module registry_models
         For Each block As DiamondAnnotation() In pull.populates(Of DiamondAnnotation)(env).SplitIterator(30000)
             Dim insert As CommitTransaction = registry.protein_cluster.open_transaction
 
-            For Each hit As DiamondAnnotation In TqdmWrapper.Wrap(block)
+            For Each hit As DiamondAnnotation In block
                 Dim qid As UInteger = hit.QseqId.Split("|"c).Last
                 Dim sid As UInteger = hit.SseqId.Split("|"c).Last
                 Dim make_insert As Boolean = True
