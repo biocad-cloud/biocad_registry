@@ -271,7 +271,7 @@ Public Module registry_models
         Return Nothing
     End Function
 
-    Public Function make_protein_clusters(registry As biocad_registry)
+    Public Function make_protein_clusters(registry As biocad_registry, Optional cutoff As Double = 50)
         Dim page_size As Integer = 5000
 
         For page As Integer = 1 To Integer.MaxValue
@@ -284,13 +284,16 @@ Public Module registry_models
                 If protein.cluster_id > 0 Then
                     ' 如果已经被归簇，跳过
                     Continue For
+                Else
+                    Call registry.protein_data _
+                        .where(field("id") = protein.id) _
+                        .save(field("cluster_id") = protein.id)
                 End If
 
+                Dim update As CommitTransaction = registry.protein_data.open_transaction
                 Dim cluster As protein_cluster() = registry.protein_cluster _
                     .where(field("query_id") = protein.id,
-                           field("identities") > 30) _
-                    .order_by("identities", desc:=True) _
-                    .limit(100) _
+                           field("identities") > cutoff) _
                     .select(Of protein_cluster)
 
                 For Each hit As protein_cluster In cluster
@@ -303,10 +306,12 @@ Public Module registry_models
                         Continue For
                     End If
 
-                    Call registry.protein_data _
+                    Call update.add(registry.protein_data _
                         .where(field("id") = hit_model.id) _
-                        .save(field("cluster_id") = protein.id)
+                        .save_sql(field("cluster_id") = protein.id))
                 Next
+
+                Call update.commit()
             Next
         Next
 
