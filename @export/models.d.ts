@@ -17,9 +17,10 @@ declare namespace models {
    /**
      * @param check_unique default value Is ``false``.
      * @param batch_size default value Is ``500000``.
+     * @param block_size default value Is ``100000``.
      * @param env default value Is ``null``.
    */
-   function imports_diamond(registry: object, blastp: any, check_unique?: boolean, batch_size?: object, env?: object): any;
+   function imports_diamond(registry: object, blastp: any, check_unique?: boolean, batch_size?: object, block_size?: object, env?: object): any;
    /**
      * @param env default value Is ``null``.
    */
