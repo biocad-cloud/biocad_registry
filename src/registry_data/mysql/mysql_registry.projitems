@@ -36,6 +36,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)mysql\pathway_network.vb" />
     <Compile Include="$(MSBuildThisFileDirectory)mysql\pdb.vb" />
     <Compile Include="$(MSBuildThisFileDirectory)mysql\protein.vb" />
+    <Compile Include="$(MSBuildThisFileDirectory)mysql\protein_cluster.vb" />
     <Compile Include="$(MSBuildThisFileDirectory)mysql\protein_data.vb" />
     <Compile Include="$(MSBuildThisFileDirectory)mysql\protein_ontology.vb" />
     <Compile Include="$(MSBuildThisFileDirectory)mysql\reaction.vb" />
