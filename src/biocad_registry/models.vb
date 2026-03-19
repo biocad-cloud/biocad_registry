@@ -270,4 +270,16 @@ Public Module registry_models
 
         Return Nothing
     End Function
+
+    Public Function make_protein_clusters(registry As biocad_registry)
+        Dim page_size As Integer = 5000
+
+        For page As Integer = 1 To Integer.MaxValue
+            Dim offset = (page - 1) * page_size
+            Dim proteins = registry.protein_data _
+                .limit(offset, page_size) _
+                .select(Of biocad_registryModel.protein_data)
+
+        Next
+    End Function
 End Module

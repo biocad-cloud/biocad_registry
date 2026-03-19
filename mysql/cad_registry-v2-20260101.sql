@@ -646,7 +646,6 @@ DROP TABLE IF EXISTS `protein_cluster`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `protein_cluster` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
   `query_id` int unsigned NOT NULL COMMENT 'id reference to the protein fasta table',
   `hit_id` int unsigned NOT NULL COMMENT 'id reference to the protein fasta table',
   `identities` float unsigned NOT NULL COMMENT 'protein sequence similarity score value',
@@ -659,9 +658,9 @@ CREATE TABLE `protein_cluster` (
   `e_value` double NOT NULL,
   `bit_score` float NOT NULL,
   `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `id_UNIQUE` (`id`),
-  UNIQUE KEY `unique_idx_edge` (`query_id`,`hit_id`)
+  PRIMARY KEY (`query_id`,`hit_id`),
+  UNIQUE KEY `diamond_idx_edge` (`query_id`,`hit_id`),
+  KEY `rank_score` (`identities` DESC)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -679,7 +678,8 @@ CREATE TABLE `protein_data` (
   `name` varchar(45) NOT NULL COMMENT 'protein name',
   `function` varchar(2048) NOT NULL COMMENT 'the protein function description',
   `gene_id` int unsigned NOT NULL COMMENT 'reference to the gene instance id(not gene model table)',
-  `protein_id` int unsigned NOT NULL COMMENT 'id reference to the reference protein table(protein model table)',
+  `cluster_id` int unsigned NOT NULL DEFAULT '0' COMMENT 'protein cluster id',
+  `protein_id` int unsigned NOT NULL DEFAULT '0' COMMENT 'id reference to the reference protein table(protein model table)',
   `ncbi_taxid` int unsigned NOT NULL DEFAULT '0',
   `sequence` longtext NOT NULL COMMENT 'protein sequence, should be in upper case',
   `checksum` char(32) NOT NULL COMMENT 'md5 hash checksum of the protein sequence',
@@ -695,6 +695,7 @@ CREATE TABLE `protein_data` (
   KEY `find_by_source_id` (`source_db`,`ncbi_taxid`,`source_id`),
   KEY `query_db_locus` (`source_id`,`source_db`),
   KEY `finter_organism` (`ncbi_taxid`),
+  KEY `filter_cluster` (`cluster_id`),
   FULLTEXT KEY `search_text` (`function`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2560045 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC COMMENT='[entity instance] the instance of the protein with sequence data, used for build a local blastp database';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -963,4 +964,4 @@ CREATE TABLE `vocabulary` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-03-19  9:53:36
+-- Dump completed on 2026-03-19 13:47:45
