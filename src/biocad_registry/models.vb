@@ -273,8 +273,6 @@ Public Module registry_models
 
     <ExportAPI("make_protein_clusters")>
     Public Function make_protein_clusters(registry As biocad_registry, Optional cutoff As Double = 30, Optional eval_cutoff As Double = 0.00001)
-        Dim page_size As Integer = 5000
-
         For page As Integer = 1 To Integer.MaxValue
             Dim offset = (page - 1) * page_size
             Dim proteins As protein_data() = registry.protein_data _
