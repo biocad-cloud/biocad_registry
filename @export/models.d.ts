@@ -26,6 +26,15 @@ declare namespace models {
    */
    function imports_pathways(registry: object, pathways: any, env?: object): any;
    /**
+     * @param env default value Is ``null``.
+   */
+   function link_prot_ko(registry: object, kofamscan: any, env?: object): any;
+   /**
+     * @param cutoff default value Is ``30``.
+     * @param eval_cutoff default value Is ``1E-05``.
+   */
+   function make_protein_clusters(registry: object, cutoff?: number, eval_cutoff?: number): any;
+   /**
    */
    function register_metabolic_symbols(registry: object): ;
    /**

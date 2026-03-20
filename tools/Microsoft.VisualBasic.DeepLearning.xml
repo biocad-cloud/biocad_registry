@@ -1901,7 +1901,7 @@ Microsoft.VisualBasic.DeepLearning
  <param name="isTraining"></param>
  <returns></returns>
 </member>
-<member name="M:Microsoft.VisualBasic.MachineLearning.Transformer.Embedding.CalculateLossFunction(Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor,System.Collections.Generic.List{System.Collections.Generic.List{System.String}},System.Int32,Microsoft.VisualBasic.MachineLearning.TensorFlow.Rev@)">
+<member name="M:Microsoft.VisualBasic.MachineLearning.Transformer.Embedding.CalculateLossFunction(Microsoft.VisualBasic.MachineLearning.TensorFlow.AutomaticDifferentiation.Tensor,System.Collections.Generic.List{System.Collections.Generic.List{System.String}},System.Int32,Microsoft.VisualBasic.MachineLearning.TensorFlow.AutomaticDifferentiation.Rev@)">
  <summary>
  Cross entropy loss function between the correct word in a sentence and the decoder output word.
  For a batch of several sentences the loss is accumulated.
@@ -1931,7 +1931,7 @@ Microsoft.VisualBasic.DeepLearning
  </summary>
  <param name="sentences"></param>
 </member>
-<member name="M:Microsoft.VisualBasic.MachineLearning.Transformer.Embedding.AddPositionalEncoding(Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor,System.Int32,System.Int32)">
+<member name="M:Microsoft.VisualBasic.MachineLearning.Transformer.Embedding.AddPositionalEncoding(Microsoft.VisualBasic.MachineLearning.TensorFlow.AutomaticDifferentiation.Tensor,System.Int32,System.Int32)">
  <summary>
  Add positional encoding to embedded words according to "Attention is all you need"
  </summary>

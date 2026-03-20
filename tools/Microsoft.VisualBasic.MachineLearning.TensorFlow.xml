@@ -6,25 +6,25 @@ Microsoft.VisualBasic.MachineLearning.TensorFlow
 </name>
 </assembly>
 <members>
-<member name="T:Microsoft.VisualBasic.MachineLearning.TensorFlow.Differentiation">
+<member name="T:Microsoft.VisualBasic.MachineLearning.TensorFlow.AutomaticDifferentiation.Differentiation">
  <summary>
  dy
  </summary>
  <param name="dx"></param>
 </member>
-<member name="T:Microsoft.VisualBasic.MachineLearning.TensorFlow.Checkpoints">
+<member name="T:Microsoft.VisualBasic.MachineLearning.TensorFlow.AutomaticDifferentiation.Checkpoints">
  <summary>
  Increases performence by saving states that the backtracking 
  derivative calculations can be performed between.
  </summary>
 </member>
-<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Checkpoints.CalculateCheckpointGradients">
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.AutomaticDifferentiation.Checkpoints.CalculateCheckpointGradients">
  <summary>
  Perform derivative calculations for all elements in a tensor with input values from 
  the derivatives of another tensor with the same shape
  </summary>
 </member>
-<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Parallel.SIMDMatMul.Solve(Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor,Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor)">
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.AutomaticDifferentiation.Parallel.SIMDMatMul.Solve(Microsoft.VisualBasic.MachineLearning.TensorFlow.AutomaticDifferentiation.Tensor,Microsoft.VisualBasic.MachineLearning.TensorFlow.AutomaticDifferentiation.Tensor)">
  <summary>
  Matrix multiplication over the last two dimensions of two tensors
  </summary>
@@ -32,7 +32,7 @@ Microsoft.VisualBasic.MachineLearning.TensorFlow
  <param name="B"></param>
  <returns></returns>
 </member>
-<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Parallel.MultiplyScale.Scale(Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor,System.Double)">
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.AutomaticDifferentiation.Parallel.MultiplyScale.Scale(Microsoft.VisualBasic.MachineLearning.TensorFlow.AutomaticDifferentiation.Tensor,System.Double)">
  <summary>
  Scale all elements with a number
  </summary>
@@ -40,17 +40,17 @@ Microsoft.VisualBasic.MachineLearning.TensorFlow
  <param name="s"></param>
  <returns></returns>
 </member>
-<member name="T:Microsoft.VisualBasic.MachineLearning.TensorFlow.Rev">
+<member name="T:Microsoft.VisualBasic.MachineLearning.TensorFlow.AutomaticDifferentiation.Rev">
  <summary>
  Data type for automatic differentiation with reverse mode accumulation.
  </summary>
 </member>
-<member name="F:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.sizes">
+<member name="F:Microsoft.VisualBasic.MachineLearning.TensorFlow.AutomaticDifferentiation.Tensor.sizes">
  <summary>
  dimension size
  </summary>
 </member>
-<member name="P:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.Item(System.Int32[])">
+<member name="P:Microsoft.VisualBasic.MachineLearning.TensorFlow.AutomaticDifferentiation.Tensor.Item(System.Int32[])">
  <summary>
  Index parameter implementation
  </summary>
@@ -58,28 +58,28 @@ Microsoft.VisualBasic.MachineLearning.TensorFlow
  <returns></returns>
  <exception cref="T:System.ArgumentException"></exception>
 </member>
-<member name="P:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.Item(System.Int32)">
+<member name="P:Microsoft.VisualBasic.MachineLearning.TensorFlow.AutomaticDifferentiation.Tensor.Item(System.Int32)">
  <summary>
  Index parameter implementation
  </summary>
  <returns></returns>
  <exception cref="T:System.ArgumentException"></exception>
 </member>
-<member name="P:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.Item(System.Int32,System.Int32)">
+<member name="P:Microsoft.VisualBasic.MachineLearning.TensorFlow.AutomaticDifferentiation.Tensor.Item(System.Int32,System.Int32)">
  <summary>
  Index parameter implementation
  </summary>
  <returns></returns>
  <exception cref="T:System.ArgumentException"></exception>
 </member>
-<member name="P:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.Item(System.Int32,System.Int32,System.Int32)">
+<member name="P:Microsoft.VisualBasic.MachineLearning.TensorFlow.AutomaticDifferentiation.Tensor.Item(System.Int32,System.Int32,System.Int32)">
  <summary>
  Index parameter implementation
  </summary>
  <returns></returns>
  <exception cref="T:System.ArgumentException"></exception>
 </member>
-<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.#ctor(System.Int32[])">
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.AutomaticDifferentiation.Tensor.#ctor(System.Int32[])">
  <summary>
  Constructor
  </summary>
@@ -87,86 +87,86 @@ Microsoft.VisualBasic.MachineLearning.TensorFlow
  <exception cref="T:System.ArgumentNullException"></exception>
  <exception cref="T:System.ArgumentException"></exception>
 </member>
-<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.#ctor(Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor,System.Boolean)">
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.AutomaticDifferentiation.Tensor.#ctor(Microsoft.VisualBasic.MachineLearning.TensorFlow.AutomaticDifferentiation.Tensor,System.Boolean)">
  <summary>
  Copy constructor. Removes the derivatives and actions.
  </summary>
  <param name="T"></param>
 </member>
-<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.Transpose">
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.AutomaticDifferentiation.Tensor.Transpose">
  <summary>
  Transpose the last two dimensions
  </summary>
  <returns></returns>
 </member>
-<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.Scale(System.Double)">
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.AutomaticDifferentiation.Tensor.Scale(System.Double)">
  <summary>
  Scale all elements with a number
  </summary>
  <param name="s"></param>
 </member>
-<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.Add(System.Double)">
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.AutomaticDifferentiation.Tensor.Add(System.Double)">
  <summary>
  Add a number to all elements
  </summary>
  <param name="s"></param>
 </member>
-<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.Pow(System.Double)">
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.AutomaticDifferentiation.Tensor.Pow(System.Double)">
  <summary>
  Element-wise power 
  </summary>
  <param name="e"></param>
  <returns></returns>
 </member>
-<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.GenerateNormalRandomValues">
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.AutomaticDifferentiation.Tensor.GenerateNormalRandomValues">
  <summary>
  Generate normal random values with He scaling over the second last dimension of the tensor.
  </summary>
 </member>
-<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.Softmax">
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.AutomaticDifferentiation.Tensor.Softmax">
  <summary>
  Softmax over last dimension
  </summary>
 </member>
-<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.Mask">
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.AutomaticDifferentiation.Tensor.Mask">
  <summary>
  Mask upper triangular part of the last two dimensions of a tensor
  </summary>
  <exception cref="T:System.ArgumentException"></exception>
 </member>
-<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.Dropout(System.Boolean[],System.Double)">
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.AutomaticDifferentiation.Tensor.Dropout(System.Boolean[],System.Double)">
  <summary>
  Zero out elemens of the last dimension of a tensor based on a masking array
  </summary>
  <param name="dropoutMask"></param>
  <exception cref="T:System.ArgumentException"></exception>
 </member>
-<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.ReLU">
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.AutomaticDifferentiation.Tensor.ReLU">
  <summary>
  Set all elements
  </summary>
 </member>
-<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.Flatten">
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.AutomaticDifferentiation.Tensor.Flatten">
  <summary>
  Flatten last two dimensions. 
  </summary>
  <returns></returns>
  <exception cref="T:System.ArgumentException"></exception>
 </member>
-<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.GetMaxIndex">
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.AutomaticDifferentiation.Tensor.GetMaxIndex">
  <summary>
  Only used for final output layer
  </summary>
  <returns></returns>
  <exception cref="T:System.InvalidOperationException"></exception>
 </member>
-<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.VecAdd(Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor)">
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.AutomaticDifferentiation.Tensor.VecAdd(Microsoft.VisualBasic.MachineLearning.TensorFlow.AutomaticDifferentiation.Tensor)">
  <summary>
  Add a vector to the last dimension of the matrix
  </summary>
  <param name="v"></param>
 </member>
-<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.MatAdd(Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor)">
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.AutomaticDifferentiation.Tensor.MatAdd(Microsoft.VisualBasic.MachineLearning.TensorFlow.AutomaticDifferentiation.Tensor)">
  <summary>
  In place element-wise addition of the elemens of two tensors with identical shape.
  Only used for optimizer.
@@ -174,18 +174,18 @@ Microsoft.VisualBasic.MachineLearning.TensorFlow
  <param name="T"></param>
  <exception cref="T:System.ArgumentException"></exception>
 </member>
-<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.ClearDerivatives">
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.AutomaticDifferentiation.Tensor.ClearDerivatives">
  <summary>
  Remove derivatives and derivative actions
  </summary>
 </member>
-<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.GetDerivatives">
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.AutomaticDifferentiation.Tensor.GetDerivatives">
  <summary>
  Extract derivatives of a tensor and return as a new tensor
  </summary>
  <returns></returns>
 </member>
-<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.TransferDerivatives(Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor)">
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.AutomaticDifferentiation.Tensor.TransferDerivatives(Microsoft.VisualBasic.MachineLearning.TensorFlow.AutomaticDifferentiation.Tensor)">
  <summary>
  Perform derivative calculations for all elements in a tensor with input values from 
  the derivatives of another tensor with the same shape
@@ -193,7 +193,7 @@ Microsoft.VisualBasic.MachineLearning.TensorFlow
  <param name="T"></param>
  <exception cref="T:System.ArgumentException"></exception>
 </member>
-<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.MatAdd(Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor,Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor)">
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.AutomaticDifferentiation.Tensor.MatAdd(Microsoft.VisualBasic.MachineLearning.TensorFlow.AutomaticDifferentiation.Tensor,Microsoft.VisualBasic.MachineLearning.TensorFlow.AutomaticDifferentiation.Tensor)">
  <summary>
  Element-wise addition of the elemens of two tensors with identical shape
  </summary>
@@ -202,7 +202,7 @@ Microsoft.VisualBasic.MachineLearning.TensorFlow
  <returns></returns>
  <exception cref="T:System.ArgumentException"></exception>
 </member>
-<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.MatDivElementWise(Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor,Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor)">
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.AutomaticDifferentiation.Tensor.MatDivElementWise(Microsoft.VisualBasic.MachineLearning.TensorFlow.AutomaticDifferentiation.Tensor,Microsoft.VisualBasic.MachineLearning.TensorFlow.AutomaticDifferentiation.Tensor)">
  <summary>
  Element-wise division of the elemens of two tensors with identical shape
  </summary>
@@ -210,7 +210,7 @@ Microsoft.VisualBasic.MachineLearning.TensorFlow
  <param name="B"></param>
  <returns></returns>
 </member>
-<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.MatMulElementWise(Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor,Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor)">
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.AutomaticDifferentiation.Tensor.MatMulElementWise(Microsoft.VisualBasic.MachineLearning.TensorFlow.AutomaticDifferentiation.Tensor,Microsoft.VisualBasic.MachineLearning.TensorFlow.AutomaticDifferentiation.Tensor)">
  <summary>
  Element-wise multiplication of the elemens of two tensors with identical shape
  </summary>
@@ -218,7 +218,7 @@ Microsoft.VisualBasic.MachineLearning.TensorFlow
  <param name="B"></param>
  <returns></returns>
 </member>
-<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.MatMul(Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor,Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor)">
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.AutomaticDifferentiation.Tensor.MatMul(Microsoft.VisualBasic.MachineLearning.TensorFlow.AutomaticDifferentiation.Tensor,Microsoft.VisualBasic.MachineLearning.TensorFlow.AutomaticDifferentiation.Tensor)">
  <summary>
  Matrix multiplication over the last two dimensions of two tensors
  </summary>
@@ -227,20 +227,429 @@ Microsoft.VisualBasic.MachineLearning.TensorFlow
  <returns></returns>
  
 </member>
-<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.Concat(Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor[])">
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.AutomaticDifferentiation.Tensor.Concat(Microsoft.VisualBasic.MachineLearning.TensorFlow.AutomaticDifferentiation.Tensor[])">
  <summary>
  Concatenate an array of tensors of identical shape along its last dimension
  </summary>
  <param name="Tensors"></param>
  <returns></returns>
 </member>
-<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.AddNorm(Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor,Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor)">
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.AutomaticDifferentiation.Tensor.AddNorm(Microsoft.VisualBasic.MachineLearning.TensorFlow.AutomaticDifferentiation.Tensor,Microsoft.VisualBasic.MachineLearning.TensorFlow.AutomaticDifferentiation.Tensor)">
  <summary>
  Add two tensors and normalize over last dimension
  </summary>
  <param name="A"></param>
  <param name="B"></param>
  <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor">
+ <summary>
+ 张量类 - GNN中所有数值计算的基础数据结构
+ 支持多维数组的存储和基本数学运算
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor._Data">
+ <summary>
+ 底层数据数组
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor._Shape">
+ <summary>
+ 张量的形状（各维度大小）
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor._DimProds">
+ <summary>
+ 维度乘积数组，用于快速计算多维索引
+ dimProds(i) = dims(0) * dims(1) * ... * dims(i-1)
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor._disposed">
+ <summary>
+ 是否已释放资源
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.Shape">
+ <summary>
+ 张量的形状（各维度大小）
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.Data">
+ <summary>
+ 底层数据数组
+ Underlying data array
+ </summary>
+ <remarks>
+ 存储张量数据的一维数组（行优先顺序）
+ </remarks>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.Rank">
+ <summary>
+ 张量的维度数
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.Length">
+ <summary>
+ 张量中元素的总数
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.TotalLength">
+ <summary>
+ 张量中元素的总数（兼容旧版本）
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.Dimensions">
+ <summary>
+ 张量的维度数组（兼容旧版本）
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.IsVariable">
+ <summary>
+ 是否为变量（可训练）
+ Whether this is a variable (trainable)
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.Gradient">
+ <summary>
+ 梯度（用于反向传播）
+ Gradient for backpropagation
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.Item(System.Int32)">
+ <summary>
+ 获取或设置指定索引处的元素值（一维访问）
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.Item(System.Int32,System.Int32)">
+ <summary>
+ 获取或设置指定位置处的元素值（二维访问）
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.Item(System.Int32,System.Int32,System.Int32)">
+ <summary>
+ 获取或设置指定位置处的元素值（三维访问）
+ </summary>
+ <param name="row">第0维索引（通常对应行/高）</param>
+ <param name="col">第1维索引（通常对应列/宽）</param>
+ <param name="depth">第2维索引（通常对应深度/通道）</param>
+</member>
+<member name="P:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.Item(System.Int32[])">
+ <summary>
+ 获取或设置指定位置处的元素值（多维数组索引访问）
+ 支持任意维度的索引访问
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.#ctor(System.Int32[])">
+ <summary>
+ 创建指定形状的张量，并用零初始化
+ </summary>
+ <param name="shape">张量的形状</param>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.#ctor(System.Double[],System.Int32[])">
+ <summary>
+ 使用指定数据创建张量
+ </summary>
+ <param name="data">初始数据</param>
+ <param name="shape">张量形状</param>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.#ctor(System.Single[],System.Int32[])">
+ <summary>
+ 使用指定数据创建张量（Single版本，兼容旧代码）
+ </summary>
+ <param name="data">初始数据</param>
+ <param name="shape">张量形状</param>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.#ctor(System.Double[0:,0:])">
+ <summary>
+ 从二维数组创建张量
+ Create tensor from 2D array
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.UpdateDimProds">
+ <summary>
+ 更新维度乘积数组
+ 用于快速计算多维索引到一维索引的转换
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.Get1DInd(System.Int32[])">
+ <summary>
+ 将多维索引转换为一维索引（来自旧版本）
+ </summary>
+ <param name="indexes">多维索引数组</param>
+ <returns>一维数组索引</returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.MultAll(System.Int32[])">
+ <summary>
+ 计算数组所有元素的乘积（来自旧版本）
+ </summary>
+ <param name="array">整数数组</param>
+ <returns>所有元素的乘积</returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.DimsEqual(Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor,Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor)">
+ <summary>
+ 比较两个张量的维度是否相等（来自旧版本）
+ </summary>
+ <param name="t1">第一个张量</param>
+ <param name="t2">第二个张量</param>
+ <returns>如果维度相等返回True，否则返回False</returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.BroadcastedAddition(Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor,Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor)">
+ <summary>
+ 广播加法（来自旧版本）
+ 当两个向量进行加法时，生成一个矩阵，其中每个元素是两个向量对应元素的和
+ </summary>
+ <param name="t1">第一个张量（行向量）</param>
+ <param name="t2">第二个张量（列向量）</param>
+ <returns>广播加法结果矩阵</returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.From2DArray(System.Single[0:,0:])">
+ <summary>
+ 从二维数组创建张量
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.Filled(System.Int32[],System.Single)">
+ <summary>
+ 创建填充指定值的张量
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.Identity(System.Int32)">
+ <summary>
+ 创建单位矩阵
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.Random(System.Int32[],System.Single,System.Single,System.Nullable{System.Int32})">
+ <summary>
+ 创建随机张量（均匀分布）
+ </summary>
+ <remarks>
+ RandomUniform
+ </remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.RandomNormal(System.Int32[],System.Single,System.Single,System.Nullable{System.Int32})">
+ <summary>
+ 创建随机张量（正态分布，Xavier初始化）
+ 用于神经网络权重初始化，有助于梯度流动
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.Range(System.Int32,System.Int32,System.Int32)">
+ <summary>
+ 创建整数范围张量
+ Create integer range tensor
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.XavierInit(System.Int32,System.Int32,System.Nullable{System.Int32})">
+ <summary>
+ Xavier初始化 - 适用于sigmoid/tanh激活函数
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.HeInit(System.Int32,System.Int32,System.Nullable{System.Int32})">
+ <summary>
+ He初始化 - 适用于ReLU激活函数
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.Scalar(System.Double)">
+ <summary>
+ 创建标量张量
+ Create scalar tensor
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.Zeros(System.Int32[])">
+ <summary>
+ 创建全零张量
+ Create zero tensor
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.Ones(System.Int32[])">
+ <summary>
+ 创建全一张量
+ Create ones tensor
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.Clone">
+ <summary>
+ 克隆张量
+ Clone tensor
+ </summary>
+ <remarks>
+ <see cref="T:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor"/>
+ </remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.Reshape(System.Int32[])">
+ <summary>
+ 重塑张量形状（来自旧版本）
+ 改变张量的维度结构，但不改变数据
+ </summary>
+ <param name="newDims">新的维度数组</param>
+ <returns>如果重塑成功返回True，否则返回False</returns>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.GetValue(System.Int32[])">
+ <summary>
+ 获取指定索引的值
+ Get value at specified indices
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.SetValue(System.Double,System.Int32[])">
+ <summary>
+ 设置指定索引的值
+ Set value at specified indices
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.Variable(Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor)">
+ <summary>
+ 创建变量张量
+ Create variable tensor
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.GetFlatIndex(System.Int32[])">
+ <summary>
+ 将多维索引转换为扁平索引
+ Convert multi-dimensional indices to flat index
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.GetIndices(System.Int32)">
+ <summary>
+ 将扁平索引转换为多维索引
+ Convert flat index to multi-dimensional indices
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.op_Addition(Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor,Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor)">
+ <summary>
+ 张量加法（逐元素）
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.op_Addition(Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor,System.Single)">
+ <summary>
+ 张量加标量（来自旧版本）
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.op_Subtraction(Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor,Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor)">
+ <summary>
+ 张量减法（逐元素）
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.op_Subtraction(Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor,System.Single)">
+ <summary>
+ 张量减标量（来自旧版本）
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.op_Multiply(Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor,System.Single)">
+ <summary>
+ 张量与标量相乘
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.op_Division(Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor,System.Single)">
+ <summary>
+ 张量与标量相除
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.op_Multiply(Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor,Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor)">
+ <summary>
+ 矩阵乘法运算符（来自旧版本）
+ 两个二维张量进行矩阵乘法
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.ElementwiseMultiply(Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor)">
+ <summary>
+ 逐元素乘法（Hadamard积）
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.MatMul(Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor)">
+ <summary>
+ 矩阵乘法（二维张量）
+ 这是GNN消息传递的核心运算
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.Transpose">
+ <summary>
+ 转置
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.Sum(System.Int32)">
+ <summary>
+ 沿指定轴求和
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.TotalSum">
+ <summary>
+ 计算所有元素的和
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.Mean">
+ <summary>
+ 计算所有元素的平均值
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.Mean(System.Int32)">
+ <summary>
+ 沿指定轴计算平均值
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.L2Norm">
+ <summary>
+ 计算L2范数（欧几里得范数）
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.Apply(System.Func{System.Single,System.Single})">
+ <summary>
+ 对每个元素应用函数
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.Apply(System.Func{System.Double,System.Double})">
+ <summary>
+ 对每个元素应用函数（Double版本）
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.ToArray">
+ <summary>
+ 获取原始数据数组的副本（Single版本）
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.ToDoubleArray">
+ <summary>
+ 获取原始数据数组的副本（Double版本）
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.To2DArray">
+ <summary>
+ 转换为二维数组
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.To2DArrayDouble">
+ <summary>
+ 转换为二维数组（Double版本）
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.GetRow(System.Int32)">
+ <summary>
+ 获取指定行
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.GetColumn(System.Int32)">
+ <summary>
+ 获取指定列
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.Print(System.String)">
+ <summary>
+ 打印张量内容（用于调试）
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.ToString">
+ <summary>
+ 转换为字符串表示
+ Convert to string representation
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.Dispose">
+ <summary>
+ 释放资源
+ Dispose resources
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.MachineLearning.TensorFlow.Tensor.Finalize">
+ <summary>
+ 析构函数
+ </summary>
 </member>
 </members>
 </doc>
