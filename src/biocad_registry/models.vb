@@ -359,18 +359,22 @@ Public Module registry_models
         For Each block In pull.populates(Of KOFamScan)(env).Where(Function(a) a.flag).SplitIterator(10000)
             Dim update As CommitTransaction = registry.protein_data.open_transaction
 
-            For Each prot As KOFamScan In TqdmWrapper.Wrap(block)
-                Dim prot_id As UInteger = UInteger.Parse(prot.gene_name.Split("|"c).Last)
-                Dim ko = registry.db_xrefs _
-                    .where(field("type") = protein_type,
-                           field("db_name") = kegg,
-                           field("db_xref") = prot.KO) _
-                    .find(Of biocad_registryModel.db_xrefs)
+            Try
+                For Each prot As KOFamScan In TqdmWrapper.Wrap(block)
+                    Dim prot_id As UInteger = UInteger.Parse(prot.gene_name.Split("|"c).Last)
+                    Dim ko = registry.db_xrefs _
+                        .where(field("type") = protein_type,
+                               field("db_name") = kegg,
+                               field("db_xref") = prot.KO) _
+                        .find(Of biocad_registryModel.db_xrefs)
 
-                If Not ko Is Nothing Then
-                    Call update.add(registry.protein_data.where(field("id") = prot_id).save_sql(field("protein_id") = ko.obj_id))
-                End If
-            Next
+                    If Not ko Is Nothing Then
+                        Call update.add(registry.protein_data.where(field("id") = prot_id).save_sql(field("protein_id") = ko.obj_id))
+                    End If
+                Next
+            Catch ex As Exception
+
+            End Try
 
             Call update.commit()
         Next
