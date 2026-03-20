@@ -275,12 +275,19 @@ Public Module registry_models
     Public Function make_protein_clusters(registry As biocad_registry, Optional cutoff As Double = 30, Optional eval_cutoff As Double = 0.00001)
         Dim page_size As Integer = 10000
 
+        ' 定义每批次处理的最大ID数量，防止SQL语句过长
+        Const BATCH_SIZE As Integer = 500
+
         For page As Integer = 1 To Integer.MaxValue
             Dim offset = (page - 1) * page_size
             Dim protein_ids As UInteger() = registry.protein_cluster _
                 .limit(offset, page_size) _
                 .distinct _
                 .project(Of UInteger)("query_id")
+
+            If protein_ids.IsNullOrEmpty Then
+                Exit For
+            End If
 
             For Each cluster_key As UInteger In TqdmWrapper.Wrap(protein_ids)
                 Dim protein As protein_data = registry.protein_data _
@@ -292,29 +299,42 @@ Public Module registry_models
                     Continue For
                 Else
                     Call registry.protein_data _
-                        .where(field("id") = protein.id) _
-                        .save(field("cluster_id") = protein.id)
+                        .where(field("id") = cluster_key) _
+                        .save(field("cluster_id") = cluster_key)
                 End If
 
-                Dim query_id As UInteger() = {protein.id}
+                ' 2. BFS 搜索队列
+                Dim queue As New List(Of UInteger) From {cluster_key}
 
-                Do While True
-                    query_id = registry.protein_cluster _
+                Do While queue.Count > 0
+                    ' 取出当前层级的 ID 列表
+                    Dim current_batch_ids = queue.Take(BATCH_SIZE).ToList()
+                    queue = queue.Skip(BATCH_SIZE).ToList()
+
+                    ' 3. 查找邻居 (优化：只查 ID)
+                    ' 注意：这里假设 protein_cluster 包含双向数据
+                    ' 建议添加 index: (query_id, identities, hit_id)
+                    Dim neighbor_ids As UInteger() = registry.protein_cluster _
                         .left_join("protein_data") _
                         .on(field("`protein_data`.id") = field("hit_id")) _
-                        .where(field("query_id").in(query_id),
+                        .where(field("query_id").in(current_batch_ids),
                                field("identities") > cutoff,
                                field("e_value") < eval_cutoff,
                                field("`protein_data`.cluster_id") = 0) _
-                        .project(Of UInteger)("`protein_data`.id")
+                        .project(Of UInteger)("`protein_data`.id") ' 只Select ID，不加载序列
 
-                    If query_id.IsNullOrEmpty Then
-                        Exit Do
+                    If Not neighbor_ids.IsNullOrEmpty Then
+                        For Each block As UInteger() In neighbor_ids.SplitIterator(BATCH_SIZE)
+                            ' 4. 批量更新归簇 (分批更新防止SQL过长)
+                            ' 这里简化逻辑，实际建议对 neighbor_ids 也分批 Update
+                            registry.protein_data _
+                                .where(field("id").in(block)) _
+                                .save(field("cluster_id") = cluster_key)
+                        Next
+
+                        ' 5. 将新发现的邻居加入队列，继续向外扩展
+                        queue.AddRange(neighbor_ids)
                     End If
-
-                    registry.protein_data _
-                        .where(field("id").in(query_id)) _
-                        .save(field("cluster_id") = cluster_key)
                 Loop
             Next
         Next
