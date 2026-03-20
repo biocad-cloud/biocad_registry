@@ -278,6 +278,8 @@ Public Module registry_models
         ' 定义每批次处理的最大ID数量，防止SQL语句过长
         Const BATCH_SIZE As Integer = 500
 
+        ' UPDATE `cad_registry`.`protein_data` SET `cluster_id` = '0'
+
         For page As Integer = 1 To Integer.MaxValue
             Dim offset = (page - 1) * page_size
             Dim protein_ids As UInteger() = registry.protein_cluster _
