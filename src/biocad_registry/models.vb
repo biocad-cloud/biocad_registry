@@ -273,13 +273,20 @@ Public Module registry_models
 
     <ExportAPI("make_protein_clusters")>
     Public Function make_protein_clusters(registry As biocad_registry, Optional cutoff As Double = 30, Optional eval_cutoff As Double = 0.00001)
+        Dim page_size As Integer = 10000
+
         For page As Integer = 1 To Integer.MaxValue
             Dim offset = (page - 1) * page_size
-            Dim proteins As protein_data() = registry.protein_data _
+            Dim protein_ids As UInteger() = registry.protein_cluster _
                 .limit(offset, page_size) _
-                .select(Of biocad_registryModel.protein_data)("id", "cluster_id")
+                .distinct _
+                .project(Of UInteger)("query_id")
 
-            For Each protein As protein_data In TqdmWrapper.Wrap(proteins)
+            For Each cluster_key As UInteger In TqdmWrapper.Wrap(protein_ids)
+                Dim protein As protein_data = registry.protein_data _
+                    .where(field("id") = cluster_key) _
+                    .find(Of protein_data)("id", "cluster_id")
+
                 If protein.cluster_id > 0 Then
                     ' 如果已经被归簇，跳过
                     Continue For
@@ -289,7 +296,6 @@ Public Module registry_models
                         .save(field("cluster_id") = protein.id)
                 End If
 
-                Dim cluster_key As UInteger = protein.id
                 Dim query_id As UInteger() = {protein.id}
 
                 Do While True
