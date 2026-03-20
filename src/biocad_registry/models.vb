@@ -1,5 +1,6 @@
 ﻿
 Imports BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.ExtensionModels
+Imports HMMER3
 Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm
 Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.Linq
@@ -339,6 +340,27 @@ Public Module registry_models
                     End If
                 Loop
             Next
+        Next
+
+        Return Nothing
+    End Function
+
+    <ExportAPI("link_prot_ko")>
+    Public Function link_ko(registry As biocad_registry, <RRawVectorArgument> kofamscan As Object, Optional env As Environment = Nothing)
+        Dim pull As pipeline = pipeline.TryCreatePipeline(Of KOFamScan)(kofamscan, env)
+
+        If pull.isError Then
+            Return pull.getError
+        End If
+
+        For Each block In pull.populates(Of KOFamScan)(env).Where(Function(a) a.flag).SplitIterator(10000)
+            Dim update As CommitTransaction = registry.protein_data.open_transaction
+
+            For Each prot As KOFamScan In TqdmWrapper.Wrap(block)
+
+            Next
+
+            Call update.commit()
         Next
 
         Return Nothing
