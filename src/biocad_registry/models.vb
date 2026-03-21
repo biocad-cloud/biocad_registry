@@ -1,6 +1,5 @@
 ﻿
 Imports BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.ExtensionModels
-Imports HMMER3
 Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm
 Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.Linq
@@ -10,6 +9,7 @@ Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports registry_data
 Imports registry_data.biocad_registryModel
+Imports SMRUCC.genomics.Analysis.SequenceTools.HMMER
 Imports SMRUCC.genomics.ComponentModel.Annotation
 Imports SMRUCC.genomics.Interops.NCBI.Extensions
 Imports SMRUCC.Rsharp.Runtime

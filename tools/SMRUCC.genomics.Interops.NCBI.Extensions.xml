@@ -118,6 +118,13 @@ SMRUCC.genomics.Interops.NCBI.Extensions
  <param name="m8"></param>
  <returns></returns>
 </member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.TermStreamAssignment.HitCollection(System.Collections.Generic.IEnumerable{SMRUCC.genomics.Interops.NCBI.Extensions.DiamondAnnotation})">
+ <summary>
+ Make query group and convert as query hit collection
+ </summary>
+ <param name="diamond"></param>
+ <returns></returns>
+</member>
 <member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.Extensions.IsNullOrEmpty(System.Collections.Generic.IEnumerable{SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.BestHit})">
  <summary>
  Is this collection of the besthit data is empty or nothing?
