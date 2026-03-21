@@ -23,7 +23,7 @@ Public Module ProteinModels
         For Each term As KOrthology In TqdmWrapper.Wrap(ko.OrderBy(Function(k) k.function).ToArray)
             Dim name As String = term.geneNames.JoinBy(", ")
             Dim prot As biocad_registryModel.protein = registry.protein _
-                .where(field("name") = name) _
+                .where(field("db_xref") = term.KO_id) _
                 .find(Of biocad_registryModel.protein)
 
             If prot Is Nothing Then
@@ -32,11 +32,12 @@ Public Module ProteinModels
                     field("template") = 0,
                     field("pdb_data") = 0,
                     field("function") = term.function,
-                    field("note") = term.ToString
+                    field("note") = term.ToString,
+                    field("db_xref") = term.KO_id
                 )
 
                 prot = registry.protein _
-                    .where(field("name") = name) _
+                    .where(field("db_xref") = term.KO_id) _
                     .order_by("id", desc:=True) _
                     .find(Of biocad_registryModel.protein)
             End If
@@ -57,10 +58,22 @@ Public Module ProteinModels
                 )
             Next
 
-            Call xrefs.ignore.add(field("obj_id") = prot.id, field("type") = prot_type, field("db_name") = kegg_db, field("db_xref") = term.KO_id, field("db_source") = kegg_db)
+            Call xrefs.ignore.add(
+                field("obj_id") = prot.id,
+                field("type") = prot_type,
+                field("db_name") = kegg_db,
+                field("db_xref") = term.KO_id,
+                field("db_source") = kegg_db
+            )
 
             For Each ec As String In term.EC_number.SafeQuery
-                Call xrefs.ignore.add(field("obj_id") = prot.id, field("type") = prot_type, field("db_name") = ec_number, field("db_xref") = ec, field("db_source") = kegg_db)
+                Call xrefs.ignore.add(
+                    field("obj_id") = prot.id,
+                    field("type") = prot_type,
+                    field("db_name") = ec_number,
+                    field("db_xref") = ec,
+                    field("db_source") = kegg_db
+                )
             Next
         Next
 
