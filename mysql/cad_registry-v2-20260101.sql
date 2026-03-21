@@ -126,7 +126,7 @@ CREATE TABLE `db_xrefs` (
   KEY `find_by_xref` (`db_name`,`db_xref`,`type`),
   KEY `find_by_object` (`type`,`obj_id`),
   KEY `search_xref_word` (`db_xref`)
-) ENGINE=InnoDB AUTO_INCREMENT=11961599 DEFAULT CHARSET=utf8mb3 COMMENT='database cross reference of the model objects ';
+) ENGINE=InnoDB AUTO_INCREMENT=12042359 DEFAULT CHARSET=utf8mb3 COMMENT='database cross reference of the model objects ';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -623,6 +623,7 @@ DROP TABLE IF EXISTS `protein`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `protein` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `db_xref` varchar(45) NOT NULL,
   `name` varchar(128) NOT NULL COMMENT 'protein name',
   `template` int unsigned NOT NULL DEFAULT '0' COMMENT 'reference to the gene model table id that gene object that could be used as the template for produce this protein, default value is zero means this protein is artificial designed or it is a protein complex object',
   `pdb_data` int unsigned NOT NULL COMMENT 'reference to the table of pdb structure data, avaible for the protein complex object',
@@ -634,8 +635,9 @@ CREATE TABLE `protein` (
   KEY `gene_source_idx` (`template`),
   KEY `pdb_data_idx` (`pdb_data`),
   KEY `name_hit` (`name`),
+  KEY `xref_index` (`db_xref`),
   FULLTEXT KEY `search_text` (`function`,`note`)
-) ENGINE=InnoDB AUTO_INCREMENT=26976 DEFAULT CHARSET=utf8mb3 COMMENT='[cellular entity model] a table of the reference protein models, just defined the protein model information at here, usually be the KO/COG orthology data model, includes metabolic enzyme and other biological protein models';
+) ENGINE=InnoDB AUTO_INCREMENT=28133 DEFAULT CHARSET=utf8mb3 COMMENT='[cellular entity model] a table of the reference protein models, just defined the protein model information at here, usually be the KO/COG orthology data model, includes metabolic enzyme and other biological protein models';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -660,7 +662,8 @@ CREATE TABLE `protein_cluster` (
   `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`query_id`,`hit_id`),
   UNIQUE KEY `diamond_idx_edge` (`query_id`,`hit_id`),
-  KEY `rank_score` (`identities` DESC)
+  KEY `rank_score` (`identities` DESC),
+  KEY `filter_edges` (`query_id`,`identities`,`e_value`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -897,7 +900,7 @@ CREATE TABLE `synonym` (
   KEY `entity_metabolite_idx` (`obj_id`,`type`),
   KEY `obj_hash_query` (`type`,`hashcode`),
   FULLTEXT KEY `search_text` (`synonym`)
-) ENGINE=InnoDB AUTO_INCREMENT=10049420 DEFAULT CHARSET=utf8mb3 COMMENT='synonyms, alias names of the model objects';
+) ENGINE=InnoDB AUTO_INCREMENT=10120268 DEFAULT CHARSET=utf8mb3 COMMENT='synonyms, alias names of the model objects';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -964,4 +967,4 @@ CREATE TABLE `vocabulary` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-03-19 13:47:45
+-- Dump completed on 2026-03-21 20:45:55
