@@ -13,5 +13,5 @@ let motifs = list.files(db,pattern = "*.meme")
     ;
 
 open_registry("xieguigang", 123456, host ="192.168.3.15")
-|> imports_planttfdb(motifs, motif_tfseq(plant_code), taxname = NULL)
+|> imports_planttfdb(motifs, motif_tfseq(plant_code), taxname = "Oryza sativa Japonica Group")
 ;
