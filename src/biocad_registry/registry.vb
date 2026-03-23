@@ -666,12 +666,12 @@ Module registry
 
                 If registry.regulatory_network _
                     .where(field("regulator") = reg_tf.fa.Headers(0),
-                           field("motif_site") = site.id) _
+                           field("motif_site") = model.id) _
                     .find(Of regulatory_network) Is Nothing Then
 
                     Call registry.regulatory_network.add(
                         field("regulator") = reg_tf.fa.Headers(0),
-                           field("motif_site") = site.id,
+                           field("motif_site") = model.id,
                            field("effector_name") = "",
                            field("effector") = 0,
                            field("effects") = 1,
