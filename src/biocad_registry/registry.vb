@@ -619,19 +619,19 @@ Module registry
             Dim reg_tf = tfSet(tf_id)
             Dim regulon = matrix_id & " - " & reg_tf.tf.species
             Dim model As motif = registry.motif _
-                .where(field("name") = matrix_id) _
+                .where(field("name") = regulon) _
                 .find(Of motif)
 
             If model Is Nothing Then
                 registry.motif.add(
-                    field("name") = matrix_id,
+                    field("name") = regulon,
                     field("family") = reg_tf.tf.family,
                     field("pwm") = "",
                     field("width") = 0,
                     field("note") = reg_tf.ToString & vbCrLf & vbCrLf & motif.note
                 )
                 model = registry.motif _
-                    .where(field("name") = matrix_id) _
+                    .where(field("name") = regulon) _
                     .order_by("id", desc:=True) _
                     .find(Of motif)
             End If
