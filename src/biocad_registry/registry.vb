@@ -581,8 +581,12 @@ Module registry
         Dim planttfdb As UInteger = registry.biocad_vocabulary.GetDatabaseResource("PlantTFDB").id
         Dim tfSet = tfPull _
             .Select(Function(fa) (fa, tf:=New TFInfo(fa.Title))) _
+            .GroupBy(Function(a) a.tf.gene_id) _
             .ToDictionary(Function(a)
-                              Return a.tf.gene_id
+                              Return a.Key
+                          End Function,
+                          Function(grp)
+                              Return grp.First
                           End Function)
         Dim tax As biocad_registryModel.ncbi_taxonomy = Nothing
 
