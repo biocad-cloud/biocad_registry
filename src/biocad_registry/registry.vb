@@ -680,7 +680,8 @@ Module registry
                     )
                 End If
 
-                Call registry.UpdateLogo(model, motif)
+                model.name = reg_tf.tf.family
+                registry.UpdateLogo(model, motif)
             End If
         Next
 
