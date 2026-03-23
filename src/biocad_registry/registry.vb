@@ -560,7 +560,26 @@ Module registry
         End If
 
         For Each motif As MotifPWM In TqdmWrapper.Wrap(pull.populates(Of MotifPWM)(env).ToArray)
+            Dim matrix_id As String = motif.name
+            Dim model As motif = registry.motif.where(field("name") = matrix_id).find(Of motif)
 
+            If motif Is Nothing Then
+                registry.motif.add(
+                    field("name") = matrix_id,
+                    field("family") = "",
+                    field("pwm") = "",
+                    field("width") = 0,
+                    field("note") = motif.note
+                )
+                model = registry.motif _
+                    .where(field("name") = matrix_id) _
+                    .order_by("id", desc:=True) _
+                    .find(Of motif)
+            End If
+
+            If Not model Is Nothing Then
+                Call registry.UpdateLogo(model, motif)
+            End If
         Next
 
         Return Nothing
