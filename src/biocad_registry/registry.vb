@@ -584,7 +584,7 @@ Module registry
                               Return a.tf.gene_id
                           End Function)
 
-        For Each seq In tfSet.Values
+        For Each seq In TqdmWrapper.Wrap(tfSet.Values)
             Dim prot = registry.protein_data.where(field("source_id") = seq.tf.protein_id, field("source_db") = planttfdb).find(Of protein_data)
 
             If prot Is Nothing Then
@@ -613,7 +613,7 @@ Module registry
 
         Const suffix_pattern As String = "_g$"
 
-        For Each motif As MotifPWM In TqdmWrapper.Wrap(pull.populates(Of MotifPWM)(env).ToArray)
+        For Each motif As MotifPWM In pull.populates(Of MotifPWM)(env)
             Dim tf_id As String = Regex.Replace(motif.name.Split.ElementAt(1), suffix_pattern, String.Empty)
             Dim matrix_id As String = motif.name.Split.ElementAt(2)
             Dim reg_tf = tfSet(tf_id)
