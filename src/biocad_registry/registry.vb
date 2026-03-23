@@ -599,7 +599,14 @@ Module registry
                     field("checksum") = Strings.UCase(seq.fa.SequenceData).MD5,
                     field("pdb_data") = 0
                 )
+                prot = registry.protein_data _
+                    .where(field("source_id") = seq.tf.protein_id,
+                           field("source_db") = planttfdb) _
+                    .order_by("id", desc:=True) _
+                    .find(Of protein_data)
             End If
+
+            seq.fa.Headers = New String() {prot.id}
         Next
 
         For Each motif As MotifPWM In TqdmWrapper.Wrap(pull.populates(Of MotifPWM)(env).ToArray)
@@ -626,6 +633,49 @@ Module registry
             End If
 
             If Not model Is Nothing Then
+                Dim site_pattern As String = motif.site_pattern
+                Dim site = registry.nucleotide_data _
+                    .where(field("source_id") = tf_id & ":" & matrix_id,
+                           field("source_db") = planttfdb) _
+                    .find(Of nucleotide_data)
+
+                If site Is Nothing Then
+                    registry.nucleotide_data.add(
+                       field("source_id") = tf_id & ":" & matrix_id,
+                           field("source_db") = planttfdb,
+                           field("name") = reg_tf.tf.family,
+                           field("is_motif") = 1,
+                           field("left") = 0,
+                           field("strand") = "+",
+                           field("operon_id") = 0,
+                           field("model_id") = model.id,
+                           field("organism_source") = registry.GetTaxonomy(reg_tf.tf.species).id,
+                           field("sequence") = site_pattern,
+                           field("checksum") = Strings.UCase(site_pattern).MD5
+                   )
+                    site = registry.nucleotide_data _
+                        .where(field("source_id") = tf_id & ":" & matrix_id,
+                               field("source_db") = planttfdb) _
+                        .order_by("id", desc:=True) _
+                        .find(Of nucleotide_data)
+                End If
+
+                If registry.regulatory_network _
+                    .where(field("regulator") = reg_tf.fa.Headers(0),
+                           field("motif_site") = site.id) _
+                    .find(Of regulatory_network) Is Nothing Then
+
+                    Call registry.regulatory_network.add(
+                        field("regulator") = reg_tf.fa.Headers(0),
+                           field("motif_site") = site.id,
+                           field("effector_name") = "",
+                           field("effector") = 0,
+                           field("effects") = 1,
+                           field("db_source") = planttfdb,
+                           field("note") = reg_tf.tf.ToString & " - " & matrix_id
+                    )
+                End If
+
                 Call registry.UpdateLogo(model, motif)
             End If
         Next
