@@ -12,5 +12,5 @@ let motifs = list.files(db,pattern = "*.meme")
     ;
 
 open_registry("xieguigang", 123456, host ="192.168.3.15")
-|> imports_planttfdb(motifs, motif_tfinfo("Tae"))
+|> imports_planttfdb(motifs, motif_tfseq("Tae"))
 ;

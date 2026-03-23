@@ -48,4 +48,6 @@
     <ProjectReference Include="..\registry_exports\registry_exports.vbproj" />
   </ItemGroup>
 
+  <Import Project="..\..\..\GCModeller\src\workbench\R#\Rscript_shared\Rscript_shared.projitems" Label="Shared" />
+
 </Project>

@@ -552,6 +552,14 @@ Module registry
         Call Translations.TranslateMetaboliteName(registry, ontology)
     End Sub
 
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="registry"></param>
+    ''' <param name="motifs"></param>
+    ''' <param name="tf">PlantTFDB TF fasta sequence collection</param>
+    ''' <param name="env"></param>
+    ''' <returns></returns>
     <ExportAPI("imports_planttfdb")>
     Public Function imports_planttfdb(registry As biocad_registry,
                                       <RRawVectorArgument> motifs As Object,
@@ -559,19 +567,46 @@ Module registry
                                       Optional env As Environment = Nothing)
 
         Dim pull As pipeline = pipeline.TryCreatePipeline(Of MotifPWM)(motifs, env)
-        Dim tfPull As pipeline = pipeline.TryCreatePipeline(Of TFInfo)(tf, env)
+        Dim tfPull As IEnumerable(Of FastaSeq) = pipHelper.GetFastaSeq(tf, env)
 
         If pull.isError Then
             Return pull.getError
-        ElseIf tfPull.isError Then
-            Return tfPull.getError
+        ElseIf tfPull Is Nothing Then
+            Return Nothing
         End If
 
-        Dim tfSet = tfPull.populates(Of TFInfo)(env).ToDictionary(Function(a) a.protein_id)
+        Dim planttfdb As UInteger = registry.biocad_vocabulary.GetDatabaseResource("PlantTFDB").id
+        Dim tfSet = tfPull _
+            .Select(Function(fa) (fa, tf:=New TFInfo(fa.Title))) _
+            .ToDictionary(Function(a)
+                              Return a.tf.protein_id
+                          End Function)
+
+        For Each seq In tfSet.Values
+            Dim prot = registry.protein_data.where(field("source_id") = seq.tf.protein_id, field("source_db") = planttfdb).find(Of protein_data)
+
+            If prot Is Nothing Then
+                registry.protein_data.add(
+                    field("source_id") = seq.tf.protein_id,
+                    field("source_db") = planttfdb,
+                    field("name") = seq.tf.family,
+                    field("function") = seq.tf.description,
+                    field("gene_id") = 0,
+                    field("cluster_id") = 0,
+                    field("protein_id") = 0,
+                    field("ncbi_taxid") = registry.GetTaxonomy(seq.tf.species).id,
+                    field("sequence") = seq.fa.SequenceData,
+                    field("checksum") = Strings.UCase(seq.fa.SequenceData).MD5,
+                    field("pdb_data") = 0
+                )
+            End If
+        Next
 
         For Each motif As MotifPWM In TqdmWrapper.Wrap(pull.populates(Of MotifPWM)(env).ToArray)
-            Dim matrix_id As String = motif.name
+            Dim tf_id As String = motif.name.Split.ElementAt(1)
+            Dim matrix_id As String = motif.name.Split.ElementAt(2)
             Dim reg_tf = tfSet(matrix_id)
+            Dim regulon = matrix_id & " - " & reg_tf.tf.species
             Dim model As motif = registry.motif _
                 .where(field("name") = matrix_id) _
                 .find(Of motif)
@@ -579,7 +614,7 @@ Module registry
             If motif Is Nothing Then
                 registry.motif.add(
                     field("name") = matrix_id,
-                    field("family") = reg_tf.family,
+                    field("family") = reg_tf.tf.family,
                     field("pwm") = "",
                     field("width") = 0,
                     field("note") = reg_tf.ToString & vbCrLf & vbCrLf & motif.note

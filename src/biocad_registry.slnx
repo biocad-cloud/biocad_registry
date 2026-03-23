@@ -354,6 +354,7 @@
       <Platform Solution="*|x64" Project="x64" />
     </Project>
   </Folder>
+  <Project Path="../../GCModeller/src/workbench/R#/Rscript_shared/Rscript_shared.shproj" Id="28a18d47-5f41-43cd-a0a7-c8dd9e731bd3" />
   <Project Path="biocad_registry/biocad_registry.vbproj">
     <Platform Solution="*|x64" Project="x64" />
   </Project>
