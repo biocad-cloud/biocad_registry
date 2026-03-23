@@ -9,6 +9,7 @@ Imports Microsoft.VisualBasic.Scripting.MetaData
 Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Microsoft.VisualBasic.Text.Xml.Models
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
+Imports PlantToolKit
 Imports registry_data
 Imports registry_data.biocad_registryModel
 Imports registry_exports
@@ -552,24 +553,36 @@ Module registry
     End Sub
 
     <ExportAPI("imports_planttfdb")>
-    Public Function imports_planttfdb(registry As biocad_registry, <RRawVectorArgument> motifs As Object, Optional env As Environment = Nothing)
+    Public Function imports_planttfdb(registry As biocad_registry,
+                                      <RRawVectorArgument> motifs As Object,
+                                      <RRawVectorArgument> tf As Object,
+                                      Optional env As Environment = Nothing)
+
         Dim pull As pipeline = pipeline.TryCreatePipeline(Of MotifPWM)(motifs, env)
+        Dim tfPull As pipeline = pipeline.TryCreatePipeline(Of TFInfo)(tf, env)
 
         If pull.isError Then
             Return pull.getError
+        ElseIf tfPull.isError Then
+            Return tfPull.getError
         End If
+
+        Dim tfSet = tfPull.populates(Of TFInfo)(env).ToDictionary(Function(a) a.protein_id)
 
         For Each motif As MotifPWM In TqdmWrapper.Wrap(pull.populates(Of MotifPWM)(env).ToArray)
             Dim matrix_id As String = motif.name
-            Dim model As motif = registry.motif.where(field("name") = matrix_id).find(Of motif)
+            Dim reg_tf = tfSet(matrix_id)
+            Dim model As motif = registry.motif _
+                .where(field("name") = matrix_id) _
+                .find(Of motif)
 
             If motif Is Nothing Then
                 registry.motif.add(
                     field("name") = matrix_id,
-                    field("family") = "",
+                    field("family") = reg_tf.family,
                     field("pwm") = "",
                     field("width") = 0,
-                    field("note") = motif.note
+                    field("note") = reg_tf.ToString
                 )
                 model = registry.motif _
                     .where(field("name") = matrix_id) _

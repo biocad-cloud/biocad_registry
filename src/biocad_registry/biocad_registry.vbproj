@@ -43,6 +43,7 @@
     <ProjectReference Include="..\..\..\GCModeller\src\GCModeller\models\BioCyc\BioCyc.vbproj" />
     <ProjectReference Include="..\..\..\GCModeller\src\repository\Bio.Repository\repository.NET5.vbproj" />
     <ProjectReference Include="..\..\..\mzkit\src\metadb\MoNA\MoNA.NET5.vbproj" />
+    <ProjectReference Include="..\..\..\Plantea\src\PlantToolKit\PlantToolKit.vbproj" />
     <ProjectReference Include="..\registry_data\registry_data.vbproj" />
     <ProjectReference Include="..\registry_exports\registry_exports.vbproj" />
   </ItemGroup>

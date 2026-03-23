@@ -24,6 +24,10 @@
       <BuildType Solution="Rsharp_app_release|x64" Project="Release" />
       <Platform Solution="*|x64" Project="x64" />
     </Project>
+    <Project Path="../../Plantea/src/PlantToolKit/PlantToolKit.vbproj">
+      <BuildType Solution="Rsharp_app_release|*" Project="Release" />
+      <Platform Solution="*|x64" Project="x64" />
+    </Project>
   </Folder>
   <Folder Name="/framework/gcmodeller/">
     <Project Path="../../GCModeller/src/GCModeller/analysis/Motifs/MotifGraph/MotifGraph.vbproj">
