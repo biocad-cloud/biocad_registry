@@ -582,7 +582,7 @@ Module registry
                     field("family") = reg_tf.family,
                     field("pwm") = "",
                     field("width") = 0,
-                    field("note") = reg_tf.ToString
+                    field("note") = reg_tf.ToString & vbCrLf & vbCrLf & motif.note
                 )
                 model = registry.motif _
                     .where(field("name") = matrix_id) _
