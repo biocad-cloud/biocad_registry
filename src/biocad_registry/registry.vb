@@ -617,7 +617,7 @@ Module registry
             seq.fa.Headers = New String() {prot.id}
         Next
 
-        Const suffix_pattern As String = "_g$"
+        Const suffix_pattern As String = "((_g)|(\.g))$"
 
         For Each motif As MotifPWM In pull.populates(Of MotifPWM)(env)
             Dim tf_id As String = Regex.Replace(motif.name.Split.ElementAt(1), suffix_pattern, String.Empty)
