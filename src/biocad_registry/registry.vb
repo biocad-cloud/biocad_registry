@@ -1,4 +1,5 @@
-﻿Imports BioNovoGene.BioDeep.Chemistry
+﻿Imports System.Text.RegularExpressions
+Imports BioNovoGene.BioDeep.Chemistry
 Imports BioNovoGene.BioDeep.Chemistry.NCBI.PubChem
 Imports BioNovoGene.BioDeep.Chemoinformatics.Metabolite
 Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm
@@ -13,6 +14,7 @@ Imports PlantToolKit
 Imports registry_data
 Imports registry_data.biocad_registryModel
 Imports registry_exports
+Imports SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns
 Imports SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Motif
 Imports SMRUCC.genomics.Assembly.KEGG
 Imports SMRUCC.genomics.Assembly.NCBI.GenBank
@@ -579,7 +581,7 @@ Module registry
         Dim tfSet = tfPull _
             .Select(Function(fa) (fa, tf:=New TFInfo(fa.Title))) _
             .ToDictionary(Function(a)
-                              Return a.tf.protein_id
+                              Return a.tf.gene_id
                           End Function)
 
         For Each seq In tfSet.Values
@@ -609,10 +611,12 @@ Module registry
             seq.fa.Headers = New String() {prot.id}
         Next
 
+        Const suffix_pattern As String = "_g$"
+
         For Each motif As MotifPWM In TqdmWrapper.Wrap(pull.populates(Of MotifPWM)(env).ToArray)
-            Dim tf_id As String = motif.name.Split.ElementAt(1)
+            Dim tf_id As String = Regex.Replace(motif.name.Split.ElementAt(1), suffix_pattern, String.Empty)
             Dim matrix_id As String = motif.name.Split.ElementAt(2)
-            Dim reg_tf = tfSet(matrix_id)
+            Dim reg_tf = tfSet(tf_id)
             Dim regulon = matrix_id & " - " & reg_tf.tf.species
             Dim model As motif = registry.motif _
                 .where(field("name") = matrix_id) _
