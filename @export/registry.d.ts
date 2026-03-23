@@ -39,6 +39,10 @@ declare namespace registry {
    */
    function imports_mona(registry: object, mona: any, env?: object): any;
    /**
+     * @param env default value Is ``null``.
+   */
+   function imports_planttfdb(registry: object, motifs: any, tf: any, env?: object): any;
+   /**
      * @param skip_prefix default value Is ``0``.
      * @param env default value Is ``null``.
    */

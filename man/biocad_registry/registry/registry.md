@@ -21,3 +21,4 @@
 + [import_refseq](registry/import_refseq.1) 
 + [ontology_translation](registry/ontology_translation.1) 
 + [metabolite_translation](registry/metabolite_translation.1) 
++ [imports_planttfdb](registry/imports_planttfdb.1) 
