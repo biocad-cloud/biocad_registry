@@ -622,7 +622,7 @@ Module registry
                 .where(field("name") = matrix_id) _
                 .find(Of motif)
 
-            If motif Is Nothing Then
+            If model Is Nothing Then
                 registry.motif.add(
                     field("name") = matrix_id,
                     field("family") = reg_tf.tf.family,
