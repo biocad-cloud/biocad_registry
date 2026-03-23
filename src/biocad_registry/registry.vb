@@ -566,6 +566,7 @@ Module registry
     Public Function imports_planttfdb(registry As biocad_registry,
                                       <RRawVectorArgument> motifs As Object,
                                       <RRawVectorArgument> tf As Object,
+                                      Optional taxname As String = Nothing,
                                       Optional env As Environment = Nothing)
 
         Dim pull As pipeline = pipeline.TryCreatePipeline(Of MotifPWM)(motifs, env)
@@ -583,6 +584,11 @@ Module registry
             .ToDictionary(Function(a)
                               Return a.tf.gene_id
                           End Function)
+        Dim tax As biocad_registryModel.ncbi_taxonomy = Nothing
+
+        If Not taxname.StringEmpty Then
+            tax = registry.GetTaxonomy(taxname)
+        End If
 
         For Each seq In TqdmWrapper.Wrap(tfSet.Values)
             Dim prot = registry.protein_data.where(field("source_id") = seq.tf.protein_id, field("source_db") = planttfdb).find(Of protein_data)
@@ -596,7 +602,7 @@ Module registry
                     field("gene_id") = 0,
                     field("cluster_id") = 0,
                     field("protein_id") = 0,
-                    field("ncbi_taxid") = registry.GetTaxonomy(seq.tf.species).id,
+                    field("ncbi_taxid") = If(tax, registry.GetTaxonomy(seq.tf.species)).id,
                     field("sequence") = seq.fa.SequenceData,
                     field("checksum") = Strings.UCase(seq.fa.SequenceData).MD5,
                     field("pdb_data") = 0
@@ -653,7 +659,7 @@ Module registry
                            field("strand") = "+",
                            field("operon_id") = 0,
                            field("model_id") = model.id,
-                           field("organism_source") = registry.GetTaxonomy(reg_tf.tf.species).id,
+                           field("organism_source") = If(tax, registry.GetTaxonomy(reg_tf.tf.species)).id,
                            field("sequence") = site_pattern,
                            field("checksum") = Strings.UCase(site_pattern).MD5
                    )
