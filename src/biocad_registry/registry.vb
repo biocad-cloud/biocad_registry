@@ -4,10 +4,8 @@ Imports BioNovoGene.BioDeep.Chemoinformatics.Metabolite
 Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm
 Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.ComponentModel.Collection
-Imports Microsoft.VisualBasic.Imaging.Driver
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Scripting.MetaData
-Imports Microsoft.VisualBasic.Serialization.BinaryDumping
 Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Microsoft.VisualBasic.Text.Xml.Models
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
@@ -15,7 +13,6 @@ Imports registry_data
 Imports registry_data.biocad_registryModel
 Imports registry_exports
 Imports SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Motif
-Imports SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.SequenceLogo
 Imports SMRUCC.genomics.Assembly.KEGG
 Imports SMRUCC.genomics.Assembly.NCBI.GenBank
 Imports SMRUCC.genomics.Assembly.Uniprot.XML
@@ -376,10 +373,11 @@ Module registry
 
     <ExportAPI("update_logo")>
     Public Function update_logo(registry As biocad_registry) As Object
-        Dim nethost As New NetworkByteOrderBuffer
-
         For Each model As motif In TqdmWrapper.Wrap(registry.motif.select(Of motif)("id", "name"))
-            Dim sites = registry.nucleotide_data.where(field("is_motif") <> 0, field("model_id") = model.id).select(Of nucleotide_data)("source_id", "sequence")
+            Dim sites = registry.nucleotide_data _
+                .where(field("is_motif") <> 0,
+                       field("model_id") = model.id) _
+                .select(Of nucleotide_data)("source_id", "sequence")
             Dim fq As FastaSeq() = sites.Select(Function(si) New FastaSeq(si.sequence, si.source_id)).ToArray
 
             If fq.Length < 3 Then
@@ -389,16 +387,8 @@ Module registry
             Dim gibbs As New GibbsSampler(fq, fq.Average(Function(si) si.Length) * 0.85)
             Dim motifdata As MSAMotif = gibbs.find
             Dim motif As MotifPWM = motifdata.CreateMotif
-            Dim pwm As Double()() = motif
-            Dim matrix As String = nethost.Base64String(pwm.IteratesALL, gzip:=False)
-            Dim w As Integer = pwm.Length
-            Dim logo = DrawingDevice.DrawFrequency(motif, title:=model.name, logoPadding:="padding:30% 5% 20% 8%;", driver:=Drivers.SVG)
-            Dim logoUri As String = logo.GetDataURI.ToString
 
-            ' 在这里分为两个步骤做这条记录的更新
-            ' 避免可能出现的sql语句过长，数据量过大导致的问题
-            Call registry.motif.where(field("id") = model.id).save(field("pwm") = matrix, field("width") = w)
-            Call registry.motif.where(field("id") = model.id).save(field("logo") = logoUri)
+            Call registry.UpdateLogo(model, motif)
         Next
 
         Return Nothing
@@ -423,7 +413,10 @@ Module registry
 
                 For Each rxn In ModelHelper.CreateKineticsData(doc).Select(Function(r) r.Item2)
                     Dim kinetics_id = rxn.SabiorkId
-                    Dim find_law = registry.kinetics_law.where(field("db_xref") = kinetics_id, field("db_source") = sabiork).find(Of biocad_registryModel.kinetics_law)
+                    Dim find_law = registry.kinetics_law _
+                        .where(field("db_xref") = kinetics_id,
+                               field("db_source") = sabiork) _
+                        .find(Of biocad_registryModel.kinetics_law)
 
                     If Not find_law Is Nothing Then
                         Continue For
@@ -557,5 +550,20 @@ Module registry
     Public Sub MetaboliteTranslation(registry As biocad_registry, ontology As String)
         Call Translations.TranslateMetaboliteName(registry, ontology)
     End Sub
+
+    <ExportAPI("imports_planttfdb")>
+    Public Function imports_planttfdb(registry As biocad_registry, <RRawVectorArgument> motifs As Object, Optional env As Environment = Nothing)
+        Dim pull As pipeline = pipeline.TryCreatePipeline(Of MotifPWM)(motifs, env)
+
+        If pull.isError Then
+            Return pull.getError
+        End If
+
+        For Each motif As MotifPWM In TqdmWrapper.Wrap(pull.populates(Of MotifPWM)(env).ToArray)
+
+        Next
+
+        Return Nothing
+    End Function
 
 End Module
