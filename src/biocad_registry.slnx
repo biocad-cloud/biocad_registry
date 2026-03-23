@@ -33,6 +33,9 @@
     <Project Path="../../GCModeller/src/GCModeller/analysis/Motifs/MotifGraph/MotifGraph.vbproj">
       <Platform Solution="*|x64" Project="x64" />
     </Project>
+    <Project Path="../../GCModeller/src/GCModeller/analysis/Motifs/VirtualFootprint/VirtualFootprint.vbproj">
+      <Platform Solution="*|x64" Project="x64" />
+    </Project>
     <Project Path="../../GCModeller/src/GCModeller/analysis/OperonMapper/OperonMapper.vbproj">
       <Platform Solution="*|x64" Project="x64" />
     </Project>
