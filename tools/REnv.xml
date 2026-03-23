@@ -337,6 +337,22 @@ to [rest of string was truncated]&quot;;.
  ``@stop``
  </summary>
 </member>
+<member name="P:SMRUCC.Rsharp.Interpreter.ExecuteEngine.ExpressionSymbols.Annotation.AnnotationSymbol.symbol">
+ <summary>
+ 
+ </summary>
+ <returns></returns>
+ <remarks>
+ must be prefixed with symbol "@"
+ </remarks>
+</member>
+<member name="T:SMRUCC.Rsharp.Interpreter.ExecuteEngine.ExpressionSymbols.Annotation.DataDir">
+ <summary>
+ @datadir
+ 
+ directory path of the /data in current package
+ </summary>
+</member>
 <member name="T:SMRUCC.Rsharp.Interpreter.ExecuteEngine.ExpressionSymbols.Annotation.HomeSymbol">
  <summary>
  ``@HOME`` for just get the directory path of the R# program file where it is.

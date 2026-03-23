@@ -99,6 +99,9 @@
     <Project Path="../../GCModeller/src/interops/localblast/LocalBLAST/localblast.NET5.vbproj">
       <Platform Solution="*|x64" Project="x64" />
     </Project>
+    <Project Path="../../GCModeller/src/interops/meme_suite/meme_data/meme_data.vbproj">
+      <Platform Solution="*|x64" Project="x64" />
+    </Project>
     <Project Path="../../GCModeller/src/interops/visualize/Cytoscape/Cytoscape/Cytoscape.NET5.vbproj">
       <Platform Solution="*|x64" Project="x64" />
     </Project>

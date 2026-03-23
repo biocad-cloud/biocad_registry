@@ -12138,6 +12138,12 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  a collection mapping of [key -> &lt;key>] for get value and make string template interpolation
  </summary>
 </member>
+<member name="M:Microsoft.VisualBasic.ComponentModel.DataSourceModel.Repository.StringTemplate.CreateDefaultString">
+ <summary>
+ Create a string based on the given template with default key value
+ </summary>
+ <returns></returns>
+</member>
 <member name="M:Microsoft.VisualBasic.ComponentModel.DataSourceModel.Repository.StringTemplate.CreateString``1(``0)">
  <summary>
  Create a string based on the given template
@@ -12145,6 +12151,12 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <typeparam name="T"></typeparam>
  <param name="i"></param>
  <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.ComponentModel.DataSourceModel.Repository.StringTemplate.ToString">
+ <summary>
+ Create a string based on the given template with default key value
+ </summary>
+ <returns><see cref="M:Microsoft.VisualBasic.ComponentModel.DataSourceModel.Repository.StringTemplate.CreateDefaultString"/></returns>
 </member>
 <member name="F:Microsoft.VisualBasic.ComponentModel.DataSourceModel.Repository.QGramIndex._q">
  <summary>
