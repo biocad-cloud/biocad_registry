@@ -44,11 +44,13 @@ declare namespace registry {
      * @param registry -
      * @param motifs -
      * @param tf PlantTFDB TF fasta sequence collection
+     * @param taxname 
+     * + default value Is ``null``.
      * @param env -
      * 
      * + default value Is ``null``.
    */
-   function imports_planttfdb(registry: object, motifs: any, tf: any, env?: object): any;
+   function imports_planttfdb(registry: object, motifs: any, tf: any, taxname?: string, env?: object): any;
    /**
      * @param skip_prefix default value Is ``0``.
      * @param env default value Is ``null``.
