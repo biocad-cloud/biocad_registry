@@ -1,8 +1,17 @@
 ﻿Imports System.Runtime.CompilerServices
-Imports registry_data.biocad_registryModel
+Imports Microsoft.VisualBasic.ComponentModel.Collection
+Imports Microsoft.VisualBasic.Text
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
+Imports registry_data.biocad_registryModel
 
 Public Module RegisterSymbol
+
+    ReadOnly greekAlphabet As Dictionary(Of String, String) = GreekAlphabets.lower _
+        .ReverseMaps _
+        .ToDictionary(Function(a) "&" & a.Key & ";",
+                      Function(a)
+                          Return a.Value
+                      End Function)
 
     <Extension>
     Public Function makeSymbol(name As String) As String
@@ -11,16 +20,22 @@ Public Module RegisterSymbol
             .Replace(")", "_") _
             .Replace("""", "_") _
             .Replace("'", "_") _
-            .Replace("&", "_") _
             .Replace("!", "_") _
             .Replace("?", "_") _
             .Replace("\", "_") _
             .Replace("/", "_") _
+            .Replace("+", "_") _
             .StringReplace("\s", "_") _
             .StringReplace("[_-]{2,}", "_") _
             .Trim("-"c, "_"c, ","c)
 
-        symbol = symbol.StringReplace(",[\-_]+", "_")
+        symbol = symbol.StringReplace(",[\-_]+", ",")
+        symbol = symbol.StringReplace("[\-_]+,", ",")
+        symbol = symbol.StringReplace(",{2,}", ",")
+
+        For Each alphabet In greekAlphabet
+            symbol = symbol.Replace(alphabet.Key, alphabet.Value)
+        Next
 
         Return symbol
     End Function
