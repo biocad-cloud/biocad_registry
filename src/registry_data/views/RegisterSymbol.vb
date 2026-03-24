@@ -6,16 +6,23 @@ Public Module RegisterSymbol
 
     <Extension>
     Public Function makeSymbol(name As String) As String
-        Return Strings.Trim(name) _
+        Dim symbol As String = Strings.Trim(name) _
             .Replace("(", "_") _
             .Replace(")", "_") _
             .Replace("""", "_") _
             .Replace("'", "_") _
+            .Replace("&", "_") _
+            .Replace("!", "_") _
+            .Replace("?", "_") _
             .Replace("\", "_") _
             .Replace("/", "_") _
             .StringReplace("\s", "_") _
             .StringReplace("[_-]{2,}", "_") _
-            .Trim("-"c, "_"c)
+            .Trim("-"c, "_"c, ","c)
+
+        symbol = symbol.StringReplace(",[\-_]+", "_")
+
+        Return symbol
     End Function
 
     ''' <summary>
