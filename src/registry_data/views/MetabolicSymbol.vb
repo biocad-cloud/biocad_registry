@@ -70,4 +70,12 @@ Public Module MetabolicSymbol
         Return links
     End Function
 
+    Public Sub UpdateMetaboliteSymbolName(registry As biocad_registry)
+        Dim metabolite_type As UInteger = registry.biocad_vocabulary.metabolite_type
+
+        For page As Integer = 1 To Integer.MaxValue
+
+        Next
+    End Sub
+
 End Module

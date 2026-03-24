@@ -186,7 +186,8 @@ Public Module ImportsMetabolite
             End If
 
             For Each name As metabolites In page_data
-                If name.name.StringEmpty Then
+                If name.name.StringEmpty(, True) Then
+                    Call $"processing empty name of metabolite {name.id} '{name.name}'".debug
                     name.name = name.PickName
                     Call registry.metabolites _
                         .where(field("id") = name.id) _
