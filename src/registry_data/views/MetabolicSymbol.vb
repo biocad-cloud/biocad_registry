@@ -1,6 +1,7 @@
 ﻿Imports System.Runtime.CompilerServices
 Imports registry_data.biocad_registryModel
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
+Imports Oracle.LinuxCompatibility.MySQL.Reflection.DbAttributes
 
 Public Module MetabolicSymbol
 
@@ -70,12 +71,47 @@ Public Module MetabolicSymbol
         Return links
     End Function
 
+    <Extension>
     Public Sub UpdateMetaboliteSymbolName(registry As biocad_registry)
         Dim metabolite_type As UInteger = registry.biocad_vocabulary.metabolite_type
+        Dim page_size As Integer = 10000
 
         For page As Integer = 1 To Integer.MaxValue
+            Dim page_data = registry.registry_resolver _
+                .where(field("type") = metabolite_type) _
+                .limit((page - 1) * page_size, page_size) _
+                .select(Of biocad_registryModel.registry_resolver)
 
+            If page_data.IsNullOrEmpty Then
+                Exit For
+            End If
+
+            Dim update As CommitTransaction = registry.registry_resolver.open_transaction
+
+            For Each batch In page_data.SplitIterator(100)
+                Dim namedata = registry.registry_resolver _
+                    .left_join("metabolite") _
+                    .on((field("metabolite.id") = field("symbol_id")) And (field("type") = metabolite_type)) _
+                    .where(field("`registry_resolver`.id").in(From s In batch Select s.id)) _
+                    .select(Of MetaboliteSymbol)("`registry_resolver`.id", "name")
+
+                For Each symbol In namedata
+                    Call update.add(registry.registry_resolver.where(field("id") = symbol.id).save_sql(field("register_name") = symbol.name.makeSymbol))
+                Next
+            Next
+
+            Call update.commit()
         Next
     End Sub
 
+    Private Class MetaboliteSymbol
+
+        ''' <summary>
+        ''' register id
+        ''' </summary>
+        ''' <returns></returns>
+        <DatabaseField> Public Property id As UInteger
+        <DatabaseField> Public Property name As String
+
+    End Class
 End Module
