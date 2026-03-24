@@ -90,8 +90,8 @@ Public Module MetabolicSymbol
 
             For Each batch In page_data.SplitIterator(100)
                 Dim namedata = registry.registry_resolver _
-                    .left_join("metabolite") _
-                    .on((field("metabolite.id") = field("symbol_id")) And (field("type") = metabolite_type)) _
+                    .left_join("metabolites") _
+                    .on((field("metabolites.id") = field("symbol_id")) And (field("type") = metabolite_type)) _
                     .where(field("`registry_resolver`.id").in(From s In batch Select s.id)) _
                     .select(Of MetaboliteSymbol)("`registry_resolver`.id", "name")
 

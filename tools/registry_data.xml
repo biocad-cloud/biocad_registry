@@ -70,6 +70,12 @@ registry_data
  <param name="registry"></param>
  <param name="ko"></param>
 </member>
+<member name="P:registry_data.MetabolicSymbol.MetaboliteSymbol.id">
+ <summary>
+ register id
+ </summary>
+ <returns></returns>
+</member>
 <member name="M:registry_data.RegisterSymbol.GetMetaboliteModel(registry_data.biocad_registry,System.UInt32)">
  <summary>
  get an existed register symbol for the target metabolite
