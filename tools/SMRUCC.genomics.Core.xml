@@ -13525,7 +13525,7 @@ to take away yo [rest of string was truncated]&quot;;.
  7E. 种
  </summary>
 </member>
-<member name="P:SMRUCC.genomics.Metagenomics.Taxonomy.lowestLevel">
+<member name="P:SMRUCC.genomics.Metagenomics.Taxonomy.RankLevel">
  <summary>
  获取当前的这个分类结果值的最小分类单元的等级
  </summary>

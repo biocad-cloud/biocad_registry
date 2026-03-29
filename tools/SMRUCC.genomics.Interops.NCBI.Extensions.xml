@@ -1125,9 +1125,11 @@ SMRUCC.genomics.Interops.NCBI.Extensions
 </member>
 <member name="T:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.BiDirectionalBesthit">
  <summary>
- Best hit result from the binary direction blastp result.(最佳双向比对结果，BBH，直系同源)
+ Best hit result from the binary direction blastp result. Ortholog mapping result.
  </summary>
- <remarks></remarks>
+ <remarks>
+ (最佳双向比对结果，BBH，直系同源)
+ </remarks>
 </member>
 <member name="P:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.BBH.BiDirectionalBesthit.description">
  <summary>
@@ -1349,29 +1351,6 @@ SMRUCC.genomics.Interops.NCBI.Extensions
  <param name="coverage"></param>
  <param name="identities"></param>
  <returns></returns>
-</member>
-<member name="T:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.PartialBestBLAST">
- <summary>
- 部分最佳比对BLAST
- </summary>
- <remarks></remarks>
-</member>
-<member name="F:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.PartialBestBLAST.LocalBLAST">
- <summary>
- 本地BLAST的中间服务
- </summary>
- <remarks></remarks>
-</member>
-<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.Application.PartialBestBLAST.Peformance(System.String,System.String,Microsoft.VisualBasic.Scripting.TextGrepMethod,Microsoft.VisualBasic.Scripting.TextGrepMethod,System.String,System.Boolean)">
- <summary>
- 执行BLASTP操作，返回单项部分匹配的最佳匹配的蛋白质列表
- </summary>
- <param name="Query"></param>
- <param name="Subject">匹配上Query的部分区域但是Subject对象为完全匹配的目标</param>
- <param name="HitsGrepMethod">对Hit蛋白质序列的FASTA数据库中的基因号的解析方法</param>
- <param name="QueryGrepMethod">对Query蛋白质序列的FASTA数据库中的基因号的解析方法</param>
- <returns>返回双相匹配的BestHit列表</returns>
- <remarks></remarks>
 </member>
 <member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.LocalBLAST.InteropService.InitializeMethods.GetProgram(System.String)">
  <summary>

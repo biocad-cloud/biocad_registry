@@ -8355,7 +8355,7 @@ to take away yo [rest of string was truncated]&quot;;.
  <param name="env"></param>
  <returns>a new dataframe object with duplicated rows removed</returns>
 </member>
-<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.LinqPipeline.dataframe_methods.merge(SMRUCC.Rsharp.Runtime.Internal.Object.dataframe,SMRUCC.Rsharp.Runtime.Internal.Object.dataframe,System.Object,System.Object,System.Object,SMRUCC.Rsharp.Runtime.Environment)">
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.LinqPipeline.dataframe_methods.merge(SMRUCC.Rsharp.Runtime.Internal.Object.dataframe,SMRUCC.Rsharp.Runtime.Internal.Object.dataframe,System.Object,System.Object,System.Object,System.Boolean,SMRUCC.Rsharp.Runtime.Environment)">
  <summary>
  ### Merge Two Data Frames
  
@@ -8372,6 +8372,16 @@ to take away yo [rest of string was truncated]&quot;;.
  column called Row.names is added at the left, and in all cases the result has ‘automatic’ row 
  names.
  </returns>
+</member>
+<member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.LinqPipeline.dataframe_methods.GetIndex(SMRUCC.Rsharp.Runtime.Internal.Object.dataframe,System.String[])">
+ <summary>
+ 
+ </summary>
+ <param name="d"></param>
+ <param name="by">
+ supports multiple column combined as key as here
+ </param>
+ <returns></returns>
 </member>
 <member name="M:SMRUCC.Rsharp.Runtime.Internal.Invokes.LinqPipeline.dplyr.bind_rows(SMRUCC.Rsharp.Runtime.Internal.Object.list,System.Object,SMRUCC.Rsharp.Runtime.Environment)">
  <summary>
