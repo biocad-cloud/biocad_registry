@@ -11,7 +11,7 @@ imports "registry" from "biocad_registry";
 
 # "F:\datapool\20260301\background\uniprotkb_taxonomy_id_4565_2026_03_27.xml"
 
-let uniprot = open.uniprot("C:\Users\Administrator\Downloads\uniprotkb_taxonomy_id_9606_2026_03_04.xml");
+let uniprot = open.uniprot("F:\datapool\20260301\background\uniprotkb_taxonomy_id_4565_2026_03_27.xml");
 let biocad_registry = open_registry("xieguigang", 123456, host ="192.168.3.15");
 
 biocad_registry |> save_uniprot(uniprot);
