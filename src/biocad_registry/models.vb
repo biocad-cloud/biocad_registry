@@ -407,7 +407,7 @@ Public Module registry_models
                     field("term_id") = term.id,
                     field("term") = term.name,
                      field("ontology_id") = db_interpro,
-                     field("note") = term.abstract.ToString
+                     field("note") = If(term.abstract Is Nothing, "", term.abstract.ToString)
                 )
             End If
         Next
