@@ -10,7 +10,7 @@ Imports protein = registry_data.biocad_registryModel.protein
 Public Module ImportsUniProt
 
     <Extension>
-    Public Sub importsUniProt(registry As biocad_registry, proteins As IEnumerable(Of entry))
+    Public Sub importsUniProt(registry As biocad_registry, proteins As IEnumerable(Of entry), processNonEnzyme As Boolean)
         Dim db_uniprot As UInteger = registry.biocad_vocabulary.db_uniprot
         Dim db_genbank As UInteger = registry.biocad_vocabulary.db_genbank
         Dim locs As New Dictionary(Of String, compartment_location)
@@ -34,7 +34,9 @@ Public Module ImportsUniProt
                 Dim check As protein
 
                 If Not prot.DbReferenceIds("EC").Any Then
-                    Continue For
+                    If Not processNonEnzyme Then
+                        Continue For
+                    End If
                 End If
 
                 If locus_tag.IsNullOrEmpty Then
@@ -76,7 +78,9 @@ Public Module ImportsUniProt
                 Dim check As protein
 
                 If Not prot.DbReferenceIds("EC").Any Then
-                    Continue For
+                    If Not processNonEnzyme Then
+                        Continue For
+                    End If
                 End If
 
                 If locus_tag.IsNullOrEmpty Then
@@ -85,7 +89,10 @@ Public Module ImportsUniProt
                     check = registry.protein_data.where(field("source_id").in(locus_tag), field("ncbi_taxid") = taxid, field("source_db") = db_genbank).find(Of protein)("id")
 
                     If check Is Nothing Then
-                        check = registry.protein_data.where(field("source_id").in(prot.accessions), field("ncbi_taxid") = taxid, field("source_db") = db_uniprot).find(Of protein)("id")
+                        check = registry.protein_data _
+                            .where(field("source_id").in(prot.accessions),
+                                   field("ncbi_taxid") = taxid,
+                                   field("source_db") = db_uniprot).find(Of protein)("id")
                     End If
                 End If
 
@@ -106,7 +113,10 @@ Public Module ImportsUniProt
                                     field("name") = loc_id,
                                     field("fullname") = loc_id
                                 )
-                                cc_model = registry.compartment_location.where(field("name") = loc_id).order_by("id", True).find(Of compartment_location)
+                                cc_model = registry.compartment_location _
+                                    .where(field("name") = loc_id) _
+                                    .order_by("id", True) _
+                                    .find(Of compartment_location)
                             End If
 
                             Return cc_model
@@ -114,12 +124,18 @@ Public Module ImportsUniProt
 
                     If Not cc Is Nothing Then
                         loc_uid = cc.id
-                        Call sql.add(registry.subcellular_location.ignore.add_sql(field("protein_id") = check.id, field("location_id") = cc.id, field("evidence") = prot.accessions.First))
+                        Call sql.add(registry.subcellular_location.ignore.add_sql(field("protein_id") = check.id,
+                                                                                  field("location_id") = cc.id,
+                                                                                  field("evidence") = prot.accessions.First))
                     End If
                 Next
 
                 For Each acc As String In prot.accessions
-                    Call sql.ignore.add(field("obj_id") = check.id, field("type") = prot_fasta, field("db_name") = db_uniprot, field("db_xref") = acc, field("db_source") = db_uniprot)
+                    Call sql.ignore.add(field("obj_id") = check.id,
+                                        field("type") = prot_fasta,
+                                        field("db_name") = db_uniprot,
+                                        field("db_xref") = acc,
+                                        field("db_source") = db_uniprot)
                 Next
 
                 If Not locus_tag.IsNullOrEmpty Then
@@ -160,7 +176,7 @@ Public Module ImportsUniProt
                 Next
 
                 ' ec number
-                For Each ec_num As String In prot.DbReferenceIds("EC")
+                For Each ec_num As String In prot.DbReferenceIds("EC").SafeQuery
                     Call sql.ignore.add(field("obj_id") = check.id,
                                  field("type") = prot_fasta,
                                  field("db_name") = db_EC,
