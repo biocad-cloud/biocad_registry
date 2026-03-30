@@ -51,6 +51,19 @@ Module registry
         Return Nothing
     End Function
 
+    <ExportAPI("imports_struct_domains")>
+    Public Function imports_struct_domains(registry As biocad_registry, <RRawVectorArgument> uniprot As Object, Optional env As Environment = Nothing) As Object
+        Dim pull As pipeline = pipeline.TryCreatePipeline(Of entry)(uniprot, env)
+
+        If pull.isError Then
+            Return pull.getError
+        End If
+
+        Call registry.SaveInterProDomain(pull.populates(Of entry)(env))
+
+        Return Nothing
+    End Function
+
     <ExportAPI("save_genbank")>
     Public Function save_genbank(registry As biocad_registry,
                                  <RRawVectorArgument>

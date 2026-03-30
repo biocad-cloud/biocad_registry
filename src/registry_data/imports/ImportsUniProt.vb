@@ -10,6 +10,13 @@ Imports protein = registry_data.biocad_registryModel.protein
 Public Module ImportsUniProt
 
     <Extension>
+    Public Sub SaveInterProDomain(registry As biocad_registry, proteins As IEnumerable(Of entry))
+        For Each block As entry() In proteins.SplitIterator(10000)
+
+        Next
+    End Sub
+
+    <Extension>
     Public Sub importsUniProt(registry As biocad_registry, proteins As IEnumerable(Of entry), processNonEnzyme As Boolean)
         Dim db_uniprot As UInteger = registry.biocad_vocabulary.db_uniprot
         Dim db_genbank As UInteger = registry.biocad_vocabulary.db_genbank
