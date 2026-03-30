@@ -94,9 +94,10 @@ declare namespace registry {
    */
    function save_TRN(registry: object, genomes: any, env?: object): any;
    /**
+     * @param process_none_enzyme default value Is ``true``.
      * @param env default value Is ``null``.
    */
-   function save_uniprot(registry: object, uniprot: any, env?: object): any;
+   function save_uniprot(registry: object, uniprot: any, process_none_enzyme?: boolean, env?: object): any;
    /**
    */
    function update_logo(registry: object): any;

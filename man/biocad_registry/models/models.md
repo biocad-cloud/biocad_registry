@@ -5,6 +5,7 @@
 + [update_location](models/update_location.1) make updates of the compartment location metadata
 + [update_metabolic_network](models/update_metabolic_network.1) 
 + [register_metabolic_symbols](models/register_metabolic_symbols.1) 
++ [update_symbolname](models/update_symbolname.1) 
 + [resolve_metabolite_duplicates](models/resolve_metabolite_duplicates.1) 
 + [build_plantnp_library](models/build_plantnp_library.1) 
 + [build_microbial_nps](models/build_microbial_nps.1) 

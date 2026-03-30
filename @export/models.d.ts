@@ -51,4 +51,7 @@ declare namespace models {
    /**
    */
    function update_metabolic_network(registry: object): ;
+   /**
+   */
+   function update_symbolname(registry: object): ;
 }
