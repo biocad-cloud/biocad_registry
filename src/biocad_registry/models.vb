@@ -10,6 +10,7 @@ Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports registry_data
 Imports registry_data.biocad_registryModel
 Imports SMRUCC.genomics.Analysis.SequenceTools.HMMER
+Imports SMRUCC.genomics.Analysis.SequenceTools.HMMER.InterPro.Xml
 Imports SMRUCC.genomics.ComponentModel.Annotation
 Imports SMRUCC.genomics.Interops.NCBI.Extensions
 Imports SMRUCC.Rsharp.Runtime
@@ -383,6 +384,35 @@ Public Module registry_models
 
             Call update.commit()
         Next
+
+        Return Nothing
+    End Function
+
+    <ExportAPI("imports_interprodb")>
+    Public Function imports_interprodb(registry As biocad_registry, <RRawVectorArgument> interpro As Object, Optional env As Environment = Nothing) As Object
+        Dim pull As pipeline = pipeline.TryCreatePipeline(Of Interpro)(interpro, env)
+
+        If pull.isError Then
+            Return pull.getError
+        End If
+
+        Dim db_interpro As UInteger = registry.biocad_vocabulary.GetDatabaseResource("InterPro").id
+        Dim insert As CommitTransaction = registry.ontology.open_transaction
+
+        For Each term As Interpro In TqdmWrapper.Wrap(pull.populates(Of Interpro)(env).ToArray)
+            Dim check = registry.ontology.where(field("term_id") = term.id, field("ontology_id") = db_interpro).find(Of ontology)
+
+            If check Is Nothing Then
+                Call insert.add(
+                    field("term_id") = term.id,
+                    field("term") = term.name,
+                     field("ontology_id") = db_interpro,
+                     field("note") = term.abstract.ToString
+                )
+            End If
+        Next
+
+        Call insert.commit()
 
         Return Nothing
     End Function
