@@ -36,14 +36,17 @@ Imports SMRUCC.Rsharp.Runtime.Vectorization
 Module registry
 
     <ExportAPI("save_uniprot")>
-    Public Function saveUniprot(registry As biocad_registry, <RRawVectorArgument> uniprot As Object, Optional env As Environment = Nothing) As Object
+    Public Function saveUniprot(registry As biocad_registry, <RRawVectorArgument> uniprot As Object,
+                                Optional process_none_enzyme As Boolean = True,
+                                Optional env As Environment = Nothing) As Object
+
         Dim pull As pipeline = pipeline.TryCreatePipeline(Of entry)(uniprot, env)
 
         If pull.isError Then
             Return pull.getError
         End If
 
-        Call registry.importsUniProt(pull.populates(Of entry)(env))
+        Call registry.importsUniProt(pull.populates(Of entry)(env), process_none_enzyme)
 
         Return Nothing
     End Function
