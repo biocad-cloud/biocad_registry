@@ -1,0 +1,211 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Abstract
+</name>
+</assembly>
+<members>
+<member name="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Motif.IScanner.FindLocation(SMRUCC.genomics.SequenceModel.IPolymerSequenceModel,System.String)">
+ <summary>
+ Found out all of the loci site on the target sequence.
+ </summary>
+ <param name="seq"></param>
+ <param name="loci"></param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Motif.IScanner.FindLocation(System.String,System.String)">
+ <summary>
+ Found out all of the loci site on the target sequence.
+ (使用字符串查找得到目标位点在序列之上的所有的位置集合)
+ </summary>
+ <param name="seq"></param>
+ <param name="Loci"></param>
+ <returns></returns>
+ <remarks>这个位置查找函数是OK的</remarks>
+</member>
+<member name="T:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Motif.Patterns.PatternExpression">
+ <summary>
+ 使用正则表达式来表示序列的模式
+ </summary>
+</member>
+<member name="F:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Motif.Patterns.PatternExpression.__rc">
+ <summary>
+ Regex complement reversed.
+ </summary>
+</member>
+<member name="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Motif.Patterns.PatternParser.SimpleTokens(System.String)">
+ <summary>
+ MEME的表达式，不会有复杂的计算过程
+ </summary>
+ <param name="pattern">所有的字母都是大写</param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Motif.Patterns.PatternParser.TokenIcer(System.String)">
+ <summary>
+ 解析为词元
+ </summary>
+ <param name="pattern"></param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Motif.Patterns.PatternParser.GetExpressions(System.String@)">
+ <summary>
+ 得到末尾的变量表达式
+ </summary>
+ <param name="pattern"></param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Motif.Patterns.Residue.#ctor(System.Char)">
+ <summary>
+ 从残基里面构建
+ </summary>
+ <param name="c"></param>
+</member>
+<member name="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Motif.Patterns.Residue.#ctor(System.String)">
+ <summary>
+ 从片段里面构建
+ </summary>
+ <param name="s"></param>
+</member>
+<member name="F:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Motif.Patterns.Tokens.QualifyingMatches">
+ <summary>
+ [a-z0-9]，匹配的字符被限定为有限的几个
+ </summary>
+</member>
+<member name="F:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Motif.Patterns.Tokens.Residue">
+ <summary>
+ ATGCN
+ </summary>
+</member>
+<member name="F:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Motif.Patterns.Tokens.QualifyingNumber">
+ <summary>
+ {n}, {m,n}, n
+ </summary>
+</member>
+<member name="F:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Motif.Patterns.Tokens.Fragment">
+ <summary>
+ (....)
+ </summary>
+</member>
+<member name="F:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Motif.Patterns.Tokens.Expression">
+ <summary>
+ x={a,b}
+ </summary>
+</member>
+<member name="T:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Motif.Scanner">
+ <summary>
+ A motif site scanner with a specific nt sequence
+ </summary>
+ <remarks>
+ 使用正则表达式扫描序列得到可能的motif位点
+ </remarks>
+</member>
+<member name="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Motif.Scanner.GetBaseSequence">
+ <summary>
+ get the input source sequence data
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.KMers">
+ <summary>
+ k-mers
+ </summary>
+</member>
+<member name="P:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.KMers.Tag">
+ <summary>
+ the kmer sequence
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.KMers.Count">
+ <summary>
+ count current k-mers <see cref="P:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.KMers.Tag"/> on a given sequence
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.KMers.KMerSample(SMRUCC.genomics.SequenceModel.FASTA.IFastaProvider,System.Int32)">
+ <summary>
+ Create sample matrix row data
+ </summary>
+ <param name="seq"></param>
+ <param name="k"></param>
+ <returns></returns>
+</member>
+<member name="T:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Probability">
+ <summary>
+ The PWM model
+ </summary>
+</member>
+<member name="P:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Probability.region">
+ <summary>
+ the PWM matrix data
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Probability.name">
+ <summary>
+ the unique id/name reference of the motif PWM model
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Probability.width">
+ <summary>
+ motif residue number
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Probability.E(System.Int32)">
+ <summary>
+ 计算小样本校正项 e_n = 1 / (2 * ln(2) * n)，这个公式是用于对 Shannon 熵
+ 进行小样本校正（small-sample correction）的经典项，常用于 motif 分析中
+ 计算信息含量（Information Content）时，以减少因有限序列数量带来的偏差。
+ </summary>
+ <param name="nsize">
+ the count of the input fasta sequence.
+ </param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Probability.CalculatesBits(System.Double,System.Double,System.Boolean)">
+ <summary>
+ The information content (y-axis) of position i is given by:
+ 
+ ```
+ Ri = log2(4) - (Hi + en)   //nt
+ Ri = log2(20) - (Hi + en)  //prot 
+ ```
+ 
+ 4 for DNA/RNA or 20 for protein. Consequently, the maximum sequence conservation 
+ per site Is log2 4 = 2 bits for DNA/RNA And log2 20 ≈ 4.32 bits for proteins.
+ 
+ </summary>
+ <param name="En">e_n = \frac{1}{2 \ln(2) \cdot n}</param>
+ <param name="NtMol">
+ calculate for the nucleotide sequence model?
+ </param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Probability.HI(System.Collections.Generic.Dictionary{System.Char,System.Double})">
+ <summary>
+ 
+ </summary>
+ <param name="f"></param>
+ <returns></returns>
+ <remarks>
+ If n equals ZERO, then log2(0) is NaN, n * Math.Log(n, 2) could not be measure,
+ due to the reason of ZERO multiple any number is ZERO, so that if n is ZERO, 
+ then set n * Math.Log(n, 2) its value to Zero directly.
+ </remarks>
+</member>
+<member name="T:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Residue">
+ <summary>
+ residue site
+ </summary>
+</member>
+<member name="P:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Residue.frequency">
+ <summary>
+ should be sum equals to 1
+ </summary>
+ <returns></returns>
+</member>
+</members>
+</doc>

@@ -1,0 +1,514 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+Microsoft.VisualBasic.DataMining.DynamicProgramming
+</name>
+</assembly>
+<members>
+<member name="T:Microsoft.VisualBasic.DataMining.DynamicProgramming.CenterStar">
+ <summary>
+ ##### Multiple-sequence-alignment
+ 
+ This program calculates the multiple sequence alignment of k>1 DNA sequences.
+ 
+ The program use the Matrix.txt file For the substitution matrix. The matrix 
+ can be changed, And it used With Default values As: 
+ 
+ + 0 - Match
+ + 1 - Missmatch
+ + 2 - Indel
+ 
+ Algorithm used For this purpose Is Center Star Algotrithm
+ 
+ > https://github.com/EranCohenSW/Multiple-sequence-alignment/blob/master/Project/src/CenterStar.java
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.DataMining.DynamicProgramming.CenterStar.#ctor(System.Collections.Generic.IEnumerable{System.String},System.Int32)">
+ <summary>
+ auto encode sequence with title in format seq_id
+ </summary>
+ <param name="input"></param>
+ <param name="kband"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.DataMining.DynamicProgramming.CenterStar.Compute(Microsoft.VisualBasic.ComponentModel.Algorithm.DynamicProgramming.IScore{System.Char},System.String[]@,System.Int32[]@)">
+ <summary>
+ Main
+ </summary>
+ <param name="matrix">得分矩阵</param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.DataMining.DynamicProgramming.CenterStar.calculateTotalCost(Microsoft.VisualBasic.ComponentModel.Algorithm.DynamicProgramming.IScore{System.Char},System.Int32)">
+ <summary>
+ this Function calculate() the total cost
+ </summary>
+ <returns></returns>
+ 
+</member>
+<member name="M:Microsoft.VisualBasic.DataMining.DynamicProgramming.CenterStar.MultipleAlignment(System.Int32)">
+ <summary>
+ The Function do the multiple alignment according to the center string 
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.DataMining.DynamicProgramming.CenterStar.SyncGaps(System.String[]@,System.Int32,System.Int32)">
+ <summary>
+ 同步所有序列的空格插入位置，以新中心序列为基准统一对齐
+ </summary>
+ <param name="alignments">待同步的序列数组</param>
+ <param name="centerIndex">中心序列的索引</param>
+ <param name="i">当前新序列的索引</param>
+</member>
+<member name="M:Microsoft.VisualBasic.DataMining.DynamicProgramming.CenterStar.FindGapInsertPositions(System.String,System.String)">
+ <summary>
+ 比较新旧中心序列，找出需要插入空格的位置
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.DataMining.DynamicProgramming.CenterStar.ApplyGapInsertions(System.String[],System.Int32[],System.Int32)">
+ <summary>
+ 将所有序列在指定位置插入空格（从后向前处理避免索引偏移）
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.DataMining.DynamicProgramming.CenterStar.FindStarIndex(System.Int32)">
+ <summary>
+ This Function finds the minimum star cost from all sequences
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.DataMining.DynamicProgramming.Extensions.PopulateAlignments``1(Microsoft.VisualBasic.DataMining.DynamicProgramming.NeedlemanWunsch.Workspace{``0})">
+ <summary>
+ This funktion provide a easy way to write a computed alignment into a fasta file
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="nw"></param>
+ <returns></returns>
+</member>
+<member name="F:Microsoft.VisualBasic.DataMining.DynamicProgramming.KBandSearch.K">
+ <summary>
+ k-band 带宽
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.DataMining.DynamicProgramming.KBandSearch.CalculateEditDistance(System.String,System.String)">
+ <summary>
+ Global alignment and function to calculate the edit distances
+ 
+ + 0   diagonal
+ + 1   left
+ + 2   up
+ 
+ </summary>
+ <param name="seq1$"></param>
+ <param name="seq2$"></param>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.DataMining.DynamicProgramming.KBandSearch.FillBand(System.String,System.String,System.Int32[0:,0:]@,System.Int32[0:,0:]@)">
+ <summary>
+ 填充带状区域
+ </summary>
+ <param name="seq1"></param>
+ <param name="seq2"></param>
+ <param name="score"></param>
+ <param name="trace"></param>
+</member>
+<member name="T:Microsoft.VisualBasic.DataMining.DynamicProgramming.NeedlemanWunsch.NeedlemanWunsch`1">
+ <summary>
+ ## Needleman-Wunsch Algorithm
+ 
+ Bioinformatics 1, WS 15/16
+ Dr. Kay Nieselt and Alexander Seitz
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.DataMining.DynamicProgramming.NeedlemanWunsch.NeedlemanWunsch`1.traceback(System.Collections.Generic.Stack{`0},System.Collections.Generic.Stack{`0},System.Int32,System.Int32)">
+ <summary>
+	this function is called for the first time with two empty stacks
+	and the end indices of the matrix
+	
+	the function computes a traceback over the matrix, it calls itself recursively
+	for each sequence, it pushes the aligned character (a,c,g,t or -)
+	on a stack (use java.util.Stack with the function push()) 
+ </summary>
+ <param name="s1"></param>
+ <param name="s2"></param>
+ <param name="i"></param>
+ <param name="j"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.DataMining.DynamicProgramming.NeedlemanWunsch.NeedlemanWunsch`1.Compute">
+ <summary>
+ computes the matrix for the Needleman-Wunsch Algorithm
+ </summary>
+ <remarks>	
+ this function computes the NW-algorithm with linear gap-costs
+ 
+  - first make yourself familiar with this function and the functions used to compute the resulting alignment!
+  
+  - modify the functions used in this class such that the NW algorithm is modular
+    i.e. the following criteria should be fulfilled: 
+        - it should be easy to replace the linear gap cost function with an affine gap cost function
+        - the initialization step, fill and traceback should be modular, to allow
+          to switch between different algorithms later (NW, SW, OverlapAlignment etc.)
+    
+  - you are allowed to change the class structure, if you think that it is necessary!
+    (make sure to use object oriented programming concepts, i.e. use objects to abstract your code 
+   	-> don't do everything in a single class)    	 
+ </remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.DataMining.DynamicProgramming.NeedlemanWunsch.NeedlemanWunsch`1.MaximizingCell(System.Int32,System.Int32,System.Int32)">
+ <summary>
+ return the maximizing cell(s)
+ 
+ 1, if the maximizing cell is the upper cell
+ 2, if the maximizing cell is the left-upper cell
+ 4, if the maximizing cell is the left cell
+ 
+ if there are more than one maximizing cells, the values are summed up
+ </summary>
+ <param name="upperLeft"> </param>
+ <param name="left"> </param>
+ <param name="upper"> </param>
+ <returns> code for the maximizing cell(s) </returns>
+</member>
+<member name="P:Microsoft.VisualBasic.DataMining.DynamicProgramming.NeedlemanWunsch.ScoreMatrix`1.GapPenalty">
+ <summary>
+ get gap open penalty </summary>
+ <returns> gap open penalty </returns>
+</member>
+<member name="P:Microsoft.VisualBasic.DataMining.DynamicProgramming.NeedlemanWunsch.ScoreMatrix`1.MatchScore">
+ <summary>
+ get match score </summary>
+ <returns> match score </returns>
+</member>
+<member name="P:Microsoft.VisualBasic.DataMining.DynamicProgramming.NeedlemanWunsch.ScoreMatrix`1.MismatchScore">
+ <summary>
+ get mismatch score </summary>
+ <returns> mismatch score </returns>
+</member>
+<member name="M:Microsoft.VisualBasic.DataMining.DynamicProgramming.NeedlemanWunsch.ScoreMatrix`1.getMatchScore(`0,`0)">
+ <summary>
+ if char a is equal to char b
+ return the match score
+ else return mismatch score
+ </summary>
+</member>
+<member name="T:Microsoft.VisualBasic.DataMining.DynamicProgramming.NeedlemanWunsch.Workspace`1">
+ <summary>
+ Base class for the Needleman-Wunsch Algorithm
+ Bioinformatics 1, WS 15/16
+ Dr. Kay Nieselt and Alexander Seitz
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.DataMining.DynamicProgramming.NeedlemanWunsch.Workspace`1.NumberOfAlignments">
+ <summary>
+ get numberOfAlignments </summary>
+ <returns> numberOfAlignments </returns>
+</member>
+<member name="F:Microsoft.VisualBasic.DataMining.DynamicProgramming.NeedlemanWunsch.Workspace`1.Sequence1">
+ <summary>
+ get sequence 1 </summary>
+ <return>  sequence 1 </return>
+</member>
+<member name="F:Microsoft.VisualBasic.DataMining.DynamicProgramming.NeedlemanWunsch.Workspace`1.Sequence2">
+ <summary>
+ get sequence 2cted int max (int a, int b, int c) {
+    return Math.max(a, Math.max(b, c)); </summary>
+ <return> sequence 2 </return>
+</member>
+<member name="P:Microsoft.VisualBasic.DataMining.DynamicProgramming.NeedlemanWunsch.Workspace`1.Score">
+ <summary>
+ get computed score </summary>
+ <returns> score </returns>
+</member>
+<member name="M:Microsoft.VisualBasic.DataMining.DynamicProgramming.NeedlemanWunsch.Workspace`1.getAligned1(System.Int32)">
+ <summary>
+ get aligned version of sequence 1 </summary>
+ <param name="i"> </param>
+ <returns>  aligned sequence 1 </returns>
+</member>
+<member name="M:Microsoft.VisualBasic.DataMining.DynamicProgramming.NeedlemanWunsch.Workspace`1.AddAligned1(`0[])">
+ <summary>
+ set aligned sequence 1 </summary>
+ <param name="align"> </param>
+</member>
+<member name="M:Microsoft.VisualBasic.DataMining.DynamicProgramming.NeedlemanWunsch.Workspace`1.getAligned2(System.Int32)">
+ <summary>
+ get aligned version of sequence 2 </summary>
+ <param name="i"> </param>
+ <returns> aligned sequence 2 </returns>
+</member>
+<member name="M:Microsoft.VisualBasic.DataMining.DynamicProgramming.NeedlemanWunsch.Workspace`1.AddAligned2(`0[])">
+ <summary>
+ set aligned sequence 2 </summary>
+ <param name="align"> </param>
+</member>
+<member name="T:Microsoft.VisualBasic.DataMining.DynamicProgramming.SmithWaterman.Directions">
+ <summary>
+ Constants of directions.
+ Multiple directions are stored by bits.
+ The zero direction is the starting point.
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.DataMining.DynamicProgramming.SmithWaterman.Directions.DR_LEFT">
+ <summary>
+ 0001
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.DataMining.DynamicProgramming.SmithWaterman.Directions.DR_UP">
+ <summary>
+ 0010
+ </summary>        
+</member>
+<member name="F:Microsoft.VisualBasic.DataMining.DynamicProgramming.SmithWaterman.Directions.DR_DIAG">
+ <summary>
+ 0100
+ </summary>        
+</member>
+<member name="F:Microsoft.VisualBasic.DataMining.DynamicProgramming.SmithWaterman.Directions.DR_ZERO">
+ <summary>
+ 1000
+ </summary>        
+</member>
+<member name="T:Microsoft.VisualBasic.DataMining.DynamicProgramming.SmithWaterman.GSW`1">
+ <summary>
+ Generic Smith-Waterman computing kernel.(Smith-Waterman泛型化通用计算核心)
+ </summary>
+ <typeparam name="T"></typeparam>
+</member>
+<member name="P:Microsoft.VisualBasic.DataMining.DynamicProgramming.SmithWaterman.GSW`1.query">
+ <summary>
+ The first input string
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.DataMining.DynamicProgramming.SmithWaterman.GSW`1.subject">
+ <summary>
+ The second input String
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.DataMining.DynamicProgramming.SmithWaterman.GSW`1.queryLength">
+ <summary>
+ The lengths of the input strings
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.DataMining.DynamicProgramming.SmithWaterman.GSW`1.subjectLength">
+ <summary>
+ The lengths of the input strings
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.DataMining.DynamicProgramming.SmithWaterman.GSW`1.score">
+ <summary>
+ The score matrix.
+ The true scores should be divided by the normalization factor.
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.DataMining.DynamicProgramming.SmithWaterman.GSW`1.prevCells">
+ <summary>
+ The directions pointing to the cells that
+ give the maximum score at the current cell.
+ The first index is the column index.
+ The second index is the row index.
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.DataMining.DynamicProgramming.SmithWaterman.GSW`1.NORM_FACTOR">
+ <summary>
+ The normalization factor.
+ To get the true score, divide the integer score used in computation
+ by the normalization factor.
+ </summary>
+</member>
+<member name="F:Microsoft.VisualBasic.DataMining.DynamicProgramming.SmithWaterman.GSW`1.MATCH_SCORE">
+ <summary>
+ The similarity function constants.
+ They are amplified by the normalization factor to be integers.
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.DataMining.DynamicProgramming.SmithWaterman.GSW`1.symbol">
+ <summary>
+ Compute the similarity score of substitution: use a substitution matrix if the cost model
+ The position of the first character is 1.
+ A position of 0 represents a gap. 
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.DataMining.DynamicProgramming.SmithWaterman.GSW`1.MaxScore">
+ <summary>
+ Get the maximum value in the score matrix.
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.DataMining.DynamicProgramming.SmithWaterman.GSW`1.AlignmentScore">
+ <summary>
+ Get the alignment score between the two input strings.
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.DataMining.DynamicProgramming.SmithWaterman.GSW`1.Matches(System.Double)">
+ <summary>
+ Return a set of Matches idenfied in Dynamic programming matrix. 
+ A match is a pair of subsequences whose score is higher than the 
+ preset scoreThreshold.
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.DataMining.DynamicProgramming.SmithWaterman.GSW`1.#ctor(System.Collections.Generic.IEnumerable{`0},System.Collections.Generic.IEnumerable{`0},Microsoft.VisualBasic.DataMining.DynamicProgramming.GenericSymbol{`0})">
+ <summary>
+ <paramref name="symbol"/>里面的similarity函数返回来的分数越高说明二者越相似
+ </summary>
+ <param name="query"></param>
+ <param name="subject"></param>
+ <param name="symbol">
+ A generic object model that should contains a Blosum matrix or motif 
+ similarity function, and a to char method for display alignment.
+ </param>
+</member>
+<member name="M:Microsoft.VisualBasic.DataMining.DynamicProgramming.SmithWaterman.GSW`1.similarity(System.Int32,System.Int32)">
+ <summary>
+ </summary>
+ <param name="i"> Position of the character in str1 </param>
+ <param name="j"> Position of the character in str2 </param>
+ <returns> Cost of substitution of the character in str1 by the one in str2 </returns>
+</member>
+<member name="M:Microsoft.VisualBasic.DataMining.DynamicProgramming.SmithWaterman.GSW`1.BuildMatrix">
+ <summary>
+ Build the score matrix using dynamic programming.
+ Note: The indel scores must be negative. Otherwise, the
+ part handling the first row and column has to be
+ modified.
+ </summary>
+ <remarks>
+ 进行局部最佳比对，初始化了score矩阵
+ </remarks>
+</member>
+<member name="M:Microsoft.VisualBasic.DataMining.DynamicProgramming.SmithWaterman.GSW`1.traceback(System.Int32,System.Int32)">
+ <summary>
+ given the bottom right corner point trace back  the top left conrner.
+  at entry: i, j hold bottom right (end of Aligment coords)
+  at return:  hold top left (start of Alignment coords)
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.DataMining.DynamicProgramming.SmithWaterman.GSW`1.GetDPMAT">
+ <summary>
+ Gets the dynmaic programming matrix
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.DataMining.DynamicProgramming.SmithWaterman.GSW`1.GetTraceback">
+ <summary>
+ See this overview on implementing Smith-Waterman, including trace back. At each location in the matrix you should check 4 things:
+ 
+ If the location value equals the gap penalty plus the location above, up Is a valid move.
+ If the location value equals the gap penalty plus the location left, left Is a valid move.
+ If the location value equals the match value plus the location up And left, diagonal Is a valid move.
+ If the location value Is 0, you're done.
+ 
+ The first And second options correlate To inserting a gap In one Of the strings, And the third correlates To aligning two characters. 
+ If multiple paths work, Then you have multiple possible alignments. 
+ 
+ As the article states, the decision at that point depends largely On context (you have several options).
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Microsoft.VisualBasic.DataMining.DynamicProgramming.SmithWaterman.GSW`1.GetMatches(System.Double)">
+ <summary>
+ 返回局部最优匹配的查找结果，请注意，匹配的位置都是``从下标1开始的``！
+ </summary>
+ <param name="scoreThreshold"></param>
+ <returns>could be empty if no HSP scores are > scoreThreshold</returns>
+</member>
+<member name="P:Microsoft.VisualBasic.DataMining.DynamicProgramming.SmithWaterman.LocalHSPMatch`1.seq1">
+ <summary>
+ query的一部分片段
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.DataMining.DynamicProgramming.SmithWaterman.LocalHSPMatch`1.seq2">
+ <summary>
+ subject的一部分片段
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.DataMining.DynamicProgramming.SmithWaterman.LocalHSPMatch`1.QueryLength">
+ <summary>
+ 完整的query的长度
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.DataMining.DynamicProgramming.SmithWaterman.LocalHSPMatch`1.SubjectLength">
+ <summary>
+ 完整的subject的长度
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.DataMining.DynamicProgramming.SmithWaterman.LocalHSPMatch`1.LengthQuery">
+ <summary>
+ length of the query fragment size
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.DataMining.DynamicProgramming.SmithWaterman.LocalHSPMatch`1.LengthHit">
+ <summary>
+ length of the hit fragment size
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:Microsoft.VisualBasic.DataMining.DynamicProgramming.SmithWaterman.Match">
+ <summary>
+ the smith-waterman HSP match class defintion
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.DataMining.DynamicProgramming.SmithWaterman.Match.fromA">
+ <summary>
+ Returns the value of fromA.
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Microsoft.VisualBasic.DataMining.DynamicProgramming.SmithWaterman.Match.fromB">
+ <summary>
+ Returns the value of fromB.
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.DataMining.DynamicProgramming.SmithWaterman.Match.toA">
+ <summary>
+ Returns the value of toA.
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.DataMining.DynamicProgramming.SmithWaterman.Match.toB">
+ <summary>
+ Returns the value of toB.
+ </summary>
+</member>
+<member name="P:Microsoft.VisualBasic.DataMining.DynamicProgramming.SmithWaterman.Match.score">
+ <summary>
+ Returns the value of score.
+ </summary>
+</member>
+<member name="M:Microsoft.VisualBasic.DataMining.DynamicProgramming.SmithWaterman.Match.#ctor(Microsoft.VisualBasic.DataMining.DynamicProgramming.SmithWaterman.Match)">
+ <summary>
+ do match result data copy
+ </summary>
+ <param name="m"></param>
+</member>
+<member name="M:Microsoft.VisualBasic.DataMining.DynamicProgramming.SmithWaterman.Match.notOverlap(Microsoft.VisualBasic.DataMining.DynamicProgramming.SmithWaterman.Match)">
+ <summary>
+ Check whether this Match onecjt overlap with input Match m;
+ return true if two objects do not overlap
+ </summary>
+ <param name="m"></param>
+ <returns></returns>
+ 
+</member>
+<member name="M:Microsoft.VisualBasic.DataMining.DynamicProgramming.SmithWaterman.SimpleChaining.Chaining(Microsoft.VisualBasic.DataMining.DynamicProgramming.SmithWaterman.Match[],System.Boolean)">
+ <summary>
+ Identify the best chain from given list of match
+ </summary>
+ <param name="matches"> a list of match </param>
+ <param name="debug">  if true, print list of input match, adjacency, score matrix, best chain found. </param>
+ <returns> the optimal chain as a list of match </returns>
+</member>
+<member name="M:Microsoft.VisualBasic.DataMining.DynamicProgramming.SmithWaterman.SimpleChaining.ChainingImpl(Microsoft.VisualBasic.DataMining.DynamicProgramming.SmithWaterman.Match[],System.Boolean)">
+ <summary>
+ Identify the best chain from given list of match
+ </summary>
+ <param name="matches"> a list of match </param>
+ <param name="debug">  if true, print list of input match, adjacency, score matrix, best chain found. </param>
+ <returns> the optimal chain as a list of match </returns>
+ 
+</member>
+<member name="M:Microsoft.VisualBasic.DataMining.DynamicProgramming.SmithWaterman.SimpleChaining.printLowerMatrix(System.Double[],System.Int32)">
+ <summary>
+ System out the input array as an strict lower diagonal matrix
+ </summary>
+</member>
+</members>
+</doc>

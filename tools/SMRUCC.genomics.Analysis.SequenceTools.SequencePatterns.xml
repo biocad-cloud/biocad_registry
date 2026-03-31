@@ -1,0 +1,1006 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns
+</name>
+</assembly>
+<members>
+<member name="P:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.DNAOrigami.Project.n">
+ <summary>
+ segment length
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.DNAOrigami.Project.is_linear">
+ <summary>
+ scaffolds are not circular
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.DNAOrigami.Project.get_rev_compl">
+ <summary>
+ also count reverse complementary sequences
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.DNAOrigami.ScaffoldOrthogonality">
+ <summary>
+ evaluate scaffold orthogonality
+ 
+ This script analyses orthogonality of two DNA-Origami scaffold strands.
+ Multiple criteria For orthogonality Of the two sequences can be specified
+ to determine the level of orthogonality. The script Is inteded to be easily
+ applicable for a broad untrained audience, weherefore it only relies on
+ standard packages And elaborate input processing.
+ </summary>
+</member>
+<member name="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.DNAOrigami.ScaffoldOrthogonality.CheckOrthogonality(SMRUCC.genomics.SequenceModel.FASTA.IAbstractFastaToken,SMRUCC.genomics.SequenceModel.FASTA.IAbstractFastaToken,SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.DNAOrigami.Project)">
+ <summary>
+ Check orthogonality of 2 dna-sequences and output relevant data.
+ </summary>
+ <param name="scaffold1"></param>
+ <param name="scaffold2"></param>
+ <param name="project"></param>
+ <returns></returns>
+</member>
+<member name="T:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.LociExtensions">
+ <summary>
+ 将序列特征的搜索结果转换为<see cref="T:SMRUCC.genomics.SequenceModel.NucleotideModels.SimpleSegment"/>对象类型
+ </summary>
+ 
+</member>
+<member name="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.LociExtensions.MirrorsLoci(SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.PalindromeLoci)">
+ <summary>
+ --->&lt;---
+ </summary>
+ <param name="loci"></param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.LociExtensions.ToLoci(SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.Repeats,System.Int32)">
+ <summary>
+ 对于简单的重复序列而言，正向链上面的重复片段，例如AAGTCT在反向链上面就是AGACTT，总是可以找得到对应的，所以在这里只需要记录下正向链的数据就好了
+ </summary>
+ <param name="x"></param>
+ <param name="start"></param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.LociExtensions.ConvertsAuto(Microsoft.VisualBasic.Data.Framework.IO.File)">
+ <summary>
+ 自动根据类型转换为位点数据
+ </summary>
+ <param name="df"></param>
+ <returns></returns>
+</member>
+<member name="T:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.MotifLog">
+ <summary>
+ Simple site information of the TF motif site.
+ (简单的Motif位点)
+ </summary>
+</member>
+<member name="P:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.MotifLog.Location">
+ <summary>
+ 基因组上下文之中的位置的描述
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.MotifLog.InPromoterRegion">
+ <summary>
+ 当前的这个位点对象是否是在启动子区
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.MotifLog.#ctor(SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.MotifLog)">
+ <summary>
+ 复制
+ </summary>
+ <param name="loci"></param>
+</member>
+<member name="T:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Motif.MotifPattern">
+ <summary>
+ Regular expression model for the motifs
+ </summary>
+</member>
+<member name="P:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Motif.MotifPattern.Id">
+ <summary>
+ the unique reference id key of current motif pattern
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Motif.MotifPattern.Expression">
+ <summary>
+ the regular expression for search the sequence site
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Motif.MotifPattern.Motif">
+ <summary>
+ the motif name
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Motif.MotifPattern.Width">
+ <summary>
+ the width of current motif(site length)
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Motif.MotifPattern.Scan(SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Motif.Scanner)">
+ <summary>
+ scan the motif sites on a given sequence data
+ </summary>
+ <param name="scanner"></param>
+ <returns></returns>
+</member>
+<member name="T:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Motif.PWM">
+ <summary>
+ Build probability matrix from clustal multiple sequence alignment.
+ </summary>
+</member>
+<member name="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Motif.PWM.FromMla(SMRUCC.genomics.SequenceModel.FASTA.FastaFile)">
+ <summary>
+ Build probability matrix from clustal multiple sequence alignment, this matrix model can be 
+ used for the downstream sequence logo drawing visualization.
+ </summary>
+ <param name="fa">A fasta sequence file from the clustal multiple sequence alignment.</param>
+ <returns></returns>
+ <remarks>
+ (从Clustal比对结果之中生成PWM用于SequenceLogo的绘制)
+ </remarks>
+</member>
+<member name="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Motif.PWM.makeResidue(System.Collections.Generic.Dictionary{System.Char,System.Double},System.Double,System.Double,System.Int32,System.Int32)">
+ <summary>
+ Construct of the residue model in the PWM
+ </summary>
+ <param name="f">ATGC</param>
+ <param name="h"></param>
+ <param name="en"></param>
+ <param name="n"></param>
+ <returns></returns>
+</member>
+<member name="T:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Motif.ResidueSite">
+ <summary>
+ A column in the motif
+ </summary>
+</member>
+<member name="P:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Motif.ResidueSite.PWM">
+ <summary>
+ ATGC/
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Motif.ResidueSite.bits">
+ <summary>
+ Information content
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Motif.ResidueSite.AsChar">
+ <summary>
+ 请注意，在这里显示的字符是按照内部默认的ATGC的顺序来显示的，可能会与实际的字符顺序不符合，这里仅做调试查看使用
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Motif.ResidueSite.Complement">
+ <summary>
+ ATGC -> TACG
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Motif.ResidueSite.#ctor(System.Char)">
+ <summary>
+
+ </summary>
+ <param name="nt"></param>
+</member>
+<member name="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Motif.ResidueSite.ToChar(System.Char,System.Double)">
+ <summary>
+
+ </summary>
+ <param name="ch">大写的</param>
+ <param name="p"></param>
+ <returns></returns>
+</member>
+<member name="T:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Pattern.PatternSearch">
+ <summary>
+ 使用用户指定的正则表达式搜索指定的序列数据
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Pattern.PatternSearch.Match(SMRUCC.genomics.SequenceModel.FASTA.FastaFile,System.String)">
+ <summary>
+ 使用用户指定的正则表达式搜索指定的序列数据
+ </summary>
+ <param name="Seq"></param>
+ <param name="pattern"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="T:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Pattern.SegLoci">
+ <summary>
+ 程序所搜索到的一个序列片段
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Pattern.SegLoci.Sequence">
+ <summary>
+ 序列片段
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Pattern.SegLoci.Length">
+ <summary>
+ 该序列片段的长度
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Pattern.SegLoci.Left">
+ <summary>
+ 该序列在整条序列当中的左端长度和右端长度
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="T:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.SSRSearch">
+ <summary>
+ 微卫星DNA：重复单位序列最短，只有2～6bp，串联成簇，长度50～100bp，又称为短串联重复序列（Short Tandem Repeat STR)。
+ 广泛分布于基因组中。 其中富含A-T碱基对，是在研究DNA多态性标记过程中发现的。1981年Miesfeld等首次发现微卫星DNA，
+ 其重复单位长度一般为1～6个核苷酸，双核苷酸重复单位常为(CA)n和(TG)n。
+ </summary>
+</member>
+<member name="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.SSRSearch.PureSSR(SMRUCC.genomics.SequenceModel.ISequenceModel,System.String,System.Int32)">
+ <summary>
+ 所谓单纯SSR 是指由单一的重复单元所组成的序列，如``(AT)n``；
+ </summary>
+ <param name="range">重复片段的长度范围，默认是最短2个核苷酸，最长6个核苷酸</param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.SSRSearch.CompoundSSR(SMRUCC.genomics.SequenceModel.ISequenceModel,System.String,System.Int32)">
+ <summary>
+ 复合SSR 则是由2个或多个重复单元组成的序列，如``(GT)n(AT)m``；
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.SSRSearch.InterruptedSSR(SMRUCC.genomics.SequenceModel.ISequenceModel,System.String)">
+ <summary>
+ 间隔SSR 在重复序列中有其它核苷酸夹杂其中，如(GT)nGG(GT)m。
+ </summary>
+ <returns></returns>
+</member>
+<member name="F:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.LociFilter.Compares.FromLoci">
+ <summary>
+ 比较当前点和最开始的位点的间隔
+ </summary>
+</member>
+<member name="F:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.LociFilter.Compares.Interval">
+ <summary>
+ 比较的是任意两点之间的间隔
+ </summary>
+</member>
+<member name="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.LociFilter.Filtering``1(System.Collections.Generic.IEnumerable{``0},System.Int32,SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.LociFilter.Compares,System.Boolean,System.Int32)">
+ <summary>
+ 筛选有效的重复片段位点
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="data"></param>
+ <param name="interval"></param>
+ <param name="compare"></param>
+ <param name="returnsAll"></param>
+ <returns></returns>
+ 
+</member>
+<member name="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.LociFilter.doFiltering``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Int32[]},System.Action{``0,System.Int32[]},System.Int32,SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.LociFilter.Compares,System.Boolean,System.Int32)">
+ <summary>
+ 
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="data"></param>
+ <param name="getLocis"></param>
+ <param name="setLocis"></param>
+ <param name="interval"></param>
+ <param name="compare"></param>
+ <param name="returnsAll"></param>
+ <param name="lengthMin">重复片段的最小长度</param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.LociFilter.FilteringRev(System.Collections.Generic.IEnumerable{SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.ReverseRepeatsView},System.Int32,SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.LociFilter.Compares,System.Boolean,System.Int32)">
+ <summary>
+ 根据<see cref="P:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.ReverseRepeatsView.reversed"/>来进行筛选
+ </summary>
+ <param name="data"></param>
+ <param name="interval"></param>
+ <param name="compare"></param>
+ <param name="returnsAll"></param>
+ <returns></returns>
+ 
+</member>
+<member name="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.Analysis.RepeatsDensity(SMRUCC.genomics.SequenceModel.FASTA.FastaFile,System.Int32,System.Int32,System.Int32)">
+ <summary>
+ 通过计算每一个基因组上面的每一个位点的重复片段的出现频率来计算出每一个位点的重复片段的热度
+ </summary>
+ <returns></returns>
+ <param name="Mla">必须是经过多序列比对对齐的</param>
+ 
+</member>
+<member name="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.Analysis.Density``1(System.String,System.Int32,System.String,System.Double)">
+ <summary>
+ 
+ </summary>
+ <typeparam name="TView"></typeparam>
+ <param name="DIR"></param>
+ <param name="size"></param>
+ <param name="ref">作为参考的原始数据之中的csv文件名</param>
+ <param name="cutoff"></param>
+ <returns></returns>
+</member>
+<member name="T:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.RepeatsView">
+ <summary>
+ 正向重复位点的序列模型
+ </summary>
+</member>
+<member name="P:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.RepeatsView.averageIntervals">
+ <summary>
+ 每个重复的片段之间平均的间隔长度
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.RepeatsView.ToVector``1(System.Collections.Generic.IEnumerable{``0},System.Int32)">
+ <summary>
+ 返回的是基因组上面的每一个位点的热度的列表
+ </summary>
+ <typeparam name="TView"></typeparam>
+ <param name="data"></param>
+ <param name="size"></param>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.RepeatsView.Hot">
+ <summary>
+ 平均距离越小，则热度越高
+ 位点越多，热度越高
+ 片段越长，热度越高
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.ReverseRepeatsView">
+ <summary>
+ 反向重复序列的模型，继承于<see cref="T:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.RepeatsView"/>模型
+ </summary>
+</member>
+<member name="P:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.ReverseRepeatsView.reversed">
+ <summary>
+ 反向重复的位点的出现的片段左端位置列表
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.ReverseRepeatsView.reversedLoci">
+ <summary>
+ 反向重复的代表位点序列
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.ReverseRepeats">
+ <summary>
+ The reversed repeats.(反向重复序列)
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.ReverseRepeats.RepeatLoci">
+ <summary>
+ The left loci of the repeat sequence.(正向的序列片段的位置集合)
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.ReverseRepeats.GenerateDocumentSegment">
+ <summary>
+ {Repeats, Rev-Repeats, Loci_left}
+ </summary>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="T:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.Repeats">
+ <summary>
+ The sequence segment of the nucleotide repeats.(重复的核酸片段)
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.Repeats.loci">
+ <summary>
+ The Repeats sequence data.(重复序列)
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.Repeats.locations">
+ <summary>
+ 重复序列的左端的位置的集合
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.Repeats.averageIntervals">
+ <summary>
+ Average Bytes interval between the loci locations
+ </summary>
+ <returns></returns>
+ <remarks>
+ 相邻的位点两两相减得到间隔长度后取平均值
+ </remarks>
+</member>
+<member name="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.Repeats.GenerateDocumentSegment">
+ <summary>
+ 视图2：生成文档片段(Repeats, loci_left)
+ </summary>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.RepeatsSearchAPI.SearchRepeats(SMRUCC.genomics.SequenceModel.IPolymerSequenceModel,System.Int32,System.Int32,System.Int32)">
+ <summary>
+ 
+ </summary>
+ <param name="seq"></param>
+ <param name="Min">The minimum length of the repeat sequence loci.</param>
+ <param name="Max">The maximum length of the repeat sequence loci.</param>
+ <param name="minOccurs">最少的重复出现次数为2，也可以将这个值设置得更高一些</param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.RepeatsSearchAPI.CreateRepeatLocis(System.String,System.String,System.Int32,System.Boolean)">
+ <summary>
+ 请注意，这个函数是应用于生成最长的重复序列片段的方法，假若当前的序列片段在序列上已经没有重复出现了，
+ 则上一次迭代的序列可能为重复，所以<paramref name="Segment"></paramref>的长度减1的序列片段是会
+ 有重复的，故而会在函数之中将该目的片段缩短
+ </summary>
+ <param name="seq"></param>
+ <param name="Segment"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.RepeatsSearchAPI.Trim``1(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Int32,System.Int32)">
+ <summary>
+ 原来的限定函数不起作用了？？可以使用这个函数进行剪裁，请注意剪裁是不可逆的，使用这个函数处理数据只能够收缩数据
+ </summary>
+ <typeparam name="TRepeats"></typeparam>
+ <param name="data"></param>
+ <param name="min"></param>
+ <param name="max"></param>
+ <param name="minappear"></param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.RepeatsSearchAPI.BatchSearch(SMRUCC.genomics.SequenceModel.FASTA.FastaFile,System.Int32,System.Int32,System.Int32,System.String)">
+ <summary>
+ Batch search for the repeats and reversed repeats sequence feature sites. ``<see cref="T:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.RepeatsView"/>`` and ``<see cref="T:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.ReverseRepeatsView"/>``
+ </summary>
+ <param name="Mla"></param>
+ <param name="Min"></param>
+ <param name="Max"></param>
+ <param name="MinAppeared"></param>
+ <param name="saveDIR"></param>
+</member>
+<member name="P:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.RepeatsSearcher.CountStatics">
+ <summary>
+ 片段按照长度的数量上的分布情况
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.ReversedRepeatSeacher.DoSearch(SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.Seeding.Seed)">
+ <summary>
+ 虽然当前的片段没有在序列上面出现，但是上一次迭代的片段却是出现的，假若序列片段没有匹配上，则上一次迭代的序列则可能为重复序列
+ </summary>
+ <param name="seed"></param>
+</member>
+<member name="T:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.ImperfectPalindrome">
+ <summary>
+ 只有一部分的序列是匹配上的回文序列
+ </summary>
+</member>
+<member name="P:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.ImperfectPalindrome.Site">
+ <summary>
+ 种子生成的序列
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.ImperfectPalindrome.Left">
+ <summary>
+ 种子序列在基因组上面的位置
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.ImperfectPalindrome.Paloci">
+ <summary>
+ 回文片段的位点位置
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.ImperfectPalindrome.Palindrome">
+ <summary>
+ 回文片段的序列
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.ImperfectPalindrome.Distance">
+ <summary>
+ 片段相似度距离大小
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.ImperfectPalindrome.Score">
+ <summary>
+ 相似度高低
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.ImperfectPalindrome.Matches">
+ <summary>
+ 匹配的碱基
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.ImperfectPalindrome.Evolr">
+ <summary>
+ 演化的路径
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.ImperfectPalindrome.SequenceData">
+ <summary>
+ sequence data for loci value <see cref="P:SMRUCC.genomics.SequenceModel.NucleotideModels.Contig.MappingLocation(System.Boolean)"/>
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.PalindromeLoci">
+ <summary>
+ Mirror 或者 Palindrome 位点的搜索结果的csv文件存储模型
+ </summary>
+</member>
+<member name="P:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.PalindromeLoci.Loci">
+ <summary>
+ 特殊的位点序列
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.PalindromeLoci.Start">
+ <summary>
+ <see cref="P:SMRUCC.genomics.ComponentModel.Loci.Location.left"/>
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.PalindromeLoci.Palindrome">
+ <summary>
+ 回文序列，在生成Mirror镜像位点数据的时候是使用这个和<see cref="P:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.PalindromeLoci.Loci"/>组合产生的
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.PalindromeLoci.PalEnd">
+ <summary>
+ <see cref="P:SMRUCC.genomics.ComponentModel.Loci.Location.right"/>
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.PalindromeLoci.MirrorSite">
+ <summary>
+ 和<see cref="P:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.PalindromeLoci.Loci"/>相对应的反向序列
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.PalindromeLoci.SequenceData">
+ <summary>
+ sequence data for loci value <see cref="P:SMRUCC.genomics.SequenceModel.NucleotideModels.Contig.MappingLocation(System.Boolean)"/>.
+ (理论上这个序列属性的值应该是等于<see cref="P:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.PalindromeLoci.Loci"/> + <see cref="P:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.PalindromeLoci.MirrorSite"/>)
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.PalindromeLoci.SelectMaxLengthSite(System.Collections.Generic.IEnumerable{SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.PalindromeLoci})">
+ <summary>
+ 选出最长的片段
+ </summary>
+ <param name="sites"></param>
+ <returns></returns>
+</member>
+<member name="T:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.Palindrome">
+ <summary>
+ === Palindromic hexamers ===
+ For a given sequence, any palindrome of 6 nt (e.g., AAATTT) Is given a value of 1, while 
+ all bases Not included inpalindromic hexamers are given a value of 0 (van et al. 2003).
+ -- van Noort V, Worning P, Ussery DW, Rosche WA, Sinden RR Strand misalignments lead To 
+    quasipalindrome correction (2003) 19:365-9
+ <see cref="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.Palindrome.SearchMirrorPalindrome(SMRUCC.genomics.SequenceModel.IPolymerSequenceModel,System.Int32,System.Int32,System.String)"/> (镜像回文序列)
+ 
+ 
+ === Inverted Repeats ===
+ Local Inverted repeats are found by taking a 100 bp sequence window, And looking For the 
+ best match Of a 30 bp piece withinthat window, On the opposite strand, In the opposite 
+ direction (Jensen et al. 1999). 
+ Values can range from 0 (no match at all)To 1 (one Or more perfect match within the window).
+ -- L. J. Jensen And C. Friis And D.W. Ussery Three views of complete chromosomes (1999) 150773-777
+ <see cref="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.SimilarityMatches.Repeats.InvokeSearchReversed(System.String,System.Int32,System.Int32,System.Double)"/> (反向重复)
+ 
+ 
+ === Quasi-palindromes ===
+ "Quasi-palindromes" are short inverted repeats, which are found by taking a 30 bp piece of sequence, 
+ And looking for matcheswith at least 6 out of 7 nt matching, on the opposite strand, in the opposite 
+ direction (van et al. 2003). Values canrange from 0 (no match at all) to 1 (one Or more perfect 
+ match within the window).
+ -- van Noort V, Worning P, Ussery DW, Rosche WA, Sinden RR Strand misalignments lead 
+    To quasipalindrome correction (2003) 19:365-9
+ <see cref="T:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.Imperfect"/> (非完全回文)
+ 
+ 
+ === Perfect-palindromes ===
+ "Perfect-palindromes" are short inverted repeats, which are found by taking a 30 bp piece of sequence, 
+ And looking forperfect matches of 7 nt Or longer, on the opposite strand, in the opposite direction (van et al. 2003). 
+ Values can rangefrom 0 (no match at all) to 1 (one Or more perfect match within the window).
+ -- van Noort V, Worning P, Ussery DW, Rosche WA, Sinden RR Strand misalignments lead To 
+    quasipalindrome correction (2003) 19:365-9
+ <see cref="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.Palindrome.SearchPalindrome(SMRUCC.genomics.SequenceModel.IPolymerSequenceModel,System.Int32,System.Int32,System.String)"/>  (简单回文)
+ 
+ === Simple Repeats ===
+ A "simple repeat" Is a region which contains a simple oligonucleotide repeat, Like microsattelites. 
+ Simple repeats are foundby looking for tandem repeats of length R within a 2R-bp window. 
+ By using the values 12, 14, 15, 16, And 18 for R, allsimple repeats of lengths 1 through 9 are calculated, 
+ of length of at least 24 bp (Jensen et al. 1999). Values can range from 0(no match at all) to 1 
+ (one Or more perfect match within the window).
+ -- L. J. Jensen And C. Friis And D.W. Ussery Three views of complete chromosomes (1999) 150773-777
+ <see cref="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.RepeatsSearchAPI.SearchRepeats(SMRUCC.genomics.SequenceModel.IPolymerSequenceModel,System.Int32,System.Int32,System.Int32)"/> (简单重复序列)
+ 
+ === GC Skew ===
+ For many genomes there Is a strand bias, such that one strand tends To have more G's, 
+ whilst the other strand has more C's.This GC-skew bias can be measured the number of G's 
+ minus the number of C's over a fixed length (e.g. 10,000 bp) of DNA(Jensen et al. 1999). 
+ The values can range from +1 (all G's on the examined sequence, with all C's on the other strand), 
+ to -1(the reverse case - all C's on the examined sequence, and all G's on the other strand). 
+ There is a correlation with GC-skewand the replication leading and lagging strands.
+ -- L. J. Jensen And C. Friis And D.W. Ussery Three views of complete chromosomes (1999) 150773-777
+ 
+ === Percent AT ===
+ The percent AT Is a running average Of the AT content, over a given window size. Typically For a bacterial 
+ genomes Of about5 Mbp, the window size Is 10,000 bp. The Percent AT can range from 0 (no AT content) To 1 (100% AT). 
+ The Percent AT iscorrelated With other DNA structural features, such that AT rich regions are often more readily 
+ melted, tend To be lessflexible And more rigid, although they can also be readily compacted chromatin proteins (Pedersen et al. 2000).
+ -- A.G. Pedersen And L.J. Jensen And H.H. St\aerfeldt And S. Brunak And D.W. 
+    Ussery A DNA structural atlas of extitE. coli (2000) 299907-930
+ </summary>
+</member>
+<member name="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.Palindrome.SearchHairpinks(SMRUCC.genomics.SequenceModel.FASTA.FastaSeq,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+ <summary>
+ 
+ </summary>
+ <param name="fa"></param>
+ <param name="min"></param>
+ <param name="max"></param>
+ <param name="cutoff"></param>
+ <param name="maxDist"></param>
+ <param name="minMatch">至少需要连续匹配这么多个碱基</param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.Palindrome.HaveMirror(System.String,System.String)">
+ <summary>
+ Have mirror repeats?
+ </summary>
+ <param name="Segment"></param>
+ <param name="Sequence"></param>
+ <returns></returns>
+ 
+</member>
+<member name="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.Palindrome.__haveMirror(System.Int32,System.Int32,System.String,System.String)">
+ <summary>
+ 因为是mirror的关系，所以左边和右边的长度是一样的，所以返回的右边的位置为
+ <paramref name="Loci"/>+2*<paramref name="l"/>，
+ 即 ``mirror_start + <paramref name="l"/>``
+ </summary>
+ <param name="l"></param>
+ <param name="Loci"></param>
+ <param name="mirror"></param>
+ <param name="Sequence"></param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.Palindrome.FindMirrorPalindromes(System.String,System.String)">
+ <summary>
+ 这个函数求解的是绝对相等的
+ </summary>
+ <param name="seed"></param>
+ <param name="sequence"></param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.Palindrome.CreatePalindrome(System.String,System.String)">
+ <summary>
+ 回文序列，即在互补链上面找到了自己的反向序列，这个函数找不到位点的话会返回空集合
+ </summary>
+ <param name="seed">The seed segment</param>
+ <param name="sequence"></param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.Palindrome.SearchMirrorPalindrome(SMRUCC.genomics.SequenceModel.IPolymerSequenceModel,System.Int32,System.Int32,System.String)">
+ <summary>
+ 搜索序列上面的镜像回文片段
+ </summary>
+ <param name="seq"></param>
+ <param name="min"></param>
+ <param name="max"></param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.Palindrome.HavePalindrome(System.String,System.String)">
+ <summary>
+ Have Palindrome repeats?
+ </summary>
+ <param name="Segment"></param>
+ <param name="Sequence"></param>
+ <returns></returns>
+ 
+</member>
+<member name="T:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.Imperfect">
+ <summary>
+ 在互补链部分的回文，由于Mirror其实就是简单重复序列，所以在这里不再编写了
+ </summary>
+</member>
+<member name="F:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.Imperfect._maxDist">
+ <summary>
+ 种子位点和回文位点之间的最大的距离
+ </summary>
+</member>
+<member name="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.Imperfect.#ctor(SMRUCC.genomics.SequenceModel.IPolymerSequenceModel,System.Int32,System.Int32,System.Double,System.Int32,System.Int32)">
+ <summary>
+ 
+ </summary>
+ <param name="nt"></param>
+ <param name="Min">The minimum length of the repeat sequence loci.</param>
+ <param name="Max">The maximum length of the repeat sequence loci.</param>
+</member>
+<member name="T:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.MirrorPalindrome">
+ <summary>
+ 种子片段在正向链找得到自己的反向片段，即为镜像回文片段
+ </summary>
+</member>
+<member name="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.MirrorPalindrome.returns">
+ <summary>
+ 在这里会对原始序列进行切割得到<see cref="P:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.PalindromeLoci.SequenceData"/>用来验证位点是否正确
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.MirrorPalindrome.#ctor(SMRUCC.genomics.SequenceModel.IPolymerSequenceModel,System.Int32,System.Int32)">
+ <summary>
+ 
+ </summary>
+ <param name="seq"></param>
+ <param name="Min"></param>
+ <param name="Max"></param>
+</member>
+<member name="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.MirrorPalindrome.DoSearch(SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.Seeding.Seed)">
+ <summary>
+ 只需要判断存不存在就行了，因为是连在一起的，所以现在短片段可能不会有回文，但是长片段却会出现回文，所以不能够在这里移除
+ </summary>
+ <param name="seed"></param>
+</member>
+<member name="T:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.PalindromeSearch">
+ <summary>
+ 片段在反向链找得到自己的反向片段
+ </summary>
+</member>
+<member name="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.PalindromeSearch.#ctor(SMRUCC.genomics.SequenceModel.IPolymerSequenceModel,System.Int32,System.Int32)">
+ <summary>
+ 
+ </summary>
+ <param name="seq"></param>
+ <param name="Min"></param>
+ <param name="Max"></param>
+</member>
+<member name="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.PalindromeSearch.DoSearch(SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.Seeding.Seed)">
+ <summary>
+ 片段在反向链找得到自己的反向片段
+ </summary>
+ <param name="seed"></param>
+</member>
+<member name="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.SearchWorker.#ctor(SMRUCC.genomics.SequenceModel.IPolymerSequenceModel,System.Int32,System.Int32)">
+ <summary>
+ 
+ </summary>
+ <param name="seq"></param>
+ <param name="min"></param>
+ <param name="max"></param>
+</member>
+<member name="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.SearchWorker.DoSearch">
+ <summary>
+ 使用种子进行序列位点的搜索
+ </summary>
+</member>
+<member name="T:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.Seeding.Seed">
+ <summary>
+ 一个种子序列
+ </summary>
+</member>
+<member name="T:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.Seeding.SeedBox">
+ <summary>
+ 生成序列上面的Feature位点计算的种子
+ </summary>
+</member>
+<member name="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.Seeding.SeedBox.#ctor(SMRUCC.genomics.SequenceModel.IPolymerSequenceModel)">
+ <summary>
+ 会将``*``和``-``这些缺口的符号是需要被过滤掉的
+ </summary>
+ <param name="seq"></param>
+</member>
+<member name="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.Seeding.SeedBox.PopulateSeeds(System.Int32,System.Int32)">
+ <summary>
+ 
+ </summary>
+ <param name="min%"></param>
+ <param name="max%"></param>
+ <returns></returns>
+ <remarks>
+ 这个函数会丢弃掉在目标序列上不存在的种子以加快计算效率
+ </remarks>
+</member>
+<member name="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.Seeding.SeedBox.PopulateSeedsFromSeedsFile(System.String,SMRUCC.genomics.SequenceModel.IPolymerSequenceModel,System.Int32,System.Int32)">
+ <summary>
+ 
+ </summary>
+ <param name="seeds$">序列种子文件的文件路径</param>
+ <param name="seq"></param>
+ <param name="min%"></param>
+ <param name="max%"></param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.Seeding.Seeds.PopulateExistsSeeds(System.String,System.Collections.Generic.IEnumerable{System.String})">
+ <summary>
+ 将所输入的位于目标序列<paramref name="seq"/>之上的所有的有效的种子<paramref name="seeds"/>都拿出来
+ </summary>
+ <param name="seeds"></param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.Seeding.Seeds.ExtendSequence(System.Collections.Generic.IEnumerable{System.String},System.Char[])">
+ <summary>
+ 延伸种子的长度
+ </summary>
+ <param name="source"></param>
+ <param name="Chars"></param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.Seeding.Seeds.InitializeSeeds(System.Char[],System.Int32)">
+ <summary>
+ Initialize the nucleotide repeats seeds.(初始化序列片段的搜索种子)
+ </summary>
+ <param name="chars"></param>
+ <param name="length"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.Seeding.Seeds.InitializeSeeds(System.Char[],System.Int32,System.String)">
+ <summary>
+ 这个函数会过滤掉一部分在目标序列上不存在的种子序列
+ </summary>
+ <param name="chars"></param>
+ <param name="length%"></param>
+ <param name="sequence">
+ 因为过滤掉了一部分的不存在的种子序列
+ 所以这个理论上搜索效率会更高
+ </param>
+ <returns></returns>
+ 
+</member>
+<member name="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.Seeding.Seeds.Combo(System.String,System.Char[])">
+ <summary>
+ Extend target <paramref name="seq"/> with one base character.
+ </summary>
+ <param name="seq$"></param>
+ <param name="chars"></param>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.SimilarityMatches.ReversedLociMatchedResult.isRevMatched">
+ <summary>
+ Is reverse matched?
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.SimilarityMatches.LociMatchedResult.Loci">
+ <summary>
+ 原来的序列
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.SimilarityMatches.LociMatchedResult.Matched">
+ <summary>
+ 模糊匹配上的序列
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.SimilarityMatches.LociMatchedResult.Similarity">
+ <summary>
+ 相似度
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="T:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.SimilarityMatches.MirrorPalindrome">
+ <summary>
+ 模糊相等的
+ </summary>
+</member>
+<member name="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.SimilarityMatches.MirrorPalindrome.haveMirror(System.Int32,System.Int32,System.String,System.String,System.Double,System.Int32)">
+ <summary>
+ 判断目标序列<paramref name="sequence"/>上面是否包含有目标种子位点的镜像位点
+ </summary>
+ <param name="l">目标片段的长度</param>
+ <param name="loci">位点的位置</param>
+ <param name="mirror">进行模糊比较的参考序列</param>
+ <param name="sequence">基因组序列</param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.SimilarityMatches.MirrorPalindrome.CreateMirrors(System.String,System.String,System.Int32,System.Double)">
+ <summary>
+ 
+ </summary>
+ <param name="segment">搜索所使用到的种子序列片段</param>
+ <param name="sequence"></param>
+ <param name="maxDist">两个片段之间的最大的距离</param>
+ <param name="cut"></param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.SimilarityMatches.FuzzyMirrors.#ctor(SMRUCC.genomics.SequenceModel.IPolymerSequenceModel,System.Int32,System.Int32,System.Int32,System.Double)">
+ <summary>
+ 
+ </summary>
+ <param name="seq"></param>
+ <param name="min"></param>
+ <param name="max"></param>
+</member>
+<member name="T:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.SimilarityMatches.Repeats">
+ <summary>
+ 模糊匹配重复的序列片段
+ </summary>
+ <remarks></remarks>
+ 
+</member>
+<member name="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.SimilarityMatches.Repeats.MatchLociLocations(System.String,System.String,System.Int32,System.Int32,System.Double)">
+ <summary>
+ 模糊匹配相似的位点在目标序列之上的位置
+ </summary>
+ <param name="Sequence"></param>
+ <param name="loci"></param>
+ <param name="Min"></param>
+ <param name="Max"></param>
+ <param name="cutoff"></param>
+ <returns></returns>
+ <remarks></remarks>
+ 
+</member>
+<member name="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.SimilarityMatches.Repeats.doMatchLociLocations(System.String,System.String[])">
+ <summary>
+ 
+ </summary>
+ <param name="sequence"></param>
+ <param name="seeds">为了加快计算效率，事先所生成的种子缓存</param>
+ <returns></returns>
+ <remarks></remarks>
+ 
+</member>
+<member name="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.SimilarityMatches.Repeats.doGenerateSeeds(System.Char[],System.String,System.Double)">
+ <summary>
+ 生成和<paramref name="loci"></paramref>满足相似度匹配关系的序列的集合
+ </summary>
+ <param name="Chars"></param>
+ <param name="loci"></param>
+ <param name="Cutoff"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Topologically.SimilarityMatches.Repeats.InvokeSearch(System.String,System.Int32,System.Int32,System.Double)">
+ <summary>
+ 
+ </summary>
+ <param name="SequenceData"></param>
+ <param name="Min"></param>
+ <param name="Max"></param>
+ <param name="cutoff"></param>
+ <returns></returns>
+ <remarks>为了加快计算，首先生成种子，然后再对种子进行模糊匹配</remarks>
+ 
+</member>
+</members>
+</doc>
