@@ -2,10 +2,12 @@
 Imports BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.ExtensionModels
 Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm
 Imports Microsoft.VisualBasic.CommandLine.Reflection
+Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Parallel.Linq
 Imports Microsoft.VisualBasic.Scripting.MetaData
 Imports Microsoft.VisualBasic.Serialization.JSON
+Imports Oracle.LinuxCompatibility.MySQL
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports registry_data
 Imports registry_data.biocad_registryModel
@@ -222,6 +224,43 @@ Public Module registry_models
             Next
 
             Call links.commit()
+        Next
+
+        Return Nothing
+    End Function
+
+    <ExportAPI("diamond_transaction")>
+    Public Function diamond_transaction(<RRawVectorArgument> blastp As Object, dir As String,
+                                        Optional batch_size As Integer = 500000,
+                                        Optional env As Environment = Nothing)
+
+        Dim pull As pipeline = pipeline.TryCreatePipeline(Of DiamondAnnotation)(blastp, env)
+
+        If pull.isError Then
+            Return pull.getError
+        End If
+
+        Dim part As i32 = 1
+
+        For Each block As DiamondAnnotation() In pull.populates(Of DiamondAnnotation)(env).SplitIterator(batch_size)
+            Call block.Select(Function(d)
+                                  Dim qid As UInteger = d.QseqId.Split("|"c).Last
+                                  Dim sid As UInteger = d.SseqId.Split("|"c).Last
+
+                                  Return New protein_cluster With {
+                                     .bit_score = d.BitScore,
+                                     .e_value = d.EValue,
+                                     .gap_open = d.GapOpen,
+                                     .identities = d.Pident,
+                                     .mis_match = d.Mismatch,
+                                     .q_end = d.QEnd,
+                                     .q_start = d.QStart,
+                                     .s_end = d.SEnd,
+                                     .s_start = d.SStart,
+                                     .hit_id = sid,
+                                     .query_id = qid
+                                  }
+                              End Function).DumpLargeTransaction(path:=$"{dir}/diamond_{++part}.sql", distinct:=False)
         Next
 
         Return Nothing
