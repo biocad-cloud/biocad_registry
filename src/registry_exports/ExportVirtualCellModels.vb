@@ -21,12 +21,13 @@ Public Class ExportVirtualCellModels
     ReadOnly registry As biocad_registry
     ReadOnly repo As String
     ReadOnly vocabulary As biocad_vocabulary
-    ReadOnly model As New ProteinModel(registry)
+    ReadOnly model As ProteinModel
 
     Sub New(registry As biocad_registry, repo As String)
         Me.vocabulary = registry.biocad_vocabulary
         Me.repo = repo
         Me.registry = registry
+        Me.model = New ProteinModel(registry)
     End Sub
 
     Public Sub ExportLocations()
