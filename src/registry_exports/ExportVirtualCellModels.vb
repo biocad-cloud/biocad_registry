@@ -21,6 +21,7 @@ Public Class ExportVirtualCellModels
     ReadOnly registry As biocad_registry
     ReadOnly repo As String
     ReadOnly vocabulary As biocad_vocabulary
+    ReadOnly model As New ProteinModel(registry)
 
     Sub New(registry As biocad_registry, repo As String)
         Me.vocabulary = registry.biocad_vocabulary
@@ -45,7 +46,7 @@ Public Class ExportVirtualCellModels
 
     Public Sub ExportEnzymeDb()
         Using text As New StreamWriter($"{repo}/ec_numbers.fasta".Open(System.IO.FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False))
-            Call text.Add(registry.ExportEnzyme, filterEmpty:=True)
+            Call text.Add(registry.ExportEnzyme(model), filterEmpty:=True)
         End Using
     End Sub
 
@@ -243,7 +244,29 @@ Public Class ExportVirtualCellModels
 
     Public Sub ExportTFDb()
         Using text As New StreamWriter($"{repo}/TF.fasta".Open(System.IO.FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False))
+            Dim page_size As Integer = 1000
 
+            For page As Integer = 1 To Integer.MaxValue
+                Dim tf_prots = registry.regulatory_network _
+                    .left_join("protein_data").on(field("`protein_data`.id") = field("regulator")) _
+                    .limit((page - 1) * page_size, page_size) _
+                    .select(Of protein_data)("protein_data.id",
+    "protein_data.name",
+    "protein_data.function",
+    "motif_site AS gene_id",
+    "cluster_id",
+    "protein_id",
+    "sequence")
+
+                If tf_prots.IsNullOrEmpty Then
+                    Exit For
+                End If
+
+                Call text.Add(From tf As protein_data
+                              In tf_prots
+                              Let tf_id As String = If(tf.name.StringEmpty, tf.id, tf.name) & " " & tf.gene_id & " " & model.GetProteinModelLabel(tf.id)
+                              Select New FastaSeq(tf.sequence, title:=tf_id))
+            Next
         End Using
     End Sub
 

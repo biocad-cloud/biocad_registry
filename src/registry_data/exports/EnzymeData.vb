@@ -6,11 +6,15 @@ Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Public Module EnzymeData
 
     <Extension>
-    Public Iterator Function ExportEnzyme(registry As biocad_registry, Optional page_size As Integer = 5000) As IEnumerable(Of FastaSeq)
+    Public Iterator Function ExportEnzyme(registry As biocad_registry,
+                                          Optional model As ProteinModel = Nothing,
+                                          Optional page_size As Integer = 5000) As IEnumerable(Of FastaSeq)
+
         Dim terms = registry.biocad_vocabulary
         Dim ec_number As UInteger = terms.db_ECNumber
         Dim prot_fasta As UInteger = terms.protein_data
-        Dim model As New ProteinModel(registry)
+
+        model = If(model, New ProteinModel(registry))
 
         For page As Integer = 1 To Integer.MaxValue
             Dim offset As UInteger = (page - 1) * page_size
