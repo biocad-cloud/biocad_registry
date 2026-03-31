@@ -9,7 +9,6 @@ Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports registry_data
 Imports registry_data.biocad_registryModel
 Imports SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns
-Imports SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns.Motif
 Imports SMRUCC.genomics.GCModeller.ModellingEngine.Model
 Imports SMRUCC.genomics.Interops.NBCR.MEME_Suite
 Imports SMRUCC.genomics.SequenceModel.FASTA
@@ -204,14 +203,20 @@ Public Class ExportVirtualCellModels
         Dim family_motifs As New Dictionary(Of String, List(Of Probability))
 
         For page As Integer = 1 To Integer.MaxValue
-            Dim motif_data = registry.motif.where(field("width") > 0).limit((page - 1) * page_size, page_size).select(Of motif)("id", "name", "family", "pwm", "width")
+            Dim motif_data As motif() = registry.motif _
+                .where(field("width") > 0) _
+                .limit((page - 1) * page_size, page_size) _
+                .select(Of motif)("id", "name", "family", "pwm", "width")
 
             If motif_data.IsNullOrEmpty Then
                 Exit For
             End If
 
             For Each motif As motif In motif_data
-                Dim vec As Double()() = networkOrder.ParseDouble(motif.pwm, zip:=NetworkByteOrderBuffer.Compression.none).SplitIterator(4).ToArray
+                Dim vec As Double()() = networkOrder _
+                    .ParseDouble(motif.pwm, zip:=NetworkByteOrderBuffer.Compression.none) _
+                    .SplitIterator(4) _
+                    .ToArray
                 Dim pwm As New Probability With {
                     .name = $"{motif.id} {motif.family} [{motif.name}]",
                     .region = vec _
@@ -234,6 +239,12 @@ Public Class ExportVirtualCellModels
         For Each family_key As String In family_motifs.Keys
             Call MemeWriter.WriteMemeFormat(family_motifs(family_key), $"{dir}/{family_key.NormalizePathString(False)}.meme")
         Next
+    End Sub
+
+    Public Sub ExportTFDb()
+        Using text As New StreamWriter($"{repo}/TF.fasta".Open(System.IO.FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False))
+
+        End Using
     End Sub
 
 End Class

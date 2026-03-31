@@ -113,6 +113,7 @@ Module exports
         Call dump.ExportSubcellularLocationDb()
         Call dump.ExportReactionPool()
         Call dump.ExportMoleculeData()
+        Call dump.ExportMotifSites()
 
         Return Nothing
     End Function
