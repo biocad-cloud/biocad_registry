@@ -6,6 +6,15 @@ registry_data
 </name>
 </assembly>
 <members>
+<member name="M:registry_data.EnzymeData.ExportProteinDb(registry_data.biocad_registry,System.Int32)">
+ <summary>
+ Export protein sequence data with clean id and no annotation,
+ which is suitable for sequence analysis and alignment, make cluster, ko alignment.
+ </summary>
+ <param name="registry"></param>
+ <param name="page_size"></param>
+ <returns></returns>
+</member>
 <member name="M:registry_data.Exports.MetaboliteData.ExportIDMapping(registry_data.biocad_registry,System.String)">
  <summary>
  export primary id to database cross reference mapping, the key is the database cross reference and the value is the list of primary ids that mapped to this cross reference
