@@ -48,7 +48,7 @@ DROP TABLE IF EXISTS `compartment_location`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `compartment_location` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) NOT NULL COMMENT 'symbol name that used in virtual cell model',
+  `name` varchar(512) NOT NULL COMMENT 'symbol name that used in virtual cell model',
   `zh_name` varchar(45) DEFAULT NULL,
   `fullname` varchar(1024) NOT NULL COMMENT 'full name of this location',
   `membrane` tinyint(1) NOT NULL DEFAULT '0',
@@ -58,7 +58,7 @@ CREATE TABLE `compartment_location` (
   UNIQUE KEY `id_UNIQUE` (`id`),
   UNIQUE KEY `name_UNIQUE` (`name`),
   FULLTEXT KEY `search_text` (`fullname`,`note`)
-) ENGINE=InnoDB AUTO_INCREMENT=173 DEFAULT CHARSET=utf8mb3 COMMENT='[cellular entity model] cellular location name';
+) ENGINE=InnoDB AUTO_INCREMENT=354 DEFAULT CHARSET=utf8mb3 COMMENT='[cellular entity model] cellular location name';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -82,6 +82,25 @@ CREATE TABLE `complex` (
   KEY `protein_complex_idx` (`protein_id`),
   KEY `entity_namespace_idx` (`compound_type`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='components for used for protein complex';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `conserved_domain`
+--
+
+DROP TABLE IF EXISTS `conserved_domain`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `conserved_domain` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `protein_id` int unsigned NOT NULL COMMENT 'id reference to the protein data object',
+  `domain_id` int unsigned NOT NULL COMMENT 'id reference to the protein domain ontology table',
+  `left` int unsigned NOT NULL COMMENT 'start location of the sequence',
+  `right` int unsigned NOT NULL COMMENT 'end location on the protein sequence',
+  `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='protein domain data ';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -126,7 +145,7 @@ CREATE TABLE `db_xrefs` (
   KEY `find_by_xref` (`db_name`,`db_xref`,`type`),
   KEY `find_by_object` (`type`,`obj_id`),
   KEY `search_xref_word` (`db_xref`)
-) ENGINE=InnoDB AUTO_INCREMENT=12042359 DEFAULT CHARSET=utf8mb3 COMMENT='database cross reference of the model objects ';
+) ENGINE=InnoDB AUTO_INCREMENT=13107523 DEFAULT CHARSET=utf8mb3 COMMENT='database cross reference of the model objects ';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -392,7 +411,7 @@ CREATE TABLE `motif` (
   KEY `family_index` (`family`),
   KEY `name_search` (`name`),
   FULLTEXT KEY `text_search` (`name`,`note`)
-) ENGINE=InnoDB AUTO_INCREMENT=2718 DEFAULT CHARSET=utf8mb3 COMMENT='alphabets for nucleotide seuqnece is ACGT';
+) ENGINE=InnoDB AUTO_INCREMENT=3879 DEFAULT CHARSET=utf8mb3 COMMENT='alphabets for nucleotide seuqnece is ACGT';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -453,7 +472,7 @@ CREATE TABLE `nucleotide_data` (
   KEY `taxonomy_source_idx` (`organism_source`),
   KEY `operon_data_idx` (`operon_id`),
   KEY `find_locus` (`source_id`,`source_db`)
-) ENGINE=InnoDB AUTO_INCREMENT=1991354 DEFAULT CHARSET=utf8mb3 COMMENT='[entity instance] gene object instance, nucleotide sequence region instance, used for build a local blastn database, or TFBS motif database';
+) ENGINE=InnoDB AUTO_INCREMENT=1992559 DEFAULT CHARSET=utf8mb3 COMMENT='[entity instance] gene object instance, nucleotide sequence region instance, used for build a local blastn database, or TFBS motif database';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -476,7 +495,7 @@ CREATE TABLE `ontology` (
   UNIQUE KEY `unique_term` (`term_id`,`ontology_id`),
   KEY `ontology_db_idx` (`ontology_id`),
   FULLTEXT KEY `search_text` (`term`,`note`)
-) ENGINE=InnoDB AUTO_INCREMENT=204378 DEFAULT CHARSET=utf8mb3 COMMENT='ontology terms, classification system';
+) ENGINE=InnoDB AUTO_INCREMENT=255867 DEFAULT CHARSET=utf8mb3 COMMENT='ontology terms, classification system';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -700,7 +719,7 @@ CREATE TABLE `protein_data` (
   KEY `finter_organism` (`ncbi_taxid`),
   KEY `filter_cluster` (`cluster_id`),
   FULLTEXT KEY `search_text` (`function`)
-) ENGINE=InnoDB AUTO_INCREMENT=2560045 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC COMMENT='[entity instance] the instance of the protein with sequence data, used for build a local blastp database';
+) ENGINE=InnoDB AUTO_INCREMENT=3036141 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC COMMENT='[entity instance] the instance of the protein with sequence data, used for build a local blastp database';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -828,7 +847,7 @@ CREATE TABLE `regulatory_network` (
   KEY `metabolite_info_idx` (`effector`),
   KEY `db_name_idx` (`db_source`),
   FULLTEXT KEY `search_text` (`note`)
-) ENGINE=InnoDB AUTO_INCREMENT=4775 DEFAULT CHARSET=utf8mb3 COMMENT='TF to motif binding relationship';
+) ENGINE=InnoDB AUTO_INCREMENT=6254 DEFAULT CHARSET=utf8mb3 COMMENT='TF to motif binding relationship';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -871,7 +890,7 @@ CREATE TABLE `subcellular_location` (
   UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `compartment_term_idx` (`location_id`),
   KEY `prot_obj_idx` (`protein_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=398794 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=951779 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -923,7 +942,7 @@ CREATE TABLE `topic` (
   KEY `registry_model_idx` (`model_id`),
   KEY `topic_term_idx` (`topic_id`),
   KEY `filter_class_type` (`type`)
-) ENGINE=InnoDB AUTO_INCREMENT=4633424 DEFAULT CHARSET=utf8mb3 COMMENT='topic about the biological model';
+) ENGINE=InnoDB AUTO_INCREMENT=8327984 DEFAULT CHARSET=utf8mb3 COMMENT='topic about the biological model';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -947,7 +966,7 @@ CREATE TABLE `vocabulary` (
   UNIQUE KEY `search_term` (`category`,`term`),
   KEY `ontology_tree_idx` (`parent_id`),
   FULLTEXT KEY `search_text` (`note`)
-) ENGINE=InnoDB AUTO_INCREMENT=755 DEFAULT CHARSET=utf8mb3 COMMENT='vocabulary term inside the registry database';
+) ENGINE=InnoDB AUTO_INCREMENT=1094 DEFAULT CHARSET=utf8mb3 COMMENT='vocabulary term inside the registry database';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -967,4 +986,4 @@ CREATE TABLE `vocabulary` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-03-21 20:45:55
+-- Dump completed on 2026-03-30 21:05:50

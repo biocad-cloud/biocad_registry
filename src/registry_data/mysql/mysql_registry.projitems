@@ -14,6 +14,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)mysql\compartment_enrich.vb" />
     <Compile Include="$(MSBuildThisFileDirectory)mysql\compartment_location.vb" />
     <Compile Include="$(MSBuildThisFileDirectory)mysql\complex.vb" />
+    <Compile Include="$(MSBuildThisFileDirectory)mysql\conserved_domain.vb" />
     <Compile Include="$(MSBuildThisFileDirectory)mysql\conserved_operon.vb" />
     <Compile Include="$(MSBuildThisFileDirectory)mysql\db_mysql.vb" />
     <Compile Include="$(MSBuildThisFileDirectory)mysql\db_xrefs.vb" />

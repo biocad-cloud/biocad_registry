@@ -61,6 +61,12 @@ Public Class biocad_registry : Inherits biocad_registryModel.db_mysql
         End Get
     End Property
 
+    Public ReadOnly Property conserved_domain As TableModel(Of conserved_domain)
+        Get
+            Return m_conserved_domain
+        End Get
+    End Property
+
     Public ReadOnly Property topic As TableModel(Of biocad_registryModel.topic)
         Get
             Return m_topic
