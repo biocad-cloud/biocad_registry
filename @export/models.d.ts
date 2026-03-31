@@ -15,6 +15,11 @@ declare namespace models {
    */
    function build_plantnp_library(registry: object): ;
    /**
+     * @param batch_size default value Is ``500000``.
+     * @param env default value Is ``null``.
+   */
+   function diamond_transaction(blastp: any, dir: string, batch_size?: object, env?: object): any;
+   /**
      * @param check_unique default value Is ``false``.
      * @param batch_size default value Is ``500000``.
      * @param block_size default value Is ``100000``.
