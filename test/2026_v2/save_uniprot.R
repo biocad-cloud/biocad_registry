@@ -11,10 +11,7 @@ imports "registry" from "biocad_registry";
 
 # "F:\datapool\20260301\background\uniprotkb_taxonomy_id_4565_2026_03_27.xml"
 
-for(file in c("C:\Users\Administrator\Downloads\uniprotkb_Saccharum_2026_03_31.xml",
-"C:\Users\Administrator\Downloads\uniprotkb_Citrus_2026_03_31.xml",
-"C:\Users\Administrator\Downloads\uniprotkb_Oryza_sativa_2026_03_31.xml",
-"C:\Users\Administrator\Downloads\uniprotkb_Rattus_norvegicus_2026_03_31.xml")) {
+for(file in c("\\192.168.3.15\sdb\uniprot_sprot_bacteria.xml")) {
 
     let uniprot = open.uniprot(file);
     let biocad_registry = open_registry("xieguigang", 123456, host ="192.168.3.15");
