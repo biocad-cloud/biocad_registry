@@ -17,6 +17,11 @@ Public Module ImportsUniProt
             For Each prot As entry In TqdmWrapper.Wrap(block)
                 Dim protein As protein = registry.findProtein(registry.protein_data, prot, processNonEnzyme:=True)
 
+                If protein Is Nothing Then
+                    Continue For
+                End If
+
+
             Next
         Next
     End Sub
