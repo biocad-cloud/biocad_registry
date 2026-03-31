@@ -201,6 +201,12 @@ Oracle.LinuxCompatibility.LibMySQL
  this class is used to commit the insert operation
  </remarks>
 </member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.IInsert.add(Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert[])">
+ <summary>
+ implements of the insert into
+ </summary>
+ <param name="fields"></param>
+</member>
 <member name="T:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.IInsertModel`1">
  <summary>
  the abstract model for insert into sql
@@ -224,12 +230,6 @@ Oracle.LinuxCompatibility.LibMySQL
  insert into
  </summary>
  <returns></returns>
-</member>
-<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.IInsertModel`1.add(Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert[])">
- <summary>
- implements of the insert into
- </summary>
- <param name="fields"></param>
 </member>
 <member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.CommitTransaction.delayed">
  <summary>
