@@ -108,13 +108,13 @@ Module exports
     Public Function export_virtualCell_components(registry As biocad_registry, repo As String) As Object
         Dim dump As New ExportVirtualCellModels(registry, repo)
 
+        Call dump.ExportMotifSites()
+        Call dump.ExportTFDb()
         Call dump.ExportLocations()
         Call dump.ExportEnzymeDb()
         Call dump.ExportSubcellularLocationDb()
         Call dump.ExportReactionPool()
         Call dump.ExportMoleculeData()
-        Call dump.ExportMotifSites()
-        Call dump.ExportTFDb()
 
         Return Nothing
     End Function
