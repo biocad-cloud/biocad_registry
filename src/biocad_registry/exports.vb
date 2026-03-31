@@ -109,8 +109,8 @@ Module exports
         Dim dump As New ExportVirtualCellModels(registry, repo)
 
         Call dump.ExportLocations()
-        ' Call dump.ExportEnzymeDb()
-        ' Call dump.ExportSubcellularLocationDb()
+        Call dump.ExportEnzymeDb()
+        Call dump.ExportSubcellularLocationDb()
         Call dump.ExportReactionPool()
         Call dump.ExportMoleculeData()
 
