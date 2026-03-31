@@ -11,8 +11,15 @@ imports "registry" from "biocad_registry";
 
 # "F:\datapool\20260301\background\uniprotkb_taxonomy_id_4565_2026_03_27.xml"
 
-let uniprot = open.uniprot("C:\Users\Administrator\Downloads\uniprotkb_taxonomy_id_9606_2026_03_04.xml");
-let biocad_registry = open_registry("xieguigang", 123456, host ="192.168.3.15");
+for(file in c("C:\Users\Administrator\Downloads\uniprotkb_Saccharum_2026_03_31.xml",
+"C:\Users\Administrator\Downloads\uniprotkb_Citrus_2026_03_31.xml",
+"C:\Users\Administrator\Downloads\uniprotkb_Oryza_sativa_2026_03_31.xml",
+"C:\Users\Administrator\Downloads\uniprotkb_Rattus_norvegicus_2026_03_31.xml")) {
 
-# biocad_registry |> save_uniprot(uniprot);
-biocad_registry |> imports_struct_domains(uniprot);
+    let uniprot = open.uniprot(file);
+    let biocad_registry = open_registry("xieguigang", 123456, host ="192.168.3.15");
+
+    biocad_registry |> save_uniprot(uniprot);
+    biocad_registry |> imports_struct_domains(uniprot);
+}
+
