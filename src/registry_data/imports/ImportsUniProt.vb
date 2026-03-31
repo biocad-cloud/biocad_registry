@@ -5,12 +5,15 @@ Imports Microsoft.VisualBasic.Linq
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports registry_data.biocad_registryModel
 Imports SMRUCC.genomics.Assembly.Uniprot.XML
+Imports SMRUCC.genomics.ProteinModel
 Imports protein = registry_data.biocad_registryModel.protein_data
 
 Public Module ImportsUniProt
 
     <Extension>
     Public Sub SaveInterProDomain(registry As biocad_registry, proteins As IEnumerable(Of entry))
+        Dim uniprot_domain As String = registry.biocad_vocabulary.GetDatabaseResource("UniProt Motif").id
+
         For Each block As entry() In proteins.SplitIterator(10000)
             Dim sql As CommitTransaction = registry.conserved_domain.ignore.open_transaction
 
@@ -21,8 +24,37 @@ Public Module ImportsUniProt
                     Continue For
                 End If
 
+                For Each domain As DomainModel In prot.GetDomainData
+                    Dim key As String = domain.name.ToLower.MD5
+                    Dim ont = registry.ontology.where(field("term_id") = key, field("ontology_id") = uniprot_domain).find(Of ontology)
 
+                    If ont Is Nothing Then
+                        registry.ontology.add(
+                            field("term_id") = key,
+                            field("term") = domain.name,
+                            field("ontology_id") = uniprot_domain
+                        )
+                        ont = registry.ontology _
+                            .where(field("term_id") = key, field("ontology_id") = uniprot_domain) _
+                            .order_by("id", desc:=True) _
+                            .find(Of ontology)
+                    End If
+
+                    If ont IsNot Nothing AndAlso registry.conserved_domain.where(field("protein_id") = protein.id,
+                            field("domain_id") = ont.id,
+                            field("left") = domain.start).find(Of conserved_domain) Is Nothing Then
+
+                        Call sql.add(
+                            field("protein_id") = protein.id,
+                            field("domain_id") = ont.id,
+                            field("left") = domain.start,
+                            field("right") = domain.ends
+                        )
+                    End If
+                Next
             Next
+
+            Call sql.commit()
         Next
     End Sub
 
