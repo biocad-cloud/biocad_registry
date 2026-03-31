@@ -10,6 +10,7 @@ Public Module EnzymeData
         Dim terms = registry.biocad_vocabulary
         Dim ec_number As UInteger = terms.db_ECNumber
         Dim prot_fasta As UInteger = terms.protein_data
+        Dim model As New ProteinModel(registry)
 
         For page As Integer = 1 To Integer.MaxValue
             Dim offset As UInteger = (page - 1) * page_size
@@ -27,7 +28,7 @@ Public Module EnzymeData
                 Call $"Export enzyme sequence data page {page}...".info
 
                 For Each seq As EnzymeSequenceView In page_data
-                    Yield New FastaSeq(seq.sequence, title:=seq.term & " " & seq.id)
+                    Yield New FastaSeq(seq.sequence, title:=seq.term & " " & seq.id & " " & model.GetProteinModelLabel(seq.id))
                 Next
             End If
         Next
@@ -66,6 +67,13 @@ Public Module EnzymeData
         Next
     End Function
 
+    ''' <summary>
+    ''' Export protein sequence data with clean id and no annotation,
+    ''' which is suitable for sequence analysis and alignment, make cluster, ko alignment.
+    ''' </summary>
+    ''' <param name="registry"></param>
+    ''' <param name="page_size"></param>
+    ''' <returns></returns>
     <Extension>
     Public Iterator Function ExportProteinDb(registry As biocad_registry, Optional page_size As Integer = 5000) As IEnumerable(Of FastaSeq)
         For page As Integer = 1 To Integer.MaxValue

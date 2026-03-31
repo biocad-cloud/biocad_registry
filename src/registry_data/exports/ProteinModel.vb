@@ -1,4 +1,5 @@
-﻿Imports Microsoft.VisualBasic.ComponentModel.Collection
+﻿Imports System.Runtime.CompilerServices
+Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports registry_data.biocad_registryModel
 
@@ -27,6 +28,11 @@ Public Class ProteinModel
                  Dim cluster = registry.protein_data.where(field("id") = id).find(Of protein_data)
                  Return $"Protein:{cluster_id}-{RegisterSymbol.makeSymbol(cluster.name)}"
              End Function)
+    End Function
+
+    <MethodImpl(MethodImplOptions.AggressiveInlining)>
+    Public Function GetProteinModelLabel(protein_id As UInteger) As String
+        Return GetProteinModelLabel(registry.protein_data.where(field("id") = protein_id).find(Of protein_data)("id", "cluster_id", "protein_id"))
     End Function
 
     Public Function GetProteinModelLabel(protein As protein_data) As String
