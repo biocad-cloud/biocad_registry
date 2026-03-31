@@ -32,7 +32,15 @@ Public Class ProteinModel
 
     <MethodImpl(MethodImplOptions.AggressiveInlining)>
     Public Function GetProteinModelLabel(protein_id As UInteger) As String
-        Return GetProteinModelLabel(registry.protein_data.where(field("id") = protein_id).find(Of protein_data)("id", "cluster_id", "protein_id"))
+        Dim prot = registry.protein_data _
+            .where(field("id") = protein_id) _
+            .find(Of protein_data)("id", "cluster_id", "protein_id")
+
+        If prot Is Nothing Then
+            Return $"Protein:{protein_id}"
+        End If
+
+        Return GetProteinModelLabel(prot)
     End Function
 
     Public Function GetProteinModelLabel(protein As protein_data) As String
