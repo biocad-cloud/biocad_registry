@@ -114,6 +114,7 @@ Module exports
         Call dump.ExportReactionPool()
         Call dump.ExportMoleculeData()
         Call dump.ExportMotifSites()
+        Call dump.ExportTFDb()
 
         Return Nothing
     End Function
