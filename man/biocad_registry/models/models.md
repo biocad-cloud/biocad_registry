@@ -13,3 +13,4 @@
 + [imports_diamond](models/imports_diamond.1) 
 + [make_protein_clusters](models/make_protein_clusters.1) 
 + [link_prot_ko](models/link_prot_ko.1) 
++ [imports_interprodb](models/imports_interprodb.1) 

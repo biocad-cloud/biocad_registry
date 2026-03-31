@@ -71,6 +71,10 @@ declare namespace registry {
    /**
      * @param env default value Is ``null``.
    */
+   function imports_struct_domains(registry: object, uniprot: any, env?: object): any;
+   /**
+     * @param env default value Is ``null``.
+   */
    function make_genbank_dbxrefs(registry: object, genbank: any, env?: object): any;
    /**
    */

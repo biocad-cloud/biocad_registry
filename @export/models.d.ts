@@ -24,6 +24,10 @@ declare namespace models {
    /**
      * @param env default value Is ``null``.
    */
+   function imports_interprodb(registry: object, interpro: any, env?: object): any;
+   /**
+     * @param env default value Is ``null``.
+   */
    function imports_pathways(registry: object, pathways: any, env?: object): any;
    /**
      * @param env default value Is ``null``.
