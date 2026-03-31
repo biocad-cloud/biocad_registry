@@ -10,6 +10,7 @@ Imports registry_data
 Imports registry_data.biocad_registryModel
 Imports SMRUCC.genomics.Analysis.SequenceTools.SequencePatterns
 Imports SMRUCC.genomics.GCModeller.ModellingEngine.Model
+Imports SMRUCC.genomics.Interops.NBCR.MEME_Suite
 Imports SMRUCC.genomics.SequenceModel.FASTA
 
 ''' <summary>
@@ -209,12 +210,14 @@ Public Class ExportVirtualCellModels
                     .name = $"{motif.id} {motif.family} [{motif.name}]",
                     .region = vec _
                         .Select(Function(r, i)
-                                    Return New Residue(r, "", i)
+                                    Return New Residue(r, "ACGT", i)
                                 End Function) _
                         .ToArray,
                     .pvalue = 0.05,
                     .score = 1
                 }
+
+                Call MemeWriter.WriteMemeFormat(pwm, $"{dir}/Motif_{motif.id.ToString.PadLeft(5, "0")}.meme")
             Next
         Next
     End Sub
