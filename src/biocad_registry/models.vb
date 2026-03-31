@@ -231,7 +231,7 @@ Public Module registry_models
 
     <ExportAPI("diamond_transaction")>
     Public Function diamond_transaction(<RRawVectorArgument> blastp As Object, dir As String,
-                                        Optional batch_size As Integer = 500000,
+                                        Optional batch_size As Integer = 10000000,
                                         Optional env As Environment = Nothing)
 
         Dim pull As pipeline = pipeline.TryCreatePipeline(Of DiamondAnnotation)(blastp, env)
