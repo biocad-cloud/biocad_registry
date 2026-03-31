@@ -25,7 +25,7 @@ Public Module RegisterSymbol
             .Replace("\", "_") _
             .Replace("/", "_") _
             .Replace("+", "_") _
-            .StringReplace("\s", "_") _
+            .StringReplace("\s+", "_") _
             .StringReplace("[_-]{2,}", "_") _
             .Trim("-"c, "_"c, ","c)
 
