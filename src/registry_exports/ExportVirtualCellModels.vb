@@ -198,37 +198,64 @@ Public Class ExportVirtualCellModels
         Next
     End Function
 
+    ReadOnly networkOrder As New NetworkByteOrderBuffer
+
+    Private Function ParseMotif(motif As motif) As Probability
+        Dim alphabets As String = If(motif.alphabets.StringEmpty(, True), "ACGT", motif.alphabets)
+        Dim vec As Double()() = networkOrder _
+            .ParseDouble(motif.pwm, zip:=NetworkByteOrderBuffer.Compression.none) _
+            .SplitIterator(alphabets.Length) _
+            .ToArray
+        Dim bg As Dictionary(Of String, Double) = Nothing
+
+        If motif.background.StringEmpty(, True) Then
+            bg = New Dictionary(Of String, Double) From {
+                {"A", 0.25},
+                {"C", 0.25},
+                {"G", 0.25},
+                {"T", 0.25}
+            }
+        Else
+            Dim bg_vec As Double() = motif.background.LoadJSON(Of Double())
+            bg = New Dictionary(Of String, Double)
+
+            For i As Integer = 0 To alphabets.Length - 1
+                bg.Add(alphabets(i).ToString, bg_vec(i))
+            Next
+        End If
+
+        Dim pwm As New Probability With {
+            .name = $"{motif.id} {motif.family} [{motif.name}]",
+            .region = vec _
+                .Select(Function(r, i)
+                            Return New Residue(r, alphabets, i)
+                        End Function) _
+                .ToArray,
+            .pvalue = 0.05,
+            .score = 1,
+            .background = bg
+        }
+
+        Return pwm
+    End Function
+
     Public Sub ExportMotifSites()
         Dim dir As String = $"{repo}/motifs/"
         Dim page_size As Integer = 100
-        Dim networkOrder As New NetworkByteOrderBuffer
         Dim family_motifs As New Dictionary(Of String, List(Of Probability))
 
         For page As Integer = 1 To Integer.MaxValue
             Dim motif_data As motif() = registry.motif _
                 .where(field("width") > 0) _
                 .limit((page - 1) * page_size, page_size) _
-                .select(Of motif)("id", "name", "family", "pwm", "width")
+                .select(Of motif)("id", "name", "family", "pwm", "width", "domain", "alphabets", "background")
 
             If motif_data.IsNullOrEmpty Then
                 Exit For
             End If
 
             For Each motif As motif In motif_data
-                Dim vec As Double()() = networkOrder _
-                    .ParseDouble(motif.pwm, zip:=NetworkByteOrderBuffer.Compression.none) _
-                    .SplitIterator(4) _
-                    .ToArray
-                Dim pwm As New Probability With {
-                    .name = $"{motif.id} {motif.family} [{motif.name}]",
-                    .region = vec _
-                        .Select(Function(r, i)
-                                    Return New Residue(r, "ACGT", i)
-                                End Function) _
-                        .ToArray,
-                    .pvalue = 0.05,
-                    .score = 1
-                }
+                Dim pwm As Probability = ParseMotif(motif)
 
                 If Not family_motifs.ContainsKey(motif.family) Then
                     Call family_motifs.Add(motif.family, New List(Of Probability))
