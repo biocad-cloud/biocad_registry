@@ -9,5 +9,5 @@ imports "hmmer" from "seqtoolkit";
 # ;
 
 open_registry("xieguigang", 123456, host ="192.168.3.15") 
-|> link_prot_ko(hmmer::parse_kofamscan("M:\\KEGG\\ko.tsv"))
+|> link_prot_ko(hmmer::parse_kofamscan("K:\ko_result.tsv"))
 ;
