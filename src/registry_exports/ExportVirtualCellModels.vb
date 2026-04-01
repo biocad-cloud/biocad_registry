@@ -242,7 +242,7 @@ Public Class ExportVirtualCellModels
     Public Sub ExportMotifSites()
         Dim dir As String = $"{repo}/motifs/"
         Dim page_size As Integer = 100
-        Dim family_motifs As New Dictionary(Of String, List(Of Probability))
+        Dim domain_motifs As New Dictionary(Of String, Dictionary(Of String, List(Of Probability)))
 
         For page As Integer = 1 To Integer.MaxValue
             Dim motif_data As motif() = registry.motif _
@@ -257,6 +257,12 @@ Public Class ExportVirtualCellModels
             For Each motif As motif In motif_data
                 Dim pwm As Probability = ParseMotif(motif)
 
+                If Not domain_motifs.ContainsKey(motif.domain) Then
+                    domain_motifs.Add(motif.domain, New Dictionary(Of String, List(Of Probability)))
+                End If
+
+                Dim family_motifs = domain_motifs(motif.domain)
+
                 If Not family_motifs.ContainsKey(motif.family) Then
                     Call family_motifs.Add(motif.family, New List(Of Probability))
                 End If
@@ -265,8 +271,12 @@ Public Class ExportVirtualCellModels
             Next
         Next
 
-        For Each family_key As String In family_motifs.Keys
-            Call MemeWriter.WriteMemeFormat(family_motifs(family_key), $"{dir}/{family_key.NormalizePathString(False)}.meme")
+        For Each domain In domain_motifs
+            Dim family_motifs As Dictionary(Of String, List(Of Probability)) = domain.Value
+
+            For Each family_key As String In family_motifs.Keys
+                Call MemeWriter.WriteMemeFormat(family_motifs(family_key), $"{dir}/{domain.Key}/{family_key.NormalizePathString(False)}.meme")
+            Next
         Next
     End Sub
 
