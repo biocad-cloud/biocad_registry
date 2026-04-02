@@ -1742,9 +1742,14 @@ Oracle.LinuxCompatibility.LibMySQL
 </member>
 <member name="F:Oracle.LinuxCompatibility.MySQL.Reflection.SQL.SQL._schemaInfo">
  <summary>
- The table schema of the sql generation target.(用于生成SQL语句的表结构属性)
+ The table schema of the sql generation target.
  </summary>
- <remarks></remarks>
+ <remarks>(用于生成SQL语句的表结构属性)</remarks>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.Reflection.SQL.SQL.GetSqlGenerator(Oracle.LinuxCompatibility.MySQL.Reflection.SQL.SqlActions,System.Func{Oracle.LinuxCompatibility.MySQL.MySQLTable,System.String})">
+ <summary>
+ 根据动作类型获取对应的SQL生成委托，消除重复的Select Case代码块
+ </summary>
 </member>
 <member name="T:Oracle.LinuxCompatibility.MySQL.Reflection.SQL.SqlGenerateMethods">
  <summary>
@@ -1962,7 +1967,7 @@ Oracle.LinuxCompatibility.LibMySQL
  <param name="o"></param>
  <returns></returns>
 </member>
-<member name="M:Oracle.LinuxCompatibility.MySQL.DataDumps.DumpMySQL(System.IO.StreamWriter,Oracle.LinuxCompatibility.MySQL.MySQLTable[][])">
+<member name="M:Oracle.LinuxCompatibility.MySQL.Workbench.DataDumps.DumpMySQL(System.IO.StreamWriter,Oracle.LinuxCompatibility.MySQL.MySQLTable[][])">
  <summary>
  This function works for the tables that have foreign key constraint between each others.
  (这个函数只适用于比较小规模的数据库的导出)
@@ -1970,7 +1975,7 @@ Oracle.LinuxCompatibility.LibMySQL
  <param name="output"></param>
  <param name="tables"></param>
 </member>
-<member name="M:Oracle.LinuxCompatibility.MySQL.DataDumps.DumpTransaction(System.Collections.Generic.IEnumerable{Oracle.LinuxCompatibility.MySQL.MySQLTable},System.IO.TextWriter,System.Type,System.Func{Oracle.LinuxCompatibility.MySQL.MySQLTable,System.String},System.String,System.Boolean,System.Boolean,System.Int32)">
+<member name="M:Oracle.LinuxCompatibility.MySQL.Workbench.DataDumps.DumpTransaction(System.Collections.Generic.IEnumerable{Oracle.LinuxCompatibility.MySQL.MySQLTable},System.IO.TextWriter,System.Type,System.Func{Oracle.LinuxCompatibility.MySQL.MySQLTable,System.String},Oracle.LinuxCompatibility.MySQL.Reflection.SQL.SqlActions,System.Boolean,System.Boolean,System.Int32)">
  <summary>
  生成用于将数据集合批量导入数据库的INSERT SQL事务
  </summary>
@@ -1983,7 +1988,7 @@ Oracle.LinuxCompatibility.LibMySQL
  User custom SQL generator. If this parameter is not nothing, then <paramref name="type"/> will disabled.
  </param>
 </member>
-<member name="M:Oracle.LinuxCompatibility.MySQL.DataDumps.DumpTransaction``1(System.Collections.Generic.IEnumerable{``0},System.Func{Oracle.LinuxCompatibility.MySQL.MySQLTable,System.String},System.String,System.Boolean,System.Boolean)">
+<member name="M:Oracle.LinuxCompatibility.MySQL.Workbench.DataDumps.DumpTransaction``1(System.Collections.Generic.IEnumerable{``0},System.Func{Oracle.LinuxCompatibility.MySQL.MySQLTable,System.String},System.String,System.Boolean,System.Boolean)">
  <summary>
  生成用于将数据集合批量导入数据库的INSERT SQL事务
  </summary>
@@ -1998,7 +2003,7 @@ Oracle.LinuxCompatibility.LibMySQL
  </param>
  <returns></returns>
 </member>
-<member name="M:Oracle.LinuxCompatibility.MySQL.DataDumps.DumpLargeTransaction``1(System.Collections.Generic.IEnumerable{``0},System.String,System.Func{Oracle.LinuxCompatibility.MySQL.MySQLTable,System.String},System.String,System.Boolean,System.Boolean)">
+<member name="M:Oracle.LinuxCompatibility.MySQL.Workbench.DataDumps.DumpLargeTransaction``1(System.Collections.Generic.IEnumerable{``0},System.String,System.Func{Oracle.LinuxCompatibility.MySQL.MySQLTable,System.String},System.String,System.Boolean,System.Boolean)">
  <summary>
  Write a very large SQL table data collection into a SQL file.
  (适合导出一个非常大的mysql数据表)
@@ -2010,7 +2015,7 @@ Oracle.LinuxCompatibility.LibMySQL
  <param name="type$"></param>
  <param name="distinct"></param>
 </member>
-<member name="M:Oracle.LinuxCompatibility.MySQL.DataDumps.DumpTransaction``1(System.Collections.Generic.IEnumerable{``0},System.String,Microsoft.VisualBasic.Text.Encodings,System.String,System.Boolean,System.Boolean)">
+<member name="M:Oracle.LinuxCompatibility.MySQL.Workbench.DataDumps.DumpTransaction``1(System.Collections.Generic.IEnumerable{``0},System.String,Microsoft.VisualBasic.Text.Encodings,System.String,System.Boolean,System.Boolean)">
  <summary>
  This function is only works for the table that without any foreign key constraint.
  
@@ -2030,18 +2035,18 @@ Oracle.LinuxCompatibility.LibMySQL
  <param name="distinct">是否对<see cref="M:Oracle.LinuxCompatibility.MySQL.MySQLTable.GetDumpInsertValue(System.Boolean)"/>进行去重处理？默认是</param>
  <returns></returns>
 </member>
-<member name="M:Oracle.LinuxCompatibility.MySQL.DumpTaskRunner.Dispose">
+<member name="M:Oracle.LinuxCompatibility.MySQL.Workbench.DumpTaskRunner.Dispose">
  <summary>
  Call this method for commit the remaining data to 
  the local transaction dump sql file
  </summary>
 </member>
-<member name="T:Oracle.LinuxCompatibility.MySQL.LinqExports">
+<member name="T:Oracle.LinuxCompatibility.MySQL.Workbench.LinqExports">
  <summary>
  使用Linq方法进行非常大的数据库的导出操作
  </summary>
 </member>
-<member name="M:Oracle.LinuxCompatibility.MySQL.LinqExports.ProjectDumping(System.Collections.Generic.IEnumerable{Oracle.LinuxCompatibility.MySQL.MySQLTable},System.String,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+<member name="M:Oracle.LinuxCompatibility.MySQL.Workbench.LinqExports.ProjectDumping(System.Collections.Generic.IEnumerable{Oracle.LinuxCompatibility.MySQL.MySQLTable},System.String,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
  <summary>
  将数据结果导出到一个文件夹之中，文件名为表名称
  </summary>
@@ -2051,7 +2056,7 @@ Oracle.LinuxCompatibility.LibMySQL
  Merge the sql files that exported into a large single sql transaction file? Default is not.
  </param>
 </member>
-<member name="M:Oracle.LinuxCompatibility.MySQL.LinqExports.joinTransactionSql(System.String,System.String,System.String)">
+<member name="M:Oracle.LinuxCompatibility.MySQL.Workbench.LinqExports.joinTransactionSql(System.String,System.String,System.String)">
  <summary>
  Merge the sql files that exported into a large single sql transaction file.
  </summary>
@@ -2059,7 +2064,7 @@ Oracle.LinuxCompatibility.LibMySQL
  <param name="dbName$"></param>
  <param name="EXPORT$"></param>
 </member>
-<member name="M:Oracle.LinuxCompatibility.MySQL.Workbench.Dump.RestoreWorker.ImportsData(System.String,System.String)">
+<member name="M:Oracle.LinuxCompatibility.MySQL.Workbench.RestoreWorker.ImportsData(System.String,System.String)">
  <summary>
  会需要动态编译
  </summary>
