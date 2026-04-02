@@ -2064,12 +2064,26 @@ Oracle.LinuxCompatibility.LibMySQL
  <param name="dbName$"></param>
  <param name="EXPORT$"></param>
 </member>
-<member name="M:Oracle.LinuxCompatibility.MySQL.Workbench.RestoreWorker.ImportsData(System.String,System.String)">
+<member name="P:Oracle.LinuxCompatibility.MySQL.Workbench.RestoreWorker.mysql">
+ <summary>
+ the mysql.exe path, it is required for executing the sql dump file, 
+ and it is also required for dynamic compiling the sql dump file
+ to generate the class code.
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.Workbench.RestoreWorker.ImportsData(System.String)">
  <summary>
  会需要动态编译
  </summary>
- <param name="dumpDir"></param>
- <returns></returns>
+ <param name="dumpDir">
+ a data directory that contains multiple sql files, each file is a table dump, and the file name is the table name.
+ </param>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.Workbench.RestoreWorker.ImportSqlFileAsync(System.String)">
+ <summary>
+ 跨平台导入大型 SQL 文件
+ </summary>
 </member>
 </members>
 </doc>
