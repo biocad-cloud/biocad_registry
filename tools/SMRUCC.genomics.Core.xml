@@ -11933,6 +11933,26 @@ Get feature site data by nucleotide location.
  </summary>
  <returns></returns>
 </member>
+<member name="T:SMRUCC.genomics.ComponentModel.EquaionModel.ReactionDirection">
+ <summary>
+ Represents the direction of a reaction
+ </summary>
+</member>
+<member name="F:SMRUCC.genomics.ComponentModel.EquaionModel.ReactionDirection.Equilibrium">
+ <summary>
+ Reaction is at or near equilibrium
+ </summary>
+</member>
+<member name="F:SMRUCC.genomics.ComponentModel.EquaionModel.ReactionDirection.Forward">
+ <summary>
+ Reaction proceeds in the forward direction
+ </summary>
+</member>
+<member name="F:SMRUCC.genomics.ComponentModel.EquaionModel.ReactionDirection.Reverse">
+ <summary>
+ Reaction proceeds in the reverse direction
+ </summary>
+</member>
 <member name="T:SMRUCC.genomics.ComponentModel.EquaionModel.DefaultTypes.CompoundSpecieReference">
  <summary>
  the compound model reference.
@@ -11969,13 +11989,19 @@ Get feature site data by nucleotide location.
  </summary>
  <returns></returns>
 </member>
+<member name="P:SMRUCC.genomics.ComponentModel.EquaionModel.Equation`1.Id">
+ <summary>
+ the reaction id, which should be uniqued in the reaction collection.
+ </summary>
+ <returns></returns>
+</member>
 <member name="M:SMRUCC.genomics.ComponentModel.EquaionModel.Equation`1.GetMetabolites">
  <summary>
  得到这个代谢反应过程之中的所有的代谢物，即左边加右边
  </summary>
  <returns></returns>
 </member>
-<member name="M:SMRUCC.genomics.ComponentModel.EquaionModel.Equation`1.GetCoEfficient(System.String)">
+<member name="M:SMRUCC.genomics.ComponentModel.EquaionModel.Equation`1.GetCoefficient(System.String)">
  <summary>
  获取得到某个代谢物在本反应过程之中的化学计量数；
  [

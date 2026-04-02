@@ -225,7 +225,7 @@ Public Class ExportVirtualCellModels
         End If
 
         Dim pwm As New Probability With {
-            .name = $"{motif.id} {motif.family} [{motif.name}]",
+            .name = $"PWM{motif.id.ToHexString} {motif.family} [{motif.name}]",
             .region = vec _
                 .Select(Function(r, i)
                             Return New Residue(r, alphabets, i)
