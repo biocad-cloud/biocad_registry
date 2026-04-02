@@ -1970,12 +1970,14 @@ Oracle.LinuxCompatibility.LibMySQL
 <member name="M:Oracle.LinuxCompatibility.MySQL.Workbench.DataDumps.DumpMySQL(System.IO.StreamWriter,Oracle.LinuxCompatibility.MySQL.MySQLTable[][])">
  <summary>
  This function works for the tables that have foreign key constraint between each others.
- (这个函数只适用于比较小规模的数据库的导出)
  </summary>
  <param name="output"></param>
  <param name="tables"></param>
+ <remarks>
+ (这个函数只适用于比较小规模的数据库的导出)
+ </remarks>
 </member>
-<member name="M:Oracle.LinuxCompatibility.MySQL.Workbench.DataDumps.DumpTransaction(System.Collections.Generic.IEnumerable{Oracle.LinuxCompatibility.MySQL.MySQLTable},System.IO.TextWriter,System.Type,System.Func{Oracle.LinuxCompatibility.MySQL.MySQLTable,System.String},Oracle.LinuxCompatibility.MySQL.Reflection.SQL.SqlActions,System.Boolean,System.Boolean,System.Int32)">
+<member name="M:Oracle.LinuxCompatibility.MySQL.Workbench.DataDumps.DumpTransaction(System.Collections.Generic.IEnumerable{Oracle.LinuxCompatibility.MySQL.MySQLTable},System.IO.TextWriter,System.Type,System.Func{Oracle.LinuxCompatibility.MySQL.MySQLTable,System.String},Oracle.LinuxCompatibility.MySQL.Reflection.SQL.SqlActions,System.Boolean,System.Boolean,System.Int32,System.Boolean)">
  <summary>
  生成用于将数据集合批量导入数据库的INSERT SQL事务
  </summary>
@@ -1988,25 +1990,24 @@ Oracle.LinuxCompatibility.LibMySQL
  User custom SQL generator. If this parameter is not nothing, then <paramref name="type"/> will disabled.
  </param>
 </member>
-<member name="M:Oracle.LinuxCompatibility.MySQL.Workbench.DataDumps.DumpTransaction``1(System.Collections.Generic.IEnumerable{``0},System.Func{Oracle.LinuxCompatibility.MySQL.MySQLTable,System.String},System.String,System.Boolean,System.Boolean)">
+<member name="M:Oracle.LinuxCompatibility.MySQL.Workbench.DataDumps.DumpTransaction``1(System.Collections.Generic.IEnumerable{``0},System.Func{Oracle.LinuxCompatibility.MySQL.MySQLTable,System.String},Oracle.LinuxCompatibility.MySQL.Reflection.SQL.SqlActions,System.Boolean,System.Boolean)">
  <summary>
  生成用于将数据集合批量导入数据库的INSERT SQL事务
  </summary>
  <typeparam name="T"></typeparam>
  <param name="source"></param>
- <param name="type">
+ <param name="action">
  Only allowed action ``insert/update/delete/replace``, if the user custom SQL generator 
  <paramref name="custom"/> is nothing, then this parameter works.
  </param>
  <param name="custom">
- User custom SQL generator. If this parameter is not nothing, then <paramref name="type"/> will disabled.
+ User custom SQL generator. If this parameter is not nothing, then <paramref name="action"/> will disabled.
  </param>
- <returns></returns>
+ <returns>generated sql script text</returns>
 </member>
-<member name="M:Oracle.LinuxCompatibility.MySQL.Workbench.DataDumps.DumpLargeTransaction``1(System.Collections.Generic.IEnumerable{``0},System.String,System.Func{Oracle.LinuxCompatibility.MySQL.MySQLTable,System.String},System.String,System.Boolean,System.Boolean)">
+<member name="M:Oracle.LinuxCompatibility.MySQL.Workbench.DataDumps.DumpLargeTransaction``1(System.Collections.Generic.IEnumerable{``0},System.String,System.Func{Oracle.LinuxCompatibility.MySQL.MySQLTable,System.String},Oracle.LinuxCompatibility.MySQL.Reflection.SQL.SqlActions,System.Boolean,System.Boolean)">
  <summary>
  Write a very large SQL table data collection into a SQL file.
- (适合导出一个非常大的mysql数据表)
  </summary>
  <typeparam name="T"></typeparam>
  <param name="source"></param>
@@ -2014,8 +2015,11 @@ Oracle.LinuxCompatibility.LibMySQL
  <param name="custom"></param>
  <param name="type$"></param>
  <param name="distinct"></param>
+ <remarks>
+ (适合导出一个非常大的mysql数据表)
+ </remarks>
 </member>
-<member name="M:Oracle.LinuxCompatibility.MySQL.Workbench.DataDumps.DumpTransaction``1(System.Collections.Generic.IEnumerable{``0},System.String,Microsoft.VisualBasic.Text.Encodings,System.String,System.Boolean,System.Boolean)">
+<member name="M:Oracle.LinuxCompatibility.MySQL.Workbench.DataDumps.DumpTransaction``1(System.Collections.Generic.IEnumerable{``0},System.String,Microsoft.VisualBasic.Text.Encodings,Oracle.LinuxCompatibility.MySQL.Reflection.SQL.SqlActions,System.Boolean,System.Boolean)">
  <summary>
  This function is only works for the table that without any foreign key constraint.
  
