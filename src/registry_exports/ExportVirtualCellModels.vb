@@ -295,7 +295,9 @@ Public Class ExportVirtualCellModels
     "motif_site AS gene_id",
     "cluster_id",
     "protein_id",
-    "sequence")
+    "sequence",
+    "protein_data.`function` as fingerprint",
+    "domain as checksum")
 
                 If tf_prots.IsNullOrEmpty Then
                     Exit For
@@ -303,7 +305,7 @@ Public Class ExportVirtualCellModels
 
                 Call text.Add(From tf As protein_data
                               In tf_prots
-                              Let tf_id As String = $"{tf.name}|PWM{tf.gene_id.ToHexString} [{tf.function}]"
+                              Let tf_id As String = $"{tf.name}|PWM{tf.gene_id.ToHexString} {tf.checksum} [{tf.function}] {tf.fingerprint}"
                               Select New FastaSeq(tf.sequence, title:=tf_id))
             Next
         End Using
