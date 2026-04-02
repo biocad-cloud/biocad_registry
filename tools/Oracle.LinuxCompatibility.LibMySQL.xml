@@ -6,6 +6,13 @@ Oracle.LinuxCompatibility.LibMySQL
 </name>
 </assembly>
 <members>
+<member name="M:Oracle.LinuxCompatibility.MySQL.CsvHelper.CsvImportsHelper(System.String)">
+ <summary>
+ 将csv导入数据库之中的帮助工具，利用这个工具解析csv文件的头部标题行，生成``Create Table``脚本
+ </summary>
+ <param name="path"></param>
+ <returns></returns>
+</member>
 <member name="M:Oracle.LinuxCompatibility.MySQL.DataClientExtensions.SelectALL``1(Oracle.LinuxCompatibility.MySQL.MySqli)">
  <summary>
  从数据库之中加载所有的数据到程序的内存之中，只推荐表的数据量比较小的使用，
@@ -37,87 +44,6 @@ Oracle.LinuxCompatibility.LibMySQL
  <param name="obj"></param>
  <param name="group"></param>
  <returns></returns>
-</member>
-<member name="M:Oracle.LinuxCompatibility.MySQL.DataDumps.DumpMySQL(System.IO.StreamWriter,Oracle.LinuxCompatibility.MySQL.MySQLTable[][])">
- <summary>
- This function works for the tables that have foreign key constraint between each others.
- (这个函数只适用于比较小规模的数据库的导出)
- </summary>
- <param name="output"></param>
- <param name="tables"></param>
-</member>
-<member name="M:Oracle.LinuxCompatibility.MySQL.DataDumps.DumpTransaction(System.Collections.Generic.IEnumerable{Oracle.LinuxCompatibility.MySQL.MySQLTable},System.IO.TextWriter,System.Type,System.Func{Oracle.LinuxCompatibility.MySQL.MySQLTable,System.String},System.String,System.Boolean,System.Boolean)">
- <summary>
- 生成用于将数据集合批量导入数据库的INSERT SQL事务
- </summary>
- <param name="source"></param>
- <param name="type">
- Only allowed action ``insert/update/delete/replace``, if the user custom SQL generator 
- <paramref name="custom"/> is nothing, then this parameter works.
- </param>
- <param name="custom">
- User custom SQL generator. If this parameter is not nothing, then <paramref name="type"/> will disabled.
- </param>
-</member>
-<member name="M:Oracle.LinuxCompatibility.MySQL.DataDumps.DumpTransaction``1(System.Collections.Generic.IEnumerable{``0},System.Func{Oracle.LinuxCompatibility.MySQL.MySQLTable,System.String},System.String,System.Boolean,System.Boolean)">
- <summary>
- 生成用于将数据集合批量导入数据库的INSERT SQL事务
- </summary>
- <typeparam name="T"></typeparam>
- <param name="source"></param>
- <param name="type">
- Only allowed action ``insert/update/delete/replace``, if the user custom SQL generator 
- <paramref name="custom"/> is nothing, then this parameter works.
- </param>
- <param name="custom">
- User custom SQL generator. If this parameter is not nothing, then <paramref name="type"/> will disabled.
- </param>
- <returns></returns>
-</member>
-<member name="M:Oracle.LinuxCompatibility.MySQL.DataDumps.DumpLargeTransaction``1(System.Collections.Generic.IEnumerable{``0},System.String,System.Func{Oracle.LinuxCompatibility.MySQL.MySQLTable,System.String},System.String,System.Boolean,System.Boolean)">
- <summary>
- Write a very large SQL table data collection into a SQL file.
- (适合导出一个非常大的mysql数据表)
- </summary>
- <typeparam name="T"></typeparam>
- <param name="source"></param>
- <param name="path$"></param>
- <param name="custom"></param>
- <param name="type$"></param>
- <param name="distinct"></param>
-</member>
-<member name="M:Oracle.LinuxCompatibility.MySQL.DataDumps.DumpTransaction``1(System.Collections.Generic.IEnumerable{``0},System.String,Microsoft.VisualBasic.Text.Encodings,System.String,System.Boolean,System.Boolean)">
- <summary>
- This function is only works for the table that without any foreign key constraint.
- 
- (这个函数只适合于没有外键约束的数据表)
- 
- 从<see cref="T:Oracle.LinuxCompatibility.MySQL.MySQLTable"/>之中生成SQL语句之后保存到指定的文件句柄之上，
- + 假若所输入的文件句柄是带有``.sql``后缀的话，会直接保存为该文件，
- + 反之会被当作为文件夹，当前的集合对象会保存为与类型相同名称的sql文件
- </summary>
- <typeparam name="T"></typeparam>
- <param name="source"></param>
- <param name="path$">
- 请注意，在这里假若字符串是含有sql作为文件名后缀的话，会直接用作为文件路径来保存
- 假若不是以sql为后缀的话，会被当做文件夹来处理
- </param>
- <param name="encoding"></param>
- <param name="distinct">是否对<see cref="M:Oracle.LinuxCompatibility.MySQL.MySQLTable.GetDumpInsertValue(System.Boolean)"/>进行去重处理？默认是</param>
- <returns></returns>
-</member>
-<member name="M:Oracle.LinuxCompatibility.MySQL.DataDumps.CsvImportsHelper(System.String)">
- <summary>
- 将csv导入数据库之中的帮助工具，利用这个工具解析csv文件的头部标题行，生成``Create Table``脚本
- </summary>
- <param name="path"></param>
- <returns></returns>
-</member>
-<member name="M:Oracle.LinuxCompatibility.MySQL.DumpTaskRunner.Dispose">
- <summary>
- Call this method for commit the remaining data to 
- the local transaction dump sql file
- </summary>
 </member>
 <member name="M:Oracle.LinuxCompatibility.MySQL.Extensions.GetCreateTableMetaSQL``1">
  <summary>
@@ -153,122 +79,6 @@ Oracle.LinuxCompatibility.LibMySQL
  <returns></returns>
  <remarks></remarks>
 </member>
-<member name="T:Oracle.LinuxCompatibility.MySQL.LinqExports">
- <summary>
- 使用Linq方法进行非常大的数据库的导出操作
- </summary>
-</member>
-<member name="M:Oracle.LinuxCompatibility.MySQL.LinqExports.ProjectDumping(System.Collections.Generic.IEnumerable{Oracle.LinuxCompatibility.MySQL.MySQLTable},System.String,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
- <summary>
- 将数据结果导出到一个文件夹之中，文件名为表名称
- </summary>
- <param name="source">名字必须为表名称</param>
- <param name="EXPORT$"></param>
- <param name="singleTransaction">
- Merge the sql files that exported into a large single sql transaction file? Default is not.
- </param>
-</member>
-<member name="M:Oracle.LinuxCompatibility.MySQL.LinqExports.joinTransactionSql(System.String,System.String,System.String)">
- <summary>
- Merge the sql files that exported into a large single sql transaction file.
- </summary>
- <param name="saveSQL$"></param>
- <param name="dbName$"></param>
- <param name="EXPORT$"></param>
-</member>
-<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.CommitInsert.commit">
- <summary>
- commit the batch insert transaction
- </summary>
- <returns></returns>
-</member>
-<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.CommitInsert.add(Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert[])">
- <summary>
- INSERT INTO
- </summary>
- <param name="fields"></param>
- 
-</member>
-<member name="T:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.IDataCommitOperation">
- <summary>
- commit operation for the insert operation:
- 
- 1. <see cref="T:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.CommitInsert"/>
- 2. <see cref="T:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.CommitTransaction"/>
- 
- </summary>
- <remarks>
- this class is used to commit the insert operation
- </remarks>
-</member>
-<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.IInsert.add(Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert[])">
- <summary>
- implements of the insert into
- </summary>
- <param name="fields"></param>
-</member>
-<member name="T:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.IInsertModel`1">
- <summary>
- the abstract model for insert into sql
- </summary>
- <typeparam name="T"></typeparam>
-</member>
-<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.IInsertModel`1.delayed">
- <summary>
- insert delayed into
- </summary>
- <returns></returns>
-</member>
-<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.IInsertModel`1.ignore">
- <summary>
- insert ignore into
- </summary>
- <returns></returns>
-</member>
-<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.IInsertModel`1.clearOption">
- <summary>
- insert into
- </summary>
- <returns></returns>
-</member>
-<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.CommitTransaction.delayed">
- <summary>
- set delayed options for insert into
- </summary>
- <returns></returns>
- <remarks>
- this delayed options will be reste to no-delayed after insert has been called
- </remarks>
-</member>
-<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.CommitTransaction.delete(Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert[])">
- <summary>
- delete on where condition filter records
- </summary>
- <param name="where"></param>
-</member>
-<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.CommitTransaction.add(System.String)">
- <summary>
- add transaction sql text into current memory cache
- </summary>
- <param name="sql"></param>
-</member>
-<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.CommitTransaction.add(Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert[])">
- <summary>
- just create the insert into sql and added into the transaction memory cache pool
- </summary>
- <param name="fields"></param>
- <returns></returns>
-</member>
-<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.CommitTransaction.commit">
- <summary>
- write the in-memory cache of the transaction data into database
- </summary>
-</member>
-<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.CommitTransaction.Dispose(System.Boolean)">
- <summary>
- commit the transaction
- </summary>
-</member>
 <member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.CreateDataType.CreateDataType(System.String)">
  <summary>
  Mapping the MySQL database type and visual basic data type 
@@ -298,6 +108,12 @@ Oracle.LinuxCompatibility.LibMySQL
  </summary>
  <param name="f"></param>
  <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.Expression.FilterConditions.#ctor(Oracle.LinuxCompatibility.MySQL.MySqlBuilder.Expression.FilterConditions)">
+ <summary>
+ make condition filter value copy
+ </summary>
+ <param name="clone"></param>
 </member>
 <member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert.#ctor(System.String)">
  <summary>
@@ -418,11 +234,140 @@ Oracle.LinuxCompatibility.LibMySQL
  <param name="b"></param>
  <returns></returns>
 </member>
-<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FilterConditions.#ctor(Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FilterConditions)">
+<member name="T:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.AsyncModelTable">
  <summary>
- make condition filter value copy
+ AsyncModelTable is a wrapper for Model class to provide asynchronous query and data manipulation functions,
+ it is designed for use in async/await programming pattern, and all of its methods will return Task(Of T) type, 
+ so you can use await keyword to get the result of the query or data manipulation operation.
  </summary>
- <param name="clone"></param>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.AsyncModelTable.where(System.String)">
+ <summary>
+ WHERE
+ </summary>
+ <param name="q"></param>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.AsyncModelTable.where(System.Collections.Generic.IEnumerable{Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert})">
+ <summary>
+ WHERE
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.AsyncModelTable.where(Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert[])">
+ <summary>
+ WHERE
+ </summary>
+ <param name="asserts"></param>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.AsyncModelTable.project``1(System.String)">
+ <summary>
+ project a field column as vector from the database
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="field">the field name to project as vector</param>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.AsyncModelTable.save(Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert[])">
+ <summary>
+ UPDATE
+ </summary>
+ <param name="fields"></param>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.AsyncModelTable.add(Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert[])">
+ <summary>
+ INSERT INTO
+ </summary>
+ <param name="fields"></param>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.AsyncModelTable.delete">
+ <summary>
+ DELETE FROM
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.AsyncModelTable.limit(System.Int32,System.Nullable{System.Int32})">
+ <summary>
+ LIMIT m,n
+ </summary>
+ <param name="m"></param>
+ <param name="n"></param>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.AsyncModelTable.left_join(System.String)">
+ <summary>
+ LEFT JOIN
+ </summary>
+ <param name="table"></param>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.AsyncModelTable.on(Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert[])">
+ <summary>
+ LEFT JOIN ON
+ </summary>
+ <param name="fields"></param>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.AsyncModelTable.order_by(System.String[])">
+ <summary>
+ ORDER BY
+ </summary>
+ <param name="fields"></param>
+ <returns></returns>
+ <remarks>
+ fields parameter data could be field name or an expression
+ </remarks>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.AsyncModelTable.order_by(System.String[],System.Boolean)">
+ <summary>
+ ORDER BY DESC
+ </summary>
+ <param name="fields"></param>
+ <param name="desc"></param>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.AsyncModelTable.order_by(System.String,System.Boolean)">
+ <summary>
+ ORDER BY DESC
+ </summary>
+ <param name="field"></param>
+ <param name="desc"></param>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.AsyncModelTable.distinct">
+ <summary>
+ DISTINCT
+ </summary>
+ <returns></returns>
+</member>
+<member name="T:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.IDatabase">
+ <summary>
+ an abstract database wrapper for multiple database table models in clr types
+ </summary>
+</member>
+<member name="F:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.IDatabase.mysqli">
+ <summary>
+ the wrapper for the mysql query functions
+ </summary>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.IDatabase.model``1">
+ <summary>
+ create a new data table model for create mysql query
+ </summary>
+ <typeparam name="T"></typeparam>
+ <returns></returns>
+ 
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.IDatabase.CreateModel(System.String)">
+ <summary>
+ create a model reference to a specific table
+ </summary>
+ <param name="name">the table name</param>
+ <returns></returns>
+ 
 </member>
 <member name="T:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.Model">
  <summary>
@@ -677,133 +622,98 @@ Oracle.LinuxCompatibility.LibMySQL
  </summary>
  <returns></returns>
 </member>
-<member name="T:Oracle.LinuxCompatibility.MySQL.IDatabase">
+<member name="T:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.IDataCommitOperation">
  <summary>
- an abstract database wrapper for multiple database table models in clr types
- </summary>
-</member>
-<member name="F:Oracle.LinuxCompatibility.MySQL.IDatabase.mysqli">
- <summary>
- the wrapper for the mysql query functions
- </summary>
-</member>
-<member name="M:Oracle.LinuxCompatibility.MySQL.IDatabase.model``1">
- <summary>
- create a new data table model for create mysql query
- </summary>
- <typeparam name="T"></typeparam>
- <returns></returns>
+ commit operation for the insert operation:
  
-</member>
-<member name="M:Oracle.LinuxCompatibility.MySQL.IDatabase.CreateModel(System.String)">
- <summary>
- create a model reference to a specific table
- </summary>
- <param name="name">the table name</param>
- <returns></returns>
+ 1. <see cref="T:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.CommitInsert"/>
+ 2. <see cref="T:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.CommitTransaction"/>
  
-</member>
-<member name="M:Oracle.LinuxCompatibility.MySQL.AsyncModelTable.where(System.String)">
- <summary>
- WHERE
  </summary>
- <param name="q"></param>
- <returns></returns>
+ <remarks>
+ this class is used to commit the insert operation
+ </remarks>
 </member>
-<member name="M:Oracle.LinuxCompatibility.MySQL.AsyncModelTable.where(System.Collections.Generic.IEnumerable{Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert})">
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.IInsert.add(Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert[])">
  <summary>
- WHERE
- </summary>
- <returns></returns>
-</member>
-<member name="M:Oracle.LinuxCompatibility.MySQL.AsyncModelTable.where(Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert[])">
- <summary>
- WHERE
- </summary>
- <param name="asserts"></param>
- <returns></returns>
-</member>
-<member name="M:Oracle.LinuxCompatibility.MySQL.AsyncModelTable.project``1(System.String)">
- <summary>
- project a field column as vector from the database
- </summary>
- <typeparam name="T"></typeparam>
- <param name="field">the field name to project as vector</param>
- <returns></returns>
-</member>
-<member name="M:Oracle.LinuxCompatibility.MySQL.AsyncModelTable.save(Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert[])">
- <summary>
- UPDATE
+ implements of the insert into
  </summary>
  <param name="fields"></param>
+</member>
+<member name="T:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.IInsertModel`1">
+ <summary>
+ the abstract model for insert into sql
+ </summary>
+ <typeparam name="T"></typeparam>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.IInsertModel`1.delayed">
+ <summary>
+ insert delayed into
+ </summary>
  <returns></returns>
 </member>
-<member name="M:Oracle.LinuxCompatibility.MySQL.AsyncModelTable.add(Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert[])">
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.IInsertModel`1.ignore">
+ <summary>
+ insert ignore into
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.IInsertModel`1.clearOption">
+ <summary>
+ insert into
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.CommitInsert.commit">
+ <summary>
+ commit the batch insert transaction
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.CommitInsert.add(Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert[])">
  <summary>
  INSERT INTO
  </summary>
  <param name="fields"></param>
- <returns></returns>
+ 
 </member>
-<member name="M:Oracle.LinuxCompatibility.MySQL.AsyncModelTable.delete">
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.CommitTransaction.delayed">
  <summary>
- DELETE FROM
+ set delayed options for insert into
  </summary>
- <returns></returns>
-</member>
-<member name="M:Oracle.LinuxCompatibility.MySQL.AsyncModelTable.limit(System.Int32,System.Nullable{System.Int32})">
- <summary>
- LIMIT m,n
- </summary>
- <param name="m"></param>
- <param name="n"></param>
- <returns></returns>
-</member>
-<member name="M:Oracle.LinuxCompatibility.MySQL.AsyncModelTable.left_join(System.String)">
- <summary>
- LEFT JOIN
- </summary>
- <param name="table"></param>
- <returns></returns>
-</member>
-<member name="M:Oracle.LinuxCompatibility.MySQL.AsyncModelTable.on(Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert[])">
- <summary>
- LEFT JOIN ON
- </summary>
- <param name="fields"></param>
- <returns></returns>
-</member>
-<member name="M:Oracle.LinuxCompatibility.MySQL.AsyncModelTable.order_by(System.String[])">
- <summary>
- ORDER BY
- </summary>
- <param name="fields"></param>
  <returns></returns>
  <remarks>
- fields parameter data could be field name or an expression
+ this delayed options will be reste to no-delayed after insert has been called
  </remarks>
 </member>
-<member name="M:Oracle.LinuxCompatibility.MySQL.AsyncModelTable.order_by(System.String[],System.Boolean)">
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.CommitTransaction.delete(Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert[])">
  <summary>
- ORDER BY DESC
+ delete on where condition filter records
+ </summary>
+ <param name="where"></param>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.CommitTransaction.add(System.String)">
+ <summary>
+ add transaction sql text into current memory cache
+ </summary>
+ <param name="sql"></param>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.CommitTransaction.add(Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert[])">
+ <summary>
+ just create the insert into sql and added into the transaction memory cache pool
  </summary>
  <param name="fields"></param>
- <param name="desc"></param>
  <returns></returns>
 </member>
-<member name="M:Oracle.LinuxCompatibility.MySQL.AsyncModelTable.order_by(System.String,System.Boolean)">
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.CommitTransaction.commit">
  <summary>
- ORDER BY DESC
+ write the in-memory cache of the transaction data into database
  </summary>
- <param name="field"></param>
- <param name="desc"></param>
- <returns></returns>
 </member>
-<member name="M:Oracle.LinuxCompatibility.MySQL.AsyncModelTable.distinct">
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.CommitTransaction.Dispose(System.Boolean)">
  <summary>
- DISTINCT
+ commit the transaction
  </summary>
- <returns></returns>
 </member>
 <member name="T:Oracle.LinuxCompatibility.MySQL.MySqli">
  <summary>
@@ -2051,6 +1961,103 @@ Oracle.LinuxCompatibility.LibMySQL
  </summary>
  <param name="o"></param>
  <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.DataDumps.DumpMySQL(System.IO.StreamWriter,Oracle.LinuxCompatibility.MySQL.MySQLTable[][])">
+ <summary>
+ This function works for the tables that have foreign key constraint between each others.
+ (这个函数只适用于比较小规模的数据库的导出)
+ </summary>
+ <param name="output"></param>
+ <param name="tables"></param>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.DataDumps.DumpTransaction(System.Collections.Generic.IEnumerable{Oracle.LinuxCompatibility.MySQL.MySQLTable},System.IO.TextWriter,System.Type,System.Func{Oracle.LinuxCompatibility.MySQL.MySQLTable,System.String},System.String,System.Boolean,System.Boolean,System.Int32)">
+ <summary>
+ 生成用于将数据集合批量导入数据库的INSERT SQL事务
+ </summary>
+ <param name="source"></param>
+ <param name="type">
+ Only allowed action ``insert/update/delete/replace``, if the user custom SQL generator 
+ <paramref name="custom"/> is nothing, then this parameter works.
+ </param>
+ <param name="custom">
+ User custom SQL generator. If this parameter is not nothing, then <paramref name="type"/> will disabled.
+ </param>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.DataDumps.DumpTransaction``1(System.Collections.Generic.IEnumerable{``0},System.Func{Oracle.LinuxCompatibility.MySQL.MySQLTable,System.String},System.String,System.Boolean,System.Boolean)">
+ <summary>
+ 生成用于将数据集合批量导入数据库的INSERT SQL事务
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="source"></param>
+ <param name="type">
+ Only allowed action ``insert/update/delete/replace``, if the user custom SQL generator 
+ <paramref name="custom"/> is nothing, then this parameter works.
+ </param>
+ <param name="custom">
+ User custom SQL generator. If this parameter is not nothing, then <paramref name="type"/> will disabled.
+ </param>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.DataDumps.DumpLargeTransaction``1(System.Collections.Generic.IEnumerable{``0},System.String,System.Func{Oracle.LinuxCompatibility.MySQL.MySQLTable,System.String},System.String,System.Boolean,System.Boolean)">
+ <summary>
+ Write a very large SQL table data collection into a SQL file.
+ (适合导出一个非常大的mysql数据表)
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="source"></param>
+ <param name="path$"></param>
+ <param name="custom"></param>
+ <param name="type$"></param>
+ <param name="distinct"></param>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.DataDumps.DumpTransaction``1(System.Collections.Generic.IEnumerable{``0},System.String,Microsoft.VisualBasic.Text.Encodings,System.String,System.Boolean,System.Boolean)">
+ <summary>
+ This function is only works for the table that without any foreign key constraint.
+ 
+ (这个函数只适合于没有外键约束的数据表)
+ 
+ 从<see cref="T:Oracle.LinuxCompatibility.MySQL.MySQLTable"/>之中生成SQL语句之后保存到指定的文件句柄之上，
+ + 假若所输入的文件句柄是带有``.sql``后缀的话，会直接保存为该文件，
+ + 反之会被当作为文件夹，当前的集合对象会保存为与类型相同名称的sql文件
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="source"></param>
+ <param name="path$">
+ 请注意，在这里假若字符串是含有sql作为文件名后缀的话，会直接用作为文件路径来保存
+ 假若不是以sql为后缀的话，会被当做文件夹来处理
+ </param>
+ <param name="encoding"></param>
+ <param name="distinct">是否对<see cref="M:Oracle.LinuxCompatibility.MySQL.MySQLTable.GetDumpInsertValue(System.Boolean)"/>进行去重处理？默认是</param>
+ <returns></returns>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.DumpTaskRunner.Dispose">
+ <summary>
+ Call this method for commit the remaining data to 
+ the local transaction dump sql file
+ </summary>
+</member>
+<member name="T:Oracle.LinuxCompatibility.MySQL.LinqExports">
+ <summary>
+ 使用Linq方法进行非常大的数据库的导出操作
+ </summary>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.LinqExports.ProjectDumping(System.Collections.Generic.IEnumerable{Oracle.LinuxCompatibility.MySQL.MySQLTable},System.String,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+ <summary>
+ 将数据结果导出到一个文件夹之中，文件名为表名称
+ </summary>
+ <param name="source">名字必须为表名称</param>
+ <param name="EXPORT$"></param>
+ <param name="singleTransaction">
+ Merge the sql files that exported into a large single sql transaction file? Default is not.
+ </param>
+</member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.LinqExports.joinTransactionSql(System.String,System.String,System.String)">
+ <summary>
+ Merge the sql files that exported into a large single sql transaction file.
+ </summary>
+ <param name="saveSQL$"></param>
+ <param name="dbName$"></param>
+ <param name="EXPORT$"></param>
 </member>
 <member name="M:Oracle.LinuxCompatibility.MySQL.Workbench.Dump.RestoreWorker.ImportsData(System.String,System.String)">
  <summary>
