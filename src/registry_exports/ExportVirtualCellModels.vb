@@ -287,10 +287,11 @@ Public Class ExportVirtualCellModels
             For page As Integer = 1 To Integer.MaxValue
                 Dim tf_prots = registry.regulatory_network _
                     .left_join("protein_data").on(field("`protein_data`.id") = field("regulator")) _
+                    .left_join("motif").on(field("`motif`.id") = field("`regulatory_network`.motif_site")) _
                     .limit((page - 1) * page_size, page_size) _
                     .select(Of protein_data)("protein_data.id",
-    "protein_data.name",
-    "protein_data.function",
+    "motif.name as `function`",
+    "family as name",
     "motif_site AS gene_id",
     "cluster_id",
     "protein_id",
@@ -302,7 +303,7 @@ Public Class ExportVirtualCellModels
 
                 Call text.Add(From tf As protein_data
                               In tf_prots
-                              Let tf_id As String = If(tf.name.StringEmpty, tf.id, tf.name) & " " & tf.gene_id & " " & model.GetProteinModelLabel(tf.id)
+                              Let tf_id As String = $"{tf.name}|PWM{tf.gene_id.ToHexString} [{tf.function}]"
                               Select New FastaSeq(tf.sequence, title:=tf_id))
             Next
         End Using
