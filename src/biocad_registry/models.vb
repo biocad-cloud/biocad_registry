@@ -258,7 +258,8 @@ Public Module registry_models
                                      .s_end = d.SEnd,
                                      .s_start = d.SStart,
                                      .hit_id = sid,
-                                     .query_id = qid
+                                     .query_id = qid,
+                                     .add_time = Now
                                   }
                               End Function).DumpLargeTransaction(path:=$"{dir}/diamond_{++part}.sql", distinct:=False)
         Next
