@@ -326,6 +326,25 @@ CREATE TABLE `metabolite_class` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `metabolite_thermo`
+--
+
+DROP TABLE IF EXISTS `metabolite_thermo`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `metabolite_thermo` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `env_id` int unsigned NOT NULL,
+  `metabolite_id` int unsigned NOT NULL,
+  `delta_gf0` double NOT NULL,
+  `delta_gf0_error` double NOT NULL,
+  `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`env_id`,`metabolite_id`),
+  UNIQUE KEY `id_UNIQUE` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='thermo data of metabolites';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `metabolites`
 --
 
@@ -774,6 +793,30 @@ CREATE TABLE `reaction` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `reaction_thermo`
+--
+
+DROP TABLE IF EXISTS `reaction_thermo`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `reaction_thermo` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `env_id` int unsigned NOT NULL COMMENT 'id of the thermo environment',
+  `rxn_id` int unsigned NOT NULL COMMENT 'the biological reaction id',
+  `delta_rg0` double NOT NULL,
+  `delta_rg0_error` double NOT NULL,
+  `direction_status` varchar(50) NOT NULL DEFAULT 'forward' COMMENT 'Forward/Reverse/Reversible',
+  `fba_lb` double NOT NULL,
+  `fba_ub` double NOT NULL,
+  `error_msg` text,
+  `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`env_id`,`rxn_id`),
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  KEY `idx_direction` (`direction_status`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='thermo data of the biological reactions';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `refseq`
 --
 
@@ -798,7 +841,9 @@ CREATE TABLE `refseq` (
   UNIQUE KEY `find_asm_id` (`assembly_accession`),
   KEY `search_tax1` (`taxid`),
   KEY `search_tax2` (`species_taxid`),
-  KEY `filter_tax_group` (`group`)
+  KEY `filter_tax_group` (`group`),
+  KEY `filter_level` (`assembly_level`),
+  FULLTEXT KEY `search_taxname` (`organism_name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=492871 DEFAULT CHARSET=utf8mb3 COMMENT='imports of assembly_summary_refseq.txt';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -927,6 +972,25 @@ CREATE TABLE `synonym` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `thermo_environment`
+--
+
+DROP TABLE IF EXISTS `thermo_environment`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `thermo_environment` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT COMMENT 'the environment id',
+  `ph` double unsigned NOT NULL DEFAULT '7',
+  `temperature` double NOT NULL COMMENT 'temperature(K)',
+  `ionic_strength` double NOT NULL COMMENT 'ionic strength of the solution system',
+  `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`) /*!80000 INVISIBLE */,
+  UNIQUE KEY `uk_env_params` (`ph`,`temperature`,`ionic_strength`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='thermo environment for the biological reactor system';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `topic`
 --
 
@@ -972,14 +1036,6 @@ CREATE TABLE `vocabulary` (
   FULLTEXT KEY `search_text` (`note`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1213 DEFAULT CHARSET=utf8mb3 COMMENT='vocabulary term inside the registry database';
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping events for database 'cad_registry'
---
-
---
--- Dumping routines for database 'cad_registry'
---
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -990,4 +1046,4 @@ CREATE TABLE `vocabulary` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-04-01 17:41:11
+-- Dump completed on 2026-04-03 15:41:44
