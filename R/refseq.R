@@ -7,7 +7,7 @@ const query_refseq = function(registry, taxname) {
     |> select()
     ;
     let urls = refs$ftp_path;
-    let names = basename(urls);
+    let names = basename(urls, withExtensionName =TRUE);
 
     urls = `${urls}/${names}_genomic.gbff.gz`;
 
