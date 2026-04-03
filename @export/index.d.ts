@@ -134,6 +134,9 @@ declare namespace biocad_registry {
    function push_reaction(biocad_registry: any, reaction: any, source_db: any): object;
    /**
    */
+   function query_refseq(registry: any, taxname: any): object;
+   /**
+   */
    function reaction_model(biocad_registry: any): object;
    /**
    */
