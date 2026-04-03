@@ -1740,6 +1740,84 @@ registry_data
  Memberwise clone of current table Object.
  </summary>
 </member>
+<member name="T:registry_data.biocad_registryModel.metabolite_thermo">
+ <summary>
+ ```SQL
+ 
+ --
+ 
+ DROP TABLE IF EXISTS `metabolite_thermo`;
+ /*!40101 SET @saved_cs_client     = @@character_set_client */;
+ /*!50503 SET character_set_client = utf8mb4 */;
+ CREATE TABLE `metabolite_thermo` (
+   `id` int unsigned NOT NULL AUTO_INCREMENT,
+   `env_id` int unsigned NOT NULL,
+   `metabolite_id` int unsigned NOT NULL,
+   `delta_gf0` double NOT NULL,
+   `delta_gf0_error` double NOT NULL,
+   `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+   PRIMARY KEY (`env_id`,`metabolite_id`),
+   UNIQUE KEY `id_UNIQUE` (`id`)
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='thermo data of metabolites';
+ /*!40101 SET character_set_client = @saved_cs_client */;
+ 
+ --
+ ```
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="M:registry_data.biocad_registryModel.metabolite_thermo.GetDeleteSQL">
+ <summary>
+ ```SQL
+ DELETE FROM `metabolite_thermo` WHERE `env_id`='{0}' and `metabolite_id`='{1}';
+ ```
+ </summary>
+</member>
+<member name="M:registry_data.biocad_registryModel.metabolite_thermo.GetInsertSQL">
+ <summary>
+ ```SQL
+ INSERT INTO `metabolite_thermo` (`id`, `env_id`, `metabolite_id`, `delta_gf0`, `delta_gf0_error`, `add_time`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}');
+ ```
+ </summary>
+</member>
+<member name="M:registry_data.biocad_registryModel.metabolite_thermo.GetInsertSQL(System.Boolean)">
+ <summary>
+ ```SQL
+ INSERT INTO `metabolite_thermo` (`id`, `env_id`, `metabolite_id`, `delta_gf0`, `delta_gf0_error`, `add_time`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}');
+ ```
+ </summary>
+</member>
+<member name="M:registry_data.biocad_registryModel.metabolite_thermo.GetDumpInsertValue(System.Boolean)">
+ <summary>
+ <see cref="M:registry_data.biocad_registryModel.metabolite_thermo.GetInsertSQL"/>
+ </summary>
+</member>
+<member name="M:registry_data.biocad_registryModel.metabolite_thermo.GetReplaceSQL">
+ <summary>
+ ```SQL
+ REPLACE INTO `metabolite_thermo` (`id`, `env_id`, `metabolite_id`, `delta_gf0`, `delta_gf0_error`, `add_time`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}');
+ ```
+ </summary>
+</member>
+<member name="M:registry_data.biocad_registryModel.metabolite_thermo.GetReplaceSQL(System.Boolean)">
+ <summary>
+ ```SQL
+ REPLACE INTO `metabolite_thermo` (`id`, `env_id`, `metabolite_id`, `delta_gf0`, `delta_gf0_error`, `add_time`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}');
+ ```
+ </summary>
+</member>
+<member name="M:registry_data.biocad_registryModel.metabolite_thermo.GetUpdateSQL">
+ <summary>
+ ```SQL
+ UPDATE `metabolite_thermo` SET `id`='{0}', `env_id`='{1}', `metabolite_id`='{2}', `delta_gf0`='{3}', `delta_gf0_error`='{4}', `add_time`='{5}' WHERE `env_id`='{6}' and `metabolite_id`='{7}';
+ ```
+ </summary>
+</member>
+<member name="M:registry_data.biocad_registryModel.metabolite_thermo.Clone">
+ <summary>
+ Memberwise clone of current table Object.
+ </summary>
+</member>
 <member name="T:registry_data.biocad_registryModel.molecular_networking">
  <summary>
  ```SQL
@@ -3632,6 +3710,113 @@ registry_data
  Memberwise clone of current table Object.
  </summary>
 </member>
+<member name="T:registry_data.biocad_registryModel.reaction_thermo">
+ <summary>
+ ```SQL
+ 
+ --
+ 
+ DROP TABLE IF EXISTS `reaction_thermo`;
+ /*!40101 SET @saved_cs_client     = @@character_set_client */;
+ /*!50503 SET character_set_client = utf8mb4 */;
+ CREATE TABLE `reaction_thermo` (
+   `id` int unsigned NOT NULL AUTO_INCREMENT,
+   `env_id` int unsigned NOT NULL COMMENT 'id of the thermo environment',
+   `rxn_id` int unsigned NOT NULL COMMENT 'the biological reaction id',
+   `delta_rg0` double NOT NULL,
+   `delta_rg0_error` double NOT NULL,
+   `direction_status` varchar(50) NOT NULL DEFAULT 'forward' COMMENT 'Forward/Reverse/Reversible',
+   `fba_lb` double NOT NULL,
+   `fba_ub` double NOT NULL,
+   `error_msg` text,
+   `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+   PRIMARY KEY (`env_id`,`rxn_id`),
+   UNIQUE KEY `id_UNIQUE` (`id`),
+   KEY `idx_direction` (`direction_status`)
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='thermo data of the biological reactions';
+ /*!40101 SET character_set_client = @saved_cs_client */;
+ 
+ --
+ ```
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="P:registry_data.biocad_registryModel.reaction_thermo.env_id">
+ <summary>
+ id of the thermo environment
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:registry_data.biocad_registryModel.reaction_thermo.rxn_id">
+ <summary>
+ the biological reaction id
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:registry_data.biocad_registryModel.reaction_thermo.direction_status">
+ <summary>
+ Forward/Reverse/Reversible
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:registry_data.biocad_registryModel.reaction_thermo.GetDeleteSQL">
+ <summary>
+ ```SQL
+ DELETE FROM `reaction_thermo` WHERE `env_id`='{0}' and `rxn_id`='{1}';
+ ```
+ </summary>
+</member>
+<member name="M:registry_data.biocad_registryModel.reaction_thermo.GetInsertSQL">
+ <summary>
+ ```SQL
+ INSERT INTO `reaction_thermo` (`id`, `env_id`, `rxn_id`, `delta_rg0`, `delta_rg0_error`, `direction_status`, `fba_lb`, `fba_ub`, `error_msg`, `add_time`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}');
+ ```
+ </summary>
+</member>
+<member name="M:registry_data.biocad_registryModel.reaction_thermo.GetInsertSQL(System.Boolean)">
+ <summary>
+ ```SQL
+ INSERT INTO `reaction_thermo` (`id`, `env_id`, `rxn_id`, `delta_rg0`, `delta_rg0_error`, `direction_status`, `fba_lb`, `fba_ub`, `error_msg`, `add_time`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}');
+ ```
+ </summary>
+</member>
+<member name="M:registry_data.biocad_registryModel.reaction_thermo.GetDumpInsertValue(System.Boolean)">
+ <summary>
+ <see cref="M:registry_data.biocad_registryModel.reaction_thermo.GetInsertSQL"/>
+ </summary>
+</member>
+<member name="M:registry_data.biocad_registryModel.reaction_thermo.GetReplaceSQL">
+ <summary>
+ ```SQL
+ REPLACE INTO `reaction_thermo` (`id`, `env_id`, `rxn_id`, `delta_rg0`, `delta_rg0_error`, `direction_status`, `fba_lb`, `fba_ub`, `error_msg`, `add_time`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}');
+ ```
+ </summary>
+</member>
+<member name="M:registry_data.biocad_registryModel.reaction_thermo.GetReplaceSQL(System.Boolean)">
+ <summary>
+ ```SQL
+ REPLACE INTO `reaction_thermo` (`id`, `env_id`, `rxn_id`, `delta_rg0`, `delta_rg0_error`, `direction_status`, `fba_lb`, `fba_ub`, `error_msg`, `add_time`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}');
+ ```
+ </summary>
+</member>
+<member name="M:registry_data.biocad_registryModel.reaction_thermo.GetUpdateSQL">
+ <summary>
+ ```SQL
+ UPDATE `reaction_thermo` SET `id`='{0}', `env_id`='{1}', `rxn_id`='{2}', `delta_rg0`='{3}', `delta_rg0_error`='{4}', `direction_status`='{5}', `fba_lb`='{6}', `fba_ub`='{7}', `error_msg`='{8}', `add_time`='{9}' WHERE `env_id`='{10}' and `rxn_id`='{11}';
+ ```
+ </summary>
+</member>
+<member name="M:registry_data.biocad_registryModel.reaction_thermo.Clone">
+ <summary>
+ Memberwise clone of current table Object.
+ </summary>
+</member>
 <member name="T:registry_data.biocad_registryModel.refseq">
  <summary>
  ```SQL
@@ -3659,7 +3844,9 @@ registry_data
    UNIQUE KEY `find_asm_id` (`assembly_accession`),
    KEY `search_tax1` (`taxid`),
    KEY `search_tax2` (`species_taxid`),
-   KEY `filter_tax_group` (`group`)
+   KEY `filter_tax_group` (`group`),
+   KEY `filter_level` (`assembly_level`),
+   FULLTEXT KEY `search_taxname` (`organism_name`)
  ) ENGINE=InnoDB AUTO_INCREMENT=492871 DEFAULT CHARSET=utf8mb3 COMMENT='imports of assembly_summary_refseq.txt';
  /*!40101 SET character_set_client = @saved_cs_client */;
  
@@ -4315,6 +4502,108 @@ registry_data
  Memberwise clone of current table Object.
  </summary>
 </member>
+<member name="T:registry_data.biocad_registryModel.thermo_environment">
+ <summary>
+ ```SQL
+ 
+ --
+ 
+ DROP TABLE IF EXISTS `thermo_environment`;
+ /*!40101 SET @saved_cs_client     = @@character_set_client */;
+ /*!50503 SET character_set_client = utf8mb4 */;
+ CREATE TABLE `thermo_environment` (
+   `id` int unsigned NOT NULL AUTO_INCREMENT COMMENT 'the environment id',
+   `ph` double unsigned NOT NULL DEFAULT '7',
+   `temperature` double NOT NULL COMMENT 'temperature(K)',
+   `ionic_strength` double NOT NULL COMMENT 'ionic strength of the solution system',
+   `add_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+   PRIMARY KEY (`id`),
+   UNIQUE KEY `id_UNIQUE` (`id`) /*!80000 INVISIBLE */,
+   UNIQUE KEY `uk_env_params` (`ph`,`temperature`,`ionic_strength`)
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='thermo environment for the biological reactor system';
+ /*!40101 SET character_set_client = @saved_cs_client */;
+ 
+ --
+ ```
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="P:registry_data.biocad_registryModel.thermo_environment.id">
+ <summary>
+ the environment id
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:registry_data.biocad_registryModel.thermo_environment.temperature">
+ <summary>
+ temperature(K)
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:registry_data.biocad_registryModel.thermo_environment.ionic_strength">
+ <summary>
+ ionic strength of the solution system
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:registry_data.biocad_registryModel.thermo_environment.GetDeleteSQL">
+ <summary>
+ ```SQL
+ DELETE FROM `thermo_environment` WHERE `id` = '{0}';
+ ```
+ </summary>
+</member>
+<member name="M:registry_data.biocad_registryModel.thermo_environment.GetInsertSQL">
+ <summary>
+ ```SQL
+ INSERT INTO `thermo_environment` (`id`, `ph`, `temperature`, `ionic_strength`, `add_time`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}');
+ ```
+ </summary>
+</member>
+<member name="M:registry_data.biocad_registryModel.thermo_environment.GetInsertSQL(System.Boolean)">
+ <summary>
+ ```SQL
+ INSERT INTO `thermo_environment` (`id`, `ph`, `temperature`, `ionic_strength`, `add_time`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}');
+ ```
+ </summary>
+</member>
+<member name="M:registry_data.biocad_registryModel.thermo_environment.GetDumpInsertValue(System.Boolean)">
+ <summary>
+ <see cref="M:registry_data.biocad_registryModel.thermo_environment.GetInsertSQL"/>
+ </summary>
+</member>
+<member name="M:registry_data.biocad_registryModel.thermo_environment.GetReplaceSQL">
+ <summary>
+ ```SQL
+ REPLACE INTO `thermo_environment` (`id`, `ph`, `temperature`, `ionic_strength`, `add_time`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}');
+ ```
+ </summary>
+</member>
+<member name="M:registry_data.biocad_registryModel.thermo_environment.GetReplaceSQL(System.Boolean)">
+ <summary>
+ ```SQL
+ REPLACE INTO `thermo_environment` (`id`, `ph`, `temperature`, `ionic_strength`, `add_time`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}');
+ ```
+ </summary>
+</member>
+<member name="M:registry_data.biocad_registryModel.thermo_environment.GetUpdateSQL">
+ <summary>
+ ```SQL
+ UPDATE `thermo_environment` SET `id`='{0}', `ph`='{1}', `temperature`='{2}', `ionic_strength`='{3}', `add_time`='{4}' WHERE `id` = '{5}';
+ ```
+ </summary>
+</member>
+<member name="M:registry_data.biocad_registryModel.thermo_environment.Clone">
+ <summary>
+ Memberwise clone of current table Object.
+ </summary>
+</member>
 <member name="T:registry_data.biocad_registryModel.topic">
  <summary>
  ```SQL
@@ -4430,14 +4719,6 @@ registry_data
    FULLTEXT KEY `search_text` (`note`)
  ) ENGINE=InnoDB AUTO_INCREMENT=1213 DEFAULT CHARSET=utf8mb3 COMMENT='vocabulary term inside the registry database';
  /*!40101 SET character_set_client = @saved_cs_client */;
- 
- --
- -- Dumping events for database 'cad_registry'
- --
- 
- --
- -- Dumping routines for database 'cad_registry'
- --
  /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
  
  /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -4448,7 +4729,7 @@ registry_data
  /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
  /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
  
- -- Dump completed on 2026-04-01 17:41:11
+ -- Dump completed on 2026-04-03 15:41:44
  ```
  </summary>
  <remarks></remarks>
