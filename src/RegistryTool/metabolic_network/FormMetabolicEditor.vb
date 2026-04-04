@@ -33,7 +33,10 @@ Public Class FormMetabolicEditor
     End Sub
 
     Private Async Function GotoPageData() As Task
-        Dim reactions = Await ReactionModelView.QueryPage(Me.Page, page_size:=500)
+        Call DisplayPageData(Await ReactionModelView.QueryPage(Me.Page, page_size:=500))
+    End Function
+
+    Private Sub DisplayPageData(reactions As ReactionModelView())
         Dim offset As Integer
 
         Call DataGridView1.Rows.Clear()
@@ -45,7 +48,7 @@ Public Class FormMetabolicEditor
         Next
 
         Call DataGridView1.CommitEdit(DataGridViewDataErrorContexts.Commit)
-    End Function
+    End Sub
 
     Private Async Sub ToolStripButton3_Click(sender As Object, e As EventArgs) Handles ToolStripButton3.Click
         ToolStripTextBox1.Text = Page + 1
@@ -119,13 +122,9 @@ Public Class FormMetabolicEditor
 
     Private Async Sub ToolStripButton4_Click(sender As Object, e As EventArgs) Handles ToolStripButton4.Click
         Dim id As String = Strings.Trim(ToolStripTextBox2.Text)
-        Dim rxn = Await MyApplication.biocad_registry.reaction _
-            .async _
-            .where(field("id") = id) _
-            .find(Of biocad_registryModel.reaction)
+        Dim rxn = Await ReactionModelView.QueryByID(id)
 
-        Await ShowReaction(rxn.id)
-        Call ShowReactionEdit(rxn.name, rxn.ec_number, rxn.note)
+        Call DisplayPageData(rxn)
     End Sub
 
     Private Sub ToolStripButton5_Click(sender As Object, e As EventArgs) Handles ToolStripButton5.Click
