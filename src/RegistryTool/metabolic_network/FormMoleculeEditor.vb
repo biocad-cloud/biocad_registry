@@ -524,25 +524,23 @@ let options = { width: 450, height: 300 };
         If Not zh_name.StringEmpty(, True) Then
             Dim hashcode As String = zh_name.ToString.ToLower.MD5
 
-            Await Task.Run(
-                Sub()
-                    If MyApplication.biocad_registry.synonym _
-                        .where(field("type") = class_id,
-                               field("obj_id") = mol.id,
-                               field("hashcode") = hashcode,
-                               field("lang") = "zh") _
-                        .find(Of biocad_registryModel.synonym) Is Nothing Then
-
-                        Call MyApplication.biocad_registry.synonym.add(
-                            field("type") = class_id,
+            If Await MyApplication.biocad_registry.synonym _
+                    .async _
+                    .where(field("type") = class_id,
                             field("obj_id") = mol.id,
-                            field("db_source") = llms_source,
-                            field("synonym") = zh_name.ToString,
-                            field("lang") = "zh",
-                            field("hashcode") = hashcode
-                        )
-                    End If
-                End Sub)
+                            field("hashcode") = hashcode,
+                            field("lang") = "zh") _
+                    .find(Of biocad_registryModel.synonym) Is Nothing Then
+
+                Await MyApplication.biocad_registry.synonym.async.add(
+                    field("type") = class_id,
+                    field("obj_id") = mol.id,
+                    field("db_source") = llms_source,
+                    field("synonym") = zh_name.ToString,
+                    field("lang") = "zh",
+                    field("hashcode") = hashcode
+                )
+            End If
         End If
     End Sub
 
@@ -604,10 +602,10 @@ let options = { width: 450, height: 300 };
         Dim formula As String = Strings.Trim(TextBox3.Text)
         Dim exact_mass As Double = FormulaScanner.EvaluateExactMass(formula)
 
-        Await Task.Run(Sub() MyApplication.biocad_registry.metabolites.where(field("id") = mol.id).save(
+        Await MyApplication.biocad_registry.metabolites.async.where(field("id") = mol.id).save(
             field("formula") = formula,
             field("exact_mass") = exact_mass
-        ))
+        )
     End Sub
 
     Private Sub ListSourceToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ListSourceToolStripMenuItem.Click
@@ -703,16 +701,14 @@ let options = { width: 450, height: 300 };
         Dim role_left = MyApplication.biocad_registry.MetabolicSubstrateRole
         Dim role_right = MyApplication.biocad_registry.MetabolicProductRole
 
-        Dim graph = Await Task.Run(
-            Function()
-                Return MyApplication.biocad_registry.metabolic_network _
+        Dim graph = Await MyApplication.biocad_registry.metabolic_network _
+                    .async _
                     .left_join("metabolites") _
                     .on(field("species_id") = field("metabolites.id")) _
                     .left_join("vocabulary") _
                     .on(field("vocabulary.id") = field("role")) _
                     .where(field("reaction_id") = UInteger.Parse(rxn_id)) _
                     .select(Of reaction_graphdata)("metabolites.*", "symbol_id as db_xref", "term AS role")
-            End Function)
 
         TextBox7.Text = rxn.Tag
         DataGridView3.Rows.Clear()
@@ -733,21 +729,33 @@ let options = { width: 450, height: 300 };
         Call SaveMainXrefID(txtCASID, "cas_id")
     End Sub
 
-    Private Sub Button10_Click(sender As Object, e As EventArgs) Handles Button10.Click
+    Private Async Sub Button10_Click(sender As Object, e As EventArgs) Handles Button10.Click
         If txtPubChemCID.StringEmpty(, True) Then
             ' make clear
-            Call MyApplication.biocad_registry.metabolites.where(field("id") = mol.id).save(field("pubchem_cid") = Nothing)
+            Await MyApplication.biocad_registry.metabolites _
+                .async _
+                .where(field("id") = mol.id) _
+                .save(field("pubchem_cid") = Nothing)
         Else
-            Call MyApplication.biocad_registry.metabolites.where(field("id") = mol.id).save(field("pubchem_cid") = Strings.Trim(txtPubChemCID.Text).Match("\d+"))
+            Await MyApplication.biocad_registry.metabolites _
+                .async _
+                .where(field("id") = mol.id) _
+                .save(field("pubchem_cid") = Strings.Trim(txtPubChemCID.Text).Match("\d+"))
         End If
     End Sub
 
-    Private Sub Button11_Click(sender As Object, e As EventArgs) Handles Button11.Click
+    Private Async Sub Button11_Click(sender As Object, e As EventArgs) Handles Button11.Click
         If txtCHEBIID.StringEmpty(, True) Then
             ' make clear
-            Call MyApplication.biocad_registry.metabolites.where(field("id") = mol.id).save(field("chebi_id") = Nothing)
+            Await MyApplication.biocad_registry.metabolites _
+                .async _
+                .where(field("id") = mol.id) _
+                .save(field("chebi_id") = Nothing)
         Else
-            Call MyApplication.biocad_registry.metabolites.where(field("id") = mol.id).save(field("chebi_id") = Strings.Trim(txtCHEBIID.Text).Match("\d+"))
+            Await MyApplication.biocad_registry.metabolites _
+                .async _
+                .where(field("id") = mol.id) _
+                .save(field("chebi_id") = Strings.Trim(txtCHEBIID.Text).Match("\d+"))
         End If
     End Sub
 
@@ -755,12 +763,18 @@ let options = { width: 450, height: 300 };
         Call SaveMainXrefID(txtHMDBID, "hmdb_id")
     End Sub
 
-    Private Sub SaveMainXrefID(source As TextBox, name As String)
+    Private Async Sub SaveMainXrefID(source As TextBox, name As String)
         If source.StringEmpty(, True) Then
             ' make clear
-            Call MyApplication.biocad_registry.metabolites.where(field("id") = mol.id).save(field(name) = Nothing)
+            Await MyApplication.biocad_registry.metabolites _
+                .async _
+                .where(field("id") = mol.id) _
+                .save(field(name) = Nothing)
         Else
-            Call MyApplication.biocad_registry.metabolites.where(field("id") = mol.id).save(field(name) = Strings.Trim(source.Text))
+            Await MyApplication.biocad_registry.metabolites _
+                .async _
+                .where(field("id") = mol.id) _
+                .save(field(name) = Strings.Trim(source.Text))
         End If
     End Sub
 

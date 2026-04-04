@@ -26,7 +26,7 @@ Partial Class FormMetabolicEditor
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         components = New Container()
-        Dim DataGridViewCellStyle2 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Dim resources As ComponentResourceManager = New ComponentResourceManager(GetType(FormMetabolicEditor))
         SplitContainer1 = New SplitContainer()
         DataGridView1 = New DataGridView()
@@ -46,6 +46,7 @@ Partial Class FormMetabolicEditor
         ContextMenuStrip1 = New ContextMenuStrip(components)
         OpenToolStripMenuItem = New ToolStripMenuItem()
         GroupBox1 = New GroupBox()
+        Button4 = New Button()
         Button3 = New Button()
         TextBox3 = New TextBox()
         Label3 = New Label()
@@ -68,7 +69,6 @@ Partial Class FormMetabolicEditor
         ToolStripButton4 = New ToolStripButton()
         ToolStripSeparator2 = New ToolStripSeparator()
         ToolStripButton5 = New ToolStripButton()
-        Button4 = New Button()
         CType(SplitContainer1, ISupportInitialize).BeginInit()
         SplitContainer1.Panel1.SuspendLayout()
         SplitContainer1.Panel2.SuspendLayout()
@@ -108,14 +108,14 @@ Partial Class FormMetabolicEditor
         DataGridView1.BackgroundColor = Color.WhiteSmoke
         DataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
         DataGridView1.Columns.AddRange(New DataGridViewColumn() {Column11, Column1, Column10, Column2, Column3})
-        DataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.BackColor = SystemColors.Window
-        DataGridViewCellStyle2.Font = New Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle2.ForeColor = SystemColors.ControlText
-        DataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight
-        DataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText
-        DataGridViewCellStyle2.WrapMode = DataGridViewTriState.False
-        DataGridView1.DefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle1.BackColor = SystemColors.Window
+        DataGridViewCellStyle1.Font = New Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle1.ForeColor = SystemColors.ControlText
+        DataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = DataGridViewTriState.False
+        DataGridView1.DefaultCellStyle = DataGridViewCellStyle1
         DataGridView1.Dock = DockStyle.Fill
         DataGridView1.Location = New Point(0, 0)
         DataGridView1.Name = "DataGridView1"
@@ -255,6 +255,15 @@ Partial Class FormMetabolicEditor
         GroupBox1.TabIndex = 0
         GroupBox1.TabStop = False
         GroupBox1.Text = "Edit Reaction Data"
+        ' 
+        ' Button4
+        ' 
+        Button4.Location = New Point(448, 217)
+        Button4.Name = "Button4"
+        Button4.Size = New Size(97, 24)
+        Button4.TabIndex = 9
+        Button4.Text = "LLMs Text"
+        Button4.UseVisualStyleBackColor = True
         ' 
         ' Button3
         ' 
@@ -425,15 +434,6 @@ Partial Class FormMetabolicEditor
         ToolStripButton5.Name = "ToolStripButton5"
         ToolStripButton5.Size = New Size(23, 22)
         ToolStripButton5.Text = "Add"
-        ' 
-        ' Button4
-        ' 
-        Button4.Location = New Point(448, 217)
-        Button4.Name = "Button4"
-        Button4.Size = New Size(97, 24)
-        Button4.TabIndex = 9
-        Button4.Text = "LLMs Text"
-        Button4.UseVisualStyleBackColor = True
         ' 
         ' FormMetabolicEditor
         ' 

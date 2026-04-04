@@ -1,4 +1,6 @@
-﻿Imports Galaxy.Workbench.CommonDialogs
+﻿Imports Galaxy.Workbench
+Imports Galaxy.Workbench.CommonDialogs
+Imports Ollama
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports registry_data
 Imports RegistryTool.My
@@ -132,6 +134,28 @@ Public Class FormMetabolicEditor
 
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
         Dim prompt As String = $"请为我使用英文介绍 '{TextBox1.Text}' 这个代谢反应，请直接返回无格式标记的纯文本内容，以方便我自动化的放入到报告文本中。"
+        Dim msg As DeepSeekResponse = TaskProgress.LoadData(Function(println As Action(Of String)) MyApplication.ollama.Chat(prompt).GetAwaiter.GetResult)
 
+        If msg IsNot Nothing Then
+            TextBox3.Text = msg.output
+        End If
+    End Sub
+
+    Private Async Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        If reaction_id > 0 Then
+            Await MyApplication.biocad_registry.reaction.async.where(field("id") = reaction_id).save(field("name") = TextBox1.Text)
+        End If
+    End Sub
+
+    Private Async Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        If reaction_id > 0 Then
+            Await MyApplication.biocad_registry.reaction.async.where(field("id") = reaction_id).save(field("ec_number") = TextBox2.Text)
+        End If
+    End Sub
+
+    Private Async Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        If reaction_id > 0 Then
+            Await MyApplication.biocad_registry.reaction.async.where(field("id") = reaction_id).save(field("note") = TextBox3.Text)
+        End If
     End Sub
 End Class
