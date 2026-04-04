@@ -129,4 +129,9 @@ Public Class FormMetabolicEditor
     Private Sub ToolStripButton5_Click(sender As Object, e As EventArgs) Handles ToolStripButton5.Click
         Call InputDialog.Input(Of FormBuildReaction)()
     End Sub
+
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+        Dim prompt As String = $"请为我使用英文介绍 '{TextBox1.Text}' 这个代谢反应，请直接返回无格式标记的纯文本内容，以方便我自动化的放入到报告文本中。"
+
+    End Sub
 End Class

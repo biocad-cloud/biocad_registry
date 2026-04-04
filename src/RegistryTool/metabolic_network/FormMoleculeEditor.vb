@@ -136,7 +136,7 @@ let options = { width: 450, height: 300 };
         Next
 
         Call refreshNames()
-        Call refreshXrefs()
+        Await refreshXrefs()
         Call refreshTags()
 
         Call ApplyVsTheme(ToolStrip1)
@@ -189,8 +189,9 @@ let options = { width: 450, height: 300 };
         Next
     End Sub
 
-    Private Sub refreshXrefs()
-        Dim xrefs = MyApplication.biocad_registry.db_xrefs _
+    Private Async Function refreshXrefs() As Task
+        Dim xrefs = Await MyApplication.biocad_registry.db_xrefs _
+            .async _
             .left_join("vocabulary") _
             .on((field("`vocabulary`.id") = field("db_name"))) _
             .where(field("obj_id") = mol.id, field("type") = MyApplication.biocad_registry.biocad_vocabulary.metabolite_type) _
@@ -205,7 +206,7 @@ let options = { width: 450, height: 300 };
         Next
 
         DataGridView1.CommitEdit(DataGridViewDataErrorContexts.Commit)
-    End Sub
+    End Function
 
     Private Sub refreshTags()
         Call ListBox2.Items.Clear()
@@ -217,7 +218,11 @@ let options = { width: 450, height: 300 };
 
     Private Async Sub SaveCommonName() Handles Button2.Click
         Dim name As String = Strings.Trim(TextBox2.Text)
-        Await Task.Run(Sub() MyApplication.biocad_registry.metabolites.where(field("id") = mol.id).save(field("name") = name))
+
+        Await MyApplication.biocad_registry.metabolites _
+            .async _
+            .where(field("id") = mol.id) _
+            .save(field("name") = name)
     End Sub
 
     Private Sub WebView21_CoreWebView2InitializationCompleted(sender As Object, e As CoreWebView2InitializationCompletedEventArgs) Handles WebView21.CoreWebView2InitializationCompleted
@@ -255,13 +260,13 @@ let options = { width: 450, height: 300 };
 
             WebView21_CoreWebView2InitializationCompleted(Nothing, Nothing)
         Else
-            Await Task.Run(Sub()
-                               MyApplication.biocad_registry.struct_data _
-                                   .where(field("id") = struct.id) _
-                                   .save(field("smiles") = smilesOrSeq,
-                                         field("fingerprint") = fingerprint,
-                                         field("checksum") = smilesOrSeq.MD5)
-                           End Sub)
+            Await MyApplication.biocad_registry.struct_data _
+                .async _
+                .where(field("id") = struct.id) _
+                .save(field("smiles") = smilesOrSeq,
+                        field("fingerprint") = fingerprint,
+                        field("checksum") = smilesOrSeq.MD5)
+
         End If
     End Sub
 
@@ -305,7 +310,10 @@ let options = { width: 450, height: 300 };
     Private Async Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
         Dim desc = Strings.Trim(TextBox4.Text)
 
-        Await Task.Run(Sub() MyApplication.biocad_registry.metabolites.where(field("id") = mol.id).save(field("note") = desc))
+        Await MyApplication.biocad_registry.metabolites _
+            .async _
+            .where(field("id") = mol.id) _
+            .save(field("note") = desc)
     End Sub
 
     Private Sub LinkLabel1_LinkClicked() Handles LinkLabel1.Click
@@ -319,13 +327,22 @@ let options = { width: 450, height: 300 };
             Return
         End If
 
-        Dim model As registry_resolver = Await Task.Run(Function() MyApplication.biocad_registry.registry_resolver.where(field("type") = MyApplication.biocad_registry.biocad_vocabulary.metabolite_type, field("symbol_id") = sel.molecule_id).find(Of registry_resolver))
+        Dim model As registry_resolver = Await MyApplication.biocad_registry.registry_resolver _
+            .async _
+            .where(field("type") = MyApplication.biocad_registry.biocad_vocabulary.metabolite_type,
+                   field("symbol_id") = sel.molecule_id) _
+            .find(Of registry_resolver)
 
-        Await Task.Run(Sub() MyApplication.biocad_registry.topic.where(field("topic_id") = sel.tag_id, field("model_id") = model.id).delete())
+        Await MyApplication.biocad_registry.topic _
+            .async _
+            .where(field("topic_id") = sel.tag_id,
+                   field("model_id") = model.id) _
+            .delete()
+
         Call refreshTags()
     End Sub
 
-    Private Sub EditToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EditToolStripMenuItem.Click
+    Private Async Sub EditToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EditToolStripMenuItem.Click
         Dim sel = DataGridView1.SelectedRows
 
         If sel.Count = 0 Then
@@ -379,7 +396,7 @@ let options = { width: 450, height: 300 };
                 Next
             End Sub)
 
-        Call refreshXrefs()
+        Await refreshXrefs()
     End Sub
 
     Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
@@ -529,7 +546,7 @@ let options = { width: 450, height: 300 };
         End If
     End Sub
 
-    Private Sub Button8_Click(sender As Object, e As EventArgs) Handles Button8.Click
+    Private Async Sub Button8_Click(sender As Object, e As EventArgs) Handles Button8.Click
         If ComboBox3.SelectedIndex < 0 Then
             Return
         End If
@@ -553,7 +570,7 @@ let options = { width: 450, height: 300 };
         '    )
         'End If
 
-        Call refreshXrefs()
+        Await refreshXrefs()
     End Sub
 
     Private Sub ComboBox3_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox3.SelectedIndexChanged
