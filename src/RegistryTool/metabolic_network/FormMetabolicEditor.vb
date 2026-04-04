@@ -2,7 +2,6 @@
 Imports Galaxy.Workbench.CommonDialogs
 Imports Ollama
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
-Imports registry_data
 Imports RegistryTool.My
 
 Public Class FormMetabolicEditor
