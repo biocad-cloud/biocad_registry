@@ -26,9 +26,15 @@ Partial Class FormMetabolicEditor
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         components = New Container()
+        Dim DataGridViewCellStyle1 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Dim resources As ComponentResourceManager = New ComponentResourceManager(GetType(FormMetabolicEditor))
         SplitContainer1 = New SplitContainer()
         DataGridView1 = New DataGridView()
+        Column11 = New DataGridViewTextBoxColumn()
+        Column1 = New DataGridViewTextBoxColumn()
+        Column10 = New DataGridViewTextBoxColumn()
+        Column2 = New DataGridViewTextBoxColumn()
+        Column3 = New DataGridViewTextBoxColumn()
         SplitContainer2 = New SplitContainer()
         DataGridView2 = New DataGridView()
         Column4 = New DataGridViewTextBoxColumn()
@@ -40,6 +46,15 @@ Partial Class FormMetabolicEditor
         ContextMenuStrip1 = New ContextMenuStrip(components)
         OpenToolStripMenuItem = New ToolStripMenuItem()
         GroupBox1 = New GroupBox()
+        Button3 = New Button()
+        TextBox3 = New TextBox()
+        Label3 = New Label()
+        Button2 = New Button()
+        TextBox2 = New TextBox()
+        Label2 = New Label()
+        Button1 = New Button()
+        TextBox1 = New TextBox()
+        Label1 = New Label()
         ToolStrip1 = New ToolStrip()
         ToolStripLabel1 = New ToolStripLabel()
         ToolStripButton1 = New ToolStripButton()
@@ -53,11 +68,6 @@ Partial Class FormMetabolicEditor
         ToolStripButton4 = New ToolStripButton()
         ToolStripSeparator2 = New ToolStripSeparator()
         ToolStripButton5 = New ToolStripButton()
-        Column11 = New DataGridViewTextBoxColumn()
-        Column1 = New DataGridViewTextBoxColumn()
-        Column10 = New DataGridViewTextBoxColumn()
-        Column2 = New DataGridViewTextBoxColumn()
-        Column3 = New DataGridViewTextBoxColumn()
         CType(SplitContainer1, ISupportInitialize).BeginInit()
         SplitContainer1.Panel1.SuspendLayout()
         SplitContainer1.Panel2.SuspendLayout()
@@ -69,6 +79,7 @@ Partial Class FormMetabolicEditor
         SplitContainer2.SuspendLayout()
         CType(DataGridView2, ISupportInitialize).BeginInit()
         ContextMenuStrip1.SuspendLayout()
+        GroupBox1.SuspendLayout()
         ToolStrip1.SuspendLayout()
         SuspendLayout()
         ' 
@@ -93,14 +104,57 @@ Partial Class FormMetabolicEditor
         ' DataGridView1
         ' 
         DataGridView1.AllowUserToAddRows = False
+        DataGridView1.BackgroundColor = Color.WhiteSmoke
         DataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
         DataGridView1.Columns.AddRange(New DataGridViewColumn() {Column11, Column1, Column10, Column2, Column3})
+        DataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle1.BackColor = SystemColors.Window
+        DataGridViewCellStyle1.Font = New Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle1.ForeColor = SystemColors.ControlText
+        DataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = DataGridViewTriState.False
+        DataGridView1.DefaultCellStyle = DataGridViewCellStyle1
         DataGridView1.Dock = DockStyle.Fill
         DataGridView1.Location = New Point(0, 0)
         DataGridView1.Name = "DataGridView1"
+        DataGridView1.RowHeadersWidth = 80
         DataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect
         DataGridView1.Size = New Size(1394, 545)
         DataGridView1.TabIndex = 0
+        ' 
+        ' Column11
+        ' 
+        Column11.HeaderText = "database"
+        Column11.Name = "Column11"
+        Column11.ReadOnly = True
+        ' 
+        ' Column1
+        ' 
+        Column1.HeaderText = "name"
+        Column1.Name = "Column1"
+        Column1.ReadOnly = True
+        Column1.Width = 200
+        ' 
+        ' Column10
+        ' 
+        Column10.HeaderText = "ec_number"
+        Column10.Name = "Column10"
+        Column10.ReadOnly = True
+        ' 
+        ' Column2
+        ' 
+        Column2.HeaderText = "equation"
+        Column2.Name = "Column2"
+        Column2.ReadOnly = True
+        Column2.Width = 400
+        ' 
+        ' Column3
+        ' 
+        Column3.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+        Column3.HeaderText = "note"
+        Column3.Name = "Column3"
+        Column3.ReadOnly = True
         ' 
         ' SplitContainer2
         ' 
@@ -183,6 +237,15 @@ Partial Class FormMetabolicEditor
         ' 
         ' GroupBox1
         ' 
+        GroupBox1.Controls.Add(Button3)
+        GroupBox1.Controls.Add(TextBox3)
+        GroupBox1.Controls.Add(Label3)
+        GroupBox1.Controls.Add(Button2)
+        GroupBox1.Controls.Add(TextBox2)
+        GroupBox1.Controls.Add(Label2)
+        GroupBox1.Controls.Add(Button1)
+        GroupBox1.Controls.Add(TextBox1)
+        GroupBox1.Controls.Add(Label1)
         GroupBox1.Dock = DockStyle.Fill
         GroupBox1.Location = New Point(0, 0)
         GroupBox1.Name = "GroupBox1"
@@ -190,6 +253,83 @@ Partial Class FormMetabolicEditor
         GroupBox1.TabIndex = 0
         GroupBox1.TabStop = False
         GroupBox1.Text = "Edit Reaction Data"
+        ' 
+        ' Button3
+        ' 
+        Button3.Location = New Point(563, 217)
+        Button3.Name = "Button3"
+        Button3.Size = New Size(64, 24)
+        Button3.TabIndex = 8
+        Button3.Text = "Save"
+        Button3.UseVisualStyleBackColor = True
+        ' 
+        ' TextBox3
+        ' 
+        TextBox3.Location = New Point(94, 100)
+        TextBox3.Multiline = True
+        TextBox3.Name = "TextBox3"
+        TextBox3.ScrollBars = ScrollBars.Both
+        TextBox3.Size = New Size(533, 111)
+        TextBox3.TabIndex = 7
+        ' 
+        ' Label3
+        ' 
+        Label3.AutoSize = True
+        Label3.Location = New Point(42, 100)
+        Label3.Name = "Label3"
+        Label3.Size = New Size(36, 15)
+        Label3.TabIndex = 6
+        Label3.Text = "Note:"
+        ' 
+        ' Button2
+        ' 
+        Button2.Location = New Point(291, 59)
+        Button2.Name = "Button2"
+        Button2.Size = New Size(64, 24)
+        Button2.TabIndex = 5
+        Button2.Text = "Save"
+        Button2.UseVisualStyleBackColor = True
+        ' 
+        ' TextBox2
+        ' 
+        TextBox2.Location = New Point(94, 61)
+        TextBox2.Name = "TextBox2"
+        TextBox2.Size = New Size(182, 23)
+        TextBox2.TabIndex = 4
+        ' 
+        ' Label2
+        ' 
+        Label2.AutoSize = True
+        Label2.Location = New Point(7, 68)
+        Label2.Name = "Label2"
+        Label2.Size = New Size(71, 15)
+        Label2.TabIndex = 3
+        Label2.Text = "EC Number:"
+        ' 
+        ' Button1
+        ' 
+        Button1.Location = New Point(563, 21)
+        Button1.Name = "Button1"
+        Button1.Size = New Size(64, 24)
+        Button1.TabIndex = 2
+        Button1.Text = "Save"
+        Button1.UseVisualStyleBackColor = True
+        ' 
+        ' TextBox1
+        ' 
+        TextBox1.Location = New Point(94, 22)
+        TextBox1.Name = "TextBox1"
+        TextBox1.Size = New Size(451, 23)
+        TextBox1.TabIndex = 1
+        ' 
+        ' Label1
+        ' 
+        Label1.AutoSize = True
+        Label1.Location = New Point(36, 30)
+        Label1.Name = "Label1"
+        Label1.Size = New Size(42, 15)
+        Label1.TabIndex = 0
+        Label1.Text = "Name:"
         ' 
         ' ToolStrip1
         ' 
@@ -284,39 +424,6 @@ Partial Class FormMetabolicEditor
         ToolStripButton5.Size = New Size(23, 22)
         ToolStripButton5.Text = "Add"
         ' 
-        ' Column11
-        ' 
-        Column11.HeaderText = "database"
-        Column11.Name = "Column11"
-        Column11.ReadOnly = True
-        ' 
-        ' Column1
-        ' 
-        Column1.HeaderText = "name"
-        Column1.Name = "Column1"
-        Column1.ReadOnly = True
-        Column1.Width = 200
-        ' 
-        ' Column10
-        ' 
-        Column10.HeaderText = "ec_number"
-        Column10.Name = "Column10"
-        Column10.ReadOnly = True
-        ' 
-        ' Column2
-        ' 
-        Column2.HeaderText = "equation"
-        Column2.Name = "Column2"
-        Column2.ReadOnly = True
-        Column2.Width = 400
-        ' 
-        ' Column3
-        ' 
-        Column3.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
-        Column3.HeaderText = "note"
-        Column3.Name = "Column3"
-        Column3.ReadOnly = True
-        ' 
         ' FormMetabolicEditor
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
@@ -341,6 +448,8 @@ Partial Class FormMetabolicEditor
         SplitContainer2.ResumeLayout(False)
         CType(DataGridView2, ISupportInitialize).EndInit()
         ContextMenuStrip1.ResumeLayout(False)
+        GroupBox1.ResumeLayout(False)
+        GroupBox1.PerformLayout()
         ToolStrip1.ResumeLayout(False)
         ToolStrip1.PerformLayout()
         ResumeLayout(False)
@@ -379,4 +488,13 @@ Partial Class FormMetabolicEditor
     Friend WithEvents Column10 As DataGridViewTextBoxColumn
     Friend WithEvents Column2 As DataGridViewTextBoxColumn
     Friend WithEvents Column3 As DataGridViewTextBoxColumn
+    Friend WithEvents Button3 As Button
+    Friend WithEvents TextBox3 As TextBox
+    Friend WithEvents Label3 As Label
+    Friend WithEvents Button2 As Button
+    Friend WithEvents TextBox2 As TextBox
+    Friend WithEvents Label2 As Label
+    Friend WithEvents Button1 As Button
+    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents Label1 As Label
 End Class

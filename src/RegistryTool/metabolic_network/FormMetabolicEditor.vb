@@ -39,7 +39,7 @@ Public Class FormMetabolicEditor
         For Each rxn As ReactionModelView In reactions
             offset = DataGridView1.Rows.Add(rxn.db_name, rxn.name, rxn.ec_number, rxn.equation, rxn.note)
             DataGridView1.Rows(offset).Tag = rxn
-            DataGridView1.Rows(offset).HeaderCell.Value = rxn.hashcode
+            DataGridView1.Rows(offset).HeaderCell.Value = rxn.db_xref
         Next
 
         Call DataGridView1.CommitEdit(DataGridViewDataErrorContexts.Commit)
@@ -59,10 +59,15 @@ Public Class FormMetabolicEditor
 
         If row.Tag Is Nothing Then
             Return
+        Else
+            With DirectCast(row.Tag, ReactionModelView)
+                Await ShowReaction(DirectCast(row.Tag, ReactionModelView).id)
+                ShowReactionEdit(.name, .ec_number, .note)
+            End With
         End If
-
-        Await ShowReaction(DirectCast(row.Tag, ReactionModelView).id)
     End Sub
+
+    Dim reaction_id As UInteger
 
     Private Async Function ShowReaction(rxn_id As UInteger) As Task
         Dim graph = Await MyApplication.biocad_registry.metabolic_network _
@@ -86,7 +91,15 @@ Public Class FormMetabolicEditor
                 compound.role
             )
         Next
+
+        reaction_id = rxn_id
     End Function
+
+    Private Sub ShowReactionEdit(name As String, ec$, note$)
+        TextBox1.Text = name
+        TextBox2.Text = ec
+        TextBox3.Text = note
+    End Sub
 
     Private Sub OpenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenToolStripMenuItem.Click
         If DataGridView2.SelectedRows.Count = 0 Then
@@ -110,6 +123,7 @@ Public Class FormMetabolicEditor
             .find(Of biocad_registryModel.reaction)
 
         Await ShowReaction(rxn.id)
+        Call ShowReactionEdit(rxn.name, rxn.ec_number, rxn.note)
     End Sub
 
     Private Sub ToolStripButton5_Click(sender As Object, e As EventArgs) Handles ToolStripButton5.Click
