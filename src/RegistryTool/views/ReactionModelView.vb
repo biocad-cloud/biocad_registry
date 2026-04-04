@@ -28,7 +28,7 @@ Public Class ReactionModelView
         Return Await MyApplication.biocad_registry.reaction _
             .async _
             .left_join("vocabulary").on(field("`vocabulary`.id") = field("db_source")) _
-            .where((field("id") = id) Or (field("db_xref") = id) Or (field("ec_number") = id)) _
+            .where((field("`reaction`.id") = id) Or (field("db_xref") = id) Or (field("ec_number") = id)) _
             .select(Of ReactionModelView)("reaction.*", "term as db_name")
     End Function
 
