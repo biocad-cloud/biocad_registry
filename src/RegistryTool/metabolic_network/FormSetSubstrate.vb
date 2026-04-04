@@ -111,7 +111,7 @@ Public Class FormSetSubstrate
         <DatabaseField> Public Property biocyc As String
 
         Public Overrides Function ToString() As String
-            Return $"{name} ({formula} - {exact_mass.ToString("F4")})"
+            Return $"{id}: {name} ({formula} - {exact_mass.ToString("F4")})"
         End Function
 
         Public Function GetSymbolId() As String
@@ -125,5 +125,25 @@ Public Class FormSetSubstrate
         End Function
 
     End Class
+
+    Private Async Sub ListBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBox1.SelectedIndexChanged
+        If ListBox1.SelectedIndex < 0 Then
+            Return
+        End If
+
+        Dim symbol As SymbolView = ListBox1.SelectedItem
+        Dim network = Await MyApplication.biocad_registry.metabolic_network _
+            .async _
+            .left_join("reaction") _
+            .on(field("`reaction`.id") = field("`metabolic_network`.reaction_id")) _
+            .where(field("species_id") = symbol.id) _
+            .select(Of reaction)("reaction.*")
+
+        Call ListBox2.Items.Clear()
+
+        For Each rxn In network
+            Call ListBox2.Items.Add(rxn.name)
+        Next
+    End Sub
 End Class
 

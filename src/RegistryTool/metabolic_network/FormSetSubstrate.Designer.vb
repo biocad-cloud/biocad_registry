@@ -39,6 +39,8 @@ Partial Class FormSetSubstrate
         Button3 = New Button()
         Button4 = New Button()
         GroupBox2 = New GroupBox()
+        Label5 = New Label()
+        ListBox2 = New ListBox()
         CType(NumericUpDown1, ComponentModel.ISupportInitialize).BeginInit()
         ContextMenuStrip1.SuspendLayout()
         GroupBox2.SuspendLayout()
@@ -109,7 +111,6 @@ Partial Class FormSetSubstrate
         ' 
         ListBox1.ContextMenuStrip = ContextMenuStrip1
         ListBox1.FormattingEnabled = True
-        ListBox1.ItemHeight = 15
         ListBox1.Location = New Point(20, 113)
         ListBox1.Name = "ListBox1"
         ListBox1.Size = New Size(605, 229)
@@ -129,7 +130,7 @@ Partial Class FormSetSubstrate
         ' 
         ' Button2
         ' 
-        Button2.Location = New Point(562, 370)
+        Button2.Location = New Point(560, 476)
         Button2.Name = "Button2"
         Button2.Size = New Size(75, 23)
         Button2.TabIndex = 8
@@ -138,7 +139,7 @@ Partial Class FormSetSubstrate
         ' 
         ' Button3
         ' 
-        Button3.Location = New Point(481, 370)
+        Button3.Location = New Point(479, 476)
         Button3.Name = "Button3"
         Button3.Size = New Size(75, 23)
         Button3.TabIndex = 9
@@ -156,6 +157,8 @@ Partial Class FormSetSubstrate
         ' 
         ' GroupBox2
         ' 
+        GroupBox2.Controls.Add(ListBox2)
+        GroupBox2.Controls.Add(Label5)
         GroupBox2.Controls.Add(Label1)
         GroupBox2.Controls.Add(TextBox1)
         GroupBox2.Controls.Add(Button4)
@@ -167,16 +170,33 @@ Partial Class FormSetSubstrate
         GroupBox2.Controls.Add(Label4)
         GroupBox2.Location = New Point(10, 12)
         GroupBox2.Name = "GroupBox2"
-        GroupBox2.Size = New Size(644, 350)
+        GroupBox2.Size = New Size(644, 458)
         GroupBox2.TabIndex = 11
         GroupBox2.TabStop = False
         GroupBox2.Text = "Set Metabolite Reference"
+        ' 
+        ' Label5
+        ' 
+        Label5.AutoSize = True
+        Label5.Location = New Point(20, 349)
+        Label5.Name = "Label5"
+        Label5.Size = New Size(97, 15)
+        Label5.TabIndex = 11
+        Label5.Text = "Related Network:"
+        ' 
+        ' ListBox2
+        ' 
+        ListBox2.FormattingEnabled = True
+        ListBox2.Location = New Point(124, 349)
+        ListBox2.Name = "ListBox2"
+        ListBox2.Size = New Size(501, 94)
+        ListBox2.TabIndex = 12
         ' 
         ' FormSetSubstrate
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(663, 403)
+        ClientSize = New Size(663, 511)
         Controls.Add(GroupBox2)
         Controls.Add(Button3)
         Controls.Add(Button2)
@@ -203,4 +223,6 @@ Partial Class FormSetSubstrate
     Friend WithEvents Button3 As Button
     Friend WithEvents Button4 As Button
     Friend WithEvents GroupBox2 As GroupBox
+    Friend WithEvents ListBox2 As ListBox
+    Friend WithEvents Label5 As Label
 End Class
