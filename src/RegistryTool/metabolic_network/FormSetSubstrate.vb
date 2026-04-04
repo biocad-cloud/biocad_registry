@@ -46,7 +46,11 @@ Public Class FormSetSubstrate
             Return
         End If
 
-        sel = ListBox1.SelectedItem
+        Call SetReference(sel:=DirectCast(ListBox1.SelectedItem, SymbolView))
+    End Sub
+
+    Private Sub SetReference(sel As SymbolView)
+        Me.sel = sel
         Label4.Text = sel.ToString
     End Sub
 
@@ -87,12 +91,12 @@ Public Class FormSetSubstrate
                 .find(Of metabolites)
 
             If Not m Is Nothing Then
-                sel = New SymbolView With {
+                Call SetReference(sel:=New SymbolView With {
                     .exact_mass = 0,
                     .formula = "",
                     .id = m.id,
                     .name = m.name
-                }
+                })
             End If
         End If
     End Sub

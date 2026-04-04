@@ -39,8 +39,8 @@ Partial Class FormSetSubstrate
         Button3 = New Button()
         Button4 = New Button()
         GroupBox2 = New GroupBox()
-        Label5 = New Label()
         ListBox2 = New ListBox()
+        Label5 = New Label()
         CType(NumericUpDown1, ComponentModel.ISupportInitialize).BeginInit()
         ContextMenuStrip1.SuspendLayout()
         GroupBox2.SuspendLayout()
@@ -175,6 +175,14 @@ Partial Class FormSetSubstrate
         GroupBox2.TabStop = False
         GroupBox2.Text = "Set Metabolite Reference"
         ' 
+        ' ListBox2
+        ' 
+        ListBox2.FormattingEnabled = True
+        ListBox2.Location = New Point(124, 349)
+        ListBox2.Name = "ListBox2"
+        ListBox2.Size = New Size(501, 94)
+        ListBox2.TabIndex = 12
+        ' 
         ' Label5
         ' 
         Label5.AutoSize = True
@@ -183,14 +191,6 @@ Partial Class FormSetSubstrate
         Label5.Size = New Size(97, 15)
         Label5.TabIndex = 11
         Label5.Text = "Related Network:"
-        ' 
-        ' ListBox2
-        ' 
-        ListBox2.FormattingEnabled = True
-        ListBox2.Location = New Point(124, 349)
-        ListBox2.Name = "ListBox2"
-        ListBox2.Size = New Size(501, 94)
-        ListBox2.TabIndex = 12
         ' 
         ' FormSetSubstrate
         ' 
