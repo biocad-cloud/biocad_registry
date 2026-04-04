@@ -31,15 +31,13 @@ Public Class FormMetabolicEditor
     End Sub
 
     Private Async Function GotoPageData() As Task
-        Dim page As Integer = Me.Page
-        Dim page_size As Integer = 1000
-        Dim offset = (page - 1) * page_size
-        Dim reactions = Await Task.Run(Function() MyApplication.biocad_registry.reaction.limit(offset, page_size).select(Of biocad_registryModel.reaction))
+        Dim reactions = Await ReactionModelView.QueryPage(Me.Page, page_size:=500)
+        Dim offset As Integer
 
         Call DataGridView1.Rows.Clear()
 
-        For Each rxn In reactions
-            offset = DataGridView1.Rows.Add(rxn.name, rxn.equation, rxn.note)
+        For Each rxn As ReactionModelView In reactions
+            offset = DataGridView1.Rows.Add(rxn.db_name, rxn.name, rxn.ec_number, rxn.equation, rxn.note)
             DataGridView1.Rows(offset).Tag = rxn
             DataGridView1.Rows(offset).HeaderCell.Value = rxn.hashcode
         Next
@@ -63,22 +61,20 @@ Public Class FormMetabolicEditor
             Return
         End If
 
-        Await ShowReaction(DirectCast(row.Tag, biocad_registryModel.reaction))
+        Await ShowReaction(DirectCast(row.Tag, ReactionModelView).id)
     End Sub
 
-    Private Async Function ShowReaction(rxn As biocad_registryModel.reaction) As Task
-        Dim graph = Await Task.Run(
-            Function()
-                Return MyApplication.biocad_registry.metabolic_network _
-                    .left_join("metabolites") _
-                    .on(field("species_id") = field("metabolites.id")) _
-                    .left_join("vocabulary") _
-                    .on(field("vocabulary.id") = field("role")) _
-                    .where(field("reaction_id") = rxn.id) _
-                    .select(Of reaction_graphdata)("metabolites.*", "symbol_id as db_xref", "term AS role")
-            End Function)
+    Private Async Function ShowReaction(rxn_id As UInteger) As Task
+        Dim graph = Await MyApplication.biocad_registry.metabolic_network _
+            .async _
+            .left_join("metabolites") _
+            .on(field("species_id") = field("metabolites.id")) _
+            .left_join("vocabulary") _
+            .on(field("vocabulary.id") = field("role")) _
+            .where(field("reaction_id") = rxn_id) _
+            .select(Of reaction_graphdata)("metabolites.*", "symbol_id as db_xref", "term AS role")
 
-        DataGridView2.Rows.Clear()
+        Call DataGridView2.Rows.Clear()
 
         For Each compound In graph
             Call DataGridView2.Rows.Add(
@@ -108,9 +104,12 @@ Public Class FormMetabolicEditor
 
     Private Async Sub ToolStripButton4_Click(sender As Object, e As EventArgs) Handles ToolStripButton4.Click
         Dim id As String = Strings.Trim(ToolStripTextBox2.Text)
-        Dim rxn = Await Task.Run(Function() MyApplication.biocad_registry.reaction.where(field("id") = id).find(Of biocad_registryModel.reaction))
+        Dim rxn = Await MyApplication.biocad_registry.reaction _
+            .async _
+            .where(field("id") = id) _
+            .find(Of biocad_registryModel.reaction)
 
-        Await ShowReaction(rxn)
+        Await ShowReaction(rxn.id)
     End Sub
 
     Private Sub ToolStripButton5_Click(sender As Object, e As EventArgs) Handles ToolStripButton5.Click
