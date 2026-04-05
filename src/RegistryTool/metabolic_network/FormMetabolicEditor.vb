@@ -141,19 +141,34 @@ Public Class FormMetabolicEditor
 
     Private Async Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         If reaction_id > 0 Then
-            Await MyApplication.biocad_registry.reaction.async.where(field("id") = reaction_id).save(field("name") = TextBox1.Text)
+            Await MyApplication.biocad_registry.reaction _
+                .async _
+                .where(field("id") = reaction_id) _
+                .save(field("name") = TextBox1.Text)
+
+            CommonRuntime.StatusMessage("reaction name data update success!")
         End If
     End Sub
 
     Private Async Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         If reaction_id > 0 Then
-            Await MyApplication.biocad_registry.reaction.async.where(field("id") = reaction_id).save(field("ec_number") = TextBox2.Text)
+            Await MyApplication.biocad_registry.reaction _
+                .async _
+                .where(field("id") = reaction_id) _
+                .save(field("ec_number") = TextBox2.Text)
+
+            CommonRuntime.StatusMessage("reaction enzyme number data update success!")
         End If
     End Sub
 
     Private Async Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
         If reaction_id > 0 Then
-            Await MyApplication.biocad_registry.reaction.async.where(field("id") = reaction_id).save(field("note") = TextBox3.Text)
+            Await MyApplication.biocad_registry.reaction _
+                .async _
+                .where(field("id") = reaction_id) _
+                .save(field("note") = TextBox3.Text)
+
+            CommonRuntime.StatusMessage("reaction note data update success!")
         End If
     End Sub
 End Class

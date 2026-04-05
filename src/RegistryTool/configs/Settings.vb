@@ -11,7 +11,7 @@ Namespace Configs
         <Category("MySQL")> Public Property port As UInteger
         <Category("MySQL")> Public Property user As String
 
-        <Category("LLMs")> Public Property model As String = "qwen3:30b"
+        <Category("LLMs")> Public Property model As String = "glm-4.7-flash"
         <Category("LLMs")> Public Property ollama_server As String = "127.0.0.1"
         <Category("LLMs")> Public Property ollama_service As Integer = 11434
 
@@ -27,7 +27,7 @@ Namespace Configs
                 .password = 123456,
                 .port = 3306,
                 .user = "root",
-                .model = "qwen3:30b",
+                .model = "glm-4.7-flash",
                 .ollama_server = "127.0.0.1",
                 .ollama_service = 11434,
                 .website = "http://biocad.innovation.ac.cn"
