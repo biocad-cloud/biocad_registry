@@ -1,6 +1,7 @@
 ﻿Imports Galaxy.Workbench
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
 Imports Oracle.LinuxCompatibility.MySQL.Reflection.DbAttributes
+Imports Oracle.LinuxCompatibility.MySQL.Scripting
 Imports registry_data.biocad_registryModel
 Imports RegistryTool.My
 
@@ -12,14 +13,16 @@ Public Class FormSetSubstrate
         End If
 
         Dim name = Trim(TextBox1.Text)
-        Dim q_str = name.Replace("+", " ").Replace("-", " ").Replace("""", " ").Replace("'", " ")
+        Dim q_str = name.FullTextEscape
         Dim hashcode = Trim(name).ToLower.MD5
         Dim sort = $"IF(hashcode = '{hashcode}',
     100000000,
     MATCH (name , note) AGAINST ('{q_str}' IN BOOLEAN MODE))"
         Dim q = TaskProgress.LoadData(Function(p As ITaskProgress)
                                           Return MyApplication.biocad_registry.metabolites _
-                                                .where(match("name", "note").against(q_str, booleanMode:=True) Or field("hashcode") = hashcode) _
+                                                .where(match("name", "note").against(q_str, booleanMode:=True) Or
+                                                        field("hashcode") = hashcode Or
+                                                        field("formula") = name) _
                                                 .order_by(sort, desc:=True) _
                                                 .select(Of SymbolView)
                                       End Function)
@@ -141,6 +144,7 @@ Public Class FormSetSubstrate
             .left_join("reaction") _
             .on(field("`reaction`.id") = field("`metabolic_network`.reaction_id")) _
             .where(field("species_id") = symbol.id) _
+            .limit(100) _
             .select(Of reaction)("reaction.*")
 
         Call ListBox2.Items.Clear()
