@@ -395,7 +395,7 @@ Public Class FormMain : Implements AppHost
         view.LoadTableView(Function() molecules)
         view.SetViewer(Sub(row)
                            Dim id As String = row.Cells(0).Value.ToString
-                           Dim name As String = row.Cells(1).Value.ToString
+                           Dim name As String = row.Cells(2).Value.ToString
                            Call Workbench.OpenMoleculeEditor(id, name)
                        End Sub)
         view.Text = $"Search Result of '{text}'"
