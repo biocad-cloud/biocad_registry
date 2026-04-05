@@ -10,6 +10,7 @@ Imports Microsoft.VisualBasic.Net.Http
 Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Microsoft.VisualStudio.WinForms.Docking
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
+Imports Oracle.LinuxCompatibility.MySQL.Scripting
 Imports registry_data
 Imports registry_data.biocad_registryModel
 Imports registry_data.Exports
@@ -379,42 +380,26 @@ Public Class FormMain : Implements AppHost
             Return
         End If
 
-        Dim text As String = getName.Replace("'", " ").Replace("-", " ").Replace("+", " ")
-        Dim sql = $"SELECT 
-    t1.id, t1.name, formula, mass, term AS type, t1.note
-FROM
-    ((SELECT 
-        *
-    FROM
-        cad_registry.molecule
-    WHERE
-        MATCH (name , note) AGAINST ('{text}' IN BOOLEAN MODE)) UNION (SELECT 
-        molecule.*
-    FROM
-        synonym
-    LEFT JOIN molecule ON molecule.id = synonym.obj_id
-    WHERE
-        MATCH (synonym) AGAINST ('{text}' IN BOOLEAN MODE))) t1
-        LEFT JOIN
-    vocabulary ON vocabulary.id = t1.type"
+        Dim text As String = getName.FullTextEscape
+        Dim molecules As biocad_registryModel.metabolites() = TaskProgress.LoadData(
+            streamLoad:=Function(println As Action(Of String))
+                            Return MyApplication.biocad_registry.metabolites.where(match("name", "note").against(text, booleanMode:=False)).select(Of biocad_registryModel.metabolites)
+                        End Function)
 
-        'Dim molecules As MoleculeSearch() = TaskProgress.LoadData(Function(println As Action(Of String)) MyApplication.biocad_registry.molecule.getDriver.Query(Of MoleculeSearch)(sql, throwExp:=False))
+        If molecules.IsNullOrEmpty Then
+            Call MessageBox.Show("Sorry, no search result.", "No result", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Return
+        End If
 
-        'If molecules.IsNullOrEmpty Then
-        '    Call MessageBox.Show("Sorry, no search result.", "No result", MessageBoxButtons.OK, MessageBoxIcon.Information)
-        '    Return
-        'End If
-
-        'Dim view As New FormDbView()
-        'view.LoadTableView(Function() molecules)
-        'view.SetViewer(Sub(row)
-        '                   Dim id As String = row.Cells(0).Value.ToString
-        '                   Dim name As String = row.Cells(1).Value.ToString
-
-        '                   Call Workbench.OpenMoleculeEditor(id, name)
-        '               End Sub)
-        'view.Text = $"Search Result of '{text}'"
-        'view.Show(CommonRuntime.AppHost.GetDockPanel, DockState.Document)
+        Dim view As New FormDbView()
+        view.LoadTableView(Function() molecules)
+        view.SetViewer(Sub(row)
+                           Dim id As String = row.Cells(0).Value.ToString
+                           Dim name As String = row.Cells(1).Value.ToString
+                           Call Workbench.OpenMoleculeEditor(id, name)
+                       End Sub)
+        view.Text = $"Search Result of '{text}'"
+        view.Show(CommonRuntime.AppHost.GetDockPanel, DockState.Document)
     End Sub
 
     Public Sub SetWorkbenchVisible(visible As Boolean) Implements AppHost.SetWorkbenchVisible
