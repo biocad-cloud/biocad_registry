@@ -4,6 +4,7 @@ Imports BioNovoGene.BioDeep.Chemoinformatics.SMILES
 Imports Galaxy.Data.TextValidates
 Imports Galaxy.Workbench
 Imports Microsoft.VisualBasic.ComponentModel.Collection
+Imports Microsoft.VisualBasic.Emit.Marshal
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.MIME.text.markdown
 Imports Microsoft.VisualBasic.Net.Http
@@ -447,48 +448,49 @@ let options = { width: 450, height: 300 };
         Call edit.ShowDialog()
 
         Dim editData As String() = edit.TextLines
+
+        Call TaskProgress.RunAction(Sub(println As ITaskProgress)
+                                        Call println.SetInfo("Commit modified data to database...")
+                                        Call UpdateSynonymNames(names.Indexing, editData, lang)
+                                    End Sub)
+
+        Call refreshNames(lang)
+    End Sub
+
+    Private Sub UpdateSynonymNames(current_old As Index(Of String), editData As String(), lang As String)
         Dim metabolite_type As UInteger = MyApplication.biocad_registry.biocad_vocabulary.metabolite_type
         Dim manual_edit As UInteger = MyApplication.biocad_registry.biocad_vocabulary.db_ManualAudit
 
-        Call TaskProgress.RunAction(
-            Sub(println As ITaskProgress)
-                Dim current_old = names.Indexing
+        For Each name As String In editData
+            If name Like current_old Then
+                ' no changed
+            Else
+                ' add new
+                Call MyApplication.biocad_registry.synonym.add(
+                    field("type") = metabolite_type,
+                    field("obj_id") = mol.id,
+                    field("synonym") = name,
+                    field("lang") = lang,
+                    field("hashcode") = name.ToLower.MD5,
+                    field("db_source") = manual_edit
+                )
+            End If
+        Next
 
-                Call println.SetInfo("Commit modified data to database...")
+        Dim modified As Index(Of String) = editData.Indexing
 
-                For Each name As String In editData
-                    If name Like current_old Then
-                        ' no changed
-                    Else
-                        ' add new
-                        Call MyApplication.biocad_registry.synonym.add(
-                            field("type") = metabolite_type,
-                            field("obj_id") = mol.id,
-                            field("synonym") = name,
-                            field("lang") = lang,
-                            field("hashcode") = name.ToLower.MD5,
-                            field("db_source") = manual_edit
-                        )
-                    End If
-                Next
-
-                Dim modified As Index(Of String) = editData.Indexing
-
-                For Each key As String In current_old.Objects
-                    If key Like modified Then
-                        ' no changed
-                    Else
-                        ' deleted
-                        Call MyApplication.biocad_registry.synonym _
-                            .where(field("obj_id") = mol.id,
-                                   field("lang") = lang,
-                                   field("type") = metabolite_type,
-                                  field("synonym") = key).delete()
-                    End If
-                Next
-            End Sub)
-
-        Call refreshNames(lang)
+        For Each key As String In current_old.Objects
+            If key Like modified Then
+                ' no changed
+            Else
+                ' deleted
+                Call MyApplication.biocad_registry.synonym _
+                    .where(field("obj_id") = mol.id,
+                           field("lang") = lang,
+                           field("type") = metabolite_type,
+                          field("synonym") = key).delete()
+            End If
+        Next
     End Sub
 
     Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
