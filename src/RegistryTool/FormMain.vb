@@ -134,7 +134,7 @@ Public Class FormMain : Implements AppHost
     End Sub
 
     Private Sub SettingsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SettingsToolStripMenuItem.Click
-        Call New FormSettings().ShowDialog()
+        Call New FormSettings().Show(CommonRuntime.AppHost.GetDockPanel, DockState.DockRight)
     End Sub
 
     Private Sub MoleculesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MoleculesToolStripMenuItem.Click
@@ -605,5 +605,9 @@ FROM
 
     Private Sub ExportProteinDatabaseToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportProteinDatabaseToolStripMenuItem.Click
         Call FastaDatabase.ExportProteinDatabase()
+    End Sub
+
+    Private Sub ShowLogWindowToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ShowLogWindowToolStripMenuItem.Click
+        Call CommonRuntime.Dock(CommonRuntime.GetOutputWindow, DockState.DockBottom)
     End Sub
 End Class
