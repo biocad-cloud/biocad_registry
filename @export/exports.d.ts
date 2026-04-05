@@ -30,6 +30,18 @@ declare namespace exports {
     * 
      * @param registry -
      * @param repo -
+     * @param tfbs 
+     * + default value Is ``true``.
+     * @param tf 
+     * + default value Is ``true``.
+     * @param cc 
+     * + default value Is ``true``.
+     * @param ec 
+     * + default value Is ``true``.
+     * @param rxn 
+     * + default value Is ``true``.
+     * @param metab 
+     * + default value Is ``true``.
    */
-   function virtualcell_componentdb(registry: object, repo: string): any;
+   function virtualcell_componentdb(registry: object, repo: string, tfbs?: boolean, tf?: boolean, cc?: boolean, ec?: boolean, rxn?: boolean, metab?: boolean): any;
 }
