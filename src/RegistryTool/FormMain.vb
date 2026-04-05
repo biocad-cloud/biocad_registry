@@ -388,9 +388,12 @@ Public Class FormMain : Implements AppHost
 
         If molecules.IsNullOrEmpty Then
             Call MessageBox.Show("Sorry, no search result.", "No result", MessageBoxButtons.OK, MessageBoxIcon.Information)
-            Return
+        Else
+            Call ShowMetabolitesTable(molecules, text)
         End If
+    End Sub
 
+    Private Sub ShowMetabolitesTable(molecules As biocad_registryModel.metabolites(), text As String)
         Dim view As New FormDbView()
         view.LoadTableView(Function() molecules)
         view.SetViewer(Sub(row)
@@ -507,28 +510,22 @@ Public Class FormMain : Implements AppHost
             Return
         End If
 
-        'Dim idset As UInteger() = TaskProgress.LoadData(Function(p As ITaskProgress)
-        '                                                    Dim set1 = MyApplication.biocad_registry.molecule.where(field("name") = getName).project(Of UInteger)("id")
-        '                                                    Dim set2 = MyApplication.biocad_registry.db_xrefs.where(field("xref") = getName).project(Of UInteger)("obj_id")
+        Dim hashcode As String = getName.Trim.ToLower.MD5
+        Dim fulltext As String = getName.FullTextEscape
+        Dim metabolite_class = MyApplication.biocad_registry.biocad_vocabulary.metabolite_type
 
-        '                                                    Return set1.JoinIterates(set2).ToArray
-        '                                                End Function)
-        'If idset.IsNullOrEmpty Then
-        '    Call MessageBox.Show("Sorry, no search result.", "No result", MessageBoxButtons.OK, MessageBoxIcon.Information)
-        '    Return
-        'End If
+        Dim idset As UInteger() = TaskProgress.LoadData(
+            streamLoad:=Function(p As ITaskProgress)
+                            Return MyApplication.biocad_registry.synonym _
+                                .where(field("type") = metabolite_class And (field("hashcode") = hashcode Or match("synonym").against(fulltext, False))) _
+                                .project(Of UInteger)("obj_id")
+                        End Function)
 
-        'Dim molecules = MyApplication.biocad_registry.molecule.where(field("id").in(idset)).select(Of biocad_registryModel.molecule)
-        'Dim view As New FormDbView()
-        'view.LoadTableView(Function() molecules)
-        'view.SetViewer(Sub(row)
-        '                   Dim id As String = row.Cells(0).Value.ToString
-        '                   Dim name As String = row.Cells(2).Value.ToString
-
-        '                   Call Workbench.OpenMoleculeEditor(id, name)
-        '               End Sub)
-        'view.Text = $"Search Result of '{Text}'"
-        'view.Show(CommonRuntime.AppHost.GetDockPanel, DockState.Document)
+        If idset.IsNullOrEmpty Then
+            Call MessageBox.Show("Sorry, no search result.", "No result", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        Else
+            Call ShowMetabolitesTable(MyApplication.biocad_registry.metabolites.where(field("id").in(idset)).select(Of biocad_registryModel.metabolites), fulltext)
+        End If
     End Sub
 
     Private Sub ReactionEditorToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ReactionEditorToolStripMenuItem.Click
