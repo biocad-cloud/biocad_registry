@@ -489,6 +489,14 @@ Galaxy.Workbench
  plugin
  </summary>
 </member>
+<member name="T:Galaxy.Workbench.DockDocument.ToolWindow">
+ <summary>
+ 
+ </summary>
+ <remarks>
+ <see cref="P:Microsoft.VisualStudio.WinForms.Docking.DockContent.DockPanel"/> is nothing means the user use this form type as normal winform 
+ </remarks>
+</member>
 <member name="M:Galaxy.Workbench.DockDocument.ToolWindow.option1ToolStripMenuItem_Click(System.Object,System.EventArgs)">
  <summary>
  float
