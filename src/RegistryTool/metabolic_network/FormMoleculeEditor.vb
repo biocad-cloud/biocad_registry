@@ -447,42 +447,45 @@ let options = { width: 450, height: 300 };
         Call edit.ShowDialog()
 
         Dim editData As String() = edit.TextLines
+        Dim metabolite_type As UInteger = MyApplication.biocad_registry.biocad_vocabulary.metabolite_type
+        Dim manual_edit As UInteger = MyApplication.biocad_registry.biocad_vocabulary.db_ManualAudit
 
         Call TaskProgress.RunAction(
             Sub(println As ITaskProgress)
-                'Dim current = names.Indexing
+                Dim current_old = names.Indexing
 
-                'Call println.SetInfo("Commit modified data to database...")
+                Call println.SetInfo("Commit modified data to database...")
 
-                'For Each name As String In edit.TextLines
-                '    If name Like current Then
-                '        ' no changed
-                '    Else
-                '        ' add new
-                '        Call MyApplication.biocad_registry.synonym.add(
-                '            field("type_id") = mol.type,
-                '            field("obj_id") = mol.id,
-                '            field("synonym") = name,
-                '            field("lang") = lang,
-                '            field("hashcode") = name.ToLower.MD5
-                '        )
-                '    End If
-                'Next
+                For Each name As String In editData
+                    If name Like current_old Then
+                        ' no changed
+                    Else
+                        ' add new
+                        Call MyApplication.biocad_registry.synonym.add(
+                            field("type") = metabolite_type,
+                            field("obj_id") = mol.id,
+                            field("synonym") = name,
+                            field("lang") = lang,
+                            field("hashcode") = name.ToLower.MD5,
+                            field("db_source") = manual_edit
+                        )
+                    End If
+                Next
 
-                'Dim modified As Index(Of String) = edit.TextLines.Indexing
+                Dim modified As Index(Of String) = editData.Indexing
 
-                'For Each key As String In current.Objects
-                '    If key Like modified Then
-                '        ' no changed
-                '    Else
-                '        ' deleted
-                '        Call MyApplication.biocad_registry.synonym _
-                '            .where(field("obj_id") = mol.id,
-                '                   field("lang") = lang,
-                '                   field("type_id") = mol.type,
-                '                   field("synonym") = key).delete()
-                '    End If
-                'Next
+                For Each key As String In current_old.Objects
+                    If key Like modified Then
+                        ' no changed
+                    Else
+                        ' deleted
+                        Call MyApplication.biocad_registry.synonym _
+                            .where(field("obj_id") = mol.id,
+                                   field("lang") = lang,
+                                   field("type") = metabolite_type,
+                                  field("synonym") = key).delete()
+                    End If
+                Next
             End Sub)
 
         Call refreshNames(lang)
