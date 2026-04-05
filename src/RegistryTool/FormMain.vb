@@ -89,8 +89,7 @@ Public Class FormMain : Implements AppHost
         OpenMoleculeToolStripMenuItem.DropDownItems.Clear()
 
         For Each entry As MoleculeEditHistory In Await Task.Run(Function() MyApplication.settings.GetHistoryItems)
-            Dim item As New ToolStripMenuItem(entry.ToString)
-            item.Tag = entry
+            Dim item As New ToolStripMenuItem(entry.ToString) With {.Tag = entry}
             AddHandler item.Click, Sub() Call Workbench.OpenMoleculeEditor(entry.id, entry.name)
             OpenMoleculeToolStripMenuItem.DropDownItems.Add(item)
         Next
@@ -145,10 +144,7 @@ Public Class FormMain : Implements AppHost
     Private Sub ExportMetabolitesDatabaseToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportMetabolitesDatabaseToolStripMenuItem1.Click
         Using file As New SaveFileDialog With {.Filter = "Metabolite Annotation Database(*.dat)|*.dat|Metabolite Table(*.csv)|*.csv"}
             If file.ShowDialog = DialogResult.OK Then
-                MyApplication.Loading(
-                    Function(println)
-                        Return ExportLocal(println, file.FileName, Nothing)
-                    End Function)
+                MyApplication.Loading(Function(println) ExportLocal(println, file.FileName, Nothing))
                 MessageBox.Show("Export metabolite local annotation repository database success!", "Task Finish", MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If
         End Using
@@ -188,12 +184,10 @@ Public Class FormMain : Implements AppHost
             If file.ShowDialog = DialogResult.OK Then
                 MyApplication.Loading(
                     Function(println)
-                        Call MyApplication.biocad_registry _
+                        Return MyApplication.biocad_registry _
                             .ExportIDMapping("lipidmaps_id") _
                             .GetJson _
                             .SaveTo(file.FileName)
-
-                        Return True
                     End Function)
                 MessageBox.Show("Export LipidMAPS id mapping to local annotation repository file success!",
                                 "Task Finish",
@@ -208,12 +202,10 @@ Public Class FormMain : Implements AppHost
             If file.ShowDialog = DialogResult.OK Then
                 MyApplication.Loading(
                     Function(println)
-                        Call MyApplication.biocad_registry _
+                        Return MyApplication.biocad_registry _
                             .ExportIDMapping("hmdb_id") _
                             .GetJson _
                             .SaveTo(file.FileName)
-
-                        Return True
                     End Function)
                 MessageBox.Show("Export HMDB id mapping to local annotation repository file success!",
                                 "Task Finish",
@@ -228,12 +220,10 @@ Public Class FormMain : Implements AppHost
             If file.ShowDialog = DialogResult.OK Then
                 MyApplication.Loading(
                     Function(println)
-                        Call MyApplication.biocad_registry _
+                        Return MyApplication.biocad_registry _
                             .ExportIDMapping("kegg_id") _
                             .GetJson _
                             .SaveTo(file.FileName)
-
-                        Return True
                     End Function)
                 MessageBox.Show("Export KEGG id mapping to local annotation repository file success!",
                                 "Task Finish",
@@ -248,12 +238,10 @@ Public Class FormMain : Implements AppHost
             If file.ShowDialog = DialogResult.OK Then
                 MyApplication.Loading(
                     Function(println)
-                        Call MyApplication.biocad_registry _
+                        Return MyApplication.biocad_registry _
                             .ExportDbXrefIDMapping("MoNA") _
                             .GetJson _
                             .SaveTo(file.FileName)
-
-                        Return True
                     End Function)
                 MessageBox.Show("Export MoNA spectrum id mapping to metabolite id local annotation repository file success!",
                                 "Task Finish",
@@ -514,11 +502,7 @@ FROM
     Private Sub ExportKEGGMetaboliteTableToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportKEGGMetaboliteTableToolStripMenuItem1.Click
         Using file As New SaveFileDialog With {.Filter = "Metabolite Table(*.csv)|*.csv"}
             If file.ShowDialog = DialogResult.OK Then
-                MyApplication.Loading(
-                    Function(println)
-                        Return ExportLocal(println, file.FileName, "kegg_id")
-                    End Function)
-
+                MyApplication.Loading(Function(println) ExportLocal(println, file.FileName, "kegg_id"))
                 MessageBox.Show("Export metabolite local annotation repository database success!",
                                 "Task Finish",
                                 MessageBoxButtons.OK,
@@ -571,29 +555,34 @@ FROM
 
         If cid.StringEmpty(, True) Then
             Return
+        Else
+            Call TaskProgress.LoadData(
+                streamLoad:=Function(p As ITaskProgress) importsCID(cid, p),
+                title:=$"fetch pubchem metabolite of cid={cid}",
+                info:="Make pubchem metabolite data imports"
+            )
+        End If
+    End Sub
+
+    Private Function importsCID(cid As String, p As ITaskProgress) As Boolean
+        Dim data = PubChem.Query.FetchPugViewByCID(Strings.Trim(cid))
+        Dim meta = data.GetMetaInfo
+        ' 不信任pubchem id的映射结果，在这里直接设置kegg_id来避免直接通过pubchem id查找到结果
+        Dim m As metabolites = MyApplication.biocad_registry.FindMolecule(meta, "kegg_id", nameSearch:=True)
+        Dim db_pubchem As UInteger = MyApplication.biocad_registry.biocad_vocabulary.db_pubchem
+
+        If m Is Nothing Then
+            Return False
+        Else
+            Call p.SetInfo("save mysql")
         End If
 
-        Call TaskProgress.LoadData(
-            Function(p As ITaskProgress)
-                Dim data = PubChem.Query.FetchPugViewByCID(Strings.Trim(cid))
-                Dim meta = data.GetMetaInfo
-                ' 不信任pubchem id的映射结果，在这里直接设置kegg_id来避免直接通过pubchem id查找到结果
-                Dim m As metabolites = MyApplication.biocad_registry.FindMolecule(meta, "kegg_id", nameSearch:=True)
-                Dim db_pubchem As UInteger = MyApplication.biocad_registry.biocad_vocabulary.db_pubchem
+        Call MyApplication.biocad_registry.SaveDbLinks(meta, m, db_pubchem)
+        Call MyApplication.biocad_registry.SaveStructureData(m, meta.xref.SMILES)
+        Call MyApplication.biocad_registry.SaveSynonyms(m, meta.synonym.JoinIterates({meta.name, meta.IUPACName}).Distinct, db_pubchem)
 
-                If m Is Nothing Then
-                    Return False
-                Else
-                    Call p.SetInfo("save mysql")
-                End If
-
-                Call MyApplication.biocad_registry.SaveDbLinks(meta, m, db_pubchem)
-                Call MyApplication.biocad_registry.SaveStructureData(m, meta.xref.SMILES)
-                Call MyApplication.biocad_registry.SaveSynonyms(m, meta.synonym.JoinIterates({meta.name, meta.IUPACName}).Distinct, db_pubchem)
-
-                Return True
-            End Function, $"fetch pubchem metabolite of cid={cid}", "Make pubchem metabolite data imports")
-    End Sub
+        Return True
+    End Function
 
     Private Sub CreateMetabolicReactionToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CreateMetabolicReactionToolStripMenuItem.Click
         Call InputDialog.Input(Of FormBuildReaction)()
