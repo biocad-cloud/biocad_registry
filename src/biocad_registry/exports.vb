@@ -105,16 +105,23 @@ Module exports
     ''' <param name="repo"></param>
     ''' <returns></returns>
     <ExportAPI("virtualcell_componentdb")>
-    Public Function export_virtualCell_components(registry As biocad_registry, repo As String) As Object
+    Public Function export_virtualCell_components(registry As biocad_registry, repo As String,
+                                                  Optional tfbs As Boolean = True,
+                                                  Optional tf As Boolean = True,
+                                                  Optional cc As Boolean = True,
+                                                  Optional ec As Boolean = True,
+                                                  Optional rxn As Boolean = True,
+                                                  Optional metab As Boolean = True) As Object
+
         Dim dump As New ExportVirtualCellModels(registry, repo)
 
-        Call dump.ExportMotifSites()
-        Call dump.ExportTFDb()
-        Call dump.ExportLocations()
-        Call dump.ExportEnzymeDb()
-        Call dump.ExportSubcellularLocationDb()
-        Call dump.ExportReactionPool()
-        Call dump.ExportMoleculeData()
+        If tfbs Then Call dump.ExportMotifSites()
+        If tf Then Call dump.ExportTFDb()
+        If cc Then Call dump.ExportLocations()
+        If ec Then Call dump.ExportEnzymeDb()
+        If cc Then Call dump.ExportSubcellularLocationDb()
+        If rxn Then Call dump.ExportReactionPool()
+        If metab Then Call dump.ExportMoleculeData()
 
         Return Nothing
     End Function
