@@ -37,15 +37,9 @@ Partial Class FormMetabolicEditor
         Column3 = New DataGridViewTextBoxColumn()
         SplitContainer2 = New SplitContainer()
         DataGridView2 = New DataGridView()
-        Column4 = New DataGridViewTextBoxColumn()
-        Column5 = New DataGridViewTextBoxColumn()
-        Column6 = New DataGridViewTextBoxColumn()
-        Column7 = New DataGridViewTextBoxColumn()
-        Column8 = New DataGridViewTextBoxColumn()
-        Column9 = New DataGridViewTextBoxColumn()
-        Column12 = New DataGridViewTextBoxColumn()
         ContextMenuStrip1 = New ContextMenuStrip(components)
         OpenToolStripMenuItem = New ToolStripMenuItem()
+        CopySymbolNameToolStripMenuItem = New ToolStripMenuItem()
         GroupBox1 = New GroupBox()
         Button4 = New Button()
         Button3 = New Button()
@@ -73,7 +67,13 @@ Partial Class FormMetabolicEditor
         ToolStripComboBox1 = New ToolStripComboBox()
         ToolStripSeparator3 = New ToolStripSeparator()
         ToolStripButton5 = New ToolStripButton()
-        CopySymbolNameToolStripMenuItem = New ToolStripMenuItem()
+        Column4 = New DataGridViewTextBoxColumn()
+        Column5 = New DataGridViewTextBoxColumn()
+        Column6 = New DataGridViewTextBoxColumn()
+        Column7 = New DataGridViewTextBoxColumn()
+        Column8 = New DataGridViewTextBoxColumn()
+        Column9 = New DataGridViewTextBoxColumn()
+        Column12 = New DataGridViewTextBoxColumn()
         CType(SplitContainer1, ISupportInitialize).BeginInit()
         SplitContainer1.Panel1.SuspendLayout()
         SplitContainer1.Panel2.SuspendLayout()
@@ -192,60 +192,23 @@ Partial Class FormMetabolicEditor
         DataGridView2.Size = New Size(751, 247)
         DataGridView2.TabIndex = 0
         ' 
-        ' Column4
-        ' 
-        Column4.HeaderText = "id"
-        Column4.Name = "Column4"
-        Column4.ReadOnly = True
-        ' 
-        ' Column5
-        ' 
-        Column5.HeaderText = "db_xref"
-        Column5.Name = "Column5"
-        Column5.ReadOnly = True
-        ' 
-        ' Column6
-        ' 
-        Column6.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
-        Column6.HeaderText = "name"
-        Column6.Name = "Column6"
-        Column6.ReadOnly = True
-        ' 
-        ' Column7
-        ' 
-        Column7.HeaderText = "formula"
-        Column7.Name = "Column7"
-        Column7.ReadOnly = True
-        ' 
-        ' Column8
-        ' 
-        Column8.HeaderText = "mass"
-        Column8.Name = "Column8"
-        Column8.ReadOnly = True
-        ' 
-        ' Column9
-        ' 
-        Column9.HeaderText = "role"
-        Column9.Name = "Column9"
-        Column9.ReadOnly = True
-        ' 
-        ' Column12
-        ' 
-        Column12.HeaderText = "symbol_name"
-        Column12.Name = "Column12"
-        Column12.ReadOnly = True
-        ' 
         ' ContextMenuStrip1
         ' 
         ContextMenuStrip1.Items.AddRange(New ToolStripItem() {OpenToolStripMenuItem, CopySymbolNameToolStripMenuItem})
         ContextMenuStrip1.Name = "ContextMenuStrip1"
-        ContextMenuStrip1.Size = New Size(191, 70)
+        ContextMenuStrip1.Size = New Size(191, 48)
         ' 
         ' OpenToolStripMenuItem
         ' 
         OpenToolStripMenuItem.Name = "OpenToolStripMenuItem"
         OpenToolStripMenuItem.Size = New Size(190, 22)
         OpenToolStripMenuItem.Text = "Open Metabolite Data"
+        ' 
+        ' CopySymbolNameToolStripMenuItem
+        ' 
+        CopySymbolNameToolStripMenuItem.Name = "CopySymbolNameToolStripMenuItem"
+        CopySymbolNameToolStripMenuItem.Size = New Size(190, 22)
+        CopySymbolNameToolStripMenuItem.Text = "Copy Symbol Name"
         ' 
         ' GroupBox1
         ' 
@@ -463,11 +426,49 @@ Partial Class FormMetabolicEditor
         ToolStripButton5.Size = New Size(23, 22)
         ToolStripButton5.Text = "Add"
         ' 
-        ' CopySymbolNameToolStripMenuItem
+        ' Column4
         ' 
-        CopySymbolNameToolStripMenuItem.Name = "CopySymbolNameToolStripMenuItem"
-        CopySymbolNameToolStripMenuItem.Size = New Size(190, 22)
-        CopySymbolNameToolStripMenuItem.Text = "Copy Symbol Name"
+        Column4.HeaderText = "id"
+        Column4.Name = "Column4"
+        Column4.ReadOnly = True
+        ' 
+        ' Column5
+        ' 
+        Column5.HeaderText = "db_xref"
+        Column5.Name = "Column5"
+        Column5.ReadOnly = True
+        ' 
+        ' Column6
+        ' 
+        Column6.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+        Column6.HeaderText = "name"
+        Column6.Name = "Column6"
+        Column6.ReadOnly = True
+        ' 
+        ' Column7
+        ' 
+        Column7.HeaderText = "formula"
+        Column7.Name = "Column7"
+        Column7.ReadOnly = True
+        ' 
+        ' Column8
+        ' 
+        Column8.HeaderText = "mass"
+        Column8.Name = "Column8"
+        Column8.ReadOnly = True
+        ' 
+        ' Column9
+        ' 
+        Column9.HeaderText = "role"
+        Column9.Name = "Column9"
+        Column9.ReadOnly = True
+        ' 
+        ' Column12
+        ' 
+        Column12.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+        Column12.HeaderText = "symbol_name"
+        Column12.Name = "Column12"
+        Column12.ReadOnly = True
         ' 
         ' FormMetabolicEditor
         ' 
@@ -540,6 +541,7 @@ Partial Class FormMetabolicEditor
     Friend WithEvents ToolStripSeparator3 As ToolStripSeparator
     Friend WithEvents ToolStripLabel4 As ToolStripLabel
     Friend WithEvents ToolStripComboBox1 As ToolStripComboBox
+    Friend WithEvents CopySymbolNameToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents Column4 As DataGridViewTextBoxColumn
     Friend WithEvents Column5 As DataGridViewTextBoxColumn
     Friend WithEvents Column6 As DataGridViewTextBoxColumn
@@ -547,5 +549,4 @@ Partial Class FormMetabolicEditor
     Friend WithEvents Column8 As DataGridViewTextBoxColumn
     Friend WithEvents Column9 As DataGridViewTextBoxColumn
     Friend WithEvents Column12 As DataGridViewTextBoxColumn
-    Friend WithEvents CopySymbolNameToolStripMenuItem As ToolStripMenuItem
 End Class
