@@ -2,6 +2,7 @@
 Imports Galaxy.Workbench.CommonDialogs
 Imports Ollama
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
+Imports registry_data.biocad_registryModel
 Imports RegistryTool.My
 
 Public Class FormMetabolicEditor
@@ -14,8 +15,22 @@ Public Class FormMetabolicEditor
 
     Private Async Sub FormMetabolicEditor_Load(sender As Object, e As EventArgs) Handles Me.Load
         Call ApplyVsTheme(ToolStrip1)
+
         Await GotoPageData()
+        Await LoadDBSourceList()
     End Sub
+
+    Private Async Function LoadDBSourceList() As Task
+        Dim source_ids As UInteger() = Await MyApplication.biocad_registry.reaction.async.distinct.project(Of UInteger)("db_source")
+        Dim dbnames = Await MyApplication.biocad_registry.vocabulary.async.where(field("id").in(source_ids)).select(Of vocabulary)
+
+        Call ToolStripComboBox1.Items.Clear()
+        Call ToolStripComboBox1.Items.Add("*")
+
+        For Each dbname As vocabulary In dbnames
+            Call ToolStripComboBox1.Items.Add(New TopicTerm() With {.id = dbname.id, .term = dbname.term})
+        Next
+    End Function
 
     Private Async Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
         If Page = 1 Then
@@ -31,8 +46,10 @@ Public Class FormMetabolicEditor
         Await GotoPageData()
     End Sub
 
+    Dim q As FieldAssert() = Nothing
+
     Private Async Function GotoPageData() As Task
-        Call DisplayPageData(Await ReactionModelView.QueryPage(Me.Page, page_size:=500))
+        Call DisplayPageData(Await ReactionModelView.QueryPage(Me.Page, page_size:=500, q:=q))
     End Function
 
     Private Sub DisplayPageData(reactions As ReactionModelView())
@@ -121,9 +138,11 @@ Public Class FormMetabolicEditor
 
     Private Async Sub ToolStripButton4_Click(sender As Object, e As EventArgs) Handles ToolStripButton4.Click
         Dim id As String = Strings.Trim(ToolStripTextBox2.Text)
-        Dim rxn = Await ReactionModelView.QueryByID(id)
 
-        Call DisplayPageData(rxn)
+        q = {(field("`reaction`.id") = id) Or (field("db_xref") = id) Or (field("ec_number") = id)}
+        ToolStripTextBox1.Text = 1
+
+        Await GotoPageData()
     End Sub
 
     Private Sub ToolStripButton5_Click(sender As Object, e As EventArgs) Handles ToolStripButton5.Click
@@ -170,5 +189,19 @@ Public Class FormMetabolicEditor
 
             CommonRuntime.StatusMessage("reaction note data update success!")
         End If
+    End Sub
+
+    Private Async Sub ToolStripComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ToolStripComboBox1.SelectedIndexChanged
+        If ToolStripComboBox1.SelectedIndex < 0 Then
+            Return
+        ElseIf ToolStripComboBox1.SelectedIndex = 0 Then
+            q = {}
+        Else
+            q = {field("db_source") = DirectCast(ToolStripComboBox1.SelectedItem, TopicTerm).id}
+        End If
+
+        ToolStripTextBox1.Text = 1
+
+        Await GotoPageData()
     End Sub
 End Class

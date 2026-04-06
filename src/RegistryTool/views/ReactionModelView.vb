@@ -13,11 +13,12 @@ Public Class ReactionModelView
     <DatabaseField> Public Property note As String
     <DatabaseField> Public Property hashcode As String
 
-    Public Shared Async Function QueryPage(page As Integer, page_size As Integer) As Task(Of ReactionModelView())
+    Public Shared Async Function QueryPage(page As Integer, page_size As Integer, q As FieldAssert()) As Task(Of ReactionModelView())
         Dim offset = (page - 1) * page_size
         Dim reactions = Await MyApplication.biocad_registry.reaction _
             .async _
             .left_join("vocabulary").on(field("`vocabulary`.id") = field("db_source")) _
+            .where(q) _
             .limit(offset, page_size) _
             .select(Of ReactionModelView)("reaction.*", "term as db_name")
 

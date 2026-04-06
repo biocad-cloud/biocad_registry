@@ -68,6 +68,9 @@ Partial Class FormMetabolicEditor
         ToolStripTextBox2 = New ToolStripTextBox()
         ToolStripButton4 = New ToolStripButton()
         ToolStripSeparator2 = New ToolStripSeparator()
+        ToolStripLabel4 = New ToolStripLabel()
+        ToolStripComboBox1 = New ToolStripComboBox()
+        ToolStripSeparator3 = New ToolStripSeparator()
         ToolStripButton5 = New ToolStripButton()
         CType(SplitContainer1, ISupportInitialize).BeginInit()
         SplitContainer1.Panel1.SuspendLayout()
@@ -344,7 +347,7 @@ Partial Class FormMetabolicEditor
         ' 
         ' ToolStrip1
         ' 
-        ToolStrip1.Items.AddRange(New ToolStripItem() {ToolStripLabel1, ToolStripButton1, ToolStripLabel2, ToolStripTextBox1, ToolStripButton2, ToolStripButton3, ToolStripSeparator1, ToolStripLabel3, ToolStripTextBox2, ToolStripButton4, ToolStripSeparator2, ToolStripButton5})
+        ToolStrip1.Items.AddRange(New ToolStripItem() {ToolStripLabel1, ToolStripButton1, ToolStripLabel2, ToolStripTextBox1, ToolStripButton2, ToolStripButton3, ToolStripSeparator1, ToolStripLabel3, ToolStripTextBox2, ToolStripButton4, ToolStripSeparator2, ToolStripLabel4, ToolStripComboBox1, ToolStripSeparator3, ToolStripButton5})
         ToolStrip1.Location = New Point(0, 0)
         ToolStrip1.Name = "ToolStrip1"
         ToolStrip1.Size = New Size(1394, 25)
@@ -425,6 +428,23 @@ Partial Class FormMetabolicEditor
         ' 
         ToolStripSeparator2.Name = "ToolStripSeparator2"
         ToolStripSeparator2.Size = New Size(6, 25)
+        ' 
+        ' ToolStripLabel4
+        ' 
+        ToolStripLabel4.Name = "ToolStripLabel4"
+        ToolStripLabel4.Size = New Size(93, 22)
+        ToolStripLabel4.Text = "Filter DB Source:"
+        ' 
+        ' ToolStripComboBox1
+        ' 
+        ToolStripComboBox1.DropDownStyle = ComboBoxStyle.DropDownList
+        ToolStripComboBox1.Name = "ToolStripComboBox1"
+        ToolStripComboBox1.Size = New Size(121, 25)
+        ' 
+        ' ToolStripSeparator3
+        ' 
+        ToolStripSeparator3.Name = "ToolStripSeparator3"
+        ToolStripSeparator3.Size = New Size(6, 25)
         ' 
         ' ToolStripButton5
         ' 
@@ -509,4 +529,7 @@ Partial Class FormMetabolicEditor
     Friend WithEvents TextBox1 As TextBox
     Friend WithEvents Label1 As Label
     Friend WithEvents Button4 As Button
+    Friend WithEvents ToolStripSeparator3 As ToolStripSeparator
+    Friend WithEvents ToolStripLabel4 As ToolStripLabel
+    Friend WithEvents ToolStripComboBox1 As ToolStripComboBox
 End Class
