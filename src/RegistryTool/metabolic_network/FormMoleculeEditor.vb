@@ -98,6 +98,12 @@ let options = { width: 450, height: 300 };
             .ToArray
         MyApplication.settings.Save()
 
+        TextBox8.Text = Await MyApplication.biocad_registry.registry_resolver _
+            .async _
+            .where(field("type") = MyApplication.biocad_registry.biocad_vocabulary.metabolite_type,
+                   field("symbol_id") = mol.id) _
+            .find_scalar("register_name")
+
         TextBox2.Text = mol.name
         TextBox3.Text = mol.formula
         Label7.Text = FormulaScanner.EvaluateExactMass(mol.formula).ToString("F4")

@@ -10276,6 +10276,12 @@ Get feature site data by nucleotide location.
  </summary>
  <returns></returns>
 </member>
+<member name="M:SMRUCC.genomics.Assembly.NCBI.GenBank.GBFF.Keywords.SOURCE.GetTaxonomy">
+ <summary>
+ Get ncbi taxonomy information
+ </summary>
+ <returns></returns>
+</member>
 <member name="T:SMRUCC.genomics.Assembly.NCBI.GenBank.TabularFormat.FastaObjects.GenomeSequence">
  <summary>
  *.fna 基因组序列
