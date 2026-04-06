@@ -26,10 +26,14 @@ Public Module MetabolicSymbol
 
             For Each reaction As reaction In page_data
                 ' re-calculate the reaction hashcode
-                Dim hashcode As String = registry.RegisterMetabolicSymbols(reaction, role).CalculateReactionHashCode
+                Dim hashcode As String = registry _
+                    .RegisterMetabolicSymbols(reaction, role) _
+                    .CalculateReactionHashCode(reaction.ec_number)
 
                 If hashcode <> reaction.hashcode Then
-                    Call set_hash.add(registry.reaction.where(field("id") = reaction.id).save_sql(field("hashcode") = hashcode))
+                    Call set_hash.add(registry.reaction _
+                        .where(field("id") = reaction.id) _
+                        .save_sql(field("hashcode") = hashcode))
                 End If
             Next
 

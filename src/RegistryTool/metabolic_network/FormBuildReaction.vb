@@ -6,6 +6,7 @@ Imports RegistryTool.My
 Imports SMRUCC.genomics.ComponentModel.EquaionModel.DefaultTypes
 
 Public Class FormBuildReaction
+
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Me.DialogResult = DialogResult.Cancel
     End Sub
@@ -44,8 +45,11 @@ Public Class FormBuildReaction
         eq.Reactants = left.ToArray
         eq.Products = right.ToArray
 
-        Dim hashcode As String = links.CalculateReactionHashCode
-        Dim rxn = MyApplication.biocad_registry.reaction.where(field("hashcode") = hashcode).find(Of biocad_registryModel.reaction)
+        Dim ec_numbers As String() = Strings.Trim(TextBox3.Text).StringSplit("\s*[,;]\s*")
+        Dim hashcode As String = links.CalculateReactionHashCode(ec_numbers.FirstOrDefault)
+        Dim rxn = MyApplication.biocad_registry.reaction _
+            .where(field("hashcode") = hashcode) _
+            .find(Of biocad_registryModel.reaction)
 
         If rxn IsNot Nothing Then
             ' just make reaction data updates
@@ -54,7 +58,6 @@ Public Class FormBuildReaction
         Else
             Dim max_id As UInteger = MyApplication.biocad_registry.reaction.aggregate(Of UInteger)("max(id)") + 1
             Dim id As String = $"BIOCAD_RXN-{max_id}"
-            Dim ec_numbers As String() = Strings.Trim(TextBox3.Text).StringSplit("\s*[,;]\s*")
 
             Call MyApplication.biocad_registry.reaction.add(
                 field("db_xref") = id,

@@ -257,7 +257,9 @@ Public Module ImportsReaction
             Next
 
             If links.All(Function(a) a.Item2 > 0) Then
-                registry.reaction.where(field("id") = find.id).save(field("hashcode") = links.CalculateReactionHashCode)
+                registry.reaction _
+                    .where(field("id") = find.id) _
+                    .save(field("hashcode") = links.CalculateReactionHashCode(ec_number:=find.ec_number))
             End If
         Next
 
@@ -275,13 +277,14 @@ Public Module ImportsReaction
     ''' this function will sort by role_id first, then sort by symbol_id, then build hashcode
     ''' </remarks>
     <Extension>
-    Public Function CalculateReactionHashCode(links As IEnumerable(Of (role_id As UInteger, species_id As UInteger))) As String
-        Return links _
+    Public Function CalculateReactionHashCode(links As IEnumerable(Of (role_id As UInteger, species_id As UInteger)), ec_number As String) As String
+        Dim flux As String = links _
             .OrderBy(Function(a) a.role_id) _
             .ThenBy(Function(a) a.species_id) _
             .Select(Function(a) {a.role_id, a.species_id}) _
             .IteratesALL _
-            .JoinBy(",") _
-            .MD5
+            .JoinBy(",")
+
+        Return $"{flux} [{ec_number}]".MD5
     End Function
 End Module
