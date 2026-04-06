@@ -62,7 +62,7 @@ registry_data
  <param name="registry"></param>
  <returns></returns>
 </member>
-<member name="M:registry_data.ImportsReaction.CalculateReactionHashCode(System.Collections.Generic.IEnumerable{System.ValueTuple{System.UInt32,System.UInt32}})">
+<member name="M:registry_data.ImportsReaction.CalculateReactionHashCode(System.Collections.Generic.IEnumerable{System.ValueTuple{System.UInt32,System.UInt32}},System.String)">
  <summary>
  a set of tuple of [role_id, obj_id]
  </summary>
