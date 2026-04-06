@@ -91,14 +91,17 @@ Public Class FormMetabolicEditor
     Dim reaction_id As UInteger
 
     Private Async Function ShowReaction(rxn_id As UInteger) As Task
+        Dim metab_type As UInteger = MyApplication.biocad_registry.biocad_vocabulary.metabolite_type
         Dim graph = Await MyApplication.biocad_registry.metabolic_network _
             .async _
             .left_join("metabolites") _
             .on(field("species_id") = field("metabolites.id")) _
             .left_join("vocabulary") _
             .on(field("vocabulary.id") = field("role")) _
+            .left_join("registry_resolver") _
+            .on(field("`registry_resolver`.symbol_id") = field("species_id")) _
             .where(field("reaction_id") = rxn_id) _
-            .select(Of reaction_graphdata)("metabolites.*", "symbol_id as db_xref", "term AS role")
+            .select(Of reaction_graphdata)("metabolites.*", "`metabolic_network`.symbol_id as db_xref", "term AS role", "register_name as symbol_name")
 
         Call DataGridView2.Rows.Clear()
 
@@ -109,7 +112,8 @@ Public Class FormMetabolicEditor
                 compound.name,
                 compound.formula,
                 compound.exact_mass,
-                compound.role
+                compound.role,
+                compound.symbol_name
             )
         Next
 

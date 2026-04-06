@@ -822,5 +822,6 @@ Public Class reaction_graphdata
     <DatabaseField> Public Property formula As String
     <DatabaseField> Public Property db_xref As String
     <DatabaseField> Public Property role As String
+    <DatabaseField> Public Property symbol_name As String
 
 End Class
