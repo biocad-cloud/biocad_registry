@@ -211,4 +211,16 @@ Public Class FormMetabolicEditor
 
         Await GotoPageData()
     End Sub
+
+    Private Sub CopySymbolNameToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CopySymbolNameToolStripMenuItem.Click
+        If DataGridView2.SelectedRows.Count = 0 Then
+            Return
+        End If
+
+        Dim meta = DataGridView2.SelectedRows(0)
+        Dim name As String = CStr(meta.Cells(6).Value)
+
+        Call Clipboard.SetText(name)
+        Call CommonRuntime.StatusMessage($"the metabolite symbol name '{name}' has been copied!")
+    End Sub
 End Class
