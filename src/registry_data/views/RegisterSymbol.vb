@@ -29,13 +29,13 @@ Public Module RegisterSymbol
             .StringReplace("[_-]{2,}", "_") _
             .Trim("-"c, "_"c, ","c)
 
-        symbol = symbol.StringReplace(",[\-_]+", ",")
-        symbol = symbol.StringReplace("[\-_]+,", ",")
-        symbol = symbol.StringReplace(",{2,}", ",")
-
         symbol = symbol _
             .Replace("<sub>", "").Replace("<sup>", "") _
             .Replace("</sub>", "").Replace("</sup>", "")
+
+        symbol = symbol.StringReplace(",[\-_]+", ",")
+        symbol = symbol.StringReplace("[\-_]+,", ",")
+        symbol = symbol.StringReplace(",{2,}", ",")
 
         For Each alphabet In greekAlphabet
             symbol = symbol.Replace(alphabet.Key, alphabet.Value)
