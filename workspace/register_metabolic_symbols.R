@@ -2,7 +2,7 @@ require(biocad_registry);
 
 imports "models" from "biocad_registry";
 
-# open_registry("xieguigang", 123456, host ="192.168.3.15") |> register_metabolic_symbols();
-open_registry("xieguigang", 123456, host ="192.168.3.15")
-|> update_symbolname()
-;
+let registry = open_registry("xieguigang", 123456, host ="192.168.3.15");
+
+registry |> register_metabolic_symbols();
+# registry |> update_symbolname();
