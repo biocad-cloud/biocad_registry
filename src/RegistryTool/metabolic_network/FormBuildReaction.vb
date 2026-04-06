@@ -49,7 +49,7 @@ Public Class FormBuildReaction
 
         If rxn IsNot Nothing Then
             ' just make reaction data updates
-            MessageBox.Show("target reaction model is already been existed inside the registry, just update the reaction metadata")
+            MessageBox.Show($"target reaction model({rxn.id}: {rxn.name}) is already been existed inside the registry, just update the reaction metadata")
             Return False
         Else
             Dim max_id As UInteger = MyApplication.biocad_registry.reaction.aggregate(Of UInteger)("max(id)") + 1
