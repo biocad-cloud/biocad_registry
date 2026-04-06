@@ -33,6 +33,10 @@ Public Module RegisterSymbol
         symbol = symbol.StringReplace("[\-_]+,", ",")
         symbol = symbol.StringReplace(",{2,}", ",")
 
+        symbol = symbol _
+            .Replace("<sub>", "").Replace("<sup>", "") _
+            .Replace("</sub>", "").Replace("</sup>", "")
+
         For Each alphabet In greekAlphabet
             symbol = symbol.Replace(alphabet.Key, alphabet.Value)
         Next
