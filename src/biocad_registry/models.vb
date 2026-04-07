@@ -303,13 +303,15 @@ Public Module registry_models
     End Function
 
     <ExportAPI("make_protein_clusters")>
-    Public Function make_protein_clusters(registry As biocad_registry, Optional cutoff As Double = 30, Optional eval_cutoff As Double = 0.00001)
+    Public Function make_protein_clusters(registry As biocad_registry, Optional cutoff As Double = 50, Optional eval_cutoff As Double = 0.00001)
         Dim page_size As Integer = 10000
 
         ' 定义每批次处理的最大ID数量，防止SQL语句过长
         Const BATCH_SIZE As Integer = 500
 
         ' UPDATE `cad_registry`.`protein_data` SET `cluster_id` = '0'
+
+        Call $"make protein cluster with identities cutoffs > {cutoff} and e-value < {eval_cutoff}".debug
 
         For page As Integer = 1 To Integer.MaxValue
             Dim offset = (page - 1) * page_size
