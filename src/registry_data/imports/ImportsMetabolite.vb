@@ -192,6 +192,11 @@ Public Module ImportsMetabolite
                     Call registry.metabolites _
                         .where(field("id") = name.id) _
                         .save(field("name") = name.name)
+                ElseIf name.name.IsUpperName Then
+                    name.name = name.name.ToLower
+                    Call registry.metabolites _
+                        .where(field("id") = name.id) _
+                        .save(field("name") = name.name)
                 End If
 
                 Dim hashcode As String = Strings.LCase(name.name).MD5
@@ -207,6 +212,15 @@ Public Module ImportsMetabolite
         Call "commit the name hashcode".debug
         Call updates.commit()
     End Sub
+
+    <Extension>
+    Private Function IsUpperName(name As String) As Boolean
+        If name.StringEmpty Then
+            Return False
+        Else
+            Return Not name.Any(Function(c) Char.IsLetter(c) AndAlso Char.IsLower(c))
+        End If
+    End Function
 
     <Extension>
     Public Sub MetaboliteLinks(registry As biocad_registry, Optional check_hash As Boolean = False)
@@ -235,36 +249,47 @@ Public Module ImportsMetabolite
 
                     If top_main.cas_id.StringEmpty AndAlso Not meta.cas_id.StringEmpty Then
                         Call updates.Add(field(NameOf(metabolites.cas_id)) = meta.cas_id)
+                        top_main.cas_id = meta.cas_id
                     End If
                     If top_main.kegg_id.StringEmpty AndAlso Not meta.kegg_id.StringEmpty Then
                         Call updates.Add(field(NameOf(metabolites.kegg_id)) = meta.kegg_id)
+                        top_main.kegg_id = meta.kegg_id
                     End If
                     If top_main.hmdb_id.StringEmpty AndAlso Not meta.hmdb_id.StringEmpty Then
                         Call updates.Add(field(NameOf(metabolites.hmdb_id)) = meta.hmdb_id)
+                        top_main.hmdb_id = meta.hmdb_id
                     End If
                     If top_main.lipidmaps_id.StringEmpty AndAlso Not meta.lipidmaps_id.StringEmpty Then
                         Call updates.Add(field(NameOf(metabolites.lipidmaps_id)) = meta.lipidmaps_id)
+                        top_main.lipidmaps_id = meta.lipidmaps_id
                     End If
                     If top_main.drugbank_id.StringEmpty AndAlso Not meta.drugbank_id.StringEmpty Then
                         Call updates.Add(field(NameOf(metabolites.drugbank_id)) = meta.drugbank_id)
+                        top_main.drugbank_id = meta.drugbank_id
                     End If
                     If top_main.mesh_id.StringEmpty AndAlso Not meta.mesh_id.StringEmpty Then
                         Call updates.Add(field(NameOf(metabolites.mesh_id)) = meta.mesh_id)
+                        top_main.mesh_id = meta.mesh_id
                     End If
                     If top_main.biocyc.StringEmpty AndAlso Not meta.biocyc.StringEmpty Then
                         Call updates.Add(field(NameOf(metabolites.biocyc)) = meta.biocyc)
+                        top_main.biocyc = meta.biocyc
                     End If
                     If top_main.wikipedia.StringEmpty AndAlso Not meta.wikipedia.StringEmpty Then
                         Call updates.Add(field(NameOf(metabolites.wikipedia)) = meta.wikipedia)
+                        top_main.wikipedia = meta.wikipedia
                     End If
                     If top_main.chebi_id = 0 AndAlso meta.chebi_id > 0 Then
                         Call updates.Add(field(NameOf(metabolites.chebi_id)) = meta.chebi_id)
+                        top_main.chebi_id = meta.chebi_id
                     End If
                     If top_main.pubchem_cid = 0 AndAlso meta.pubchem_cid > 0 Then
                         Call updates.Add(field(NameOf(metabolites.pubchem_cid)) = meta.pubchem_cid)
+                        top_main.pubchem_cid = meta.pubchem_cid
                     End If
                     If top_main.note.StringEmpty AndAlso Not meta.note.StringEmpty Then
                         Call updates.Add(field(NameOf(metabolites.note)) = meta.note)
+                        top_main.note = meta.note
                     End If
 
                     If updates.Any Then

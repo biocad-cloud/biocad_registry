@@ -85,9 +85,9 @@ Public Module registry_models
         Call registry.UpdateMetaboliteSymbolName
     End Sub
 
-    <ExportAPI("resolve_metabolite_duplicates")>
+    <ExportAPI("resolve_metabolite_alias")>
     Public Sub update_metabolite_models(registry As biocad_registry)
-        Call registry.MetaboliteLinks
+        Call registry.MetaboliteLinks(check_hash:=True)
     End Sub
 
     <ExportAPI("build_plantnp_library")>
@@ -318,7 +318,6 @@ Public Module registry_models
         For page As Integer = 1 To Integer.MaxValue
             Dim offset = (page - 1) * page_size
             Dim protein_ids As UInteger() = registry.protein_cluster _
-                .where(field("cluster_id") = 0) _
                 .limit(offset, page_size) _
                 .distinct _
                 .project(Of UInteger)("query_id")
