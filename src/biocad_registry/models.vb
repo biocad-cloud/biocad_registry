@@ -322,10 +322,14 @@ Public Module registry_models
                 Exit For
             End If
 
-            For Each cluster_key As UInteger In TqdmWrapper.Wrap(protein_ids)
+            Dim bar As ProgressBar = Nothing
+
+            For Each cluster_key As UInteger In TqdmWrapper.Wrap(protein_ids, bar:=bar)
                 Dim protein As protein_data = registry.protein_data _
                     .where(field("id") = cluster_key) _
                     .find(Of protein_data)("id", "cluster_id")
+
+                Call bar.SetLabel(protein.function)
 
                 If protein.cluster_id > 0 Then
                     ' 如果已经被归簇，跳过
@@ -357,7 +361,7 @@ Public Module registry_models
                         .project(Of UInteger)("`protein_data`.id") ' 只Select ID，不加载序列
 
                     If Not neighbor_ids.IsNullOrEmpty Then
-                        For Each block As UInteger() In neighbor_ids.SplitIterator(BATCH_SIZE)
+                        For Each block As UInteger() In neighbor_ids.SplitIterator(BATCH_SIZE, echo:=False)
                             ' 4. 批量更新归簇 (分批更新防止SQL过长)
                             ' 这里简化逻辑，实际建议对 neighbor_ids 也分批 Update
                             registry.protein_data _
