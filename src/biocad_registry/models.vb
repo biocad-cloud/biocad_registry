@@ -1,4 +1,5 @@
 ﻿
+Imports System.ComponentModel
 Imports BioNovoGene.BioDeep.Chemistry.NCBI.PubChem.ExtensionModels
 Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar.Tqdm
 Imports Microsoft.VisualBasic.CommandLine.Reflection
@@ -317,6 +318,7 @@ Public Module registry_models
         For page As Integer = 1 To Integer.MaxValue
             Dim offset = (page - 1) * page_size
             Dim protein_ids As UInteger() = registry.protein_cluster _
+                .where(field("cluster_id") = 0) _
                 .limit(offset, page_size) _
                 .distinct _
                 .project(Of UInteger)("query_id")
@@ -328,12 +330,13 @@ Public Module registry_models
             For Each cluster_key As UInteger In protein_ids
                 Dim protein As protein_data = registry.protein_data _
                     .where(field("id") = cluster_key) _
-                    .find(Of protein_data)("id", "cluster_id")
+                    .find(Of protein_data)("id", "cluster_id", "`function`")
 
                 If protein.cluster_id > 0 Then
                     ' 如果已经被归簇，跳过
                     Continue For
                 Else
+                    ' 设置为当前簇的根
                     Call registry.protein_data _
                         .where(field("id") = cluster_key) _
                         .save(field("cluster_id") = cluster_key)
@@ -341,6 +344,7 @@ Public Module registry_models
 
                 ' 2. BFS 搜索队列
                 Dim queue As New List(Of UInteger) From {cluster_key}
+                Dim visited As New HashSet(Of UInteger) From {cluster_key}
 
                 Do While queue.Count > 0
                     ' 取出当前层级的 ID 列表
@@ -350,14 +354,33 @@ Public Module registry_models
                     ' 3. 查找邻居 (优化：只查 ID)
                     ' 注意：这里假设 protein_cluster 包含双向数据
                     ' 建议添加 index: (query_id, identities, hit_id)
-                    Dim neighbor_ids As UInteger() = registry.protein_cluster _
-                        .left_join("protein_data") _
-                        .on(field("`protein_data`.id") = field("hit_id")) _
+                    ' 3. 双向查询邻居
+                    ' 3.1 查询hit方向的邻居
+                    Dim neighbor_ids_from_hit = registry.protein_cluster _
+                        .left_join("`protein_data` as pd1") _
+                        .on(field("`pd1`.id") = field("hit_id")) _
                         .where(field("query_id").in(current_batch_ids),
                                field("identities") > cutoff,
                                field("e_value") < eval_cutoff,
-                               field("`protein_data`.cluster_id") = 0) _
-                        .project(Of UInteger)("`protein_data`.id") ' 只Select ID，不加载序列
+                               field("`pd1`.cluster_id") = 0) _
+                        .project(Of UInteger)("`pd1`.id")
+
+                    ' 3.2 查询query方向的邻居
+                    Dim neighbor_ids_from_query = registry.protein_cluster _
+                        .left_join("`protein_data` as pd2") _
+                        .on(field("`pd2`.id") = field("query_id")) _
+                        .where(field("hit_id").in(current_batch_ids),
+                               field("identities") > cutoff,
+                               field("e_value") < eval_cutoff,
+                               field("`pd2`.cluster_id") = 0) _
+                        .project(Of UInteger)("`pd2`.id")
+
+                    ' 合并并去重
+                    Dim neighbor_ids = neighbor_ids_from_hit _
+                        .Union(neighbor_ids_from_query) _
+                        .Distinct() _
+                        .Where(Function(id) Not visited.Contains(id)) _
+                        .ToArray()
 
                     If Not neighbor_ids.IsNullOrEmpty Then
                         For Each block As UInteger() In neighbor_ids.SplitIterator(BATCH_SIZE, echo:=False)
@@ -369,7 +392,14 @@ Public Module registry_models
                         Next
 
                         ' 5. 将新发现的邻居加入队列，继续向外扩展
-                        Call queue.AddRange(neighbor_ids)
+                        ' 加入队列（去重）
+                        For Each new_neighbor As UInteger In neighbor_ids
+                            If Not visited.Contains(new_neighbor) Then
+                                visited.Add(new_neighbor)
+                                queue.Add(new_neighbor)
+                            End If
+                        Next
+
                         Call $"[protein_cluster {n_clusters}: {protein.function}] join {neighbor_ids.Length} cluster neighbors, queue {queue.Count} cluster members!".debug
                     End If
                 Loop
