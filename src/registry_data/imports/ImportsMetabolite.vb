@@ -201,10 +201,11 @@ Public Module ImportsMetabolite
 
                 Dim hashcode As String = Strings.LCase(name.name).MD5
 
+                ' name value has been changed
                 If hashcode <> name.hashcode Then
                     Call updates.add(registry.metabolites _
                         .where(field("id") = name.id) _
-                        .save_sql(field("hashcode") = hashcode))
+                        .save_sql(field("hashcode") = hashcode, field("name") = name.name))
                 End If
             Next
         Next
