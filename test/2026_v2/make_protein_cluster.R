@@ -4,10 +4,7 @@ imports "annotation.workflow" from "seqtoolkit";
 imports "models" from "biocad_registry";
 imports "hmmer" from "seqtoolkit";
 
-# open_registry("xieguigang", 123456, host ="192.168.3.15")
-# |> make_protein_clusters()
-# ;
+let registry = open_registry("xieguigang", 123456, host ="192.168.3.15");
 
-open_registry("xieguigang", 123456, host ="192.168.3.15") 
-|> link_prot_ko(hmmer::parse_kofamscan("K:\ko_result.tsv"))
-;
+registry |> make_protein_clusters();
+# registry |> link_prot_ko(hmmer::parse_kofamscan("K:\ko_result.tsv"));
