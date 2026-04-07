@@ -303,7 +303,7 @@ Public Module registry_models
     End Function
 
     <ExportAPI("make_protein_clusters")>
-    Public Function make_protein_clusters(registry As biocad_registry, Optional cutoff As Double = 50, Optional eval_cutoff As Double = 0.00001)
+    Public Function make_protein_clusters(registry As biocad_registry, Optional cutoff As Double = 65, Optional eval_cutoff As Double = 0.00001)
         Dim page_size As Integer = 10000
 
         ' 定义每批次处理的最大ID数量，防止SQL语句过长
@@ -372,7 +372,8 @@ Public Module registry_models
                         Next
 
                         ' 5. 将新发现的邻居加入队列，继续向外扩展
-                        queue.AddRange(neighbor_ids)
+                        Call queue.AddRange(neighbor_ids)
+                        Call $"[{protein.function}] join {neighbor_ids.Length} cluster neighbors, queue {queue.Count} cluster members!".debug
                     End If
                 Loop
             Next
