@@ -305,6 +305,7 @@ Public Module registry_models
     <ExportAPI("make_protein_clusters")>
     Public Function make_protein_clusters(registry As biocad_registry, Optional cutoff As Double = 65, Optional eval_cutoff As Double = 0.00001)
         Dim page_size As Integer = 10000
+        Dim n_clusters As Integer = 1
 
         ' 定义每批次处理的最大ID数量，防止SQL语句过长
         Const BATCH_SIZE As Integer = 500
@@ -324,14 +325,10 @@ Public Module registry_models
                 Exit For
             End If
 
-            Dim bar As ProgressBar = Nothing
-
-            For Each cluster_key As UInteger In TqdmWrapper.Wrap(protein_ids, bar:=bar)
+            For Each cluster_key As UInteger In protein_ids
                 Dim protein As protein_data = registry.protein_data _
                     .where(field("id") = cluster_key) _
                     .find(Of protein_data)("id", "cluster_id")
-
-                Call bar.SetLabel(protein.function)
 
                 If protein.cluster_id > 0 Then
                     ' 如果已经被归簇，跳过
@@ -373,9 +370,11 @@ Public Module registry_models
 
                         ' 5. 将新发现的邻居加入队列，继续向外扩展
                         Call queue.AddRange(neighbor_ids)
-                        Call $"[{protein.function}] join {neighbor_ids.Length} cluster neighbors, queue {queue.Count} cluster members!".debug
+                        Call $"[protein_cluster {n_clusters}: {protein.function}] join {neighbor_ids.Length} cluster neighbors, queue {queue.Count} cluster members!".debug
                     End If
                 Loop
+
+                n_clusters += 1
             Next
         Next
 
