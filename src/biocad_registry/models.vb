@@ -342,7 +342,7 @@ Public Module registry_models
                 Do While queue.Count > 0
                     ' 取出当前层级的 ID 列表
                     Dim current_batch_ids = queue.Take(BATCH_SIZE).ToList()
-                    queue = queue.Skip(BATCH_SIZE).ToList()
+                    queue = queue.Skip(BATCH_SIZE).AsList()
 
                     ' 3. 查找邻居 (优化：只查 ID)
                     ' 注意：这里假设 protein_cluster 包含双向数据

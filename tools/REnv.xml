@@ -3130,6 +3130,11 @@ to [rest of string was truncated]&quot;;.
  ?
  </summary>
 </member>
+<member name="F:SMRUCC.Rsharp.Language.TokenType.query">
+ <summary>
+ ?"xxx"
+ </summary>
+</member>
 <member name="F:SMRUCC.Rsharp.Language.TokenType.stringInterpolation">
  <summary>
  字符串插值语法，与javascript脚本之中的字符串插值保持一致
