@@ -39,7 +39,7 @@ declare namespace models {
    */
    function link_prot_ko(registry: object, kofamscan: any, env?: object): any;
    /**
-     * @param cutoff default value Is ``30``.
+     * @param cutoff default value Is ``65``.
      * @param eval_cutoff default value Is ``1E-05``.
    */
    function make_protein_clusters(registry: object, cutoff?: number, eval_cutoff?: number): any;
