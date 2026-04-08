@@ -44,6 +44,21 @@ Public Module RegisterSymbol
         Return symbol
     End Function
 
+    Public Function CleanName(name As String) As String
+        For Each alphabet In greekAlphabet
+            name = name.Replace(alphabet.Key, alphabet.Value)
+        Next
+
+        name = name _
+            .StringReplace("_{2,}", "_") _
+            .StringReplace("[-]{2,}", "-") _
+            .StringReplace(",{2,}", ",") _
+            .StringReplace("['""]{2,}", "'") _
+            .StringReplace("\s{2,}", " ")
+
+        Return name
+    End Function
+
     ''' <summary>
     ''' get an existed register symbol for the target metabolite
     ''' </summary>

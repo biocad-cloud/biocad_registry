@@ -186,23 +186,22 @@ Public Module ImportsMetabolite
             End If
 
             For Each name As metabolites In page_data
+                Dim update_name As Boolean = False
+
                 If name.name.StringEmpty(, True) Then
                     Call $"processing empty name of metabolite {name.id} '{name.name}'".debug
+
+                    update_name = True
                     name.name = name.PickName
-                    Call registry.metabolites _
-                        .where(field("id") = name.id) _
-                        .save(field("name") = name.name)
                 ElseIf name.name.IsUpperName Then
+                    update_name = True
                     name.name = name.name.ToLower
-                    Call registry.metabolites _
-                        .where(field("id") = name.id) _
-                        .save(field("name") = name.name)
                 End If
 
                 Dim hashcode As String = Strings.LCase(name.name).MD5
 
                 ' name value has been changed
-                If hashcode <> name.hashcode Then
+                If update_name OrElse hashcode <> name.hashcode Then
                     Call updates.add(registry.metabolites _
                         .where(field("id") = name.id) _
                         .save_sql(field("hashcode") = hashcode, field("name") = name.name))
