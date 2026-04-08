@@ -172,12 +172,11 @@ Public Module ImportsMetabolite
         End If
     End Function
 
-    Private Sub UpdateHashCode(registry As biocad_registry, Optional page_size As Integer = 5000)
-        Dim updates As CommitTransaction = registry.metabolites.open_transaction
-
+    Private Sub UpdateHashCode(registry As biocad_registry, Optional page_size As Integer = 10000)
         For page As Integer = 1 To Integer.MaxValue
             Dim offset As UInteger = (page - 1) * page_size
             Dim page_data = registry.metabolites.limit(offset, page_size).select(Of metabolites)()
+            Dim updates As CommitTransaction = registry.metabolites.open_transaction
 
             If page_data.IsNullOrEmpty Then
                 Exit For
@@ -185,7 +184,7 @@ Public Module ImportsMetabolite
                 Call $"update hashcode for metabolite data page {page}...".debug
             End If
 
-            For Each name As metabolites In page_data
+            For Each name As metabolites In TqdmWrapper.Wrap(page_data)
                 Dim update_name As Boolean = False
 
                 If name.name.StringEmpty(, True) Then
@@ -208,10 +207,10 @@ Public Module ImportsMetabolite
                         .save_sql(field("hashcode") = hashcode, field("name") = name.name))
                 End If
             Next
-        Next
 
-        Call "commit the name hashcode".debug
-        Call updates.commit()
+            Call "commit the name hashcode".debug
+            Call updates.commit()
+        Next
     End Sub
 
     <Extension>
