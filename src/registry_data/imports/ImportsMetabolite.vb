@@ -151,25 +151,28 @@ Public Module ImportsMetabolite
     End Sub
 
     <Extension>
-    Private Function PickName(m As metabolites) As String
+    Private Function PickName(m As metabolites, registry As biocad_registry) As String
         If Not m.biocyc.StringEmpty Then
             Return m.biocyc
         ElseIf Not m.mesh_id.StringEmpty Then
             Return m.mesh_id
         ElseIf Not m.wikipedia.StringEmpty Then
             Return m.wikipedia
-        ElseIf Not m.kegg_id.StringEmpty Then
-            Return m.kegg_id
-        ElseIf Not m.hmdb_id.StringEmpty Then
-            Return m.hmdb_id
-        ElseIf Not m.lipidmaps_id Then
-            Return m.lipidmaps_id
-        ElseIf Not m.formula.StringEmpty Then
-            Return m.formula
         ElseIf Not m.cas_id.StringEmpty Then
             Return m.cas_id
         Else
-            Return $"Metabolite_{m.id}"
+            Dim np1 = registry.biocad_vocabulary.GetDatabaseResource("Coconut NaturalProduct")
+            Dim xref = registry.db_xrefs _
+                .where(field("obj_id") = m.id,
+                       field("type") = registry.biocad_vocabulary.metabolite_type,
+                       field("db_name") = np1.id) _
+                .find(Of db_xrefs)
+
+            If xref IsNot Nothing Then
+                Return xref.db_xref
+            Else
+                Return $"Metabolite_{m.id}"
+            End If
         End If
     End Function
 
@@ -188,10 +191,10 @@ Public Module ImportsMetabolite
             For Each name As metabolites In TqdmWrapper.Wrap(page_data)
                 Dim update_name As Boolean = False
 
-                If name.name.StringEmpty(, True) Then
+                If name.name.StringEmpty(, True) OrElse name.name.IsPattern("Metabolite_\d+") Then
                     Call $"processing empty name of metabolite {name.id} '{name.name}'".debug
                     update_name = True
-                    name.name = name.PickName
+                    name.name = name.PickName(registry)
                     ' invalid update logic for
                     ' XXXX-HETE
                     ' ATP
