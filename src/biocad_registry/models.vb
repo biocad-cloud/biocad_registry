@@ -42,7 +42,9 @@ Public Module registry_models
         Dim term_location As UInteger = registry.biocad_vocabulary.GetRegistryEntity(biocad_vocabulary.EntitySubcellularLocation).id
 
         For i As Integer = 0 To locations.nrows - 1
-            Dim loc As compartment_location = registry.compartment_location.where(field("name") = name(i)).find(Of compartment_location)
+            Dim loc As compartment_location = registry.compartment_location _
+                .where(field("name") = name(i)) _
+                .find(Of compartment_location)
 
             If Not loc Is Nothing Then
                 Dim term As String = loc.name.Replace(" ", "_")

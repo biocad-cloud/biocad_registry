@@ -240,7 +240,9 @@ Public Module ImportsMetabolite
             End If
 
             If meta.id = top_main.id Then
-                Call trans.add(registry.metabolites.where(field("id") = top_main.id).save_sql(field("main_id") = 0))
+                Call trans.add(registry.metabolites _
+                               .where(field("id") = top_main.id) _
+                               .save_sql(field("main_id") = 0))
             Else
                 Dim updates As New List(Of FieldAssert)(FieldUpdates(top_main:=top_main, meta:=meta))
 
@@ -255,7 +257,9 @@ Public Module ImportsMetabolite
                 End If
 
                 If struct Is Nothing Then
-                    Dim smiles_str = registry.struct_data.where(field("metabolite_id") = meta.id).find(Of struct_data)
+                    Dim smiles_str = registry.struct_data _
+                        .where(field("metabolite_id") = meta.id) _
+                        .find(Of struct_data)
 
                     If Not smiles_str Is Nothing Then
                         Call registry.struct_data.add(
@@ -343,7 +347,10 @@ Public Module ImportsMetabolite
             Call UpdateHashCode(registry)
         End If
 
-        For Each hashcode As String In TqdmWrapper.Wrap(registry.metabolites.group_by("hashcode").having(field("*").count > 1).project(Of String)("hashcode"))
+        For Each hashcode As String In TqdmWrapper.Wrap(registry.metabolites _
+                                                        .group_by("hashcode") _
+                                                        .having(field("*").count > 1) _
+                                                        .project(Of String)("hashcode"))
             Call registry.metabolites _
                 .where(field("hashcode") = hashcode) _
                 .select(Of metabolites) _
