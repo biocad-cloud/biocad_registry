@@ -15,7 +15,7 @@ Public Module RegisterSymbol
 
     <Extension>
     Public Function makeSymbol(name As String) As String
-        Dim symbol As String = Strings.Trim(name) _
+        Dim symbol As String = CleanName(Strings.Trim(name)) _
             .Replace("(", "_") _
             .Replace(")", "_") _
             .Replace("""", "_") _
@@ -37,10 +37,6 @@ Public Module RegisterSymbol
         symbol = symbol.StringReplace("[\-_]+,", ",")
         symbol = symbol.StringReplace(",{2,}", ",")
 
-        For Each alphabet In greekAlphabet
-            symbol = symbol.Replace(alphabet.Key, alphabet.Value)
-        Next
-
         Return symbol
     End Function
 
@@ -55,6 +51,9 @@ Public Module RegisterSymbol
             .StringReplace(",{2,}", ",") _
             .StringReplace("['""]{2,}", "'") _
             .StringReplace("\s{2,}", " ")
+
+        name = name.StringReplace("[&]plusmn;", "±")
+        name = name.StringReplace("[&]#39;", "")
 
         Return name
     End Function
