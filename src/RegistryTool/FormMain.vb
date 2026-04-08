@@ -583,18 +583,52 @@ Public Class FormMain : Implements AppHost
     End Sub
 
     Private Async Sub OpenSymbolToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenSymbolToolStripMenuItem.Click
-        Dim symbol_name As String = InputBox("Enter metabolite registry symbol name to open:")
+        Dim symbol_name = InputBox("Enter metabolite registry symbol name to open:")
 
         If symbol_name.StringEmpty(, True) Then
             Return
         End If
 
-        Dim meta_id = Await MyApplication.biocad_registry.registry_resolver.async.where(field("type") = MyApplication.biocad_registry.biocad_vocabulary.metabolite_type, field("register_name") = symbol_name).find(Of biocad_registryModel.registry_resolver)
+        Dim meta_id = Await MyApplication.biocad_registry.registry_resolver.async.where(field("type") = MyApplication.biocad_registry.biocad_vocabulary.metabolite_type, field("register_name") = symbol_name).find(Of registry_resolver)
 
         If meta_id Is Nothing Then
-            Call CommonRuntime.Warning($"Could not found metabolite which is associated with registry symbol '{symbol_name}'")
+            CommonRuntime.Warning($"Could not found metabolite which is associated with registry symbol '{symbol_name}'")
         Else
-            Call Workbench.OpenMoleculeEditor(meta_id.symbol_id, meta_id.register_name)
+            OpenMoleculeEditor(meta_id.symbol_id, meta_id.register_name)
+        End If
+    End Sub
+
+    Private Sub ClearListToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ClearListToolStripMenuItem.Click
+        MyApplication.settings.molecule_history = {}
+        MyApplication.settings.Save()
+
+        Call CommonRuntime.StatusMessage("Molecule view history all has been cleared.")
+    End Sub
+
+    Private Async Sub CreateNewMetaboliteToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CreateNewMetaboliteToolStripMenuItem.Click
+        Dim name As String = InputBox("Input new metabolite name:")
+
+        If name.StringEmpty(, True) Then
+            Return
+        ElseIf MessageBox.Show($"Going to create new metabolite which is named: {name}?",
+                               "Create New Metabolite",
+                               MessageBoxButtons.OKCancel,
+                               MessageBoxIcon.Information) = DialogResult.OK Then
+            Return
+        End If
+
+        name = name.Trim
+
+        Dim key As String = name.ToLower.MD5
+
+        Await MyApplication.biocad_registry.metabolites.async.add(field("name") = name, field("hashcode") = key, field("formula") = "", field("exact_mass") = 0)
+
+        Dim findNew = Await MyApplication.biocad_registry.metabolites.async.where(field("hashcode") = key).order_by("id", desc:=True).find(Of biocad_registryModel.metabolites)
+
+        If findNew Is Nothing Then
+            Call CommonRuntime.Warning($"Create metabolite '{name}' error.")
+        Else
+            Call Workbench.OpenMoleculeEditor(findNew.id, findNew.name)
         End If
     End Sub
 End Class

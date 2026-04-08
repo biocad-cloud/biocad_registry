@@ -92,8 +92,10 @@ let options = { width: 450, height: 300 };
         SMILES.MolecularFingerprint.Length = 1024
         morgan = New ProteinStructure.MorganFingerprint(SMILES.MolecularFingerprint.Length)
 
-        MyApplication.settings.molecule_history = MyApplication.settings.molecule_history _
-            .JoinIterates(New MoleculeEditHistory With {.id = mol.id, .name = mol.name}) _
+        MyApplication.settings.molecule_history = New MoleculeEditHistory() {
+                New MoleculeEditHistory With {.id = mol.id, .name = mol.name}
+        } _
+            .JoinIterates(MyApplication.settings.molecule_history) _
             .Take(50) _
             .ToArray
         MyApplication.settings.Save()
