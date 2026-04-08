@@ -190,13 +190,14 @@ Public Module ImportsMetabolite
 
                 If name.name.StringEmpty(, True) Then
                     Call $"processing empty name of metabolite {name.id} '{name.name}'".debug
-
                     update_name = True
                     name.name = name.PickName
                 ElseIf name.name.IsUpperName Then
                     update_name = True
                     name.name = name.name.ToLower
                 End If
+
+                name.name = RegisterSymbol.CleanName(name.name)
 
                 Dim hashcode As String = Strings.LCase(name.name).MD5
 
