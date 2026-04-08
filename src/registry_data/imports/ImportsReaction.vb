@@ -39,7 +39,7 @@ Public Module ImportsReaction
             For Each link In page_data
                 Dim q As FieldAssert
 
-                If link.symbol_id.IsPattern("C\d{5}") Then
+                If link.symbol_id.IsPattern("[CG]\d{5}") Then
                     q = field("kegg_id") = link.symbol_id
                 ElseIf link.symbol_id.IsPattern("ChEBI[:]\d+") Then
                     q = field("chebi_id") = UInteger.Parse(link.symbol_id.Match("\d+"))
