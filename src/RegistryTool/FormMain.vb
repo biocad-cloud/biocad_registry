@@ -611,7 +611,7 @@ Public Class FormMain : Implements AppHost
         ElseIf MessageBox.Show($"Going to create new metabolite which is named: {name}?",
                                "Create New Metabolite",
                                MessageBoxButtons.OKCancel,
-                               MessageBoxIcon.Information) = DialogResult.OK Then
+                               MessageBoxIcon.Information) <> DialogResult.OK Then
             Return
         End If
 
