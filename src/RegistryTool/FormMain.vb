@@ -87,8 +87,6 @@ Public Class FormMain : Implements AppHost
             Call MessageBox.Show("Application initialization error!", "Application Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End If
 
-        OpenMoleculeToolStripMenuItem.DropDownItems.Clear()
-
         For Each entry As MoleculeEditHistory In Await Task.Run(Function() MyApplication.settings.GetHistoryItems)
             Dim item As New ToolStripMenuItem(entry.ToString) With {.Tag = entry}
             AddHandler item.Click, Sub() Call Workbench.OpenMoleculeEditor(entry.id, entry.name)
