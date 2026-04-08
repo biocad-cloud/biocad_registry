@@ -30,8 +30,9 @@ Public Module RegisterSymbol
             .Trim("-"c, "_"c, ","c)
 
         symbol = symbol _
-            .Replace("<sub>", "").Replace("<sup>", "") _
-            .Replace("</sub>", "").Replace("</sup>", "")
+            .StringReplace("[<]/?\s*sub[>]", "") _
+            .StringReplace("[<]/?\s*sup[>]", "") _
+            .StringReplace("[<]/?\s*i[>]", "")
 
         symbol = symbol.StringReplace(",[\-_]+", ",")
         symbol = symbol.StringReplace("[\-_]+,", ",")
