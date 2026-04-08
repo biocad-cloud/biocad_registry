@@ -48,6 +48,14 @@ registry_data
  <param name="ont"></param>
  <param name="source_id"></param>
 </member>
+<member name="M:registry_data.ImportsMetabolite.FieldUpdates(registry_data.biocad_registryModel.metabolites,registry_data.biocad_registryModel.metabolites)">
+ <summary>
+ Update empty main data from the alias meta data
+ </summary>
+ <param name="top_main"></param>
+ <param name="meta"></param>
+ <returns></returns>
+</member>
 <member name="M:registry_data.ImportsReaction.MetabolicSubstrateRole(registry_data.biocad_registry)">
  <summary>
  left
