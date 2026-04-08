@@ -30,9 +30,9 @@ Public Module RegisterSymbol
             .Trim("-"c, "_"c, ","c)
 
         symbol = symbol _
-            .StringReplace("[<]/?\s*sub[>]", "") _
-            .StringReplace("[<]/?\s*sup[>]", "") _
-            .StringReplace("[<]/?\s*i[>]", "")
+            .StringReplace("[<][/]?\s*sub[>]", "") _
+            .StringReplace("[<][/]?\s*sup[>]", "") _
+            .StringReplace("[<][/]?\s*i[>]", "")
 
         symbol = symbol.StringReplace(",[\-_]+", ",")
         symbol = symbol.StringReplace("[\-_]+,", ",")
@@ -44,6 +44,7 @@ Public Module RegisterSymbol
     Public Function CleanName(name As String) As String
         For Each alphabet In greekAlphabet
             name = name.Replace(alphabet.Key, alphabet.Value)
+            name = name.StringReplace(alphabet.Key.Replace("&", "[&]"), alphabet.Value)
         Next
 
         name = name _
@@ -61,6 +62,8 @@ Public Module RegisterSymbol
         name = name.StringReplace("[&]beta$", "β")
         name = name.StringReplace("-alpha-", "α")
         name = name.StringReplace("-beta-", "β")
+        name = name.Replace("&#39", "")
+        name = name.StringReplace("\s{2,}", " ").Trim
 
         Return name
     End Function
