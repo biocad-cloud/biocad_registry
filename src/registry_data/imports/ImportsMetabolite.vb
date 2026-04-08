@@ -192,7 +192,7 @@ Public Module ImportsMetabolite
                 Dim update_name As Boolean = False
 
                 If name.name.StringEmpty(, True) OrElse name.name.IsPattern("Metabolite_\d+") Then
-                    Call $"processing empty name of metabolite {name.id} '{name.name}'".debug
+                    ' Call $"processing empty name of metabolite {name.id} '{name.name}'".debug
                     update_name = True
                     name.name = name.PickName(registry)
                     ' invalid update logic for
