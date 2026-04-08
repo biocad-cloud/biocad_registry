@@ -51,7 +51,9 @@ Public Module RegisterSymbol
             .StringReplace("[-]{2,}", "-") _
             .StringReplace(",{2,}", ",") _
             .StringReplace("['""]{2,}", "'") _
-            .StringReplace("\s{2,}", " ")
+            .StringReplace("\s{2,}", " ") _
+            .StringReplace("[.,;][-]", "-") _
+            .StringReplace("[.,;]_", "_")
 
         name = name.StringReplace("[&]plusmn;", "±")
         name = name.StringReplace("[&]#39;", "'")
