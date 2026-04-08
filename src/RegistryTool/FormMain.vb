@@ -581,4 +581,20 @@ Public Class FormMain : Implements AppHost
     Private Sub ShowLogWindowToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ShowLogWindowToolStripMenuItem.Click
         Call CommonRuntime.Dock(CommonRuntime.GetOutputWindow, DockState.DockBottom)
     End Sub
+
+    Private Async Sub OpenSymbolToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenSymbolToolStripMenuItem.Click
+        Dim symbol_name As String = InputBox("Enter metabolite registry symbol name to open:")
+
+        If symbol_name.StringEmpty(, True) Then
+            Return
+        End If
+
+        Dim meta_id = Await MyApplication.biocad_registry.registry_resolver.async.where(field("type") = MyApplication.biocad_registry.biocad_vocabulary.metabolite_type, field("register_name") = symbol_name).find(Of biocad_registryModel.registry_resolver)
+
+        If meta_id Is Nothing Then
+            Call CommonRuntime.Warning($"Could not found metabolite which is associated with registry symbol '{symbol_name}'")
+        Else
+            Call Workbench.OpenMoleculeEditor(meta_id.symbol_id, meta_id.register_name)
+        End If
+    End Sub
 End Class

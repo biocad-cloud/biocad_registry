@@ -67,13 +67,15 @@ Partial Class FormMain
         ToolStripMenuItem3 = New ToolStripSeparator()
         ExportProteinDatabaseToolStripMenuItem = New ToolStripMenuItem()
         WindowsToolStripMenuItem = New ToolStripMenuItem()
+        ShowLogWindowToolStripMenuItem = New ToolStripMenuItem()
+        ToolStripMenuItem7 = New ToolStripSeparator()
         CloseAllToolStripMenuItem = New ToolStripMenuItem()
         StatusStrip1 = New StatusStrip()
         ToolStripStatusLabel1 = New ToolStripStatusLabel()
         m_dockPanel = New Microsoft.VisualStudio.WinForms.Docking.DockPanel()
         VisualStudioToolStripExtender1 = New Microsoft.VisualStudio.WinForms.Docking.VisualStudioToolStripExtender(components)
-        ToolStripMenuItem7 = New ToolStripSeparator()
-        ShowLogWindowToolStripMenuItem = New ToolStripMenuItem()
+        ToolStripMenuItem8 = New ToolStripSeparator()
+        OpenSymbolToolStripMenuItem = New ToolStripMenuItem()
         MenuStrip1.SuspendLayout()
         StatusStrip1.SuspendLayout()
         SuspendLayout()
@@ -98,47 +100,47 @@ Partial Class FormMain
         ' OpenMoleculeToolStripMenuItem
         ' 
         OpenMoleculeToolStripMenuItem.Name = "OpenMoleculeToolStripMenuItem"
-        OpenMoleculeToolStripMenuItem.Size = New Size(180, 22)
+        OpenMoleculeToolStripMenuItem.Size = New Size(160, 22)
         OpenMoleculeToolStripMenuItem.Text = "Open Molecule"
         ' 
         ' BatchOperationToolStripMenuItem
         ' 
         BatchOperationToolStripMenuItem.Name = "BatchOperationToolStripMenuItem"
-        BatchOperationToolStripMenuItem.Size = New Size(180, 22)
+        BatchOperationToolStripMenuItem.Size = New Size(160, 22)
         BatchOperationToolStripMenuItem.Text = "Batch Operation"
         ' 
         ' SearchNamesToolStripMenuItem
         ' 
         SearchNamesToolStripMenuItem.Name = "SearchNamesToolStripMenuItem"
-        SearchNamesToolStripMenuItem.Size = New Size(180, 22)
+        SearchNamesToolStripMenuItem.Size = New Size(160, 22)
         SearchNamesToolStripMenuItem.Text = "Search Names"
         ' 
         ' ToolStripMenuItem4
         ' 
         ToolStripMenuItem4.Name = "ToolStripMenuItem4"
-        ToolStripMenuItem4.Size = New Size(177, 6)
+        ToolStripMenuItem4.Size = New Size(157, 6)
         ' 
         ' SettingsToolStripMenuItem
         ' 
         SettingsToolStripMenuItem.Name = "SettingsToolStripMenuItem"
-        SettingsToolStripMenuItem.Size = New Size(180, 22)
+        SettingsToolStripMenuItem.Size = New Size(160, 22)
         SettingsToolStripMenuItem.Text = "Settings"
         ' 
         ' AboutToolStripMenuItem
         ' 
         AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        AboutToolStripMenuItem.Size = New Size(180, 22)
+        AboutToolStripMenuItem.Size = New Size(160, 22)
         AboutToolStripMenuItem.Text = "About"
         ' 
         ' ToolStripMenuItem1
         ' 
         ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        ToolStripMenuItem1.Size = New Size(177, 6)
+        ToolStripMenuItem1.Size = New Size(157, 6)
         ' 
         ' ExitToolStripMenuItem
         ' 
         ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        ExitToolStripMenuItem.Size = New Size(180, 22)
+        ExitToolStripMenuItem.Size = New Size(160, 22)
         ExitToolStripMenuItem.Text = "Exit"
         ' 
         ' DataToolStripMenuItem
@@ -162,7 +164,7 @@ Partial Class FormMain
         ' 
         ' MoleculesToolStripMenuItem
         ' 
-        MoleculesToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {SearchToolStripMenuItem, SearchNameToolStripMenuItem})
+        MoleculesToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {SearchToolStripMenuItem, SearchNameToolStripMenuItem, ToolStripMenuItem8, OpenSymbolToolStripMenuItem})
         MoleculesToolStripMenuItem.Name = "MoleculesToolStripMenuItem"
         MoleculesToolStripMenuItem.Size = New Size(271, 22)
         MoleculesToolStripMenuItem.Text = "Molecules"
@@ -170,13 +172,13 @@ Partial Class FormMain
         ' SearchToolStripMenuItem
         ' 
         SearchToolStripMenuItem.Name = "SearchToolStripMenuItem"
-        SearchToolStripMenuItem.Size = New Size(144, 22)
+        SearchToolStripMenuItem.Size = New Size(180, 22)
         SearchToolStripMenuItem.Text = "Search Text"
         ' 
         ' SearchNameToolStripMenuItem
         ' 
         SearchNameToolStripMenuItem.Name = "SearchNameToolStripMenuItem"
-        SearchNameToolStripMenuItem.Size = New Size(144, 22)
+        SearchNameToolStripMenuItem.Size = New Size(180, 22)
         SearchNameToolStripMenuItem.Text = "Search Name"
         ' 
         ' SubCellularCompartmentsToolStripMenuItem
@@ -348,10 +350,21 @@ Partial Class FormMain
         WindowsToolStripMenuItem.Size = New Size(68, 20)
         WindowsToolStripMenuItem.Text = "Windows"
         ' 
+        ' ShowLogWindowToolStripMenuItem
+        ' 
+        ShowLogWindowToolStripMenuItem.Name = "ShowLogWindowToolStripMenuItem"
+        ShowLogWindowToolStripMenuItem.Size = New Size(173, 22)
+        ShowLogWindowToolStripMenuItem.Text = "Show Log Window"
+        ' 
+        ' ToolStripMenuItem7
+        ' 
+        ToolStripMenuItem7.Name = "ToolStripMenuItem7"
+        ToolStripMenuItem7.Size = New Size(170, 6)
+        ' 
         ' CloseAllToolStripMenuItem
         ' 
         CloseAllToolStripMenuItem.Name = "CloseAllToolStripMenuItem"
-        CloseAllToolStripMenuItem.Size = New Size(180, 22)
+        CloseAllToolStripMenuItem.Size = New Size(173, 22)
         CloseAllToolStripMenuItem.Text = "Close All"
         ' 
         ' StatusStrip1
@@ -374,7 +387,7 @@ Partial Class FormMain
         ' 
         m_dockPanel.Dock = DockStyle.Fill
         m_dockPanel.Location = New Point(0, 24)
-        m_dockPanel.Margin = New Padding(4, 4, 4, 4)
+        m_dockPanel.Margin = New Padding(4)
         m_dockPanel.Name = "m_dockPanel"
         m_dockPanel.Size = New Size(1072, 468)
         m_dockPanel.TabIndex = 4
@@ -383,16 +396,16 @@ Partial Class FormMain
         ' 
         VisualStudioToolStripExtender1.DefaultRenderer = Nothing
         ' 
-        ' ToolStripMenuItem7
+        ' ToolStripMenuItem8
         ' 
-        ToolStripMenuItem7.Name = "ToolStripMenuItem7"
-        ToolStripMenuItem7.Size = New Size(177, 6)
+        ToolStripMenuItem8.Name = "ToolStripMenuItem8"
+        ToolStripMenuItem8.Size = New Size(177, 6)
         ' 
-        ' ShowLogWindowToolStripMenuItem
+        ' OpenSymbolToolStripMenuItem
         ' 
-        ShowLogWindowToolStripMenuItem.Name = "ShowLogWindowToolStripMenuItem"
-        ShowLogWindowToolStripMenuItem.Size = New Size(180, 22)
-        ShowLogWindowToolStripMenuItem.Text = "Show Log Window"
+        OpenSymbolToolStripMenuItem.Name = "OpenSymbolToolStripMenuItem"
+        OpenSymbolToolStripMenuItem.Size = New Size(180, 22)
+        OpenSymbolToolStripMenuItem.Text = "Open Symbol"
         ' 
         ' FormMain
         ' 
@@ -403,7 +416,7 @@ Partial Class FormMain
         Controls.Add(StatusStrip1)
         Controls.Add(MenuStrip1)
         MainMenuStrip = MenuStrip1
-        Margin = New Padding(4, 4, 4, 4)
+        Margin = New Padding(4)
         Name = "FormMain"
         Text = "Registry Tool"
         MenuStrip1.ResumeLayout(False)
@@ -466,4 +479,6 @@ Partial Class FormMain
     Friend WithEvents ToolStripMenuItem3 As ToolStripSeparator
     Friend WithEvents ShowLogWindowToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem7 As ToolStripSeparator
+    Friend WithEvents ToolStripMenuItem8 As ToolStripSeparator
+    Friend WithEvents OpenSymbolToolStripMenuItem As ToolStripMenuItem
 End Class
