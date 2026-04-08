@@ -54,6 +54,10 @@ Public Module RegisterSymbol
 
         name = name.StringReplace("[&]plusmn;", "±")
         name = name.StringReplace("[&]#39;", "'")
+        name = name.StringReplace("[&]alpha$", "α")
+        name = name.StringReplace("[&]beta$", "β")
+        name = name.StringReplace("-alpha-", "α")
+        name = name.StringReplace("-beta-", "β")
 
         Return name
     End Function
