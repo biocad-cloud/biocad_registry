@@ -53,7 +53,7 @@ Public Module RegisterSymbol
             .StringReplace("\s{2,}", " ")
 
         name = name.StringReplace("[&]plusmn;", "±")
-        name = name.StringReplace("[&]#39;", "")
+        name = name.StringReplace("[&]#39;", "'")
 
         Return name
     End Function
