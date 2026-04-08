@@ -48,7 +48,7 @@ declare namespace models {
    function register_metabolic_symbols(registry: object): ;
    /**
    */
-   function resolve_metabolite_duplicates(registry: object): ;
+   function resolve_metabolite_alias(registry: object): ;
    /**
     * make updates of the compartment location metadata
     * 
