@@ -36,6 +36,7 @@ Public Class FormSetSubstrate
                                                                             field("hashcode") = hashcode Or
                                                                             field("formula") = name) _
                                                                     .order_by(sort, desc:=True) _
+                                                                    .limit(300) _
                                                                     .select(Of SymbolView)
                                       End Function)
         End If
