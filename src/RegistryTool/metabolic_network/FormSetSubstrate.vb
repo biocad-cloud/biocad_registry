@@ -7,25 +7,39 @@ Imports RegistryTool.My
 
 Public Class FormSetSubstrate
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Async Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         If TextBox1.Text.StringEmpty(, True) Then
             Return
         End If
 
         Dim name = Trim(TextBox1.Text)
-        Dim q_str = name.FullTextEscape
-        Dim hashcode = Trim(name).ToLower.MD5
-        Dim sort = $"IF(hashcode = '{hashcode}',
+        Dim q As SymbolView()
+
+        If name.IsPattern("BioCAD\d+") Then
+            Dim find = Await MyApplication.biocad_registry.metabolites.async.where(field("id") = name.Match("\d+")).find(Of SymbolView)
+
+            If find Is Nothing Then
+                MessageBox.Show($"Could not found metabolite which its data id is: {name}", "Load metabolite", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                Return
+            Else
+                q = {find}
+            End If
+        Else
+            Dim q_str = name.FullTextEscape
+            Dim hashcode = Trim(name).ToLower.MD5
+            Dim sort = $"IF(hashcode = '{hashcode}',
     100000000,
     MATCH (name , note) AGAINST ('{q_str}' IN BOOLEAN MODE))"
-        Dim q = TaskProgress.LoadData(Function(p As ITaskProgress)
+            q = TaskProgress.LoadData(Function(p As ITaskProgress)
                                           Return MyApplication.biocad_registry.metabolites _
-                                                .where(match("name", "note").against(q_str, booleanMode:=True) Or
-                                                        field("hashcode") = hashcode Or
-                                                        field("formula") = name) _
-                                                .order_by(sort, desc:=True) _
-                                                .select(Of SymbolView)
+                                                                    .where(match("name", "note").against(q_str, booleanMode:=True) Or
+                                                                            field("hashcode") = hashcode Or
+                                                                            field("formula") = name) _
+                                                                    .order_by(sort, desc:=True) _
+                                                                    .select(Of SymbolView)
                                       End Function)
+        End If
+
         ListBox1.Items.Clear()
 
         For Each item In q
