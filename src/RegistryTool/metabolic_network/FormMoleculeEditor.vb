@@ -812,6 +812,10 @@ let options = { width: 450, height: 300 };
     Private Sub Button18_Click(sender As Object, e As EventArgs) Handles Button18.Click
         Call SaveMainXrefID(txtWikipediaID, "wikipedia")
     End Sub
+
+    Private Sub LinkLabel2_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel2.LinkClicked
+        Call Clipboard.SetText(TextBox8.Text)
+    End Sub
 End Class
 
 Public Class reaction_graphdata
