@@ -676,7 +676,7 @@ registry_data
    KEY `find_by_xref` (`db_name`,`db_xref`,`type`),
    KEY `find_by_object` (`type`,`obj_id`),
    KEY `search_xref_word` (`db_xref`)
- ) ENGINE=InnoDB AUTO_INCREMENT=15809811 DEFAULT CHARSET=utf8mb3 COMMENT='database cross reference of the model objects ';
+ ) ENGINE=InnoDB AUTO_INCREMENT=15809826 DEFAULT CHARSET=utf8mb3 COMMENT='database cross reference of the model objects ';
  /*!40101 SET character_set_client = @saved_cs_client */;
  
  --
@@ -1369,7 +1369,7 @@ registry_data
    KEY `registry_model_idx` (`species_id`),
    KEY `symbol_index` (`symbol_id`),
    KEY `filter_network` (`role`,`species_id`)
- ) ENGINE=InnoDB AUTO_INCREMENT=474084 DEFAULT CHARSET=utf8mb3 COMMENT='metabolic reaction network';
+ ) ENGINE=InnoDB AUTO_INCREMENT=474219 DEFAULT CHARSET=utf8mb3 COMMENT='metabolic reaction network';
  /*!40101 SET character_set_client = @saved_cs_client */;
  
  --
@@ -1482,6 +1482,7 @@ registry_data
    `id` int unsigned NOT NULL AUTO_INCREMENT,
    `main_id` int unsigned NOT NULL DEFAULT '0' COMMENT 'processing of the possible duplicated name metabolites',
    `name` varchar(2048) NOT NULL,
+   `name_zh` varchar(255) DEFAULT NULL COMMENT 'the metabolite chinese name',
    `hashcode` char(32) NOT NULL COMMENT 'md5 checksum of the tolower(name)',
    `formula` varchar(128) NOT NULL,
    `exact_mass` double unsigned NOT NULL DEFAULT '0',
@@ -1512,7 +1513,7 @@ registry_data
    KEY `find_mesh` (`mesh_id`),
    KEY `find_wiki` (`wikipedia`),
    FULLTEXT KEY `search_text` (`name`,`note`)
- ) ENGINE=InnoDB AUTO_INCREMENT=1994143 DEFAULT CHARSET=utf8mb3 COMMENT='[cellular entity model][entity instance] a set of reference metabolites, template based on the www.metabolomicsworkbench.org refmet dataset';
+ ) ENGINE=InnoDB AUTO_INCREMENT=1994154 DEFAULT CHARSET=utf8mb3 COMMENT='[cellular entity model][entity instance] a set of reference metabolites, template based on the www.metabolomicsworkbench.org refmet dataset';
  /*!40101 SET character_set_client = @saved_cs_client */;
  
  --
@@ -1523,6 +1524,14 @@ registry_data
 <member name="P:registry_data.biocad_registryModel.metabolites.main_id">
  <summary>
  processing of the possible duplicated name metabolites
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:registry_data.biocad_registryModel.metabolites.name_zh">
+ <summary>
+ the metabolite chinese name
  </summary>
  <value></value>
  <returns></returns>
@@ -1618,14 +1627,14 @@ registry_data
 <member name="M:registry_data.biocad_registryModel.metabolites.GetInsertSQL">
  <summary>
  ```SQL
- INSERT INTO `metabolites` (`id`, `main_id`, `name`, `hashcode`, `formula`, `exact_mass`, `cas_id`, `pubchem_cid`, `chebi_id`, `hmdb_id`, `lipidmaps_id`, `kegg_id`, `drugbank_id`, `biocyc`, `mesh_id`, `wikipedia`, `add_time`, `note`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}', '{16}', '{17}');
+ INSERT INTO `metabolites` (`id`, `main_id`, `name`, `name_zh`, `hashcode`, `formula`, `exact_mass`, `cas_id`, `pubchem_cid`, `chebi_id`, `hmdb_id`, `lipidmaps_id`, `kegg_id`, `drugbank_id`, `biocyc`, `mesh_id`, `wikipedia`, `add_time`, `note`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}', '{16}', '{17}', '{18}');
  ```
  </summary>
 </member>
 <member name="M:registry_data.biocad_registryModel.metabolites.GetInsertSQL(System.Boolean)">
  <summary>
  ```SQL
- INSERT INTO `metabolites` (`id`, `main_id`, `name`, `hashcode`, `formula`, `exact_mass`, `cas_id`, `pubchem_cid`, `chebi_id`, `hmdb_id`, `lipidmaps_id`, `kegg_id`, `drugbank_id`, `biocyc`, `mesh_id`, `wikipedia`, `add_time`, `note`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}', '{16}', '{17}');
+ INSERT INTO `metabolites` (`id`, `main_id`, `name`, `name_zh`, `hashcode`, `formula`, `exact_mass`, `cas_id`, `pubchem_cid`, `chebi_id`, `hmdb_id`, `lipidmaps_id`, `kegg_id`, `drugbank_id`, `biocyc`, `mesh_id`, `wikipedia`, `add_time`, `note`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}', '{16}', '{17}', '{18}');
  ```
  </summary>
 </member>
@@ -1637,21 +1646,21 @@ registry_data
 <member name="M:registry_data.biocad_registryModel.metabolites.GetReplaceSQL">
  <summary>
  ```SQL
- REPLACE INTO `metabolites` (`id`, `main_id`, `name`, `hashcode`, `formula`, `exact_mass`, `cas_id`, `pubchem_cid`, `chebi_id`, `hmdb_id`, `lipidmaps_id`, `kegg_id`, `drugbank_id`, `biocyc`, `mesh_id`, `wikipedia`, `add_time`, `note`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}', '{16}', '{17}');
+ REPLACE INTO `metabolites` (`id`, `main_id`, `name`, `name_zh`, `hashcode`, `formula`, `exact_mass`, `cas_id`, `pubchem_cid`, `chebi_id`, `hmdb_id`, `lipidmaps_id`, `kegg_id`, `drugbank_id`, `biocyc`, `mesh_id`, `wikipedia`, `add_time`, `note`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}', '{16}', '{17}', '{18}');
  ```
  </summary>
 </member>
 <member name="M:registry_data.biocad_registryModel.metabolites.GetReplaceSQL(System.Boolean)">
  <summary>
  ```SQL
- REPLACE INTO `metabolites` (`id`, `main_id`, `name`, `hashcode`, `formula`, `exact_mass`, `cas_id`, `pubchem_cid`, `chebi_id`, `hmdb_id`, `lipidmaps_id`, `kegg_id`, `drugbank_id`, `biocyc`, `mesh_id`, `wikipedia`, `add_time`, `note`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}', '{16}', '{17}');
+ REPLACE INTO `metabolites` (`id`, `main_id`, `name`, `name_zh`, `hashcode`, `formula`, `exact_mass`, `cas_id`, `pubchem_cid`, `chebi_id`, `hmdb_id`, `lipidmaps_id`, `kegg_id`, `drugbank_id`, `biocyc`, `mesh_id`, `wikipedia`, `add_time`, `note`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}', '{16}', '{17}', '{18}');
  ```
  </summary>
 </member>
 <member name="M:registry_data.biocad_registryModel.metabolites.GetUpdateSQL">
  <summary>
  ```SQL
- UPDATE `metabolites` SET `id`='{0}', `main_id`='{1}', `name`='{2}', `hashcode`='{3}', `formula`='{4}', `exact_mass`='{5}', `cas_id`='{6}', `pubchem_cid`='{7}', `chebi_id`='{8}', `hmdb_id`='{9}', `lipidmaps_id`='{10}', `kegg_id`='{11}', `drugbank_id`='{12}', `biocyc`='{13}', `mesh_id`='{14}', `wikipedia`='{15}', `add_time`='{16}', `note`='{17}' WHERE `id` = '{18}';
+ UPDATE `metabolites` SET `id`='{0}', `main_id`='{1}', `name`='{2}', `name_zh`='{3}', `hashcode`='{4}', `formula`='{5}', `exact_mass`='{6}', `cas_id`='{7}', `pubchem_cid`='{8}', `chebi_id`='{9}', `hmdb_id`='{10}', `lipidmaps_id`='{11}', `kegg_id`='{12}', `drugbank_id`='{13}', `biocyc`='{14}', `mesh_id`='{15}', `wikipedia`='{16}', `add_time`='{17}', `note`='{18}' WHERE `id` = '{19}';
  ```
  </summary>
 </member>
@@ -3253,7 +3262,8 @@ registry_data
    PRIMARY KEY (`query_id`,`hit_id`),
    UNIQUE KEY `diamond_idx_edge` (`query_id`,`hit_id`),
    KEY `rank_score` (`identities` DESC),
-   KEY `filter_edges` (`query_id`,`identities`,`e_value`)
+   KEY `filter_edges` (`query_id`,`identities`,`e_value`),
+   KEY `filter_edges2` (`hit_id`,`identities`,`e_value`)
  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='protein diamond blastp search result, diamond commandline: diamond blastp -d proteins -q proteins.fasta -o protein_clusters.tsv  --very-sensitive  --threads 96  --outfmt 6 qtitle stitle pident length mismatch gapopen qstart qend sstart send evalue bitscore  --max-target-seqs 0   -e 1';
  /*!40101 SET character_set_client = @saved_cs_client */;
  
@@ -3626,7 +3636,7 @@ registry_data
    UNIQUE KEY `find_reference` (`db_xref`,`db_source`),
    KEY `hash_index` (`hashcode`),
    FULLTEXT KEY `search_text` (`name`,`note`)
- ) ENGINE=InnoDB AUTO_INCREMENT=85543 DEFAULT CHARSET=utf8mb3 COMMENT='[biological process model] biological reaction/chemical reaction model';
+ ) ENGINE=InnoDB AUTO_INCREMENT=85574 DEFAULT CHARSET=utf8mb3 COMMENT='[biological process model] biological reaction/chemical reaction model';
  /*!40101 SET character_set_client = @saved_cs_client */;
  
  --
@@ -3930,7 +3940,7 @@ registry_data
    KEY `register_namespace_idx` (`type`),
    KEY `metabolite_reference_idx` (`symbol_id`),
    KEY `find_name` (`register_name`)
- ) ENGINE=InnoDB AUTO_INCREMENT=336483 DEFAULT CHARSET=utf8mb3 COMMENT='a unify symbol mapping inside the registry database system';
+ ) ENGINE=InnoDB AUTO_INCREMENT=338252 DEFAULT CHARSET=utf8mb3 COMMENT='a unify symbol mapping inside the registry database system';
  /*!40101 SET character_set_client = @saved_cs_client */;
  
  --
@@ -4394,7 +4404,7 @@ registry_data
    KEY `entity_metabolite_idx` (`obj_id`,`type`),
    KEY `obj_hash_query` (`type`,`hashcode`),
    FULLTEXT KEY `search_text` (`synonym`)
- ) ENGINE=InnoDB AUTO_INCREMENT=10120268 DEFAULT CHARSET=utf8mb3 COMMENT='synonyms, alias names of the model objects';
+ ) ENGINE=InnoDB AUTO_INCREMENT=10120270 DEFAULT CHARSET=utf8mb3 COMMENT='synonyms, alias names of the model objects';
  /*!40101 SET character_set_client = @saved_cs_client */;
  
  --
@@ -4729,7 +4739,7 @@ registry_data
  /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
  /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
  
- -- Dump completed on 2026-04-03 15:41:44
+ -- Dump completed on 2026-04-08 10:52:01
  ```
  </summary>
  <remarks></remarks>
