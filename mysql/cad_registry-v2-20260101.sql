@@ -355,6 +355,7 @@ CREATE TABLE `metabolites` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
   `main_id` int unsigned NOT NULL DEFAULT '0' COMMENT 'processing of the possible duplicated name metabolites',
   `name` varchar(2048) NOT NULL,
+  `name_zh` varchar(255) DEFAULT NULL COMMENT 'the metabolite chinese name',
   `hashcode` char(32) NOT NULL COMMENT 'md5 checksum of the tolower(name)',
   `formula` varchar(128) NOT NULL,
   `exact_mass` double unsigned NOT NULL DEFAULT '0',
@@ -705,7 +706,8 @@ CREATE TABLE `protein_cluster` (
   PRIMARY KEY (`query_id`,`hit_id`),
   UNIQUE KEY `diamond_idx_edge` (`query_id`,`hit_id`),
   KEY `rank_score` (`identities` DESC),
-  KEY `filter_edges` (`query_id`,`identities`,`e_value`)
+  KEY `filter_edges` (`query_id`,`identities`,`e_value`),
+  KEY `filter_edges2` (`hit_id`,`identities`,`e_value`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='protein diamond blastp search result, diamond commandline: diamond blastp -d proteins -q proteins.fasta -o protein_clusters.tsv  --very-sensitive  --threads 96  --outfmt 6 qtitle stitle pident length mismatch gapopen qstart qend sstart send evalue bitscore  --max-target-seqs 0   -e 1';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1036,14 +1038,6 @@ CREATE TABLE `vocabulary` (
   FULLTEXT KEY `search_text` (`note`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1213 DEFAULT CHARSET=utf8mb3 COMMENT='vocabulary term inside the registry database';
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping events for database 'cad_registry'
---
-
---
--- Dumping routines for database 'cad_registry'
---
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -1054,4 +1048,4 @@ CREATE TABLE `vocabulary` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-04-07 20:51:09
+-- Dump completed on 2026-04-08 10:52:01
