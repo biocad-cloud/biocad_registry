@@ -115,6 +115,11 @@ Oracle.LinuxCompatibility.LibMySQL
  </summary>
  <param name="clone"></param>
 </member>
+<member name="F:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.Expression.UpdateSql.fields">
+ <summary>
+ updates data
+ </summary>
+</member>
 <member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.FieldAssert.#ctor(System.String)">
  <summary>
  Create an mysql data expression
