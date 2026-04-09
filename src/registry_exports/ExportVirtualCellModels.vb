@@ -31,7 +31,9 @@ Public Class ExportVirtualCellModels
     End Sub
 
     Public Sub ExportLocations()
-        Dim locs = registry.registry_resolver.where(field("type") = vocabulary.GetRegistryEntity(biocad_vocabulary.EntitySubcellularLocation).id).select(Of registry_resolver)
+        Dim locs = registry.registry_resolver _
+            .where(field("type") = vocabulary.GetRegistryEntity(biocad_vocabulary.EntitySubcellularLocation).id) _
+            .select(Of registry_resolver)
         Dim models As WebJSON.CellularLocation() = locs _
             .SafeQuery _
             .Select(Function(cc)
