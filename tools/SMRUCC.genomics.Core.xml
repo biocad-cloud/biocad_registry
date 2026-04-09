@@ -11444,25 +11444,25 @@ Get feature site data by nucleotide location.
 </member>
 <member name="P:SMRUCC.genomics.ComponentModel.Annotation.ECNumber.type">
  <summary>
- EC编号里面的第一个数字代表酶的分类号
+ 1. EC编号里面的第一个数字代表酶的分类号
  </summary>
  <remarks></remarks>
 </member>
 <member name="P:SMRUCC.genomics.ComponentModel.Annotation.ECNumber.subType">
  <summary>
- 该大类之下的亚分类
+ 2. 该大类之下的亚分类
  </summary>
  <remarks>nothing means -</remarks>
 </member>
 <member name="P:SMRUCC.genomics.ComponentModel.Annotation.ECNumber.subCategory">
  <summary>
- 该亚类之下的小分类
+ 3. 该亚类之下的小分类
  </summary>
  <remarks>nothing means -</remarks>
 </member>
 <member name="P:SMRUCC.genomics.ComponentModel.Annotation.ECNumber.serialNumber">
  <summary>
- 该小分类之下的序号
+ 4. 该小分类之下的序号
  </summary>
  <remarks>nothing means -</remarks>
 </member>
@@ -11561,6 +11561,38 @@ Get feature site data by nucleotide location.
  <summary>
  http://www.enzyme-database.org
  </summary>
+</member>
+<member name="T:SMRUCC.genomics.ComponentModel.Annotation.EnzymeQuery`1">
+ <summary>
+ EC number query helper
+ </summary>
+ <typeparam name="T"></typeparam>
+</member>
+<member name="P:SMRUCC.genomics.ComponentModel.Annotation.EnzymeQuery`1.Size">
+ <summary>
+ get total count of the enzyme object inside this query pool
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.ComponentModel.Annotation.EnzymeQuery`1.Query(System.String,System.Boolean,System.Int32)">
+ <summary>
+ 
+ </summary>
+ <param name="ec_number"></param>
+ <param name="fuzzy"></param>
+ <param name="fuzzyLevel"> 
+ max allow fuzzy level, value should be c(1,2,3,4), which means the class levels of the ec_number(which has 4 ranks).
+ 
+ example as 4, means only allows fuzzy matches on the last digit
+ 3, means allows fuzzy matches on the level 3 and level 4 digits</param>
+ <returns></returns>
+</member>
+<member name="P:SMRUCC.genomics.ComponentModel.Annotation.IEnzymeObject.ECNumber">
+ <summary>
+ An exact ec number: 1.1.1.1
+ An fuzzy ec number pattern: 1.1.-.-
+ </summary>
+ <returns></returns>
 </member>
 <member name="T:SMRUCC.genomics.ComponentModel.Annotation.IGeneBrief">
  <summary>

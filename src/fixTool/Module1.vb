@@ -1,4 +1,6 @@
 ﻿Imports registry_data
+Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
+Imports Oracle.LinuxCompatibility.MySQL.Reflection.DbAttributes
 
 Module Module1
 
@@ -19,4 +21,37 @@ Genistein 4&#39;,7-O-diglucuronide
             Call Console.WriteLine(RegisterSymbol.CleanName(name))
         Next
     End Sub
+
+    Sub migrantTopicToInternalMetaboliteID()
+        Dim page_size = 5000
+
+        For page As Integer = 1 To Integer.MaxValue
+            Dim pagedata = registry.topic _
+                .left_join("registry_resolver") _
+                .on(field("`registry_resolver`.id") = field("model_id")) _
+                .where(field("`topic`.type") = 0,
+                       field("`registry_resolver`.type") = registry.biocad_vocabulary.metabolite_type) _
+                .limit((page - 1) * page_size, page_size) _
+                .select(Of InternalTopicLink)("`topic`.id AS topic_link", "`symbol_id` AS metabolite_id")
+
+            If pagedata.IsNullOrEmpty Then
+                Exit For
+            End If
+
+            Dim update As CommitTransaction = registry.topic.open_transaction
+
+            For Each item In pagedata
+                Call update.add(registry.topic.where(field("id") = item.topic_link).save_sql(field("type") = registry.biocad_vocabulary.metabolite_type, field("model_id") = item.metabolite_id))
+            Next
+
+            Call update.commit()
+        Next
+    End Sub
 End Module
+
+Public Class InternalTopicLink
+
+    <DatabaseField> Public Property topic_link As UInteger
+    <DatabaseField> Public Property metabolite_id As UInteger
+
+End Class

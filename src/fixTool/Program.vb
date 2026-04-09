@@ -17,7 +17,8 @@ Module Program
     Friend ReadOnly registry As New biocad_registry(mysql)
 
     Sub Main(args As String())
-        Call Module1.cleanNameTest()
+        Call migrantTopicToInternalMetaboliteID()
+        ' Call Module1.cleanNameTest()
         ' Call fixMissingSourceID()
         ' Call removesInvalidNameChars()
         ' Call fixMoNANames()
