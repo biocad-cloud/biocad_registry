@@ -521,7 +521,7 @@ Oracle.LinuxCompatibility.LibMySQL
  <param name="fields"></param>
  <returns></returns>
 </member>
-<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.Model.batch_insert(System.Int32,Oracle.LinuxCompatibility.MySQL.MySqlBuilder.InsertOptions)">
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.Model.batch_insert(System.Int32,Oracle.LinuxCompatibility.MySQL.MySqlBuilder.DMLOptions)">
  <summary>
  Create commit task data for make batch insert into current table
  </summary>
@@ -718,6 +718,11 @@ Oracle.LinuxCompatibility.LibMySQL
 <member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.CommitTransaction.Dispose(System.Boolean)">
  <summary>
  commit the transaction
+ </summary>
+</member>
+<member name="T:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.DMLOptions">
+ <summary>
+  Data manipulation options for delete/update/insert
  </summary>
 </member>
 <member name="T:Oracle.LinuxCompatibility.MySQL.MySqli">
