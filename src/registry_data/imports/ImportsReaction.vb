@@ -26,7 +26,10 @@ Public Module ImportsReaction
 
         For page As Integer = 1 To Integer.MaxValue
             Dim offset As UInteger = (page - 1) * page_size
-            Dim page_data = registry.metabolic_network.where(field("role").in(role)).limit(offset, page_size).select(Of metabolic_network)
+            Dim page_data = registry.metabolic_network _
+                .where(field("role").in(role)) _
+                .limit(offset, page_size) _
+                .select(Of metabolic_network)
 
             If page_data.IsNullOrEmpty Then
                 Exit For

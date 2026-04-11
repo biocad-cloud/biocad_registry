@@ -72,11 +72,19 @@ Public Module registry_models
         Call updates.commit()
     End Sub
 
+    ''' <summary>
+    ''' Fill metabolite species id inside metabolic network
+    ''' </summary>
+    ''' <param name="registry"></param>
     <ExportAPI("update_metabolic_network")>
     Public Sub update_metabolic_network(registry As biocad_registry)
         Call registry.UpdateMetabolicNetwork
     End Sub
 
+    ''' <summary>
+    ''' register metabolite symbol
+    ''' </summary>
+    ''' <param name="registry"></param>
     <ExportAPI("register_metabolic_symbols")>
     Public Sub register_metabolic_symbols(registry As biocad_registry)
         Call registry.RegisterMetabolicSymbols

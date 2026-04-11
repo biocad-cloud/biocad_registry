@@ -115,6 +115,12 @@ Oracle.LinuxCompatibility.LibMySQL
  </summary>
  <param name="clone"></param>
 </member>
+<member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.Expression.QueryBuilder.#ctor(Oracle.LinuxCompatibility.MySQL.MySqlBuilder.Expression.QueryBuilder)">
+ <summary>
+ make value copy
+ </summary>
+ <param name="copy"></param>
+</member>
 <member name="F:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.Expression.UpdateSql.fields">
  <summary>
  updates data
