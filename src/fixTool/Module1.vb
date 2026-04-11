@@ -41,7 +41,7 @@ Genistein 4&#39;,7-O-diglucuronide
             Dim update As CommitTransaction = registry.topic.open_transaction
 
             For Each item In pagedata
-                Call update.add(registry.topic.where(field("id") = item.topic_link).save_sql(field("type") = registry.biocad_vocabulary.metabolite_type, field("model_id") = item.metabolite_id))
+                Call update.add(registry.topic.where(field("id") = item.topic_link).ignore.save_sql(field("type") = registry.biocad_vocabulary.metabolite_type, field("model_id") = item.metabolite_id))
             Next
 
             Call update.commit()
