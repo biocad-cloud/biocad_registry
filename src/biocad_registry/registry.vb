@@ -31,6 +31,7 @@ Imports SMRUCC.Rsharp.Runtime
 Imports SMRUCC.Rsharp.Runtime.Internal.[Object]
 Imports SMRUCC.Rsharp.Runtime.Interop
 Imports SMRUCC.Rsharp.Runtime.Vectorization
+Imports sbXML = SMRUCC.genomics.Model.SBML.Level3.XmlFile(Of SMRUCC.genomics.Data.SABIORK.SBML.SBMLReaction)
 
 <Package("registry")>
 Module registry
@@ -408,6 +409,21 @@ Module registry
             Dim motif As MotifPWM = motifdata.CreateMotif
 
             Call registry.UpdateLogo(model, motif)
+        Next
+
+        Return Nothing
+    End Function
+
+    <ExportAPI("imports_sbml_reactions")>
+    Public Function imports_sbml_reactions(registry As biocad_registry, sbml As sbXML, Optional env As Environment = Nothing)
+        ' imports compound at first
+        For Each sp In sbml.model.listOfSpecies
+
+        Next
+
+        ' imports reaction data
+        For Each rxn As SBMLReaction In sbml.model.listOfReactions.AsEnumerable
+
         Next
 
         Return Nothing
