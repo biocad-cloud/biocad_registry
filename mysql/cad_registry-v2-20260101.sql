@@ -146,7 +146,7 @@ CREATE TABLE `db_xrefs` (
   KEY `find_by_xref` (`db_name`,`db_xref`,`type`),
   KEY `find_by_object` (`type`,`obj_id`),
   KEY `search_xref_word` (`db_xref`)
-) ENGINE=InnoDB AUTO_INCREMENT=15809826 DEFAULT CHARSET=utf8mb3 COMMENT='database cross reference of the model objects ';
+) ENGINE=InnoDB AUTO_INCREMENT=15809835 DEFAULT CHARSET=utf8mb3 COMMENT='database cross reference of the model objects ';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -301,7 +301,7 @@ CREATE TABLE `metabolic_network` (
   KEY `registry_model_idx` (`species_id`),
   KEY `symbol_index` (`symbol_id`),
   KEY `filter_network` (`role`,`species_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=474219 DEFAULT CHARSET=utf8mb3 COMMENT='metabolic reaction network';
+) ENGINE=InnoDB AUTO_INCREMENT=474270 DEFAULT CHARSET=utf8mb3 COMMENT='metabolic reaction network';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -386,7 +386,7 @@ CREATE TABLE `metabolites` (
   KEY `find_mesh` (`mesh_id`),
   KEY `find_wiki` (`wikipedia`),
   FULLTEXT KEY `search_text` (`name`,`note`)
-) ENGINE=InnoDB AUTO_INCREMENT=1994154 DEFAULT CHARSET=utf8mb3 COMMENT='[cellular entity model][entity instance] a set of reference metabolites, template based on the www.metabolomicsworkbench.org refmet dataset';
+) ENGINE=InnoDB AUTO_INCREMENT=1994155 DEFAULT CHARSET=utf8mb3 COMMENT='[cellular entity model][entity instance] a set of reference metabolites, template based on the www.metabolomicsworkbench.org refmet dataset';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -791,7 +791,7 @@ CREATE TABLE `reaction` (
   UNIQUE KEY `find_reference` (`db_xref`,`db_source`),
   KEY `hash_index` (`hashcode`),
   FULLTEXT KEY `search_text` (`name`,`note`)
-) ENGINE=InnoDB AUTO_INCREMENT=85574 DEFAULT CHARSET=utf8mb3 COMMENT='[biological process model] biological reaction/chemical reaction model';
+) ENGINE=InnoDB AUTO_INCREMENT=85584 DEFAULT CHARSET=utf8mb3 COMMENT='[biological process model] biological reaction/chemical reaction model';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -870,7 +870,7 @@ CREATE TABLE `registry_resolver` (
   KEY `register_namespace_idx` (`type`),
   KEY `metabolite_reference_idx` (`symbol_id`),
   KEY `find_name` (`register_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=338252 DEFAULT CHARSET=utf8mb3 COMMENT='a unify symbol mapping inside the registry database system';
+) ENGINE=InnoDB AUTO_INCREMENT=369757 DEFAULT CHARSET=utf8mb3 COMMENT='a unify symbol mapping inside the registry database system';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -970,7 +970,7 @@ CREATE TABLE `synonym` (
   KEY `entity_metabolite_idx` (`obj_id`,`type`),
   KEY `obj_hash_query` (`type`,`hashcode`),
   FULLTEXT KEY `search_text` (`synonym`)
-) ENGINE=InnoDB AUTO_INCREMENT=10120270 DEFAULT CHARSET=utf8mb3 COMMENT='synonyms, alias names of the model objects';
+) ENGINE=InnoDB AUTO_INCREMENT=10120274 DEFAULT CHARSET=utf8mb3 COMMENT='synonyms, alias names of the model objects';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1038,6 +1038,14 @@ CREATE TABLE `vocabulary` (
   FULLTEXT KEY `search_text` (`note`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1213 DEFAULT CHARSET=utf8mb3 COMMENT='vocabulary term inside the registry database';
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping events for database 'cad_registry'
+--
+
+--
+-- Dumping routines for database 'cad_registry'
+--
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -1048,4 +1056,4 @@ CREATE TABLE `vocabulary` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-04-08 10:52:01
+-- Dump completed on 2026-04-12 21:27:09
