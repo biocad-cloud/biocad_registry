@@ -1,4 +1,4 @@
-﻿Imports Microsoft.VisualBasic.Serialization.JSON
+﻿Imports Microsoft.VisualBasic.MIME.application.json
 
 Public Class TranslatedName
 
@@ -22,7 +22,7 @@ Public Class TranslatedName
 
     Private Shared Function DecodeJSON(llms_output As String) As String
         Dim json As String = llms_output.Match("[{].+[}]")
-        Dim zh_name = json.LoadJSON(Of TranslatedName)
+        Dim zh_name As TranslatedName = JsonParser.Parse(json).CreateObject(Of TranslatedName)
 
         If zh_name Is Nothing Then
             Return Nothing
