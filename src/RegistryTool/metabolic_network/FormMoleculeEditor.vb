@@ -111,6 +111,7 @@ let options = { width: 450, height: 300 };
         Label7.Text = FormulaScanner.EvaluateExactMass(mol.formula).ToString("F4")
         TextBox4.Text = mol.note
         LinkLabel1.Text = $"{MyApplication.settings.website}/metabolite/BioCAD{mol.id.ToString.PadLeft(11, "0"c)}/"
+        TextBox9.Text = mol.name_zh
 
         struct = MyApplication.biocad_registry.struct_data _
             .where(field("metabolite_id") = mol.id) _
@@ -817,6 +818,16 @@ let options = { width: 450, height: 300 };
 
     Private Sub LinkLabel2_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel2.LinkClicked
         Call Clipboard.SetText(TextBox8.Text)
+    End Sub
+
+    Private Async Sub Button19_Click(sender As Object, e As EventArgs) Handles Button19.Click
+        Dim zh_name As String = Strings.Trim(TextBox9.Text)
+
+        If zh_name.StringEmpty(, True) Then
+            Call CommonRuntime.Warning($"Clear the chinese name of metabolite '{mol.name}'")
+        End If
+
+        Await MyApplication.biocad_registry.metabolites.async.where(field("id") = mol.id).save(field("name_zh") = zh_name)
     End Sub
 End Class
 
