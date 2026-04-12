@@ -730,4 +730,25 @@ Module registry
         Return Nothing
     End Function
 
+    <ExportAPI("imports_metab_repo")>
+    Public Function imports_metab_repo(registry As biocad_registry, <RRawVectorArgument> metab As Object, db_name As String, Optional env As Environment = Nothing) As Object
+        Dim pull As pipeline = pipeline.TryCreatePipeline(Of MetaInfo)(metab, env)
+
+        If pull.isError Then
+            Return pull.getError
+        End If
+
+        Dim bar As ProgressBar = Nothing
+        Dim db_key As UInteger = registry.biocad_vocabulary.GetDatabaseResource(db_name).id
+
+        For Each meta As MetaInfo In TqdmWrapper.WrapIterator(pull.populates(Of MetaInfo)(env), bar:=bar)
+            Dim m As metabolites = registry.FindMolecule(meta, "lipidmaps_id", nameSearch:=True, preferNameSearch:=True)
+
+            Call registry.SaveDbLinks(meta, m, db_key)
+            Call registry.SaveStructureData(m, meta.xref.SMILES)
+            Call registry.SaveSynonyms(m, meta.synonym.JoinIterates({meta.name, meta.IUPACName}).Distinct, db_key)
+        Next
+
+        Return Nothing
+    End Function
 End Module

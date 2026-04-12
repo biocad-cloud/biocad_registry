@@ -20,8 +20,9 @@ Public Module MetaboliteData
         Dim vocabulary As biocad_vocabulary = registry.biocad_vocabulary
         Dim metabolite_type As UInteger = vocabulary.metabolite_type
         Dim updates As New List(Of FieldAssert)
-        Dim pubchem_cid As String = Strings.Trim(meta.xref.pubchem).int_id
-        Dim chebi_id As String = Strings.Trim(meta.xref.chebi).int_id
+        Dim xrefs = meta.xref
+        Dim pubchem_cid As String = Strings.Trim(xrefs.pubchem).int_id
+        Dim chebi_id As String = Strings.Trim(xrefs.chebi).int_id
         ' transaction of registry.db_xrefs
         Dim trans As CommitTransaction = registry.db_xrefs.open_transaction.ignore
 
@@ -31,23 +32,23 @@ Public Module MetaboliteData
         If m.chebi_id = 0 AndAlso Not chebi_id Is Nothing Then
             updates.Add(field("chebi_id") = chebi_id)
         End If
-        If m.hmdb_id.StringEmpty AndAlso Not meta.xref.HMDB.StringEmpty Then
-            updates.Add(field("hmdb_id") = meta.xref.HMDB)
+        If m.hmdb_id.StringEmpty AndAlso Not xrefs.HMDB.StringEmpty Then
+            updates.Add(field("hmdb_id") = xrefs.HMDB)
         End If
-        If m.kegg_id.StringEmpty AndAlso Not meta.xref.KEGG.StringEmpty Then
-            updates.Add(field("kegg_id") = meta.xref.KEGG)
+        If m.kegg_id.StringEmpty AndAlso Not xrefs.KEGG.StringEmpty Then
+            updates.Add(field("kegg_id") = xrefs.KEGG)
         End If
-        If m.lipidmaps_id.StringEmpty AndAlso Not meta.xref.lipidmaps.StringEmpty Then
-            updates.Add(field("lipidmaps_id") = meta.xref.lipidmaps)
+        If m.lipidmaps_id.StringEmpty AndAlso Not xrefs.lipidmaps.StringEmpty Then
+            updates.Add(field("lipidmaps_id") = xrefs.lipidmaps)
         End If
-        If m.mesh_id.StringEmpty AndAlso Not meta.xref.MeSH.StringEmpty Then
-            updates.Add(field("mesh_id") = meta.xref.MeSH)
+        If m.mesh_id.StringEmpty AndAlso Not xrefs.MeSH.StringEmpty Then
+            updates.Add(field("mesh_id") = xrefs.MeSH)
         End If
-        If m.wikipedia.StringEmpty AndAlso Not meta.xref.Wikipedia.StringEmpty Then
-            updates.Add(field("wikipedia") = meta.xref.Wikipedia)
+        If m.wikipedia.StringEmpty AndAlso Not xrefs.Wikipedia.StringEmpty Then
+            updates.Add(field("wikipedia") = xrefs.Wikipedia)
         End If
-        If m.cas_id.StringEmpty AndAlso Not meta.xref.CAS.DefaultFirst.StringEmpty Then
-            Dim main_cas_id As String = meta.xref.CAS _
+        If m.cas_id.StringEmpty AndAlso Not xrefs.CAS.DefaultFirst.StringEmpty Then
+            Dim main_cas_id As String = xrefs.CAS _
                 .DefaultFirst _
                 .StringSplit("[,;]", True) _
                 .First _
@@ -56,11 +57,11 @@ Public Module MetaboliteData
 
             updates.Add(field("cas_id") = main_cas_id)
         End If
-        If m.biocyc.StringEmpty AndAlso Not meta.xref.MetaCyc.StringEmpty Then
-            updates.Add(field("biocyc") = meta.xref.MetaCyc)
+        If m.biocyc.StringEmpty AndAlso Not xrefs.MetaCyc.StringEmpty Then
+            updates.Add(field("biocyc") = xrefs.MetaCyc)
         End If
-        If m.drugbank_id.StringEmpty AndAlso Not meta.xref.DrugBank.StringEmpty Then
-            updates.Add(field("drugbank_id") = meta.xref.DrugBank)
+        If m.drugbank_id.StringEmpty AndAlso Not xrefs.DrugBank.StringEmpty Then
+            updates.Add(field("drugbank_id") = xrefs.DrugBank)
         End If
 
         If updates.Any Then
@@ -82,59 +83,59 @@ Public Module MetaboliteData
                              field("type") = metabolite_type,
                              field("obj_id") = m.id)
         End If
-        If Not meta.xref.HMDB.StringEmpty Then
+        If Not xrefs.HMDB.StringEmpty Then
             trans.ignore.add(field("db_source") = db_source,
                              field("db_name") = vocabulary.db_hmdb,
-                             field("db_xref") = meta.xref.HMDB,
+                             field("db_xref") = xrefs.HMDB,
                              field("type") = metabolite_type,
                              field("obj_id") = m.id)
         End If
-        If Not meta.xref.lipidmaps.StringEmpty Then
+        If Not xrefs.lipidmaps.StringEmpty Then
             trans.ignore.add(field("db_source") = db_source,
                              field("db_name") = vocabulary.db_lipidmaps,
-                             field("db_xref") = meta.xref.lipidmaps,
+                             field("db_xref") = xrefs.lipidmaps,
                              field("type") = metabolite_type,
                              field("obj_id") = m.id)
         End If
-        If Not meta.xref.KEGG.StringEmpty Then
+        If Not xrefs.KEGG.StringEmpty Then
             trans.ignore.add(field("db_source") = db_source,
                              field("db_name") = vocabulary.db_kegg,
-                             field("db_xref") = meta.xref.KEGG,
+                             field("db_xref") = xrefs.KEGG,
                              field("type") = metabolite_type,
                              field("obj_id") = m.id)
         End If
-        If Not meta.xref.MeSH.StringEmpty Then
+        If Not xrefs.MeSH.StringEmpty Then
             trans.ignore.add(field("db_source") = db_source,
                              field("db_name") = vocabulary.db_mesh,
-                             field("db_xref") = meta.xref.MeSH,
+                             field("db_xref") = xrefs.MeSH,
                              field("type") = metabolite_type,
                              field("obj_id") = m.id)
         End If
-        If Not meta.xref.Wikipedia.StringEmpty Then
+        If Not xrefs.Wikipedia.StringEmpty Then
             trans.ignore.add(field("db_source") = db_source,
                              field("db_name") = vocabulary.db_wikipedia,
-                             field("db_xref") = meta.xref.Wikipedia,
+                             field("db_xref") = xrefs.Wikipedia,
                              field("type") = metabolite_type,
                              field("obj_id") = m.id)
         End If
-        If Not meta.xref.MetaCyc.StringEmpty Then
+        If Not xrefs.MetaCyc.StringEmpty Then
             trans.ignore.add(field("db_source") = db_source,
                              field("db_name") = vocabulary.db_biocyc,
-                             field("db_xref") = meta.xref.MetaCyc,
+                             field("db_xref") = xrefs.MetaCyc,
                              field("type") = metabolite_type,
                              field("obj_id") = m.id)
         End If
-        If Not meta.xref.DrugBank.StringEmpty Then
+        If Not xrefs.DrugBank.StringEmpty Then
             trans.ignore.add(field("db_source") = db_source,
                              field("db_name") = vocabulary.db_drugbank,
-                             field("db_xref") = meta.xref.DrugBank,
+                             field("db_xref") = xrefs.DrugBank,
                              field("type") = metabolite_type,
                              field("obj_id") = m.id)
         End If
-        If Not meta.xref.metlin.StringEmpty Then
+        If Not xrefs.metlin.StringEmpty Then
             trans.ignore.add(field("db_source") = db_source,
                              field("db_name") = vocabulary.db_metlin,
-                             field("db_xref") = meta.xref.metlin,
+                             field("db_xref") = xrefs.metlin,
                              field("type") = metabolite_type,
                              field("obj_id") = m.id)
         End If
@@ -146,7 +147,7 @@ Public Module MetaboliteData
                                   field("obj_id") = m.id)
         End If
 
-        For Each id As String In meta.xref.CAS.SafeQuery
+        For Each id As String In xrefs.CAS.SafeQuery
             If id.StringEmpty Then
                 Continue For
             End If
