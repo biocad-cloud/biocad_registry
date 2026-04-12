@@ -605,15 +605,15 @@ let options = { width: 450, height: 300 };
     End Sub
 
     Private Sub TextBox3_TextChanged(sender As Object, e As EventArgs) Handles TextBox3.TextChanged
-        Dim formula As String = Strings.Trim(TextBox3.Text)
-        Dim exact_mass As Double = FormulaScanner.EvaluateExactMass(formula)
+        Dim formula = Trim(TextBox3.Text)
+        Dim exact_mass = FormulaScanner.EvaluateExactMass(formula)
 
         Label7.Text = exact_mass.ToString("F4")
     End Sub
 
     Private Async Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
-        Dim formula As String = Strings.Trim(TextBox3.Text)
-        Dim exact_mass As Double = FormulaScanner.EvaluateExactMass(formula)
+        Dim formula = Trim(TextBox3.Text)
+        Dim exact_mass = FormulaScanner.EvaluateExactMass(formula)
 
         Await MyApplication.biocad_registry.metabolites.async.where(field("id") = mol.id).save(
             field("formula") = formula,
