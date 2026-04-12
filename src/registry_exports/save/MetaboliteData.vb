@@ -230,7 +230,7 @@ Public Module MetaboliteData
     End Function
 
     <Extension>
-    Public Function FindMolecule(registry As biocad_registry, meta As MetaInfo, primaryKey As String,
+    Public Function FindMolecule(registry As biocad_registry, meta As MetaInfo, Optional primaryKey As String = Nothing,
                                  Optional nameSearch As Boolean = False,
                                  Optional preferNameSearch As Boolean = False) As metabolites
 
@@ -248,9 +248,13 @@ Public Module MetaboliteData
             mass_filter = field("exact_mass").between(exact_mass - 1, exact_mass + 1)
         End If
 
-        Dim m As metabolites = registry.metabolites _
-            .where(field(primaryKey) = meta.ID, mass_filter) _
-            .find(Of metabolites)
+        Dim m As metabolites = Nothing
+
+        If Not primaryKey Is Nothing Then
+            m = registry.metabolites _
+                .where(field(primaryKey) = meta.ID, mass_filter) _
+                .find(Of metabolites)
+        End If
 
         If exact_mass > 1 AndAlso m Is Nothing Then
             If preferNameSearch AndAlso nameSearch Then
@@ -295,9 +299,12 @@ Public Module MetaboliteData
                 field("drugbank_id") = meta.xref.DrugBank,
                 field("note") = meta.description
             )
-            m = registry.metabolites.where(field(primaryKey) = meta.ID, mass_filter) _
-                                    .order_by("id", desc:=True) _
-                                    .find(Of metabolites)
+
+            If Not primaryKey Is Nothing Then
+                m = registry.metabolites.where(field(primaryKey) = meta.ID, mass_filter) _
+                    .order_by("id", desc:=True) _
+                    .find(Of metabolites)
+            End If
 
             ' 20260106 fix for the non-primary key database
             ' exmple as refmet is missing from the master list

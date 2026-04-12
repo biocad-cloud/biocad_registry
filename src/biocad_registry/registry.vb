@@ -742,7 +742,7 @@ Module registry
         Dim db_key As UInteger = registry.biocad_vocabulary.GetDatabaseResource(db_name).id
 
         For Each meta As MetaInfo In TqdmWrapper.WrapIterator(pull.populates(Of MetaInfo)(env), bar:=bar)
-            Dim m As metabolites = registry.FindMolecule(meta, "lipidmaps_id", nameSearch:=True, preferNameSearch:=True)
+            Dim m As metabolites = registry.FindMolecule(meta, primaryKey:=Nothing, nameSearch:=True, preferNameSearch:=True)
 
             Call registry.SaveDbLinks(meta, m, db_key, saveID:=True)
             Call registry.SaveStructureData(m, meta.xref.SMILES)
