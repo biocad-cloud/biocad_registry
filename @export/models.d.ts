@@ -44,6 +44,10 @@ declare namespace models {
    */
    function make_protein_clusters(registry: object, cutoff?: number, eval_cutoff?: number): any;
    /**
+    * register metabolite symbol
+    * 
+    * 
+     * @param registry -
    */
    function register_metabolic_symbols(registry: object): ;
    /**
@@ -58,6 +62,10 @@ declare namespace models {
    */
    function update_location(registry: object, locations: object): ;
    /**
+    * Fill metabolite species id inside metabolic network
+    * 
+    * 
+     * @param registry -
    */
    function update_metabolic_network(registry: object): ;
    /**

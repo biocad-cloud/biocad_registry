@@ -747,6 +747,8 @@ Module registry
             Call registry.SaveDbLinks(meta, m, db_key, saveID:=True)
             Call registry.SaveStructureData(m, meta.xref.SMILES)
             Call registry.SaveSynonyms(m, meta.synonym.JoinIterates({meta.name, meta.IUPACName}).Distinct, db_key)
+
+            Call bar.SetLabel(meta.name)
         Next
 
         Return Nothing

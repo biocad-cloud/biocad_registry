@@ -29,6 +29,10 @@ declare namespace registry {
    */
    function imports_lotus(registry: object, lotus: any, env?: object): any;
    /**
+     * @param env default value Is ``null``.
+   */
+   function imports_metab_repo(registry: object, metab: any, db_name: string, env?: object): any;
+   /**
    */
    function imports_metacyc_compounds(registry: object, metacyc: object): any;
    /**
@@ -64,6 +68,10 @@ declare namespace registry {
      * @param env default value Is ``null``.
    */
    function imports_sabiork(registry: object, xmlfiles: any, env?: object): any;
+   /**
+     * @param env default value Is ``null``.
+   */
+   function imports_sbml_reactions(registry: object, sbml: object, env?: object): any;
    /**
      * @param env default value Is ``null``.
    */
