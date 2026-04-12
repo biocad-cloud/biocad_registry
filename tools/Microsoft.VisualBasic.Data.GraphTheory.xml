@@ -1801,6 +1801,14 @@ Microsoft.VisualBasic.Data.GraphTheory
  <param name="u"></param>
  <returns></returns>
 </member>
+<member name="M:Microsoft.VisualBasic.Data.GraphTheory.Graph`3.GetEdge(`0,`0)">
+ <summary>
+ get direct edge link
+ </summary>
+ <param name="u"></param>
+ <param name="v"></param>
+ <returns></returns>
+</member>
 <member name="M:Microsoft.VisualBasic.Data.GraphTheory.Graph`3.ExistEdge(`1)">
  <summary>
  query edge item exists or not by edge id

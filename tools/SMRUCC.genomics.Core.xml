@@ -12272,19 +12272,19 @@ Get feature site data by nucleotide location.
 </member>
 <member name="P:SMRUCC.genomics.ComponentModel.Loci.Location.left">
  <summary>
- <see cref="T:SMRUCC.genomics.ComponentModel.Loci.Location"/>: Gets or set the left start value of the segment on the target sequence.(目标片段的左端起始区域，与链的方向无关)
+ <see cref="T:SMRUCC.genomics.ComponentModel.Loci.Location"/>: Gets or set the left start value of the segment on the target sequence.
  </summary>
  <value></value>
  <returns></returns>
- <remarks></remarks>
+ <remarks>(目标片段的左端起始区域，与链的方向无关)</remarks>
 </member>
 <member name="P:SMRUCC.genomics.ComponentModel.Loci.Location.right">
  <summary>
- <see cref="T:SMRUCC.genomics.ComponentModel.Loci.Location"/>: Gets or set the right ends value of the segment on the target sequence.(目标片段的右端结束区域，与链的方向无关)
+ <see cref="T:SMRUCC.genomics.ComponentModel.Loci.Location"/>: Gets or set the right ends value of the segment on the target sequence.
  </summary>
  <value></value>
  <returns></returns>
- <remarks></remarks>
+ <remarks>(目标片段的右端结束区域，与链的方向无关)</remarks>
 </member>
 <member name="P:SMRUCC.genomics.ComponentModel.Loci.Location.IsNormalized">
  <summary>
@@ -13175,19 +13175,33 @@ Get feature site data by nucleotide location.
  <summary>
  The number of genes between feature 1 and feature 2.
  </summary>
- <param name="feature1$"></param>
- <param name="feature2$"></param>
+ <param name="feature1"></param>
+ <param name="feature2"></param>
  <returns></returns>
 </member>
 <member name="M:SMRUCC.genomics.ContextModel.GenomeContext`1.SelectByRange(System.Int32,System.Int32,SMRUCC.genomics.ComponentModel.Loci.Strands)">
  <summary>
  将基因组上面的某一区域内的基因对象都查找出来
  </summary>
- <param name="i%"></param>
- <param name="j%"></param>
+ <param name="i"></param>
+ <param name="j"></param>
  <param name="strand">
  默认不限制链的方向
  </param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.ContextModel.GenomeContext`1.GetByFeature(System.String)">
+ <summary>
+ Get features data via a given key id
+ </summary>
+ <param name="feature"></param>
+ <returns></returns>
+</member>
+<member name="M:SMRUCC.genomics.ContextModel.GenomeContext`1.Absent(System.String)">
+ <summary>
+ Check of the target feature is missing inside this genomics context model?
+ </summary>
+ <param name="feature"></param>
  <returns></returns>
 </member>
 <member name="M:SMRUCC.genomics.ContextModel.Promoter.Extensions.GetPrefixLengths">
