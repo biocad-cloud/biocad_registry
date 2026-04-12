@@ -156,13 +156,20 @@ let options = { width: 450, height: 300 };
     End Sub
 
     Private Async Function LoadReactions() As Task
-        Dim reaction_ids As UInteger() = Await Task.Run(Function() MyApplication.biocad_registry.metabolic_network.where(field("species_id") = mol.id).distinct.project(Of UInteger)("reaction_id"))
+        Dim reaction_ids As UInteger() = Await MyApplication.biocad_registry.metabolic_network _
+            .async _
+            .where(field("species_id") = mol.id) _
+            .distinct _
+            .project(Of UInteger)("reaction_id")
 
         If reaction_ids.IsNullOrEmpty Then
             Return
         End If
 
-        Dim reactions As biocad_registryModel.reaction() = Await Task.Run(Function() MyApplication.biocad_registry.reaction.where(field("id").in(reaction_ids)).select(Of biocad_registryModel.reaction)())
+        Dim reactions As biocad_registryModel.reaction() = Await MyApplication.biocad_registry.reaction _
+            .async _
+            .where(field("id").in(reaction_ids)) _
+            .select(Of biocad_registryModel.reaction)
 
         For Each rxn In reactions
             Dim offset = DataGridView2.Rows.Add(rxn.name, rxn.equation)
@@ -254,19 +261,17 @@ let options = { width: 450, height: 300 };
         TextBox5.Text = fingerprint
 
         If struct Is Nothing Then
-            Await Task.Run(Sub()
-                               MyApplication.biocad_registry.struct_data.add(
+            Await MyApplication.biocad_registry.struct_data.async.add(
                                    field("smiles") = smilesOrSeq,
                                         field("fingerprint") = fingerprint,
                                         field("checksum") = smilesOrSeq.MD5,
                                         field("metabolite_id") = mol.id
                                )
 
-                               struct = MyApplication.biocad_registry.struct_data _
+            struct = Await MyApplication.biocad_registry.struct_data.async _
                                   .where(field("metabolite_id") = mol.id) _
                                   .order_by("id", desc:=True) _
                                   .find(Of biocad_registryModel.struct_data)
-                           End Sub)
 
             WebView21_CoreWebView2InitializationCompleted(Nothing, Nothing)
         Else
@@ -371,7 +376,12 @@ let options = { width: 450, height: 300 };
         edit.SetPromptText("Edit the database xref id(delete text for removes id from database, add text for add new id into database)")
         edit.ShowDialog()
 
-        Dim current = all_xrefs.GroupBy(Function(a) a.db_xref).ToDictionary(Function(a) a.Key, Function(a) a.ToArray)
+        Dim current As Dictionary(Of String, db_xrefs()) = all_xrefs _
+            .GroupBy(Function(a) a.db_xref) _
+            .ToDictionary(Function(a) a.Key,
+                          Function(a)
+                              Return a.ToArray
+                          End Function)
 
         Call TaskProgress.RunAction(
             Sub(println As ITaskProgress)
