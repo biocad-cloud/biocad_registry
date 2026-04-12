@@ -20,7 +20,7 @@ Public Module MetaboliteData
         Dim vocabulary As biocad_vocabulary = registry.biocad_vocabulary
         Dim metabolite_type As UInteger = vocabulary.metabolite_type
         Dim updates As New List(Of FieldAssert)
-        Dim xrefs = meta.xref
+        Dim xrefs As CrossReference.xref = meta.xref
         Dim pubchem_cid As String = Strings.Trim(xrefs.pubchem).int_id
         Dim chebi_id As String = Strings.Trim(xrefs.chebi).int_id
         ' transaction of registry.db_xrefs
