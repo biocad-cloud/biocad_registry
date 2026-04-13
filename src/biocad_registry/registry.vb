@@ -763,7 +763,7 @@ Module registry
                                                          nameSearch:=True,
                                                          preferNameSearch:=True)
 
-            Call registry.SaveStructureData(m, meta.xref.SMILES, trans:=trans)
+            Call registry.SaveStructureData(m, meta.xref.SMILES, commit:=trans)
             Call registry.SaveSynonyms(m, meta.synonym.JoinIterates({meta.name, meta.IUPACName}).Distinct, db_key, trans:=trans)
             Call registry.SaveDbLinks(meta, m, db_key, saveID:=True, trans:=trans)
 

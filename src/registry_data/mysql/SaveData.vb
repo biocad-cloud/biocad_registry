@@ -47,7 +47,7 @@ Public Module SaveData
                 If commit Is Nothing Then
                     Call trans.ignore.add(data)
                 Else
-                    Call commit.add(registry.synonym.add_sql(data))
+                    Call commit.add(registry.synonym.ignore.add_sql(data))
                 End If
             End If
         Next

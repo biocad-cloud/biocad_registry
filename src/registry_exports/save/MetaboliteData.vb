@@ -31,10 +31,10 @@ Public Module MetaboliteData
             trans = registry.db_xrefs.open_transaction.ignore
         End If
 
-        If m.pubchem_cid = 0 AndAlso Not pubchem_cid Is Nothing Then
+        If m.pubchem_cid = 0 AndAlso (Not pubchem_cid Is Nothing) AndAlso Not pubchem_cid.IsPattern("0+") Then
             updates.Add(field("pubchem_cid") = pubchem_cid)
         End If
-        If m.chebi_id = 0 AndAlso Not chebi_id Is Nothing Then
+        If m.chebi_id = 0 AndAlso (Not chebi_id Is Nothing) AndAlso Not chebi_id.IsPattern("0+") Then
             updates.Add(field("chebi_id") = chebi_id)
         End If
         If m.hmdb_id.StringEmpty AndAlso Not xrefs.HMDB.StringEmpty Then
@@ -70,10 +70,10 @@ Public Module MetaboliteData
         End If
 
         If updates.Any Then
-            Call trans.add(registry.metabolites.where(field("id") = m.id).save_sql(updates.ToArray))
+            Call trans.add(registry.metabolites.ignore.where(field("id") = m.id).save_sql(updates.ToArray))
         End If
 
-        If Not pubchem_cid.StringEmpty Then
+        If (Not pubchem_cid.StringEmpty) AndAlso Not pubchem_cid.IsPattern("0+") Then
             Dim data = {field("db_source") = db_source,
                              field("db_name") = vocabulary.db_pubchem,
                              field("db_xref") = pubchem_cid,
@@ -83,10 +83,10 @@ Public Module MetaboliteData
             If auto_commit Then
                 trans.ignore.add(data)
             Else
-                trans.add(registry.db_xrefs.add_sql(data))
+                trans.add(registry.db_xrefs.ignore.add_sql(data))
             End If
         End If
-        If Not chebi_id.StringEmpty Then
+        If (Not chebi_id.StringEmpty) AndAlso Not chebi_id.IsPattern("0+") Then
             chebi_id = $"ChEBI:{chebi_id}"
 
             Dim data = {field("db_source") = db_source,
@@ -98,7 +98,7 @@ Public Module MetaboliteData
             If auto_commit Then
                 trans.ignore.add(data)
             Else
-                trans.add(registry.db_xrefs.add_sql(data))
+                trans.add(registry.db_xrefs.ignore.add_sql(data))
             End If
         End If
         If Not xrefs.HMDB.StringEmpty Then
@@ -113,7 +113,7 @@ Public Module MetaboliteData
             If auto_commit Then
                 trans.ignore.add(data)
             Else
-                trans.add(registry.db_xrefs.add_sql(data))
+                trans.add(registry.db_xrefs.ignore.add_sql(data))
             End If
         End If
         If Not xrefs.lipidmaps.StringEmpty Then
@@ -128,7 +128,7 @@ Public Module MetaboliteData
             If auto_commit Then
                 trans.ignore.add(data)
             Else
-                trans.add(registry.db_xrefs.add_sql(data))
+                trans.add(registry.db_xrefs.ignore.add_sql(data))
             End If
         End If
         If Not xrefs.KEGG.StringEmpty Then
@@ -143,7 +143,7 @@ Public Module MetaboliteData
             If auto_commit Then
                 trans.ignore.add(data)
             Else
-                trans.add(registry.db_xrefs.add_sql(data))
+                trans.add(registry.db_xrefs.ignore.add_sql(data))
             End If
         End If
         If Not xrefs.MeSH.StringEmpty Then
@@ -157,7 +157,7 @@ Public Module MetaboliteData
             If auto_commit Then
                 trans.ignore.add(data)
             Else
-                trans.add(registry.db_xrefs.add_sql(data))
+                trans.add(registry.db_xrefs.ignore.add_sql(data))
             End If
         End If
         If Not xrefs.Wikipedia.StringEmpty Then
@@ -171,7 +171,7 @@ Public Module MetaboliteData
             If auto_commit Then
                 trans.ignore.add(data)
             Else
-                trans.add(registry.db_xrefs.add_sql(data))
+                trans.add(registry.db_xrefs.ignore.add_sql(data))
             End If
         End If
         If Not xrefs.MetaCyc.StringEmpty Then
@@ -185,7 +185,7 @@ Public Module MetaboliteData
             If auto_commit Then
                 trans.ignore.add(data)
             Else
-                trans.add(registry.db_xrefs.add_sql(data))
+                trans.add(registry.db_xrefs.ignore.add_sql(data))
             End If
         End If
         If Not xrefs.DrugBank.StringEmpty Then
@@ -199,7 +199,7 @@ Public Module MetaboliteData
             If auto_commit Then
                 trans.ignore.add(data)
             Else
-                trans.add(registry.db_xrefs.add_sql(data))
+                trans.add(registry.db_xrefs.ignore.add_sql(data))
             End If
         End If
         If Not xrefs.metlin.StringEmpty Then
@@ -213,7 +213,7 @@ Public Module MetaboliteData
             If auto_commit Then
                 trans.ignore.add(data)
             Else
-                trans.add(registry.db_xrefs.add_sql(data))
+                trans.add(registry.db_xrefs.ignore.add_sql(data))
             End If
         End If
         If saveID Then
@@ -228,7 +228,7 @@ Public Module MetaboliteData
             If auto_commit Then
                 trans.ignore.add(data)
             Else
-                trans.add(registry.db_xrefs.add_sql(data))
+                trans.add(registry.db_xrefs.ignore.add_sql(data))
             End If
         End If
 
@@ -249,7 +249,7 @@ Public Module MetaboliteData
                 If auto_commit Then
                     trans.ignore.add(data)
                 Else
-                    trans.add(registry.db_xrefs.add_sql(data))
+                    trans.add(registry.db_xrefs.ignore.add_sql(data))
                 End If
             Next
         Next

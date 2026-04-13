@@ -10,7 +10,7 @@ Public Module ImportsMetabolite
     Public Sub SaveStructureData(registry As biocad_registry,
                                  m As metabolites,
                                  smiles As String,
-                                 Optional trans As CommitTransaction = Nothing)
+                                 Optional commit As CommitTransaction = Nothing)
 
         If Not smiles.StringEmpty Then
             Dim struct = registry.struct_data.where(field("metabolite_id") = m.id).find(Of struct_data)
@@ -22,10 +22,10 @@ Public Module ImportsMetabolite
                     field("smiles") = smiles
                 }
 
-                If trans Is Nothing Then
+                If commit Is Nothing Then
                     registry.struct_data.add(struct_data)
                 Else
-                    Call trans.add(registry.struct_data.add_sql(struct_data))
+                    Call commit.add(registry.struct_data.ignore.add_sql(struct_data))
                 End If
             End If
         End If
