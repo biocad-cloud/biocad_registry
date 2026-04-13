@@ -742,7 +742,7 @@ Module registry
         End If
 
         Dim bar As ProgressBar = Nothing
-        Dim db_key As UInteger = registry.biocad_vocabulary.GetDatabaseResource(db_name).id
+        Dim db_key As UInteger = registry.biocad_vocabulary.GetDatabaseResource(db_name)
         Dim trans As CommitTransaction = registry.metabolites.open_transaction
 
         For Each meta As MetaInfo In TqdmWrapper.WrapIterator(pull.populates(Of MetaInfo)(env), bar:=bar)
@@ -761,7 +761,8 @@ Module registry
             Dim m As metabolites = registry.FindMolecule(meta,
                                                          primaryKey:=Nothing,
                                                          nameSearch:=True,
-                                                         preferNameSearch:=True)
+                                                         preferNameSearch:=True,
+                                                         source_db:=db_key)
 
             Call registry.SaveStructureData(m, meta.xref.SMILES, commit:=trans)
             Call registry.SaveSynonyms(m, meta.synonym.JoinIterates({meta.name, meta.IUPACName}).Distinct, db_key, trans:=trans)
