@@ -13204,6 +13204,12 @@ Get feature site data by nucleotide location.
  <param name="feature"></param>
  <returns></returns>
 </member>
+<member name="M:SMRUCC.genomics.ContextModel.GenomeContext`1.GenericEnumerator">
+ <summary>
+ populate out the genomics feature <see cref="F:SMRUCC.genomics.ContextModel.GenomeContext`1.sequence"/> data
+ </summary>
+ <returns></returns>
+</member>
 <member name="M:SMRUCC.genomics.ContextModel.Promoter.Extensions.GetPrefixLengths">
  <summary>
  Read from <see cref="T:SMRUCC.genomics.ContextModel.Promoter.PrefixLength"/> members.
