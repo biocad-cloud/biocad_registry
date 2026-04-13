@@ -741,37 +741,37 @@ Module registry
             Return pull.getError
         End If
 
-        Dim bar As ProgressBar = Nothing
         Dim db_key As UInteger = registry.biocad_vocabulary.GetDatabaseResource(db_name)
-        Dim trans As CommitTransaction = registry.metabolites.open_transaction
 
-        For Each meta As MetaInfo In TqdmWrapper.WrapIterator(pull.populates(Of MetaInfo)(env), bar:=bar)
-            If check_id Then
-                Dim check_xref = registry.db_xrefs _
-                    .where(field("type") = registry.biocad_vocabulary.metabolite_type,
-                           field("db_name") = db_key,
-                           field("db_xref") = meta.ID) _
-                    .find(Of db_xrefs)
+        For Each batch As MetaInfo() In pull.populates(Of MetaInfo)(env).SplitIterator(1000)
+            Dim trans As CommitTransaction = registry.metabolites.open_transaction
 
-                If check_xref IsNot Nothing Then
-                    Continue For
+            For Each meta As MetaInfo In batch
+                If check_id Then
+                    Dim check_xref = registry.db_xrefs _
+                        .where(field("type") = registry.biocad_vocabulary.metabolite_type,
+                               field("db_name") = db_key,
+                               field("db_xref") = meta.ID) _
+                        .find(Of db_xrefs)
+
+                    If check_xref IsNot Nothing Then
+                        Continue For
+                    End If
                 End If
-            End If
 
-            Dim m As metabolites = registry.FindMolecule(meta,
-                                                         primaryKey:=Nothing,
-                                                         nameSearch:=True,
-                                                         preferNameSearch:=True,
-                                                         source_db:=db_key)
+                Dim m As metabolites = registry.FindMolecule(meta,
+                                                             primaryKey:=Nothing,
+                                                             nameSearch:=True,
+                                                             preferNameSearch:=True,
+                                                             source_db:=db_key)
 
-            Call registry.SaveStructureData(m, meta.xref.SMILES, commit:=trans)
-            Call registry.SaveSynonyms(m, meta.synonym.JoinIterates({meta.name, meta.IUPACName}).Distinct, db_key, trans:=trans)
-            Call registry.SaveDbLinks(meta, m, db_key, saveID:=True, trans:=trans)
+                Call registry.SaveStructureData(m, meta.xref.SMILES, commit:=trans)
+                Call registry.SaveSynonyms(m, meta.synonym.JoinIterates({meta.name, meta.IUPACName}).Distinct, db_key, trans:=trans)
+                Call registry.SaveDbLinks(meta, m, db_key, saveID:=True, trans:=trans)
+            Next
 
-            Call bar.SetLabel(meta.name)
+            Call trans.commit()
         Next
-
-        Call trans.commit()
 
         Return Nothing
     End Function
