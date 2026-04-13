@@ -15,7 +15,8 @@ Public Module MetaboliteData
                            meta As MetaInfo,
                            m As metabolites,
                            db_source As UInteger,
-                           Optional saveID As Boolean = False)
+                           Optional saveID As Boolean = False,
+                           Optional trans As CommitTransaction = Nothing)
 
         Dim vocabulary As biocad_vocabulary = registry.biocad_vocabulary
         Dim metabolite_type As UInteger = vocabulary.metabolite_type
@@ -23,8 +24,12 @@ Public Module MetaboliteData
         Dim xrefs As CrossReference.xref = meta.xref
         Dim pubchem_cid As String = Strings.Trim(xrefs.pubchem).int_id
         Dim chebi_id As String = Strings.Trim(xrefs.chebi).int_id
+        Dim auto_commit As Boolean = trans Is Nothing
+
         ' transaction of registry.db_xrefs
-        Dim trans As CommitTransaction = registry.db_xrefs.open_transaction.ignore
+        If auto_commit Then
+            trans = registry.db_xrefs.open_transaction.ignore
+        End If
 
         If m.pubchem_cid = 0 AndAlso Not pubchem_cid Is Nothing Then
             updates.Add(field("pubchem_cid") = pubchem_cid)
@@ -69,82 +74,162 @@ Public Module MetaboliteData
         End If
 
         If Not pubchem_cid.StringEmpty Then
-            trans.ignore.add(field("db_source") = db_source,
+            Dim data = {field("db_source") = db_source,
                              field("db_name") = vocabulary.db_pubchem,
                              field("db_xref") = pubchem_cid,
                              field("type") = metabolite_type,
-                             field("obj_id") = m.id)
+                             field("obj_id") = m.id}
+
+            If auto_commit Then
+                trans.ignore.add(data)
+            Else
+                trans.add(registry.db_xrefs.add_sql(data))
+            End If
         End If
         If Not chebi_id.StringEmpty Then
             chebi_id = $"ChEBI:{chebi_id}"
-            trans.ignore.add(field("db_source") = db_source,
+
+            Dim data = {field("db_source") = db_source,
                              field("db_name") = vocabulary.db_chebi,
                              field("db_xref") = chebi_id,
                              field("type") = metabolite_type,
-                             field("obj_id") = m.id)
+                             field("obj_id") = m.id}
+
+            If auto_commit Then
+                trans.ignore.add(data)
+            Else
+                trans.add(registry.db_xrefs.add_sql(data))
+            End If
         End If
         If Not xrefs.HMDB.StringEmpty Then
-            trans.ignore.add(field("db_source") = db_source,
+            Dim data = {
+            field("db_source") = db_source,
                              field("db_name") = vocabulary.db_hmdb,
                              field("db_xref") = xrefs.HMDB,
                              field("type") = metabolite_type,
-                             field("obj_id") = m.id)
+                             field("obj_id") = m.id
+            }
+
+            If auto_commit Then
+                trans.ignore.add(data)
+            Else
+                trans.add(registry.db_xrefs.add_sql(data))
+            End If
         End If
         If Not xrefs.lipidmaps.StringEmpty Then
-            trans.ignore.add(field("db_source") = db_source,
+            Dim data = {
+                field("db_source") = db_source,
                              field("db_name") = vocabulary.db_lipidmaps,
                              field("db_xref") = xrefs.lipidmaps,
                              field("type") = metabolite_type,
-                             field("obj_id") = m.id)
+                             field("obj_id") = m.id
+            }
+
+            If auto_commit Then
+                trans.ignore.add(data)
+            Else
+                trans.add(registry.db_xrefs.add_sql(data))
+            End If
         End If
         If Not xrefs.KEGG.StringEmpty Then
-            trans.ignore.add(field("db_source") = db_source,
+            Dim data = {
+            field("db_source") = db_source,
                              field("db_name") = vocabulary.db_kegg,
                              field("db_xref") = xrefs.KEGG,
                              field("type") = metabolite_type,
-                             field("obj_id") = m.id)
+                             field("obj_id") = m.id
+            }
+
+            If auto_commit Then
+                trans.ignore.add(data)
+            Else
+                trans.add(registry.db_xrefs.add_sql(data))
+            End If
         End If
         If Not xrefs.MeSH.StringEmpty Then
-            trans.ignore.add(field("db_source") = db_source,
+            Dim data = {
+            field("db_source") = db_source,
                              field("db_name") = vocabulary.db_mesh,
                              field("db_xref") = xrefs.MeSH,
                              field("type") = metabolite_type,
-                             field("obj_id") = m.id)
+                             field("obj_id") = m.id
+            }
+            If auto_commit Then
+                trans.ignore.add(data)
+            Else
+                trans.add(registry.db_xrefs.add_sql(data))
+            End If
         End If
         If Not xrefs.Wikipedia.StringEmpty Then
-            trans.ignore.add(field("db_source") = db_source,
+            Dim data = {
+            field("db_source") = db_source,
                              field("db_name") = vocabulary.db_wikipedia,
                              field("db_xref") = xrefs.Wikipedia,
                              field("type") = metabolite_type,
-                             field("obj_id") = m.id)
+                             field("obj_id") = m.id
+            }
+            If auto_commit Then
+                trans.ignore.add(data)
+            Else
+                trans.add(registry.db_xrefs.add_sql(data))
+            End If
         End If
         If Not xrefs.MetaCyc.StringEmpty Then
-            trans.ignore.add(field("db_source") = db_source,
+            Dim data = {
+            field("db_source") = db_source,
                              field("db_name") = vocabulary.db_biocyc,
                              field("db_xref") = xrefs.MetaCyc,
                              field("type") = metabolite_type,
-                             field("obj_id") = m.id)
+                             field("obj_id") = m.id
+            }
+            If auto_commit Then
+                trans.ignore.add(data)
+            Else
+                trans.add(registry.db_xrefs.add_sql(data))
+            End If
         End If
         If Not xrefs.DrugBank.StringEmpty Then
-            trans.ignore.add(field("db_source") = db_source,
+            Dim data = {
+            field("db_source") = db_source,
                              field("db_name") = vocabulary.db_drugbank,
                              field("db_xref") = xrefs.DrugBank,
                              field("type") = metabolite_type,
-                             field("obj_id") = m.id)
+                             field("obj_id") = m.id
+            }
+            If auto_commit Then
+                trans.ignore.add(data)
+            Else
+                trans.add(registry.db_xrefs.add_sql(data))
+            End If
         End If
         If Not xrefs.metlin.StringEmpty Then
-            trans.ignore.add(field("db_source") = db_source,
+            Dim data = {
+            field("db_source") = db_source,
                              field("db_name") = vocabulary.db_metlin,
                              field("db_xref") = xrefs.metlin,
                              field("type") = metabolite_type,
-                             field("obj_id") = m.id)
+                             field("obj_id") = m.id
+            }
+            If auto_commit Then
+                trans.ignore.add(data)
+            Else
+                trans.add(registry.db_xrefs.add_sql(data))
+            End If
         End If
         If saveID Then
-            Call trans.ignore.add(field("db_source") = db_source,
+            Dim data = {
+                 field("db_source") = db_source,
                                   field("db_name") = db_source,
                                   field("db_xref") = meta.ID,
                                   field("type") = metabolite_type,
-                                  field("obj_id") = m.id)
+                                  field("obj_id") = m.id
+            }
+
+            If auto_commit Then
+                trans.ignore.add(data)
+            Else
+                trans.add(registry.db_xrefs.add_sql(data))
+            End If
         End If
 
         For Each id As String In xrefs.CAS.SafeQuery
@@ -153,17 +238,25 @@ Public Module MetaboliteData
             End If
 
             For Each split As String In id.StringSplit("[,;]\s*")
-                Call trans _
-                    .ignore _
-                    .add(field("db_source") = db_source,
+                Dim data = {
+                   field("db_source") = db_source,
                          field("db_name") = vocabulary.db_cas,
                          field("db_xref") = split,
                          field("type") = metabolite_type,
-                         field("obj_id") = m.id)
+                         field("obj_id") = m.id
+                }
+
+                If auto_commit Then
+                    trans.ignore.add(data)
+                Else
+                    trans.add(registry.db_xrefs.add_sql(data))
+                End If
             Next
         Next
 
-        Call trans.commit()
+        If auto_commit Then
+            Call trans.commit()
+        End If
     End Sub
 
     <Extension>

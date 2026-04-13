@@ -17,7 +17,8 @@ Public Module SaveData
                             obj_id As UInteger,
                             synonyms As IEnumerable(Of String),
                             db_source As UInteger,
-                            class_id As UInteger)
+                            class_id As UInteger,
+                            Optional commit As CommitTransaction = Nothing)
 
         Dim trans As CommitTransaction = registry.synonym.open_transaction.ignore
 
@@ -34,20 +35,26 @@ Public Module SaveData
                 field("hashcode") = hashcode).find(Of synonym)
 
             If check Is Nothing Then
-                Call trans _
-                    .ignore _
-                    .add(
-                        field("obj_id") = obj_id,
-                        field("type") = class_id,
-                        field("db_source") = db_source,
-                        field("synonym") = synonym,
-                        field("hashcode") = Strings.LCase(synonym).MD5,
-                        field("lang") = "en"
-                )
+                Dim data = {
+                    field("obj_id") = obj_id,
+                    field("type") = class_id,
+                    field("db_source") = db_source,
+                    field("synonym") = synonym,
+                    field("hashcode") = Strings.LCase(synonym).MD5,
+                    field("lang") = "en"
+                }
+
+                If commit Is Nothing Then
+                    Call trans.ignore.add(data)
+                Else
+                    Call commit.add(registry.synonym.add_sql(data))
+                End If
             End If
         Next
 
-        Call trans.commit()
+        If commit Is Nothing Then
+            Call trans.commit()
+        End If
     End Sub
 
     <Extension>

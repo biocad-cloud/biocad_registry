@@ -743,19 +743,34 @@ Module registry
 
         Dim bar As ProgressBar = Nothing
         Dim db_key As UInteger = registry.biocad_vocabulary.GetDatabaseResource(db_name).id
+        Dim trans As CommitTransaction = registry.metabolites.open_transaction
 
         For Each meta As MetaInfo In TqdmWrapper.WrapIterator(pull.populates(Of MetaInfo)(env), bar:=bar)
             If check_id Then
+                Dim check_xref = registry.db_xrefs _
+                    .where(field("type") = registry.biocad_vocabulary.metabolite_type,
+                           field("db_name") = db_key,
+                           field("db_xref") = meta.ID) _
+                    .find(Of db_xrefs)
 
+                If check_xref IsNot Nothing Then
+                    Continue For
+                End If
             End If
-            Dim m As metabolites = registry.FindMolecule(meta, primaryKey:=Nothing, nameSearch:=True, preferNameSearch:=True)
 
-            Call registry.SaveStructureData(m, meta.xref.SMILES)
-            Call registry.SaveSynonyms(m, meta.synonym.JoinIterates({meta.name, meta.IUPACName}).Distinct, db_key)
-            Call registry.SaveDbLinks(meta, m, db_key, saveID:=True)
+            Dim m As metabolites = registry.FindMolecule(meta,
+                                                         primaryKey:=Nothing,
+                                                         nameSearch:=True,
+                                                         preferNameSearch:=True)
+
+            Call registry.SaveStructureData(m, meta.xref.SMILES, trans:=trans)
+            Call registry.SaveSynonyms(m, meta.synonym.JoinIterates({meta.name, meta.IUPACName}).Distinct, db_key, trans:=trans)
+            Call registry.SaveDbLinks(meta, m, db_key, saveID:=True, trans:=trans)
 
             Call bar.SetLabel(meta.name)
         Next
+
+        Call trans.commit()
 
         Return Nothing
     End Function

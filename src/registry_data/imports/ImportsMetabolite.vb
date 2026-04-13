@@ -9,17 +9,24 @@ Public Module ImportsMetabolite
     <Extension>
     Public Sub SaveStructureData(registry As biocad_registry,
                                  m As metabolites,
-                                 smiles As String)
+                                 smiles As String,
+                                 Optional trans As CommitTransaction = Nothing)
 
         If Not smiles.StringEmpty Then
             Dim struct = registry.struct_data.where(field("metabolite_id") = m.id).find(Of struct_data)
 
             If struct Is Nothing Then
-                registry.struct_data.add(
+                Dim struct_data = {
                     field("metabolite_id") = m.id,
                     field("checksum") = smiles.MD5,
                     field("smiles") = smiles
-                )
+                }
+
+                If trans Is Nothing Then
+                    registry.struct_data.add(struct_data)
+                Else
+                    Call trans.add(registry.struct_data.add_sql(struct_data))
+                End If
             End If
         End If
     End Sub
@@ -139,13 +146,14 @@ Public Module ImportsMetabolite
     Public Sub SaveSynonyms(registry As biocad_registry,
                             m As metabolites,
                             synonyms As IEnumerable(Of String),
-                            db_source As UInteger)
+                            db_source As UInteger, Optional trans As CommitTransaction = Nothing)
 
         Call registry.SaveSynonyms(
             obj_id:=m.id,
             synonyms:=synonyms,
             db_source:=db_source,
-            class_id:=registry.biocad_vocabulary.metabolite_type
+            class_id:=registry.biocad_vocabulary.metabolite_type,
+            commit:=trans
         )
     End Sub
 
