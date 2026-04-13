@@ -731,7 +731,10 @@ Module registry
     End Function
 
     <ExportAPI("imports_metab_repo")>
-    Public Function imports_metab_repo(registry As biocad_registry, <RRawVectorArgument> metab As Object, db_name As String, Optional env As Environment = Nothing) As Object
+    Public Function imports_metab_repo(registry As biocad_registry, <RRawVectorArgument> metab As Object, db_name As String,
+                                       Optional check_id As Boolean = True,
+                                       Optional env As Environment = Nothing) As Object
+
         Dim pull As pipeline = pipeline.TryCreatePipeline(Of MetaInfo)(metab, env)
 
         If pull.isError Then
@@ -742,11 +745,14 @@ Module registry
         Dim db_key As UInteger = registry.biocad_vocabulary.GetDatabaseResource(db_name).id
 
         For Each meta As MetaInfo In TqdmWrapper.WrapIterator(pull.populates(Of MetaInfo)(env), bar:=bar)
+            If check_id Then
+
+            End If
             Dim m As metabolites = registry.FindMolecule(meta, primaryKey:=Nothing, nameSearch:=True, preferNameSearch:=True)
 
-            Call registry.SaveDbLinks(meta, m, db_key, saveID:=True)
             Call registry.SaveStructureData(m, meta.xref.SMILES)
             Call registry.SaveSynonyms(m, meta.synonym.JoinIterates({meta.name, meta.IUPACName}).Distinct, db_key)
+            Call registry.SaveDbLinks(meta, m, db_key, saveID:=True)
 
             Call bar.SetLabel(meta.name)
         Next
