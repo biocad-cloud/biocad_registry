@@ -325,7 +325,8 @@ Public Module MetaboliteData
     <Extension>
     Public Function FindMolecule(registry As biocad_registry, meta As MetaInfo, Optional primaryKey As String = Nothing,
                                  Optional nameSearch As Boolean = False,
-                                 Optional preferNameSearch As Boolean = False) As metabolites
+                                 Optional preferNameSearch As Boolean = False,
+                                 Optional source_db As UInteger = 0) As metabolites
 
         Dim pubchem_cid As String = Strings.Trim(meta.xref.pubchem).int_id
         Dim chebi_id As String = Strings.Trim(meta.xref.chebi).int_id
@@ -419,7 +420,25 @@ Public Module MetaboliteData
         End If
 
         If TypeOf meta Is MetaLib AndAlso m.name_zh.StringEmpty(, True) Then
-            registry.metabolites.where(field("id") = m.id).save(field("name_zh") = DirectCast(meta, MetaLib).zh_name)
+            Dim zh_name As String = DirectCast(meta, MetaLib).zh_name
+            Dim trans = registry.synonym.open_transaction
+
+            Call trans.add(registry.metabolites.where(field("id") = m.id).save_sql(field("name_zh") = zh_name))
+
+            If source_db > 0 Then
+                For Each name_zh As String In zh_name.StringSplit("\s*;\s*")
+                    Call trans.add(
+                        field("obj_id") = m.id,
+                        field("type") = registry.biocad_vocabulary.metabolite_type,
+                        field("db_source") = source_db,
+                        field("synonym") = name_zh,
+                        field("hashcode") = name_zh.ToLower.MD5,
+                        field("lang") = "zh"
+                    )
+                Next
+            End If
+
+            Call trans.commit()
         End If
 
         Return m
