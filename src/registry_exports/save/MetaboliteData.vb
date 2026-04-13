@@ -418,6 +418,10 @@ Public Module MetaboliteData
             End If
         End If
 
+        If TypeOf meta Is MetaLib AndAlso m.name_zh.StringEmpty(, True) Then
+            registry.metabolites.where(field("id") = m.id).save(field("name_zh") = DirectCast(meta, MetaLib).zh_name)
+        End If
+
         Return m
     End Function
 

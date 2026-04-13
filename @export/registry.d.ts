@@ -29,9 +29,10 @@ declare namespace registry {
    */
    function imports_lotus(registry: object, lotus: any, env?: object): any;
    /**
+     * @param check_id default value Is ``true``.
      * @param env default value Is ``null``.
    */
-   function imports_metab_repo(registry: object, metab: any, db_name: string, env?: object): any;
+   function imports_metab_repo(registry: object, metab: any, db_name: string, check_id?: boolean, env?: object): any;
    /**
    */
    function imports_metacyc_compounds(registry: object, metacyc: object): any;
