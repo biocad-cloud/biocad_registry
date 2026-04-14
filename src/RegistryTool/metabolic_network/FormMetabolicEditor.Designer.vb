@@ -37,6 +37,13 @@ Partial Class FormMetabolicEditor
         Column3 = New DataGridViewTextBoxColumn()
         SplitContainer2 = New SplitContainer()
         DataGridView2 = New DataGridView()
+        Column4 = New DataGridViewTextBoxColumn()
+        Column5 = New DataGridViewTextBoxColumn()
+        Column6 = New DataGridViewTextBoxColumn()
+        Column7 = New DataGridViewTextBoxColumn()
+        Column8 = New DataGridViewTextBoxColumn()
+        Column9 = New DataGridViewTextBoxColumn()
+        Column12 = New DataGridViewTextBoxColumn()
         ContextMenuStrip1 = New ContextMenuStrip(components)
         OpenToolStripMenuItem = New ToolStripMenuItem()
         CopySymbolNameToolStripMenuItem = New ToolStripMenuItem()
@@ -67,13 +74,9 @@ Partial Class FormMetabolicEditor
         ToolStripComboBox1 = New ToolStripComboBox()
         ToolStripSeparator3 = New ToolStripSeparator()
         ToolStripButton5 = New ToolStripButton()
-        Column4 = New DataGridViewTextBoxColumn()
-        Column5 = New DataGridViewTextBoxColumn()
-        Column6 = New DataGridViewTextBoxColumn()
-        Column7 = New DataGridViewTextBoxColumn()
-        Column8 = New DataGridViewTextBoxColumn()
-        Column9 = New DataGridViewTextBoxColumn()
-        Column12 = New DataGridViewTextBoxColumn()
+        ToolStripSeparator4 = New ToolStripSeparator()
+        ToolStripButton6 = New ToolStripButton()
+        ToolStripLabel5 = New ToolStripLabel()
         CType(SplitContainer1, ISupportInitialize).BeginInit()
         SplitContainer1.Panel1.SuspendLayout()
         SplitContainer1.Panel2.SuspendLayout()
@@ -191,6 +194,50 @@ Partial Class FormMetabolicEditor
         DataGridView2.SelectionMode = DataGridViewSelectionMode.FullRowSelect
         DataGridView2.Size = New Size(751, 247)
         DataGridView2.TabIndex = 0
+        ' 
+        ' Column4
+        ' 
+        Column4.HeaderText = "id"
+        Column4.Name = "Column4"
+        Column4.ReadOnly = True
+        ' 
+        ' Column5
+        ' 
+        Column5.HeaderText = "db_xref"
+        Column5.Name = "Column5"
+        Column5.ReadOnly = True
+        ' 
+        ' Column6
+        ' 
+        Column6.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+        Column6.HeaderText = "name"
+        Column6.Name = "Column6"
+        Column6.ReadOnly = True
+        ' 
+        ' Column7
+        ' 
+        Column7.HeaderText = "formula"
+        Column7.Name = "Column7"
+        Column7.ReadOnly = True
+        ' 
+        ' Column8
+        ' 
+        Column8.HeaderText = "mass"
+        Column8.Name = "Column8"
+        Column8.ReadOnly = True
+        ' 
+        ' Column9
+        ' 
+        Column9.HeaderText = "role"
+        Column9.Name = "Column9"
+        Column9.ReadOnly = True
+        ' 
+        ' Column12
+        ' 
+        Column12.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+        Column12.HeaderText = "symbol_name"
+        Column12.Name = "Column12"
+        Column12.ReadOnly = True
         ' 
         ' ContextMenuStrip1
         ' 
@@ -318,7 +365,7 @@ Partial Class FormMetabolicEditor
         ' 
         ' ToolStrip1
         ' 
-        ToolStrip1.Items.AddRange(New ToolStripItem() {ToolStripLabel1, ToolStripButton1, ToolStripLabel2, ToolStripTextBox1, ToolStripButton2, ToolStripButton3, ToolStripSeparator1, ToolStripLabel3, ToolStripTextBox2, ToolStripButton4, ToolStripSeparator2, ToolStripLabel4, ToolStripComboBox1, ToolStripSeparator3, ToolStripButton5})
+        ToolStrip1.Items.AddRange(New ToolStripItem() {ToolStripLabel1, ToolStripButton1, ToolStripLabel2, ToolStripTextBox1, ToolStripButton2, ToolStripButton3, ToolStripSeparator1, ToolStripLabel3, ToolStripTextBox2, ToolStripButton4, ToolStripSeparator2, ToolStripLabel4, ToolStripComboBox1, ToolStripSeparator3, ToolStripButton5, ToolStripSeparator4, ToolStripLabel5, ToolStripButton6})
         ToolStrip1.Location = New Point(0, 0)
         ToolStrip1.Name = "ToolStrip1"
         ToolStrip1.Size = New Size(1394, 25)
@@ -426,49 +473,25 @@ Partial Class FormMetabolicEditor
         ToolStripButton5.Size = New Size(23, 22)
         ToolStripButton5.Text = "Add"
         ' 
-        ' Column4
+        ' ToolStripSeparator4
         ' 
-        Column4.HeaderText = "id"
-        Column4.Name = "Column4"
-        Column4.ReadOnly = True
+        ToolStripSeparator4.Name = "ToolStripSeparator4"
+        ToolStripSeparator4.Size = New Size(6, 25)
         ' 
-        ' Column5
+        ' ToolStripButton6
         ' 
-        Column5.HeaderText = "db_xref"
-        Column5.Name = "Column5"
-        Column5.ReadOnly = True
+        ToolStripButton6.DisplayStyle = ToolStripItemDisplayStyle.Image
+        ToolStripButton6.Image = CType(resources.GetObject("ToolStripButton6.Image"), Image)
+        ToolStripButton6.ImageTransparentColor = Color.Magenta
+        ToolStripButton6.Name = "ToolStripButton6"
+        ToolStripButton6.Size = New Size(23, 22)
+        ToolStripButton6.Text = "Search Substrate"
         ' 
-        ' Column6
+        ' ToolStripLabel5
         ' 
-        Column6.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
-        Column6.HeaderText = "name"
-        Column6.Name = "Column6"
-        Column6.ReadOnly = True
-        ' 
-        ' Column7
-        ' 
-        Column7.HeaderText = "formula"
-        Column7.Name = "Column7"
-        Column7.ReadOnly = True
-        ' 
-        ' Column8
-        ' 
-        Column8.HeaderText = "mass"
-        Column8.Name = "Column8"
-        Column8.ReadOnly = True
-        ' 
-        ' Column9
-        ' 
-        Column9.HeaderText = "role"
-        Column9.Name = "Column9"
-        Column9.ReadOnly = True
-        ' 
-        ' Column12
-        ' 
-        Column12.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
-        Column12.HeaderText = "symbol_name"
-        Column12.Name = "Column12"
-        Column12.ReadOnly = True
+        ToolStripLabel5.Name = "ToolStripLabel5"
+        ToolStripLabel5.Size = New Size(134, 22)
+        ToolStripLabel5.Text = "Search Substrate Model:"
         ' 
         ' FormMetabolicEditor
         ' 
@@ -549,4 +572,7 @@ Partial Class FormMetabolicEditor
     Friend WithEvents Column8 As DataGridViewTextBoxColumn
     Friend WithEvents Column9 As DataGridViewTextBoxColumn
     Friend WithEvents Column12 As DataGridViewTextBoxColumn
+    Friend WithEvents ToolStripSeparator4 As ToolStripSeparator
+    Friend WithEvents ToolStripLabel5 As ToolStripLabel
+    Friend WithEvents ToolStripButton6 As ToolStripButton
 End Class

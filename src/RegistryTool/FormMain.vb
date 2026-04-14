@@ -391,7 +391,7 @@ Public Class FormMain : Implements AppHost
         End If
     End Sub
 
-    Private Sub ShowMetabolitesTable(molecules As biocad_registryModel.metabolites(), text As String)
+    Friend Shared Sub ShowMetabolitesTable(molecules As biocad_registryModel.metabolites(), text As String)
         Dim view As New FormDbView()
         view.LoadTableView(Function() molecules)
         view.SetViewer(Sub(row)

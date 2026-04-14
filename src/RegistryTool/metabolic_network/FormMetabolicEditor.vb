@@ -2,6 +2,7 @@
 Imports Galaxy.Workbench.CommonDialogs
 Imports Ollama
 Imports Oracle.LinuxCompatibility.MySQL.MySqlBuilder
+Imports Oracle.LinuxCompatibility.MySQL.Scripting
 Imports registry_data.biocad_registryModel
 Imports RegistryTool.My
 
@@ -222,5 +223,24 @@ Public Class FormMetabolicEditor
 
         Call Clipboard.SetText(name)
         Call CommonRuntime.StatusMessage($"the metabolite symbol name '{name}' has been copied!")
+    End Sub
+
+    Private Async Sub ToolStripButton6_Click(sender As Object, e As EventArgs) Handles ToolStripButton6.Click
+        Dim text As String = Strings.Trim(InputBox("Input the substrate name text to search:"))
+
+        If text.StringEmpty(, True) Then
+            Return
+        Else
+            text = text.FullTextEscape
+        End If
+
+        Dim substrate_id = "SELECT DISTINCT species_id FROM cad_registry.metabolic_network"
+        Dim metabolites As metabolites() = Await MyApplication.biocad_registry.metabolites _
+            .async _
+            .where(field("id").in(substrate_id),
+                   match("name", "note").against(text, False)) _
+            .select(Of metabolites)("*")
+
+        Call FormMain.ShowMetabolitesTable(metabolites, text)
     End Sub
 End Class
