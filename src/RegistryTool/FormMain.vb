@@ -401,6 +401,8 @@ Public Class FormMain : Implements AppHost
                        End Sub)
         view.Text = $"Search Result of '{text}'"
         view.Show(CommonRuntime.AppHost.GetDockPanel, DockState.Document)
+
+        Call CommonRuntime.StatusMessage($"Show {molecules.TryCount} metabolite search result.")
     End Sub
 
     Public Sub SetWorkbenchVisible(visible As Boolean) Implements AppHost.SetWorkbenchVisible

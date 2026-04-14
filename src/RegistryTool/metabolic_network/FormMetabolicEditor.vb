@@ -234,6 +234,8 @@ Public Class FormMetabolicEditor
             text = text.FullTextEscape.Replace("_", " ")
         End If
 
+        Call CommonRuntime.StatusMessage($"make metabolite searchs for '{text}'.")
+
         Dim substrate_id = "SELECT DISTINCT species_id FROM cad_registry.metabolic_network"
         Dim metabolites As metabolites() = Await MyApplication.biocad_registry.metabolites _
             .async _
