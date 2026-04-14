@@ -886,6 +886,10 @@ let options = { width: 450, height: 300 };
                      field("symbol_id") = mol.id,
                      field("type") = MyApplication.biocad_registry.biocad_vocabulary.metabolite_type)
         End If
+
+        TextBox8.Text = symbol
+
+        CommonRuntime.StatusMessage($"Make register of the symbol '{symbol}' to {mol.id} - {mol.name} success!")
     End Sub
 End Class
 
