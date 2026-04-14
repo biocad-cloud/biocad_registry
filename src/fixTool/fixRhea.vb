@@ -1,6 +1,6 @@
-﻿Imports Microsoft.VisualBasic.Linq
+﻿Imports Microsoft.VisualBasic.Language.UnixBash
+Imports Microsoft.VisualBasic.Linq
 Imports biopax = SMRUCC.genomics.Model.Biopax.Level3.File
-Imports Microsoft.VisualBasic.Language.UnixBash
 
 Module fixRhea
 
