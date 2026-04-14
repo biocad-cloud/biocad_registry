@@ -25,7 +25,7 @@ Partial Class FormMoleculeEditor
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         components = New ComponentModel.Container()
-        Dim DataGridViewCellStyle1 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As DataGridViewCellStyle = New DataGridViewCellStyle()
         DataGridView1 = New DataGridView()
         Column1 = New DataGridViewTextBoxColumn()
         Column2 = New DataGridViewTextBoxColumn()
@@ -140,6 +140,7 @@ Partial Class FormMoleculeEditor
         TabControl1 = New TabControl()
         TabPage1 = New TabPage()
         TabPage2 = New TabPage()
+        LinkLabel3 = New LinkLabel()
         CType(DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
         ContextMenuStrip3.SuspendLayout()
         CType(WebView21, ComponentModel.ISupportInitialize).BeginInit()
@@ -374,7 +375,7 @@ Partial Class FormMoleculeEditor
         ' Label8
         ' 
         Label8.AutoSize = True
-        Label8.Location = New Point(13, 176)
+        Label8.Location = New Point(13, 202)
         Label8.Name = "Label8"
         Label8.Size = New Size(99, 15)
         Label8.TabIndex = 16
@@ -382,11 +383,11 @@ Partial Class FormMoleculeEditor
         ' 
         ' TextBox4
         ' 
-        TextBox4.Location = New Point(15, 198)
+        TextBox4.Location = New Point(15, 220)
         TextBox4.Multiline = True
         TextBox4.Name = "TextBox4"
         TextBox4.ScrollBars = ScrollBars.Vertical
-        TextBox4.Size = New Size(396, 357)
+        TextBox4.Size = New Size(396, 335)
         TextBox4.TabIndex = 17
         ' 
         ' Button3
@@ -400,7 +401,7 @@ Partial Class FormMoleculeEditor
         ' 
         ' Button4
         ' 
-        Button4.Location = New Point(422, 198)
+        Button4.Location = New Point(422, 231)
         Button4.Name = "Button4"
         Button4.Size = New Size(75, 34)
         Button4.TabIndex = 19
@@ -509,7 +510,7 @@ Partial Class FormMoleculeEditor
         ' 
         ' Button17
         ' 
-        Button17.Location = New Point(417, 311)
+        Button17.Location = New Point(417, 315)
         Button17.Name = "Button17"
         Button17.Size = New Size(75, 23)
         Button17.TabIndex = 27
@@ -518,14 +519,14 @@ Partial Class FormMoleculeEditor
         ' 
         ' txtMeshID
         ' 
-        txtMeshID.Location = New Point(115, 311)
+        txtMeshID.Location = New Point(115, 315)
         txtMeshID.Name = "txtMeshID"
         txtMeshID.Size = New Size(276, 23)
         txtMeshID.TabIndex = 26
         ' 
         ' Button16
         ' 
-        Button16.Location = New Point(417, 271)
+        Button16.Location = New Point(417, 276)
         Button16.Name = "Button16"
         Button16.Size = New Size(75, 23)
         Button16.TabIndex = 25
@@ -534,14 +535,14 @@ Partial Class FormMoleculeEditor
         ' 
         ' txtBioCYCID
         ' 
-        txtBioCYCID.Location = New Point(115, 271)
+        txtBioCYCID.Location = New Point(115, 276)
         txtBioCYCID.Name = "txtBioCYCID"
         txtBioCYCID.Size = New Size(276, 23)
         txtBioCYCID.TabIndex = 24
         ' 
         ' Button15
         ' 
-        Button15.Location = New Point(417, 225)
+        Button15.Location = New Point(417, 233)
         Button15.Name = "Button15"
         Button15.Size = New Size(75, 23)
         Button15.TabIndex = 23
@@ -550,14 +551,14 @@ Partial Class FormMoleculeEditor
         ' 
         ' txtDrugBankID
         ' 
-        txtDrugBankID.Location = New Point(115, 226)
+        txtDrugBankID.Location = New Point(115, 234)
         txtDrugBankID.Name = "txtDrugBankID"
         txtDrugBankID.Size = New Size(276, 23)
         txtDrugBankID.TabIndex = 22
         ' 
         ' Button14
         ' 
-        Button14.Location = New Point(417, 190)
+        Button14.Location = New Point(417, 194)
         Button14.Name = "Button14"
         Button14.Size = New Size(75, 23)
         Button14.TabIndex = 21
@@ -566,14 +567,14 @@ Partial Class FormMoleculeEditor
         ' 
         ' txtKEGGID
         ' 
-        txtKEGGID.Location = New Point(115, 191)
+        txtKEGGID.Location = New Point(115, 195)
         txtKEGGID.Name = "txtKEGGID"
         txtKEGGID.Size = New Size(276, 23)
         txtKEGGID.TabIndex = 20
         ' 
         ' Button13
         ' 
-        Button13.Location = New Point(417, 157)
+        Button13.Location = New Point(417, 159)
         Button13.Name = "Button13"
         Button13.Size = New Size(75, 23)
         Button13.TabIndex = 19
@@ -582,7 +583,7 @@ Partial Class FormMoleculeEditor
         ' 
         ' txtLipidMapsID
         ' 
-        txtLipidMapsID.Location = New Point(115, 158)
+        txtLipidMapsID.Location = New Point(115, 160)
         txtLipidMapsID.Name = "txtLipidMapsID"
         txtLipidMapsID.Size = New Size(276, 23)
         txtLipidMapsID.TabIndex = 18
@@ -647,7 +648,7 @@ Partial Class FormMoleculeEditor
         ' Label16
         ' 
         Label16.AutoSize = True
-        Label16.Location = New Point(39, 314)
+        Label16.Location = New Point(39, 318)
         Label16.Name = "Label16"
         Label16.Size = New Size(56, 15)
         Label16.TabIndex = 10
@@ -656,7 +657,7 @@ Partial Class FormMoleculeEditor
         ' Label15
         ' 
         Label15.AutoSize = True
-        Label15.Location = New Point(51, 271)
+        Label15.Location = New Point(51, 276)
         Label15.Name = "Label15"
         Label15.Size = New Size(47, 15)
         Label15.TabIndex = 9
@@ -665,7 +666,7 @@ Partial Class FormMoleculeEditor
         ' Label14
         ' 
         Label14.AutoSize = True
-        Label14.Location = New Point(22, 226)
+        Label14.Location = New Point(22, 234)
         Label14.Name = "Label14"
         Label14.Size = New Size(76, 15)
         Label14.TabIndex = 8
@@ -674,7 +675,7 @@ Partial Class FormMoleculeEditor
         ' Label13
         ' 
         Label13.AutoSize = True
-        Label13.Location = New Point(45, 191)
+        Label13.Location = New Point(45, 195)
         Label13.Name = "Label13"
         Label13.Size = New Size(53, 15)
         Label13.TabIndex = 7
@@ -683,7 +684,7 @@ Partial Class FormMoleculeEditor
         ' Label12
         ' 
         Label12.AutoSize = True
-        Label12.Location = New Point(16, 158)
+        Label12.Location = New Point(16, 160)
         Label12.Name = "Label12"
         Label12.Size = New Size(82, 15)
         Label12.TabIndex = 6
@@ -846,6 +847,7 @@ Partial Class FormMoleculeEditor
         ' 
         ' GroupBox4
         ' 
+        GroupBox4.Controls.Add(LinkLabel3)
         GroupBox4.Controls.Add(Button19)
         GroupBox4.Controls.Add(TextBox9)
         GroupBox4.Controls.Add(Label19)
@@ -872,7 +874,7 @@ Partial Class FormMoleculeEditor
         ' 
         ' Button19
         ' 
-        Button19.Location = New Point(417, 131)
+        Button19.Location = New Point(419, 167)
         Button19.Name = "Button19"
         Button19.Size = New Size(75, 23)
         Button19.TabIndex = 26
@@ -881,7 +883,7 @@ Partial Class FormMoleculeEditor
         ' 
         ' TextBox9
         ' 
-        TextBox9.Location = New Point(114, 132)
+        TextBox9.Location = New Point(116, 168)
         TextBox9.Name = "TextBox9"
         TextBox9.Size = New Size(297, 23)
         TextBox9.TabIndex = 25
@@ -889,7 +891,7 @@ Partial Class FormMoleculeEditor
         ' Label19
         ' 
         Label19.AutoSize = True
-        Label19.Location = New Point(21, 140)
+        Label19.Location = New Point(23, 176)
         Label19.Name = "Label19"
         Label19.Size = New Size(87, 15)
         Label19.TabIndex = 24
@@ -898,7 +900,7 @@ Partial Class FormMoleculeEditor
         ' LinkLabel2
         ' 
         LinkLabel2.AutoSize = True
-        LinkLabel2.Location = New Point(422, 106)
+        LinkLabel2.Location = New Point(358, 134)
         LinkLabel2.Name = "LinkLabel2"
         LinkLabel2.Size = New Size(35, 15)
         LinkLabel2.TabIndex = 23
@@ -924,7 +926,7 @@ Partial Class FormMoleculeEditor
         ' 
         ' Button7
         ' 
-        Button7.Location = New Point(419, 257)
+        Button7.Location = New Point(419, 271)
         Button7.Name = "Button7"
         Button7.Size = New Size(75, 35)
         Button7.TabIndex = 20
@@ -1019,14 +1021,14 @@ Partial Class FormMoleculeEditor
         DataGridView2.AllowUserToAddRows = False
         DataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
         DataGridView2.Columns.AddRange(New DataGridViewColumn() {Column3, Column4})
-        DataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle1.BackColor = SystemColors.Window
-        DataGridViewCellStyle1.Font = New Font("Cambria", 8.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle1.ForeColor = SystemColors.ControlText
-        DataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight
-        DataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText
-        DataGridViewCellStyle1.WrapMode = DataGridViewTriState.False
-        DataGridView2.DefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle3.BackColor = SystemColors.Window
+        DataGridViewCellStyle3.Font = New Font("Cambria", 8.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle3.ForeColor = SystemColors.ControlText
+        DataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText
+        DataGridViewCellStyle3.WrapMode = DataGridViewTriState.False
+        DataGridView2.DefaultCellStyle = DataGridViewCellStyle3
         DataGridView2.Dock = DockStyle.Fill
         DataGridView2.Location = New Point(0, 0)
         DataGridView2.Name = "DataGridView2"
@@ -1220,6 +1222,16 @@ Partial Class FormMoleculeEditor
         TabPage2.Text = "Related Metabolic Network"
         TabPage2.UseVisualStyleBackColor = True
         ' 
+        ' LinkLabel3
+        ' 
+        LinkLabel3.AutoSize = True
+        LinkLabel3.Location = New Point(244, 134)
+        LinkLabel3.Name = "LinkLabel3"
+        LinkLabel3.Size = New Size(92, 15)
+        LinkLabel3.TabIndex = 27
+        LinkLabel3.TabStop = True
+        LinkLabel3.Text = "Register Symbol"
+        ' 
         ' FormMoleculeEditor
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
@@ -1391,4 +1403,5 @@ Partial Class FormMoleculeEditor
     Friend WithEvents Button19 As Button
     Friend WithEvents TextBox9 As TextBox
     Friend WithEvents Label19 As Label
+    Friend WithEvents LinkLabel3 As LinkLabel
 End Class

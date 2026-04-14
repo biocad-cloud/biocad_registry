@@ -827,17 +827,65 @@ let options = { width: 450, height: 300 };
     End Sub
 
     Private Sub LinkLabel2_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel2.LinkClicked
-        Call Clipboard.SetText(TextBox8.Text)
+        Clipboard.SetText(TextBox8.Text)
     End Sub
 
     Private Async Sub Button19_Click(sender As Object, e As EventArgs) Handles Button19.Click
-        Dim zh_name As String = Strings.Trim(TextBox9.Text)
+        Dim zh_name = Trim(TextBox9.Text)
 
         If zh_name.StringEmpty(, True) Then
-            Call CommonRuntime.Warning($"Clear the chinese name of metabolite '{mol.name}'")
+            Warning($"Clear the chinese name of metabolite '{mol.name}'")
         End If
 
         Await MyApplication.biocad_registry.metabolites.async.where(field("id") = mol.id).save(field("name_zh") = zh_name)
+    End Sub
+
+    Private Async Sub LinkLabel3_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel3.LinkClicked
+        Dim symbol As String = TextBox2.Text.makeSymbol
+        ' check symbol 
+        ' find duplicated
+        Dim check1 = Await MyApplication.biocad_registry.registry_resolver _
+            .async _
+            .where(field("type") = MyApplication.biocad_registry.biocad_vocabulary.metabolite_type,
+                   field("register_name") = symbol) _
+            .find(Of registry_resolver)
+        ' find myself
+        Dim check2 = Await MyApplication.biocad_registry.registry_resolver _
+            .async _
+            .where(field("type") = MyApplication.biocad_registry.biocad_vocabulary.metabolite_type,
+                   field("symbol_id") = mol.id) _
+            .find(Of registry_resolver)
+
+        If check1 IsNot Nothing AndAlso check1.symbol_id <> mol.id Then
+            Dim opt = MessageBox.Show($"Current symbol '{symbol}' has already been register by other metabolite, going to replace the registry symbol reference?" & vbCrLf & vbCrLf &
+                                      "[Cancel] for view the conflict metabolite.",
+                                      "Check Conflicts",
+                                      MessageBoxButtons.YesNoCancel,
+                                      MessageBoxIcon.Question)
+
+            If opt = DialogResult.Cancel Then
+                Call Workbench.OpenMoleculeEditor(check1.symbol_id, check1.register_name)
+            ElseIf opt = DialogResult.No Then
+                Return
+            End If
+
+            Await MyApplication.biocad_registry.registry_resolver _
+                .async _
+                .where(field("id") = check1.id) _
+                .delete()
+        End If
+        If check2 IsNot Nothing Then
+            Await MyApplication.biocad_registry.registry_resolver _
+                .async _
+                .where(field("id") = check2.id) _
+                .save(field("register_name") = symbol)
+        Else
+            Await MyApplication.biocad_registry.registry_resolver _
+                .async _
+                .add(field("register_name") = symbol,
+                     field("symbol_id") = mol.id,
+                     field("type") = MyApplication.biocad_registry.biocad_vocabulary.metabolite_type)
+        End If
     End Sub
 End Class
 
