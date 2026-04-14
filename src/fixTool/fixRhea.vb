@@ -19,7 +19,7 @@ Module fixRhea
             Dim xml As biopax = biopax.LoadDoc(filepath)
             Dim loader As SMRUCC.genomics.Model.Biopax.Level3.ResourceReader = SMRUCC.genomics.Model.Biopax.Level3.ResourceReader.LoadResource(file:=xml)
             Dim reactions = loader.GetAllReactions(entity_refs:=True).ToArray
-            Dim compounds = loader.GetAllCompounds.ToDictionary(Function(a) a.id)
+            Dim compounds = loader.GetAllCompounds.OrderBy(Function(a) a.id).ToDictionary(Function(a) a.id)
             Dim trans As CommitTransaction = registry.metabolic_network.ignore.open_transaction
 
             For Each rxn As MetabolicReaction In TqdmWrapper.Wrap(reactions)
@@ -47,23 +47,25 @@ Module fixRhea
                         Dim symbol As MetabolicCompound = compounds(spc.ID)
                         Dim chebi_id As String = symbol("ChEBI")
 
-                        Call link_commit.add(registry.metabolic_network.add_sql(field("reaction_id") = check.id,
+                        Call link_commit.add(field("reaction_id") = check.id,
                                                                           field("factor") = spc.Stoichiometry,
                                                                           field("species_id") = 0,
                                                                           field("symbol_id") = chebi_id,
                                                                           field("role") = role_left,
-                                                                          field("compartment_id") = 1))
+                                                                          field("compartment_id") = 1,
+                                                                          field("note") = symbol.name)
                     Next
                     For Each spc As CompoundSpecieReference In rxn.right
                         Dim symbol As MetabolicCompound = compounds(spc.ID)
                         Dim chebi_id As String = symbol("ChEBI")
 
-                        Call link_commit.add(registry.metabolic_network.add_sql(field("reaction_id") = check.id,
+                        Call link_commit.add(field("reaction_id") = check.id,
                                                                           field("factor") = spc.Stoichiometry,
                                                                           field("species_id") = 0,
                                                                           field("symbol_id") = chebi_id,
                                                                           field("role") = role_right,
-                                                                          field("compartment_id") = 1))
+                                                                          field("compartment_id") = 1,
+                                                                          field("note") = symbol.name)
                     Next
 
                     Call link_commit.commit()
