@@ -120,20 +120,26 @@ Public Module RegisterSymbol
             .where(field("register_name") = symbol_name,
                    field("type") = metabolite_type) _
             .find(Of registry_resolver)
+        Dim meta_id As UInteger = meta.id
+
+        If meta.main_id > 0 Then
+            meta_id = meta.main_id
+        End If
 
         If check IsNot Nothing Then
             ' symbol is already existsed
             If check.symbol_id <> meta.id Then
                 ' check of the main id alias
-                If registry.CheckIdAlias(meta.id, check.symbol_id) OrElse registry.CheckIdAlias(check.symbol_id, meta.id) Then
-                    Return check
-                Else
-                    Call registry.registry_resolver _
-                        .where(field("id") = check.id) _
-                        .save(field("symbol_id") = meta.id)
-                End If
+                'If registry.CheckIdAlias(meta.id, check.symbol_id) OrElse registry.CheckIdAlias(check.symbol_id, meta.id) Then
+                '    Return check
+                'Else
 
-                Return GetMetaboliteModel(registry, meta.id)
+                'End If
+                Call registry.registry_resolver _
+                        .where(field("id") = check.id) _
+                        .save(field("symbol_id") = meta_id)
+
+                Return GetMetaboliteModel(registry, meta_id)
             End If
 
             Return check
@@ -143,9 +149,9 @@ Public Module RegisterSymbol
         Call registry.registry_resolver.add(
             field("register_name") = symbol_name,
             field("type") = metabolite_type,
-            field("symbol_id") = meta.id
+            field("symbol_id") = meta_id
         )
 
-        Return GetMetaboliteModel(registry, meta.id)
+        Return GetMetaboliteModel(registry, meta_id)
     End Function
 End Module
