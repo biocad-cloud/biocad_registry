@@ -9,6 +9,7 @@ Module fixRhea
             Dim xml As biopax = biopax.LoadDoc(filepath)
             Dim loader As SMRUCC.genomics.Model.Biopax.Level3.ResourceReader = SMRUCC.genomics.Model.Biopax.Level3.ResourceReader.LoadResource(file:=xml)
             Dim reactions = loader.GetAllReactions.ToArray
+            Dim compounds = loader.GetAllCompounds.ToArray
 
             Pause()
         Next
