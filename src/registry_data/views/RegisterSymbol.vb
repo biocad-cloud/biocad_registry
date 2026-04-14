@@ -15,7 +15,12 @@ Public Module RegisterSymbol
 
     <Extension>
     Public Function makeSymbol(name As String) As String
-        Dim symbol As String = CleanName(Strings.Trim(name)) _
+        Dim symbol As String = name _
+            .StringReplace("[<][/]?\s*sub[>]", "") _
+            .StringReplace("[<][/]?\s*sup[>]", "") _
+            .StringReplace("[<][/]?\s*i[>]", "")
+
+        symbol = CleanName(Strings.Trim(symbol)) _
             .Replace("(", "_") _
             .Replace(")", "_") _
             .Replace("""", "_") _
@@ -27,11 +32,6 @@ Public Module RegisterSymbol
             .StringReplace("\s+", "_") _
             .StringReplace("[_-]{2,}", "_") _
             .Trim("_"c, ","c)
-
-        symbol = symbol _
-            .StringReplace("[<][/]?\s*sub[>]", "") _
-            .StringReplace("[<][/]?\s*sup[>]", "") _
-            .StringReplace("[<][/]?\s*i[>]", "")
 
         symbol = symbol.StringReplace(",[\-_]+", ",")
         symbol = symbol.StringReplace("[\-_]+,", ",")
