@@ -33,6 +33,9 @@ Public Module RegisterSymbol
             .StringReplace("[_-]{2,}", "_") _
             .Trim("_"c, ","c)
 
+        symbol = symbol.Replace("[_", "[").Replace("_]", "]")
+        symbol = symbol.Replace("{_", "{").Replace("_}", "}")
+
         symbol = symbol.StringReplace(",[\-_]+", ",")
         symbol = symbol.StringReplace("[\-_]+,", ",")
         symbol = symbol.StringReplace(",{2,}", ",")
