@@ -245,4 +245,8 @@ Public Class FormMetabolicEditor
 
         Call FormMain.ShowMetabolitesTable(metabolites, text)
     End Sub
+
+    Private Sub ToolStripButton7_Click(sender As Object, e As EventArgs) Handles ToolStripButton7.Click
+        Call CommonRuntime.ShowDocument(Of FormMetabolicSymbols)()
+    End Sub
 End Class

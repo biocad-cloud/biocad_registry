@@ -26,7 +26,7 @@ Partial Class FormMetabolicEditor
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         components = New Container()
-        Dim DataGridViewCellStyle1 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Dim resources As ComponentResourceManager = New ComponentResourceManager(GetType(FormMetabolicEditor))
         SplitContainer1 = New SplitContainer()
         DataGridView1 = New DataGridView()
@@ -75,8 +75,9 @@ Partial Class FormMetabolicEditor
         ToolStripSeparator3 = New ToolStripSeparator()
         ToolStripButton5 = New ToolStripButton()
         ToolStripSeparator4 = New ToolStripSeparator()
-        ToolStripButton6 = New ToolStripButton()
         ToolStripLabel5 = New ToolStripLabel()
+        ToolStripButton6 = New ToolStripButton()
+        ToolStripButton7 = New ToolStripButton()
         CType(SplitContainer1, ISupportInitialize).BeginInit()
         SplitContainer1.Panel1.SuspendLayout()
         SplitContainer1.Panel2.SuspendLayout()
@@ -116,14 +117,14 @@ Partial Class FormMetabolicEditor
         DataGridView1.BackgroundColor = Color.WhiteSmoke
         DataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
         DataGridView1.Columns.AddRange(New DataGridViewColumn() {Column11, Column1, Column10, Column2, Column3})
-        DataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle1.BackColor = SystemColors.Window
-        DataGridViewCellStyle1.Font = New Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle1.ForeColor = SystemColors.ControlText
-        DataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight
-        DataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText
-        DataGridViewCellStyle1.WrapMode = DataGridViewTriState.False
-        DataGridView1.DefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = SystemColors.Window
+        DataGridViewCellStyle2.Font = New Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle2.ForeColor = SystemColors.ControlText
+        DataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = DataGridViewTriState.False
+        DataGridView1.DefaultCellStyle = DataGridViewCellStyle2
         DataGridView1.Dock = DockStyle.Fill
         DataGridView1.Location = New Point(0, 0)
         DataGridView1.Name = "DataGridView1"
@@ -365,7 +366,7 @@ Partial Class FormMetabolicEditor
         ' 
         ' ToolStrip1
         ' 
-        ToolStrip1.Items.AddRange(New ToolStripItem() {ToolStripLabel1, ToolStripButton1, ToolStripLabel2, ToolStripTextBox1, ToolStripButton2, ToolStripButton3, ToolStripSeparator1, ToolStripLabel3, ToolStripTextBox2, ToolStripButton4, ToolStripSeparator2, ToolStripLabel4, ToolStripComboBox1, ToolStripSeparator3, ToolStripButton5, ToolStripSeparator4, ToolStripLabel5, ToolStripButton6})
+        ToolStrip1.Items.AddRange(New ToolStripItem() {ToolStripLabel1, ToolStripButton1, ToolStripLabel2, ToolStripTextBox1, ToolStripButton2, ToolStripButton3, ToolStripSeparator1, ToolStripLabel3, ToolStripTextBox2, ToolStripButton4, ToolStripSeparator2, ToolStripLabel4, ToolStripComboBox1, ToolStripSeparator3, ToolStripButton5, ToolStripSeparator4, ToolStripLabel5, ToolStripButton6, ToolStripButton7})
         ToolStrip1.Location = New Point(0, 0)
         ToolStrip1.Name = "ToolStrip1"
         ToolStrip1.Size = New Size(1394, 25)
@@ -478,6 +479,12 @@ Partial Class FormMetabolicEditor
         ToolStripSeparator4.Name = "ToolStripSeparator4"
         ToolStripSeparator4.Size = New Size(6, 25)
         ' 
+        ' ToolStripLabel5
+        ' 
+        ToolStripLabel5.Name = "ToolStripLabel5"
+        ToolStripLabel5.Size = New Size(134, 22)
+        ToolStripLabel5.Text = "Search Substrate Model:"
+        ' 
         ' ToolStripButton6
         ' 
         ToolStripButton6.DisplayStyle = ToolStripItemDisplayStyle.Image
@@ -487,11 +494,14 @@ Partial Class FormMetabolicEditor
         ToolStripButton6.Size = New Size(23, 22)
         ToolStripButton6.Text = "Search Substrate"
         ' 
-        ' ToolStripLabel5
+        ' ToolStripButton7
         ' 
-        ToolStripLabel5.Name = "ToolStripLabel5"
-        ToolStripLabel5.Size = New Size(134, 22)
-        ToolStripLabel5.Text = "Search Substrate Model:"
+        ToolStripButton7.DisplayStyle = ToolStripItemDisplayStyle.Image
+        ToolStripButton7.Image = CType(resources.GetObject("ToolStripButton7.Image"), Image)
+        ToolStripButton7.ImageTransparentColor = Color.Magenta
+        ToolStripButton7.Name = "ToolStripButton7"
+        ToolStripButton7.Size = New Size(23, 22)
+        ToolStripButton7.Text = "Metabolic Symbol Table"
         ' 
         ' FormMetabolicEditor
         ' 
@@ -575,4 +585,5 @@ Partial Class FormMetabolicEditor
     Friend WithEvents ToolStripSeparator4 As ToolStripSeparator
     Friend WithEvents ToolStripLabel5 As ToolStripLabel
     Friend WithEvents ToolStripButton6 As ToolStripButton
+    Friend WithEvents ToolStripButton7 As ToolStripButton
 End Class
