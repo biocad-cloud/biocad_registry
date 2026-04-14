@@ -730,6 +730,15 @@ Module registry
         Return Nothing
     End Function
 
+    ''' <summary>
+    ''' a general function for make metabolites data imports
+    ''' </summary>
+    ''' <param name="registry"></param>
+    ''' <param name="metab"></param>
+    ''' <param name="db_name"></param>
+    ''' <param name="check_id"></param>
+    ''' <param name="env"></param>
+    ''' <returns></returns>
     <ExportAPI("imports_metab_repo")>
     Public Function imports_metab_repo(registry As biocad_registry, <RRawVectorArgument> metab As Object, db_name As String,
                                        Optional check_id As Boolean = True,
