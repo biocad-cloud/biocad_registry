@@ -231,7 +231,7 @@ Public Class FormMetabolicEditor
         If text.StringEmpty(, True) Then
             Return
         Else
-            text = text.FullTextEscape
+            text = text.FullTextEscape.Replace("_", " ")
         End If
 
         Dim substrate_id = "SELECT DISTINCT species_id FROM cad_registry.metabolic_network"
