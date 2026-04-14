@@ -24,4 +24,4 @@
 + [ontology_translation](registry/ontology_translation.1) 
 + [metabolite_translation](registry/metabolite_translation.1) 
 + [imports_planttfdb](registry/imports_planttfdb.1) 
-+ [imports_metab_repo](registry/imports_metab_repo.1) 
++ [imports_metab_repo](registry/imports_metab_repo.1) a general function for make metabolites data imports

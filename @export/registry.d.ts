@@ -29,8 +29,18 @@ declare namespace registry {
    */
    function imports_lotus(registry: object, lotus: any, env?: object): any;
    /**
-     * @param check_id default value Is ``true``.
-     * @param env default value Is ``null``.
+    * a general function for make metabolites data imports
+    * 
+    * 
+     * @param registry -
+     * @param metab -
+     * @param db_name -
+     * @param check_id -
+     * 
+     * + default value Is ``true``.
+     * @param env -
+     * 
+     * + default value Is ``null``.
    */
    function imports_metab_repo(registry: object, metab: any, db_name: string, check_id?: boolean, env?: object): any;
    /**
