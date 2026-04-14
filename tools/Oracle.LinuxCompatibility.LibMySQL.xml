@@ -566,6 +566,7 @@ Oracle.LinuxCompatibility.LibMySQL
  </summary>
  <param name="fields"></param>
  <returns></returns>
+ 
 </member>
 <member name="M:Oracle.LinuxCompatibility.MySQL.MySqlBuilder.Model.delete">
  <summary>
