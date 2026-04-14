@@ -11852,7 +11852,7 @@ Get feature site data by nucleotide location.
 </member>
 <member name="M:SMRUCC.genomics.ComponentModel.DBLinkBuilder.DBLink.op_Explicit(SMRUCC.genomics.ComponentModel.DBLinkBuilder.DBLink)~System.String">
  <summary>
- cast to xref_id
+ cast to xref_id string
  </summary>
  <param name="db_xref"></param>
  <returns></returns>
