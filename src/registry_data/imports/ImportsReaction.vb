@@ -38,10 +38,9 @@ Public Module ImportsReaction
             End If
 
             Dim updates As CommitTransaction = registry.metabolic_network.open_transaction
+            Dim q As FieldAssert
 
-            For Each link In page_data
-                Dim q As FieldAssert
-
+            For Each link As metabolic_network In page_data
                 If link.symbol_id.IsPattern("[CG]\d{5}") Then
                     q = field("kegg_id") = link.symbol_id
                 ElseIf link.symbol_id.IsPattern("ChEBI[:]\d+") Then
@@ -50,7 +49,10 @@ Public Module ImportsReaction
                     q = field("biocyc") = link.symbol_id
                 End If
 
-                Dim m = registry.metabolites.where(q).find(Of metabolites)("id", "main_id")
+                Dim m As metabolites = registry.metabolites _
+                    .where(q) _
+                    .order_by("id") _
+                    .find(Of metabolites)("id", "main_id")
 
                 If Not m Is Nothing Then
                     If m.main_id > 0 Then
