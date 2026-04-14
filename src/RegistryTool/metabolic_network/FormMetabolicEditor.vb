@@ -243,6 +243,7 @@ Public Class FormMetabolicEditor
                    match("name", "note").against(text, False)) _
             .select(Of metabolites)("*")
 
+        Call CommonRuntime.GetOutputWindow.AddLog("load metabolic symbols", MyApplication.biocad_registry.metabolites.GetLastMySql)
         Call FormMain.ShowMetabolitesTable(metabolites, text)
     End Sub
 
