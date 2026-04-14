@@ -24,7 +24,6 @@ Public Module RegisterSymbol
             .Replace("?", "_") _
             .Replace("\", "_") _
             .Replace("/", "_") _
-            .Replace("+", "_") _
             .StringReplace("\s+", "_") _
             .StringReplace("[_-]{2,}", "_") _
             .Trim("-"c, "_"c, ","c)
@@ -60,8 +59,8 @@ Public Module RegisterSymbol
         name = name.StringReplace("[&]#39;", "'")
         name = name.StringReplace("[&]alpha$", "α")
         name = name.StringReplace("[&]beta$", "β")
-        name = name.StringReplace("-alpha-", "α")
-        name = name.StringReplace("-beta-", "β")
+        name = name.StringReplace("-alpha-", "-α-")
+        name = name.StringReplace("-beta-", "-β-")
         name = name.Replace("&#39", "")
         name = name.StringReplace("\s{2,}", " ").Trim
 
