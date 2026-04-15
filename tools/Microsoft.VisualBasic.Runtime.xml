@@ -26144,6 +26144,20 @@ You should have received a copy of the GNU  [rest of string was truncated]&quot;
  <param name="b"></param>
  <returns></returns>
 </member>
+<member name="M:Microsoft.VisualBasic.Extensions.AddRange``1(System.Collections.Generic.Dictionary{System.String,``0}@,System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.String},System.Boolean)">
+ <summary>
+ add all elements inside the given data collection into the dictionary
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="table"></param>
+ <param name="data"></param>
+ <param name="key"></param>
+ <param name="replaceDuplicated"></param>
+ <returns></returns>
+ <remarks>
+ this function will skip add if the given <paramref name="data"/> collection is nothing
+ </remarks>
+</member>
 <member name="M:Microsoft.VisualBasic.Extensions.AddRange``1(System.Collections.Generic.Dictionary{System.String,``0}@,System.Collections.Generic.IEnumerable{Microsoft.VisualBasic.ComponentModel.DataSourceModel.NamedValue{``0}},System.Boolean)">
  <summary>
  
