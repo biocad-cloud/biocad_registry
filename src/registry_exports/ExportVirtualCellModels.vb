@@ -146,6 +146,7 @@ Public Class ExportVirtualCellModels
                 Dim left = castModel(From c As metabolic_network In species Where c.role = role_left).ToArray
                 Dim right = castModel(From c As metabolic_network In species Where c.role = role_right).ToArray
 
+                ' 20260415 skip any gapped reaction
                 If left.IsNullOrEmpty OrElse
                     left.Any(Function(a) a.molecule_id = 0) OrElse
                     right.IsNullOrEmpty OrElse
