@@ -756,27 +756,31 @@ Module registry
             Dim trans As CommitTransaction = registry.metabolites.open_transaction
 
             For Each meta As MetaInfo In batch
-                If check_id Then
-                    Dim check_xref = registry.db_xrefs _
-                        .where(field("type") = registry.biocad_vocabulary.metabolite_type,
-                               field("db_name") = db_key,
-                               field("db_xref") = meta.ID) _
-                        .find(Of db_xrefs)
+                Try
+                    If check_id Then
+                        Dim check_xref = registry.db_xrefs _
+                            .where(field("type") = registry.biocad_vocabulary.metabolite_type,
+                                   field("db_name") = db_key,
+                                   field("db_xref") = meta.ID) _
+                            .find(Of db_xrefs)
 
-                    If check_xref IsNot Nothing Then
-                        Continue For
+                        If check_xref IsNot Nothing Then
+                            Continue For
+                        End If
                     End If
-                End If
 
-                Dim m As metabolites = registry.FindMolecule(meta,
-                                                             primaryKey:=Nothing,
-                                                             nameSearch:=True,
-                                                             preferNameSearch:=True,
-                                                             source_db:=db_key)
+                    Dim m As metabolites = registry.FindMolecule(meta,
+                                                                 primaryKey:=Nothing,
+                                                                 nameSearch:=True,
+                                                                 preferNameSearch:=True,
+                                                                 source_db:=db_key)
 
-                Call registry.SaveStructureData(m, meta.xref.SMILES, commit:=trans)
-                Call registry.SaveSynonyms(m, meta.synonym.JoinIterates({meta.name, meta.IUPACName}).Distinct, db_key, trans:=trans)
-                Call registry.SaveDbLinks(meta, m, db_key, saveID:=True, trans:=trans)
+                    Call registry.SaveStructureData(m, meta.xref.SMILES, commit:=trans)
+                    Call registry.SaveSynonyms(m, meta.synonym.JoinIterates({meta.name, meta.IUPACName}).Distinct, db_key, trans:=trans)
+                    Call registry.SaveDbLinks(meta, m, db_key, saveID:=True, trans:=trans)
+                Catch ex As Exception
+
+                End Try
             Next
 
             Call trans.commit()
