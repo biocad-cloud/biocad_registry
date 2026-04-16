@@ -420,22 +420,24 @@ Public Module MetaboliteData
         End If
 
         If TypeOf meta Is MetaLib AndAlso m.name_zh.StringEmpty(, True) Then
-            Dim zh_name As String = DirectCast(meta, MetaLib).zh_name
+            Dim zh_name As String() = DirectCast(meta, MetaLib).zh_name.StringSplit("\s*;\s*")
             Dim trans = registry.synonym.open_transaction
 
-            Call trans.add(registry.metabolites.where(field("id") = m.id).save_sql(field("name_zh") = zh_name))
+            If zh_name.TryCount > 0 Then
+                Call trans.add(registry.metabolites.where(field("id") = m.id).save_sql(field("name_zh") = zh_name.FirstOrDefault))
 
-            If source_db > 0 Then
-                For Each name_zh As String In zh_name.StringSplit("\s*;\s*")
-                    Call trans.add(
-                        field("obj_id") = m.id,
-                        field("type") = registry.biocad_vocabulary.metabolite_type,
-                        field("db_source") = source_db,
-                        field("synonym") = name_zh,
-                        field("hashcode") = name_zh.ToLower.MD5,
-                        field("lang") = "zh"
-                    )
-                Next
+                If source_db > 0 Then
+                    For Each name_zh As String In zh_name
+                        Call trans.add(
+                            field("obj_id") = m.id,
+                            field("type") = registry.biocad_vocabulary.metabolite_type,
+                            field("db_source") = source_db,
+                            field("synonym") = name_zh,
+                            field("hashcode") = name_zh.ToLower.MD5,
+                            field("lang") = "zh"
+                        )
+                    Next
+                End If
             End If
 
             Call trans.commit()
