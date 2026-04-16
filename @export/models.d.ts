@@ -44,7 +44,7 @@ declare namespace models {
    */
    function make_protein_clusters(registry: object, cutoff?: number, eval_cutoff?: number): any;
    /**
-    * register metabolite symbol
+    * register metabolite symbol and make updates of the reaction hashcode
     * 
     * 
      * @param registry -
