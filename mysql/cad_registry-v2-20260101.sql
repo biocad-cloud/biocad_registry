@@ -146,7 +146,7 @@ CREATE TABLE `db_xrefs` (
   KEY `find_by_xref` (`db_name`,`db_xref`,`type`),
   KEY `find_by_object` (`type`,`obj_id`),
   KEY `search_xref_word` (`db_xref`)
-) ENGINE=InnoDB AUTO_INCREMENT=15809835 DEFAULT CHARSET=utf8mb3 COMMENT='database cross reference of the model objects ';
+) ENGINE=InnoDB AUTO_INCREMENT=16006822 DEFAULT CHARSET=utf8mb3 COMMENT='database cross reference of the model objects ';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -301,7 +301,7 @@ CREATE TABLE `metabolic_network` (
   KEY `registry_model_idx` (`species_id`),
   KEY `symbol_index` (`symbol_id`),
   KEY `filter_network` (`role`,`species_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=474270 DEFAULT CHARSET=utf8mb3 COMMENT='metabolic reaction network';
+) ENGINE=InnoDB AUTO_INCREMENT=564019 DEFAULT CHARSET=utf8mb3 COMMENT='metabolic reaction network';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -385,8 +385,9 @@ CREATE TABLE `metabolites` (
   KEY `find_biocyc` (`biocyc`),
   KEY `find_mesh` (`mesh_id`),
   KEY `find_wiki` (`wikipedia`),
+  KEY `find_zh_name` (`name_zh`),
   FULLTEXT KEY `search_text` (`name`,`note`)
-) ENGINE=InnoDB AUTO_INCREMENT=1994155 DEFAULT CHARSET=utf8mb3 COMMENT='[cellular entity model][entity instance] a set of reference metabolites, template based on the www.metabolomicsworkbench.org refmet dataset';
+) ENGINE=InnoDB AUTO_INCREMENT=2106095 DEFAULT CHARSET=utf8mb3 COMMENT='[cellular entity model][entity instance] a set of reference metabolites, template based on the www.metabolomicsworkbench.org refmet dataset';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -779,7 +780,8 @@ CREATE TABLE `reaction` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
   `db_xref` varchar(255) NOT NULL,
   `db_source` int unsigned NOT NULL,
-  `hashcode` char(32) DEFAULT NULL,
+  `hashcode` char(32) DEFAULT NULL COMMENT 'md5 hashcode of the reaction enzyme ec number tagged with the topological network hashcode',
+  `topology_key` char(32) DEFAULT NULL COMMENT 'metabolite  topological network hashcode: hashcode of the [species_id] in metabolic network table, due to the reason of role maybe swap between different reaction entry but the site metabolite keeps identitical, so this hashcode just used the metabolits species id sort in asc order to calculate, just reflects the network topology feature, no reaction direction information in this hashcode',
   `main_id` int unsigned NOT NULL DEFAULT '0',
   `name` varchar(8192) NOT NULL COMMENT 'name of this reaction',
   `ec_number` varchar(20) DEFAULT NULL COMMENT 'ec number of this reaction, value could be null(means is a chemical reaction that not required of enzyme)',
@@ -790,8 +792,9 @@ CREATE TABLE `reaction` (
   UNIQUE KEY `id_UNIQUE` (`id`),
   UNIQUE KEY `find_reference` (`db_xref`,`db_source`),
   KEY `hash_index` (`hashcode`),
+  KEY `topo_index` (`topology_key`),
   FULLTEXT KEY `search_text` (`name`,`note`)
-) ENGINE=InnoDB AUTO_INCREMENT=85584 DEFAULT CHARSET=utf8mb3 COMMENT='[biological process model] biological reaction/chemical reaction model';
+) ENGINE=InnoDB AUTO_INCREMENT=104076 DEFAULT CHARSET=utf8mb3 COMMENT='[biological process model] biological reaction/chemical reaction model';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -870,7 +873,7 @@ CREATE TABLE `registry_resolver` (
   KEY `register_namespace_idx` (`type`),
   KEY `metabolite_reference_idx` (`symbol_id`),
   KEY `find_name` (`register_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=369757 DEFAULT CHARSET=utf8mb3 COMMENT='a unify symbol mapping inside the registry database system';
+) ENGINE=InnoDB AUTO_INCREMENT=373034 DEFAULT CHARSET=utf8mb3 COMMENT='a unify symbol mapping inside the registry database system';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -920,7 +923,7 @@ CREATE TABLE `struct_data` (
   UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `metabolite_info_idx` (`metabolite_id`),
   KEY `pdb_modelvalue_idx` (`pdb_data`)
-) ENGINE=InnoDB AUTO_INCREMENT=1657186 DEFAULT CHARSET=utf8mb3 COMMENT='the metabolite molecule structre data';
+) ENGINE=InnoDB AUTO_INCREMENT=1705116 DEFAULT CHARSET=utf8mb3 COMMENT='the metabolite molecule structre data';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -970,7 +973,7 @@ CREATE TABLE `synonym` (
   KEY `entity_metabolite_idx` (`obj_id`,`type`),
   KEY `obj_hash_query` (`type`,`hashcode`),
   FULLTEXT KEY `search_text` (`synonym`)
-) ENGINE=InnoDB AUTO_INCREMENT=10120274 DEFAULT CHARSET=utf8mb3 COMMENT='synonyms, alias names of the model objects';
+) ENGINE=InnoDB AUTO_INCREMENT=10210026 DEFAULT CHARSET=utf8mb3 COMMENT='synonyms, alias names of the model objects';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1036,7 +1039,7 @@ CREATE TABLE `vocabulary` (
   UNIQUE KEY `search_term` (`category`,`term`),
   KEY `ontology_tree_idx` (`parent_id`),
   FULLTEXT KEY `search_text` (`note`)
-) ENGINE=InnoDB AUTO_INCREMENT=1213 DEFAULT CHARSET=utf8mb3 COMMENT='vocabulary term inside the registry database';
+) ENGINE=InnoDB AUTO_INCREMENT=1214 DEFAULT CHARSET=utf8mb3 COMMENT='vocabulary term inside the registry database';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1056,4 +1059,4 @@ CREATE TABLE `vocabulary` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-04-12 21:27:09
+-- Dump completed on 2026-04-16 12:17:29
