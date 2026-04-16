@@ -124,21 +124,28 @@ Public Class ExportVirtualCellModels
     End Function
 
     Public Sub ExportReactionPool()
-        Dim hashset As String() = registry.reaction _
-            .where(field("hashcode").char_length > 0) _
+        ' load all metabolic reaction hash key
+        Dim topology_keys As String() = registry.reaction _
+            .where(field("hashcode").char_length > 0, field("topology_key").char_length > 0) _
             .distinct _
-            .project(Of String)("hashcode")
+            .project(Of String)("topology_key")
         Dim role_left As UInteger = registry.MetabolicSubstrateRole.id
         Dim role_right As UInteger = registry.MetabolicProductRole.id
         Dim ec_type As UInteger = vocabulary.db_ECNumber
         Dim reaction_type As UInteger = vocabulary.reaction_type
 
         Using json As New System.IO.StreamWriter($"{repo}/metabolic_network.jsonl".Open(System.IO.FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False))
-            For Each hashcode As String In TqdmWrapper.Wrap(hashset)
-                Dim rxn As reaction = registry.reaction _
-                    .where(field("hashcode") = hashcode) _
-                    .order_by("id") _
-                    .find(Of reaction)
+            For Each topo_key As String In TqdmWrapper.Wrap(topology_keys)
+                Dim rxnSet As reaction() = registry.reaction _
+                    .where(field("topology_key") = topo_key) _
+                    .select(Of reaction)
+                Dim rxn = rxnSet.Where(Function(r) Not r.ec_number.StringEmpty(, True)).FirstOrDefault
+
+                ' this network node is a non-enzymatic reaction
+                If rxn Is Nothing Then
+                    rxn = rxnSet.First
+                End If
+
                 Dim species = registry.metabolic_network _
                     .where(field("reaction_id") = rxn.id,
                            field("role").in({role_left, role_right})) _
@@ -162,8 +169,12 @@ Public Class ExportVirtualCellModels
                     .distinct _
                     .project(Of String)("db_xref")
 
+                If ec_number.IsNullOrEmpty AndAlso Not rxn.ec_number.StringEmpty(, True) Then
+                    ec_number = rxn.ec_number.StringSplit("\s*[,;]\s*")
+                End If
+
                 Dim model As New WebJSON.Reaction With {
-                    .guid = hashcode,
+                    .guid = topo_key,
                     .name = rxn.name,
                     .reaction = rxn.equation,
                     .left = left,
