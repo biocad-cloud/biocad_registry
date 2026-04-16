@@ -46,9 +46,9 @@ Public Class FormBuildReaction
         eq.Products = right.ToArray
 
         Dim ec_numbers As String() = Strings.Trim(TextBox3.Text).StringSplit("\s*[,;]\s*")
-        Dim hashcode As String = links.CalculateReactionHashCode(ec_numbers.FirstOrDefault)
+        Dim key = links.CalculateReactionHashCode(ec_numbers.FirstOrDefault)
         Dim rxn = MyApplication.biocad_registry.reaction _
-            .where(field("hashcode") = hashcode) _
+            .where(field("hashcode") = key.hashcode) _
             .find(Of biocad_registryModel.reaction)
 
         If rxn IsNot Nothing Then
@@ -62,7 +62,8 @@ Public Class FormBuildReaction
             Call MyApplication.biocad_registry.reaction.add(
                 field("db_xref") = id,
                 field("db_source") = MyApplication.biocad_registry.biocad_vocabulary.db_ManualAudit,
-                field("hashcode") = hashcode,
+                field("hashcode") = key.hashcode,
+                field("topology_key") = key.topology_key,
                 field("main_id") = 0,
                 field("name") = Strings.Trim(TextBox1.Text),
                 field("ec_number") = ec_numbers.FirstOrDefault,
@@ -70,7 +71,10 @@ Public Class FormBuildReaction
                 field("note") = TextBox2.Text
             )
 
-            rxn = MyApplication.biocad_registry.reaction.where(field("hashcode") = hashcode, field("db_xref") = id).find(Of biocad_registryModel.reaction)
+            rxn = MyApplication.biocad_registry.reaction _
+                .where(field("hashcode") = key.hashcode,
+                       field("db_xref") = id) _
+                .find(Of biocad_registryModel.reaction)
 
             If rxn Is Nothing Then
                 Return False

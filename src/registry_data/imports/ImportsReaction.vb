@@ -266,9 +266,12 @@ Public Module ImportsReaction
             Next
 
             If links.All(Function(a) a.Item2 > 0) Then
+                Dim key = links.CalculateReactionHashCode(ec_number:=find.ec_number)
+
                 registry.reaction _
                     .where(field("id") = find.id) _
-                    .save(field("hashcode") = links.CalculateReactionHashCode(ec_number:=find.ec_number))
+                    .save(field("hashcode") = key.hashcode,
+                          field("topology_key") = key.topology_key)
             End If
         Next
 
