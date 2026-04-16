@@ -82,7 +82,7 @@ Public Module registry_models
     End Sub
 
     ''' <summary>
-    ''' register metabolite symbol
+    ''' register metabolite symbol and make updates of the reaction hashcode
     ''' </summary>
     ''' <param name="registry"></param>
     <ExportAPI("register_metabolic_symbols")>

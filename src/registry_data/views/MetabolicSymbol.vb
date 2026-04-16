@@ -5,6 +5,10 @@ Imports Oracle.LinuxCompatibility.MySQL.Reflection.DbAttributes
 
 Public Module MetabolicSymbol
 
+    ''' <summary>
+    ''' register metabolite symbol and make updates of the reaction hashcode
+    ''' </summary>
+    ''' <param name="registry"></param>
     <Extension>
     Public Sub RegisterMetabolicSymbols(registry As biocad_registry)
         Dim page_size As Integer = 3000
@@ -26,14 +30,15 @@ Public Module MetabolicSymbol
 
             For Each reaction As reaction In page_data
                 ' re-calculate the reaction hashcode
-                Dim hashcode As String = registry _
+                Dim key = registry _
                     .RegisterMetabolicSymbols(reaction, role) _
                     .CalculateReactionHashCode(reaction.ec_number)
 
-                If hashcode <> reaction.hashcode Then
+                If key.hashcode <> reaction.hashcode AndAlso key.topology_key <> reaction.topology_key Then
                     Call set_hash.add(registry.reaction _
                         .where(field("id") = reaction.id) _
-                        .save_sql(field("hashcode") = hashcode))
+                        .save_sql(field("hashcode") = key.hashcode,
+                                  field("topology_key") = key.topology_key))
                 End If
             Next
 

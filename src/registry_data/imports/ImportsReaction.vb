@@ -286,14 +286,23 @@ Public Module ImportsReaction
     ''' this function will sort by role_id first, then sort by symbol_id, then build hashcode
     ''' </remarks>
     <Extension>
-    Public Function CalculateReactionHashCode(links As IEnumerable(Of (role_id As UInteger, species_id As UInteger)), ec_number As String) As String
-        Dim flux As String = links _
-            .OrderBy(Function(a) a.role_id) _
-            .ThenBy(Function(a) a.species_id) _
-            .Select(Function(a) {a.role_id, a.species_id}) _
-            .IteratesALL _
-            .JoinBy(",")
+    Public Function CalculateReactionHashCode(links As IEnumerable(Of (role_id As UInteger, species_id As UInteger)), ec_number As String) As (hashcode As String, topology_key As String)
+        Dim roles = links.GroupBy(Function(a) a.role_id).ToArray
+        Dim topo As String = roles _
+            .OrderBy(Function(a)
+                         ' 20260416 ignores of the reaction direction
+                         ' just reflects the network topology connection
+                         Return a.Sum(Function(s) s.species_id)
+                     End Function) _
+            .Select(Function(a)
+                        Return a.OrderBy(Function(s) s.species_id) _
+                            .Select(Function(s) s.species_id) _
+                            .JoinBy(",")
+                    End Function) _
+            .JoinBy("+") _
+            .MD5
+        Dim rxn_key As String = $"{topo} [{ec_number}]".MD5
 
-        Return $"{flux} [{ec_number}]".MD5
+        Return (rxn_key, topo)
     End Function
 End Module
