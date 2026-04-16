@@ -419,12 +419,16 @@ Public Module MetaboliteData
             End If
         End If
 
-        If TypeOf meta Is MetaLib AndAlso Not m.name_zh.StringEmpty(, True) Then
+        If TypeOf meta Is MetaLib Then
             Dim zh_name As String() = DirectCast(meta, MetaLib).zh_name.StringSplit("\s*;\s*")
             Dim trans = registry.synonym.open_transaction
 
             If zh_name.TryCount > 0 Then
-                Call trans.add(registry.metabolites.where(field("id") = m.id).save_sql(field("name_zh") = zh_name.FirstOrDefault))
+                ' 20260417
+                ' update zh_name if database record is empty
+                If m.name_zh.StringEmpty(, True) Then
+                    Call trans.add(registry.metabolites.where(field("id") = m.id).save_sql(field("name_zh") = zh_name.FirstOrDefault))
+                End If
 
                 If source_db > 0 Then
                     For Each name_zh As String In zh_name
