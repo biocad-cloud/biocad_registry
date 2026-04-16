@@ -76,8 +76,15 @@ Public Module ExportMetaboliteData
             .kingdom = class_info?.kingdom,
             .sub_class = class_info?.sub_class,
             .super_class = class_info?.super_class,
-            .molecular_framework = class_info?.molecular_framework
+            .molecular_framework = class_info?.molecular_framework,
+            .zh_name = m.name_zh
         }
+
+        If m.main_id > 0 Then
+            model.xref.extras = New Dictionary(Of String, String()) From {
+                {"main_id", {"BioCAD" & m.main_id.ToString.PadLeft(11, "0"c)}}
+            }
+        End If
 
         Return model
     End Function

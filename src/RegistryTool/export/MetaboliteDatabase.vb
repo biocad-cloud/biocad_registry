@@ -16,7 +16,7 @@ Module MetaboliteDatabase
 
     Public Function ExportLocal(println As Action(Of String), filename As String, subset$) As Boolean
         Dim registry As biocad_registry = MyApplication.biocad_registry
-        Dim class_id As UInteger = registry.biocad_vocabulary.GetDatabaseResource("RefMet").id
+        Dim class_id As UInteger = registry.biocad_vocabulary.GetDatabaseResource("RefMet")
 
         If filename.ExtensionSuffix("csv") Then
             Call registry.ExportTable(println, class_id, subset, filename)
