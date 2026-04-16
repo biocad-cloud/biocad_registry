@@ -19,9 +19,13 @@ Public Module ImportsReaction
         End Select
     End Function
 
+    ''' <summary>
+    ''' Just make updates of the metabolic network species id
+    ''' </summary>
+    ''' <param name="registry"></param>
     <Extension>
     Public Sub UpdateMetabolicNetwork(registry As biocad_registry)
-        Dim page_size As Integer = 6000
+        Dim page_size As Integer = 3000
         Dim role = {registry.MetabolicSubstrateRole.id, registry.MetabolicProductRole.id}
 
         For page As Integer = 1 To Integer.MaxValue

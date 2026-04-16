@@ -56,6 +56,12 @@ registry_data
  <param name="meta"></param>
  <returns></returns>
 </member>
+<member name="M:registry_data.ImportsReaction.UpdateMetabolicNetwork(registry_data.biocad_registry)">
+ <summary>
+ Just make updates of the metabolic network species id
+ </summary>
+ <param name="registry"></param>
+</member>
 <member name="M:registry_data.ImportsReaction.MetabolicSubstrateRole(registry_data.biocad_registry)">
  <summary>
  left
@@ -684,7 +690,7 @@ registry_data
    KEY `find_by_xref` (`db_name`,`db_xref`,`type`),
    KEY `find_by_object` (`type`,`obj_id`),
    KEY `search_xref_word` (`db_xref`)
- ) ENGINE=InnoDB AUTO_INCREMENT=15809835 DEFAULT CHARSET=utf8mb3 COMMENT='database cross reference of the model objects ';
+ ) ENGINE=InnoDB AUTO_INCREMENT=16006822 DEFAULT CHARSET=utf8mb3 COMMENT='database cross reference of the model objects ';
  /*!40101 SET character_set_client = @saved_cs_client */;
  
  --
@@ -1377,7 +1383,7 @@ registry_data
    KEY `registry_model_idx` (`species_id`),
    KEY `symbol_index` (`symbol_id`),
    KEY `filter_network` (`role`,`species_id`)
- ) ENGINE=InnoDB AUTO_INCREMENT=474270 DEFAULT CHARSET=utf8mb3 COMMENT='metabolic reaction network';
+ ) ENGINE=InnoDB AUTO_INCREMENT=564019 DEFAULT CHARSET=utf8mb3 COMMENT='metabolic reaction network';
  /*!40101 SET character_set_client = @saved_cs_client */;
  
  --
@@ -1520,8 +1526,9 @@ registry_data
    KEY `find_biocyc` (`biocyc`),
    KEY `find_mesh` (`mesh_id`),
    KEY `find_wiki` (`wikipedia`),
+   KEY `find_zh_name` (`name_zh`),
    FULLTEXT KEY `search_text` (`name`,`note`)
- ) ENGINE=InnoDB AUTO_INCREMENT=1994155 DEFAULT CHARSET=utf8mb3 COMMENT='[cellular entity model][entity instance] a set of reference metabolites, template based on the www.metabolomicsworkbench.org refmet dataset';
+ ) ENGINE=InnoDB AUTO_INCREMENT=2106095 DEFAULT CHARSET=utf8mb3 COMMENT='[cellular entity model][entity instance] a set of reference metabolites, template based on the www.metabolomicsworkbench.org refmet dataset';
  /*!40101 SET character_set_client = @saved_cs_client */;
  
  --
@@ -3632,7 +3639,8 @@ registry_data
    `id` int unsigned NOT NULL AUTO_INCREMENT,
    `db_xref` varchar(255) NOT NULL,
    `db_source` int unsigned NOT NULL,
-   `hashcode` char(32) DEFAULT NULL,
+   `hashcode` char(32) DEFAULT NULL COMMENT 'md5 hashcode of the reaction enzyme ec number tagged with the topological network hashcode',
+   `topology_key` char(32) DEFAULT NULL COMMENT 'metabolite  topological network hashcode: hashcode of the [species_id] in metabolic network table, due to the reason of role maybe swap between different reaction entry but the site metabolite keeps identitical, so this hashcode just used the metabolits species id sort in asc order to calculate, just reflects the network topology feature, no reaction direction information in this hashcode',
    `main_id` int unsigned NOT NULL DEFAULT '0',
    `name` varchar(8192) NOT NULL COMMENT 'name of this reaction',
    `ec_number` varchar(20) DEFAULT NULL COMMENT 'ec number of this reaction, value could be null(means is a chemical reaction that not required of enzyme)',
@@ -3643,13 +3651,30 @@ registry_data
    UNIQUE KEY `id_UNIQUE` (`id`),
    UNIQUE KEY `find_reference` (`db_xref`,`db_source`),
    KEY `hash_index` (`hashcode`),
+   KEY `topo_index` (`topology_key`),
    FULLTEXT KEY `search_text` (`name`,`note`)
- ) ENGINE=InnoDB AUTO_INCREMENT=85584 DEFAULT CHARSET=utf8mb3 COMMENT='[biological process model] biological reaction/chemical reaction model';
+ ) ENGINE=InnoDB AUTO_INCREMENT=104076 DEFAULT CHARSET=utf8mb3 COMMENT='[biological process model] biological reaction/chemical reaction model';
  /*!40101 SET character_set_client = @saved_cs_client */;
  
  --
  ```
  </summary>
+ <remarks></remarks>
+</member>
+<member name="P:registry_data.biocad_registryModel.reaction.hashcode">
+ <summary>
+ md5 hashcode of the reaction enzyme ec number tagged with the topological network hashcode
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:registry_data.biocad_registryModel.reaction.topology_key">
+ <summary>
+ metabolite  topological network hashcode: hashcode of the [species_id] in metabolic network table, due to the reason of role maybe swap between different reaction entry but the site metabolite keeps identitical, so this hashcode just used the metabolits species id sort in asc order to calculate, just reflects the network topology feature, no reaction direction information in this hashcode
+ </summary>
+ <value></value>
+ <returns></returns>
  <remarks></remarks>
 </member>
 <member name="P:registry_data.biocad_registryModel.reaction.name">
@@ -3686,14 +3711,14 @@ registry_data
 <member name="M:registry_data.biocad_registryModel.reaction.GetInsertSQL">
  <summary>
  ```SQL
- INSERT INTO `reaction` (`id`, `db_xref`, `db_source`, `hashcode`, `main_id`, `name`, `ec_number`, `equation`, `add_time`, `note`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}');
+ INSERT INTO `reaction` (`id`, `db_xref`, `db_source`, `hashcode`, `topology_key`, `main_id`, `name`, `ec_number`, `equation`, `add_time`, `note`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}');
  ```
  </summary>
 </member>
 <member name="M:registry_data.biocad_registryModel.reaction.GetInsertSQL(System.Boolean)">
  <summary>
  ```SQL
- INSERT INTO `reaction` (`id`, `db_xref`, `db_source`, `hashcode`, `main_id`, `name`, `ec_number`, `equation`, `add_time`, `note`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}');
+ INSERT INTO `reaction` (`id`, `db_xref`, `db_source`, `hashcode`, `topology_key`, `main_id`, `name`, `ec_number`, `equation`, `add_time`, `note`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}');
  ```
  </summary>
 </member>
@@ -3705,21 +3730,21 @@ registry_data
 <member name="M:registry_data.biocad_registryModel.reaction.GetReplaceSQL">
  <summary>
  ```SQL
- REPLACE INTO `reaction` (`id`, `db_xref`, `db_source`, `hashcode`, `main_id`, `name`, `ec_number`, `equation`, `add_time`, `note`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}');
+ REPLACE INTO `reaction` (`id`, `db_xref`, `db_source`, `hashcode`, `topology_key`, `main_id`, `name`, `ec_number`, `equation`, `add_time`, `note`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}');
  ```
  </summary>
 </member>
 <member name="M:registry_data.biocad_registryModel.reaction.GetReplaceSQL(System.Boolean)">
  <summary>
  ```SQL
- REPLACE INTO `reaction` (`id`, `db_xref`, `db_source`, `hashcode`, `main_id`, `name`, `ec_number`, `equation`, `add_time`, `note`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}');
+ REPLACE INTO `reaction` (`id`, `db_xref`, `db_source`, `hashcode`, `topology_key`, `main_id`, `name`, `ec_number`, `equation`, `add_time`, `note`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}');
  ```
  </summary>
 </member>
 <member name="M:registry_data.biocad_registryModel.reaction.GetUpdateSQL">
  <summary>
  ```SQL
- UPDATE `reaction` SET `id`='{0}', `db_xref`='{1}', `db_source`='{2}', `hashcode`='{3}', `main_id`='{4}', `name`='{5}', `ec_number`='{6}', `equation`='{7}', `add_time`='{8}', `note`='{9}' WHERE `id` = '{10}';
+ UPDATE `reaction` SET `id`='{0}', `db_xref`='{1}', `db_source`='{2}', `hashcode`='{3}', `topology_key`='{4}', `main_id`='{5}', `name`='{6}', `ec_number`='{7}', `equation`='{8}', `add_time`='{9}', `note`='{10}' WHERE `id` = '{11}';
  ```
  </summary>
 </member>
@@ -3948,7 +3973,7 @@ registry_data
    KEY `register_namespace_idx` (`type`),
    KEY `metabolite_reference_idx` (`symbol_id`),
    KEY `find_name` (`register_name`)
- ) ENGINE=InnoDB AUTO_INCREMENT=369757 DEFAULT CHARSET=utf8mb3 COMMENT='a unify symbol mapping inside the registry database system';
+ ) ENGINE=InnoDB AUTO_INCREMENT=373034 DEFAULT CHARSET=utf8mb3 COMMENT='a unify symbol mapping inside the registry database system';
  /*!40101 SET character_set_client = @saved_cs_client */;
  
  --
@@ -4180,7 +4205,7 @@ registry_data
    UNIQUE KEY `id_UNIQUE` (`id`),
    KEY `metabolite_info_idx` (`metabolite_id`),
    KEY `pdb_modelvalue_idx` (`pdb_data`)
- ) ENGINE=InnoDB AUTO_INCREMENT=1657186 DEFAULT CHARSET=utf8mb3 COMMENT='the metabolite molecule structre data';
+ ) ENGINE=InnoDB AUTO_INCREMENT=1705116 DEFAULT CHARSET=utf8mb3 COMMENT='the metabolite molecule structre data';
  /*!40101 SET character_set_client = @saved_cs_client */;
  
  --
@@ -4412,7 +4437,7 @@ registry_data
    KEY `entity_metabolite_idx` (`obj_id`,`type`),
    KEY `obj_hash_query` (`type`,`hashcode`),
    FULLTEXT KEY `search_text` (`synonym`)
- ) ENGINE=InnoDB AUTO_INCREMENT=10120274 DEFAULT CHARSET=utf8mb3 COMMENT='synonyms, alias names of the model objects';
+ ) ENGINE=InnoDB AUTO_INCREMENT=10210026 DEFAULT CHARSET=utf8mb3 COMMENT='synonyms, alias names of the model objects';
  /*!40101 SET character_set_client = @saved_cs_client */;
  
  --
@@ -4735,7 +4760,7 @@ registry_data
    UNIQUE KEY `search_term` (`category`,`term`),
    KEY `ontology_tree_idx` (`parent_id`),
    FULLTEXT KEY `search_text` (`note`)
- ) ENGINE=InnoDB AUTO_INCREMENT=1213 DEFAULT CHARSET=utf8mb3 COMMENT='vocabulary term inside the registry database';
+ ) ENGINE=InnoDB AUTO_INCREMENT=1214 DEFAULT CHARSET=utf8mb3 COMMENT='vocabulary term inside the registry database';
  /*!40101 SET character_set_client = @saved_cs_client */;
  
  --
@@ -4755,7 +4780,7 @@ registry_data
  /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
  /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
  
- -- Dump completed on 2026-04-12 21:27:09
+ -- Dump completed on 2026-04-16 12:17:29
  ```
  </summary>
  <remarks></remarks>
