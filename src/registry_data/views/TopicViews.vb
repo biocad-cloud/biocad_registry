@@ -7,16 +7,53 @@ Public Module TopicViews
 
     <Extension>
     Public Sub PlantNP(registry As biocad_registry)
-        Dim np_topic As UInteger = registry.biocad_vocabulary.GetTopic("Plant Natural Products").id
+        Dim np_topic As UInteger = registry.biocad_vocabulary.GetTopic("Plant Natural Products")
         ' Viridiplantae
         Dim plant_tax As UInteger = 33090
 
         Call registry.NaturalProductLib(np_topic, plant_tax)
+        ' andalso add pmhub and herb database content as plant np data?
+        Dim herb As UInteger = registry.biocad_vocabulary.GetDatabaseResource("HERB")
+        Dim metab_type = registry.biocad_vocabulary.metabolite_type
+        Dim nplink As CommitTransaction = registry.topic.open_transaction
+
+        For Each meta_key In TqdmWrapper.Wrap(registry.db_xrefs.where(field("type") = metab_type, field("db_name") = herb).select(Of db_xrefs))
+            Dim meta As metabolites = registry.metabolites _
+                        .where(field("id") = meta_key) _
+                        .find(Of metabolites)
+
+            If meta Is Nothing Then
+                Continue For
+            End If
+
+            Dim meta_id As UInteger = meta.id
+
+            If meta.main_id > 0 Then
+                meta_id = meta.main_id
+            End If
+
+            Dim check_topic = registry.topic _
+                .where(field("topic_id") = np_topic,
+                       field("type") = metab_type,
+                       field("model_id") = meta_id) _
+                .find(Of biocad_registryModel.topic)
+
+            If check_topic Is Nothing Then
+                Call nplink.add(
+                    field("topic_id") = np_topic,
+                    field("model_id") = meta_id,
+                    field("type") = metab_type,
+                    field("note") = meta_key.db_xref
+                )
+            End If
+        Next
+
+        Call nplink.commit()
     End Sub
 
     <Extension>
     Public Sub MicrobialNP(registry As biocad_registry)
-        Dim np_topic As UInteger = registry.biocad_vocabulary.GetTopic("Microbial Natural Products").id
+        Dim np_topic As UInteger = registry.biocad_vocabulary.GetTopic("Microbial Natural Products")
         ' bacterials
         Dim bacterial_tax As UInteger = 2
         ' fungi
@@ -44,31 +81,38 @@ Public Module TopicViews
 
             For Each link As biocad_registryModel.organism_source In TqdmWrapper.Wrap(page_data)
                 If root_tax.Any(Function(taxid) registry.CheckLineage(link.organism_id, taxid)) Then
-                    Dim m As metabolites = registry.metabolites _
+                    Dim meta As metabolites = registry.metabolites _
                         .where(field("id") = link.metabolite_id) _
                         .find(Of metabolites)
 
-                    If m Is Nothing Then
-                        Continue For
-                    End If
-
-                    Dim meta As registry_resolver = registry.SymbolRegister(m)
-
                     If meta Is Nothing Then
-                        ' name is too long, insert error
                         Continue For
                     End If
+
+                    Dim meta_id As UInteger = meta.id
+
+                    If meta.main_id > 0 Then
+                        meta_id = meta.main_id
+                    End If
+
+                    'Dim meta As registry_resolver = registry.SymbolRegister(m)
+
+                    'If meta Is Nothing Then
+                    '    ' name is too long, insert error
+                    '    Continue For
+                    'End If
 
                     Dim check_topic = registry.topic _
                         .where(field("topic_id") = np_topic,
-                               field("model_id") = meta.id) _
+                               field("type") = metabolite_type,
+                               field("model_id") = meta_id) _
                         .find(Of biocad_registryModel.topic)
 
                     If check_topic Is Nothing Then
                         Call registry.topic.add(
                             field("topic_id") = np_topic,
-                            field("model_id") = meta.id,
-                            field("type") = 0,
+                            field("model_id") = meta_id,
+                            field("type") = metabolite_type,
                             field("note") = link.note
                         )
                     End If
