@@ -11,7 +11,7 @@ Public Module TopicViews
         ' Viridiplantae
         Dim plant_tax As UInteger = 33090
 
-        Call registry.NaturalProductLib(np_topic, plant_tax)
+        ' Call registry.NaturalProductLib(np_topic, plant_tax)
         ' andalso add pmhub and herb database content as plant np data?
         Dim herb As UInteger = registry.biocad_vocabulary.GetDatabaseResource("HERB")
         Dim metab_type As UInteger = registry.biocad_vocabulary.metabolite_type
