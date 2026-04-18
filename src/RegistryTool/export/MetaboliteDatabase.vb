@@ -66,7 +66,7 @@ Module MetaboliteDatabase
         For Each mol As Metadata In ExportMetaboliteData.ExportMetabolites(MyApplication.biocad_registry, subset, ontology_id:=class_id, zh_class:=True)
             db_xrefs = mol.xref
             row.AddRange({mol.ID, mol.name, mol.zh_name, mol.formula, mol.exact_mass,
-                         db_xrefs.CAS.FirstOrDefault,
+                         db_xrefs.CAS.DefaultFirst,
                          db_xrefs.KEGG,
                          db_xrefs.HMDB,
                          db_xrefs.chebi,
