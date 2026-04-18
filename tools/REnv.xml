@@ -798,7 +798,12 @@ to [rest of string was truncated]&quot;;.
 </member>
 <member name="F:SMRUCC.Rsharp.Interpreter.ExecuteEngine.ExpressionSymbols.DataSets.SymbolIndexers.nameIndex">
  <summary>
- a[[x]], a$x
+ a$x
+ </summary>
+</member>
+<member name="F:SMRUCC.Rsharp.Interpreter.ExecuteEngine.ExpressionSymbols.DataSets.SymbolIndexers.listIndex">
+ <summary>
+ a[[x]]
  </summary>
 </member>
 <member name="F:SMRUCC.Rsharp.Interpreter.ExecuteEngine.ExpressionSymbols.DataSets.SymbolIndexers.dataframeColumns">

@@ -38692,6 +38692,11 @@ to take away yo [rest of string was truncated]&quot;;.
  <param name="type"></param>
  <returns></returns>
 </member>
+<member name="M:Microsoft.VisualBasic.Scripting.CCodeStringLiteralEscape.IsLegalCEscapeChar(System.Char,System.String,System.Int32)">
+ <summary>
+ 判断反斜杠后的字符是否构成了合法的C语言转义序列
+ </summary>
+</member>
 <member name="F:Microsoft.VisualBasic.Scripting.Expressions.Aggregates.Mean">
  <summary>
  the average value
