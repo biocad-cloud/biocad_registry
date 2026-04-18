@@ -596,6 +596,12 @@ BioNovoGene.BioDeep.MSEngine
  </summary>
  <returns></returns>
 </member>
+<member name="P:BioNovoGene.BioDeep.MSEngine.AnnotationData`1.ZhName">
+ <summary>
+ the metabolite chinese name
+ </summary>
+ <returns></returns>
+</member>
 <member name="P:BioNovoGene.BioDeep.MSEngine.AnnotationData`1.Xref">
  <summary>
  the external database cross reference

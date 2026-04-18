@@ -12,7 +12,8 @@ Public Module ExportMetaboliteData
     Public Iterator Function ExportMetabolites(registry As biocad_registry,
                                                dbname As String,
                                                ontology_id As UInteger,
-                                               Optional filterMass As Boolean = True) As IEnumerable(Of MetaLib)
+                                               Optional filterMass As Boolean = True,
+                                               Optional zh_class As Boolean = False) As IEnumerable(Of MetaLib)
         Dim page_size As Integer = 100
         Dim offset As UInteger
         Dim page As metabolites()
@@ -40,15 +41,15 @@ Public Module ExportMetaboliteData
                 If filterMass AndAlso m.exact_mass <= 1 Then
                     Continue For
                 Else
-                    Yield registry.BuildMetabolite(m, ontology_id)
+                    Yield registry.BuildMetabolite(m, ontology_id, zh_class:=zh_class)
                 End If
             Next
         Next
     End Function
 
     <Extension>
-    Public Function BuildMetabolite(registry As biocad_registry, m As metabolites, ontology_id As UInteger) As MetaLib
-        Dim class_info = registry.GetClass(m.id, ontology_id)
+    Public Function BuildMetabolite(registry As biocad_registry, m As metabolites, ontology_id As UInteger, zh_class As Boolean) As MetaLib
+        Dim class_info = registry.GetClass(m.id, ontology_id, lang_zh:=zh_class)
         Dim struct = registry.struct_data _
             .where(field("metabolite_id") = m.id) _
             .find(Of struct_data)
@@ -90,18 +91,20 @@ Public Module ExportMetaboliteData
     End Function
 
     <Extension>
-    Private Function GetClass(registry As biocad_registry, metabolite_id As UInteger, ontology_id As UInteger) As CompoundClass
+    Private Function GetClass(registry As biocad_registry, metabolite_id As UInteger, ontology_id As UInteger, lang_zh As Boolean) As CompoundClass
         Dim class_data As New CompoundClass
         Dim lineage As ontology() = registry.GetClassLineage(metabolite_id, ontology_id)
 
         If lineage Is Nothing Then
             Return Nothing
         Else
-            ' class_data.kingdom = lineage.ElementAtOrDefault(0)?.term
-            class_data.super_class = lineage.ElementAtOrDefault(0)?.term
-            class_data.class = lineage.ElementAtOrDefault(1)?.term
-            class_data.sub_class = lineage.ElementAtOrDefault(2)?.term
-            ' class_data.molecular_framework = lineage.ElementAtOrDefault(3)?.term
+            Dim super = If(lineage.ElementAtOrDefault(0), New ontology)
+            Dim main = If(lineage.ElementAtOrDefault(1), New ontology)
+            Dim subclass = If(lineage.ElementAtOrDefault(2), New ontology)
+
+            class_data.super_class = If(lang_zh, super.term_zh, super.term)
+            class_data.class = If(lang_zh, main.term_zh, main.term)
+            class_data.sub_class = If(lang_zh, subclass.term_zh, subclass.term)
 
             Return class_data
         End If

@@ -54,7 +54,7 @@ Module MetaboliteDatabase
     <Extension>
     Private Sub ExportTable(registry As biocad_registry, println As Action(Of String), class_id As UInteger, subset$, filename As String)
         Dim csv As New StreamWriter(filename.Open(FileMode.OpenOrCreate, doClear:=True))
-        Dim row As New RowObject From {"ID", "name", "formula", "exact_mass", "cas_id", "kegg_id", "hmdb_id", "chebi_id", "pubchem_cid", "lipidmaps_id", "smiles"}
+        Dim row As New RowObject From {"ID", "name", "zh_name", "formula", "exact_mass", "cas_id", "kegg_id", "hmdb_id", "chebi_id", "pubchem_cid", "lipidmaps_id", "smiles", "super_class", "main_class", "sub_class"}
         Dim db_xrefs As xref
         Dim i As Integer = 0
         Dim block As i32 = 1
@@ -63,9 +63,21 @@ Module MetaboliteDatabase
         Call row.Clear()
         Call println("Export metabolite annotation into table sheet...")
 
-        For Each mol As Metadata In ExportMetaboliteData.ExportMetabolites(MyApplication.biocad_registry, subset, ontology_id:=class_id)
+        For Each mol As Metadata In ExportMetaboliteData.ExportMetabolites(MyApplication.biocad_registry, subset, ontology_id:=class_id, zh_class:=True)
             db_xrefs = mol.xref
-            row.AddRange({mol.ID, mol.name, mol.formula, mol.exact_mass, db_xrefs.CAS.FirstOrDefault, db_xrefs.KEGG, db_xrefs.HMDB, db_xrefs.chebi, db_xrefs.pubchem, db_xrefs.lipidmaps, db_xrefs.SMILES})
+            row.AddRange({mol.ID, mol.name, mol.zh_name, mol.formula, mol.exact_mass,
+                         db_xrefs.CAS.FirstOrDefault,
+                         db_xrefs.KEGG,
+                         db_xrefs.HMDB,
+                         db_xrefs.chebi,
+                         db_xrefs.pubchem,
+                         db_xrefs.lipidmaps,
+                         db_xrefs.SMILES,
+                         mol.super_class,
+                         mol.class,
+                         mol.sub_class
+            })
+
             csv.WriteLine(row.AsLine)
             row.Clear()
             i += 1
