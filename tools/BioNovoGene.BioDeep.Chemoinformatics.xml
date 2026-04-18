@@ -415,7 +415,7 @@ BioNovoGene.BioDeep.Chemoinformatics
  1. 构建元素查找表
  </summary>
 </member>
-<member name="M:BioNovoGene.BioDeep.Chemoinformatics.Formula.ChemicalCalculator.CalculatePossibleCharges(System.Collections.Generic.Dictionary{System.String,System.Int32})">
+<member name="M:BioNovoGene.BioDeep.Chemoinformatics.Formula.ChemicalCalculator.CalculatePossibleCharges(System.Collections.Generic.Dictionary{System.String,System.Int32},System.Boolean)">
  <summary>
  计算化学式可能的电荷数及其概率
  </summary>

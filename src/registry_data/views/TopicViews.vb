@@ -14,12 +14,12 @@ Public Module TopicViews
         Call registry.NaturalProductLib(np_topic, plant_tax)
         ' andalso add pmhub and herb database content as plant np data?
         Dim herb As UInteger = registry.biocad_vocabulary.GetDatabaseResource("HERB")
-        Dim metab_type = registry.biocad_vocabulary.metabolite_type
+        Dim metab_type As UInteger = registry.biocad_vocabulary.metabolite_type
         Dim nplink As CommitTransaction = registry.topic.open_transaction
 
         For Each meta_key In TqdmWrapper.Wrap(registry.db_xrefs.where(field("type") = metab_type, field("db_name") = herb).select(Of db_xrefs))
             Dim meta As metabolites = registry.metabolites _
-                        .where(field("id") = meta_key) _
+                        .where(field("`metabolites`.id") = meta_key.obj_id) _
                         .find(Of metabolites)
 
             If meta Is Nothing Then

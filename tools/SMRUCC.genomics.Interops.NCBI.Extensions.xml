@@ -3164,6 +3164,15 @@ SMRUCC.genomics.Interops.NCBI.Extensions
  ec number terms
  </summary>
  <returns></returns>
+ 
+</member>
+<member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.Pipeline.GenomeVector.GetHierarchicalECNumberTerms(System.Collections.Generic.Dictionary{System.String,System.Int32})">
+ <summary>
+ used for processing of the ec number terms, make the count of the
+ hierarchical ec number terms by summing the count of the specific 
+ ec number terms
+ </summary>
+ <returns></returns>
 </member>
 <member name="M:SMRUCC.genomics.Interops.NCBI.Extensions.Pipeline.GenomeVector.GroupByTaxonomy(System.Collections.Generic.IEnumerable{SMRUCC.genomics.Interops.NCBI.Extensions.Pipeline.GenomeVector},System.Int32)">
  <summary>
