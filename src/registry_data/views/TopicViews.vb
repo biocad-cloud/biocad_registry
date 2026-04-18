@@ -39,7 +39,7 @@ Public Module TopicViews
                 .find(Of biocad_registryModel.topic)
 
             If check_topic Is Nothing Then
-                Call nplink.add(
+                Call nplink.ignore.add(
                     field("topic_id") = np_topic,
                     field("model_id") = meta_id,
                     field("type") = metab_type,
