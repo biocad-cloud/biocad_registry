@@ -53,6 +53,7 @@ Public Module ExportMetaboliteData
                                                Optional zh_class As Boolean = False) As IEnumerable(Of MetaLib)
         Dim page_size As Integer = 100
         Dim page As metabolites()
+        Dim hits As New HashSet(Of UInteger)
 
         For Each page_id As UInteger() In meta_ids.SplitIterator(page_size)
             page = registry.metabolites _
@@ -66,7 +67,10 @@ Public Module ExportMetaboliteData
             For Each m As metabolites In page
                 If filterMass AndAlso m.exact_mass <= 1 Then
                     Continue For
+                ElseIf hits.Contains(m.id) Then
+                    Continue For
                 Else
+                    Call hits.Add(m.id)
                     Yield registry.BuildMetabolite(m, ontology_id, zh_class:=zh_class)
                 End If
             Next
