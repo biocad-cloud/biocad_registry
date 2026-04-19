@@ -48,6 +48,32 @@ Public Module ExportMetaboliteData
     End Function
 
     <Extension>
+    Public Iterator Function ExportMetabolites(registry As biocad_registry, meta_ids As IEnumerable(Of UInteger), ontology_id As UInteger,
+                                               Optional filterMass As Boolean = True,
+                                               Optional zh_class As Boolean = False) As IEnumerable(Of MetaLib)
+        Dim page_size As Integer = 100
+        Dim page As metabolites()
+
+        For Each page_id As UInteger() In meta_ids.SplitIterator(page_size)
+            page = registry.metabolites _
+                .where(field("id").in(page_id)) _
+                .select(Of metabolites)
+
+            If page.IsNullOrEmpty Then
+                Exit For
+            End If
+
+            For Each m As metabolites In page
+                If filterMass AndAlso m.exact_mass <= 1 Then
+                    Continue For
+                Else
+                    Yield registry.BuildMetabolite(m, ontology_id, zh_class:=zh_class)
+                End If
+            Next
+        Next
+    End Function
+
+    <Extension>
     Public Function BuildMetabolite(registry As biocad_registry, m As metabolites, ontology_id As UInteger, zh_class As Boolean) As MetaLib
         Dim class_info = registry.GetClass(m.id, ontology_id, lang_zh:=zh_class)
         Dim struct = registry.struct_data _
